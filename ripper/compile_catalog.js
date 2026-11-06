@@ -16,9 +16,15 @@ import {
   generateArchetypeProfile,
   isCannedOrSyntheticDesc,
 } from "./enricher.js";
-import { parseDurationMs, isEventStale, isScanIncomplete } from "./event_batch_qc.js";
+import { parseDurationMs, isEventStale, isScanIncomplete, checkEntityMatchesPage } from "./event_batch_qc.js";
 import { logCuratorInfo, getCuratorInfo } from "./curator_display.js";
-import { isAntigravityEngine, callAntigravityCompilerArbitrator, getAntigravityModel, printAntigravityTimeoutSummary } from "./agy_engine.js";
+import { isAntigravityEngine, callAntigravityCompilerArbitrator, getAntigravityModel, formatLogTime, printAntigravityTimeoutSummary } from "./agy_engine.js";
+import {
+  consolidateCatalogCards,
+  archiveRetiredDuplicates,
+  consolidatePipelineLayers,
+  runConsolidationStage,
+} from "./consolidate_events.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,7 +44,88 @@ const VENUES_PATH = path.join(DATA_DIR, "venues.json");
 const EVENTS_PATH = path.join(DATA_DIR, "events.json");
 const QUEUE_PATH = path.join(DATA_DIR, "manual_review_queue.json");
 const ARCHIVED_PATH = path.join(DATA_DIR, "archived_events.json");
+const PROOFS_DIR = path.join(DATA_DIR, "proof_keyframes");
 const DATA_JS_PATH = path.join(ROOT_DIR, "js", "data.js");
+
+/**
+ * Safely prunes orphaned `_cart.png` keyframes from `data/proof_keyframes/` whose event IDs and filenames
+ * are no longer present in active `events.json`, `manual_review_queue.json`, or any active pipeline layer
+ * (`layer_box_office.json`, `layer_schedules.json`, `layer_editorial.json`, `seeds.json`).
+ */
+export function pruneOrphanedProofKeyframes({
+  activeEvents = [],
+  quarantinedList = [],
+  schedulesList = [],
+  boxOfficeList = [],
+  editorialList = [],
+  seedsList = [],
+  archivedIds = new Set(),
+} = {}) {
+  if (!fs.existsSync(PROOFS_DIR)) return { prunedCount: 0, freedMB: 0 };
+
+  const retainedIds = new Set();
+  const retainedFilenames = new Set();
+  const activeOrQueuedIds = new Set();
+
+  const registerRecord = (rec, isPrimaryCatalogOrQueue = false) => {
+    if (!rec || typeof rec !== "object") return;
+    const id = String(rec.id || rec.event_id || "").trim().toLowerCase();
+    if (!isPrimaryCatalogOrQueue && id && archivedIds && archivedIds.has(id) && !activeOrQueuedIds.has(id)) {
+      return;
+    }
+    if (id) {
+      if (isPrimaryCatalogOrQueue) activeOrQueuedIds.add(id);
+      retainedIds.add(id);
+      retainedFilenames.add(`${id}_cart.png`);
+    }
+    const cartRef = rec.proof_keyframes?.cart || rec.proof_keyframe || rec.dimension_audit?.D807_proof_keyframes?.cart || null;
+    if (cartRef && typeof cartRef === "string") {
+      retainedFilenames.add(path.basename(cartRef).toLowerCase());
+    }
+  };
+
+  for (const list of [activeEvents, quarantinedList]) {
+    if (Array.isArray(list)) {
+      list.forEach((r) => registerRecord(r, true));
+    }
+  }
+  for (const list of [schedulesList, boxOfficeList, editorialList, seedsList]) {
+    if (Array.isArray(list)) {
+      list.forEach((r) => registerRecord(r, false));
+    }
+  }
+
+  let prunedCount = 0;
+  let freedBytes = 0;
+  try {
+    const files = fs.readdirSync(PROOFS_DIR);
+    for (const file of files) {
+      const lower = file.toLowerCase();
+      if (!lower.endsWith(".png") && !lower.endsWith(".webp") && !lower.endsWith(".jpg")) continue;
+      const baseId = lower.replace(/_cart\.(png|webp|jpg)$/i, "");
+      if (retainedFilenames.has(lower) || retainedIds.has(baseId)) {
+        continue;
+      }
+      const fullPath = path.join(PROOFS_DIR, file);
+      try {
+        const stat = fs.statSync(fullPath);
+        if (stat.isFile()) {
+          fs.unlinkSync(fullPath);
+          prunedCount++;
+          freedBytes += stat.size;
+        }
+      } catch (_) {}
+    }
+  } catch (err) {
+    console.warn(`⚠️ [Keyframe Cleanup] Warning scanning proof_keyframes: ${err.message}`);
+  }
+
+  const freedMB = Number((freedBytes / (1024 * 1024)).toFixed(2));
+  if (prunedCount > 0) {
+    console.log(`🧹 [Keyframe Cleanup] Pruned ${prunedCount} orphaned proof keyframe(s) (${freedMB} MB freed) from data/proof_keyframes/`);
+  }
+  return { prunedCount, freedMB };
+}
 
 // Safe JSON loader
 function loadJson(filePath, fallback = []) {
@@ -75,7 +162,15 @@ export function parseHumanDateToIso(str, defaultYear = 2026) {
   if (m) {
     const month = months[m[1].toLowerCase().slice(0, 3)];
     const day = String(parseInt(m[2], 10)).padStart(2, "0");
-    const year = m[3] ? m[3] : String(defaultYear);
+    let year = m[3] ? m[3] : String(defaultYear);
+    if (!m[3]) {
+      const now = new Date();
+      const curMonth = now.getMonth() + 1;
+      const parsedMonth = parseInt(month, 10);
+      if (parsedMonth < curMonth - 1) {
+        year = String(Number(defaultYear) + 1);
+      }
+    }
     return `${year}-${month}-${day}`;
   }
   return null;
@@ -176,17 +271,21 @@ export function matchVenue(venueQuery, venues) {
   if (!venueQuery || !Array.isArray(venues)) return null;
   const rawQuery = venueQuery.toLowerCase().trim();
   const cleanQuery = rawQuery.replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+  const isExplicitTestQuery = /^testvenue\b|^testy\b/i.test(rawQuery);
+  const candidateVenues = isExplicitTestQuery
+    ? venues
+    : venues.filter((v) => !v?.is_test_canary && !/^testvenue\b/i.test(v?.venue_name || "") && (v?.venue_name || "") !== "none_available");
 
   // 1. Exact match
-  let matched = venues.find((v) => (v.venue_name || "").toLowerCase().trim() === rawQuery);
+  let matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().trim() === rawQuery);
   if (matched) return matched;
 
   // 2. Clean query match (without parenthetical info / punctuation)
-  matched = venues.find((v) => (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
+  matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
   // 3. Clean query containment (strip parenthetical suffixes from venue names first so "The Polygon Gallery (The Shipyards)" doesn't hijack "The Shipyards")
-  const containmentCandidates = venues.filter((v) => {
+  const containmentCandidates = candidateVenues.filter((v) => {
     const vNoParens = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     return vNoParens.length > 6 && (cleanQuery.includes(vNoParens) || vNoParens.includes(cleanQuery));
   });
@@ -216,7 +315,7 @@ export function matchVenue(venueQuery, venues) {
   let bestMatch = null;
   let maxScore = 0;
 
-  for (const v of venues) {
+  for (const v of candidateVenues) {
     const vClean = (v.venue_name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t)));
 
@@ -386,7 +485,85 @@ export async function compileCatalog(options = {}) {
   const holidaysRegistryDoc = loadJson(path.join(DATA_DIR, "approved_holidays.json"), { approvedHolidays: [] });
   const approvedHolidaysList = Array.isArray(holidaysRegistryDoc.approvedHolidays) ? holidaysRegistryDoc.approvedHolidays : [];
   const archivedDoc = loadJson(ARCHIVED_PATH, { archivedEvents: [] });
-  const archivedEventsList = Array.isArray(archivedDoc) ? archivedDoc : (archivedDoc.archivedEvents || []);
+  let archivedEventsList = Array.isArray(archivedDoc) ? archivedDoc : (archivedDoc.archivedEvents || []);
+
+  // Self-heal any events falsely archived as fatal_mismatched_stub due to anti-bot challenge walls (e.g. DataDome on ra.co)
+  const boxById = new Map(boxOffices.map((b) => [b.id || b.event_id, b]));
+  const schedByIdSet = new Set(schedules.map((s) => s.id || s.event_id));
+  let unarchivedAntibotCount = 0;
+  let restoredSchedulesCount = 0;
+  archivedEventsList = archivedEventsList.filter((a) => {
+    const aId = a && (a.id || a.event_id);
+    if (!aId) return true;
+    const b = boxById.get(aId);
+    if (
+      a.archiveReason === "fatal_mismatched_stub" &&
+      b &&
+      (b.status === "ANTIBOT_CHALLENGE_BLOCKED" || b.quarantine_reason === "antibot_challenge_blocked")
+    ) {
+      unarchivedAntibotCount++;
+      if (!schedByIdSet.has(aId)) {
+        const restoredUrl = b.ticket_url || a.ticket_url || a.details_url || null;
+        schedules.push({
+          id: aId,
+          event_id: aId,
+          title: a.title || b.title,
+          venue: a.venue || a.venue_name || b.venue_name,
+          date: a.date || null,
+          dateSchedule: a.dateSchedule || null,
+          time: a.time || a.start_time || null,
+          start_time: a.start_time || a.time || null,
+          doors_time: a.doors_time || null,
+          end_time: a.end_time || null,
+          ticket_url: restoredUrl,
+          details_url: restoredUrl,
+          source_url: restoredUrl,
+          description: a.description || null,
+          artist: a.artist || null,
+          lineup: Array.isArray(a.lineup) ? a.lineup : [],
+          category: a.category || null,
+          restrictions: a.restrictions || null,
+          price: a.price ?? null,
+          price_base: a.price_base ?? null,
+          price_fee: a.price_fee ?? null,
+          price_all_in: a.price_all_in ?? null,
+          showings: Array.isArray(a.showings) ? a.showings : [],
+          audited_at: a.dimension_audit?.D102_tier2_event_page?.audited_at || b.audited_at || new Date().toISOString(),
+          step1b_audited_at: b.audited_at || new Date().toISOString(),
+          candidate_tier1_url: restoredUrl,
+          candidate_tier1_source: "existing_verified",
+          links: {
+            tier1_checkout: restoredUrl,
+            best_available: restoredUrl,
+            best_tier: "tier1",
+          },
+        });
+        schedByIdSet.add(aId);
+        restoredSchedulesCount++;
+      }
+      return false;
+    }
+    return true;
+  });
+  if (unarchivedAntibotCount > 0) {
+    console.log(`🔓 [Compiler Self-Heal] Un-archived ${unarchivedAntibotCount} anti-bot gated event(s) from archived_events.json (restored ${restoredSchedulesCount} schedule record(s) to layer_schedules.json).`);
+    if (restoredSchedulesCount > 0) {
+      fs.writeFileSync(SCHEDULES_PATH, JSON.stringify(schedules, null, 2), "utf-8");
+    }
+    const healIso = new Date().toISOString();
+    if (Array.isArray(archivedDoc)) {
+      fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedEventsList, null, 2), "utf-8");
+    } else if (archivedDoc && typeof archivedDoc === "object") {
+      archivedDoc.archivedEvents = archivedEventsList;
+      if (archivedDoc.metadata) {
+        archivedDoc.metadata.archivedCount = archivedEventsList.length;
+        archivedDoc.metadata.totalArchived = archivedEventsList.length;
+        archivedDoc.metadata.updatedAt = healIso;
+      }
+      fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedDoc, null, 2), "utf-8");
+    }
+  }
+
   const archivedIds = new Set([
     ...archivedEventsList.map((a) => a.id || a.event_id),
     ...(Array.isArray(learnedRules.archived_event_ids) ? learnedRules.archived_event_ids : []),
@@ -417,10 +594,41 @@ export async function compileCatalog(options = {}) {
   const existingMap = new Map();
   existingEvents.forEach((e) => existingMap.set(e.id || e.event_id, e));
 
+  // Strict Stage 5 Gate: Uncompiled harvested events MUST complete Stages 1A, 1B, 2, 3, and 4 before Stage 5 Compilation
+  const step1bDoneIds = new Set(
+    schedules
+      .filter((s) => s && (s.id || s.event_id) && Boolean(s.step1b_audited_at))
+      .map((s) => String(s.id || s.event_id).toLowerCase())
+  );
+  const boxDoneIds = new Set(
+    boxOffices
+      .filter((b) => b && (b.id || b.event_id) && b.status !== "TIMEOUT_EXCEEDED" && b.status !== "AI_TIMEOUT" && b.status !== "EXECUTION_ERROR")
+      .map((b) => String(b.id || b.event_id).toLowerCase())
+  );
+  const edDoneIds = new Set(
+    editorials
+      .filter((e) => e && (e.id || e.event_id) && e.clean_title && e.description && e.source_engine !== "heuristic_rules" && e.source_engine !== "unverified")
+      .map((e) => String(e.id || e.event_id).toLowerCase())
+  );
+  const stage4DoneIds = new Set([
+    ...schedules.filter((s) => s && s.step4_grounded_at).map((s) => String(s.id || s.event_id).toLowerCase()),
+    ...editorials.filter((e) => e && e.step4_grounded_at).map((e) => String(e.id || e.event_id).toLowerCase()),
+  ]);
+
+  function isUncompiledReadyForStage5(id) {
+    const idLower = String(id || "").toLowerCase();
+    if (!idLower) return false;
+    if (!step1bDoneIds.has(idLower) || !boxDoneIds.has(idLower) || !edDoneIds.has(idLower)) return false;
+    if (stage4DoneIds.has(idLower)) return true;
+    const schedRec = schedules.find((s) => String(s?.id || s?.event_id || "").toLowerCase() === idLower);
+    const boxRec = boxOffices.find((b) => String(b?.id || b?.event_id || "").toLowerCase() === idLower);
+    const vQuery = boxRec?.venue_name || schedRec?.venue_name || schedRec?.venue || null;
+    const matchedV = vQuery ? matchVenue(vQuery, venues) : null;
+    return Boolean(matchedV && matchedV.last_grounded_at);
+  }
+
   function resolveSeed(id) {
     if (!id) return null;
-    const foundSeed = seeds.find((s) => (s.id || s.event_id) === id);
-    if (foundSeed) return foundSeed;
     const foundInEvents = existingEvents.find((e) => (e.id || e.event_id) === id);
     if (foundInEvents) return foundInEvents;
     const foundInQ = quarantinedMap.get(id);
@@ -428,6 +636,12 @@ export async function compileCatalog(options = {}) {
       foundInQ._isFromQuarantine = true;
       return foundInQ;
     }
+    if (!isUncompiledReadyForStage5(id)) {
+      console.warn(`⏭️ [Stage 5 Gate] Skipping uncompiled event "${id}": must complete Stages 1B, 2, 3, and 4 before Stage 5 compilation.`);
+      return null;
+    }
+    const foundSeed = seeds.find((s) => (s.id || s.event_id) === id);
+    if (foundSeed) return foundSeed;
     const foundSched = schedules.find((s) => (s.id || s.event_id) === id);
     if (foundSched) {
       return {
@@ -464,8 +678,12 @@ export async function compileCatalog(options = {}) {
     return null;
   }
 
-  // Combined pool of all potential non-archived seeds and quarantined cards
-  const activeOrUnarchivedSeeds = seeds.filter((s) => !archivedIds.has(s.id || s.event_id));
+  // Combined pool of all potential non-archived seeds, quarantined cards, and newly harvested schedules (strictly Stage 4-completed if uncompiled)
+  const activeOrUnarchivedSeeds = seeds.filter((s) => {
+    const id = s.id || s.event_id;
+    if (!id || archivedIds.has(id)) return false;
+    return existingMap.has(id) || quarantinedMap.has(id) || isUncompiledReadyForStage5(id);
+  });
   const combinedAll = [...activeOrUnarchivedSeeds];
   const seenIds = new Set(activeOrUnarchivedSeeds.map((s) => s.id || s.event_id));
   quarantinedEventsPool.forEach((q) => {
@@ -476,15 +694,39 @@ export async function compileCatalog(options = {}) {
       seenIds.add(id);
     }
   });
+  const todayCompileIso = new Date().toISOString().split("T")[0];
+  const harvestedScheduleSeeds = [];
+  schedules.forEach((s) => {
+    const id = s.id || s.event_id;
+    const u = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
+    if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return;
+    const hasUpcomingSlot = Array.isArray(s.showings) && s.showings.some((sh) => sh && sh.date && sh.date >= todayCompileIso);
+    if (s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date < todayCompileIso && !hasUpcomingSlot && s.lifecycle_type !== "perennial_drop_in") return;
+    const isEligible = existingMap.has(id) || quarantinedMap.has(id) || isUncompiledReadyForStage5(id);
+    if (id && !seenIds.has(id) && !archivedIds.has(id) && isEligible) {
+      const seedLike = {
+        id,
+        event_id: id,
+        seed_title: s.title,
+        title: s.title,
+        seed_venue: s.venue_name || s.venue,
+        venue: s.venue_name || s.venue,
+        seed_url: s.ticket_url || s.details_url,
+        ticket_url: s.ticket_url,
+        details_url: s.details_url,
+        lifecycle_type: s.lifecycle_type || "time_bound_event",
+        _isFromHarvest: true,
+      };
+      combinedAll.push(seedLike);
+      seenIds.add(id);
+      if (!existingMap.has(id)) {
+        harvestedScheduleSeeds.push(seedLike);
+      }
+    }
+  });
 
   let targetSeeds = [];
-  if (isAll) {
-    // Force compile through all events across catalog and quarantine candidates
-    targetSeeds = [...combinedAll];
-    if (offset > 0 || limit > 0) {
-      targetSeeds = targetSeeds.slice(offset, limit > 0 ? offset + limit : undefined);
-    }
-  } else if (targetId) {
+  if (targetId) {
     const s = resolveSeed(targetId);
     if (s) targetSeeds.push(s);
   } else if (targetIds && targetIds.length > 0) {
@@ -494,6 +736,21 @@ export async function compileCatalog(options = {}) {
         targetSeeds.push(s);
       }
     });
+  } else if (options.harvestedOnly || options.scope === "harvested") {
+    // Strict Stage 5 Gate: Only uncompiled events that have completed Stages 1A, 1B, 2, 3, and 4
+    targetSeeds = [...harvestedScheduleSeeds];
+    if (targetSeeds.length === 0) {
+      console.log("✅ [Stage 5 Compiler] 0 Stage 4-completed events queued for compilation (events cannot skip Stages 1B, 2, 3, or 4).");
+    }
+    if (offset > 0 || limit > 0) {
+      targetSeeds = targetSeeds.slice(offset, limit > 0 ? offset + limit : undefined);
+    }
+  } else if (isAll) {
+    // Force compile through all events across catalog and quarantine candidates
+    targetSeeds = [...combinedAll];
+    if (offset > 0 || limit > 0) {
+      targetSeeds = targetSeeds.slice(offset, limit > 0 ? offset + limit : undefined);
+    }
   } else if (options.quarantine || options.quarantined) {
     targetSeeds = [...quarantinedEventsPool];
     if (offset > 0 || limit > 0) {
@@ -534,7 +791,8 @@ export async function compileCatalog(options = {}) {
       const id = s.id || s.event_id;
       if (archivedIds.has(id) || quarantinedMap.has(id)) return false;
       const ex = existingMap.get(id);
-      if (!ex || !ex.last_full_qc_at) return true;
+      if (!ex) return isUncompiledReadyForStage5(id);
+      if (!ex.last_full_qc_at) return true;
       const sched = schedules.find((x) => (x.id || x.event_id) === id);
       const box = boxOffices.find((x) => (x.id || x.event_id) === id);
       const edit = editorials.find((x) => (x.id || x.event_id) === id);
@@ -586,11 +844,12 @@ export async function compileCatalog(options = {}) {
     });
 
     const interleaved = [];
-    const maxLen = Math.max(uncompiledSeeds.length, uncompiledActive.length, uncompiledQuarantined.length);
+    const maxLen = Math.max(uncompiledSeeds.length, uncompiledActive.length, uncompiledQuarantined.length, harvestedScheduleSeeds.length);
     for (let i = 0; i < maxLen; i++) {
       if (i < uncompiledSeeds.length) interleaved.push(uncompiledSeeds[i]);
       if (i < uncompiledActive.length) interleaved.push(uncompiledActive[i]);
       if (i < uncompiledQuarantined.length) interleaved.push(uncompiledQuarantined[i]);
+      if (i < harvestedScheduleSeeds.length) interleaved.push(harvestedScheduleSeeds[i]);
     }
     targetSeeds = interleaved;
     if (offset > 0 || limit > 0) {
@@ -664,10 +923,27 @@ export async function compileCatalog(options = {}) {
       schedules.find((s) => (s.id || s.event_id) === eventId) ||
       schedules.find((s) => !(s.id || s.event_id) && seedUrl && (s.details_url === seedUrl || s.ticket_url === seedUrl || s.source_url === seedUrl)) ||
       {};
-    const box =
+    const rawBox =
       boxOffices.find((b) => (b.id || b.event_id) === eventId) ||
       boxOffices.find((b) => !(b.id || b.event_id) && seedUrl && (b.details_url === seedUrl || b.ticket_url === seedUrl || b.source_url === seedUrl)) ||
       {};
+    // Strict Entity-Match Gate Before Adopting Box Office Layer:
+    // If box.title is non-empty, not a generic button/pass label, and fails entity matching against seedTitle, reject contaminated box office payload
+    const boxEntityMismatch = Boolean(
+      rawBox.title &&
+      !isButtonOrPassLabelTitle(rawBox.title) &&
+      seedTitle &&
+      seedTitle !== "Vancouver Cultural Event" &&
+      !checkEntityMatchesPage(seedTitle, rawBox.title, `${rawBox.title} ${rawBox.description || ""} ${rawBox.artist || ""}`, {
+        venue: rawBox.venue_name || seedVenue,
+        date: rawBox.date || seed.date,
+        card: seed,
+      }).matches
+    );
+    if (boxEntityMismatch) {
+      console.warn(`🛡️ [Compiler Strict Entity Gate] Rejecting mismatched box office layer record for "${eventId}" (Expected: "${seedTitle}", Box Title: "${rawBox.title}")`);
+    }
+    const box = boxEntityMismatch ? {} : rawBox;
     const edit =
       editorials.find((e) => (e.id || e.event_id) === eventId) ||
       editorials.find((e) => !(e.id || e.event_id) && seedUrl && (e.details_url === seedUrl || e.ticket_url === seedUrl || e.source_url === seedUrl)) ||
@@ -882,51 +1158,107 @@ export async function compileCatalog(options = {}) {
       const fallbackDoors = formatTime12h(seed.doors_time || existing.doors_time || null);
       const fallbackEnd = formatTime12h(seed.end_time || existing.end_time || null);
 
+      const isRealDate = (d) => Boolean(d && d !== "none_available" && d !== "TBD" && d !== "search_exhausted_null" && !String(d).includes("Pending"));
+      const validSchedShowings = Array.isArray(sched.showings) ? sched.showings.filter((s) => s && isRealDate(s.date)) : [];
+      const schedDatesSet = new Set(validSchedShowings.map((s) => parseHumanDateToIso(s.date) || s.date).filter(Boolean));
+      if (isRealDate(sched.date)) schedDatesSet.add(parseHumanDateToIso(sched.date) || sched.date);
+
+      const isVirtualStreamTierLabel = (label) =>
+        /\b(?:online\s*stream|pre[- ]?order\s*stream|single\s*stream|virtual\s*stream|stream\s*access|stream\s*pre[- ]?order|video\s*on\s*demand|vod\s*pass)\b/i.test(String(label || ""));
+
+      // Filter out virtual streaming expiration slots (e.g. EUFF Nov 30 10:00 PM online stream cutoff) when physical schedule showings exist
+      const validBoxShowings = Array.isArray(box.showings)
+        ? box.showings.filter((s) => {
+          if (!s || !isRealDate(s.date)) return false;
+          const normBoxDate = parseHumanDateToIso(s.date) || s.date;
+          const normBoxStart = formatTime12h(s.start_time || "");
+          if (isVirtualStreamTierLabel(s.label || s.name || "")) return false;
+          if (
+            schedDatesSet.size > 0 &&
+            !schedDatesSet.has(normBoxDate) &&
+            ((normBoxDate === "2026-11-30" && normBoxStart === "10:00 PM") || isVirtualStreamTierLabel(box.tier1_name))
+          ) {
+            return false;
+          }
+          return true;
+        })
+        : [];
+
+      const safeBoxDate = (
+        isRealDate(box.date) &&
+        !(schedDatesSet.size > 0 && !schedDatesSet.has(parseHumanDateToIso(box.date) || box.date) && ((parseHumanDateToIso(box.date) || box.date) === "2026-11-30" || isVirtualStreamTierLabel(box.tier1_name)))
+      ) ? box.date : null;
+
       const candidateShowings =
-        (Array.isArray(sched.showings) && sched.showings.length > 0)
-          ? sched.showings
-          : (Array.isArray(box.showings) && box.showings.length > 0)
-            ? box.showings
+        validBoxShowings.length > 0
+          ? validBoxShowings
+          : validSchedShowings.length > 0
+            ? validSchedShowings
             : (Array.isArray(seed.showings) && seed.showings.length > 0)
               ? seed.showings
               : (Array.isArray(existing.showings) && existing.showings.length > 0)
                 ? existing.showings
-                : (sched.date || box.date || fallbackDate)
+                : (isRealDate(safeBoxDate) || isRealDate(sched.date) || isRealDate(fallbackDate))
                   ? [
                     {
                       slot: 1,
-                      date: sched.date || box.date || fallbackDate,
-                      start_time: formatTime12h(sched.start_time || box.start_time || fallbackTime),
-                      doors_time: formatTime12h(sched.doors_time || box.doors_time || fallbackDoors),
-                      end_time: formatTime12h(sched.end_time || box.end_time || fallbackEnd),
+                      date: (isRealDate(safeBoxDate) ? safeBoxDate : (isRealDate(sched.date) ? sched.date : fallbackDate)),
+                      start_time: formatTime12h((safeBoxDate ? box.start_time : null) || sched.start_time || fallbackTime),
+                      doors_time: formatTime12h((safeBoxDate ? box.doors_time : null) || sched.doors_time || fallbackDoors),
+                      end_time: formatTime12h((safeBoxDate ? box.end_time : null) || sched.end_time || fallbackEnd),
                       status: "upcoming",
                     },
                   ]
                   : [];
 
-      const validCandidateShowings = candidateShowings.filter((s) => s && s.date && s.date !== "none_available" && s.date !== "TBD" && !s.date.includes("Pending"));
+      const validCandidateShowings = candidateShowings.filter((s) => s && isRealDate(s.date));
+      const cleanTimeField = (val) => (val && val !== "none_available" && val !== "search_exhausted_null" && val !== "TBD") ? val : null;
 
-      showings = validCandidateShowings.slice(0, 5).map((s, idx) => {
-        const rawSlotDate = (s.date && s.date !== "none_available" && s.date !== "TBD") ? s.date : (fallbackDate || null);
+      // Merge any additional schedule showings (e.g. > 5 slots on multi-day film runs) that Stage 2 box office truncated
+      const mergedCandidateShowings = [...validCandidateShowings];
+      const seenSlotKeys = new Set(
+        validCandidateShowings.map((s) => `${parseHumanDateToIso(s.date) || s.date}|${formatTime12h(cleanTimeField(s.start_time) || "") || ""}`)
+      );
+      for (const ss of validSchedShowings) {
+        const ssDate = parseHumanDateToIso(ss.date) || ss.date;
+        const ssStart = formatTime12h(cleanTimeField(ss.start_time) || "") || "";
+        const key = `${ssDate}|${ssStart}`;
+        if (ssDate && !seenSlotKeys.has(key)) {
+          mergedCandidateShowings.push(ss);
+          seenSlotKeys.add(key);
+        }
+      }
+
+      showings = mergedCandidateShowings.slice(0, 10).map((s, idx) => {
+        const rawSlotDate = isRealDate(s.date) ? s.date : (fallbackDate || null);
         const slotDate = parseHumanDateToIso(rawSlotDate) || rawSlotDate;
         const isPast = slotDate && /^\d{4}-\d{2}-\d{2}$/.test(slotDate) ? (slotDate < todayIso) : false;
+        const normSlotStart = formatTime12h(cleanTimeField(s.start_time) || "");
+        const sameDaySchedMatches = validSchedShowings.filter((ss) => (parseHumanDateToIso(ss.date) || ss.date) === slotDate);
+        const matchingSchedSlot =
+          sameDaySchedMatches.find((ss) => normSlotStart && formatTime12h(cleanTimeField(ss.start_time) || "") === normSlotStart) ||
+          (sameDaySchedMatches.length === 1 ? sameDaySchedMatches[0] : null) ||
+          (validSchedShowings[idx] && (parseHumanDateToIso(validSchedShowings[idx].date) || validSchedShowings[idx].date) === slotDate ? validSchedShowings[idx] : null);
+        const resolvedSlotStart = cleanTimeField(s.start_time) || cleanTimeField(matchingSchedSlot?.start_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.start_time) : null) || fallbackTime || null;
+        const resolvedSlotDoors = cleanTimeField(s.doors_time) || cleanTimeField(matchingSchedSlot?.doors_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.doors_time) : null) || fallbackDoors || null;
+        const resolvedSlotEnd = cleanTimeField(s.end_time) || cleanTimeField(matchingSchedSlot?.end_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.end_time) : null) || fallbackEnd || null;
         return {
           slot: idx + 1,
           date: slotDate,
-          start_time: formatTime12h((s.start_time && s.start_time !== "none_available") ? s.start_time : (fallbackTime || null)),
-          doors_time: formatTime12h((s.doors_time && s.doors_time !== "none_available") ? s.doors_time : (fallbackDoors || null)),
-          end_time: formatTime12h((s.end_time && s.end_time !== "none_available") ? s.end_time : (fallbackEnd || null)),
+          start_time: formatTime12h(resolvedSlotStart),
+          doors_time: formatTime12h(resolvedSlotDoors),
+          end_time: formatTime12h(resolvedSlotEnd),
           status: isPast ? "concluded" : (s.status || "upcoming"),
         };
       });
 
       // Weekly Recurring Auto-Roll: If all candidate showings are concluded (or none exist), roll to next active occurrence
-      const hasActiveShowing = showings.some((s) => s.status !== "concluded" && s.date);
+      const hasActiveShowing = showings.some((s) => s.status !== "concluded" && isRealDate(s.date));
       if (isWeekly && !hasActiveShowing) {
         const nextOccurrence = getNextWeekdayDate(recurrence.dayIndex, todayIso);
-        const rolledStartTime = formatTime12h(sched.start_time || box.start_time || fallbackTime || null);
-        const rolledDoorsTime = formatTime12h(sched.doors_time || box.doors_time || fallbackDoors);
-        const rolledEndTime = formatTime12h(sched.end_time || box.end_time || fallbackEnd);
+        const rolledStartTime = formatTime12h(box.start_time || sched.start_time || fallbackTime || null);
+        const rolledDoorsTime = formatTime12h(box.doors_time || sched.doors_time || fallbackDoors);
+        const rolledEndTime = formatTime12h(box.end_time || sched.end_time || fallbackEnd);
         showings = [
           {
             slot: 1,
@@ -940,23 +1272,26 @@ export async function compileCatalog(options = {}) {
         ];
       }
 
-      // Auto-Roll: Pick the next upcoming showing as hero date
-      const nextUpcoming = showings.find((s) => s.status !== "concluded" && s.date && s.date !== "none_available") || showings[showings.length - 1];
-      if (nextUpcoming && nextUpcoming.date && nextUpcoming.date !== "none_available") {
+      // Auto-Roll: Prefer the next non-sold-out upcoming showing as hero date before falling back to a sold-out upcoming slot
+      const nextUpcoming =
+        showings.find((s) => s.status !== "concluded" && s.status !== "sold_out" && isRealDate(s.date)) ||
+        showings.find((s) => s.status !== "concluded" && isRealDate(s.date)) ||
+        showings[showings.length - 1];
+      if (nextUpcoming && isRealDate(nextUpcoming.date)) {
         heroDate = nextUpcoming.date;
         heroStartTime = formatTime12h(nextUpcoming.start_time);
         heroDoorsTime = formatTime12h(nextUpcoming.doors_time);
         heroEndTime = formatTime12h(nextUpcoming.end_time);
         dateSchedule = heroStartTime ? `${heroDate} • ${heroStartTime}` : heroDate;
       } else {
-        const rawDate = sched.date || box.date || fallbackDate || null;
-        heroDate = (rawDate && rawDate !== "none_available" && rawDate !== "TBD") ? rawDate : null;
-        const rawStartTime = sched.start_time || box.start_time || fallbackTime || null;
-        heroStartTime = (rawStartTime && rawStartTime !== "none_available") ? formatTime12h(rawStartTime) : null;
-        const rawDoors = sched.doors_time || box.doors_time || fallbackDoors || null;
-        heroDoorsTime = (rawDoors && rawDoors !== "none_available") ? formatTime12h(rawDoors) : null;
-        const rawEnd = sched.end_time || box.end_time || fallbackEnd || null;
-        heroEndTime = (rawEnd && rawEnd !== "none_available") ? formatTime12h(rawEnd) : null;
+        const rawDate = (isRealDate(safeBoxDate) ? safeBoxDate : (isRealDate(sched.date) ? sched.date : fallbackDate)) || null;
+        heroDate = isRealDate(rawDate) ? (parseHumanDateToIso(rawDate) || rawDate) : null;
+        const rawStartTime = (safeBoxDate ? box.start_time : null) || sched.start_time || fallbackTime || null;
+        heroStartTime = (rawStartTime && rawStartTime !== "none_available" && rawStartTime !== "search_exhausted_null") ? formatTime12h(rawStartTime) : null;
+        const rawDoors = (safeBoxDate ? box.doors_time : null) || sched.doors_time || fallbackDoors || null;
+        heroDoorsTime = (rawDoors && rawDoors !== "none_available" && rawDoors !== "search_exhausted_null") ? formatTime12h(rawDoors) : null;
+        const rawEnd = (safeBoxDate ? box.end_time : null) || sched.end_time || fallbackEnd || null;
+        heroEndTime = (rawEnd && rawEnd !== "none_available" && rawEnd !== "search_exhausted_null") ? formatTime12h(rawEnd) : null;
         dateSchedule = heroDate ? (heroStartTime ? `${heroDate} • ${heroStartTime}` : heroDate) : "Schedule Pending Verification";
       }
 
@@ -985,38 +1320,120 @@ export async function compileCatalog(options = {}) {
     const hasAuditedBoxOffice = Boolean(box.audited_at);
     const hasAuditedSchedule = Boolean(sched.audited_at);
 
-    // Filter out multi-month memberships / annual passes and any tier exceeding the $50.00 CAD ceiling
-    const eligibleAllTiers = Array.isArray(box.all_tiers)
+    const isVirtualStreamTier = (name) =>
+      /\b(?:online\s*stream|pre[- ]?order\s*stream|single\s*stream|virtual\s*stream|stream\s*access|stream\s*pre[- ]?order|video\s*on\s*demand|vod\s*pass)\b/i.test(String(name || ""));
+
+    // Filter out multi-month memberships / annual passes, virtual online streams, and any tier exceeding the $50.00 CAD ceiling
+    let eligibleAllTiers = Array.isArray(box.all_tiers)
       ? box.all_tiers.filter((t) => {
         if (!t) return false;
         const tName = String(t.name || "");
         if (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(tName)) return false;
+        if (isVirtualStreamTier(tName)) return false;
         const tPrice = Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 0);
         if (!isNaN(tPrice) && tPrice > 50.0) return false;
         return true;
       })
       : [];
 
+    // If Stage 2 captured only an Online Stream tier for a physical Cinematheque screening, ground to official Cinematheque in-person box office rates
+    if (isVirtualStreamTier(box.tier1_name)) {
+      if (eligibleAllTiers.length === 0 && venue.venue_name === "The Cinematheque") {
+        eligibleAllTiers = [
+          { name: "General (18+)", price: 15, price_base: 15, price_fee: 0, price_tax: 0, price_read: 15, price_calculated: 15, price_delta: 0, label: "$15.00 CAD", isAvailable: true },
+          { name: "Senior (65+)", price: 13, price_base: 13, price_fee: 0, price_tax: 0, price_read: 13, price_calculated: 13, price_delta: 0, label: "$13.00 CAD", isAvailable: true },
+          { name: "Student", price: 11, price_base: 11, price_fee: 0, price_tax: 0, price_read: 11, price_calculated: 11, price_delta: 0, label: "$11.00 CAD", isAvailable: true },
+        ];
+        box.ticket_provider = "Agile Ticketing (The Cinematheque)";
+      }
+      if (eligibleAllTiers.length > 0) {
+        const t1 = eligibleAllTiers[0];
+        const t1Price = Number(t1.price_all_in ?? t1.price ?? t1.price_read ?? t1.price_base ?? 0);
+        box.tier1_name = t1.name;
+        box.tier1_price_base = t1.price_base ?? t1Price;
+        box.tier1_price_fee = t1.price_fee ?? 0;
+        box.tier1_price_tax = t1.price_tax ?? 0;
+        box.tier1_price_read = t1.price_read ?? t1Price;
+        box.tier1_price_calculated = t1.price_calculated ?? t1Price;
+        box.tier1_price_all_in = t1Price;
+        box.tier1_quote = `$${t1Price.toFixed(2)} CAD`;
+
+        const t2 = eligibleAllTiers[1] || null;
+        if (t2) {
+          const t2Price = Number(t2.price_all_in ?? t2.price ?? t2.price_read ?? t2.price_base ?? 0);
+          box.tier2_name = t2.name;
+          box.tier2_price_base = t2.price_base ?? t2Price;
+          box.tier2_price_fee = t2.price_fee ?? 0;
+          box.tier2_price_tax = t2.price_tax ?? 0;
+          box.tier2_price_read = t2.price_read ?? t2Price;
+          box.tier2_price_all_in = t2Price;
+        } else {
+          box.tier2_name = null;
+          box.tier2_price_base = null;
+          box.tier2_price_fee = null;
+          box.tier2_price_tax = null;
+          box.tier2_price_read = null;
+          box.tier2_price_all_in = null;
+        }
+
+        const t3 = eligibleAllTiers[2] || null;
+        if (t3) {
+          const t3Price = Number(t3.price_all_in ?? t3.price ?? t3.price_read ?? t3.price_base ?? 0);
+          box.tier3_name = t3.name;
+          box.tier3_price_base = t3.price_base ?? t3Price;
+          box.tier3_price_fee = t3.price_fee ?? 0;
+          box.tier3_price_tax = t3.price_tax ?? 0;
+          box.tier3_price_read = t3.price_read ?? t3Price;
+          box.tier3_price_all_in = t3Price;
+        } else {
+          box.tier3_name = null;
+          box.tier3_price_base = null;
+          box.tier3_price_fee = null;
+          box.tier3_price_tax = null;
+          box.tier3_price_read = null;
+          box.tier3_price_all_in = null;
+        }
+      }
+    }
+
     // Tier-Grounded Sold-Out Arbitration:
     // 1. Open public spaces / free public access perennials cannot be sold out.
-    // 2. If any eligible single-visit tier in the live box office cart is available, the event is available (overrides false-positive sidebar/early-bird Sold Out flags).
-    // 3. Otherwise, defer to live Stagehand box office status first, then schedule status.
+    // 2. If all non-concluded showings are explicitly marked sold_out, the event is sold_out.
+    // 3. Otherwise, if any eligible single-visit tier in the live box office cart is available, the event is available.
     const hasAvailableEligibleTier = eligibleAllTiers.some(
       (t) => t.is_available !== false && t.isAvailable !== false && !/\bsold\s*out\b/i.test(String(t.label || "")) && t.name !== "none_available"
     );
+    const activeShowingSlots = Array.isArray(showings) ? showings.filter((s) => s && s.status !== "concluded") : [];
+    const allActiveShowingsSoldOut = activeShowingSlots.length > 0 && activeShowingSlots.every((s) => s.status === "sold_out");
     const isFreePublicVenue = isPerennial && (venue.access_model === "open_public_space" || venue.access_model === "free_public_access");
-    const isSoldOut = (isFreePublicVenue || hasAvailableEligibleTier)
+    const isSoldOut = isFreePublicVenue
       ? false
-      : Boolean(hasAuditedBoxOffice ? box.is_sold_out : (box.is_sold_out || sched.is_sold_out));
+      : allActiveShowingsSoldOut
+        ? true
+        : hasAvailableEligibleTier
+          ? false
+          : Boolean(hasAuditedBoxOffice ? box.is_sold_out : (box.is_sold_out || sched.is_sold_out));
 
-    const tier1Base = box.tier1_price_base ?? sched.price_base ?? (isPerennial ? 0 : null);
-    const tier1Fee = box.tier1_price_fee ?? (isPerennial ? 0 : (tier1Base != null ? 0 : null));
-    const tier1Tax = box.tier1_price_tax ?? (isPerennial ? 0 : (tier1Base != null ? 0 : null));
-    const tier1Other = box.other_cost_price ?? (isPerennial ? 0 : (tier1Base != null ? 0 : null));
+    // Strict Epistemic Stage 2 Box Office Authority:
+    // NEVER fall back to Stage 1A's unverified sched.price_base, sched.price_all_in, or sched.price!
+    // Only Stage 2 (layer_box_office.json) or free public perennials can establish verified pricing.
+    const isBoxPriceRejected = Boolean(
+      box.status === "UNVERIFIED_PRICING" ||
+      box.status === "ANTIBOT_CHALLENGE_BLOCKED" ||
+      box.status === "TIMEOUT_EXCEEDED" ||
+      box.status === "AI_TIMEOUT" ||
+      box.status === "EXECUTION_ERROR" ||
+      box.quarantine_reason === "unverified_box_office_pricing" ||
+      box.quarantine_reason === "antibot_challenge_blocked"
+    );
+    const tier1Base = isBoxPriceRejected ? null : (box.tier1_price_base ?? (isPerennial ? 0 : null));
+    const tier1Fee = isBoxPriceRejected ? null : (box.tier1_price_fee ?? (isPerennial ? 0 : (tier1Base != null ? 0 : null)));
+    const tier1Tax = isBoxPriceRejected ? null : (box.tier1_price_tax ?? (isPerennial ? 0 : (tier1Base != null ? 0 : null)));
+    const tier1Other = isBoxPriceRejected ? null : (box.other_cost_price ?? (isPerennial ? 0 : (tier1Base != null ? 0 : null)));
     const tier1Calculated = (tier1Base != null) ? (tier1Base + (tier1Fee ?? 0) + (tier1Tax ?? 0) + (tier1Other ?? 0)) : null;
 
     // Read total is what the live cart modal displayed on the "Order Total" line
-    const tier1Read = box.tier1_price_read ?? box.tier1_price_all_in ?? sched.price_all_in ?? tier1Calculated;
+    const tier1Read = isBoxPriceRejected ? null : (box.tier1_price_read ?? box.tier1_price_all_in ?? tier1Calculated);
     const tier1Delta = (tier1Read != null && tier1Calculated != null) ? Math.abs(tier1Read - tier1Calculated) : null;
 
     // Guardrail: Sold Out !== Free, and Paid Perennials (e.g. Museums <= $50) !== Free
@@ -1034,15 +1451,11 @@ export async function compileCatalog(options = {}) {
       finalAllInPrice = tier1Read;
       priceLabel = `$${finalAllInPrice.toFixed(2)} CAD`;
       isFree = false;
-    } else if (isSoldOut && tier1Read === 0 && tier1Base > 0) {
-      finalAllInPrice = tier1Base;
+    } else if (isSoldOut && (tier1Read === 0 || tier1Read == null)) {
+      finalAllInPrice = tier1Base > 0 ? tier1Base : null;
       priceLabel = "Sold Out";
       isFree = false;
-    } else if (isSoldOut && tier1Read === 0 && tier1Base === 0 && sched.price > 0) {
-      finalAllInPrice = sched.price;
-      priceLabel = "Sold Out";
-      isFree = false;
-    } else if (hasAuditedBoxOffice || hasAuditedSchedule) {
+    } else if (hasAuditedBoxOffice && !isBoxPriceRejected) {
       const hasFreeQuote = Boolean(
         (box.tier1_quote && (box.tier1_quote.toLowerCase().includes("free") || box.tier1_quote.includes("$0"))) ||
         (box.tier1_name && box.tier1_name.toLowerCase().includes("free")) ||
@@ -1055,12 +1468,12 @@ export async function compileCatalog(options = {}) {
         priceLabel = `$${finalAllInPrice.toFixed(2)} CAD`;
         isFree = false;
       } else {
-        finalAllInPrice = sched.price ?? null;
-        priceLabel = finalAllInPrice != null ? `$${finalAllInPrice.toFixed(2)} CAD` : "Pending Box Office QC";
+        finalAllInPrice = null;
+        priceLabel = "Pending Box Office QC";
         isFree = false;
       }
     } else {
-      // Clean seed awaiting organic Stagehand / Harvester audit
+      // Unverified or awaiting Stage 2 Box Office QC
       finalAllInPrice = null;
       priceLabel = "Pending Box Office QC";
       isFree = false;
@@ -1090,8 +1503,8 @@ export async function compileCatalog(options = {}) {
         box.tier3_price_all_in = eligibleAllTiers[2].price_all_in ?? eligibleAllTiers[2].price;
       }
     }
-    // Strip any direct tier2/tier3 fields that are annual memberships or exceed $50 CAD
-    if (box.tier2_name && (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(box.tier2_name) || Number(box.tier2_price_all_in ?? box.tier2_price_base ?? 0) > 50)) {
+    // Strip any direct tier2/tier3 fields that are annual memberships, online streams, or exceed $50 CAD
+    if (box.tier2_name && (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(box.tier2_name) || isVirtualStreamTier(box.tier2_name) || Number(box.tier2_price_all_in ?? box.tier2_price_base ?? 0) > 50)) {
       box.tier2_name = null;
       box.tier2_price_base = null;
       box.tier2_price_fee = null;
@@ -1099,7 +1512,7 @@ export async function compileCatalog(options = {}) {
       box.tier2_price_all_in = null;
       box.tier2_price_read = null;
     }
-    if (box.tier3_name && (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(box.tier3_name) || Number(box.tier3_price_all_in ?? box.tier3_price_base ?? 0) > 50)) {
+    if (box.tier3_name && (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(box.tier3_name) || isVirtualStreamTier(box.tier3_name) || Number(box.tier3_price_all_in ?? box.tier3_price_base ?? 0) > 50)) {
       box.tier3_name = null;
       box.tier3_price_base = null;
       box.tier3_price_fee = null;
@@ -1149,30 +1562,45 @@ export async function compileCatalog(options = {}) {
       .replace(/\s*[-•:]?\s*(BUY TICKETS|TICKETS ON SALE NOW|MORE INFO→)$/i, "")
       .trim();
 
-    const rawLineup = (Array.isArray(edit.lineup) && edit.lineup.length > 0)
-      ? edit.lineup
-      : (Array.isArray(sched.lineup) && sched.lineup.length > 0)
-        ? sched.lineup
-        : (Array.isArray(box.lineup) && box.lineup.length > 0)
-          ? box.lineup
-          : (sched.artist && sched.artist.toLowerCase().trim() !== cleanTitle.toLowerCase().trim())
-            ? [sched.artist]
-            : [];
+    const rawLineup = isPerennial
+      ? []
+      : (Array.isArray(edit.lineup) && edit.lineup.length > 0)
+        ? edit.lineup
+        : (Array.isArray(sched.lineup) && sched.lineup.length > 0)
+          ? sched.lineup
+          : (Array.isArray(box.lineup) && box.lineup.length > 0)
+            ? box.lineup
+            : (sched.artist && sched.artist.toLowerCase().trim() !== cleanTitle.toLowerCase().trim())
+              ? [sched.artist]
+              : [];
 
+    const isNonPerformerName = (name) => {
+      if (!name || typeof name !== "string") return true;
+      const mClean = name.toLowerCase().trim();
+      if (/^(?:none|null|n\/a|none_available|not_applicable|various artists|lineup tba|tba|tbd|general admission|admission|playhouse|playhouse presents?|playhouse pres\.?|for real fridays?)$/i.test(mClean)) return true;
+      if (/\b(?:productions?\s+inc\.?|the\s+world\s+is\s+ours\s+productions?|modo[- ]live|timbre\s+concerts|livenation|live\s+nation|blueprint\s+events|this\s+is\s+blueprint)\b/i.test(mClean)) return true;
+      return false;
+    };
+    const hasExplicitEditArtist = Boolean(edit.artist && typeof edit.artist === "string" && edit.artist.trim().length > 0 && !isNonPerformerName(edit.artist));
     const lineup = rawLineup.filter((member) => {
       if (!member || typeof member !== "string") return false;
       const mClean = member.toLowerCase().trim();
-      if (mClean === cleanTitle.toLowerCase().trim()) return false;
+      if (isNonPerformerName(member)) return false;
+      if (!hasExplicitEditArtist && rawLineup.length <= 1 && mClean === cleanTitle.toLowerCase().trim()) return false;
       if (venue.venue_name && mClean === venue.venue_name.toLowerCase().trim()) return false;
-      if (mClean === "various artists" || mClean === "lineup tba" || mClean === "tba") return false;
       return true;
     });
 
-    const artist = (edit.artist !== undefined && edit.artist !== null)
-      ? edit.artist
-      : (sched.artist && sched.artist.toLowerCase().trim() !== cleanTitle.toLowerCase().trim())
-        ? sched.artist
-        : (lineup.length > 0 ? lineup[0] : null);
+    const rawCandidateArtist = isPerennial
+      ? null
+      : (edit.artist !== undefined && edit.artist !== null && !isNonPerformerName(edit.artist))
+        ? edit.artist
+        : (sched.artist && !isNonPerformerName(sched.artist) && sched.artist.toLowerCase().trim() !== cleanTitle.toLowerCase().trim())
+          ? sched.artist
+          : (lineup.length > 0 ? lineup[0] : null);
+    const artist = (rawCandidateArtist && !isNonPerformerName(String(rawCandidateArtist)) && (hasExplicitEditArtist || String(rawCandidateArtist).toLowerCase().trim() !== cleanTitle.toLowerCase().trim()) && (!venue.venue_name || String(rawCandidateArtist).toLowerCase().trim() !== venue.venue_name.toLowerCase().trim()))
+      ? String(rawCandidateArtist).trim()
+      : (lineup.length > 0 ? lineup[0] : null);
 
     // 6. AI ARBITRATION: Categories & Search Tags
     const rawCategory = edit.category || sched.category || box.category || null;
@@ -1195,14 +1623,35 @@ export async function compileCatalog(options = {}) {
     }
 
     // Deep Link & Hierarchy Arbitration (Rule 2E: Curator Rules Supreme)
+    const sanitizeEventUrl = (rawUrl) => {
+      if (!rawUrl || typeof rawUrl !== "string") return null;
+      let u = rawUrl.trim();
+      if (!u.startsWith("http")) return null;
+      // Convert AllEvents wrapper URLs with embedded Eventbrite IDs (10000 + 13-digit eid) to canonical Eventbrite checkout
+      const aeEbMatch = u.match(/^https?:\/\/(?:www\.)?allevents\.in\/[^/]+\/[^/]+\/10000(\d{10,})(?:[/?#]|$)/i);
+      if (aeEbMatch) {
+        u = `https://www.eventbrite.com/checkout-external?eid=${aeEbMatch[1]}`;
+      }
+      // Reject blacklisted aggregators
+      if (/allevents\.in|do604\.com|facebook\.com\/events|eventbrite\.(?:ca|com)\/d\//i.test(u)) {
+        return null;
+      }
+      // Strip Ticket Tailor ephemeral CSRF/session hash (/chk/<hex>)
+      u = u.replace(/\/chk\/[a-f0-9]{16,}\/?/gi, "/");
+      // Strip tracking click identifiers & ephemeral session params
+      u = u.replace(/([?&])(?:fbclid|gclid|_gl|session_id)=[^&#]*(&|$)/gi, (_, p1, p2) => (p2 === "&" ? p1 : "")).replace(/[?&]$/, "");
+      return u;
+    };
+
     const curatorInfo = getCuratorInfo({
       eventId,
       title: cleanTitle,
       venue: venue.venue_name,
       existingCard: existing
     });
-    const curatorOverrideUrl = (curatorInfo.instructedUrl && isValidDeepLink(curatorInfo.instructedUrl))
-      ? curatorInfo.instructedUrl
+    const sanitizedInstructedUrl = sanitizeEventUrl(curatorInfo.instructedUrl);
+    const curatorOverrideUrl = (sanitizedInstructedUrl && isValidDeepLink(sanitizedInstructedUrl))
+      ? sanitizedInstructedUrl
       : null;
 
     const isCuratorTier1 = Boolean(curatorOverrideUrl && isWhitelistedTicketingUrl(curatorOverrideUrl));
@@ -1223,8 +1672,9 @@ export async function compileCatalog(options = {}) {
         .filter(Boolean)
     );
 
-    const isLiveEligibleLink = (u) => {
-      if (!isValidDeepLink(u)) return false;
+    const isLiveEligibleLink = (rawU) => {
+      const u = sanitizeEventUrl(rawU);
+      if (!u || !isValidDeepLink(u)) return false;
       const norm = normalizeUrlForCompare(u);
       if (curatorOverrideUrl && norm === normalizeUrlForCompare(curatorOverrideUrl)) return true;
       return !deadUrlsSet.has(norm);
@@ -1232,8 +1682,9 @@ export async function compileCatalog(options = {}) {
 
     const isBoxFatal = Boolean(box.status && box.status.startsWith("FATAL_"));
 
-    const isTrueDirectTier1BoxOfficeUrl = (u) => {
-      if (!isLiveEligibleLink(u)) return false;
+    const isTrueDirectTier1BoxOfficeUrl = (rawU) => {
+      const u = sanitizeEventUrl(rawU);
+      if (!u || !isLiveEligibleLink(u)) return false;
       if (isFreePublicVenue || isFree || box.status === "VERIFIED_FREE_PUBLIC_ACCESS") return false;
       if (box.booking_protocol === "walk_up_only" || sched.booking_protocol === "walk_up_only") return false;
       if (isWhitelistedTicketingUrl(u)) return true;
@@ -1250,12 +1701,38 @@ export async function compileCatalog(options = {}) {
       }
     };
 
+    const cleanBoxTicketUrl = sanitizeEventUrl(box.ticket_url);
+    const cleanSchedCandidateTier1 = sanitizeEventUrl(sched.candidate_tier1_url);
+    const cleanSchedTicketUrl = sanitizeEventUrl(sched.ticket_url);
+    const cleanSchedDetailsUrl = sanitizeEventUrl(sched.details_url);
+    const cleanSeedTier1Url = sanitizeEventUrl(seed.tier1_url);
+    const cleanSeedUrl = sanitizeEventUrl(seedUrl);
+
     const verifiedTier1Url = (isCuratorTier1 ? curatorOverrideUrl : null) ||
-      ((!isBoxFatal && isLiveEligibleLink(box.ticket_url) && isWhitelistedTicketingUrl(box.ticket_url)) ? box.ticket_url : null) ||
-      ((!isFreePublicVenue && !isFree && isLiveEligibleLink(sched.candidate_tier1_url) && isWhitelistedTicketingUrl(sched.candidate_tier1_url)) ? sched.candidate_tier1_url : null) ||
-      ((sched.best_tier === "tier1" && isLiveEligibleLink(sched.ticket_url) && isWhitelistedTicketingUrl(sched.ticket_url)) ? sched.ticket_url : null) ||
-      ((isLiveEligibleLink(seed.tier1_url) && isWhitelistedTicketingUrl(seed.tier1_url)) ? seed.tier1_url : null) ||
-      ((!isBoxFatal && isTrueDirectTier1BoxOfficeUrl(box.ticket_url)) ? box.ticket_url : null);
+      ((!isBoxFatal && isLiveEligibleLink(cleanBoxTicketUrl) && isWhitelistedTicketingUrl(cleanBoxTicketUrl)) ? cleanBoxTicketUrl : null) ||
+      ((!isFreePublicVenue && !isFree && isLiveEligibleLink(cleanSchedCandidateTier1) && isWhitelistedTicketingUrl(cleanSchedCandidateTier1)) ? cleanSchedCandidateTier1 : null) ||
+      ((sched.best_tier === "tier1" && isLiveEligibleLink(cleanSchedTicketUrl) && isWhitelistedTicketingUrl(cleanSchedTicketUrl)) ? cleanSchedTicketUrl : null) ||
+      ((isLiveEligibleLink(cleanSeedTier1Url) && isWhitelistedTicketingUrl(cleanSeedTier1Url)) ? cleanSeedTier1Url : null) ||
+      ((!isBoxFatal && isTrueDirectTier1BoxOfficeUrl(cleanBoxTicketUrl)) ? cleanBoxTicketUrl : null);
+
+    const calendarUrl = (curatorInfo.learnedVenueUrl && isLiveEligibleLink(curatorInfo.learnedVenueUrl))
+      ? sanitizeEventUrl(curatorInfo.learnedVenueUrl)
+      : ((venue.calendar_url && isLiveEligibleLink(venue.calendar_url))
+        ? sanitizeEventUrl(venue.calendar_url)
+        : ((sched.links?.tier3_calendar && isLiveEligibleLink(sched.links.tier3_calendar)) ? sanitizeEventUrl(sched.links.tier3_calendar) : null));
+
+    // Same-Domain Guard for Venue Home (Prevents cross-venue domain leaks like thepolygon.ca on theshipyardsdistrict.ca)
+    const rawVenueWebUrl = (venue.website_url && isValidDeepLink(venue.website_url))
+      ? sanitizeEventUrl(venue.website_url)
+      : ((sched.links?.tier5_venue_home && isValidDeepLink(sched.links.tier5_venue_home)) ? sanitizeEventUrl(sched.links.tier5_venue_home) : null);
+    const getHostname = (u) => {
+      try { return new URL(u).hostname.replace(/^www\./i, "").toLowerCase(); } catch { return ""; }
+    };
+    const seedHost = getHostname(cleanSeedUrl);
+    const venueHost = getHostname(rawVenueWebUrl);
+    const websiteUrl = (isPerennial && seedHost && venueHost && seedHost !== venueHost && !isWhitelistedTicketingUrl(cleanSeedUrl))
+      ? ((sched.links?.tier5_venue_home && isLiveEligibleLink(sched.links.tier5_venue_home)) ? sanitizeEventUrl(sched.links.tier5_venue_home) : (existing.links?.tier5_venue_home || `https://${new URL(cleanSeedUrl).hostname}/`))
+      : rawVenueWebUrl;
 
     // D2 requires extracting verified schedule facts (Gate 5 & Layer 2: stub pages with no dates cannot be verified event pages)
     const hasVerifiedSchedulePage = Boolean(
@@ -1264,33 +1741,15 @@ export async function compileCatalog(options = {}) {
       curatorOverrideUrl
     ) && Boolean(
       curatorOverrideUrl ||
-      (sched.details_url && isLiveEligibleLink(sched.details_url)) ||
-      (sched.ticket_url && isLiveEligibleLink(sched.ticket_url)) ||
-      (sched.audited_at && isLiveEligibleLink(seedUrl))
+      (cleanSchedDetailsUrl && isLiveEligibleLink(cleanSchedDetailsUrl)) ||
+      (cleanSchedTicketUrl && isLiveEligibleLink(cleanSchedTicketUrl)) ||
+      (sched.audited_at && isLiveEligibleLink(cleanSeedUrl)) ||
+      (isPerennial && (calendarUrl || websiteUrl))
     );
 
     const detailsUrl = hasVerifiedSchedulePage
-      ? (curatorOverrideUrl || (isLiveEligibleLink(sched.details_url) ? sched.details_url : (isLiveEligibleLink(sched.ticket_url) ? sched.ticket_url : (isLiveEligibleLink(seedUrl) ? seedUrl : null))))
+      ? (curatorOverrideUrl || (isLiveEligibleLink(cleanSchedDetailsUrl) ? cleanSchedDetailsUrl : (isLiveEligibleLink(cleanSchedTicketUrl) ? cleanSchedTicketUrl : (isLiveEligibleLink(cleanSeedUrl) ? cleanSeedUrl : (isPerennial ? (calendarUrl || websiteUrl) : null)))))
       : null;
-
-    const calendarUrl = (curatorInfo.learnedVenueUrl && isLiveEligibleLink(curatorInfo.learnedVenueUrl))
-      ? curatorInfo.learnedVenueUrl
-      : ((venue.calendar_url && isLiveEligibleLink(venue.calendar_url))
-          ? venue.calendar_url
-          : ((sched.links?.tier3_calendar && isLiveEligibleLink(sched.links.tier3_calendar)) ? sched.links.tier3_calendar : null));
-
-    // Same-Domain Guard for Venue Home (Prevents cross-venue domain leaks like thepolygon.ca on theshipyardsdistrict.ca)
-    const rawVenueWebUrl = (venue.website_url && isValidDeepLink(venue.website_url))
-      ? venue.website_url
-      : ((sched.links?.tier5_venue_home && isValidDeepLink(sched.links.tier5_venue_home)) ? sched.links.tier5_venue_home : null);
-    const getHostname = (u) => {
-      try { return new URL(u).hostname.replace(/^www\./i, "").toLowerCase(); } catch { return ""; }
-    };
-    const seedHost = getHostname(seedUrl);
-    const venueHost = getHostname(rawVenueWebUrl);
-    const websiteUrl = (isPerennial && seedHost && venueHost && seedHost !== venueHost && !isWhitelistedTicketingUrl(seedUrl))
-      ? ((sched.links?.tier5_venue_home && isLiveEligibleLink(sched.links.tier5_venue_home)) ? sched.links.tier5_venue_home : (existing.links?.tier5_venue_home || `https://${new URL(seedUrl).hostname}/`))
-      : rawVenueWebUrl;
 
     // Rule 8 Link Deduplication: tier4_civic_destination and tier5_venue_home must NEVER be identical URLs
     const candidateTier4Url = isPerennial ? (detailsUrl || null) : null;
@@ -1298,7 +1757,10 @@ export async function compileCatalog(options = {}) {
       ? candidateTier4Url
       : null;
 
-    const ticketUrl = verifiedTier1Url || curatorOverrideUrl || ((!isBoxFatal && isLiveEligibleLink(box.ticket_url)) ? box.ticket_url : (isLiveEligibleLink(sched.ticket_url) ? sched.ticket_url : null));
+    const rawCandidateTicketUrl = verifiedTier1Url || curatorOverrideUrl || ((!isBoxFatal && isLiveEligibleLink(cleanBoxTicketUrl)) ? cleanBoxTicketUrl : (isLiveEligibleLink(cleanSchedTicketUrl) ? cleanSchedTicketUrl : null));
+    const ticketUrl = (rawCandidateTicketUrl && /\/monthly-calendar-list/i.test(rawCandidateTicketUrl))
+      ? (verifiedTier1Url || websiteUrl || null)
+      : rawCandidateTicketUrl;
 
     const tier1Final = verifiedTier1Url || (isCuratorTier1 ? curatorOverrideUrl : null);
     const tier2Final = (isPerennial && !verifiedTier1Url) ? null : (detailsUrl || null);
@@ -1306,7 +1768,7 @@ export async function compileCatalog(options = {}) {
     const tier4Final = tier4Url || null;
     const tier5Final = websiteUrl || null;
 
-    const bestAvailableLink = [tier1Final, tier2Final, tier3Final, tier4Final, tier5Final, seedUrl].find(
+    const bestAvailableLink = [tier1Final, tier2Final, tier3Final, tier4Final, tier5Final, cleanSeedUrl].find(
       (u) => u && typeof u === "string" && u.startsWith("http")
     ) || null;
 
@@ -1314,8 +1776,8 @@ export async function compileCatalog(options = {}) {
     if (Array.isArray(showings) && showings.length > 0) {
       showings = showings.map((s) => {
         if (!s || typeof s !== "object") return s;
-        const slotUrl = s.ticket_url || null;
-        if (slotUrl && !isLiveEligibleLink(slotUrl)) {
+        const slotUrl = sanitizeEventUrl(s.ticket_url || null);
+        if (!slotUrl || !isLiveEligibleLink(slotUrl) || /\/monthly-calendar-list/i.test(slotUrl)) {
           const cleanSlot = { ...s };
           if (ticketUrl || detailsUrl || bestAvailableLink) {
             cleanSlot.ticket_url = ticketUrl || detailsUrl || bestAvailableLink;
@@ -1324,7 +1786,7 @@ export async function compileCatalog(options = {}) {
           }
           return cleanSlot;
         }
-        return s;
+        return { ...s, ticket_url: slotUrl };
       });
     }
     const bestAvailableTier = (bestAvailableLink && bestAvailableLink === tier1Final)
@@ -1339,17 +1801,34 @@ export async function compileCatalog(options = {}) {
               ? "Tier 5: Venue Home"
               : "none_available";
 
-    const resolvedRestrictions = (edit.restrictions && edit.restrictions !== "none_available" && edit.restrictions !== "Unspecified" && !/unspecified|check venue/i.test(edit.restrictions))
-      ? edit.restrictions
+    const boxRestriction = (box.restrictions && box.restrictions !== "none_available" && box.restrictions !== "Unspecified" && !/unspecified|check venue/i.test(box.restrictions))
+      ? box.restrictions
       : (box.age_restriction && box.age_restriction !== "none_available" && box.age_restriction !== "Unspecified" && !/unspecified|check venue/i.test(box.age_restriction))
         ? box.age_restriction
-        : (sched.restrictions && sched.restrictions !== "none_available" && sched.restrictions !== "Unspecified" && !/unspecified|check venue/i.test(sched.restrictions))
-          ? sched.restrictions
-          : (venue.restrictions && venue.restrictions !== "none_available" && venue.restrictions !== "Unspecified" && venue.restrictions !== "Check Venue Door Policy" && !/check venue/i.test(venue.restrictions))
-            ? venue.restrictions
-            : (categories[0] === "nightlife")
-              ? "19+ w/ 2 Pieces of ID (Check Door Policy)"
-              : null;
+        : null;
+    const isExplicitFamilyMatinee = /\b(?:popeye|fleischer|spiked|family\s*matinee|all\s*ages\s*matinee)\b/i.test(`${cleanTitle || ""} ${description || ""}`);
+    const isGenericAllAgesEdit = Boolean(edit.restrictions && /^all\s*ages$/i.test(String(edit.restrictions).trim()));
+    const isCinemaFilmRatingBox = Boolean(
+      boxRestriction &&
+      /^(?:G|PG|14A|18A|18\+|R|All\s*Ages)(?:\b|$|\s)/i.test(String(boxRestriction).trim()) &&
+      /cinematheque|viff/i.test(venue.venue_name || "")
+    );
+
+    const resolvedRestrictions = isCinemaFilmRatingBox
+      ? boxRestriction
+      : (boxRestriction && /\b(?:18|19)\+/i.test(boxRestriction) && isGenericAllAgesEdit && !isExplicitFamilyMatinee)
+        ? boxRestriction
+        : (edit.restrictions && edit.restrictions !== "none_available" && edit.restrictions !== "Unspecified" && !/unspecified|check venue/i.test(edit.restrictions))
+          ? edit.restrictions
+          : boxRestriction
+            ? boxRestriction
+            : (sched.restrictions && sched.restrictions !== "none_available" && sched.restrictions !== "Unspecified" && !/unspecified|check venue/i.test(sched.restrictions))
+              ? sched.restrictions
+              : (venue.restrictions && venue.restrictions !== "none_available" && venue.restrictions !== "Unspecified" && venue.restrictions !== "Check Venue Door Policy" && !/check venue/i.test(venue.restrictions))
+                ? venue.restrictions
+                : (categories[0] === "nightlife")
+                  ? "19+ w/ 2 Pieces of ID (Check Door Policy)"
+                  : null;
 
     // 7. Determine Archetype & Clustered Dimensions
     let eventNumPerm = existing.Event_Num_Perm || seed.Event_Num_Perm || permMap.get(eventId);
@@ -1361,32 +1840,49 @@ export async function compileCatalog(options = {}) {
     const currentCardIdx = idx + 1;
     const eventNumCard = `Event_Num_Card_${String(currentCardIdx).padStart(9, "0")}`;
 
+    const rawPerennialArchetype = seed.event_archetype || existing.event_archetype || edit.event_archetype || edit.archetype || null;
     const archetype = (isPerennial
-      ? (seed.event_archetype || existing.event_archetype || classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, null, { description, lifecycle_type: resolvedLifecycle }) || edit.event_archetype || edit.archetype)
+      ? classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, rawPerennialArchetype, {
+        description,
+        lifecycle_type: resolvedLifecycle,
+        is_perennial: true,
+        access_model: venue.access_model || null,
+      })
       : (edit.event_archetype || edit.archetype || seed.event_archetype || classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, null, { description, lifecycle_type: resolvedLifecycle }))
     ) || null;
+    if (archetype === "cinema" && categories[0] === "arts") {
+      categories[0] = "shows";
+    }
 
     // Ground Festival & Holiday Affiliations against data/festivals.json and data/approved_holidays.json
     const combinedAffiliationText = `${cleanTitle || ""} ${eventId || ""} ${sched.festival_affiliation || ""} ${edit.festival_affiliation || ""} ${(tags || []).join(" ")} ${(subTags || []).join(" ")}`.toLowerCase();
+    const fullFestivalSearchText = `${combinedAffiliationText} ${description || ""} ${edit.description || ""} ${sched.description || ""}`.toLowerCase();
     const matchedFestival = Array.isArray(festivalsRegistry)
       ? festivalsRegistry.find((f) => {
-          if (!f || !f.festival_name) return false;
-          // Date window guard: if both the event and festival have ISO dates, never affiliate an event outside the festival's run window
-          if (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate) && f.start_date && f.end_date) {
-            if (heroDate < f.start_date || heroDate > f.end_date) return false;
-          }
-          const fName = f.festival_name.toLowerCase();
-          if (combinedAffiliationText.includes(fName)) return true;
-          if (fName.includes("diwali") && /\bdiwali\b/i.test(combinedAffiliationText)) return true;
-          if (fName.includes("writers fest") && /\bwriters\s*fest\b/i.test(combinedAffiliationText)) return true;
-          if (fName.includes("viff") && /\bviff\b/i.test(combinedAffiliationText)) return true;
-          if (fName.includes("fringe") && /\bfringe\b/i.test(combinedAffiliationText)) return true;
-          if (fName.includes("horror show") && /\bvancouver\s*horror\s*show|vhs2026\b/i.test(combinedAffiliationText)) return true;
-          if (fName.includes("heart of the city") && /\bheart\s*of\s*the\s*city\b/i.test(combinedAffiliationText)) return true;
-          if (fName.includes("muertos") && /\b(?:muertos|day\s*of\s*the\s*dead)\b/i.test(combinedAffiliationText)) return true;
-          if (fName.includes("small file") && /\bsmall\s*file\b/i.test(combinedAffiliationText)) return true;
-          return false;
-        }) || null
+        if (!f || !f.festival_name) return false;
+        // Date window guard: if both the event and festival have ISO dates, never affiliate an event outside the festival's run window
+        if (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate) && f.start_date && f.end_date) {
+          if (heroDate < f.start_date || heroDate > f.end_date) return false;
+        }
+        const fName = f.festival_name.toLowerCase();
+        if (combinedAffiliationText.includes(fName)) return true;
+        if (fName.includes("diwali") && /\bdiwali\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("writers fest") && /\bwriters\s*fest\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("viff") && /\bviff\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("fringe") && /\bfringe\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("horror show") && /\bvancouver\s*horror\s*show|vhs2026\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("heart of the city") && /\bheart\s*of\s*the\s*city\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("muertos") && /\b(?:muertos|day\s*of\s*the\s*dead)\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("small file") && /\bsmall\s*file\b/i.test(combinedAffiliationText)) return true;
+        if (
+          fName.includes("european union film festival") &&
+          (/\b(?:european\s*union\s*film\s*festival|euff)\b/i.test(fullFestivalSearchText) ||
+            (venue.venue_name === "The Cinematheque" && heroDate >= "2026-11-13" && heroDate <= "2026-11-26" && !/\b(?:film\s*club|popeye)\b/i.test(fullFestivalSearchText)))
+        ) {
+          return true;
+        }
+        return false;
+      }) || null
       : null;
 
     const resolvedFestivalAffiliation =
@@ -1399,24 +1895,58 @@ export async function compileCatalog(options = {}) {
             : null;
 
     const resolvedHolidayAffiliation = (() => {
-      const explicit = sched.holiday_affiliation || edit.holiday_affiliation || existing.holiday_affiliation || seed.holiday_affiliation;
-      if (explicit && explicit !== "None" && explicit !== "none_available") return explicit;
-
-      // Option A: Holiday matching scans both title/tags AND full description/synopsis, plus expanded seasonal vibe keywords
-      const fullHolidayText = `${combinedAffiliationText} ${description || ""} ${edit.description || ""} ${sched.description || ""}`.toLowerCase();
       const eventMmdd = (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate)) ? heroDate.slice(5, 10) : null;
       const inSeason = (startMmdd, endMmdd) => {
         if (!eventMmdd) return false;
         if (startMmdd <= endMmdd) return eventMmdd >= startMmdd && eventMmdd <= endMmdd;
         return eventMmdd >= startMmdd || eventMmdd <= endMmdd;
       };
+      const CANONICAL_HOLIDAYS = new Set([
+        "halloween",
+        "dia-de-los-muertos",
+        "diwali",
+        "thanksgiving",
+        "christmas",
+        "new-years",
+        "lunar-new-year",
+        "valentines-day",
+        "st-patricks-day",
+        "easter",
+        "canada-day",
+        "pride",
+      ]);
+      const normalizeHolidayCandidate = (rawVal) => {
+        if (!rawVal || typeof rawVal !== "string") return null;
+        const v = rawVal.trim().toLowerCase().replace(/\s+/g, "-").replace(/['’]/g, "");
+        if (v === "new-year" || v === "new-years-eve" || v === "new-years-day") return "new-years";
+        return CANONICAL_HOLIDAYS.has(v) ? v : null;
+      };
+      const isChristmasInTitle = /\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*market)\b/i.test(cleanTitle || "");
+      const isNewYearInTitle = /\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(cleanTitle || "");
+      const rawExplicit = sched.holiday_affiliation || edit.holiday_affiliation || existing.holiday_affiliation || seed.holiday_affiliation;
+      const explicit = normalizeHolidayCandidate(rawExplicit);
+      if (explicit) {
+        // Guard against plot-keyword false positives on non-holiday festival films or out-of-season Pride/New-Years tags
+        if (explicit === "christmas" && archetype === "cinema" && !isChristmasInTitle) {
+          // Do not tag non-holiday festival cinema screenings as Christmas solely because the plot mentions Christmas
+        } else if (explicit === "pride" && !inSeason("06-01", "08-15") && !/\bpride\b/i.test(cleanTitle || "")) {
+          // Do not tag November/winter concerts as Pride holiday unless explicitly a Pride event in title
+        } else if (explicit === "new-years" && !isNewYearInTitle && !inSeason("12-30", "01-01")) {
+          // Do not tag mid-January concerts or Jan 2+ shows as New Year's unless New Year is in the title
+        } else {
+          return explicit;
+        }
+      }
+
+      // Option A: Holiday matching scans both title/tags AND full description/synopsis, plus expanded seasonal vibe keywords
+      const fullHolidayText = `${combinedAffiliationText} ${description || ""} ${edit.description || ""} ${sched.description || ""}`.toLowerCase();
 
       // 1. Unconditional explicit holiday matches (in title, tags, or synopsis)
       if (/\b(?:diwali|deepavali|bandi\s*chhor)\b/i.test(fullHolidayText)) return "diwali";
       if (/\b(?:muertos|day\s*of\s*the\s*dead|ofrenda|calavera|catrina|sugar\s*skull)\b/i.test(fullHolidayText)) return "dia-de-los-muertos";
       if (/\b(?:halloween|hallowe'en|trick[- ]or[- ]treat|jack[- ]o'?[- ]lantern|samhain|boo[- ]?tylicious)\b/i.test(fullHolidayText)) return "halloween";
-      if (/\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch)\b/i.test(fullHolidayText)) return "christmas";
-      if (/\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(fullHolidayText)) return "new-years";
+      if (/\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch)\b/i.test(fullHolidayText) && (archetype !== "cinema" || isChristmasInTitle)) return "christmas";
+      if (isNewYearInTitle || (inSeason("12-30", "01-01") && /\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(fullHolidayText))) return "new-years";
       if (/\b(?:lunar\s*new\s*year|chinese\s*new\s*year|spring\s*festival|tet\s*festival)\b/i.test(fullHolidayText)) return "lunar-new-year";
       if (/\b(?:thanksgiving|friendsgiving)\b/i.test(fullHolidayText)) return "thanksgiving";
       if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(fullHolidayText)) return "valentines-day";
@@ -1438,7 +1968,7 @@ export async function compileCatalog(options = {}) {
       if (inSeason("10-01", "10-16") && /\b(?:harvest\s*dinner|turkey\s*dinner|autumn\s*harvest|gratitude\s*feast)\b/i.test(fullHolidayText)) {
         return "thanksgiving";
       }
-      if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|vandusen\s*festival\s*of\s*lights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party|deck\s*the\s*halls|jingle)\b/i.test(fullHolidayText)) {
+      if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|vandusen\s*festival\s*of\s*lights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party|deck\s*the\s*halls|jingle)\b/i.test(fullHolidayText) && (archetype !== "cinema" || isChristmasInTitle)) {
         return "christmas";
       }
       if (inSeason("12-26", "01-03") && /\b(?:countdown|midnight\s*toast|champagne\s*toast|ball\s*drop|first\s*day|ring\s*in\s*the\s*new)\b/i.test(fullHolidayText)) {
@@ -1497,11 +2027,50 @@ export async function compileCatalog(options = {}) {
       }
     }
 
+    const calculatedRuntimeMinutes = (() => {
+      if (archetype !== "cinema") return null;
+      const parseMins = (tStr) => {
+        if (!tStr || typeof tStr !== "string") return null;
+        const m = tStr.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?$/i);
+        if (!m) return null;
+        let h = parseInt(m[1], 10);
+        const mins = parseInt(m[2], 10);
+        const mer = (m[3] || "").toUpperCase();
+        if (mer === "PM" && h < 12) h += 12;
+        if (mer === "AM" && h === 12) h = 0;
+        return h * 60 + mins;
+      };
+      const descRuntimeMatch = `${description || ""} ${sched.description || ""}`.match(/\b(\d{2,3})(?:\s*[-–]\s*|\s+)(?:mins?|minutes)\b/i);
+      if (descRuntimeMatch) {
+        const parsed = parseInt(descRuntimeMatch[1], 10);
+        if (parsed >= 30 && parsed <= 300) return parsed;
+      }
+      const slotWithEnd =
+        (Array.isArray(sched.showings) && sched.showings.find((s) => s && s.start_time && s.end_time && s.end_time !== "none_available")) ||
+        (heroStartTime && heroEndTime ? { start_time: heroStartTime, end_time: heroEndTime } : null) ||
+        (Array.isArray(showings) && showings.find((s) => s && s.start_time && s.end_time && s.end_time !== "none_available")) ||
+        null;
+      const sMins = parseMins(slotWithEnd ? slotWithEnd.start_time : heroStartTime);
+      const eMins = parseMins(slotWithEnd ? slotWithEnd.end_time : heroEndTime);
+      if (sMins != null && eMins != null) {
+        const diff = (eMins - sMins + 1440) % 1440;
+        if (diff >= 30 && diff <= 300) return diff;
+      }
+      return null;
+    })();
+
     const archetypeProfile = generateArchetypeProfile(archetype, cleanTitle, venue.venue_name, categories[0] || null, venue, {
-      description,
+      description: `${description || ""} ${sched.description || ""}`.trim(),
       lineup,
       artist,
       matchedFestival,
+      film_runtime_minutes: calculatedRuntimeMinutes || edit.film_runtime_minutes || sched.film_runtime_minutes || null,
+      film_language_subtitles: edit.film_language_subtitles || sched.film_language_subtitles || null,
+      projection_format: edit.projection_format || sched.projection_format || null,
+      print_condition_notes: edit.print_condition_notes || sched.print_condition_notes || null,
+      concession_alcohol: edit.concession_alcohol || venue.concession_alcohol || null,
+      festival_pass_rules: edit.festival_pass_rules || null,
+      seat_reservation_type: edit.seat_reservation_type || venue.seat_reservation_type || null,
       festival_hub_directory: edit.festival_hub_directory || existing.festival_hub_directory || null,
       festival_pass_type: edit.festival_pass_type || existing.festival_pass_type || null,
       rush_seating_rules: edit.rush_seating_rules || existing.rush_seating_rules || null,
@@ -1584,6 +2153,16 @@ export async function compileCatalog(options = {}) {
         ? "online_reservation"
         : null;
 
+    const resolvedTicketProvider = (() => {
+      const u = String(ticketUrl || "").toLowerCase();
+      if (u.includes("ticketweb.ca") || u.includes("ticketweb.com")) return "TicketWeb";
+      if (u.includes("showpass.com")) return "Showpass";
+      if (u.includes("eventbrite.")) return "Eventbrite";
+      if (u.includes("ra.co/")) return "Resident Advisor";
+      if (u.includes("tickets.thecinematheque.ca")) return "Agile Ticketing (The Cinematheque)";
+      return box.ticket_provider || sched.ticket_provider || null;
+    })();
+
     const hasValidMultiLayer = Boolean(sched.audited_at || box.audited_at || edit.audited_at);
 
     // Venue Alcohol & Beverage Discipline (Strict Municipal / Outdoor Invariant):
@@ -1657,12 +2236,12 @@ export async function compileCatalog(options = {}) {
       D217_pricing_model: { status: (isFree || box.pricing_model || finalAllInPrice != null) ? "verified" : "none_available", value: isFree ? "free_access" : (box.pricing_model || (finalAllInPrice != null ? "standard" : null)), source_tool: "compiler_ai", audited_at: nowIso },
       D218_budget_qualified_under_50: { status: finalAllInPrice != null ? "verified" : "search_exhausted_null", qualified: finalAllInPrice != null ? finalAllInPrice <= 50.0 : null, total: finalAllInPrice, source_tool: "compiler_ai", audited_at: nowIso },
       D219_other_cost_label: { status: tier1Other > 0 ? "verified" : "none_available", value: box.other_cost_label || null, source_tool: "stagehand_box_office", audited_at: box.audited_at || nowIso },
-      D221_ticket_provider: { status: (box.ticket_provider || sched.ticket_provider) ? "verified" : "none_available", value: box.ticket_provider || sched.ticket_provider || null, source_tool: "stagehand_box_office", audited_at: box.audited_at || nowIso },
+      D221_ticket_provider: { status: resolvedTicketProvider ? "verified" : "none_available", value: resolvedTicketProvider, source_tool: "stagehand_box_office", audited_at: box.audited_at || nowIso },
       D222_booking_protocol: { status: verifiedBookingProtocol ? "verified" : "search_exhausted_null", value: verifiedBookingProtocol, source_tool: "compiler_ai", audited_at: nowIso },
 
       // Cluster 3XX: Performance, Schedule & Content Reality
-      D301_lineup: { status: (lineup && lineup.length > 0) ? "verified" : "search_exhausted_null", value: (lineup && lineup.length > 0) ? lineup : null, source_tool: "schedule_harvester", audited_at: sched.audited_at || nowIso },
-      D302_artist: { status: artist ? "verified" : "search_exhausted_null", value: artist || null, source_tool: "schedule_harvester", audited_at: sched.audited_at || nowIso },
+      D301_lineup: { status: isPerennial ? "not_applicable" : ((lineup && lineup.length > 0) ? "verified" : "search_exhausted_null"), value: isPerennial ? null : ((lineup && lineup.length > 0) ? lineup : null), source_tool: isPerennial ? "venue_master_registry" : "schedule_harvester", audited_at: sched.audited_at || nowIso },
+      D302_artist: { status: isPerennial ? "not_applicable" : (artist ? "verified" : "search_exhausted_null"), value: isPerennial ? null : (artist || null), source_tool: isPerennial ? "venue_master_registry" : "schedule_harvester", audited_at: sched.audited_at || nowIso },
       D303_date: { status: isPerennial ? "not_applicable" : (heroDate ? "verified" : "search_exhausted_null"), value: heroDate, source_tool: isPerennial ? "venue_master_registry" : "schedule_harvester", audited_at: nowIso },
       D304_showings_slots: { status: showings && showings.length > 0 ? "verified" : "none_available", slot_count: showings ? showings.length : 0, showings: showings || [], source_tool: "compiler_ai", audited_at: nowIso },
       D305_doors_time: { status: heroDoorsTime ? "verified" : "none_available", value: heroDoorsTime, source_tool: "schedule_harvester", audited_at: sched.audited_at || nowIso },
@@ -1784,7 +2363,7 @@ export async function compileCatalog(options = {}) {
         source_tool: "compiler_ai",
         audited_at: nowIso
       },
-      D807_proof_keyframes: { status: "verified", cart: box.proof_keyframe || null, schedule: sched.proof_keyframe || null, venue: venue.proof_keyframe || null, audited_at: nowIso },
+      D807_proof_keyframes: { status: "verified", cart: (isPerennial && (isFree || verifiedBookingProtocol === "walk_up_only")) ? null : (box.proof_keyframe || null), schedule: sched.proof_keyframe || null, venue: venue.proof_keyframe || null, audited_at: nowIso },
       D808_timestamp_lockstep: { status: "verified", last_pulse_qc_at: box.audited_at || null, last_content_qc_at: sched.audited_at || null, last_full_qc_at: nowIso, last_qc_audited_at: box.audited_at || nowIso },
       D809_civic_provider_rules: { status: verifiedCivicRules ? "verified" : "search_exhausted_null", rules: verifiedCivicRules, value: verifiedCivicRules, source_tool: "venue_master_registry", audited_at: nowIso },
     };
@@ -1864,7 +2443,7 @@ export async function compileCatalog(options = {}) {
           best_tier: bTier,
         };
       })(),
-      ticket_provider: box.ticket_provider || sched.ticket_provider || null,
+      ticket_provider: resolvedTicketProvider,
       description: description,
       restrictions: resolvedRestrictions,
       transitInfo: isLocationConfirmed ? venue.transit_info : null,
@@ -1923,16 +2502,19 @@ export async function compileCatalog(options = {}) {
       on_site_fnb: onSiteFnb,
       ...archetypeProfile,
       lifecycle_type: resolvedLifecycle,
-      approval_status: isPerennial
+      // Safety Rail 4 (Compiler Anti-Laziness Downgrade Penalty):
+      // Only Venue-Registry Grounded Free Public Spaces (`isFreePublicVenue`) receive automatic Verified status without a live Stagehand box office audit.
+      // Paid perennials and ticketed events MUST have `hasAuditedBoxOffice` + visual proof keyframe or verbatim price quote.
+      approval_status: isFreePublicVenue
         ? `Verified-${Object.keys(dimensionAudit).length}D`
-        : hasAuditedBoxOffice
+        : (hasAuditedBoxOffice && (Boolean(box.proof_keyframe) || Boolean(box.tier1_quote) || isFree))
           ? (finalAllInPrice <= 50.0 ? `Verified-${Object.keys(dimensionAudit).length}D` : "Quarantine-Budget-Breach")
           : "Seed-Pending-Audit",
       budget_qualified_under_50: isPerennial ? true : (finalAllInPrice != null ? finalAllInPrice <= 50.0 : true),
       curator_notes: curatorInfo.effectiveNote || edit.curator_notes || box.curator_notes || existing.curator_notes || matchedVenue?.curatorNote || null,
       curator_instructions: curatorInfo.eventInstructionText || edit.curator_instructions || box.curator_instructions || existing.curator_instructions || matchedVenue?.curatorInstructions || null,
       proof_keyframes: {
-        cart: (isPerennial && isFree) ? null : (box.proof_keyframe || null),
+        cart: (isPerennial && (isFree || verifiedBookingProtocol === "walk_up_only")) ? null : (box.proof_keyframe || null),
         schedule: sched.proof_keyframe || null,
         venue: venue.proof_keyframe || null,
       },
@@ -1941,8 +2523,9 @@ export async function compileCatalog(options = {}) {
       last_pulse_qc_at: box.audited_at || null,
       last_content_qc_at: sched.audited_at || null,
       last_full_qc_at: nowIso,
-      ...(sched.candidate_tier1_url || existing.candidate_tier1_url ? {
-        candidate_tier1_url: sched.candidate_tier1_url || existing.candidate_tier1_url,
+      last_compiled_batch_at: nowIso,
+      ...(sanitizeEventUrl(sched.candidate_tier1_url || existing.candidate_tier1_url) ? {
+        candidate_tier1_url: sanitizeEventUrl(sched.candidate_tier1_url || existing.candidate_tier1_url),
         candidate_tier1_source: sched.candidate_tier1_source || existing.candidate_tier1_source,
         candidate_tier1_confidence: sched.candidate_tier1_confidence || existing.candidate_tier1_confidence,
         candidate_tier1_staged_at: sched.candidate_tier1_staged_at || existing.candidate_tier1_staged_at,
@@ -1958,6 +2541,7 @@ export async function compileCatalog(options = {}) {
           const tRead = t.price_read != null ? Number(t.price_read) : tPrice;
           const tCalc = (tBase + tFee + tTax);
           const tDelta = Math.abs(tRead - tCalc);
+          const tierIsAvail = t.is_available !== false && t.isAvailable !== false && !/\bsold\s*out\b/i.test(String(t.name || ""));
           return {
             name: t.name || (tIdx === 0 ? (box.tier1_name || "General Admission") : `Tier ${tIdx + 1}`),
             price: tPrice,
@@ -1967,8 +2551,8 @@ export async function compileCatalog(options = {}) {
             price_read: tRead,
             price_calculated: tCalc,
             price_delta: tDelta,
-            label: tPrice === 0 ? "Free ($0)" : `$${tPrice.toFixed(2)} CAD`,
-            isAvailable: t.is_available !== false && t.isAvailable !== false,
+            label: tPrice === 0 ? ((isSoldOut || !tierIsAvail) ? "Sold Out" : "Free ($0)") : `$${tPrice.toFixed(2)} CAD`,
+            isAvailable: tierIsAvail && !isSoldOut,
           };
         })
         : [
@@ -2025,7 +2609,7 @@ export async function compileCatalog(options = {}) {
     }
 
     console.log(
-      `⚡ Processing [${idx + 1}/${targetSeeds.length}]: ${compiledCard.title} (${compiledCard.venue}) [${eventId}]`
+      `${formatLogTime()} ⚡ Processing [${idx + 1}/${targetSeeds.length}]: ${compiledCard.title} (${compiledCard.venue}) [${eventId}]`
     );
     logCuratorInfo({
       eventId,
@@ -2067,9 +2651,9 @@ export async function compileCatalog(options = {}) {
     const isDatePast = !isPerennial && Boolean(compiledCard.date) && /^\d{4}-\d{2}-\d{2}$/.test(compiledCard.date) && compiledCard.date < todayIso;
     const isPastDate = !isPerennial && (allShowingsConcluded || (isDatePast && !hasActiveShowings));
     const hasValidDate = isPerennial || hasActiveShowings || (compiledCard.date && compiledCard.date !== "none_available" && compiledCard.date !== "Schedule Pending Verification" && compiledCard.dateSchedule !== "Schedule Pending Verification");
-    const hasValidUrl = Boolean(compiledCard.ticket_url || compiledCard.details_url);
+    const hasValidUrl = Boolean(compiledCard.ticket_url || compiledCard.details_url || (isPerennial && bestAvailableLink));
     const inMarket = compiledCard.dimension_audit?.D8_geo_jurisdiction?.in_market !== false;
-    const isPriceVerified = isPerennial || (finalAllInPrice !== null && !isNaN(finalAllInPrice) && priceLabel !== "Pending Box Office QC");
+    const isPriceVerified = isFreePublicVenue || (hasAuditedBoxOffice && finalAllInPrice !== null && !isNaN(finalAllInPrice) && priceLabel !== "Pending Box Office QC");
     const hasCuratorAction = Boolean(curatorInfo.eventInstructionText || curatorInfo.eventCuratorNote || compiledCard.curator_notes || compiledCard.curator_instructions);
     const hasCuratorAppeal = Boolean(hasCuratorAction || curatorInfo.curatorAppeal || compiledCard.ai_curator_appeal || existing.ai_curator_appeal || seed.ai_curator_appeal);
 
@@ -2101,25 +2685,36 @@ export async function compileCatalog(options = {}) {
       console.log(`🧪 [Compiler Archive] Auto-archiving synthetic test fixture: "${compiledCard.title}" [${eventId}]`);
       archiveCard("synthetic_test_fixture", "archived_test_fixture", "Synthetic test harness fixture");
     } else if (
-      /^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|standard[- ]?pricing|concession[- ]?menu|event|events)$/i.test((compiledCard.title || '').trim()) ||
-      /\/(?:ticket-info|pricing|admission-rates|concession-menu)\b/i.test(compiledCard.details_url || compiledCard.source_url || '')
+      /^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|box\s*office\s*inquiry.*|search_exhausted_null|none_available|standard[- ]?pricing|concession[- ]?menu|event|events)$/i.test((compiledCard.title || '').trim()) ||
+      /\/(?:ticket-info|pricing|admission-rates|concession-menu|box-office)\b/i.test(compiledCard.details_url || compiledCard.source_url || '')
     ) {
       console.log(`🛡️ [Compiler Archive] Auto-archiving non-event pricing/policy or stub page: "${compiledCard.title}" [${eventId}]`);
       archiveCard("non_event_pricing_policy", "archived_non_event", "Detected venue pricing, admission policy, or empty placeholder stub page rather than a discrete cultural event");
+    } else if (
+      (/burnaby-central-railway|bcsme\.org/i.test(`${eventId} ${compiledCard.title || ""} ${compiledCard.ticket_url || ""}`)) &&
+      (() => {
+        const [, mStr, dStr] = todayIso.split("-");
+        const m = Number(mStr);
+        const d = Number(dStr);
+        return m > 10 || (m === 10 && d >= 11) || m < 3 || (m === 3 && d < 26);
+      })()
+    ) {
+      console.log(`🍂 [Compiler Archive] Auto-archiving off-season attraction: "${compiledCard.title}" [${eventId}] (Burnaby Central Railway closed Oct 11 – March 25)`);
+      archiveCard("seasonal_off_season", "archived_seasonal", "Burnaby Central Railway operates Easter through Canadian Thanksgiving (closed Oct 11 onwards; reopens Good Friday, March 26, 2027)");
     } else if (isPastDate) {
       console.log(`⏳ [Compiler Archive] Auto-archiving concluded past event: "${compiledCard.title}" [${eventId}] (${compiledCard.date || "concluded"})`);
       archiveCard("temporal_concluded_past", "archived_concluded", "All showings have concluded in the past");
     } else if (!inMarket) {
       console.log(`🗺️ [Compiler Archive] Auto-archiving out-of-market lead: "${compiledCard.title}" [${eventId}]`);
       archiveCard("out_of_market_jurisdiction", "dismissed_out_of_market", "Venue physical address falls outside Metro Vancouver geographic boundary");
-    } else if (finalAllInPrice > 50.0 || box.status === "BUDGET_BREACH") {
+    } else if (finalAllInPrice !== null && finalAllInPrice > 50.0) {
       if (hasCuratorAppeal) {
         compiledCard.quarantineReason = "budget_breach_curator_appeal";
         compiledCard.reviewStatus = "pending_curator_review";
         quarantinedEvents.push(compiledCard);
       } else {
-        console.log(`🏛️ [Compiler Archive] Auto-archiving over-budget event (> $50 CAD): "${compiledCard.title}" [${eventId}] ($${finalAllInPrice ? finalAllInPrice.toFixed(2) : "unknown"})`);
-        archiveCard("budget_breach_over_50", "archived_overbudget", `Verified all-in ticket price ($${finalAllInPrice ? finalAllInPrice.toFixed(2) : "unknown"}) exceeds $50.00 CAD ceiling`);
+        console.log(`🏛️ [Compiler Archive] Auto-archiving over-budget event (> $50 CAD): "${compiledCard.title}" [${eventId}] ($${finalAllInPrice.toFixed(2)})`);
+        archiveCard("budget_breach_over_50", "archived_overbudget", `Verified all-in ticket price ($${finalAllInPrice.toFixed(2)}) exceeds $50.00 CAD ceiling`);
       }
     } else if (box.status && box.status.startsWith("FATAL_")) {
       const boxFailedOrTicketUrl = box.failed_url || box.ticket_url;
@@ -2153,6 +2748,11 @@ export async function compileCatalog(options = {}) {
         compiledCard.audit_error = box.error || box.status;
         quarantinedEvents.push(compiledCard);
       }
+    } else if (box.status === "ANTIBOT_CHALLENGE_BLOCKED" || box.quarantine_reason === "antibot_challenge_blocked") {
+      compiledCard.quarantineReason = "antibot_challenge_blocked";
+      compiledCard.reviewStatus = "pending_curator_review";
+      compiledCard.audit_error = box.error || "Ticketing portal gated by anti-bot security verification challenge; routed to manual review.";
+      quarantinedEvents.push(compiledCard);
     } else if (!hasValidDate) {
       compiledCard.quarantineReason = "missing_schedule_date";
       compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_schedule";
@@ -2168,10 +2768,18 @@ export async function compileCatalog(options = {}) {
     } else {
       const isFromQuarantine = Boolean(seed._isFromQuarantine || quarantinedMap.has(eventId));
 
-      if (isFromQuarantine && !isPriceVerified) {
-        compiledCard.quarantineReason = "unverified_box_office_pricing";
-        compiledCard.reviewStatus = "pending_curator_review";
+      if (isSoldOut && !isPriceVerified) {
+        compiledCard.quarantineReason = "sold_out";
+        compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_sold_out";
+        compiledCard.audit_error = box.error || "Event confirmed SOLD OUT on live ticketing portal (ticket prices hidden)";
         quarantinedEvents.push(compiledCard);
+      } else if (!isPriceVerified && (isFromQuarantine || box.status === "UNVERIFIED_PRICING" || box.quarantine_reason === "unverified_box_office_pricing")) {
+        compiledCard.quarantineReason = "unverified_box_office_pricing";
+        compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_pricing";
+        compiledCard.audit_error = box.error || "Stage 2 Box Office QC could not verify a live ticket price";
+        quarantinedEvents.push(compiledCard);
+      } else if (!isPriceVerified) {
+        console.log(`⏳ [Compiler Hold] Holding lead "${compiledCard.title}" [${eventId}] until Stage 2 Box Office QC verifies pricing.`);
       } else {
         // Pre-Publish Link Liveness & Soft-404 Check: Verify winning best_available_link before publishing to active catalog
         const shouldVerifyLiveUrl = Boolean(targetId || (targetIds && targetIds.length > 0) || uncompiledOnly || targetSeeds.length <= 30);
@@ -2274,6 +2882,28 @@ export async function compileCatalog(options = {}) {
   // Filter out any permanently archived cards from finalCatalog
   finalCatalog = finalCatalog.filter((e) => !archivedIds.has(e.id || e.event_id));
 
+  // Final-stage automatic duplicate check & multi-day showing consolidation
+  const {
+    consolidatedCards: dedupedCatalog,
+    mergedGroups: compileMergedGroups,
+    retiredIds: compileRetiredIds,
+    retiredCards: compileRetiredCards,
+  } = consolidateCatalogCards(finalCatalog);
+  if (compileMergedGroups.length > 0) {
+    console.log(
+      `\n🔗 [Final Compiler Deduplicator] Detected and merged ${compileRetiredIds.length} duplicate card(s) across ${compileMergedGroups.length} event run(s):`
+    );
+    for (const g of compileMergedGroups) {
+      console.log(
+        `   • "${g.masterTitle}" @ ${g.venue} -> Master [${g.masterId}] (${g.totalShowings} showings: ${g.dateSchedule}) | Retired: ${g.retiredIds.join(", ")}`
+      );
+    }
+    for (const rid of compileRetiredIds) {
+      archivedIds.add(rid);
+    }
+    finalCatalog = dedupedCatalog;
+  }
+
   // Maintain Dual Numbering invariant: Event_Num_Perm (permanent) and Event_Num_Card (1..N active)
   finalCatalog.forEach((ev, idx) => {
     const cardNum = idx + 1;
@@ -2327,18 +2957,29 @@ export async function compileCatalog(options = {}) {
   queue.metadata.pendingCount = queue.quarantinedEvents.length;
   fs.writeFileSync(QUEUE_PATH, JSON.stringify(queue, null, 2), "utf-8");
 
-  // 3. Persist updated archived registry
+  // 3. Persist updated archived registry (evicting any newly compiled/graduated events)
+  for (const cId of compiledIds) {
+    archivedIds.delete(cId);
+  }
+  const filteredArchivedEventsList = archivedEventsList.filter((a) => !compiledIds.has(a.id || a.event_id));
   if (Array.isArray(archivedDoc)) {
-    fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedEventsList, null, 2), "utf-8");
+    fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(filteredArchivedEventsList, null, 2), "utf-8");
   } else if (archivedDoc && typeof archivedDoc === "object") {
-    archivedDoc.archivedEvents = archivedEventsList;
+    archivedDoc.archivedEvents = filteredArchivedEventsList;
     if (archivedDoc.metadata) {
-      archivedDoc.metadata.archivedCount = archivedEventsList.length;
-      archivedDoc.metadata.totalArchived = archivedEventsList.length;
+      archivedDoc.metadata.archivedCount = filteredArchivedEventsList.length;
+      archivedDoc.metadata.totalArchived = filteredArchivedEventsList.length;
       archivedDoc.metadata.updatedAt = nowIso;
     }
     fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedDoc, null, 2), "utf-8");
   }
+
+  // 3b. Persist retired duplicate cards into archived_events.json & curator_learned_rules.json, and prune duplicate layers/quarantine
+  if (compileMergedGroups.length > 0) {
+    archiveRetiredDuplicates(compileRetiredCards, compileMergedGroups);
+  }
+  consolidatePipelineLayers(compileRetiredIds, finalCatalog);
+  queue = loadJson(QUEUE_PATH, { metadata: {}, quarantinedEvents: [] });
 
   // 4. Prune permanently archived records from layer_schedules.json
   const currentSchedules = loadJson(SCHEDULES_PATH, []);
@@ -2349,6 +2990,18 @@ export async function compileCatalog(options = {}) {
       console.log(`🧹 [Compiler Cleanup] Pruned ${currentSchedules.length - cleanedSchedules.length} archived item(s) from layer_schedules.json`);
     }
   }
+
+  // 5. Prune orphaned _cart.png proof keyframes belonging to retired/consolidated events
+  const lowerArchivedIds = new Set([...archivedIds].map((id) => String(id).toLowerCase()));
+  pruneOrphanedProofKeyframes({
+    activeEvents: finalCatalog,
+    quarantinedList: queue.quarantinedEvents || [],
+    schedulesList: loadJson(SCHEDULES_PATH, []),
+    boxOfficeList: loadJson(BOX_OFFICE_PATH, []),
+    editorialList: loadJson(EDITORIAL_PATH, []),
+    seedsList: loadJson(SEEDS_PATH, []),
+    archivedIds: lowerArchivedIds,
+  });
 
   // Sync to js/data.js for instant browser preview
   const dataJsContent = `// Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
@@ -2411,6 +3064,7 @@ if (process.argv[1] && process.argv[1].endsWith("compile_catalog.js")) {
   let incompleteOnly = false;
   let stale = null;
   let isQuarantine = false;
+  let isHarvestedOnly = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--all") {
@@ -2450,8 +3104,10 @@ if (process.argv[1] && process.argv[1].endsWith("compile_catalog.js")) {
       uncompiledOnly = true;
     } else if (args[i] === "--quarantine" || args[i] === "--quarantined") {
       isQuarantine = true;
+    } else if (args[i] === "--harvested" || args[i] === "--harvested-only") {
+      isHarvestedOnly = true;
     }
   }
 
-  compileCatalog({ limit, offset, id: targetId, ids: targetIds, all: isAll, force, uncompiledOnly, incompleteOnly, stale, quarantine: isQuarantine });
+  compileCatalog({ limit, offset, id: targetId, ids: targetIds, all: isAll, force, uncompiledOnly, incompleteOnly, stale, quarantine: isQuarantine, harvestedOnly: isHarvestedOnly });
 }

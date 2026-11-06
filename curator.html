@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Styles -->
-  <link rel="stylesheet" href="css/curator.css?v=1.1.1">
+  <link rel="stylesheet" href="css/curator.css?v=1.1.4">
   <style>
     @keyframes spin {
       0% { transform: rotate(0deg); }
@@ -82,9 +82,9 @@
 
       <div class="curator-nav-actions">
         <!-- Global Main Page Stop Run Button (Request 2) -->
-        <button type="button" class="btn-curator btn-main-stop-run" id="btn-curator-stop-run" title="Immediately stop any active scan or worker process occurring in background">
+        <button type="button" class="btn-curator btn-main-stop-run is-idle" id="btn-curator-stop-run" title="Not running — No active scan or worker process in background">
           <span id="curator-stop-indicator" class="main-stop-dot"></span>
-          <span id="curator-stop-label">🛑 Stop Run</span>
+          <span id="curator-stop-label">Not Running</span>
         </button>
         <button type="button" class="btn-curator btn-curator-danger" id="btn-restart-system" title="Restart all background services, clear browser &amp; service worker caches, unregister service workers, reset stuck automation, and reload fresh catalog">
           <span id="btn-restart-icon">🔄</span>
@@ -154,6 +154,16 @@
             <span>🏛️ Compile &amp; Publish Live</span>
             <span id="badge-pipeline-uncompiled-count" style="display: none; background: rgba(0,0,0,0.35); font-size: 0.72rem; padding: 2px 7px; border-radius: 999px; margin-left: 6px; border: 1px solid rgba(255,255,255,0.25);">0</span>
           </button>
+
+          <!-- 5. Run Antigravity through Quarantine Queue -->
+          <button type="button" class="btn-curator" id="btn-header-run-quarantine" onclick="autoRunQuarantinedStages1BTo4(event)" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border: 1px solid #f59e0b; color: #fff; font-weight: 700; padding: 7px 14px; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);" title="Run Antigravity through the Quarantine Queue (Stages 1B ➔ 5)">
+            <span id="btn-header-run-quarantine-label">🛡️ Run Quarantine Queue</span>
+          </button>
+
+          <!-- 6. Run Antigravity through Newest Passed Batch -->
+          <button type="button" class="btn-curator" id="btn-header-run-newest-passed" onclick="autoRunNewestPassedBatchStages1BTo5(event)" style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border: 1px solid #34d399; color: #fff; font-weight: 700; padding: 7px 14px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);" title="Run Antigravity through the newest batch of events that passed through the pipeline (Stages 1B ➔ 5)">
+            <span id="btn-header-run-newest-passed-label">✅ Run Newest Passed Batch</span>
+          </button>
         </div>
       </div>
     </section>
@@ -212,9 +222,17 @@
       </div>
 
       <!-- Status Summary -->
-      <div class="curator-status-bar">
+      <div class="curator-status-bar" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
         <div id="curator-results-text">Showing <strong>0</strong> quarantined items</div>
-        <div style="font-size: 0.8rem; opacity: 0.8;">💡 Quarantined items are annotated here and reviewed prior to live release.</div>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="btn-curator" id="btn-status-run-quarantine" onclick="autoRunQuarantinedStages1BTo4(event)" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border: 1px solid #f59e0b; color: #fff; font-size: 0.78rem; font-weight: 700; padding: 6px 13px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);" title="Run Antigravity through the Quarantine Queue (Stages 1B ➔ 5)">
+            <span id="btn-status-run-quarantine-label">🛡️ Run Quarantine Queue</span>
+          </button>
+          <button type="button" class="btn-curator" id="btn-status-run-newest-passed" onclick="autoRunNewestPassedBatchStages1BTo5(event)" style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border: 1px solid #34d399; color: #fff; font-size: 0.78rem; font-weight: 700; padding: 6px 13px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);" title="Run Antigravity through the newest batch of events that passed through the pipeline (Stages 1B ➔ 5)">
+            <span id="btn-status-run-newest-passed-label">✅ Run Newest Passed Batch</span>
+          </button>
+          <div style="font-size: 0.8rem; opacity: 0.8;">💡 Quarantined items are annotated here and reviewed prior to live release.</div>
+        </div>
       </div>
     </section>
 
@@ -1239,13 +1257,16 @@
           <!-- Interactive Scan Configuration & Trigger Controls (Optimized Space) -->
           <div id="pipeline-modal-controls" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
             <!-- Top Control Bar: Status Info + Primary Action Button (Button is ALWAYS Visible) -->
-            <div id="pipeline-top-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px;">
+            <div id="pipeline-top-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; min-height: 36px; flex-wrap: wrap;">
               <!-- 1. Stage Status Column (standardized uniform height & typography) -->
-              <div style="flex: 1; min-width: 0; display: flex; align-items: center;">
-                <div id="pipeline-last-scanned-tracker" style="display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; min-height: 34px;">
+              <div style="flex: 1 1 260px; min-width: 0; overflow: hidden; display: flex; align-items: center;">
+                <div id="pipeline-last-scanned-tracker" style="display: flex; align-items: center; gap: 6px 8px; flex-wrap: wrap; min-height: 30px; width: 100%; min-width: 0;">
                   <span id="pipeline-last-scanned-label" style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #94a3b8; white-space: nowrap; flex-shrink: 0;">Stage Status:</span>
-                  <div id="pipeline-last-scanned-text" style="font-weight: 700; color: #38bdf8; font-size: 0.76rem; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">Ready</div>
-                  <button type="button" class="btn-limit-chip" id="btn-quick-continue-last" onclick="continueFromLastScanned()" style="display: none; height: 24px; padding: 0 8px; font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 600; cursor: pointer; white-space: nowrap; align-items: center;">
+                  <div id="pipeline-last-scanned-text" style="font-weight: 700; color: #38bdf8; font-size: 0.76rem; display: inline-flex; align-items: center; gap: 4px 6px; flex-wrap: wrap; white-space: normal; min-width: 0; max-width: 100%; line-height: 1.3; overflow-wrap: break-word;">Ready</div>
+                  <button type="button" class="btn-limit-chip" id="btn-top-continue-prev-stage" onclick="continueStageFromPrevious(null, event)" style="min-height: 24px; height: auto; padding: 2px 9px; font-size: 0.69rem; background: linear-gradient(135deg, #0d9488 0%, #10b981 100%); border: 1px solid #34d399; color: #fff; font-weight: 800; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; border-radius: 5px; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3); max-width: 100%; overflow: hidden;" title="Continue running items that completed the previous stage, but not this stage">
+                    <span id="btn-top-continue-prev-stage-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from Previous Stage</span>
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="btn-quick-continue-last" onclick="continueFromLastScanned()" style="display: none; min-height: 24px; height: auto; padding: 2px 8px; font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 600; cursor: pointer; white-space: nowrap; align-items: center;">
                     Continue from Next Card ➔
                   </button>
                 </div>
@@ -1253,11 +1274,11 @@
               </div>
 
               <!-- Action Trigger Buttons (ALWAYS visible in top bar!) -->
-              <div id="pipeline-action-buttons-group" style="display: flex; align-items: center; gap: 8px; margin-left: auto; align-self: center;">
-                <button type="button" id="btn-trigger-pipeline-run" class="btn-curator btn-curator-primary" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border-color: #38bdf8; color: #fff; font-weight: 800; padding: 6px 16px; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45); cursor: pointer; border-radius: 6px;">
-                  <span id="btn-trigger-pipeline-label">Run Scan Now</span>
+              <div id="pipeline-action-buttons-group" style="display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: auto; align-self: center; flex-wrap: wrap;">
+                <button type="button" id="btn-trigger-pipeline-run" class="btn-curator btn-curator-primary" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border-color: #38bdf8; color: #fff; font-weight: 800; width: auto; min-width: 165px; max-width: 100%; min-height: 34px; height: auto; padding: 4px 14px; font-size: 0.76rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45); cursor: pointer; border-radius: 6px; text-align: center; white-space: nowrap;">
+                  <span id="btn-trigger-pipeline-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Run Scan Now</span>
                 </button>
-                <button type="button" id="btn-stop-pipeline-top" class="btn-curator" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); border-color: #f87171; color: #fff; font-weight: 700; padding: 6px 16px; font-size: 0.82rem; display: none; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35); cursor: pointer; border-radius: 6px;">
+                <button type="button" id="btn-stop-pipeline-top" class="btn-curator" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); border-color: #f87171; color: #fff; font-weight: 700; width: auto; min-width: 110px; min-height: 34px; height: auto; padding: 4px 14px; font-size: 0.76rem; display: none; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35); cursor: pointer; border-radius: 6px; text-align: center; white-space: nowrap;">
                   <span>Stop Scan</span>
                 </button>
               </div>
@@ -1265,6 +1286,27 @@
 
             <!-- Dedicated Schedule Harvester Venue Feeds Selector (Dropdown Selection, Default: All Feeds) -->
             <div id="pipeline-harvester-venue-feed-wrapper" style="display: none; background: rgba(192, 132, 252, 0.08); border: 1px solid rgba(192, 132, 252, 0.32); border-radius: 8px; padding: 10px 12px; flex-direction: column; gap: 8px;">
+              <!-- Checkpoint Resume & Start Processing at 1B Banner -->
+              <div id="harvester-checkpoint-resume-banner" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 7px; padding: 8px 10px;">
+                <div style="display: flex; flex-direction: column; gap: 2px; min-width: 200px; flex: 1;">
+                  <div style="font-size: 0.75rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                    <span>⏸️</span>
+                    <span id="harvester-checkpoint-banner-title">Stopped at Feed #50/126: The Orpheum Theatre</span>
+                  </div>
+                  <div id="harvester-checkpoint-banner-sub" style="font-size: 0.69rem; color: #a7f3d0;">
+                    49/126 sources scanned • <strong>569 new events</strong> harvested &amp; ready for Stage 1B
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <button type="button" class="btn-curator" id="btn-continue-harvest-stopped" onclick="continueHarvestFromCheckpoint(event)" style="padding: 5px 11px; font-size: 0.72rem; font-weight: 800; background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border: 1px solid #c084fc; color: #fff; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(147, 51, 234, 0.4);" title="Continue scanning venue feeds starting from Feed #50/126 where we stopped">
+                    <span id="btn-continue-harvest-stopped-label">▶️ Continue Scan From Stopped (#50/126)</span>
+                  </button>
+                  <button type="button" class="btn-curator" id="btn-process-harvested-1b" onclick="startProcessingHarvestedAt1B(event)" style="padding: 5px 11px; font-size: 0.72rem; font-weight: 800; background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border: 1px solid #34d399; color: #fff; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);" title="Start processing newly harvested events starting at Stage 1B">
+                    <span id="btn-process-harvested-1b-label">🏹 Process New Events Starting at 1B</span>
+                  </button>
+                </div>
+              </div>
+
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
                 <label style="font-size: 0.74rem; font-weight: 700; color: #c084fc; display: flex; align-items: center; gap: 6px;">
                   <span>🏛️</span> Target Venue Feed:
@@ -1315,11 +1357,11 @@
                   <span>🎯</span> Harvest Event Cap:
                 </span>
                 <div class="pipeline-batch-size-selector" style="display: flex; align-items: center; gap: 4px;">
-                  <button type="button" class="btn-limit-chip active" id="chip-harvester-batch-5" onclick="setPipelineBatchSize(5)">5</button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-batch-5" onclick="setPipelineBatchSize(5)">5</button>
                   <button type="button" class="btn-limit-chip" id="chip-harvester-batch-10" onclick="setPipelineBatchSize(10)">10</button>
                   <button type="button" class="btn-limit-chip" id="chip-harvester-batch-25" onclick="setPipelineBatchSize(25)">25</button>
                   <button type="button" class="btn-limit-chip" id="chip-harvester-batch-50" onclick="setPipelineBatchSize(50)">50</button>
-                  <button type="button" class="btn-limit-chip" id="chip-harvester-batch-all" onclick="setPipelineBatchSize('all')">All</button>
+                  <button type="button" class="btn-limit-chip active" id="chip-harvester-batch-all" onclick="setPipelineBatchSize('all')">All</button>
                   <button type="button" class="btn-limit-chip" id="chip-harvester-batch-custom" onclick="promptCustomBatchSize()" title="Enter custom count">#</button>
                 </div>
               </div>
@@ -1341,6 +1383,9 @@
                 <div style="display: flex; gap: 5px; flex-wrap: wrap;" id="pipeline-scope-selector-grid">
                   <button type="button" class="pipeline-scope-pill active" data-scope="unscanned" id="scope-card-unscanned" onclick="setPipelineScope('unscanned')">
                     <span class="scope-radio-dot">●</span> <span id="scope-pill-unscanned-label">Unscanned Only</span>
+                  </button>
+                  <button type="button" class="pipeline-scope-pill" data-scope="harvested" id="scope-card-harvested" onclick="setPipelineScope('harvested')" title="Target newly harvested uncompiled events from Stage 1A (layer_schedules.json)">
+                    <span class="scope-radio-dot">○</span> <span id="scope-pill-harvested-label">✨ New Harvested (<span id="scope-count-harvested">569</span>)</span>
                   </button>
                   <button type="button" class="pipeline-scope-pill" data-scope="incomplete" id="scope-card-incomplete" onclick="setPipelineScope('incomplete')" title="Target events missing any scan layer (Box Office, Harvester, Editorial, or Compiler)">
                     <span class="scope-radio-dot">○</span> <span id="scope-pill-incomplete-label">Incomplete Scans</span>
@@ -1512,8 +1557,10 @@
         <!-- RIGHT COLUMN: Side-by-side card yield inspection (Before vs. After) -->
         <div class="pipeline-modal-right-col" id="pipeline-modal-right-col">
           <!-- Comparison Header Toolbar (Card picker, prev/next, status pill) -->
+          <!-- Comparison Header Toolbar (Card picker, Top-Center Stage Indicator, prev/next, status pill) -->
           <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1 1 auto; min-width: 220px;">
               <div>
                 <div style="font-size: 0.84rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
                   <span>📋</span> <span id="pipeline-comparison-header-title">AI Card Yield Comparison (Before vs. After)</span>
@@ -1529,6 +1576,13 @@
               </button>
             </div>
             <div style="display: flex; align-items: center; gap: 6px;">
+            <!-- TOP-CENTER STAGE INDICATOR FOR BEFORE / AFTER VIEW -->
+            <div style="display: flex; align-items: center; justify-content: center; flex: 0 0 auto; margin: 0 auto;">
+              <div id="pipeline-comp-stage-banner" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 999px; font-size: 0.76rem; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: #7dd3fc; background: rgba(56, 189, 248, 0.16); border: 1.5px solid rgba(56, 189, 248, 0.55); box-shadow: 0 0 12px rgba(56, 189, 248, 0.18); white-space: nowrap;" title="Active Pipeline Stage shown in this Before vs. After view">
+                <span id="pipeline-comp-stage-banner-text">🎟️ Stage 2: Box Office QC — Before / After</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex: 1 1 auto;">
               <div id="pipeline-comparison-nav-toolbar" style="display: flex; align-items: center; gap: 6px;">
                 <button type="button" class="btn-limit-chip" id="btn-comp-prev-card" onclick="stepComparisonCard(-1)" title="Previous audited card" disabled style="padding: 2px 7px; font-size: 0.7rem;">◀ Prev</button>
                 <select id="pipeline-comparison-card-select" class="curator-input" style="font-size: 0.72rem; padding: 2px 6px; max-width: 220px; background: #0f172a; color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);" onchange="onComparisonCardSelectChange(this.value)">
@@ -1632,6 +1686,6 @@
       }
     });
   </script>
-  <script src="js/curator.js?v=1.3.9"></script>
+  <script src="js/curator.js?v=1.4.6"></script>
 </body>
 </html>

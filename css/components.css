@@ -1979,9 +1979,26 @@
   background: rgba(239, 68, 68, 0.16) !important;
   color: #fca5a5 !important;
   border: 1px solid rgba(239, 68, 68, 0.35) !important;
-  cursor: not-allowed;
+  cursor: pointer;
   box-shadow: none !important;
-  pointer-events: none;
+  pointer-events: auto;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+}
+
+
+
+.btn-ticket-cta.sold-out:hover {
+  background: rgba(239, 68, 68, 0.28) !important;
+  color: #fecaca !important;
+  border-color: rgba(248, 113, 113, 0.65) !important;
+  transform: translateY(-1px);
+}
+
+.btn-ticket-cta.sold-out:hover {
+  background: rgba(239, 68, 68, 0.28) !important;
+  color: #fecaca !important;
+  border-color: rgba(248, 113, 113, 0.65) !important;
+  transform: translateY(-1px);
 }
 
 /* Multi-Tier Compact Event Styling */

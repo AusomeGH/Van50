@@ -4910,7 +4910,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         const costText = (s.cost !== undefined && s.cost !== null) ? (Number(s.cost) === 0 ? 'Free' : `$${Number(s.cost).toFixed(2)}`) : '';
         const isSoldOut = s.status === 'sold_out' || s.is_sold_out;
         const actionHtml = isSoldOut
-          ? `<span class="badge-showing-sold-out" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Sold Out</span>`
+          ? `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="badge-showing-sold-out" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-block; cursor: pointer;" title="Sold out — click to check ticket portal or waitlist">Sold Out ↗</a>`
           : `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
                 ${costText ? `${costText} ↗` : 'Book ↗'}
               </a>`;

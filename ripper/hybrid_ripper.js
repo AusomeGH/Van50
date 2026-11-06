@@ -8,6 +8,7 @@ import {
   isAntigravityEngine,
   callAntigravityBoxOfficeExtractor,
   getAntigravityModel,
+  formatLogTime,
   printAntigravityTimeoutSummary,
   recordPipelineTimeoutEvent,
   safeUpdateJsonFile,
@@ -133,7 +134,8 @@ export function normalizeDate(rawDate) {
 export const KNOWN_PORTAL_DOMAINS = new Set([
   "showpass.com", "eventbrite.ca", "eventbrite.com", "ticketmaster.ca", "ticketmaster.com",
   "ticketweb.ca", "universe.com", "ovationtix.com", "dice.fm", "admitone.com",
-  "brownpapertickets.com", "eventive.org", "theatrewire.com", "vtixonline.com", "tickit.ca"
+  "brownpapertickets.com", "eventive.org", "theatrewire.com", "vtixonline.com", "tickit.ca",
+  "riotheatretickets.ca", "bloomtickets.ca", "humanitix.com", "admitonelive.com", "tickets.jflvancouver.com"
 ]);
 
 /**
@@ -145,6 +147,18 @@ export function isValidDeepLink(url) {
     const u = new URL(url);
     const host = u.hostname.replace(/^www\./, "").toLowerCase();
     const path = u.pathname.replace(/\/+$/, "");
+    const lowerPath = path.toLowerCase();
+    if (
+      lowerPath.includes("viewbasket.aspx") ||
+      lowerPath.endsWith("/myaccount") ||
+      lowerPath.endsWith("/account") ||
+      lowerPath.endsWith("/basket") ||
+      lowerPath.endsWith("/cart") ||
+      lowerPath.endsWith("/login") ||
+      lowerPath.endsWith("/signin")
+    ) {
+      return false;
+    }
     if (KNOWN_PORTAL_DOMAINS.has(host)) {
       if (!path || path === "" || path === "/events" || path === "/home" || path === "/d" || path === "/explore") {
         return false;
@@ -219,17 +233,21 @@ export function matchVenue(venueQuery, venues) {
   if (!venueQuery || !Array.isArray(venues)) return null;
   const rawQuery = venueQuery.toLowerCase().trim();
   const cleanQuery = rawQuery.replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+  const isExplicitTestQuery = /^testvenue\b|^testy\b/i.test(rawQuery);
+  const candidateVenues = isExplicitTestQuery
+    ? venues
+    : venues.filter((v) => !v?.is_test_canary && !/^testvenue\b/i.test(v?.venue_name || "") && (v?.venue_name || "") !== "none_available");
 
   // 1. Exact match
-  let matched = venues.find((v) => (v.venue_name || "").toLowerCase().trim() === rawQuery);
+  let matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().trim() === rawQuery);
   if (matched) return matched;
 
   // 2. Clean query match (without parenthetical info / punctuation)
-  matched = venues.find((v) => (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
+  matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
   // 3. Clean query containment (strip parenthetical suffixes from venue names first so "The Polygon Gallery (The Shipyards)" doesn't hijack "The Shipyards")
-  const containmentCandidates = venues.filter((v) => {
+  const containmentCandidates = candidateVenues.filter((v) => {
     const vNoParens = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     return vNoParens.length > 6 && (cleanQuery.includes(vNoParens) || vNoParens.includes(cleanQuery));
   });
@@ -258,7 +276,7 @@ export function matchVenue(venueQuery, venues) {
   let bestMatch = null;
   let maxScore = 0;
 
-  for (const v of venues) {
+  for (const v of candidateVenues) {
     const vClean = (v.venue_name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t)));
 
@@ -341,20 +359,26 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
   const titleValid = extracted.title && extracted.title !== "none_available" && extracted.title.trim().length > 0;
   const finalTitle = titleValid ? extracted.title.trim() : (existingCard?.title || existingCard?.event_name || "Event");
 
-  // 1. Anti-Self-Referential Lineup & Artist Guard: Never echo title as performer
-  let rawArtist = (extracted.artist && extracted.artist !== "none_available") ? extracted.artist.trim() : (existingCard?.artist || "");
-  if (rawArtist && (rawArtist.toLowerCase() === finalTitle.toLowerCase() || /\b(?:showcase|open mic|residency|night|series)\b/i.test(rawArtist))) {
+  const isPerennial =
+    (existingCard?.lifecycle_type === "perennial_drop_in") ||
+    (venueData?.access_model === "open_public_space" && !extracted.date);
+
+  // 1. Anti-Self-Referential Lineup & Artist Guard: Never echo title as performer, and suppress lineups on perennials
+  let rawArtist = (!isPerennial && extracted.artist && extracted.artist !== "none_available") ? extracted.artist.trim() : (!isPerennial ? (existingCard?.artist || "") : "");
+  if (rawArtist && (rawArtist.toLowerCase() === finalTitle.toLowerCase() || /^(?:none|null|n\/a|none_available|not_applicable|tba|tbd)$/i.test(rawArtist) || /\b(?:showcase|open mic|residency|night|series|park|beach|seawall|garden|market|pitch & putt|pitch and putt)\b/i.test(rawArtist))) {
     rawArtist = "";
   }
-  const finalArtist = rawArtist || null;
+  const finalArtist = isPerennial ? null : (rawArtist || null);
 
   let rawLineup = [];
-  if (Array.isArray(extracted.lineup) && extracted.lineup.length > 0) {
-    rawLineup = extracted.lineup.filter(p => p && p.trim().length > 0 && p.toLowerCase() !== finalTitle.toLowerCase());
-  } else if (Array.isArray(existingCard?.lineup) && existingCard.lineup.length > 0) {
-    rawLineup = existingCard.lineup.filter(p => p && p.trim().length > 0 && p.toLowerCase() !== finalTitle.toLowerCase());
-  } else if (finalArtist) {
-    rawLineup = [finalArtist];
+  if (!isPerennial) {
+    if (Array.isArray(extracted.lineup) && extracted.lineup.length > 0) {
+      rawLineup = extracted.lineup.filter(p => p && p.trim().length > 0 && p.toLowerCase() !== finalTitle.toLowerCase() && !/^(?:none|null|n\/a|none_available|not_applicable|tba|tbd)$/i.test(p.trim()));
+    } else if (Array.isArray(existingCard?.lineup) && existingCard.lineup.length > 0) {
+      rawLineup = existingCard.lineup.filter(p => p && p.trim().length > 0 && p.toLowerCase() !== finalTitle.toLowerCase() && !/^(?:none|null|n\/a|none_available|not_applicable|tba|tbd)$/i.test(p.trim()));
+    } else if (finalArtist) {
+      rawLineup = [finalArtist];
+    }
   }
   const finalLineup = rawLineup;
 
@@ -373,16 +397,17 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
   const isOpenPublicSpace = venueData?.access_model === "open_public_space" || existingCard?.access_model === "open_public_space";
   const isSoldOut = (isOpenPublicSpace || hasAvailableExtractedTier)
     ? false
-    : Boolean(extracted.is_sold_out !== undefined ? extracted.is_sold_out : existingCard?.is_sold_out);
-  let priceBase = extracted.tier1_price_base ?? (existingCard?.price_base ?? null);
-  let priceFee = extracted.tier1_price_fee ?? (existingCard?.price_fee ?? null);
-  let priceTax = extracted.tier1_price_tax ?? (existingCard?.price_tax ?? null);
+    : Boolean(extracted.is_sold_out !== undefined ? extracted.is_sold_out : false);
+  // Strict Stage 2 Isolation: NEVER backfill unverified prior-stage prices (e.g. Stage 1A heuristic price_base/price_all_in) into Stage 2 Box Office QC!
+  let priceBase = extracted.tier1_price_base ?? null;
+  let priceFee = extracted.tier1_price_fee ?? null;
+  let priceTax = extracted.tier1_price_tax ?? null;
 
   // If sold out or ended and cart was not penetrated, do not falsely claim fee: 0, tax: 0 unless proven free
   const cartPenetrated = Boolean(cartScreenshotPath && !isSoldOut && (priceFee !== null || priceTax !== null));
   if (isSoldOut && !extracted.tier1_quote?.toLowerCase().includes("free")) {
-    if (priceFee === 0 && !extracted.tier1_quote?.includes("no fee")) priceFee = existingCard?.price_fee ?? null;
-    if (priceTax === 0 && !extracted.tier1_quote?.includes("tax incl")) priceTax = existingCard?.price_tax ?? null;
+    if (priceFee === 0 && !extracted.tier1_quote?.includes("no fee")) priceFee = null;
+    if (priceTax === 0 && !extracted.tier1_quote?.includes("tax incl")) priceTax = null;
   }
 
   // Tier 2 calculations & Price Range Splitting
@@ -411,13 +436,13 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
   // If all_tiers array is provided, filter out annual memberships & >$50 secondary tiers and hydrate tier1/tier2/tier3 if unpopulated
   const allTiersList = Array.isArray(extracted.all_tiers) && extracted.all_tiers.length > 0
     ? extracted.all_tiers.filter((t) => {
-        if (!t) return false;
-        const tName = String(t.name || "");
-        if (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(tName)) return false;
-        const tPrice = Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 0);
-        if (!isNaN(tPrice) && tPrice > 50.0) return false;
-        return true;
-      })
+      if (!t) return false;
+      const tName = String(t.name || "");
+      if (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(tName)) return false;
+      const tPrice = Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 0);
+      if (!isNaN(tPrice) && tPrice > 50.0) return false;
+      return true;
+    })
     : [];
   extracted.all_tiers = allTiersList;
   if (allTiersList.length > 0) {
@@ -440,13 +465,10 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
   }
 
   const priceCalculated = (priceBase != null && priceFee != null && priceTax != null) ? (priceBase + priceFee + priceTax) : (extracted.tier1_price_all_in ?? null);
-  const priceRead = extracted.tier1_price_read ?? extracted.tier1_price_all_in ?? priceCalculated ?? (existingCard?.price_all_in ?? existingCard?.price ?? null);
+  const priceRead = extracted.tier1_price_read ?? extracted.tier1_price_all_in ?? priceCalculated ?? null;
   const priceDelta = (priceRead != null && priceCalculated != null) ? Math.abs(priceRead - priceCalculated) : 0;
 
   let priceAllIn = priceRead;
-  if (isSoldOut && priceRead === 0 && (existingCard?.price_base || existingCard?.price)) {
-    priceAllIn = existingCard.price_base || existingCard.price;
-  }
 
   // Anti-Fake-Free Gate: Only mark isFree if positive evidence exists!
   // CRITICAL: A quote of "$0" or "$0.00" on a paid ticketing platform with paid tiers or a non-zero range is NOT proof of free general admission!
@@ -493,16 +515,12 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
 
   const isFree = !isSoldOut && !hasPaidTiers && ((priceAllIn === 0 && hasFreeQuote) || (hasFreeQuote && (priceAllIn === 0 || priceAllIn == null)));
   if (!isFree && priceAllIn === 0 && !hasFreeQuote && !extracted.tier1_quote) {
-    priceAllIn = existingCard?.price_all_in ?? existingCard?.price ?? null;
+    priceAllIn = null;
   }
 
   // 3. Weekly Recurring Residency Detection & Auto-Roll Engine
   const residencyText = `${finalTitle} ${extracted.description || existingCard?.description || ""}`;
   const recurringInfo = detectWeeklyRecurrence(residencyText, existingCard?.frequency);
-
-  const isPerennial =
-    (existingCard?.lifecycle_type === "perennial_drop_in") ||
-    (venueData?.access_model === "open_public_space" && !extracted.date);
 
   let showings = [];
   let heroDate = isoDate;
@@ -814,6 +832,9 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
       status: "verified",
       qualified: priceAllIn <= 50.0,
       all_in_total: priceAllIn,
+      status: (priceAllIn != null || isFree) ? "verified" : "search_exhausted_null",
+      qualified: isFree ? true : (priceAllIn != null ? priceAllIn <= 50.0 : null),
+      all_in_total: isFree ? 0 : priceAllIn,
       audited_at: nowIso
     },
     D219_other_cost_label: {
@@ -839,8 +860,13 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
 
     // CLUSTER 3XX: Performance, Schedule & Content Reality (D301–D311)
     D301_lineup: {
-      status: finalLineup.length > 0 ? "verified" : "none_available",
-      value: finalLineup,
+      status: isPerennial ? "not_applicable" : (finalLineup.length > 0 ? "verified" : "none_available"),
+      value: isPerennial ? null : finalLineup,
+      audited_at: nowIso
+    },
+    D302_artist: {
+      status: isPerennial ? "not_applicable" : (finalArtist ? "verified" : "none_available"),
+      value: isPerennial ? null : finalArtist,
       audited_at: nowIso
     },
     D303_date: {
@@ -1038,16 +1064,16 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
     tier3_quote: extracted.tier3_quote || null,
     priceLabel: isSoldOut && (priceAllIn === 0 || priceAllIn == null)
       ? "Sold Out"
-      : (isFree ? "Free ($0)" : (priceAllIn != null ? `$${priceAllIn.toFixed(2)} CAD` : (existingCard?.priceLabel || "Pending Box Office QC"))),
-    pricingType: isFree ? "free" : (priceAllIn != null ? "paid" : (existingCard?.pricingType || "paid")),
+      : (isFree ? "Free ($0)" : (priceAllIn != null ? `$${priceAllIn.toFixed(2)} CAD` : "Pending Box Office QC")),
+    pricingType: isFree ? "free" : (priceAllIn != null ? "paid" : "paid"),
     isFree: isFree,
     is_sold_out: isSoldOut,
     isSoldOut: isSoldOut,
     ticket_url: cleanTicketUrl,
     details_url: targetUrl,
     websiteUrl: cleanTicketUrl,
-    ticket_provider: extracted.ticket_provider || existingCard?.ticket_provider || "Direct Box Office",
-    description: (extracted.description && extracted.description !== "none_available") ? extracted.description : (existingCard?.description || ""),
+    ticket_provider: extracted.ticket_provider || "Direct Box Office",
+    description: (extracted.description && extracted.description !== "none_available") ? extracted.description : "",
     restrictions: finalRestrictions,
     transitInfo: venueData.transit_info,
     waypoints: (existingCard?.waypoints && existingCard.waypoints.length > 0) ? existingCard.waypoints : (venueData.waypoints || []),
@@ -1061,8 +1087,8 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
     lifecycle_type: lifecycleType,
     approval_status: (priceAllIn != null && priceAllIn <= 50.0)
       ? `Stagehand-${Object.keys(dimensionAudit).length}D-Verified`
-      : (priceAllIn != null && priceAllIn > 50.0 ? "Quarantine-Budget-Breach" : (existingCard?.approval_status || "Seed-Pending-Audit")),
-    budget_qualified_under_50: priceAllIn != null ? priceAllIn <= 50.0 : (existingCard?.budget_qualified_under_50 ?? false),
+      : (priceAllIn != null && priceAllIn > 50.0 ? "Quarantine-Budget-Breach" : "Seed-Pending-Audit"),
+    budget_qualified_under_50: priceAllIn != null ? priceAllIn <= 50.0 : false,
     proof_keyframes: {
       cart: cartScreenshotPath ? path.relative(ROOT_DIR, cartScreenshotPath).replace(/\\/g, "/") : null,
     },
@@ -1074,72 +1100,72 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
     all_tiers: (Array.isArray(extracted.all_tiers) && extracted.all_tiers.length > 0) ? extracted.all_tiers : undefined,
     tiers: (Array.isArray(extracted.all_tiers) && extracted.all_tiers.length > 0)
       ? extracted.all_tiers.map((t, idx) => {
-          const tPrice = Number(t.price_all_in ?? t.price_read ?? t.price ?? 0);
-          const tBase = t.price_base != null ? Number(t.price_base) : tPrice;
-          const tFee = t.price_fee != null ? Number(t.price_fee) : 0;
-          const tTax = t.price_tax != null ? Number(t.price_tax) : 0;
-          const tRead = t.price_read != null ? Number(t.price_read) : tPrice;
-          const tCalc = tBase + tFee + tTax;
-          const tDelta = Math.abs(tRead - tCalc);
-          return {
-            name: t.name || (idx === 0 ? (extracted.tier1_name || "General Admission") : `Tier ${idx + 1}`),
-            price: tPrice,
-            price_base: tBase,
-            price_fee: tFee,
-            price_tax: tTax,
-            price_read: tRead,
-            price_calculated: tCalc,
-            price_delta: tDelta,
-            label: tPrice === 0 ? "Free ($0)" : `$${tPrice.toFixed(2)} CAD`,
-            isAvailable: t.is_available !== false,
-          };
-        })
+        const tPrice = Number(t.price_all_in ?? t.price_read ?? t.price ?? 0);
+        const tBase = t.price_base != null ? Number(t.price_base) : tPrice;
+        const tFee = t.price_fee != null ? Number(t.price_fee) : 0;
+        const tTax = t.price_tax != null ? Number(t.price_tax) : 0;
+        const tRead = t.price_read != null ? Number(t.price_read) : tPrice;
+        const tCalc = tBase + tFee + tTax;
+        const tDelta = Math.abs(tRead - tCalc);
+        return {
+          name: t.name || (idx === 0 ? (extracted.tier1_name || "General Admission") : `Tier ${idx + 1}`),
+          price: tPrice,
+          price_base: tBase,
+          price_fee: tFee,
+          price_tax: tTax,
+          price_read: tRead,
+          price_calculated: tCalc,
+          price_delta: tDelta,
+          label: tPrice === 0 ? "Free ($0)" : `$${tPrice.toFixed(2)} CAD`,
+          isAvailable: t.is_available !== false,
+        };
+      })
       : [
-          {
-            name: extracted.tier1_name || "General Admission",
-            price: priceAllIn,
-            price_base: priceBase,
-            price_fee: priceFee,
-            price_tax: priceTax,
-            price_read: priceRead,
-            price_calculated: priceCalculated,
-            price_delta: priceDelta,
-            label: isSoldOut && priceAllIn === 0 ? "Sold Out" : (isFree ? "Free ($0)" : (priceAllIn != null && !isNaN(priceAllIn) ? `$${Number(priceAllIn).toFixed(2)} CAD` : "Unpriced")),
-            isAvailable: !isSoldOut,
-          },
-          ...(extracted.tier2_name && (extracted.tier2_price_all_in != null || extracted.tier2_price_read != null || t2Read != null)
-            ? [
-                {
-                  name: extracted.tier2_name,
-                  price: t2Read ?? t2Calculated,
-                  price_base: t2Base ?? (t2Read ?? t2Calculated),
-                  price_fee: t2Fee ?? 0,
-                  price_tax: t2Tax ?? 0,
-                  price_read: t2Read,
-                  price_calculated: t2Calculated,
-                  price_delta: t2Delta,
-                  label: (t2Read ?? t2Calculated) != null && !isNaN(t2Read ?? t2Calculated) ? `$${Number(t2Read ?? t2Calculated).toFixed(2)} CAD` : "Tier 2",
-                  isAvailable: true,
-                },
-              ]
-            : []),
-          ...(extracted.tier3_name && (extracted.tier3_price_all_in != null || extracted.tier3_price_read != null || t3Read != null)
-            ? [
-                {
-                  name: extracted.tier3_name,
-                  price: t3Read ?? t3Calculated,
-                  price_base: t3Base ?? (t3Read ?? t3Calculated),
-                  price_fee: t3Fee ?? 0,
-                  price_tax: t3Tax ?? 0,
-                  price_read: t3Read,
-                  price_calculated: t3Calculated,
-                  price_delta: t3Delta,
-                  label: (t3Read ?? t3Calculated) != null && !isNaN(t3Read ?? t3Calculated) ? `$${Number(t3Read ?? t3Calculated).toFixed(2)} CAD` : "Tier 3",
-                  isAvailable: true,
-                },
-              ]
-            : []),
-        ],
+        {
+          name: extracted.tier1_name || "General Admission",
+          price: priceAllIn,
+          price_base: priceBase,
+          price_fee: priceFee,
+          price_tax: priceTax,
+          price_read: priceRead,
+          price_calculated: priceCalculated,
+          price_delta: priceDelta,
+          label: isSoldOut && priceAllIn === 0 ? "Sold Out" : (isFree ? "Free ($0)" : (priceAllIn != null && !isNaN(priceAllIn) ? `$${Number(priceAllIn).toFixed(2)} CAD` : "Unpriced")),
+          isAvailable: !isSoldOut,
+        },
+        ...(extracted.tier2_name && (extracted.tier2_price_all_in != null || extracted.tier2_price_read != null || t2Read != null)
+          ? [
+            {
+              name: extracted.tier2_name,
+              price: t2Read ?? t2Calculated,
+              price_base: t2Base ?? (t2Read ?? t2Calculated),
+              price_fee: t2Fee ?? 0,
+              price_tax: t2Tax ?? 0,
+              price_read: t2Read,
+              price_calculated: t2Calculated,
+              price_delta: t2Delta,
+              label: (t2Read ?? t2Calculated) != null && !isNaN(t2Read ?? t2Calculated) ? `$${Number(t2Read ?? t2Calculated).toFixed(2)} CAD` : "Tier 2",
+              isAvailable: true,
+            },
+          ]
+          : []),
+        ...(extracted.tier3_name && (extracted.tier3_price_all_in != null || extracted.tier3_price_read != null || t3Read != null)
+          ? [
+            {
+              name: extracted.tier3_name,
+              price: t3Read ?? t3Calculated,
+              price_base: t3Base ?? (t3Read ?? t3Calculated),
+              price_fee: t3Fee ?? 0,
+              price_tax: t3Tax ?? 0,
+              price_read: t3Read,
+              price_calculated: t3Calculated,
+              price_delta: t3Delta,
+              label: (t3Read ?? t3Calculated) != null && !isNaN(t3Read ?? t3Calculated) ? `$${Number(t3Read ?? t3Calculated).toFixed(2)} CAD` : "Tier 3",
+              isAvailable: true,
+            },
+          ]
+          : []),
+      ],
   };
 }
 
@@ -1159,12 +1185,12 @@ export async function runHybridRipper(targetUrl, options = {}) {
   console.log(`🎯 Target URL: ${targetUrl}`);
   console.log(`🧠 AI Engine: Google Gemini 3.8 Flash`);
   console.log(`================================================================\n`);
-  console.log(`📌 Processing [1/1]: Single Event [${targetUrl}]`);
+  console.log(`${formatLogTime()} 📌 Processing [1/1]: Single Event [${targetUrl}]`);
 
   let stagehand;
   let browser;
   try {
-    browser = await localBrowser.launch();
+    browser = await localBrowser.launch({ headless: true, args: ["--mute-audio"] });
     stagehand = await Stagehand.create({
       browser,
       model: {
@@ -1283,11 +1309,11 @@ export async function runHybridRipper(targetUrl, options = {}) {
     throw err;
   } finally {
     if (stagehand) {
-      try { await stagehand.close(); } catch (_) {}
+      try { await stagehand.close(); } catch (_) { }
       console.log(`🧹 Stagehand browser closed cleanly.\n`);
     }
     if (browser) {
-      try { await browser.close(); } catch (_) {}
+      try { await browser.close(); } catch (_) { }
     }
   }
 }
@@ -1405,10 +1431,13 @@ if (process.argv[1] && process.argv[1].endsWith("hybrid_ripper.js")) {
         const venue = sp.get("venue") || "";
         const venuesOnly = sp.get("venues_only") === "1" || sp.get("venues_only") === "true";
         const cardsOnly = sp.get("cards_only") === "1" || sp.get("cards_only") === "true";
+        const resume = sp.get("resume") === "1" || sp.get("resume") === "true";
+        const harvestedOnly = sp.get("harvested_only") === "1" || sp.get("harvested_only") === "true" || sp.get("scope") === "harvested";
+        const scopeVal = sp.get("scope") || "";
 
         console.log(`\n================================================================`);
         console.log(`🚀 VAN50 ANTIGRAVITY ENGINE DISPATCHER (Non-AI Master Loop)`);
-        console.log(`⚡ Step: ${step.toUpperCase()} | Worker Model: ${model} | Scope: ${sp.get("scope") || "default"}`);
+        console.log(`⚡ Step: ${step.toUpperCase()} | Worker Model: ${model} | Scope: ${scopeVal || "default"}${resume ? " (RESUME)" : ""}`);
         console.log(`🛡️ Anti-Laziness Architecture: Deterministic Loop + Fresh 1-Event Antigravity Workers`);
         console.log(`================================================================\n`);
 
@@ -1424,8 +1453,11 @@ if (process.argv[1] && process.argv[1].endsWith("hybrid_ripper.js")) {
           all: isAll,
           quarantine: isQuarantine,
           quarantined: isQuarantine,
+          harvestedOnly,
+          scope: scopeVal,
+          resume,
           force,
-          unverifiedOnly: !isAll && !isQuarantine && !force && !id && !ids && !incompleteOnly && !stale,
+          unverifiedOnly: !isAll && !isQuarantine && !harvestedOnly && !force && !id && !ids && !incompleteOnly && !stale,
           uncompiledOnly,
           incompleteOnly,
           stale: stale || null,
@@ -1434,10 +1466,11 @@ if (process.argv[1] && process.argv[1].endsWith("hybrid_ripper.js")) {
 
         if (step === "harvest" || step === "calendar" || step === "harvester") {
           const { runAllVenueFeedsBatch, runCalendarBatch } = await import("./calendar_harvester.js");
-          if (!innerUrl || innerUrl === "all") {
-            await runAllVenueFeedsBatch({ maxEvents: limit, engine: "antigravity" });
+          const effectiveResume = resume || innerUrl === "all:resume";
+          if (!innerUrl || innerUrl === "all" || innerUrl === "all:resume") {
+            await runAllVenueFeedsBatch({ maxEvents: limit, engine: "antigravity", resume: effectiveResume });
           } else {
-            await runCalendarBatch(innerUrl, { maxEvents: limit, engine: "antigravity" });
+            await runCalendarBatch(innerUrl, { maxEvents: limit, engine: "antigravity", resume: effectiveResume });
           }
         } else if (step === "hunter" || step === "tier1_hunt") {
           const { huntBatchTier1Links } = await import("./tier1_hunter.js");
@@ -1451,6 +1484,9 @@ if (process.argv[1] && process.argv[1].endsWith("hybrid_ripper.js")) {
         } else if (step === "venue" || step === "venue_detailer") {
           const { runVenueDetailer } = await import("./venue_detailer.js");
           await runVenueDetailer(opts);
+        } else if (step === "consolidate" || step === "consolidate_events" || step === "dedup") {
+          const { runConsolidationStage } = await import("./consolidate_events.js");
+          await runConsolidationStage(opts);
         } else if (step === "compile") {
           const { compileCatalog } = await import("./compile_catalog.js");
           await compileCatalog(opts);

@@ -140,15 +140,195 @@
       "label": "QC AI Full Catalog Audit",
       "averageDurationSeconds": 286.9,
       "averageDurationFormatted": "4m 47s",
-      "totalRuns": 113,
+      "totalRuns": 143,
       "lastRun": {
-        "timestamp": "2026-10-30T02:28:14.330Z",
-        "durationSeconds": 1580,
-        "durationFormatted": "26m 20s",
-        "itemsProcessed": 42,
+        "timestamp": "2026-11-06T04:40:49.308Z",
+        "durationSeconds": 391,
+        "durationFormatted": "6m 31s",
+        "itemsProcessed": 8,
         "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
       },
       "history": [
+        {
+          "timestamp": "2026-11-06T04:40:49.308Z",
+          "durationSeconds": 391,
+          "durationFormatted": "6m 31s",
+          "itemsProcessed": 8
+        },
+        {
+          "timestamp": "2026-11-06T04:34:03.451Z",
+          "durationSeconds": 362,
+          "durationFormatted": "6m 2s",
+          "itemsProcessed": 8
+        },
+        {
+          "timestamp": "2026-11-06T04:27:40.701Z",
+          "durationSeconds": 395,
+          "durationFormatted": "6m 35s",
+          "itemsProcessed": 8
+        },
+        {
+          "timestamp": "2026-11-06T04:20:41.238Z",
+          "durationSeconds": 76,
+          "durationFormatted": "1m 16s",
+          "itemsProcessed": 2
+        },
+        {
+          "timestamp": "2026-11-06T04:08:52.683Z",
+          "durationSeconds": 44,
+          "durationFormatted": "0m 44s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-11-06T03:58:45.741Z",
+          "durationSeconds": 327,
+          "durationFormatted": "5m 27s",
+          "itemsProcessed": 9
+        },
+        {
+          "timestamp": "2026-11-06T02:06:25.654Z",
+          "durationSeconds": 3236,
+          "durationFormatted": "53m 56s",
+          "itemsProcessed": 59
+        },
+        {
+          "timestamp": "2026-11-05T22:42:05.355Z",
+          "durationSeconds": 2373,
+          "durationFormatted": "39m 33s",
+          "itemsProcessed": 50
+        },
+        {
+          "timestamp": "2026-11-05T17:33:05.906Z",
+          "durationSeconds": 2012,
+          "durationFormatted": "33m 32s",
+          "itemsProcessed": 50
+        },
+        {
+          "timestamp": "2026-11-05T16:34:12.649Z",
+          "durationSeconds": 2306,
+          "durationFormatted": "38m 26s",
+          "itemsProcessed": 50
+        },
+        {
+          "timestamp": "2026-11-05T15:45:43.446Z",
+          "durationSeconds": 37,
+          "durationFormatted": "0m 37s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-11-05T14:55:59.425Z",
+          "durationSeconds": 127,
+          "durationFormatted": "2m 7s",
+          "itemsProcessed": 3
+        },
+        {
+          "timestamp": "2026-11-05T14:01:09.881Z",
+          "durationSeconds": 822,
+          "durationFormatted": "13m 42s",
+          "itemsProcessed": 20
+        },
+        {
+          "timestamp": "2026-11-04T17:02:10.643Z",
+          "durationSeconds": 1042,
+          "durationFormatted": "17m 22s",
+          "itemsProcessed": 15
+        },
+        {
+          "timestamp": "2026-11-04T16:35:58.394Z",
+          "durationSeconds": 60,
+          "durationFormatted": "1m 0s",
+          "itemsProcessed": 2
+        },
+        {
+          "timestamp": "2026-11-04T15:19:06.043Z",
+          "durationSeconds": 870,
+          "durationFormatted": "14m 30s",
+          "itemsProcessed": 20
+        },
+        {
+          "timestamp": "2026-11-04T14:55:02.815Z",
+          "durationSeconds": 375,
+          "durationFormatted": "6m 15s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-11-04T14:47:47.799Z",
+          "durationSeconds": 44,
+          "durationFormatted": "0m 44s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-11-04T01:09:04.677Z",
+          "durationSeconds": 981,
+          "durationFormatted": "16m 21s",
+          "itemsProcessed": 20
+        },
+        {
+          "timestamp": "2026-11-03T21:03:00.410Z",
+          "durationSeconds": 1872,
+          "durationFormatted": "31m 12s",
+          "itemsProcessed": 50
+        },
+        {
+          "timestamp": "2026-11-03T20:15:13.600Z",
+          "durationSeconds": 145,
+          "durationFormatted": "2m 25s",
+          "itemsProcessed": 3
+        },
+        {
+          "timestamp": "2026-11-03T20:08:06.061Z",
+          "durationSeconds": 411,
+          "durationFormatted": "6m 51s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-11-03T18:37:18.951Z",
+          "durationSeconds": 740,
+          "durationFormatted": "12m 20s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-11-03T16:52:41.393Z",
+          "durationSeconds": 1315,
+          "durationFormatted": "21m 55s",
+          "itemsProcessed": 20
+        },
+        {
+          "timestamp": "2026-11-03T15:44:12.454Z",
+          "durationSeconds": 803,
+          "durationFormatted": "13m 23s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-11-03T00:03:45.463Z",
+          "durationSeconds": 450,
+          "durationFormatted": "7m 30s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-11-02T19:38:53.030Z",
+          "durationSeconds": 603,
+          "durationFormatted": "10m 3s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-11-02T03:34:58.150Z",
+          "durationSeconds": 91,
+          "durationFormatted": "1m 31s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-11-01T16:53:57.354Z",
+          "durationSeconds": 274,
+          "durationFormatted": "4m 34s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-31T20:04:44.883Z",
+          "durationSeconds": 1554,
+          "durationFormatted": "25m 54s",
+          "itemsProcessed": 37
+        },
         {
           "timestamp": "2026-10-30T02:28:14.330Z",
           "durationSeconds": 1580,
@@ -268,186 +448,6 @@
           "durationSeconds": 1,
           "durationFormatted": "0m 1s",
           "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T15:21:01.236Z",
-          "durationSeconds": 1,
-          "durationFormatted": "0m 1s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T14:19:44.616Z",
-          "durationSeconds": 1,
-          "durationFormatted": "0m 1s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T14:00:11.839Z",
-          "durationSeconds": 1,
-          "durationFormatted": "0m 1s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T13:59:38.733Z",
-          "durationSeconds": 0,
-          "durationFormatted": "0m 0s",
-          "itemsProcessed": 0
-        },
-        {
-          "timestamp": "2026-10-27T13:38:22.616Z",
-          "durationSeconds": 48,
-          "durationFormatted": "0m 48s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T13:36:16.367Z",
-          "durationSeconds": 51,
-          "durationFormatted": "0m 51s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T12:42:01.184Z",
-          "durationSeconds": 53,
-          "durationFormatted": "0m 53s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T01:23:36.500Z",
-          "durationSeconds": 45,
-          "durationFormatted": "0m 45s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-27T01:08:14.990Z",
-          "durationSeconds": 14,
-          "durationFormatted": "0m 14s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-26T23:49:49.894Z",
-          "durationSeconds": 59,
-          "durationFormatted": "0m 59s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-26T19:51:42.844Z",
-          "durationSeconds": 232,
-          "durationFormatted": "3m 52s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-26T14:45:00.000Z",
-          "durationSeconds": 320,
-          "durationFormatted": "5m 20s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-26T14:29:49.369Z",
-          "durationSeconds": 313,
-          "durationFormatted": "5m 13s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-26T01:17:03.510Z",
-          "durationSeconds": 214,
-          "durationFormatted": "3m 34s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-25T23:58:55.011Z",
-          "durationSeconds": 287,
-          "durationFormatted": "4m 47s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-10-25T23:32:40.744Z",
-          "durationSeconds": 133,
-          "durationFormatted": "2m 13s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-24T17:10:50.902Z",
-          "durationSeconds": 460,
-          "durationFormatted": "7m 40s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-10-24T16:56:20.495Z",
-          "durationSeconds": 43,
-          "durationFormatted": "0m 43s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-24T16:45:19.560Z",
-          "durationSeconds": 42,
-          "durationFormatted": "0m 42s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-24T15:48:36.924Z",
-          "durationSeconds": 435,
-          "durationFormatted": "7m 15s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-10-24T15:03:47.164Z",
-          "durationSeconds": 489,
-          "durationFormatted": "8m 9s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-10-24T14:51:29.771Z",
-          "durationSeconds": 61,
-          "durationFormatted": "1m 1s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-10-24T14:36:25.827Z",
-          "durationSeconds": 459,
-          "durationFormatted": "7m 39s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-10-24T01:13:21.596Z",
-          "durationSeconds": 7367,
-          "durationFormatted": "122m 47s",
-          "itemsProcessed": 117
-        },
-        {
-          "timestamp": "2026-10-23T16:12:06.289Z",
-          "durationSeconds": 1177,
-          "durationFormatted": "19m 37s",
-          "itemsProcessed": 21
-        },
-        {
-          "timestamp": "2026-10-23T15:24:33.891Z",
-          "durationSeconds": 320,
-          "durationFormatted": "5m 20s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-23T14:40:47.516Z",
-          "durationSeconds": 290,
-          "durationFormatted": "4m 50s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-23T14:17:01.137Z",
-          "durationSeconds": 264,
-          "durationFormatted": "4m 24s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-23T13:30:25.108Z",
-          "durationSeconds": 302,
-          "durationFormatted": "5m 2s",
-          "itemsProcessed": 5
-        },
-        {
-          "timestamp": "2026-10-23T02:35:36.903Z",
-          "durationSeconds": 251,
-          "durationFormatted": "4m 11s",
-          "itemsProcessed": 5
         }
       ],
       "last_run_timestamp": "2026-10-13T14:04:00-07:00"

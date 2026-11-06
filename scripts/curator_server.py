@@ -1983,12 +1983,15 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             incomplete_only = qs.get("incomplete_only", ["0"])[0] in ("1", "true") or scope == "incomplete"
             is_all = qs.get("all", ["0"])[0] in ("1", "true") or scope == "all"
             is_quarantine = qs.get("quarantine", ["0"])[0] in ("1", "true") or scope in ("quarantine", "quarantined")
+            is_harvested = qs.get("harvested_only", ["0"])[0] in ("1", "true") or scope == "harvested"
             force = qs.get("force", ["0"])[0] in ("1", "true")
 
             if mode == "catalog_batch":
                 cmd = ["node", script_path]
                 if is_quarantine:
                     cmd.append("--quarantine")
+                if is_harvested:
+                    cmd.append("--harvested")
                 if limit_str and limit_str != "0" and not is_all:
                     cmd.extend(["--limit", str(limit_str)])
                 elif is_all:
@@ -2013,6 +2016,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 cmd = ["node", script_path]
                 if is_quarantine:
                     cmd.append("--quarantine")
+                if is_harvested:
+                    cmd.append("--harvested")
                 if is_all:
                     cmd.append("--all")
                     if force:
@@ -2021,6 +2026,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         cmd.append("--unverified-only")
                 elif qs.get("id", [""])[0]:
                     cmd.extend(["--id", qs.get("id", [""])[0]])
+                elif qs.get("ids", [""])[0]:
+                    cmd.extend(["--ids", qs.get("ids", [""])[0]])
                 else:
                     if limit_str and limit_str != "0":
                         cmd.extend(["--limit", str(limit_str)])
@@ -2032,7 +2039,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         cmd.append("--incomplete-only")
                     elif stale_val:
                         cmd.extend(["--stale", str(stale_val)])
-                    else:
+                    elif not is_harvested:
                         cmd.append("--unverified-only")
                 if incomplete_only and not is_all:
                     cmd.append("--incomplete-only")
@@ -2042,7 +2049,9 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 cmd = ["node", script_path]
                 if is_quarantine:
                     cmd.append("--quarantine")
-                if is_all:
+                if is_harvested:
+                    cmd.append("--harvested")
+                if is_all and not is_harvested:
                     cmd.append("--all")
                     if force:
                         cmd.append("--force")
@@ -2067,9 +2076,11 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 cmd = ["node", script_path]
                 if is_quarantine:
                     cmd.append("--quarantine")
+                if is_harvested:
+                    cmd.append("--harvested")
                 if qs.get("venue", [""])[0]:
                     cmd.extend(["--venue", qs.get("venue", [""])[0]])
-                if is_all:
+                if is_all and not is_harvested:
                     cmd.append("--all")
                 elif qs.get("id", [""])[0]:
                     cmd.extend(["--id", qs.get("id", [""])[0]])

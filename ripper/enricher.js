@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -6,7 +7,15 @@ import { scanCatalogLinkHealth } from "./link_health_scanner.js";
 import { huntBatchTier1Links } from "./tier1_hunter.js";
 import { parseDurationMs, isEventStale, isScanIncomplete } from "./event_batch_qc.js";
 import { logCuratorInfo, getCuratorInfo } from "./curator_display.js";
-import { isAntigravityEngine, callAntigravityEnricher, getAntigravityModel, printAntigravityTimeoutSummary } from "./agy_engine.js";
+import {
+  isAntigravityEngine,
+  callAntigravityEnricher,
+  getAntigravityModel,
+  formatLogTime,
+  printAntigravityTimeoutSummary,
+  safeUpdateJsonFile,
+  runWithConcurrency,
+} from "./agy_engine.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +46,24 @@ function loadJson(filePath, fallback = []) {
     console.warn(`⚠️ Warning reading ${path.basename(filePath)}: ${err.message}`);
     return fallback;
   }
+}
+
+/**
+ * Computes a SHA-1 content fingerprint of the semantic inputs for an event card.
+ * Used to skip redundant LLM calls when an event's title, venue, description, and curator notes
+ * have not changed since its last verified enrichment.
+ */
+export function computeEditorialInputFingerprint(inputs = {}) {
+  const payload = JSON.stringify({
+    title: String(inputs.title || "").trim(),
+    venue: String(inputs.venue || "").trim(),
+    description: String(inputs.description || "").trim(),
+    category: String(inputs.category || "").trim(),
+    lifecycle_type: String(inputs.lifecycle_type || "").trim(),
+    restrictions: String(inputs.restrictions || "").trim(),
+    curator_instruction: String(inputs.curator_instruction || "").trim(),
+  });
+  return crypto.createHash("sha1").update(payload).digest("hex");
 }
 
 /**
@@ -115,7 +142,21 @@ export function classifyCategory(title, description, rawCategory, venueData) {
  * cinema, live_stage, workshop, social_gaming, civic_park, museum_gallery, active_rec, roving_series, festival
  */
 export function classifyArchetype(title, category, venue, rawArchetype, extra = {}) {
-  if (rawArchetype && ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"].includes(rawArchetype)) {
+  const isPerennialDropIn =
+    extra.lifecycle_type === "perennial_drop_in" ||
+    extra.is_perennial === true ||
+    category === "free-public-access" ||
+    extra.access_model === "open_public_space" ||
+    extra.access_model === "free_public_access";
+
+  // Perennial drop-in parks, markets, galleries, and recreation facilities must never be locked to live_stage, cinema, or roving_series
+  const PERENNIAL_DISALLOWED_ARCHETYPES = new Set(["live_stage", "cinema", "roving_series"]);
+
+  if (
+    rawArchetype &&
+    ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"].includes(rawArchetype) &&
+    !(isPerennialDropIn && PERENNIAL_DISALLOWED_ARCHETYPES.has(rawArchetype))
+  ) {
     return rawArchetype;
   }
 
@@ -133,7 +174,7 @@ export function classifyArchetype(title, category, venue, rawArchetype, extra = 
   }
 
   // 3. Roving Collectives & Secret Pop-ups (Archetype H: 780–789)
-  if (/\b(?:pop-up|popup|secret location|roving|open mic|cypher|secret comedy|acoustic circle|street poetry)\b/i.test(combined)) {
+  if (!isPerennialDropIn && /\b(?:pop-up|popup|secret location|roving|open mic|cypher|secret comedy|acoustic circle|street poetry)\b/i.test(combined)) {
     return "roving_series";
   }
 
@@ -146,30 +187,36 @@ export function classifyArchetype(title, category, venue, rawArchetype, extra = 
   }
 
   // 5. Active Recreation & Sports Facilities (Archetype G: 770–779)
-  if (/\b(?:pitch & putt|pitch and putt|par-3|golf|tennis court|skate park|climbing gym|recreation court|athletic court)\b/i.test(combined)) {
+  if (/\b(?:pitch & putt|pitch and putt|par-3|golf|tennis court|skate park|skatepark|climbing gym|recreation court|athletic court|velodrome|disc golf|aquatic centre|pool|rink)\b/i.test(combined)) {
     return "active_rec";
   }
 
   // 6. Cinema & Screenings (Archetype A: 710–719)
-  if (/\b(?:film|screening|movie|documentary|35mm|70mm|4k dcp|premiere|cinematheque|rio theatre|viff centre|theatrical screening|short films)\b/i.test(combined)) {
+  if (!isPerennialDropIn && /\b(?:film|screening|movie|documentary|35mm|70mm|4k dcp|premiere|cinematheque|rio theatre|viff centre|theatrical screening|short films)\b/i.test(combined)) {
     return "cinema";
   }
 
   // 7. Civic Grounds, Parks & Public Waterfront (Archetype E: 750–759)
-  if (/\b(?:seawall|park|garden|botanical|conservatory|promenade|public market|bloedel|vandusen|queen elizabeth|sun yat-sen public|waterfront)\b/i.test(combined)) {
-    if (!/\b(?:concert|comedy|show|theatre|play|festival)\b/i.test(title || "")) {
+  if (/\b(?:seawall|park|garden|botanical|conservatory|promenade|public market|farmers market|shipyards|plaza|quay|pier|beach|trail|canyon|suspension bridge|bloedel|vandusen|queen elizabeth|sun yat-sen public|waterfront|granville island)\b/i.test(combined)) {
+    if (isPerennialDropIn || !/\b(?:concert|comedy|show|theatre|play|festival)\b/i.test(title || "")) {
       return "civic_park";
     }
   }
 
   // 8. Museums, Galleries & Heritage Exhibits (Archetype F: 760–769)
-  if (/\b(?:gallery|museum|exhibition|exhibit|contemporary art|visual arts|sculpture|roedde house|polygon|cag|pendulum)\b/i.test(combined)) {
-    if (!/little mountain gallery/i.test(venue || "") && !/\b(?:comedy|stand-up|improv|showcase|theatre|concert)\b/i.test(title || "")) {
+  if (/\b(?:gallery|museum|exhibition|exhibit|contemporary art|visual arts|sculpture|roedde house|polygon|cag|pendulum|heritage|science world|aquarium|planetarium|anthropology|bill reid)\b/i.test(combined)) {
+    if (isPerennialDropIn || (!/little mountain gallery/i.test(venue || "") && !/\b(?:comedy|stand-up|improv|showcase|theatre|concert)\b/i.test(title || ""))) {
       return "museum_gallery";
     }
   }
 
-  // 9. Live Stage, Comedy & Concerts (Archetype B: 720–729)
+  // 9. Default Perennial Drop-In Fallback (Never live_stage for non-show perennials)
+  if (isPerennialDropIn) {
+    if (category === "arts" || category === "culture") return "museum_gallery";
+    return "civic_park";
+  }
+
+  // 10. Live Stage, Comedy & Concerts (Archetype B: 720–729)
   if (/\b(?:theatre|theater|play|drama|musical|stage|comedy|standup|stand-up|improv|concert|music|band|orchestra|jazz|recital|cabaret|burlesque|show|performance)\b/i.test(combined)) {
     return "live_stage";
   }
@@ -202,15 +249,37 @@ export function generateArchetypeProfile(archetype, title, venue, category, venu
   };
 
   switch (archetype) {
-    case "cinema":
+    case "cinema": {
+      const mf = extra.matchedFestival || null;
+      const descLower = (extra.description || "").toLowerCase();
+      const combinedFmtText = `${t} ${descLower}`;
+      const inferredFormat = /\b35\s*mm\b/i.test(combinedFmtText)
+        ? "35mm Archival Film Print"
+        : /\b16\s*mm\b/i.test(combinedFmtText)
+          ? "16mm Archival Film Print"
+          : /\b70\s*mm\b/i.test(combinedFmtText)
+            ? "70mm Archival Film Print"
+            : /\b4k\b/i.test(combinedFmtText)
+              ? "4K DCP Digital Cinema"
+              : null;
+      let inferredLangSubs = extra.film_language_subtitles || null;
+      if (!inferredLangSubs && extra.description) {
+        const langMatch = extra.description.match(/\bin\s+([A-Z][a-z]+(?:\s*(?:,|and|&)\s*[A-Z][a-z]+)*)\s+with\s+English\s+subtitles\b/);
+        if (langMatch) {
+          inferredLangSubs = `${langMatch[1]} with English subtitles`;
+        } else if (/\bwith\s+English\s+subtitles\b/i.test(extra.description)) {
+          inferredLangSubs = "Subtitled in English";
+        }
+      }
       profile.film_runtime_minutes = extra.film_runtime_minutes || null;
-      profile.film_language_subtitles = extra.film_language_subtitles || null;
-      profile.projection_format = extra.projection_format || (t.includes("35mm") ? "35mm Archival Film Print" : (t.includes("4k") ? "4K DCP Digital Cinema" : null));
-      profile.print_condition_notes = extra.print_condition_notes || (t.includes("35mm") ? "Archival theatrical print from permanent cultural preservation collection" : null);
+      profile.film_language_subtitles = inferredLangSubs;
+      profile.projection_format = inferredFormat || extra.projection_format || venueData?.projection_format || (v.includes("cinematheque") || v.includes("viff") || v.includes("rio theatre") ? "DCP Digital Cinema Projection" : null);
+      profile.print_condition_notes = (/\b(?:35|16|70)\s*mm\b/i.test(combinedFmtText) ? "Archival celluloid film print screening" : null) || extra.print_condition_notes || null;
       profile.concession_alcohol = venueData?.concession_alcohol || extra.concession_alcohol || null;
-      profile.festival_pass_rules = extra.festival_pass_rules || null;
-      profile.seat_reservation_type = extra.seat_reservation_type || null;
+      profile.festival_pass_rules = extra.festival_pass_rules || (mf ? `Official selection of ${mf.festival_name} — Single screening tickets & festival passes accepted` : null);
+      profile.seat_reservation_type = venueData?.seat_reservation_type || extra.seat_reservation_type || null;
       break;
+    }
 
     case "live_stage":
       profile.stage_seating_layout = venueData?.stage_seating_layout || extra.stage_seating_layout || null;
@@ -286,22 +355,31 @@ export function generateArchetypeProfile(archetype, title, venue, category, venu
 }
 
 /**
- * Lineup & Artist Sanitizer (Strips recursive title/location echoes)
+ * Lineup & Artist Sanitizer (Strips recursive title/location echoes and suppresses fake lineups on perennials)
  */
-export function extractCleanLineup(title, venue, rawArtist, rawLineup) {
-  const cleanT = (title || "").toLowerCase();
-  const cleanV = (venue || "").toLowerCase();
+export function extractCleanLineup(title, venue, rawArtist, rawLineup, options = {}) {
+  if (options.isPerennial) {
+    return { artist: null, lineup: [] };
+  }
+  const cleanT = (title || "").toLowerCase().replace(/\s*\([^)]*\)/g, "").trim();
+  const cleanV = (venue || "").toLowerCase().replace(/\s*\([^)]*\)/g, "").trim();
 
   const isNonArtist = (name) => {
     if (!name || typeof name !== "string") return true;
     const n = name.trim().toLowerCase();
+    if (n.length < 2) return true;
+    if (/^(?:none|null|n\/a|none_available|not_applicable|tba|tbd|various|various artists|lineup tba|general admission|admission)$/i.test(n)) return true;
     if (n === cleanT || n === cleanV) return true;
-    if (/\b(?:18-hole|pitch & putt|pitch and putt|round|general admission|admission|drop-in|drop in|market|seawall|tour|exhibition|gallery|park|beach|library|festival|open mic)\b/i.test(n)) return true;
+    if (cleanT.length > 4 && (cleanT.includes(n) || n.includes(cleanT))) return true;
+    if (cleanV.length > 4 && (cleanV.includes(n) || n.includes(cleanV))) return true;
+    if (/\b(?:18-hole|pitch & putt|pitch and putt|round|general admission|admission|drop-in|drop in|market|seawall|tour|exhibition|gallery|park|beach|library|festival|open mic|conservatory|botanical|plaza|waterfront|promenade)\b/i.test(n)) return true;
+    if (/\b(?:productions?\s+inc\.?|the\s+world\s+is\s+ours\s+productions?|modo[- ]live|timbre\s+concerts|livenation|live\s+nation|blueprint\s+events|this\s+is\s+blueprint)\b/i.test(n)) return true;
+    if (/^(?:playhouse|playhouse\s+presents?|playhouse\s+pres\.?|for\s+real\s+fridays?)$/i.test(n)) return true;
     return false;
   };
 
   let artist = rawArtist && !isNonArtist(rawArtist) ? rawArtist.trim() : null;
-  let lineup = Array.isArray(rawLineup) ? rawLineup.filter(p => !isNonArtist(p)) : [];
+  let lineup = Array.isArray(rawLineup) ? rawLineup.filter(p => !isNonArtist(p)).map(p => p.trim()) : [];
 
   return { artist, lineup };
 }
@@ -358,6 +436,7 @@ export function isCannedOrSyntheticDesc(desc, title) {
     /\bon the Salazar Stage at\b/i.test(d) ||
     /explore permanent collections|delivers an engaging live cultural performance|an authentic artistic showcase curated for memorable patron enjoyment|an accessible cultural destination welcoming visitors|experience it live at/i.test(d) ||
     /Audiences can expect (?:an engaging, dynamic performance|sharp punchlines, spirited crowd banter|witty punchlines, spirited trivia)/i.test(d) ||
+    /delivers an energetic evening of sharp punchlines|Patrons can expect dynamic comedic delivery/i.test(d) ||
     /Seasoned improvisers spin unexpected audience prompts into high-energy/i.test(d) ||
     /The production explores engaging themes with sharp dialogue, compelling character dynamics/i.test(d) ||
     /The performance features dynamic live instrumentation, rich melodic textures/i.test(d) ||
@@ -415,9 +494,9 @@ export async function fetchLivePageDescription(url) {
   // Ignore bare aggregator index URLs
   if (/eventbrite\.[a-z]+\/d\//i.test(url) || /admitone\.com\/events\/?$/i.test(url) || /showpass\.com\/?$/i.test(url)) return null;
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 3500);
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 3500);
     const res = await fetch(url, {
       signal: controller.signal,
       headers: {
@@ -426,9 +505,12 @@ export async function fetchLivePageDescription(url) {
         "Accept-Language": "en-US,en;q=0.9"
       }
     });
-    clearTimeout(timeout);
     if (!res.ok) return null;
-    const html = await res.text();
+    const html = await Promise.race([
+      res.text(),
+      new Promise((resolve) => setTimeout(() => resolve(null), 3500))
+    ]);
+    if (!html) return null;
 
     // 1. Meta Description (name or property)
     const metaRegexes = [
@@ -460,6 +542,8 @@ export async function fetchLivePageDescription(url) {
     }
   } catch (_) {
     // Network failure or timeout: silently fail back to deterministic synthesis
+  } finally {
+    clearTimeout(timeout);
   }
   return null;
 }
@@ -593,8 +677,8 @@ export function isVenueOrAmenitySentence(sentence, venue) {
   if (/^tickets?\s+(?:checkout\s+page\s+for|on\s+sale\s+for|available\s+for)\b/i.test(s)) return true;
 
   // Date/day/city concatenation without narrative content (e.g. "Friday, December 11th 2026 Fox Cabaret Vancouver, BC.")
-  if (/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|monday|tuesday|wednesday|thursday|friday|saturday|sunday|\d{1,2}(?:st|nd|rd|th)?|\d{4})\b/i.test(s) && (/\b(?:vancouver|bc|gastown|commercial drive|granville island)\b/i.test(s) || (cleanV && s.includes(cleanV)))) {
-    const hasNarrativeVerb = /\b(?:is|are|was|were|explores|delivers|presents|tells|follows|stars|celebrates|highlights|weaves|showcases|features|performs|blends|brings|shares|creates|builds)\b/i.test(s);
+  if (s.length < 110 && /\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|monday|tuesday|wednesday|thursday|friday|saturday|sunday|\d{1,2}(?:st|nd|rd|th)?|\d{4})\b/i.test(s) && (/\b(?:vancouver|bc|gastown|commercial drive|granville island)\b/i.test(s) || (cleanV && s.includes(cleanV)))) {
+    const hasNarrativeVerb = /\b(?:is|are|was|were|explores|delivers|presents|tells|follows|stars|celebrates|highlights|weaves|showcases|features|performs|blends|brings|shares|creates|builds|expect|compete|competes|catch|watch|witness|join|discover|returns|starring|featuring)\b/i.test(s);
     if (!hasNarrativeVerb) return true;
   }
 
@@ -693,13 +777,12 @@ async function callGeminiEnricher(eventCard, apiKey) {
 
   const prompt = `You are the Van50 Cultural AI Enricher for Metro Vancouver cultural events under $50 CAD.
 Clean and enrich this event record according to our high-fidelity publishing standards.
+IMPORTANT ANTI-LAZINESS RULE: Derive your classification, archetype, lifecycle, restrictions, and 2-sentence description strictly from the primary event title, venue, and live scraped page text below. Never echo generic placeholder categories or canned boilerplate.
 
 Input Event:
 - Title: "${eventCard.title || eventCard.event_name || ""}"
 - Venue: "${eventCard.venue || eventCard.venue_name || ""}"
-- Raw Description: "${eventCard.description || ""}"
-- Raw Category: "${eventCard.category || ""}"
-- Existing Restrictions: "${eventCard.restrictions || ""}"${curatorPrompt}
+- Primary Event Page Text: "${eventCard.description || ""}"${curatorPrompt}
 
 Requirements:
 1. "clean_title": Strip out all promotional artifacts, dates, times, buttons ("Tickets On Sale", "Apr 4", "MoreInfo->"), and capitalization shouting.
@@ -813,9 +896,22 @@ export async function runEnricher(options = {}) {
     }
   });
 
+  const boxAuditedIds = new Set(
+    (Array.isArray(boxOffices) ? boxOffices : [])
+      .filter((b) => b && (b.id || b.event_id) && b.status !== "TIMEOUT_EXCEEDED" && b.status !== "AI_TIMEOUT" && b.status !== "EXECUTION_ERROR")
+      .map((b) => String(b.id || b.event_id).toLowerCase())
+  );
+  const step1bAuditedIds = new Set(
+    (Array.isArray(schedules) ? schedules : [])
+      .filter((s) => s && (s.id || s.event_id) && Boolean(s.step1b_audited_at))
+      .map((s) => String(s.id || s.event_id).toLowerCase())
+  );
+
+  // Strict Stage 3 Gate: Uncompiled seed/schedule events can NEVER skip Stage 1B or Stage 2 QC
   seeds.forEach((s) => {
     const sId = s.id || s.event_id;
-    if (sId && !existingIds.has(sId) && !archivedIds.has(sId)) {
+    const sIdLower = String(sId || "").toLowerCase();
+    if (sId && !existingIds.has(sId) && !archivedIds.has(sId) && step1bAuditedIds.has(sIdLower) && boxAuditedIds.has(sIdLower)) {
       sourcePool.push(s);
       existingIds.add(sId);
     }
@@ -823,7 +919,8 @@ export async function runEnricher(options = {}) {
 
   schedules.forEach((sc) => {
     const scId = sc.id || sc.event_id;
-    if (scId && !existingIds.has(scId) && !archivedIds.has(scId)) {
+    const scIdLower = String(scId || "").toLowerCase();
+    if (scId && !existingIds.has(scId) && !archivedIds.has(scId) && Boolean(sc.step1b_audited_at) && boxAuditedIds.has(scIdLower)) {
       sourcePool.push(sc);
       existingIds.add(scId);
     }
@@ -851,6 +948,8 @@ export async function runEnricher(options = {}) {
 
   // Determine targets
   let targets = [];
+  let resumeOffset = 0;
+  const todayIso = new Date().toISOString().split("T")[0];
   if (targetId) {
     const cleanIds = String(targetId).split(",").map(x => x.trim()).filter(Boolean);
     const poolMap = new Map();
@@ -861,6 +960,16 @@ export async function runEnricher(options = {}) {
     targets = cleanIds.map((id) => poolMap.get(id)).filter(Boolean);
     if (targets.length === 0) {
       console.warn(`⚠️ Target event with ID "${targetId}" not found in catalog.`);
+    } else if ((options.harvestedOnly || options.scope === "harvested") && !options.force && targets.length > 1) {
+      const pending = targets.filter((s) => {
+        const ex = existingMap.get(s.id || s.event_id);
+        return !ex || isCorruptedOrStale(ex);
+      });
+      if (pending.length > 0 && pending.length < targets.length) {
+        resumeOffset = targets.length - pending.length;
+        console.log(`⏭️ [Stage 3 Enricher Resume] Skipping ${resumeOffset} newly harvested events already enriched in layer_editorial.json — resuming on ${pending.length} remaining events!`);
+        targets = pending;
+      }
     }
   } else if (options.quarantine || options.quarantined || options.quarantinedOnly) {
     // Target quarantined events from manual review queue
@@ -870,6 +979,43 @@ export async function runEnricher(options = {}) {
     });
     if (offset > 0 || limit > 0) {
       targets = targets.slice(offset, limit > 0 ? offset + limit : undefined);
+    }
+  } else if (options.harvestedOnly || options.scope === "harvested") {
+    // Target newly harvested uncompiled events from layer_schedules.json that completed Stage 2 QC
+    const publishedIds = new Set(events.map((e) => String(e.id || e.event_id).toLowerCase()));
+    const allHarvestedRaw = schedules.filter((s) => {
+      const sId = String(s.id || s.event_id || "").toLowerCase();
+      if (!sId || publishedIds.has(sId) || archivedIds.has(sId)) return false;
+      const u = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
+      if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return false;
+      if (s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date < todayIso && s.lifecycle_type !== "perennial_drop_in") {
+        return false;
+      }
+      return Boolean(s.step1b_audited_at);
+    });
+    // Strict Stage 2 Gate: Never fall back to allHarvestedRaw; events must complete Stage 2 QC before Stage 3 Enrichment
+    const allHarvested = allHarvestedRaw.filter((s) => boxAuditedIds.has(String(s.id || s.event_id || "").toLowerCase()));
+
+    const pendingEd = allHarvested.filter((s) => {
+      const ex = existingMap.get(s.id || s.event_id);
+      return !ex || isCorruptedOrStale(ex);
+    });
+    if (!options.force) {
+      resumeOffset = allHarvested.length - pendingEd.length;
+      if (resumeOffset > 0 && pendingEd.length > 0) {
+        console.log(`⏭️ [Stage 3 Enricher Resume] Skipping ${resumeOffset} Stage 2-completed events already enriched in layer_editorial.json — continuing on ${pendingEd.length} remaining events!`);
+      } else if (pendingEd.length === 0) {
+        console.log(`✅ [Stage 3 Enricher] All ${allHarvested.length} Stage 2-completed events are already enriched in layer_editorial.json (0 pending).`);
+      }
+      targets = pendingEd;
+    } else {
+      targets = allHarvested;
+    }
+    if (offset > 0) {
+      targets = targets.slice(offset);
+    }
+    if (limit > 0 && !(resumeOffset > 0 && limit >= resumeOffset + targets.length)) {
+      targets = targets.slice(0, limit);
     }
   } else if (options.all || options.force) {
     // Force scan through all events (even those already run through)
@@ -919,13 +1065,27 @@ export async function runEnricher(options = {}) {
         return !existingIds.has(sId) && !archivedIds.has(sId);
       })
       .filter(isUnenriched);
+    const publishedIds = new Set(events.map((e) => String(e.id || e.event_id).toLowerCase()));
+    const unenrichedSchedules = schedules
+      .filter((s) => {
+        const sId = String(s.id || s.event_id || "").toLowerCase();
+        if (!sId || publishedIds.has(sId) || archivedIds.has(sId)) return false;
+        const u = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
+        if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return false;
+        if (s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date < todayIso && s.lifecycle_type !== "perennial_drop_in") {
+          return false;
+        }
+        return true;
+      })
+      .filter(isUnenriched);
 
     const interleaved = [];
-    const maxLen = Math.max(unenrichedActive.length, unenrichedQuarantine.length, unenrichedSeeds.length);
+    const maxLen = Math.max(unenrichedActive.length, unenrichedQuarantine.length, unenrichedSeeds.length, unenrichedSchedules.length);
     for (let i = 0; i < maxLen; i++) {
       if (i < unenrichedActive.length) interleaved.push(unenrichedActive[i]);
       if (i < unenrichedQuarantine.length) interleaved.push(unenrichedQuarantine[i]);
       if (i < unenrichedSeeds.length) interleaved.push(unenrichedSeeds[i]);
+      if (i < unenrichedSchedules.length) interleaved.push(unenrichedSchedules[i]);
     }
     targets = interleaved;
     if (offset > 0 || limit > 0) {
@@ -942,12 +1102,13 @@ export async function runEnricher(options = {}) {
     return { success: true, count: 0 };
   }
 
-  // Pre-Enrichment Link Health & Tier 1 Hunter Pass
-  if (!options.skipHunt) {
+  // Pre-Enrichment Link Health & Tier 1 Hunter Pass (skip for harvested runs or cards already audited by Stage 1B)
+  const unauditedHuntTargets = targets.filter((t) => !t.step1b_audited_at);
+  if (!options.skipHunt && !(options.harvestedOnly || options.scope === "harvested") && unauditedHuntTargets.length > 0 && unauditedHuntTargets.length <= 40) {
     try {
-      console.log(`\n⚡ [AI Enricher Pre-Flight] Checking link health across ${targets.length} targets...`);
-      await scanCatalogLinkHealth(targets, { concurrency: 6 });
-      const needsHunt = targets.filter((t) => t.needs_tier1_hunt);
+      console.log(`\n⚡ [AI Enricher Pre-Flight] Checking link health across ${unauditedHuntTargets.length} targets...`);
+      await scanCatalogLinkHealth(unauditedHuntTargets, { concurrency: 6 });
+      const needsHunt = unauditedHuntTargets.filter((t) => t.needs_tier1_hunt);
       if (needsHunt.length > 0) {
         console.log(`🏹 [AI Enricher Pre-Flight] Running Tier 1 Hunter for ${needsHunt.length} degraded or lower-tier targets...`);
         await huntBatchTier1Links(needsHunt);
@@ -957,234 +1118,323 @@ export async function runEnricher(options = {}) {
     }
   }
 
-  console.log(`📋 Enriching ${targets.length} events...\n`);
-  const nowIso = new Date().toISOString();
+  const requestedConcurrency = Number(options.concurrency || process.env.VAN50_ENRICHER_CONCURRENCY || 3);
+  const concurrency = Math.max(1, Math.min(requestedConcurrency, targets.length || 1, 5));
+  const displayTotal = resumeOffset + targets.length;
+  console.log(`🎯 Targets Queued for Enrichment: ${displayTotal} events`);
+  console.log(`⚡ Enricher Concurrency: ${concurrency} worker(s) (with SHA-1 input fingerprint caching & atomic per-card checkpointing)`);
+  console.log(`📋 Enriching ${targets.length} events${resumeOffset > 0 ? ` (Resuming at #${resumeOffset + 1}/${displayTotal})` : ""}...\n`);
   let enrichedCount = 0;
+  let cacheHitCount = 0;
 
-  for (let i = 0; i < targets.length; i++) {
-    const item = targets[i];
-    const eventId = item.id || item.event_id;
-    const ev = eventsMap.get(eventId) || {};
-    const sched = schedulesMap.get(eventId) || {};
-    const box = boxOfficesMap.get(eventId) || {};
-    const seed = seedsMap.get(eventId) || {};
+  await runWithConcurrency(
+    targets,
+    concurrency,
+    async (item, i, workerId) => {
+      const eventId = item.id || item.event_id;
+      const ev = eventsMap.get(eventId) || {};
+      const sched = schedulesMap.get(eventId) || {};
+      const box = boxOfficesMap.get(eventId) || {};
+      const seed = seedsMap.get(eventId) || {};
+      const existingEd = existingMap.get(eventId) || null;
 
-    // Robust property resolution from all layers (prefer rich catalog data, fallback to descriptive seed)
-    const GENERIC_TITLE_PATTERN = /^(?:general admission|admission|tickets|ticket checkout|tickets checkout|buy tickets|checkout|tickets on sale|showpass checkout|eventbrite checkout)$/i;
-    let title = item.title || item.event_name || ev.title || ev.event_name || "";
-    if (!title || GENERIC_TITLE_PATTERN.test(title.trim())) {
-      title = seed.seed_title || item.seed_title || sched.title || box.title || title || "Cultural Event";
-    }
-    const venue = item.venue || item.venue_name || ev.venue || ev.venue_name || sched.venue || box.venue_name || seed.seed_venue || item.seed_venue || null;
-    const venueObj = venue ? (venuesMap.get((venue || "").toLowerCase().trim()) || null) : null;
-    let rawDesc = item.description || ev.description || sched.description || box.description || "";
-    if (isCannedOrSyntheticDesc(rawDesc, title)) {
-      rawDesc = "";
-    }
-    let rawCategory = item.category || (Array.isArray(item.categories) ? item.categories[0] : null) || ev.category || sched.category || box.category || "";
-    if (rawCategory && (rawCategory === "culture" || rawCategory === "shows") && !rawDesc && !venueObj) {
-      rawCategory = "";
-    }
-    const rawArtist = item.artist || ev.artist || sched.artist || box.artist || null;
-    const rawLineup = (Array.isArray(item.lineup) && item.lineup.length > 0) ? item.lineup :
-      (Array.isArray(ev.lineup) && ev.lineup.length > 0) ? ev.lineup :
-        (Array.isArray(sched.lineup) && sched.lineup.length > 0) ? sched.lineup :
-          (Array.isArray(box.lineup) && box.lineup.length > 0) ? box.lineup : [];
-    const rawRestrictions = item.restrictions || ev.restrictions || sched.restrictions || box.restrictions || null;
+      // Robust property resolution from all layers (prefer rich catalog data, fallback to descriptive seed)
+      const GENERIC_TITLE_PATTERN = /^(?:general admission|admission|tickets|ticket checkout|tickets checkout|buy tickets|checkout|tickets on sale|showpass checkout|eventbrite checkout)$/i;
+      let title = item.title || item.event_name || ev.title || ev.event_name || "";
+      if (!title || GENERIC_TITLE_PATTERN.test(title.trim())) {
+        title = seed.seed_title || item.seed_title || sched.title || box.title || title || "Cultural Event";
+      }
+      const venue = item.venue || item.venue_name || ev.venue || ev.venue_name || sched.venue || box.venue_name || seed.seed_venue || item.seed_venue || null;
+      const venueObj = venue ? (venuesMap.get((venue || "").toLowerCase().trim()) || null) : null;
+      const cleanLayerDesc = (d) => (d && !isCannedOrSyntheticDesc(d, title)) ? d : "";
+      // Strict Stage 3 Isolation: Do NOT pull AI-generated descriptions or categories from Stage 2 (layer_box_office.json)
+      let rawDesc = cleanLayerDesc(sched.description) || cleanLayerDesc(item.description) || cleanLayerDesc(ev.description) || "";
+      let rawCategory = item.category || (Array.isArray(item.categories) ? item.categories[0] : null) || ev.category || sched.category || "";
+      if (rawCategory && (rawCategory === "culture" || rawCategory === "shows") && !rawDesc && !venueObj) {
+        rawCategory = "";
+      }
+      const rawArtist = item.artist || ev.artist || sched.artist || null;
+      const rawLineup = (Array.isArray(item.lineup) && item.lineup.length > 0) ? item.lineup :
+        (Array.isArray(ev.lineup) && ev.lineup.length > 0) ? ev.lineup :
+          (Array.isArray(sched.lineup) && sched.lineup.length > 0) ? sched.lineup : [];
+      const rawRestrictions = item.restrictions || ev.restrictions || sched.restrictions || box.restrictions || null;
 
-    // Attempt live page inspection if description is missing or canned
-    const candidateUrl = item.ticket_url || item.details_url || item.source_url ||
-      ev.ticket_url || ev.details_url || ev.websiteUrl ||
-      sched.ticket_url || sched.details_url || sched.source_url ||
-      box.ticket_url || seed.seed_url || "";
+      // Always prefer primary details_url / event page text for Stage 3 Editorial Enrichment
+      const candidateUrl = item.details_url || sched.details_url || ev.details_url ||
+        item.ticket_url || sched.ticket_url || box.ticket_url ||
+        item.source_url || sched.source_url || ev.websiteUrl || seed.seed_url || "";
 
-    if (candidateUrl && (!rawDesc || isCannedOrSyntheticDesc(rawDesc, title))) {
-      try {
-        const liveDesc = await fetchLivePageDescription(candidateUrl);
-        if (liveDesc) {
-          rawDesc = liveDesc;
-          console.log(`   🌐 Fetched live page description (${liveDesc.slice(0, 60)}...)`);
-        }
-      } catch (_) { }
-    }
+      if (candidateUrl && (!rawDesc || rawDesc.length < 180 || isCannedOrSyntheticDesc(rawDesc, title))) {
+        try {
+          const liveDesc = await fetchLivePageDescription(candidateUrl);
+          if (liveDesc) {
+            rawDesc = liveDesc;
+            console.log(`   🌐 [Worker #${workerId + 1}] Fetched primary event page text (${liveDesc.slice(0, 60)}...)`);
+          }
+        } catch (_) { }
+      }
 
-    console.log(`✍️ Processing [${i + 1}/${targets.length}]: ${title} (${venue}) [${eventId}]`);
-    const curatorInfo = getCuratorInfo({ eventId, title, venue, existingCard: item });
-    const activeCuratorNote = curatorInfo.effectiveNote || curatorInfo.eventInstructionText || curatorInfo.existingCuratorNotes;
-    logCuratorInfo({ eventId, title, venue, existingCard: item, prefix: "   " });
-    if (activeCuratorNote) {
-      console.log(`   🧑‍⚖️ [Enricher AI] Taking Curator Note into account: "${activeCuratorNote}"`);
-    }
+      const displayIdx = resumeOffset + i + 1;
+      console.log(`${formatLogTime()} ✍️ [Worker #${workerId + 1}] Processing [${displayIdx}/${displayTotal}]: ${title} (${venue}) [${eventId}]`);
+      const curatorInfo = getCuratorInfo({ eventId, title, venue, existingCard: item });
+      const activeCuratorNote = curatorInfo.effectiveNote || curatorInfo.eventInstructionText || curatorInfo.existingCuratorNotes;
+      logCuratorInfo({ eventId, title, venue, existingCard: item, prefix: "   " });
+      if (activeCuratorNote) {
+        console.log(`   🧑‍⚖️ [Enricher AI] Taking Curator Note into account: "${activeCuratorNote}"`);
+      }
 
-    let aiResult = null;
-    const inputLifecycle = item.lifecycle_type || ev.lifecycle_type || seed.lifecycle_type || null;
-    if (useAgy) {
-      aiResult = await callAntigravityEnricher({
-        id: eventId,
+      let aiResult = null;
+      const inputLifecycle = item.lifecycle_type || ev.lifecycle_type || seed.lifecycle_type || null;
+      const inputFingerprint = computeEditorialInputFingerprint({
         title,
         venue,
         description: rawDesc,
         category: rawCategory,
         lifecycle_type: inputLifecycle,
         restrictions: rawRestrictions,
-        curator_instruction: activeCuratorNote
+        curator_instruction: activeCuratorNote,
       });
-      if (!aiResult) {
-        console.warn(`   ⚠️ [Enricher] Antigravity AI worker timed out or failed for "${title}" [${eventId}] — using deterministic NLP fallback.`);
+
+      const canReuseCachedEditorial = Boolean(
+        !options.force &&
+        existingEd &&
+        !isCorruptedOrStale(existingEd) &&
+        existingEd.input_fingerprint &&
+        existingEd.input_fingerprint === inputFingerprint &&
+        existingEd.description &&
+        !isCannedOrSyntheticDesc(existingEd.description, title)
+      );
+
+      if (canReuseCachedEditorial) {
+        cacheHitCount++;
+        console.log(`   ⚡ [Editorial Cache Hit] Unchanged input fingerprint (${inputFingerprint.slice(0, 8)}) — reusing verified semantic enrichment for "${title}".`);
+        aiResult = {
+          clean_title: existingEd.clean_title,
+          artist: existingEd.artist,
+          lineup: existingEd.lineup,
+          category: existingEd.category,
+          event_archetype: existingEd.event_archetype || existingEd.archetype,
+          lifecycle_type: existingEd.lifecycle_type,
+          weekly_recurring_day: existingEd.weekly_recurring_day,
+          description: existingEd.description,
+          restrictions: existingEd.restrictions,
+          holiday_affiliation: existingEd.holiday_affiliation,
+          is_religious: existingEd.is_religious,
+        };
+      } else if (useAgy) {
+        aiResult = await callAntigravityEnricher({
+          id: eventId,
+          title,
+          venue,
+          description: rawDesc,
+          category: rawCategory,
+          lifecycle_type: inputLifecycle,
+          restrictions: rawRestrictions,
+          curator_instruction: activeCuratorNote
+        });
+        if (!aiResult) {
+          console.warn(`   ⚠️ [Enricher] Antigravity AI worker timed out or failed for "${title}" [${eventId}] — using deterministic NLP fallback.`);
+        }
+      } else if (apiKey) {
+        aiResult = await callGeminiEnricher({
+          title,
+          venue,
+          description: rawDesc,
+          category: rawCategory,
+          lifecycle_type: inputLifecycle,
+          restrictions: rawRestrictions,
+          curator_instruction: activeCuratorNote
+        }, apiKey);
       }
-    } else if (apiKey) {
-      aiResult = await callGeminiEnricher({
-        title,
-        venue,
+
+      const cleanTitle = aiResult?.clean_title || cleanEventTitle(title);
+      const category = aiResult?.category || classifyCategory(cleanTitle, rawDesc, rawCategory, venueObj);
+      const resolvedLifecycleType = (
+        aiResult?.lifecycle_type &&
+        ["time_bound_event", "weekly_recurring_residency", "perennial_drop_in"].includes(aiResult.lifecycle_type)
+      )
+        ? aiResult.lifecycle_type
+        : inputLifecycle;
+      const isPerennial = Boolean(
+        resolvedLifecycleType === "perennial_drop_in" ||
+        item.is_perennial ||
+        ev.is_perennial ||
+        venueObj?.access_model === "open_public_space" ||
+        venueObj?.access_model === "free_public_access"
+      );
+      const candidateArtist = aiResult?.artist !== undefined ? aiResult.artist : rawArtist;
+      const candidateLineup = Array.isArray(aiResult?.lineup) && aiResult.lineup.length > 0 ? aiResult.lineup : rawLineup;
+      const cleanedLineup = extractCleanLineup(cleanTitle, venue, candidateArtist, candidateLineup, { isPerennial });
+      const artist = isPerennial ? null : cleanedLineup.artist;
+      const lineup = isPerennial ? [] : cleanedLineup.lineup;
+      const restrictions = (venueObj?.restrictions && /19\+/i.test(venueObj.restrictions))
+        ? venueObj.restrictions
+        : (aiResult?.restrictions || (rawRestrictions && !/unspecified|check venue/i.test(rawRestrictions) ? rawRestrictions : null));
+      const weeklyRecurringDay = isPerennial ? null : (aiResult?.weekly_recurring_day || null);
+      const isShow = isSpecificShowOrPerformance(cleanTitle, category, venue, resolvedLifecycleType, {
+        artist,
+        lineup,
+        time: item.time || ev.time || sched.start_time
+      });
+      const description = aiResult?.description || generatePatronSynopsis(cleanTitle, venue, rawDesc, category, venueObj, {
+        artist,
+        lineup,
+        restrictions,
+        isSpecificShow: isShow,
+        lifecycle_type: resolvedLifecycleType
+      });
+
+      const VALID_ARCHETYPES = ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"];
+      const aiArchetype = (aiResult?.event_archetype && VALID_ARCHETYPES.includes(aiResult.event_archetype))
+        ? aiResult.event_archetype
+        : null;
+      const seedArchetype = (seed.event_archetype && seed.event_archetype !== "unknown") ? seed.event_archetype : null;
+      const itemArchetype = (item.event_archetype && item.event_archetype !== "unknown") ? item.event_archetype : null;
+      const rawArchetype = aiArchetype || seedArchetype || (rawDesc ? itemArchetype : null);
+      const archetype = classifyArchetype(cleanTitle, category, venue, rawArchetype, {
         description: rawDesc,
-        category: rawCategory,
-        lifecycle_type: inputLifecycle,
-        restrictions: rawRestrictions,
-        curator_instruction: activeCuratorNote
-      }, apiKey);
-    } else {
-      // Natural cognitive pacing for deterministic NLP and live telemetry stream
-      await new Promise((resolve) => setTimeout(resolve, 800));
-    }
+        lifecycle_type: resolvedLifecycleType,
+        is_perennial: isPerennial,
+        access_model: venueObj?.access_model || null,
+      });
+      const archetypeProfile = generateArchetypeProfile(archetype, cleanTitle, venue, category, venueObj, {
+        description: rawDesc,
+        lineup,
+        artist
+      });
 
-    const cleanTitle = aiResult?.clean_title || cleanEventTitle(title);
-    const category = aiResult?.category || classifyCategory(cleanTitle, rawDesc, rawCategory, venueObj);
-    const cleanedLineup = extractCleanLineup(cleanTitle, venue, rawArtist, rawLineup);
-    const artist = aiResult?.artist !== undefined ? aiResult.artist : cleanedLineup.artist;
-    const lineup = Array.isArray(aiResult?.lineup) && aiResult.lineup.length > 0 ? aiResult.lineup : cleanedLineup.lineup;
-    const restrictions = (venueObj?.restrictions && /19\+/i.test(venueObj.restrictions))
-      ? venueObj.restrictions
-      : (aiResult?.restrictions || (rawRestrictions && !/unspecified|check venue/i.test(rawRestrictions) ? rawRestrictions : null));
-    const resolvedLifecycleType = (
-      aiResult?.lifecycle_type &&
-      ["time_bound_event", "weekly_recurring_residency", "perennial_drop_in"].includes(aiResult.lifecycle_type)
-    )
-      ? aiResult.lifecycle_type
-      : inputLifecycle;
-    const weeklyRecurringDay = aiResult?.weekly_recurring_day || null;
-    const isShow = isSpecificShowOrPerformance(cleanTitle, category, venue, resolvedLifecycleType, {
-      artist,
-      lineup,
-      time: item.time || ev.time || sched.start_time
-    });
-    const description = aiResult?.description || generatePatronSynopsis(cleanTitle, venue, rawDesc, category, venueObj, {
-      artist,
-      lineup,
-      restrictions,
-      isSpecificShow: isShow,
-      lifecycle_type: resolvedLifecycleType
-    });
+      const hasHeroDate = Boolean(item.date || ev.date || sched.date || item.startIso || ev.startIso || sched.startIso);
+      const resolvedFrequencyLabel = isPerennial
+        ? "Weekly Drop-in"
+        : (resolvedLifecycleType === "weekly_recurring_residency" && weeklyRecurringDay)
+          ? `Weekly on ${weeklyRecurringDay}s`
+          : (hasHeroDate ? (item.frequencyLabel || ev.frequencyLabel || "One-off") : null);
+      const resolvedDateSchedule = (hasHeroDate || isPerennial) ? (item.dateSchedule || ev.dateSchedule || sched.dateSchedule || (item.start_time ? `Show ${item.start_time}` : null)) : null;
 
-    const VALID_ARCHETYPES = ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"];
-    const aiArchetype = (aiResult?.event_archetype && VALID_ARCHETYPES.includes(aiResult.event_archetype))
-      ? aiResult.event_archetype
-      : null;
-    const seedArchetype = (seed.event_archetype && seed.event_archetype !== "unknown") ? seed.event_archetype : null;
-    const itemArchetype = (item.event_archetype && item.event_archetype !== "unknown") ? item.event_archetype : null;
-    const rawArchetype = aiArchetype || seedArchetype || (rawDesc ? itemArchetype : null);
-    const archetype = classifyArchetype(cleanTitle, category, venue, rawArchetype, {
-      description: rawDesc,
-      lifecycle_type: resolvedLifecycleType
-    });
-    const archetypeProfile = generateArchetypeProfile(archetype, cleanTitle, venue, category, venueObj, {
-      description: rawDesc,
-      lineup,
-      artist
-    });
+      const inferredHoliday = (() => {
+        const CANONICAL_HOLIDAYS = new Set([
+          "halloween",
+          "dia-de-los-muertos",
+          "diwali",
+          "thanksgiving",
+          "christmas",
+          "new-years",
+          "lunar-new-year",
+          "valentines-day",
+          "st-patricks-day",
+          "easter",
+          "canada-day",
+          "pride",
+        ]);
+        const normalizeHolidayCandidate = (rawVal) => {
+          if (!rawVal || typeof rawVal !== "string") return null;
+          const v = rawVal.trim().toLowerCase().replace(/\s+/g, "-").replace(/['’]/g, "");
+          if (v === "new-year" || v === "new-years-eve" || v === "new-years-day") return "new-years";
+          return CANONICAL_HOLIDAYS.has(v) ? v : null;
+        };
+        const titleAndIdText = `${cleanTitle || ""} ${eventId || ""}`.toLowerCase();
+        const fullText = `${cleanTitle || ""} ${eventId || ""} ${description || ""} ${rawDesc || ""}`.toLowerCase();
+        const rawDate = item.date || ev.date || sched.date || null;
+        const mmdd = (rawDate && /^\d{4}-\d{2}-\d{2}$/.test(rawDate)) ? rawDate.slice(5, 10) : null;
+        const inSeason = (s, e) => {
+          if (!mmdd) return false;
+          return s <= e ? (mmdd >= s && mmdd <= e) : (mmdd >= s || mmdd <= e);
+        };
+        const validateHolidaySeason = (cand) => {
+          if (!cand || !CANONICAL_HOLIDAYS.has(cand)) return null;
+          // Guard against false-positive "new-years" on mid-January concerts or Jan 2+ shows that don't mention New Year in the title
+          if (cand === "new-years") {
+            const hasTitleNewYear = /\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(titleAndIdText);
+            if (!hasTitleNewYear && (!mmdd || !inSeason("12-30", "01-01"))) return null;
+          }
+          return cand;
+        };
+        const aiCand = validateHolidaySeason(normalizeHolidayCandidate(aiResult?.holiday_affiliation));
+        if (aiCand) return aiCand;
+        const explicitCand = validateHolidaySeason(normalizeHolidayCandidate(item.holiday_affiliation || ev.holiday_affiliation || sched.holiday_affiliation));
+        if (explicitCand) return explicitCand;
+        if (/\b(?:diwali|deepavali|bandi\s*chhor)\b/i.test(fullText)) return "diwali";
+        if (/\b(?:muertos|day\s*of\s*the\s*dead|ofrenda|calavera|catrina|sugar\s*skull)\b/i.test(fullText)) return "dia-de-los-muertos";
+        if (/\b(?:halloween|hallowe'en|trick[- ]or[- ]treat|jack[- ]o'?[- ]lantern|samhain|boo[- ]?tylicious)\b/i.test(fullText)) return "halloween";
+        if (/\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch)\b/i.test(fullText)) return "christmas";
+        if (/\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(titleAndIdText) || (inSeason("12-30", "01-01") && /\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(fullText))) return "new-years";
+        if (/\b(?:lunar\s*new\s*year|chinese\s*new\s*year|spring\s*festival|tet\s*festival)\b/i.test(fullText)) return "lunar-new-year";
+        if (/\b(?:thanksgiving|friendsgiving)\b/i.test(fullText)) return "thanksgiving";
+        if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(fullText)) return "valentines-day";
+        if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s\s*day)\b/i.test(fullText)) return "st-patricks-day";
+        if (/\b(?:easter|egg\s*hunt|good\s*friday|ostara)\b/i.test(fullText)) return "easter";
+        if (/\b(?:canada\s*day)\b/i.test(fullText)) return "canada-day";
+        if (/\b(?:pride\s*festival|vancouver\s*pride|pride\s*parade|queer\s*pride)\b/i.test(fullText)) return "pride";
+        if (inSeason("10-01", "11-03") && /\b(?:haunted|spooky|horror|slasher|thriller|costume|masquerade|zombie|vampire|vampyr|witch|witches|ghost|goth|gothic|occult|macabre|monster|pumpkin|fright|scream|creepy|murder\s*mystery|deadly\s*dinner|unexplained|paranormal|x[- ]files|yes\s*files|seance|séance|rocky\s*horror|nosferatu|frankenstein|dracula|evil\s*dead|exorcist|dark\s*cabaret|freak\s*show)\b/i.test(fullText)) return "halloween";
+        if (inSeason("10-15", "11-20") && /\b(?:festival\s*of\s*lights|rangoli|bhangra|bollywood|garba|dandiya|mehfil|diya)\b/i.test(fullText)) return "diwali";
+        if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party)\b/i.test(fullText)) return "christmas";
+        return undefined;
+      })();
 
-    const hasHeroDate = Boolean(item.date || ev.date || sched.date || item.startIso || ev.startIso || sched.startIso);
-    const isPerennial = (resolvedLifecycleType === "perennial_drop_in" || item.is_perennial || ev.is_perennial);
-    const resolvedFrequencyLabel = isPerennial
-      ? "Weekly Drop-in"
-      : (resolvedLifecycleType === "weekly_recurring_residency" && weeklyRecurringDay)
-        ? `Weekly on ${weeklyRecurringDay}s`
-        : (hasHeroDate ? (item.frequencyLabel || ev.frequencyLabel || "One-off") : null);
-    const resolvedDateSchedule = (hasHeroDate || isPerennial) ? (item.dateSchedule || ev.dateSchedule || sched.dateSchedule || (item.start_time ? `Show ${item.start_time}` : null)) : null;
+      const inferredIsReligious = (() => {
+        if (typeof aiResult?.is_religious === "boolean") return aiResult.is_religious;
+        const contentText = `${cleanTitle || ""} ${description || ""} ${rawDesc || ""}`.toLowerCase();
+        return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
+      })();
 
-    const inferredHoliday = (() => {
-      if (aiResult?.holiday_affiliation && aiResult.holiday_affiliation !== "None" && aiResult.holiday_affiliation !== "null") {
-        return aiResult.holiday_affiliation;
-      }
-      const explicit = item.holiday_affiliation || ev.holiday_affiliation || sched.holiday_affiliation;
-      if (explicit && explicit !== "None" && explicit !== "none_available") return explicit;
-      const fullText = `${cleanTitle || ""} ${eventId || ""} ${description || ""} ${rawDesc || ""}`.toLowerCase();
-      const rawDate = item.date || ev.date || sched.date || null;
-      const mmdd = (rawDate && /^\d{4}-\d{2}-\d{2}$/.test(rawDate)) ? rawDate.slice(5, 10) : null;
-      const inSeason = (s, e) => {
-        if (!mmdd) return false;
-        return s <= e ? (mmdd >= s && mmdd <= e) : (mmdd >= s || mmdd <= e);
+      const editorialEntry = {
+        id: eventId,
+        event_id: eventId,
+        clean_title: cleanTitle,
+        artist: artist,
+        lineup: lineup,
+        category: category,
+        categories: category ? [category] : [],
+        event_archetype: archetype,
+        archetype: archetype,
+        lifecycle_type: resolvedLifecycleType || undefined,
+        weekly_recurring_day: weeklyRecurringDay || undefined,
+        description: description,
+        restrictions: restrictions,
+        frequencyLabel: resolvedFrequencyLabel,
+        dateSchedule: resolvedDateSchedule,
+        holiday_affiliation: inferredHoliday,
+        is_religious: inferredIsReligious,
+        curator_instructions: curatorInfo.eventInstructionText || item.curator_instructions || null,
+        curator_notes: activeCuratorNote || item.curator_notes || null,
+        input_fingerprint: inputFingerprint,
+        source_engine: canReuseCachedEditorial
+          ? (existingEd.source_engine || "cached_editorial")
+          : (aiResult ? (useAgy ? "antigravity_1event_worker" : "gemini_flash_cognitive") : "deterministic_cognitive_nlp"),
+        enriched_at: canReuseCachedEditorial ? (existingEd.enriched_at || new Date().toISOString()) : new Date().toISOString(),
+        audited_at: new Date().toISOString(),
+        ...archetypeProfile
       };
-      if (/\b(?:diwali|deepavali|bandi\s*chhor)\b/i.test(fullText)) return "diwali";
-      if (/\b(?:muertos|day\s*of\s*the\s*dead|ofrenda|calavera|catrina|sugar\s*skull)\b/i.test(fullText)) return "dia-de-los-muertos";
-      if (/\b(?:halloween|hallowe'en|trick[- ]or[- ]treat|jack[- ]o'?[- ]lantern|samhain|boo[- ]?tylicious)\b/i.test(fullText)) return "halloween";
-      if (/\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch)\b/i.test(fullText)) return "christmas";
-      if (/\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(fullText)) return "new-years";
-      if (/\b(?:lunar\s*new\s*year|chinese\s*new\s*year|spring\s*festival|tet\s*festival)\b/i.test(fullText)) return "lunar-new-year";
-      if (/\b(?:thanksgiving|friendsgiving)\b/i.test(fullText)) return "thanksgiving";
-      if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(fullText)) return "valentines-day";
-      if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s\s*day)\b/i.test(fullText)) return "st-patricks-day";
-      if (/\b(?:easter|egg\s*hunt|good\s*friday|ostara)\b/i.test(fullText)) return "easter";
-      if (/\b(?:canada\s*day)\b/i.test(fullText)) return "canada-day";
-      if (/\b(?:pride\s*festival|vancouver\s*pride|pride\s*parade|queer\s*pride)\b/i.test(fullText)) return "pride";
-      if (inSeason("10-01", "11-03") && /\b(?:haunted|spooky|horror|slasher|thriller|costume|masquerade|zombie|vampire|vampyr|witch|witches|ghost|goth|gothic|occult|macabre|monster|pumpkin|fright|scream|creepy|murder\s*mystery|deadly\s*dinner|unexplained|paranormal|x[- ]files|yes\s*files|seance|séance|rocky\s*horror|nosferatu|frankenstein|dracula|evil\s*dead|exorcist|dark\s*cabaret|freak\s*show)\b/i.test(fullText)) return "halloween";
-      if (inSeason("10-15", "11-20") && /\b(?:festival\s*of\s*lights|rangoli|bhangra|bollywood|garba|dandiya|mehfil|diya)\b/i.test(fullText)) return "diwali";
-      if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party)\b/i.test(fullText)) return "christmas";
-      return undefined;
-    })();
 
-    const inferredIsReligious = (() => {
-      if (typeof aiResult?.is_religious === "boolean") return aiResult.is_religious;
-      const contentText = `${cleanTitle || ""} ${description || ""} ${rawDesc || ""}`.toLowerCase();
-      return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
-    })();
+      // Persist incrementally to layer_editorial.json via atomic mutex helper
+      if (!options.dryRun) {
+        await safeUpdateJsonFile(EDITORIAL_PATH, [], (layerArr) => {
+          const list = Array.isArray(layerArr) ? layerArr : [];
+          const exIdx = list.findIndex((e) => (e.id || e.event_id) === eventId);
+          if (exIdx >= 0) {
+            list[exIdx] = editorialEntry;
+          } else {
+            list.push(editorialEntry);
+          }
+          return list;
+        });
+      }
 
-    const editorialEntry = {
-      id: eventId,
-      event_id: eventId,
-      clean_title: cleanTitle,
-      artist: artist,
-      lineup: lineup,
-      category: category,
-      categories: category ? [category] : [],
-      event_archetype: archetype,
-      archetype: archetype,
-      lifecycle_type: resolvedLifecycleType || undefined,
-      weekly_recurring_day: weeklyRecurringDay || undefined,
-      description: description,
-      restrictions: restrictions,
-      frequencyLabel: resolvedFrequencyLabel,
-      dateSchedule: resolvedDateSchedule,
-      holiday_affiliation: inferredHoliday,
-      is_religious: inferredIsReligious,
-      curator_instructions: curatorInfo.eventInstructionText || item.curator_instructions || null,
-      curator_notes: activeCuratorNote || item.curator_notes || null,
-      source_engine: aiResult ? (useAgy ? "antigravity_1event_worker" : "gemini_flash_cognitive") : "deterministic_cognitive_nlp",
-      enriched_at: nowIso,
-      audited_at: nowIso,
-      ...archetypeProfile
-    };
+      enrichedCount++;
+      console.log(`   ✨ Title: "${cleanTitle}" | Category: [${category}] | Archetype: [${archetype}] | Artist: ${artist ? `"${artist}"` : "None (General/Recreation)"} | Age: [${restrictions}]`);
+      console.log(`   📝 Synopsis: "${description ? description.replace(/[\r\n]+/g, ' ') : 'null'}"`);
+      console.log(`   💳 Payment: ${archetypeProfile.payment_methods} | 💧 Water: ${archetypeProfile.water_refill_station}`);
+      if (editorialEntry.dateSchedule) console.log(`   📅 Date: ${editorialEntry.dateSchedule}`);
+      if (item.time || ev.time || sched.start_time) console.log(`   Showtime: ${item.time || ev.time || sched.start_time}`);
+      const priceStr = ev.priceLabel || (ev.price != null ? `$${Number(ev.price).toFixed(2)} CAD` : "Unpriced");
+      console.log(`   💰 Price: ${priceStr}`);
+      console.log(`💾 Committed updated event (${eventId})`);
+      return editorialEntry;
+    },
+    { staggerMs: 400 }
+  );
 
-    // Update editorial layer
-    const exIdx = editorialLayer.findIndex((e) => (e.id || e.event_id) === eventId);
-    if (exIdx >= 0) {
-      editorialLayer[exIdx] = editorialEntry;
-    } else {
-      editorialLayer.push(editorialEntry);
-    }
-
-    enrichedCount++;
-    console.log(`   ✨ Title: "${cleanTitle}" | Category: [${category}] | Archetype: [${archetype}] | Artist: ${artist ? `"${artist}"` : "None (General/Recreation)"} | Age: [${restrictions}]`);
-    console.log(`   📝 Synopsis: "${description ? description.replace(/[\r\n]+/g, ' ') : 'null'}"`);
-    console.log(`   💳 Payment: ${archetypeProfile.payment_methods} | 💧 Water: ${archetypeProfile.water_refill_station}`);
-    if (editorialEntry.dateSchedule) console.log(`   📅 Date: ${editorialEntry.dateSchedule}`);
-    if (item.time || ev.time || sched.start_time) console.log(`   Showtime: ${item.time || ev.time || sched.start_time}`);
-    const priceStr = ev.priceLabel || (ev.price != null ? `$${Number(ev.price).toFixed(2)} CAD` : "Unpriced");
-    console.log(`   💰 Price: ${priceStr}`);
-    console.log(`💾 Committed updated event (${eventId})`);
-  }
-
-  fs.writeFileSync(EDITORIAL_PATH, JSON.stringify(editorialLayer, null, 2), "utf-8");
-  console.log(`\n💾 Saved ${enrichedCount} enriched entries to data/layers/layer_editorial.json`);
+  console.log(`\n💾 Saved ${enrichedCount} enriched entries (${cacheHitCount} fingerprint cache hits) to data/layers/layer_editorial.json`);
   if (useAgy) {
     printAntigravityTimeoutSummary("Stage 3A: Semantic Enricher");
   }
@@ -1218,7 +1468,9 @@ if (process.argv[1] && process.argv[1].endsWith("enricher.js")) {
   let incompleteOnly = false;
   let stale = null;
   let quarantinedOnly = false;
+  let harvestedOnly = false;
   let skipHunt = false;
+  let concurrency = undefined;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--all") {
@@ -1246,12 +1498,18 @@ if (process.argv[1] && process.argv[1].endsWith("enricher.js")) {
       unverifiedOnly = true;
     } else if (args[i] === "--quarantine" || args[i] === "--quarantined") {
       quarantinedOnly = true;
+    } else if (args[i] === "--harvested" || args[i] === "--harvested-only") {
+      harvestedOnly = true;
     } else if (args[i] === "--skip-hunt") {
       skipHunt = true;
+    } else if (args[i] === "--concurrency" && args[i + 1]) {
+      concurrency = parseInt(args[++i], 10);
+    } else if (args[i].startsWith("--concurrency=")) {
+      concurrency = parseInt(args[i].split("=")[1], 10);
     }
   }
 
-  runEnricher({ limit, offset, id: targetId, all: isAll, force, unverifiedOnly, incompleteOnly, stale, quarantined: quarantinedOnly, skipHunt }).then(() => process.exit(0)).catch((err) => {
+  runEnricher({ limit, offset, id: targetId, all: isAll, force, unverifiedOnly, incompleteOnly, stale, quarantined: quarantinedOnly, harvestedOnly, skipHunt, concurrency }).then(() => process.exit(0)).catch((err) => {
     console.error(`❌ Enricher failed: ${err.message}`);
     process.exit(1);
   });

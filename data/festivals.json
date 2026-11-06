@@ -695,5 +695,49 @@
         "cost": 10.0
       }
     ]
+  },
+  {
+    "festival_name": "European Union Film Festival (EUFF)",
+    "website_url": "https://thecinematheque.ca/series/european-union-film-festival-2026",
+    "schedule_url": "https://thecinematheque.ca/films/calendar",
+    "location": "The Cinematheque (1131 Howe St, Vancouver, BC)",
+    "start_date": "2026-11-13",
+    "end_date": "2026-11-26",
+    "description": "Annual showcase of contemporary European cinema at The Cinematheque presenting acclaimed feature films from across European Union member states.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 15.0,
+    "coordinates": [
+      49.2778,
+      -123.1264
+    ],
+    "lineup": "Curated contemporary European filmmakers and international festival selections across EU member states",
+    "restrictions": "18+ (Annual Cinematheque membership included/required for unrated festival screenings)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "The Cinematheque Main Auditorium",
+        "type": "theatre",
+        "coordinates": [
+          49.2778,
+          -123.1264
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-11-13",
+        "start_time": "18:30",
+        "end_time": "22:30",
+        "cost": 15.0
+      },
+      {
+        "date": "2026-11-26",
+        "start_time": "18:30",
+        "end_time": "22:30",
+        "cost": 15.0
+      }
+    ]
   }
 ]

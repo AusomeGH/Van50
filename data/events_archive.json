@@ -12626,5 +12626,2057 @@
     "staged_by": "stagehand_hybrid_ripper",
     "archivedReason": "Dismissed by curator",
     "archivedAt": "2026-10-21T11:13:15.831276"
+  },
+  {
+    "id": "van50-performance-works-malcolm-gladwell-in-conversation",
+    "event_id": "van50-performance-works-malcolm-gladwell-in-conversation",
+    "Event_Num_Perm": "Event_Num_Perm_000000027",
+    "Event_Num_Card": "Event_Num_Card_000000026",
+    "event_archetype": "live_stage",
+    "archetype": "live_stage",
+    "title": "Malcolm Gladwell in Conversation",
+    "event_name": "Malcolm Gladwell in Conversation",
+    "artist": "Malcolm Gladwell",
+    "lineup": [
+      "Malcolm Gladwell"
+    ],
+    "venue": "Vancouver Playhouse",
+    "venue_name": "Vancouver Playhouse",
+    "venue_type": "theatre_cinema_auditorium",
+    "address": "600 Hamilton St, Vancouver, BC V6B 2P1",
+    "full_address": "600 Hamilton St, Vancouver, BC V6B 2P1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2805,
+      -123.1147
+    ],
+    "date": "2026-11-24",
+    "time": "7:30 PM",
+    "start_time": "7:30 PM",
+    "doors_time": null,
+    "end_time": "9:00 PM",
+    "startIso": "2026-11-24T19:30:00-07:00",
+    "dateSchedule": "2026-11-24 • 7:30 PM",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-24",
+        "start_time": "7:30 PM",
+        "doors_time": null,
+        "end_time": "9:00 PM",
+        "status": "sold_out"
+      }
+    ],
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-24",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "end_time": "9:00 PM",
+      "status": "sold_out"
+    },
+    "show_2": null,
+    "show_3": null,
+    "category": "shows",
+    "categories": [
+      "shows"
+    ],
+    "categoryLabel": "SHOWS",
+    "tags": null,
+    "subTags": null,
+    "festival_affiliation": null,
+    "festivalAffiliation": null,
+    "holiday_affiliation": null,
+    "holidayAffiliation": null,
+    "is_religious": false,
+    "isReligious": false,
+    "price": null,
+    "price_base": null,
+    "price_fee": null,
+    "price_tax": null,
+    "price_read": null,
+    "price_calculated": null,
+    "price_delta": null,
+    "price_all_in": null,
+    "priceLabel": "Sold Out",
+    "pricingType": "paid",
+    "isFree": false,
+    "is_sold_out": true,
+    "isSoldOut": true,
+    "operational_status": "sold_out",
+    "booking_protocol": "online_reservation",
+    "ticket_url": "https://writersfest.bc.ca/event/gladwell-2026",
+    "details_url": "https://writersfest.bc.ca/event/gladwell-2026",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://writersfest.bc.ca/event/gladwell-2026",
+      "tier3_calendar": "https://writersfest.bc.ca/festival-events/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://writersfest.bc.ca/",
+      "best_available": "https://writersfest.bc.ca/event/gladwell-2026",
+      "best_tier": "tier2"
+    },
+    "ticket_provider": "Direct Box Office",
+    "description": "Bestselling author Malcolm Gladwell takes the stage for a compelling discussion examining America's gun violence epidemic. Drawing from his work in The American Way of Killing, the evening investigates systemic crises through Gladwell's trademark provocative lens.",
+    "restrictions": "All Ages (or 19+ for select licensed events w/ ID)",
+    "transitInfo": "2 blocks from Stadium-Chinatown or Vancouver City Centre SkyTrain",
+    "transit_info": "2 blocks from Stadium-Chinatown or Vancouver City Centre SkyTrain",
+    "waypoints": [],
+    "coffee_benchmark": "$4.00 – $5.50 CAD",
+    "beer_benchmark": "$8.50 – $10.50 CAD (local craft beer & cider)",
+    "cocktail_benchmark": "$12.00 – $15.00 CAD",
+    "meal_benchmark": null,
+    "concession_benchmark": "$4.50 – $7.50 CAD (pretzels, chocolate, snacks)",
+    "spend_benchmarks": {
+      "beer": "$8.50 – $10.50 CAD (local craft beer & cider)",
+      "cocktail": "$12.00 – $15.00 CAD",
+      "coffee": "$4.00 – $5.50 CAD",
+      "meal": null
+    },
+    "drink_benchmark": "Beer $8.50 – $10.50 CAD • Cocktails $12.00 – $15.00 CAD",
+    "typical_item_spend": "Beer $8.50 – $10.50 • Cocktails $12.00 – $15.00",
+    "access_model": "ticketed_admission",
+    "environment_type": "indoor",
+    "weekly_hours": null,
+    "venue_grounding": {
+      "is_grounded": true,
+      "trust_weight": 1,
+      "source": "venue_detailer_ai",
+      "last_grounded_at": "2026-10-31T20:45:55.931Z"
+    },
+    "last_grounded_at": "2026-10-31T20:45:55.931Z",
+    "access_parking": "Civic parking garage directly beneath Queen Elizabeth Theatre complex (accessible stalls)",
+    "access_seating": "Dedicated wheelchair spaces with companion seating in orchestra section",
+    "payment_methods": "Cashless venue - Credit, Debit & Contactless Tap only",
+    "water_refill_station": "Chilled water fountain located in main lobby near washrooms",
+    "step_free_entrance": "Street-level entrance from Hamilton Street plaza with automated push-button doors",
+    "elevator_lift": "Elevator access to mezzanine and upper foyer",
+    "accessible_washrooms": "Dedicated wheelchair-accessible washrooms on main lobby level",
+    "sensory_calibrations": "Theatrical sound and stage lighting; hearing loops available",
+    "hearing_loop": "Sennheiser Infrared assistive listening headsets available at coat check",
+    "service_animals": "Certified guide dogs and service animals welcome in theatre",
+    "outside_food_policy": "Strictly no outside food or beverages permitted; bag check at door",
+    "coat_check": "Complimentary or $3.00 CAD seasonal coat check in main lobby",
+    "on_site_fnb": "Licensed lobby bar and concession counter open 1 hour prior to curtain",
+    "stage_seating_layout": null,
+    "intermission_details": null,
+    "sound_curfew_time": null,
+    "earplug_availability": null,
+    "stage_sightlines": null,
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Verified-138D",
+    "budget_qualified_under_50": true,
+    "curator_notes": null,
+    "curator_instructions": null,
+    "proof_keyframes": {
+      "cart": "data/proof_keyframes/van50-performance-works-malcolm-gladwell-in-conversation_cart.png",
+      "schedule": null,
+      "venue": null
+    },
+    "dimension_audit": {
+      "D001_event_name": {
+        "status": "verified",
+        "value": "Malcolm Gladwell in Conversation",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-10-31T20:12:19.520Z"
+      },
+      "D002_event_num_perm": {
+        "status": "verified",
+        "value": "Event_Num_Perm_000000027",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D003_event_num_card": {
+        "status": "verified",
+        "value": "Event_Num_Card_000000026",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D004_category": {
+        "status": "verified",
+        "value": "shows",
+        "categories": [
+          "shows"
+        ],
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-10-31T20:12:19.520Z"
+      },
+      "D005_tags": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "subTags": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-10-31T20:12:19.520Z"
+      },
+      "D006_lifecycle_type": {
+        "status": "verified",
+        "value": "time_bound_event",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D007_event_archetype": {
+        "status": "verified",
+        "value": "live_stage",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D008_restrictions": {
+        "status": "verified",
+        "value": "All Ages (or 19+ for select licensed events w/ ID)",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D009_holiday_affiliation": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D101_tier1_checkout": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D102_tier2_event_page": {
+        "status": "verified",
+        "value": "https://writersfest.bc.ca/event/gladwell-2026",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-30T02:00:28.771Z"
+      },
+      "D103_tier3_calendar": {
+        "status": "verified",
+        "value": "https://writersfest.bc.ca/festival-events/",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D104_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D105_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://writersfest.bc.ca/",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D106_best_available_link": {
+        "status": "verified",
+        "value": "https://writersfest.bc.ca/event/gladwell-2026",
+        "best_tier": "Tier 2: Event Page",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D107_operational_status": {
+        "status": "verified",
+        "value": "sold_out",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D108_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D109_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D110_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D201_tier1_name": {
+        "status": "verified",
+        "value": "General Admission",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D202_tier1_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D203_tier1_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D204_tier1_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D205_tier1_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D205_tier1_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "formula": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D205_tier1_discrepancy_delta": {
+        "status": "none_available",
+        "delta": null,
+        "note": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D205_tier1_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D206_tier2_name": {
+        "status": "verified",
+        "value": "Youth under 25",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D207_tier2_price_base": {
+        "status": "verified",
+        "value": 25,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D208_tier2_price_fee": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D209_tier2_price_tax": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D210_tier2_price_read": {
+        "status": "verified",
+        "value": 25,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D210_tier2_price_calculated": {
+        "status": "verified",
+        "value": 25,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D210_tier2_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D210_tier2_price_all_in": {
+        "status": "verified",
+        "value": 25,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D211_tier3_name": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D212_tier3_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D213_tier3_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D214_tier3_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D215_tier3_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D215_tier3_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D215_tier3_discrepancy_delta": {
+        "status": "none_available",
+        "delta": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D215_tier3_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D216_tier_count_verified": {
+        "status": "verified",
+        "count": 2,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D217_pricing_model": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D218_budget_qualified_under_50": {
+        "status": "search_exhausted_null",
+        "qualified": null,
+        "total": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D219_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D221_ticket_provider": {
+        "status": "verified",
+        "value": "Direct Box Office",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D222_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D301_lineup": {
+        "status": "verified",
+        "value": [
+          "Malcolm Gladwell"
+        ],
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-30T02:00:28.771Z"
+      },
+      "D302_artist": {
+        "status": "verified",
+        "value": "Malcolm Gladwell",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-30T02:00:28.771Z"
+      },
+      "D303_date": {
+        "status": "verified",
+        "value": "2026-11-24",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D304_showings_slots": {
+        "status": "verified",
+        "slot_count": 1,
+        "showings": [
+          {
+            "slot": 1,
+            "date": "2026-11-24",
+            "start_time": "7:30 PM",
+            "doors_time": null,
+            "end_time": "9:00 PM",
+            "status": "sold_out"
+          }
+        ],
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D305_doors_time": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-30T02:00:28.771Z"
+      },
+      "D306_start_time": {
+        "status": "verified",
+        "value": "7:30 PM",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-30T02:00:28.771Z"
+      },
+      "D307_end_time": {
+        "status": "verified",
+        "value": "9:00 PM",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D308_dateSchedule": {
+        "status": "verified",
+        "value": "2026-11-24 • 7:30 PM",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D309_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D310_synopsis": {
+        "status": "verified",
+        "value": "Bestselling author Malcolm Gladwell takes the stage for a compelling discussion examining America's gun violence epidemic. Drawing from his work in The American Way of Killing, the evening investigates systemic crises through Gladwell's trademark provocative lens.",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-10-31T20:12:19.520Z"
+      },
+      "D311_festival_affiliation": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D401_venue_name": {
+        "status": "verified",
+        "value": "Vancouver Playhouse",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D402_full_address": {
+        "status": "verified",
+        "value": "600 Hamilton St, Vancouver, BC V6B 2P1",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D403_coordinates": {
+        "status": "verified",
+        "value": [
+          49.2805,
+          -123.1147
+        ],
+        "source_tool": "venue_detailer_ai",
+        "audited_at": "2026-10-31T20:45:55.931Z"
+      },
+      "D404_neighborhood": {
+        "status": "verified",
+        "value": "Downtown, Gastown & Yaletown",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D405_access_model": {
+        "status": "verified",
+        "value": "ticketed_admission",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D406_environment_type": {
+        "status": "verified",
+        "value": "indoor",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D407_weekly_hours": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D408_transit_waypoints": {
+        "status": "verified",
+        "transit": "2 blocks from Stadium-Chinatown or Vancouver City Centre SkyTrain",
+        "waypoints": [],
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D501_step_free_entrance": {
+        "status": "verified",
+        "value": "Street-level entrance from Hamilton Street plaza with automated push-button doors",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D502_elevator_lift": {
+        "status": "verified",
+        "value": "Elevator access to mezzanine and upper foyer",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D503_accessible_washrooms": {
+        "status": "verified",
+        "value": "Dedicated wheelchair-accessible washrooms on main lobby level",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D504_sensory_calibrations": {
+        "status": "verified",
+        "value": "Theatrical sound and stage lighting; hearing loops available",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D505_hearing_loop": {
+        "status": "verified",
+        "value": "Sennheiser Infrared assistive listening headsets available at coat check",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D506_service_animals": {
+        "status": "verified",
+        "value": "Certified guide dogs and service animals welcome in theatre",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D601_on_site_fnb": {
+        "status": "verified",
+        "value": "Licensed lobby bar and concession counter open 1 hour prior to curtain",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D602_coffee_benchmark": {
+        "status": "verified",
+        "value": "$4.00 – $5.50 CAD",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D603_beer_benchmark": {
+        "status": "verified",
+        "value": "$8.50 – $10.50 CAD (local craft beer & cider)",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D604_meal_benchmark": {
+        "status": "none_available",
+        "value": "none_available",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D605_outside_food_policy": {
+        "status": "verified",
+        "value": "Strictly no outside food or beverages permitted; bag check at door",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D606_coat_check": {
+        "status": "verified",
+        "value": "Complimentary or $3.00 CAD seasonal coat check in main lobby",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D607_payment_methods": {
+        "status": "verified",
+        "value": "Cashless venue - Credit, Debit & Contactless Tap only",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D608_water_refill_station": {
+        "status": "verified",
+        "value": "Chilled water fountain located in main lobby near washrooms",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D711_film_runtime": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D712_film_language_subtitles": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D713_projection_format": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D714_print_condition_notes": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D715_concession_alcohol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D716_festival_pass_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D717_seat_reservation_type": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D721_stage_seating_layout": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D722_intermission_details": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D723_sound_curfew_time": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D724_earplug_availability": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D725_stage_sightlines": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D731_materials_provided": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D732_take_home_outcome": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D733_workshop_capacity_cap": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D734_registration_cutoff": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D735_prerequisite_skill_level": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D736_instructor_credentials": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D741_table_cover_fee": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D742_minimum_fnb_spend": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D743_table_time_limit": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D744_game_library_size": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D745_rules_teacher_present": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D746_tournament_prizes": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D751_trail_terrain_surface": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D752_pet_leash_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D753_seasonal_washrooms": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D754_equipment_rentals": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D755_picnic_shelter_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D761_exhibition_run_dates": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D762_special_exhibit_surcharge": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D763_docent_tour_schedule": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D764_bag_check_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D771_digital_waiver_required": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D772_required_safety_gear": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D773_locker_availability": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D774_physical_intensity_level": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D775_rainout_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D781_location_reveal_protocol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D782_byo_seating_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D783_open_mic_signup_protocol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D784_organizer_channel": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D791_festival_hub_directory": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D792_festival_pass_type": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D793_rush_seating_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D794_central_box_office": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D795_volunteer_ticket_exchange": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D801_srsa_compliance": {
+        "status": "verified",
+        "compliant": true,
+        "single_publisher": "ripper/compile_catalog.js",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D802_multi_layer_provenance": {
+        "status": "verified",
+        "sources": {
+          "schedules": "layer_schedules",
+          "box_office": "stagehand_layer_box_office",
+          "editorial": "ai_semantic_enricher",
+          "venue": "venue_master_registry"
+        },
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D803_spa_hydration_provenance": {
+        "status": "verified",
+        "method": "stagehand_live_cart",
+        "audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D804_active_showings": {
+        "status": "verified",
+        "count": 1,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D805_archived_showings": {
+        "status": "verified",
+        "count": 0,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D806_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "curator_note": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D807_proof_keyframes": {
+        "status": "verified",
+        "cart": "data/proof_keyframes/van50-performance-works-malcolm-gladwell-in-conversation_cart.png",
+        "schedule": null,
+        "venue": null,
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D808_timestamp_lockstep": {
+        "status": "verified",
+        "last_pulse_qc_at": "2026-10-31T19:59:21.720Z",
+        "last_content_qc_at": "2026-10-30T02:00:28.771Z",
+        "last_full_qc_at": "2026-11-04T16:01:32.759Z",
+        "last_qc_audited_at": "2026-10-31T19:59:21.720Z"
+      },
+      "D809_civic_provider_rules": {
+        "status": "search_exhausted_null",
+        "rules": null,
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      }
+    },
+    "last_qc_audited_at": "2026-10-31T19:59:21.720Z",
+    "last_pulse_qc_at": "2026-10-31T19:59:21.720Z",
+    "last_content_qc_at": "2026-10-30T02:00:28.771Z",
+    "last_full_qc_at": "2026-11-04T16:01:32.759Z",
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 45,
+        "price_base": 45,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 45,
+        "price_calculated": 45,
+        "price_delta": 0,
+        "label": "$45.00 CAD",
+        "isAvailable": false
+      },
+      {
+        "name": "Youth under 25",
+        "price": 25,
+        "price_base": 25,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 25,
+        "price_calculated": 25,
+        "price_delta": 0,
+        "label": "$25.00 CAD",
+        "isAvailable": false
+      }
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 45,
+        "price_base": 45,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 45,
+        "price_calculated": 45,
+        "price_delta": 0,
+        "label": "$45.00 CAD",
+        "isAvailable": false
+      },
+      {
+        "name": "Youth under 25",
+        "price": 25,
+        "price_base": 25,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 25,
+        "price_calculated": 25,
+        "price_delta": 0,
+        "label": "$25.00 CAD",
+        "isAvailable": false
+      }
+    ],
+    "quarantineReason": "sold_out",
+    "reviewStatus": "quarantined_sold_out",
+    "audit_error": "Event audit timed out after 90s",
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-11-04T09:07:23.011846"
+  },
+  {
+    "event_id": "van50-performance-works-malcolm-gladwell-in-conversation",
+    "archivedReason": "Dismissed by curator"
+  },
+  {
+    "id": "fox-cabaret-denise-julia-2026-11-17",
+    "event_id": "fox-cabaret-denise-julia-2026-11-17",
+    "Event_Num_Perm": "Event_Num_Perm_000000951",
+    "Event_Num_Card": "Event_Num_Card_000000035",
+    "event_archetype": "live_stage",
+    "archetype": "live_stage",
+    "title": "Denise Julia",
+    "event_name": "Denise Julia",
+    "artist": null,
+    "lineup": null,
+    "venue": "Fox Cabaret",
+    "venue_name": "Fox Cabaret",
+    "venue_type": "nightclub_lounge_cabaret",
+    "address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant",
+    "coordinates": [
+      49.2642,
+      -123.1011
+    ],
+    "date": "2026-11-17",
+    "time": "8:00 PM",
+    "start_time": "8:00 PM",
+    "doors_time": "8:00 PM",
+    "end_time": null,
+    "startIso": "2026-11-17T20:00:00-07:00",
+    "dateSchedule": "2026-11-17 • 8:00 PM",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-17",
+        "start_time": "8:00 PM",
+        "doors_time": "8:00 PM",
+        "end_time": null,
+        "status": "sold_out"
+      }
+    ],
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-17",
+      "start_time": "8:00 PM",
+      "doors_time": "8:00 PM",
+      "end_time": null,
+      "status": "sold_out"
+    },
+    "show_2": null,
+    "show_3": null,
+    "category": "shows",
+    "categories": [
+      "shows"
+    ],
+    "categoryLabel": "SHOWS",
+    "tags": null,
+    "subTags": null,
+    "festival_affiliation": null,
+    "festivalAffiliation": null,
+    "holiday_affiliation": null,
+    "holidayAffiliation": null,
+    "is_religious": false,
+    "isReligious": false,
+    "price": null,
+    "price_base": null,
+    "price_fee": null,
+    "price_tax": null,
+    "price_read": null,
+    "price_calculated": null,
+    "price_delta": null,
+    "price_all_in": null,
+    "priceLabel": "Sold Out",
+    "pricingType": "paid",
+    "isFree": false,
+    "is_sold_out": true,
+    "isSoldOut": true,
+    "operational_status": "sold_out",
+    "booking_protocol": "online_reservation",
+    "ticket_url": "https://admitone.com/events/denise-julia-vancouver-177518",
+    "details_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/denisejulia",
+    "links": {
+      "tier1_checkout": "https://admitone.com/events/denise-julia-vancouver-177518",
+      "tier2_event_page": "https://www.foxcabaret.com/monthly-calendar-list/2026/denisejulia",
+      "tier3_calendar": "https://www.foxcabaret.com/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://www.foxcabaret.com/",
+      "best_available": "https://admitone.com/events/denise-julia-vancouver-177518",
+      "best_tier": "tier1"
+    },
+    "ticket_provider": "AdmitONE",
+    "description": "Rising Filipina R&B singer-songwriter Denise Julia takes the stage for an intimate live concert experience. Presented by RAPSEASON and MRG LIVE, the performance showcases her sultry vocal delivery and modern melodic style.",
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "transitInfo": "Main Street-Science World SkyTrain + #3 Main bus to E 7th Ave (steps from Broadway & Main)",
+    "transit_info": "Main Street-Science World SkyTrain + #3 Main bus to E 7th Ave (steps from Broadway & Main)",
+    "waypoints": [],
+    "coffee_benchmark": null,
+    "beer_benchmark": "$8.50 – $10.50 CAD (local craft beer / tallboy)",
+    "cocktail_benchmark": "$11.00 – $15.00 CAD (house highball / signature cocktail)",
+    "meal_benchmark": null,
+    "concession_benchmark": "$4.00 – $6.00 CAD (bar snacks / non-alcoholic sodas)",
+    "spend_benchmarks": {
+      "beer": "$8.50 – $10.50 CAD (local craft beer / tallboy)",
+      "cocktail": "$11.00 – $15.00 CAD (house highball / signature cocktail)",
+      "coffee": null,
+      "meal": null
+    },
+    "drink_benchmark": "Beer $8.50 – $10.50 CAD • Cocktails $11.00 – $15.00 CAD",
+    "typical_item_spend": "Beer $8.50 – $10.50 • Cocktails $11.00 – $15.00",
+    "access_model": "ticketed_admission",
+    "environment_type": "indoor",
+    "weekly_hours": "Event-dependent; typically Wed–Sun 7:00 PM – 2:00 AM (Closed Mon–Tue except for special bookings)",
+    "venue_grounding": {
+      "is_grounded": true,
+      "trust_weight": 1,
+      "source": "venue_detailer_ai",
+      "last_grounded_at": "2026-11-04T01:19:11.423Z"
+    },
+    "last_grounded_at": "2026-11-04T01:19:11.423Z",
+    "access_parking": "Metered street parking on Main St and side streets along 7th/8th Ave",
+    "access_seating": "Mix of cabaret tables, tiered booths, and standing dance floor depending on show format",
+    "payment_methods": "Credit, Debit & Tap accepted at box office and bars",
+    "water_refill_station": "Free tap water station available at the bar",
+    "step_free_entrance": "Street-level main entrance at 2321 Main St; main showroom floor accessible",
+    "elevator_lift": "No passenger elevator to upstairs Projection Room",
+    "accessible_washrooms": "Accessible washroom available on the main cabaret level",
+    "sensory_calibrations": "High-energy concert and club sound system with dynamic stage and strobe lighting",
+    "hearing_loop": "none_available",
+    "service_animals": "Certified guide and service animals permitted",
+    "outside_food_policy": "No outside food or beverages permitted inside venue",
+    "coat_check": "Seasonal coat check available at entrance ($4.00 – $5.00 CAD)",
+    "on_site_fnb": "Full-service bars on main floor and Projection Room serving craft beer, cocktails, wine, and zero-proof options",
+    "stage_seating_layout": null,
+    "intermission_details": null,
+    "sound_curfew_time": null,
+    "earplug_availability": null,
+    "stage_sightlines": null,
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Verified-138D",
+    "budget_qualified_under_50": true,
+    "curator_notes": null,
+    "curator_instructions": null,
+    "proof_keyframes": {
+      "cart": "data/proof_keyframes/fox-cabaret-denise-julia-2026-11-17_cart.png",
+      "schedule": null,
+      "venue": null
+    },
+    "dimension_audit": {
+      "D001_event_name": {
+        "status": "verified",
+        "value": "Denise Julia",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-03T21:08:12.957Z"
+      },
+      "D002_event_num_perm": {
+        "status": "verified",
+        "value": "Event_Num_Perm_000000951",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D003_event_num_card": {
+        "status": "verified",
+        "value": "Event_Num_Card_000000035",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D004_category": {
+        "status": "verified",
+        "value": "shows",
+        "categories": [
+          "shows"
+        ],
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-03T21:08:12.957Z"
+      },
+      "D005_tags": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "subTags": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-03T21:08:12.957Z"
+      },
+      "D006_lifecycle_type": {
+        "status": "verified",
+        "value": "time_bound_event",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D007_event_archetype": {
+        "status": "verified",
+        "value": "live_stage",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D008_restrictions": {
+        "status": "verified",
+        "value": "19+ (Two pieces of government ID required)",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D009_holiday_affiliation": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D101_tier1_checkout": {
+        "status": "verified",
+        "value": "https://admitone.com/events/denise-julia-vancouver-177518",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D102_tier2_event_page": {
+        "status": "verified",
+        "value": "https://www.foxcabaret.com/monthly-calendar-list/2026/denisejulia",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-01T18:36:58.023Z"
+      },
+      "D103_tier3_calendar": {
+        "status": "verified",
+        "value": "https://www.foxcabaret.com/",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D104_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D105_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://www.foxcabaret.com/",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D106_best_available_link": {
+        "status": "verified",
+        "value": "https://admitone.com/events/denise-julia-vancouver-177518",
+        "best_tier": "Tier 1: Checkout Cart",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D107_operational_status": {
+        "status": "verified",
+        "value": "sold_out",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D108_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D109_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D110_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D201_tier1_name": {
+        "status": "verified",
+        "value": "General Admission",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D202_tier1_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D203_tier1_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D204_tier1_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D205_tier1_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": "Sold Out - Join Waitlist",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D205_tier1_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "formula": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D205_tier1_discrepancy_delta": {
+        "status": "none_available",
+        "delta": null,
+        "note": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D205_tier1_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D206_tier2_name": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D207_tier2_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D208_tier2_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D209_tier2_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D210_tier2_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D210_tier2_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D210_tier2_discrepancy_delta": {
+        "status": "none_available",
+        "delta": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D210_tier2_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D211_tier3_name": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D212_tier3_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D213_tier3_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D214_tier3_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D215_tier3_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D215_tier3_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D215_tier3_discrepancy_delta": {
+        "status": "none_available",
+        "delta": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D215_tier3_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D216_tier_count_verified": {
+        "status": "verified",
+        "count": 1,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D217_pricing_model": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D218_budget_qualified_under_50": {
+        "status": "search_exhausted_null",
+        "qualified": null,
+        "total": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D219_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D221_ticket_provider": {
+        "status": "verified",
+        "value": "AdmitONE",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D222_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D301_lineup": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-01T18:36:58.023Z"
+      },
+      "D302_artist": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-01T18:36:58.023Z"
+      },
+      "D303_date": {
+        "status": "verified",
+        "value": "2026-11-17",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D304_showings_slots": {
+        "status": "verified",
+        "slot_count": 1,
+        "showings": [
+          {
+            "slot": 1,
+            "date": "2026-11-17",
+            "start_time": "8:00 PM",
+            "doors_time": "8:00 PM",
+            "end_time": null,
+            "status": "sold_out"
+          }
+        ],
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D305_doors_time": {
+        "status": "verified",
+        "value": "8:00 PM",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-01T18:36:58.023Z"
+      },
+      "D306_start_time": {
+        "status": "verified",
+        "value": "8:00 PM",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-01T18:36:58.023Z"
+      },
+      "D307_end_time": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D308_dateSchedule": {
+        "status": "verified",
+        "value": "2026-11-17 • 8:00 PM",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D309_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D310_synopsis": {
+        "status": "verified",
+        "value": "Rising Filipina R&B singer-songwriter Denise Julia takes the stage for an intimate live concert experience. Presented by RAPSEASON and MRG LIVE, the performance showcases her sultry vocal delivery and modern melodic style.",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-03T21:08:12.957Z"
+      },
+      "D311_festival_affiliation": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D401_venue_name": {
+        "status": "verified",
+        "value": "Fox Cabaret",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D402_full_address": {
+        "status": "verified",
+        "value": "2321 Main St, Vancouver, BC V5T 3C9",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D403_coordinates": {
+        "status": "verified",
+        "value": [
+          49.2642,
+          -123.1011
+        ],
+        "source_tool": "venue_detailer_ai",
+        "audited_at": "2026-11-04T01:19:11.423Z"
+      },
+      "D404_neighborhood": {
+        "status": "verified",
+        "value": "Mount Pleasant",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D405_access_model": {
+        "status": "verified",
+        "value": "ticketed_admission",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D406_environment_type": {
+        "status": "verified",
+        "value": "indoor",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D407_weekly_hours": {
+        "status": "verified",
+        "value": "Event-dependent; typically Wed–Sun 7:00 PM – 2:00 AM (Closed Mon–Tue except for special bookings)",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D408_transit_waypoints": {
+        "status": "verified",
+        "transit": "Main Street-Science World SkyTrain + #3 Main bus to E 7th Ave (steps from Broadway & Main)",
+        "waypoints": [],
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D501_step_free_entrance": {
+        "status": "verified",
+        "value": "Street-level main entrance at 2321 Main St; main showroom floor accessible",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D502_elevator_lift": {
+        "status": "verified",
+        "value": "No passenger elevator to upstairs Projection Room",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D503_accessible_washrooms": {
+        "status": "verified",
+        "value": "Accessible washroom available on the main cabaret level",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D504_sensory_calibrations": {
+        "status": "verified",
+        "value": "High-energy concert and club sound system with dynamic stage and strobe lighting",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D505_hearing_loop": {
+        "status": "verified",
+        "value": "none_available",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D506_service_animals": {
+        "status": "verified",
+        "value": "Certified guide and service animals permitted",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D601_on_site_fnb": {
+        "status": "verified",
+        "value": "Full-service bars on main floor and Projection Room serving craft beer, cocktails, wine, and zero-proof options",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D602_coffee_benchmark": {
+        "status": "none_available",
+        "value": "none_available",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D603_beer_benchmark": {
+        "status": "verified",
+        "value": "$8.50 – $10.50 CAD (local craft beer / tallboy)",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D604_meal_benchmark": {
+        "status": "none_available",
+        "value": "none_available",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D605_outside_food_policy": {
+        "status": "verified",
+        "value": "No outside food or beverages permitted inside venue",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D606_coat_check": {
+        "status": "verified",
+        "value": "Seasonal coat check available at entrance ($4.00 – $5.00 CAD)",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D607_payment_methods": {
+        "status": "verified",
+        "value": "Credit, Debit & Tap accepted at box office and bars",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D608_water_refill_station": {
+        "status": "verified",
+        "value": "Free tap water station available at the bar",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D711_film_runtime": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D712_film_language_subtitles": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D713_projection_format": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D714_print_condition_notes": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D715_concession_alcohol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D716_festival_pass_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D717_seat_reservation_type": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "cinema"
+      },
+      "D721_stage_seating_layout": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D722_intermission_details": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D723_sound_curfew_time": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D724_earplug_availability": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D725_stage_sightlines": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D731_materials_provided": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D732_take_home_outcome": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D733_workshop_capacity_cap": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D734_registration_cutoff": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D735_prerequisite_skill_level": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D736_instructor_credentials": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D741_table_cover_fee": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D742_minimum_fnb_spend": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D743_table_time_limit": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D744_game_library_size": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D745_rules_teacher_present": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D746_tournament_prizes": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D751_trail_terrain_surface": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D752_pet_leash_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D753_seasonal_washrooms": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D754_equipment_rentals": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D755_picnic_shelter_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D761_exhibition_run_dates": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D762_special_exhibit_surcharge": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D763_docent_tour_schedule": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D764_bag_check_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D771_digital_waiver_required": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D772_required_safety_gear": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D773_locker_availability": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D774_physical_intensity_level": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D775_rainout_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D781_location_reveal_protocol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D782_byo_seating_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D783_open_mic_signup_protocol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D784_organizer_channel": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D791_festival_hub_directory": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D792_festival_pass_type": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D793_rush_seating_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D794_central_box_office": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D795_volunteer_ticket_exchange": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D801_srsa_compliance": {
+        "status": "verified",
+        "compliant": true,
+        "single_publisher": "ripper/compile_catalog.js",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D802_multi_layer_provenance": {
+        "status": "verified",
+        "sources": {
+          "schedules": "layer_schedules",
+          "box_office": "stagehand_layer_box_office",
+          "editorial": "ai_semantic_enricher",
+          "venue": "venue_master_registry"
+        },
+        "conflicts_detected": [
+          "category disagreement across layers (shows vs music)"
+        ],
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D803_spa_hydration_provenance": {
+        "status": "verified",
+        "method": "stagehand_live_cart",
+        "audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D804_active_showings": {
+        "status": "verified",
+        "count": 1,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D805_archived_showings": {
+        "status": "verified",
+        "count": 0,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D806_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "curator_note": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D807_proof_keyframes": {
+        "status": "verified",
+        "cart": "data/proof_keyframes/fox-cabaret-denise-julia-2026-11-17_cart.png",
+        "schedule": null,
+        "venue": null,
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      },
+      "D808_timestamp_lockstep": {
+        "status": "verified",
+        "last_pulse_qc_at": "2026-11-03T21:03:00.391Z",
+        "last_content_qc_at": "2026-11-01T18:36:58.023Z",
+        "last_full_qc_at": "2026-11-04T16:01:32.759Z",
+        "last_qc_audited_at": "2026-11-03T21:03:00.391Z"
+      },
+      "D809_civic_provider_rules": {
+        "status": "search_exhausted_null",
+        "rules": null,
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-04T16:01:32.759Z"
+      }
+    },
+    "last_qc_audited_at": "2026-11-03T21:03:00.391Z",
+    "last_pulse_qc_at": "2026-11-03T21:03:00.391Z",
+    "last_content_qc_at": "2026-11-01T18:36:58.023Z",
+    "last_full_qc_at": "2026-11-04T16:01:32.759Z",
+    "candidate_tier1_url": "https://admitone.com/events/denise-julia-vancouver-177518",
+    "candidate_tier1_source": "in_page_anchor_traversal",
+    "candidate_tier1_staged_at": "2026-11-02T02:27:15.907Z",
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
+        "price_delta": 0,
+        "label": "Free ($0)",
+        "isAvailable": false
+      }
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
+        "price_delta": 0,
+        "label": "Sold Out",
+        "isAvailable": false
+      }
+    ],
+    "quarantineReason": "sold_out",
+    "reviewStatus": "quarantined_sold_out",
+    "audit_error": "Event confirmed SOLD OUT on live ticketing portal (ticket prices hidden)",
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-11-04T09:11:34.020301"
   }
 ]

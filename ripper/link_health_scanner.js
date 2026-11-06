@@ -260,15 +260,18 @@ export async function scanSingleLinkHealth(url, eventCard = {}, options = {}) {
       };
     }
 
-    // Inspect first 30KB of HTML body for soft-404 / closed-ticket markers
+    // Inspect first 30KB of HTML body for soft-404 / closed-ticket markers (bounded by 3.5s chunk timeout)
     let textChunk = "";
     try {
       const reader = resp.body.getReader();
-      const { value } = await reader.read();
-      if (value) {
-        textChunk = new TextDecoder("utf-8").decode(value).toLowerCase();
+      const readRes = await Promise.race([
+        reader.read(),
+        new Promise((resolve) => setTimeout(() => resolve({ value: null, timedOut: true }), 3500))
+      ]);
+      if (readRes && readRes.value) {
+        textChunk = new TextDecoder("utf-8").decode(readRes.value).toLowerCase();
       }
-      reader.cancel();
+      try { await Promise.race([reader.cancel(), new Promise((r) => setTimeout(r, 500))]); } catch (_) { }
     } catch (_) {
       // Body reading is best-effort
     }

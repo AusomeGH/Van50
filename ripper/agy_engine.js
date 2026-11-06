@@ -36,6 +36,22 @@ export function isAntigravityEngine() {
 }
 
 /**
+ * Returns a formatted local timestamp `[HH:MM:SS AM/PM]` for live terminal logs.
+ */
+export function formatLogTime(date = new Date()) {
+  try {
+    return `[${date.toLocaleTimeString("en-US", {
+      hour12: true,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    })}]`;
+  } catch (_) {
+    return `[${date.toISOString().slice(11, 19)}]`;
+  }
+}
+
+/**
  * Returns the configured Antigravity model (defaults to fast gemini-3.8-flash-low for 1-event workers).
  */
 export function getAntigravityModel() {
@@ -233,25 +249,25 @@ ${truncatedDom}
 """
 
 Instructions:
-1. Extract the exact show/event title (never a generic button like "Buy Tickets" or "General Admission" if a real title is present), venue_name, headliner artist, lineup array, calendar date (YYYY-MM-DD if possible), start_time (12-hour AM/PM e.g. "8:00 PM"), doors_time (12-hour AM/PM e.g. "7:00 PM"), end_time, and age_restriction.
-2. Extract ticket pricing tiers in CAD:
-   - Tier 1 MUST be the primary single-visit Adult / General Admission tier (never an optional add-on like club rental, and never $0 Child/Member if a paid Adult tier exists).
-   - Extract tier1_name, tier1_price_base, tier1_price_fee, tier1_price_tax, tier1_price_all_in, tier1_price_read, and verbatim tier1_quote.
-   - Also populate tier2_* and tier3_* if secondary/student/senior/early-bird tiers exist, and list all visible single-visit tiers in all_tiers.
+1. Extract the exact show/event title (never a generic button like "Buy Tickets" or "General Admission" if a real title is present), venue_name, calendar date (YYYY-MM-DD if possible), start_time (12-hour AM/PM e.g. "8:00 PM"), doors_time (12-hour AM/PM e.g. "7:00 PM"), end_time, and age_restriction.
+2. Extract ticket pricing tiers in CAD strictly from the rendered page/cart text above (never guess or fabricate prices if none are present in the text):
+   - Tier 1 MUST be the primary single-visit Adult / General Admission / lowest-priced reserved section tier <= $50.00 CAD (never an optional add-on like club rental, and never $0 Child/Member if a paid Adult tier exists).
+   - VSO / Tessitura Section Price Ranges: If the page displays section price ranges such as "Front Orchestra $32.00 to $110.00", "Back Orchestra $32.00 to $110.00", or "Back Balcony $32.00 to $70.00", extract the starting floor price of each section (e.g. $32.00, $40.50, $45.00) as a valid tier (e.g. name: "Back Balcony", price_base: 32.0, price_all_in: 32.0, quote: "Back Balcony $32.00 to $70.00").
+   - VSO / Chan Centre Fee Breakdown & STX Buttons: If buttons display "$46.67 ticket + $3.33 fees $50.00" or "STX-Adult $45.00 / STX-Senior $43.00 / STX-Studnt $40.50", extract the exact base, fee, and all-in total for Adult (Tier 1), Senior (Tier 2), and Student/Child (Tier 3).
+   - Museum/Gallery Admission & Starting Floors: If an exhibition/tour states "included with Gallery admission" alongside an official General Admission rate (e.g. "General Admission – Adult (19+): $29.00"), or a theatre show page states "Tickets from $39", extract that Adult / Starting Floor rate as Tier 1.
+   - Extract tier1_name, tier1_price_base, tier1_price_fee, tier1_price_tax, tier1_price_all_in, tier1_price_read, and verbatim tier1_quote. If no price is stated in the text, return null for the numeric price fields!
+   - Also populate tier2_* and tier3_* if secondary/student/senior/early-bird/section tiers exist, and list all visible single-visit tiers in all_tiers.
 3. Gate 4 Sold-Out Rule: Set is_sold_out to true ONLY if every eligible single-visit admission tier (<= $50 CAD) is sold out.
 
 Return ONLY a valid JSON object matching this exact structure (no markdown commentary):
 {
   "venue_name": "string",
   "title": "string",
-  "artist": "string or null",
-  "lineup": ["string"],
   "date": "YYYY-MM-DD or natural date",
   "doors_time": "7:00 PM or none_available",
   "start_time": "8:00 PM or none_available",
   "end_time": "10:30 PM or none_available",
   "age_restriction": "19+ or All Ages",
-  "category": "shows | comedy | music | arts | outdoors | culture | free-public-access",
   "ticket_provider": "Showpass | Eventbrite | Universe | Spektrix | Ticketmaster | Direct Box Office",
   "ticket_url": "${targetUrl}",
   "is_sold_out": false,
@@ -296,8 +312,7 @@ Return ONLY a valid JSON object matching this exact structure (no markdown comme
       "end_time": "none_available",
       "status": "upcoming"
     }
-  ],
-  "description": "2-sentence summary of the show"
+  ]
 }`;
 
   const evId = existingCard?.id || existingCard?.event_id || targetUrl;
@@ -322,14 +337,12 @@ export async function callAntigravityEnricher(eventCard) {
 
   const prompt = `You are a fresh 1-Event Van50 Cultural AI Enricher for Metro Vancouver cultural events under $50 CAD.
 Clean and enrich this single event record according to our high-fidelity publishing standards.
+IMPORTANT ANTI-LAZINESS RULE: Derive your classification, archetype, lifecycle, restrictions, and 2-sentence description strictly from the primary event title, venue, and live scraped page text below. Never echo generic placeholder categories or canned boilerplate.
 
 Input Event:
 - Title: "${eventCard.title || eventCard.event_name || ""}"
 - Venue: "${eventCard.venue || eventCard.venue_name || ""}"
-- Raw Description: "${(eventCard.description || "").slice(0, 2500)}"
-- Raw Category: "${eventCard.category || ""}"
-- Existing Lifecycle: "${eventCard.lifecycle_type || ""}"
-- Existing Restrictions: "${eventCard.restrictions || ""}"${curatorPrompt}
+- Primary Event Page Text: "${(eventCard.description || "").slice(0, 2800)}"${curatorPrompt}
 
 Requirements:
 1. "clean_title": Strip out all promotional artifacts, dates, times, buttons ("Tickets On Sale", "Apr 4", "MoreInfo->"), and ALL-CAPS shouting.

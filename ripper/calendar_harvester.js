@@ -8,6 +8,7 @@ import { logCuratorInfo, getCuratorInfo } from "./curator_display.js";
 import {
   isAntigravityEngine,
   getAntigravityModel,
+  formatLogTime,
   recordPipelineTimeoutEvent,
   printAntigravityTimeoutSummary,
   safeUpdateJsonFile,
@@ -123,20 +124,44 @@ export function getExistingCatalogLookup() {
     console.warn(`[WARN] Could not load curator_learned_rules.json for duplicate suppression: ${err.message}`);
   }
 
+  // 5. Already Harvested Schedule Layer (data/layers/layer_schedules.json)
+  const scheduledIds = new Set();
+  const scheduledUrls = new Set();
+  const SCHEDULES_LAYER_PATH = path.join(ROOT_DIR, "data", "layers", "layer_schedules.json");
+  try {
+    if (fs.existsSync(SCHEDULES_LAYER_PATH)) {
+      const sData = JSON.parse(fs.readFileSync(SCHEDULES_LAYER_PATH, "utf-8"));
+      const sList = Array.isArray(sData) ? sData : Object.values(sData || {});
+      for (const s of sList) {
+        if (s.id) scheduledIds.add(String(s.id).toLowerCase());
+        if (s.event_id) scheduledIds.add(String(s.event_id).toLowerCase());
+        [s.source_url, s.details_url, s.ticket_url].filter(Boolean).forEach((u) => {
+          const nu = normalizeUrl(u);
+          if (nu) scheduledUrls.add(nu);
+        });
+      }
+    }
+  } catch (err) {
+    console.warn(`[WARN] Could not load layer_schedules.json for duplicate suppression: ${err.message}`);
+  }
+
   const isNonEventPolicyPage = (title, url, detailsUrl) => {
     const rawTitle = (title || "").toLowerCase().trim();
     if (/^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|standard[- ]?pricing|concession[- ]?menu)$/i.test(rawTitle)) {
       return true;
     }
+    if (/\b(?:ticket\s+polic(?:y|ies)|single[- ]game\s+tickets|special\s+ticket\s+offers|general\s+ticketing(?:\s*&\s*show\s*access)?)\b/i.test(rawTitle)) {
+      return true;
+    }
     const checkUrls = [url, detailsUrl].filter(Boolean).map((u) => normalizeUrl(u));
     for (const cu of checkUrls) {
-      if (/\/(?:ticket-info|pricing|admission-rates|concession-menu)\b/i.test(cu)) return true;
-      if (cu.endsWith("/ticket-info") || cu.endsWith("/pricing") || cu.endsWith("/rates") || cu.endsWith("/concession-menu")) return true;
+      if (/\/(?:ticket-info|ticket-policies|pricing|admission-rates|concession-menu|support|corporate-giving|patrons-circle|major-gifts|tickets\/single-game-tickets|tickets\/special-offers|tickets\/season-tickets|tickets\/mini-plans|tickets\/group-tickets|series\/|education\/)\b/i.test(cu)) return true;
+      if (cu.endsWith("/ticket-info") || cu.endsWith("/ticket-policies") || cu.endsWith("/pricing") || cu.endsWith("/rates") || cu.endsWith("/concession-menu") || cu.includes("vancouversymphony.ca/series") || cu.includes("artsclub.com/education")) return true;
     }
     return false;
   };
 
-  const getUrlSuppressionReason = (u) => {
+  const getUrlSuppressionReason = (u, opts = {}) => {
     if (!u) return "Empty URL";
     const nu = normalizeUrl(u);
     if (!nu) return "Invalid URL";
@@ -148,14 +173,15 @@ export function getExistingCatalogLookup() {
     }
     if (activeUrls.has(nu)) return "Already Published in Active Catalog";
     if (quarantinedUrls.has(nu)) return "Already Staged in Manual Review Queue";
+    if (!opts.ignoreScheduled && scheduledUrls.has(nu)) return "Already Harvested in Stage 1A Schedule Layer";
     if (isNonEventPolicyPage("", u, "")) return "Non-Event Pricing / Policy Page Pattern";
     return null;
   };
 
-  const isUrlSuppressed = (u) => Boolean(getUrlSuppressionReason(u));
+  const isUrlSuppressed = (u, opts = {}) => Boolean(getUrlSuppressionReason(u, opts));
 
-  const knownIds = new Set([...activeIds, ...quarantinedIds, ...archivedIds]);
-  const knownUrls = new Set([...activeUrls, ...quarantinedUrls, ...archivedUrls]);
+  const knownIds = new Set([...activeIds, ...quarantinedIds, ...archivedIds, ...scheduledIds]);
+  const knownUrls = new Set([...activeUrls, ...quarantinedUrls, ...archivedUrls, ...scheduledUrls]);
   const knownTitles = activeTitles;
 
   return {
@@ -166,6 +192,8 @@ export function getExistingCatalogLookup() {
     quarantinedUrls,
     archivedIds,
     archivedUrls,
+    scheduledIds,
+    scheduledUrls,
     blacklistPatterns,
     knownIds,
     knownUrls,
@@ -190,7 +218,7 @@ export async function harvestCalendarLinks(calendarUrl) {
   let stagehand;
 
   try {
-    browser = await localBrowser.launch();
+    browser = await localBrowser.launch({ headless: true, args: ["--mute-audio"] });
     stagehand = await Stagehand.create({
       browser,
       model: {
@@ -212,8 +240,8 @@ export async function harvestCalendarLinks(calendarUrl) {
     // Extract event deep links using both DOM structural inspection (event cards, date badges, CTA buttons) and platform URL rules
     const links = await page.evaluate((origin, calendarUrl) => {
       const anchors = Array.from(document.querySelectorAll("a[href]"));
-      const eventRegex = /\/(?:events?|shows?|tickets?|schedule|performances?|screenings?|chooseseats|production|whats-on|whatson|season|concert|exhibition|program)\b/i;
-      const ignoreRegex = /\/(?:login|signup|cart|account|privacy|terms|contact|about|donate|donations?|ticket-donations?|gift-cards?|vouchers?|faq|volunteer|membership|merchandise|merch|shop|ticket-info|tickets-info|ticketinfo|pricing|admission-rates|rates|concession-menu|menus?|rentals?|private-events?|health-and-safety|house-rules|protocols|press|careers|staff|board|sponsors|accessibility|directions|parking)\b/i;
+      const eventRegex = /\/(?:events?|shows?|films?|tickets?|schedule|performances?|screenings?|chooseseats|production|whats-on|whatson|season|concert|exhibition|program)\b/i;
+      const ignoreRegex = /\/(?:login|signup|cart|basket|viewbasket|myaccount|account|privacy|terms|contact|about|donate|donations?|ticket-donations?|support|corporate-giving|patrons-circle|major-gifts|gift-cards?|vouchers?|faq|volunteer|membership|merchandise|merch|shop|ticket-info|tickets-info|ticketinfo|ticket-policies|pricing|admission-rates|rates|concession-menu|menus?|rentals?|private-events?|health-and-safety|house-rules|protocols|press|careers|staff|board|sponsors|accessibility|directions|parking|series|education)\b/i;
       const ctaTextRegex = /\b(?:buy\s+tickets?|get\s+tickets?|book\s+now|tickets?|reserve|more\s+info|event\s+details|view\s+event|view\s+show|learn\s+more|select\s+date)\b/i;
       const dateBadgeRegex = /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}\b|\b\d{1,2}:\d{2}\s*(?:am|pm)\b/i;
 
@@ -265,6 +293,9 @@ export async function harvestCalendarLinks(calendarUrl) {
           href.includes("purchase.theimprovcentre.ca/ChooseSeats") ||
           href.includes("vtixonline.com/") ||
           href.includes("admitone.com/") ||
+          href.includes("riotheatretickets.ca/events/") ||
+          href.includes("bloomtickets.ca/event/") ||
+          href.includes("humanitix.com/") ||
           href.includes("eventive.org/") ||
           href.includes("dice.fm/event/")
         ) {
@@ -468,7 +499,7 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
       }
 
       console.log(`\n────────────────────────────────────────────────────────────────`);
-      console.log(`⚡ Processing [${i + 1}/${targets.length}]: ${targetUrl}`);
+      console.log(`${formatLogTime()} ⚡ Processing [${i + 1}/${targets.length}]: ${targetUrl}`);
       console.log(`────────────────────────────────────────────────────────────────`);
 
       const itemStartMs = Date.now();
@@ -711,11 +742,36 @@ export async function runAllVenueFeedsBatch(options = {}) {
   feeds.sort((a, b) => scoreFeedPriority(b) - scoreFeedPriority(a));
 
   const maxTotalEvents = (options.maxEvents !== undefined && options.maxEvents !== null) ? Number(options.maxEvents) : 0;
+  const isResume = Boolean(options.resume);
+  const CHECKPOINT_PATH = path.join(ROOT_DIR, "data", "layers", "harvester_checkpoint.json");
+
+  let completedFeedUrls = new Set();
+  let startFeedIndex = 0;
+  let priorEventsHarvested = 0;
+
+  if (isResume && fs.existsSync(CHECKPOINT_PATH)) {
+    try {
+      const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
+      if (Array.isArray(cp.completed_feed_urls)) {
+        cp.completed_feed_urls.forEach((u) => completedFeedUrls.add(u));
+      }
+      if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length) {
+        startFeedIndex = cp.resume_from_index;
+      }
+      priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
+    } catch (cpErr) {
+      console.warn(`[WARN] Could not read harvester_checkpoint.json: ${cpErr.message}`);
+    }
+  }
+
   let totalHarvestedEvents = 0;
 
   console.log(`\n================================================================`);
-  console.log(`🌐 ALL VENUE FEEDS CALENDAR HARVESTER`);
+  console.log(`🌐 ALL VENUE FEEDS CALENDAR HARVESTER${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
   console.log(`📊 Prioritized ${feeds.length} venue feeds from venues.json`);
+  if (isResume && (startFeedIndex > 0 || completedFeedUrls.size > 0)) {
+    console.log(`⏩ [Resume Mode] Skipping ${completedFeedUrls.size} completed feeds — starting at Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
+  }
   if (maxTotalEvents > 0) {
     console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
   } else {
@@ -726,16 +782,37 @@ export async function runAllVenueFeedsBatch(options = {}) {
   const allResults = [];
 
   for (let i = 0; i < feeds.length; i++) {
+    const feed = feeds[i];
+    if (isResume && (i < startFeedIndex || completedFeedUrls.has(feed.url))) {
+      continue;
+    }
+
     if (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) {
       console.log(`\n🎯 REACHED TARGET LIMIT: Successfully harvested ${totalHarvestedEvents}/${maxTotalEvents} discrete events.`);
       break;
     }
 
-    const feed = feeds[i];
     const needed = maxTotalEvents > 0 ? (maxTotalEvents - totalHarvestedEvents) : 0;
 
+    // Persist checkpoint as we begin this feed so stopping mid-feed resumes right here
+    try {
+      await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
+        ...cp,
+        status: "running",
+        total_feeds: feeds.length,
+        completed_feeds_count: completedFeedUrls.size,
+        resume_from_index: i,
+        resume_from_feed_number: i + 1,
+        last_feed_name: feed.name,
+        last_feed_url: feed.url,
+        completed_feed_urls: Array.from(completedFeedUrls),
+        events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
+        updated_at: new Date().toISOString(),
+      }));
+    } catch (_) {}
+
     console.log(`\n────────────────────────────────────────────────────────────────`);
-    console.log(`🏛️ [${i + 1}/${feeds.length}] Venue Feed: ${feed.name}`);
+    console.log(`${formatLogTime()} 🏛️ [${i + 1}/${feeds.length}] Venue Feed: ${feed.name}`);
     console.log(`🎯 URL: ${feed.url}`);
     logCuratorInfo({ venue: feed.name, prefix: "   " });
     if (maxTotalEvents > 0) {
@@ -752,6 +829,27 @@ export async function runAllVenueFeedsBatch(options = {}) {
       if (succeededNew > 0) {
         console.log(`✨ [Feed Yield] Harvested ${succeededNew} NEW event(s) from ${feed.name} (${totalHarvestedEvents}/${maxTotalEvents} total target collected).`);
       }
+
+      // Mark feed completed if we weren't halted early by maxTotalEvents cap
+      if (!(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) {
+        completedFeedUrls.add(feed.url);
+      }
+      const nextIdx = (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) ? i : Math.min(feeds.length - 1, i + 1);
+      try {
+        await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
+          ...cp,
+          status: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? "completed" : "paused",
+          total_feeds: feeds.length,
+          completed_feeds_count: completedFeedUrls.size,
+          resume_from_index: nextIdx,
+          resume_from_feed_number: nextIdx + 1,
+          last_feed_name: feeds[nextIdx]?.name || feed.name,
+          last_feed_url: feeds[nextIdx]?.url || feed.url,
+          completed_feed_urls: Array.from(completedFeedUrls),
+          events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
+          updated_at: new Date().toISOString(),
+        }));
+      } catch (_) {}
     } catch (feedErr) {
       console.error(`❌ Error harvesting feed ${feed.name}: ${feedErr.message}`);
     }
@@ -781,19 +879,23 @@ export async function runAllVenueFeedsBatch(options = {}) {
 
 // CLI Entrypoint
 if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
-  let targetCal = process.argv[2];
-  const rawMax = process.argv[3];
+  const cliArgs = process.argv.slice(2);
+  const isResumeCli = cliArgs.includes("--resume");
+  const positional = cliArgs.filter((a) => !a.startsWith("--"));
+  let targetCal = positional[0];
+  const rawMax = positional[1];
   const max = (rawMax !== undefined && rawMax !== "") ? parseInt(rawMax, 10) : 0;
 
-  if (!targetCal || targetCal === "all" || targetCal.trim() === "") {
-    runAllVenueFeedsBatch({ maxEvents: max })
+  const isResumeTarget = targetCal === "all:resume" || isResumeCli;
+  if (!targetCal || targetCal === "all" || targetCal === "all:resume" || targetCal.trim() === "") {
+    runAllVenueFeedsBatch({ maxEvents: max, resume: isResumeTarget })
       .then(() => process.exit(0))
       .catch((err) => {
         console.error(`💥 All Feeds Harvester Error: ${err.message}`);
         process.exit(1);
       });
   } else {
-    runCalendarBatch(targetCal, { maxEvents: max })
+    runCalendarBatch(targetCal, { maxEvents: max, resume: isResumeCli })
       .then(() => process.exit(0))
       .catch((err) => {
         console.error(`💥 Batch Harvester Error: ${err.message}`);

@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { logCuratorInfo } from "./curator_display.js";
-import { isAntigravityEngine, getAntigravityModel, callAntigravityWorker, printAntigravityTimeoutSummary } from "./agy_engine.js";
+import { isAntigravityEngine, getAntigravityModel, formatLogTime, callAntigravityWorker, printAntigravityTimeoutSummary } from "./agy_engine.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,17 +46,21 @@ function matchVenue(venueQuery, venues) {
   if (!venueQuery || !Array.isArray(venues)) return null;
   const rawQuery = String(venueQuery).toLowerCase().trim();
   const cleanQuery = rawQuery.replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+  const isExplicitTestQuery = /^testvenue\b|^testy\b/i.test(rawQuery);
+  const candidateVenues = isExplicitTestQuery
+    ? venues
+    : venues.filter(v => !v?.is_test_canary && !/^testvenue\b/i.test(v?.venue_name || v?.name || "") && (v?.venue_name || v?.name || "") !== "none_available");
 
   // 1. Exact match
-  let matched = venues.find(v => (v.venue_name || v.name || "").toLowerCase().trim() === rawQuery);
+  let matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().trim() === rawQuery);
   if (matched) return matched;
 
   // 2. Clean query match (without parenthetical info / punctuation)
-  matched = venues.find(v => (v.venue_name || v.name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
+  matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
   // 3. Clean query containment (if sufficiently long)
-  matched = venues.find(v => {
+  matched = candidateVenues.find(v => {
     const vClean = (v.venue_name || v.name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     return vClean.length > 5 && (cleanQuery.includes(vClean) || vClean.includes(cleanQuery));
   });
@@ -78,7 +82,7 @@ function matchVenue(venueQuery, venues) {
   let bestMatch = null;
   let maxScore = 0;
 
-  for (const v of venues) {
+  for (const v of candidateVenues) {
     const vClean = (v.venue_name || v.name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter(t => t.length >= 3 && !commonStopwords.has(t)));
 
@@ -260,6 +264,70 @@ const KNOWN_PHYSICAL_GROUND_TRUTH = {
     meal_benchmark: "$8.00 – $12.00 CAD (gourmet grilled cheese sandwiches)",
     concession_benchmark: "$5.50 – $8.50 CAD (real butter popcorn, vegan candy, fountain pop)",
     restrictions: "All Ages / 19+ for licensed evening screenings (Two pieces of ID required)"
+  },
+  "fox cabaret": {
+    venue_name: "Fox Cabaret",
+    venue_type: "nightclub_lounge_cabaret",
+    website_url: "https://www.foxcabaret.com/",
+    calendar_url: "https://www.foxcabaret.com/monthly-calendar",
+    full_address: "2321 Main St, Vancouver, BC V5T 3C9",
+    neighborhood: "Mount Pleasant",
+    coordinates: [49.2642, -123.1011],
+    access_model: "ticketed_admission",
+    environment_type: "indoor",
+    transit_info: "Main Street-Science World SkyTrain + #3 Main bus to E 7th Ave (steps from Broadway & Main)",
+    description: "Mount Pleasant's premier independent live music, comedy, cabaret, and dance club housed in a revitalized 1970s cinema.",
+    step_free_entrance: "Street-level main entrance at 2321 Main St; main showroom floor accessible",
+    elevator_lift: "No passenger elevator to upstairs Projection Room",
+    accessible_washrooms: "Accessible washroom available on the main cabaret level",
+    sensory_calibrations: "High-energy concert and club sound system with dynamic stage and strobe lighting",
+    hearing_loop: "none_available",
+    service_animals: "Certified guide and service animals permitted",
+    access_parking: "Metered street parking on Main St and side streets along 7th/8th Ave",
+    access_seating: "Mix of cabaret tables, tiered booths, and standing dance floor depending on show format",
+    on_site_fnb: "Full-service bars on main floor and Projection Room serving craft beer, cocktails, wine, and zero-proof options",
+    outside_food_policy: "No outside food or beverages permitted inside venue",
+    water_refill_station: "Free tap water station available at the bar",
+    coat_check: "Seasonal coat check available at entrance ($4.00 – $5.00 CAD)",
+    payment_methods: "Credit, Debit & Tap accepted at box office and bars",
+    beer_benchmark: "$8.50 – $10.50 CAD (local craft beer / tallboy)",
+    cocktail_benchmark: "$11.00 – $15.00 CAD (house highball / signature cocktail)",
+    coffee_benchmark: null,
+    meal_benchmark: null,
+    concession_benchmark: "$4.00 – $6.00 CAD (bar snacks / non-alcoholic sodas)",
+    restrictions: "Strictly 19+ (Two pieces of valid ID required)"
+  },
+  "the fox cabaret": {
+    venue_name: "Fox Cabaret",
+    venue_type: "nightclub_lounge_cabaret",
+    website_url: "https://www.foxcabaret.com/",
+    calendar_url: "https://www.foxcabaret.com/monthly-calendar",
+    full_address: "2321 Main St, Vancouver, BC V5T 3C9",
+    neighborhood: "Mount Pleasant",
+    coordinates: [49.2642, -123.1011],
+    access_model: "ticketed_admission",
+    environment_type: "indoor",
+    transit_info: "Main Street-Science World SkyTrain + #3 Main bus to E 7th Ave (steps from Broadway & Main)",
+    description: "Mount Pleasant's premier independent live music, comedy, cabaret, and dance club housed in a revitalized 1970s cinema.",
+    step_free_entrance: "Street-level main entrance at 2321 Main St; main showroom floor accessible",
+    elevator_lift: "No passenger elevator to upstairs Projection Room",
+    accessible_washrooms: "Accessible washroom available on the main cabaret level",
+    sensory_calibrations: "High-energy concert and club sound system with dynamic stage and strobe lighting",
+    hearing_loop: "none_available",
+    service_animals: "Certified guide and service animals permitted",
+    access_parking: "Metered street parking on Main St and side streets along 7th/8th Ave",
+    access_seating: "Mix of cabaret tables, tiered booths, and standing dance floor depending on show format",
+    on_site_fnb: "Full-service bars on main floor and Projection Room serving craft beer, cocktails, wine, and zero-proof options",
+    outside_food_policy: "No outside food or beverages permitted inside venue",
+    water_refill_station: "Free tap water station available at the bar",
+    coat_check: "Seasonal coat check available at entrance ($4.00 – $5.00 CAD)",
+    payment_methods: "Credit, Debit & Tap accepted at box office and bars",
+    beer_benchmark: "$8.50 – $10.50 CAD (local craft beer / tallboy)",
+    cocktail_benchmark: "$11.00 – $15.00 CAD (house highball / signature cocktail)",
+    coffee_benchmark: null,
+    meal_benchmark: null,
+    concession_benchmark: "$4.00 – $6.00 CAD (bar snacks / non-alcoholic sodas)",
+    restrictions: "Strictly 19+ (Two pieces of valid ID required)"
   },
   "stanley park pitch & putt": {
     venue_name: "Stanley Park Pitch & Putt",
@@ -494,16 +562,20 @@ async function fetchLiveVenueDetails(venueName, existingVenue = {}) {
         }
       }
     }
-  } catch (_) {}
+  } catch (_) { }
 
-  // 2. Postal Code & Street Address Regex Extraction
+  // 2. Postal Code & Street Address Regex Extraction (Requires whitespace before street suffix and rejects prose/year false positives)
   if (!details.full_address) {
     const postalMatch = html.match(/\b([A-Z]\d[A-Z]\s*\d[A-Z]\d)\b/i);
-    const streetMatch = html.match(/\b(\d{2,5}\s+[A-Za-z0-9\s.]+?(?:Street|St|Avenue|Ave|Boulevard|Blvd|Drive|Dr|Place|Pl|Way|Lane|Broadway|Highway)\b(?:\s*,\s*(?:Vancouver|Burnaby|Richmond|North Vancouver|West Vancouver|New Westminster|Surrey|Coquitlam|Port Moody))?)/i);
-    if (streetMatch && postalMatch) {
-      details.full_address = `${streetMatch[1].trim()}, Vancouver, BC ${postalMatch[1].toUpperCase().trim()}`;
-    } else if (streetMatch) {
-      details.full_address = `${streetMatch[1].trim()}, Vancouver, BC`;
+    const streetMatch = html.match(/\b(\d{1,5}\s+(?:[NSEW]\.?\s+)?[A-Z0-9][A-Za-z0-9.]{1,24}(?:\s+[A-Z0-9][A-Za-z0-9.]{1,24}){0,2}\s+(?:Street|St|Avenue|Ave|Boulevard|Blvd|Drive|Dr|Place|Pl|Way|Lane|Broadway|Highway)\b(?:\s*,\s*(?:Vancouver|Burnaby|Richmond|North Vancouver|West Vancouver|New Westminster|Surrey|Coquitlam|Port Moody))?)/);
+    const candidateStreet = streetMatch ? streetMatch[1].trim() : "";
+    const isProseYearFalsePositive = /^(?:19\d\d|20\d\d)\s+(?:classic|film|movie|show|tour|festival|annual|edition|season|winner|award)/i.test(candidateStreet);
+    if (candidateStreet && !isProseYearFalsePositive) {
+      if (postalMatch) {
+        details.full_address = `${candidateStreet}, Vancouver, BC ${postalMatch[1].toUpperCase().trim()}`;
+      } else {
+        details.full_address = `${candidateStreet}, Vancouver, BC`;
+      }
     }
   }
 
@@ -550,13 +622,13 @@ function applyVenueFallbackHeuristics(venue) {
   // 1. Detect Venue Type Archetype
   if (!v.venue_type) {
     if (desc.includes("park") || desc.includes("beach") || desc.includes("trail") || desc.includes("seawall") ||
-        nm.includes("park") || nm.includes("beach") || nm.includes("seawall") || nm.includes("canyon") || nm.includes("point")) {
+      nm.includes("park") || nm.includes("beach") || nm.includes("seawall") || nm.includes("canyon") || nm.includes("point")) {
       v.venue_type = "park_beach_outdoor";
     } else if (nm.includes("theatre") || nm.includes("theater") || nm.includes("cinema") || nm.includes("playhouse") ||
-               nm.includes("auditorium") || nm.includes("hall") || desc.includes("theatre") || desc.includes("cinema")) {
+      nm.includes("auditorium") || nm.includes("hall") || desc.includes("theatre") || desc.includes("cinema")) {
       v.venue_type = "theatre_cinema_auditorium";
     } else if (nm.includes("bar") || nm.includes("pub") || nm.includes("cabaret") || nm.includes("lounge") ||
-               nm.includes("club") || nm.includes("tavern") || nm.includes("brewery")) {
+      nm.includes("club") || nm.includes("tavern") || nm.includes("brewery")) {
       v.venue_type = "bar_club_music_lounge";
     } else if (nm.includes("gallery") || nm.includes("museum") || nm.includes("exhibition") || desc.includes("gallery") || desc.includes("museum")) {
       v.venue_type = "gallery_museum_exhibition";
@@ -959,12 +1031,16 @@ export async function runVenueDetailer(options = {}) {
     : (options.id ? String(options.id).split(",").map(s => s.trim()).filter(Boolean) : null);
   let isAll = Boolean(options.all);
   let isQuarantine = Boolean(options.quarantine || options.quarantined);
+  let isHarvestedOnly = Boolean(options.harvestedOnly || options.scope === "harvested");
+  let offset = options.offset || 0;
   let venuesOnly = Boolean(options.venuesOnly);
   let cardsOnly = Boolean(options.cardsOnly);
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) {
       limit = parseInt(args[++i], 10);
+    } else if (args[i] === "--offset" && args[i + 1]) {
+      offset = parseInt(args[++i], 10);
     } else if (args[i] === "--all") {
       isAll = true;
     } else if ((args[i] === "--ids" || args[i] === "--id") && args[i + 1]) {
@@ -979,10 +1055,86 @@ export async function runVenueDetailer(options = {}) {
       targetVenueName = args[i].split("=").slice(1).join("=");
     } else if (args[i] === "--quarantine" || args[i] === "--quarantined") {
       isQuarantine = true;
+    } else if (args[i] === "--harvested" || args[i] === "--harvested-only") {
+      isHarvestedOnly = true;
     } else if (args[i] === "--venues-only") {
       venuesOnly = true;
     } else if (args[i] === "--cards-only") {
       cardsOnly = true;
+    }
+  }
+
+  const SCHED_LAYER_PATH = path.join(DATA_DIR, "layers", "layer_schedules.json");
+  const BOX_LAYER_PATH = path.join(DATA_DIR, "layers", "layer_box_office.json");
+  const ED_LAYER_PATH = path.join(DATA_DIR, "layers", "layer_editorial.json");
+  const todayIso = new Date().toISOString().split("T")[0];
+  const publishedIds = new Set();
+  const boxAuditedIds = new Set();
+  const edIds = new Set();
+  const edGroundedIds = new Set();
+
+  if (fs.existsSync(EVENTS_PATH)) {
+    try {
+      const evs = JSON.parse(fs.readFileSync(EVENTS_PATH, "utf-8"));
+      (Array.isArray(evs) ? evs : []).forEach((e) => {
+        const eid = String(e.id || e.event_id || "").toLowerCase();
+        if (eid) publishedIds.add(eid);
+      });
+    } catch (_) { }
+  }
+  if (fs.existsSync(BOX_LAYER_PATH)) {
+    try {
+      const boxes = JSON.parse(fs.readFileSync(BOX_LAYER_PATH, "utf-8"));
+      (Array.isArray(boxes) ? boxes : []).forEach((b) => {
+        const bid = String(b.id || b.event_id || "").toLowerCase();
+        if (bid && b.status !== "TIMEOUT_EXCEEDED" && b.status !== "AI_TIMEOUT" && b.status !== "EXECUTION_ERROR") {
+          boxAuditedIds.add(bid);
+        }
+      });
+    } catch (_) { }
+  }
+  if (fs.existsSync(ED_LAYER_PATH)) {
+    try {
+      const eds = JSON.parse(fs.readFileSync(ED_LAYER_PATH, "utf-8"));
+      (Array.isArray(eds) ? eds : []).forEach((e) => {
+        const eid = String(e.id || e.event_id || "").toLowerCase();
+        if (eid && e.clean_title && e.description && e.source_engine !== "heuristic_rules" && e.source_engine !== "unverified") {
+          edIds.add(eid);
+          if (e.step4_grounded_at) edGroundedIds.add(eid);
+        }
+      });
+    } catch (_) { }
+  }
+
+  if (isHarvestedOnly && (!targetIds || targetIds.length === 0)) {
+    if (fs.existsSync(SCHED_LAYER_PATH)) {
+      try {
+        const schedData = JSON.parse(fs.readFileSync(SCHED_LAYER_PATH, "utf-8"));
+        // Strict Stage 4 Gate: Uncompiled events MUST complete Stage 1B + Stage 2 + Stage 3 before Stage 4
+        const doneEdUncomp = (Array.isArray(schedData) ? schedData : []).filter((s) => {
+          const sid = String(s.id || s.event_id || "").toLowerCase();
+          const u = String(s.ticket_url || s.details_url || "").toLowerCase();
+          if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return false;
+          if (s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date < todayIso && s.lifecycle_type !== "perennial_drop_in") return false;
+          return sid && !publishedIds.has(sid) && Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid) && edIds.has(sid);
+        });
+        let uncomp = doneEdUncomp;
+        const pendingStage4 = uncomp.filter((s) => {
+          const sid = String(s.id || s.event_id || "").toLowerCase();
+          return !s.step4_grounded_at && !edGroundedIds.has(sid);
+        });
+        if (!isAll && !options.force) {
+          uncomp = pendingStage4;
+        }
+        if (offset > 0) uncomp = uncomp.slice(offset);
+        if (limit > 0 && !isAll) uncomp = uncomp.slice(0, limit);
+        targetIds = uncomp.map((s) => s.id || s.event_id).filter(Boolean);
+      } catch (_) { }
+    }
+    if (!targetIds || targetIds.length === 0) {
+      console.log("✅ [Stage 4 Venue Detailer] 0 Stage 3-completed events queued for Stage 4 grounding (events cannot skip Stages 1B, 2, or 3).");
+      console.log("🎯 Targets Queued for Audit: 0 events");
+      return { venuesGroundedCount: 0, cardsGroundedCount: 0, inBoundsCount: 0 };
     }
   }
 
@@ -1003,11 +1155,24 @@ export async function runVenueDetailer(options = {}) {
     }
   }
 
-  // Ensure known ground truth venues exist in venues.json
+  // Ensure known ground truth venues exist in venues.json and deduplicate any existing duplicates
+  const seenVenueNames = new Set();
+  venues = venues.filter((v) => {
+    const vn = (v.venue_name || v.name || "").toLowerCase().trim();
+    if (!vn || seenVenueNames.has(vn)) return false;
+    seenVenueNames.add(vn);
+    return true;
+  });
+
   for (const [key, data] of Object.entries(KNOWN_PHYSICAL_GROUND_TRUTH)) {
-    const exists = venues.some(v => (v.venue_name || v.name || "").toLowerCase() === key);
+    const canonicalName = (data.venue_name || "").toLowerCase().trim();
+    const exists = venues.some((v) => {
+      const vn = (v.venue_name || v.name || "").toLowerCase().trim();
+      return vn === key || (canonicalName && vn === canonicalName);
+    });
     if (!exists) {
       venues.push({ ...data, last_grounded_at: nowIso, grounding_source: "known_physical_ground_truth" });
+      seenVenueNames.add(canonicalName || key);
       console.log(`➕ Auto-registered known civic facility: "${data.venue_name}" into Facility DB.`);
     }
   }
@@ -1042,30 +1207,35 @@ export async function runVenueDetailer(options = {}) {
     }
   } else if (targetIds && targetIds.length > 0) {
     // Scope venues associated with the specified event IDs
-    const targetCardsPath = isQuarantine ? QUEUE_PATH : EVENTS_PATH;
     const allCheckCards = [];
-    if (fs.existsSync(targetCardsPath)) {
+    if (fs.existsSync(EVENTS_PATH)) {
       try {
-        const rawData = JSON.parse(fs.readFileSync(targetCardsPath, "utf-8"));
-        allCheckCards.push(...(isQuarantine ? (rawData.quarantinedEvents || []) : (Array.isArray(rawData) ? rawData : (rawData.events || []))));
-      } catch (_) {}
+        const rawData = JSON.parse(fs.readFileSync(EVENTS_PATH, "utf-8"));
+        allCheckCards.push(...(Array.isArray(rawData) ? rawData : (rawData.events || [])));
+      } catch (_) { }
     }
-    const SCHED_PATH = path.join(DATA_DIR, "layers", "layer_schedules.json");
-    if (fs.existsSync(SCHED_PATH)) {
+    if (fs.existsSync(QUEUE_PATH)) {
       try {
-        const schedData = JSON.parse(fs.readFileSync(SCHED_PATH, "utf-8"));
-        if (Array.isArray(schedData)) allCheckCards.push(...schedData);
-      } catch (_) {}
+        const qData = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf-8"));
+        allCheckCards.push(...(qData.quarantinedEvents || qData.items || []));
+      } catch (_) { }
     }
-    const SEEDS_PATH = path.join(DATA_DIR, "seeds.json");
-    if (fs.existsSync(SEEDS_PATH)) {
+    const idSet = new Set(targetIds.map(id => id.toLowerCase()));
+    if (fs.existsSync(SCHED_LAYER_PATH)) {
       try {
-        const seedsData = JSON.parse(fs.readFileSync(SEEDS_PATH, "utf-8"));
-        if (Array.isArray(seedsData)) allCheckCards.push(...seedsData);
-      } catch (_) {}
+        const schedData = JSON.parse(fs.readFileSync(SCHED_LAYER_PATH, "utf-8"));
+        // Allow explicitly targeted IDs or uncompiled schedule cards that completed Stages 1B, 2, and 3
+        if (Array.isArray(schedData)) {
+          schedData.forEach((s) => {
+            const sid = String(s.id || s.event_id || "").toLowerCase();
+            if (sid && (idSet.has(sid) || (Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid) && edIds.has(sid)))) {
+              allCheckCards.push(s);
+            }
+          });
+        }
+      } catch (_) { }
     }
 
-    const idSet = new Set(targetIds.map(id => id.toLowerCase()));
     const matchedCards = allCheckCards.filter(c => idSet.has((c.id || c.event_id || "").toLowerCase()));
     for (const card of matchedCards) {
       const rawVName = (card.venue || card.venue_name || "").trim();
@@ -1120,7 +1290,7 @@ export async function runVenueDetailer(options = {}) {
   for (const idx of targetVenueIndices) {
     const currentVenue = venues[idx];
     const vName = currentVenue.venue_name || currentVenue.name;
-    console.log(`\n🏢 [${venuesGroundedCount + 1}/${targetVenueIndices.length}] Grounding Facility: "${vName}"`);
+    console.log(`\n${formatLogTime()} 🏢 [${venuesGroundedCount + 1}/${targetVenueIndices.length}] Grounding Facility: "${vName}"`);
     logCuratorInfo({ venue: vName, prefix: "   " });
     console.log(`[VENUE #${venuesGroundedCount + 1}] Processing "${vName}"...`);
     venues[idx] = await groundVenueRecord(currentVenue, { useAi: true });
@@ -1174,7 +1344,34 @@ export async function runVenueDetailer(options = {}) {
   let targetCards = [];
   if (targetIds && targetIds.length > 0) {
     const idSet = new Set(targetIds.map(id => id.toLowerCase()));
-    targetCards = eventCards.filter(c => idSet.has((c.id || c.event_id || "").toLowerCase()));
+    const combinedCards = [...eventCards];
+    const seenCardIds = new Set(eventCards.map(c => String(c.id || c.event_id || "").toLowerCase()));
+    if (!isQuarantine && fs.existsSync(QUEUE_PATH)) {
+      try {
+        const qData = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf-8"));
+        (qData.quarantinedEvents || qData.items || []).forEach((q) => {
+          const qid = String(q.id || q.event_id || "").toLowerCase();
+          if (qid && !seenCardIds.has(qid)) {
+            combinedCards.push(q);
+            seenCardIds.add(qid);
+          }
+        });
+      } catch (_) { }
+    }
+    if (fs.existsSync(SCHED_LAYER_PATH)) {
+      try {
+        const schedData = JSON.parse(fs.readFileSync(SCHED_LAYER_PATH, "utf-8"));
+        // Allow explicitly targeted IDs or uncompiled schedule cards that completed Stages 1B, 2, and 3
+        (Array.isArray(schedData) ? schedData : []).forEach((s) => {
+          const sid = String(s.id || s.event_id || "").toLowerCase();
+          if (sid && !seenCardIds.has(sid) && (idSet.has(sid) || (Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid) && edIds.has(sid)))) {
+            combinedCards.push(s);
+            seenCardIds.add(sid);
+          }
+        });
+      } catch (_) { }
+    }
+    targetCards = combinedCards.filter(c => idSet.has((c.id || c.event_id || "").toLowerCase()));
     if (targetCards.length === 0) {
       const numIndices = targetIds.map(id => parseInt(id, 10)).filter(n => !isNaN(n) && n > 0);
       if (numIndices.length > 0) {
@@ -1203,7 +1400,7 @@ export async function runVenueDetailer(options = {}) {
     const venueName = card.venue || card.venue_name || "Unknown Venue";
 
     console.log(`\n⚡ [${idx + 1}/${targetCards.length}] Auditing Facility: "${venueName}"`);
-    console.log(`📌 Processing [${idx + 1}/${targetCards.length}]: ${cardTitle} (${venueName}) [${cardId}]`);
+    console.log(`${formatLogTime()} 📌 Processing [${idx + 1}/${targetCards.length}]: ${cardTitle} (${venueName}) [${cardId}]`);
     console.log(`[EVENT #${idx + 1}] Processing ${cardTitle} @ ${venueName}...`);
     logCuratorInfo({ eventId: cardId, title: cardTitle, venue: venueName, existingCard: card, prefix: "   " });
 
@@ -1225,6 +1422,45 @@ export async function runVenueDetailer(options = {}) {
     console.log(`Committed updated event (${cardId})`);
 
     cardsGroundedCount++;
+  }
+
+  // Stamp step4_grounded_at onto layer_schedules.json and layer_editorial.json for grounded targetCards
+  if (targetCards.length > 0) {
+    const groundedIdSet = new Set(targetCards.map(c => String(c.id || c.event_id || "").toLowerCase()).filter(Boolean));
+    const SCHED_PATH = path.join(DATA_DIR, "layers", "layer_schedules.json");
+    const ED_PATH = path.join(DATA_DIR, "layers", "layer_editorial.json");
+    if (fs.existsSync(SCHED_PATH)) {
+      try {
+        const schedData = JSON.parse(fs.readFileSync(SCHED_PATH, "utf-8"));
+        if (Array.isArray(schedData)) {
+          let schedChanged = false;
+          schedData.forEach((s) => {
+            const sid = String(s.id || s.event_id || "").toLowerCase();
+            if (sid && groundedIdSet.has(sid)) {
+              s.step4_grounded_at = nowIso;
+              schedChanged = true;
+            }
+          });
+          if (schedChanged) fs.writeFileSync(SCHED_PATH, JSON.stringify(schedData, null, 2), "utf-8");
+        }
+      } catch (_) { }
+    }
+    if (fs.existsSync(ED_PATH)) {
+      try {
+        const edData = JSON.parse(fs.readFileSync(ED_PATH, "utf-8"));
+        if (Array.isArray(edData)) {
+          let edChanged = false;
+          edData.forEach((e) => {
+            const eid = String(e.id || e.event_id || "").toLowerCase();
+            if (eid && groundedIdSet.has(eid)) {
+              e.step4_grounded_at = nowIso;
+              edChanged = true;
+            }
+          });
+          if (edChanged) fs.writeFileSync(ED_PATH, JSON.stringify(edData, null, 2), "utf-8");
+        }
+      } catch (_) { }
+    }
   }
 
   // Layer Isolation Invariant (D801 SRSA):

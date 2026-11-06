@@ -7,7 +7,7 @@ if (_tokenParam) {
   try {
     sessionStorage.setItem('van50_curator_token', _tokenParam);
     localStorage.setItem('van50_curator_token', _tokenParam);
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function getCatalogDimensionsCount() {
@@ -119,11 +119,11 @@ function getEventExternalUrl(ev) {
     if (typeof raw === 'string') {
       const trimmed = raw.trim();
       if (
-        trimmed && 
-        trimmed !== '#' && 
-        trimmed !== 'undefined' && 
-        trimmed !== 'null' && 
-        trimmed !== 'Direct' && 
+        trimmed &&
+        trimmed !== '#' &&
+        trimmed !== 'undefined' &&
+        trimmed !== 'null' &&
+        trimmed !== 'Direct' &&
         !trimmed.startsWith('javascript:')
       ) {
         return trimmed;
@@ -147,10 +147,10 @@ function getVenueExternalUrl(v) {
     if (typeof raw === 'string') {
       const trimmed = raw.trim();
       if (
-        trimmed && 
-        trimmed !== '#' && 
-        trimmed !== 'undefined' && 
-        trimmed !== 'null' && 
+        trimmed &&
+        trimmed !== '#' &&
+        trimmed !== 'undefined' &&
+        trimmed !== 'null' &&
         !trimmed.startsWith('javascript:')
       ) {
         return trimmed;
@@ -169,9 +169,9 @@ function getEventCardNumber(ev, fallbackIndex = null) {
   if (ev.cardNumber != null) return ev.cardNumber;
   if (ev.card_slot != null) return ev.card_slot;
   if (ev.cardIndex != null) return ev.cardIndex;
-  
-  const allEvs = (state.allEvents && state.allEvents.length > 0) 
-    ? state.allEvents 
+
+  const allEvs = (state.allEvents && state.allEvents.length > 0)
+    ? state.allEvents
     : (state.masterCatalogsData?.events_active || []);
   if (allEvs && allEvs.length > 0) {
     const evId = ev.id || ev.event_id;
@@ -179,7 +179,7 @@ function getEventCardNumber(ev, fallbackIndex = null) {
     const idx = allEvs.findIndex(e => (e.id || e.event_id) === evId || (e.title || e.event_name || '').toLowerCase().trim() === evTitle);
     if (idx >= 0) return idx + 1;
   }
-  
+
   return fallbackIndex != null ? (fallbackIndex + 1) : '?';
 }
 
@@ -283,7 +283,7 @@ if (document.readyState === 'loading') {
 
 async function checkAuthAndInitialize(retryCount = 0) {
   const loginModal = document.getElementById('login-modal-overlay');
-  
+
   if (!state.token) {
     state.token = sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token');
   }
@@ -302,8 +302,8 @@ async function checkAuthAndInitialize(retryCount = 0) {
       const data = await res.json();
       if (data.authenticated) {
         // Keep both storage engines synchronized with the valid token
-        try { sessionStorage.setItem('van50_curator_token', state.token); } catch (_) {}
-        try { localStorage.setItem('van50_curator_token', state.token); } catch (_) {}
+        try { sessionStorage.setItem('van50_curator_token', state.token); } catch (_) { }
+        try { localStorage.setItem('van50_curator_token', state.token); } catch (_) { }
         if (loginModal) loginModal.classList.remove('active');
         if (data.knownVenues) {
           state.knownVenues = new Set(data.knownVenues.map(v => v.toLowerCase()));
@@ -357,8 +357,8 @@ async function handleLoginSubmit(e) {
 
     if (res.ok && data.success && data.token) {
       state.token = data.token;
-      try { sessionStorage.setItem('van50_curator_token', data.token); } catch (_) {}
-      try { localStorage.setItem('van50_curator_token', data.token); } catch (_) {}
+      try { sessionStorage.setItem('van50_curator_token', data.token); } catch (_) { }
+      try { localStorage.setItem('van50_curator_token', data.token); } catch (_) { }
       passwordField.value = '';
       if (errorBanner) errorBanner.classList.remove('active');
       if (loginModal) loginModal.classList.remove('active');
@@ -667,6 +667,10 @@ function updateFilterCounts() {
   const statA = document.getElementById('stat-audit-count');
   if (statA) statA.textContent = pendingFestHolCount;
 
+  if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
+    window.syncHarvesterCheckpointAndEventsUI();
+  }
+
   // Auto-prompt banner for candidate sources
   checkAndPromptCandidateSources();
 }
@@ -857,7 +861,7 @@ function formatCuratorDate(ev) {
       const dateStr = d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
       const timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
       return `${dateStr} • ${timeStr}`;
-    } catch (e) {}
+    } catch (e) { }
   }
   if (ev.frequencyLabel) {
     return formatScheduleText12h(ev.frequencyLabel);
@@ -904,8 +908,8 @@ function simplifyQuarantineReason(reason, attemptedPrice = null) {
 
 function renderCardScreenshotThumbnails(inst) {
   if (!inst) return '';
-  const paths = (inst.screenshotPaths && inst.screenshotPaths.length) 
-    ? inst.screenshotPaths 
+  const paths = (inst.screenshotPaths && inst.screenshotPaths.length)
+    ? inst.screenshotPaths
     : (inst.screenshotPath ? [inst.screenshotPath] : []);
   if (!paths.length) return '';
   return `
@@ -913,8 +917,8 @@ function renderCardScreenshotThumbnails(inst) {
       <span style="font-size: 0.78rem; font-weight: 600; color: #d8b4fe;">🖼️ ${paths.length} Screenshot${paths.length > 1 ? 's' : ''} Attached:</span>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         ${paths.map((p, idx) => `
-          <a href="${p}" target="_blank" rel="noopener noreferrer" title="Click to view full-size screenshot proof #${idx+1}" style="display: inline-block; text-decoration: none;">
-            <img src="${p}" alt="Screenshot #${idx+1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
+          <a href="${p}" target="_blank" rel="noopener noreferrer" title="Click to view full-size screenshot proof #${idx + 1}" style="display: inline-block; text-decoration: none;">
+            <img src="${p}" alt="Screenshot #${idx + 1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
           </a>
         `).join('')}
       </div>
@@ -928,7 +932,7 @@ function renderCardAiLearnedSummary(ev, inst = null) {
   const effectiveInst = inst || ev.queuedInstruction || {};
   const learnedText = annot.aiLearnedSummary || effectiveInst.aiLearnedSummary || '';
   if (!learnedText) return '';
-  
+
   const tiers = annot.extractedTiers || effectiveInst.extractedTiers || [];
   let tiersHtml = '';
   if (tiers && tiers.length > 0) {
@@ -961,22 +965,22 @@ function renderCardAiLearnedSummary(ev, inst = null) {
 
 function evaluateCuratorDateStatus(ev) {
   const rawDateStr = formatCuratorDate(ev);
-  const isDateMissing = !rawDateStr || 
-                        rawDateStr === 'Schedule details pending review' || 
-                        (!ev.dateSchedule && !ev.startIso && (!ev.daysOfWeek || !ev.daysOfWeek.length) && !ev.isDaily);
-  
+  const isDateMissing = !rawDateStr ||
+    rawDateStr === 'Schedule details pending review' ||
+    (!ev.dateSchedule && !ev.startIso && (!ev.daysOfWeek || !ev.daysOfWeek.length) && !ev.isDaily);
+
   const reason = ev.quarantineReason || ev.flagReason || ev.archivedReason || '';
   const reasonText = [reason, ev.quarantineReason, ev.flagReason, ev.archivedReason].filter(Boolean).join(' ').toLowerCase();
-  
-  const isScheduleFlagged = reasonText.includes('schedule') || 
-                            reasonText.includes('ended') || 
-                            reasonText.includes('expired') || 
-                            reasonText.includes('past date') || 
-                            reasonText.includes('schedule drift') || 
-                            reasonText.includes('drift') ||
-                            reasonText.includes('generic catalog index') || 
-                            reasonText.includes('generic link') || 
-                            reasonText.includes('bare root');
+
+  const isScheduleFlagged = reasonText.includes('schedule') ||
+    reasonText.includes('ended') ||
+    reasonText.includes('expired') ||
+    reasonText.includes('past date') ||
+    reasonText.includes('schedule drift') ||
+    reasonText.includes('drift') ||
+    reasonText.includes('generic catalog index') ||
+    reasonText.includes('generic link') ||
+    reasonText.includes('bare root');
 
   let isDatePast = false;
   try {
@@ -997,7 +1001,7 @@ function evaluateCuratorDateStatus(ev) {
         isDatePast = true;
       }
     }
-  } catch (e) {}
+  } catch (e) { }
 
   const isUnconfirmed = isDateMissing || isScheduleFlagged || isDatePast;
 
@@ -1102,24 +1106,24 @@ function formatTicketTiersHtml(ev) {
       </span>
       <div class="curator-ticket-tier-row">
         ${tiers.map(t => {
-          let extraClass = '';
-          let badge = '';
-          if (t.isSoldOut) {
-            extraClass = ' tier-sold-out';
-            badge = ' <span class="tier-status-pill badge-sold-out">Sold Out</span>';
-          } else if (t.isExpired) {
-            extraClass = ' tier-expired';
-            badge = ' <span class="tier-status-pill badge-ended">Ended</span>';
-          } else if (t.isDoor) {
-            extraClass = ' tier-door';
-            badge = ' <span class="tier-status-pill badge-door">Door</span>';
-          }
-          return `
+    let extraClass = '';
+    let badge = '';
+    if (t.isSoldOut) {
+      extraClass = ' tier-sold-out';
+      badge = ' <span class="tier-status-pill badge-sold-out">Sold Out</span>';
+    } else if (t.isExpired) {
+      extraClass = ' tier-expired';
+      badge = ' <span class="tier-status-pill badge-ended">Ended</span>';
+    } else if (t.isDoor) {
+      extraClass = ' tier-door';
+      badge = ' <span class="tier-status-pill badge-door">Door</span>';
+    }
+    return `
             <span class="curator-ticket-tier-chip ${t.isFree ? 'tier-free' : (t.isPrimary ? 'tier-primary' : 'tier-alt')}${extraClass}">
               <span>${escapeHtml(t.name)}:</span> <strong>${escapeHtml(t.priceStr)}</strong>${badge}
             </span>
           `;
-        }).join('')}
+  }).join('')}
       </div>
     </div>
   `;
@@ -1142,15 +1146,15 @@ function generateCuratorDiagnostics(ev) {
   if (!dateStatus.isUnconfirmed) {
     confirmedItems.push(dateStatus.diagnosticHtml);
   }
-  
+
   if (ev.address) {
     confirmedItems.push(`<span>🗺️ <strong>Address:</strong> ${escapeHtml(ev.address)}</span>`);
   }
-  
+
   if (ev.artist && ev.artist !== ev.title) {
     confirmedItems.push(`<span>👥 <strong>Lineup / Host:</strong> ${escapeHtml(ev.artist)}</span>`);
   }
-  
+
   const verifiedPrice = (ev.basePrice != null && ev.basePrice > 0) ? `$${Number(ev.basePrice).toFixed(2)} CAD base` : (attemptedPrice > 0 ? `$${attemptedPrice.toFixed(2)} CAD detected` : 'Free / By-Donation');
   const tiersBreakdownHtml = formatTicketTiersHtml(ev);
   confirmedItems.push(`
@@ -1159,11 +1163,11 @@ function generateCuratorDiagnostics(ev) {
       ${tiersBreakdownHtml}
     </div>
   `);
-  
+
   if (ev.categoryLabel || ev.category) {
     confirmedItems.push(`<span>🏷️ <strong>Category:</strong> ${escapeHtml(ev.categoryLabel || ev.category)}</span>`);
   }
-  
+
   const targetUrl = getEventExternalUrl(ev);
   if (targetUrl) {
     const domainText = targetUrl.replace(/^https?:\/\//i, '').split('/')[0];
@@ -1186,14 +1190,14 @@ function generateCuratorDiagnostics(ev) {
   if (reason) {
     issuesItems.push(`<span>⚠️ <strong>Quarantine Reason:</strong> ${escapeHtml(simplifyQuarantineReason(reason, attemptedPrice))}</span>`);
   }
-  
+
   const verification = ev.checkoutVerification || {};
   if (verification.status === 'quarantined' || !verification.status) {
     issuesItems.push(`<span>🛒 <strong>Checkout Fees:</strong> Final checkout cart fees could not be verified dynamically</span>`);
   } else if (verification.details) {
     issuesItems.push(`<span>ℹ️ <strong>Cart Note:</strong> ${escapeHtml(verification.details)}</span>`);
   }
-  
+
   if (!issuesItems.length) {
     issuesItems.push(`<span>ℹ️ <strong>Review Note:</strong> Manual verification requested by crawler auditor</span>`);
   }
@@ -1297,8 +1301,8 @@ function renderCards(items) {
             <span class="curator-date-banner-text">${escapeHtml(curatorDateStr)}</span>
           </div>
           ${isCuratorDateUnconfirmed(ev)
-            ? '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(245, 158, 11, 0.2); color: #fcd34d; border-color: rgba(245, 158, 11, 0.5);">⚠️ Unconfirmed Date</span>'
-            : '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">✅ Confirmed Date</span>'}
+        ? '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(245, 158, 11, 0.2); color: #fcd34d; border-color: rgba(245, 158, 11, 0.5);">⚠️ Unconfirmed Date</span>'
+        : '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">✅ Confirmed Date</span>'}
         </div>
 
         <!-- Diagnostics Grid: Confirmed Details vs. Issues / Needs Review -->
@@ -1345,17 +1349,17 @@ function renderCards(items) {
 
         <!-- Prominent Instruction Banner (Displays User Instructions & Proof on Cards) -->
         ${(() => {
-          const annot = ev.curatorAnnotation || {};
-          const inst = ev.queuedInstruction || (annot.note || (annot.screenshotPaths && annot.screenshotPaths.length > 0) ? {
-            instructionText: annot.note || '',
-            screenshotPaths: annot.screenshotPaths || [],
-            approvedPrice: annot.userSuppliedPrice,
-            createdAt: annot.annotatedAt,
-            aiLearnedSummary: annot.aiLearnedSummary,
-            extractedTiers: annot.extractedTiers
-          } : null);
-          if (!inst) return '';
-          return `
+        const annot = ev.curatorAnnotation || {};
+        const inst = ev.queuedInstruction || (annot.note || (annot.screenshotPaths && annot.screenshotPaths.length > 0) ? {
+          instructionText: annot.note || '',
+          screenshotPaths: annot.screenshotPaths || [],
+          approvedPrice: annot.userSuppliedPrice,
+          createdAt: annot.annotatedAt,
+          aiLearnedSummary: annot.aiLearnedSummary,
+          extractedTiers: annot.extractedTiers
+        } : null);
+        if (!inst) return '';
+        return `
           <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
             <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
               <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
@@ -1381,7 +1385,7 @@ function renderCards(items) {
             </div>
           </div>
           `;
-        })()}
+      })()}
 
         <!-- Flag Reason Alert / Drift Alert (Shortened & Simple) -->
         ${hasDrift ? `
@@ -1577,7 +1581,7 @@ function renderCards(items) {
 // 5. EVENT ACTIONS: APPROVE, REJECT, TEACH
 // ==============================================================================
 
-window.approveQuarantinedEvent = async function(eventId) {
+window.approveQuarantinedEvent = async function (eventId) {
   if (!state.token) return;
   const original = state.quarantinedEvents.find(e => e.id === eventId);
   if (!original) return;
@@ -1647,7 +1651,7 @@ window.approveQuarantinedEvent = async function(eventId) {
   }
 };
 
-window.rejectQuarantinedEvent = async function(eventId) {
+window.rejectQuarantinedEvent = async function (eventId) {
   if (!state.token) return;
   const original = state.quarantinedEvents.find(e => e.id === eventId);
   if (!original) return;
@@ -1677,7 +1681,7 @@ window.rejectQuarantinedEvent = async function(eventId) {
   }
 };
 
-window.setModalViewMode = function(mode = 'screenshot') {
+window.setModalViewMode = function (mode = 'screenshot') {
   const modal = document.getElementById('ai-instruction-modal');
   if (!modal) return;
   const tabScreenshot = document.getElementById('tab-mode-screenshot');
@@ -1728,19 +1732,19 @@ window.setModalViewMode = function(mode = 'screenshot') {
   }, 100);
 };
 
-window.openAIInstructionModal = function(eventId, mode = 'approve') {
-  let ev = (state.quarantinedEvents || []).find(e => e.id === eventId) || 
-           (state.archivedEvents || []).find(e => e.id === eventId) ||
-           (state.discoveredVenues || []).find(v => v.id === eventId) ||
-           (state.discoveredSources || []).find(s => s.id === eventId);
+window.openAIInstructionModal = function (eventId, mode = 'approve') {
+  let ev = (state.quarantinedEvents || []).find(e => e.id === eventId) ||
+    (state.archivedEvents || []).find(e => e.id === eventId) ||
+    (state.discoveredVenues || []).find(v => v.id === eventId) ||
+    (state.discoveredSources || []).find(s => s.id === eventId);
 
   // Cross-search master catalogs data (events, venues, festivals)
   if (!ev && state.masterCatalogsData) {
     for (const key of Object.keys(state.masterCatalogsData)) {
-      const found = (state.masterCatalogsData[key] || []).find(item => 
-        item.id === eventId || 
-        item.event_id === eventId || 
-        item.venue_name === eventId || 
+      const found = (state.masterCatalogsData[key] || []).find(item =>
+        item.id === eventId ||
+        item.event_id === eventId ||
+        item.venue_name === eventId ||
         item.name === eventId ||
         item.festival_name === eventId
       );
@@ -1974,7 +1978,7 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (q.approvedVenue && venueApproveField) venueApproveField.value = q.approvedVenue;
     if (q.approvedTitle && titleApproveField) titleApproveField.value = q.approvedTitle;
     if (q.curatorNote && noteField) noteField.value = q.curatorNote;
-    
+
     // Load screenshots (support both screenshotPaths array and single screenshotPath/screenshotBase64)
     if (Array.isArray(q.screenshotPaths) && q.screenshotPaths.length > 0) {
       existingImgs.push(...q.screenshotPaths);
@@ -2027,7 +2031,7 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   }
 };
 
-window.openEmailScreenshotModal = function(eventId) {
+window.openEmailScreenshotModal = function (eventId) {
   const item = (state.quarantinedEvents || []).find(e => e.id === eventId) || (state.archivedEvents || []).find(e => e.id === eventId);
   if (!item) return;
   const modal = document.getElementById('email-screenshot-modal');
@@ -2375,7 +2379,7 @@ function applySingleDimension(dimKey, dims) {
     const l = dims.link.extracted || dims.link.displayValue;
     if (l && String(l).startsWith('http')) {
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(l).catch(() => {});
+        navigator.clipboard.writeText(l).catch(() => { });
       }
       showToast(`🔗 Event link copied to clipboard: ${l}`, 'success');
     } else {
@@ -2781,7 +2785,7 @@ function renderScreenshotGallery() {
   }
 }
 
-window.selectActiveScreenshot = function(index) {
+window.selectActiveScreenshot = function (index) {
   if (!state.currentScreenshots || index < 0 || index >= state.currentScreenshots.length) return;
   state.activeScreenshotIndex = index;
   state.currentScreenshotBase64 = state.currentScreenshots[index];
@@ -2790,7 +2794,7 @@ window.selectActiveScreenshot = function(index) {
   triggerScreenshotVerification(state.currentScreenshots[index]);
 };
 
-window.removeScreenshotByIndex = function(index) {
+window.removeScreenshotByIndex = function (index) {
   if (state.currentScreenshots && index >= 0 && index < state.currentScreenshots.length) {
     state.currentScreenshots.splice(index, 1);
     const curEventId = document.getElementById('ai-inst-event-id')?.value;
@@ -2992,14 +2996,14 @@ function renderInteractiveMultiEventPreview(subEvents) {
 
     <div id="split-events-card-list" style="display: flex; flex-direction: column; gap: 12px; max-height: 380px; overflow-y: auto; padding-right: 4px;">
       ${subEvents.map((sub, idx) => {
-        const tVal = (sub.title || '').trim();
-        const isDup = tVal && (titleCounts[tVal.toLowerCase()] > 1);
-        const sPrice = parseFloat(sub.price || 0.0);
-        const pVal = isNaN(sPrice) ? '0.00' : sPrice.toFixed(2);
-        const dVal = sub.dateSchedule || '';
-        const cVal = sub.category || 'shows';
+    const tVal = (sub.title || '').trim();
+    const isDup = tVal && (titleCounts[tVal.toLowerCase()] > 1);
+    const sPrice = parseFloat(sub.price || 0.0);
+    const pVal = isNaN(sPrice) ? '0.00' : sPrice.toFixed(2);
+    const dVal = sub.dateSchedule || '';
+    const cVal = sub.category || 'shows';
 
-        return `
+    return `
           <div class="split-sub-event-card" data-idx="${idx}" style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid ${isDup ? '#ef4444' : 'rgba(255, 255, 255, 0.12)'}; border-left: 4px solid ${isDup ? '#ef4444' : '#10b981'}; border-radius: 8px; padding: 12px; transition: border-color 0.2s ease;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
@@ -3044,7 +3048,7 @@ function renderInteractiveMultiEventPreview(subEvents) {
             ` : ''}
           </div>
         `;
-      }).join('')}
+  }).join('')}
     </div>
 
     <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -3414,9 +3418,9 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
               <div style="font-size: 0.82rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <span>🗓️ ${escapeHtml(dateText)}</span>
                 ${(() => {
-                  const pUrl = getEventExternalUrl(p);
-                  return pUrl ? `<a href="${escapeHtml(pUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : '';
-                })()}
+                const pUrl = getEventExternalUrl(p);
+                return pUrl ? `<a href="${escapeHtml(pUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : '';
+              })()}
               </div>
               ${tiersPreviewHtml}
               ${p.feeBreakdown ? `
@@ -4380,7 +4384,7 @@ function renderVenueScreenshotGallery() {
   }
 }
 
-window.removeVenueScreenshotByIndex = function(index) {
+window.removeVenueScreenshotByIndex = function (index) {
   if (state.currentVenueScreenshots && index >= 0 && index < state.currentVenueScreenshots.length) {
     state.currentVenueScreenshots.splice(index, 1);
     renderVenueScreenshotGallery();
@@ -4455,9 +4459,9 @@ function renderDiscoveredVenuesCards() {
         <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 0.85rem; color: var(--curator-text-muted);">
           <div><strong>Context / Sample Event:</strong> ${escapeHtml(v.sampleEvent || 'Detected via festival program')}</div>
           ${(() => {
-            const vUrl = getVenueExternalUrl(v);
-            return vUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(vUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : '';
-          })()}
+        const vUrl = getVenueExternalUrl(v);
+        return vUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(vUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : '';
+      })()}
         </div>
 
         <!-- Prominent Instruction Banner (Displays User Instructions on Discovered Venue Cards) -->
@@ -4469,12 +4473,12 @@ function renderDiscoveredVenuesCards() {
               </strong>
               <span class="curator-handled-tag" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #f3e8ff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
                 ${escapeHtml(
-                  (v.queuedInstruction.action === 'queue_and_approve' || v.queuedInstruction.actionTaken === 'queue_and_approve')
-                    ? '⚡ Enrolled &amp; Rule Saved'
-                    : (v.queuedInstruction.action === 'queue_and_dismiss' || v.queuedInstruction.actionTaken === 'queue_and_dismiss')
-                      ? '🛑 Dismissed &amp; Rule Recorded'
-                      : '📋 Held for Review'
-                )}
+        (v.queuedInstruction.action === 'queue_and_approve' || v.queuedInstruction.actionTaken === 'queue_and_approve')
+          ? '⚡ Enrolled &amp; Rule Saved'
+          : (v.queuedInstruction.action === 'queue_and_dismiss' || v.queuedInstruction.actionTaken === 'queue_and_dismiss')
+            ? '🛑 Dismissed &amp; Rule Recorded'
+            : '📋 Held for Review'
+      )}
               </span>
             </div>
             <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc; margin-bottom: 8px;">
@@ -4523,8 +4527,8 @@ function renderDiscoveredVenuesCards() {
           </div>
           <div>
             ${(() => {
-              const vUrl = getVenueExternalUrl(v);
-              return vUrl ? `
+        const vUrl = getVenueExternalUrl(v);
+        return vUrl ? `
                 <a 
                   href="${escapeHtml(vUrl)}" 
                   target="_blank" 
@@ -4546,7 +4550,7 @@ function renderDiscoveredVenuesCards() {
                   🔗 No Venue Link
                 </button>
               `;
-            })()}
+      })()}
           </div>
         </div>
       </div>
@@ -4554,7 +4558,7 @@ function renderDiscoveredVenuesCards() {
   }).join('');
 }
 
-window.openAddVenueModal = function(v, options = {}) {
+window.openAddVenueModal = function (v, options = {}) {
   const modal = document.getElementById('add-venue-modal');
   if (!modal) return;
 
@@ -4611,7 +4615,7 @@ window.openAddVenueModal = function(v, options = {}) {
   }
 };
 
-window.openAddVenueModalFromEvent = function(eventId) {
+window.openAddVenueModalFromEvent = function (eventId) {
   const ev = (state.quarantinedEvents || []).find(e => e.id === eventId);
   if (!ev) return;
   openAddVenueModal({
@@ -4771,7 +4775,7 @@ function renderHolidayCards() {
   container.innerHTML = html;
 }
 
-window.approveHoliday = async function(holidayId) {
+window.approveHoliday = async function (holidayId) {
   if (!state.token || !holidayId) return;
   const labelInput = document.getElementById(`holiday-label-${holidayId}`);
   const iconInput = document.getElementById(`holiday-icon-${holidayId}`);
@@ -4805,7 +4809,7 @@ window.approveHoliday = async function(holidayId) {
   }
 };
 
-window.rejectHoliday = async function(holidayId) {
+window.rejectHoliday = async function (holidayId) {
   if (!state.token || !holidayId) return;
   if (!confirm(`Are you sure you want to dismiss the holiday '${holidayId}'?`)) return;
 
@@ -4832,7 +4836,7 @@ window.rejectHoliday = async function(holidayId) {
   }
 };
 
-window.dismissDiscoveredVenue = async function(discId) {
+window.dismissDiscoveredVenue = async function (discId) {
   if (!state.token || !discId) return;
   try {
     const res = await fetch('/api/curator/discovered_venues/dismiss', {
@@ -5049,7 +5053,7 @@ function updateAutomationUI(data) {
         try {
           const dt = new Date(data.nextRunAt);
           nextTime = dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        } catch (e) {}
+        } catch (e) { }
       }
       label.textContent = `Daily Sync: Active (${nextTime})`;
     } else {
@@ -5209,7 +5213,7 @@ async function clearCuratorSettingsAndReload(options = { restartServer: true }) 
       localStorage.removeItem('van50_accessible_mode');
       document.documentElement.classList.remove('van50-accessible');
       document.body.classList.remove('van50-accessible');
-    } catch (_) {}
+    } catch (_) { }
 
     // 3. Preserve session token
     const curToken = state.token || sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token');
@@ -5252,11 +5256,11 @@ async function clearCuratorSettingsAndReload(options = { restartServer: true }) 
     }
 
     // 7. Clear all storage, firmly preserving auth token
-    try { sessionStorage.clear(); } catch (_) {}
-    try { localStorage.clear(); } catch (_) {}
+    try { sessionStorage.clear(); } catch (_) { }
+    try { localStorage.clear(); } catch (_) { }
     if (curToken) {
-      try { sessionStorage.setItem('van50_curator_token', curToken); } catch (_) {}
-      try { localStorage.setItem('van50_curator_token', curToken); } catch (_) {}
+      try { sessionStorage.setItem('van50_curator_token', curToken); } catch (_) { }
+      try { localStorage.setItem('van50_curator_token', curToken); } catch (_) { }
       state.token = curToken;
     }
 
@@ -5341,7 +5345,7 @@ async function handleFetchNewsletters() {
 // 7. LEARNED RULES & AI INSTRUCTIONS MANAGERS
 // ==============================================================================
 
-window.openLearnedRulesModal = async function() {
+window.openLearnedRulesModal = async function () {
   if (!state.token) {
     showToast('Please authenticate into Curator Studio first', 'warning');
     return;
@@ -5367,7 +5371,7 @@ window.openLearnedRulesModal = async function() {
   }
 };
 
-window.openAIInstructionsModal = async function() {
+window.openAIInstructionsModal = async function () {
   if (!state.token) {
     showToast('Please authenticate into Curator Studio first', 'warning');
     return;
@@ -5434,12 +5438,12 @@ function renderRulesList() {
     }
 
     itemsHtml = entries.map(([venue, pol]) => {
-      const priceBadge = (pol.doorPrice != null) 
-        ? `<span class="rule-tag rule-tag-price">💰 Door: $${Number(pol.doorPrice).toFixed(2)} CAD</span>` 
+      const priceBadge = (pol.doorPrice != null)
+        ? `<span class="rule-tag rule-tag-price">💰 Door: $${Number(pol.doorPrice).toFixed(2)} CAD</span>`
         : (pol.isFree ? `<span class="rule-tag rule-tag-price">🆓 Free Drop-in</span>` : '');
       const typeBadge = pol.pricingType ? `<span class="rule-tag">${escapeHtml(pol.pricingType)}</span>` : '';
-      const days = Array.isArray(pol.scheduleDays) && pol.scheduleDays.length > 0 
-        ? `<span class="rule-tag rule-tag-schedule">📅 ${pol.scheduleDays.join(', ').toUpperCase()}</span>` 
+      const days = Array.isArray(pol.scheduleDays) && pol.scheduleDays.length > 0
+        ? `<span class="rule-tag rule-tag-schedule">📅 ${pol.scheduleDays.join(', ').toUpperCase()}</span>`
         : '';
       const linkBadge = pol.calendarUrl ? `<a href="${escapeHtml(pol.calendarUrl)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.78rem; text-decoration: underline; margin-left: 6px;">Calendar URL ↗</a>` : '';
 
@@ -5560,7 +5564,7 @@ function renderRulesList() {
   container.innerHTML = itemsHtml;
 }
 
-window.openEditRule = function(type, key) {
+window.openEditRule = function (type, key) {
   const panel = document.getElementById('rule-edit-panel');
   if (!panel || !state.learnedRules) return;
 
@@ -5605,7 +5609,7 @@ window.openEditRule = function(type, key) {
   panel.scrollIntoView({ behavior: 'smooth' });
 };
 
-window.openAddRule = function() {
+window.openAddRule = function () {
   openEditRule(state.activeRuleTab || 'venue_policy_rules', '');
 };
 
@@ -5713,7 +5717,7 @@ async function saveRuleChanges(e) {
   }
 }
 
-window.deleteRule = async function(ruleType, key) {
+window.deleteRule = async function (ruleType, key) {
   if (!state.token) return;
 
   try {
@@ -5794,9 +5798,9 @@ function renderInstructionsList() {
     const isDismissed = inst.status === 'dismissed';
     const statusTag = isPending
       ? `<span class="rule-tag" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">⚡ Pending Review</span>`
-      : (isDismissed 
-          ? `<span class="rule-tag" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">🛑 Dismissed</span>`
-          : `<span class="rule-tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">✅ Resolved &amp; Applied</span>`);
+      : (isDismissed
+        ? `<span class="rule-tag" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">🛑 Dismissed</span>`
+        : `<span class="rule-tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">✅ Resolved &amp; Applied</span>`);
 
     const shots = inst.screenshotPaths || (inst.screenshotPath ? [inst.screenshotPath] : []);
     const shotsHtml = shots.length > 0 ? `
@@ -5847,7 +5851,7 @@ function renderInstructionsList() {
   }).join('');
 }
 
-window.openEditInstruction = function(instId) {
+window.openEditInstruction = function (instId) {
   const inst = (state.instructionsList || []).find(i => i.id === instId);
   if (!inst) return;
   const panel = document.getElementById('instruction-edit-panel');
@@ -5908,7 +5912,7 @@ async function saveInstructionChanges(e) {
   }
 }
 
-window.deleteInstruction = async function(instId) {
+window.deleteInstruction = async function (instId) {
   if (!state.token) return;
 
   try {
@@ -5946,7 +5950,7 @@ function initCuratorAccessibility() {
   try {
     const isAccessible = localStorage.getItem('van50_accessible_mode') === 'true';
     setCuratorAccessibility(isAccessible, false);
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function setCuratorAccessibility(enabled, notify = true) {
@@ -5965,12 +5969,12 @@ function setCuratorAccessibility(enabled, notify = true) {
 
   try {
     localStorage.setItem('van50_accessible_mode', enabled ? 'true' : 'false');
-  } catch (e) {}
+  } catch (e) { }
 
   if (notify && typeof showToast === 'function') {
     showToast(
-      enabled 
-        ? '♿ Accessibility Mode Enabled (High Contrast & Enhanced Text)' 
+      enabled
+        ? '♿ Accessibility Mode Enabled (High Contrast & Enhanced Text)'
         : '♿ Standard Mode Restored',
       'info'
     );
@@ -5990,7 +5994,7 @@ window.toggleCuratorAccessibility = toggleCuratorAccessibility;
 // 11. MASTER CATALOGS INSPECTOR ENGINE (events_active, venues, festivals, etc.)
 // ==============================================================================
 
-window.openMasterCatalogsModal = async function() {
+window.openMasterCatalogsModal = async function () {
   if (!state.token) {
     showToast('Please authenticate into Curator Studio first', 'warning');
     return;
@@ -6315,7 +6319,7 @@ function renderMasterCatalogList() {
   }
 }
 
-window.approvePriceConsensus = async function(venueName, pintPrice, cocktailPrice) {
+window.approvePriceConsensus = async function (venueName, pintPrice, cocktailPrice) {
   if (!confirm(`Apply consensus pricing calibration for "${venueName}"?\nPint: ${pintPrice ? '$' + pintPrice.toFixed(2) : 'N/A'}, Cocktail: ${cocktailPrice ? '$' + cocktailPrice.toFixed(2) : 'N/A'}`)) {
     return;
   }
@@ -6673,18 +6677,18 @@ function renderUserFeedbackCards() {
     </div>
     <div style="display: flex; flex-direction: column; gap: 14px;">
       ${feedbacks.map(fb => {
-        const typeLabels = {
-          user_feedback: 'Community Feedback / Tip',
-          event_suggestion: 'Upcoming Event (≤ $50 CAD)',
-          venue_suggestion: 'Venue / Cultural Space',
-          correction: 'Issue / Sold Out Report',
-          general_comment: 'General Suggestion'
-        };
-        const typeBadge = typeLabels[fb.submission_type] || fb.submission_type || 'User Submission';
-        const dateStr = fb.submitted_at ? new Date(fb.submitted_at).toLocaleString() : 'Recently';
-        const messageText = fb.sanitized_message || fb.sanitized_comment || '';
+    const typeLabels = {
+      user_feedback: 'Community Feedback / Tip',
+      event_suggestion: 'Upcoming Event (≤ $50 CAD)',
+      venue_suggestion: 'Venue / Cultural Space',
+      correction: 'Issue / Sold Out Report',
+      general_comment: 'General Suggestion'
+    };
+    const typeBadge = typeLabels[fb.submission_type] || fb.submission_type || 'User Submission';
+    const dateStr = fb.submitted_at ? new Date(fb.submitted_at).toLocaleString() : 'Recently';
+    const messageText = fb.sanitized_message || fb.sanitized_comment || '';
 
-        return `
+    return `
           <div class="curator-card" id="fb-card-${fb.feedback_id}" style="background: var(--curator-surface); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px; padding: 16px 20px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
@@ -6725,12 +6729,12 @@ function renderUserFeedbackCards() {
             </div>
           </div>
         `;
-      }).join('')}
+  }).join('')}
     </div>
   `;
 }
 
-window.dismissUserFeedback = async function(feedbackId) {
+window.dismissUserFeedback = async function (feedbackId) {
   if (!confirm('Dismiss this feedback item from quarantine?')) return;
   try {
     const res = await fetch('/api/curator/feedback/dismiss', {
@@ -6748,7 +6752,7 @@ window.dismissUserFeedback = async function(feedbackId) {
   }
 };
 
-window.resolveUserFeedback = async function(feedbackId) {
+window.resolveUserFeedback = async function (feedbackId) {
   try {
     const res = await fetch('/api/curator/feedback/resolve', {
       method: 'POST',
@@ -6829,14 +6833,14 @@ function renderNewsletterSignupsCards() {
     </div>
     <div style="display: flex; flex-direction: column; gap: 14px;">
       ${signups.map(su => {
-        const dateStr = su.detected_at ? new Date(su.detected_at).toLocaleString() : 'Recently';
-        const targetEmail = su.suggested_email || 'Van50.Submit@gmail.com';
-        const safeVenueName = escapeHtml(su.venue_name || 'Discovered Venue');
-        const safeMethod = escapeHtml(su.method || 'Newsletter Direct Link');
-        const safeWebsite = escapeHtml(su.website_url || '');
-        const safeSignupUrl = escapeHtml(su.signup_url || '');
+    const dateStr = su.detected_at ? new Date(su.detected_at).toLocaleString() : 'Recently';
+    const targetEmail = su.suggested_email || 'Van50.Submit@gmail.com';
+    const safeVenueName = escapeHtml(su.venue_name || 'Discovered Venue');
+    const safeMethod = escapeHtml(su.method || 'Newsletter Direct Link');
+    const safeWebsite = escapeHtml(su.website_url || '');
+    const safeSignupUrl = escapeHtml(su.signup_url || '');
 
-        return `
+    return `
           <div class="curator-card" id="nl-card-${su.id}" style="background: var(--curator-surface); border: 1px solid rgba(244, 114, 182, 0.3); border-radius: 10px; padding: 16px 20px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
@@ -6895,12 +6899,12 @@ function renderNewsletterSignupsCards() {
             </div>
           </div>
         `;
-      }).join('')}
+  }).join('')}
     </div>
   `;
 }
 
-window.copyCuratorEmail = function(email) {
+window.copyCuratorEmail = function (email) {
   navigator.clipboard.writeText(email).then(() => {
     if (typeof showToast === 'function') showToast(`Copied ${email} to clipboard!`, 'success');
   }).catch(() => {
@@ -6908,7 +6912,7 @@ window.copyCuratorEmail = function(email) {
   });
 };
 
-window.dismissNewsletterSignup = async function(id) {
+window.dismissNewsletterSignup = async function (id) {
   if (!confirm('Dismiss this newsletter signup opportunity?')) return;
   try {
     const res = await fetch('/api/curator/newsletter-signups/dismiss', {
@@ -6930,7 +6934,7 @@ window.dismissNewsletterSignup = async function(id) {
   }
 };
 
-window.markNewsletterSubscribed = async function(id) {
+window.markNewsletterSubscribed = async function (id) {
   const su = (state.pendingNewsletterSignups || []).find(s => s.id === id);
   if (!su) return;
   try {
@@ -7013,11 +7017,11 @@ function initStagehandRipperUI() {
       limitWrapper.style.display = (isBatch || isCal || isEnrich) ? 'block' : 'none';
       if (urlInput) {
         if (isBatch || isEnrich || isCompile) {
-          urlInput.placeholder = isCompile 
-            ? 'Merges seeds, schedules, box office & editorial layers automatically' 
-            : isEnrich 
-            ? 'Enriches seeds/events automatically to layer_editorial.json' 
-            : 'Targets data/events.json automatically (URL optional)';
+          urlInput.placeholder = isCompile
+            ? 'Merges seeds, schedules, box office & editorial layers automatically'
+            : isEnrich
+              ? 'Enriches seeds/events automatically to layer_editorial.json'
+              : 'Targets data/events.json automatically (URL optional)';
           urlInput.required = false;
         } else {
           urlInput.placeholder = 'https://littlemountaingallery.ca/schedule/ or direct ticket link';
@@ -7051,6 +7055,10 @@ function initStagehandRipperUI() {
     if (stopBtn) {
       stopBtn.style.display = running ? 'inline-block' : 'none';
     }
+    const topContBtn = document.getElementById('btn-top-continue-prev-stage');
+    if (topContBtn) {
+      topContBtn.style.display = running ? 'none' : 'inline-flex';
+    }
     if (statusPanel && running) {
       statusPanel.style.display = 'block';
     }
@@ -7081,28 +7089,57 @@ function initStagehandRipperUI() {
   const pipelineProgressBar = document.getElementById('pipeline-progress-bar');
 
   // Main Page Global Stop Run Button (Request 2)
-  const updateMainStopButtonState = (isRunning) => {
+  const updateMainStopButtonState = (isRunning, pid = null) => {
     const btn = document.getElementById('btn-curator-stop-run');
     const label = document.getElementById('curator-stop-label');
     const indicator = document.getElementById('curator-stop-indicator');
     if (!btn) return;
     if (isRunning) {
+      btn.classList.remove('is-idle');
       btn.classList.add('is-running');
-      if (label) label.textContent = '🛑 Stop Active Scan';
-      btn.title = 'Active scan running! Click to halt immediately.';
+      if (label) label.textContent = pid ? `🛑 Stop Run [PID: ${pid}]` : '🛑 Stop Run';
+      btn.title = `Active scan running${pid ? ` (PID: ${pid})` : ''}! Click to halt immediately.`;
     } else {
       btn.classList.remove('is-running');
-      if (label) label.textContent = '🛑 Stop Run';
-      btn.title = 'Immediately stop any active scan or worker process occurring in background';
+      btn.classList.add('is-idle');
+      if (label) label.textContent = 'Not Running';
+      btn.title = 'Not running — No active scan or worker process in background';
     }
   };
 
   const btnMainStopRun = document.getElementById('btn-curator-stop-run');
   if (btnMainStopRun) {
     btnMainStopRun.addEventListener('click', () => {
+      const currentlyRunning = isExecuting || btnMainStopRun.classList.contains('is-running');
+      if (!currentlyRunning) {
+        if (typeof showToast === 'function') {
+          showToast('Not running: No active scan or worker process is currently running.', 'info');
+        }
+        return;
+      }
       stopActiveStagehand();
     });
   }
+
+  const checkActiveStagehandStatus = async () => {
+    if (isExecuting) {
+      updateMainStopButtonState(true);
+      return;
+    }
+    try {
+      const res = await fetch('/api/curator/stagehand/status?_t=' + Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        updateMainStopButtonState(Boolean(data.running), data.pid || null);
+      } else {
+        updateMainStopButtonState(false);
+      }
+    } catch (_) {
+      updateMainStopButtonState(false);
+    }
+  };
+  setInterval(checkActiveStagehandStatus, 3000);
+  setTimeout(checkActiveStagehandStatus, 500);
 
   // Determine unscanned / unverified events from catalog & quarantine
   const calculateUnscannedEvents = () => {
@@ -7113,8 +7150,16 @@ function initStagehandRipperUI() {
       ? state.quarantinedEvents
       : (state.masterCatalogsData?.quarantined_events || []);
 
-    const isUnscanned = (e) =>
-      !e.proof_keyframes?.cart || !e.last_pulse_qc_at || !isVerifiedApprovalStatus(e.approval_status);
+    const isFreePublicEvent = (e) =>
+      e.price === 0 || e.isFree || e.pricingType === 'free' || e.cost_type === 'free' ||
+      e.access_model === 'open_public_space' || e.access_model === 'free_public_access';
+
+    const isUnscanned = (e) => {
+      if (isFreePublicEvent(e)) {
+        return !isVerifiedApprovalStatus(e.approval_status) || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+      }
+      return (!e.proof_keyframes?.cart && !e.proof_keyframe_cart) || !e.last_pulse_qc_at || !isVerifiedApprovalStatus(e.approval_status);
+    };
 
     const unscanned = [];
     events.forEach((ev, idx) => {
@@ -7276,7 +7321,7 @@ function initStagehandRipperUI() {
     }
     const unscannedLabel = document.getElementById('scope-pill-unscanned-label');
     if (unscannedLabel && currentPipelineScanKey === 'compile') {
-      unscannedLabel.textContent = `Uncompiled Only (${count})`;
+      unscannedLabel.textContent = `Catalog Uncompiled (${count})`;
     }
   };
 
@@ -7360,7 +7405,7 @@ function initStagehandRipperUI() {
     }
     const unscannedLabel = document.getElementById('scope-pill-unscanned-label');
     if (unscannedLabel && currentPipelineScanKey === 'enrich') {
-      unscannedLabel.textContent = `Unenriched Only (${count})`;
+      unscannedLabel.textContent = `Catalog Unenriched (${count})`;
     }
   };
 
@@ -7374,8 +7419,13 @@ function initStagehandRipperUI() {
       : (state.masterCatalogsData?.quarantined_events || []);
 
     const isScanIncomplete = (e) => {
-      const missingCart = !e.proof_keyframes?.cart || !e.last_pulse_qc_at || !isVerifiedApprovalStatus(e.approval_status);
-      const missingEditorial = !e.description || (!e.artist && !e.lineup) || e.title === "Cultural Event" || !e.last_content_qc_at;
+      const isFree = e.price === 0 || e.isFree || e.pricingType === 'free' || e.cost_type === 'free' ||
+        e.access_model === 'open_public_space' || e.access_model === 'free_public_access';
+      const isPerennial = e.lifecycle_type === 'perennial_drop_in';
+      const missingCart = isFree
+        ? (!isVerifiedApprovalStatus(e.approval_status) || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE')
+        : ((!e.proof_keyframes?.cart && !e.proof_keyframe_cart) || !e.last_pulse_qc_at || !isVerifiedApprovalStatus(e.approval_status));
+      const missingEditorial = !e.description || (!isPerennial && !e.artist && (!Array.isArray(e.lineup) || e.lineup.length === 0)) || e.title === "Cultural Event" || !e.last_content_qc_at;
       const missingSchedule = !e.dateSchedule && !e.date && (!e.showings || e.showings.length === 0);
       const missingFullQC = !e.last_full_qc_at;
       return missingCart || missingEditorial || missingSchedule || missingFullQC;
@@ -7472,19 +7522,443 @@ function initStagehandRipperUI() {
   window.calculateIncompleteEvents = calculateIncompleteEvents;
   window.calculateStaleEvents = calculateStaleEvents;
 
+  window.getUncompiledHarvestedEvents = () => {
+    const schedules = Array.isArray(state.layerSchedules) ? state.layerSchedules : [];
+    const activeIds = new Set(((state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || [])).map(e => e.id || e.event_id).filter(Boolean));
+    const quarantinedIds = new Set(((state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || [])).map(e => e.id || e.event_id).filter(Boolean));
+    const archivedIds = new Set([
+      ...(Array.isArray(state.archivedEvents) ? state.archivedEvents.map(e => e.id || e.event_id).filter(Boolean) : []),
+      ...(Array.isArray(state.learnedArchivedIds) ? state.learnedArchivedIds : [])
+    ]);
+    const todayIso = new Date().toISOString().split('T')[0];
+
+    const list = schedules.filter(s => {
+      const sid = s.event_id || s.id;
+      if (!sid || activeIds.has(sid) || archivedIds.has(sid) || quarantinedIds.has(sid)) return false;
+      const u = String(s.details_url || s.candidate_tier1_url || s.ticket_url || '').toLowerCase();
+      if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return false;
+      if (s.lifecycle_type !== 'perennial_drop_in') {
+        const hasUpcomingShowing = Array.isArray(s.showings) && s.showings.some(sh => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date) && sh.date >= todayIso);
+        const rawDateStr = String(s.date || s.dateSchedule || '');
+        const isoMatch = rawDateStr.match(/\b(202\d-\d{2}-\d{2})\b/);
+        const extractedIso = isoMatch ? isoMatch[1] : null;
+        if (extractedIso && extractedIso < todayIso && !hasUpcomingShowing) {
+          return false;
+        }
+        if (Array.isArray(s.showings) && s.showings.length > 0 && !hasUpcomingShowing) {
+          return false;
+        }
+      }
+      return true;
+    }).map(s => ({
+      id: s.event_id || s.id,
+      event_id: s.event_id || s.id,
+      title: s.title || s.event_name || 'Harvested Event',
+      venue: s.venue_name || s.venue || 'Vancouver Venue',
+      venue_name: s.venue_name || s.venue || 'Vancouver Venue',
+      date: s.date || s.dateSchedule || 'TBD',
+      time: s.start_time || s.doors_time || '',
+      price: s.price_hint != null ? `$${Number(s.price_hint).toFixed(2)} CAD` : '',
+      priceLabel: s.price_hint != null ? `$${Number(s.price_hint).toFixed(2)} CAD` : 'Pending 1B/QC',
+      url: s.candidate_tier1_url || s.ticket_url || s.details_url || '',
+      ticket_url: s.candidate_tier1_url || s.ticket_url || s.details_url || '',
+      candidate_tier1_url: s.candidate_tier1_url || null,
+      details_url: s.details_url || '',
+      lifecycle_type: s.lifecycle_type || null,
+      step1b_audited_at: s.step1b_audited_at || null,
+      step4_grounded_at: s.step4_grounded_at || null,
+      extracted_at: s.extracted_at || ''
+    }));
+
+    return list;
+  };
+
+  window.getStageContinuationInfo = (stageKey) => {
+    const key = stageKey || currentPipelineScanKey || 'harvest';
+    const cp = state.harvesterCheckpoint || {};
+    const completedFeeds = cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49;
+    const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
+    const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : (completedFeeds + 1);
+    const remainingFeeds = Math.max(0, totalFeeds - completedFeeds);
+
+    const done1AList = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
+
+    const done1BList = done1AList.filter(e => Boolean(e.step1b_audited_at));
+    const pending1BList = done1AList.filter(e => !e.step1b_audited_at);
+
+    const boxArr = state.layerBoxOffices || state.layerBoxOffice || [];
+    const boxSet = new Set(
+      boxArr
+        .filter(b => b && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR')
+        .map(b => String(b.id || b.event_id || '').toLowerCase())
+    );
+    const done2QCList = done1BList.filter(e => boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const pending2QCList = done1BList.filter(e => !boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
+
+    const edArr = state.layerEditorials || state.layerEditorial || [];
+    const edSet = new Set(
+      edArr
+        .filter(ed => ed && (ed.id || ed.event_id) && ed.clean_title && ed.description && ed.source_engine !== 'unverified')
+        .map(ed => String(ed.id || ed.event_id || '').toLowerCase())
+    );
+    const edGroundedSet = new Set(
+      edArr
+        .filter(ed => ed && ed.step4_grounded_at)
+        .map(ed => String(ed.id || ed.event_id || '').toLowerCase())
+    );
+    const normVenueKey = (v) => String(v || '').toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9]/g, '').trim();
+    const venuesMasterArr = state.venuesMaster || (state.masterCatalogsData && state.masterCatalogsData.venues_master) || [];
+    const groundedVenueKeys = new Set(
+      (Array.isArray(venuesMasterArr) ? venuesMasterArr : [])
+        .filter(v => v && v.last_grounded_at && v.grounding_source !== 'fallback_default')
+        .map(v => normVenueKey(v.venue_name || v.name))
+        .filter(Boolean)
+    );
+    const isEventVenueGrounded = (e) => {
+      const eid = String(e.id || e.event_id || '').toLowerCase();
+      if (e.step4_grounded_at || edGroundedSet.has(eid)) return true;
+      const vk = normVenueKey(e.venue || e.venue_name);
+      return Boolean(vk && groundedVenueKeys.has(vk));
+    };
+    const done3EnrichList = done2QCList.filter(e => edSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const pending3EnrichList = done2QCList.filter(e => !edSet.has(String(e.id || e.event_id || '').toLowerCase()));
+
+    const done4VenueList = done3EnrichList.filter(e => isEventVenueGrounded(e));
+    const pending4VenueList = done3EnrichList.filter(e => !isEventVenueGrounded(e));
+
+    // Strict Stage 5 Gate: Events CANNOT skip Stage 4 (Venue Detailer) into Stage 5 (Compiler)
+    const pending5CompileList = done4VenueList;
+    const prev4Count = done4VenueList.length;
+
+    if (key === 'harvest') {
+      return {
+        stageKey: 'harvest',
+        prevStageLabel: 'Checkpoint',
+        prevCompletedCount: completedFeeds,
+        currentCompletedCount: completedFeeds,
+        harvestedCount: done1AList.length,
+        pendingCount: remainingFeeds,
+        pendingItems: [],
+        allInputItems: [],
+        unit: 'feeds',
+        stepperStatusBadge: remainingFeeds > 0
+          ? `Queued: ${remainingFeeds} Feeds (${done1AList.length} Found)`
+          : `✅ 0 Queued (${done1AList.length} Found)`,
+        pillLabel: remainingFeeds > 0 ? `▶️ Continue (#${resumeFeedNum}/${totalFeeds} • ${remainingFeeds} Queued)` : `✅ All ${totalFeeds} Feeds Done`,
+        topBarLabel: remainingFeeds > 0 ? `▶️ Continue 1A (#${resumeFeedNum}/${totalFeeds} • ${remainingFeeds} Feeds Queued)` : `✅ All ${totalFeeds} Feeds Scanned`
+      };
+    }
+    if (key === 'hunter') {
+      return {
+        stageKey: 'hunter',
+        prevStageLabel: 'Stage 1A',
+        prevCompletedCount: done1AList.length,
+        currentCompletedCount: done1BList.length,
+        pendingCount: pending1BList.length,
+        pendingItems: pending1BList,
+        allInputItems: done1AList,
+        unit: 'events',
+        stepperStatusBadge: pending1BList.length > 0
+          ? `Queued: ${pending1BList.length} • ${done1BList.length} Done`
+          : (done1BList.length > 0 ? `✅ 0 Queued (${done1BList.length} Done)` : `Queued: 0`),
+        pillLabel: `▶️ Continue from 1A (${pending1BList.length} Queued)`,
+        topBarLabel: `▶️ Continue from Stage 1A (${pending1BList.length} Queued / ${done1BList.length} Done)`
+      };
+    }
+    if (key === 'qc') {
+      return {
+        stageKey: 'qc',
+        prevStageLabel: 'Stage 1B',
+        prevCompletedCount: done1BList.length,
+        currentCompletedCount: done2QCList.length,
+        pendingCount: pending2QCList.length,
+        pendingItems: pending2QCList,
+        allInputItems: done1BList,
+        unit: 'events',
+        stepperStatusBadge: pending2QCList.length > 0
+          ? `Queued: ${pending2QCList.length} • ${done2QCList.length} Done`
+          : (done2QCList.length > 0 ? `✅ 0 Queued (${done2QCList.length} Done)` : `Queued: 0`),
+        pillLabel: `▶️ Continue from 1B (${pending2QCList.length} Queued)`,
+        topBarLabel: `▶️ Continue from Stage 1B (${pending2QCList.length} Queued / ${done2QCList.length} Done)`
+      };
+    }
+    if (key === 'enrich') {
+      return {
+        stageKey: 'enrich',
+        prevStageLabel: 'Stage 2 QC',
+        prevCompletedCount: done2QCList.length,
+        currentCompletedCount: done3EnrichList.length,
+        pendingCount: pending3EnrichList.length,
+        pendingItems: pending3EnrichList,
+        allInputItems: done2QCList,
+        unit: 'events',
+        stepperStatusBadge: pending3EnrichList.length > 0
+          ? `Queued: ${pending3EnrichList.length} • ${done3EnrichList.length} Done`
+          : (done3EnrichList.length > 0 ? `✅ 0 Queued (${done3EnrichList.length} Done)` : `Queued: 0`),
+        pillLabel: `▶️ Continue from 2 (${pending3EnrichList.length} Queued)`,
+        topBarLabel: `▶️ Continue from Stage 2 (${pending3EnrichList.length} Queued / ${done3EnrichList.length} Done)`
+      };
+    }
+    if (key === 'venue') {
+      return {
+        stageKey: 'venue',
+        prevStageLabel: 'Stage 3 Enrich',
+        prevCompletedCount: done3EnrichList.length,
+        currentCompletedCount: done4VenueList.length,
+        pendingCount: pending4VenueList.length,
+        pendingItems: pending4VenueList,
+        allInputItems: done3EnrichList,
+        unit: 'events',
+        stepperStatusBadge: pending4VenueList.length > 0
+          ? `Queued: ${pending4VenueList.length} • ${done4VenueList.length} Done`
+          : (done4VenueList.length > 0 ? `✅ 0 Queued (${done4VenueList.length} Done)` : `Queued: 0`),
+        pillLabel: `▶️ Continue from 3 (${pending4VenueList.length} Queued)`,
+        topBarLabel: `▶️ Continue from Stage 3 (${pending4VenueList.length} Queued / ${done4VenueList.length} Done)`
+      };
+    }
+    return {
+      stageKey: 'compile',
+      prevStageLabel: 'Stage 4 Venue',
+      prevCompletedCount: prev4Count,
+      currentCompletedCount: 0,
+      pendingCount: pending5CompileList.length,
+      pendingItems: pending5CompileList,
+      allInputItems: done4VenueList,
+      unit: 'events',
+      stepperStatusBadge: pending5CompileList.length > 0
+        ? `Queued: ${pending5CompileList.length} Ready`
+        : `Queued: 0`,
+      pillLabel: `▶️ Continue from 4 (${pending5CompileList.length} Queued)`,
+      topBarLabel: `▶️ Continue from Stage 4 (${pending5CompileList.length} Queued)`
+    };
+  };
+
+  window.updateAllStageContinuationButtonsUI = () => {
+    const stages = ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'compile'];
+    stages.forEach(st => {
+      const info = window.getStageContinuationInfo(st);
+      const btn = document.getElementById(`btn-stage-continue-${st}`);
+      const lbl = document.getElementById(`btn-stage-continue-${st}-label`);
+      if (lbl) lbl.textContent = info.pillLabel;
+      if (btn) {
+        btn.style.opacity = info.pendingCount > 0 ? '1' : '0.55';
+        btn.title = st === 'harvest'
+          ? `Continue Stage 1A scanning on ${info.pendingCount} queued venue feeds`
+          : `${info.prevCompletedCount} completed ${info.prevStageLabel}, ${info.currentCompletedCount} completed ${st.toUpperCase()} ➔ ${info.pendingCount} queued for ${st.toUpperCase()}`;
+      }
+      const statusEl = document.getElementById(`test-step-status-${st}`);
+      const stepEl = document.getElementById(`test-step-${st}`);
+      const isStageRunning = isExecuting && window.activePipelineRunningStageKey === st;
+      if (statusEl) {
+        if (isStageRunning) {
+          statusEl.textContent = info.pendingCount > 0 ? `Running ⚡ (${info.pendingCount} Queued)` : 'Running ⚡';
+          statusEl.className = 'test-step-status status-running';
+        } else {
+          statusEl.textContent = info.stepperStatusBadge;
+          const isAllDoneForStage = info.pendingCount === 0 && (info.currentCompletedCount > 0 || (st === 'harvest' && info.harvestedCount > 0));
+          statusEl.className = `test-step-status${isAllDoneForStage ? ' status-complete' : ''}`;
+        }
+      }
+      if (stepEl && !isStageRunning) {
+        const isAllDoneForStage = info.pendingCount === 0 && (info.currentCompletedCount > 0 || (st === 'harvest' && info.harvestedCount > 0));
+        stepEl.classList.toggle('completed', isAllDoneForStage);
+        stepEl.classList.toggle('completed-step', isAllDoneForStage);
+      }
+    });
+
+    const activeKey = currentPipelineScanKey || pipelineTestStageKey || 'harvest';
+    const activeInfo = window.getStageContinuationInfo(activeKey);
+    const topBtn = document.getElementById('btn-top-continue-prev-stage');
+    const topLbl = document.getElementById('btn-top-continue-prev-stage-label');
+    if (topBtn && topLbl) {
+      topBtn.style.display = isExecuting ? 'none' : 'inline-flex';
+      topLbl.textContent = activeInfo.topBarLabel;
+      topBtn.style.opacity = activeInfo.pendingCount > 0 ? '1' : '0.6';
+    }
+  };
+
+  window.continueStageFromPrevious = function (stageKey, evt) {
+    if (evt) evt.stopPropagation();
+    const targetStage = stageKey || currentPipelineScanKey || pipelineTestStageKey || 'harvest';
+    if (targetStage === 'harvest') {
+      return window.continueHarvestFromCheckpoint(evt);
+    }
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
+      return;
+    }
+
+    const info = window.getStageContinuationInfo(targetStage);
+    if (!info || info.pendingCount <= 0) {
+      if (typeof showToast === 'function') {
+        showToast(`No items waiting in ${targetStage.toUpperCase()} (${info.prevCompletedCount} completed ${info.prevStageLabel}, ${info.currentCompletedCount} already completed ${targetStage.toUpperCase()}).`, 'info');
+      }
+      return;
+    }
+
+    const chosenCount = window.promptContinueEventCount(info.pendingCount, 'events');
+    if (chosenCount === null) return;
+    window.setPipelineBatchSize(chosenCount);
+
+    const cap = (chosenCount === 'all' || chosenCount === 0)
+      ? info.pendingItems.length
+      : Math.min(Number(chosenCount) || info.pendingItems.length, info.pendingItems.length);
+    const picked = info.pendingItems.slice(0, cap);
+
+    pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+    pipelineTestDiscoveredEvents = picked.map(e => ({
+      id: e.id || e.event_id,
+      title: e.title || e.event_name || 'Harvested Event',
+      date: e.date || e.dateSchedule || 'TBD',
+      venue: e.venue || e.venue_name || '',
+      price: e.priceLabel || 'Pending',
+      url: e.url || e.ticket_url || e.details_url || ''
+    }));
+
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = false;
+    pipelineQuarantinedRunActive = false;
+    currentPipelineScope = 'harvested';
+    savePipelineBatchState();
+
+    if (typeof showToast === 'function') {
+      showToast(`▶️ Continuing ${targetStage.toUpperCase()} on ${picked.length} of ${info.pendingCount} events from ${info.prevStageLabel}!`, 'info');
+    }
+
+    openPipelineTestStage(targetStage, true);
+  };
+
+  window.syncHarvesterCheckpointAndEventsUI = () => {
+    const cp = state.harvesterCheckpoint || {};
+    const harvestedList = window.getUncompiledHarvestedEvents();
+    const harvestedCount = harvestedList.length;
+    const completedFeeds = cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49;
+    const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
+    const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : (completedFeeds + 1);
+    const lastFeedName = cp.last_feed_name || 'The Orpheum Theatre';
+
+    if (!isExecuting) {
+      harvesterSourcesScanned = completedFeeds;
+      harvesterTotalSources = totalFeeds;
+      if (!harvesterDiscoveredEvents || harvesterDiscoveredEvents.length === 0) {
+        harvesterDiscoveredEvents = harvestedList;
+      }
+      updateHarvesterSourcesProgressUI();
+    }
+
+    const badgeHarvest = document.getElementById('badge-count-harvest');
+    if (badgeHarvest) {
+      badgeHarvest.textContent = `${completedFeeds}/${totalFeeds} Sources Scanned • Resume #${resumeFeedNum}`;
+    }
+    const resumeFeedLabel = document.getElementById('opt-harvest-resume-feed-label');
+    if (resumeFeedLabel) {
+      resumeFeedLabel.textContent = `Feed #${resumeFeedNum}/${totalFeeds}: ${lastFeedName}`;
+    }
+    const badgeHarvested = document.getElementById('badge-count-harvested');
+    if (badgeHarvested) {
+      badgeHarvested.textContent = `${harvestedCount} New Events Ready`;
+    }
+    const scopeCountHarvested = document.getElementById('scope-count-harvested');
+    if (scopeCountHarvested) {
+      scopeCountHarvested.textContent = String(harvestedCount);
+    }
+
+    const cpBannerTitle = document.getElementById('harvester-checkpoint-banner-title');
+    if (cpBannerTitle) {
+      cpBannerTitle.textContent = `Stopped at Feed #${resumeFeedNum}/${totalFeeds}: ${lastFeedName}`;
+    }
+    const cpBannerSub = document.getElementById('harvester-checkpoint-banner-sub');
+    if (cpBannerSub) {
+      cpBannerSub.innerHTML = `${completedFeeds}/${totalFeeds} sources scanned • <strong>${harvestedCount} new events</strong> harvested &amp; ready for Stage 1B`;
+    }
+
+    const contLabels = [
+      'btn-continue-harvest-stopped-label',
+      'btn-stepper-continue-harvest-label',
+      'btn-header-continue-1a-label',
+      'btn-banner-continue-1a-label'
+    ];
+    contLabels.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.textContent = id.includes('stepper')
+          ? `▶️ Continue 1A (#${resumeFeedNum}/${totalFeeds})`
+          : `▶️ Continue 1A Scan (#${resumeFeedNum}/${totalFeeds})`;
+      }
+    });
+
+    const procLabels = [
+      'btn-process-harvested-1b-label',
+      'btn-stepper-auto-harvested-label',
+      'btn-header-process-1b-label',
+      'btn-banner-process-1b-label'
+    ];
+    procLabels.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.textContent = `✨ Process ${harvestedCount} New Events (1B ➔ 5)`;
+      }
+    });
+
+    const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+    const qCount = qEvents.length;
+    const quarantineBtnLabels = [
+      'btn-header-run-quarantine-label',
+      'btn-banner-run-quarantine-label',
+      'btn-status-run-quarantine-label',
+      'btn-stepper-auto-quarantined-label'
+    ];
+    quarantineBtnLabels.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && !isExecuting) {
+        el.textContent = `🛡️ Run Quarantine Queue (${qCount})`;
+      }
+    });
+
+    const newestPassedList = typeof window.getNewestPassedBatchEvents === 'function'
+      ? window.getNewestPassedBatchEvents()
+      : [];
+    const newestPassedCount = newestPassedList.length;
+    const newestPassedBtnLabels = [
+      'btn-header-run-newest-passed-label',
+      'btn-banner-run-newest-passed-label',
+      'btn-status-run-newest-passed-label',
+      'btn-stepper-auto-newest-passed-label'
+    ];
+    newestPassedBtnLabels.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && !isExecuting) {
+        el.textContent = `✅ Run Newest Passed Batch (${newestPassedCount})`;
+      }
+    });
+
+    if (typeof window.updateAllStageContinuationButtonsUI === 'function') {
+      window.updateAllStageContinuationButtonsUI();
+    }
+  };
+
   window.loadLayersAndEvents = async () => {
     try {
-      const [evRes, seedsRes, schedRes, boxRes, editRes, archRes, rulesRes] = await Promise.allSettled([
+      const [evRes, seedsRes, schedRes, boxRes, editRes, archRes, rulesRes, cpRes, venRes] = await Promise.allSettled([
         fetch('/data/events.json?_t=' + Date.now()),
         fetch('/data/layers/seeds.json?_t=' + Date.now()),
         fetch('/data/layers/layer_schedules.json?_t=' + Date.now()),
         fetch('/data/layers/layer_box_office.json?_t=' + Date.now()),
         fetch('/data/layers/layer_editorial.json?_t=' + Date.now()),
         fetch('/data/archived_events.json?_t=' + Date.now()),
-        fetch('/data/curator_learned_rules.json?_t=' + Date.now())
+        fetch('/data/curator_learned_rules.json?_t=' + Date.now()),
+        fetch('/data/layers/harvester_checkpoint.json?_t=' + Date.now()),
+        fetch('/data/venues.json?_t=' + Date.now())
       ]);
       if (evRes.status === 'fulfilled' && evRes.value.ok) {
         state.allEvents = await evRes.value.json();
+      }
+      if (venRes && venRes.status === 'fulfilled' && venRes.value.ok) {
+        const venData = await venRes.value.json();
+        state.venuesMaster = Array.isArray(venData) ? venData : [];
+        if (state.masterCatalogsData) state.masterCatalogsData.venues_master = state.venuesMaster;
       }
       if (archRes.status === 'fulfilled' && archRes.value.ok) {
         const archData = await archRes.value.json();
@@ -7494,13 +7968,19 @@ function initStagehandRipperUI() {
         const rulesData = await rulesRes.value.json();
         state.learnedArchivedIds = Array.isArray(rulesData.archived_event_ids) ? rulesData.archived_event_ids : [];
       }
+      if (cpRes && cpRes.status === 'fulfilled' && cpRes.value.ok) {
+        state.harvesterCheckpoint = await cpRes.value.json();
+      }
       state.layerSeeds = (seedsRes.status === 'fulfilled' && seedsRes.value.ok) ? await seedsRes.value.json() : [];
       state.layerSchedules = (schedRes.status === 'fulfilled' && schedRes.value.ok) ? await schedRes.value.json() : [];
       state.layerBoxOffices = (boxRes.status === 'fulfilled' && boxRes.value.ok) ? await boxRes.value.json() : [];
+      state.layerBoxOffice = state.layerBoxOffices;
       state.layerEditorials = (editRes.status === 'fulfilled' && editRes.value.ok) ? await editRes.value.json() : [];
+      state.layerEditorial = state.layerEditorials;
       updateUncompiledBadges();
       updateUnenrichedBadges();
       populateCardNameDropdown();
+      window.syncHarvesterCheckpointAndEventsUI();
       if (typeof window.updateCatalogStalenessDashboard === 'function') {
         window.updateCatalogStalenessDashboard();
       }
@@ -7509,13 +7989,13 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.clearPipelineTerminal = function() {
+  window.clearPipelineTerminal = function () {
     const el = document.getElementById('pipeline-console-output');
     if (el) el.textContent = '';
   };
 
   // Live Stream Output View Switcher (Table / Split / Terminal) (Request 3)
-  window.setPipelineStreamView = function(view) {
+  window.setPipelineStreamView = function (view) {
     const diffPanel = document.getElementById('pipeline-live-diff-panel');
     const diffContainer = document.getElementById('pipeline-diff-table-container');
     const consoleOutput = document.getElementById('pipeline-console-output');
@@ -7683,6 +8163,20 @@ function initStagehandRipperUI() {
     const banner = document.getElementById('pipeline-scope-highlight-banner');
     const textEl = document.getElementById('pipeline-scope-target-dims-text');
     const pill = document.getElementById('pipeline-scope-accent-pill');
+    const stageBanner = document.getElementById('pipeline-comp-stage-banner');
+    const stageBannerText = document.getElementById('pipeline-comp-stage-banner-text');
+    const stageMeta = (typeof STAGE_META_MAP !== 'undefined' && STAGE_META_MAP[scanKey]) ? STAGE_META_MAP[scanKey] : null;
+    if (stageBanner && stageMeta) {
+      if (stageBannerText) {
+        stageBannerText.textContent = `${stageMeta.fullLabel} — Before / After`;
+      } else {
+        stageBanner.textContent = `${stageMeta.fullLabel} — Before / After`;
+      }
+      stageBanner.style.color = stageMeta.color;
+      stageBanner.style.background = stageMeta.pillBg || stageMeta.bgTint;
+      stageBanner.style.borderColor = stageMeta.border;
+      stageBanner.style.boxShadow = `0 0 12px ${stageMeta.bgTint}`;
+    }
     if (textEl) {
       const cfg = AI_SCAN_TARGET_DIMENSIONS[scanKey] || AI_SCAN_TARGET_DIMENSIONS.qc;
       textEl.textContent = `${cfg.shortDims} (${cfg.name})`;
@@ -7723,9 +8217,9 @@ function initStagehandRipperUI() {
             ${isAfter ? 'Awaiting AI Execution' : 'No Event Selected'}
           </div>
           <p style="font-size: 0.74rem; color: #64748b; max-width: 240px; margin: 0; line-height: 1.4;">
-            ${isAfter 
-              ? 'Click <strong>Run Scan Now</strong> to begin. Only information newly obtained by this run will appear here. Empty fields indicate untouched dimensions.'
-              : 'Select an event card or start a scan to inspect its baseline state before the AI executes.'}
+            ${isAfter
+          ? 'Click <strong>Run Scan Now</strong> to begin. Only information newly obtained by this run will appear here. Empty fields indicate untouched dimensions.'
+          : 'Select an event card or start a scan to inspect its baseline state before the AI executes.'}
           </p>
         </div>
       `;
@@ -7735,7 +8229,7 @@ function initStagehandRipperUI() {
     const targets = scanCfg.isTarget;
     const scanName = scanCfg.name;
 
-    let cardIdx = (cardData?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(cardData.id)?.cardIndex) 
+    let cardIdx = (cardData?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(cardData.id)?.cardIndex)
       || cardData?.cardIndex;
     const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
     if (!cardIdx && (cardData?.id || cardData?.event_id) && allEvs) {
@@ -7747,10 +8241,10 @@ function initStagehandRipperUI() {
     const title = isAfter ? (cardData.afterTitle || cardData.title || cardData.event_name || null) : (cardData.title || cardData.event_name || 'Event');
     const venue = isAfter ? (cardData.afterVenue || cardData.venue || cardData.venue_name || null) : (cardData.venue || cardData.venue_name || '');
     const neighborhood = isAfter ? null : (cardData.neighborhood || '');
-    
+
     const dateVal = isAfter ? (cardData.afterDate || (isCompile ? (cardData.date || cardData.dateSchedule) : null)) : (cardData.date || cardData.dateSchedule || null);
     const timeVal = isAfter ? (cardData.afterTime || (isCompile ? (cardData.time || cardData.start_time || cardData.doors_time) : null)) : (cardData.time || cardData.start_time || cardData.doors_time || null);
-    
+
     const priceVal = isAfter ? (cardData.afterPrice || (isCompile ? (cardData.priceLabel || (cardData.price != null ? `$${Number(cardData.price).toFixed(2)} CAD` : null)) : null)) : (cardData.priceLabel || (cardData.price != null ? `$${Number(cardData.price).toFixed(2)} CAD` : null));
     const baseVal = isAfter ? (cardData.afterBase ?? (isCompile ? (cardData.price_base ?? null) : null)) : (cardData.price_base ?? null);
     const feeVal = isAfter ? (cardData.afterFee ?? (isCompile ? (cardData.price_fee ?? null) : null)) : (cardData.price_fee ?? null);
@@ -7762,7 +8256,7 @@ function initStagehandRipperUI() {
     const ageVal = isAfter ? (cardData.afterAge || (isCompile ? (cardData.restrictions || null) : null)) : (cardData.restrictions || null);
     const descVal = isAfter ? (cardData.afterDescription || (isCompile ? (cardData.description || null) : null)) : (cardData.description || null);
 
-    const proofUrl = isAfter 
+    const proofUrl = isAfter
       ? (cardData.proofKeyframeUrl || (cardData.hasProof && cardData.id ? `data/proofs/${cardData.id}_cart.webp` : null) || (isCompile ? (cardData.proof_keyframes?.cart || null) : null))
       : (cardData.proof_keyframes?.cart || null);
 
@@ -7818,9 +8312,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${targets.d33_title ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span class="dim-label-prefix">D001</span> Event Name &amp; <span class="dim-label-prefix">D401</span> Physical Venue</span>
-          ${targets.d33_title 
-            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${targets.d33_title
+        ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         <div style="font-weight: 700; font-size: 0.88rem; color: #fff; line-height: 1.3;">
           <span class="dim-label-prefix">D001 Name:</span>
@@ -7837,9 +8331,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${(targets.d43_location || isVenueScan) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}" style="${isVenueScan ? 'border-color: rgba(6, 182, 212, 0.45); background: rgba(6, 182, 212, 0.05);' : ''}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span>🏛️</span> <span class="dim-label-prefix">D402–D408, D501–D506, D601–D608</span> Venue Ground Truth &amp; Amenities</span>
-          ${(targets.d43_location || isVenueScan) 
-            ? `<span class="yield-target-tag" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: rgba(6, 182, 212, 0.4);">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${(targets.d43_location || isVenueScan)
+        ? `<span class="yield-target-tag" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: rgba(6, 182, 212, 0.4);">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         <div style="font-size: 0.72rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 4px;">
           <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
@@ -7879,9 +8373,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${(targets.d35_date || targets.d36_time) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span>📅</span> <span class="dim-label-prefix">D35</span> Schedule &amp; <span class="dim-label-prefix">D36/D37</span> Showtime</span>
-          ${(targets.d35_date || targets.d36_time) 
-            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${(targets.d35_date || targets.d36_time)
+        ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
           <div>
@@ -7899,9 +8393,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${(targets.d15_allin || targets.d1_checkout) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}" style="${isAfter && priceVal ? 'border-color: rgba(16, 185, 129, 0.45); background: rgba(16, 185, 129, 0.05);' : ''}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span>🎫</span> <span class="dim-label-prefix">D11–D15</span> Box Office &amp; <span class="dim-label-prefix">D7</span> Inventory</span>
-          ${(targets.d15_allin || targets.d1_checkout) 
-            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${(targets.d15_allin || targets.d1_checkout)
+        ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px;">
           <div>
@@ -7937,9 +8431,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${(targets.d41_category || targets.d34_lineup) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span>🏷️</span> <span class="dim-label-prefix">D41</span> Category &amp; <span class="dim-label-prefix">D34</span> Lineup</span>
-          ${(targets.d41_category || targets.d34_lineup) 
-            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${(targets.d41_category || targets.d34_lineup)
+        ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
           <div>
@@ -7957,9 +8451,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${targets.d42_age ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span>🔞</span> <span class="dim-label-prefix">D42</span> Age Policy &amp; Restrictions</span>
-          ${targets.d42_age 
-            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${targets.d42_age
+        ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         <div>
           <span class="dim-label-prefix">D42 Age Policy:</span>
@@ -7971,9 +8465,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${targets.d51_desc ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span>📝</span> <span class="dim-label-prefix">D51</span> Description &amp; Synopsis</span>
-          ${targets.d51_desc 
-            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${targets.d51_desc
+        ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         <div style="color: #cbd5e1; font-size: 0.72rem; line-height: 1.4; max-height: 60px; overflow-y: auto;">
           <span class="dim-label-prefix">D51 Synopsis:</span>
@@ -7985,9 +8479,9 @@ function initStagehandRipperUI() {
       <div class="yield-section-box ${targets.proof ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
         <div class="yield-section-header">
           <span class="yield-section-title"><span>📸</span> Visual Proof Keyframe</span>
-          ${targets.proof 
-            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
-            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+          ${targets.proof
+        ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
+        : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         ${proofUrl ? `
           <div style="position: relative; margin-top: 4px;">
@@ -8018,7 +8512,7 @@ function initStagehandRipperUI() {
       const isCartDomain = /^(showpass\.com|eventbrite\.(ca|com)|ticketweb\.(ca|com)|universe\.com|admitone\.com|vtixonline\.com|tockify\.com|sidedooraccess\.com|dice\.fm|tickit\.ca|zaui\.net|ticketmaster\.(ca|com)|ticketscene\.ca|eventfinda\.(ca|com))$/i.test(host) || host.includes('.zaui.net');
       const isCartPath = /(\/checkout|\/cart|\/choose-?seats|\/buy-?tickets?|\/purchase|\/order|\/tickets|\/booking|\/register|\/boxoffice)/i.test(full);
       const hasCartParams = /(\?|&|#)(cart|checkout|order|ticket|event_id|activity)=/i.test(full);
-      
+
       if (isCartDomain && (path.length > 1 || search.length > 1 || hash.length > 1)) {
         return 'Tier 1 (Checkout Cart)';
       }
@@ -8078,7 +8572,7 @@ function initStagehandRipperUI() {
           };
         }
       }
-    } catch (_) {}
+    } catch (_) { }
     return { calendar_url: null, website_url: null };
   }
 
@@ -8090,58 +8584,58 @@ function initStagehandRipperUI() {
 
     if (tierCode === 'D101' || tierCode === 'D1') {
       return (isAfter && card.afterTicketUrl) ||
-             audit.D101_tier1_checkout?.verified_value ||
-             audit.d101_checkout?.verified_value ||
-             audit.D1_tier1_checkout?.verified_value ||
-             card.candidate_tier1_url ||
-             card.tier1_url ||
-             (classifyUrlTier(card.ticket_url) === 'Tier 1 (Checkout Cart)' ? card.ticket_url : null) ||
-             (card.ticket_url && !card.details_url ? card.ticket_url : null);
+        audit.D101_tier1_checkout?.verified_value ||
+        audit.d101_checkout?.verified_value ||
+        audit.D1_tier1_checkout?.verified_value ||
+        card.candidate_tier1_url ||
+        card.tier1_url ||
+        (classifyUrlTier(card.ticket_url) === 'Tier 1 (Checkout Cart)' ? card.ticket_url : null) ||
+        (card.ticket_url && !card.details_url ? card.ticket_url : null);
     }
     if (tierCode === 'D102' || tierCode === 'D2') {
       return (isAfter && card.afterDetailsUrl) ||
-             audit.D102_tier2_event_page?.verified_value ||
-             audit.d102_event_page?.verified_value ||
-             audit.D2_tier2_event_page?.verified_value ||
-             card.details_url ||
-             card.event_page_url ||
-             (classifyUrlTier(card.ticket_url) === 'Tier 2 (Event Page)' ? card.ticket_url : null);
+        audit.D102_tier2_event_page?.verified_value ||
+        audit.d102_event_page?.verified_value ||
+        audit.D2_tier2_event_page?.verified_value ||
+        card.details_url ||
+        card.event_page_url ||
+        (classifyUrlTier(card.ticket_url) === 'Tier 2 (Event Page)' ? card.ticket_url : null);
     }
     if (tierCode === 'D103' || tierCode === 'D3') {
       return audit.D103_tier3_calendar?.verified_value ||
-             audit.d103_calendar?.verified_value ||
-             audit.D3_tier3_calendar?.verified_value ||
-             card.calendar_url ||
-             card.venue_calendar_url ||
-             venueUrls.calendar_url ||
-             (classifyUrlTier(card.ticket_url) === 'Tier 3 (Calendar)' ? card.ticket_url : null);
+        audit.d103_calendar?.verified_value ||
+        audit.D3_tier3_calendar?.verified_value ||
+        card.calendar_url ||
+        card.venue_calendar_url ||
+        venueUrls.calendar_url ||
+        (classifyUrlTier(card.ticket_url) === 'Tier 3 (Calendar)' ? card.ticket_url : null);
     }
     if (tierCode === 'D104' || tierCode === 'D4') {
       return audit.D104_tier4_civic_destination?.verified_value ||
-             audit.d104_civic?.verified_value ||
-             audit.D4_tier4_civic_destination?.verified_value ||
-             card.civic_destination_url ||
-             (classifyUrlTier(card.ticket_url) === 'Tier 4 (Civic Guide)' ? card.ticket_url : null);
+        audit.d104_civic?.verified_value ||
+        audit.D4_tier4_civic_destination?.verified_value ||
+        card.civic_destination_url ||
+        (classifyUrlTier(card.ticket_url) === 'Tier 4 (Civic Guide)' ? card.ticket_url : null);
     }
     if (tierCode === 'D105' || tierCode === 'D5') {
       return audit.D105_tier5_venue_home?.verified_value ||
-             audit.d105_venue_home?.verified_value ||
-             audit.D5_tier5_venue_home?.verified_value ||
-             card.websiteUrl ||
-             card.venue_url ||
-             venueUrls.website_url ||
-             (classifyUrlTier(card.ticket_url) === 'Tier 5 (Venue Home)' ? card.ticket_url : null);
+        audit.d105_venue_home?.verified_value ||
+        audit.D5_tier5_venue_home?.verified_value ||
+        card.websiteUrl ||
+        card.venue_url ||
+        venueUrls.website_url ||
+        (classifyUrlTier(card.ticket_url) === 'Tier 5 (Venue Home)' ? card.ticket_url : null);
     }
     if (tierCode === 'D106' || tierCode === 'D6') {
       return (isAfter && card.afterTicketUrl) ||
-             card.ticket_url ||
-             card.candidate_tier1_url ||
-             card.details_url ||
-             card.calendar_url ||
-             card.websiteUrl ||
-             venueUrls.calendar_url ||
-             venueUrls.website_url ||
-             null;
+        card.ticket_url ||
+        card.candidate_tier1_url ||
+        card.details_url ||
+        card.calendar_url ||
+        card.websiteUrl ||
+        venueUrls.calendar_url ||
+        venueUrls.website_url ||
+        null;
     }
     return null;
   }
@@ -8200,7 +8694,19 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         if (card?.event_num_perm) return `<span class="dim-pill-archetype">${escapeHtml(card.event_num_perm)}</span>`;
         if (card?.Event_Num_Perm) return `<span class="dim-pill-archetype">${escapeHtml(card.Event_Num_Perm)}</span>`;
-        if (card?.id) return `<span class="dim-pill-archetype">Event_Num_Perm_${String(card.id).replace(/\D/g, '').slice(0, 9).padStart(9, '0')}</span>`;
+        const auditPerm = card?.dimension_audit?.D002_event_num_perm?.value || card?.dimension_audit?.D002?.value;
+        if (auditPerm) return `<span class="dim-pill-archetype">${escapeHtml(auditPerm)}</span>`;
+        const cid = card?.id || card?.event_id;
+        if (cid) {
+          const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+          const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+          const matched = allEvs.find(e => (e.id || e.event_id) === cid) || qEvs.find(e => (e.id || e.event_id) === cid);
+          const resolvedPerm = matched?.Event_Num_Perm || matched?.event_num_perm || matched?.dimension_audit?.D002_event_num_perm?.value;
+          if (resolvedPerm) return `<span class="dim-pill-archetype">${escapeHtml(resolvedPerm)}</span>`;
+          const foundIdx = allEvs.findIndex(e => (e.id || e.event_id) === cid);
+          if (foundIdx !== -1) return `<span class="dim-pill-archetype">Event_Num_Perm_${String(foundIdx + 1).padStart(9, '0')}</span>`;
+        }
+        if (typeof card?.cardIndex === 'number' && card.cardIndex > 0) return `<span class="dim-pill-archetype">Event_Num_Perm_${String(card.cardIndex).padStart(9, '0')}</span>`;
         return null;
       },
       badge: '+ Immutable ID'
@@ -8215,9 +8721,23 @@ function initStagehandRipperUI() {
       key: 'd003_card_id',
       legacyKeys: [],
       getValue: (card, isAfter) => {
+        if (isAfter && (card?.compilerOutcome === 'ARCHIVED' || card?.compilerOutcome === 'QUARANTINED')) {
+          return `<span style="color: #f87171; font-weight: 700;">— (Not Published: ${escapeHtml(card.compilerOutcome)})</span>`;
+        }
         if (card?.event_num_card) return `<span class="dim-pill-archetype">${escapeHtml(card.event_num_card)}</span>`;
         if (card?.Event_Num_Card) return `<span class="dim-pill-archetype">${escapeHtml(card.Event_Num_Card)}</span>`;
-        if (card?.cardIndex) return `<span class="dim-pill-archetype">Event_Num_Card_${String(card.cardIndex).padStart(9, '0')}</span>`;
+        const auditCard = card?.dimension_audit?.D003_event_num_card?.value || card?.dimension_audit?.D003?.value;
+        if (auditCard) return `<span class="dim-pill-archetype">${escapeHtml(auditCard)}</span>`;
+        const cid = card?.id || card?.event_id;
+        if (cid) {
+          const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+          const matched = allEvs.find(e => (e.id || e.event_id) === cid);
+          const resolvedCard = matched?.Event_Num_Card || matched?.event_num_card || matched?.dimension_audit?.D003_event_num_card?.value;
+          if (resolvedCard) return `<span class="dim-pill-archetype">${escapeHtml(resolvedCard)}</span>`;
+        }
+        if (typeof card?.cardIndex === 'number' && card.cardIndex > 0) {
+          return `<span class="dim-pill-archetype">Event_Num_Card_${String(card.cardIndex).padStart(9, '0')}</span>`;
+        }
         return null;
       },
       badge: '+ Slot Assigned'
@@ -8425,11 +8945,11 @@ function initStagehandRipperUI() {
       key: 'd107_inventory',
       legacyKeys: ['d7_inventory'],
       getValue: (card, isAfter) => {
-        const isSoldOut = isAfter 
+        const isSoldOut = isAfter
           ? (card?.afterInventory ? card.afterInventory.includes('SOLD OUT') : (card?.is_sold_out != null ? Boolean(card.is_sold_out || card.isSoldOut) : null))
           : (card?.is_sold_out != null ? Boolean(card.is_sold_out || card.isSoldOut) : null);
         if (isSoldOut === null) return card?.id ? '<span style="color: #34d399; font-weight: 700;">AVAILABLE 🎟️</span>' : null;
-        return isSoldOut 
+        return isSoldOut
           ? '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4);">SOLD OUT ⚠️</span>'
           : '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">AVAILABLE 🎟️</span>';
       },
@@ -8484,7 +9004,7 @@ function initStagehandRipperUI() {
       category: 'Box Office Pricing',
       key: 'd201_tier1_name',
       legacyKeys: ['d11_tier1_name'],
-      getValue: (card, isAfter) => card?.tier1_name || card?.afterTier1Name || (card?.price === 0 ? 'Free Admission' : 'General Admission'),
+      getValue: (card, isAfter) => (isAfter ? (card?.afterTier1Name || card?.tier1_name || card?.all_tiers?.[0]?.name) : (card?.tier1_name || card?.all_tiers?.[0]?.name)) || (card?.price === 0 ? 'Free Admission' : 'General Admission'),
       badge: '+ Tier 1 GA'
     },
     {
@@ -8497,7 +9017,9 @@ function initStagehandRipperUI() {
       key: 'd202_tier1_base',
       legacyKeys: ['d12_base'],
       getValue: (card, isAfter) => {
-        const val = isAfter ? (card?.afterBase ?? card?.price_base ?? null) : (card?.price_base ?? null);
+        const val = isAfter
+          ? (card?.afterBase ?? card?.tier1_price_base ?? card?.price_base ?? card?.all_tiers?.[0]?.price_base ?? null)
+          : (card?.tier1_price_base ?? card?.price_base ?? card?.all_tiers?.[0]?.price_base ?? null);
         return val != null ? `<strong>$${Number(val).toFixed(2)} CAD</strong>` : (card?.price != null ? `$${Number(card.price).toFixed(2)} CAD` : null);
       },
       badge: '+ Base Verified'
@@ -8512,7 +9034,9 @@ function initStagehandRipperUI() {
       key: 'd203_tier1_fee',
       legacyKeys: ['d13_fee'],
       getValue: (card, isAfter) => {
-        const val = isAfter ? (card?.afterFee ?? card?.price_fee ?? null) : (card?.price_fee ?? null);
+        const val = isAfter
+          ? (card?.afterFee ?? card?.tier1_price_fee ?? card?.price_fee ?? card?.all_tiers?.[0]?.price_fee ?? null)
+          : (card?.tier1_price_fee ?? card?.price_fee ?? card?.all_tiers?.[0]?.price_fee ?? null);
         return val != null ? `<strong>$${Number(val).toFixed(2)} CAD</strong>` : '$0.00 CAD (Direct Box Office / Included)';
       },
       badge: '+ Fee Audited'
@@ -8527,8 +9051,10 @@ function initStagehandRipperUI() {
       key: 'd204_tier1_tax',
       legacyKeys: ['d14_tax'],
       getValue: (card, isAfter) => {
-        const val = card?.price_tax ?? null;
-        return val != null ? `$${Number(val).toFixed(2)} CAD` : (card?.price != null || card?.afterPrice ? '5% GST Included in Total' : null);
+        const val = isAfter
+          ? (card?.afterTax ?? card?.tier1_price_tax ?? card?.price_tax ?? card?.all_tiers?.[0]?.price_tax ?? null)
+          : (card?.tier1_price_tax ?? card?.price_tax ?? card?.all_tiers?.[0]?.price_tax ?? null);
+        return val != null ? `$${Number(val).toFixed(2)} CAD` : (card?.price != null || card?.afterPrice || card?.tier1_price_all_in != null ? '5% GST Included in Total' : null);
       },
       badge: '+ Tax Audited'
     },
@@ -8542,7 +9068,10 @@ function initStagehandRipperUI() {
       key: 'd205_tier1_allin',
       legacyKeys: ['d15_allin'],
       getValue: (card, isAfter) => {
-        const val = isAfter ? (card?.afterPrice || (card?.price != null ? `$${Number(card.price).toFixed(2)} CAD` : card?.priceLabel || null)) : (card?.priceLabel || (card?.price != null ? `$${Number(card.price).toFixed(2)} CAD` : null));
+        const allInNum = card?.tier1_price_all_in ?? card?.price_all_in ?? card?.all_tiers?.[0]?.price_all_in ?? card?.price;
+        const val = isAfter
+          ? (card?.afterPrice || (allInNum != null ? `$${Number(allInNum).toFixed(2)} CAD` : card?.priceLabel || null))
+          : (card?.priceLabel || (allInNum != null ? `$${Number(allInNum).toFixed(2)} CAD` : null));
         return val ? `<span style="font-size: 0.95rem; font-weight: 800; color: #34d399;">${escapeHtml(val)}</span>` : null;
       },
       badge: '+ Live Total'
@@ -8557,7 +9086,7 @@ function initStagehandRipperUI() {
       key: 'd206_tier2_name',
       legacyKeys: ['d16_tier2_name'],
       getValue: (card, isAfter) => {
-        const val = card?.tier2_name || card?.dimension_audit?.D206_tier2_name?.value || card?.dimension_audit?.D16_tier2_name?.value || (card?.admission_tiers && card.admission_tiers[1]?.name);
+        const val = card?.tier2_name || card?.dimension_audit?.D206_tier2_name?.value || card?.dimension_audit?.D16_tier2_name?.value || (card?.admission_tiers && card.admission_tiers[1]?.name) || (card?.all_tiers && card.all_tiers[1]?.name);
         if (val && val !== 'none_available') return `<strong>${escapeHtml(val)}</strong>`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8573,7 +9102,7 @@ function initStagehandRipperUI() {
       key: 'd207_tier2_base',
       legacyKeys: ['d17_tier2_base'],
       getValue: (card, isAfter) => {
-        const val = card?.tier2_price_base ?? card?.dimension_audit?.D207_tier2_price_base?.value ?? card?.dimension_audit?.D17_tier2_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_base);
+        const val = card?.tier2_price_base ?? card?.dimension_audit?.D207_tier2_price_base?.value ?? card?.dimension_audit?.D17_tier2_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_base) ?? (card?.all_tiers && card.all_tiers[1]?.price_base);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8589,7 +9118,7 @@ function initStagehandRipperUI() {
       key: 'd208_tier2_fee',
       legacyKeys: ['d18_tier2_fee'],
       getValue: (card, isAfter) => {
-        const val = card?.tier2_price_fee ?? card?.dimension_audit?.D208_tier2_price_fee?.value ?? card?.dimension_audit?.D18_tier2_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_fee);
+        const val = card?.tier2_price_fee ?? card?.dimension_audit?.D208_tier2_price_fee?.value ?? card?.dimension_audit?.D18_tier2_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_fee) ?? (card?.all_tiers && card.all_tiers[1]?.price_fee);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8605,7 +9134,7 @@ function initStagehandRipperUI() {
       key: 'd209_tier2_tax',
       legacyKeys: ['d19_tier2_tax'],
       getValue: (card, isAfter) => {
-        const val = card?.tier2_price_tax ?? card?.dimension_audit?.D209_tier2_price_tax?.value ?? card?.dimension_audit?.D19_tier2_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_tax);
+        const val = card?.tier2_price_tax ?? card?.dimension_audit?.D209_tier2_price_tax?.value ?? card?.dimension_audit?.D19_tier2_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_tax) ?? (card?.all_tiers && card.all_tiers[1]?.price_tax);
         if (val != null && !isNaN(Number(val))) return `$${Number(val).toFixed(2)} CAD`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8621,7 +9150,7 @@ function initStagehandRipperUI() {
       key: 'd210_tier2_allin',
       legacyKeys: ['d20_tier2_allin'],
       getValue: (card, isAfter) => {
-        const val = card?.tier2_price_all_in ?? card?.tier2_price_read ?? card?.dimension_audit?.D210_tier2_price_all_in?.value ?? card?.dimension_audit?.D20_tier2_price_all_in?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price);
+        const val = card?.tier2_price_all_in ?? card?.tier2_price_read ?? card?.dimension_audit?.D210_tier2_price_all_in?.value ?? card?.dimension_audit?.D20_tier2_price_all_in?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price) ?? (card?.all_tiers && (card.all_tiers[1]?.price_all_in ?? card.all_tiers[1]?.price));
         if (val != null && !isNaN(Number(val))) {
           return `<span style="font-size: 0.9rem; font-weight: 800; color: #38bdf8;">$${Number(val).toFixed(2)} CAD</span>`;
         }
@@ -8639,7 +9168,7 @@ function initStagehandRipperUI() {
       key: 'd211_tier3_name',
       legacyKeys: ['d21_tier3_name'],
       getValue: (card, isAfter) => {
-        const val = card?.tier3_name || card?.dimension_audit?.D211_tier3_name?.value || card?.dimension_audit?.D21_tier3_name?.value || (card?.admission_tiers && card.admission_tiers[2]?.name);
+        const val = card?.tier3_name || card?.dimension_audit?.D211_tier3_name?.value || card?.dimension_audit?.D21_tier3_name?.value || (card?.admission_tiers && card.admission_tiers[2]?.name) || (card?.all_tiers && card.all_tiers[2]?.name);
         if (val && val !== 'none_available') return `<strong>${escapeHtml(val)}</strong>`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8655,7 +9184,7 @@ function initStagehandRipperUI() {
       key: 'd212_tier3_base',
       legacyKeys: ['d22_tier3_base'],
       getValue: (card, isAfter) => {
-        const val = card?.tier3_price_base ?? card?.dimension_audit?.D212_tier3_price_base?.value ?? card?.dimension_audit?.D22_tier3_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_base);
+        const val = card?.tier3_price_base ?? card?.dimension_audit?.D212_tier3_price_base?.value ?? card?.dimension_audit?.D22_tier3_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_base) ?? (card?.all_tiers && card.all_tiers[2]?.price_base);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8671,7 +9200,7 @@ function initStagehandRipperUI() {
       key: 'd213_tier3_fee',
       legacyKeys: ['d23_tier3_fee'],
       getValue: (card, isAfter) => {
-        const val = card?.tier3_price_fee ?? card?.dimension_audit?.D213_tier3_price_fee?.value ?? card?.dimension_audit?.D23_tier3_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_fee);
+        const val = card?.tier3_price_fee ?? card?.dimension_audit?.D213_tier3_price_fee?.value ?? card?.dimension_audit?.D23_tier3_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_fee) ?? (card?.all_tiers && card.all_tiers[2]?.price_fee);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8687,7 +9216,7 @@ function initStagehandRipperUI() {
       key: 'd214_tier3_tax',
       legacyKeys: ['d24_tier3_tax'],
       getValue: (card, isAfter) => {
-        const val = card?.tier3_price_tax ?? card?.dimension_audit?.D214_tier3_price_tax?.value ?? card?.dimension_audit?.D24_tier3_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_tax);
+        const val = card?.tier3_price_tax ?? card?.dimension_audit?.D214_tier3_price_tax?.value ?? card?.dimension_audit?.D24_tier3_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_tax) ?? (card?.all_tiers && card.all_tiers[2]?.price_tax);
         if (val != null && !isNaN(Number(val))) return `$${Number(val).toFixed(2)} CAD`;
         return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
       },
@@ -8703,7 +9232,7 @@ function initStagehandRipperUI() {
       key: 'd215_tier3_allin',
       legacyKeys: ['d25_tier3_allin'],
       getValue: (card, isAfter) => {
-        const val = card?.tier3_price_all_in ?? card?.tier3_price_read ?? card?.dimension_audit?.D215_tier3_price_all_in?.value ?? card?.dimension_audit?.D25_tier3_price_all_in?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price);
+        const val = card?.tier3_price_all_in ?? card?.tier3_price_read ?? card?.dimension_audit?.D215_tier3_price_all_in?.value ?? card?.dimension_audit?.D25_tier3_price_all_in?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price) ?? (card?.all_tiers && (card.all_tiers[2]?.price_all_in ?? card.all_tiers[2]?.price));
         if (val != null && !isNaN(Number(val))) {
           return `<span style="font-size: 0.9rem; font-weight: 800; color: #a78bfa;">$${Number(val).toFixed(2)} CAD</span>`;
         }
@@ -8722,13 +9251,14 @@ function initStagehandRipperUI() {
       legacyKeys: ['d26_tier_count'],
       getValue: (card, isAfter) => {
         let count = 0;
-        if (card?.tier1_name || card?.price != null || card?.afterPrice) count++;
-        const t2 = card?.tier2_name || card?.dimension_audit?.D16_tier2_name?.value || (card?.admission_tiers && card.admission_tiers[1]);
+        if (card?.tier1_name || card?.afterTier1Name || card?.price != null || card?.tier1_price_all_in != null || card?.afterPrice) count++;
+        const t2 = card?.tier2_name || card?.dimension_audit?.D16_tier2_name?.value || (card?.admission_tiers && card.admission_tiers[1]) || (card?.all_tiers && card.all_tiers[1]);
         if (t2 && t2 !== 'none_available') count++;
-        const t3 = card?.tier3_name || card?.dimension_audit?.D21_tier3_name?.value || (card?.admission_tiers && card.admission_tiers[2]);
+        const t3 = card?.tier3_name || card?.dimension_audit?.D21_tier3_name?.value || (card?.admission_tiers && card.admission_tiers[2]) || (card?.all_tiers && card.all_tiers[2]);
         if (t3 && t3 !== 'none_available') count++;
         if (card?.dimension_audit?.D26_tier_count_verified?.count != null) count = card.dimension_audit.D26_tier_count_verified.count;
         else if (card?.admission_tiers && card.admission_tiers.length > 0) count = card.admission_tiers.length;
+        else if (card?.all_tiers && card.all_tiers.length > 0) count = card.all_tiers.length;
         return card?.id ? `<span style="font-weight: 700; color: #38bdf8;">${count} Tier${count === 1 ? '' : 's'} Verified</span>` : null;
       },
       badge: '+ Tier Count'
@@ -8755,11 +9285,11 @@ function initStagehandRipperUI() {
       key: 'd218_budget_qualified',
       legacyKeys: ['d28_budget'],
       getValue: (card, isAfter) => {
-        const p = isAfter 
+        const p = isAfter
           ? (card?.afterPrice ? parseFloat(card.afterPrice.replace(/[^0-9.]/g, '')) : (card?.price != null ? Number(card.price) : null))
           : (card?.price != null ? Number(card.price) : null);
         if (p === null) return card?.id ? '✅ Verified (≤ $50.00 CAD)' : null;
-        return p <= 50.00 
+        return p <= 50.00
           ? '<span style="color: #34d399; font-weight: 700;">✅ Qualified Under $50 CAD</span>'
           : '<span style="color: #fca5a5; font-weight: 700;">❌ Exceeds $50 Budget Ceiling</span>';
       },
@@ -8799,8 +9329,9 @@ function initStagehandRipperUI() {
       key: 'd221_ticket_provider',
       legacyKeys: ['d31_provider'],
       getValue: (card, isAfter) => {
-        const url = isAfter ? (card?.afterTicketUrl || card?.ticket_url) : card?.ticket_url;
-        if (card?.ticket_provider) return escapeHtml(card.ticket_provider);
+        const prov = isAfter ? (card?.afterProvider || card?.ticket_provider) : card?.ticket_provider;
+        if (prov) return escapeHtml(prov);
+        const url = isAfter ? (card?.afterTicketUrl || card?.ticket_url || card?.candidate_tier1_url) : (card?.ticket_url || card?.candidate_tier1_url);
         if (!url) return null;
         try {
           return new URL(url).hostname.replace('www.', '');
@@ -8863,7 +9394,9 @@ function initStagehandRipperUI() {
       key: 'd303_date',
       legacyKeys: ['d35_date'],
       getValue: (card, isAfter) => {
-        const d = isAfter ? (card?.afterDate || card?.startIso || card?.date || card?.dateSchedule || null) : (card?.startIso || card?.date || card?.dateSchedule || null);
+        const d = isAfter
+          ? (card?.afterDate || card?.startIso || card?.date || card?.showings?.[0]?.date || card?.dateSchedule || null)
+          : (card?.startIso || card?.date || card?.showings?.[0]?.date || card?.dateSchedule || null);
         return d ? `<span style="color: #38bdf8; font-weight: 700;">${escapeHtml(d)}</span>` : (card?.isPerennial ? 'perennial_drop_in' : null);
       },
       badge: '+ Date Confirmed'
@@ -9552,9 +10085,9 @@ function initStagehandRipperUI() {
       key: 'd807_proof_keyframes',
       legacyKeys: ['proof'],
       getValue: (card, isAfter) => {
-        const proofUrl = isAfter 
-          ? (card?.proofKeyframeUrl || card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.hasProof && card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.hasProof && card?.id ? `data/proofs/${card.id}_cart.webp` : null) || null)
-          : (card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.id ? `data/proofs/${card.id}_cart.webp` : null));
+        const proofUrl = isAfter
+          ? (card?.proofKeyframeUrl || card?.proof_keyframe || card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.hasProof && card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.hasProof && card?.id ? `data/proofs/${card.id}_cart.webp` : null) || null)
+          : (card?.proof_keyframe || card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.id ? `data/proofs/${card.id}_cart.webp` : null));
         if (!proofUrl) return null;
         return `
           <div style="position: relative; max-width: 180px;">
@@ -9591,7 +10124,7 @@ function initStagehandRipperUI() {
 
   function isDimInScopeForScan(dimOrKey, scanKey = currentPipelineScanKey) {
     if (scanKey === 'compile') return true; // Scan 5: Live Compiler reconciles ALL dimensions!
-    
+
     const scanMap = {
       harvest: {
         d001_title: true, d33_title: true,
@@ -9617,17 +10150,21 @@ function initStagehandRipperUI() {
         d807_proof_keyframes: true, proof: true
       },
       hunter: {
+        d001_title: true, d33_title: true,
         d101_checkout: true, d1_checkout: true,
         d102_event_page: true, d2_event_page: true,
         d106_best_link: true, d6_tier: true,
         d108_geo: true, d8_geo: true,
         d221_ticket_provider: true, d31_provider: true,
+        d401_venue_name: true, d43_location: true,
         d803_spa_hydration: true,
         d808_timestamp_lockstep: true, d58_audit_ts: true
       },
       qc: {
+        d001_title: true, d33_title: true,
         d008_restrictions: true, d42_age: true,
         d101_checkout: true, d1_checkout: true,
+        d102_event_page: true, d2_event_page: true,
         d106_best_link: true, d6_tier: true,
         d107_inventory: true, d7_inventory: true,
         d108_geo: true, d8_geo: true,
@@ -9655,7 +10192,11 @@ function initStagehandRipperUI() {
         d221_ticket_provider: true, d31_provider: true,
         d222_booking_protocol: true, d32_booking_protocol: true,
         d303_date: true, d35_date: true,
+        d304_showings: true,
+        d305_doors: true, d36_doors: true,
+        d306_showtime: true, d37_showtime: true,
         d307_curfew: true, d38_curfew: true,
+        d401_venue_name: true, d43_location: true,
         d803_spa_hydration: true,
         d807_proof_keyframes: true, proof: true,
         d808_timestamp_lockstep: true, d58_audit_ts: true
@@ -9740,7 +10281,135 @@ function initStagehandRipperUI() {
     return false;
   }
 
+  const STAGE_META_MAP = {
+    harvest: {
+      key: 'harvest',
+      shortLabel: '📅 1A: Harvester',
+      fullLabel: '📅 Stage 1A: Schedule Harvester',
+      color: '#d8b4fe',
+      border: 'rgba(168, 85, 247, 0.55)',
+      bgTint: 'rgba(168, 85, 247, 0.14)',
+      pillBg: 'rgba(168, 85, 247, 0.22)'
+    },
+    hunter: {
+      key: 'hunter',
+      shortLabel: '🏹 1B: Link Hunter',
+      fullLabel: '🏹 Stage 1B: Tier 1 Link Hunter',
+      color: '#5eead4',
+      border: 'rgba(20, 184, 166, 0.55)',
+      bgTint: 'rgba(20, 184, 166, 0.14)',
+      pillBg: 'rgba(20, 184, 166, 0.22)'
+    },
+    qc: {
+      key: 'qc',
+      shortLabel: '🎟️ 2: Stagehand QC',
+      fullLabel: '🎟️ Stage 2: Box Office QC',
+      color: '#7dd3fc',
+      border: 'rgba(56, 189, 248, 0.55)',
+      bgTint: 'rgba(56, 189, 248, 0.14)',
+      pillBg: 'rgba(56, 189, 248, 0.22)'
+    },
+    enrich: {
+      key: 'enrich',
+      shortLabel: '✨ 3: AI Enricher',
+      fullLabel: '✨ Stage 3: AI Semantic Enricher',
+      color: '#fde68a',
+      border: 'rgba(251, 191, 36, 0.55)',
+      bgTint: 'rgba(251, 191, 36, 0.14)',
+      pillBg: 'rgba(251, 191, 36, 0.22)'
+    },
+    venue: {
+      key: 'venue',
+      shortLabel: '🏛️ 4: Venue Detailer',
+      fullLabel: '🏛️ Stage 4: Venue Detailer',
+      color: '#67e8f9',
+      border: 'rgba(6, 182, 212, 0.55)',
+      bgTint: 'rgba(6, 182, 212, 0.14)',
+      pillBg: 'rgba(6, 182, 212, 0.22)'
+    },
+    compile: {
+      key: 'compile',
+      shortLabel: '🚀 5: Compiler',
+      fullLabel: '🚀 Stage 5: Catalog Compiler',
+      color: '#6ee7b7',
+      border: 'rgba(16, 185, 129, 0.55)',
+      bgTint: 'rgba(16, 185, 129, 0.14)',
+      pillBg: 'rgba(16, 185, 129, 0.22)'
+    }
+  };
+
+  function getDimensionStageMeta(dim) {
+    if (!dim) return STAGE_META_MAP.compile;
+    const code = String(dim.code || '').toUpperCase();
+    const key = String(dim.key || '');
+    if (/^D[456]\d\d$/.test(code) || code === 'D103' || code === 'D104' || code === 'D105') {
+      return STAGE_META_MAP.venue;
+    }
+    if (/^D7\d\d$/.test(code) || code === 'D001' || code === 'D004' || code === 'D005' || code === 'D006' || code === 'D007' ||
+      code === 'D301' || code === 'D302' || code === 'D305' || code === 'D306' || code === 'D308' || code === 'D309' || code === 'D310' || code === 'D311') {
+      return STAGE_META_MAP.enrich;
+    }
+    if (code === 'D101' || code === 'D102' || code === 'D106' || code === 'D221' || code === 'D803') {
+      return STAGE_META_MAP.hunter;
+    }
+    if (/^D2\d\d$/.test(code) || code === 'D008' || code === 'D107' || code === 'D807' || key === 'proof') {
+      return STAGE_META_MAP.qc;
+    }
+    if (code === 'D002' || code === 'D303' || code === 'D304' || code === 'D307') {
+      return STAGE_META_MAP.harvest;
+    }
+    if (isDimInScopeForScan(dim, 'venue')) return STAGE_META_MAP.venue;
+    if (isDimInScopeForScan(dim, 'enrich')) return STAGE_META_MAP.enrich;
+    if (isDimInScopeForScan(dim, 'hunter')) return STAGE_META_MAP.hunter;
+    if (isDimInScopeForScan(dim, 'qc')) return STAGE_META_MAP.qc;
+    if (isDimInScopeForScan(dim, 'harvest')) return STAGE_META_MAP.harvest;
+    return STAGE_META_MAP.compile;
+  }
+
+  function isRealScannedValue(val) {
+    if (!val) return false;
+    const str = String(val);
+    if (str.includes('not_applicable') || str.includes('none_available') || str.includes('search_exhausted_null') || str.includes('yield-empty-field')) {
+      return false;
+    }
+    const stripped = str.replace(/<[^>]+>/g, '').trim();
+    if (!stripped || stripped === '—' || stripped === '-' || stripped === 'null' || stripped === 'undefined') {
+      return false;
+    }
+    return true;
+  }
+
   function updateComparisonFilterButtonUI(scanKey = currentPipelineScanKey) {
+    const totalDims = FULL_CATALOG_DIMENSIONS.length;
+    const inScopeDims = FULL_CATALOG_DIMENSIONS.filter(d => isDimInScopeForScan(d, scanKey)).length;
+    const btnReal = document.getElementById('btn-comp-filter-inscope');
+    const iconReal = document.getElementById('btn-comp-filter-icon');
+    const labelReal = document.getElementById('btn-comp-filter-label');
+    const countReal = document.getElementById('btn-comp-filter-count');
+    if (btnReal) {
+      if (scanKey === 'compile') {
+        btnReal.style.background = 'rgba(16, 185, 129, 0.16)';
+        btnReal.style.color = '#6ee7b7';
+        btnReal.style.borderColor = 'rgba(16, 185, 129, 0.45)';
+        if (iconReal) iconReal.textContent = '🌈';
+        if (labelReal) labelReal.textContent = 'All Stages Dimensions Highlighted';
+        if (countReal) countReal.textContent = `(${totalDims}D)`;
+      } else if (pipelineCompFilterInScopeOnly) {
+        btnReal.style.background = 'rgba(56, 189, 248, 0.22)';
+        btnReal.style.color = '#7dd3fc';
+        btnReal.style.borderColor = 'rgba(56, 189, 248, 0.55)';
+        if (iconReal) iconReal.textContent = '🎯';
+        if (labelReal) labelReal.textContent = 'Showing Step Dimensions Only (Show All)';
+        if (countReal) countReal.textContent = `(${inScopeDims}/${totalDims}D)`;
+      } else {
+        btnReal.style.background = 'rgba(14, 165, 233, 0.15)';
+        btnReal.style.color = '#38bdf8';
+        btnReal.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        if (iconReal) iconReal.textContent = '🔬';
+        if (labelReal) labelReal.textContent = 'Show Step Dimensions Only';
+        if (countReal) countReal.textContent = `(${inScopeDims})`;
+      }
+    }
     const btn = document.getElementById('btn-toggle-comp-inscope-filter');
     const labelEl = document.getElementById('comp-inscope-filter-label');
     if (!btn) return;
@@ -9764,7 +10433,7 @@ function initStagehandRipperUI() {
     }
   }
 
-  window.toggleComparisonInScopeFilter = function() {
+  window.toggleComparisonInScopeFilter = function () {
     pipelineCompFilterInScopeOnly = !pipelineCompFilterInScopeOnly;
     updateComparisonFilterButtonUI(currentPipelineScanKey);
     if (typeof renderComparisonCards === 'function') {
@@ -9776,9 +10445,9 @@ function initStagehandRipperUI() {
     const scanCfg = AI_SCAN_TARGET_DIMENSIONS[scanKey] || AI_SCAN_TARGET_DIMENSIONS.qc;
     const scanName = scanCfg.name;
 
-    let cardIdx = (after?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(after.id)?.cardIndex) 
-      || after?.cardIndex 
-      || (before?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(before.id)?.cardIndex) 
+    let cardIdx = (after?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(after.id)?.cardIndex)
+      || after?.cardIndex
+      || (before?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(before.id)?.cardIndex)
       || before?.cardIndex;
     const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
     const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
@@ -9801,6 +10470,8 @@ function initStagehandRipperUI() {
     const totalDimsCount = FULL_CATALOG_DIMENSIONS.length;
     const inScopeDimsCount = FULL_CATALOG_DIMENSIONS.filter(d => isDimInScopeForScan(d.key, scanKey)).length;
 
+    updateComparisonFilterButtonUI(scanKey);
+    const stageScannedCounts = { harvest: 0, hunter: 0, qc: 0, enrich: 0, venue: 0, compile: 0 };
     const btnFilter = document.getElementById('btn-toggle-comp-inscope-filter');
     const labelEl = document.getElementById('comp-inscope-filter-label');
     if (btnFilter && labelEl) {
@@ -9826,7 +10497,14 @@ function initStagehandRipperUI() {
       const isStreamingThisDim = isStreaming && inScope && (!afterVal || (dim.key === 'proof' && !after?.proofKeyframeUrl && !after?.hasProof));
       const hasAfterYield = Boolean(afterVal);
 
-      let rowClass = inScope ? `row-in-scope scan-${scanKey}` : 'row-out-of-scope';
+      const dimStageMeta = getDimensionStageMeta(dim);
+      const hasRealBefore = isRealScannedValue(beforeVal);
+      const hasRealAfter = isRealScannedValue(afterVal);
+      if (hasRealAfter || hasRealBefore) {
+        stageScannedCounts[dimStageMeta.key] = (stageScannedCounts[dimStageMeta.key] || 0) + 1;
+      }
+      const effectiveScanTheme = (scanKey === 'compile') ? dimStageMeta.key : scanKey;
+      let rowClass = inScope ? `row-in-scope scan-${effectiveScanTheme}` : 'row-out-of-scope';
 
       // Column 1 content: Dimension Label ("Example D33 Event Name")
       let dimDisplayName = escapeHtml(dim.name);
@@ -9863,13 +10541,15 @@ function initStagehandRipperUI() {
       const col1Html = `
         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
           <div style="flex: 1 1 auto; min-width: 0; padding-right: 4px;">
-            <span class="dim-code-badge ${inScope ? `target theme-${scanKey}` : 'neutral'}">${escapeHtml(dim.code)}</span>
+            <span class="dim-code-badge ${inScope ? `target theme-${effectiveScanTheme}` : 'neutral'}">${escapeHtml(dim.code)}</span>
             <span class="dim-name-text">${dimDisplayName}</span>
           </div>
           <div style="flex: 0 0 auto; margin-left: auto; text-align: right; white-space: nowrap;">
-            ${inScope 
-              ? `<span class="yield-target-tag" style="white-space: nowrap;">🎯 In-Scope</span>` 
-              : `<span class="yield-out-scope-tag" style="white-space: nowrap;">Out of Scope</span>`}
+            ${inScope
+          ? (scanKey === 'compile'
+            ? `<span class="yield-target-tag" title="${escapeHtml(dimStageMeta.fullLabel)}" style="white-space: nowrap; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border};">${escapeHtml(dimStageMeta.shortLabel)}</span>`
+            : `<span class="yield-target-tag" style="white-space: nowrap;">🎯 In-Scope</span>`)
+          : `<span class="yield-out-scope-tag" style="white-space: nowrap;">Out of Scope</span>`}
           </div>
         </div>
         <div style="font-size: 0.65rem; color: #64748b; margin-top: 4px; font-weight: 500;">
@@ -9878,7 +10558,7 @@ function initStagehandRipperUI() {
       `;
 
       // Column 2 content: Before AI Run (Baseline)
-      const col2Html = beforeVal 
+      const col2Html = beforeVal
         ? `<div class="comp-val-wrapper">${beforeVal}</div>`
         : `<span class="yield-empty-field out-of-scope">—</span>`;
 
@@ -9899,7 +10579,9 @@ function initStagehandRipperUI() {
           badgeStyle = 'background: rgba(148, 163, 184, 0.12); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25);';
         }
 
-        const badgeHtml = inScope ? `<span class="yield-highlight-tag" ${badgeStyle ? `style="${badgeStyle}"` : ''}>${escapeHtml(badgeText)}</span>` : '';
+        const badgeHtml = inScope
+          ? `<span class="yield-highlight-tag" ${badgeStyle ? `style="${badgeStyle}"` : ''}>${escapeHtml(badgeText)}</span>`
+          : `<span class="yield-highlight-tag" style="background: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.22);">+ Retained</span>`;
         col3Html = `
           <div class="comp-val-wrapper" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
             <div>${afterVal}</div>
@@ -9917,27 +10599,42 @@ function initStagehandRipperUI() {
         if (isStreaming) {
           col3Html = `<span class="yield-empty-field in-scope">— (In scope: extracting...)</span>`;
         } else {
-          col3Html = beforeVal 
-            ? `<div class="comp-val-wrapper" style="opacity: 0.9; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                 <div>${beforeVal}</div>
-                 <span class="yield-highlight-tag" style="background: rgba(148, 163, 184, 0.12); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25);">+ Retained</span>
-               </div>`
-            : `<span class="yield-empty-field out-of-scope">— (Unchanged / None found)</span>`;
+          col3Html = `<span class="yield-empty-field out-of-scope">— (Not verified in this stage)</span>`;
         }
       } else {
-        col3Html = `<span class="yield-empty-field out-of-scope">— (Untouched: not in scope for ${escapeHtml(scanName)})</span>`;
+        col3Html = `<span class="yield-empty-field out-of-scope">— (Out of scope for ${escapeHtml(scanName)})</span>`;
       }
 
       return `
         <tr class="${rowClass}">
           <td class="comp-td-dim">${col1Html}</td>
-          <td class="comp-td-before">${col2Html}</td>
-          <td class="comp-td-after">${col3Html}</td>
+          <td class="comp-td-before" ${scanKey === 'compile' && hasRealBefore ? `style="background: ${dimStageMeta.bgTint}; border-left: 3px solid ${dimStageMeta.color}; box-shadow: inset 0 0 12px ${dimStageMeta.bgTint};"` : ''}>
+            ${scanKey === 'compile' && hasRealBefore
+          ? `<div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;"><div>${col2Html}</div><span style="font-size: 0.62rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border}; white-space: nowrap;">${escapeHtml(dimStageMeta.shortLabel)}</span></div>`
+          : col2Html}
+          </td>
+          <td class="comp-td-after" ${scanKey === 'compile' && hasRealAfter ? `style="background: ${dimStageMeta.bgTint}; border-left: 3px solid ${dimStageMeta.color}; box-shadow: inset 0 0 14px ${dimStageMeta.bgTint};"` : ''}>
+            ${scanKey === 'compile' && hasRealAfter
+          ? `<div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;"><div style="flex: 1 1 auto; min-width: 0;">${col3Html}</div><span title="Scanned during ${escapeHtml(dimStageMeta.fullLabel)}" style="font-size: 0.62rem; font-weight: 800; padding: 1px 6px; border-radius: 4px; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border}; white-space: nowrap;">Scanned @ ${escapeHtml(dimStageMeta.shortLabel)}</span></div>`
+          : col3Html}
+          </td>
         </tr>
       `;
     }).join('');
 
     return `
+      ${scanKey === 'compile' ? `
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 8px 12px; margin-bottom: 6px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 8px;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #e2e8f0; letter-spacing: 0.03em;">🌈 MULTI-STAGE SCAN PROVENANCE HIGHLIGHTS (ALL ${totalDimsCount} DIMENSIONS):</span>
+          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
+            ${Object.values(STAGE_META_MAP).map(st => `
+              <span title="${escapeHtml(st.fullLabel)}" style="font-size: 0.66rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: ${st.pillBg}; color: ${st.color}; border: 1px solid ${st.border};">
+                ${escapeHtml(st.shortLabel)}: <strong>${stageScannedCounts[st.key] || 0}</strong> scanned
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
       <table class="pipeline-3col-comp-table">
         <thead>
           <tr>
@@ -10069,12 +10766,12 @@ function initStagehandRipperUI() {
     if (btnNext) btnNext.disabled = (currentIdx < 0 || currentIdx >= pipelineAuditedCardsHistory.length - 1);
   }
 
-  window.onComparisonCardSelectChange = function(eventId) {
+  window.onComparisonCardSelectChange = function (eventId) {
     if (!eventId) return;
     showComparisonCardById(eventId);
   };
 
-  window.stepComparisonCard = function(delta) {
+  window.stepComparisonCard = function (delta) {
     if (currentPipelineScanKey === 'venue' && pipelineAuditedCardsHistory.length === 0) {
       let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
       if (Array.isArray(venues) && venues.length > 0) {
@@ -10094,7 +10791,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.showComparisonCardById = function(eventId) {
+  window.showComparisonCardById = function (eventId) {
     pipelineCurrentCompId = eventId;
     if (String(eventId).startsWith('venue:')) {
       const vIdx = parseInt(String(eventId).replace('venue:', ''), 10) || 0;
@@ -10129,30 +10826,84 @@ function initStagehandRipperUI() {
       return;
     }
     const item = pipelineAuditedCardsHistory.find(x => x.id === eventId);
+    const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const schedEvs = Array.isArray(state.layerSchedules) ? state.layerSchedules : [];
+    const boxEvs = Array.isArray(state.layerBoxOffices) ? state.layerBoxOffices : [];
+    const editEvs = Array.isArray(state.layerEditorials) ? state.layerEditorials : [];
+    const schedMatch = schedEvs.find(e => (e.id || e.event_id) === eventId);
+    const boxMatch = boxEvs.find(e => (e.id || e.event_id) === eventId);
+    const editMatch = editEvs.find(e => (e.id || e.event_id) === eventId);
+    const catMatch = allEvs.find(e => (e.id || e.event_id) === eventId) || qEvs.find(e => (e.id || e.event_id) === eventId);
+    const mergedLayerFresh = (schedMatch || boxMatch || editMatch || catMatch)
+      ? { ...(schedMatch || {}), ...(boxMatch || {}), ...(editMatch || {}), ...(catMatch || {}) }
+      : null;
+
     if (item) {
-      const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-      const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
-      const fresh = allEvs.find(e => (e.id || e.event_id) === eventId) || qEvs.find(e => (e.id || e.event_id) === eventId);
-      if (fresh) {
-        if (!item.ctx.afterDate) item.ctx.afterDate = fresh.date || fresh.dateSchedule;
-        if (!item.ctx.afterTime) item.ctx.afterTime = fresh.time || fresh.start_time || fresh.doors_time;
-        if (!item.ctx.afterPrice || item.ctx.afterPrice === 'Pending Box Office QC') item.ctx.afterPrice = fresh.priceLabel || (fresh.price != null ? `$${Number(fresh.price).toFixed(2)} CAD` : null);
-        if (item.ctx.afterBase === undefined && fresh.price_base != null) item.ctx.afterBase = fresh.price_base;
-        if (item.ctx.afterFee === undefined && fresh.price_fee != null) item.ctx.afterFee = fresh.price_fee;
-        if (!item.ctx.afterInventory) item.ctx.afterInventory = fresh.is_sold_out ? 'SOLD OUT' : 'AVAILABLE';
-        if (!item.ctx.afterTicketUrl) item.ctx.afterTicketUrl = fresh.ticket_url || fresh.details_url;
-        if (!item.ctx.afterTitle) item.ctx.afterTitle = fresh.title || fresh.event_name;
-        if (!item.ctx.afterVenue) item.ctx.afterVenue = fresh.venue || fresh.venue_name;
-        if (!item.ctx.afterCategory) item.ctx.afterCategory = fresh.category;
-        if (item.ctx.afterArtist === undefined && fresh.artist) item.ctx.afterArtist = fresh.artist;
-        if (!item.ctx.afterAge && fresh.restrictions) item.ctx.afterAge = fresh.restrictions;
-        if (!item.ctx.afterDescription && fresh.description) item.ctx.afterDescription = fresh.description;
-        if (fresh.proof_keyframes?.cart && !item.ctx.proofKeyframeUrl) {
-          item.ctx.hasProof = true;
-          item.ctx.proofKeyframeUrl = fresh.proof_keyframes.cart;
+      // Strict stage isolation: only hydrate After context from the active stage's own layer
+      let stageFresh = null;
+      if (currentPipelineScanKey === 'hunter') {
+        stageFresh = schedMatch ? {
+          id: schedMatch.id,
+          title: schedMatch.title,
+          venue: schedMatch.venue || schedMatch.venue_name,
+          candidate_tier1_url: schedMatch.candidate_tier1_url,
+          ticket_url: schedMatch.candidate_tier1_url || schedMatch.ticket_url
+        } : null;
+      } else if (currentPipelineScanKey === 'qc') {
+        const isBoxTimeout = boxMatch && (boxMatch.status === 'TIMEOUT_EXCEEDED' || boxMatch.status === 'AI_TIMEOUT' || boxMatch.status === 'EXECUTION_ERROR');
+        stageFresh = (boxMatch && !isBoxTimeout) ? boxMatch : null;
+      } else if (currentPipelineScanKey === 'enrich') {
+        stageFresh = editMatch || null;
+      } else if (currentPipelineScanKey === 'compile') {
+        stageFresh = mergedLayerFresh;
+      }
+
+      if (stageFresh) {
+        if (currentPipelineScanKey === 'qc' || currentPipelineScanKey === 'compile') {
+          if (!item.ctx.afterDate) item.ctx.afterDate = stageFresh.date || stageFresh.showings?.[0]?.date || stageFresh.dateSchedule;
+          if (!item.ctx.afterTime) item.ctx.afterTime = stageFresh.time || stageFresh.start_time || stageFresh.doors_time;
+          const freshAllIn = stageFresh.tier1_price_all_in ?? stageFresh.price_all_in ?? stageFresh.price;
+          if (!item.ctx.afterPrice || item.ctx.afterPrice === 'Pending Box Office QC') {
+            item.ctx.afterPrice = stageFresh.priceLabel || (freshAllIn != null ? `$${Number(freshAllIn).toFixed(2)} CAD` : null);
+          }
+          if (item.ctx.afterBase === undefined || item.ctx.afterBase === null) {
+            const bVal = stageFresh.tier1_price_base ?? stageFresh.price_base;
+            if (bVal != null) item.ctx.afterBase = bVal;
+          }
+          if (item.ctx.afterFee === undefined || item.ctx.afterFee === null) {
+            const fVal = stageFresh.tier1_price_fee ?? stageFresh.price_fee;
+            if (fVal != null) item.ctx.afterFee = fVal;
+          }
+          if (item.ctx.afterTax === undefined || item.ctx.afterTax === null) {
+            const tVal = stageFresh.tier1_price_tax ?? stageFresh.price_tax;
+            if (tVal != null) item.ctx.afterTax = tVal;
+          }
+          if (!item.ctx.afterTier1Name && stageFresh.tier1_name) item.ctx.afterTier1Name = stageFresh.tier1_name;
+          if (!item.ctx.afterProvider && stageFresh.ticket_provider) item.ctx.afterProvider = stageFresh.ticket_provider;
+          if (!item.ctx.afterInventory && stageFresh.status) item.ctx.afterInventory = stageFresh.is_sold_out ? 'SOLD OUT' : 'AVAILABLE';
+          if (!item.ctx.afterTicketUrl) item.ctx.afterTicketUrl = stageFresh.ticket_url || stageFresh.candidate_tier1_url;
+          const proofUrl = stageFresh.proof_keyframes?.cart || stageFresh.proof_keyframe;
+          if (proofUrl && !item.ctx.proofKeyframeUrl) {
+            item.ctx.hasProof = true;
+            item.ctx.proofKeyframeUrl = proofUrl;
+          }
+        }
+        if (currentPipelineScanKey === 'hunter' || currentPipelineScanKey === 'compile') {
+          if (!item.ctx.afterTicketUrl) item.ctx.afterTicketUrl = stageFresh.candidate_tier1_url || stageFresh.ticket_url;
+        }
+        if (currentPipelineScanKey === 'enrich' || currentPipelineScanKey === 'compile') {
+          if (!item.ctx.afterTitle || item.ctx.afterTitle === 'Event') item.ctx.afterTitle = stageFresh.clean_title || stageFresh.title || stageFresh.event_name;
+          if (!item.ctx.afterCategory) item.ctx.afterCategory = stageFresh.category;
+          if (item.ctx.afterArtist === undefined && stageFresh.artist) item.ctx.afterArtist = stageFresh.artist;
+          if (!item.ctx.afterAge && stageFresh.restrictions) item.ctx.afterAge = stageFresh.restrictions;
+          if (!item.ctx.afterDescription && stageFresh.description) item.ctx.afterDescription = stageFresh.description;
+          if (stageFresh.event_archetype) item.ctx.event_archetype = stageFresh.event_archetype;
+          if (stageFresh.lifecycle_type) item.ctx.lifecycle_type = stageFresh.lifecycle_type;
+          if (stageFresh.frequencyLabel) item.ctx.frequencyLabel = stageFresh.frequencyLabel;
         }
       }
-      renderComparisonCards(item.ctx, item.before, false);
+      renderComparisonCards(item.ctx, item.before || schedMatch || catMatch, false);
       updateComparisonCardDropdown();
       updateComparisonStatusPill(`Card #${item.cardIndex} Inspected ✅`, 'updated');
       const selectCard = document.getElementById('pipeline-select-card-name');
@@ -10162,9 +10913,7 @@ function initStagehandRipperUI() {
         searchInput.value = `#${item.cardIndex}: ${item.title}`;
       }
     } else {
-      const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-      const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
-      const ev = allEvs.find(e => (e.id || e.event_id) === eventId) || qEvs.find(e => (e.id || e.event_id) === eventId);
+      const ev = mergedLayerFresh;
       if (ev) {
         renderComparisonCards(null, ev, false);
         updateComparisonStatusPill(`Baseline Preview`, 'nodrift');
@@ -10180,6 +10929,31 @@ function initStagehandRipperUI() {
   let harvesterPreRunEvents = null;
   let harvesterDiscoveredEvents = [];
   let harvesterPreRunSourcesMap = new Map();
+  let harvesterSourcesScanned = 0;
+  let harvesterTotalSources = 155;
+  let harvesterCurrentSourceName = '';
+
+  function updateHarvesterSourcesProgressUI() {
+    if (currentPipelineScanKey !== 'harvest') return;
+    const scanned = harvesterSourcesScanned || 0;
+    const total = harvesterTotalSources || 155;
+    const foundCount = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
+
+    const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+    if (trackerStatus) {
+      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned</span> • <span style="color: #4ade80; font-weight: 700;">+${foundCount} new events</span>`;
+    }
+
+    const stepSub = document.getElementById('test-step-sub-harvest');
+    if (stepSub && (scanned > 0 || isExecuting)) {
+      stepSub.textContent = `${scanned}/${total} sources scanned (+${foundCount} events)`;
+    }
+
+    const scannedBadge = document.getElementById('harvester-sources-scanned-badge');
+    if (scannedBadge) {
+      scannedBadge.textContent = `📡 ${scanned}/${total} sources scanned`;
+    }
+  }
 
   function getEventDataSource(ev) {
     if (!ev) return 'Direct Box Office / Local Catalog';
@@ -10192,7 +10966,7 @@ function initStagehandRipperUI() {
     if (url) {
       try {
         domain = new URL(url).hostname.replace(/^www\./i, '').toLowerCase();
-      } catch (_) {}
+      } catch (_) { }
     }
 
     if (domain.includes('eventbrite.')) return 'Eventbrite';
@@ -10239,7 +11013,7 @@ function initStagehandRipperUI() {
     });
   }
 
-  window.toggleHarvesterSourceGroup = function(sourceId) {
+  window.toggleHarvesterSourceGroup = function (sourceId) {
     const el = document.getElementById(sourceId);
     const icon = document.getElementById(sourceId + '-icon');
     if (!el) return;
@@ -10252,7 +11026,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.toggleAllHarvesterSources = function(expand) {
+  window.toggleAllHarvesterSources = function (expand) {
     document.querySelectorAll('.harvester-source-events-list').forEach(el => {
       el.style.display = expand ? 'flex' : 'none';
     });
@@ -10261,7 +11035,7 @@ function initStagehandRipperUI() {
     });
   };
 
-  window.filterHarvesterBeforeSources = function(query) {
+  window.filterHarvesterBeforeSources = function (query) {
     const q = (query || '').toLowerCase().trim();
     const groups = document.querySelectorAll('.harvester-source-group');
     groups.forEach(group => {
@@ -10310,12 +11084,12 @@ function initStagehandRipperUI() {
         if (host.includes('riotheatre')) return 'Rio Theatre';
         if (host.includes('rickshawtheatre')) return 'Rickshaw Theatre';
         return host;
-      } catch (_) {}
+      } catch (_) { }
     }
     return ev.venue || 'Discovered Venue Feeds';
   }
 
-  window.toggleHarvesterNewSourceGroup = function(sourceId) {
+  window.toggleHarvesterNewSourceGroup = function (sourceId) {
     const el = document.getElementById(sourceId);
     const icon = document.getElementById(sourceId + '-icon');
     if (!el) return;
@@ -10328,7 +11102,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.toggleAllHarvesterNewSources = function(expand) {
+  window.toggleAllHarvesterNewSources = function (expand) {
     document.querySelectorAll('.harvester-new-source-events-list').forEach(el => {
       el.style.display = expand ? 'flex' : 'none';
     });
@@ -10337,7 +11111,7 @@ function initStagehandRipperUI() {
     });
   };
 
-  window.filterHarvesterAfterSources = function(query) {
+  window.filterHarvesterAfterSources = function (query) {
     const q = (query || '').toLowerCase().trim();
     const groups = document.querySelectorAll('.harvester-new-source-group');
     groups.forEach(group => {
@@ -10439,9 +11213,9 @@ function initStagehandRipperUI() {
             <!-- Scrollable Accordion of Data Sources with Event Names & Dates -->
             <div id="harvester-before-sources-list" style="flex: 1; max-height: 380px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px;">
               ${sortedSources.map(([sourceName, evs], sIdx) => {
-                const safeId = 'hsrc-' + sIdx;
-                const isExpanded = sIdx < 2;
-                return `
+      const safeId = 'hsrc-' + sIdx;
+      const isExpanded = sIdx < 2;
+      return `
                   <div class="harvester-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(192, 132, 252, 0.18); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
                     <div onclick="toggleHarvesterSourceGroup('${safeId}')" style="padding: 6px 10px; background: rgba(192, 132, 252, 0.08); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
                       <div style="display: flex; align-items: center; gap: 6px;">
@@ -10457,15 +11231,15 @@ function initStagehandRipperUI() {
                     </div>
                     <div id="${safeId}" class="harvester-source-events-list" style="padding: 6px 10px; display: ${isExpanded ? 'flex' : 'none'}; flex-direction: column; gap: 5px; font-size: 0.72rem; background: rgba(0, 0, 0, 0.2);">
                       ${evs.map(e => {
-                        const rawDate = e.date || e.dateSchedule || '';
-                        const isPending = !rawDate || /pending|verification|tbd|schedule/i.test(rawDate);
-                        const dateSnippet = isPending ? '' : `
+        const rawDate = e.date || e.dateSchedule || '';
+        const isPending = !rawDate || /pending|verification|tbd|schedule/i.test(rawDate);
+        const dateSnippet = isPending ? '' : `
                           <span style="color: #38bdf8; font-family: monospace; font-size: 0.66rem; white-space: nowrap; margin-left: 6px; flex-shrink: 0;">
                             📅 ${escapeHtml(rawDate)}${e.time ? ' • ' + escapeHtml(e.time) : ''}
                           </span>
                         `;
-                        const linkUrl = e.ticket_url || e.url || e.calendar_url || e.details_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
-                        return `
+        const linkUrl = e.ticket_url || e.url || e.calendar_url || e.details_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
+        return `
                           <div class="harvester-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding-bottom: 3px; flex-shrink: 0;">
                             <a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" 
                                style="color: #e2e8f0; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
@@ -10477,21 +11251,24 @@ function initStagehandRipperUI() {
                             ${dateSnippet}
                           </div>
                         `;
-                      }).join('')}
+      }).join('')}
                     </div>
                   </div>
                 `;
-              }).join('')}
+    }).join('')}
             </div>
           </div>
 
           <!-- TOP-RIGHT: AFTER RUN (Consists ONLY of the New Events Grouped by Source) -->
           <div id="harvester-top-right-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #090d16; border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
             <div class="yield-card-badge-bar after" style="color: #4ade80; border-color: rgba(52, 211, 153, 0.3);">
-              <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                 <span style="font-weight: 800;">✨ AFTER RUN • NEW DATA SOURCES &amp; EVENTS</span>
+                <span class="badge-card-number" id="harvester-sources-scanned-badge" style="background: rgba(168, 85, 247, 0.2); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.45);">
+                  📡 ${harvesterSourcesScanned || 0}/${harvesterTotalSources || 155} sources scanned
+                </span>
                 <span class="badge-card-number" style="background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4);">
-                  +${newEventsCount} New Events (${totalNewSources} Sources)
+                  +${newEventsCount} New Events (${totalNewSources} Yielding Sources)
                 </span>
               </div>
               <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(168, 85, 247, 0.2)' : 'rgba(16, 185, 129, 0.2)'}; color: ${isStreaming ? '#d8b4fe' : '#34d399'}; border: 1px solid ${isStreaming ? 'rgba(168, 85, 247, 0.4)' : 'rgba(16, 185, 129, 0.4)'};">
@@ -10533,8 +11310,8 @@ function initStagehandRipperUI() {
                   `)}
                 </div>
               ` : sortedNewSources.map(([sourceName, evs], sIdx) => {
-                const safeId = 'hnewsrc-' + sIdx;
-                return `
+      const safeId = 'hnewsrc-' + sIdx;
+      return `
                   <div class="harvester-new-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
                     <div onclick="toggleHarvesterNewSourceGroup('${safeId}')" style="padding: 6px 10px; background: rgba(16, 185, 129, 0.09); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
                       <div style="display: flex; align-items: center; gap: 6px;">
@@ -10550,8 +11327,8 @@ function initStagehandRipperUI() {
                     </div>
                     <div id="${safeId}" class="harvester-new-source-events-list" style="padding: 6px 10px; display: flex; flex-direction: column; gap: 5px; font-size: 0.72rem; background: rgba(0, 0, 0, 0.2);">
                       ${evs.map(e => {
-                        const linkUrl = e.url || e.ticket_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
-                        return `
+        const linkUrl = e.url || e.ticket_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
+        return `
                           <div class="harvester-new-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding-bottom: 3px; flex-shrink: 0;">
                             <a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" 
                                style="color: #4ade80; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
@@ -10565,11 +11342,11 @@ function initStagehandRipperUI() {
                             </span>
                           </div>
                         `;
-                      }).join('')}
+      }).join('')}
                     </div>
                   </div>
                 `;
-              }).join('')}
+    }).join('')}
             </div>
           </div>
         </div>
@@ -10611,8 +11388,8 @@ function initStagehandRipperUI() {
                 `)}
               </div>
             ` : (newEvents || []).map((ev, idx) => {
-              const evUrl = ev.url || ev.ticket_url || `https://www.google.com/search?q=${encodeURIComponent((ev.title || '') + ' ' + (ev.venue || '') + ' Vancouver')}`;
-              return `
+      const evUrl = ev.url || ev.ticket_url || `https://www.google.com/search?q=${encodeURIComponent((ev.title || '') + ' ' + (ev.venue || '') + ' Vancouver')}`;
+      return `
                 <div style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.32); border-radius: 6px; padding: 9px 12px; display: flex; flex-direction: column; gap: 4px; transition: transform 0.15s ease;">
                   <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
                     <a href="${escapeHtml(evUrl)}" target="_blank" rel="noopener noreferrer" 
@@ -10641,7 +11418,7 @@ function initStagehandRipperUI() {
                   ` : ''}
                 </div>
               `;
-            }).join('')}
+    }).join('')}
           </div>
         </div>
       </div>
@@ -10691,9 +11468,9 @@ function initStagehandRipperUI() {
 
         renderHarvesterComparisonView(true, mergedNew, false);
         updateComparisonStatusPill(
-          isSuccess 
-            ? `${mergedNew.length} New Events Harvested ✅` 
-            : `${mergedNew.length} Events Harvested (Halted)`, 
+          isSuccess
+            ? `${mergedNew.length} New Events Harvested ✅`
+            : `${mergedNew.length} Events Harvested (Halted)`,
           'updated'
         );
 
@@ -10714,8 +11491,8 @@ function initStagehandRipperUI() {
             url: e.ticket_url || e.details_url || ''
           }));
         }
-        pipelineTestStageStatuses.harvest = isSuccess 
-          ? `✅ Complete (${pipelineTestDiscoveredIds.length} Harvested)` 
+        pipelineTestStageStatuses.harvest = isSuccess
+          ? `✅ Complete (${pipelineTestDiscoveredIds.length} Harvested)`
           : `⚠️ Halted (${pipelineTestDiscoveredIds.length} Harvested)`;
         savePipelineBatchState();
         if (typeof renderPipelineTestEventsList === 'function') renderPipelineTestEventsList();
@@ -10724,7 +11501,7 @@ function initStagehandRipperUI() {
       .catch(() => {
         renderHarvesterComparisonView(true, harvesterDiscoveredEvents || [], false);
         updateComparisonStatusPill(
-          `${(harvesterDiscoveredEvents || []).length} New Events Harvested ✅`, 
+          `${(harvesterDiscoveredEvents || []).length} New Events Harvested ✅`,
           'updated'
         );
         const batchLimit = (pipelineBatchSize === 'all' || pipelineBatchSize === 0) ? 9999 : (Number(pipelineBatchSize) || 5);
@@ -10846,8 +11623,8 @@ function initStagehandRipperUI() {
     if (!tbody) return;
 
     const eventId = ctx?.id;
-    const before = (eventId && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function') 
-      ? pipelineInitialSnapshots.get(eventId) 
+    const before = (eventId && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function')
+      ? pipelineInitialSnapshots.get(eventId)
       : null;
     const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
     const cardNum = before?.cardIndex || ctx?.cardIndex || (eventId && allEvs ? (allEvs.findIndex(e => (e.id || e.event_id) === eventId) + 1) : null) || '?';
@@ -11011,7 +11788,12 @@ function initStagehandRipperUI() {
     }
     showComparisonCardById(historyItem.id);
 
-    pipelineProcessedCount = pipelineAuditedCardsHistory.length;
+    const baseDone = Number(window.pipelineBaselineAlreadyDoneCount) || 0;
+    const rawProcessed = baseDone + pipelineAuditedCardsHistory.length;
+    const syncedProcessed = Math.max(pipelineCurrentTargetIndex || 0, rawProcessed);
+    pipelineProcessedCount = (pipelineTotalTargets > 0 && syncedProcessed > pipelineTotalTargets)
+      ? pipelineTotalTargets
+      : syncedProcessed;
     const badge = document.getElementById('pipeline-diff-counter-badge');
     if (badge) {
       badge.textContent = pipelineTotalTargets > 0
@@ -11025,7 +11807,12 @@ function initStagehandRipperUI() {
     single: 45,
     calendar: 25,
     harvester: 25,
-    enrich: 1.8,
+    enrich: 18,
+    venue_detailer: 28,
+    venue: 28,
+    tier1_hunter: 18,
+    hunter: 18,
+    qc: 48,
     compile: 3
   };
 
@@ -11096,7 +11883,7 @@ function initStagehandRipperUI() {
           'Curator-Token': state.token || ''
         }
       });
-    } catch (e) {}
+    } catch (e) { }
     setExecutionState(false);
     if (btnStopPipeline) btnStopPipeline.style.display = 'none';
     if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
@@ -11207,20 +11994,35 @@ function initStagehandRipperUI() {
       showUrl: false,
       initialStatus: 'Grounding physical venue addresses, GPS coordinates & amenities into venues.json...'
     },
+    consolidate: {
+      key: 'consolidate',
+      mode: 'consolidate',
+      title: '<span>🔀</span> 5A. Consolidator & Multi-Day Merger',
+      techPillText: '[Consolidator & Deduplicator]',
+      techPillClass: 'tech-pill-agent',
+      shortDesc: 'Canonical Entity Fingerprinting & Multi-Day Showing Rollup detects duplicate cards across dates or ticket portals, merges showings[] into a single master card, and archives redundant IDs.',
+      btnLabel: 'Consolidate & Merge Duplicates',
+      btnColor: 'linear-gradient(135deg, #0d9488 0%, #10b981 100%)',
+      btnBorder: '#34d399',
+      urlPlaceholder: 'Scans entire catalog and specialist layers for multi-day or cross-source duplicates',
+      defaultLimit: 0,
+      showUrl: false,
+      initialStatus: 'Scanning catalog for duplicate events & rolling up multi-day showings...'
+    },
     compile: {
       key: 'compile',
       mode: 'compile',
-      title: '<span>🏛️</span> 5. Compiler & Live Publisher',
-      techPillText: '[Compiler AI Arbitrator]',
+      title: '<span>🏛️</span> 5. Compiler, Consolidator & Publisher',
+      techPillText: '[Compiler & Consolidator AI]',
       techPillClass: 'tech-pill-agent',
-      shortDesc: `AI Arbitrator combines and synthesizes specialist layers (Stagehand Box Office, Harvester Schedules, Semantic Enricher, and Master Venues) according to the ${getCatalogDimensionsCount()}-Dimension Arbitration Matrix, validates financial invariants (base + fee + tax = all_in ≤ $50), and publishes master cards live to js/data.js.`,
-      btnLabel: 'Compile & Publish Live',
+      shortDesc: `AI Arbitrator reconciles specialist layers (Stagehand Box Office, Harvester Schedules, Semantic Enricher, and Master Venues) across ${getCatalogDimensionsCount()} dimensions, validates financial invariants (base + fee + tax = all_in ≤ $50), checks for any multi-day or cross-source duplicates and merges them into a single master event card, and publishes live to js/data.js.`,
+      btnLabel: 'Compile, Deduplicate & Publish Live',
       btnColor: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
       btnBorder: '#34d399',
       urlPlaceholder: 'Leave empty for catalog cards, or enter specific calendar/ticket URL',
       defaultLimit: 5,
       showUrl: false,
-      initialStatus: 'Arbitrating layers, checking invariants & publishing master data live...'
+      initialStatus: 'Arbitrating layers, merging duplicate multi-day cards & publishing master data live...'
     },
     master: {
       key: 'master',
@@ -11244,8 +12046,8 @@ function initStagehandRipperUI() {
   // -------------------------------------------------------------
   let isPipelineTestMode = true;
   let isPipelineAutoChaining = false;
-  let pipelineBatchSize = 5;
-  window.pipelineBatchSize = 5;
+  let pipelineBatchSize = 'all';
+  window.pipelineBatchSize = 'all';
   let pipelineTestStageKey = 'harvest';
   let pipelineTestDiscoveredIds = [];
   let pipelineTestDiscoveredEvents = [];
@@ -11266,8 +12068,31 @@ function initStagehandRipperUI() {
   let pipelineLastQuarantinedCardIds = [];
   let currentPreviewModalTab = 'compiled';
   let autoPipelineModalScope = 'discover_and_stale';
-  let autoPipelineModalBatchSize = 5;
+  let autoPipelineModalBatchSize = 'all';
   let cachedDetailerVenues = null;
+
+  window.promptContinueEventCount = function (totalAvailable = null, contextLabel = 'events') {
+    const totalHint = (typeof totalAvailable === 'number' && totalAvailable > 0)
+      ? ` (${totalAvailable} ${contextLabel} remaining — enter a number or "all")`
+      : ' (enter a number or "all")';
+    const raw = window.prompt(
+      `How many ${contextLabel} would you like to process?${totalHint}:`,
+      'all'
+    );
+    if (raw === null) return null;
+    const trimmed = String(raw).trim().toLowerCase();
+    if (!trimmed || trimmed === 'all' || trimmed === '0') {
+      return 'all';
+    }
+    const parsed = parseInt(trimmed, 10);
+    if (isNaN(parsed) || parsed <= 0) {
+      if (typeof showToast === 'function') {
+        showToast('Invalid number entered. Please enter a positive number or "all".', 'warning');
+      }
+      return null;
+    }
+    return parsed;
+  };
 
   const PIPELINE_TEST_ORDER = ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'compile'];
 
@@ -11281,7 +12106,7 @@ function initStagehandRipperUI() {
         stageStatuses: pipelineTestStageStatuses,
         updatedAt: Date.now()
       }));
-    } catch (_) {}
+    } catch (_) { }
   }
 
   function loadPipelineBatchState() {
@@ -11298,15 +12123,19 @@ function initStagehandRipperUI() {
         if (Array.isArray(parsed.discoveredIds)) pipelineTestDiscoveredIds = parsed.discoveredIds;
         if (Array.isArray(parsed.discoveredEvents)) pipelineTestDiscoveredEvents = parsed.discoveredEvents;
         if (parsed.stageStatuses && typeof parsed.stageStatuses === 'object') {
-          pipelineTestStageStatuses = { ...pipelineTestStageStatuses, ...parsed.stageStatuses };
+          const cleanedStatuses = {};
+          Object.entries(parsed.stageStatuses).forEach(([k, v]) => {
+            cleanedStatuses[k] = (!isExecuting && String(v || '').includes('Running')) ? 'Queued ⏳' : v;
+          });
+          pipelineTestStageStatuses = { ...pipelineTestStageStatuses, ...cleanedStatuses };
         }
         return true;
       }
-    } catch (_) {}
+    } catch (_) { }
     return false;
   }
 
-  window.setPipelineBatchSize = function(size) {
+  window.setPipelineBatchSize = function (size) {
     pipelineBatchSize = size;
     window.pipelineBatchSize = size;
     window.selectedAutoModalBatchSize = size;
@@ -11421,7 +12250,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.promptCustomBatchSize = function() {
+  window.promptCustomBatchSize = function () {
     const current = typeof pipelineBatchSize === 'number' ? pipelineBatchSize : '15';
     const input = prompt('Enter custom batch size (number of events to process):', String(current));
     if (input !== null) {
@@ -11458,7 +12287,7 @@ function initStagehandRipperUI() {
     return 'month';
   }
 
-  window.updateCatalogStalenessDashboard = function() {
+  window.updateCatalogStalenessDashboard = function () {
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
     const counts = { fresh: 0, day: 0, week: 0, month: 0, never: 0 };
 
@@ -11478,7 +12307,7 @@ function initStagehandRipperUI() {
     setEl('stale-count-never', counts.never);
   };
 
-  window.selectStaleFilter = function(filterKey) {
+  window.selectStaleFilter = function (filterKey) {
     pipelineStaleFilterCategory = filterKey;
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
     const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
@@ -11571,22 +12400,30 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.selectAllOutOfDateEvents = function() {
+  window.selectAllOutOfDateEvents = function () {
     window.selectStaleFilter('all_stale');
   };
 
-  window.autoRunOutOfDateStages1BTo4 = function(evt) {
+  window.autoRunOutOfDateStages1BTo4 = function (evt) {
     if (evt) evt.stopPropagation();
     if (isExecuting) {
       if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
       return;
     }
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const outOfDate = events.filter(e => classifyEventStaleness(e) !== 'fresh');
+    const pool = outOfDate.length > 0 ? outOfDate : events;
+    if (pool.length === 0) {
+      if (typeof showToast === 'function') showToast('No out-of-date events matched to refresh!', 'info');
+      return;
+    }
+    const chosenCount = window.promptContinueEventCount(pool.length, 'events');
+    if (chosenCount === null) return;
+    window.setPipelineBatchSize(chosenCount);
     window.selectStaleFilter(pipelineStaleFilterCategory || 'all_stale');
     if (!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0) {
-      const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-      const outOfDate = events.filter(e => classifyEventStaleness(e) !== 'fresh');
-      const bLimit = (pipelineBatchSize !== 'all' && typeof pipelineBatchSize === 'number') ? pipelineBatchSize : 5;
-      const picked = (outOfDate.length > 0 ? outOfDate : events).slice(0, bLimit);
+      const bLimit = (chosenCount !== 'all' && typeof chosenCount === 'number') ? chosenCount : pool.length;
+      const picked = pool.slice(0, bLimit);
       pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
       pipelineTestDiscoveredEvents = picked.map(e => ({
         id: e.id || e.event_id,
@@ -11626,13 +12463,188 @@ function initStagehandRipperUI() {
     openPipelineTestStage('hunter', true);
   };
 
-  window.autoRunQuarantinedStages1BTo4 = function(evt) {
+  window.getNewestPassedBatchEvents = function () {
+    const events = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+    if (!events || events.length === 0) return [];
+
+    // 1. Live session passed map from most recent Stage 5 Compiler run
+    if (window.pipelineCompiledPassedMap instanceof Map && window.pipelineCompiledPassedMap.size > 0) {
+      const passedIds = new Set([...window.pipelineCompiledPassedMap.keys()].map(id => String(id).toLowerCase()));
+      const matched = events.filter(e => passedIds.has(String(e.id || e.event_id || '').toLowerCase()));
+      if (matched.length > 0) return matched;
+      return [...window.pipelineCompiledPassedMap.values()].filter(Boolean);
+    }
+
+    // 2. Persisted newest passed batch IDs from localStorage
+    try {
+      const rawStored = localStorage.getItem('van50_last_passed_batch_ids');
+      if (rawStored) {
+        const parsedIds = JSON.parse(rawStored);
+        if (Array.isArray(parsedIds) && parsedIds.length > 0) {
+          const idSet = new Set(parsedIds.map(id => String(id).toLowerCase()));
+          const matched = events.filter(e => idSet.has(String(e.id || e.event_id || '').toLowerCase()));
+          if (matched.length > 0) return matched;
+        }
+      }
+    } catch (_) {}
+
+    // 3. Fallback: group cards from the most recent compilation / graduation batch timestamp
+    const getBatchPassTime = (ev) => {
+      if (!ev) return 0;
+      const raw = ev.last_compiled_batch_at ||
+        ev.graduated_at ||
+        ev.last_pulse_qc_at ||
+        ev.last_content_qc_at ||
+        ev.last_full_qc_at ||
+        ev.last_qc_audited_at ||
+        ev.dimension_audit?.D808_timestamp_lockstep?.audited_at ||
+        ev.dimension_audit?.D003_event_num_card?.audited_at;
+      const t = raw ? new Date(raw).getTime() : 0;
+      return isNaN(t) ? 0 : t;
+    };
+
+    const scored = events.map(ev => ({ ev, ts: getBatchPassTime(ev) }));
+    scored.sort((a, b) => b.ts - a.ts);
+    const maxTs = scored[0]?.ts || 0;
+    if (maxTs > 0) {
+      // Group cards compiled within 15 minutes of the newest batch timestamp
+      const windowMs = 15 * 60 * 1000;
+      const cluster = scored.filter(x => (maxTs - x.ts) <= windowMs).map(x => x.ev);
+      if (cluster.length > 0 && cluster.length < events.length) {
+        return cluster;
+      }
+      // If all catalog cards share the same full-catalog compile timestamp, prefer recently graduated or box-office-audited cards
+      const getGranularTime = (ev) => {
+        const r = ev.graduated_at || ev.last_pulse_qc_at || ev.last_content_qc_at || ev.dimension_audit?.D002_event_num_perm?.audited_at;
+        const t = r ? new Date(r).getTime() : 0;
+        return isNaN(t) ? 0 : t;
+      };
+      const granularScored = events.map(ev => ({ ev, ts: getGranularTime(ev) })).filter(x => x.ts > 0);
+      if (granularScored.length > 0) {
+        granularScored.sort((a, b) => b.ts - a.ts);
+        const topGranularTs = granularScored[0].ts;
+        const granularCluster = granularScored.filter(x => (topGranularTs - x.ts) <= 30 * 60 * 1000).map(x => x.ev);
+        if (granularCluster.length > 0 && granularCluster.length <= 50) {
+          return granularCluster;
+        }
+        return granularScored.slice(0, 15).map(x => x.ev);
+      }
+      return scored.slice(0, 15).map(x => x.ev);
+    }
+
+    return events.slice(0, 15);
+  };
+
+  window.autoRunNewestPassedBatchStages1BTo5 = function (evt) {
     if (evt) evt.stopPropagation();
     if (isExecuting) {
       if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
       return;
     }
+    window.VAN50_ENGINE = 'antigravity';
+    const newestBatch = window.getNewestPassedBatchEvents();
+    if (!newestBatch || newestBatch.length === 0) {
+      if (typeof showToast === 'function') showToast('No passed pipeline events found in catalog!', 'info');
+      return;
+    }
+
+    const chosenCount = window.promptContinueEventCount(newestBatch.length, 'newest passed pipeline events');
+    if (chosenCount === null) return;
+    window.setPipelineBatchSize(chosenCount);
+
+    const batchCap = (chosenCount === 'all' || chosenCount === 0)
+      ? newestBatch.length
+      : Math.min(Number(chosenCount) || newestBatch.length, newestBatch.length);
+    const picked = newestBatch.slice(0, batchCap);
+
+    pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+    pipelineTestDiscoveredEvents = picked.map(e => ({
+      id: e.id || e.event_id,
+      title: e.title || e.event_name || 'Passed Pipeline Event',
+      date: e.date || e.dateSchedule || 'TBD',
+      venue: e.venue || e.venue_name || '',
+      price: e.priceLabel || (e.price != null ? `$${Number(e.price).toFixed(2)} CAD` : 'Verified'),
+      url: e.ticket_url || e.details_url || ''
+    }));
+
+    if (pipelineTestDiscoveredIds.length === 0) {
+      if (typeof showToast === 'function') showToast('No passed pipeline events found!', 'info');
+      return;
+    }
+
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = true;
+    pipelineQuarantinedRunActive = false;
+    currentPipelineScope = 'batch5';
+    window.pipelineAutoChainingStages = ['hunter', 'qc', 'enrich', 'venue', 'compile'];
+    pipelineTestStageStatuses = {
+      harvest: 'Skipped ⏭️',
+      hunter: 'Running ⚡',
+      qc: 'Queued ⏳',
+      enrich: 'Queued ⏳',
+      venue: 'Queued ⏳',
+      compile: 'Queued ⏳'
+    };
+
+    ['btn-stepper-auto-newest-passed', 'btn-header-run-newest-passed', 'btn-banner-run-newest-passed', 'btn-status-run-newest-passed'].forEach(btnId => {
+      const btn = document.getElementById(btnId);
+      if (btn) btn.classList.add('is-running');
+    });
+    ['btn-stepper-auto-newest-passed-label', 'btn-header-run-newest-passed-label', 'btn-banner-run-newest-passed-label', 'btn-status-run-newest-passed-label'].forEach(lblId => {
+      const lbl = document.getElementById(lblId);
+      if (lbl) lbl.textContent = `✅ Running Newest Passed (${pipelineTestDiscoveredIds.length})...`;
+    });
+
+    const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
+    if (summaryBanner) summaryBanner.style.display = 'none';
+    savePipelineBatchState();
+
+    if (typeof showToast === 'function') {
+      showToast(`✅ Antigravity Auto-Running ${pipelineTestDiscoveredIds.length} Newest Passed Pipeline Events through Stages 1B ➔ 5!`, 'info');
+    }
+    openPipelineTestStage('hunter', true);
+  };
+
+  window.autoRunQuarantinedStages1BTo4 = function (evt) {
+    if (evt) evt.stopPropagation();
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
+      return;
+    }
+    window.VAN50_ENGINE = 'antigravity';
+    const rawQEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    if (rawQEvents.length === 0) {
+      if (typeof showToast === 'function') showToast('Quarantine queue is empty!', 'info');
+      return;
+    }
+    // Prioritize quarantined items with curator instructions/notes first
+    const hasGuidance = (e) => Boolean(e.dealtWith || e.queuedInstruction || e.curatorAnnotation?.note || (e.curatorAnnotation?.screenshotPaths && e.curatorAnnotation.screenshotPaths.length > 0));
+    const qEvents = [
+      ...rawQEvents.filter(hasGuidance),
+      ...rawQEvents.filter(e => !hasGuidance(e))
+    ];
+
+    const chosenCount = window.promptContinueEventCount(qEvents.length, 'quarantined events');
+    if (chosenCount === null) return;
+    window.setPipelineBatchSize(chosenCount);
     window.selectStaleFilter('quarantined');
+
+    const batchCap = (chosenCount === 'all' || chosenCount === 0)
+      ? qEvents.length
+      : Math.min(Number(chosenCount) || qEvents.length, qEvents.length);
+    const picked = qEvents.slice(0, batchCap);
+    pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+    pipelineTestDiscoveredEvents = picked.map(e => ({
+      id: e.id || e.event_id,
+      title: e.title || e.event_name || 'Quarantined Event',
+      date: e.date || e.dateSchedule || '',
+      venue: e.venue || e.venue_name || '',
+      price: e.priceLabel || '',
+      url: e.ticket_url || e.details_url || ''
+    }));
+
     if (pipelineTestDiscoveredIds.length === 0) {
       if (typeof showToast === 'function') showToast('Quarantine queue is empty!', 'info');
       return;
@@ -11650,16 +12662,158 @@ function initStagehandRipperUI() {
       venue: 'Queued ⏳',
       compile: 'Queued ⏳'
     };
-    const autoQBtn = document.getElementById('btn-stepper-auto-quarantined');
-    if (autoQBtn) {
-      autoQBtn.classList.add('is-running');
-      const autoQLabel = document.getElementById('btn-stepper-auto-quarantined-label');
-      if (autoQLabel) autoQLabel.textContent = `🛡️ Running Quarantined (${pipelineTestDiscoveredIds.length})...`;
-    }
+    ['btn-stepper-auto-quarantined', 'btn-header-run-quarantine', 'btn-banner-run-quarantine', 'btn-status-run-quarantine'].forEach(btnId => {
+      const btn = document.getElementById(btnId);
+      if (btn) btn.classList.add('is-running');
+    });
+    ['btn-stepper-auto-quarantined-label', 'btn-header-run-quarantine-label', 'btn-banner-run-quarantine-label', 'btn-status-run-quarantine-label'].forEach(lblId => {
+      const lbl = document.getElementById(lblId);
+      if (lbl) lbl.textContent = `🛡️ Running Quarantined (${pipelineTestDiscoveredIds.length})...`;
+    });
     if (typeof showToast === 'function') {
-      showToast(`🛡️ Auto-Running ${pipelineTestDiscoveredIds.length} Quarantined Items through Stages 1B ➔ 5!`, 'info');
+      showToast(`🛡️ Antigravity Auto-Running ${pipelineTestDiscoveredIds.length} Quarantined Items through Stages 1B ➔ 5!`, 'info');
     }
     openPipelineTestStage('hunter', true);
+  };
+
+  window.harvesterResumeMode = true;
+
+  window.setHarvestResumeMode = function (resumeBool) {
+    window.harvesterResumeMode = Boolean(resumeBool);
+    const btnRes = document.getElementById('btn-opt-harvest-resume');
+    const btnFresh = document.getElementById('btn-opt-harvest-fresh');
+    if (btnRes) {
+      btnRes.classList.toggle('active', window.harvesterResumeMode);
+      btnRes.style.borderColor = window.harvesterResumeMode ? '#c084fc' : 'rgba(255,255,255,0.16)';
+      btnRes.style.background = window.harvesterResumeMode ? 'rgba(168, 85, 247, 0.25)' : 'rgba(0,0,0,0.35)';
+      btnRes.style.color = window.harvesterResumeMode ? '#f3e8ff' : '#94a3b8';
+    }
+    if (btnFresh) {
+      btnFresh.classList.toggle('active', !window.harvesterResumeMode);
+      btnFresh.style.borderColor = !window.harvesterResumeMode ? '#38bdf8' : 'rgba(255,255,255,0.16)';
+      btnFresh.style.background = !window.harvesterResumeMode ? 'rgba(56, 189, 248, 0.2)' : 'rgba(0,0,0,0.35)';
+      btnFresh.style.color = !window.harvesterResumeMode ? '#38bdf8' : '#94a3b8';
+    }
+    if (typeof window.updateAutoPipelineFlowPreview === 'function') {
+      window.updateAutoPipelineFlowPreview();
+    }
+  };
+
+  window.continueHarvestFromCheckpoint = function (evt) {
+    if (evt) evt.stopPropagation();
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
+      return;
+    }
+    const chosenCount = window.promptContinueEventCount(null, 'events');
+    if (chosenCount === null) return;
+
+    window.harvesterResumeMode = true;
+    const cp = state.harvesterCheckpoint || {};
+    const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : 50;
+    const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
+    const lastFeedName = cp.last_feed_name || 'The Orpheum Theatre';
+
+    window.setPipelineBatchSize(chosenCount);
+    const chosenLimit = (chosenCount === 'all' || chosenCount === 0) ? 0 : (Number(chosenCount) || 0);
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = false;
+    pipelineQuarantinedRunActive = false;
+    pipelineTestStageKey = 'harvest';
+    currentPipelineScanKey = 'harvest';
+    pipelineTestStageStatuses.harvest = 'Running ⚡';
+    window.activePipelineRunningStageKey = 'harvest';
+
+    window.openScanModal('harvest');
+    updatePipelineTestStepperUI();
+    updateStageNavButtons();
+
+    if (typeof showToast === 'function') {
+      showToast(`▶️ Resuming Stage 1A from Feed #${resumeFeedNum}/${totalFeeds} (${lastFeedName}) • Target: ${chosenLimit > 0 ? chosenLimit + ' events' : 'All events'}...`, 'info');
+    }
+
+    setTimeout(() => {
+      runPipelineAction({
+        mode: 'calendar',
+        title: `▶️ Stage 1A: Continuing Scan from Feed #${resumeFeedNum}/${totalFeeds} (${lastFeedName} • ${chosenLimit > 0 ? chosenLimit + ' Events' : 'All Events'})`,
+        initialStatus: `Resuming Stage 1A at Feed #${resumeFeedNum}/${totalFeeds}: ${lastFeedName} (${chosenLimit > 0 ? chosenLimit + ' events' : 'all events'})...`,
+        limit: chosenLimit,
+        url: 'all:resume',
+        all: true,
+        resume: true,
+        autoApprove: true
+      });
+    }, 200);
+  };
+
+  window.autoRunHarvestedStages1BTo5 = function (evt) {
+    if (evt) evt.stopPropagation();
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
+      return;
+    }
+    const harvestedAll = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
+    if (harvestedAll.length === 0) {
+      if (typeof showToast === 'function') showToast('No uncompiled newly harvested events found in layer_schedules.json!', 'info');
+      return;
+    }
+
+    const chosenCount = window.promptContinueEventCount(harvestedAll.length, 'events');
+    if (chosenCount === null) return;
+    window.setPipelineBatchSize(chosenCount);
+
+    const boxArr = state.layerBoxOffices || state.layerBoxOffice || [];
+    const boxSet = new Set(boxArr.filter(b => b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR').map(b => String(b.id || b.event_id || '').toLowerCase()));
+    const prioritizedHarvested = [
+      ...harvestedAll.filter(e => !e.step1b_audited_at || !boxSet.has(String(e.id || e.event_id || '').toLowerCase())),
+      ...harvestedAll.filter(e => e.step1b_audited_at && boxSet.has(String(e.id || e.event_id || '').toLowerCase()))
+    ];
+
+    const batchCap = (chosenCount === 'all' || chosenCount === 0) ? prioritizedHarvested.length : Math.min(Number(chosenCount) || prioritizedHarvested.length, prioritizedHarvested.length);
+    const picked = prioritizedHarvested.slice(0, batchCap);
+    pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+    pipelineTestDiscoveredEvents = picked.map(e => ({
+      id: e.id || e.event_id,
+      title: e.title || e.event_name || 'Harvested Event',
+      date: e.date || e.dateSchedule || 'TBD',
+      venue: e.venue || e.venue_name || '',
+      price: e.priceLabel || 'Pending 1B/QC',
+      url: e.url || e.ticket_url || e.details_url || ''
+    }));
+
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = true;
+    pipelineQuarantinedRunActive = false;
+    currentPipelineScope = 'harvested';
+    window.pipelineAutoChainingStages = ['hunter', 'qc', 'enrich', 'venue', 'compile'];
+    pipelineTestStageStatuses = {
+      harvest: `Complete ✅ (${harvestedAll.length} Found)`,
+      hunter: 'Running ⚡',
+      qc: 'Queued ⏳',
+      enrich: 'Queued ⏳',
+      venue: 'Queued ⏳',
+      compile: 'Queued ⏳'
+    };
+
+    const autoHBtn = document.getElementById('btn-stepper-auto-harvested');
+    if (autoHBtn) {
+      autoHBtn.classList.add('is-running');
+      const autoHLabel = document.getElementById('btn-stepper-auto-harvested-label');
+      if (autoHLabel) autoHLabel.textContent = `✨ Running New Events (${pipelineTestDiscoveredIds.length})...`;
+    }
+
+    const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
+    if (summaryBanner) summaryBanner.style.display = 'none';
+    savePipelineBatchState();
+
+    if (typeof showToast === 'function') {
+      showToast(`✨ Starting Stage 1B ➔ 5 on ${pipelineTestDiscoveredIds.length} Newly Harvested Events!`, 'info');
+    }
+    openPipelineTestStage('hunter', true);
+  };
+
+  window.startProcessingHarvestedAt1B = function (evt) {
+    window.autoRunHarvestedStages1BTo5(evt);
   };
 
   function updatePipelineTestStepperUI() {
@@ -11695,18 +12849,25 @@ function initStagehandRipperUI() {
     PIPELINE_TEST_ORDER.forEach((key, i) => {
       const stepEl = document.getElementById(`test-step-${key}`);
       const statusEl = document.getElementById(`test-step-status-${key}`);
-      const status = pipelineTestStageStatuses[key] || (i < idx ? 'Complete ✅' : (i === idx ? 'Active' : 'Awaiting'));
+      const info = typeof window.getStageContinuationInfo === 'function' ? window.getStageContinuationInfo(key) : null;
+      const isStageRunning = isExecuting && window.activePipelineRunningStageKey === key;
+      const status = isStageRunning
+        ? (info && info.pendingCount > 0 ? `Running ⚡ (${info.pendingCount} Queued)` : 'Running ⚡')
+        : (info ? info.stepperStatusBadge : (pipelineTestStageStatuses[key] || (i < idx ? 'Complete ✅' : (i === idx ? 'Active' : 'Awaiting'))));
+      const isAllDoneForStage = info
+        ? (info.pendingCount === 0 && (info.currentCompletedCount > 0 || (key === 'harvest' && info.harvestedCount > 0)))
+        : status.includes('Complete');
       if (stepEl) {
         stepEl.classList.toggle('active', key === currentStage);
         stepEl.classList.toggle('active-step', key === currentStage);
-        stepEl.classList.toggle('completed', status.includes('Complete'));
-        stepEl.classList.toggle('completed-step', status.includes('Complete'));
+        stepEl.classList.toggle('completed', !isStageRunning && isAllDoneForStage);
+        stepEl.classList.toggle('completed-step', !isStageRunning && isAllDoneForStage);
       }
       if (statusEl) {
         statusEl.textContent = status;
         statusEl.className = 'test-step-status';
-        if (status.includes('Running')) statusEl.classList.add('status-running');
-        else if (status.includes('Complete')) statusEl.classList.add('status-complete');
+        if (isStageRunning || status.includes('Running')) statusEl.classList.add('status-running');
+        else if (isAllDoneForStage || status.includes('Complete')) statusEl.classList.add('status-complete');
         else if (status.includes('Halted') || status.includes('Error')) statusEl.classList.add('status-halted');
         else if (status.includes('Skipped')) statusEl.classList.add('status-skipped');
       }
@@ -11736,9 +12897,12 @@ function initStagehandRipperUI() {
     const nextBtn = document.getElementById('btn-stepper-next') || document.getElementById('btn-test-next-stage');
     if (prevBtn) prevBtn.disabled = (idx <= 0 || isExecuting);
     if (nextBtn) nextBtn.disabled = (idx >= PIPELINE_TEST_ORDER.length - 1 || isExecuting);
+    if (typeof window.updateAllStageContinuationButtonsUI === 'function') {
+      window.updateAllStageContinuationButtonsUI();
+    }
   }
 
-  window.togglePipelineStepperCompact = function() {
+  window.togglePipelineStepperCompact = function () {
     pipelineStepperCompact = !pipelineStepperCompact;
     const bar = document.getElementById('pipeline-test-stepper-bar');
     const btn = document.getElementById('btn-toggle-stepper-size');
@@ -11747,9 +12911,9 @@ function initStagehandRipperUI() {
   };
 
   window.selectedAutoPipelineScope = 'stale';
-  window.selectedAutoModalBatchSize = 5;
+  window.selectedAutoModalBatchSize = 'all';
 
-  window.parseCustomCardSpec = function(inputStr) {
+  window.parseCustomCardSpec = function (inputStr) {
     if (!inputStr || !inputStr.trim()) return [];
     const raw = inputStr.trim();
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
@@ -11806,7 +12970,7 @@ function initStagehandRipperUI() {
     return matched;
   };
 
-  window.handleAutoPipelineCustomIdsInput = function(val) {
+  window.handleAutoPipelineCustomIdsInput = function (val) {
     const hintEl = document.getElementById('auto-custom-ids-hint');
     if (!val || !val.trim()) {
       if (hintEl) hintEl.style.display = 'none';
@@ -11827,7 +12991,7 @@ function initStagehandRipperUI() {
     window.updateAutoPipelineFlowPreview();
   };
 
-  window.handleAutoModalCustomBatchInput = function(val) {
+  window.handleAutoModalCustomBatchInput = function (val) {
     if (!val || !val.trim()) return;
     const num = parseInt(val.trim(), 10);
     if (!isNaN(num) && num > 0) {
@@ -11835,17 +12999,27 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.openAutoPipelineOptionsModal = function(evt) {
+  window.openAutoPipelineOptionsModal = function (evt) {
     if (evt) evt.stopPropagation();
     window.updateCatalogStalenessDashboard();
+    if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
+      window.syncHarvesterCheckpointAndEventsUI();
+    }
     const modal = document.getElementById('auto-pipeline-options-modal');
     if (!modal) return;
 
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
     const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
     const staleEvents = events.filter(e => classifyEventStaleness(e) !== 'fresh');
-    const unverifiedEvents = events.filter(e => !e.proof_keyframe_cart || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE');
+    const unverifiedEvents = events.filter(e => {
+      const isFree = e.price === 0 || e.isFree || e.pricingType === 'free' || e.cost_type === 'free' || e.access_model === 'open_public_space' || e.access_model === 'free_public_access';
+      if (isFree) return e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE' || !isVerifiedApprovalStatus(e.approval_status);
+      return (!e.proof_keyframe_cart && !e.proof_keyframes?.cart) || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+    });
+    const harvestedEvents = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
 
+    const badgeHarvested = document.getElementById('badge-count-harvested');
+    if (badgeHarvested) badgeHarvested.textContent = `${harvestedEvents.length} New Events Ready`;
     const badgeStale = document.getElementById('badge-count-stale');
     if (badgeStale) badgeStale.textContent = `Recommended • ${staleEvents.length} Cards`;
     const badgeQuarantined = document.getElementById('badge-count-quarantined');
@@ -11856,7 +13030,7 @@ function initStagehandRipperUI() {
     if (badgeAll) badgeAll.textContent = `${events.length} Total Cards`;
 
     const initialBatch = window.selectedAutoModalBatchSize || pipelineBatchSize || 5;
-    window.selectAutoPipelineScope(window.selectedAutoPipelineScope || 'stale', true);
+    window.selectAutoPipelineScope(window.selectedAutoPipelineScope || 'harvest', true);
     window.setAutoModalBatchSize(initialBatch);
 
     modal.style.display = 'flex';
@@ -11864,7 +13038,7 @@ function initStagehandRipperUI() {
     window.updateAutoPipelineFlowPreview();
   };
 
-  window.closeAutoPipelineOptionsModal = function() {
+  window.closeAutoPipelineOptionsModal = function () {
     const modal = document.getElementById('auto-pipeline-options-modal');
     if (modal) {
       modal.style.display = 'none';
@@ -11872,10 +13046,10 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.selectAutoPipelineScope = function(scopeKey, preserveBatchSize = true) {
+  window.selectAutoPipelineScope = function (scopeKey, preserveBatchSize = true) {
     window.selectedAutoPipelineScope = scopeKey;
     autoPipelineModalScope = scopeKey;
-    ['stale', 'quarantined', 'harvest', 'unverified', 'all', 'custom'].forEach(key => {
+    ['harvest', 'harvested', 'stale', 'quarantined', 'unverified', 'all', 'custom'].forEach(key => {
       const card = document.getElementById(`opt-scope-${key}`);
       if (card) card.classList.toggle('selected', key === scopeKey);
     });
@@ -11898,7 +13072,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.setAutoModalBatchSize = function(size, isFromCustomInput = false) {
+  window.setAutoModalBatchSize = function (size, isFromCustomInput = false) {
     window.selectedAutoModalBatchSize = size;
     autoPipelineModalBatchSize = size;
     ['1', '5', '10', '25', '50', 'all'].forEach(chipKey => {
@@ -11934,7 +13108,7 @@ function initStagehandRipperUI() {
     window.updateAutoPipelineFlowPreview();
   };
 
-  window.promptAutoModalCustomBatchSize = function() {
+  window.promptAutoModalCustomBatchSize = function () {
     const customInput = document.getElementById('auto-modal-custom-batch-input');
     if (customInput) {
       customInput.focus();
@@ -11951,19 +13125,34 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.updateAutoPipelineFlowPreview = function() {
-    const scope = window.selectedAutoPipelineScope || 'stale';
+  window.updateAutoPipelineFlowPreview = function () {
+    const scope = window.selectedAutoPipelineScope || 'harvest';
     const batchSize = window.selectedAutoModalBatchSize || pipelineBatchSize || 5;
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
     const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
     const staleEvents = events.filter(e => classifyEventStaleness(e) !== 'fresh');
-    const unverifiedEvents = events.filter(e => !e.proof_keyframe_cart || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE');
+    const unverifiedEvents = events.filter(e => {
+      const isFree = e.price === 0 || e.isFree || e.pricingType === 'free' || e.cost_type === 'free' || e.access_model === 'open_public_space' || e.access_model === 'free_public_access';
+      if (isFree) return e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE' || !isVerifiedApprovalStatus(e.approval_status);
+      return (!e.proof_keyframe_cart && !e.proof_keyframes?.cart) || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+    });
+    const harvestedEvents = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
 
     let targetCount = 0;
     let scopeTitle = '';
     let stages = [];
 
-    if (scope === 'stale') {
+    if (scope === 'harvested') {
+      targetCount = harvestedEvents.length;
+      scopeTitle = 'Newly Harvested Events';
+      stages = [
+        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
+        { num: '03', name: 'AI Enricher', color: '#fbbf24' },
+        { num: '04', name: 'Venue Detailer', color: '#60a5fa' },
+        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+      ];
+    } else if (scope === 'stale') {
       targetCount = staleEvents.length || events.length;
       scopeTitle = 'Out-of-Date Events';
       stages = [
@@ -11986,8 +13175,14 @@ function initStagehandRipperUI() {
     } else if (scope === 'harvest') {
       targetCount = 0;
       scopeTitle = 'Venue Feed Events';
+      const cp = state.harvesterCheckpoint || {};
+      const resumeNum = cp.resume_from_feed_number != null ? cp.resume_from_feed_number : 50;
+      const totalFeeds = cp.total_feeds != null ? cp.total_feeds : 126;
+      const stage1AName = window.harvesterResumeMode !== false
+        ? `Schedule Harvester (Resume #${resumeNum}/${totalFeeds})`
+        : 'Schedule Harvester (Fresh #1)';
       stages = [
-        { num: '1A', name: 'Schedule Harvester', color: '#a855f7' },
+        { num: '1A', name: stage1AName, color: '#a855f7' },
         { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
         { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
         { num: '03', name: 'AI Enricher', color: '#fbbf24' },
@@ -12035,7 +13230,8 @@ function initStagehandRipperUI() {
 
     const chipAll = document.getElementById('modal-chip-batch-all');
     if (chipAll) {
-      if (scope === 'stale') chipAll.textContent = `All Qualifying (${targetCount})`;
+      if (scope === 'harvested') chipAll.textContent = `All Harvested (${targetCount})`;
+      else if (scope === 'stale') chipAll.textContent = `All Qualifying (${targetCount})`;
       else if (scope === 'quarantined') chipAll.textContent = `All Quarantined (${targetCount})`;
       else if (scope === 'unverified') chipAll.textContent = `All Qualifying (${targetCount})`;
       else if (scope === 'all') chipAll.textContent = `All Catalog (${targetCount})`;
@@ -12047,7 +13243,7 @@ function initStagehandRipperUI() {
     if (batchNote) {
       if (batchSize === 'all') {
         batchNote.textContent = scope === 'harvest'
-          ? 'Auto-aligned: Crawling all official venue calendar feeds'
+          ? (window.harvesterResumeMode !== false ? 'Auto-aligned: Resuming official venue calendar feeds from stopped point' : 'Auto-aligned: Crawling all official venue calendar feeds from #1')
           : `Auto-aligned: Processing all ${targetCount} ${scopeTitle}`;
       } else if (batchSize === 5) {
         batchNote.textContent = 'Quick spot-check (~3–4 mins)';
@@ -12065,8 +13261,8 @@ function initStagehandRipperUI() {
     const summaryEl = document.getElementById('auto-modal-target-summary');
     if (summaryEl) {
       summaryEl.textContent = scope === 'harvest'
-        ? 'Harvests official venue calendar feeds'
-        : `${targetCount} matching events found in catalog`;
+        ? (window.harvesterResumeMode !== false ? 'Continues harvesting official venue calendar feeds from stopped feed' : 'Harvests official venue calendar feeds from start')
+        : `${targetCount} matching events ready`;
     }
 
     const stagesContainer = document.getElementById('auto-modal-flow-stages');
@@ -12094,7 +13290,11 @@ function initStagehandRipperUI() {
     const launchBtn = document.getElementById('btn-launch-configured-pipeline');
     if (launchBtn) {
       if (scope === 'harvest') {
-        const hCountDisp = (batchSize === 'all') ? 'All Venue Feeds' : `${batchSize} Discovered Events`;
+        const cp = state.harvesterCheckpoint || {};
+        const resumeNum = cp.resume_from_feed_number != null ? cp.resume_from_feed_number : 50;
+        const totalFeeds = cp.total_feeds != null ? cp.total_feeds : 126;
+        const modePrefix = window.harvesterResumeMode !== false ? `Continue From #${resumeNum}/${totalFeeds} • ` : 'Start Fresh • ';
+        const hCountDisp = (batchSize === 'all') ? `${modePrefix}All Remaining Feeds` : `${modePrefix}${batchSize} Discovered Events`;
         launchBtn.innerHTML = `<span>🚀 Start Auto-Pipeline Run (${hCountDisp})</span>`;
       } else {
         const countDisplay = (batchSize === 'all') ? `All ${targetCount}` : `${effectiveCount}`;
@@ -12103,8 +13303,8 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.executeConfiguredAutoPipeline = function() {
-    const scope = window.selectedAutoPipelineScope || autoPipelineModalScope || 'stale';
+  window.executeConfiguredAutoPipeline = function () {
+    const scope = window.selectedAutoPipelineScope || autoPipelineModalScope || 'harvest';
     const batchSize = window.selectedAutoModalBatchSize || pipelineBatchSize || 5;
 
     window.closeAutoPipelineOptionsModal();
@@ -12118,6 +13318,11 @@ function initStagehandRipperUI() {
 
     if (scope === 'harvest') {
       window.startEntirePipelineBatchRun();
+      return;
+    }
+
+    if (scope === 'harvested') {
+      window.autoRunHarvestedStages1BTo5();
       return;
     }
 
@@ -12205,7 +13410,7 @@ function initStagehandRipperUI() {
     openPipelineTestStage('hunter', true);
   };
 
-  window.startEntirePipelineBatchRun = function(evt) {
+  window.startEntirePipelineBatchRun = function (evt) {
     if (evt) evt.stopPropagation();
     isPipelineTestMode = true;
     isPipelineAutoChaining = true;
@@ -12227,7 +13432,7 @@ function initStagehandRipperUI() {
     openPipelineTestStage('harvest', true);
   };
 
-  window.startFiveEventPipelineTest = function(evt) {
+  window.startFiveEventPipelineTest = function (evt) {
     if (evt) evt.stopPropagation();
     isPipelineTestMode = true;
     isPipelineAutoChaining = false;
@@ -12236,7 +13441,7 @@ function initStagehandRipperUI() {
     openPipelineTestStage(pipelineTestStageKey || 'harvest', false);
   };
 
-  window.stepPipelineTestStage = function(delta) {
+  window.stepPipelineTestStage = function (delta) {
     if (isExecuting) {
       if (typeof showToast === 'function') showToast('Please wait for the active stage to finish or stop it first.', 'warning');
       return;
@@ -12249,16 +13454,35 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.switchPipelineTestStage = function(stageKey) {
+  window.switchPipelineTestStage = function (stageKey) {
     if (!PIPELINE_TEST_ORDER.includes(stageKey)) return;
     if (isExecuting) {
       if (typeof showToast === 'function') showToast('Switching view while stage is running...', 'info');
+    } else if (!isPipelineAutoChaining && !pipelineQuarantinedRunActive && stageKey !== 'harvest' && (!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0)) {
+      const stageInfo = typeof window.getStageContinuationInfo === 'function' ? window.getStageContinuationInfo(stageKey) : null;
+      if (stageInfo && Array.isArray(stageInfo.pendingItems) && stageInfo.pendingItems.length > 0) {
+        const cap = (pipelineBatchSize === 'all' || pipelineBatchSize === 0)
+          ? stageInfo.pendingItems.length
+          : Math.min(Number(pipelineBatchSize) || stageInfo.pendingItems.length, stageInfo.pendingItems.length);
+        const picked = stageInfo.pendingItems.slice(0, cap);
+        pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+        pipelineTestDiscoveredEvents = picked.map(e => ({
+          id: e.id || e.event_id,
+          title: e.title || e.event_name || 'Harvested Event',
+          date: e.date || e.dateSchedule || 'TBD',
+          venue: e.venue || e.venue_name || '',
+          price: e.priceLabel || 'Pending',
+          url: e.url || e.ticket_url || e.details_url || ''
+        }));
+        currentPipelineScope = 'harvested';
+        savePipelineBatchState();
+      }
     }
     // Never cancel isPipelineAutoChaining when the user clicks a stage pill to inspect progress
     openPipelineTestStage(stageKey, false);
   };
 
-  window.openPipelineTestStage = function(stageKey, autoTriggerRun = false) {
+  window.openPipelineTestStage = function (stageKey, autoTriggerRun = false) {
     if (!PIPELINE_TEST_ORDER.includes(stageKey)) stageKey = 'harvest';
     pipelineTestStageKey = stageKey;
     isPipelineTestMode = true;
@@ -12277,54 +13501,106 @@ function initStagehandRipperUI() {
       setTimeout(() => {
         const preset = SCAN_PRESETS[stageKey] || SCAN_PRESETS.qc;
         const batchCap = (pipelineBatchSize === 'all' || pipelineBatchSize === 0) ? 0 : (Number(pipelineBatchSize) || 5);
-        if ((!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0) && stageKey !== 'harvest') {
-          if (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length > 0) {
-            pipelineTestDiscoveredIds = (batchCap > 0 ? harvesterDiscoveredEvents.slice(0, batchCap) : harvesterDiscoveredEvents).map(e => e.id).filter(Boolean);
+        const isHarvestedRun = (currentPipelineScope === 'harvested');
+        const stageInfo = (stageKey !== 'harvest' && typeof window.getStageContinuationInfo === 'function')
+          ? window.getStageContinuationInfo(stageKey)
+          : null;
+
+        if (stageKey !== 'harvest' && isHarvestedRun) {
+          // Strict Stage Gate: Allow events that completed the preceding stage OR are part of an active tracked batch that already graduated into allEvents / layer records
+          const allowedInputIds = new Set(
+            ((stageInfo && stageInfo.allInputItems) || []).map(e => String(e.id || e.event_id || '').toLowerCase()).filter(Boolean)
+          );
+          const activeCatalogIds = new Set(
+            ((state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []))
+              .map(e => String(e.id || e.event_id || '').toLowerCase()).filter(Boolean)
+          );
+          const boxLayerIds = new Set(
+            (state.layerBoxOffices || state.layerBoxOffice || [])
+              .filter(b => b && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR')
+              .map(b => String(b.id || b.event_id || '').toLowerCase()).filter(Boolean)
+          );
+          const edLayerIds = new Set(
+            (state.layerEditorials || state.layerEditorial || [])
+              .filter(ed => ed && ed.clean_title && ed.description && ed.source_engine !== 'unverified')
+              .map(ed => String(ed.id || ed.event_id || '').toLowerCase()).filter(Boolean)
+          );
+          if (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+            pipelineTestDiscoveredIds = pipelineTestDiscoveredIds.filter(id => {
+              const lid = String(id || '').toLowerCase();
+              if (allowedInputIds.has(lid) || activeCatalogIds.has(lid)) return true;
+              if (stageKey === 'enrich' && boxLayerIds.has(lid)) return true;
+              if ((stageKey === 'venue' || stageKey === 'compile') && edLayerIds.has(lid)) return true;
+              return false;
+            });
+          }
+          if ((!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0) && stageInfo && Array.isArray(stageInfo.pendingItems) && stageInfo.pendingItems.length > 0) {
+            pipelineTestDiscoveredIds = (batchCap > 0 ? stageInfo.pendingItems.slice(0, batchCap) : stageInfo.pendingItems).map(e => e.id || e.event_id).filter(Boolean);
+          }
+          if (!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0) {
+            isPipelineAutoChaining = false;
+            window.activePipelineRunningStageKey = null;
+            updatePipelineTestStepperUI();
+            if (typeof showToast === 'function') {
+              showToast(`⏸️ Cannot run ${stageKey.toUpperCase()}: 0 events are queued from ${stageInfo ? stageInfo.prevStageLabel : 'the previous stage'}. Events cannot skip pipeline stages!`, 'warning');
+            }
+            return;
+          }
+        } else if ((!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0) && stageKey !== 'harvest') {
+          if (stageInfo && Array.isArray(stageInfo.pendingItems) && stageInfo.pendingItems.length > 0) {
+            pipelineTestDiscoveredIds = (batchCap > 0 ? stageInfo.pendingItems.slice(0, batchCap) : stageInfo.pendingItems).map(e => e.id || e.event_id).filter(Boolean);
           } else if (pipelineAuditedCardsHistory && pipelineAuditedCardsHistory.length > 0) {
             pipelineTestDiscoveredIds = pipelineAuditedCardsHistory.map(x => x.id).filter(Boolean);
           }
         }
-        const idsStr = (pipelineTestDiscoveredIds || []).join(',');
+        const rawIds = pipelineTestDiscoveredIds || [];
+        // Prevent Windows 32KB CreateProcessW & HTTP 64KB URL overflow when running large batches (> 250 IDs)
+        const idsStr = (isHarvestedRun && rawIds.length > 250) ? '' : rawIds.join(',');
 
         if (stageKey === 'harvest') {
+          const shouldResume = window.harvesterResumeMode !== false;
           runPipelineAction({
             mode: 'calendar',
-            title: `🧪 Stage 1A: Schedule Harvester (${pipelineBatchSize === 'all' ? 'All' : batchCap} Events)`,
-            initialStatus: `Crawling venue feeds to discover ${pipelineBatchSize === 'all' ? 'all' : batchCap} discrete events...`,
+            title: `🧪 Stage 1A: Schedule Harvester (${pipelineBatchSize === 'all' ? 'All' : batchCap} Events${shouldResume ? ' • Resuming' : ''})`,
+            initialStatus: `Crawling venue feeds${shouldResume ? ' from stopped checkpoint' : ''} to discover ${pipelineBatchSize === 'all' ? 'all' : batchCap} discrete events...`,
             limit: batchCap,
-            url: 'all',
+            url: shouldResume ? 'all:resume' : 'all',
             all: true,
+            resume: shouldResume,
             autoApprove: true
           });
         } else if (stageKey === 'hunter') {
           runPipelineAction({
             mode: 'tier1_hunter',
-            title: `🏹 Stage 1B: Tier 1 Link Hunter (${pipelineTestDiscoveredIds.length || batchCap} Events)`,
+            title: `🏹 Stage 1B: Tier 1 Link Hunter (${rawIds.length || batchCap} Events)`,
             initialStatus: 'Upgrading candidate links & resolving direct checkout carts...',
             ids: idsStr,
-            limit: pipelineTestDiscoveredIds.length || batchCap,
+            scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
+            limit: rawIds.length || batchCap,
             quarantine: pipelineQuarantinedRunActive,
-            force: true,
+            force: !isHarvestedRun,
             autoApprove: true
           });
         } else if (stageKey === 'qc') {
           runPipelineAction({
             mode: 'catalog_batch',
-            title: `⚡ Stage 2: Stagehand Box Office QC (${pipelineTestDiscoveredIds.length || batchCap} Events)`,
+            title: `⚡ Stage 2: Stagehand Box Office QC (${rawIds.length || batchCap} Events)`,
             initialStatus: 'Penetrating checkout carts & validating fees into layer_box_office.json...',
             ids: idsStr,
-            limit: pipelineTestDiscoveredIds.length || batchCap,
-            force: true,
+            scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
+            limit: rawIds.length || batchCap,
+            force: !isHarvestedRun,
             autoApprove: true
           });
         } else if (stageKey === 'enrich') {
           runPipelineAction({
             mode: 'enrich',
-            title: `✍️ Stage 3: AI Semantic Enricher (${pipelineTestDiscoveredIds.length || batchCap} Events)`,
+            title: `✍️ Stage 3: AI Semantic Enricher (${rawIds.length || batchCap} Events)`,
             initialStatus: 'Sanitizing event titles, synopses & categories into layer_editorial.json...',
             ids: idsStr,
-            limit: pipelineTestDiscoveredIds.length || batchCap,
-            force: true,
+            scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
+            limit: rawIds.length || batchCap,
+            force: !isHarvestedRun,
             autoApprove: true
           });
         } else if (stageKey === 'venue') {
@@ -12332,23 +13608,25 @@ function initStagehandRipperUI() {
           const vParam = idsStr ? '' : (targetVenues.length === 1 ? targetVenues[0] : 'all');
           runPipelineAction({
             mode: 'venue_detailer',
-            title: `🏛️ Stage 4: Venue Detailer (${pipelineTestDiscoveredIds.length || targetVenues.length || batchCap || 'Catalog'} Events)`,
+            title: `🏛️ Stage 4: Venue Detailer (${rawIds.length || targetVenues.length || batchCap || 'Catalog'} Events)`,
             initialStatus: 'Grounding physical venue addresses, GPS coordinates & amenities into venues.json...',
             ids: idsStr,
+            scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
             venue: vParam,
-            limit: pipelineTestDiscoveredIds.length || batchCap || 10,
+            limit: rawIds.length || batchCap || 10,
             quarantine: pipelineQuarantinedRunActive,
-            force: true,
+            force: !isHarvestedRun,
             autoApprove: true
           });
         } else if (stageKey === 'compile') {
           runPipelineAction({
             mode: 'compile',
-            title: `🏛️ Stage 5: Compiler & Publisher (${pipelineTestDiscoveredIds.length || 'All'} Events)`,
+            title: `🏛️ Stage 5: Compiler & Publisher (${rawIds.length || 'All'} Events)`,
             initialStatus: 'Arbitrating specialist layers, checking math & publishing master data live...',
             ids: idsStr,
-            limit: pipelineTestDiscoveredIds.length || 0,
-            all: pipelineTestDiscoveredIds.length === 0,
+            scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
+            limit: rawIds.length || 0,
+            all: rawIds.length === 0,
             force: true,
             autoApprove: true
           });
@@ -12357,7 +13635,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.renderPipelineTestEventsList = function() {
+  window.renderPipelineTestEventsList = function () {
     const cardEl = document.getElementById('pipeline-test-events-card');
     const chipsEl = document.getElementById('pipeline-test-events-chips');
     const titleEl = document.getElementById('pipeline-test-events-title');
@@ -12391,13 +13669,13 @@ function initStagehandRipperUI() {
           rawVenues = await res.json();
           if (state.masterCatalogsData) state.masterCatalogsData.venues_master = rawVenues;
         }
-      } catch (_) {}
+      } catch (_) { }
     }
     cachedDetailerVenues = Array.isArray(rawVenues) ? rawVenues : [];
     return cachedDetailerVenues;
   }
 
-  window.getVenuesForNewEvents = function() {
+  window.getVenuesForNewEvents = function () {
     const names = new Set();
     (pipelineTestDiscoveredEvents || []).forEach(ev => {
       const v = (ev.venue || ev.venue_name || '').trim();
@@ -12416,7 +13694,7 @@ function initStagehandRipperUI() {
     return Array.from(names);
   };
 
-  window.populateVenueDetailerDropdown = async function(filterQuery = '') {
+  window.populateVenueDetailerDropdown = async function (filterQuery = '') {
     const select = document.getElementById('pipeline-select-venue-detailer');
     if (!select) return;
     const venues = await loadVenueDetailerVenuesList();
@@ -12460,13 +13738,13 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.onSearchVenueDetailerInput = function(val) {
+  window.onSearchVenueDetailerInput = function (val) {
     const clearBtn = document.getElementById('btn-clear-venue-detailer-search');
     if (clearBtn) clearBtn.style.display = (val && val.trim()) ? 'inline-block' : 'none';
     window.populateVenueDetailerDropdown(val);
   };
 
-  window.clearVenueDetailerSearch = function() {
+  window.clearVenueDetailerSearch = function () {
     const input = document.getElementById('pipeline-search-venue-detailer');
     if (input) input.value = '';
     const clearBtn = document.getElementById('btn-clear-venue-detailer-search');
@@ -12474,17 +13752,17 @@ function initStagehandRipperUI() {
     window.populateVenueDetailerDropdown('');
   };
 
-  window.setVenueDetailerScope = function(scopeVal) {
+  window.setVenueDetailerScope = function (scopeVal) {
     const select = document.getElementById('pipeline-select-venue-detailer');
     if (select) select.value = scopeVal;
     window.onVenueDetailerSelected(scopeVal);
   };
 
-  window.resetVenueDetailerToAll = function() {
+  window.resetVenueDetailerToAll = function () {
     window.setVenueDetailerScope('all');
   };
 
-  window.onVenueDetailerSelected = function(val) {
+  window.onVenueDetailerSelected = function (val) {
     const chipNew = document.getElementById('chip-venue-scope-new');
     const chipUngrounded = document.getElementById('chip-venue-scope-ungrounded');
     const chipAll = document.getElementById('chip-venue-scope-all');
@@ -12527,7 +13805,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.runCanaryTestFeed = function() {
+  window.runCanaryTestFeed = function () {
     const select = document.getElementById('pipeline-select-venue-feed');
     const canaryUrl = 'https://theimprovcentre.ca/shows/';
     if (select) {
@@ -12591,15 +13869,15 @@ function initStagehandRipperUI() {
     }
   }
 
-  window.switchPipelineDisplayOnly = function(stageKey) {
+  window.switchPipelineDisplayOnly = function (stageKey) {
     window.switchPipelineTestStage(stageKey);
   };
 
-  window.navigatePipelineDisplayStage = function(delta) {
+  window.navigatePipelineDisplayStage = function (delta) {
     window.stepPipelineTestStage(delta);
   };
 
-  window.advanceToNextPipelineStage = function() {
+  window.advanceToNextPipelineStage = function () {
     const idx = PIPELINE_TEST_ORDER.indexOf(currentPipelineScanKey);
     if (idx >= 0 && idx < PIPELINE_TEST_ORDER.length - 1) {
       const nextKey = PIPELINE_TEST_ORDER[idx + 1];
@@ -12607,21 +13885,23 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.runCompilerFromVenuePrompt = function() {
+  window.runCompilerFromVenuePrompt = function () {
     const banner = document.getElementById('venue-compiler-update-prompt-banner');
     if (banner) banner.style.display = 'none';
     openPipelineTestStage('compile', true);
   };
 
-  window.dismissVenueCompilerPrompt = function() {
+  window.dismissVenueCompilerPrompt = function () {
     const banner = document.getElementById('venue-compiler-update-prompt-banner');
     if (banner) banner.style.display = 'none';
   };
 
-  window.updateCompilerPreviewBanner = function(passedCountOverride, failedCountOverride) {
+  window.updateCompilerPreviewBanner = function (passedCountOverride, failedCountOverride) {
     const banner = document.getElementById('compiler-new-cards-preview-banner');
-    const titleEl = document.getElementById('compiler-preview-banner-title');
-    const descEl = document.getElementById('compiler-preview-banner-desc');
+    const titleEl = document.getElementById('compiler-banner-title') || document.getElementById('compiler-preview-banner-title');
+    const descEl = document.getElementById('compiler-banner-subtext') || document.getElementById('compiler-preview-banner-desc');
+    const iconEl = document.getElementById('compiler-banner-icon');
+    const newCardsBadge = document.getElementById('compiler-new-cards-badge');
     const passedBadge = document.getElementById('compiled-cards-passed-count');
     const failedBadge = document.getElementById('compiled-cards-failed-count');
     if (!banner) return;
@@ -12638,15 +13918,40 @@ function initStagehandRipperUI() {
     if (passedBadge) passedBadge.textContent = String(compCount);
     if (failedBadge) failedBadge.textContent = String(qCount);
     banner.style.display = 'flex';
-    if (titleEl) {
-      titleEl.textContent = `🎉 Compiler Finished! ${compCount} Active Card(s) Published & ${qCount} in Quarantine`;
-    }
-    if (descEl) {
-      descEl.textContent = 'Preview the newly compiled cards or inspect quarantined cards and leave AI instructions.';
+    if (compCount === 0 && qCount > 0) {
+      if (iconEl) iconEl.textContent = '🛡️';
+      if (titleEl) {
+        titleEl.textContent = `Compiler Run Complete: 0 Passed • ${qCount} Archived/Quarantined`;
+        titleEl.style.color = '#fbbf24';
+      }
+      if (newCardsBadge) {
+        newCardsBadge.textContent = `0 Published • ${qCount} Filtered`;
+        newCardsBadge.style.background = 'rgba(245, 158, 11, 0.2)';
+        newCardsBadge.style.color = '#fbbf24';
+        newCardsBadge.style.borderColor = 'rgba(245, 158, 11, 0.45)';
+      }
+      if (descEl) {
+        descEl.textContent = `All ${qCount} targeted event(s) in this run were archived (e.g. past date) or quarantined. Click Failed Cards (${qCount}) to inspect.`;
+      }
+    } else {
+      if (iconEl) iconEl.textContent = '🎉';
+      if (titleEl) {
+        titleEl.textContent = `Compilation & Publishing Complete`;
+        titleEl.style.color = '#6ee7b7';
+      }
+      if (newCardsBadge) {
+        newCardsBadge.textContent = `${compCount} Active Live in Catalog`;
+        newCardsBadge.style.background = 'rgba(16, 185, 129, 0.25)';
+        newCardsBadge.style.color = '#34d399';
+        newCardsBadge.style.borderColor = 'rgba(16, 185, 129, 0.45)';
+      }
+      if (descEl) {
+        descEl.textContent = `All specialist layers have been arbitrated and verified against financial invariants (≤ $50 CAD). Preview the ${compCount} passed card(s) now.`;
+      }
     }
   };
 
-  window.previewNewlyCompiledCards = function(initialTab = 'compiled') {
+  window.previewNewlyCompiledCards = function (initialTab = 'compiled') {
     const modal = document.getElementById('pipeline-new-cards-preview-modal');
     if (!modal) return;
     modal.style.display = 'flex';
@@ -12655,7 +13960,7 @@ function initStagehandRipperUI() {
     window.switchPreviewModalTab(normalizedTab);
   };
 
-  window.switchPreviewModalTab = function(tab) {
+  window.switchPreviewModalTab = function (tab) {
     const normalizedTab = (tab === 'failed' || tab === 'quarantined') ? 'quarantined' : 'compiled';
     currentPreviewModalTab = normalizedTab;
     const tabComp = document.getElementById('preview-tab-compiled') || document.getElementById('preview-tab-passed');
@@ -12695,6 +14000,13 @@ function initStagehandRipperUI() {
     } else {
       compiledCards = allEvs.slice(0, 12);
       failedCards = qEvs;
+    }
+
+    if (compiledCards.length === 0 && typeof window.getNewestPassedBatchEvents === 'function') {
+      const recentPassed = window.getNewestPassedBatchEvents();
+      if (Array.isArray(recentPassed) && recentPassed.length > 0) {
+        compiledCards = recentPassed;
+      }
     }
 
     if (compBadge) compBadge.textContent = String(compiledCards.length);
@@ -12763,10 +14075,10 @@ function initStagehandRipperUI() {
 
       const priceNum = rawCard.price != null ? Number(rawCard.price)
         : (rawCard.price_all_in != null ? Number(rawCard.price_all_in)
-        : (boxLayer?.tier1_price_all_in != null ? Number(boxLayer.tier1_price_all_in)
-        : (boxLayer?.price_all_in != null ? Number(boxLayer.price_all_in)
-        : (dVal('D205_tier1_price_all_in') != null ? Number(dVal('D205_tier1_price_all_in'))
-        : (isPerennial ? 0 : null)))));
+          : (boxLayer?.tier1_price_all_in != null ? Number(boxLayer.tier1_price_all_in)
+            : (boxLayer?.price_all_in != null ? Number(boxLayer.price_all_in)
+              : (dVal('D205_tier1_price_all_in') != null ? Number(dVal('D205_tier1_price_all_in'))
+                : (isPerennial ? 0 : null)))));
       const isFree = Boolean(rawCard.isFree || rawCard.pricingType === 'free' || priceNum === 0);
       const priceBase = rawCard.price_base ?? boxLayer?.tier1_price_base ?? dVal('D202_tier1_price_base') ?? priceNum;
       const priceFee = rawCard.price_fee ?? boxLayer?.tier1_price_fee ?? dVal('D203_tier1_price_fee') ?? 0;
@@ -13066,7 +14378,7 @@ function initStagehandRipperUI() {
     }).join('');
   };
 
-  window.closeCompiledCardsPreviewModal = function() {
+  window.closeCompiledCardsPreviewModal = function () {
     const modal = document.getElementById('pipeline-new-cards-preview-modal');
     if (modal) {
       modal.style.display = 'none';
@@ -13074,12 +14386,12 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.dismissCompilerPreviewBanner = function() {
+  window.dismissCompilerPreviewBanner = function () {
     const banner = document.getElementById('compiler-new-cards-preview-banner');
     if (banner) banner.style.display = 'none';
   };
 
-  window.filterTableToCompiledCards = function() {
+  window.filterTableToCompiledCards = function () {
     window.closeCompiledCardsPreviewModal();
     if (pipelineModal) {
       pipelineModal.style.display = 'none';
@@ -13104,7 +14416,7 @@ function initStagehandRipperUI() {
           rawVenues = await res.json();
           if (state.masterCatalogsData) state.masterCatalogsData.venues_master = rawVenues;
         }
-      } catch (_) {}
+      } catch (_) { }
     }
 
     if (Array.isArray(rawVenues)) {
@@ -13114,7 +14426,7 @@ function initStagehandRipperUI() {
         if (name && url && url.startsWith('http') && !seenUrls.has(url)) {
           seenUrls.add(url);
           let domain = '';
-          try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) {}
+          try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
           feeds.push({
             name,
             url,
@@ -13136,7 +14448,7 @@ function initStagehandRipperUI() {
           rawSources = sData.sources || (Array.isArray(sData) ? sData : []);
           if (state.masterCatalogsData) state.masterCatalogsData.discovery_sources = rawSources;
         }
-      } catch (_) {}
+      } catch (_) { }
     }
 
     if (Array.isArray(rawSources)) {
@@ -13146,7 +14458,7 @@ function initStagehandRipperUI() {
         if (name && url && url.startsWith('http') && !seenUrls.has(url)) {
           seenUrls.add(url);
           let domain = '';
-          try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) {}
+          try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
           feeds.push({
             name,
             url,
@@ -13180,7 +14492,7 @@ function initStagehandRipperUI() {
     return feeds;
   }
 
-  window.populateVenueFeedsDropdown = async function(filterQuery = '') {
+  window.populateVenueFeedsDropdown = async function (filterQuery = '') {
     const select = document.getElementById('pipeline-select-venue-feed');
     if (!select) return;
 
@@ -13263,13 +14575,13 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.onSearchVenueFeedInput = function(val) {
+  window.onSearchVenueFeedInput = function (val) {
     const clearBtn = document.getElementById('btn-clear-venue-search');
     if (clearBtn) clearBtn.style.display = (val && val.trim()) ? 'inline-block' : 'none';
     window.populateVenueFeedsDropdown(val);
   };
 
-  window.clearVenueFeedSearch = function() {
+  window.clearVenueFeedSearch = function () {
     const input = document.getElementById('pipeline-search-venue-feed');
     if (input) input.value = '';
     const clearBtn = document.getElementById('btn-clear-venue-search');
@@ -13279,7 +14591,7 @@ function initStagehandRipperUI() {
     });
   };
 
-  window.onVenueFeedSelected = function(val) {
+  window.onVenueFeedSelected = function (val) {
     const select = document.getElementById('pipeline-select-venue-feed');
     const badge = document.getElementById('pipeline-harvester-feed-count-badge');
     const resetBtn = document.getElementById('btn-reset-venue-feed');
@@ -13361,7 +14673,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.resetVenueFeedToAll = function() {
+  window.resetVenueFeedToAll = function () {
     const searchInput = document.getElementById('pipeline-search-venue-feed');
     if (searchInput) searchInput.value = '';
     const clearBtn = document.getElementById('btn-clear-venue-search');
@@ -13371,7 +14683,7 @@ function initStagehandRipperUI() {
     window.onVenueFeedSelected('all');
   };
 
-  window.toggleHarvesterCustomUrl = function() {
+  window.toggleHarvesterCustomUrl = function () {
     const select = document.getElementById('pipeline-select-venue-feed');
     const customInput = document.getElementById('pipeline-harvester-custom-url');
     if (customInput && customInput.style.display !== 'none') {
@@ -13382,7 +14694,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.onHarvesterCustomUrlInput = function(val) {
+  window.onHarvesterCustomUrlInput = function (val) {
     const hintEl = document.getElementById('pipeline-scope-hint');
     const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
     const inputUrl = document.getElementById('pipeline-input-url');
@@ -13435,7 +14747,7 @@ function initStagehandRipperUI() {
     }
   }
 
-  window.onStartNumberInput = function() {
+  window.onStartNumberInput = function () {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
@@ -13452,7 +14764,7 @@ function initStagehandRipperUI() {
     window.updateRangeDetails();
   };
 
-  window.onStopNumberInput = function() {
+  window.onStopNumberInput = function () {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
@@ -13471,7 +14783,7 @@ function initStagehandRipperUI() {
     window.updateRangeDetails();
   };
 
-  window.updateRangeDetails = function() {
+  window.updateRangeDetails = function () {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const badge = document.getElementById('pipeline-range-count-badge');
@@ -13506,7 +14818,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.setQuickRangeIncrement = function(n) {
+  window.setQuickRangeIncrement = function (n) {
     currentBatchSize = n;
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
@@ -13522,7 +14834,7 @@ function initStagehandRipperUI() {
     window.updateRangeDetails();
   };
 
-  window.setFullCatalogRange = function() {
+  window.setFullCatalogRange = function () {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
@@ -13541,7 +14853,7 @@ function initStagehandRipperUI() {
   // -------------------------------------------------------------
   let searchHighlightIndex = -1;
 
-  window.onCardNameSelected = function(val) {
+  window.onCardNameSelected = function (val) {
     const clearBtn = document.getElementById('btn-clear-card-select');
     if (clearBtn) clearBtn.style.display = val ? 'inline-block' : 'none';
     window.setPipelineScope('single_card');
@@ -13600,7 +14912,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.clearSelectedCardName = function() {
+  window.clearSelectedCardName = function () {
     const select = document.getElementById('pipeline-select-card-name');
     if (select) select.value = '';
     const clearBtn = document.getElementById('btn-clear-card-select');
@@ -13625,7 +14937,7 @@ function initStagehandRipperUI() {
     window.setPipelineScope('single_card');
   };
 
-  window.parseCardNumbersToIds = function(str) {
+  window.parseCardNumbersToIds = function (str) {
     if (!str) return [];
     const customInput = document.getElementById('pipeline-custom-card-ids');
     if (customInput && customInput.dataset.selectedId) {
@@ -13702,7 +15014,7 @@ function initStagehandRipperUI() {
 
       // Direct ID match in part
       const found = allEvs.find(e => (e.id || e.event_id) === part) ||
-                    qEvs.find(e => (e.id || e.event_id) === part);
+        qEvs.find(e => (e.id || e.event_id) === part);
       if (found) {
         resolvedIds.push(found.id || found.event_id);
       }
@@ -13723,7 +15035,7 @@ function initStagehandRipperUI() {
     return [];
   };
 
-  window.onCustomCardSearchInput = function(rawVal) {
+  window.onCustomCardSearchInput = function (rawVal) {
     const val = (rawVal || '').trim();
     const resultsContainer = document.getElementById('pipeline-card-search-results');
     const clearBtn = document.getElementById('btn-clear-custom-cards');
@@ -13888,7 +15200,7 @@ function initStagehandRipperUI() {
     resultsContainer.style.display = 'block';
   };
 
-  window.onCustomCardSearchFocus = function() {
+  window.onCustomCardSearchFocus = function () {
     const input = document.getElementById('pipeline-custom-card-ids');
     if (input && input.value.trim()) {
       window.onCustomCardSearchInput(input.value);
@@ -13897,7 +15209,7 @@ function initStagehandRipperUI() {
 
   window.onCustomCardIdsInput = window.onCustomCardSearchInput;
 
-  window.selectCardFromSearch = function(eventId) {
+  window.selectCardFromSearch = function (eventId) {
     if (!eventId) return;
     const resultsContainer = document.getElementById('pipeline-card-search-results');
     if (resultsContainer) {
@@ -13909,7 +15221,7 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.clearCustomCardSearch = function() {
+  window.clearCustomCardSearch = function () {
     const searchInput = document.getElementById('pipeline-custom-card-ids');
     if (searchInput) {
       searchInput.value = '';
@@ -13930,7 +15242,7 @@ function initStagehandRipperUI() {
   window.clearCustomCardIds = window.clearCustomCardSearch;
 
   // Close search popover when clicking outside
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     const wrapper = document.getElementById('pipeline-single-card-wrapper');
     const results = document.getElementById('pipeline-card-search-results');
     if (results && results.style.display !== 'none') {
@@ -13941,7 +15253,7 @@ function initStagehandRipperUI() {
   });
 
   // Keyboard navigation for search input (Down, Up, Enter, Escape)
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     const results = document.getElementById('pipeline-card-search-results');
     if (!results || results.style.display === 'none') return;
     const items = results.querySelectorAll('.search-card-result-item');
@@ -13977,25 +15289,48 @@ function initStagehandRipperUI() {
     });
   }
 
-  window.continueFromLastScanned = function() {
+  window.continueFromLastScanned = function () {
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 37;
+    const startInput = document.getElementById('pipeline-card-start');
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const start = parseInt(startInput ? startInput.value : '1', 10) || 1;
+    const remaining = Math.max(1, totalEvents - start + 1);
+
+    const chosenCount = window.promptContinueEventCount(remaining, 'events');
+    if (chosenCount === null) return;
+
+    window.setPipelineBatchSize(chosenCount);
+    if (stopInput) {
+      stopInput.value = (chosenCount === 'all' || chosenCount === 0)
+        ? totalEvents
+        : Math.min(totalEvents, start + Number(chosenCount) - 1);
+    }
     window.setPipelineScope('range');
+    window.updateRangeDetails();
+
+    const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
+    if (btnTrigger && !isExecuting) {
+      btnTrigger._skipContinuePrompt = true;
+      btnTrigger.click();
+    }
   };
 
-  window.onStaleDurationChange = function(val) {
+  window.onStaleDurationChange = function (val) {
     if (currentPipelineScope === 'stale') {
       window.setPipelineScope('stale');
     }
   };
 
-  window.setQuickStaleDuration = function(val) {
+  window.setQuickStaleDuration = function (val) {
     const select = document.getElementById('pipeline-stale-duration');
     if (select) select.value = val;
     window.setPipelineScope('stale');
   };
 
-  window.setPipelineScope = function(scope) {
+  window.setPipelineScope = function (scope) {
     currentPipelineScope = scope;
-    const cards = ['unscanned', 'incomplete', 'stale', 'quarantined', 'batch5', 'range', 'single_card', 'all'];
+    const cards = ['harvested', 'unscanned', 'incomplete', 'stale', 'quarantined', 'batch5', 'range', 'single_card', 'all'];
     cards.forEach(c => {
       const el = document.getElementById(`scope-card-${c}`);
       if (!el) return;
@@ -14034,7 +15369,46 @@ function initStagehandRipperUI() {
       staleWrapper.style.display = (scope === 'stale') ? 'flex' : 'none';
     }
 
-    if (scope === 'unscanned') {
+    const stageInfoForPill = typeof window.getStageContinuationInfo === 'function'
+      ? window.getStageContinuationInfo(preset.key)
+      : null;
+    const hPillLabelGlobal = document.getElementById('scope-pill-harvested-label');
+    if (hPillLabelGlobal && stageInfoForPill && preset.key !== 'harvest') {
+      hPillLabelGlobal.innerHTML = `✨ Queued from ${stageInfoForPill.prevStageLabel} (<span id="scope-count-harvested">${stageInfoForPill.pendingCount}</span>)`;
+    }
+
+    if (scope === 'harvested') {
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+      const stageInfo = stageInfoForPill || {
+        prevStageLabel: 'Stage 1A',
+        prevCompletedCount: 0,
+        currentCompletedCount: 0,
+        pendingCount: 0
+      };
+      const stageTotal = stageInfo.prevCompletedCount;
+      const stageDone = stageInfo.currentCompletedCount;
+      const stageRem = stageInfo.pendingCount;
+      const activePool = stageRem > 0 ? stageRem : stageTotal;
+      const count = bCap > 0 ? Math.min(bCap, activePool) : activePool;
+      if (hintEl) {
+        if (stageRem > 0) {
+          hintEl.innerHTML = `<span><strong>${stageDone}/${stageTotal}</strong> events from <strong>${stageInfo.prevStageLabel}</strong> already completed this stage • Targeting <strong>${count} of ${stageRem} queued events</strong>.</span>`;
+        } else if (stageTotal > 0) {
+          hintEl.innerHTML = `<span>All <strong>${stageTotal} events</strong> from <strong>${stageInfo.prevStageLabel}</strong> have completed this stage (<strong>0 queued</strong>).</span>`;
+        } else {
+          hintEl.innerHTML = `<span><strong>0 events</strong> currently queued from <strong>${stageInfo.prevStageLabel}</strong> for this stage.</span>`;
+        }
+      }
+      if (btnLabelEl) {
+        if (preset.key === 'hunter') btnLabelEl.textContent = stageRem > 0 ? `🚀 Hunt ${count} Queued Links (1B)` : `🚀 Re-Hunt ${count} Links (1B)`;
+        else if (preset.key === 'qc') btnLabelEl.textContent = stageRem > 0 ? `🚀 Run Stagehand QC (${count} Queued)` : `🚀 Re-Run Stagehand QC (${count})`;
+        else if (preset.key === 'enrich') btnLabelEl.textContent = stageRem > 0 ? `🚀 Enrich ${count} with AI` : `🚀 Re-Enrich ${count} with AI`;
+        else if (preset.key === 'venue') btnLabelEl.textContent = `🚀 Ground Venues (${count} Queued)`;
+        else if (preset.key === 'compile') btnLabelEl.textContent = `🚀 Compile & Publish (${count} Queued)`;
+        else btnLabelEl.textContent = `🚀 Run Scan (${count} Queued)`;
+      }
+    } else if (scope === 'unscanned') {
       if (rangeWrapper) rangeWrapper.style.display = 'flex';
       if (singleCardWrapper) singleCardWrapper.style.display = 'none';
       if (hintEl) {
@@ -14134,7 +15508,11 @@ function initStagehandRipperUI() {
       }
     } else if (scope === 'batch5') {
       const batchPillLabel = document.getElementById('scope-pill-batch5-label');
-      if (preset.key === 'harvest') {
+      // Always update the top-center stage banner and target dimensions banner when switching stages
+    if (typeof updateComparisonTargetDimensionsBanner === 'function') {
+      updateComparisonTargetDimensionsBanner(preset.key);
+    }
+    if (preset.key === 'harvest') {
         if (testCardEl) testCardEl.style.display = 'none';
       } else if (isPipelineTestMode && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
         if (rangeWrapper) rangeWrapper.style.display = 'none';
@@ -14225,9 +15603,134 @@ function initStagehandRipperUI() {
         else btnLabelEl.textContent = `Run Full Scan (All ${total} Cards)`;
       }
     }
+
+    if (typeof window.updateStageStatusTrackerUI === 'function' && !isExecuting) {
+      window.updateStageStatusTrackerUI(preset.key, scope);
+    }
   };
 
-  window.openScanModal = function(scanKey, evt, targetCardId) {
+  window.updateStageStatusTrackerUI = function (presetKey, scopeKey) {
+    if (typeof window.updateAllStageContinuationButtonsUI === 'function') {
+      window.updateAllStageContinuationButtonsUI();
+    }
+    const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+    if (!trackerStatus) return;
+    const key = presetKey || currentPipelineScanKey || 'qc';
+    const sc = scopeKey || currentPipelineScope || 'unscanned';
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 37;
+    const harvestedList = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
+    const stageInfo = typeof window.getStageContinuationInfo === 'function' ? window.getStageContinuationInfo(key) : null;
+    const isHarvestedTarget = (sc === 'harvested') || (sc === 'batch5' && isPipelineTestMode);
+
+    if (key === 'harvest') {
+      const cp = state.harvesterCheckpoint || {};
+      const feeds = (cachedVenueFeeds && cachedVenueFeeds.length > 0)
+        ? cachedVenueFeeds
+        : ((state.masterCatalogsData && state.masterCatalogsData.venues_master) || Object.values(state.venuesData || {}));
+      const totalFeeds = cp.total_feeds || ((feeds && feeds.length) ? feeds.length : 123);
+      harvesterTotalSources = totalFeeds;
+      const isHarvestComplete = (typeof pipelineTestStageStatuses !== 'undefined' && (pipelineTestStageStatuses['harvest'] || '').includes('Complete'));
+      const scannedCount = isHarvestComplete ? totalFeeds : (harvesterSourcesScanned || cp.completed_feeds_count || 0);
+      const remFeeds = Math.max(0, totalFeeds - scannedCount);
+      const foundEventsCount = harvestedList.length;
+      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scannedCount}/${totalFeeds} feeds scanned (${remFeeds} Queued)</span> • <span style="color: #4ade80; font-weight: 700;">${foundEventsCount} harvested events in Stage 1A</span>`;
+    } else if (key === 'hunter') {
+      if (isHarvestedTarget && stageInfo) {
+        const totH = stageInfo.prevCompletedCount;
+        const done1B = stageInfo.currentCompletedCount;
+        const rem1B = stageInfo.pendingCount;
+        if (rem1B > 0) {
+          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${done1B}/${totH} Done (from Stage 1A)</span> • <span style="color: #fde68a; font-weight: 700;">${rem1B} Queued for Stage 1B</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${done1B}/${totH} Done • 0 Queued for Stage 1B</span>`;
+        }
+      } else {
+        const tier1Count = events.filter(e => {
+          if (e.step1b_audited_at || e.candidate_tier1_url || e.links?.tier1_checkout) return true;
+          if (e.dimension_audit?.D101_tier1_checkout?.status === 'verified') return true;
+          if (e.price === 0 || e.isFree || e.access_model === 'open_public_space') return true;
+          const u = String(e.ticket_url || '');
+          return /showpass|eventbrite|ticketweb|admitone|universe|vtix|spektrix|ticketmaster|eventive/i.test(u);
+        }).length;
+        const pendingHunter = Math.max(0, totalEvents - tier1Count);
+        if (pendingHunter > 0) {
+          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${tier1Count}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #94a3b8;">${pendingHunter} pending Tier 1 checkout upgrade</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Processed • All direct checkout links verified!</span>`;
+        }
+      }
+    } else if (key === 'qc') {
+      if (isHarvestedTarget && stageInfo) {
+        const tot1B = stageInfo.prevCompletedCount;
+        const doneQC = stageInfo.currentCompletedCount;
+        const remQC = stageInfo.pendingCount;
+        if (remQC > 0) {
+          trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${doneQC}/${tot1B} Done (from Stage 1B)</span> • <span style="color: #fde68a; font-weight: 700;">${remQC} Queued for Stage 2 QC</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${doneQC}/${tot1B} Done • 0 Queued for Stage 2 QC</span>`;
+        }
+      } else {
+        const unscanned = calculateUnscannedEvents();
+        const unscannedCount = unscanned.length;
+        const scannedCount = Math.max(0, totalEvents - unscannedCount);
+        if (unscannedCount > 0) {
+          trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${scannedCount}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #94a3b8;">${unscannedCount} pending Stagehand QC</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Verified!</span>`;
+        }
+      }
+    } else if (key === 'enrich') {
+      if (isHarvestedTarget && stageInfo) {
+        const tot2 = stageInfo.prevCompletedCount;
+        const doneEd = stageInfo.currentCompletedCount;
+        const remEd = stageInfo.pendingCount;
+        if (remEd > 0) {
+          trackerStatus.innerHTML = `<span style="color: #fbbf24; font-weight: 700;">${doneEd}/${tot2} Done (from Stage 2 QC)</span> • <span style="color: #fde68a; font-weight: 700;">${remEd} Queued for Stage 3 Enricher</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${doneEd}/${tot2} Done (from Stage 2 QC) • 0 Queued for Stage 3</span>`;
+        }
+      } else {
+        const unenriched = calculateUnenrichedEvents();
+        const unenrichedCount = unenriched.length;
+        const enrichedCount = Math.max(0, totalEvents - unenrichedCount);
+        if (unenrichedCount > 0) {
+          trackerStatus.innerHTML = `<span style="color: #fbbf24; font-weight: 700;">${enrichedCount}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #94a3b8;">${unenrichedCount} pending AI enrichment</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Enriched!</span>`;
+        }
+      }
+    } else if (key === 'venue') {
+      if (isHarvestedTarget && stageInfo && stageInfo.prevCompletedCount > 0) {
+        trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${stageInfo.currentCompletedCount}/${stageInfo.prevCompletedCount} Done (from Stage 3)</span> • <span style="color: #fde68a; font-weight: 700;">${stageInfo.pendingCount} Queued for Stage 4 Venue Detailer</span>`;
+      } else {
+        let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+        const totalVenues = (venues && venues.length) || 159;
+        const groundedCount = venues && venues.length
+          ? venues.filter(v => (v.full_address && (v.coordinates || v.transit_info)) || v.last_grounded_at).length
+          : totalVenues;
+        const pendingCount = Math.max(0, totalVenues - groundedCount);
+        if (pendingCount > 0) {
+          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Venues Grounded</span> • <span style="color: #94a3b8;">${pendingCount} pending grounding</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Venues Grounded</span>`;
+        }
+      }
+    } else if (key === 'compile') {
+      const activePublishedCount = state.allEvents ? state.allEvents.length : 0;
+      const qCount = (state.quarantinedEvents || []).length;
+      if (isHarvestedTarget && stageInfo) {
+        trackerStatus.innerHTML = `<span style="color: #fde68a; font-weight: 700;">${stageInfo.pendingCount} Queued from ${stageInfo.prevStageLabel}</span> • <span style="color: #34d399; font-weight: 700;">${activePublishedCount} Published in Catalog</span>`;
+      } else {
+        const totalCatalogEvents = activePublishedCount + qCount || totalEvents;
+        const uncompiled = calculateUncompiledEvents();
+        const compiledCount = Math.max(0, totalCatalogEvents - uncompiled.length);
+        trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${compiledCount}/${totalCatalogEvents} Compiled</span> &nbsp;&nbsp; <span style="color: #34d399; font-weight: 700;">${activePublishedCount}/${totalCatalogEvents} Published</span>, <span style="color: #f87171; font-weight: 700;">${qCount}/${totalCatalogEvents} Quarantined</span>`;
+      }
+    }
+  };
+
+  window.openScanModal = function (scanKey, evt, targetCardId) {
     if (evt) evt.stopPropagation();
     const preset = SCAN_PRESETS[scanKey] || SCAN_PRESETS.qc;
     currentPipelineScanKey = preset.key;
@@ -14263,7 +15766,9 @@ function initStagehandRipperUI() {
     }
     if (stopInput) {
       stopInput.max = totalEvents;
-      stopInput.value = Math.min(totalEvents, preset.defaultLimit || 5);
+      stopInput.value = (pipelineBatchSize === 'all' || !pipelineBatchSize)
+        ? totalEvents
+        : Math.min(totalEvents, Number(pipelineBatchSize) || preset.defaultLimit || totalEvents);
     }
 
     if (targetWrapper) targetWrapper.style.display = preset.showUrl ? 'block' : 'none';
@@ -14290,93 +15795,26 @@ function initStagehandRipperUI() {
     if (unscannedLabel) {
       if (preset.key === 'compile') {
         const uncompiled = calculateUncompiledEvents();
-        unscannedLabel.textContent = `Uncompiled Only (${uncompiled.length})`;
+        unscannedLabel.textContent = `Catalog Uncompiled (${uncompiled.length})`;
       } else if (preset.key === 'enrich') {
         const unenriched = calculateUnenrichedEvents();
-        unscannedLabel.textContent = `Unenriched Only (${unenriched.length})`;
+        unscannedLabel.textContent = `Catalog Unenriched (${unenriched.length})`;
       } else {
         const unscanned = calculateUnscannedEvents();
-        unscannedLabel.textContent = `Unscanned Only (${unscanned.length})`;
+        unscannedLabel.textContent = `Catalog Unscanned (${unscanned.length})`;
       }
     }
 
     const trackerLabel = document.getElementById('pipeline-last-scanned-label');
     if (trackerLabel) trackerLabel.textContent = 'Stage Status:';
-
-    if (preset.key === 'harvest') {
-      const feeds = (cachedVenueFeeds && cachedVenueFeeds.length > 0)
-        ? cachedVenueFeeds
-        : ((state.masterCatalogsData && state.masterCatalogsData.venues_master) || Object.values(state.venuesData || {}));
-      const totalFeeds = (feeds && feeds.length) ? feeds.length : 155;
-      const isHarvestComplete = (typeof pipelineTestStageStatuses !== 'undefined' && (pipelineTestStageStatuses['harvest'] || '').includes('Complete'));
-      const processedFeeds = isHarvestComplete ? totalFeeds : ((typeof harvesterDiscoveredEvents !== 'undefined' && harvesterDiscoveredEvents && harvesterDiscoveredEvents.length > 0) ? harvesterDiscoveredEvents.length : 0);
-      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
-      if (trackerStatus) {
-        trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 700;">${processedFeeds}/${totalFeeds} events Feeds Pending Harvesting</span>`;
-      }
-    } else if (preset.key === 'hunter') {
-      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
-      if (trackerStatus) {
-        const tier1Count = state.allEvents ? state.allEvents.filter(e => typeof resolveHighestTierLink === 'function' && resolveHighestTierLink(e).tier === 1).length : 0;
-        const pendingHunter = Math.max(0, totalEvents - tier1Count);
-        if (pendingHunter > 0) {
-          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${tier1Count}/${totalEvents} Processed</span> • <span style="color: #94a3b8;">${pendingHunter} pending Tier 1 checkout upgrade</span>`;
-        } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Processed • All direct checkout links verified!</span>`;
-        }
-      }
-    } else if (preset.key === 'venue') {
-      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
-      if (trackerStatus) {
-        let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
-        const totalVenues = (venues && venues.length) || 159;
-        const groundedCount = venues && venues.length
-          ? venues.filter(v => (v.full_address && (v.coordinates || v.transit_info)) || v.last_grounded_at).length
-          : totalVenues;
-        const pendingCount = Math.max(0, totalVenues - groundedCount);
-        if (pendingCount > 0) {
-          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Processed</span> • <span style="color: #94a3b8;">${pendingCount} pending grounding</span>`;
-        } else {
-          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Processed</span>`;
-        }
-      }
-    } else if (preset.key === 'compile') {
-      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
-      if (trackerStatus) {
-        const totalCatalogEvents = (state.allEvents ? state.allEvents.length : 0) + (state.quarantinedEvents ? state.quarantinedEvents.length : 0) || totalEvents;
-        const uncompiled = calculateUncompiledEvents();
-        const uncompiledCount = uncompiled.length;
-        const compiledCount = Math.max(0, totalCatalogEvents - uncompiledCount);
-        const activePublishedCount = state.allEvents ? state.allEvents.length : 0;
-        const qCount = (state.quarantinedEvents || []).length;
-        trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${compiledCount}/${totalCatalogEvents} Compiled</span> &nbsp;&nbsp; <span style="color: #34d399; font-weight: 700;">${activePublishedCount}/${totalCatalogEvents} Published</span>, <span style="color: #f87171; font-weight: 700;">${qCount}/${totalCatalogEvents} Quarantined</span>`;
-      }
-    } else if (preset.key === 'enrich') {
-      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
-      if (trackerStatus) {
-        const unenriched = calculateUnenrichedEvents();
-        const unenrichedCount = unenriched.length;
-        const enrichedCount = Math.max(0, totalEvents - unenrichedCount);
-        if (unenrichedCount > 0) {
-          trackerStatus.innerHTML = `<span style="color: #fbbf24; font-weight: 700;">${unenrichedCount} events pending AI enrichment</span> • <span style="color: #94a3b8;">${enrichedCount} verified</span>`;
-        } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">All events enriched!</span>`;
-        }
-      }
-    } else if (preset.key === 'qc') {
-      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
-      if (trackerStatus) {
-        const unscanned = calculateUnscannedEvents();
-        const unscannedCount = unscanned.length;
-        const scannedCount = Math.max(0, totalEvents - unscannedCount);
-        if (unscannedCount > 0) {
-          trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${unscannedCount} events pending Stagehand QC</span> • <span style="color: #94a3b8;">${scannedCount} verified</span>`;
-        } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">All events verified!</span>`;
-        }
-      }
+    if (typeof window.updateStageStatusTrackerUI === 'function') {
+      window.updateStageStatusTrackerUI(preset.key, currentPipelineScope);
     }
 
+    // Always update the top-center stage banner and target dimensions banner when switching stages
+    if (typeof updateComparisonTargetDimensionsBanner === 'function') {
+      updateComparisonTargetDimensionsBanner(preset.key);
+    }
     if (preset.key === 'harvest') {
       // SCHEDULE HARVESTER: Venue feeds selection (default: all venue feeds).
       if (trackerEl) trackerEl.style.display = 'flex';
@@ -14435,6 +15873,8 @@ function initStagehandRipperUI() {
         window.onCardNameSelected(targetCardId);
       } else if (pipelineQuarantinedRunActive || currentPipelineScope === 'quarantined') {
         window.setPipelineScope('quarantined');
+      } else if (currentPipelineScope === 'harvested') {
+        window.setPipelineScope('harvested');
       } else if (isPipelineTestMode && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
         window.setPipelineScope('batch5');
       } else {
@@ -14464,11 +15904,13 @@ function initStagehandRipperUI() {
       if (btnTrigger) btnTrigger.style.display = 'inline-flex';
     }
 
-    // Initialize side-by-side comparison view
-    pipelineAuditedCardsHistory = [];
-    pipelineCurrentCompId = null;
-    if (typeof updateComparisonCardDropdown === 'function') updateComparisonCardDropdown();
-    if (typeof updateComparisonStatusPill === 'function') updateComparisonStatusPill('Awaiting Run', 'nodrift');
+    // Initialize side-by-side comparison view only when not mid-execution
+    if (!isExecuting) {
+      pipelineAuditedCardsHistory = [];
+      pipelineCurrentCompId = null;
+      if (typeof updateComparisonCardDropdown === 'function') updateComparisonCardDropdown();
+      if (typeof updateComparisonStatusPill === 'function') updateComparisonStatusPill('Awaiting Run', 'nodrift');
+    }
 
     let initialCard = null;
     const selectCardNameEl = document.getElementById('pipeline-select-card-name');
@@ -14488,6 +15930,10 @@ function initStagehandRipperUI() {
         const idx = Math.max(0, Math.min(events.length - 1, startVal - 1));
         initialCard = events[idx];
       }
+    }
+    // Always update the top-center stage banner and target dimensions banner when switching stages
+    if (typeof updateComparisonTargetDimensionsBanner === 'function') {
+      updateComparisonTargetDimensionsBanner(preset.key);
     }
     if (preset.key === 'harvest') {
       const titleEl = document.getElementById('pipeline-comparison-header-title');
@@ -14574,7 +16020,7 @@ function initStagehandRipperUI() {
       return;
     }
 
-    const { mode, url, limit, offset, id, ids, venue, quarantine, uncompiledOnly, all, force, autoApprove, title, desc, initialStatus, scope, incompleteOnly, stale } = params;
+    const { mode, url, limit, offset, id, ids, venue, quarantine, uncompiledOnly, all, force, autoApprove, title, desc, initialStatus, scope, incompleteOnly, stale, resume } = params;
 
     const modeToStageKey = {
       calendar: 'harvest',
@@ -14583,6 +16029,7 @@ function initStagehandRipperUI() {
       catalog_batch: 'qc',
       enrich: 'enrich',
       venue_detailer: 'venue',
+      consolidate: 'compile',
       compile: 'compile'
     };
     const activeStageKey = modeToStageKey[mode] || currentPipelineScanKey || 'qc';
@@ -14638,6 +16085,9 @@ function initStagehandRipperUI() {
         const eid = ev.id || ev.event_id;
         if (eid) {
           pipelineInitialSnapshots.set(eid, {
+            ...ev,
+            Event_Num_Perm: ev.Event_Num_Perm || ev.event_num_perm || null,
+            Event_Num_Card: ev.Event_Num_Card || ev.event_num_card || null,
             cardIndex: idx + 1,
             id: eid,
             title: ev.title || ev.event_name || '',
@@ -14663,16 +16113,62 @@ function initStagehandRipperUI() {
         }
       });
     }
+    const schedList = state.layerSchedules || [];
+    if (Array.isArray(schedList)) {
+      schedList.forEach((sv, sIdx) => {
+        const sid = sv.id || sv.event_id;
+        if (sid && !pipelineInitialSnapshots.has(sid)) {
+          pipelineInitialSnapshots.set(sid, {
+            ...sv,
+            cardIndex: `H${sIdx + 1}`,
+            id: sid,
+            title: sv.title || sv.event_name || '',
+            venue: sv.venue || sv.venue_name || '',
+            neighborhood: sv.neighborhood || '',
+            date: sv.date || sv.dateSchedule || '',
+            dateSchedule: sv.dateSchedule || sv.date || '',
+            time: sv.time || '',
+            ticket_url: sv.candidate_tier1_url || sv.ticket_url || sv.details_url || '',
+            price: sv.price != null ? sv.price : null,
+            priceLabel: sv.priceLabel || (sv.price != null ? `$${Number(sv.price).toFixed(2)} CAD` : 'Unpriced'),
+            price_base: sv.price_base,
+            price_fee: sv.price_fee,
+            category: sv.category || '',
+            artist: sv.artist || '',
+            lineup: sv.lineup ? [...sv.lineup] : null,
+            description: sv.description || '',
+            restrictions: sv.restrictions || '',
+            approval_status: 'Harvested-Schedule',
+            is_sold_out: Boolean(sv.is_sold_out || sv.isSoldOut),
+            proof_keyframes: sv.proof_keyframes ? { ...sv.proof_keyframes } : null
+          });
+        }
+      });
+    }
 
     if (mode === 'calendar' || mode === 'harvester') {
       captureHarvesterPreRunBaseline();
-      harvesterDiscoveredEvents = [];
-      renderHarvesterComparisonView(false, [], true);
+      const isResumeHarvest = Boolean(resume || url === 'all:resume');
+      if (!isResumeHarvest) {
+        harvesterDiscoveredEvents = [];
+        harvesterSourcesScanned = 0;
+        harvesterCurrentSourceName = '';
+      } else {
+        const cp = state.harvesterCheckpoint || {};
+        harvesterSourcesScanned = cp.completed_feeds_count || 49;
+        harvesterCurrentSourceName = cp.last_feed_name || 'The Orpheum Theatre';
+      }
+      const feedSel = document.getElementById('pipeline-select-venue-feed');
+      const optTotal = (feedSel && feedSel.options && feedSel.options.length > 1) ? (feedSel.options.length - 1) : 126;
+      const cpTotal = state.harvesterCheckpoint?.total_feeds || optTotal;
+      harvesterTotalSources = (all || !url || url === 'all' || url === 'all:resume') ? cpTotal : 1;
+      updateHarvesterSourcesProgressUI();
+      renderHarvesterComparisonView(false, harvesterDiscoveredEvents, true);
     }
 
     pipelineProcessedCount = 0;
-    pipelineTotalTargets = (limit !== undefined && limit !== null && Number(limit) > 0) 
-      ? Number(limit) 
+    pipelineTotalTargets = (limit !== undefined && limit !== null && Number(limit) > 0)
+      ? Number(limit)
       : (id ? 1 : (ids ? (Array.isArray(ids) ? ids.length : String(ids).split(',').filter(Boolean).length) : (mode === 'enrich' ? 20 : (mode === 'catalog_batch' ? 5 : 0))));
     pipelineCurrentTargetIndex = 0;
     const diffTbody = document.getElementById('pipeline-diff-tbody');
@@ -14699,6 +16195,21 @@ function initStagehandRipperUI() {
 
     let estimatedTotal = 30;
     if (mode === 'enrich') {
+      const items = limit || (events ? events.length : 20);
+      estimatedTotal = Math.max(15, Math.round(items * 18));
+      if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${items} events (0%) • ~18s / event`;
+      if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(estimatedTotal)}`;
+    } else if (mode === 'venue_detailer' || mode === 'venue') {
+      const items = limit || (events ? events.length : 30);
+      estimatedTotal = Math.max(25, Math.round(items * 28));
+      if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${items} venues (0%) • ~28s / venue`;
+      if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(estimatedTotal)}`;
+    } else if (mode === 'tier1_hunter' || mode === 'hunter') {
+      const items = limit || (events ? events.length : 20);
+      estimatedTotal = Math.max(15, Math.round(items * 18));
+      if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${items} events (0%) • ~18s / event`;
+      if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(estimatedTotal)}`;
+    } else if (false) {
       const items = limit || 20;
       estimatedTotal = Math.max(5, Math.round(items * 1.8));
       if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${items} events (0%) • ~1.8s / item`;
@@ -14738,19 +16249,55 @@ function initStagehandRipperUI() {
         if (remaining > 0) {
           pipelineEtaValue.textContent = `~${formatDuration(remaining)}`;
         } else {
-          pipelineEtaValue.textContent = 'Finalizing... (~few seconds)';
+          if (pipelineTotalTargets > 0 && pipelineCurrentTargetIndex > 0 && pipelineCurrentTargetIndex < pipelineTotalTargets) {
+            const remItems = Math.max(1, pipelineTotalTargets - pipelineCurrentTargetIndex + 1);
+            const avgSec = pipelineCurrentTargetIndex > 1
+              ? Math.max(4, Math.round(elapsed / (pipelineCurrentTargetIndex - 1)))
+              : (BENCHMARKS[mode] || 25);
+            const dynamicRem = Math.round(remItems * avgSec);
+            estimatedTotal = elapsed + dynamicRem;
+            pipelineEtaValue.textContent = `~${formatDuration(dynamicRem)}`;
+          } else if (pipelineTotalTargets > 0 && pipelineCurrentTargetIndex === pipelineTotalTargets) {
+            pipelineEtaValue.textContent = `Finishing item ${pipelineCurrentTargetIndex}/${pipelineTotalTargets}...`;
+          } else {
+            pipelineEtaValue.textContent = 'Finalizing... (~few seconds)';
+          }
         }
       }
     }, 1000);
 
-    const isAllRun = (all === '1' || all === 1 || all === true || scope === 'all' || currentPipelineScope === 'all');
+    const rawIdsArr = ids ? (Array.isArray(ids) ? ids : String(ids).split(',').filter(Boolean)) : [];
+    const hasExplicitIds = Boolean((id && String(id).trim()) || rawIdsArr.length > 0);
+    const isLargeHarvestedBatch = (rawIdsArr.length > 250);
+    const effectiveHarvestedOnly = (scope === 'harvested' || currentPipelineScope === 'harvested' || isLargeHarvestedBatch);
+    const isAllRun = !hasExplicitIds && !effectiveHarvestedOnly && (all === '1' || all === 1 || all === true || scope === 'all' || currentPipelineScope === 'all');
     const safeId = isAllRun ? '' : (id || '');
-    const safeIds = isAllRun ? '' : (ids ? (Array.isArray(ids) ? ids.join(',') : String(ids)) : '');
+    // Prevent Windows 32KB CreateProcessW & HTTP 64KB URL overflow when > 250 IDs are targeted
+    const safeIds = (isAllRun || isLargeHarvestedBatch) ? '' : rawIdsArr.join(',');
+
+    // Reset comparison history at the start of a new pipeline execution
+    pipelineAuditedCardsHistory = [];
+    pipelineCurrentCompId = null;
+    window.pipelineBaselineAlreadyDoneCount = 0;
+    if (effectiveHarvestedOnly && !force) {
+      const stageInfo = typeof window.getStageContinuationInfo === 'function' ? window.getStageContinuationInfo(activeStageKey) : null;
+      if (stageInfo && stageInfo.prevCompletedCount > 0) {
+        pipelineTotalTargets = stageInfo.prevCompletedCount;
+        const doneCount = stageInfo.currentCompletedCount || 0;
+        // Only apply resume baseline when partially done (0 < doneCount < prevCompletedCount).
+        // When doneCount >= prevCompletedCount, the batch is re-scanning from 1/total, so baseline must be 0.
+        window.pipelineBaselineAlreadyDoneCount = (doneCount > 0 && doneCount < stageInfo.prevCompletedCount) ? doneCount : 0;
+        pipelineProcessedCount = window.pipelineBaselineAlreadyDoneCount;
+        if (counterBadge) {
+          counterBadge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets} Processed`;
+        }
+      }
+    }
 
     let effectiveMode = mode;
     let effectiveUrl = url || '';
 
-    if (window.VAN50_ENGINE === 'antigravity') {
+    if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
       const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
       const modelSelectEl = document.getElementById('agy-model-select');
       const selectedModel = (modalModelSelectEl && modalModelSelectEl.value)
@@ -14764,12 +16311,14 @@ function initStagehandRipperUI() {
         catalog_batch: 'qc',
         enrich: 'enrich',
         venue_detailer: 'venue',
+        consolidate: 'consolidate',
         compile: 'compile',
         master: 'master',
         tier1_hunter: 'hunter',
         single: 'single'
       };
       const stepKey = stepMap[mode] || mode || 'enrich';
+      const isResumeFlag = Boolean(resume || url === 'all:resume');
       const agyParams = new URLSearchParams({
         scope: scope || currentPipelineScope || '',
         limit: String(limit !== undefined ? limit : 0),
@@ -14779,11 +16328,13 @@ function initStagehandRipperUI() {
         venue: venue || '',
         quarantine: (quarantine === '1' || quarantine === 1 || quarantine === true) ? '1' : '0',
         target_url: url || '',
-        all: (all === '1' || all === 1 || all === true) ? '1' : '0',
+        all: isAllRun ? '1' : '0',
         force: (force === '1' || force === 1 || force === true) ? '1' : '0',
         uncompiled_only: uncompiledOnly ? '1' : '0',
         incomplete_only: incompleteOnly ? '1' : '0',
         stale: stale || '',
+        resume: isResumeFlag ? '1' : '0',
+        harvested_only: effectiveHarvestedOnly ? '1' : '0',
         model: selectedModel
       });
       effectiveMode = 'agy_pipeline';
@@ -14800,11 +16351,13 @@ function initStagehandRipperUI() {
       venue: venue || '',
       quarantine: (quarantine === '1' || quarantine === 1 || quarantine === true) ? '1' : '0',
       url: effectiveUrl,
-      all: (all === '1' || all === 1 || all === true) ? '1' : '0',
+      all: isAllRun ? '1' : '0',
       force: (force === '1' || force === 1 || force === true) ? '1' : '0',
       uncompiled_only: uncompiledOnly ? '1' : '0',
       incomplete_only: incompleteOnly ? '1' : '0',
       stale: stale || '',
+      resume: (resume || url === 'all:resume') ? '1' : '0',
+      harvested_only: effectiveHarvestedOnly ? '1' : '0',
       auto_approve: autoApprove ? '1' : '0',
       token: state.token || ''
     });
@@ -14814,11 +16367,22 @@ function initStagehandRipperUI() {
     activeEventSource = es;
 
     let currentEventContext = null;
+    const activeContextsById = new Map();
 
     es.onmessage = (event) => {
       try {
         const payload = JSON.parse(event.data);
-        const line = payload.line !== undefined ? payload.line : event.data;
+        const rawLine = payload.line !== undefined ? payload.line : event.data;
+        let line = rawLine;
+        if (typeof rawLine === 'string' && !/^\s*\[\d{1,2}:\d{2}:\d{2}\s*(?:AM|PM)\]/i.test(rawLine)) {
+          if (/(?:🏛️\s*\[\d+\/\d+\]\s*Venue Feed:|🏢\s*\[\d+\/\d+\]\s*Grounding|(?:⚡|📌|✍️)\s*Processing\s*\[\d+\/\d+\])/i.test(rawLine)) {
+            const nowStr = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            line = rawLine.replace(/^(\n?)/, `$1[${nowStr}] `);
+          }
+        }
+        if (pipelineStatusSubtext && pipelineStatusSubtext.textContent === 'Establishing server-sent events stream...') {
+          pipelineStatusSubtext.textContent = 'Live stream connected — processing targets...';
+        }
         if (pipelineConsoleOutput) {
           pipelineConsoleOutput.textContent += `${line}\n`;
           pipelineConsoleOutput.scrollTop = pipelineConsoleOutput.scrollHeight;
@@ -14879,15 +16443,42 @@ function initStagehandRipperUI() {
           const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
           const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
 
-          const targetQueueMatch = line.match(/(?:🎯\s*Targets Queued for Audit:\s*|Target Queue\s*\(\s*|Enriching\s*)(\d+)\s*(?:events?|candidate)/i);
+          const resumeMatch = line.match(/⏭️\s*\[(?:Step 1B|Stage 2 QC|Stage 3 Enricher)\s*Resume\]\s*Skipping\s*(\d+)/i);
+          if (resumeMatch) {
+            window.pipelineBaselineAlreadyDoneCount = parseInt(resumeMatch[1], 10);
+            const uniqueDone = new Set(pipelineAuditedCardsHistory.map(h => h.id)).size;
+            pipelineProcessedCount = window.pipelineBaselineAlreadyDoneCount + uniqueDone;
+            const badge = document.getElementById('pipeline-diff-counter-badge');
+            if (badge && pipelineTotalTargets > 0) {
+              badge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets} Processed`;
+            }
+          }
+
+          const targetQueueMatch = line.match(/(?:🎯\s*Targets Queued for (?:Audit|Enrichment):\s*|🎯\s*Venues Targeted for Google Maps Grounding:\s*|🎯\s*Target Queue:\s*|Target Queue\s*\(\s*|Enriching\s*)(\d+)\s*(?:events?|candidates?|facilities|venues?|seeds?)?/i);
           if (targetQueueMatch) {
             pipelineTotalTargets = parseInt(targetQueueMatch[1], 10);
             const badge = document.getElementById('pipeline-diff-counter-badge');
-            if (badge && pipelineProcessedCount === 0) {
-              badge.textContent = `0 of ${pipelineTotalTargets} Processed`;
+            if (badge) {
+              badge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets} Processed`;
             }
             if (pipelineItemProgress) {
-              pipelineItemProgress.textContent = `0 of ${pipelineTotalTargets} events (0%)`;
+              const pct = pipelineTotalTargets > 0 ? Math.round((pipelineProcessedCount / pipelineTotalTargets) * 100) : 0;
+              pipelineItemProgress.textContent = `Event ${pipelineProcessedCount} of ${pipelineTotalTargets} (${pct}%)`;
+            }
+          }
+
+          // Pattern 0a: Prioritized N venue feeds header
+          const prioritizedFeedsMatch = line.match(/📊\s*Prioritized\s*(\d+)\s*venue feeds/i);
+          if (prioritizedFeedsMatch && activeStageKey === 'harvest') {
+            harvesterTotalSources = parseInt(prioritizedFeedsMatch[1], 10);
+            updateHarvesterSourcesProgressUI();
+          }
+
+          // Pattern 0b: Single calendar link harvest header (when running 1 feed)
+          if (/📅\s*HARVESTING CALENDAR LINKS from:/i.test(line) && activeStageKey === 'harvest') {
+            if (harvesterSourcesScanned === 0) {
+              harvesterSourcesScanned = 1;
+              updateHarvesterSourcesProgressUI();
             }
           }
 
@@ -14897,62 +16488,97 @@ function initStagehandRipperUI() {
             const currentVenueIdx = parseInt(venueFeedMatch[1], 10);
             const totalVenues = parseInt(venueFeedMatch[2], 10);
             const venueName = venueFeedMatch[3].trim();
+            harvesterSourcesScanned = currentVenueIdx;
+            harvesterTotalSources = totalVenues;
+            harvesterCurrentSourceName = venueName;
+            updateHarvesterSourcesProgressUI();
+            if (pipelineStatusText && activeStageKey === 'harvest') {
+              pipelineStatusText.textContent = `Scanning Source ${currentVenueIdx}/${totalVenues}: ${venueName}`;
+              pipelineStatusText.style.color = '#c084fc';
+            }
             if (pipelineStatusSubtext) {
               pipelineStatusSubtext.style.display = 'block';
-              pipelineStatusSubtext.textContent = `🏛️ Venue ${currentVenueIdx} of ${totalVenues}: ${venueName}`;
+              pipelineStatusSubtext.textContent = `🏛️ ${currentVenueIdx}/${totalVenues} sources scanned • Current: ${venueName}`;
+            }
+            if (pipelineItemProgress && activeStageKey === 'harvest') {
+              pipelineItemProgress.textContent = `${currentVenueIdx}/${totalVenues} sources scanned • +${harvesterDiscoveredEvents.length} events found`;
             }
             const counterBadge = document.getElementById('pipeline-diff-counter-badge');
-            if (counterBadge && currentPipelineScanKey === 'harvest') {
+            if (counterBadge && activeStageKey === 'harvest') {
               const count = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
-              counterBadge.textContent = `${count} Discovered • Venue ${currentVenueIdx}/${totalVenues}`;
+              counterBadge.textContent = `${currentVenueIdx}/${totalVenues} sources scanned • ${count} Discovered`;
             }
           } else {
             // Pattern 1: Discrete Event Candidate Link: Processing [1/4]: https://...
             const progressMatch = line.match(/(?:⚡|📌|✍️)?\s*Processing\s*\[(\d+)\/(\d+)\]/i) ||
-                                   line.match(/\[(\d+)\/(\d+)\]\s*(?:⚡|📌|✍️)?\s*Processing/i);
+              line.match(/\[(\d+)\/(\d+)\]\s*(?:⚡|📌|✍️)?\s*Processing/i);
             if (progressMatch) {
               const current = parseInt(progressMatch[1], 10);
               const total = parseInt(progressMatch[2], 10);
               pipelineTotalTargets = total;
-              pipelineCurrentTargetIndex = current;
-              const pct = Math.min(96, Math.max(8, Math.round(((current - 0.4) / total) * 100)));
-              if (pipelineProgressBar) pipelineProgressBar.style.width = `${pct}%`;
-              const unitTime = BENCHMARKS[mode] || 10;
+              if (current <= (window.pipelineBaselineAlreadyDoneCount || 0)) {
+                window.pipelineBaselineAlreadyDoneCount = 0;
+              }
+              pipelineCurrentTargetIndex = Math.max(pipelineCurrentTargetIndex || 0, current);
+              const displayIdx = pipelineCurrentTargetIndex;
+              const rawDone = (window.pipelineBaselineAlreadyDoneCount || 0) + pipelineAuditedCardsHistory.length;
+              pipelineProcessedCount = Math.min(total, Math.max(displayIdx, rawDone));
+              const barPct = Math.min(96, Math.max(4, Math.round(((displayIdx - 0.4) / total) * 100)));
+              const labelPct = Math.min(100, Math.max(0, Math.round((displayIdx / total) * 100)));
+              if (pipelineProgressBar) pipelineProgressBar.style.width = `${barPct}%`;
+              const itemsRunInSession = Math.max(1, displayIdx - (window.pipelineBaselineAlreadyDoneCount || 0));
+              const unitTime = (itemsRunInSession > 1 && elapsed > 3)
+                ? Math.max(2, Math.round(elapsed / (itemsRunInSession - 1)))
+                : (BENCHMARKS[mode] || 18);
               if (pipelineItemProgress) {
-                pipelineItemProgress.textContent = `Event ${current} of ${total} (${pct}%) • ~${Math.round(unitTime)}s / event`;
+                if (activeStageKey === 'harvest') {
+                  pipelineItemProgress.textContent = `${harvesterSourcesScanned || 1}/${harvesterTotalSources || 155} sources scanned • Link ${displayIdx}/${total} (${labelPct}%)`;
+                } else {
+                  pipelineItemProgress.textContent = `Event ${displayIdx} of ${total} (${labelPct}%) • ~${Math.round(unitTime)}s / event`;
+                }
               }
               const counterBadge = document.getElementById('pipeline-diff-counter-badge');
-              if (counterBadge && pipelineProcessedCount === 0) {
-                counterBadge.textContent = `0 of ${total} Processed`;
+              if (counterBadge && activeStageKey !== 'harvest') {
+                counterBadge.textContent = `${pipelineProcessedCount} of ${total} Processed`;
               }
-              const remainingItems = Math.max(1, total - current + 1);
+              const remainingItems = Math.max(1, total - displayIdx + 1);
               const recalibratedSec = Math.round(remainingItems * unitTime);
               estimatedTotal = elapsed + recalibratedSec;
               if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(recalibratedSec)}`;
 
-              if (currentPipelineScanKey === 'harvest') {
+              if (activeStageKey === 'harvest') {
+                const sIdx = harvesterSourcesScanned || 1;
+                const sTot = harvesterTotalSources || 155;
                 if (pipelineStatusText) {
-                  pipelineStatusText.textContent = `Harvesting [${current} of ${total}] candidate links...`;
+                  pipelineStatusText.textContent = `Harvesting [${displayIdx} of ${total}] candidate links (${sIdx}/${sTot} sources scanned)...`;
                   pipelineStatusText.style.color = '#38bdf8';
                 }
-                if (counterBadge) {
-                  counterBadge.textContent = `${harvesterDiscoveredEvents.length} Discovered • [${current} of ${total} Links Scanned]`;
+                if (pipelineStatusSubtext) {
+                  pipelineStatusSubtext.style.display = 'block';
+                  pipelineStatusSubtext.textContent = `🏛️ ${sIdx}/${sTot} sources scanned${harvesterCurrentSourceName ? ` • ${harvesterCurrentSourceName}` : ''} • Link ${displayIdx} of ${total}`;
                 }
+                if (counterBadge) {
+                  counterBadge.textContent = `${sIdx}/${sTot} sources scanned • ${harvesterDiscoveredEvents.length} Discovered • [${displayIdx}/${total} Links]`;
+                }
+                updateHarvesterSourcesProgressUI();
               }
             }
           }
 
           // Real-Time Event Extraction & Diff Parsing (Request 3)
           const itemStartMatch = line.match(/(?:📌|⚡|✍️)?\s*Processing\s*\[(\d+)\/(\d+)\]:\s*(.+)/i) ||
-                                 line.match(/\[(\d+)\/(\d+)\]\s*(?:✍️|📌|⚡)?\s*Processing:\s*(.+)/i);
-          if (itemStartMatch && currentPipelineScanKey !== 'harvest') {
-            if (currentEventContext) {
-              addEventDiffRow(currentEventContext);
-            }
+            line.match(/\[(\d+)\/(\d+)\]\s*(?:✍️|📌|⚡)?\s*Processing:\s*(.+)/i);
+          if (itemStartMatch && activeStageKey !== 'harvest') {
             const batchItemIdx = parseInt(itemStartMatch[1], 10);
             const batchTotal = parseInt(itemStartMatch[2], 10);
             pipelineTotalTargets = batchTotal;
-            pipelineCurrentTargetIndex = batchItemIdx;
+            if (batchItemIdx <= (window.pipelineBaselineAlreadyDoneCount || 0)) {
+              window.pipelineBaselineAlreadyDoneCount = 0;
+            }
+            pipelineCurrentTargetIndex = Math.max(pipelineCurrentTargetIndex || 0, batchItemIdx);
+            const displayIdx = pipelineCurrentTargetIndex;
+            const rawDone = (window.pipelineBaselineAlreadyDoneCount || 0) + pipelineAuditedCardsHistory.length;
+            pipelineProcessedCount = Math.min(batchTotal, Math.max(displayIdx, rawDone));
             let itemTitle = itemStartMatch[3].trim();
             let directId = null;
             const idSuffixMatch = itemTitle.match(/\[([a-z0-9\-_]+)\]$/i);
@@ -14967,26 +16593,41 @@ function initStagehandRipperUI() {
               itemVenue = venueSuffixMatch[2].trim();
             }
 
+            const stageActionVerb = activeStageKey === 'enrich'
+              ? 'Enriching'
+              : activeStageKey === 'hunter'
+                ? 'Hunting'
+                : activeStageKey === 'compile'
+                  ? 'Compiling'
+                  : 'Auditing';
             if (pipelineStatusText) {
-              pipelineStatusText.textContent = `Auditing [${batchItemIdx} of ${batchTotal}]: ${itemTitle}`;
+              pipelineStatusText.textContent = `${stageActionVerb} [${displayIdx} of ${batchTotal}]: ${itemTitle}`;
               pipelineStatusText.style.color = '#38bdf8';
             }
             if (pipelineStatusSubtext) {
-              pipelineStatusSubtext.textContent = `Event ${batchItemIdx} of ${batchTotal} in progress...`;
+              pipelineStatusSubtext.textContent = `Event ${displayIdx} of ${batchTotal} in progress...`;
             }
             const counterBadge = document.getElementById('pipeline-diff-counter-badge');
             if (counterBadge) {
               counterBadge.textContent = `${pipelineProcessedCount} of ${batchTotal} Processed`;
             }
+            const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+            if (trackerStatusEl) {
+              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${batchTotal} Processed</span> • <span style="color: #38bdf8;">${stageActionVerb} [${displayIdx}/${batchTotal}]: ${escapeHtml(itemTitle)}</span>`;
+            }
 
             let matchedEv = null;
             let isQuarantinedMatched = false;
+            const schedEvs = Array.isArray(state.layerSchedules) ? state.layerSchedules : [];
 
             if (directId) {
               matchedEv = allEvs.find(e => (e.id || e.event_id) === directId);
               if (!matchedEv) {
                 matchedEv = qEvs.find(e => (e.id || e.event_id) === directId);
                 if (matchedEv) isQuarantinedMatched = true;
+              }
+              if (!matchedEv) {
+                matchedEv = schedEvs.find(e => (e.id || e.event_id) === directId);
               }
             }
             if (!matchedEv && itemTitle) {
@@ -14995,8 +16636,11 @@ function initStagehandRipperUI() {
                 matchedEv = qEvs.find(e => (e.title || e.event_name || '').toLowerCase() === itemTitle.toLowerCase());
                 if (matchedEv) isQuarantinedMatched = true;
               }
+              if (!matchedEv) {
+                matchedEv = schedEvs.find(e => (e.title || e.event_name || '').toLowerCase() === itemTitle.toLowerCase());
+              }
             }
-            if (!matchedEv && allEvs && batchItemIdx >= 1 && batchItemIdx <= allEvs.length && currentPipelineScope !== 'single_card') {
+            if (!matchedEv && allEvs && batchItemIdx >= 1 && batchItemIdx <= allEvs.length && currentPipelineScope !== 'single_card' && !effectiveHarvestedOnly) {
               matchedEv = allEvs[batchItemIdx - 1];
             }
             const matchedId = directId || (matchedEv ? (matchedEv.id || matchedEv.event_id) : null);
@@ -15018,25 +16662,27 @@ function initStagehandRipperUI() {
               cardIndex: realCardIdx,
               isQuarantined: isQuarantinedMatched,
               id: matchedId,
-              title: itemTitle,
+              title: itemTitle || (matchedEv ? (matchedEv.title || matchedEv.event_name) : ''),
+              afterTitle: activeStageKey === 'enrich' ? null : (itemTitle || null),
               venue: resolvedVenue,
-              afterVenue: resolvedVenue
+              afterVenue: activeStageKey === 'venue' ? resolvedVenue : null,
+              Event_Num_Perm: matchedEv ? (matchedEv.Event_Num_Perm || matchedEv.event_num_perm || null) : null,
+              Event_Num_Card: matchedEv ? (matchedEv.Event_Num_Card || matchedEv.event_num_card || null) : null
             };
-
-            // Keep the scope card dropdown synchronized to the card being audited!
             if (matchedId) {
+              activeContextsById.set(matchedId, currentEventContext);
               const selectCard = document.getElementById('pipeline-select-card-name');
               if (selectCard) selectCard.value = matchedId;
             }
 
             if (typeof renderComparisonCards === 'function') {
               renderComparisonCards(currentEventContext, matchedEv, true);
-              updateComparisonStatusPill(isQuarantinedMatched ? `Auditing Quarantined #${realCardIdx} [${batchItemIdx} of ${pipelineTotalTargets || batchTotal}]...` : `Auditing Card #${realCardIdx} [${batchItemIdx} of ${pipelineTotalTargets || batchTotal}]...`, 'updated');
+              updateComparisonStatusPill(isQuarantinedMatched ? `${stageActionVerb} Quarantined #${realCardIdx} [${batchItemIdx} of ${pipelineTotalTargets || batchTotal}]...` : `${stageActionVerb} Card #${realCardIdx} [${batchItemIdx} of ${pipelineTotalTargets || batchTotal}]...`, 'updated');
             }
           }
 
           // Pattern 1c: Harvested Event Discovery
-          if (currentPipelineScanKey === 'harvest') {
+          if (activeStageKey === 'harvest') {
             const harvestEventMatch = line.match(/✨\s*HARVESTED EVENT:\s*"([^"]+)"\s*\|\s*Date:\s*([^\|]+?)(?:\s*\|\s*Time:\s*([^\|]+?))?\s*\|\s*Venue:\s*([^\|\[]+?)(?:\s*\|\s*Price:\s*([^\|]+?))?(?:\s*\|\s*URL:\s*([^\[]+?))?\s*\[([^\]]+)\]/i);
             if (harvestEventMatch) {
               const hTitle = harvestEventMatch[1].trim();
@@ -15062,14 +16708,42 @@ function initStagehandRipperUI() {
                   url: hUrl
                 });
                 // Live real-time update: update 3-region view immediately as each event is processed!
+                updateHarvesterSourcesProgressUI();
                 renderHarvesterComparisonView(false, harvesterDiscoveredEvents, true);
               }
             }
           }
 
           // Pattern 1d: Venue Detailer Grounding Progress
-          const venueGroundingStart = line.match(/\[(\d+)\/(\d+)\]\s*Grounding:\s*"([^"]+)"/i);
-          if (venueGroundingStart && currentPipelineScanKey === 'venue') {
+          const venueGroundingStart = line.match(/\[(\d+)\/(\d+)\]\s*Grounding(?:\s+Facility)?:\s*"([^"]+)"/i);
+          if (venueGroundingStart && activeStageKey === 'venue') {
+            const vIdx = parseInt(venueGroundingStart[1], 10);
+            const vTotal = parseInt(venueGroundingStart[2], 10);
+            const vName = venueGroundingStart[3].trim();
+            pipelineTotalTargets = vTotal;
+            pipelineCurrentTargetIndex = vIdx;
+            const vPct = Math.min(96, Math.max(5, Math.round(((vIdx - 0.4) / vTotal) * 100)));
+            if (pipelineProgressBar) pipelineProgressBar.style.width = `${vPct}%`;
+            const vUnitTime = (vIdx > 1 && elapsed > 5)
+              ? Math.max(5, Math.round(elapsed / (vIdx - 1)))
+              : (BENCHMARKS.venue_detailer || 28);
+            if (pipelineItemProgress) {
+              pipelineItemProgress.textContent = `Venue ${vIdx} of ${vTotal} (${vPct}%) • ~${vUnitTime}s / venue`;
+            }
+            if (pipelineStatusSubtext) {
+              pipelineStatusSubtext.style.display = 'block';
+              pipelineStatusSubtext.textContent = `🏛️ Facility ${vIdx} of ${vTotal}: ${vName}`;
+            }
+            const counterBadge = document.getElementById('pipeline-diff-counter-badge');
+            if (counterBadge) {
+              counterBadge.textContent = `${pipelineLastVenuesGroundedCount || (vIdx - 1)} of ${vTotal} Venues Grounded`;
+            }
+            const remVenues = Math.max(1, vTotal - vIdx + 1);
+            const recalibratedVenueSec = Math.round(remVenues * vUnitTime);
+            estimatedTotal = elapsed + recalibratedVenueSec;
+            if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(recalibratedVenueSec)}`;
+          }
+          if (venueGroundingStart && activeStageKey === 'venue') {
             const vIdx = parseInt(venueGroundingStart[1], 10);
             const vTotal = parseInt(venueGroundingStart[2], 10);
             const vName = venueGroundingStart[3].trim();
@@ -15097,7 +16771,7 @@ function initStagehandRipperUI() {
           }
 
           const venueGroundedDone = line.match(/✅\s*Grounded\s*"([^"]+)"\s*->\s*([^(]+?)(?:\s*\(([-0-9.]+),\s*([-0-9.]+)\))?$/i);
-          if (venueGroundedDone && currentPipelineScanKey === 'venue') {
+          if (venueGroundedDone && activeStageKey === 'venue') {
             const vName = venueGroundedDone[1].trim();
             const vAddr = venueGroundedDone[2].trim();
             const lat = venueGroundedDone[3] ? parseFloat(venueGroundedDone[3]) : null;
@@ -15140,6 +16814,7 @@ function initStagehandRipperUI() {
               if (selectCard) selectCard.value = matchedId;
             }
             const compileCtx = {
+              ...(matchedEv || {}),
               cardIndex: realCardIdx,
               id: matchedId,
               title: compTitle,
@@ -15170,6 +16845,35 @@ function initStagehandRipperUI() {
             const beforeSnap = matchedId ? pipelineInitialSnapshots.get(matchedId) : matchedEv;
             if (typeof renderComparisonCards === 'function') {
               renderComparisonCards(compileCtx, beforeSnap, false);
+            }
+          }
+
+          const mergeMatch = line.match(/🔀\s*Merged\s*(\d+)\s*cards?\s*(?:→|->)\s*"([^"]+)"\s*\(([^)]+)\)\s*\[([^\]]+)\]:\s*(\d+)\s*showings?\s*—\s*([^\n(]+)/i);
+          if (mergeMatch) {
+            const mergedCount = parseInt(mergeMatch[1], 10) || 2;
+            const mTitle = mergeMatch[2].trim();
+            const mVenue = mergeMatch[3].trim();
+            const mId = mergeMatch[4].trim();
+            const mShowingsCount = parseInt(mergeMatch[5], 10) || 1;
+            const mSchedule = mergeMatch[6].trim();
+            const matchedEv = (allEvs && allEvs.find(e => (e.id || e.event_id) === mId)) || {};
+            const foundIdx = allEvs ? allEvs.findIndex(e => (e.id || e.event_id) === mId) : -1;
+            const mergeCtx = {
+              ...matchedEv,
+              cardIndex: foundIdx !== -1 ? foundIdx + 1 : 1,
+              id: mId,
+              title: mTitle,
+              afterTitle: mTitle,
+              venue: mVenue,
+              afterVenue: mVenue,
+              afterDate: `${mSchedule} (${mergedCount} Cards Merged → ${mShowingsCount} Showings)`,
+              afterPrice: matchedEv.priceLabel || null,
+              isReconciled: true
+            };
+            addEventDiffRow(mergeCtx);
+            if (pipelineStatusText) {
+              pipelineStatusText.textContent = `🔀 Merged ${mergedCount} duplicate cards into "${mTitle}" (${mShowingsCount} showings)`;
+              pipelineStatusText.style.color = '#34d399';
             }
           }
 
@@ -15240,12 +16944,31 @@ function initStagehandRipperUI() {
             }
           }
 
-          const priceMatch = line.match(/(?:💰\s*)?Price:\s*([^(]+?)\s*\(Base:\s*\$?([0-9.]+|null),\s*Fees:\s*\$?([0-9.]+|null)\)/i) ||
-                             line.match(/(?:💰\s*)?Price:\s*(\$[0-9.]+\s*CAD|Free\s*(?:\(\$0\))?|\$[0-9.]+)/i);
+          const priceMatch = line.match(/(?:💰\s*)?Price:\s*([^(]+?)\s*\(Base:\s*\$?([0-9.]+|null|N\/A),\s*Fees:\s*\$?([0-9.]+|null|N\/A)(?:,\s*Tax:\s*\$?([0-9.]+|null|N\/A))?\)/i) ||
+            line.match(/(?:💰\s*)?Price:\s*(\$[0-9.]+\s*CAD|Free\s*(?:\(\$0\))?|\$[0-9.]+)/i);
           if (priceMatch && currentEventContext) {
             currentEventContext.afterPrice = priceMatch[1].trim();
-            if (priceMatch[2] !== undefined && priceMatch[2] !== 'null') currentEventContext.afterBase = parseFloat(priceMatch[2]);
-            if (priceMatch[3] !== undefined && priceMatch[3] !== 'null') currentEventContext.afterFee = parseFloat(priceMatch[3]);
+            if (priceMatch[2] !== undefined && priceMatch[2] !== 'null' && priceMatch[2] !== 'N/A') currentEventContext.afterBase = parseFloat(priceMatch[2]);
+            if (priceMatch[3] !== undefined && priceMatch[3] !== 'null' && priceMatch[3] !== 'N/A') currentEventContext.afterFee = parseFloat(priceMatch[3]);
+            if (priceMatch[4] !== undefined && priceMatch[4] !== 'null' && priceMatch[4] !== 'N/A') currentEventContext.afterTax = parseFloat(priceMatch[4]);
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          const tier1NameMatch = line.match(/^\s*Tier 1:\s*(.+)$/i);
+          if (tier1NameMatch && currentEventContext) {
+            currentEventContext.afterTier1Name = tier1NameMatch[1].trim();
+            currentEventContext.tier1_name = tier1NameMatch[1].trim();
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          const providerMatch = line.match(/^\s*Provider:\s*(.+)$/i);
+          if (providerMatch && currentEventContext) {
+            currentEventContext.afterProvider = providerMatch[1].trim();
+            currentEventContext.ticket_provider = providerMatch[1].trim();
             if (typeof renderComparisonCards === 'function') {
               renderComparisonCards(currentEventContext, null, true);
             }
@@ -15289,7 +17012,10 @@ function initStagehandRipperUI() {
             currentEventContext.hasProof = true;
             const shotMatch = line.match(/Proof keyframe captured:\s*([^\s]+(?:\.webp|\.png))/i);
             if (shotMatch) {
-              currentEventContext.proofKeyframeUrl = `data/proof_keyframes/${shotMatch[1].trim()}`;
+              const rawShot = shotMatch[1].trim().replace(/^\/+/, '');
+              currentEventContext.proofKeyframeUrl = rawShot.startsWith('data/proof_keyframes/')
+                ? rawShot
+                : `data/proof_keyframes/${rawShot}`;
             }
             if (typeof renderComparisonCards === 'function') {
               renderComparisonCards(currentEventContext, null, true);
@@ -15306,11 +17032,20 @@ function initStagehandRipperUI() {
             const rowStatus = summaryRowMatch[5].trim();
             const rowHasProof = summaryRowMatch[6].includes('YES');
 
+            const schedEvs = Array.isArray(state.layerSchedules) ? state.layerSchedules : [];
+            const boxEvs = Array.isArray(state.layerBoxOffices) ? state.layerBoxOffices : [];
+            const editEvs = Array.isArray(state.layerEditorials) ? state.layerEditorials : [];
             let matchedEv = allEvs.find(e => (e.id || e.event_id) === rowEventId);
             let isQuarantined = false;
             if (!matchedEv) {
               matchedEv = qEvs.find(e => (e.id || e.event_id) === rowEventId);
               if (matchedEv) isQuarantined = true;
+            }
+            const schedEv = schedEvs.find(e => (e.id || e.event_id) === rowEventId);
+            const boxEv = boxEvs.find(e => (e.id || e.event_id) === rowEventId);
+            const editEv = editEvs.find(e => (e.id || e.event_id) === rowEventId);
+            if (!matchedEv && (schedEv || boxEv || editEv)) {
+              matchedEv = { ...(schedEv || {}), ...(boxEv || {}), ...(editEv || {}) };
             }
 
             // Calculate real card index
@@ -15325,28 +17060,35 @@ function initStagehandRipperUI() {
               }
             }
 
-            const rowBefore = rowEventId ? pipelineInitialSnapshots.get(rowEventId) : matchedEv;
-            
-            // If currentEventContext matches this event, use it as baseline so we don't discard live-extracted data!
-            const baseCtx = (currentEventContext && currentEventContext.id === rowEventId) ? currentEventContext : {};
+            const existingHistoryItem = pipelineAuditedCardsHistory.find(x => x.id === rowEventId);
+            const rowBefore = (rowEventId ? pipelineInitialSnapshots.get(rowEventId) : null) || existingHistoryItem?.before || schedEv || matchedEv;
 
+            // Preserve any existing committed context in pipelineAuditedCardsHistory or currentEventContext so the summary table NEVER strips live-extracted fields!
+            const baseCtx = (existingHistoryItem && existingHistoryItem.ctx)
+              ? existingHistoryItem.ctx
+              : ((currentEventContext && currentEventContext.id === rowEventId) ? currentEventContext : {});
+
+            const isRowTimeout = rowStatus.includes('TIMEOUT') || rowStatus.includes('ERROR');
             const rowCtx = {
-              cardIndex: realCardIdx,
+              ...baseCtx,
+              cardIndex: baseCtx.cardIndex || realCardIdx,
               isQuarantined: isQuarantined,
               id: rowEventId,
-              title: baseCtx.title || (matchedEv ? (matchedEv.title || matchedEv.event_name) : 'Event'),
+              title: (baseCtx.title && baseCtx.title !== 'Event' && baseCtx.title !== rowEventId) ? baseCtx.title : (matchedEv ? (matchedEv.title || matchedEv.event_name) : rowEventId),
               venue: baseCtx.venue || rowVenue || (matchedEv ? (matchedEv.venue || matchedEv.venue_name) : ''),
-              afterTitle: baseCtx.afterTitle || (matchedEv ? (matchedEv.title || matchedEv.event_name) : null),
-              afterVenue: baseCtx.afterVenue || rowVenue || (matchedEv ? (matchedEv.venue || matchedEv.venue_name) : null),
-              afterPrice: rowPrice !== 'N/A' ? rowPrice : (baseCtx.afterPrice || (matchedEv ? matchedEv.priceLabel : null)),
-              afterBase: baseCtx.afterBase !== undefined ? baseCtx.afterBase : (matchedEv ? matchedEv.price_base : null),
-              afterFee: baseCtx.afterFee !== undefined ? baseCtx.afterFee : (matchedEv ? matchedEv.price_fee : null),
-              afterInventory: rowStatus.includes('SOLD') ? 'SOLD OUT' : (baseCtx.afterInventory || 'AVAILABLE'),
-              afterTicketUrl: baseCtx.afterTicketUrl || (matchedEv ? (matchedEv.ticket_url || matchedEv.details_url) : null),
-              afterDate: baseCtx.afterDate || (matchedEv ? (matchedEv.date || matchedEv.dateSchedule) : null),
-              afterTime: baseCtx.afterTime || (matchedEv ? (matchedEv.time || matchedEv.doors_time) : null),
+              afterTitle: (baseCtx.afterTitle && baseCtx.afterTitle !== 'Event') ? baseCtx.afterTitle : null,
+              afterVenue: baseCtx.afterVenue || null,
+              afterPrice: (!isRowTimeout && rowPrice !== 'N/A') ? rowPrice : (baseCtx.afterPrice || null),
+              afterBase: !isRowTimeout && baseCtx.afterBase !== undefined && baseCtx.afterBase !== null ? baseCtx.afterBase : null,
+              afterFee: !isRowTimeout && baseCtx.afterFee !== undefined && baseCtx.afterFee !== null ? baseCtx.afterFee : null,
+              afterTax: !isRowTimeout && baseCtx.afterTax !== undefined && baseCtx.afterTax !== null ? baseCtx.afterTax : null,
+              afterInventory: isRowTimeout ? null : (rowStatus.includes('SOLD') ? 'SOLD OUT' : (baseCtx.afterInventory || 'AVAILABLE')),
+              afterTicketUrl: baseCtx.afterTicketUrl || null,
+              afterDate: baseCtx.afterDate || null,
+              afterTime: baseCtx.afterTime || null,
               hasProof: rowHasProof || Boolean(baseCtx.hasProof),
-              proofKeyframeUrl: baseCtx.proofKeyframeUrl || (rowHasProof && rowEventId ? `data/proof_keyframes/${rowEventId}_cart.png` : null)
+              proofKeyframeUrl: baseCtx.proofKeyframeUrl || (rowHasProof && rowEventId ? `data/proof_keyframes/${rowEventId}_cart.png` : null),
+              _diffCommitted: false
             };
             addEventDiffRow(rowCtx);
             if (typeof renderComparisonCards === 'function') {
@@ -15355,34 +17097,82 @@ function initStagehandRipperUI() {
           }
 
           const commitMatch = line.match(/Committed updated event\s*\(([^)]+)\)/i);
-          if (commitMatch && currentEventContext) {
-            currentEventContext.id = commitMatch[1].trim();
-            const beforeSnap = currentEventContext.id ? pipelineInitialSnapshots.get(currentEventContext.id) : null;
-            const freshEv = allEvs.find(e => (e.id || e.event_id) === currentEventContext.id) || qEvs.find(e => (e.id || e.event_id) === currentEventContext.id);
-            if (freshEv) {
-              if (!currentEventContext.afterPrice) currentEventContext.afterPrice = freshEv.priceLabel;
-              if (currentEventContext.afterBase === undefined) currentEventContext.afterBase = freshEv.price_base;
-              if (currentEventContext.afterFee === undefined) currentEventContext.afterFee = freshEv.price_fee;
-              if (!currentEventContext.afterInventory) currentEventContext.afterInventory = freshEv.is_sold_out ? 'SOLD OUT' : 'AVAILABLE';
-              if (!currentEventContext.afterDate) currentEventContext.afterDate = freshEv.date || freshEv.dateSchedule;
-              if (!currentEventContext.afterTime) currentEventContext.afterTime = freshEv.time || freshEv.doors_time;
-              if (!currentEventContext.afterTicketUrl) currentEventContext.afterTicketUrl = freshEv.ticket_url || freshEv.details_url;
-              if (!currentEventContext.afterVenue) currentEventContext.afterVenue = freshEv.venue || freshEv.venue_name;
-              if (!currentEventContext.afterTitle) currentEventContext.afterTitle = freshEv.title || freshEv.event_name;
-              if (!currentEventContext.afterCategory) currentEventContext.afterCategory = freshEv.category;
-              if (currentEventContext.afterArtist === undefined && freshEv.artist) currentEventContext.afterArtist = freshEv.artist;
-              if (!currentEventContext.afterAge && freshEv.restrictions) currentEventContext.afterAge = freshEv.restrictions;
-              if (!currentEventContext.afterDescription && freshEv.description) currentEventContext.afterDescription = freshEv.description;
-              if (freshEv.proof_keyframes?.cart) {
-                currentEventContext.hasProof = true;
-                currentEventContext.proofKeyframeUrl = freshEv.proof_keyframes.cart;
+          if (commitMatch) {
+            const committedId = commitMatch[1].trim();
+            const commitCtx = activeContextsById.get(committedId) ||
+              (currentEventContext && (!currentEventContext.id || currentEventContext.id === committedId)
+                ? currentEventContext
+                : { id: committedId, cardIndex: pipelineCurrentTargetIndex || 1, title: committedId });
+            commitCtx.id = committedId;
+            const schedEvs = Array.isArray(state.layerSchedules) ? state.layerSchedules : [];
+            const boxEvs = Array.isArray(state.layerBoxOffices) ? state.layerBoxOffices : [];
+            const editEvs = Array.isArray(state.layerEditorials) ? state.layerEditorials : [];
+            const schedEv = schedEvs.find(e => (e.id || e.event_id) === committedId);
+            const boxEv = boxEvs.find(e => (e.id || e.event_id) === committedId);
+            const editEv = editEvs.find(e => (e.id || e.event_id) === committedId);
+            const catEv = allEvs.find(e => (e.id || e.event_id) === committedId) || qEvs.find(e => (e.id || e.event_id) === committedId);
+            const beforeSnap = (committedId ? pipelineInitialSnapshots.get(committedId) : null) || schedEv || catEv;
+            const identityEv = schedEv || catEv || boxEv || editEv;
+            if (identityEv) {
+              if (!commitCtx.title || commitCtx.title === committedId || commitCtx.title === 'Event') commitCtx.title = identityEv.title || identityEv.event_name || committedId;
+              if (!commitCtx.venue) commitCtx.venue = identityEv.venue || identityEv.venue_name || '';
+            }
+            if (activeStageKey === 'hunter' && schedEv) {
+              schedEv.step1b_audited_at = new Date().toISOString();
+              if (!commitCtx.afterTicketUrl) commitCtx.afterTicketUrl = schedEv.candidate_tier1_url || schedEv.ticket_url;
+            } else if (activeStageKey === 'qc' && boxEv) {
+              const isBoxTimeout = boxEv.status === 'TIMEOUT_EXCEEDED' || boxEv.status === 'AI_TIMEOUT' || boxEv.status === 'EXECUTION_ERROR';
+              if (!isBoxTimeout) {
+                const freshAllIn = boxEv.tier1_price_all_in ?? boxEv.price_all_in ?? boxEv.price;
+                if (!commitCtx.afterPrice) commitCtx.afterPrice = boxEv.priceLabel || (freshAllIn != null ? `$${Number(freshAllIn).toFixed(2)} CAD` : null);
+                if (commitCtx.afterBase === undefined || commitCtx.afterBase === null) commitCtx.afterBase = boxEv.tier1_price_base ?? boxEv.price_base;
+                if (commitCtx.afterFee === undefined || commitCtx.afterFee === null) commitCtx.afterFee = boxEv.tier1_price_fee ?? boxEv.price_fee;
+                if (commitCtx.afterTax === undefined || commitCtx.afterTax === null) commitCtx.afterTax = boxEv.tier1_price_tax ?? boxEv.price_tax;
+                if (!commitCtx.afterTier1Name && boxEv.tier1_name) commitCtx.afterTier1Name = boxEv.tier1_name;
+                if (!commitCtx.afterProvider && boxEv.ticket_provider) commitCtx.afterProvider = boxEv.ticket_provider;
+                if (!commitCtx.afterInventory) commitCtx.afterInventory = boxEv.is_sold_out ? 'SOLD OUT' : 'AVAILABLE';
+                if (!commitCtx.afterDate) commitCtx.afterDate = boxEv.date || boxEv.showings?.[0]?.date;
+                if (!commitCtx.afterTime) commitCtx.afterTime = boxEv.start_time || boxEv.doors_time;
+                if (!commitCtx.afterTicketUrl) commitCtx.afterTicketUrl = boxEv.ticket_url;
+                if (!commitCtx.afterAge && boxEv.restrictions) commitCtx.afterAge = boxEv.restrictions;
+                const proofUrl = boxEv.proof_keyframes?.cart || boxEv.proof_keyframe;
+                if (proofUrl && !commitCtx.proofKeyframeUrl) {
+                  commitCtx.hasProof = true;
+                  commitCtx.proofKeyframeUrl = proofUrl;
+                }
+              }
+            } else if (activeStageKey === 'enrich' && editEv) {
+              if (!commitCtx.afterTitle || commitCtx.afterTitle === 'Event') commitCtx.afterTitle = editEv.clean_title || editEv.title;
+              if (!commitCtx.afterCategory) commitCtx.afterCategory = editEv.category;
+              if (commitCtx.afterArtist === undefined && editEv.artist) commitCtx.afterArtist = editEv.artist;
+              if (!commitCtx.afterAge && editEv.restrictions) commitCtx.afterAge = editEv.restrictions;
+              if (!commitCtx.afterDescription && editEv.description) commitCtx.afterDescription = editEv.description;
+              if (editEv.event_archetype) commitCtx.event_archetype = editEv.event_archetype;
+              if (editEv.lifecycle_type) commitCtx.lifecycle_type = editEv.lifecycle_type;
+              if (editEv.frequencyLabel) commitCtx.frequencyLabel = editEv.frequencyLabel;
+            } else if (activeStageKey === 'compile') {
+              const freshEv = (schedEv || boxEv || editEv || catEv)
+                ? { ...(schedEv || {}), ...(boxEv || {}), ...(editEv || {}), ...(catEv || {}) }
+                : null;
+              if (freshEv) {
+                Object.keys(freshEv).forEach(k => {
+                  if (commitCtx[k] === undefined || commitCtx[k] === null) commitCtx[k] = freshEv[k];
+                });
               }
             }
-            addEventDiffRow(currentEventContext);
-            if (typeof renderComparisonCards === 'function') {
-              renderComparisonCards(currentEventContext, beforeSnap, false);
+            addEventDiffRow(commitCtx);
+            activeContextsById.delete(committedId);
+            const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+            if (trackerStatusEl) {
+              const remCount = Math.max(0, (pipelineTotalTargets || pipelineProcessedCount) - pipelineProcessedCount);
+              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${pipelineTotalTargets || pipelineProcessedCount} Processed</span> • <span style="color: #94a3b8;">${remCount} remaining in current run</span>`;
             }
-            currentEventContext = null;
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(commitCtx, beforeSnap, false);
+            }
+            if (currentEventContext && currentEventContext.id === committedId) {
+              currentEventContext = null;
+            }
           }
 
           if (pipelineStatusText) {
@@ -15429,13 +17219,21 @@ function initStagehandRipperUI() {
       }
     };
 
-    function playStageCompleteChime() {
+    function playStageCompleteChime(stageKey) {
       try {
+        const validPipelineStages = ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'consolidate', 'compile'];
+        if (stageKey && !validPipelineStages.includes(stageKey)) return;
+        const nowMs = Date.now();
+        if (window._lastStageCompleteChimeAt && nowMs - window._lastStageCompleteChimeAt < 2500) {
+          return;
+        }
+        window._lastStageCompleteChimeAt = nowMs;
+
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) return;
         const ctx = new AudioCtx();
         if (ctx.state === 'suspended') {
-          ctx.resume().catch(() => {});
+          ctx.resume().catch(() => { });
         }
         // Pleasant ascending bell arpeggio chime: C5 (523.25), E5 (659.25), G5 (783.99), C6 (1046.50)
         const notes = [523.25, 659.25, 783.99, 1046.50];
@@ -15443,20 +17241,23 @@ function initStagehandRipperUI() {
         notes.forEach((freq, idx) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
-          
+
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, now + idx * 0.11);
-          
+
           gain.gain.setValueAtTime(0, now + idx * 0.11);
           gain.gain.linearRampToValueAtTime(0.2, now + idx * 0.11 + 0.02);
           gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.11 + 0.65);
-          
+
           osc.connect(gain);
           gain.connect(ctx.destination);
-          
+
           osc.start(now + idx * 0.11);
           osc.stop(now + idx * 0.11 + 0.7);
         });
+        setTimeout(() => {
+          try { ctx.close(); } catch (_) { }
+        }, 1500);
       } catch (err) {
         console.warn('Audio chime playback omitted:', err);
       }
@@ -15488,11 +17289,11 @@ function initStagehandRipperUI() {
       try {
         const data = JSON.parse(event.data);
         exitCode = data.exitCode || 0;
-      } catch (e) {}
+      } catch (e) { }
 
       if (exitCode === 0) {
-        playStageCompleteChime();
         const finishedStageKey = activeStageKey || window.activePipelineRunningStageKey || currentPipelineScanKey;
+        playStageCompleteChime(finishedStageKey);
         currentPipelineScanKey = finishedStageKey;
         pipelineTestStageKey = finishedStageKey;
 
@@ -15524,11 +17325,22 @@ function initStagehandRipperUI() {
           pipelineLastCompiledCardIds = outcomeIds.length > 0
             ? outcomeIds
             : (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0
-                ? [...pipelineTestDiscoveredIds]
-                : pipelineAuditedCardsHistory.map(x => x.id).filter(Boolean));
+              ? [...pipelineTestDiscoveredIds]
+              : pipelineAuditedCardsHistory.map(x => x.id).filter(Boolean));
           window.pipelineLastCompiledIds = [...pipelineLastCompiledCardIds];
+          try {
+            const passedBatchIds = passedMap.size > 0
+              ? [...passedMap.keys()]
+              : pipelineLastCompiledCardIds.filter(id => !failedMap.has(id));
+            if (passedBatchIds.length > 0) {
+              localStorage.setItem('van50_last_passed_batch_ids', JSON.stringify(passedBatchIds));
+            }
+          } catch (_) {}
           if (typeof window.updateCompilerPreviewBanner === 'function') {
             window.updateCompilerPreviewBanner(passedMap.size, failedMap.size);
+          }
+          if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
+            window.syncHarvesterCheckpointAndEventsUI();
           }
         }
 
@@ -15561,9 +17373,16 @@ function initStagehandRipperUI() {
             `;
           }
         }
+        const stagePastVerb = finishedStageKey === 'enrich'
+          ? 'Enriched'
+          : finishedStageKey === 'hunter'
+            ? 'Hunted'
+            : finishedStageKey === 'compile'
+              ? 'Compiled'
+              : 'Audited';
         if (pipelineSpinner) pipelineSpinner.textContent = '✅';
         if (pipelineStatusText) {
-          pipelineStatusText.textContent = `✅ Pipeline Execution Complete! (${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Events Audited)`;
+          pipelineStatusText.textContent = `✅ Pipeline Execution Complete! (${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Events ${stagePastVerb})`;
           pipelineStatusText.style.color = '#34d399';
         }
         if (pipelineStatusSubtext) {
@@ -15590,7 +17409,7 @@ function initStagehandRipperUI() {
         if (pipelineTimeoutEvents.length > 0) {
           const names = pipelineTimeoutEvents.map(t => `"${t.eventTitle}" (${t.cause})`).slice(0, 3).join('; ');
           if (pipelineStatusText) {
-            pipelineStatusText.textContent = `⚠️ Pipeline Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${pipelineProcessedCount} Audited)`;
+            pipelineStatusText.textContent = `⚠️ Pipeline Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${pipelineProcessedCount} ${stagePastVerb})`;
             pipelineStatusText.style.color = '#fbbf24';
           }
           if (pipelineStatusSubtext) {
@@ -15606,7 +17425,9 @@ function initStagehandRipperUI() {
         }
         if (typeof loadQuarantineQueue === 'function') loadQuarantineQueue();
         if (typeof loadCuratorDashboard === 'function') loadCuratorDashboard();
-        if (typeof window.loadLayersAndEvents === 'function') window.loadLayersAndEvents();
+        const reloadPromise = (typeof window.loadLayersAndEvents === 'function')
+          ? Promise.resolve(window.loadLayersAndEvents()).catch(() => {})
+          : Promise.resolve();
 
         // Auto-chain to next stage if full pipeline batch mode is active
         if (isPipelineAutoChaining) {
@@ -15622,7 +17443,8 @@ function initStagehandRipperUI() {
               pipelineStatusText.textContent = `Stage ${curIdx + 1} Complete! Advancing to ${nextStageKey.toUpperCase()} in 1s...`;
               pipelineStatusText.style.color = '#38bdf8';
             }
-            setTimeout(() => {
+            setTimeout(async () => {
+              await reloadPromise;
               if (isPipelineAutoChaining) {
                 openPipelineTestStage(nextStageKey, true);
               }
@@ -15642,11 +17464,22 @@ function initStagehandRipperUI() {
               const autoStaleLabel = document.getElementById('btn-stepper-auto-stale-label');
               if (autoStaleLabel) autoStaleLabel.textContent = '⚡ Auto-Run Out-of-Date (1B ➔ 5)';
             }
-            const autoQBtn = document.getElementById('btn-stepper-auto-quarantined');
-            if (autoQBtn) {
-              autoQBtn.classList.remove('is-running');
-              const autoQLabel = document.getElementById('btn-stepper-auto-quarantined-label');
-              if (autoQLabel) autoQLabel.textContent = '🛡️ Run Quarantined (1B ➔ 5)';
+            ['btn-stepper-auto-quarantined', 'btn-header-run-quarantine', 'btn-banner-run-quarantine', 'btn-status-run-quarantine'].forEach(btnId => {
+              const btn = document.getElementById(btnId);
+              if (btn) btn.classList.remove('is-running');
+            });
+            ['btn-stepper-auto-newest-passed', 'btn-header-run-newest-passed', 'btn-banner-run-newest-passed', 'btn-status-run-newest-passed'].forEach(btnId => {
+              const btn = document.getElementById(btnId);
+              if (btn) btn.classList.remove('is-running');
+            });
+            if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
+              window.syncHarvesterCheckpointAndEventsUI();
+            }
+            const autoHBtn = document.getElementById('btn-stepper-auto-harvested');
+            if (autoHBtn) {
+              autoHBtn.classList.remove('is-running');
+              const autoHLabel = document.getElementById('btn-stepper-auto-harvested-label');
+              if (autoHLabel) autoHLabel.textContent = '✨ Process New Events (1B ➔ 5)';
             }
             const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
             if (summaryBanner) summaryBanner.style.display = 'block';
@@ -15712,6 +17545,9 @@ function initStagehandRipperUI() {
   const btnTriggerPipelineRun = document.getElementById('btn-trigger-pipeline-run');
   if (btnTriggerPipelineRun) {
     btnTriggerPipelineRun.addEventListener('click', () => {
+      const skipPrompt = Boolean(btnTriggerPipelineRun._skipContinuePrompt);
+      btnTriggerPipelineRun._skipContinuePrompt = false;
+
       if (isExecuting) {
         if (confirm('A pipeline task is currently marked active. Would you like to stop it and start a new scan?')) {
           stopActiveStagehand().then(() => {
@@ -15722,6 +17558,33 @@ function initStagehandRipperUI() {
       }
 
       const preset = SCAN_PRESETS[currentPipelineScanKey] || SCAN_PRESETS.qc;
+      const btnLabelCheckEl = document.getElementById('btn-trigger-pipeline-label');
+      const currentBtnText = (btnLabelCheckEl ? btnLabelCheckEl.textContent : '') || '';
+      const isResumeOrContinueClick = /resume|continue/i.test(currentBtnText) ||
+        currentPipelineScope === 'harvested' ||
+        (preset.key === 'harvest' && window.harvesterResumeMode !== false);
+
+      if (!skipPrompt && isResumeOrContinueClick && currentPipelineScope !== 'single_card' && currentPipelineScope !== 'range') {
+        let availablePoolCount = null;
+        if (currentPipelineScope === 'harvested' && preset.key !== 'harvest') {
+          const stageInfo = typeof window.getStageContinuationInfo === 'function'
+            ? window.getStageContinuationInfo(preset.key)
+            : null;
+          availablePoolCount = (stageInfo && stageInfo.pendingCount > 0)
+            ? stageInfo.pendingCount
+            : ((pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) ? pipelineTestDiscoveredIds.length : 0);
+          if (availablePoolCount <= 0) {
+            if (typeof showToast === 'function') {
+              showToast(`⏸️ Cannot run ${preset.key.toUpperCase()}: 0 events are queued from ${stageInfo ? stageInfo.prevStageLabel : 'the previous stage'}. Events cannot skip pipeline stages!`, 'warning');
+            }
+            return;
+          }
+        }
+        const chosenCount = window.promptContinueEventCount(availablePoolCount, 'events');
+        if (chosenCount === null) return;
+        window.setPipelineBatchSize(chosenCount);
+      }
+
       const inputUrl = document.getElementById('pipeline-input-url');
       const chkAutoApprove = document.getElementById('pipeline-input-auto-approve');
       const startInput = document.getElementById('pipeline-card-start');
@@ -15742,17 +17605,21 @@ function initStagehandRipperUI() {
       let incompleteOnly = false;
       let staleVal = '';
 
-      if (preset.key === 'harvest') {
+      // Always update the top-center stage banner and target dimensions banner when switching stages
+    if (typeof updateComparisonTargetDimensionsBanner === 'function') {
+      updateComparisonTargetDimensionsBanner(preset.key);
+    }
+    if (preset.key === 'harvest') {
         const feedSelect = document.getElementById('pipeline-select-venue-feed');
         const customFeedInput = document.getElementById('pipeline-harvester-custom-url');
         const chkHarvesterApprove = document.getElementById('pipeline-harvester-auto-approve');
         const feedVal = feedSelect ? feedSelect.value : 'all';
         const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
           ? 0
-          : (Number(window.pipelineBatchSize) || 5);
+          : (Number(window.pipelineBatchSize) || 0);
 
         if (feedVal === 'all') {
-          url = 'all';
+          url = (window.harvesterResumeMode !== false) ? 'all:resume' : 'all';
           allParam = true;
           limitVal = batchCap;
         } else if (feedVal === 'custom') {
@@ -15775,15 +17642,42 @@ function initStagehandRipperUI() {
         const selVal = vSelect ? vSelect.value : 'new_events';
         const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
           ? 0
-          : (Number(window.pipelineBatchSize) || 10);
-        if (selVal === 'new_events') {
-          const newV = window.getVenuesForNewEvents ? window.getVenuesForNewEvents() : [];
-          venueVal = newV.length === 1 ? newV[0] : 'all';
-          limitVal = newV.length || batchCap;
+          : (Number(window.pipelineBatchSize) || 0);
+        if ((currentPipelineScope === 'quarantined' || currentPipelineScope === 'batch5') && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+          let targetIds = [...pipelineTestDiscoveredIds];
+          if (batchCap > 0 && targetIds.length > batchCap) targetIds = targetIds.slice(0, batchCap);
+          idsVal = targetIds.length > 250 ? '' : targetIds.join(',');
+          venueVal = '';
+          limitVal = batchCap || targetIds.length;
+          allParam = false;
+          forceVal = true;
+          uncompiledOnly = false;
+        } else if (selVal === 'new_events' || currentPipelineScope === 'harvested') {
+          const stageInfo = typeof window.getStageContinuationInfo === 'function'
+            ? window.getStageContinuationInfo('venue')
+            : null;
+          const candidateEvents = (stageInfo && stageInfo.pendingItems && stageInfo.pendingItems.length > 0)
+            ? stageInfo.pendingItems
+            : [];
+          let hIds = (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0 && candidateEvents.length === 0)
+            ? [...pipelineTestDiscoveredIds]
+            : candidateEvents.map(e => e.id || e.event_id).filter(Boolean);
+          if (hIds.length === 0) {
+            if (typeof showToast === 'function') {
+              showToast(`⏸️ Cannot run Stage 4 Venue Detailer: 0 events are queued from Stage 3 Enrich. Events cannot skip pipeline stages!`, 'warning');
+            }
+            return;
+          }
+          if (batchCap > 0 && hIds.length > batchCap) hIds = hIds.slice(0, batchCap);
+          idsVal = hIds.length > 250 ? '' : hIds.join(',');
+          venueVal = '';
+          limitVal = batchCap || hIds.length;
+          allParam = false;
           forceVal = false;
+          uncompiledOnly = true;
         } else if (selVal === 'ungrounded') {
           venueVal = 'all';
-          limitVal = batchCap;
+          limitVal = batchCap || 10;
           forceVal = false;
         } else if (selVal === 'all') {
           venueVal = 'all';
@@ -15795,15 +17689,43 @@ function initStagehandRipperUI() {
           limitVal = 1;
           forceVal = true;
         }
+      } else if (currentPipelineScope === 'harvested') {
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 0);
+        const stageInfo = typeof window.getStageContinuationInfo === 'function'
+          ? window.getStageContinuationInfo(preset.key)
+          : null;
+        const candidateEvents = (stageInfo && stageInfo.pendingItems && stageInfo.pendingItems.length > 0)
+          ? stageInfo.pendingItems
+          : [];
+        let hIds = (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0 && candidateEvents.length === 0)
+          ? [...pipelineTestDiscoveredIds]
+          : candidateEvents.map(e => e.id || e.event_id).filter(Boolean);
+        if (hIds.length === 0) {
+          if (typeof showToast === 'function') {
+            showToast(`⏸️ Cannot run Stage ${preset.key.toUpperCase()}: 0 events are queued from ${stageInfo ? stageInfo.prevStageLabel : 'the previous stage'}. Events cannot skip pipeline stages!`, 'warning');
+          }
+          return;
+        }
+        if (batchCap > 0 && hIds.length > batchCap) hIds = hIds.slice(0, batchCap);
+        idsVal = hIds.length > 250 ? '' : hIds.join(',');
+        limitVal = batchCap;
+        offsetVal = 0;
+        allParam = false;
+        forceVal = false;
+        uncompiledOnly = true;
       } else if (currentPipelineScope === 'batch5') {
         const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
           ? 0
-          : (Number(window.pipelineBatchSize) || 5);
+          : (Number(window.pipelineBatchSize) || 0);
         if (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
-          idsVal = pipelineTestDiscoveredIds.join(',');
-          limitVal = (window.pipelineBatchSize === 'all') ? 0 : pipelineTestDiscoveredIds.length;
+          let targetIds = [...pipelineTestDiscoveredIds];
+          if (batchCap > 0 && targetIds.length > batchCap) targetIds = targetIds.slice(0, batchCap);
+          idsVal = targetIds.length > 250 ? '' : targetIds.join(',');
+          limitVal = (window.pipelineBatchSize === 'all') ? 0 : targetIds.length;
           offsetVal = 0;
-          allParam = (window.pipelineBatchSize === 'all');
+          allParam = false;
           forceVal = true;
         } else {
           const start = parseInt(startInput ? startInput.value : '1', 10) || 1;
@@ -15882,11 +17804,12 @@ function initStagehandRipperUI() {
         const durationSelect = document.getElementById('pipeline-stale-duration');
         staleVal = durationSelect ? durationSelect.value : '24h';
       } else if (currentPipelineScope === 'unscanned') {
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 0);
         idVal = '';
-        const start = parseInt(startInput ? startInput.value : '1', 10) || 1;
-        const stop = parseInt(stopInput ? stopInput.value : '1', 10) || start;
-        offsetVal = Math.max(0, start - 1);
-        limitVal = Math.max(1, stop - start + 1);
+        offsetVal = 0;
+        limitVal = batchCap;
         allParam = false;
         forceVal = false;
         uncompiledOnly = true;
@@ -15912,6 +17835,7 @@ function initStagehandRipperUI() {
         stale: staleVal,
         scope: currentPipelineScope,
         url: url,
+        resume: (preset.key === 'harvest' && url === 'all:resume'),
         all: allParam,
         force: forceVal,
         autoApprove: autoApprove
@@ -16018,22 +17942,22 @@ function initStagehandRipperUI() {
         title: mode === 'catalog_batch'
           ? '<span>⚡</span> Stagehand Batch QC Drill'
           : mode === 'calendar'
-          ? '<span>📅</span> Calendar Schedule Scan'
-          : mode === 'enrich'
-          ? '<span>✍️</span> AI Semantic Enricher'
-          : mode === 'compile'
-          ? '<span>🏛️</span> Compiler AI & Publish'
-          : '<span>⚡</span> Single Event / Cart Drill',
+            ? '<span>📅</span> Calendar Schedule Scan'
+            : mode === 'enrich'
+              ? '<span>✍️</span> AI Semantic Enricher'
+              : mode === 'compile'
+                ? '<span>🏛️</span> Compiler AI & Publish'
+                : '<span>⚡</span> Single Event / Cart Drill',
         desc: `Target: ${url || 'Catalog Store'} (Limit: ${maxEvents})`,
         initialStatus: mode === 'catalog_batch'
           ? `Stagehand Browser launching: Batch QC on ${maxEvents} catalog events...`
           : mode === 'calendar'
-          ? 'Stagehand Browser launching: Harvesting calendar links...'
-          : mode === 'enrich'
-          ? `AI Enricher launching: Enriching up to ${maxEvents} events...`
-          : mode === 'compile'
-          ? 'Compiler AI launching: Arbitrating layers & publishing live catalog...'
-          : 'Stagehand Browser launching: Penetrating cart...'
+            ? 'Stagehand Browser launching: Harvesting calendar links...'
+            : mode === 'enrich'
+              ? `AI Enricher launching: Enriching up to ${maxEvents} events...`
+              : mode === 'compile'
+                ? 'Compiler AI launching: Arbitrating layers & publishing live catalog...'
+                : 'Stagehand Browser launching: Penetrating cart...'
       });
     });
   }
@@ -16044,7 +17968,7 @@ function initStagehandRipperUI() {
   }
 }
 
-window.openScreenshotModal = function(url) {
+window.openScreenshotModal = function (url) {
   if (!url) return;
   const lightbox = document.getElementById('screenshot-lightbox-modal');
   const img = document.getElementById('lightbox-img');
@@ -16057,7 +17981,7 @@ window.openScreenshotModal = function(url) {
   }
 };
 
-window.closeScreenshotModal = function() {
+window.closeScreenshotModal = function () {
   const lightbox = document.getElementById('screenshot-lightbox-modal');
   if (lightbox) {
     lightbox.style.display = 'none';

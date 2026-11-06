@@ -11,7 +11,7 @@
      - **Step 4 — Compiler (`ripper/compile_catalog.js`)**: Sole authorized publisher that reconciles `seeds.json`, `layer_schedules.json`, `layer_box_office.json`, `layer_editorial.json`, and `venues.json` into the uniform ~107-dimension (`D001`–`D809`) master catalog (`data/events.json`) and syncs `js/data.js`.
 2. **Authorized Infrastructure Python Utilities (`scripts/*.py`)**:
    - Local Python scripts are strictly limited to the 3 core utilities:
-     1. `scripts/curator_server.py 8080`: Local web app & Curator Studio API server.
+     1. `C:\Users\Micro\AppData\Local\Python\bin\python.exe scripts/curator_server.py 8080`: Local web app & Curator Studio API server (always use `C:\Users\Micro\AppData\Local\Python\bin\python.exe`, never bare `python`).
      2. `scripts/sync_data_js.py`: Serializes `data/events.json` and `data/venues.json` into `js/data.js`.
      3. `scripts/deploy_to_production.py`: Runs pre-flight smoke tests and deploys `main` to `production`.
 3. **Strict Ban on Ad-Hoc Scratch Scripts & Fake Linters**:

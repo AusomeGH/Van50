@@ -539,6 +539,342 @@
       "status": "dismissed",
       "discoveredAt": "2026-10-30T01:22:22.635Z",
       "dismissedAt": "2026-10-30T16:40:35.084742+00:00"
+    },
+    {
+      "id": "venue-1793552494478-46ge",
+      "name": "quarantine_fatal",
+      "websiteUrl": "https://admitone.com/community/b2b",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T17:01:34.478Z"
+    },
+    {
+      "id": "venue-1793554974223-o0g1",
+      "name": "Historic Theatre",
+      "websiteUrl": "https://thecultch.com/event/dirt/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T17:42:54.223Z"
+    },
+    {
+      "id": "venue-1793555708722-744p",
+      "name": "Historic Theatre (The Cultch)",
+      "websiteUrl": "https://thecultch.com/event/no-apologies/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T17:55:08.722Z"
+    },
+    {
+      "id": "venue-1793561113466-i2aq",
+      "name": "Vancouver Fringe",
+      "websiteUrl": "https://open.spotify.com/show/7xpK08UDvT6XVeDSuqDhPz",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T19:25:13.466Z"
+    },
+    {
+      "id": "venue-1793561553540-o54n",
+      "name": "BMO Theatre Centre",
+      "websiteUrl": "https://artsclub.com/events/spirit-speaker-series",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T19:32:33.540Z"
+    },
+    {
+      "id": "venue-1793562303533-u7jx",
+      "name": "BMO Theatre Centre (Arts Club Theatre Company)",
+      "websiteUrl": "https://artsclub.com/artistic-programs/the-bmo-radar",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T19:45:03.533Z"
+    },
+    {
+      "id": "venue-1793563445794-sfph",
+      "name": "Matchstick Productions Tour",
+      "websiteUrl": "https://matchstickpro.com/skitour/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:04:05.794Z"
+    },
+    {
+      "id": "venue-1793564914031-9lyw",
+      "name": "šxʷƛ̓ənəq Xwtl'e7énḵ Square",
+      "websiteUrl": "https://www.publicdisco.ca/events/downtown2026",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:28:34.031Z"
+    },
+    {
+      "id": "venue-1793565218300-bn2r",
+      "name": "šxʷƛ̓ənəq Xwtl’e7énḵ Square (North Plaza at Vancouver Art Gallery)",
+      "websiteUrl": "https://www.publicdisco.ca/events/public-disco-block-party-downtown-all-vinyl-edition",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:33:38.300Z"
+    },
+    {
+      "id": "venue-1793565273042-07rl",
+      "name": "W 3rd & Ontario, Mount Pleasant",
+      "websiteUrl": "https://www.publicdisco.ca/events/public-disco-pride-block-party-jason-kendig-dj-hermano-more",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:34:33.042Z"
+    },
+    {
+      "id": "venue-1793565391365-wrf2",
+      "name": "Lot 55",
+      "websiteUrl": "https://www.publicdisco.ca/events/gi2025",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:36:31.365Z"
+    },
+    {
+      "id": "venue-1793565551810-f5wh",
+      "name": "W 3rd & Ontario",
+      "websiteUrl": "https://www.publicdisco.ca/events/prideblockparty",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:39:11.810Z"
+    },
+    {
+      "id": "venue-1793565660234-w1tq",
+      "name": "PCI on Spring",
+      "websiteUrl": "https://www.publicdisco.ca/events/pomo-summer-art-market",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:41:00.234Z"
+    },
+    {
+      "id": "venue-1793566701622-6tf2",
+      "name": "šxʷƛ̓exən Xwtl’a7shn",
+      "websiteUrl": "https://vancouvercivictheatres.com/events/jfl-northwest-block-party-feb-15-18-2019/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T20:58:21.622Z"
+    },
+    {
+      "id": "venue-1793566845200-4ncu",
+      "name": "Vancouver Symphony Orchestra",
+      "websiteUrl": "https://www.vancouversymphony.ca/event/family-fun-day-at-the-symphony/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:00:45.200Z"
+    },
+    {
+      "id": "venue-1793568760099-vduf",
+      "name": "The Mark Centre",
+      "websiteUrl": "https://standrewswesley.com/events/salt-and-light-retreat-refining-gods-call-in-your-life/salt-and-light-retreat-refining-gods-call-in-your-life-3/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:32:40.099Z"
+    },
+    {
+      "id": "venue-1793569825687-tngt",
+      "name": "Resident Advisor",
+      "websiteUrl": "https://ra.co/events/ca/vancouver/for-you",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:50:25.687Z"
+    },
+    {
+      "id": "venue-1793569828001-4n9l",
+      "name": "Vancouver Convention Centre",
+      "websiteUrl": "https://ra.co/events/ca/vancouver",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:50:28.001Z"
+    },
+    {
+      "id": "venue-1793570048565-ifzn",
+      "name": "520 Alexander Street",
+      "websiteUrl": "https://ra.co/events/2571088",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:54:08.565Z"
+    },
+    {
+      "id": "venue-1793570099687-rlyz",
+      "name": "Meo",
+      "websiteUrl": "https://ra.co/events/2563260",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:54:59.687Z"
+    },
+    {
+      "id": "venue-1793570120449-7ybe",
+      "name": "TBA (Vancouver)",
+      "websiteUrl": "https://ra.co/events/2462004",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:55:20.449Z"
+    },
+    {
+      "id": "venue-1793570191226-wetv",
+      "name": "TBA",
+      "websiteUrl": "https://ra.co/events/2506663",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:56:31.226Z"
+    },
+    {
+      "id": "venue-1793570247658-dni8",
+      "name": "Fortune Sound Club",
+      "websiteUrl": "https://ra.co/events/2560774",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:57:27.659Z"
+    },
+    {
+      "id": "venue-1793570300193-a4jc",
+      "name": "Platform9",
+      "websiteUrl": "https://ra.co/events/2568987",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:58:20.193Z"
+    },
+    {
+      "id": "venue-1793570346091-tbv5",
+      "name": "Conduit Gallery",
+      "websiteUrl": "https://ra.co/events/2559619",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T21:59:06.091Z"
+    },
+    {
+      "id": "venue-1793570590060-tiho",
+      "name": "Platform 4",
+      "websiteUrl": "https://ra.co/events/2558433",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:03:10.060Z"
+    },
+    {
+      "id": "venue-1793571139397-ai7g",
+      "name": "The Nest Theatre",
+      "websiteUrl": "https://events.eventgroove.ca/event/Im-Going-Through-Some-Things-A-Solo-Show-By-Ben-677",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:12:19.397Z"
+    },
+    {
+      "id": "venue-1793571206229-kw61",
+      "name": "The NEST",
+      "websiteUrl": "https://www.vancouverfringe.com/events/52-stories/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:13:26.229Z"
+    },
+    {
+      "id": "venue-1793571259586-pm5o",
+      "name": "Dr. Peter Centre",
+      "websiteUrl": "https://www.drpeter.org/support-us/events/passions/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:14:19.586Z"
+    },
+    {
+      "id": "venue-1793571795661-x0ow",
+      "name": "Pyatt Hall",
+      "websiteUrl": "https://www.vancouversymphony.ca/event/november-chamber-players",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:23:15.661Z"
+    },
+    {
+      "id": "venue-1793572141474-gsoh",
+      "name": "Chan Centre for the Performing Arts",
+      "websiteUrl": "https://www.vancouversymphony.ca/event/vivaldis-the-four-seasons",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:29:01.474Z"
+    },
+    {
+      "id": "venue-1793572793715-hz1j",
+      "name": "Bell Performing Arts Centre",
+      "websiteUrl": "https://www.vancouversymphony.ca/series/surrey-sundays",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:39:53.715Z"
+    },
+    {
+      "id": "venue-1793573449223-1q60",
+      "name": "Vatroslav Lisinski Concert Hall",
+      "websiteUrl": "https://www.vancouversymphony.ca/europeantour/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:50:49.223Z"
+    },
+    {
+      "id": "venue-1793573868710-scvt",
+      "name": "VSO School of Music",
+      "websiteUrl": "https://www.vancouversymphony.ca/education/vso-school-workshops/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-01T22:57:48.710Z"
+    },
+    {
+      "id": "venue-1793581372229-1psl",
+      "name": "Vancouver Farmers Markets",
+      "websiteUrl": "https://eatlocal.org/category/events/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T01:02:52.229Z"
+    },
+    {
+      "id": "venue-1793581603214-l65y",
+      "name": "Théâtre la Seizième",
+      "websiteUrl": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T01:06:43.214Z"
+    },
+    {
+      "id": "venue-1793582899505-1e40",
+      "name": "Comedy After Dark",
+      "websiteUrl": "https://theater.guide/event/thursday-night-stand-up-comedy-vancouver-comedy-after-dark-thursday-november-5-2026-7-30-pm/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T01:28:19.505Z"
+    },
+    {
+      "id": "venue-1793582962926-8oot",
+      "name": "Chan Shun Concert Hall at Chan Performing Arts Centre",
+      "websiteUrl": "https://theater.guide/events/jonathan-van-ness/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T01:29:22.926Z"
+    },
+    {
+      "id": "venue-1793583014605-ny67",
+      "name": "Vogue Theatre",
+      "websiteUrl": "https://theater.guide/events/lucas-zelnick/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T01:30:14.605Z"
+    },
+    {
+      "id": "venue-1793583229399-w5i7",
+      "name": "Norman Rothstein Theatre",
+      "websiteUrl": "https://theater.guide/event/karunesh-talwar-vancouver-norman-rothstein-theatre-friday-december-11-2026-7-30-pm/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T01:33:49.399Z"
+    },
+    {
+      "id": "venue-1793583312677-2i4j",
+      "name": "Shadbolt Centre for the Arts",
+      "websiteUrl": "https://www.burnaby.ca/recreation-and-arts/events",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T01:35:12.677Z"
+    },
+    {
+      "id": "venue-1793585409573-16ir",
+      "name": "Island Plaza",
+      "websiteUrl": "https://granvilleisland.com/event/granville-island-remembers-2",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-02T02:10:09.573Z"
     }
   ]
 }

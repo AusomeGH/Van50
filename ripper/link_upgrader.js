@@ -41,6 +41,7 @@ export const TICKETING_PLATFORMS = [
   "tickets.tightropetheatre.com",
   "tickets.thecinematheque.ca",
   "tickets.vanartgallery.bc.ca",
+  "ticketing.thecultch.com",
   "zeffy.com",
   "exploretock.com",
   "gigpit.ca",
@@ -50,7 +51,15 @@ export const TICKETING_PLATFORMS = [
   "sidedooraccess.com",
   "ticketscene.ca",
   "ticketmaster.ca",
-  "ticketmaster.com"
+  "ticketmaster.com",
+  "riotheatretickets.ca",
+  "bloomtickets.ca",
+  "humanitix.com",
+  "admitonelive.com",
+  "tickets.admitone.com",
+  "tickets.jflvancouver.com",
+  "secure.vancouversymphony.ca",
+  "tickets.ubc.ca"
 ];
 
 /**
@@ -100,6 +109,9 @@ export function isWhitelistedTicketingUrl(url) {
   try {
     const u = new URL(url);
     const host = u.hostname.toLowerCase();
+    if (host.startsWith("help.") || host.startsWith("support.") || host.startsWith("blog.") || host.startsWith("status.")) return false;
+    if (host.includes("viff.org") && /\/whats-on\/[^/]+\/book\/[^/]+/i.test(u.pathname)) return true;
+    if (host.includes("thecultch.com") && /EventInstanceId=|ChooseSeats\.aspx/i.test(u.search + u.pathname)) return true;
     const isPlatform = TICKETING_PLATFORMS.some((p) => host.includes(p));
     if (!isPlatform) return false;
 
@@ -121,6 +133,7 @@ export function isWhitelistedTicketingUrl(url) {
       path.startsWith("/venue/") ||
       path.startsWith("/blog/") ||
       path.startsWith("/help/") ||
+      path.startsWith("/hc/") ||
       path.startsWith("/about/") ||
       path.startsWith("/support/") ||
       path.startsWith("/login/") ||
@@ -147,6 +160,35 @@ export function isWhitelistedTicketingUrl(url) {
     // Showpass specific check: must not be a bare platform directory
     if (host.includes("showpass")) {
       if (["/shows", "/events", "/season", "/venues", "/organizations"].includes(path)) return false;
+    }
+
+    // Reject empty shopping basket / account / login / donation utility endpoints (e.g. Agile ViewBasket.aspx, Spektrix /MyAccount)
+    if (
+      path.includes("viewbasket.aspx") ||
+      path.endsWith("/myaccount") ||
+      path.endsWith("/account") ||
+      path.endsWith("/basket") ||
+      path.endsWith("/cart") ||
+      path.includes("/donate") ||
+      path.includes("/membership")
+    ) {
+      return false;
+    }
+
+    // Agile Ticketing (tickets.thecinematheque.ca): must contain specific screening evtinfo= parameter
+    if (host.includes("tickets.thecinematheque.ca")) {
+      if (!(u.search || "").toLowerCase().includes("evtinfo=")) return false;
+    }
+
+    // VSO Tessitura TNEW (secure.vancouversymphony.ca): must be a numeric package/performance path (e.g. /7633/7634 or /7356)
+    if (host.includes("secure.vancouversymphony.ca")) {
+      if (!/^\/\d+(?:\/\d+)?$/i.test(path)) return false;
+    }
+
+    // UBC Chan Centre AudienceView (tickets.ubc.ca): must contain article_id= or seatSelect
+    if (host.includes("tickets.ubc.ca")) {
+      const fullQuery = `${path}${u.search}`.toLowerCase();
+      if (!fullQuery.includes("article_id=") && !fullQuery.includes("seatselect") && !fullQuery.includes("loadarticle")) return false;
     }
 
     return true;
@@ -423,6 +465,18 @@ export function validateTriadMatch(candidateUrl, eventDate, eventTitle, eventVen
       (matchedTokens.length >= 2 && weightedRatio >= 0.30)
     );
 
+    // Numeric / UUID Box Office Carts (e.g. VSO Tessitura secure.vancouversymphony.ca/7633/7634, Chan Centre tickets.ubc.ca/?article_id=UUID, Van Art Gallery Blackbaud UUID)
+    const hostLower = u.hostname.toLowerCase();
+    if (
+      !passesTitle &&
+      (hostLower.includes("secure.vancouversymphony.ca") ||
+        hostLower.includes("tickets.ubc.ca") ||
+        hostLower.includes("tickets.vanartgallery.bc.ca")) &&
+      isWhitelistedTicketingUrl(candidateUrl)
+    ) {
+      passesTitle = true;
+    }
+
     // In-Context Section Match: If the URL was extracted directly from an HTML container/button for this event
     if (!passesTitle && contextInfo?.inContext) {
       // Check if candidate domain is venue-specific (e.g. ecologycentre.zaui.net) or anchor text matches
@@ -435,7 +489,7 @@ export function validateTriadMatch(candidateUrl, eventDate, eventTitle, eventVen
         ? highSalienceTokens.some((t) => anchorText.includes(t) || sectionText.includes(t))
         : titleTokens.some((t) => anchorText.includes(t) || sectionText.includes(t));
 
-      if (isVenueSubdomain || textMatchesTitle) {
+      if ((isVenueSubdomain || textMatchesTitle) && isWhitelistedTicketingUrl(candidateUrl)) {
         passesTitle = true;
       }
     }

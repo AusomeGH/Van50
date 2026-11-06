@@ -2775,14 +2775,17 @@
 
     .test-stage-step {
       flex: 1;
-      min-width: 125px;
+      min-width: 148px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 5px;
-      padding: 3px 7px;
-      display: flex;
+      border-radius: 6px;
+      padding: 5px 8px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-rows: auto auto auto;
+      column-gap: 5px;
+      row-gap: 2px;
       align-items: center;
-      gap: 6px;
       cursor: pointer;
       transition: all 0.15s ease;
       user-select: none;
@@ -2840,6 +2843,9 @@
     }
 
     .test-step-num {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      align-self: center;
       font-size: 0.78rem;
       font-weight: 800;
       color: #94a3b8;
@@ -2850,11 +2856,13 @@
     }
 
     .test-step-body {
-      flex: 1;
-      min-width: 0;
+      display: contents;
     }
 
     .test-step-name {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 0;
       font-size: 0.74rem;
       font-weight: 700;
       color: #f1f5f9;
@@ -2864,6 +2872,9 @@
     }
 
     .test-step-sub {
+      grid-column: 2 / -1;
+      grid-row: 2;
+      min-width: 0;
       font-size: 0.65rem;
       color: #94a3b8;
       white-space: nowrap;
@@ -2871,8 +2882,34 @@
       text-overflow: ellipsis;
     }
 
+    .test-stage-step .btn-limit-chip {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      margin-top: 3px !important;
+      min-height: 22px !important;
+      height: auto !important;
+      padding: 2px 8px !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .test-stage-step .btn-limit-chip > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .test-step-status {
-      font-size: 0.64rem;
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: end;
+      font-size: 0.62rem;
       font-weight: 700;
       padding: 1px 6px;
       border-radius: 999px;
@@ -4026,9 +4063,9 @@
 
       <div class="header-actions">
         <!-- Global Main Page Stop Run Button -->
-        <button type="button" class="btn-nav btn-main-stop-run is-idle" id="btn-main-stop-run" title="System is idle — No scan or worker process is currently running. (Clicking does nothing)">
+        <button type="button" class="btn-nav btn-main-stop-run is-idle" id="btn-main-stop-run" title="Not running — No scan or worker process is currently running.">
           <span id="main-stop-indicator" class="main-stop-dot"></span>
-          <span id="main-stop-label">⚪ Idle — No Run Active</span>
+          <span id="main-stop-label">Not Running</span>
         </button>
         <button type="button" class="btn-nav btn-ai-process" id="btn-process-feedback-guide" title="How to run AI on your table feedback">
           <span>Process Feedback (<span id="badge-pending-feedback">0</span>)</span>
@@ -4609,8 +4646,22 @@
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          <!-- Option A: Out-of-date events -->
-          <div class="pipeline-option-card selected" id="opt-scope-stale" onclick="selectAutoPipelineScope('stale')">
+          <!-- Option 1: Venue Feeds Harvester (First Option) -->
+          <div class="pipeline-option-card selected" id="opt-scope-harvest" onclick="selectAutoPipelineScope('harvest')">
+            <div class="opt-radio"></div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">📅 Venue Calendar Discovery (Harvest New Events)</span>
+                <span class="opt-badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);">Full Discovery Flow</span>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
+                Crawls official venue feeds for newly scheduled dates, then automatically upgrades links (1B), audits checkout carts (2), normalizes metadata (3), and publishes qualifying cards (4).
+              </div>
+            </div>
+          </div>
+
+          <!-- Option 2: Out-of-date events -->
+          <div class="pipeline-option-card" id="opt-scope-stale" onclick="selectAutoPipelineScope('stale')">
             <div class="opt-radio"></div>
             <div style="flex: 1;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
@@ -4623,7 +4674,7 @@
             </div>
           </div>
 
-          <!-- Option Q: Quarantined Items (Review Queue) -->
+          <!-- Option 3: Quarantined Items (Review Queue) -->
           <div class="pipeline-option-card" id="opt-scope-quarantined" onclick="selectAutoPipelineScope('quarantined')">
             <div class="opt-radio"></div>
             <div style="flex: 1;">
@@ -4633,20 +4684,6 @@
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Audits all items currently in <code>data/manual_review_queue.json</code>. Skips Harvester and starts directly at <strong>Stage 1B (Tier 1 Hunter) ➔ Stage 2 (Stagehand Box Office QC) ➔ Stage 3 (Enricher) ➔ Stage 4 (Compiler &amp; Publisher)</strong> to upgrade links, verify all-in fees &amp; 5% GST, enrich metadata, and graduate qualifying cards to live status.
-              </div>
-            </div>
-          </div>
-
-          <!-- Option B: Venue Feeds Harvester -->
-          <div class="pipeline-option-card" id="opt-scope-harvest" onclick="selectAutoPipelineScope('harvest')">
-            <div class="opt-radio"></div>
-            <div style="flex: 1;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <span style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">📅 Venue Calendar Discovery (Harvest New Events)</span>
-                <span class="opt-badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);">Full Discovery Flow</span>
-              </div>
-              <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
-                Crawls official venue feeds for newly scheduled dates, then automatically upgrades links (1B), audits checkout carts (2), normalizes metadata (3), and publishes qualifying cards (4).
               </div>
             </div>
           </div>
@@ -4854,6 +4891,9 @@
             <div class="test-step-body">
               <div class="test-step-name">1A. Schedule Harvester</div>
               <div class="test-step-sub" id="test-step-sub-harvest">Find Events (Venue Feeds)</div>
+              <button type="button" class="btn-limit-chip" id="btn-stage-continue-harvest" onclick="continueStageFromPrevious('harvest', event)" style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border: 1px solid #c084fc; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;" title="Continue scanning remaining venue feeds from checkpoint">
+                <span id="btn-stage-continue-harvest-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue (77 Feeds)</span>
+              </button>
             </div>
             <span class="test-step-status" id="test-step-status-harvest">Ready</span>
           </div>
@@ -4865,6 +4905,9 @@
             <div class="test-step-body">
               <div class="test-step-name">1B. Tier 1 Hunter</div>
               <div class="test-step-sub" id="test-step-sub-hunter">Upgrade to Checkout Carts</div>
+              <button type="button" class="btn-limit-chip" id="btn-stage-continue-hunter" onclick="continueStageFromPrevious('hunter', event)" style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); border: 1px solid #2dd4bf; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;" title="Continue Stage 1B on events that completed Stage 1A but not Stage 1B">
+                <span id="btn-stage-continue-hunter-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 1A (0)</span>
+              </button>
             </div>
             <span class="test-step-status" id="test-step-status-hunter">Awaiting</span>
           </div>
@@ -4876,6 +4919,9 @@
             <div class="test-step-body">
               <div class="test-step-name">2. Stagehand AI QC</div>
               <div class="test-step-sub" id="test-step-sub-qc">Audit Cart &amp; Fees</div>
+              <button type="button" class="btn-limit-chip" id="btn-stage-continue-qc" onclick="continueStageFromPrevious('qc', event)" style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border: 1px solid #7dd3fc; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;" title="Continue Stage 2 QC on events that completed Stage 1B but not Stage 2">
+                <span id="btn-stage-continue-qc-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 1B (0)</span>
+              </button>
             </div>
             <span class="test-step-status" id="test-step-status-qc">Awaiting</span>
           </div>
@@ -4887,6 +4933,9 @@
             <div class="test-step-body">
               <div class="test-step-name">3. AI Enricher</div>
               <div class="test-step-sub" id="test-step-sub-enrich">Normalize Lineup &amp; 19+ ID</div>
+              <button type="button" class="btn-limit-chip" id="btn-stage-continue-enrich" onclick="continueStageFromPrevious('enrich', event)" style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); border: 1px solid #fcd34d; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;" title="Continue Stage 3 Enricher on events that completed Stage 2 QC but not Stage 3">
+                <span id="btn-stage-continue-enrich-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 2 (0)</span>
+              </button>
             </div>
             <span class="test-step-status" id="test-step-status-enrich">Awaiting</span>
           </div>
@@ -4898,6 +4947,9 @@
             <div class="test-step-body">
               <div class="test-step-name">4. Venue Detailer</div>
               <div class="test-step-sub" id="test-step-sub-venue">Ground Facilities &amp; GPS</div>
+              <button type="button" class="btn-limit-chip" id="btn-stage-continue-venue" onclick="continueStageFromPrevious('venue', event)" style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); border: 1px solid #67e8f9; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;" title="Continue Stage 4 Venue Detailer on events that completed Stage 3 but not Stage 4">
+                <span id="btn-stage-continue-venue-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 3 (0)</span>
+              </button>
             </div>
             <span class="test-step-status" id="test-step-status-venue">Awaiting</span>
           </div>
@@ -4909,6 +4961,9 @@
             <div class="test-step-body">
               <div class="test-step-name">5. Compiler &amp; Publisher</div>
               <div class="test-step-sub" id="test-step-sub-compile">Arbitrate &amp; Publish Live</div>
+              <button type="button" class="btn-limit-chip" id="btn-stage-continue-compile" onclick="continueStageFromPrevious('compile', event)" style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #059669 0%, #10b981 100%); border: 1px solid #6ee7b7; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;" title="Continue Stage 5 Compiler on events that completed Stage 4 but not Stage 5">
+                <span id="btn-stage-continue-compile-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 4 (0)</span>
+              </button>
             </div>
             <span class="test-step-status" id="test-step-status-compile">Awaiting</span>
           </div>
@@ -4922,13 +4977,16 @@
           <!-- Interactive Scan Configuration & Trigger Controls (Optimized Space) -->
           <div id="pipeline-modal-controls" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
             <!-- Top Control Bar: Status Info + Primary Action Button (Fixed Top-Right) -->
-            <div id="pipeline-top-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px;">
+            <div id="pipeline-top-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; min-height: 36px; flex-wrap: wrap;">
               <!-- 1. Status Info Column (Left side, standardized uniform height & typography) -->
-              <div style="flex: 1; min-width: 0; display: flex; align-items: center;">
-                <div id="pipeline-last-scanned-tracker" style="display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; min-height: 34px;">
+              <div style="flex: 1 1 260px; min-width: 0; overflow: hidden; display: flex; align-items: center;">
+                <div id="pipeline-last-scanned-tracker" style="display: flex; align-items: center; gap: 6px 8px; flex-wrap: wrap; min-height: 30px; width: 100%; min-width: 0;">
                   <span id="pipeline-last-scanned-label" style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #94a3b8; white-space: nowrap; flex-shrink: 0;">Stage Status:</span>
-                  <div id="pipeline-last-scanned-text" style="font-weight: 700; color: #38bdf8; font-size: 0.76rem; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">Ready</div>
-                  <button type="button" class="btn-limit-chip" id="btn-quick-continue-last" onclick="continueFromLastScanned()" style="display: none; height: 24px; padding: 0 8px; font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 600; cursor: pointer; white-space: nowrap; align-items: center;">
+                  <div id="pipeline-last-scanned-text" style="font-weight: 700; color: #38bdf8; font-size: 0.76rem; display: inline-flex; align-items: center; gap: 4px 6px; flex-wrap: wrap; white-space: normal; min-width: 0; max-width: 100%; line-height: 1.3; overflow-wrap: break-word;">Ready</div>
+                  <button type="button" class="btn-limit-chip" id="btn-top-continue-prev-stage" onclick="continueStageFromPrevious(null, event)" style="min-height: 24px; height: auto; padding: 2px 9px; font-size: 0.69rem; background: linear-gradient(135deg, #0d9488 0%, #10b981 100%); border: 1px solid #34d399; color: #fff; font-weight: 800; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; border-radius: 5px; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3); max-width: 100%; overflow: hidden;" title="Continue running items that completed the previous stage, but not this stage">
+                    <span id="btn-top-continue-prev-stage-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from Previous Stage</span>
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="btn-quick-continue-last" onclick="continueFromLastScanned()" style="display: none; min-height: 24px; height: auto; padding: 2px 8px; font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 600; cursor: pointer; white-space: nowrap; align-items: center;">
                     Continue from Next Card ➔
                   </button>
                 </div>
@@ -4936,11 +4994,11 @@
               </div>
 
               <!-- Top Right: Action Trigger Buttons (Fixed top-right, standardized width & position) -->
-              <div id="pipeline-action-buttons-group" style="display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: auto; align-self: center;">
-                <button type="button" id="btn-trigger-pipeline-run" class="btn-action btn-ai-process" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border-color: #38bdf8; color: #fff; font-weight: 800; width: 195px; min-width: 195px; height: 34px; padding: 0 12px; font-size: 0.76rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45); cursor: pointer; border-radius: 6px; text-align: center; white-space: nowrap;">
+              <div id="pipeline-action-buttons-group" style="display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: auto; align-self: center; flex-wrap: wrap;">
+                <button type="button" id="btn-trigger-pipeline-run" class="btn-action btn-ai-process" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border-color: #38bdf8; color: #fff; font-weight: 800; width: auto; min-width: 165px; max-width: 100%; min-height: 34px; height: auto; padding: 4px 14px; font-size: 0.76rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45); cursor: pointer; border-radius: 6px; text-align: center; white-space: nowrap;">
                   <span id="btn-trigger-pipeline-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Run Scan Now</span>
                 </button>
-                <button type="button" id="btn-stop-pipeline-top" class="btn-action" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); border-color: #f87171; color: #fff; font-weight: 700; width: 120px; height: 34px; padding: 0 12px; font-size: 0.76rem; display: none; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35); cursor: pointer; border-radius: 6px; text-align: center;">
+                <button type="button" id="btn-stop-pipeline-top" class="btn-action" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); border-color: #f87171; color: #fff; font-weight: 700; width: auto; min-width: 110px; min-height: 34px; height: auto; padding: 4px 14px; font-size: 0.76rem; display: none; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35); cursor: pointer; border-radius: 6px; text-align: center; white-space: nowrap;">
                   <span>Stop Scan</span>
                 </button>
               </div>
@@ -9864,6 +9922,8 @@
       if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'inline-flex';
       const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
       if (btnTrigger) btnTrigger.style.display = 'none';
+      const topContBtn = document.getElementById('btn-top-continue-prev-stage');
+      if (topContBtn) topContBtn.style.display = 'none';
       if (pipelineSpinner) {
         pipelineSpinner.classList.remove('stopped');
       }
@@ -9881,13 +9941,13 @@
       if (isRunning) {
         btn.classList.remove('is-idle');
         btn.classList.add('is-running');
-        if (label) label.textContent = pid ? `🛑 Stop Active Scan [PID: ${pid}]` : '🛑 Stop Active Scan (Running)';
+        if (label) label.textContent = pid ? `🛑 Stop Run [PID: ${pid}]` : '🛑 Stop Run';
         btn.title = `⚠️ Active scan is running in background${pid ? ` (PID: ${pid})` : ''}! Click to immediately terminate and halt the worker process.`;
       } else {
         btn.classList.remove('is-running');
         btn.classList.add('is-idle');
-        if (label) label.textContent = '⚪ Idle (No Run Active)';
-        btn.title = 'System is idle — No scan or worker process is currently running. (Clicking does nothing)';
+        if (label) label.textContent = 'Not Running';
+        btn.title = 'Not running — No scan or worker process is currently running.';
       }
     }
 
@@ -9967,6 +10027,8 @@
       if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
       const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
       if (btnTrigger) btnTrigger.style.display = 'inline-flex';
+      const topContBtn = document.getElementById('btn-top-continue-prev-stage');
+      if (topContBtn) topContBtn.style.display = 'inline-flex';
       isPipelineRunning = false;
       isPipelineAutoChaining = false;
       const autoBtn = document.getElementById('btn-stepper-auto-pipeline');
@@ -10008,6 +10070,8 @@
       if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
       const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
       if (btnTrigger) btnTrigger.style.display = 'inline-flex';
+      const topContBtn = document.getElementById('btn-top-continue-prev-stage');
+      if (topContBtn) topContBtn.style.display = 'inline-flex';
       const metricsBox = document.getElementById('pipeline-active-metrics');
       if (metricsBox) metricsBox.style.display = 'none';
       if (pipelineStatusSubtext) pipelineStatusSubtext.style.display = 'none';
@@ -12924,6 +12988,31 @@
     let harvesterPreRunEvents = null;
     let harvesterDiscoveredEvents = [];
     let harvesterPreRunSourcesMap = new Map();
+    let harvesterSourcesScanned = 0;
+    let harvesterTotalSources = 155;
+    let harvesterCurrentSourceName = '';
+
+    function updateHarvesterSourcesProgressUI() {
+      if (currentPipelineScanKey !== 'harvest') return;
+      const scanned = harvesterSourcesScanned || 0;
+      const total = harvesterTotalSources || 155;
+      const foundCount = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
+
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned</span> • <span style="color: #4ade80; font-weight: 700;">+${foundCount} new events</span>`;
+      }
+
+      const stepSub = document.getElementById('test-step-sub-harvest');
+      if (stepSub && (scanned > 0 || isPipelineRunning)) {
+        stepSub.textContent = `${scanned}/${total} sources scanned (+${foundCount} events)`;
+      }
+
+      const scannedBadge = document.getElementById('harvester-sources-scanned-badge');
+      if (scannedBadge) {
+        scannedBadge.textContent = `📡 ${scanned}/${total} sources scanned`;
+      }
+    }
 
     function getEventDataSource(ev) {
       if (!ev) return 'Direct Box Office / Local Catalog';
@@ -13232,10 +13321,13 @@
             <!-- TOP-RIGHT: AFTER RUN (Consists ONLY of the New Events Grouped by Source) -->
             <div id="harvester-top-right-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #090d16; border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
               <div class="yield-card-badge-bar after" style="color: #4ade80; border-color: rgba(52, 211, 153, 0.3);">
-                <div style="display: flex; align-items: center; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                   <span style="font-weight: 800;">✨ AFTER RUN • NEW DATA SOURCES &amp; EVENTS</span>
+                  <span class="badge-card-number" id="harvester-sources-scanned-badge" style="background: rgba(168, 85, 247, 0.2); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.45);">
+                    📡 ${harvesterSourcesScanned || 0}/${harvesterTotalSources || 155} sources scanned
+                  </span>
                   <span class="badge-card-number" style="background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4);">
-                    +${newEventsCount} New Events (${totalNewSources} Sources)
+                    +${newEventsCount} New Events (${totalNewSources} Yielding Sources)
                   </span>
                 </div>
                 <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(168, 85, 247, 0.2)' : 'rgba(16, 185, 129, 0.2)'}; color: ${isStreaming ? '#d8b4fe' : '#34d399'}; border: 1px solid ${isStreaming ? 'rgba(168, 85, 247, 0.4)' : 'rgba(16, 185, 129, 0.4)'};">
@@ -13892,9 +13984,15 @@
       if (mode === 'calendar' || mode === 'harvester') {
         captureHarvesterPreRunBaseline();
         harvesterDiscoveredEvents = [];
+        harvesterSourcesScanned = 0;
+        harvesterCurrentSourceName = '';
+        const feedSel = document.getElementById('pipeline-select-venue-feed');
+        const optTotal = (feedSel && feedSel.options && feedSel.options.length > 1) ? (feedSel.options.length - 1) : 155;
+        harvesterTotalSources = (all || !url || url === 'all') ? optTotal : 1;
         if (isPipelineTestMode) {
           pipelineTestDiscoveredIds = [];
         }
+        updateHarvesterSourcesProgressUI();
         renderHarvesterComparisonView(false, [], true);
       }
 
@@ -14129,22 +14227,43 @@
               window.compilerQuarantinedCount = parseInt(disqMatch[1], 10);
             }
 
+            // Pattern 0a: Prioritized N venue feeds header
+            const prioritizedFeedsMatch = line.match(/📊\s*Prioritized\s*(\d+)\s*venue feeds/i);
+            if (prioritizedFeedsMatch && runningStage === 'harvest') {
+              harvesterTotalSources = parseInt(prioritizedFeedsMatch[1], 10);
+              updateHarvesterSourcesProgressUI();
+            }
+
+            // Pattern 0b: Single calendar link harvest header
+            if (/📅\s*HARVESTING CALENDAR LINKS from:/i.test(line) && runningStage === 'harvest') {
+              if (harvesterSourcesScanned === 0) {
+                harvesterSourcesScanned = 1;
+                updateHarvesterSourcesProgressUI();
+              }
+            }
+
             // Pattern 0: Venue Feed Progress Log: 🏛️ [5/120] Venue Feed: The Rickshaw Theatre
             const venueFeedMatch = line.match(/🏛️\s*\[(\d+)\/(\d+)\]\s*Venue Feed:\s*(.+)/i);
             if (venueFeedMatch) {
               const currentVenueIdx = parseInt(venueFeedMatch[1], 10);
               const totalVenues = parseInt(venueFeedMatch[2], 10);
               const venueName = venueFeedMatch[3].trim();
+              harvesterSourcesScanned = currentVenueIdx;
+              harvesterTotalSources = totalVenues;
+              harvesterCurrentSourceName = venueName;
+              updateHarvesterSourcesProgressUI();
+              if (pipelineStatusText && runningStage === 'harvest') {
+                pipelineStatusText.textContent = `Scanning Source ${currentVenueIdx}/${totalVenues}: ${venueName}`;
+                pipelineStatusText.style.color = '#c084fc';
+              }
               if (pipelineStatusSubtext) {
                 pipelineStatusSubtext.style.display = 'block';
-                pipelineStatusSubtext.textContent = `🏛️ Venue ${currentVenueIdx} of ${totalVenues}: ${venueName}`;
+                pipelineStatusSubtext.textContent = `🏛️ ${currentVenueIdx}/${totalVenues} sources scanned • Current: ${venueName}`;
               }
               const counterBadge = document.getElementById('pipeline-diff-counter-badge');
               if (counterBadge && runningStage === 'harvest') {
                 const count = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
-                counterBadge.textContent = isPipelineTestMode
-                  ? `${count} of 5 Events Harvested • Venue ${currentVenueIdx}/${totalVenues}`
-                  : `${count} Discovered • Venue ${currentVenueIdx}/${totalVenues}`;
+                counterBadge.textContent = `${currentVenueIdx}/${totalVenues} sources scanned • ${count} Discovered`;
               }
               if (isPipelineTestMode && runningStage === 'harvest') {
                 const count = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
@@ -14153,7 +14272,7 @@
                 const remainingSec = Math.max(1, 5 - count) * 25;
                 if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatPipelineDuration(remainingSec)}`;
                 if (pipelineItemProgress) {
-                  pipelineItemProgress.textContent = `Harvested ${count} of 5 Events (${pct}%) • Venue ${currentVenueIdx} of ${totalVenues}`;
+                  pipelineItemProgress.textContent = `${currentVenueIdx}/${totalVenues} sources scanned • Harvested ${count} Events`;
                 }
               }
             } else {
@@ -14166,6 +14285,8 @@
                 pipelineCurrentTargetIndex = current;
                 const unitTime = PIPELINE_BENCHMARKS[mode] || 10;
                 const counterBadge = document.getElementById('pipeline-diff-counter-badge');
+                const sIdx = harvesterSourcesScanned || 1;
+                const sTot = harvesterTotalSources || 155;
 
                 if (isPipelineTestMode && runningStage === 'harvest') {
                   const discoveredCount = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
@@ -14174,23 +14295,26 @@
                   const remainingSec = Math.max(1, 5 - discoveredCount) * 25;
                   if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatPipelineDuration(remainingSec)}`;
                   if (pipelineItemProgress) {
-                    pipelineItemProgress.textContent = `Harvested ${discoveredCount} of 5 Events (${pct}%) • Scanning link ${current} of ${total}`;
+                    pipelineItemProgress.textContent = `${sIdx}/${sTot} sources scanned • Link ${current} of ${total} (+${discoveredCount} events)`;
                   }
                   if (pipelineStatusText) {
-                    pipelineStatusText.textContent = `Harvesting link [${current} of ${total}] at current venue...`;
+                    pipelineStatusText.textContent = `Harvesting link [${current} of ${total}] (${sIdx}/${sTot} sources scanned)...`;
                     pipelineStatusText.style.color = '#38bdf8';
                   }
                   if (counterBadge) {
-                    counterBadge.textContent = `${discoveredCount} of 5 Events Harvested`;
+                    counterBadge.textContent = `${sIdx}/${sTot} sources scanned • ${discoveredCount} Events Harvested`;
                   }
+                  updateHarvesterSourcesProgressUI();
                 } else {
                   pipelineTotalTargets = total;
                   const pct = Math.min(96, Math.max(8, Math.round(((current - 0.4) / total) * 100)));
                   if (pipelineProgressBar) pipelineProgressBar.style.width = `${pct}%`;
                   if (pipelineItemProgress) {
-                    pipelineItemProgress.textContent = `Event ${current} of ${total} (${pct}%) • ~${Math.round(unitTime)}s / event`;
+                    pipelineItemProgress.textContent = runningStage === 'harvest'
+                      ? `${sIdx}/${sTot} sources scanned • Link ${current} of ${total} (${pct}%)`
+                      : `Event ${current} of ${total} (${pct}%) • ~${Math.round(unitTime)}s / event`;
                   }
-                  if (counterBadge && pipelineProcessedCount === 0) {
+                  if (counterBadge && pipelineProcessedCount === 0 && runningStage !== 'harvest') {
                     counterBadge.textContent = `0 of ${total} Processed`;
                   }
                   const remainingItems = Math.max(1, total - current + 1);
@@ -14200,12 +14324,13 @@
 
                   if (runningStage === 'harvest') {
                     if (pipelineStatusText) {
-                      pipelineStatusText.textContent = `Harvesting [${current} of ${total}] candidate links...`;
+                      pipelineStatusText.textContent = `Harvesting [${current} of ${total}] candidate links (${sIdx}/${sTot} sources scanned)...`;
                       pipelineStatusText.style.color = '#38bdf8';
                     }
                     if (counterBadge) {
-                      counterBadge.textContent = `${harvesterDiscoveredEvents.length} Discovered • [${current} of ${total} Links Scanned]`;
+                      counterBadge.textContent = `${sIdx}/${sTot} sources scanned • ${harvesterDiscoveredEvents.length} Discovered • [${current}/${total} Links]`;
                     }
+                    updateHarvesterSourcesProgressUI();
                   }
                 }
               }
@@ -16191,7 +16316,11 @@
       const events = state.allEvents || [];
       const qEvents = state.quarantinedEvents || [];
       const staleEvents = events.filter(e => typeof classifyEventStaleness === 'function' ? classifyEventStaleness(e) !== 'fresh' : true);
-      const unverifiedEvents = events.filter(e => !e.proof_keyframe_cart || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE');
+      const unverifiedEvents = events.filter(e => {
+        const isFree = e.price === 0 || e.isFree || e.pricingType === 'free' || e.cost_type === 'free' || e.access_model === 'open_public_space' || e.access_model === 'free_public_access';
+        if (isFree) return e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+        return (!e.proof_keyframe_cart && !e.proof_keyframes?.cart) || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+      });
 
       const badgeStale = document.getElementById('badge-count-stale');
       if (badgeStale) badgeStale.textContent = `Recommended • ${staleEvents.length} Cards`;
@@ -16207,7 +16336,7 @@
 
       // Preserve previously selected batch size if user selected one
       const prevBatch = window.selectedAutoModalBatchSize;
-      window.selectAutoPipelineScope(window.selectedAutoPipelineScope || 'stale', Boolean(prevBatch));
+      window.selectAutoPipelineScope(window.selectedAutoPipelineScope || 'harvest', Boolean(prevBatch));
       if (prevBatch) {
         window.setAutoModalBatchSize(prevBatch);
       }
@@ -16306,7 +16435,11 @@
       const events = state.allEvents || [];
       const qEvents = state.quarantinedEvents || [];
       const staleEvents = events.filter(e => typeof classifyEventStaleness === 'function' ? classifyEventStaleness(e) !== 'fresh' : true);
-      const unverifiedEvents = events.filter(e => !e.proof_keyframe_cart || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE');
+      const unverifiedEvents = events.filter(e => {
+        const isFree = e.price === 0 || e.isFree || e.pricingType === 'free' || e.cost_type === 'free' || e.access_model === 'open_public_space' || e.access_model === 'free_public_access';
+        if (isFree) return e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+        return (!e.proof_keyframe_cart && !e.proof_keyframes?.cart) || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+      });
 
       let targetCount = 0;
       let scopeTitle = '';
@@ -16949,6 +17082,69 @@
       if (typeof window.updateStageNavButtons === 'function') {
         window.updateStageNavButtons(stageKey);
       }
+      if (typeof window.updateAllStageContinuationButtonsUI === 'function') {
+        window.updateAllStageContinuationButtonsUI();
+      }
+    };
+
+    window.getStageContinuationInfo = function(stageKey) {
+      const key = stageKey || currentPipelineScanKey || 'harvest';
+      const schedules = Array.isArray(state.masterCatalogsData?.layer_schedules) ? state.masterCatalogsData.layer_schedules : [];
+      const activeIds = new Set(((state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || [])).map(e => e.id || e.event_id).filter(Boolean));
+      const todayIso = new Date().toISOString().split('T')[0];
+      const done1AList = schedules.filter(s => {
+        const sid = s.event_id || s.id;
+        if (!sid || activeIds.has(sid)) return false;
+        if (s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date < todayIso && s.lifecycle_type !== 'perennial_drop_in') return false;
+        return true;
+      });
+      const done1BList = done1AList.filter(e => Boolean(e.step1b_audited_at));
+      const pending1BList = done1AList.filter(e => !e.step1b_audited_at);
+
+      const boxArr = state.masterCatalogsData?.layer_box_office || [];
+      const boxSet = new Set(boxArr.filter(b => b && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR').map(b => String(b.id || b.event_id || '').toLowerCase()));
+      const done2QCList = done1BList.filter(e => boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
+      const pending2QCList = done1BList.filter(e => !boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
+
+      const edArr = state.masterCatalogsData?.layer_editorial || [];
+      const edSet = new Set(edArr.filter(ed => ed && (ed.id || ed.event_id) && ed.clean_title && ed.description).map(ed => String(ed.id || ed.event_id || '').toLowerCase()));
+      const edGroundedSet = new Set(edArr.filter(ed => ed && ed.step4_grounded_at).map(ed => String(ed.id || ed.event_id || '').toLowerCase()));
+      const done3EnrichList = done2QCList.filter(e => edSet.has(String(e.id || e.event_id || '').toLowerCase()));
+      const pending3EnrichList = done2QCList.filter(e => !edSet.has(String(e.id || e.event_id || '').toLowerCase()));
+
+      const done4VenueList = done3EnrichList.filter(e => Boolean(e.step4_grounded_at || edGroundedSet.has(String(e.id || e.event_id || '').toLowerCase())));
+      const pending4VenueList = done3EnrichList.filter(e => !e.step4_grounded_at && !edGroundedSet.has(String(e.id || e.event_id || '').toLowerCase()));
+      const pending5CompileList = done4VenueList.length > 0 ? done4VenueList : done3EnrichList;
+
+      if (key === 'harvest') return { stageKey: 'harvest', prevStageLabel: 'Checkpoint', pendingCount: 77, pendingItems: [], pillLabel: '▶️ Continue (Feeds)', topBarLabel: '▶️ Continue 1A (Feeds)' };
+      if (key === 'hunter') return { stageKey: 'hunter', prevStageLabel: 'Stage 1A', pendingCount: pending1BList.length, pendingItems: pending1BList, pillLabel: `▶️ Continue from 1A (${pending1BList.length})`, topBarLabel: `▶️ Continue from 1A (${pending1BList.length} Pending / ${done1BList.length} Done)` };
+      if (key === 'qc') return { stageKey: 'qc', prevStageLabel: 'Stage 1B', pendingCount: pending2QCList.length, pendingItems: pending2QCList, pillLabel: `▶️ Continue from 1B (${pending2QCList.length})`, topBarLabel: `▶️ Continue from 1B (${pending2QCList.length} Pending / ${done2QCList.length} Done)` };
+      if (key === 'enrich') return { stageKey: 'enrich', prevStageLabel: 'Stage 2 QC', pendingCount: pending3EnrichList.length, pendingItems: pending3EnrichList, pillLabel: `▶️ Continue from 2 (${pending3EnrichList.length})`, topBarLabel: `▶️ Continue from Stage 2 (${pending3EnrichList.length} Pending / ${done3EnrichList.length} Done)` };
+      if (key === 'venue') return { stageKey: 'venue', prevStageLabel: 'Stage 3 Enrich', pendingCount: pending4VenueList.length, pendingItems: pending4VenueList, pillLabel: `▶️ Continue from 3 (${pending4VenueList.length})`, topBarLabel: `▶️ Continue from Stage 3 (${pending4VenueList.length} Pending / ${done4VenueList.length} Done)` };
+      return { stageKey: 'compile', prevStageLabel: 'Stage 4 Venue', pendingCount: pending5CompileList.length, pendingItems: pending5CompileList, pillLabel: `▶️ Continue from 4 (${pending5CompileList.length})`, topBarLabel: `▶️ Continue from Stage 4 (${pending5CompileList.length} Ready)` };
+    };
+
+    window.updateAllStageContinuationButtonsUI = function() {
+      ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'compile'].forEach(st => {
+        const info = window.getStageContinuationInfo(st);
+        const lbl = document.getElementById(`btn-stage-continue-${st}-label`);
+        if (lbl) lbl.textContent = info.pillLabel;
+      });
+      const activeInfo = window.getStageContinuationInfo(currentPipelineScanKey || 'harvest');
+      const topBtn = document.getElementById('btn-top-continue-prev-stage');
+      const topLbl = document.getElementById('btn-top-continue-prev-stage-label');
+      if (topBtn) topBtn.style.display = isPipelineRunning ? 'none' : 'inline-flex';
+      if (topLbl) topLbl.textContent = activeInfo.topBarLabel;
+    };
+
+    window.continueStageFromPrevious = function(stageKey, evt) {
+      if (evt) evt.stopPropagation();
+      const targetStage = stageKey || currentPipelineScanKey || 'harvest';
+      const info = window.getStageContinuationInfo(targetStage);
+      if (targetStage !== 'harvest' && info.pendingItems && info.pendingItems.length > 0) {
+        pipelineTestDiscoveredIds = info.pendingItems.map(x => x.id || x.event_id).filter(Boolean);
+      }
+      openPipelineTestStage(targetStage, true);
     };
 
     // -------------------------------------------------------------
@@ -19925,10 +20121,12 @@
           window.populateVenueFeedsDropdown().then((feedsList) => {
             window.onVenueFeedSelected('all');
             const total = (feedsList && feedsList.length) || (cachedVenueFeeds && cachedVenueFeeds.length) || 155;
+            harvesterTotalSources = total;
             const isHarvestComplete = (pipelineTestStageStatuses['harvest'] || '').includes('Complete');
             if (currentPipelineScanKey === 'harvest' && trackerStatus && !isHarvestComplete) {
-              const processed = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length > 0) ? harvesterDiscoveredEvents.length : 0;
-              trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 700;">${processed}/${total} events Feeds Pending Harvesting</span>`;
+              const scanned = harvesterSourcesScanned || 0;
+              const foundEvents = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length > 0) ? harvesterDiscoveredEvents.length : 0;
+              trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned</span> • <span style="color: #4ade80; font-weight: 700;">+${foundEvents} new events</span>`;
             }
           });
         }
