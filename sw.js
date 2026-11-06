@@ -3,19 +3,19 @@
  * Fast, offline-first caching for Vancouver Events & Outings (<= $50 CAD)
  */
 
-const CACHE_NAME = 'van50-cache-v7.4.8';
+const CACHE_NAME = 'van50-cache-v7.8.0';
 
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './css/style.css?v=7.1.0',
-  './css/components.css?v=7.4.8',
-  './js/app.js?v=7.4.8',
-  './js/map.js?v=7.2.0',
-  './js/data.js?v=7.4.8',
-  './js/roulette.js?v=7.2.0',
-  './js/pwa-install.js?v=7.4.8',
+  './css/style.css?v=7.8.0',
+  './css/components.css?v=7.8.0',
+  './js/app.js?v=7.8.0',
+  './js/map.js?v=7.8.0',
+  './js/data.js?v=7.8.0',
+  './js/roulette.js?v=7.8.0',
+  './js/pwa-install.js?v=7.8.0',
   './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
   './icons/icon.svg',
@@ -78,7 +78,7 @@ self.addEventListener('fetch', (event) => {
 
   if (isNavigation || isDataFeed || isCode) {
     event.respondWith(
-      fetch(request)
+      fetch(request, { cache: 'no-cache' })
         .then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
             const responseClone = networkResponse.clone();
@@ -107,7 +107,7 @@ self.addEventListener('fetch', (event) => {
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
         // Fetch in background to update cache for subsequent visits
-        fetch(request).then((networkResponse) => {
+        fetch(request, { cache: 'no-cache' }).then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
             caches.open(CACHE_NAME).then((cache) => cache.put(request, networkResponse));
           }
