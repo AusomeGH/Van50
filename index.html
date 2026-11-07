@@ -86,7 +86,10 @@
 
 
 
-      <!-- Real-time Google-Style Search Input -->
+      <!-- Real-time Google-Style Search Input & Sticky Mobile Filter Trigger -->
+    </section>
+
+    <div class="mobile-search-filter-bar" id="mobile-search-filter-bar">
       <div class="search-wrapper">
         <span class="search-icon">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -102,7 +105,8 @@
         >
         <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">✕</button>
       </div>
-    </section>
+      <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">⚙️ Filters</button>
+    </div>
 
     <!-- Dynamic Festival Spotlight & Toggle Banner -->
     <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;" aria-label="Active Vancouver Festivals">
@@ -129,6 +133,22 @@
           </button>
         </div>
       </div>
+
+      <!-- Active Filter Summary Strip (Mobile & Quick Dismissible Chips) -->
+      <div id="active-filter-chips" class="active-filter-chips" aria-label="Active Filters" style="display: none;"></div>
+
+      <!-- Mobile Bottom Sheet Backdrop -->
+      <div id="mobile-sheet-backdrop" class="mobile-sheet-backdrop" aria-hidden="true"></div>
+
+      <!-- Slide-Up Mobile Bottom Sheet / Desktop Inline Secondary Filters -->
+      <div id="mobile-filters-sheet" class="mobile-filters-sheet" aria-label="Secondary Filters">
+        <div class="mobile-sheet-header">
+          <div class="mobile-sheet-handle" aria-hidden="true"></div>
+          <div class="mobile-sheet-title-row">
+            <span class="mobile-sheet-title">Filters</span>
+            <button type="button" class="mobile-sheet-close-btn" id="mobile-sheet-close-btn" aria-label="Close filters">✕</button>
+          </div>
+        </div>
 
       <!-- Primary Controls Row 2: Spend Controls, Quick Toggles & More Filters Button -->
       <div class="spend-control-row">
@@ -165,11 +185,14 @@
         </div>
 
         <div class="spend-actions-group">
-          <!-- Quick Cost Filters (Free, Paid, All) -->
+          <!-- Quick Cost Filters (Free, <= $15, <= $25, <= $50, Paid, All) -->
           <div class="cost-quick-tabs" role="group" aria-label="Cost Quick Filters">
-            <button class="cost-quick-btn active" data-quick="all" id="quick-cost-all">All</button>
-            <button class="cost-quick-btn" data-quick="free" id="quick-cost-free">Free ($0)</button>
-            <button class="cost-quick-btn" data-quick="paid" id="quick-cost-paid">Paid</button>
+            <button type="button" class="cost-quick-btn active" data-quick="all" id="quick-cost-all">All</button>
+            <button type="button" class="cost-quick-btn" data-quick="free" id="quick-cost-free">Free</button>
+            <button type="button" class="cost-quick-btn" data-quick="under15" id="quick-cost-15">≤ $15</button>
+            <button type="button" class="cost-quick-btn" data-quick="under25" id="quick-cost-25">≤ $25</button>
+            <button type="button" class="cost-quick-btn" data-quick="under50" id="quick-cost-50">≤ $50</button>
+            <button type="button" class="cost-quick-btn" data-quick="paid" id="quick-cost-paid">Paid</button>
           </div>
 
           <!-- Hide Daily Drop-In Spots Toggle -->
@@ -243,6 +266,13 @@
         </div>
       </div>
 
+        <!-- Sticky Bottom Action Bar for Mobile Filters Sheet -->
+        <div class="mobile-sheet-footer">
+          <button type="button" class="btn-mobile-sheet-reset" id="mobile-sheet-reset-btn">Reset All</button>
+          <button type="button" class="btn-mobile-sheet-apply" id="mobile-sheet-apply-btn">Show Outings</button>
+        </div>
+      </div>
+
     </section>
 
     <!-- Results Count Bar -->
@@ -264,9 +294,13 @@
     </section>
   </main>
 
+  <!-- Floating Mobile Map/List Toggle Pill -->
+  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" aria-label="Switch between Map and List view">🗺️ Map</button>
+
   <!-- Surprise Outing Generator / Roulette Modal -->
   <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-labelledby="roulette-modal-title">
     <div class="modal-box">
+      <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-roulette-modal" aria-label="Close modal">✕</button>
       
       <div class="roulette-container">
@@ -315,6 +349,7 @@
   <!-- Crowdsourced Price Feedback Modal -->
   <div class="modal-overlay" id="price-feedback-modal" role="dialog" aria-modal="true" aria-labelledby="price-feedback-title">
     <div class="modal-box" style="max-width: 520px; text-align: left;">
+      <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-price-feedback-btn" aria-label="Close Price Feedback">✕</button>
 
       <div style="margin-bottom: 16px;">
@@ -394,6 +429,7 @@
 
   <!-- Saved Events Drawer -->
   <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Saved Events Drawer">
+    <div class="mobile-sheet-handle" aria-hidden="true"></div>
     <div class="itinerary-header">
       <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -449,8 +485,9 @@
   </footer>
 
   <!-- Community Feedback & Suggestions Modal (Single Open-Ended Form) -->
-  <div class="modal-overlay" id="feedback-modal" aria-hidden="true">
+  <div class="modal-overlay" id="feedback-modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-box" style="text-align: left; max-width: 520px; padding: 24px;">
+      <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-feedback-btn" aria-label="Close modal">✕</button>
 
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">

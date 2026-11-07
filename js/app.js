@@ -1239,6 +1239,15 @@ function setupEventListeners() {
       } else if (preset === 'free') {
         state.minBudget = 0;
         state.maxBudget = 0;
+      } else if (preset === 'under15') {
+        state.minBudget = 0;
+        state.maxBudget = 15;
+      } else if (preset === 'under25') {
+        state.minBudget = 0;
+        state.maxBudget = 25;
+      } else if (preset === 'under50') {
+        state.minBudget = 0;
+        state.maxBudget = 50;
       } else if (preset === 'paid') {
         state.minBudget = 1;
         state.maxBudget = 50;
@@ -1280,6 +1289,8 @@ function setupEventListeners() {
       viewCardsBtn.classList.add('active');
       viewMapBtn.classList.remove('active');
       eventsGrid.style.display = 'grid';
+      const mobileViewToggle = document.getElementById('mobile-view-toggle');
+      if (mobileViewToggle) mobileViewToggle.innerHTML = '🗺️ Map';
       mapWrapper.style.display = 'none';
       mapWrapper.classList.remove('active');
     });
@@ -1288,6 +1299,8 @@ function setupEventListeners() {
       viewMapBtn.classList.add('active');
       viewCardsBtn.classList.remove('active');
       eventsGrid.style.display = 'none';
+      const mobileViewToggle = document.getElementById('mobile-view-toggle');
+      if (mobileViewToggle) mobileViewToggle.innerHTML = '📋 List';
       mapWrapper.style.display = 'block';
       mapWrapper.classList.add('active');
 
@@ -1405,6 +1418,76 @@ function setupEventListeners() {
 
   if (copyPlanBtn) {
     copyPlanBtn.addEventListener('click', copyItineraryToClipboard);
+  }
+
+  // Mobile Bottom Sheet (Secondary Filters) & Floating Map/List Toggle Handlers
+  const mobileFilterTrigger = document.getElementById('mobile-filter-trigger');
+  const mobileFiltersSheet = document.getElementById('mobile-filters-sheet');
+  const mobileSheetBackdrop = document.getElementById('mobile-sheet-backdrop');
+  const mobileSheetCloseBtn = document.getElementById('mobile-sheet-close-btn');
+  const mobileSheetResetBtn = document.getElementById('mobile-sheet-reset-btn');
+  const mobileSheetApplyBtn = document.getElementById('mobile-sheet-apply-btn');
+  const mobileViewToggle = document.getElementById('mobile-view-toggle');
+
+  window.openMobileFiltersSheet = function() {
+    if (mobileFiltersSheet) mobileFiltersSheet.classList.add('is-open');
+    if (mobileSheetBackdrop) mobileSheetBackdrop.classList.add('is-open');
+    if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'true');
+  };
+
+  window.closeMobileFiltersSheet = function() {
+    if (mobileFiltersSheet) mobileFiltersSheet.classList.remove('is-open');
+    if (mobileSheetBackdrop) mobileSheetBackdrop.classList.remove('is-open');
+    if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'false');
+  };
+
+  window.resetSecondaryFilters = function() {
+    state.minBudget = 0;
+    state.maxBudget = 50;
+    state.dayOfWeek = 'all';
+    state.timeSlot = 'all';
+    state.frequency = 'all';
+    state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
+    state.hideDaily = false;
+    state.accessibleOnly = false;
+    if (minSlider) minSlider.value = 0;
+    if (maxSlider) maxSlider.value = 50;
+    if (hideDailyToggle) hideDailyToggle.checked = false;
+    if (chkAccessibleOnly) chkAccessibleOnly.checked = false;
+    renderDayPills();
+    renderTimePills();
+    renderNeighborhoodPills();
+    renderFrequencyPills();
+    clearActiveQuickButtons();
+    updateSliderVisuals();
+    applyFiltersAndRender();
+  };
+
+  if (mobileFilterTrigger) {
+    mobileFilterTrigger.addEventListener('click', () => {
+      if (mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
+        window.closeMobileFiltersSheet();
+      } else {
+        window.openMobileFiltersSheet();
+      }
+    });
+  }
+  if (mobileSheetCloseBtn) mobileSheetCloseBtn.addEventListener('click', window.closeMobileFiltersSheet);
+  if (mobileSheetBackdrop) mobileSheetBackdrop.addEventListener('click', window.closeMobileFiltersSheet);
+  if (mobileSheetApplyBtn) mobileSheetApplyBtn.addEventListener('click', window.closeMobileFiltersSheet);
+  if (mobileSheetResetBtn) mobileSheetResetBtn.addEventListener('click', window.resetSecondaryFilters);
+
+  if (mobileViewToggle && viewCardsBtn && viewMapBtn && mapWrapper) {
+    mobileViewToggle.addEventListener('click', () => {
+      const isMapActive = mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block';
+      if (isMapActive) {
+        viewCardsBtn.click();
+      } else {
+        viewMapBtn.click();
+      }
+    });
+  }
+  if (false) {
   }
 
   // Manual Review Queue Modal Handlers
@@ -1637,6 +1720,12 @@ function clearActiveQuickButtons() {
   if (minVal === 0 && maxVal === 0) {
     const freeBtn = document.getElementById('quick-cost-free');
     if (freeBtn) freeBtn.classList.add('active');
+  } else if (minVal === 0 && maxVal === 15) {
+    const u15Btn = document.getElementById('quick-cost-15');
+    if (u15Btn) u15Btn.classList.add('active');
+  } else if (minVal === 0 && maxVal === 25) {
+    const u25Btn = document.getElementById('quick-cost-25');
+    if (u25Btn) u25Btn.classList.add('active');
   } else if (minVal >= 1 && maxVal === 50) {
     const paidBtn = document.getElementById('quick-cost-paid');
     if (paidBtn) paidBtn.classList.add('active');
@@ -1683,6 +1772,160 @@ function getActiveThemeGroups(catalog) {
   return Array.from(groupsMap.values());
 }
 
+// 8. Automate the Active Vancouver Festivals Banner (3-Tier Urgency Sort)
+const THEME_DATE_WINDOWS = {
+  'diwali': { startDate: '2026-11-05', endDate: '2026-11-15' },
+  'diwali-fest': { startDate: '2026-11-05', endDate: '2026-11-15' },
+  'downtown-eastside-heart-of-the-city-festival': { startDate: '2026-10-30', endDate: '2026-11-08' },
+  'christmas': { startDate: '11-15', endDate: '12-30' },
+  'new-years': { startDate: '12-26', endDate: '01-02' },
+  'lunar-new-year': { startDate: '01-25', endDate: '02-20' },
+  'valentines-day': { startDate: '02-01', endDate: '02-15' },
+  'st-patricks-day': { startDate: '03-10', endDate: '03-18' },
+  'easter': { startDate: '03-25', endDate: '04-12' },
+  'canada-day': { startDate: '06-28', endDate: '07-02' },
+  'pride': { startDate: '07-24', endDate: '08-05' },
+  'vancouver-fringe-festival': { startDate: '09-10', endDate: '09-20' },
+  'vancouver-international-film-festival': { startDate: '09-24', endDate: '10-04' },
+  'thanksgiving': { startDate: '10-01', endDate: '10-14' },
+  'vancouver-horror-show-film-festival': { startDate: '10-13', endDate: '10-18' },
+  'vancouver-writers-fest': { startDate: '10-19', endDate: '10-25' },
+  'halloween': { startDate: '10-01', endDate: '11-02' },
+  'dia-de-los-muertos': { startDate: '10-31', endDate: '11-02' }
+};
+
+function parseFestivalDateWindow(g, meta, matchingEvents, today) {
+  const currentYear = today.getFullYear();
+  const rawId = String(g.id || '').toLowerCase();
+  const win = (meta && meta.startDate && meta.endDate)
+    ? { startDate: meta.startDate, endDate: meta.endDate }
+    : THEME_DATE_WINDOWS[rawId];
+
+  if (win && win.startDate && win.endDate) {
+    const isRecurringStart = /^\d{2}-\d{2}$/.test(win.startDate);
+    const isRecurringEnd = /^\d{2}-\d{2}$/.test(win.endDate);
+    const startStr = isRecurringStart ? `${currentYear}-${win.startDate}` : win.startDate;
+    const endStr = isRecurringEnd ? `${currentYear}-${win.endDate}` : win.endDate;
+
+    let start = new Date(`${startStr}T00:00:00`);
+    let end = new Date(`${endStr}T23:59:59`);
+
+    if (isRecurringStart && isRecurringEnd && end < start) {
+      if (today.getMonth() === 0) {
+        start = new Date(`${currentYear - 1}-${win.startDate}T00:00:00`);
+      } else {
+        end = new Date(`${currentYear + 1}-${win.endDate}T23:59:59`);
+      }
+    }
+
+    if (isRecurringStart && isRecurringEnd && end < today) {
+      start = new Date(`${currentYear + 1}-${win.startDate}T00:00:00`);
+      const endYear = win.endDate < win.startDate ? currentYear + 2 : currentYear + 1;
+      end = new Date(`${endYear}-${win.endDate}T23:59:59`);
+    }
+    return { start, end };
+  }
+
+  const validDates = [];
+  (matchingEvents || []).forEach(ev => {
+    const candidates = [];
+    if (ev.startDate) candidates.push(ev.startDate);
+    if (ev.endDate) candidates.push(ev.endDate);
+    if (ev.date) candidates.push(ev.date);
+    if (Array.isArray(ev.confirmedDates)) candidates.push(...ev.confirmedDates);
+    if (Array.isArray(ev.showings)) ev.showings.forEach(s => { if (s && s.date) candidates.push(s.date); });
+    candidates.forEach(dStr => {
+      const iso = String(dStr || '').slice(0, 10);
+      if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) validDates.push(iso);
+    });
+  });
+
+  if (validDates.length > 0) {
+    validDates.sort();
+    return {
+      start: new Date(`${validDates[0]}T00:00:00`),
+      end: new Date(`${validDates[validDates.length - 1]}T23:59:59`)
+    };
+  }
+  return null;
+}
+
+function getSortedActiveFestivals(catalog, now = new Date()) {
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+  const rawGroups = getActiveThemeGroups(catalog);
+  const evaluated = [];
+
+  rawGroups.forEach(g => {
+    if (!g || !g.count || g.count <= 0) return;
+    const meta = getThemeMetadata(g);
+    const matchingEvents = (catalog || []).filter(ev => ev && !isEventInPast(ev, now) && !isAwaitingSchedule(ev) && parseFloat(ev.price || 0) <= 50 && eventMatchesThemeKey(ev, g.key));
+    const parsedWindow = parseFestivalDateWindow(g, meta, matchingEvents, today);
+    if (!parsedWindow || isNaN(parsedWindow.start.getTime()) || isNaN(parsedWindow.end.getTime())) return;
+
+    const startMidnight = new Date(parsedWindow.start.getFullYear(), parsedWindow.start.getMonth(), parsedWindow.start.getDate(), 0, 0, 0, 0);
+    const endMidnight = new Date(parsedWindow.end.getFullYear(), parsedWindow.end.getMonth(), parsedWindow.end.getDate(), 0, 0, 0, 0);
+
+    const daysUntilStart = Math.round((startMidnight.getTime() - today.getTime()) / 86400000);
+    const daysUntilEnd = Math.round((endMidnight.getTime() - today.getTime()) / 86400000);
+    const durationDays = Math.max(1, Math.round((endMidnight.getTime() - startMidnight.getTime()) / 86400000) + 1);
+
+    let tier = 3;
+    let urgencyBadge = '';
+    let urgencyClass = '';
+
+    if (today >= startMidnight && today <= parsedWindow.end) {
+      tier = 1;
+      if (daysUntilEnd === 0) {
+        urgencyBadge = '🔥 Last Day!';
+        urgencyClass = 'tier-1-last-day';
+      } else if (daysUntilEnd <= 2) {
+        urgencyBadge = `⏳ Ends in ${daysUntilEnd}d`;
+        urgencyClass = 'tier-1-ending-soon';
+      } else {
+        urgencyBadge = '🟢 Live Now';
+        urgencyClass = 'tier-1-live';
+      }
+    } else if (daysUntilStart > 0 && daysUntilStart <= 21) {
+      tier = 2;
+      urgencyClass = 'tier-2-upcoming';
+      if (daysUntilStart === 1) {
+        urgencyBadge = '⚡ Tomorrow';
+      } else {
+        urgencyBadge = `📅 In ${daysUntilStart}d`;
+      }
+    }
+
+    if (tier === 1 || tier === 2) {
+      evaluated.push({
+        ...g,
+        meta,
+        tier,
+        daysUntilStart,
+        daysUntilEnd,
+        durationDays,
+        urgencyBadge,
+        urgencyClass
+      });
+    }
+  });
+
+  evaluated.sort((a, b) => {
+    if (a.tier !== b.tier) return a.tier - b.tier;
+    if (a.tier === 1) {
+      if (a.daysUntilEnd !== b.daysUntilEnd) return a.daysUntilEnd - b.daysUntilEnd;
+      if (a.durationDays !== b.durationDays) return a.durationDays - b.durationDays;
+      return (b.count || 0) - (a.count || 0);
+    }
+    return a.daysUntilStart - b.daysUntilStart;
+  });
+
+  return evaluated;
+}
+window.getSortedActiveFestivals = getSortedActiveFestivals;
+
+function _unusedThemeGroupsSentinel() {
+}
+
 function getThemeMetadata(g) {
   if (!g) return { label: 'Seasonal Celebration', datesLabel: 'Upcoming', shortDesc: 'Curated seasonal events under $50 CAD.', longDesc: 'Explore verified festival and holiday events across Metro Vancouver under $50 CAD.', venues: 'Metro Vancouver' };
   const rawId = String(g.id || '').toLowerCase();
@@ -1724,10 +1967,20 @@ function renderFestivalSpotlight() {
 
   const isHidden = state.hideFestivalEvents === true;
   const festCount = activeFestivalAndHolidayEvents.length;
-  const themeGroups = getActiveThemeGroups(baseCatalog);
+  const themeGroups = getSortedActiveFestivals(baseCatalog, now); if (themeGroups.length === 0) { container.style.display = 'none'; return; } container.style.display = 'block'; if (false) { if (false) {
 
-  if (themeGroups.length === 0 && festCount === 0) {
-    container.style.display = 'none';
+  if (themeGroups.length === 0) {
+    }
+  if (false) { container.style.display = 'none';
+    return;
+  }
+  }
+  if (false) {
+
+  }
+  container.style.display = 'block';
+    }
+  if (false) { container.style.display = 'none';
     return;
   }
   container.style.display = 'block';
@@ -1764,6 +2017,7 @@ function renderFestivalSpotlight() {
               <span class="theme-item-chevron">${isItemExpanded ? '▴' : '▾'}</span>
             </button>
             <div class="theme-item-subrow">
+              ${g.urgencyBadge ? `<span class="festival-urgency-badge ${g.urgencyClass || ''}">${g.urgencyBadge}</span>` : ''}
               ${meta.datesLabel ? `<span class="theme-item-dates-pill">${meta.datesLabel}</span>` : ''}
               <div class="festival-theme-item-actions">
                 <button
@@ -2882,6 +3136,7 @@ function applyFiltersAndRender() {
   }
 
   window.currentFilteredEvents = filtered;
+  renderActiveFilterChips(filtered.length);
 
   // Update More Filters active counter badge
   let secondaryFilterCount = 0;
@@ -5075,7 +5330,23 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     const isHappeningNow = isEventHappeningNow(ev, new Date());
 
     return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}">
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
+        <!-- Mobile 2-Line Compact Header (<= 768px) -->
+        <div class="mobile-card-compact-header">
+          <div class="mobile-card-row-1">
+            <span class="mobile-card-title">${formatCardDisplayTitle(ev.title, ev)}</span>
+            <span class="mobile-card-price-pill ${isSoldOut ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : '')}">${isSoldOut ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
+          </div>
+          <div class="mobile-card-row-2">
+            <span class="mobile-card-meta-text">📍 ${(ev.neighborhood || ev.venue || 'Vancouver').split(',')[0]} • 🕒 ${topDate.badgeText} • ${(() => {
+              const pCat = (Array.isArray(ev.categories) && ev.categories.length > 0) ? ev.categories[0] : (ev.category || 'Outing');
+              const cDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === pCat) : null;
+              return cDef ? (cDef.shortLabel || cDef.label) : (ev.categoryLabel || pCat);
+            })()}</span>
+            <span class="mobile-card-chevron" aria-hidden="true">▾</span>
+          </div>
+        </div>
+        <div class="card-expandable-details">
         ${isHappeningNow ? `
           <div class="happening-now-ribbon" title="This outing is actively underway right now!">
             <span class="live-pulse-dot" aria-hidden="true"></span>
@@ -5272,6 +5543,10 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             ${ctaButtonHtml}
           </div>
         </div>
+          </div>
+        </div>
+        </div>
+        </div>
       </article>
     `;
 }
@@ -5463,6 +5738,7 @@ function updateReviewQueueBadge() {
   // Reveal curator portal button only if ?curator=true, ?admin=true, or active curator session
   const urlParams = new URLSearchParams(window.location.search);
   const isCurator = urlParams.has('curator') || urlParams.has('admin') || Boolean(sessionStorage.getItem('van50_curator_token'));
+  document.body.classList.toggle('admin-mode-enabled', isCurator);
   if (container) {
     container.style.display = isCurator ? 'block' : 'none';
   }
@@ -5732,3 +6008,144 @@ if (document.readyState === 'loading') {
   initCommunityFeedbackModal();
 }
 
+
+// ==============================================================================
+// VAN50 MOBILE UI & UX REFACTOR HELPERS (Active Filter Chips & Card Accordion)
+// ==============================================================================
+
+function renderActiveFilterChips(filteredCount) {
+  const chipsContainer = document.getElementById('active-filter-chips');
+  const mobileFilterTrigger = document.getElementById('mobile-filter-trigger');
+  const mobileSheetApplyBtn = document.getElementById('mobile-sheet-apply-btn');
+
+  if (mobileSheetApplyBtn && typeof filteredCount === 'number') {
+    mobileSheetApplyBtn.textContent = `Show ${filteredCount} Outing${filteredCount === 1 ? '' : 's'}`;
+  }
+
+  const chips = [];
+
+  // 1. Spend / Cost Filter
+  if (state.minBudget !== 0 || state.maxBudget !== 50) {
+    let costLabel = `$${state.minBudget}–$${state.maxBudget}`;
+    if (state.minBudget === 0 && state.maxBudget === 0) costLabel = 'Free';
+    else if (state.minBudget === 0 && state.maxBudget === 15) costLabel = '≤ $15';
+    else if (state.minBudget === 0 && state.maxBudget === 25) costLabel = '≤ $25';
+    else if (state.minBudget >= 1 && state.maxBudget === 50) costLabel = 'Paid';
+    chips.push({ key: 'cost', label: costLabel });
+  }
+
+  // 2. Day of the Week
+  if (state.dayOfWeek && state.dayOfWeek !== 'all') {
+    const dayDef = (window.DAYS_OF_WEEK || []).find(d => d.id === state.dayOfWeek);
+    chips.push({ key: 'day', label: dayDef ? dayDef.label : state.dayOfWeek });
+  }
+
+  // 3. Starting Time
+  if (state.timeSlot && state.timeSlot !== 'all') {
+    const slotDef = (window.TIME_SLOTS || []).find(s => s.id === state.timeSlot);
+    chips.push({ key: 'time', label: slotDef ? slotDef.label : state.timeSlot });
+  }
+
+  // 4. Neighborhoods
+  const allNh = window.NEIGHBORHOODS || [];
+  if (state.selectedNeighborhoods && state.selectedNeighborhoods.size > 0 && state.selectedNeighborhoods.size < allNh.length) {
+    Array.from(state.selectedNeighborhoods).forEach(nh => {
+      const shortNh = String(nh).split(',')[0].split('&')[0].trim();
+      chips.push({ key: 'nh:' + nh, label: shortNh });
+    });
+  }
+
+  // 5. Recurrence Frequency
+  if (state.frequency && state.frequency !== 'all') {
+    const freqDef = (typeof FREQUENCIES !== 'undefined' ? FREQUENCIES : []).find(f => f.id === state.frequency);
+    chips.push({ key: 'frequency', label: freqDef ? freqDef.label : state.frequency });
+  }
+
+  // 6. Hide Daily Drop-In Spots
+  if (state.hideDaily) {
+    chips.push({ key: 'hideDaily', label: 'Scheduled Only' });
+  }
+
+  // 7. Accessible Venues Only
+  if (state.accessibleOnly) {
+    chips.push({ key: 'accessibleOnly', label: '♿ Accessible' });
+  }
+
+  const activeCount = chips.length;
+  if (mobileFilterTrigger) {
+    mobileFilterTrigger.textContent = activeCount > 0 ? `⚙️ Filters (${activeCount})` : '⚙️ Filters';
+    mobileFilterTrigger.classList.toggle('has-active-filters', activeCount > 0);
+  }
+
+  if (!chipsContainer) return;
+  if (chips.length === 0) {
+    chipsContainer.style.display = 'none';
+    chipsContainer.innerHTML = '';
+    return;
+  }
+
+  chipsContainer.style.display = 'flex';
+  chipsContainer.innerHTML = chips.map(c => {
+    const safeKey = String(c.key).replace(/'/g, "\\'");
+    return `
+      <button type="button" class="active-filter-chip" onclick="dismissSecondaryFilterChip('${safeKey}')" title="Remove ${c.label} filter" aria-label="Remove ${c.label} filter">
+        <span>${c.label}</span>
+        <span class="chip-dismiss" aria-hidden="true">×</span>
+      </button>
+    `;
+  }).join('');
+}
+
+window.dismissSecondaryFilterChip = function(chipKey) {
+  if (!chipKey) return;
+  if (chipKey === 'cost') {
+    state.minBudget = 0;
+    state.maxBudget = 50;
+    const minSlider = document.getElementById('min-spend-slider');
+    const maxSlider = document.getElementById('max-spend-slider');
+    if (minSlider) minSlider.value = 0;
+    if (maxSlider) maxSlider.value = 50;
+    clearActiveQuickButtons();
+    updateSliderVisuals();
+  } else if (chipKey === 'day') {
+    state.dayOfWeek = 'all';
+    renderDayPills();
+  } else if (chipKey === 'time') {
+    state.timeSlot = 'all';
+    renderTimePills();
+  } else if (chipKey.startsWith('nh:')) {
+    const targetNh = chipKey.slice(3);
+    state.selectedNeighborhoods.delete(targetNh);
+    if (state.selectedNeighborhoods.size === 0) {
+      state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
+    }
+    renderNeighborhoodPills();
+  } else if (chipKey === 'frequency') {
+    state.frequency = 'all';
+    renderFrequencyPills();
+  } else if (chipKey === 'hideDaily') {
+    state.hideDaily = false;
+    const hideDailyToggle = document.getElementById('hide-daily-toggle');
+    if (hideDailyToggle) hideDailyToggle.checked = false;
+  } else if (chipKey === 'accessibleOnly') {
+    state.accessibleOnly = false;
+    const chkAccess = document.getElementById('chk-accessible-only');
+    if (chkAccess) chkAccess.checked = false;
+  }
+  applyFiltersAndRender();
+};
+
+window.toggleMobileCardAccordion = function(eventId, evObj) {
+  if (typeof window !== 'undefined' && window.innerWidth > 768) return;
+  if (evObj && evObj.target) {
+    // Allow direct clicks on links/buttons inside expanded details without collapsing the card
+    const interactiveEl = evObj.target.closest('a, button, input, label, .card-expanded-tiers, .collapsible-hours, .collapsible-showings');
+    const insideCompactHeader = evObj.target.closest('.mobile-card-compact-header');
+    if (interactiveEl && !insideCompactHeader) {
+      return;
+    }
+  }
+  const cardEl = document.getElementById(`card-${eventId}`);
+  if (!cardEl) return;
+  cardEl.classList.toggle('mobile-expanded');
+};
