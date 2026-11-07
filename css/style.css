@@ -357,32 +357,35 @@ button {
   display: none;
 }
 
-/* Live Scrolled Date Bar inside Sticky Search/Filter Header */
+/* Live Scrolled Date Bar inside Sticky Search/Filter Header (Matches Time-Group Header style) */
 .scroll-date-bar {
   display: none;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
   width: 100%;
-  padding: 5px 12px 1px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-secondary);
+  padding: 6px 4px 2px;
   line-height: 1.25;
 }
 
-.scroll-date-prefix {
-  color: var(--text-muted);
-  font-weight: 500;
+.scroll-date-bar .time-group-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
-.scroll-date-label {
-  color: #0f766e;
-  font-weight: 700;
-  background: rgba(13, 148, 136, 0.1);
-  border: 1px solid rgba(13, 148, 136, 0.22);
-  padding: 2px 9px;
+.scroll-date-bar .time-group-date-range {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 3px 10px;
   border-radius: var(--radius-full);
+  border: 1px solid #cbd5e1;
 }
 
 @media (max-width: 768px) {

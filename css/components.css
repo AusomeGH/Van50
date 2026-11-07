@@ -6925,3 +6925,397 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 .festival-spotlight-blurb {
   color: #475569 !important;
 }
+
+
+/* ============================================================================
+   9. HIGH-CONTRAST LIGHT THEME POLISH & DESKTOP MULTI-COLUMN GRID
+   ============================================================================ */
+
+/* Desktop Multi-Column Card Grid (>= 769px) */
+@media (min-width: 769px) {
+  .events-grid,
+  .time-group-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  .events-grid > .event-card,
+  .time-group-cards-grid > .event-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Theme & Holiday Badges on Event Cards (Screenshots 3 & 5) */
+.card-theme-badge-pill {
+  background: #fffbeb !important;
+  border: 1px solid #f59e0b !important;
+  color: #92400e !important;
+  font-weight: 700 !important;
+}
+
+.card-theme-badge-pill.active {
+  background: #0d9488 !important;
+  border-color: #0d9488 !important;
+  color: #ffffff !important;
+}
+
+.card-theme-badge-main {
+  color: #92400e !important;
+  font-weight: 700 !important;
+}
+
+.card-theme-badge-pill.active .card-theme-badge-main {
+  color: #ffffff !important;
+}
+
+.card-theme-badge-exclude {
+  background: #fef3c7 !important;
+  color: #78350f !important;
+  border-left: 1px solid #f59e0b !important;
+  font-weight: 800 !important;
+}
+
+.card-theme-badge-exclude:hover {
+  background: #e11d48 !important;
+  color: #ffffff !important;
+}
+
+/* Active Venue Filter Banner (Screenshot 4) */
+.active-venue-banner {
+  background: #f0fdfa !important;
+  border: 1px solid #0d9488 !important;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.08) !important;
+  color: #0f172a !important;
+}
+
+.venue-banner-content,
+.venue-banner-content strong {
+  color: #0f172a !important;
+}
+
+.btn-clear-venue {
+  background: #fff1f2 !important;
+  color: #be123c !important;
+  border: 1px solid #fda4af !important;
+  font-weight: 700 !important;
+}
+
+.btn-clear-venue:hover {
+  background: #e11d48 !important;
+  color: #ffffff !important;
+  border-color: #e11d48 !important;
+}
+
+/* Category Badges on Cards — High Contrast Tone-on-Tone */
+.card-category-badge,
+.card-category-badge.category-free-public-access {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+.card-category-badge.category-music {
+  background: #faf5ff !important;
+  border-color: #d8b4fe !important;
+  color: #6b21a8 !important;
+}
+
+.card-category-badge.category-shows {
+  background: #fffbeb !important;
+  border-color: #fcd34d !important;
+  color: #92400e !important;
+}
+
+.card-category-badge.category-cinema {
+  background: #fff1f2 !important;
+  border-color: #fda4af !important;
+  color: #9f1239 !important;
+}
+
+.card-category-badge.category-crafts,
+.card-category-badge.category-festivals {
+  background: #fdf2f8 !important;
+  border-color: #f9a8d4 !important;
+  color: #9d174d !important;
+}
+
+.card-category-badge.category-outdoors {
+  background: #ecfdf5 !important;
+  border-color: #6ee7b7 !important;
+  color: #065f46 !important;
+}
+
+.card-category-badge.category-activities {
+  background: #f0f9ff !important;
+  border-color: #7dd3fc !important;
+  color: #075985 !important;
+}
+
+.card-category-badge.category-arts {
+  background: #eef2ff !important;
+  border-color: #a5b4fc !important;
+  color: #3730a3 !important;
+}
+
+.card-category-badge.category-trivia,
+.card-category-badge.category-markets,
+.card-category-badge.category-market {
+  background: #fefce8 !important;
+  border-color: #fde047 !important;
+  color: #854d0e !important;
+}
+
+.card-category-badge.category-social {
+  background: #fdf4ff !important;
+  border-color: #f0abfc !important;
+  color: #86198f !important;
+}
+
+/* Weekly Hours Table, Multi-Showings & Waypoints Contrast */
+.weekly-hours-header {
+  color: #475569 !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+.weekly-hour-day-row {
+  color: #334155 !important;
+}
+
+.weekly-hour-day-row .day-col {
+  color: #0f172a !important;
+}
+
+.weekly-hour-day-row .hours-col {
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+.weekly-hour-day-row.current-day {
+  background: #f0fdfa !important;
+  border-left: 3px solid #0d9488 !important;
+  color: #0f766e !important;
+}
+
+.weekly-hour-day-row.current-day .day-col,
+.weekly-hour-day-row.current-day .hours-col {
+  color: #0f766e !important;
+  font-weight: 700 !important;
+}
+
+.btn-toggle-hours,
+.btn-toggle-showings {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f766e !important;
+  font-weight: 700 !important;
+}
+
+.btn-toggle-hours:hover,
+.btn-toggle-showings:hover {
+  background: #f0fdfa !important;
+  border-color: #0d9488 !important;
+}
+
+.showing-row {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.showing-date,
+.showing-venue-link {
+  color: #0f172a !important;
+}
+
+.showing-time,
+.showing-address {
+  color: #475569 !important;
+}
+
+.btn-showing-book {
+  background: #f0fdfa !important;
+  border: 1px solid #5eead4 !important;
+  color: #0f766e !important;
+}
+
+/* Price Tier Chips, Film Ratings, Advisory Boxes & Subtags */
+.price-tier-tag {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.price-tier-tag strong,
+.price-tier-tag strong.tier-val {
+  color: #0f172a !important;
+}
+
+.price-tier-tag.tier-student {
+  background: #f0f9ff !important;
+  border-color: #7dd3fc !important;
+  color: #075985 !important;
+}
+.price-tier-tag.tier-student strong.tier-val {
+  color: #0369a1 !important;
+}
+
+.price-tier-tag.tier-adult {
+  background: #ecfdf5 !important;
+  border-color: #6ee7b7 !important;
+  color: #065f46 !important;
+}
+.price-tier-tag.tier-adult strong.tier-val {
+  color: #047857 !important;
+}
+
+.price-tier-tag.tier-senior,
+.price-tier-tag.tier-door-only,
+.price-tier-tag.tier-door {
+  background: #fffbeb !important;
+  border-color: #fcd34d !important;
+  color: #92400e !important;
+}
+.price-tier-tag.tier-senior strong.tier-val,
+.price-tier-tag.tier-door-only strong.tier-val,
+.price-tier-tag.tier-door strong.tier-val {
+  color: #b45309 !important;
+}
+
+.price-tier-tag.tier-youth,
+.price-tier-tag.tier-member {
+  background: #faf5ff !important;
+  border-color: #d8b4fe !important;
+  color: #6b21a8 !important;
+}
+.price-tier-tag.tier-youth strong.tier-val,
+.price-tier-tag.tier-member strong.tier-val {
+  color: #7e22ce !important;
+}
+
+.price-tier-tag.tier-child,
+.price-tier-tag.tier-advance {
+  background: #fdf2f8 !important;
+  border-color: #f9a8d4 !important;
+  color: #9d174d !important;
+}
+.price-tier-tag.tier-child strong.tier-val,
+.price-tier-tag.tier-advance strong.tier-val {
+  color: #be185d !important;
+}
+
+.price-tier-tag strong.tier-free {
+  color: #0f766e !important;
+  text-shadow: none !important;
+}
+
+.tier-status-pill.badge-sold-out {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+  border-color: #fca5a5 !important;
+}
+
+.tier-status-pill.badge-ended {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.tier-status-pill.badge-door {
+  background: #fffbeb !important;
+  color: #92400e !important;
+  border-color: #fcd34d !important;
+}
+
+.card-waypoints-box {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.waypoints-box-header {
+  color: #0f766e !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+.waypoint-name {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+.waypoint-desc {
+  color: #475569 !important;
+}
+
+.film-rating-chip {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.film-rating-chip.rt {
+  background: #fff1f2 !important;
+  border-color: #fda4af !important;
+  color: #be123c !important;
+}
+
+.film-rating-chip.letterboxd {
+  background: #ecfdf5 !important;
+  border-color: #6ee7b7 !important;
+  color: #047857 !important;
+}
+
+.film-rating-chip.imdb {
+  background: #fffbeb !important;
+  border-color: #fcd34d !important;
+  color: #92400e !important;
+}
+
+.film-review-quote {
+  color: #475569 !important;
+}
+
+.card-content-advisory-box {
+  background: #fffbeb !important;
+  border: 1px solid #fcd34d !important;
+  color: #92400e !important;
+}
+
+.card-next-dates-box {
+  background: #f0fdfa !important;
+  border: 1px solid #99f6e4 !important;
+}
+
+.next-dates-badge {
+  color: #0f766e !important;
+}
+
+.next-dates-text {
+  color: #0f172a !important;
+}
+
+.policy-pill {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.subtag-pill,
+.buzzword-pill {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+.subtag-pill:hover {
+  background: #f0fdfa !important;
+  border-color: #0d9488 !important;
+  color: #0f766e !important;
+}

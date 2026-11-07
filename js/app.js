@@ -502,6 +502,165 @@ function formatScheduleText12h(str) {
   });
 }
 
+function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
+  if (rawWh && typeof rawWh === 'object' && !Array.isArray(rawWh)) {
+    return rawWh;
+  }
+  const sourceStr = sanitizeMojibake(String(rawWh || (isDropIn ? fallbackScheduleStr : '') || '').trim());
+  if (!sourceStr && !isDropIn) return null;
+
+  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+  const fullDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  const dayMap = {
+    mon: 0, monday: 0, mondays: 0,
+    tue: 1, tues: 1, tuesday: 1, tuesdays: 1,
+    wed: 2, weds: 2, wednesday: 2, wednesdays: 2,
+    thu: 3, thur: 3, thurs: 3, thursday: 3, thursdays: 3,
+    fri: 4, friday: 4, fridays: 4,
+    sat: 5, saturday: 5, saturdays: 5,
+    sun: 6, sunday: 6, sundays: 6
+  };
+
+  const result = {};
+  if (!sourceStr) {
+    if (isDropIn) {
+      days.forEach((d, idx) => { result[d] = 'Open Daily'; result[fullDays[idx]] = 'Open Daily'; });
+      return result;
+    }
+    return null;
+  }
+
+  // Strip parenthetical commentary that confuses day splitters unless it only has "Closed ..."
+  let cleaned = sourceStr.replace(/\s*•\s*(?:Current Exhibition|Running through|Free First Fridays).*$/i, '').trim();
+
+  // Check if it's a "Daily: X" or "Open Daily: X" pattern
+  if (/^(?:open\s+)?daily\b/i.test(cleaned) && !/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(cleaned.replace(/\s*\([^)]*\)/g, ''))) {
+    const val = cleaned
+      .replace(/^(?:open\s+)?daily(?:\s+year-round)?\s*[:•-]?\s*/i, '')
+      .replace(/\s*\([^)]*\)/g, '')
+      .trim() || 'Open Daily';
+    days.forEach((d, idx) => { result[d] = val; result[fullDays[idx]] = val; });
+    return result;
+  }
+
+  // Check if it has "Plaza & Commons: Daily 10:00 AM - 8:00 PM..."
+  const dailyMatch = cleaned.match(/\bDaily\s*[:•-]?\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM)\s*[-–—to]+\s*(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM)|Dusk|Sunset))/i);
+  if (dailyMatch && !/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(cleaned.replace(/\s*\([^)]*\)/g, ''))) {
+    const val = dailyMatch[1].trim();
+    days.forEach((d, idx) => { result[d] = val; result[fullDays[idx]] = val; });
+    return result;
+  }
+
+  // Split into clauses by ; or • or , when followed by a day name or Closed
+  const withoutParens = cleaned.replace(/\(([^)]*)\)/g, (m, inner) => {
+    if (/\b(closed|until|mon|tue|wed|thu|fri|sat|sun)\b/i.test(inner)) {
+      return '; ' + inner;
+    }
+    return '';
+  });
+
+  const clauses = withoutParens
+    .split(/\s*[;•]\s*|\s*,\s*(?=(?:mon|tue|wed|thu|fri|sat|sun|daily|closed)\b)/i)
+    .map(c => c.trim())
+    .filter(Boolean);
+
+  const dayRegex = /\b(mondays?|mon|tuesdays?|tues?|wednesdays?|weds?|thursdays?|thurs?|thur?|fridays?|fri|saturdays?|sat|sundays?|sun)\b/gi;
+
+  let matchedAny = false;
+  for (const clause of clauses) {
+    // Handle "Closed Mondays" or "Closed Mon-Tue"
+    const closedPrefix = clause.match(/^closed\s+(.+)$/i);
+    let dayPart = '';
+    let hoursPart = '';
+
+    if (closedPrefix) {
+      dayPart = closedPrefix[1];
+      hoursPart = 'Closed';
+    } else if (/^(?:fri|thu|wed|tue|mon|sat|sun)[a-z]*\s+until\s+(\d{1,2}(?::\d{2})?\s*(?:AM|PM))/i.test(clause)) {
+      const untilM = clause.match(/^([a-z]+)\s+until\s+(.+)$/i);
+      if (untilM) {
+        const dIdx = dayMap[untilM[1].toLowerCase()];
+        if (dIdx !== undefined) {
+          const prev = result[days[dIdx]] || '10:00 AM - 5:00 PM';
+          const updated = prev.replace(/[-–—]\s*\d{1,2}(?::\d{2})?\s*(?:AM|PM)/i, `– ${untilM[2].trim()}`);
+          result[days[dIdx]] = updated;
+          result[fullDays[dIdx]] = updated;
+          matchedAny = true;
+        }
+      }
+      continue;
+    } else {
+      // Match day specification before colon or time
+      const colonIdx = clause.search(/:\s*(?=\d|Closed|Open|Sunrise|Dawn)/i);
+      if (colonIdx !== -1) {
+        dayPart = clause.slice(0, colonIdx).trim();
+        hoursPart = clause.slice(colonIdx + 1).trim();
+      } else {
+        const timeStart = clause.search(/\b(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm)|Closed|Open)\b/);
+        if (timeStart > 0) {
+          dayPart = clause.slice(0, timeStart).trim();
+          hoursPart = clause.slice(timeStart).trim();
+        }
+      }
+    }
+
+    if (!dayPart || !hoursPart) continue;
+    hoursPart = hoursPart.replace(/^[:•-]\s*/, '').trim();
+
+    // Parse ranges like "Mon-Wed", "Fri–Sun", "Wednesday, Friday–Sunday", "Tuesday to Sunday"
+    const rangeTokens = dayPart.split(/\s*(?:,|&|and)\s*/i);
+    for (const tok of rangeTokens) {
+      const rangeM = tok.match(/\b(mondays?|mon|tuesdays?|tues?|wednesdays?|weds?|thursdays?|thurs?|thur?|fridays?|fri|saturdays?|sat|sundays?|sun)\s*(?:[-–—]|to)\s*(mondays?|mon|tuesdays?|tues?|wednesdays?|weds?|thursdays?|thurs?|thur?|fridays?|fri|saturdays?|sat|sundays?|sun)\b/i);
+      if (rangeM) {
+        const startIdx = dayMap[rangeM[1].toLowerCase()];
+        const endIdx = dayMap[rangeM[2].toLowerCase()];
+        if (startIdx !== undefined && endIdx !== undefined) {
+          let i = startIdx;
+          while (true) {
+            result[days[i]] = hoursPart;
+            result[fullDays[i]] = hoursPart;
+            matchedAny = true;
+            if (i === endIdx) break;
+            i = (i + 1) % 7;
+          }
+        }
+      } else {
+        let m;
+        dayRegex.lastIndex = 0;
+        while ((m = dayRegex.exec(tok)) !== null) {
+          const idx = dayMap[m[1].toLowerCase()];
+          if (idx !== undefined) {
+            result[days[idx]] = hoursPart;
+            result[fullDays[idx]] = hoursPart;
+            matchedAny = true;
+          }
+        }
+      }
+    }
+  }
+
+  if (matchedAny) {
+    days.forEach((d, idx) => {
+      if (!result[d]) {
+        result[d] = 'Closed';
+        result[fullDays[idx]] = 'Closed';
+      }
+    });
+    return result;
+  }
+
+  if (isDropIn) {
+    const cleanFallback = cleaned.replace(/\s*\([^)]*\)/g, '').trim() || 'Open Daily';
+    days.forEach((d, idx) => {
+      result[d] = cleanFallback;
+      result[fullDays[idx]] = cleanFallback;
+    });
+    return result;
+  }
+
+  return null;
+}
+
 function normalizeActiveEvent(item) {
   if (!item) return item;
 
@@ -572,13 +731,14 @@ function normalizeActiveEvent(item) {
 
   let dateSchedule = "Upcoming";
   const opHours = sanitizeMojibake(item.operating_hours || item.open_hours || item.hours || item.operatingHours || "");
-  const wh = item.weekly_hours || item.weeklyHours || null;
+  const rawWh = item.weekly_hours || item.weeklyHours || null;
+  const wh = parseWeeklyHoursTo7DayObject(rawWh, opHours || item.dateSchedule || item.date_schedule, isFreePublic);
 
   const primaryShow = showings[0] || show1;
 
   if (isFreePublic) {
     if (wh) {
-      dateSchedule = "Visiting Hours (See 7-Day Schedule Below)";
+      dateSchedule = "Open Daily to the Public";
     } else if (opHours) {
       dateSchedule = `Visiting Hours: ${formatScheduleText12h(opHours)}`;
     } else if (show1.start_time && show1.end_time && !/none_available/i.test(show1.start_time)) {
@@ -3040,7 +3200,14 @@ function applyFiltersAndRender() {
     // 3. Day of the Week Filter (Requirement 1)
     if (state.dayOfWeek !== 'all') {
       // Check if weekly_hours explicitly marks this day as Closed
-      const wh = ev.weekly_hours || ev.weeklyHours;
+      const isDropInCard = (
+      (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+      ev.access_model === 'open_public_space' ||
+      ev.access_model === 'free_public_access' ||
+      ev.access_model === 'drop_in_paid' ||
+      ev.isFreePublic
+    );
+    const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
       if (wh && typeof wh === 'object') {
         const fullDayMap = {
           sun: 'sunday', mon: 'monday', tue: 'tuesday', wed: 'wednesday',
@@ -4105,7 +4272,14 @@ function getEventTimeBucket(ev, now = new Date()) {
     // When closed today or closing time has passed, find the next day the venue is actually open
     const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     const FULL_DAY_KEYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-    const wh = ev.weekly_hours || ev.weeklyHours;
+    const isDropInCard = (
+      (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+      ev.access_model === 'open_public_space' ||
+      ev.access_model === 'free_public_access' ||
+      ev.access_model === 'drop_in_paid' ||
+      ev.isFreePublic
+    );
+    const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
     for (let offset = 1; offset <= 7; offset++) {
       const cand = new Date(today);
       cand.setDate(cand.getDate() + offset);
@@ -4427,7 +4601,7 @@ function renderEventCards(events) {
     const isCollapsed = Boolean(state.collapsedTimeGroups && state.collapsedTimeGroups.has(b.key));
     const cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev, b.key)).join('');
     return `
-      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${b.key}" data-group-title="${b.shortTitle}" data-group-range="${b.range}">
+      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${b.key}" data-group-title="${b.shortTitle}" data-group-heading="${b.title}" data-group-range="${b.range}">
         <div class="time-group-header" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${b.key}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${b.title}">
           <div class="time-group-title-wrap">
             <span class="time-group-icon" style="display:none;"></span>
@@ -4645,7 +4819,14 @@ function formatCardTopDate(ev, bucketKey) {
     // Closed for today -> find next open day
     const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     const FULL_DAY_KEYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-    const wh = ev.weekly_hours || ev.weeklyHours;
+    const isDropInCard = (
+      (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+      ev.access_model === 'open_public_space' ||
+      ev.access_model === 'free_public_access' ||
+      ev.access_model === 'drop_in_paid' ||
+      ev.isFreePublic
+    );
+    const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
     for (let offset = 1; offset <= 7; offset++) {
       const cand = new Date(today);
       cand.setDate(cand.getDate() + offset);
@@ -5024,7 +5205,14 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
     // Structured Weekly Hours (Each day on its own line, starting with Monday)
     let weeklyHoursHtml = '';
-    const wh = ev.weekly_hours || ev.weeklyHours;
+    const isDropInCard = (
+      (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+      ev.access_model === 'open_public_space' ||
+      ev.access_model === 'free_public_access' ||
+      ev.access_model === 'drop_in_paid' ||
+      ev.isFreePublic
+    );
+    const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
     if (wh && typeof wh === 'object') {
       const dayOrder = [
         { k: 'mon', full: 'monday', label: 'Monday' },
@@ -5088,7 +5276,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         isPerennialOrFacility
       );
 
-      if (isConsistentFacility) {
+      if (isConsistentFacility || isDropInCard) {
         const rows = dayOrder.map(d => {
           const hoursStr = cleanHoursStr(wh[d.k] || wh[d.full] || 'Hours not listed');
           const isCurrentDay = (d.k === curKey);
@@ -5542,9 +5730,6 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
             ${ctaButtonHtml}
           </div>
-        </div>
-          </div>
-        </div>
         </div>
         </div>
       </article>
@@ -6157,8 +6342,9 @@ window.toggleMobileCardAccordion = function(eventId, evObj) {
 window.updateScrollDateIndicator = function() {
   const stickyBar = document.getElementById('mobile-search-filter-bar');
   const scrollDateBar = document.getElementById('scroll-date-bar');
-  const scrollDateLabel = document.getElementById('scroll-date-label');
-  if (!stickyBar || !scrollDateBar || !scrollDateLabel) return;
+  const scrollDateTitle = document.getElementById('scroll-date-title');
+  const scrollDateRange = document.getElementById('scroll-date-range');
+  if (!stickyBar || !scrollDateBar || !scrollDateTitle) return;
 
   const scrollY = window.scrollY || window.pageYOffset || 0;
   const isScrolled = scrollY > 110;
@@ -6172,7 +6358,6 @@ window.updateScrollDateIndicator = function() {
   const barRect = stickyBar.getBoundingClientRect();
   const probeY = Math.max(barRect.bottom + 18, 76);
 
-  // Find the active event card or time group at probeY
   const cards = document.querySelectorAll('.event-card[data-scroll-date]');
   let activeCard = null;
   for (let i = 0; i < cards.length; i++) {
@@ -6183,39 +6368,41 @@ window.updateScrollDateIndicator = function() {
     }
   }
 
-  let dateDisplay = '';
+  let titleDisplay = '';
+  let rangeDisplay = '';
   if (activeCard) {
     const cardDate = activeCard.getAttribute('data-scroll-date') || '';
     const parentGroup = activeCard.closest('.events-time-group');
-    const groupTitle = parentGroup ? (parentGroup.getAttribute('data-group-title') || '') : '';
+    const groupHeading = parentGroup ? (parentGroup.getAttribute('data-group-heading') || parentGroup.getAttribute('data-group-title') || '') : '';
     const groupRange = parentGroup ? (parentGroup.getAttribute('data-group-range') || '') : '';
 
-    if (cardDate) {
-      if (groupTitle && !cardDate.toLowerCase().startsWith(groupTitle.toLowerCase())) {
-        dateDisplay = `${groupTitle} • ${cardDate}`;
-      } else if (groupRange && (cardDate.startsWith('Today') || cardDate.startsWith('Tomorrow'))) {
-        dateDisplay = `${groupTitle} — ${groupRange}`;
-      } else {
-        dateDisplay = cardDate;
-      }
+    titleDisplay = groupHeading || cardDate;
+    if (cardDate && !cardDate.toLowerCase().startsWith('today') && !cardDate.toLowerCase().startsWith('tomorrow')) {
+      rangeDisplay = cardDate;
+    } else {
+      rangeDisplay = groupRange || cardDate;
     }
   }
 
-  if (!dateDisplay) {
+  if (!titleDisplay) {
     const groups = document.querySelectorAll('.events-time-group');
     for (let i = 0; i < groups.length; i++) {
       const r = groups[i].getBoundingClientRect();
       if (r.bottom >= probeY) {
-        const gTitle = groups[i].getAttribute('data-group-title') || '';
-        const gRange = groups[i].getAttribute('data-group-range') || '';
-        dateDisplay = gRange ? `${gTitle} — ${gRange}` : gTitle;
+        titleDisplay = groups[i].getAttribute('data-group-heading') || groups[i].getAttribute('data-group-title') || '';
+        rangeDisplay = groups[i].getAttribute('data-group-range') || '';
         break;
       }
     }
   }
 
-  if (dateDisplay) {
-    scrollDateLabel.textContent = dateDisplay;
+  if (titleDisplay) {
+    scrollDateTitle.textContent = titleDisplay;
+    if (scrollDateRange) {
+      const showRange = rangeDisplay && rangeDisplay.toLowerCase() !== titleDisplay.toLowerCase();
+      scrollDateRange.textContent = showRange ? rangeDisplay : '';
+      scrollDateRange.style.display = showRange ? 'inline-flex' : 'none';
+    }
     scrollDateBar.style.display = 'flex';
   } else {
     scrollDateBar.style.display = 'none';
