@@ -1,57 +1,56 @@
 /* ==============================================================================
    Van50 — Core Design Tokens & Global Stylesheet
-   Modern, ultra-premium dark theme inspired by Linear and Raycast.
-   Ultra-responsive, mobile-first design system for authentic Vancouver discovery.
+   Clean, calm, light-first design system for effortless Vancouver discovery.
    ============================================================================== */
 
 :root {
-  /* Color Palette - Deep Dark Surfaces & Vivid Glows */
-  --bg-base: #080c14;
-  --bg-surface: #0f172a;
-  --bg-card: #141e33;
-  --bg-card-hover: #192744;
-  --bg-card-active: #1e2e50;
+  /* Color Palette - Clean Light Surfaces & Calm Accents */
+  --bg-base: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-card-active: #e2e8f0;
   
-  --border-subtle: #1e293b;
-  --border-medium: #27364f;
-  --border-glow: rgba(16, 185, 129, 0.35);
+  --border-subtle: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-glow: rgba(13, 148, 136, 0.25);
   
   /* Brand Accent Tokens */
-  --accent-primary: #10b981;        /* Emerald / Affordable */
-  --accent-primary-glow: rgba(16, 185, 129, 0.2);
-  --accent-secondary: #06b6d4;      /* Cyan / Modern */
-  --accent-secondary-glow: rgba(6, 182, 212, 0.2);
+  --accent-primary: #0d9488;        /* Pacific Teal */
+  --accent-primary-glow: rgba(13, 148, 136, 0.12);
+  --accent-secondary: #0284c7;      /* Ocean Blue */
+  --accent-secondary-glow: rgba(2, 132, 199, 0.12);
   
-  /* Recurrence Frequency Color Accents */
-  --freq-weekly: #a855f7;           /* Vibrant Purple */
-  --freq-weekly-bg: rgba(168, 85, 247, 0.12);
-  --freq-monthly: #06b6d4;          /* Cyan */
-  --freq-monthly-bg: rgba(6, 182, 212, 0.12);
-  --freq-daily: #f59e0b;            /* Warm Amber */
-  --freq-daily-bg: rgba(245, 158, 11, 0.12);
-  --freq-oneoff: #f43f5e;           /* Rose */
-  --freq-oneoff-bg: rgba(244, 63, 94, 0.12);
-  --freq-seasonal: #10b981;         /* Emerald */
-  --freq-seasonal-bg: rgba(16, 185, 129, 0.12);
+  /* Recurrence Frequency Color Accents (Muted & Calm) */
+  --freq-weekly: #6366f1;
+  --freq-weekly-bg: rgba(99, 102, 241, 0.08);
+  --freq-monthly: #0284c7;
+  --freq-monthly-bg: rgba(2, 132, 199, 0.08);
+  --freq-daily: #d97706;
+  --freq-daily-bg: rgba(217, 119, 6, 0.08);
+  --freq-oneoff: #e11d48;
+  --freq-oneoff-bg: rgba(225, 29, 72, 0.08);
+  --freq-seasonal: #0d9488;
+  --freq-seasonal-bg: rgba(13, 148, 136, 0.08);
 
   /* Typography Colors */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
   --text-muted: #64748b;
-  --text-inverse: #041018;
+  --text-inverse: #ffffff;
 
   /* Fonts */
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Elevations & Transitions */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
-  --shadow-glow: 0 0 24px rgba(16, 185, 129, 0.25);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 2px 10px rgba(13, 148, 136, 0.14);
   
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 16px;
   --radius-full: 9999px;
 
@@ -72,14 +71,13 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 100%;
-  overflow-x: clip;
 }
 
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
   font-family: var(--font-body);
-  line-height: 1.5;
+  line-height: 1.55;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -107,30 +105,30 @@ button {
 .container {
   width: 100%;
   min-width: 0;
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 14px;
+    padding: 0 16px;
     max-width: 100%;
   }
 }
 
 /* ==============================================================================
-   Site Header (Glassmorphic Top Bar)
+   Site Header
    ============================================================================== */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 90;
-  background: rgba(8, 12, 20, 0.82);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
-  height: 68px;
+  height: 64px;
   display: flex;
   align-items: center;
 }
@@ -150,7 +148,7 @@ button {
   font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #fff;
+  color: var(--text-primary);
   transition: transform var(--transition-fast);
   flex-shrink: 0;
 }
@@ -160,8 +158,7 @@ button {
 }
 
 .brand-icon {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+  font-size: 1.45rem;
 }
 
 .brand-name span {
@@ -171,9 +168,9 @@ button {
 .brand-badge {
   font-size: 0.7rem;
   font-weight: 700;
-  background: rgba(16, 185, 129, 0.12);
-  color: var(--accent-primary);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: rgba(13, 148, 136, 0.1);
+  color: #0f766e;
+  border: 1px solid rgba(13, 148, 136, 0.25);
   padding: 2px 8px;
   border-radius: var(--radius-full);
   letter-spacing: 0.04em;
@@ -200,20 +197,6 @@ button {
   transition: all var(--transition-fast);
 }
 
-.btn-roulette {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(16, 185, 129, 0.15));
-  color: #e2e8f0;
-  border: 1px solid rgba(6, 182, 212, 0.35);
-}
-
-.btn-roulette:hover {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.28), rgba(16, 185, 129, 0.28));
-  color: #fff;
-  border-color: var(--accent-secondary);
-  box-shadow: 0 0 14px rgba(6, 182, 212, 0.3);
-  transform: translateY(-1px);
-}
-
 .btn-accessibility {
   background: var(--bg-surface);
   color: var(--text-secondary);
@@ -226,17 +209,16 @@ button {
 }
 
 .btn-accessibility:hover {
-  color: #38bdf8;
-  border-color: rgba(56, 189, 248, 0.4);
-  background: rgba(56, 189, 248, 0.08);
+  color: var(--accent-secondary);
+  border-color: rgba(2, 132, 199, 0.35);
+  background: rgba(2, 132, 199, 0.06);
 }
 
 .btn-accessibility.active {
-  background: #38bdf8;
-  color: #041018;
-  border-color: #38bdf8;
+  background: var(--accent-secondary);
+  color: #ffffff;
+  border-color: var(--accent-secondary);
   font-weight: 700;
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
 }
 
 .btn-itinerary {
@@ -248,12 +230,12 @@ button {
 
 .btn-itinerary:hover {
   border-color: var(--border-medium);
-  background: var(--bg-card);
+  background: var(--bg-card-hover);
 }
 
 .itinerary-count-badge {
   background: var(--accent-primary);
-  color: var(--text-inverse);
+  color: #ffffff;
   font-size: 0.74rem;
   font-weight: 800;
   padding: 1px 7px;
@@ -266,7 +248,7 @@ button {
    Hero Section
    ============================================================================== */
 .hero-section {
-  padding: 26px 0 16px;
+  padding: 28px 0 18px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -275,18 +257,17 @@ button {
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.65rem, 4vw, 2.55rem);
+  font-size: clamp(1.65rem, 4vw, 2.45rem);
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.15;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
   margin-bottom: 8px;
   max-width: 780px;
+  color: var(--text-primary);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent-primary);
   display: inline-block;
 }
 
@@ -295,43 +276,15 @@ button {
   color: var(--text-secondary);
   max-width: 640px;
   margin-bottom: 12px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-.central-feed-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid var(--border-subtle);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-}
-
-.sync-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--accent-primary);
-  box-shadow: 0 0 10px var(--accent-primary);
-  animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-  0% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(0.85); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* Search Bar */
+/* Search Bar & Sticky Scroll Date Bar */
 .search-wrapper {
   position: relative;
   width: 100%;
   max-width: 580px;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .search-icon {
@@ -340,15 +293,17 @@ button {
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   pointer-events: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .search-input {
   width: 100%;
   padding: 12px 38px 12px 44px;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-medium);
   border-radius: var(--radius-full);
   color: var(--text-primary);
   font-size: 0.95rem;
@@ -360,34 +315,84 @@ button {
 
 .search-input:focus {
   border-color: var(--accent-primary);
-  background: var(--bg-card);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15), var(--shadow-md);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.14);
 }
 
 .search-input::placeholder {
   color: var(--text-muted);
 }
 
-/* Desktop defaults for mobile search/filter bar */
+/* Desktop & Mobile Search/Filter Sticky Bar */
 .mobile-search-filter-bar {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 0 auto 10px;
+  margin: 0 auto 14px;
+  position: sticky;
+  top: 64px;
+  z-index: 85;
+  background: rgba(248, 250, 252, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 0;
+  transition: box-shadow 0.2s ease;
+}
+
+.mobile-search-filter-bar.is-scrolled {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.search-filter-main-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .mobile-filter-trigger {
   display: none;
 }
 
+/* Live Scrolled Date Bar inside Sticky Search/Filter Header */
+.scroll-date-bar {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 5px 12px 1px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.25;
+}
+
+.scroll-date-prefix {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.scroll-date-label {
+  color: #0f766e;
+  font-weight: 700;
+  background: rgba(13, 148, 136, 0.1);
+  border: 1px solid rgba(13, 148, 136, 0.22);
+  padding: 2px 9px;
+  border-radius: var(--radius-full);
+}
+
 @media (max-width: 768px) {
   .site-header {
     position: relative;
-    height: 50px;
+    height: 54px;
+    background: #ffffff;
   }
   .brand-logo {
-    font-size: 1.2rem;
+    font-size: 1.22rem;
     gap: 6px;
   }
   .brand-icon {
@@ -397,13 +402,13 @@ button {
     display: none;
   }
   .nav-actions {
-    gap: 6px;
+    gap: 8px;
   }
   .nav-actions .btn {
-    height: 34px;
-    padding: 0 10px !important;
-    font-size: 0.78rem !important;
-    border-radius: 8px !important;
+    height: 36px;
+    padding: 0 11px !important;
+    font-size: 0.8rem !important;
+    border-radius: 9px !important;
     gap: 4px !important;
   }
   .btn-accessibility .access-label,
@@ -414,11 +419,11 @@ button {
     margin-right: 1px !important;
   }
   .hero-section {
-    padding: 8px 16px !important;
+    padding: 14px 16px 10px !important;
   }
   .hero-title {
-    font-size: 1.25rem !important;
-    line-height: 1.2 !important;
+    font-size: 1.3rem !important;
+    line-height: 1.25 !important;
     margin-bottom: 0 !important;
   }
   .hero-subtitle,
@@ -426,19 +431,22 @@ button {
     display: none !important;
   }
   .mobile-search-filter-bar {
-    display: flex;
-    gap: 8px;
-    align-items: center;
     position: sticky;
     top: 0;
-    z-index: 40;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: rgba(8, 12, 20, 0.92);
-    padding: 8px 14px;
-    margin: 0 -14px 4px;
-    width: calc(100% + 28px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 85;
+    background: rgba(248, 250, 252, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px 16px;
+    margin: 0 -16px 8px;
+    width: calc(100% + 32px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .search-filter-main-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
   }
   .mobile-search-filter-bar .search-wrapper {
     flex: 1 1 auto;
@@ -447,15 +455,16 @@ button {
     margin-top: 0;
   }
   .mobile-search-filter-bar .search-icon {
-    left: 13px;
+    left: 14px;
     display: inline-flex;
     align-items: center;
   }
   .mobile-search-filter-bar .search-input {
-    /* 16px (1rem) prevents iOS Safari from auto-zooming on input focus */
     font-size: 1rem;
-    height: 40px;
-    padding: 8px 32px 8px 36px !important;
+    height: 42px;
+    padding: 8px 34px 8px 38px !important;
+    background: #ffffff;
+    border: 1px solid var(--border-medium);
   }
   .mobile-filter-trigger {
     display: inline-flex;
@@ -463,14 +472,14 @@ button {
     justify-content: center;
     gap: 6px;
     flex: 0 0 auto;
-    height: 40px;
-    min-height: 40px;
-    padding: 0 13px;
+    height: 42px;
+    min-height: 42px;
+    padding: 0 15px;
     border-radius: var(--radius-full);
-    background: var(--bg-surface);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    color: #e2e8f0;
-    font-size: 0.82rem;
+    background: #ffffff;
+    border: 1px solid var(--border-medium);
+    color: var(--text-primary);
+    font-size: 0.85rem;
     font-weight: 700;
     white-space: nowrap;
     cursor: pointer;
@@ -478,8 +487,13 @@ button {
     transition: all var(--transition-fast);
   }
   .mobile-filter-trigger.has-active-filters {
-    background: rgba(16, 185, 129, 0.16);
+    background: rgba(13, 148, 136, 0.1);
     border-color: var(--accent-primary);
-    color: #34d399;
+    color: #0f766e;
+  }
+  .scroll-date-bar {
+    justify-content: flex-start;
+    padding: 7px 2px 1px;
+    font-size: 0.78rem;
   }
 }

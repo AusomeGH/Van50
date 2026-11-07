@@ -4398,11 +4398,11 @@ function renderEventCards(events) {
   });
 
   const bucketMeta = [
-    { key: 'today', title: "Today's Events", shortTitle: "Today", icon: '⚡', range: todayLabel, list: buckets.today },
-    { key: 'tomorrow', title: "Tomorrow's Events", shortTitle: "Tomorrow", icon: '🌅', range: tomorrowLabel, list: buckets.tomorrow },
-    { key: 'this_week', title: "This Week's Events", shortTitle: "This Week", icon: '🗓️', range: thisWeekLabel, list: buckets.this_week },
-    { key: 'next_week', title: "Next Week's Events", shortTitle: "Next Week", icon: '📅', range: nextWeekLabel, list: buckets.next_week },
-    { key: 'upcoming', title: "Upcoming & Future Events", shortTitle: "Upcoming", icon: '🔮', range: upcomingLabel, list: buckets.upcoming }
+    { key: 'today', title: "Today's Events", shortTitle: "Today", icon: '', range: todayLabel, list: buckets.today },
+    { key: 'tomorrow', title: "Tomorrow's Events", shortTitle: "Tomorrow", icon: '', range: tomorrowLabel, list: buckets.tomorrow },
+    { key: 'this_week', title: "This Week's Events", shortTitle: "This Week", icon: '', range: thisWeekLabel, list: buckets.this_week },
+    { key: 'next_week', title: "Next Week's Events", shortTitle: "Next Week", icon: '', range: nextWeekLabel, list: buckets.next_week },
+    { key: 'upcoming', title: "Upcoming & Future Events", shortTitle: "Upcoming", icon: '', range: upcomingLabel, list: buckets.upcoming }
   ];
 
   const activeBuckets = bucketMeta.filter(b => b.list.length > 0);
@@ -4414,7 +4414,7 @@ function renderEventCards(events) {
       <nav class="time-nav-bar" aria-label="Jump to event timeframes">
         ${activeBuckets.map(b => `
           <a href="#group-${b.key}" class="time-nav-pill" onclick="smoothScrollToTimeGroup('group-${b.key}', event)">
-            <span>${b.icon} ${b.shortTitle}</span>
+            <span>${b.shortTitle}</span>
             <span class="time-nav-count">${b.list.length}</span>
           </a>
         `).join('')}
@@ -4427,10 +4427,10 @@ function renderEventCards(events) {
     const isCollapsed = Boolean(state.collapsedTimeGroups && state.collapsedTimeGroups.has(b.key));
     const cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev, b.key)).join('');
     return `
-      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${b.key}">
+      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${b.key}" data-group-title="${b.shortTitle}" data-group-range="${b.range}">
         <div class="time-group-header" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${b.key}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${b.title}">
           <div class="time-group-title-wrap">
-            <span class="time-group-icon">${b.icon}</span>
+            <span class="time-group-icon" style="display:none;"></span>
             <h2 class="time-group-title">${b.title}</h2>
             <span class="time-group-date-range">${b.range}</span>
           </div>
@@ -4444,7 +4444,7 @@ function renderEventCards(events) {
         </div>
         ${isCollapsed ? `
           <div class="time-group-collapsed-banner" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" title="Click to expand ${b.title}">
-            <span class="collapsed-banner-info">${b.icon} <strong>${b.title}</strong> is collapsed (${b.list.length} event${b.list.length === 1 ? '' : 's'})</span>
+            <span class="collapsed-banner-info"><strong>${b.title}</strong> is collapsed (${b.list.length} event${b.list.length === 1 ? '' : 's'})</span>
             <span class="collapsed-banner-action">Click to expand outings ▾</span>
           </div>
         ` : `
@@ -4456,7 +4456,7 @@ function renderEventCards(events) {
     `;
   }).join('');
 
-  grid.innerHTML = venueBannerHtml + navBarHtml + sectionsHtml;
+  grid.innerHTML = venueBannerHtml + navBarHtml + sectionsHtml; if (typeof window.updateScrollDateIndicator === 'function') window.updateScrollDateIndicator();
 }
 
 function formatCardTopDate(ev, bucketKey) {
@@ -5330,7 +5330,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     const isHappeningNow = isEventHappeningNow(ev, new Date());
 
     return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" data-scroll-date="${topDate.badgeText}" data-bucket-key="${bucketKey}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
@@ -6149,3 +6149,78 @@ window.toggleMobileCardAccordion = function(eventId, evObj) {
   if (!cardEl) return;
   cardEl.classList.toggle('mobile-expanded');
 };
+
+
+// ==============================================================================
+// STICKY SEARCH/FILTER BAR & LIVE SCROLLED DATE INDICATOR
+// ==============================================================================
+window.updateScrollDateIndicator = function() {
+  const stickyBar = document.getElementById('mobile-search-filter-bar');
+  const scrollDateBar = document.getElementById('scroll-date-bar');
+  const scrollDateLabel = document.getElementById('scroll-date-label');
+  if (!stickyBar || !scrollDateBar || !scrollDateLabel) return;
+
+  const scrollY = window.scrollY || window.pageYOffset || 0;
+  const isScrolled = scrollY > 110;
+  stickyBar.classList.toggle('is-scrolled', isScrolled);
+
+  if (!isScrolled) {
+    scrollDateBar.style.display = 'none';
+    return;
+  }
+
+  const barRect = stickyBar.getBoundingClientRect();
+  const probeY = Math.max(barRect.bottom + 18, 76);
+
+  // Find the active event card or time group at probeY
+  const cards = document.querySelectorAll('.event-card[data-scroll-date]');
+  let activeCard = null;
+  for (let i = 0; i < cards.length; i++) {
+    const r = cards[i].getBoundingClientRect();
+    if (r.bottom >= probeY && r.top <= window.innerHeight) {
+      activeCard = cards[i];
+      break;
+    }
+  }
+
+  let dateDisplay = '';
+  if (activeCard) {
+    const cardDate = activeCard.getAttribute('data-scroll-date') || '';
+    const parentGroup = activeCard.closest('.events-time-group');
+    const groupTitle = parentGroup ? (parentGroup.getAttribute('data-group-title') || '') : '';
+    const groupRange = parentGroup ? (parentGroup.getAttribute('data-group-range') || '') : '';
+
+    if (cardDate) {
+      if (groupTitle && !cardDate.toLowerCase().startsWith(groupTitle.toLowerCase())) {
+        dateDisplay = `${groupTitle} • ${cardDate}`;
+      } else if (groupRange && (cardDate.startsWith('Today') || cardDate.startsWith('Tomorrow'))) {
+        dateDisplay = `${groupTitle} — ${groupRange}`;
+      } else {
+        dateDisplay = cardDate;
+      }
+    }
+  }
+
+  if (!dateDisplay) {
+    const groups = document.querySelectorAll('.events-time-group');
+    for (let i = 0; i < groups.length; i++) {
+      const r = groups[i].getBoundingClientRect();
+      if (r.bottom >= probeY) {
+        const gTitle = groups[i].getAttribute('data-group-title') || '';
+        const gRange = groups[i].getAttribute('data-group-range') || '';
+        dateDisplay = gRange ? `${gTitle} — ${gRange}` : gTitle;
+        break;
+      }
+    }
+  }
+
+  if (dateDisplay) {
+    scrollDateLabel.textContent = dateDisplay;
+    scrollDateBar.style.display = 'flex';
+  } else {
+    scrollDateBar.style.display = 'none';
+  }
+};
+
+window.addEventListener('scroll', window.updateScrollDateIndicator, { passive: true });
+window.addEventListener('resize', window.updateScrollDateIndicator, { passive: true });

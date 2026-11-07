@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Van50 — Vancouver Events & Outings ($50 or Less)</title>
   <meta name="description" content="Discover authentic, affordable Vancouver events, comedy, indie cinema, music, trivia, and scenic outings strictly under $50.00 CAD total out-of-pocket per person.">
-  <meta name="theme-color" content="#080c14">
+  <meta name="theme-color" content="#f8fafc">
 
   <!-- Android & iOS Mobile Web App Capabilities -->
   <link rel="manifest" href="manifest.json">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Van50">
   <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -36,8 +36,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="no-referrer">
 
-  <link rel="stylesheet" href="css/style.css?v=7.8.2">
-  <link rel="stylesheet" href="css/components.css?v=7.8.2">
+  <link rel="stylesheet" href="css/style.css?v=7.9.0">
+  <link rel="stylesheet" href="css/components.css?v=7.9.0">
 
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
@@ -60,11 +60,11 @@
           <span class="access-label">Accessibility</span>
         </button>
         <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Events">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           <span class="nav-btn-label">Saved Events</span>
           <span class="itinerary-count-badge" id="itinerary-count">0</span>
         </button>
-        <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue" title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue" style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.08); color: #34d399; padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
+        <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue" title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue" style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(13, 148, 136, 0.3); background: rgba(13, 148, 136, 0.08); color: #0f766e; padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
           <span aria-hidden="true">💡</span>
           <span class="nav-btn-label">Suggest / Report</span>
         </button>
@@ -86,22 +86,29 @@
     </section>
 
     <div class="mobile-search-filter-bar" id="mobile-search-filter-bar">
-      <div class="search-wrapper">
-        <span class="search-icon">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </span>
-        <input 
-          type="text" 
-          id="search-input" 
-          class="search-input" 
-          placeholder="Search events, venues, or tags..."
-          aria-label="Search events"
-          autocomplete="off"
-          spellcheck="false"
-        >
-        <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">✕</button>
+      <div class="search-filter-main-row">
+        <div class="search-wrapper">
+          <span class="search-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Search events, venues, or tags..."
+            aria-label="Search events"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">✕</button>
+        </div>
+        <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">⚙️ Filters</button>
       </div>
-      <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">⚙️ Filters</button>
+      <!-- Live Scrolled Date Indicator (Visible when scrolling through events) -->
+      <div class="scroll-date-bar" id="scroll-date-bar" aria-live="polite" style="display: none;">
+        <span class="scroll-date-prefix">Viewing:</span>
+        <span class="scroll-date-label" id="scroll-date-label">Today</span>
+      </div>
     </div>
 
     <!-- Filter Controls Hub -->
@@ -301,7 +308,7 @@
       <button class="modal-close-btn" id="close-roulette-modal" aria-label="Close modal">✕</button>
       
       <div class="roulette-container">
-        <h2 id="roulette-modal-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">
+        <h2 id="roulette-modal-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">
           Surprise Outing Generator
         </h2>
         <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 16px;">
@@ -329,7 +336,7 @@
       <button class="modal-close-btn" id="close-review-queue-btn" aria-label="Close Review Queue">✕</button>
 
       <div class="modal-header">
-        <h2 class="modal-title" id="review-queue-title" style="color: #f59e0b;">
+        <h2 class="modal-title" id="review-queue-title" style="color: #d97706;">
           Manual Review Quarantine Queue
         </h2>
         <p class="modal-desc" style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px;">
@@ -350,10 +357,10 @@
       <button class="modal-close-btn" id="close-price-feedback-btn" aria-label="Close Price Feedback">✕</button>
 
       <div style="margin-bottom: 16px;">
-        <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-primary); background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 4px; padding: 2px 8px; margin-bottom: 6px;">
+        <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-primary); background: rgba(13, 148, 136, 0.1); border: 1px solid rgba(13, 148, 136, 0.25); border-radius: 4px; padding: 2px 8px; margin-bottom: 6px;">
           Vancouver Outing Budgeting
         </span>
-        <h2 id="price-feedback-title" style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 4px;">
+        <h2 id="price-feedback-title" style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">
           Suggest Price Update
         </h2>
         <div id="price-feedback-venue-display" style="font-size: 0.96rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">
@@ -396,8 +403,8 @@
         </div>
 
 
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 12px;">
-          <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.82rem; color: #fff; font-weight: 500;">
+        <div style="background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 12px;">
+          <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.82rem; color: var(--text-primary); font-weight: 500;">
             <input type="checkbox" id="price-feedback-all-in" style="margin-top: 2px; accent-color: var(--accent-primary);">
             <span>Price is all-in / tax included (without tip)</span>
           </label>
@@ -428,8 +435,8 @@
   <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Saved Events Drawer">
     <div class="mobile-sheet-handle" aria-hidden="true"></div>
     <div class="itinerary-header">
-      <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         <span>Saved Events</span>
       </h3>
       <button class="modal-close-btn" id="close-itinerary-btn" style="position: static; font-size: 1.2rem;" aria-label="Close Saved Events">✕</button>
@@ -459,16 +466,16 @@
   </aside>
 
   <!-- Site Footer -->
-  <footer style="border-top: 1px solid var(--border-subtle); padding: 32px 0 26px; text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: auto;">
+  <footer class="site-footer" style="border-top: 1px solid var(--border-subtle); padding: 36px 0 32px; text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: auto;">
     <div class="container">
-      <p style="margin-bottom: 6px;">
+      <p style="margin-bottom: 6px; color: var(--text-secondary);">
         <strong>Van50</strong> — Curated Vancouver Events &amp; Outings Guide (Under $50 CAD). Strictly local independent arts, comedy, music, and outdoors.
       </p>
-      <p style="font-size: 0.74rem; color: var(--text-secondary); opacity: 0.85;">
+      <p style="font-size: 0.74rem; color: var(--text-muted);">
         Single Reference Source Architecture (Verified Local Feeds • 0 Client-Side Scraping).
       </p>
-      <p style="margin-top: 10px;">
-        <button type="button" id="feedback-footer-btn" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; border-radius: 20px; padding: 5px 16px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+      <p style="margin-top: 12px;">
+        <button type="button" id="feedback-footer-btn" style="background: rgba(13, 148, 136, 0.08); border: 1px solid rgba(13, 148, 136, 0.3); color: #0f766e; border-radius: 20px; padding: 6px 18px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
           💡 Suggest a Show (≤ $50 CAD) or Report an Issue
         </button>
       </p>
@@ -489,11 +496,11 @@
 
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
         <span style="font-size: 1.4rem;">💬</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: #fff; margin: 0;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin: 0;">
           Feedback &amp; Suggestions
         </h3>
       </div>
-      <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
+      <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5;">
         Have an event or venue recommendation (≤ $50 CAD), issue/price update, or thought to share? Enter it below. If you'd like us to follow up, feel free to include your contact email or phone number in the box.
       </p>
 
@@ -511,7 +518,7 @@
             required 
             placeholder="Type your feedback, suggestion, venue tip, or event update here...&#10;&#10;(Feel free to leave a contact email or phone number here if you'd like a reply)" 
             maxlength="2000" 
-            style="width: 100%; padding: 12px 14px; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); color: #fff; font-size: 0.88rem; line-height: 1.5; resize: vertical; box-sizing: border-box;"></textarea>
+            style="width: 100%; padding: 12px 14px; background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.88rem; line-height: 1.5; resize: vertical; box-sizing: border-box;"></textarea>
         </div>
 
         <input type="hidden" id="feedback-target-event-id" value="">
@@ -519,8 +526,8 @@
         <div id="feedback-alert" style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.82rem; margin-bottom: 14px;"></div>
 
         <div style="display: flex; justify-content: flex-end; gap: 10px;">
-          <button type="button" class="btn" id="btn-cancel-feedback" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-subtle); color: var(--text-muted); cursor: pointer; padding: 8px 16px; border-radius: var(--radius-md);">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="btn-submit-feedback" style="background: #10b981; border: none; font-weight: 600; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-md); color: #fff;">Send Feedback</button>
+          <button type="button" class="btn" id="btn-cancel-feedback" style="background: #f1f5f9; border: 1px solid var(--border-subtle); color: var(--text-secondary); cursor: pointer; padding: 8px 16px; border-radius: var(--radius-md);">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit-feedback" style="background: #0d9488; border: none; font-weight: 600; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-md); color: #fff;">Send Feedback</button>
         </div>
       </form>
     </div>
@@ -533,12 +540,12 @@
       document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
     }
   </script>
-  <script src="js/data.js?v=7.8.2"></script>
+  <script src="js/data.js?v=7.9.0"></script>
   <script src="js/accessibility.js?v=1.0.0"></script>
-  <script src="js/map.js?v=7.8.2"></script>
-  <script src="js/roulette.js?v=7.8.2"></script>
-  <script src="js/app.js?v=7.8.2"></script>
-  <script src="js/pwa-install.js?v=7.8.2"></script>
+  <script src="js/map.js?v=7.9.0"></script>
+  <script src="js/roulette.js?v=7.9.0"></script>
+  <script src="js/app.js?v=7.9.0"></script>
+  <script src="js/pwa-install.js?v=7.9.0"></script>
 
 </body>
 </html>

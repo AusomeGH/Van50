@@ -6260,3 +6260,572 @@ div[aria-label="View Switcher"] {
     padding-bottom: calc(28px + env(safe-area-inset-bottom)) !important;
   }
 }
+
+
+/* ============================================================================
+   VAN50 LIGHT THEME, SIMPLIFIED PALETTE & INCREASED BREATHING ROOM
+   ============================================================================ */
+
+/* 1. Ensure sticky search/filter bar works natively by keeping ancestors overflow-visible */
+html,
+main.container {
+  overflow-x: visible !important;
+}
+
+body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  overflow-x: clip !important;
+}
+
+/* 2. Desktop & General Filter Hub Light Theme */
+.filters-hub {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  padding: 20px 22px !important;
+  margin-bottom: 24px !important;
+  border-radius: 16px !important;
+}
+
+.category-pill,
+.day-pill,
+.time-pill,
+.neighborhood-pill,
+.freq-filter-pill,
+.cost-quick-btn,
+.category-grid-toggle {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+
+.category-pill:hover,
+.day-pill:hover,
+.time-pill:hover,
+.neighborhood-pill:hover,
+.freq-filter-pill:hover,
+.cost-quick-btn:hover {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+.category-pill.active,
+.day-pill.active,
+.time-pill.active,
+.neighborhood-pill.active,
+.freq-filter-pill.active,
+.cost-quick-btn.active {
+  background: #0d9488 !important;
+  border-color: #0d9488 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.22) !important;
+}
+
+.scheduled-only-toggle,
+.accessible-only-toggle,
+.btn-reset-filters-top {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.spend-range-label,
+.days-header,
+.times-header,
+.neighborhoods-header,
+.frequencies-header {
+  color: #0f172a !important;
+}
+
+.spend-readout-badge {
+  background: rgba(13, 148, 136, 0.1) !important;
+  border: 1px solid rgba(13, 148, 136, 0.25) !important;
+  color: #0f766e !important;
+}
+
+/* 3. Results Count, Timeframe Quick-Nav & Section Headers (Light & Spacious) */
+.results-count-bar {
+  color: #475569 !important;
+  font-size: 0.9rem !important;
+  margin: 12px 0 16px !important;
+}
+
+.results-count-bar strong {
+  color: #0f172a !important;
+}
+
+.time-nav-bar {
+  background: transparent !important;
+  gap: 10px !important;
+  margin-bottom: 22px !important;
+}
+
+.time-nav-pill {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  padding: 8px 14px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+
+.time-nav-pill:hover {
+  background: #f1f5f9 !important;
+  border-color: #0d9488 !important;
+  color: #0f766e !important;
+}
+
+.time-nav-count {
+  background: #f1f5f9 !important;
+  color: #0f766e !important;
+  font-weight: 700 !important;
+}
+
+.events-time-group {
+  margin-bottom: 36px !important;
+}
+
+.time-group-header {
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 18px !important;
+}
+
+.time-group-header::after {
+  background: #0d9488 !important;
+  height: 2px !important;
+  width: 64px !important;
+}
+
+.time-group-icon {
+  display: none !important;
+}
+
+.time-group-title {
+  color: #0f172a !important;
+  font-size: 1.25rem !important;
+}
+
+.time-group-date-range {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+.btn-group-collapse-toggle {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+.btn-group-collapse-toggle:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.time-group-collapsed-banner {
+  background: #ffffff !important;
+  border: 1px dashed #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+/* 4. Event Cards (Clean White Cards, Subtle Borders, Increased Spacing) */
+.events-grid,
+.time-group-cards-grid {
+  gap: 20px !important;
+}
+
+.event-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  padding: 20px 22px !important;
+  border-radius: 16px !important;
+  color: #0f172a !important;
+}
+
+.event-card:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07) !important;
+}
+
+.event-card.card-happening-now {
+  border-color: rgba(13, 148, 136, 0.45) !important;
+}
+
+.card-title,
+.card-title-link,
+.mobile-card-title {
+  color: #0f172a !important;
+}
+
+.card-desc,
+.card-description {
+  color: #334155 !important;
+  line-height: 1.55 !important;
+}
+
+.mobile-card-meta-text {
+  color: #475569 !important;
+}
+
+.mobile-card-price-pill {
+  background: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+  color: #15803d !important;
+  font-weight: 700 !important;
+}
+
+.mobile-card-price-pill.is-free {
+  background: #f0fdfa !important;
+  border: 1px solid #99f6e4 !important;
+  color: #0f766e !important;
+}
+
+.mobile-card-price-pill.is-sold-out {
+  background: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+  color: #b91c1c !important;
+}
+
+.card-date-badge,
+.card-date-badge.badge-today,
+.card-date-badge.badge-tomorrow {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.card-category-badge {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+.btn-card-action {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+.card-venue-row,
+.venue-location-btn {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.venue-name {
+  color: #0f172a !important;
+}
+
+.venue-website-link,
+.btn-venue-filter {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f766e !important;
+}
+
+.card-weekly-hours-block,
+.card-schedule-row,
+.card-showings-block {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-left: 3px solid #0d9488 !important;
+  color: #334155 !important;
+}
+
+.wh-active-day-box .wh-active-day-name {
+  color: #475569 !important;
+}
+
+.wh-active-day-box .wh-active-hours-val {
+  color: #0f766e !important;
+}
+
+.price-main {
+  color: #0f766e !important;
+}
+
+.btn-ticket-cta {
+  background: #0d9488 !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.2) !important;
+}
+
+.btn-ticket-cta:hover {
+  background: #0f766e !important;
+}
+
+.active-filter-chip {
+  background: #ffffff !important;
+  border: 1px solid #0d9488 !important;
+  color: #0f766e !important;
+}
+
+/* 5. Modals, Drawers & Filter Sheet Light Theme */
+.modal-box,
+.modal-card,
+.itinerary-drawer {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16) !important;
+}
+
+.modal-close-btn {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* 6. Mobile Specific Spacious Layout & Light Filter Sheet (<= 768px) */
+@media (max-width: 768px) {
+  .filters-hub {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .results-count-bar {
+    padding: 4px 2px 8px !important;
+    margin: 0 !important;
+    font-size: 0.82rem !important;
+  }
+
+  .time-nav-bar {
+    gap: 8px !important;
+    padding: 4px 16px 12px !important;
+    margin: 0 -16px 10px -16px !important;
+    width: calc(100% + 32px) !important;
+    max-width: calc(100% + 32px) !important;
+  }
+
+  .time-nav-pill {
+    padding: 7px 13px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .events-time-group {
+    margin-bottom: 28px !important;
+  }
+
+  .time-group-header {
+    padding-bottom: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Spacious Mobile Card Feed */
+  .events-grid,
+  .time-group-cards-grid {
+    gap: 14px !important;
+  }
+
+  section[aria-label="Events List"] .event-card {
+    padding: 16px 16px !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+  }
+
+  .mobile-card-compact-header {
+    gap: 8px !important;
+  }
+
+  .mobile-card-row-1 {
+    gap: 12px !important;
+  }
+
+  .mobile-card-title {
+    font-size: 0.98rem !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+  }
+
+  .mobile-card-row-2 {
+    font-size: 0.82rem !important;
+    color: #475569 !important;
+  }
+
+  .event-card.mobile-expanded .card-expandable-details {
+    margin-top: 14px !important;
+    padding-top: 14px !important;
+    border-top: 1px solid #e2e8f0 !important;
+  }
+
+  /* Light Mobile Bottom Filter Sheet with Generous Spacing */
+  #mobile-filters-sheet {
+    background: #ffffff !important;
+    border-top: 1px solid #cbd5e1 !important;
+    box-shadow: 0 -12px 32px rgba(15, 23, 42, 0.14) !important;
+    padding: 0 18px !important;
+    gap: 16px !important;
+    color: #0f172a !important;
+  }
+
+  .mobile-sheet-header {
+    background: #ffffff !important;
+    margin: 0 -18px !important;
+    padding: 8px 18px 12px 18px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  .mobile-sheet-handle {
+    background: #cbd5e1 !important;
+  }
+
+  .mobile-sheet-title {
+    color: #0f172a !important;
+  }
+
+  .mobile-sheet-close-btn {
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #334155 !important;
+  }
+
+  #mobile-filters-sheet .filter-category-row {
+    gap: 10px !important;
+    padding: 4px 0 12px 0 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  #mobile-filters-sheet #categories-bar {
+    gap: 8px !important;
+  }
+
+  #mobile-filters-sheet .category-pill,
+  #mobile-filters-sheet .category-pill.category-pill-extra {
+    padding: 7px 14px !important;
+    font-size: 0.82rem !important;
+    min-height: 36px !important;
+  }
+
+  /* Light Festival Cards Inside Filter Window */
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 12px 14px !important;
+  }
+
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title,
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .theme-item-name {
+    color: #0f172a !important;
+  }
+
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 10px 12px !important;
+    gap: 6px !important;
+  }
+
+  .mobile-sheet-footer {
+    background: #ffffff !important;
+    margin: 6px -18px 0 -18px !important;
+    padding: 14px 18px calc(18px + env(safe-area-inset-bottom)) !important;
+    border-top: 1px solid #e2e8f0 !important;
+    box-shadow: 0 -6px 16px rgba(15, 23, 42, 0.06) !important;
+  }
+
+  .btn-mobile-sheet-reset {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #334155 !important;
+  }
+
+  .btn-mobile-sheet-apply {
+    background: #0d9488 !important;
+    color: #ffffff !important;
+  }
+}
+
+
+/* 7. Light Theme High-Contrast Polish for Festival Badges, Expanded Cards & Section Titles */
+.festival-urgency-badge,
+.festival-urgency-badge.tier-1-live,
+.btn-theme-item-include {
+  background: #f0fdfa !important;
+  border: 1px solid #5eead4 !important;
+  color: #0f766e !important;
+  font-weight: 700 !important;
+}
+
+.btn-theme-item-include.active {
+  background: #0d9488 !important;
+  border-color: #0d9488 !important;
+  color: #ffffff !important;
+}
+
+.festival-urgency-badge.tier-2-upcoming {
+  background: #f0f9ff !important;
+  border: 1px solid #7dd3fc !important;
+  color: #0369a1 !important;
+  font-weight: 700 !important;
+}
+
+.theme-item-dates-pill {
+  background: #fffbeb !important;
+  border: 1px solid #fde68a !important;
+  color: #b45309 !important;
+  font-weight: 600 !important;
+}
+
+.btn-theme-item-exclude {
+  background: #fff1f2 !important;
+  border: 1px solid #fecdd3 !important;
+  color: #be123c !important;
+  font-weight: 600 !important;
+}
+
+.btn-theme-item-exclude.active {
+  background: #e11d48 !important;
+  border-color: #e11d48 !important;
+  color: #ffffff !important;
+}
+
+/* Expanded Card Details Contrast in Light Theme */
+.card-pricing-block,
+.card-footer,
+.card-spend-estimator,
+.spend-estimator-row,
+.card-subdetails,
+.card-expanded-tiers {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+.expanded-tiers-header,
+.tier-name,
+.tier-val {
+  color: #0f172a !important;
+}
+
+.btn-suggest-price {
+  color: #0f766e !important;
+}
+
+@media (max-width: 768px) {
+  .time-group-title-wrap {
+    flex-wrap: wrap !important;
+    gap: 6px 8px !important;
+  }
+
+  .time-group-title {
+    font-size: 1.05rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+}
