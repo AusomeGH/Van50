@@ -87,6 +87,7 @@ function extractLinksFromHtml(html, baseUrl, contextSnippet = "") {
     }
     if (raw.startsWith("http://") || raw.startsWith("https://")) {
       raw = sanitizeExtractedUrl(raw);
+      if (/[?&]aff=ebdssb/i.test(raw)) continue;
       if (!seen.has(raw)) {
         seen.add(raw);
         results.push({ url: raw, anchorText: rawText, contextSnippet });
@@ -204,9 +205,10 @@ export async function dynamicBrowserInspectTicketLink(url, title, date, venue) {
             const combined = `${text} ${aria} ${titleAttr}`;
             if (
               href.startsWith("http") &&
+              !/[?&]aff=ebdssb/i.test(href) &&
               !seen.has(href) &&
               (/\b(ticket|tickets|buy|purchase|register|book|seats|admission|rsvp)\b/i.test(combined) ||
-               /\b(eventbrite|showpass|ticketweb|admitone|universe|vtix|spektrix|dice\.fm|ovationtix|zaui|riotheatretickets|bloomtickets|humanitix|secure\.vancouversymphony\.ca|tickets\.ubc\.ca)\b/i.test(href))
+               /\b(eventbrite|showpass|ticketweb|admitone|universe|vtix|spektrix|dice\.fm|ovationtix|zaui|riotheatretickets|bloomtickets|humanitix|secure\.vancouversymphony\.ca|tickets\.ubc\.ca|ticketpro\.ca|ticketleader\.ca)\b/i.test(href))
             ) {
               seen.add(href);
               candidates.push({ url: href, text: combined, type: "anchor" });
@@ -764,7 +766,7 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
             }
           }
 
-          let sectionSlice = subHtml;
+          let sectionSlice = "";
           if (bestIdx !== -1) {
             const start = Math.max(0, bestIdx - 300);
             const end = Math.min(subHtml.length, bestIdx + 2500);
@@ -772,7 +774,7 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
           }
 
           // Search scoped section first!
-          const sectionLinks = extractLinksFromHtml(sectionSlice, subUrl, sectionSlice);
+          const sectionLinks = sectionSlice ? extractLinksFromHtml(sectionSlice, subUrl, sectionSlice) : [];
           for (const item of sectionLinks) {
             if (isWhitelistedTicketingUrl(item.url)) {
               const triad = validateTriadMatch(item.url, date, title, venue, {
@@ -790,7 +792,7 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
           }
 
           // If not in slice, check whole page links
-          if (!discoveredTier1) {
+          if (false && !discoveredTier1) {
             const allSubLinks = extractLinksFromHtml(subHtml, subUrl, subHtml);
             for (const item of allSubLinks) {
               if (isWhitelistedTicketingUrl(item.url)) {
@@ -1170,7 +1172,32 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
         }
       } catch (_) {}
     }
+    let quarantinedIds = new Set();
+    if (fs.existsSync(QUEUE_PATH)) {
+      try {
+        const qData = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf-8"));
+        for (const q of (Array.isArray(qData.quarantinedEvents) ? qData.quarantinedEvents : [])) {
+          const qid = String(q.id || q.event_id || "").toLowerCase();
+          if (qid) quarantinedIds.add(qid);
+        }
+      } catch (_) {}
+    }
     const allUncompiled = schedules.filter((s) => {
+      const sid0 = String(s.id || s.event_id || "").toLowerCase();
+      if (quarantinedIds.has(sid0)) return false;
+      const u0 = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
+      if (!u0 || /\.pdf(\?|$)/i.test(u0)) return false;
+      const rawTitle0 = String(s.title || s.event_name || "").trim().toLowerCase();
+      if (!rawTitle0 || ["event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404"].includes(rawTitle0)) return false;
+      if (s.lifecycle_type !== "perennial_drop_in") {
+        const isoShowings = Array.isArray(s.showings) ? s.showings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
+        const hasUpcomingShowing = isoShowings.some((sh) => sh.date >= todayIso);
+        const rawDateStr = String(s.date || s.dateSchedule || "");
+        const isoMatch = rawDateStr.match(/\b(202\d-\d{2}-\d{2})\b/);
+        const extractedIso = isoMatch ? isoMatch[1] : null;
+        if (extractedIso && extractedIso < todayIso && !hasUpcomingShowing) return false;
+        if (isoShowings.length > 0 && !hasUpcomingShowing) return false;
+      }
       const sid = String(s.id || s.event_id || "").toLowerCase();
       if (!sid || compiledIds.has(sid) || archivedIds.has(sid)) return false;
       const u = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
@@ -1364,7 +1391,7 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
       }
 
       // Also atomically sync to manual_review_queue.json if card is quarantined
-      if (fs.existsSync(QUEUE_PATH)) {
+      if (fs.existsSync(QUEUE_PATH) && (options.quarantine || options.quarantined)) {
         try {
           await safeUpdateJsonFile(QUEUE_PATH, { metadata: {}, quarantinedEvents: [] }, (qData) => {
             const qIdx = (qData.quarantinedEvents || []).findIndex((q) => (q.id || q.event_id) === eventId);
@@ -1564,7 +1591,7 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
       .then(async (stats) => {
         // 1. Sync upgraded leads to manual_review_queue.json if any were quarantined
         try {
-          if (fs.existsSync(QUEUE_PATH)) {
+          if (fs.existsSync(QUEUE_PATH) && (options.quarantine || options.quarantined)) {
             let qUpdated = false;
             await safeUpdateJsonFile(QUEUE_PATH, { metadata: {}, quarantinedEvents: [] }, (qData) => {
               for (const card of targetCards) {

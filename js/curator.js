@@ -7535,17 +7535,22 @@ function initStagehandRipperUI() {
     const list = schedules.filter(s => {
       const sid = s.event_id || s.id;
       if (!sid || activeIds.has(sid) || archivedIds.has(sid) || quarantinedIds.has(sid)) return false;
+      const u0 = String(s.details_url || s.candidate_tier1_url || s.ticket_url || '').toLowerCase();
+      if (!u0 || /\.pdf(\?|$)/i.test(u0)) return false;
+      const rawTitle0 = String(s.title || s.event_name || '').trim().toLowerCase();
+      if (!rawTitle0 || ['event', 'events', 'search_exhausted_null', 'quarantine_fatal', 'page not found', 'error 404'].includes(rawTitle0)) return false;
       const u = String(s.details_url || s.candidate_tier1_url || s.ticket_url || '').toLowerCase();
       if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return false;
       if (s.lifecycle_type !== 'perennial_drop_in') {
-        const hasUpcomingShowing = Array.isArray(s.showings) && s.showings.some(sh => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date) && sh.date >= todayIso);
+        const isoShowings = Array.isArray(s.showings) ? s.showings.filter(sh => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
+        const hasUpcomingShowing = isoShowings.some(sh => sh.date >= todayIso);
         const rawDateStr = String(s.date || s.dateSchedule || '');
         const isoMatch = rawDateStr.match(/\b(202\d-\d{2}-\d{2})\b/);
         const extractedIso = isoMatch ? isoMatch[1] : null;
         if (extractedIso && extractedIso < todayIso && !hasUpcomingShowing) {
           return false;
         }
-        if (Array.isArray(s.showings) && s.showings.length > 0 && !hasUpcomingShowing) {
+        if (isoShowings.length > 0 && !hasUpcomingShowing) {
           return false;
         }
       }
@@ -7576,7 +7581,7 @@ function initStagehandRipperUI() {
   window.getStageContinuationInfo = (stageKey) => {
     const key = stageKey || currentPipelineScanKey || 'harvest';
     const cp = state.harvesterCheckpoint || {};
-    const completedFeeds = cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49;
+    const completedFeeds = cp.status === 'completed' ? (cp.total_feeds != null ? Number(cp.total_feeds) : 126) : (cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49);
     const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
     const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : (completedFeeds + 1);
     const remainingFeeds = Math.max(0, totalFeeds - completedFeeds);
@@ -7589,7 +7594,7 @@ function initStagehandRipperUI() {
     const boxArr = state.layerBoxOffices || state.layerBoxOffice || [];
     const boxSet = new Set(
       boxArr
-        .filter(b => b && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR')
+        .filter(b => b && b.status && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR' && b.status !== 'SKIPPED_NO_URL' && b.status !== 'BUDGET_BREACH' && b.status !== 'ANTIBOT_CHALLENGE_BLOCKED' && !String(b.status).startsWith('FATAL_'))
         .map(b => String(b.id || b.event_id || '').toLowerCase())
     );
     const done2QCList = done1BList.filter(e => boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
@@ -7832,7 +7837,7 @@ function initStagehandRipperUI() {
     const cp = state.harvesterCheckpoint || {};
     const harvestedList = window.getUncompiledHarvestedEvents();
     const harvestedCount = harvestedList.length;
-    const completedFeeds = cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49;
+    const completedFeeds = cp.status === 'completed' ? (cp.total_feeds != null ? Number(cp.total_feeds) : 126) : (cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49);
     const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
     const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : (completedFeeds + 1);
     const lastFeedName = cp.last_feed_name || 'The Orpheum Theatre';
@@ -13517,7 +13522,7 @@ function initStagehandRipperUI() {
           );
           const boxLayerIds = new Set(
             (state.layerBoxOffices || state.layerBoxOffice || [])
-              .filter(b => b && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR')
+              .filter(b => b && b.status && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR' && b.status !== 'SKIPPED_NO_URL' && b.status !== 'BUDGET_BREACH' && b.status !== 'ANTIBOT_CHALLENGE_BLOCKED' && !String(b.status).startsWith('FATAL_'))
               .map(b => String(b.id || b.event_id || '').toLowerCase()).filter(Boolean)
           );
           const edLayerIds = new Set(
@@ -13676,22 +13681,59 @@ function initStagehandRipperUI() {
   }
 
   window.getVenuesForNewEvents = function () {
-    const names = new Set();
+    const canonicalMap = new Map();
+    const masterVenues = (cachedDetailerVenues && cachedDetailerVenues.length > 0)
+      ? cachedDetailerVenues
+      : ((state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []));
+
+    const resolveCanonicalVenueName = (raw) => {
+      const v = (raw || '').trim();
+      if (!v || v === 'none_available') return null;
+      const vLower = v.toLowerCase();
+      const vClean = vLower.replace(/\(.*?\)/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      if (Array.isArray(masterVenues) && masterVenues.length > 0) {
+        const exact = masterVenues.find(mv => (mv.venue_name || mv.name || '').toLowerCase().trim() === vLower);
+        if (exact) return (exact.venue_name || exact.name).trim();
+        const clean = masterVenues.find(mv => (mv.venue_name || mv.name || '').toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim() === vClean);
+        if (clean) return (clean.venue_name || clean.name).trim();
+        const contain = masterVenues.find(mv => {
+          const mvClean = (mv.venue_name || mv.name || '').toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+          return mvClean.length > 6 && (vClean.includes(mvClean) || mvClean.includes(vClean));
+        });
+        if (contain) return (contain.venue_name || contain.name).trim();
+      }
+      return v;
+    };
+
+    const addVenueName = (raw) => {
+      const canonical = resolveCanonicalVenueName(raw);
+      if (!canonical) return;
+      const key = canonical.toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      if (key && !canonicalMap.has(key)) {
+        canonicalMap.set(key, canonical);
+      }
+    };
+
     (pipelineTestDiscoveredEvents || []).forEach(ev => {
-      const v = (ev.venue || ev.venue_name || '').trim();
-      if (v) names.add(v);
+      addVenueName(ev.venue || ev.venue_name);
     });
-    if (names.size === 0 && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+    if (canonicalMap.size === 0 && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
       const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
       const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
-      const combined = [...allEvs, ...qEvs];
+      const scheds = state.masterCatalogsData?.layer_schedules || [];
+      const combined = [...allEvs, ...qEvs, ...scheds];
       pipelineTestDiscoveredIds.forEach(id => {
         const found = combined.find(e => (e.id || e.event_id) === id);
-        const v = found ? (found.venue || found.venue_name || '').trim() : '';
-        if (v) names.add(v);
+        if (found) addVenueName(found.venue || found.venue_name);
       });
     }
-    return Array.from(names);
+    if (canonicalMap.size === 0 && typeof getStageContinuationInfo === 'function') {
+      const venueCont = getStageContinuationInfo('venue');
+      (venueCont.pendingItems || []).forEach(ev => {
+        addVenueName(ev.venue || ev.venue_name);
+      });
+    }
+    return Array.from(canonicalMap.values());
   };
 
   window.populateVenueDetailerDropdown = async function (filterQuery = '') {
@@ -13701,6 +13743,10 @@ function initStagehandRipperUI() {
     const q = (filterQuery || '').trim().toLowerCase();
     const currentVal = select.value || 'new_events';
     const newEventVenues = window.getVenuesForNewEvents();
+    const chipNew = document.getElementById('chip-venue-scope-new');
+    if (chipNew) chipNew.textContent = `✨ Venues for New Events (${newEventVenues.length})`;
+    const chipAll = document.getElementById('chip-venue-scope-all');
+    if (chipAll) chipAll.textContent = `🏛️ All Facilities (${venues.length})`;
 
     let filtered = [...venues].sort((a, b) => (a.venue_name || a.name || '').localeCompare(b.venue_name || b.name || ''));
     if (q) {
@@ -13775,6 +13821,7 @@ function initStagehandRipperUI() {
     if (chipAll) chipAll.classList.toggle('active', val === 'all');
 
     const newVenues = window.getVenuesForNewEvents();
+    if (chipNew) chipNew.textContent = `✨ Venues for New Events (${newVenues.length})`;
     if (val === 'new_events') {
       if (badge) badge.textContent = `New Event Venues (${newVenues.length})`;
       if (displayEl) {
@@ -16454,7 +16501,7 @@ function initStagehandRipperUI() {
             }
           }
 
-          const targetQueueMatch = line.match(/(?:🎯\s*Targets Queued for (?:Audit|Enrichment):\s*|🎯\s*Venues Targeted for Google Maps Grounding:\s*|🎯\s*Target Queue:\s*|Target Queue\s*\(\s*|Enriching\s*)(\d+)\s*(?:events?|candidates?|facilities|venues?|seeds?)?/i);
+          const targetQueueMatch = line.match(/(?:🎯\s*Targets Queued for (?:Audit|Enrichment):\s*|🎯\s*Venues Targeted for Google Maps Grounding:\s*|🎯\s*Target Queue:\s*|Target Queue\s*\(\s*)(\d+)\s*(?:events?|candidates?|facilities|venues?|seeds?)?/i);
           if (targetQueueMatch) {
             pipelineTotalTargets = parseInt(targetQueueMatch[1], 10);
             const badge = document.getElementById('pipeline-diff-counter-badge');
@@ -16515,11 +16562,14 @@ function initStagehandRipperUI() {
             if (progressMatch) {
               const current = parseInt(progressMatch[1], 10);
               const total = parseInt(progressMatch[2], 10);
+              if (pipelineTotalTargets !== total) {
+                pipelineCurrentTargetIndex = 0;
+              }
               pipelineTotalTargets = total;
               if (current <= (window.pipelineBaselineAlreadyDoneCount || 0)) {
                 window.pipelineBaselineAlreadyDoneCount = 0;
               }
-              pipelineCurrentTargetIndex = Math.max(pipelineCurrentTargetIndex || 0, current);
+              pipelineCurrentTargetIndex = Math.min(total, Math.max(pipelineCurrentTargetIndex || 0, current));
               const displayIdx = pipelineCurrentTargetIndex;
               const rawDone = (window.pipelineBaselineAlreadyDoneCount || 0) + pipelineAuditedCardsHistory.length;
               pipelineProcessedCount = Math.min(total, Math.max(displayIdx, rawDone));
@@ -16571,11 +16621,14 @@ function initStagehandRipperUI() {
           if (itemStartMatch && activeStageKey !== 'harvest') {
             const batchItemIdx = parseInt(itemStartMatch[1], 10);
             const batchTotal = parseInt(itemStartMatch[2], 10);
+            if (pipelineTotalTargets !== batchTotal) {
+              pipelineCurrentTargetIndex = 0;
+            }
             pipelineTotalTargets = batchTotal;
             if (batchItemIdx <= (window.pipelineBaselineAlreadyDoneCount || 0)) {
               window.pipelineBaselineAlreadyDoneCount = 0;
             }
-            pipelineCurrentTargetIndex = Math.max(pipelineCurrentTargetIndex || 0, batchItemIdx);
+            pipelineCurrentTargetIndex = Math.min(batchTotal, Math.max(pipelineCurrentTargetIndex || 0, batchItemIdx));
             const displayIdx = pipelineCurrentTargetIndex;
             const rawDone = (window.pipelineBaselineAlreadyDoneCount || 0) + pipelineAuditedCardsHistory.length;
             pipelineProcessedCount = Math.min(batchTotal, Math.max(displayIdx, rawDone));

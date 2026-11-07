@@ -147,6 +147,12 @@ export function getExistingCatalogLookup() {
 
   const isNonEventPolicyPage = (title, url, detailsUrl) => {
     const rawTitle = (title || "").toLowerCase().trim();
+    if (["event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404", "404 not found", "granville island directory", "events & programs", "community events calendar", "vancouver events calendar", "plan your visit", "schools and groups", "become a member", "submit an event", "event booking guide", "filming in the city"].includes(rawTitle)) {
+      return true;
+    }
+    if (/\b(?:closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404)\b/i.test(rawTitle)) {
+      return true;
+    }
     if (/^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|standard[- ]?pricing|concession[- ]?menu)$/i.test(rawTitle)) {
       return true;
     }
@@ -155,6 +161,10 @@ export function getExistingCatalogLookup() {
     }
     const checkUrls = [url, detailsUrl].filter(Boolean).map((u) => normalizeUrl(u));
     for (const cu of checkUrls) {
+      if (/\.pdf(\?|$)/i.test(cu)) return true;
+      if (/eventbrite\.(?:ca|com)\/(?:d|ttd|l|o|cc)\//i.test(cu)) return true;
+      if (/gretabar\.com\/(?:toronto|calgary|edmonton)\b/i.test(cu)) return true;
+      if (/\/(?:directory|library-archives|past-exhibitions|student-exhibitions|permanent-exhibitions|new-installations|collections|conservation|curatorial|sourcebooks|museum-shop|acquisitions-donations|moa-donors|indigenous-access|group-bookings|moa-access-pass|school-programs|public-programs|plan-your-visit|schools-and-groups|submit-event|event-booking-guide|filming-in-the-city|become-a-member|private-party|private-event)(\/|$)/i.test(cu)) return true;
       if (/\/(?:ticket-info|ticket-policies|pricing|admission-rates|concession-menu|support|corporate-giving|patrons-circle|major-gifts|tickets\/single-game-tickets|tickets\/special-offers|tickets\/season-tickets|tickets\/mini-plans|tickets\/group-tickets|series\/|education\/)\b/i.test(cu)) return true;
       if (cu.endsWith("/ticket-info") || cu.endsWith("/ticket-policies") || cu.endsWith("/pricing") || cu.endsWith("/rates") || cu.endsWith("/concession-menu") || cu.includes("vancouversymphony.ca/series") || cu.includes("artsclub.com/education")) return true;
     }
@@ -511,6 +521,19 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
         const evVenue = card.venue || card.venue_name || "Vancouver Venue";
 
         const cardIdNorm = (card.id || "").toLowerCase();
+        const todayIsoNow = new Date().toLocaleDateString("en-CA", { timeZone: "America/Vancouver" });
+        if (card.lifecycle_type !== "perennial_drop_in") {
+          const isoShowings = Array.isArray(card.showings) ? card.showings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
+          const hasUpcomingShowing = isoShowings.some((sh) => sh.date >= todayIsoNow);
+          const rawDateStr = String(card.date || card.dateSchedule || "");
+          const isoMatch = rawDateStr.match(/\b(202\d-\d{2}-\d{2})\b/);
+          const extractedIso = isoMatch ? isoMatch[1] : null;
+          if ((extractedIso && extractedIso < todayIsoNow && !hasUpcomingShowing) || (isoShowings.length > 0 && !hasUpcomingShowing)) {
+            console.log(`🛡️ [Past Event Suppressed] "${card.title}" (${extractedIso || rawDateStr}) has already concluded (< ${todayIsoNow}). Suppressing from layer_schedules.json.`);
+            results.push({ url: targetUrl, success: false, isNew: false, error: "Concluded past event" });
+            return;
+          }
+        }
 
         // Check if discovered card is a non-event pricing or admission policy page
         if (lookup.isNonEventPolicyPage(card.title, targetUrl, card.details_url)) {
@@ -639,7 +662,7 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
   );
 
   // STEP 1B: Automatically trigger distinct High-Fidelity Link Tier Upgrader & Hunter pass (unless deferred by All-Feeds batch)
-  if (!options.isAllVenuesBatch) {
+  if (!options.isAllVenuesBatch && options.autoRun1B) {
     try {
       console.log(`\n================================================================`);
       console.log(`⚡ STEP 1A (Calendar Harvest) COMPLETED (${results.length} events processed).`);
@@ -752,6 +775,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
   if (isResume && fs.existsSync(CHECKPOINT_PATH)) {
     try {
       const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
+      if (cp.status !== "completed") {
       if (Array.isArray(cp.completed_feed_urls)) {
         cp.completed_feed_urls.forEach((u) => completedFeedUrls.add(u));
       }
@@ -759,6 +783,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
         startFeedIndex = cp.resume_from_index;
       }
       priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
+      }
     } catch (cpErr) {
       console.warn(`[WARN] Could not read harvester_checkpoint.json: ${cpErr.message}`);
     }
@@ -840,7 +865,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
           ...cp,
           status: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? "completed" : "paused",
           total_feeds: feeds.length,
-          completed_feeds_count: completedFeedUrls.size,
+          completed_feeds_count: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? feeds.length : completedFeedUrls.size,
           resume_from_index: nextIdx,
           resume_from_feed_number: nextIdx + 1,
           last_feed_name: feeds[nextIdx]?.name || feed.name,
@@ -862,7 +887,8 @@ export async function runAllVenueFeedsBatch(options = {}) {
     await new Promise((r) => setTimeout(r, 1000));
   }
 
-  // STEP 1B: Automatically trigger distinct High-Fidelity Link Tier Upgrader & Hunter pass across all feeds
+  // STEP 1B: Automatically trigger distinct High-Fidelity Link Tier Upgrader & Hunter pass across all feeds (only when explicitly requested)
+  if (options.autoRun1B)
   try {
     console.log(`\n================================================================`);
     console.log(`⚡ STEP 1A (All Feeds Harvest) COMPLETED (${totalHarvestedEvents} events discovered).`);

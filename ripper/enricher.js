@@ -994,7 +994,26 @@ export async function runEnricher(options = {}) {
       return Boolean(s.step1b_audited_at);
     });
     // Strict Stage 2 Gate: Never fall back to allHarvestedRaw; events must complete Stage 2 QC before Stage 3 Enrichment
-    const allHarvested = allHarvestedRaw.filter((s) => boxAuditedIds.has(String(s.id || s.event_id || "").toLowerCase()));
+    const quarantinedIds = new Set((quarantined || []).map((q) => String(q.id || q.event_id || "").toLowerCase()).filter(Boolean));
+    const allHarvested = allHarvestedRaw.filter((s) => {
+      const sId0 = String(s.id || s.event_id || "").toLowerCase();
+      if (quarantinedIds.has(sId0) || !boxAuditedIds.has(sId0)) return false;
+      const u0 = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
+      if (!u0 || /\.pdf(\?|$)/i.test(u0)) return false;
+      const rawTitle0 = String(s.title || s.event_name || "").trim().toLowerCase();
+      if (!rawTitle0 || ["event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404"].includes(rawTitle0)) return false;
+      if (s.lifecycle_type !== "perennial_drop_in") {
+        const isoShowings = Array.isArray(s.showings) ? s.showings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
+        const hasUpcomingShowing = isoShowings.some((sh) => sh.date >= todayIso);
+        const rawDateStr = String(s.date || s.dateSchedule || "");
+        const isoMatch = rawDateStr.match(/\b(202\d-\d{2}-\d{2})\b/);
+        const extractedIso = isoMatch ? isoMatch[1] : null;
+        if (extractedIso && extractedIso < todayIso && !hasUpcomingShowing) return false;
+        if (isoShowings.length > 0 && !hasUpcomingShowing) return false;
+      }
+      return true;
+    });
+
 
     const pendingEd = allHarvested.filter((s) => {
       const ex = existingMap.get(s.id || s.event_id);
@@ -1440,7 +1459,9 @@ export async function runEnricher(options = {}) {
   }
   console.log(`================================================================\n`);
 
-  if (enrichedCount > 0 && !options.skipCompile && !options.dryRun) {
+  // Stage 3 strictly writes to data/layers/layer_editorial.json (Layer Isolation D801).
+  // Auto-publishing is only executed if explicitly requested via options.autoCompile = true.
+  if (enrichedCount > 0 && options.autoCompile === true && !options.skipCompile && !options.dryRun) {
     try {
       const enrichedIds = targets.map((t) => t.id || t.event_id).filter(Boolean);
       if (enrichedIds.length > 0) {

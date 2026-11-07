@@ -298,7 +298,7 @@ export function matchVenue(venueQuery, venues) {
     return containmentCandidates[0];
   }
 
-  // 4. Token Overlap Scoring with stopword suppression
+  // 4. Token Overlap Scoring with stopword suppression & distinctive-token precision gate
   const commonStopwords = new Set([
     "gallery", "theatre", "theater", "hall", "centre", "center", "room", "park", "cafe", "club",
     "place", "house", "space", "vancouver", "public", "market", "gardens", "garden", "promenade",
@@ -306,7 +306,8 @@ export function matchVenue(venueQuery, venues) {
     "fine", "arts", "street", "avenue", "road", "drive", "lane", "studio", "studios", "stage",
     "lounge", "bar", "pub", "inn", "hotel", "society", "association", "classical", "the", "and",
     "for", "with", "at", "by", "of", "central", "north", "south", "east", "west", "main", "downtown",
-    "burnaby", "city", "metro"
+    "burnaby", "city", "metro", "village", "shop", "live", "venue", "pacific", "granville", "olympic",
+    "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family"
   ]);
 
   const queryTokens = cleanQuery.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t));
@@ -316,19 +317,25 @@ export function matchVenue(venueQuery, venues) {
   let maxScore = 0;
 
   for (const v of candidateVenues) {
-    const vClean = (v.venue_name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    const vClean = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t)));
+    if (vTokens.size === 0) continue;
 
+    let matchedTokenCount = 0;
     let score = 0;
     for (const qTok of queryTokens) {
       if (vTokens.has(qTok)) {
+        matchedTokenCount++;
         score += 2;
-      } else if (vClean.includes(qTok)) {
-        score += 1;
       }
     }
 
-    if (score > maxScore && score >= 2) {
+    // Require either >= 2 shared distinctive tokens, OR an exact 1-to-1 match on the sole distinctive token of both names
+    const isHighConfidenceOverlap =
+      matchedTokenCount >= 2 ||
+      (matchedTokenCount === 1 && queryTokens.length === 1 && vTokens.size === 1);
+
+    if (isHighConfidenceOverlap && score > maxScore) {
       maxScore = score;
       bestMatch = v;
     }
@@ -339,13 +346,13 @@ export function matchVenue(venueQuery, venues) {
 
 /**
  * Detects generic button labels or membership pass names masquerading as event titles
- * (e.g. "Season Pass", "Buy Tickets", "General Admission", "Exhibits and experiences")
+ * (e.g. "Season Pass", "Buy Tickets", "General Admission", "Exhibits and experiences", "All Access Pass")
  */
 export function isButtonOrPassLabelTitle(str) {
   if (!str || typeof str !== "string") return true;
   const s = str.trim();
   if (s.length < 3) return true;
-  return /^(?:season\s*pass|annual\s*pass|membership|buy\s*tickets|get\s*tickets|tickets|general\s*admission|admission|exhibits\s+and\s+experiences|cultural\s+event|event|checkout|cart)$/i.test(s);
+  return /^(?:(?:vancouver\s+symphony\s+orchestra\s*:\s*)?all[- ]access\s*pass|season\s*pass|annual\s*pass|membership(?:\s*pass)?|subscription\s*package|buy\s*tickets|get\s*tickets|tickets|general\s*admission|admission|exhibits\s+and\s+experiences|cultural\s+event|event|checkout|cart)$/i.test(s);
 }
 
 /**
@@ -997,8 +1004,8 @@ export async function compileCatalog(options = {}) {
     // 2. Match Venue Master Record & Compute Smart Weighting (Perennial Identity Lock)
     const isSeedPerennial = seedLifecycle === "perennial_drop_in" || existing.lifecycle_type === "perennial_drop_in";
     const venueQuery = isSeedPerennial
-      ? (seedVenue || existing.venue_name || existing.venue || box.venue_name || sched.venue_name)
-      : (box.venue_name || sched.venue_name || seedVenue);
+      ? (seedVenue || existing.venue_name || existing.venue || box.venue_name || sched.venue_name || sched.venue)
+      : (box.venue_name || sched.venue_name || sched.venue || seedVenue);
     const matchedVenue = matchVenue(venueQuery, venues);
 
     // Smart Weighting Architecture (Epistemic Precedence Hierarchy - Rule 2E):
@@ -2114,7 +2121,16 @@ export async function compileCatalog(options = {}) {
     }
 
     const venueAddress = (venue.full_address || venue.address || "").trim();
+    const isExplicitlyOutOfMarket = (() => {
+      if (venue.is_out_of_market === true) return true;
+      const combinedGeoText = `${venueAddress} ${venue.neighborhood || ""} ${cleanTitle || ""} ${sched.title || ""} ${seedTitle || ""} ${ticketUrl || ""} ${detailsUrl || ""}`;
+      if (/\b(?:OUT[- ]OF[- ]MARKET|Fraser\s+Valley\s+Regional\s+District|Capital\s+Regional\s+District|Gulf\s+Islands)\b/i.test(combinedGeoText)) return true;
+      if (/\b(?:Abbotsford|Chilliwack|Mission|Squamish|Whistler|Pemberton|Victoria|Nanaimo|Salt\s+Spring\s+Island|Kelowna|Kamloops|Calgary|Edmonton|Toronto|Montreal|Montréal|Ottawa|Winnipeg|Halifax|Seattle|Portland)\s*,\s*(?:BC|AB|ON|QC|MB|NS|WA|OR|Canada|USA)\b/i.test(`${venueAddress} ${venue.neighborhood || ""}`)) return true;
+      if (/\b(?:calgary'?s\s+biggest|edmonton'?s\s+biggest|toronto'?s\s+biggest|montreal'?s\s+biggest|in\s+squamish|in\s+victoria|in\s+kelowna|in\s+abbotsford|les\s+foufounes)\b/i.test(`${sched.title || ""} ${seedTitle || ""} ${ticketUrl || ""}`)) return true;
+      return false;
+    })();
     const isLocationConfirmed = Boolean(
+      !isExplicitlyOutOfMarket &&
       venueAddress.length > 5 &&
       hasValidCoordinates &&
       venueAddress !== "Check Venue Website"
@@ -2200,7 +2216,7 @@ export async function compileCatalog(options = {}) {
       D105_tier5_venue_home: { status: tier5Final ? "verified" : "none_available", value: tier5Final, source_tool: "venue_master_registry", audited_at: nowIso },
       D106_best_available_link: { status: bestAvailableLink ? "verified" : "search_exhausted_null", value: bestAvailableLink, best_tier: bestAvailableTier, source_tool: "compiler_ai", audited_at: nowIso },
       D107_operational_status: { status: hasAuditedOperationalStatus ? "verified" : "search_exhausted_null", value: operationalStatusValue, source_tool: "stagehand_box_office", audited_at: box.audited_at || nowIso },
-      D108_geo_jurisdiction: { status: isLocationConfirmed ? "verified" : "search_exhausted_null", value: isLocationConfirmed ? "Metro Vancouver (British Columbia)" : null, in_market: isLocationConfirmed ? true : null, source_tool: "venue_master_registry", audited_at: nowIso },
+      D108_geo_jurisdiction: { status: isExplicitlyOutOfMarket ? "quarantine_fatal" : (isLocationConfirmed ? "verified" : "search_exhausted_null"), value: isExplicitlyOutOfMarket ? "Out of Market (Outside Metro Vancouver)" : (isLocationConfirmed ? "Metro Vancouver (British Columbia)" : null), in_market: isExplicitlyOutOfMarket ? false : (isLocationConfirmed ? true : null), source_tool: "venue_master_registry", audited_at: nowIso },
       D109_currency_standard: { status: isLocationConfirmed ? "verified" : "search_exhausted_null", value: isLocationConfirmed ? "CAD" : null, source_tool: "compiler_ai", audited_at: nowIso },
       D110_iana_timezone: { status: hasAddress ? "verified" : "search_exhausted_null", value: hasAddress ? "America/Vancouver" : null, source_tool: "compiler_ai", audited_at: nowIso },
 
@@ -2652,7 +2668,7 @@ export async function compileCatalog(options = {}) {
     const isPastDate = !isPerennial && (allShowingsConcluded || (isDatePast && !hasActiveShowings));
     const hasValidDate = isPerennial || hasActiveShowings || (compiledCard.date && compiledCard.date !== "none_available" && compiledCard.date !== "Schedule Pending Verification" && compiledCard.dateSchedule !== "Schedule Pending Verification");
     const hasValidUrl = Boolean(compiledCard.ticket_url || compiledCard.details_url || (isPerennial && bestAvailableLink));
-    const inMarket = compiledCard.dimension_audit?.D8_geo_jurisdiction?.in_market !== false;
+    const inMarket = compiledCard.dimension_audit?.D108_geo_jurisdiction?.in_market !== false && compiledCard.dimension_audit?.D8_geo_jurisdiction?.in_market !== false;
     const isPriceVerified = isFreePublicVenue || (hasAuditedBoxOffice && finalAllInPrice !== null && !isNaN(finalAllInPrice) && priceLabel !== "Pending Box Office QC");
     const hasCuratorAction = Boolean(curatorInfo.eventInstructionText || curatorInfo.eventCuratorNote || compiledCard.curator_notes || compiledCard.curator_instructions);
     const hasCuratorAppeal = Boolean(hasCuratorAction || curatorInfo.curatorAppeal || compiledCard.ai_curator_appeal || existing.ai_curator_appeal || seed.ai_curator_appeal);
@@ -2686,10 +2702,11 @@ export async function compileCatalog(options = {}) {
       archiveCard("synthetic_test_fixture", "archived_test_fixture", "Synthetic test harness fixture");
     } else if (
       /^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|box\s*office\s*inquiry.*|search_exhausted_null|none_available|standard[- ]?pricing|concession[- ]?menu|event|events)$/i.test((compiledCard.title || '').trim()) ||
-      /\/(?:ticket-info|pricing|admission-rates|concession-menu|box-office)\b/i.test(compiledCard.details_url || compiledCard.source_url || '')
+      /\b(?:all[- ]access\s+pass|season\s+pass|annual\s+pass|membership\s+pass|subscription\s+package)\b/i.test((compiledCard.title || '').trim()) ||
+      /\/(?:ticket-info|pricing|admission-rates|concession-menu|box-office|all-access-pass|memberships?|subscriptions?|gift-certificates?|donate)\b/i.test(compiledCard.details_url || compiledCard.source_url || '')
     ) {
-      console.log(`🛡️ [Compiler Archive] Auto-archiving non-event pricing/policy or stub page: "${compiledCard.title}" [${eventId}]`);
-      archiveCard("non_event_pricing_policy", "archived_non_event", "Detected venue pricing, admission policy, or empty placeholder stub page rather than a discrete cultural event");
+      console.log(`🛡️ [Compiler Archive] Auto-archiving non-event pricing/policy, membership pass, or stub page: "${compiledCard.title}" [${eventId}]`);
+      archiveCard("non_event_pricing_policy", "archived_non_event", "Detected venue pricing, membership/discount pass program, admission policy, or empty placeholder stub page rather than a discrete cultural event");
     } else if (
       (/burnaby-central-railway|bcsme\.org/i.test(`${eventId} ${compiledCard.title || ""} ${compiledCard.ticket_url || ""}`)) &&
       (() => {

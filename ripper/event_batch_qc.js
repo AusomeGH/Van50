@@ -2784,6 +2784,7 @@ export async function runEventBatchQC(options = {}) {
       });
     } else if (options.harvestedOnly || options.scope === "harvested") {
       // Target newly harvested uncompiled events from layer_schedules.json that completed Stage 1B (matching getUncompiledHarvestedEvents)
+      const quarantinedIds = new Set((queue.quarantinedEvents || []).map((q) => String(q.id || q.event_id || "").toLowerCase()).filter(Boolean));
       const publishedIds = new Set(events.map((e) => String(e.id || e.event_id).toLowerCase()));
       const allHarvestedRaw = schedules.filter((s) => {
         const sId = String(s.id || s.event_id || "").toLowerCase();
@@ -2796,7 +2797,24 @@ export async function runEventBatchQC(options = {}) {
         return true;
       }).filter(isTicketedOrPaidEvent);
 
-      const allHarvested = allHarvestedRaw.filter((s) => Boolean(s.step1b_audited_at));
+      const allHarvested = allHarvestedRaw.filter((s) => {
+        const sId0 = String(s.id || s.event_id || "").toLowerCase();
+        if (quarantinedIds.has(sId0) || !s.step1b_audited_at) return false;
+        const u0 = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
+        if (!u0 || /\.pdf(\?|$)/i.test(u0)) return false;
+        const rawTitle0 = String(s.title || s.event_name || "").trim().toLowerCase();
+        if (!rawTitle0 || ["event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404"].includes(rawTitle0)) return false;
+        if (s.lifecycle_type !== "perennial_drop_in") {
+          const isoShowings = Array.isArray(s.showings) ? s.showings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
+          const hasUpcomingShowing = isoShowings.some((sh) => sh.date >= todayIso);
+          const rawDateStr = String(s.date || s.dateSchedule || "");
+          const isoMatch = rawDateStr.match(/\b(202\d-\d{2}-\d{2})\b/);
+          const extractedIso = isoMatch ? isoMatch[1] : null;
+          if (extractedIso && extractedIso < todayIso && !hasUpcomingShowing) return false;
+          if (isoShowings.length > 0 && !hasUpcomingShowing) return false;
+        }
+        return true;
+      });
 
       const pendingQC = allHarvested.filter((s) => !boxAuditedIds.has(String(s.id || s.event_id || "").toLowerCase()));
       if (!options.force) {

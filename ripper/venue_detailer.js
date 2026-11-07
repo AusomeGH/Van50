@@ -39,6 +39,31 @@ function isMetroVancouverGps(lat, lng) {
 }
 
 /**
+ * Validates whether a grounded address or venue record is explicitly out-of-market
+ * (outside the 21 Metro Vancouver municipalities & electoral area).
+ */
+function isOutOfMarketVenueRecord(venueObj) {
+  if (!venueObj || typeof venueObj !== "object") return false;
+  if (venueObj.is_out_of_market === true) return true;
+  const combinedText = `${venueObj.venue_name || ""} ${venueObj.full_address || ""} ${venueObj.address || ""} ${venueObj.neighborhood || ""}`;
+  if (/\b(?:OUT[- ]OF[- ]MARKET|Fraser\s+Valley\s+Regional\s+District|Capital\s+Regional\s+District|Squamish[- ]Lillooet|Gulf\s+Islands)\b/i.test(combinedText)) {
+    return true;
+  }
+  if (/\b(?:Abbotsford|Chilliwack|Mission|Squamish|Whistler|Pemberton|Victoria|Nanaimo|Salt\s+Spring\s+Island|Ganges|Kelowna|Kamloops|Penticton|Vernon|Calgary|Edmonton|Toronto|Montreal|Montréal|Ottawa|Winnipeg|Halifax|Seattle|Portland)\s*,\s*(?:BC|AB|ON|QC|MB|NS|WA|OR|Canada|USA)\b/i.test(combinedText)) {
+    return true;
+  }
+  // Non-BC Canadian postal codes (Metro Vancouver postal codes strictly begin with V3, V4, V5, V6, V7)
+  const postalMatch = combinedText.match(/\b([A-Z]\d[A-Z])\s*\d[A-Z]\d\b/i);
+  if (postalMatch) {
+    const fsa = postalMatch[1].toUpperCase();
+    if (!/^V[34567]/.test(fsa)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Robust Venue Matching
  * Matches an event venue string against known facilities in data/venues.json
  */
@@ -56,24 +81,33 @@ function matchVenue(venueQuery, venues) {
   if (matched) return matched;
 
   // 2. Clean query match (without parenthetical info / punctuation)
-  matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
+  matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
-  // 3. Clean query containment (if sufficiently long)
-  matched = candidateVenues.find(v => {
-    const vClean = (v.venue_name || v.name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-    return vClean.length > 5 && (cleanQuery.includes(vClean) || vClean.includes(cleanQuery));
+  // 3. Clean query containment (strip parenthetical suffixes from venue names first)
+  const containmentCandidates = candidateVenues.filter(v => {
+    const vNoParens = (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    return vNoParens.length > 6 && (cleanQuery.includes(vNoParens) || vNoParens.includes(cleanQuery));
   });
-  if (matched) return matched;
+  if (containmentCandidates.length > 0) {
+    containmentCandidates.sort((a, b) => {
+      const aClean = (a.venue_name || a.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+      const bClean = (b.venue_name || b.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+      return Math.abs(aClean.length - cleanQuery.length) - Math.abs(bClean.length - cleanQuery.length);
+    });
+    return containmentCandidates[0];
+  }
 
-  // 4. Token Overlap Scoring with stopword suppression
+  // 4. Token Overlap Scoring with stopword suppression & distinctive-token precision gate
   const commonStopwords = new Set([
     "gallery", "theatre", "theater", "hall", "centre", "center", "room", "park", "cafe", "club",
     "place", "house", "space", "vancouver", "public", "market", "gardens", "garden", "promenade",
     "courtyard", "district", "waterfront", "quay", "island", "plaza", "building", "square", "beach",
     "fine", "arts", "street", "avenue", "road", "drive", "lane", "studio", "studios", "stage",
     "lounge", "bar", "pub", "inn", "hotel", "society", "association", "classical", "the", "and",
-    "for", "with", "at", "by", "of"
+    "for", "with", "at", "by", "of", "central", "north", "south", "east", "west", "main", "downtown",
+    "burnaby", "city", "metro", "village", "shop", "live", "venue", "pacific", "granville", "olympic",
+    "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family"
   ]);
 
   const queryTokens = cleanQuery.split(" ").filter(t => t.length >= 3 && !commonStopwords.has(t));
@@ -83,19 +117,24 @@ function matchVenue(venueQuery, venues) {
   let maxScore = 0;
 
   for (const v of candidateVenues) {
-    const vClean = (v.venue_name || v.name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    const vClean = (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter(t => t.length >= 3 && !commonStopwords.has(t)));
+    if (vTokens.size === 0) continue;
 
+    let matchedTokenCount = 0;
     let score = 0;
     for (const qTok of queryTokens) {
       if (vTokens.has(qTok)) {
+        matchedTokenCount++;
         score += 2;
-      } else if (vClean.includes(qTok)) {
-        score += 1;
       }
     }
 
-    if (score > maxScore && score >= 2) {
+    const isHighConfidenceOverlap =
+      matchedTokenCount >= 2 ||
+      (matchedTokenCount === 1 && queryTokens.length === 1 && vTokens.size === 1);
+
+    if (isHighConfidenceOverlap && score > maxScore) {
       maxScore = score;
       bestMatch = v;
     }
@@ -457,16 +496,22 @@ async function fetchVenuePortalHtml(url, timeoutMs = 4000) {
  */
 async function callGeminiGoogleMapsGrounding(venueName, existingVenue = {}, htmlSnippet = "") {
   const prompt = `You are the Van50 Venue & Google Maps Grounding AI for Metro Vancouver, BC.
-Provide verified physical facility constants (Clusters 4XX, 5XX, 6XX) for this Metro Vancouver venue or drop-in park/recreation facility:
+Provide verified physical facility constants (Clusters 4XX, 5XX, 6XX) for this venue or drop-in park/recreation facility:
 - Venue Name: "${venueName}"
 - Known Address: "${existingVenue.full_address || existingVenue.address || ""}"
 - Known Website: "${existingVenue.website_url || existingVenue.calendar_url || ""}"
 - Page Excerpt: "${(htmlSnippet || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 1200)}"
 
+STRICT JURISDICTIONAL & ANTI-HALLUCINATION RULES:
+1. NEVER invent, guess, or substitute a Vancouver address if "${venueName}" is actually located in another city (e.g., Calgary, Edmonton, Toronto, Montreal, Victoria, Salt Spring Island, Squamish, Whistler, Abbotsford, Chilliwack, Seattle) or if you cannot verify that a real physical venue with this exact name exists in Metro Vancouver.
+2. If the venue is located outside the 21 Metro Vancouver municipalities (Vancouver, Burnaby, Richmond, Surrey, North Vancouver, West Vancouver, New Westminster, Coquitlam, Port Coquitlam, Port Moody, Delta, White Rock, Langley, Maple Ridge, Pitt Meadows, Bowen Island, Anmore, Belcarra, Lions Bay, Tsawwassen, UBC/UEL), set "is_out_of_market": true and report its actual city/address in "full_address".
+3. If the venue name cannot be verified as a real Metro Vancouver facility, set "full_address": null and "coordinates": null.
+
 Return a JSON object with:
 {
+  "is_out_of_market": false,
   "venue_type": "park_beach_outdoor" | "theatre_cinema_auditorium" | "bar_club_music_lounge" | "gallery_museum_exhibition" | "civic_library_community_centre" | "market_bistro_cafe",
-  "full_address": "Street address, City, BC PostalCode (Metro Vancouver)",
+  "full_address": "Street address, City, BC PostalCode (or null if unverified)",
   "coordinates": [latitude, longitude],
   "neighborhood": "Neighborhood / Municipality",
   "access_model": "open_public_space" | "free_public_access" | "drop_in_paid" | "ticketed_admission",
@@ -795,6 +840,12 @@ async function groundVenueRecord(venue, options = {}) {
   if (useAi) {
     const aiDetails = await fetchLiveVenueDetails(name, v);
     if (aiDetails && typeof aiDetails === "object") {
+      if (aiDetails.is_out_of_market === true || isOutOfMarketVenueRecord(aiDetails)) {
+        v.is_out_of_market = true;
+        v.full_address = aiDetails.full_address || v.full_address || null;
+        console.warn(`   🚫 [Out-of-Market Gate] Rejecting non-Metro-Vancouver facility "${name}" (${v.full_address || "Out of bounds"}).`);
+        return v;
+      }
       if (aiDetails.venue_type) v.venue_type = aiDetails.venue_type;
       if (aiDetails.full_address) v.full_address = aiDetails.full_address;
       if (Array.isArray(aiDetails.coordinates) && aiDetails.coordinates.length >= 2) {
@@ -1307,6 +1358,12 @@ export async function runVenueDetailer(options = {}) {
   }
 
   try {
+    const beforeFilterCount = venues.length;
+    venues = venues.filter((v) => !isOutOfMarketVenueRecord(v));
+    const evictedOutCount = beforeFilterCount - venues.length;
+    if (evictedOutCount > 0) {
+      console.log(`🧹 [Out-of-Market Gate] Evicted ${evictedOutCount} non-Metro-Vancouver facility record(s) from data/venues.json.`);
+    }
     fs.writeFileSync(VENUES_PATH, JSON.stringify(venues, null, 2), "utf-8");
     console.log(`\n💾 Persisted ${venuesGroundedCount} verified facilities to data/venues.json`);
   } catch (err) {

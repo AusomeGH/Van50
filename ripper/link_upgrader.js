@@ -59,7 +59,10 @@ export const TICKETING_PLATFORMS = [
   "tickets.admitone.com",
   "tickets.jflvancouver.com",
   "secure.vancouversymphony.ca",
-  "tickets.ubc.ca"
+  "tickets.ubc.ca",
+  "ticketpro.ca",
+  "ww2.ticketpro.ca",
+  "ticketleader.ca"
 ];
 
 /**
@@ -69,7 +72,9 @@ export const BLACKLISTED_GEO_TOKENS = [
   "toronto", "calgary", "montreal", "victoria", "edmonton", "ottawa",
   "whistler", "kelowna", "kamloops", "seattle", "portland", "london",
   "new-york", "los-angeles", "chicago", "winnipeg", "halifax", "hamilton",
-  "oshawa", "nanaimo", "penticton", "vernon", "campbell-river"
+  "oshawa", "nanaimo", "penticton", "vernon", "campbell-river", "squamish",
+  "abbotsford", "chilliwack", "mission", "pemberton", "gulf-islands",
+  "salt-spring", "duncan", "courtenay", "comox", "tofino", "ukee"
 ];
 
 /**
@@ -201,12 +206,14 @@ export function isWhitelistedTicketingUrl(url) {
  * Common event vocabulary words with low discriminative power
  */
 export const LOW_SALIENCE_WORDS = new Set([
-  "halloween", "christmas", "party", "ball", "tribute", "annual", "edition",
-  "night", "live", "comedy", "music", "concert", "tour", "festival", "show",
+  "halloween", "christmas", "holiday", "winter", "summer", "spring", "fall", "autumn",
+  "market", "artisan", "craft", "fair", "pop", "party", "ball", "tribute", "annual",
+  "edition", "night", "live", "comedy", "music", "concert", "tour", "festival", "show",
   "special", "sessions", "presents", "series", "friday", "saturday", "sunday",
   "monday", "tuesday", "wednesday", "thursday", "club", "improv", "volume",
   "screening", "premiere", "exhibition", "showcase", "gathering", "celebration",
-  "international", "canada", "canadian", "vancouver"
+  "international", "canada", "canadian", "vancouver", "art", "arts", "workshop",
+  "class", "studio", "experience", "diwali", "matinee", "evening", "weekend", "garden", "park", "island", "museum", "centre", "center", "gallery", "hall", "room", "bar", "lounge"
 ]);
 
 /**
@@ -478,19 +485,22 @@ export function validateTriadMatch(candidateUrl, eventDate, eventTitle, eventVen
     }
 
     // In-Context Section Match: If the URL was extracted directly from an HTML container/button for this event
+    // NEVER allow generic multi-tenant ticketing portals (Eventbrite, Showpass, TicketWeb, Universe, Dice) to bypass slug title matching via inContext!
     if (!passesTitle && contextInfo?.inContext) {
-      // Check if candidate domain is venue-specific (e.g. ecologycentre.zaui.net) or anchor text matches
       const host = u.hostname.toLowerCase();
-      const venueTokens = tokenizeText(eventVenue);
-      const isVenueSubdomain = venueTokens.some((vt) => host.includes(vt));
-      const anchorText = (contextInfo.anchorText || "").toLowerCase();
-      const sectionText = (contextInfo.sectionText || "").toLowerCase();
-      const textMatchesTitle = highSalienceTokens.length > 0
-        ? highSalienceTokens.some((t) => anchorText.includes(t) || sectionText.includes(t))
-        : titleTokens.some((t) => anchorText.includes(t) || sectionText.includes(t));
+      const isMultiTenantPortal = /(?:eventbrite\.|showpass\.com|ticketweb\.|universe\.com|dice\.fm|admitone\.com|ticketmaster\.|humanitix\.com|bloomtickets\.ca|riotheatretickets\.ca|vtixonline\.com|zaui\.net|ovationtix\.com|spektrix\.com|tickettailor\.com)/i.test(host);
+      if (!isMultiTenantPortal) {
+        const venueTokens = tokenizeText(eventVenue);
+        const isVenueSubdomain = venueTokens.some((vt) => host.includes(vt));
+        const anchorText = (contextInfo.anchorText || "").toLowerCase();
+        const sectionText = (contextInfo.sectionText || "").toLowerCase();
+        const textMatchesTitle = highSalienceTokens.length > 0
+          ? highSalienceTokens.some((t) => anchorText.includes(t) || sectionText.includes(t))
+          : titleTokens.some((t) => anchorText.includes(t) || sectionText.includes(t));
 
-      if ((isVenueSubdomain || textMatchesTitle) && isWhitelistedTicketingUrl(candidateUrl)) {
-        passesTitle = true;
+        if ((isVenueSubdomain || textMatchesTitle) && isWhitelistedTicketingUrl(candidateUrl)) {
+          passesTitle = true;
+        }
       }
     }
 

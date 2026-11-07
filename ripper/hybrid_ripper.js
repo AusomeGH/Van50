@@ -260,14 +260,16 @@ export function matchVenue(venueQuery, venues) {
     return containmentCandidates[0];
   }
 
-  // 4. Token Overlap Scoring with stopword suppression
+  // 4. Token Overlap Scoring with stopword suppression & distinctive-token precision gate
   const commonStopwords = new Set([
     "gallery", "theatre", "theater", "hall", "centre", "center", "room", "park", "cafe", "club",
     "place", "house", "space", "vancouver", "public", "market", "gardens", "garden", "promenade",
     "courtyard", "district", "waterfront", "quay", "island", "plaza", "building", "square", "beach",
     "fine", "arts", "street", "avenue", "road", "drive", "lane", "studio", "studios", "stage",
     "lounge", "bar", "pub", "inn", "hotel", "society", "association", "classical", "the", "and",
-    "for", "with", "at", "by", "of"
+    "for", "with", "at", "by", "of", "central", "north", "south", "east", "west", "main", "downtown",
+    "burnaby", "city", "metro", "village", "shop", "live", "venue", "pacific", "granville", "olympic",
+    "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family"
   ]);
 
   const queryTokens = cleanQuery.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t));
@@ -277,19 +279,24 @@ export function matchVenue(venueQuery, venues) {
   let maxScore = 0;
 
   for (const v of candidateVenues) {
-    const vClean = (v.venue_name || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    const vClean = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t)));
+    if (vTokens.size === 0) continue;
 
+    let matchedTokenCount = 0;
     let score = 0;
     for (const qTok of queryTokens) {
       if (vTokens.has(qTok)) {
+        matchedTokenCount++;
         score += 2;
-      } else if (vClean.includes(qTok)) {
-        score += 1;
       }
     }
 
-    if (score > maxScore && score >= 2) {
+    const isHighConfidenceOverlap =
+      matchedTokenCount >= 2 ||
+      (matchedTokenCount === 1 && queryTokens.length === 1 && vTokens.size === 1);
+
+    if (isHighConfidenceOverlap && score > maxScore) {
       maxScore = score;
       bestMatch = v;
     }

@@ -875,6 +875,126 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-02T02:10:09.573Z"
+    },
+    {
+      "id": "venue-1794009939440-9bdi",
+      "name": "Lindsay Family Stage at Granville Island",
+      "websiteUrl": "https://granvilleisland.com/event/dracula-a-comedy-of-terrors",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T00:05:39.440Z"
+    },
+    {
+      "id": "venue-1794010982121-wmvq",
+      "name": "vancouverchinesegarden.com",
+      "websiteUrl": "https://vancouverchinesegarden.com/product/garden-admission-ticket/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T00:23:02.121Z"
+    },
+    {
+      "id": "venue-1794013994240-cfzg",
+      "name": "City of North Vancouver",
+      "websiteUrl": "https://www.cnv.org/Parks-Recreation/Events",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T01:13:14.240Z"
+    },
+    {
+      "id": "venue-1794014624821-hidn",
+      "name": "North Vancouver City Library",
+      "websiteUrl": "https://www.cnv.org/Business-Development/Filming-In-the-City/Film-Bursary",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T01:23:44.821Z"
+    },
+    {
+      "id": "venue-1794022025841-yljd",
+      "name": "Vanier Park",
+      "websiteUrl": "https://vanmaritime.com/explore/events-and-programs/winter-market-at-vanier-park/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T03:27:05.841Z"
+    },
+    {
+      "id": "venue-1794022376329-4y21",
+      "name": "Greta Bar YYC",
+      "websiteUrl": "https://gretabar.com/calgary/events/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T03:32:56.329Z"
+    },
+    {
+      "id": "venue-1794022397617-hy9d",
+      "name": "GRETA Vancouver",
+      "websiteUrl": "https://gretabar.com/vancouver/events/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T03:33:17.617Z"
+    },
+    {
+      "id": "venue-1794022572649-tdup",
+      "name": "Greta Bar YYZ",
+      "websiteUrl": "https://gretabar.com/toronto/events/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T03:36:12.650Z"
+    },
+    {
+      "id": "venue-1794028140943-67yo",
+      "name": "Swangard Stadium",
+      "websiteUrl": "https://runvan.org/event/thejeromeclassic/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T05:09:00.943Z"
+    },
+    {
+      "id": "venue-1794028279547-v6ra",
+      "name": "AMS Student Nest, UBC",
+      "websiteUrl": "https://runvan.org/event/greattrek-5km-10km-halfmarathon/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T05:11:19.547Z"
+    },
+    {
+      "id": "venue-1794029420579-st4h",
+      "name": "The Comedy Department",
+      "websiteUrl": "https://www.thecomedydepartment.com/event-entertainment-vancouver/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T05:30:20.579Z"
+    },
+    {
+      "id": "venue-1794029540818-44ak",
+      "name": "Evergreen Cultural Centre",
+      "websiteUrl": "https://www.thecomedydepartment.com/shows/coquitlam-bc-dec-9-2026/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T05:32:20.818Z"
+    },
+    {
+      "id": "venue-1794029681152-zo3t",
+      "name": "Evergreen Arts",
+      "websiteUrl": "https://evergreenculturalcentre.my.salesforce-sites.com/ticket/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T05:34:41.152Z"
+    },
+    {
+      "id": "venue-1794029792812-82nf",
+      "name": "Chief Sepass Theatre",
+      "websiteUrl": "https://www.thecomedydepartment.com/shows/langley-bc-dec-11-2026/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T05:36:32.812Z"
+    },
+    {
+      "id": "venue-1794030919590-0fhw",
+      "name": "Ecology Centre",
+      "websiteUrl": "https://ecologycentre.ca/wp-content/uploads/2026/10/Call-for-Artists-Ecology-Centre-Nature-Sounds-2026.pdf",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-07T05:55:19.590Z"
     }
   ]
 }
