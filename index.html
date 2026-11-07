@@ -36,8 +36,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="no-referrer">
 
-  <link rel="stylesheet" href="css/style.css?v=7.9.3">
-  <link rel="stylesheet" href="css/components.css?v=7.9.3">
+  <link rel="stylesheet" href="css/style.css?v=7.9.4">
+  <link rel="stylesheet" href="css/components.css?v=7.9.4">
 
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
@@ -105,12 +105,14 @@
         <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">⚙️ Filters</button>
       </div>
       <!-- Live Scrolled Date Indicator (Visible when scrolling through events) -->
-      <div class="scroll-date-bar" id="scroll-date-bar" aria-live="polite" style="display: none;">
-        <span class="time-group-title" id="scroll-date-title">Today's Events</span>
-        <span class="time-group-date-range" id="scroll-date-range">Saturday, Nov 7</span>
+      <!-- scroll-date-bar removed in favor of unified #dynamic-date-label -->
+      <!--Removed duplicate Today's Events span-->
+      <!--Removed duplicate Saturday, Nov 7 span
       </div>
     </div>
 
+      --></div>
+    <div class="quick-category-strip" id="quick-category-strip" role="group" aria-label="Quick Category Filters"></div>
     <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;" aria-label="Active Vancouver Festivals"></section>
     <!-- Filter Controls Hub -->
     <section class="filters-hub" id="filters-hub" aria-label="Event Filters">
@@ -282,7 +284,7 @@
 
     <!-- Results Count Bar -->
     <div class="results-count-bar dynamic-date-count-bar" id="results-count" aria-live="polite">
-      <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">Today • Sat, Nov 7</span></div><div class="results-count-text" id="results-count-text">Showing <strong>40</strong> outings under $50</div>
+      <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">📅 All Upcoming Outings</span></div><div class="results-count-text" id="results-count-text">Showing <strong>40</strong> outings under $50</div>
     </div>
 
     <!-- Events Content Section -->
@@ -300,10 +302,10 @@
   </main>
 
   <!-- Floating Mobile Map/List Toggle Pill (Hidden per user request) -->
-  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" aria-label="Switch between Map and List view" style="display: none !important;" hidden>🗺️ Map</button>
+  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" aria-label="Switch between Map and List view">🗺️ Map</button>
 
   <!-- Surprise Outing Generator / Roulette Modal -->
-  <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-labelledby="roulette-modal-title">
+  <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-label="Surprise Outing Generator" aria-labelledby="roulette-modal-title" aria-hidden="true" inert>
     <div class="modal-box">
       <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-roulette-modal" aria-label="Close modal">✕</button>
@@ -332,7 +334,7 @@
   </div>
 
   <!-- Manual Review Queue Quarantine Modal -->
-  <div class="modal-overlay" id="review-queue-modal" role="dialog" aria-modal="true" aria-labelledby="review-queue-title">
+  <div class="modal-overlay" id="review-queue-modal" role="dialog" aria-modal="true" aria-label="Manual Review Quarantine Queue" aria-labelledby="review-queue-title" aria-hidden="true" inert>
     <div class="modal-card" style="max-width: 660px;">
       <button class="modal-close-btn" id="close-review-queue-btn" aria-label="Close Review Queue">✕</button>
 
@@ -352,7 +354,7 @@
   </div>
 
   <!-- Crowdsourced Price Feedback Modal -->
-  <div class="modal-overlay" id="price-feedback-modal" role="dialog" aria-modal="true" aria-labelledby="price-feedback-title">
+  <div class="modal-overlay" id="price-feedback-modal" role="dialog" aria-modal="true" aria-label="Suggest Price Update" aria-labelledby="price-feedback-title" aria-hidden="true" inert>
     <div class="modal-box" style="max-width: 520px; text-align: left;">
       <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-price-feedback-btn" aria-label="Close Price Feedback">✕</button>
@@ -433,7 +435,7 @@
 
 
   <!-- Saved Events Drawer -->
-  <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Saved Events Drawer">
+  <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Saved Events Drawer" aria-hidden="true" inert>
     <div class="mobile-sheet-handle" aria-hidden="true"></div>
     <div class="itinerary-header">
       <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
@@ -450,8 +452,10 @@
           $0.00 CAD
         </div>
       </div>
-      <div id="itinerary-budget-status" style="font-size: 0.78rem; text-align: right; max-width: 150px; color: var(--text-secondary);">
+      <div id="itinerary-budget-status" style="font-size: 0.78rem; text-align: right; max-width: 195px; color: var(--text-secondary);">
         Add events to calculate
+      </div>
+      <div class="itinerary-budget-meter-track" id="itinerary-budget-meter-track" aria-hidden="true"><div class="itinerary-budget-meter-fill" id="itinerary-budget-meter-fill" style="width: 0%;"></div>
       </div>
     </div>
 
@@ -490,7 +494,7 @@
   </footer>
 
   <!-- Community Feedback & Suggestions Modal (Single Open-Ended Form) -->
-  <div class="modal-overlay" id="feedback-modal" role="dialog" aria-modal="true" aria-label="Feedback and Suggestions" aria-hidden="true">
+  <div class="modal-overlay" id="feedback-modal" role="dialog" aria-modal="true" aria-label="Feedback and Suggestions" aria-hidden="true" inert>
     <div class="modal-box" style="text-align: left; max-width: 520px; padding: 24px;">
       <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-feedback-btn" aria-label="Close modal">✕</button>
@@ -544,8 +548,8 @@
   <script src="js/data.js?v=7.9.2"></script>
   <script src="js/accessibility.js?v=1.0.0"></script>
   <script src="js/map.js?v=7.9.2"></script>
-  <script src="js/roulette.js?v=7.9.2"></script>
-  <script src="js/app.js?v=7.9.3"></script>
+  <script src="js/roulette.js?v=7.9.4"></script>
+  <script src="js/app.js?v=7.9.4"></script>
   <script src="js/pwa-install.js?v=7.9.2"></script>
 
 </body>

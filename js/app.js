@@ -1565,14 +1565,14 @@ function setupEventListeners() {
 
   if (itineraryBtn && drawer) {
     itineraryBtn.addEventListener('click', () => {
-      drawer.classList.add('active');
+      drawer.classList.add('active'); drawer.setAttribute('aria-hidden', 'false'); drawer.removeAttribute('inert');
       renderItinerary();
     });
   }
 
   if (closeItineraryBtn && drawer) {
     closeItineraryBtn.addEventListener('click', () => {
-      drawer.classList.remove('active');
+      drawer.classList.remove('active'); drawer.setAttribute('aria-hidden', 'true'); drawer.setAttribute('inert', '');
     });
   }
 
@@ -1657,20 +1657,20 @@ function setupEventListeners() {
 
   if (openReviewQueueBtn && reviewQueueModal) {
     openReviewQueueBtn.addEventListener('click', () => {
-      reviewQueueModal.classList.add('active');
+      reviewQueueModal.classList.add('active'); reviewQueueModal.setAttribute('aria-hidden', 'false'); reviewQueueModal.removeAttribute('inert');
       renderReviewQueueModal();
     });
   }
 
   if (closeReviewQueueBtn && reviewQueueModal) {
     closeReviewQueueBtn.addEventListener('click', () => {
-      reviewQueueModal.classList.remove('active');
+      reviewQueueModal.classList.remove('active'); reviewQueueModal.setAttribute('aria-hidden', 'true'); reviewQueueModal.setAttribute('inert', '');
     });
   }
 
   if (reviewQueueModal) {
     reviewQueueModal.addEventListener('click', (e) => {
-      if (e.target === reviewQueueModal) reviewQueueModal.classList.remove('active');
+      if (e.target === reviewQueueModal) { reviewQueueModal.classList.remove('active'); reviewQueueModal.setAttribute('aria-hidden', 'true'); reviewQueueModal.setAttribute('inert', ''); }
     });
   }
 
@@ -1710,14 +1710,14 @@ function setupEventListeners() {
       submitBtn.textContent = 'Submit Price Update';
     }
 
-    priceModal.classList.add('active');
+    priceModal.classList.add('active'); priceModal.setAttribute('aria-hidden', 'false'); priceModal.removeAttribute('inert');
     setTimeout(() => {
       if (pintInput) pintInput.focus();
     }, 100);
   };
 
   window.closePriceFeedbackModal = function() {
-    if (priceModal) priceModal.classList.remove('active');
+    if (priceModal) { priceModal.classList.remove('active'); priceModal.setAttribute('aria-hidden', 'true'); priceModal.setAttribute('inert', ''); }
   };
 
   if (closePriceModalBtn) {
@@ -2393,6 +2393,9 @@ function renderCategoryPills() {
     });
     container.appendChild(toggleBtn);
   }
+  if (typeof renderQuickCategoryStrip === 'function') renderQuickCategoryStrip();
+  if (true) {
+  }
 }
 
 function filterByCategory(catId) {
@@ -2413,11 +2416,63 @@ function filterByCategory(catId) {
 }
 window.filterByCategory = filterByCategory;
 
+const QUICK_CATEGORY_ITEMS = [
+  { id: 'all', label: 'All' },
+  { id: 'shows', label: 'Comedy' },
+  { id: 'cinema', label: 'Indie Cinema' },
+  { id: 'music', label: 'Live Music' },
+  { id: 'outdoors', label: 'Outdoors' },
+  { id: 'trivia', label: 'Trivia' },
+  { id: 'arts', label: 'Arts' },
+  { id: 'sports', label: 'Sports' }
+];
+
+function renderQuickCategoryStrip() {
+  const strip = document.getElementById('quick-category-strip');
+  if (!strip) return;
+  const now = new Date();
+  const todayDayCode = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][now.getDay()];
+  const isTodayActive = state.dayOfWeek === todayDayCode;
+  strip.innerHTML = '';
+
+  const todayPill = document.createElement('button');
+  todayPill.type = 'button';
+  todayPill.id = 'quick-today-pill';
+  todayPill.className = `quick-cat-pill quick-today-pill ${isTodayActive ? 'active' : ''}`;
+  todayPill.setAttribute('aria-pressed', isTodayActive ? 'true' : 'false');
+  todayPill.textContent = '⚡ Today';
+  todayPill.addEventListener('click', () => {
+    state.dayOfWeek = (state.dayOfWeek === todayDayCode) ? 'all' : todayDayCode;
+    renderDayPills();
+    renderQuickCategoryStrip();
+    applyFiltersAndRender();
+  });
+  strip.appendChild(todayPill);
+
+  QUICK_CATEGORY_ITEMS.forEach(item => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    const isActive = state.category === item.id;
+    btn.className = `quick-cat-pill ${isActive ? 'active' : ''}`;
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    btn.textContent = item.label;
+    btn.addEventListener('click', () => {
+      state.category = item.id;
+      renderCategoryPills();
+      renderQuickCategoryStrip();
+      applyFiltersAndRender();
+    });
+    strip.appendChild(btn);
+  });
+}
+window.renderQuickCategoryStrip = renderQuickCategoryStrip;
+
 function renderDayPills() {
   const container = document.getElementById('days-pills-wrap');
   if (!container || typeof DAYS_OF_WEEK === 'undefined') return;
 
   container.innerHTML = '';
+  if (typeof renderQuickCategoryStrip === 'function') renderQuickCategoryStrip();
   DAYS_OF_WEEK.forEach(day => {
     const pill = document.createElement('button');
     pill.className = `day-pill ${state.dayOfWeek === day.id ? 'active' : ''}`;
@@ -3019,17 +3074,18 @@ function getReactiveDateHeaderLabel(now = new Date()) {
   const todayShort = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
   const todayDayCode = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][now.getDay()];
   if (!state.dayOfWeek || state.dayOfWeek === 'all') {
-    return `Today • ${todayShort}`;
+    return '📅 All Upcoming Outings';
   }
-  if (state.dayOfWeek === todayDayCode) {
-    return `Today • ${todayShort}`;
+  if (state.dayOfWeek === todayDayCode) { return `📅 Today • ${todayShort}`;
+  if (false) return '📅 All Upcoming Outings';
+    return '📅 All Upcoming Outings';
   }
   if (state.dayOfWeek === 'daily') {
-    return 'Daily Drop-In';
+    return '📅 Daily Drop-In';
   }
   const dayDef = (typeof DAYS_OF_WEEK !== 'undefined' ? DAYS_OF_WEEK : []).find(d => d.id === state.dayOfWeek);
   const shortDay = dayDef ? dayDef.label : (state.dayOfWeek.charAt(0).toUpperCase() + state.dayOfWeek.slice(1));
-  return `Selected • ${shortDay}`;
+  return `📅 Selected • ${shortDay}`;
 }
 
 function applyFiltersAndRender() {
@@ -3210,6 +3266,7 @@ function applyFiltersAndRender() {
           evCats.includes('activities') || 
           evCats.includes('social') ||
           evCats.includes('cinema') // Artistic & cultural cinema screenings are also in Social & Arts
+        )) || (state.category === 'trivia' && (evCats.includes('trivia') || ev.event_archetype === 'social_gaming' || (ev.subTags && ev.subTags.some(t => /trivia|bingo|game|quiz|board/i.test(t))) || /trivia|bingo|quiz|board game/i.test((ev.title || '') + ' ' + (ev.categoryLabel || '')))) || (state.category === 'arts' && (evCats.includes('arts') || evCats.includes('crafts') || evCats.includes('social') || ev.event_archetype === 'museum_gallery' || ev.event_archetype === 'workshop' || (ev.subTags && ev.subTags.some(t => /art|gallery|museum|exhibit|craft|theatre|dance|poetry|literary/i.test(t))) || /art|gallery|museum|exhibit|studio|craft/i.test((ev.title || '') + ' ' + (ev.venue || '') + ' ' + (ev.categoryLabel || '')))) || (state.category === 'sports' && (evCats.includes('sports') || evCats.includes('fitness') || ev.event_archetype === 'active_rec' || (ev.subTags && ev.subTags.some(t => /sport|golf|pitch|putt|skate|roller|curling|hockey|baseball|soccer|run|fitness|bowling/i.test(t))) || /sport|golf|pitch|putt|skate|roller|curling|hockey|baseball|soccer|stadium|coliseum|arena|bowling/i.test((ev.title || '') + ' ' + (ev.venue || '') + ' ' + (ev.categoryLabel || '')) || false
         ));
       if (!match) return false;
     }
@@ -5867,7 +5924,7 @@ function renderItinerary() {
       </div>
     `;
     totalEl.textContent = '$0.00 CAD';
-    if (statusEl) statusEl.textContent = 'Add events to calculate';
+    if (statusEl) statusEl.textContent = 'Add events to calculate'; const emptyFill = document.getElementById('itinerary-budget-meter-fill'); if (emptyFill) { emptyFill.style.width = '0%'; emptyFill.style.background = '#10b981'; }
     return;
   }
 
@@ -5889,8 +5946,8 @@ function renderItinerary() {
   totalEl.textContent = `$${totalCost.toFixed(2)} CAD`;
   if (statusEl) {
     statusEl.innerHTML = totalCost <= 50.00 
-      ? `<span style="color: var(--accent-primary); font-weight: 700;">Within $50 Budget!</span>`
-      : `<span style="color: var(--accent-rose); font-weight: 700;">Exceeds $50 Budget</span>`;
+      ? `<span style="color: #0f766e; font-weight: 700;">🟢 $${(50 - totalCost).toFixed(2)} CAD remaining under $50 target</span>`
+      : `<span style="color: #e11d48; font-weight: 700;">⚠️ $${(totalCost - 50).toFixed(2)} CAD over $50 outing target</span>`; const meterFill = document.getElementById('itinerary-budget-meter-fill'); if (meterFill) { const pct = Math.min(100, Math.max(0, (totalCost / 50) * 100)); meterFill.style.width = `${pct}%`; meterFill.style.background = totalCost <= 50 ? '#10b981' : '#e11d48'; }
   }
 }
 
@@ -6070,7 +6127,7 @@ function openFeedbackModal(presetText = '', targetEventId = '') {
   }
 
   modal.classList.add('active');
-  modal.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('aria-hidden', 'false'); modal.removeAttribute('inert');
   if (messageInput) {
     messageInput.focus();
     if (presetText) {
@@ -6084,7 +6141,7 @@ function closeFeedbackModal() {
   const modal = document.getElementById('feedback-modal');
   if (!modal) return;
   modal.classList.remove('active');
-  modal.setAttribute('aria-hidden', 'true');
+  modal.setAttribute('aria-hidden', 'true'); modal.setAttribute('inert', '');
   const form = document.getElementById('community-feedback-form');
   if (form) form.reset();
   const alertBox = document.getElementById('feedback-alert');
@@ -6225,7 +6282,7 @@ function renderActiveFilterChips(filteredCount) {
     mobileSheetApplyBtn.textContent = `Show ${filteredCount} Outing${filteredCount === 1 ? '' : 's'}`;
   }
 
-  const chips = []; if (state.category && state.category !== 'all') { const cDef = (window.CATEGORIES || []).find(c => c.id === state.category); chips.push({ key: 'category', label: cDef ? (cDef.shortLabel || cDef.label) : state.category }); } if (state.selectedThemeFilter) { const meta = getThemeMetadata({ key: state.selectedThemeFilter, id: String(state.selectedThemeFilter).split(':')[1] || state.selectedThemeFilter, type: String(state.selectedThemeFilter).split(':')[0] || 'festival' }); chips.push({ key: 'theme', label: meta ? meta.label : state.selectedThemeFilter }); } if (state.excludedThemes && state.excludedThemes.size > 0) { Array.from(state.excludedThemes).forEach(tk => { const meta = getThemeMetadata({ key: tk, id: String(tk).split(':')[1] || tk, type: String(tk).split(':')[0] || 'festival' }); chips.push({ key: 'exTheme:' + tk, label: 'Hide ' + (meta ? meta.label : tk) }); }); }
+  const chips = []; if (state.category && state.category !== 'all') { const cDef = (window.CATEGORIES || []).find(c => c.id === state.category) || QUICK_CATEGORY_ITEMS.find(c => c.id === state.category); chips.push({ key: 'category', label: cDef ? (cDef.shortLabel || cDef.label) : state.category }); } if (state.selectedThemeFilter) { const meta = getThemeMetadata({ key: state.selectedThemeFilter, id: String(state.selectedThemeFilter).split(':')[1] || state.selectedThemeFilter, type: String(state.selectedThemeFilter).split(':')[0] || 'festival' }); chips.push({ key: 'theme', label: '🎪 ' + (meta ? meta.label : state.selectedThemeFilter) }); } if (state.excludedThemes && state.excludedThemes.size > 0) { Array.from(state.excludedThemes).forEach(tk => { const meta = getThemeMetadata({ key: tk, id: String(tk).split(':')[1] || tk, type: String(tk).split(':')[0] || 'festival' }); chips.push({ key: 'exTheme:' + tk, label: 'Hide ' + (meta ? meta.label : tk) }); }); }
 
   // 1. Spend / Cost Filter
   if (state.minBudget !== 0 || state.maxBudget !== 50) {

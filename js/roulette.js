@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Open modal
   openBtn.addEventListener('click', () => {
-    modal.classList.add('active');
+    modal.classList.add('active'); modal.setAttribute('aria-hidden', 'false'); modal.removeAttribute('inert');
     resetRouletteView();
     if (window.trackAnonymousEvent) {
       window.trackAnonymousEvent('roulette/open', 'Open Roulette Modal');
@@ -23,19 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Close modal
   closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
+    modal.classList.remove('active'); modal.setAttribute('aria-hidden', 'true'); modal.setAttribute('inert', '');
   });
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
-      modal.classList.remove('active');
+      modal.classList.remove('active'); modal.setAttribute('aria-hidden', 'true'); modal.setAttribute('inert', ''); modal.setAttribute('aria-hidden', 'true'); modal.setAttribute('inert', '');
     }
   });
 
   // Escape key closes modal
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
-      modal.classList.remove('active');
+      modal.classList.remove('active'); modal.setAttribute('aria-hidden', 'true'); modal.setAttribute('inert', ''); modal.setAttribute('aria-hidden', 'true'); modal.setAttribute('inert', '');
     }
   });
 
