@@ -24,7 +24,7 @@ window.DAYS_OF_WEEK = window.DAYS_OF_WEEK || [
 ];
 
 window.TIME_SLOTS = window.TIME_SLOTS || [
-  { id: "all", label: "Any Time", icon: "⏰" },
+  { id: "all", label: "Any Time", icon: "" },
   { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
   { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
   { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
@@ -32,15 +32,15 @@ window.TIME_SLOTS = window.TIME_SLOTS || [
 ];
 
 window.CATEGORIES = window.CATEGORIES || [
-  { id: "all", label: "All", icon: "✨" },
-  { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
-  { id: "music", label: "Music", icon: "🎵" },
-  { id: "shows", label: "Comedy & Stage", icon: "🎭" },
-  { id: "festivals", label: "Festivals & Holidays", icon: "🎉" },
-  { id: "markets", label: "Markets", icon: "🧺" },
-  { id: "outdoors", label: "Outdoors", icon: "🌲" },
-  { id: "cinema", label: "Cinema", icon: "🎬" },
-  { id: "social", label: "Social & Arts", icon: "🎨" }
+  { id: "all", label: "All", icon: "" },
+  { id: "free-public-access", label: "Free Public Access", icon: "" },
+  { id: "music", label: "Music", icon: "" },
+  { id: "shows", label: "Comedy & Stage", icon: "" },
+  { id: "festivals", label: "Festivals & Holidays", icon: "" },
+  { id: "markets", label: "Markets", icon: "" },
+  { id: "outdoors", label: "Outdoors", icon: "" },
+  { id: "cinema", label: "Cinema", icon: "" },
+  { id: "social", label: "Social & Arts", icon: "" }
 ];
 
 window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
@@ -283,7 +283,7 @@ const state = {
 window.currentFilteredEvents = [];
 let ALL_EVENTS = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS)) 
   ? (window.VAN50_EVENTS || window.VANCOUVER_EVENTS).map(normalizeActiveEvent) 
-  : (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS.map(normalizeActiveEvent) : []);
+  : (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS.map(normalizeActiveEvent) : (typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS.map(normalizeActiveEvent) : []));
 
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -1441,7 +1441,7 @@ function setupEventListeners() {
     if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'false');
   };
 
-  window.resetSecondaryFilters = function() {
+  window.resetSecondaryFilters = function() { state.category = 'all'; state.selectedThemeFilter = null; if (state.excludedThemes) state.excludedThemes.clear(); state.hideFestivalEvents = false; renderCategoryPills(); renderFestivalSpotlight();
     state.minBudget = 0;
     state.maxBudget = 50;
     state.dayOfWeek = 'all';
@@ -1955,7 +1955,7 @@ function renderFestivalSpotlight() {
   if (!container) return;
 
   const now = new Date();
-  const baseCatalog = window.currentActiveCatalog || ALL_EVENTS;
+  const baseCatalog = (Array.isArray(window.currentActiveCatalog) && window.currentActiveCatalog.length > 0) ? window.currentActiveCatalog : ALL_EVENTS;
   const activeFestivalAndHolidayEvents = baseCatalog.filter(e => e && !isEventInPast(e, now) && !isAwaitingSchedule(e) && parseFloat(e.price || 0) <= 50 && (
     e.isFestivalOrHoliday ||
     e.isFestival ||
@@ -2173,15 +2173,15 @@ window.renderFestivalSpotlight = renderFestivalSpotlight;
 
 if (typeof CATEGORIES === 'undefined') {
   window.CATEGORIES = [
-    { id: "all", label: "All", shortLabel: "All", icon: "✨" },
-    { id: "music", label: "Music", shortLabel: "Music", icon: "🎵" },
-    { id: "shows", label: "Comedy & Stage", shortLabel: "Comedy & Stage", icon: "🎭" },
-    { id: "outdoors", label: "Outdoors", shortLabel: "Outdoors", icon: "🌲" },
-    { id: "cinema", label: "Cinema", shortLabel: "Cinema", icon: "🎬" },
-    { id: "social", label: "Social & Arts", shortLabel: "Social & Arts", icon: "🎨" },
-    { id: "festivals", label: "Festivals", shortLabel: "Festivals", icon: "🎪" },
-    { id: "markets", label: "Markets", shortLabel: "Markets", icon: "🧺" },
-    { id: "free-public-access", label: "Free Public Access", shortLabel: "Free Access", icon: "🏛️" }
+    { id: "all", label: "All", shortLabel: "All", icon: "" },
+    { id: "music", label: "Music", shortLabel: "Music", icon: "" },
+    { id: "shows", label: "Comedy & Stage", shortLabel: "Comedy & Stage", icon: "" },
+    { id: "outdoors", label: "Outdoors", shortLabel: "Outdoors", icon: "" },
+    { id: "cinema", label: "Cinema", shortLabel: "Cinema", icon: "" },
+    { id: "social", label: "Social & Arts", shortLabel: "Social & Arts", icon: "" },
+    { id: "festivals", label: "Festivals", shortLabel: "Festivals", icon: "" },
+    { id: "markets", label: "Markets", shortLabel: "Markets", icon: "" },
+    { id: "free-public-access", label: "Free Public Access", shortLabel: "Free Access", icon: "" }
   ];
 }
 
@@ -2203,7 +2203,7 @@ function renderCategoryPills() {
     pill.type = 'button';
     pill.className = `category-pill ${state.category === cat.id ? 'active' : ''}${isExtra ? ' category-pill-extra' : ''}`;
     const displayLabel = cat.shortLabel || (cat.label === 'Free Public Access' ? 'Free Access' : cat.label);
-    pill.innerHTML = `<span class="cat-pill-icon" aria-hidden="true">${cat.icon}</span><span class="cat-pill-label">${displayLabel}</span>`;
+    pill.innerHTML = `<span class="cat-pill-label">${displayLabel}</span>`;
     pill.title = cat.label;
     pill.setAttribute('data-goatcounter-click', 'category-' + cat.id);
     pill.setAttribute('data-goatcounter-title', 'Category: ' + cat.label);
@@ -2280,7 +2280,7 @@ function renderTimePills() {
   TIME_SLOTS.forEach(slot => {
     const pill = document.createElement('button');
     pill.className = `time-pill ${state.timeSlot === slot.id ? 'active' : ''}`;
-    pill.innerHTML = `<span>${slot.icon}</span> <span>${slot.label}</span>`;
+    pill.innerHTML = slot.icon ? `<span>${slot.icon}</span> <span>${slot.label}</span>` : `<span>${slot.label}</span>`;
     if (slot.desc) pill.title = slot.desc;
     pill.addEventListener('click', () => {
       state.timeSlot = slot.id;
@@ -2875,7 +2875,7 @@ function applyFiltersAndRender() {
   });
 
   state.expiredCount = expiredCount;
-  window.currentActiveCatalog = activeCatalog;
+  window.currentActiveCatalog = activeCatalog; renderFestivalSpotlight();
 
   // Keep live sync counter in header aligned with active catalog
   const syncBadgeText = document.getElementById('sync-status-text');
@@ -5338,7 +5338,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <span class="mobile-card-price-pill ${isSoldOut ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : '')}">${isSoldOut ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
           </div>
           <div class="mobile-card-row-2">
-            <span class="mobile-card-meta-text">📍 ${(ev.neighborhood || ev.venue || 'Vancouver').split(',')[0]} • 🕒 ${topDate.badgeText} • ${(() => {
+            <span class="mobile-card-meta-text">📍 ${(ev.neighborhood || ev.venue || 'Vancouver').split(',')[0]} • ${topDate.badgeText} • ${(() => {
               const pCat = (Array.isArray(ev.categories) && ev.categories.length > 0) ? ev.categories[0] : (ev.category || 'Outing');
               const cDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === pCat) : null;
               return cDef ? (cDef.shortLabel || cDef.label) : (ev.categoryLabel || pCat);
@@ -6022,7 +6022,7 @@ function renderActiveFilterChips(filteredCount) {
     mobileSheetApplyBtn.textContent = `Show ${filteredCount} Outing${filteredCount === 1 ? '' : 's'}`;
   }
 
-  const chips = [];
+  const chips = []; if (state.category && state.category !== 'all') { const cDef = (window.CATEGORIES || []).find(c => c.id === state.category); chips.push({ key: 'category', label: cDef ? (cDef.shortLabel || cDef.label) : state.category }); } if (state.selectedThemeFilter) { const meta = getThemeMetadata({ key: state.selectedThemeFilter, id: String(state.selectedThemeFilter).split(':')[1] || state.selectedThemeFilter, type: String(state.selectedThemeFilter).split(':')[0] || 'festival' }); chips.push({ key: 'theme', label: meta ? meta.label : state.selectedThemeFilter }); } if (state.excludedThemes && state.excludedThemes.size > 0) { Array.from(state.excludedThemes).forEach(tk => { const meta = getThemeMetadata({ key: tk, id: String(tk).split(':')[1] || tk, type: String(tk).split(':')[0] || 'festival' }); chips.push({ key: 'exTheme:' + tk, label: 'Hide ' + (meta ? meta.label : tk) }); }); }
 
   // 1. Spend / Cost Filter
   if (state.minBudget !== 0 || state.maxBudget !== 50) {
@@ -6097,7 +6097,7 @@ function renderActiveFilterChips(filteredCount) {
 }
 
 window.dismissSecondaryFilterChip = function(chipKey) {
-  if (!chipKey) return;
+  if (!chipKey) return; if (chipKey === 'category') { state.category = 'all'; renderCategoryPills(); } else if (chipKey === 'theme') { state.selectedThemeFilter = null; renderFestivalSpotlight(); } else if (chipKey.startsWith('exTheme:')) { const tk = chipKey.slice(8); if (state.excludedThemes) state.excludedThemes.delete(tk); renderFestivalSpotlight(); }
   if (chipKey === 'cost') {
     state.minBudget = 0;
     state.maxBudget = 50;

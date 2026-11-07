@@ -6165,3 +6165,98 @@ body.van50-accessible .card-ticket-link {
     padding-bottom: calc(84px + env(safe-area-inset-bottom)) !important;
   }
 }
+
+
+/* ============================================================================
+   VAN50 FILTER WINDOW CONSOLIDATION (Category & Festival Inside Filter Sheet, No Map Button)
+   ============================================================================ */
+.mobile-category-header {
+  display: none;
+}
+
+#mobile-view-toggle,
+.mobile-view-toggle,
+div[aria-label="View Switcher"] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  #mobile-filters-sheet .filter-category-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 4px 0 6px 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  #mobile-filters-sheet .mobile-category-header {
+    display: block !important;
+    font-size: 0.82rem !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+  }
+
+  #mobile-filters-sheet div[aria-label="Category Filters"],
+  #mobile-filters-sheet #categories-bar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+    white-space: normal !important;
+    gap: 6px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  #mobile-filters-sheet .category-pill,
+  #mobile-filters-sheet .category-pill.category-pill-extra {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 12px !important;
+    font-size: 0.78rem !important;
+    min-height: 34px !important;
+    border-radius: 999px !important;
+  }
+
+  #mobile-filters-sheet .category-grid-toggle {
+    display: none !important;
+  }
+
+  /* Festival Selection Inside Filter Window */
+  #mobile-filters-sheet #festival-spotlight-container,
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] {
+    margin: 2px 0 4px 0 !important;
+    width: 100% !important;
+  }
+
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-active-items-list {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-x: visible !important;
+    gap: 6px !important;
+    padding: 2px 0 0 0 !important;
+  }
+
+  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 7px 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .site-footer {
+    padding-bottom: calc(28px + env(safe-area-inset-bottom)) !important;
+  }
+}
