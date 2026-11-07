@@ -6829,3 +6829,99 @@ body {
     text-overflow: clip !important;
   }
 }
+
+
+/* ============================================================================
+   8. GLOBAL FESTIVAL SPOTLIGHT BOX LIGHT THEME (Desktop & Mobile)
+   ============================================================================ */
+.festival-spotlight-section {
+  margin-bottom: 18px !important;
+}
+
+.festival-spotlight-card,
+section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  border-radius: 14px !important;
+  padding: 14px 16px !important;
+}
+
+.festival-compact-header-row {
+  margin-bottom: 10px !important;
+}
+
+.festival-spotlight-title,
+.festival-compact-header-row .festival-spotlight-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.festival-active-items-list {
+  gap: 10px !important;
+}
+
+.festival-theme-item-row,
+section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+}
+
+.festival-theme-item-row:hover,
+section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover {
+  background: #ffffff !important;
+  border-color: #94a3b8 !important;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06) !important;
+}
+
+.festival-theme-item-row.item-row-selected {
+  background: #f0fdfa !important;
+  border-color: #0d9488 !important;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.12) !important;
+}
+
+.festival-theme-item-row.item-row-excluded {
+  background: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+  opacity: 0.85 !important;
+}
+
+.festival-theme-item-row.item-row-excluded .theme-item-name,
+.festival-theme-item-row.item-row-excluded .theme-item-short-desc {
+  color: #be123c !important;
+}
+
+.theme-item-name-toggle,
+.theme-item-name {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.theme-item-name-toggle:hover,
+.theme-item-name-toggle:hover .theme-item-name {
+  color: #0d9488 !important;
+}
+
+.theme-item-chevron {
+  color: #64748b !important;
+}
+
+.theme-item-name-toggle:hover .theme-item-chevron,
+.theme-item-name-toggle.expanded .theme-item-chevron {
+  color: #0d9488 !important;
+}
+
+.festival-theme-item-drawer {
+  border-top: 1px solid #e2e8f0 !important;
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+}
+
+.theme-item-short-desc,
+.festival-short-summary,
+.festival-spotlight-blurb {
+  color: #475569 !important;
+}
