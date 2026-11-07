@@ -3015,6 +3015,23 @@ function isEventHappeningNow(ev, now = new Date()) {
   return currentMinutes < closing.closingMinutes && currentMinutes >= 8 * 60; // default after 8 AM
 }
 
+function getReactiveDateHeaderLabel(now = new Date()) {
+  const todayShort = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+  const todayDayCode = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][now.getDay()];
+  if (!state.dayOfWeek || state.dayOfWeek === 'all') {
+    return `Today • ${todayShort}`;
+  }
+  if (state.dayOfWeek === todayDayCode) {
+    return `Today • ${todayShort}`;
+  }
+  if (state.dayOfWeek === 'daily') {
+    return 'Daily Drop-In';
+  }
+  const dayDef = (typeof DAYS_OF_WEEK !== 'undefined' ? DAYS_OF_WEEK : []).find(d => d.id === state.dayOfWeek);
+  const shortDay = dayDef ? dayDef.label : (state.dayOfWeek.charAt(0).toUpperCase() + state.dayOfWeek.slice(1));
+  return `Selected • ${shortDay}`;
+}
+
 function applyFiltersAndRender() {
   const now = new Date();
   const year = now.getFullYear();
@@ -3375,11 +3392,12 @@ function applyFiltersAndRender() {
       }
     }
 
-    countBar.innerHTML = `
+    const reactiveDateText = getReactiveDateHeaderLabel(now);
+    countBar.innerHTML = `<div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">${reactiveDateText}</span></div>
       <div class="results-count-text">
-        Showing <strong>${filtered.length}</strong> active outings under $50 CAD
+        Showing <strong>${filtered.length}</strong> outings under $50
       </div>
-      <div style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      ${(tagBadgeHtml || themeFilterPillHtml || excludedPillsHtml) ? `<div style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;">` : '<div style="display:none;">'}
         ${tagBadgeHtml}
         ${themeFilterPillHtml}
         ${excludedPillsHtml}
@@ -6394,6 +6412,13 @@ window.updateScrollDateIndicator = function() {
         break;
       }
     }
+  }
+
+  if (state.dayOfWeek && state.dayOfWeek !== 'all') {
+    const reactiveStr = getReactiveDateHeaderLabel(new Date());
+    const parts = reactiveStr.split('•').map(s => s.trim());
+    titleDisplay = parts[0] || reactiveStr;
+    rangeDisplay = parts[1] || '';
   }
 
   if (titleDisplay) {

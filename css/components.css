@@ -7319,3 +7319,140 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   border-color: #0d9488 !important;
   color: #0f766e !important;
 }
+
+
+/* ============================================================================
+   10. MOBILE UI POLISH REFINEMENTS (Dynamic Date/Count Bar, Surface Active Festivals Strip, View Switcher Gate)
+   ============================================================================ */
+
+/* 1. Dynamic Date & Count Header Bar directly above section[aria-label="Events List"] */
+.results-count-bar,
+.dynamic-date-count-bar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 16px !important;
+  margin: 8px 0 12px 0 !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+}
+
+.dynamic-date-left {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.dynamic-date-label {
+  font-family: var(--font-heading) !important;
+  font-size: 0.96rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.01em !important;
+  white-space: nowrap !important;
+}
+
+.results-count-bar .results-count-text {
+  font-size: 0.84rem !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+  margin-left: auto !important;
+  white-space: nowrap !important;
+}
+
+.results-count-bar .results-count-text strong {
+  color: #0f766e !important;
+  font-weight: 800 !important;
+}
+
+@media (max-width: 768px) {
+  .results-count-bar,
+  .dynamic-date-count-bar {
+    padding: 6px 16px !important;
+    margin: 4px 0 10px 0 !important;
+    border-radius: 10px !important;
+  }
+
+  .dynamic-date-label {
+    font-size: 0.84rem !important;
+  }
+
+  .results-count-bar .results-count-text {
+    font-size: 0.76rem !important;
+  }
+
+  /* Hide the first time-group-header ("Today's Events / Saturday, Nov 7") on mobile when un-collapsed so it doesn't duplicate the merged top bar */
+  section[aria-label="Events List"] .events-time-group:first-of-type > .time-group-header {
+    display: none !important;
+  }
+
+  /* 2. Surface Active Festivals Outside the Closed Drawer on Mobile as a Compact Single-Line Horizontal Scroll Strip */
+  section[aria-label="Active Vancouver Festivals"],
+  #festival-spotlight-container {
+    margin: 4px 0 8px 0 !important;
+    padding: 0 !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
+  #festival-spotlight-container::-webkit-scrollbar,
+  section[aria-label="Active Vancouver Festivals"] .festival-active-items-list::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+    padding: 8px 12px !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-compact-header-row {
+    margin-bottom: 6px !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title {
+    font-size: 0.82rem !important;
+    color: #0f172a !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-active-items-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 8px !important;
+    padding: 2px 2px 4px 2px !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 225px !important;
+    max-width: 82vw !important;
+    padding: 8px 11px !important;
+    white-space: normal !important;
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+  }
+
+  /* 3. Hide Duplicate View Switcher Inside Mobile Filter Sheet */
+  div[aria-label="Secondary Filters"] div[aria-label="View Switcher"],
+  #mobile-filters-sheet div[aria-label="View Switcher"] {
+    display: none !important;
+  }
+}
