@@ -71,6 +71,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -82,7 +84,9 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
@@ -102,14 +106,16 @@ button {
 /* Layout Utilities */
 .container {
   width: 100%;
+  min-width: 0;
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .container {
     padding: 0 14px;
+    max-width: 100%;
   }
 }
 
@@ -133,6 +139,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .brand-logo {
@@ -145,6 +152,7 @@ button {
   letter-spacing: -0.03em;
   color: #fff;
   transition: transform var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .brand-logo:hover {
@@ -170,12 +178,14 @@ button {
   border-radius: var(--radius-full);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .btn {
@@ -374,7 +384,34 @@ button {
 @media (max-width: 768px) {
   .site-header {
     position: relative;
-    height: 52px;
+    height: 50px;
+  }
+  .brand-logo {
+    font-size: 1.2rem;
+    gap: 6px;
+  }
+  .brand-icon {
+    font-size: 1.25rem;
+  }
+  .brand-badge {
+    display: none;
+  }
+  .nav-actions {
+    gap: 6px;
+  }
+  .nav-actions .btn {
+    height: 34px;
+    padding: 0 10px !important;
+    font-size: 0.78rem !important;
+    border-radius: 8px !important;
+    gap: 4px !important;
+  }
+  .btn-accessibility .access-label,
+  .nav-btn-label {
+    display: none !important;
+  }
+  .btn-itinerary svg {
+    margin-right: 1px !important;
   }
   .hero-section {
     padding: 8px 16px !important;
@@ -397,9 +434,11 @@ button {
     z-index: 40;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    background: rgba(5, 8, 17, 0.88);
-    padding: 8px 0;
-    margin: 0 0 4px;
+    background: rgba(8, 12, 20, 0.92);
+    padding: 8px 14px;
+    margin: 0 -14px 4px;
+    width: calc(100% + 28px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
   .mobile-search-filter-bar .search-wrapper {
     flex: 1 1 auto;
@@ -407,19 +446,31 @@ button {
     max-width: none;
     margin-top: 0;
   }
+  .mobile-search-filter-bar .search-icon {
+    left: 13px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .mobile-search-filter-bar .search-input {
+    /* 16px (1rem) prevents iOS Safari from auto-zooming on input focus */
+    font-size: 1rem;
+    height: 40px;
+    padding: 8px 32px 8px 36px !important;
+  }
   .mobile-filter-trigger {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
     flex: 0 0 auto;
+    height: 40px;
     min-height: 40px;
-    padding: 0 14px;
+    padding: 0 13px;
     border-radius: var(--radius-full);
     background: var(--bg-surface);
     border: 1px solid rgba(56, 189, 248, 0.35);
     color: #e2e8f0;
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     font-weight: 700;
     white-space: nowrap;
     cursor: pointer;
@@ -430,58 +481,5 @@ button {
     background: rgba(16, 185, 129, 0.16);
     border-color: var(--accent-primary);
     color: #34d399;
-  }
-}
-
-@media (max-width: 640px) {
-  .site-header {
-    height: 56px;
-  }
-  .brand-logo {
-    font-size: 1.25rem;
-    gap: 7px;
-  }
-  .brand-icon {
-    font-size: 1.3rem;
-  }
-  .brand-badge {
-    font-size: 0.64rem;
-    padding: 2px 6px;
-  }
-  .nav-actions {
-    gap: 6px;
-  }
-  .btn {
-    padding: 7px 11px;
-    font-size: 0.8rem;
-  }
-  .hero-section {
-    padding: 14px 0 10px;
-  }
-  .hero-title {
-    font-size: 1.55rem;
-    margin-bottom: 6px;
-  }
-  .hero-subtitle {
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-    line-height: 1.35;
-  }
-  .search-input {
-    /* 16px (1rem) prevents iOS Safari from auto-zooming on input focus */
-    font-size: 1rem;
-    padding: 10px 36px 10px 40px;
-  }
-  .btn-accessibility .access-label {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-btn-label {
-    display: none;
-  }
-  .btn-itinerary svg {
-    margin-right: 2px !important;
   }
 }

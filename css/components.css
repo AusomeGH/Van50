@@ -2657,12 +2657,12 @@
 
 .search-input {
   width: 100%;
-  padding: 14px 110px 14px 46px;
+  padding: 12px 42px 12px 44px;
 }
 
 .btn-clear-search {
   position: absolute;
-  right: 76px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.12);
@@ -5885,5 +5885,283 @@ body.van50-accessible .card-ticket-link {
     flex: 0 0 auto;
     min-width: 240px;
     max-width: 82vw;
+  }
+}
+
+/* ==============================================================================
+   MOBILE SPACING, SIZING & VIEWPORT CONTAINMENT REFINEMENTS (<= 768px)
+   ============================================================================== */
+@media (max-width: 768px) {
+  /* Strict viewport width containment so flex/grid children never cause horizontal overflow */
+  main.container,
+  .filters-hub,
+  .filter-category-row,
+  section[aria-label="Events List"],
+  .events-grid,
+  .time-nav-bar,
+  .events-time-group,
+  .time-group-header,
+  .time-group-cards-grid,
+  .event-card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Flush, borderless Category Strip container on mobile */
+  .filters-hub {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 2px 0 6px !important;
+    gap: 4px !important;
+  }
+
+  div[aria-label="Category Filters"],
+  #categories-bar {
+    padding: 4px 14px !important;
+    margin: 0 -14px !important;
+    width: calc(100% + 28px) !important;
+    max-width: calc(100% + 28px) !important;
+    gap: 6px !important;
+  }
+
+  div[aria-label="Category Filters"] .category-pill,
+  div[aria-label="Category Filters"] .category-pill.category-pill-extra {
+    height: 34px !important;
+    padding: 0 11px !important;
+    font-size: 0.78rem !important;
+    border-radius: 999px !important;
+  }
+
+  /* Results count & Time-Horizon jump bar sizing */
+  .results-count-bar {
+    margin: 2px 0 6px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .time-nav-bar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding: 2px 14px 8px 14px !important;
+    margin: 0 -14px 6px -14px !important;
+    width: calc(100% + 28px) !important;
+    max-width: calc(100% + 28px) !important;
+  }
+
+  .time-nav-pill {
+    flex: 0 0 auto !important;
+    padding: 6px 11px !important;
+    font-size: 0.76rem !important;
+    gap: 5px !important;
+  }
+
+  .time-nav-count {
+    padding: 1px 6px !important;
+    font-size: 0.68rem !important;
+  }
+
+  /* Time Group Section Headers (Today's Events, Tomorrow's Events, etc.) */
+  .events-time-group {
+    margin-bottom: 20px !important;
+    scroll-margin-top: 70px !important;
+  }
+
+  .time-group-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .time-group-title-wrap {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .time-group-icon {
+    font-size: 1rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .time-group-title {
+    font-size: 1rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .time-group-date-range {
+    font-size: 0.7rem !important;
+    padding: 2px 6px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  .time-group-actions {
+    gap: 5px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .time-group-count-badge {
+    display: none !important;
+  }
+
+  .btn-group-collapse-toggle {
+    min-width: 0 !important;
+    padding: 3px 9px !important;
+    font-size: 0.7rem !important;
+    gap: 4px !important;
+  }
+
+  /* Single-column constrained grid for Event Cards on mobile */
+  .events-grid,
+  .time-group-cards-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  /* Compact Event Card & Clean Accordion Expansion */
+  section[aria-label="Events List"] .event-card {
+    padding: 11px 13px !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+  }
+
+  section[aria-label="Events List"] .happening-now-ribbon,
+  section[aria-label="Events List"] .sold-out-ribbon {
+    display: none !important;
+  }
+
+  section[aria-label="Events List"] .event-card.card-happening-now .card-top-bar {
+    padding-left: 0 !important;
+  }
+
+  section[aria-label="Events List"] .card-expandable-details .card-title {
+    display: none !important;
+  }
+
+  section[aria-label="Events List"] .card-expandable-details .card-top-bar {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin-bottom: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  section[aria-label="Events List"] .card-expandable-details .card-description {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 8px !important;
+  }
+
+  section[aria-label="Events List"] .card-expandable-details .card-footer-row {
+    padding-top: 8px !important;
+    margin-top: 6px !important;
+    gap: 8px !important;
+  }
+
+  /* Mobile Bottom Sheet Sticky Header & Footer Fix (Zero bleed-through) */
+  #mobile-filters-sheet {
+    padding: 0 16px !important;
+    gap: 12px !important;
+  }
+
+  .mobile-sheet-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 6 !important;
+    background: #0f172a !important;
+    margin: 0 -16px !important;
+    padding: 6px 16px 10px 16px !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+  }
+
+  .mobile-sheet-footer {
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 6 !important;
+    background: #0f172a !important;
+    margin: 4px -16px 0 -16px !important;
+    padding: 12px 16px calc(16px + env(safe-area-inset-bottom)) !important;
+    border-top: 1px solid var(--border-subtle) !important;
+    box-shadow: 0 -8px 20px rgba(8, 12, 20, 0.85) !important;
+  }
+
+  #mobile-filters-sheet .spend-control-row {
+    padding-top: 2px !important;
+    gap: 8px !important;
+  }
+
+  #mobile-filters-sheet .spend-actions-group {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  #mobile-filters-sheet div[aria-label="Cost Quick Filters"] {
+    grid-column: 1 / -1 !important;
+  }
+
+  #mobile-filters-sheet .scheduled-only-toggle,
+  #mobile-filters-sheet .accessible-only-toggle {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 36px !important;
+    padding: 6px 8px !important;
+    font-size: 0.74rem !important;
+    margin: 0 !important;
+  }
+
+  #mobile-filters-sheet .filter-row {
+    gap: 6px !important;
+    padding-top: 8px !important;
+  }
+
+  #mobile-filters-sheet .day-pill,
+  #mobile-filters-sheet .time-pill,
+  #mobile-filters-sheet .neighborhood-pill,
+  #mobile-filters-sheet .freq-pill {
+    font-size: 0.76rem !important;
+    padding: 6px 10px !important;
+    min-height: 34px !important;
+  }
+
+  /* Active Festivals Strip compact mobile sizing */
+  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+    padding: 8px 10px !important;
+    border-radius: 12px !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-compact-header-row {
+    margin-bottom: 4px !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title {
+    font-size: 0.84rem !important;
+  }
+
+  section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+    padding: 6px 10px !important;
+    min-width: 230px !important;
+    max-width: 82vw !important;
+  }
+
+  /* Clear Floating Map/List Pill at Bottom of Page */
+  .site-footer {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom)) !important;
   }
 }
