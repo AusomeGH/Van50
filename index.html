@@ -35,8 +35,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="css/style.css?v=7.9.7">
-  <link rel="stylesheet" href="css/components.css?v=7.9.7">
+  <link rel="stylesheet" href="css/style.css?v=7.9.8">
+  <link rel="stylesheet" href="css/components.css?v=7.9.8">
   <script>window.VAN50_MAPS_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';</script>
 
 
@@ -103,15 +103,14 @@
           <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">×</button>
         </div>
         <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">⚙️ Filters</button>
+        <button type="button" id="mobile-top-map-btn" class="mobile-filter-trigger mobile-top-map-btn view-switcher-btn" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and Card view">🗺️ Map</button>
       </div>
       <!-- Live Scrolled Date Indicator (Visible when scrolling through events) -->
-      <!-- scroll-date-bar removed in favor of unified #dynamic-date-label -->
-      <!--Removed duplicate Today's Events span-->
-      <!--Removed duplicate Saturday, Nov 7 span
+      <div class="scroll-date-bar" id="scroll-date-bar" style="display: none;" aria-live="polite">
+        <span class="time-group-title" id="scroll-date-title">Today</span>
+        <span class="time-group-date-range" id="scroll-date-range"></span>
       </div>
     </div>
-
-      --></div>
     <div class="quick-category-strip" id="quick-category-strip" role="group" aria-label="Quick Category Filters"></div>
     <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;" aria-label="Active Vancouver Festivals"></section>
     <!-- Filter Controls Hub -->
@@ -563,12 +562,12 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=7.9.7"></script>
+  <script src="js/data.js?v=7.9.8"></script>
   <script src="js/accessibility.js?v=1.0.0"></script>
-  <script src="js/map.js?v=7.9.7"></script>
-  <script src="js/roulette.js?v=7.9.7"></script>
-  <script src="js/app.js?v=7.9.7"></script>
-  <script src="js/pwa-install.js?v=7.9.7"></script>
+  <script src="js/map.js?v=7.9.8"></script>
+  <script src="js/roulette.js?v=7.9.8"></script>
+  <script src="js/app.js?v=7.9.8"></script>
+  <script src="js/pwa-install.js?v=7.9.8"></script>
 
 </body>
 </html>

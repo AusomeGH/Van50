@@ -972,91 +972,135 @@ function normalizeActiveEvent(item) {
     }
   }
 
-  // Multi-Category Taxonomy Resolution
+  // Multi-Category Taxonomy Resolution (Aligned with Canonical 258-Event Catalog)
   const tagsStr = (Array.isArray(item.tags) ? item.tags.join(" ") : String(item.tags || "")).toLowerCase();
+  const subTagsStr = (Array.isArray(item.subTags || item.sub_tags) ? (item.subTags || item.sub_tags).join(" ") : "").toLowerCase();
   const titleLower = evTitle.toLowerCase();
   const venueLower = (item.venue_name || item.venue || "").toLowerCase();
   const descLower = (item.description || "").toLowerCase();
-  const combinedContext = `${catRaw} ${tagsStr} ${titleLower} ${venueLower} ${descLower}`;
+  const arch = String(item.event_archetype || item.archetype || "").toLowerCase();
+  const combinedContext = `${catRaw} ${tagsStr} ${subTagsStr} ${titleLower} ${venueLower} ${descLower}`;
 
-  const tagsArray = tagsStr.split(/\s+/).filter(Boolean);
-  const isIndoorShow = tagsArray.some(t => ['comedy', 'improv', 'stand-up', 'theatre', 'opera', 'burlesque', 'music', 'live-music', 'concert'].includes(t)) && !/(pitch & putt|football|basketball)/i.test(titleLower);
-
-  const isCinema = (
-    catRaw.includes("cinema") ||
-    tagsArray.some(t => ['cinema', 'film', 'movie', 'screening', 'film-screening'].includes(t)) ||
+  // 1. Cinema (Movies / Film Screenings)
+  const isLiveToFilmSymphony = /\bin concert live to film\b/i.test(titleLower);
+  const isCinema = !isLiveToFilmSymphony && (
+    arch === "cinema" ||
+    catRaw === "cinema" ||
     venueLower.includes("cinematheque") ||
+    venueLower.includes("viff centre") ||
     venueLower.includes("fifth avenue cinema") ||
-    /\b(screening|35mm|kwaidan|pulse|hello destroyer|past future|all the lovers in the night|silent movie|ski film)\b/i.test(titleLower) ||
-    (titleLower.includes("viff") && !titleLower.includes("volunteer"))
-  ) && !(tagsArray.includes("orchestral") && titleLower.includes("symphony") && !titleLower.includes("silent movie"))
-    && !tagsArray.some(t => ['comedy', 'stand-up', 'burlesque', 'improv'].includes(t));
+    /\b(film screening|movie screening|documentary screening|screening of|35mm|16mm|short films|film festival|mountains on stage|last christian in bethlehem|house of r3nc0ng)\b/i.test(`${titleLower} ${descLower}`)
+  ) && !/\b(comedy|stand-up|burlesque|improv|trivia)\b/i.test(titleLower);
 
-  const isOutdoors = !isIndoorShow && (
-    catRaw.includes("outdoor") ||
-    catRaw.includes("outdoors") ||
-    catRaw.includes("sport") ||
-    catRaw.includes("fitness") ||
+  // 2. Sports & Active Rec
+  const isProWrestling = /\b(pro wrestling|pandemonium pro)\b/i.test(combinedContext);
+  const isSports = (
+    arch === "active_rec" ||
+    isProWrestling ||
+    /\b(pitch & putt|pitch and putt|par-3|soccer championship|varsity basketball|thunderbirds basketball|tennis|recreation courts|ice skating)\b/i.test(combinedContext)
+  );
+
+  // 3. Outdoors & Parks
+  const isOutdoorParkOrPromenade = /\b(seawall|waterfront promenade|boardwalk|quarry gardens|pitch & putt|bloedel conservatory|vandusen|queen elizabeth park|stanley park|sun yat-sen|canada place|the shipyards|siwash rock|rooftop garden|kitsilano beach)\b/i.test(`${titleLower} ${venueLower}`);
+  const isOutdoors = !isProWrestling && !/\b(varsity basketball|thunderbirds basketball)\b/i.test(combinedContext) && (
+    arch === "civic_park" ||
+    isSports ||
+    catRaw === "outdoors" ||
     item.access_model === "open_public_space" ||
-    tagsArray.some(t => ['outdoor', 'outdoors', 'sport', 'fitness', 'walk', 'nature', 'park', 'beach', 'seawall', 'trail', 'golf', 'pitch-putt', 'garden'].includes(t)) ||
-    /\b(seawall|waterfront promenade|boardwalk|quarry gardens|pitch & putt|bloedel conservatory|vandusen|harvest days|apple festival|miniature train|thunderbird stadium|war memorial gym)\b/i.test(combinedContext) ||
-    (/\b(stanley park|queen elizabeth park|dr\. sun yat-sen|canada place|the shipyards|granville island public market)\b/i.test(combinedContext) && !venueLower.includes("park theatre"))
-  ) && !titleLower.includes("babes in canyon") && !titleLower.includes("croissant crawl");
+    isOutdoorParkOrPromenade
+  ) && !venueLower.includes("park theatre") && !venueLower.includes("2nd floor gastown");
 
-  const isMusic = (
-    catRaw.includes("music") ||
-    /music|concert|band|jazz|orchestra|metal|punk|symphony|dj|dance-party|dance|disco|techno|house-music|house|electronic|vinyl|nightlife|club-night|hip-hop|r&b|funk/.test(tagsStr) ||
-    /jazz|blues|orchestra|concert|metal|punk|symphony|strings|vso|dj|dance party|dance night|techno|disco|funk|synth-pop|electronic|house music|groove|indie rock|post-punk/.test(titleLower)
-  );
-
-  const isShows = (
-    catRaw.includes("show") ||
-    catRaw.includes("comedy") ||
-    catRaw.includes("theatre") ||
-    catRaw.includes("stage") ||
-    /comedy|improv|stand-up|burlesque|theatre|opera|stage play/.test(combinedContext) ||
-    (/cabaret|showcase/.test(combinedContext) && !/dance-party|dance party|dj|dance night|disco/.test(tagsStr + " " + titleLower))
-  ) && !/dance party|dance-party|dance night/.test(titleLower + " " + tagsStr);
-
+  // 4. Markets & Craft Sales
   const isMarkets = (
-    catRaw.includes("market") ||
-    /market|bazaar|croissant crawl/.test(combinedContext)
+    catRaw === "markets" ||
+    /\b(public market|holiday market|winter market|art market|queer market|craft market|pottery, bake, quilt, knit sale|the ornament collection|granville island public market)\b/i.test(`${titleLower} ${descLower}`)
   );
 
+  // 5. Trivia, Games & Social Gaming
+  const isTriviaGames = (
+    arch === "social_gaming" ||
+    /\b(trivia|board game|pinball|arcade|karaoke|drawing from memory|video games edition)\b/i.test(`${titleLower} ${descLower}`)
+  );
+
+  // 6. Music (Concerts, Symphony/Orchestra, Bands, Jazz, Choir, DJ Dance Parties)
+  const tierNamesStr = Array.isArray(item.all_tiers) ? item.all_tiers.map(t => t && t.name ? t.name : "").join(" ") : "";
+  const isMusic = !isCinema && !isTriviaGames && (
+    catRaw === "music" ||
+    venueLower.includes("orpheum") ||
+    venueLower.includes("pyatt hall") ||
+    venueLower.includes("bell performing arts") ||
+    venueLower.includes("commodore ballroom") ||
+    venueLower.includes("rickshaw theatre") ||
+    /\b(vancouver symphony orchestra|chamber players|chamber music|concert|live music|jazz|orchestra|symphony|string quartet|piano concerto|cello concerto|violin concerto|tribute band|nickelback tribute|depeche mode|pink floyd|crazy diamonds|city pop|east van opry|singer-songwriter|folk-pop|indie-folk|americana|guitar night|pipe organ|choir|singers|uzbek musical|sings ella|sings aretha|dance party|90s night|00s night|00s vs 10s|90s vs 00s|little ravers|no skips|pub jams|dj r3d|ruby haunt|tadhg nolan|emily scott robinson|michael bernard fitzgerald|audalei|john muirhead|hamza|steve dawson|songs we sing|guestlist cover)\b/i.test(`${titleLower} ${descLower} ${tierNamesStr}`)
+  ) && !/\b(circus incognitus|christmas presence)\b/i.test(titleLower);
+
+  // 7. Comedy
+  const isComedy = !isCinema && (
+    catRaw === "comedy" ||
+    /\b(comedy|stand-up|stand up|comedian|improv|improvised|jokes please|sunday service|panto|one-woman show|drawing from memory|snowed in comedy|alistair ogden|nick colletti|jenny tian|susan rice|circus incognitus)\b/i.test(`${titleLower} ${descLower}`)
+  );
+
+  // 8. Stage / Theatre / Burlesque / Dance Performance (Comedy & Stage = 'shows')
+  const isRemembranceOrService = /\b(remembrance day|granville island remembers|trans day of remembrance|sunday morning|candlelit contemplative|bible study|parent & tot|children’s group|good news cafe)\b/i.test(titleLower);
+  const isShows = !isCinema && !isMusic && !isMarkets && !isOutdoors && !isRemembranceOrService && (
+    isComedy ||
+    isProWrestling ||
+    catRaw === "shows" ||
+    /\b(burlesque|theatre production|stage production|world premiere musical|original musical|ballet|swan lake|cuff live|justin mcelroy|travis holp|52 stories|son of a preacherman|christmas presence|mental|no apologies|michel\(le\)|wolf cull|for frances|circus incognitus)\b/i.test(`${titleLower} ${descLower}`)
+  ) && !/\b(throne of glass trivia|karaoke)\b/i.test(titleLower);
+
+  // 9. Arts, Galleries, Museums & Workshops
+  const isArts = !isTriviaGames && (
+    (arch === "museum_gallery" && !/\b(the shipyards|lonsdale quay)\b/i.test(titleLower)) ||
+    arch === "workshop" ||
+    catRaw === "arts" ||
+    /\b(gallery|museum|exhibition|indigenous art|carving|poetry|comic maker|stitching circle|handcrafted|art-making|kids first|lind biennial|parallelogram|from the deep|st\. roch|gingerbread house|ballet)\b/i.test(`${titleLower} ${venueLower} ${descLower}`)
+  ) && !/\b(bible study|good news cafe|parent & tot|ignite!|parent, pie and prayer|word is out|eat pray love)\b/i.test(titleLower);
+
+  // 10. Social & Community
   const isSocialArts = (
-    catRaw.includes("art") ||
-    catRaw.includes("social") ||
-    catRaw.includes("culture") ||
-    /art|social|culture|craft|trivia|board-game|gallery/.test(combinedContext) ||
-    // Films shown in cultural, art-house, or archival series (e.g. Kwaidan, Pulse, VIFF, Cinematheque) belong to both Cinema and Social & Arts
-    isCinema
+    isArts ||
+    isTriviaGames ||
+    arch === "roving_series" ||
+    isRemembranceOrService ||
+    catRaw === "social" ||
+    catRaw === "culture" ||
+    isCinema ||
+    /\b(social|community|workshop|meetup|meet-up|besties|climate talks|break the silence|advent season|lights of hope|concord christmas|breakfast or brunch with santa)\b/i.test(`${titleLower} ${descLower}`)
   );
 
   // Build ev.categories array (multi-category assignment)
-  const categories = [];
-  if (isCinema && !categories.includes("cinema")) categories.push("cinema");
-  if (isOutdoors && !categories.includes("outdoors")) categories.push("outdoors");
-  if (isFreePublic && !categories.includes("free-public-access")) categories.push("free-public-access");
-  if (isMusic && !categories.includes("music")) categories.push("music");
-  if (isShows && !categories.includes("shows")) categories.push("shows");
-  if (isMarkets && !categories.includes("markets")) categories.push("markets");
-  if (isSocialArts && !categories.includes("social")) categories.push("social");
-  if ((isFest || isHoliday) && !categories.includes("festivals")) categories.push("festivals");
-
-  if (categories.length === 0) {
-    categories.push(isFreePublic ? "free-public-access" : "shows");
-  }
+  const categories = Array.isArray(item.categories) ? [...item.categories] : [];
+  const addCat = (c) => { if (c && !categories.includes(c)) categories.push(c); };
+  if (isCinema) addCat("cinema");
+  if (isMusic) addCat("music");
+  if (isShows) addCat("shows");
+  if (isComedy) addCat("comedy");
+  if (isOutdoors) addCat("outdoors");
+  if (isSports) addCat("sports");
+  if (isMarkets) addCat("markets");
+  if (isTriviaGames) addCat("trivia");
+  if (isArts) addCat("arts");
+  if (isSocialArts) addCat("social");
+  if (isFest || isHoliday) addCat("festivals");
+  if (isFreePublic) addCat("free-public-access");
+  if (isLiveToFilmSymphony) addCat("cinema");
+  if (/\b(circus incognitus|east van panto|for frances|let it be done|christmas presence)\b/i.test(titleLower)) addCat("music");
 
   // Determine primary category for badge display
-  let cat = categories[0];
+  let cat = "social";
   if (isCinema) cat = "cinema";
-  else if (isOutdoors && (catRaw.includes("sport") || (item.access_model === "open_public_space" && !isSocialArts && !isMarkets && !isFest && !isMusic))) cat = "outdoors";
-  else if (isFreePublic) cat = "free-public-access";
-  else if (isMusic) cat = "music";
   else if (isMarkets) cat = "markets";
-  else if (isOutdoors) cat = "outdoors";
+  else if (isOutdoorParkOrPromenade && !/\b(vancouver art gallery|polygon gallery|contemporary art gallery|bill reid|pendulum gallery)\b/i.test(titleLower)) cat = "outdoors";
+  else if (isSports && !isProWrestling) cat = "outdoors";
+  else if (isMusic) cat = "music";
   else if (isShows) cat = "shows";
+  else if (/\b(diwali downtown surrey|lumière festival|lumiere festival|33rd annual winter solstice|winter trout fest|concord christmas|lights of hope|breakfast or brunch with santa)\b/i.test(titleLower)) cat = "festivals";
+  else if (isOutdoors) cat = "outdoors";
   else if (isSocialArts) cat = "social";
+  else if (isFreePublic) cat = "free-public-access";
+
+  if (!categories.includes(cat)) categories.unshift(cat);
 
   // Calculate actual day-of-week codes (mon, tue, wed, etc.) - NEVER default to ['daily'] for timed events
   const DAY_CODES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -1687,10 +1731,10 @@ function setupEventListeners() {
     if (!eventsGrid || !mapWrapper) return;
     const isMap = mode === 'map';
 
-    const allToggleButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, [data-view]');
+    const allToggleButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, #mobile-top-map-btn, [data-view]');
     allToggleButtons.forEach((btn) => {
-      if (btn.id === 'mobile-view-toggle' || btn.getAttribute('data-view') === 'toggle') {
-        btn.innerHTML = isMap ? '📋 List' : '🗺️ Map';
+      if (btn.id === 'mobile-view-toggle' || btn.id === 'mobile-top-map-btn' || btn.getAttribute('data-view') === 'toggle') {
+        btn.innerHTML = isMap ? '📋 Cards' : '🗺️ Map';
         btn.classList.toggle('active', isMap);
         btn.setAttribute('aria-pressed', isMap ? 'true' : 'false');
         return;
@@ -1716,6 +1760,9 @@ function setupEventListeners() {
       if (typeof initVancouverMap === 'function') {
         initVancouverMap();
       }
+    }
+    if (typeof window.updateScrollDateIndicator === 'function') {
+      window.updateScrollDateIndicator();
     }
   };
 
@@ -4920,9 +4967,14 @@ function renderEventCards(events) {
   const nextWeekSunday = new Date(nextWeekMonday);
   nextWeekSunday.setDate(nextWeekMonday.getDate() + 6);
 
+  const getOrdinalDay = (n) => {
+    const s = ['th', 'st', 'nd', 'rd'];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
   const fmtMonthDay = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   const fmtWeekday = (d) => d.toLocaleDateString('en-US', { weekday: 'short' });
-  const fmtFull = (d) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+  const fmtFull = (d) => `${d.toLocaleDateString('en-US', { weekday: 'long', month: 'short' })} ${getOrdinalDay(d.getDate())}`;
 
   const todayLabel = fmtFull(today);
   const tomorrowLabel = fmtFull(tomorrow);
@@ -5924,9 +5976,17 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     ? window.getVenueAccessibility(ev.venue)
     : { status: 'accessible', label: 'Wheelchair Accessible', badgeIcon: '♿', summary: 'Ground-floor street level entrance.' };
   const isHappeningNow = isEventHappeningNow(ev, new Date());
+  const getOrdSuffix = (n) => {
+    const s = ['th', 'st', 'nd', 'rd'];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+  const scrollDayFull = (topDate && topDate.dateObj instanceof Date && !isNaN(topDate.dateObj.getTime()))
+    ? `${topDate.dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short' })} ${getOrdSuffix(topDate.dateObj.getDate())}`
+    : (topDate.badgeText || '');
 
   return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" data-scroll-date="${topDate.badgeText}" data-bucket-key="${bucketKey}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" data-scroll-date="${topDate.badgeText}" data-scroll-day="${scrollDayFull}" data-bucket-key="${bucketKey}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
@@ -6830,8 +6890,11 @@ window.updateScrollDateIndicator = function () {
   const scrollDateRange = document.getElementById('scroll-date-range');
   if (!stickyBar || !scrollDateBar || !scrollDateTitle) return;
 
+  const mapWrapperEl = document.getElementById('map-view-wrapper');
+  const isMapActive = Boolean(mapWrapperEl && (mapWrapperEl.classList.contains('active') || mapWrapperEl.style.display === 'block'));
+
   const scrollY = window.scrollY || window.pageYOffset || 0;
-  const isScrolled = scrollY > 110;
+  const isScrolled = scrollY > 90 && !isMapActive;
   stickyBar.classList.toggle('is-scrolled', isScrolled);
 
   if (!isScrolled) {
@@ -6856,15 +6919,22 @@ window.updateScrollDateIndicator = function () {
   let rangeDisplay = '';
   if (activeCard) {
     const cardDate = activeCard.getAttribute('data-scroll-date') || '';
+    const cardScrollDay = activeCard.getAttribute('data-scroll-day') || '';
+    const bucketKey = activeCard.getAttribute('data-bucket-key') || '';
     const parentGroup = activeCard.closest('.events-time-group');
-    const groupHeading = parentGroup ? (parentGroup.getAttribute('data-group-heading') || parentGroup.getAttribute('data-group-title') || '') : '';
+    const groupShort = parentGroup ? (parentGroup.getAttribute('data-group-title') || '') : '';
+    const groupHeading = parentGroup ? (parentGroup.getAttribute('data-group-heading') || groupShort || '') : '';
     const groupRange = parentGroup ? (parentGroup.getAttribute('data-group-range') || '') : '';
 
-    titleDisplay = groupHeading || cardDate;
-    if (cardDate && !cardDate.toLowerCase().startsWith('today') && !cardDate.toLowerCase().startsWith('tomorrow')) {
-      rangeDisplay = cardDate;
+    if (bucketKey === 'today' || cardDate.toLowerCase().startsWith('today')) {
+      titleDisplay = 'Today';
+      rangeDisplay = cardScrollDay || groupRange || cardDate;
+    } else if (bucketKey === 'tomorrow' || cardDate.toLowerCase().startsWith('tomorrow')) {
+      titleDisplay = 'Tomorrow';
+      rangeDisplay = cardScrollDay || groupRange || cardDate;
     } else {
-      rangeDisplay = groupRange || cardDate;
+      titleDisplay = groupShort || groupHeading || cardDate;
+      rangeDisplay = cardScrollDay || cardDate || groupRange;
     }
   }
 
@@ -6873,7 +6943,7 @@ window.updateScrollDateIndicator = function () {
     for (let i = 0; i < groups.length; i++) {
       const r = groups[i].getBoundingClientRect();
       if (r.bottom >= probeY) {
-        titleDisplay = groups[i].getAttribute('data-group-heading') || groups[i].getAttribute('data-group-title') || '';
+        titleDisplay = groups[i].getAttribute('data-group-title') || groups[i].getAttribute('data-group-heading') || '';
         rangeDisplay = groups[i].getAttribute('data-group-range') || '';
         break;
       }
@@ -6884,7 +6954,7 @@ window.updateScrollDateIndicator = function () {
     const reactiveStr = getReactiveDateHeaderLabel(new Date());
     const parts = reactiveStr.split('•').map(s => s.trim());
     titleDisplay = parts[0] || reactiveStr;
-    rangeDisplay = parts[1] || '';
+    rangeDisplay = parts[1] || rangeDisplay || '';
   }
 
   if (titleDisplay) {

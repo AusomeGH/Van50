@@ -103,33 +103,56 @@ export function cleanEventTitle(rawTitle) {
  */
 export function classifyCategory(title, description, rawCategory, venueData) {
   const combined = `${title || ""} ${description || ""} ${rawCategory || ""} ${venueData?.description || ""} ${venueData?.venue_name || ""}`.toLowerCase();
+  const venueLower = String(venueData?.venue_name || "").toLowerCase();
 
-  // 1. Outdoors & Recreation / Parks / Sports
-  if (/\b(?:pitch & putt|pitch and putt|golf|par-3|par 3|seawall|beach|park|garden|botanical|trail|hike|hiking|outdoor|outdoors|canyon|recreation|pitch|putt|viewing deck)\b/i.test(combined)) {
+  // 1. Cinema & Film Screenings
+  if (
+    !/\bin concert live to film\b/i.test(title || "") &&
+    (venueLower.includes("cinematheque") ||
+      venueLower.includes("viff centre") ||
+      venueLower.includes("fifth avenue cinema") ||
+      /\b(?:film screening|movie screening|documentary screening|screening of|35mm|16mm|short films|film festival|cinema)\b/i.test(combined)) &&
+    !/\b(?:comedy|stand-up|burlesque|improv|trivia)\b/i.test(title || "")
+  ) {
+    return "cinema";
+  }
+  // 2. Markets & Seasonal Craft Sales
+  if (/\b(?:public market|holiday market|winter market|art market|queer market|craft market|pottery, bake, quilt, knit sale|ornament collection)\b/i.test(combined)) {
+    return "markets";
+  }
+  // 3. Outdoors & Recreation / Parks / Sports
+  if (/\b(?:pitch & putt|pitch and putt|golf|par-3|par 3|seawall|beach|park|garden|botanical|trail|hike|hiking|outdoor|outdoors|canyon|recreation|pitch|putt|viewing deck|soccer championship|varsity basketball|thunderbirds basketball)\b/i.test(combined) && !venueLower.includes("park theatre")) {
     return "outdoors";
   }
-  // 2. Comedy
-  if (/\b(?:comedy|standup|stand-up|improv|sketch comedy|laugh|jokes|roast)\b/i.test(combined)) {
-    return "comedy";
-  }
-  // 3. Shows, Theatre, Concerts & Live Performance
-  if (/\b(?:theatre|theater|play|drama|musical|stage play|monologue|broadway|fringe|concert|band|orchestra|jazz|choir|symphony|acoustic|live music|dj set|indie rock|punk|folk|tribute band|recital|cabaret|film|cinema|screening|movie|documentary)\b/i.test(combined)) {
+  // 4. Comedy
+  if (/\b(?:comedy|standup|stand-up|improv|sketch comedy|laugh|jokes|roast|panto)\b/i.test(combined)) {
     return "shows";
   }
-  // 4. Visual Arts & Galleries
-  if (/\b(?:art|gallery|exhibition|sculpture|painting|ceramics|visual arts|photography|crafts)\b/i.test(combined)) {
-    return "arts";
+  // 5. Music, Symphony, Concerts & DJ Nights
+  if (
+    venueLower.includes("orpheum") ||
+    venueLower.includes("pyatt hall") ||
+    venueLower.includes("bell performing arts") ||
+    venueLower.includes("commodore ballroom") ||
+    venueLower.includes("rickshaw theatre") ||
+    /\b(?:concert|band|orchestra|jazz|choir|symphony|string quartet|chamber players|chamber music|piano concerto|cello concerto|violin concerto|acoustic|live music|dj|dance party|90s night|00s night|indie rock|punk|folk|tribute band|recital|singer-songwriter)\b/i.test(combined)
+  ) {
+    return "music";
   }
-  // 5. Free Public Access
-  if (/\b(?:free public access|public access|open courtyard|public market|daily access)\b/i.test(combined)) {
+  // 6. Stage Shows, Theatre, Musicals & Burlesque
+  if (/\b(?:theatre|theater|play|drama|musical|stage play|monologue|broadway|fringe|burlesque|ballet|swan lake|storytelling|pro wrestling)\b/i.test(combined)) {
+    return "shows";
+  }
+  // 7. Visual Arts, Galleries, Workshops, Trivia & Social
+  if (/\b(?:art|gallery|exhibition|sculpture|painting|ceramics|visual arts|photography|crafts|lecture|talk|workshop|walking tour|community|cultural|poetry|author|heritage|museum|trivia|board game|pinball|arcade|karaoke)\b/i.test(combined)) {
+    return "social";
+  }
+  // 8. Free Public Access
+  if (/\b(?:free public access|public access|open courtyard|daily access)\b/i.test(combined)) {
     return "free-public-access";
   }
-  // 6. Culture & Heritage
-  if (/\b(?:lecture|talk|workshop|walking tour|community|cultural|poetry|storytelling|author|heritage|museum)\b/i.test(combined)) {
-    return "culture";
-  }
 
-  if (venueData?.description && ["outdoors", "shows", "arts", "culture", "comedy", "free-public-access"].includes(venueData.description)) {
+  if (venueData?.description && ["outdoors", "shows", "music", "cinema", "markets", "social", "arts", "culture", "comedy", "free-public-access"].includes(venueData.description)) {
     return venueData.description;
   }
 

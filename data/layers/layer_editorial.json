@@ -8,8 +8,10 @@
       "Andrew James McKay",
       "Alan Storey"
     ],
-    "category": "free-public-access",
+    "category": "social",
     "categories": [
+      "social",
+      "arts",
       "free-public-access"
     ],
     "event_archetype": "museum_gallery",
@@ -48,8 +50,9 @@
     "lineup": [
       "none"
     ],
-    "category": "free-public-access",
+    "category": "outdoors",
     "categories": [
+      "outdoors",
       "free-public-access"
     ],
     "event_archetype": "civic_park",
@@ -87,8 +90,9 @@
     "clean_title": "Vancouver Art Gallery: General Admission & Access Programs",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "museum_gallery",
@@ -129,11 +133,14 @@
     "lineup": [
       "none_available"
     ],
-    "category": "culture",
+    "category": "outdoors",
     "categories": [
-      "culture"
+      "outdoors",
+      "arts",
+      "social",
+      "free-public-access"
     ],
-    "event_archetype": "civic_park",
+    "event_archetype": "museum_gallery",
     "archetype": "civic_park",
     "lifecycle_type": "perennial_drop_in",
     "description": "Wander through an authentic Ming Dynasty-style scholar garden featuring jade-green reflection ponds, covered winding walkways, and weathered Taihu limestone rockeries in historic Chinatown. Visitors can enjoy peaceful strolls through the free public courtyard or explore contemplative classical pavilions with verified on-site admission pricing.",
@@ -170,11 +177,13 @@
     "lineup": [
       "The Shipyards Commons Plaza & Burrard Dry Dock Pier"
     ],
-    "category": "free-public-access",
+    "category": "outdoors",
     "categories": [
+      "outdoors",
+      "social",
       "free-public-access"
     ],
-    "event_archetype": "civic_park",
+    "event_archetype": "museum_gallery",
     "archetype": "civic_park",
     "lifecycle_type": "perennial_drop_in",
     "description": "Stroll along North Vancouver's scenic waterfront boardwalk and take in sweeping, panoramic views of the Burrard Inlet and downtown skyline from the Burrard Dry Dock Pier. Situated steps from the SeaBus, the bustling Shipyards Commons offers a vibrant open community space ideal for casual seaside walks and relaxation.",
@@ -209,8 +218,10 @@
     "clean_title": "Granville Island Public Market & Courtyard Buskers",
     "artist": null,
     "lineup": [],
-    "category": "free-public-access",
+    "category": "markets",
     "categories": [
+      "markets",
+      "outdoors",
       "free-public-access"
     ],
     "event_archetype": "civic_park",
@@ -254,8 +265,9 @@
       "Thomas Cannell",
       "Brent Sparrow"
     ],
-    "category": "free-public-access",
+    "category": "outdoors",
     "categories": [
+      "outdoors",
       "free-public-access"
     ],
     "event_archetype": "civic_park",
@@ -293,9 +305,11 @@
     "clean_title": "Admission by Donation",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -333,8 +347,11 @@
     "clean_title": "Central Branch Rooftop Garden & Civic Galleries",
     "artist": null,
     "lineup": [],
-    "category": "free-public-access",
+    "category": "outdoors",
     "categories": [
+      "outdoors",
+      "arts",
+      "social",
       "free-public-access"
     ],
     "event_archetype": "civic_park",
@@ -374,9 +391,11 @@
     "lineup": [
       "Nour Mobarak"
     ],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -412,8 +431,9 @@
     "clean_title": "Queen Elizabeth Park & Quarry Gardens",
     "artist": null,
     "lineup": [],
-    "category": "free-public-access",
+    "category": "outdoors",
     "categories": [
+      "outdoors",
       "free-public-access"
     ],
     "event_archetype": "civic_park",
@@ -582,9 +602,9 @@
       "Ruby Haunt",
       "VHS Ghost"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -1039,8 +1059,9 @@
     "lineup": [
       "Phyllis Hull"
     ],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -1336,8 +1357,9 @@
     "lineup": [
       "Alistair Ogden"
     ],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -1377,9 +1399,9 @@
     "lineup": [
       "Technodelic"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -1555,7 +1577,8 @@
     ],
     "category": "outdoors",
     "categories": [
-      "outdoors"
+      "outdoors",
+      "sports"
     ],
     "event_archetype": "active_rec",
     "archetype": "active_rec",
@@ -1633,7 +1656,8 @@
     ],
     "category": "outdoors",
     "categories": [
-      "outdoors"
+      "outdoors",
+      "sports"
     ],
     "event_archetype": "active_rec",
     "archetype": "active_rec",
@@ -1947,9 +1971,11 @@
     "lineup": [
       "Dine-In Tabletop Gaming"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "trivia",
+      "free-public-access"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -1989,11 +2015,12 @@
     "lineup": [
       "Rotating Local Jazz, Soul, Blues & Acoustic Artists"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "free-public-access"
     ],
-    "event_archetype": "live_stage",
+    "event_archetype": "civic_park",
     "archetype": "live_stage",
     "lifecycle_type": "perennial_drop_in",
     "description": "Vibrant jazz, blues, and soul showcases bring an evolving roster of local and touring musicians together for intimate acoustic sets. Guests enjoy dynamic live performances supported by a $12.00 artist fee alongside evening dinner and cocktail service.",
@@ -2123,9 +2150,11 @@
       "Tightrope Theatre",
       "Dad's Garage Theatre"
     ],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
-      "comedy"
+      "shows",
+      "comedy",
+      "festivals"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -2301,9 +2330,10 @@
     "lineup": [
       "Sacred Voices Ensemble"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -2423,8 +2453,9 @@
     "clean_title": "Jokes Please!",
     "artist": null,
     "lineup": [],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -2506,9 +2537,11 @@
     "lineup": [
       "Diwali Fest"
     ],
-    "category": "culture",
+    "category": "festivals",
     "categories": [
-      "culture"
+      "festivals",
+      "social",
+      "free-public-access"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -4215,9 +4248,11 @@
     "lineup": [
       "Lesley Branton"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "arts",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -4741,9 +4776,10 @@
     "clean_title": "Dinner Reservations",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "music",
     "categories": [
-      "culture"
+      "music",
+      "social"
     ],
     "description": "For table reservations please email . We accept table table bookings Wednesday-Thursday 7pm-11pm, Friday & Saturday 6pm-8pm.",
     "restrictions": "19+",
@@ -4751,7 +4787,8 @@
     "dateSchedule": "2026-10-21 • 8:00 PM",
     "source_engine": "deterministic_cognitive_nlp",
     "enriched_at": "2026-10-22T20:19:23.013Z",
-    "audited_at": "2026-10-22T20:19:23.013Z"
+    "audited_at": "2026-10-22T20:19:23.013Z",
+    "event_archetype": "live_stage"
   },
   {
     "id": "vancouver-cultural-v-event-2026-10-21",
@@ -5118,9 +5155,10 @@
     "clean_title": "Arcade Games, Ping Pong, Pool & Weekly Trivia",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "trivia"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -5160,8 +5198,9 @@
     "lineup": [
       "Bill Reid"
     ],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "museum_gallery",
@@ -5198,8 +5237,10 @@
     "clean_title": "Kitsilano Beach Public Tennis & Outdoor Recreation Courts",
     "artist": null,
     "lineup": [],
-    "category": "free-public-access",
+    "category": "outdoors",
     "categories": [
+      "outdoors",
+      "sports",
       "free-public-access"
     ],
     "event_archetype": "active_rec",
@@ -5383,9 +5424,11 @@
     "lineup": [
       "Replay Wednesday IFPA Pinball League"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "trivia",
+      "free-public-access"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -7089,9 +7132,10 @@
     "clean_title": "The Mortal Storm",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -7130,9 +7174,10 @@
     "clean_title": "Three Comrades",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -7205,9 +7250,11 @@
     "clean_title": "Theatre Replacement’s East Van Panto: Hercules",
     "artist": null,
     "lineup": [],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
-      "comedy"
+      "shows",
+      "comedy",
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -7284,8 +7331,9 @@
     "clean_title": "Snowed In Comedy Tour",
     "artist": null,
     "lineup": [],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -7409,9 +7457,10 @@
     "lineup": [
       "Little Chamber Music"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -7449,9 +7498,9 @@
     "clean_title": "Steve Dawson with Fats Kaplin",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -7489,9 +7538,9 @@
     "clean_title": "Hamza — A Song for Everyone Tour",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -7529,9 +7578,9 @@
     "clean_title": "Michel(le)",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -7612,7 +7661,8 @@
     "lineup": [],
     "category": "shows",
     "categories": [
-      "shows"
+      "shows",
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -7941,9 +7991,10 @@
     "lineup": [
       "Siân Heder"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -7985,9 +8036,10 @@
     "lineup": [
       "Clay March"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -8029,9 +8081,10 @@
     "lineup": [
       "Sam Adolph"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -8073,9 +8126,10 @@
     "lineup": [
       "Mahesh Pailoor"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -8115,9 +8169,10 @@
     "clean_title": "Mountains on Stage",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -8159,9 +8214,10 @@
     "lineup": [
       "Stephen Quinn"
     ],
-    "category": "culture",
+    "category": "shows",
     "categories": [
-      "culture"
+      "shows",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -8283,7 +8339,8 @@
     ],
     "category": "shows",
     "categories": [
-      "shows"
+      "shows",
+      "festivals"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -8324,9 +8381,9 @@
     "lineup": [
       "Crazy Diamonds"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -8364,8 +8421,9 @@
     "clean_title": "Nick Colletti",
     "artist": null,
     "lineup": [],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -8409,9 +8467,9 @@
       "Sammy Volkov",
       "Desirée Dawson"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -8451,8 +8509,9 @@
     "lineup": [
       "Jenny Tian"
     ],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -8537,7 +8596,8 @@
     ],
     "category": "shows",
     "categories": [
-      "shows"
+      "shows",
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -8615,8 +8675,9 @@
     "clean_title": "Susan Rice",
     "artist": null,
     "lineup": [],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -8777,9 +8838,9 @@
     "clean_title": "Strangelove: The Depeche Mode Experience",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -8985,9 +9046,9 @@
     "clean_title": "Tadhg Nolan with The Good Guys",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9028,9 +9089,9 @@
       "Emily Scott Robinson",
       "Twin Bandit"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9070,9 +9131,9 @@
     "lineup": [
       "Merrick Winter"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9110,9 +9171,9 @@
     "clean_title": "00s vs 10s Party",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9152,9 +9213,9 @@
     "lineup": [
       "Common People DJs"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9196,9 +9257,10 @@
       "NOEKA",
       "Haleluya Hailu"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9277,9 +9339,9 @@
     "clean_title": "bratty: 90s-Now Dance Party",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9361,9 +9423,9 @@
     "lineup": [
       "Common People DJs"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -9445,9 +9507,10 @@
     "clean_title": "Tokyo Melody: A Film About Ryuichi Sakamoto",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9491,9 +9554,10 @@
       "Jason DaSilva",
       "Harry Killas"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9536,9 +9600,10 @@
     "lineup": [
       "Casey Wei"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9581,9 +9646,10 @@
     "lineup": [
       "Joaquim Pedro de Andrade"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9627,9 +9693,10 @@
       "Loretta Todd",
       "Alexandra Lazarowich"
     ],
-    "category": "culture",
+    "category": "cinema",
     "categories": [
-      "culture"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9673,9 +9740,10 @@
       "Sinéad O’Shea",
       "Jessie Buckley"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9718,9 +9786,13 @@
     "lineup": [
       "Leonardo van Dijl"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "outdoors",
+      "sports",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9763,9 +9835,11 @@
     "lineup": [
       "Mike van Diem"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9809,9 +9883,11 @@
       "Nils Wetterholm",
       "Alva Bratt"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9854,9 +9930,11 @@
     "lineup": [
       "Filippos Tsitos"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9899,9 +9977,10 @@
     "lineup": [
       "Fleischer Studios"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9944,9 +10023,11 @@
     "lineup": [
       "Caroline Origer"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -9989,9 +10070,11 @@
     "lineup": [
       "Eryk Kulm"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10080,9 +10163,11 @@
     "lineup": [
       "Birgit Minichmayr"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10125,9 +10210,11 @@
     "lineup": [
       "Ignas Jonynas"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10170,9 +10257,11 @@
     "lineup": [
       "Attila Bokor"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10215,9 +10304,11 @@
     "lineup": [
       "Abigail Mallia"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10261,9 +10352,11 @@
       "Pavel Cuzuioc",
       "Elizabeth Leonardis"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10306,9 +10399,11 @@
     "lineup": [
       "Saturnino García"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10351,9 +10446,11 @@
     "lineup": [
       "Riccardo Milani"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10398,9 +10495,11 @@
       "Louiza Aura",
       "Caroline Deruas Peano"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10443,9 +10542,11 @@
     "lineup": [
       "Sofie Gråbøl"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10488,9 +10589,11 @@
     "lineup": [
       "Myrsini Aristidou"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10533,9 +10636,11 @@
     "lineup": [
       "Tia Kouvo"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10579,9 +10684,11 @@
     "lineup": [
       "Zornitsa Sophia"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10624,9 +10731,11 @@
     "lineup": [
       "Dzintars Dreibergs"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10669,9 +10778,11 @@
     "lineup": [
       "Rina Gri"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10714,9 +10825,11 @@
     "lineup": [
       "Vicente Alves do Ó"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10760,9 +10873,11 @@
       "Danilo Šerbedžija",
       "Tonko Stošić"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10805,7 +10920,8 @@
     "lineup": [],
     "category": "outdoors",
     "categories": [
-      "outdoors"
+      "outdoors",
+      "sports"
     ],
     "event_archetype": "active_rec",
     "archetype": "active_rec",
@@ -10844,9 +10960,11 @@
     "lineup": [
       "Dan Pánek"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10889,9 +11007,11 @@
     "lineup": [
       "Lauro Cress"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10934,9 +11054,11 @@
     "lineup": [
       "Miloslav Luther"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -10979,9 +11101,11 @@
     "lineup": [
       "Miha Hočevar"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11025,9 +11149,11 @@
       "Alisa Kovalenko",
       "Marysia Nikitiuk"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11070,9 +11196,10 @@
     "lineup": [
       "Youssef Chahine"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11116,9 +11243,10 @@
       "Zumrad Mirzalieva",
       "Althea Thauberger"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11161,9 +11289,10 @@
     "lineup": [
       "Bong Joon Ho"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11206,9 +11335,10 @@
     "lineup": [
       "Gunvor Nelson"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11251,9 +11381,10 @@
     "lineup": [
       "Youssef Chahine"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11296,9 +11427,10 @@
     "lineup": [
       "Irène Jacob"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11341,9 +11473,10 @@
     "lineup": [
       "Youssef Chahine"
     ],
-    "category": "culture",
+    "category": "cinema",
     "categories": [
-      "culture"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11387,9 +11520,10 @@
       "Krzysztof Kieślowski",
       "Jerzy Stuhr"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11435,9 +11569,10 @@
       "Jerzy Stuhr",
       "Agnieszka Holland"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11481,9 +11616,10 @@
       "Isiah Medina",
       "Steff Huì Cí Ling"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11526,9 +11662,10 @@
     "lineup": [
       "Thomas Vinterberg"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11572,9 +11709,11 @@
       "Alanis Obomsawin",
       "Paige Bethmann"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social",
+      "festivals"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11620,9 +11759,10 @@
       "Fatma Hassona",
       "Pelan"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11668,9 +11808,10 @@
       "Patrice Chéreau",
       "Gabriel Yared"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11711,9 +11852,10 @@
     "clean_title": "Cameron Winter at Carnegie Hall",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11757,9 +11899,10 @@
       "Jack Benny",
       "Carole Lombard"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11799,11 +11942,10 @@
     "clean_title": "The Mad Dog of Europe",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows",
       "cinema",
-      "international-cinema"
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11843,9 +11985,10 @@
     "clean_title": "Naza",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11888,11 +12031,10 @@
       "Alfred Hitchcock",
       "Michael van den Bos"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows",
       "cinema",
-      "classic-film"
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -11932,9 +12074,9 @@
     "clean_title": "Nickelchick (Nickelback Tribute)",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -11972,9 +12114,10 @@
     "clean_title": "Throne of Glass Trivia Series: Night 5 - Tower of Dawn",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "trivia"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -12471,8 +12614,9 @@
     "clean_title": "The Sunday Service",
     "artist": null,
     "lineup": [],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -12893,9 +13037,11 @@
     "clean_title": "Sunday Morning",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "music",
     "categories": [
-      "culture"
+      "music",
+      "comedy",
+      "social"
     ],
     "event_archetype": "roving_series",
     "archetype": "roving_series",
@@ -12935,9 +13081,11 @@
     "lineup": [
       "Peggy Hua"
     ],
-    "category": "culture",
+    "category": "music",
     "categories": [
-      "culture"
+      "music",
+      "arts",
+      "social"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -12976,9 +13124,9 @@
     "clean_title": "Good News Cafe",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13018,9 +13166,9 @@
     "clean_title": "Parent & Tot",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13059,9 +13207,10 @@
     "clean_title": "Ignite! Children’s Group",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13103,8 +13252,11 @@
     "lineup": [
       "Peggy Hua"
     ],
-    "category": "free-public-access",
+    "category": "music",
     "categories": [
+      "music",
+      "arts",
+      "social",
       "free-public-access"
     ],
     "event_archetype": "workshop",
@@ -13145,9 +13297,10 @@
     "clean_title": "Light and Shadow Bible Study",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "festivals"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13190,9 +13343,11 @@
       "Musical Friends",
       "Singing Songbirds"
     ],
-    "category": "arts",
+    "category": "music",
     "categories": [
-      "arts"
+      "music",
+      "arts",
+      "social"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13236,9 +13391,10 @@
       "Brandon Walker",
       "Sanctuary Singers"
     ],
-    "category": "culture",
+    "category": "music",
     "categories": [
-      "culture"
+      "music",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -13278,9 +13434,10 @@
     "lineup": [
       "Wendy Sarkissian"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13319,9 +13476,10 @@
     "clean_title": "Lights of Hope",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "festivals",
     "categories": [
-      "culture"
+      "festivals",
+      "social"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -13403,8 +13561,9 @@
     "clean_title": "Lifelines Poetry",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "workshop",
@@ -13446,9 +13605,10 @@
     "lineup": [
       "Rev. Rhian Walker"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13487,9 +13647,9 @@
     "clean_title": "Parent, Pie and Prayer",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13528,8 +13688,9 @@
     "clean_title": "Poetry with Amy H.",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "workshop",
@@ -13571,9 +13732,9 @@
     "lineup": [
       "Publik Secrets"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -13613,9 +13774,10 @@
     "lineup": [
       "Angela Ma Brown"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13658,9 +13820,9 @@
       "Matthew Presidente",
       "Rev. Lauren Kirkey"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -13698,9 +13860,9 @@
     "clean_title": "Word is OUT!",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13740,8 +13902,9 @@
     "clean_title": "Stitching Circle",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "workshop",
@@ -13781,9 +13944,9 @@
     "clean_title": "Eat Pray Love Christian New Year",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13823,9 +13986,11 @@
     "clean_title": "Celebrating the Start of the Advent Season",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts",
+      "festivals"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -13865,9 +14030,12 @@
     "clean_title": "Last Christian in Bethlehem Screening and Palestinian Art Market",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "cinema",
     "categories": [
-      "culture"
+      "cinema",
+      "markets",
+      "arts",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -13993,9 +14161,9 @@
     "clean_title": "Little Ravers",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14203,7 +14371,8 @@
     ],
     "category": "shows",
     "categories": [
-      "shows"
+      "shows",
+      "sports"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14286,9 +14455,11 @@
     "lineup": [
       "Ravshan Tukhtamishev"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "arts",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14370,9 +14541,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14450,9 +14621,9 @@
     "clean_title": "Vancouver Symphony Orchestra Chamber Players",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14576,9 +14747,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14618,9 +14789,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14660,9 +14831,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14788,9 +14959,11 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "festivals",
+      "cinema"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14831,9 +15004,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14874,9 +15047,9 @@
       "Christopher Gaze",
       "Trevor Wilson"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14916,9 +15089,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -14958,9 +15131,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15042,9 +15215,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15082,9 +15255,9 @@
     "clean_title": "Vancouver Symphony Orchestra: Grieg, Liszt, Fung & Strauss",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15124,9 +15297,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15166,9 +15339,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15208,9 +15381,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15292,9 +15465,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15336,7 +15509,9 @@
     ],
     "category": "shows",
     "categories": [
-      "shows"
+      "shows",
+      "comedy",
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15376,9 +15551,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15418,9 +15593,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15460,9 +15635,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15502,9 +15677,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15544,9 +15719,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15588,9 +15763,9 @@
       "Hans Zimmer",
       "John Williams"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15630,9 +15805,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15672,9 +15847,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15714,9 +15889,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15756,9 +15931,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra Musicians"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15799,9 +15974,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15841,9 +16016,10 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "cinema"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15883,9 +16059,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15925,9 +16101,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -15967,9 +16143,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -16011,9 +16187,9 @@
       "Ludovic Morlot",
       "Alessio Bax"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -16602,9 +16778,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -16645,9 +16821,11 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "arts",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -16688,9 +16866,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -16731,9 +16909,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -16815,9 +16993,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -16858,9 +17036,9 @@
     "lineup": [
       "Vancouver Symphony Orchestra"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -17369,9 +17547,11 @@
     "clean_title": "Kids First",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -17411,9 +17591,12 @@
     "clean_title": "House of R3nc0ng: Queer Worldbuilding Amidst the Fire",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "arts",
+      "social",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -17451,9 +17634,11 @@
     "clean_title": "when the one to author the cut is gone a hole in the shape of a portal forms",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -17491,9 +17676,11 @@
     "clean_title": "Exhibitions at The Polygon Gallery",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -17531,9 +17718,11 @@
     "clean_title": "The Lind Biennial Opening Celebration",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -17616,7 +17805,11 @@
     "lineup": [],
     "category": "shows",
     "categories": [
-      "shows"
+      "shows",
+      "arts",
+      "social",
+      "festivals",
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -18016,9 +18209,13 @@
     "clean_title": "The Ornament Collection",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "markets",
     "categories": [
-      "arts"
+      "markets",
+      "arts",
+      "social",
+      "festivals",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -18060,9 +18257,11 @@
       "Anita Eccleston",
       "Anthony Warburton"
     ],
-    "category": "culture",
+    "category": "outdoors",
     "categories": [
-      "culture"
+      "outdoors",
+      "social",
+      "free-public-access"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -18101,9 +18300,10 @@
     "clean_title": "Casey Thomas-Burns Sings Ella X-Mas",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music",
+      "festivals"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -18146,9 +18346,10 @@
       "Stanley Kwan",
       "Maggie Cheung"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18191,9 +18392,10 @@
     "lineup": [
       "Krzysztof Kieślowski"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18238,9 +18440,10 @@
       "Jerzy Stuhr",
       "Krzysztof Zanussi"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18283,9 +18486,10 @@
     "lineup": [
       "Dr. Anton Scamvougeras"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18328,9 +18532,10 @@
     "lineup": [
       "Gunvor Nelson"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18374,9 +18579,10 @@
       "Sylvia Chang",
       "Christopher Doyle"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18421,9 +18627,10 @@
       "Clark Gable",
       "Montgomery Clift"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18467,9 +18674,10 @@
       "Krzysztof Kieślowski",
       "Bogusław Linda"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18512,9 +18720,10 @@
     "lineup": [
       "Juliette Binoche"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18558,9 +18767,11 @@
       "Moira Shearer",
       "Léonide Massine"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "arts",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18604,9 +18815,10 @@
       "Kadokawa Haruki",
       "Carlo Rambaldi"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18651,9 +18863,10 @@
       "Aleksander Bardini",
       "Grażyna Szapołowska"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18698,9 +18911,10 @@
       "Zbigniew Zamachowski",
       "Julie Delpy"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18743,9 +18957,10 @@
     "lineup": [
       "Jane Campion"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18789,9 +19004,10 @@
       "Olaf Lubaszenko",
       "Grażyna Szapołowska"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18838,9 +19054,10 @@
       "Jan Tesarz",
       "Sławomir Idziak"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18883,9 +19100,10 @@
     "lineup": [
       "Krzysztof Kieślowski"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18929,9 +19147,10 @@
       "František Vláčil",
       "Magda Vášáryová"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -18975,9 +19194,10 @@
       "Lynne Ramsay",
       "Samantha Morton"
     ],
-    "category": "shows",
+    "category": "cinema",
     "categories": [
-      "shows"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -19021,9 +19241,10 @@
       "Krzysztof Kieślowski",
       "Krzysztof Piesiewicz"
     ],
-    "category": "arts",
+    "category": "cinema",
     "categories": [
-      "arts"
+      "cinema",
+      "social"
     ],
     "event_archetype": "cinema",
     "archetype": "cinema",
@@ -19147,9 +19368,12 @@
     "clean_title": "Winter Trout Fest & Pancake Lunch",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "outdoors",
     "categories": [
-      "culture"
+      "outdoors",
+      "sports",
+      "social",
+      "festivals"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -19188,9 +19412,12 @@
     "clean_title": "Pottery, Bake, Quilt, Knit Sale",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "markets",
     "categories": [
-      "arts"
+      "markets",
+      "arts",
+      "social",
+      "festivals"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -19229,9 +19456,11 @@
     "clean_title": "Comic Maker Meet-Up",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -19271,9 +19500,11 @@
     "clean_title": "BC Achievement First Nations Art & Applied Art + Design Combined Exhibition",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -19311,9 +19542,13 @@
     "clean_title": "Portobello West Holiday Market",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "markets",
     "categories": [
-      "arts"
+      "markets",
+      "arts",
+      "social",
+      "festivals",
+      "free-public-access"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -19353,9 +19588,11 @@
     "clean_title": "Concord Christmas",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "festivals",
     "categories": [
-      "culture"
+      "festivals",
+      "social",
+      "free-public-access"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -19395,9 +19632,12 @@
     "clean_title": "Gingerbread House Decorating",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "festivals",
+      "free-public-access"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -19438,9 +19678,11 @@
     "clean_title": "Breakfast or Brunch with Santa",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "festivals",
     "categories": [
-      "culture"
+      "festivals",
+      "social",
+      "free-public-access"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -19480,9 +19722,13 @@
     "clean_title": "Merry, Gay, & Bright",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "markets",
     "categories": [
-      "culture"
+      "markets",
+      "arts",
+      "social",
+      "festivals",
+      "free-public-access"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -19522,9 +19768,12 @@
     "clean_title": "33rd Annual Winter Solstice Festival",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "festivals",
     "categories": [
-      "culture"
+      "festivals",
+      "arts",
+      "social",
+      "free-public-access"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -19568,8 +19817,9 @@
       "Cass Furman",
       "Michael Balazo"
     ],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
+      "shows",
       "comedy"
     ],
     "event_archetype": "live_stage",
@@ -19614,7 +19864,9 @@
     ],
     "category": "shows",
     "categories": [
-      "shows"
+      "shows",
+      "arts",
+      "social"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -19658,9 +19910,9 @@
       "Cenk Erdoğan",
       "Remi Harris"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -20355,9 +20607,11 @@
     "clean_title": "Parallelogram Volume 2: Presence",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
-      "arts"
+      "social",
+      "arts",
+      "free-public-access"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -20453,7 +20707,8 @@
     ],
     "category": "outdoors",
     "categories": [
-      "outdoors"
+      "outdoors",
+      "sports"
     ],
     "event_archetype": "active_rec",
     "archetype": "active_rec",
@@ -20492,11 +20747,12 @@
     "clean_title": "2026 U SPORTS Women's Soccer Championship: Semifinals Day Pass",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "outdoors",
     "categories": [
-      "shows"
+      "outdoors",
+      "sports"
     ],
-    "event_archetype": "festival",
+    "event_archetype": "active_rec",
     "archetype": "festival",
     "lifecycle_type": "time_bound_event",
     "description": "Catch top collegiate soccer talent go head-to-head in high-stakes semifinal action at Thunderbird Stadium. This day pass grants access to the critical tournament matchups as university teams battle for a spot in the national final.",
@@ -20533,9 +20789,10 @@
     "clean_title": "UBC Thunderbirds Basketball vs. UNBC Timberwolves",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "outdoors",
     "categories": [
-      "shows"
+      "outdoors",
+      "sports"
     ],
     "event_archetype": "active_rec",
     "archetype": "active_rec",
@@ -20574,9 +20831,10 @@
     "clean_title": "After Dark: Press Start for Science – Video Games Edition",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "trivia"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -20616,9 +20874,10 @@
     "clean_title": "IQ 2000 Trivia",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "trivia"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -20682,9 +20941,10 @@
       "Bria",
       "Neil"
     ],
-    "category": "shows",
+    "category": "social",
     "categories": [
-      "shows"
+      "social",
+      "trivia"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -20727,9 +20987,9 @@
     "lineup": [
       "Nicky Beatz"
     ],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -20768,9 +21028,9 @@
     "clean_title": "Pub Jams: Datguyry",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -20814,9 +21074,9 @@
       "Sky Love",
       "Emnesia"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
     "event_archetype": "roving_series",
     "archetype": "roving_series",
@@ -20857,9 +21117,12 @@
     "lineup": [
       "Colleen Thompson"
     ],
-    "category": "comedy",
+    "category": "shows",
     "categories": [
-      "comedy"
+      "shows",
+      "comedy",
+      "trivia",
+      "social"
     ],
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
@@ -20899,9 +21162,10 @@
     "clean_title": "An Evening on St. Roch",
     "artist": null,
     "lineup": [],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts"
     ],
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
@@ -20942,8 +21206,9 @@
       "Ayana V. Jackson",
       "DJ Nea"
     ],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "museum_gallery",
@@ -20989,9 +21254,10 @@
       "Laurie White",
       "Luis Manuel González"
     ],
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social",
+      "arts"
     ],
     "event_archetype": "workshop",
     "archetype": "workshop",
@@ -21033,7 +21299,8 @@
     "lineup": [],
     "category": "outdoors",
     "categories": [
-      "outdoors"
+      "outdoors",
+      "free-public-access"
     ],
     "event_archetype": "civic_park",
     "archetype": "civic_park",
@@ -21072,9 +21339,13 @@
     "clean_title": "Lumière Festival",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "festivals",
     "categories": [
-      "arts"
+      "festivals",
+      "outdoors",
+      "arts",
+      "social",
+      "free-public-access"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -21113,9 +21384,9 @@
     "clean_title": "R3D",
     "artist": null,
     "lineup": [],
-    "category": "shows",
+    "category": "music",
     "categories": [
-      "shows"
+      "music"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
@@ -21158,9 +21429,12 @@
       "False Creek Ferries",
       "Great Canadian Trolley Company – Gray Line Vancouver"
     ],
-    "category": "culture",
+    "category": "markets",
     "categories": [
-      "culture"
+      "markets",
+      "arts",
+      "social",
+      "festivals"
     ],
     "event_archetype": "festival",
     "archetype": "festival",
@@ -21200,8 +21474,9 @@
     "clean_title": "From the Deep: In the Wake of Drexciya with Ayana V. Jackson",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "museum_gallery",
@@ -21240,8 +21515,9 @@
     "clean_title": "From the Deep Tours with Ayana V. Jackson",
     "artist": null,
     "lineup": [],
-    "category": "arts",
+    "category": "social",
     "categories": [
+      "social",
       "arts"
     ],
     "event_archetype": "museum_gallery",

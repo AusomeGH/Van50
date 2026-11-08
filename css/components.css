@@ -7388,9 +7388,9 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
     font-size: 0.76rem !important;
   }
 
-  /* Hide the first time-group-header ("Today's Events / Saturday, Nov 7") on mobile when un-collapsed so it doesn't duplicate the merged top bar */
+  /* Show the first time-group-header ("Today's Events • Sunday, Nov 8th") on mobile */
   section[aria-label="Events List"] .events-time-group:first-of-type > .time-group-header {
-    display: none !important;
+    display: flex !important;
   }
 
   /* 2. Surface Active Festivals Outside the Closed Drawer on Mobile as a Compact Single-Line Horizontal Scroll Strip */
@@ -8224,3 +8224,130 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 .gmap-venue-iw-ticket-link:hover {
   text-decoration: underline;
 }
+
+/* ============================================================================
+   13. MOBILE MAP BUTTONS & STICKY SCROLLED DAY BANNER (v7.9.8)
+   ============================================================================ */
+/* Always keep the [📋 Cards | 🗺️ Map] segmented toggle visible on both desktop and mobile */
+.results-count-bar div[aria-label="View Switcher"],
+.results-count-bar .inline-view-switcher {
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+}
+
+/* Hide the mobile-only top bar map shortcut on desktop (> 768px) */
+@media (min-width: 769px) {
+  #mobile-top-map-btn,
+  .mobile-top-map-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 1. Sticky Top Bar Map Button right next to Filters */
+  #mobile-top-map-btn,
+  .mobile-top-map-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    height: 40px !important;
+    padding: 0 12px !important;
+    border-radius: 999px !important;
+    border: 1.5px solid #0d9488 !important;
+    background: #f0fdfa !important;
+    color: #0f766e !important;
+    font-family: var(--font-heading) !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 3px rgba(13, 148, 136, 0.12) !important;
+    transition: all 0.15s ease !important;
+  }
+
+  #mobile-top-map-btn.active,
+  .mobile-top-map-btn.active,
+  #mobile-top-map-btn[aria-pressed="true"] {
+    background: #0d9488 !important;
+    border-color: #0f766e !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(13, 148, 136, 0.28) !important;
+  }
+
+  #mobile-filter-trigger {
+    padding: 0 12px !important;
+    height: 40px !important;
+    font-size: 0.82rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 2. Ensure the Status Bar [📋 Cards | 🗺️ Map] wraps cleanly inside mobile viewport */
+  .results-count-bar.dynamic-date-count-bar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px 10px !important;
+    padding: 8px 12px !important;
+  }
+
+  .results-count-right-group {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px 8px !important;
+    margin-left: 0 !important;
+  }
+
+  .results-count-bar .results-count-text {
+    margin-left: 0 !important;
+  }
+
+  .results-count-bar .inline-view-switcher {
+    display: inline-flex !important;
+    padding: 2px !important;
+    border-radius: 999px !important;
+  }
+
+  .results-count-bar .inline-view-mode-btn {
+    padding: 4px 10px !important;
+    font-size: 0.76rem !important;
+  }
+}
+
+/* 3. Scrolled Day Banner ("Today • Sunday, Nov 8th") inside sticky bar */
+.scroll-date-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-top: 6px;
+  padding: 5px 12px;
+  background: linear-gradient(90deg, #f0fdfa 0%, #f8fafc 100%);
+  border: 1px solid #99f6e4;
+  border-left: 3.5px solid #0d9488;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.scroll-date-bar .time-group-title {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0f766e;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.scroll-date-bar .time-group-date-range {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+

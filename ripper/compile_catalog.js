@@ -1875,8 +1875,8 @@ export async function compileCatalog(options = {}) {
       })
       : (edit.event_archetype || edit.archetype || seed.event_archetype || classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, null, { description, lifecycle_type: resolvedLifecycle }))
     ) || null;
-    if (archetype === "cinema" && categories[0] === "arts") {
-      categories[0] = "shows";
+    if (archetype === "cinema" && (categories[0] === "arts" || categories[0] === "shows")) {
+      categories[0] = "cinema";
     }
 
     // Ground Festival & Holiday Affiliations against data/festivals.json and data/approved_holidays.json
