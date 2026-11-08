@@ -7186,9 +7186,20 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
    ============================================================================ */
 
 /* Desktop Multi-Column Card Grid (>= 769px) */
+#events-grid.is-hidden,
+#events-grid[hidden],
+.events-grid.is-hidden,
+.events-grid[hidden] {
+  display: none !important;
+}
+
+#map-view-wrapper.active {
+  display: block !important;
+}
+
 @media (min-width: 769px) {
 
-  .events-grid,
+  .events-grid:not(.is-hidden):not([hidden]),
   .time-group-cards-grid {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important;

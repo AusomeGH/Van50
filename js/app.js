@@ -1748,17 +1748,27 @@ function setupEventListeners() {
     });
 
     if (!isMap) {
-      eventsGrid.style.display = 'grid';
-      mapWrapper.style.display = 'none';
+      eventsGrid.classList.remove('is-hidden');
+      eventsGrid.removeAttribute('hidden');
+      eventsGrid.style.setProperty('display', 'grid', 'important');
       mapWrapper.classList.remove('active');
+      mapWrapper.classList.add('is-hidden');
+      mapWrapper.setAttribute('hidden', '');
+      mapWrapper.style.setProperty('display', 'none', 'important');
     } else {
-      eventsGrid.style.display = 'none';
-      mapWrapper.style.display = 'block';
+      eventsGrid.classList.add('is-hidden');
+      eventsGrid.setAttribute('hidden', '');
+      eventsGrid.style.setProperty('display', 'none', 'important');
+      mapWrapper.classList.remove('is-hidden');
       mapWrapper.removeAttribute('hidden');
       mapWrapper.classList.add('active');
+      mapWrapper.style.setProperty('display', 'block', 'important');
 
       if (typeof initVancouverMap === 'function') {
         initVancouverMap();
+      }
+      if (typeof invalidateVancouverMap === 'function') {
+        invalidateVancouverMap();
       }
     }
     if (typeof window.updateScrollDateIndicator === 'function') {
@@ -6971,4 +6981,12 @@ window.updateScrollDateIndicator = function () {
 };
 
 window.addEventListener('scroll', window.updateScrollDateIndicator, { passive: true });
-window.addEventListener('resize', window.updateScrollDateIndicator, { passive: true });
+window.addEventListener('resize', () => {
+  if (typeof window.updateScrollDateIndicator === 'function') {
+    window.updateScrollDateIndicator();
+  }
+  const mapWrapperEl = document.getElementById('map-view-wrapper');
+  if (mapWrapperEl && mapWrapperEl.classList.contains('active') && typeof invalidateVancouverMap === 'function') {
+    invalidateVancouverMap();
+  }
+}, { passive: true });
