@@ -1,54 +1,69 @@
 /* ==============================================================================
    Van50 — Core Design Tokens & Global Stylesheet
-   Clean, calm, light-first design system for effortless Vancouver discovery.
+   Semantic Theme System: Light Mode ("Stanley Park Daylight") & Dark Mode ("Pacific Dusk")
    ============================================================================== */
 
-:root {
-  /* Color Palette - Clean Light Surfaces & Calm Accents */
-  --bg-base: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f1f5f9;
-  --bg-card-active: #e2e8f0;
-  
-  --border-subtle: #e2e8f0;
-  --border-medium: #cbd5e1;
-  --border-glow: rgba(13, 148, 136, 0.25);
-  
+:root, [data-theme="light"] {
+  --bg-app: #F2F4F0;          /* Distinct warm sage-mist page canvas so white cards pop */
+  --bg-card: #FFFFFF;         /* Pure crisp white for event cards & unselected pills */
+  --bg-elevated: #E6EAE3;     /* Lichen surface for secondary containers, header pills & drawers */
+  --bg-glass: rgba(242, 244, 240, 0.88);
+  --text-main: #111C18;       /* Deep charcoal pine */
+  --text-muted: #4E6159;      /* Muted fern for metadata & dates */
+  --brand-primary: #0D6E52;   /* Deep BC Forest Green */
+  --brand-primary-fg: #FFFFFF;
+  --brand-accent: #D97706;    /* Warm Cedar Amber */
+  --border-subtle: #D5DDD8;   /* Visible 1px sage hairline */
+  --price-free-bg: #D1FAE5;
+  --price-free-fg: #065F46;
+  --price-low-bg: #E0F2FE;
+  --price-low-fg: #075985;
+  --price-std-bg: #E6EAE3;
+  --price-std-fg: #111C18;
+
+  /* Semantic Aliases for Legacy Rules */
+  --bg-base: var(--bg-app);
+  --bg-surface: var(--bg-elevated);
+  --bg-card-hover: var(--bg-elevated);
+  --bg-card-active: var(--border-subtle);
+
+  --border-medium: var(--border-subtle);
+  --border-glow: rgba(13, 110, 82, 0.25);
+
   /* Brand Accent Tokens */
-  --accent-primary: #0d9488;        /* Pacific Teal */
-  --accent-primary-glow: rgba(13, 148, 136, 0.12);
+  --accent-primary: var(--brand-primary);
+  --accent-primary-glow: rgba(13, 110, 82, 0.12);
   --accent-secondary: #0284c7;      /* Ocean Blue */
   --accent-secondary-glow: rgba(2, 132, 199, 0.12);
-  
+  --accent-rose: #e11d48;
+
   /* Recurrence Frequency Color Accents (Muted & Calm) */
   --freq-weekly: #6366f1;
-  --freq-weekly-bg: rgba(99, 102, 241, 0.08);
+  --freq-weekly-bg: rgba(99, 102, 241, 0.12);
   --freq-monthly: #0284c7;
-  --freq-monthly-bg: rgba(2, 132, 199, 0.08);
-  --freq-daily: #d97706;
-  --freq-daily-bg: rgba(217, 119, 6, 0.08);
+  --freq-monthly-bg: rgba(2, 132, 199, 0.12);
+  --freq-daily: var(--brand-accent);
+  --freq-daily-bg: rgba(217, 119, 6, 0.12);
   --freq-oneoff: #e11d48;
-  --freq-oneoff-bg: rgba(225, 29, 72, 0.08);
-  --freq-seasonal: #0d9488;
-  --freq-seasonal-bg: rgba(13, 148, 136, 0.08);
+  --freq-oneoff-bg: rgba(225, 29, 72, 0.12);
+  --freq-seasonal: var(--brand-primary);
+  --freq-seasonal-bg: rgba(13, 110, 82, 0.12);
 
   /* Typography Colors */
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --text-inverse: #ffffff;
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-muted);
+  --text-inverse: var(--brand-primary-fg);
 
   /* Fonts */
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Elevations & Transitions */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
-  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.07);
-  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
-  --shadow-glow: 0 2px 10px rgba(13, 148, 136, 0.14);
-  
+  --shadow-sm: 0 1px 3px rgba(17, 28, 24, 0.05), 0 1px 2px rgba(17, 28, 24, 0.03);
+  --shadow-md: 0 4px 14px rgba(17, 28, 24, 0.07);
+  --shadow-lg: 0 12px 32px rgba(17, 28, 24, 0.14);
+  --shadow-glow: 0 2px 10px rgba(13, 110, 82, 0.16);
+
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -56,6 +71,85 @@
 
   --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light-mode),
+  body:not([data-theme="light"]):not(.light):not(.light-theme):not(.light-mode) {
+    --bg-app: #0B1311;
+    --bg-card: #13201C;
+    --bg-elevated: #1A2B26;
+    --bg-glass: rgba(11, 19, 17, 0.85);
+    --text-main: #F1F5F3;
+    --text-muted: #94ABA2;
+    --brand-primary: #10B981;
+    --brand-primary-fg: #052E16;
+    --brand-accent: #F59E0B;
+    --border-subtle: rgba(255, 255, 255, 0.09);
+    --price-free-bg: rgba(16, 185, 129, 0.18);
+    --price-free-fg: #34D399;
+    --price-low-bg: rgba(56, 189, 248, 0.16);
+    --price-low-fg: #7DD3FC;
+    --price-std-bg: #1A2B26;
+    --price-std-fg: #F1F5F3;
+
+    --bg-base: var(--bg-app);
+    --bg-surface: var(--bg-elevated);
+    --bg-card-hover: var(--bg-elevated);
+    --bg-card-active: var(--border-subtle);
+    --border-medium: var(--border-subtle);
+    --border-glow: rgba(16, 185, 129, 0.28);
+    --accent-primary: var(--brand-primary);
+    --accent-primary-glow: rgba(16, 185, 129, 0.16);
+    --text-primary: var(--text-main);
+    --text-secondary: var(--text-muted);
+    --text-inverse: var(--brand-primary-fg);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 2px 10px rgba(16, 185, 129, 0.22);
+  }
+}
+
+[data-theme="dark"],
+body.dark,
+body.dark-theme,
+body.dark-mode,
+html.dark,
+html.dark-theme,
+html.dark-mode {
+  --bg-app: #0B1311;
+  --bg-card: #13201C;
+  --bg-elevated: #1A2B26;
+  --bg-glass: rgba(11, 19, 17, 0.85);
+  --text-main: #F1F5F3;
+  --text-muted: #94ABA2;
+  --brand-primary: #10B981;
+  --brand-primary-fg: #052E16;
+  --brand-accent: #F59E0B;
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --price-free-bg: rgba(16, 185, 129, 0.18);
+  --price-free-fg: #34D399;
+  --price-low-bg: rgba(56, 189, 248, 0.16);
+  --price-low-fg: #7DD3FC;
+  --price-std-bg: #1A2B26;
+  --price-std-fg: #F1F5F3;
+
+  --bg-base: var(--bg-app);
+  --bg-surface: var(--bg-elevated);
+  --bg-card-hover: var(--bg-elevated);
+  --bg-card-active: var(--border-subtle);
+  --border-medium: var(--border-subtle);
+  --border-glow: rgba(16, 185, 129, 0.28);
+  --accent-primary: var(--brand-primary);
+  --accent-primary-glow: rgba(16, 185, 129, 0.16);
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-muted);
+  --text-inverse: var(--brand-primary-fg);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 2px 10px rgba(16, 185, 129, 0.22);
 }
 
 /* Base Reset & Typography */
@@ -81,8 +175,8 @@ html {
 }
 
 body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
+  background-color: var(--bg-app);
+  color: var(--text-main);
   font-family: var(--font-body);
   line-height: 1.55;
   min-height: 100vh;
@@ -137,7 +231,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 90;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--bg-glass);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
@@ -161,7 +255,7 @@ button {
   font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--text-primary);
+  color: var(--text-main);
   transition: transform var(--transition-fast);
   flex-shrink: 0;
 }
@@ -175,15 +269,15 @@ button {
 }
 
 .brand-name span {
-  color: var(--accent-primary);
+  color: var(--brand-primary);
 }
 
 .brand-badge {
   font-size: 0.7rem;
   font-weight: 700;
-  background: rgba(13, 148, 136, 0.1);
-  color: #0f766e;
-  border: 1px solid rgba(13, 148, 136, 0.25);
+  background: var(--price-free-bg);
+  color: var(--price-free-fg);
+  border: 1px solid var(--border-subtle);
   padding: 2px 8px;
   border-radius: var(--radius-full);
   letter-spacing: 0.04em;
@@ -210,9 +304,10 @@ button {
   transition: all var(--transition-fast);
 }
 
-.btn-accessibility {
-  background: var(--bg-surface);
-  color: var(--text-secondary);
+.btn-accessibility,
+.btn-theme-toggle {
+  background: var(--bg-elevated);
+  color: var(--text-muted);
   border: 1px solid var(--border-subtle);
   position: relative;
   display: inline-flex;
@@ -221,34 +316,38 @@ button {
   cursor: pointer;
 }
 
-.btn-accessibility:hover {
-  color: var(--accent-secondary);
-  border-color: rgba(2, 132, 199, 0.35);
-  background: rgba(2, 132, 199, 0.06);
+.btn-accessibility:hover,
+.btn-theme-toggle:hover {
+  color: var(--text-main);
+  border-color: var(--brand-primary);
+  background: var(--bg-card);
 }
 
-.btn-accessibility.active {
-  background: var(--accent-secondary);
-  color: #ffffff;
-  border-color: var(--accent-secondary);
+.btn-accessibility.active,
+.btn-theme-toggle.active {
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
+  border-color: var(--brand-primary);
   font-weight: 700;
 }
 
-.btn-itinerary {
-  background: var(--bg-surface);
-  color: var(--text-primary);
+.btn-itinerary,
+.btn-feedback {
+  background: var(--bg-elevated);
+  color: var(--text-main);
   border: 1px solid var(--border-subtle);
   position: relative;
 }
 
-.btn-itinerary:hover {
-  border-color: var(--border-medium);
-  background: var(--bg-card-hover);
+.btn-itinerary:hover,
+.btn-feedback:hover {
+  border-color: var(--brand-primary);
+  background: var(--bg-card);
 }
 
 .itinerary-count-badge {
-  background: var(--accent-primary);
-  color: #ffffff;
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
   font-size: 0.74rem;
   font-weight: 800;
   padding: 1px 7px;
@@ -276,17 +375,17 @@ button {
   line-height: 1.2;
   margin-bottom: 8px;
   max-width: 780px;
-  color: var(--text-primary);
+  color: var(--text-main);
 }
 
 .gradient-text {
-  color: var(--accent-primary);
+  color: var(--brand-primary);
   display: inline-block;
 }
 
 .hero-subtitle {
   font-size: 0.98rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   max-width: 640px;
   margin-bottom: 12px;
   line-height: 1.5;
@@ -315,10 +414,10 @@ button {
 .search-input {
   width: 100%;
   padding: 12px 38px 12px 44px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-medium);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
-  color: var(--text-primary);
+  color: var(--text-main);
   font-size: 0.95rem;
   font-family: inherit;
   transition: all var(--transition-fast);
@@ -327,9 +426,9 @@ button {
 }
 
 .search-input:focus {
-  border-color: var(--accent-primary);
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.14);
+  border-color: var(--brand-primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px var(--accent-primary-glow);
 }
 
 .search-input::placeholder {
@@ -346,7 +445,7 @@ button {
   position: sticky;
   top: 64px;
   z-index: 85;
-  background: rgba(248, 250, 252, 0.94);
+  background: var(--bg-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 10px 0;
@@ -354,7 +453,7 @@ button {
 }
 
 .mobile-search-filter-bar.is-scrolled {
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-md);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -386,7 +485,7 @@ button {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text-main);
   letter-spacing: -0.02em;
   margin: 0;
 }
@@ -394,18 +493,18 @@ button {
 .scroll-date-bar .time-group-date-range {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #475569;
-  background: #f1f5f9;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
   padding: 3px 10px;
   border-radius: var(--radius-full);
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border-subtle);
 }
 
 @media (max-width: 768px) {
   .site-header {
     position: relative;
     height: 54px;
-    background: #ffffff;
+    background: var(--bg-glass);
   }
   .brand-logo {
     font-size: 1.22rem;
@@ -450,7 +549,7 @@ button {
     position: sticky;
     top: 0;
     z-index: 85;
-    background: rgba(248, 250, 252, 0.96);
+    background: var(--bg-glass);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 10px 16px;
@@ -479,8 +578,8 @@ button {
     font-size: 1rem;
     height: 42px;
     padding: 8px 34px 8px 38px !important;
-    background: #ffffff;
-    border: 1px solid var(--border-medium);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
   }
   .mobile-filter-trigger {
     display: inline-flex;
@@ -492,9 +591,9 @@ button {
     min-height: 42px;
     padding: 0 15px;
     border-radius: var(--radius-full);
-    background: #ffffff;
-    border: 1px solid var(--border-medium);
-    color: var(--text-primary);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
     font-size: 0.85rem;
     font-weight: 700;
     white-space: nowrap;
@@ -503,9 +602,9 @@ button {
     transition: all var(--transition-fast);
   }
   .mobile-filter-trigger.has-active-filters {
-    background: rgba(13, 148, 136, 0.1);
-    border-color: var(--accent-primary);
-    color: #0f766e;
+    background: var(--price-free-bg);
+    border-color: var(--brand-primary);
+    color: var(--price-free-fg);
   }
   .scroll-date-bar {
     justify-content: flex-start;

@@ -155,7 +155,8 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.neighborhoods-header, .frequencies-header {
+.neighborhoods-header,
+.frequencies-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,7 +180,8 @@
   color: #fff;
 }
 
-.neighborhood-pills-wrap, .frequency-pills-wrap {
+.neighborhood-pills-wrap,
+.frequency-pills-wrap {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -246,7 +248,8 @@
 }
 
 /* Day of the Week & Starting Time Filter Bars (Requirements 1 & 9) */
-.days-section, .times-section {
+.days-section,
+.times-section {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -254,19 +257,22 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.days-header, .times-header {
+.days-header,
+.times-header {
   font-size: 0.8rem;
   color: var(--text-secondary);
 }
 
-.days-pills-wrap, .time-pills-wrap {
+.days-pills-wrap,
+.time-pills-wrap {
   display: flex;
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
 }
 
-.day-pill, .time-pill {
+.day-pill,
+.time-pill {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -281,7 +287,8 @@
   cursor: pointer;
 }
 
-.day-pill:hover, .time-pill:hover {
+.day-pill:hover,
+.time-pill:hover {
   border-color: var(--border-medium);
   color: var(--text-primary);
   background: var(--bg-card-hover);
@@ -414,6 +421,7 @@
     width: 24px;
     height: 24px;
   }
+
   .dual-range-thumb::-moz-range-thumb {
     width: 24px;
     height: 24px;
@@ -581,8 +589,15 @@
 }
 
 @keyframes panel-fade-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Footer Review Queue Link */
@@ -642,8 +657,15 @@
 }
 
 @keyframes tag-badge-pop {
-  from { opacity: 0; transform: scale(0.92); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .active-tag-pill .tag-label {
@@ -793,62 +815,74 @@
   border-color: rgba(168, 85, 247, 0.35);
   color: #d8b4fe;
 }
+
 .card-category-badge.category-shows {
   background: rgba(245, 158, 11, 0.14);
   border-color: rgba(245, 158, 11, 0.35);
   color: #fcd34d;
 }
+
 .card-category-badge.category-cinema {
   background: rgba(244, 63, 94, 0.14);
   border-color: rgba(244, 63, 94, 0.35);
   color: #fda4af;
 }
+
 .card-category-badge.category-crafts {
   background: rgba(236, 72, 153, 0.14);
   border-color: rgba(236, 72, 153, 0.35);
   color: #f472b6;
 }
+
 .card-category-badge.category-outdoors {
   background: rgba(16, 185, 129, 0.14);
   border-color: rgba(16, 185, 129, 0.35);
   color: #6ee7b7;
 }
+
 .card-category-badge.category-activities {
   background: rgba(14, 165, 233, 0.14);
   border-color: rgba(14, 165, 233, 0.35);
   color: #7dd3fc;
 }
+
 .card-category-badge.category-arts {
   background: rgba(129, 140, 248, 0.14);
   border-color: rgba(129, 140, 248, 0.35);
   color: #a5b4fc;
 }
+
 .card-category-badge.category-trivia {
   background: rgba(234, 179, 8, 0.14);
   border-color: rgba(234, 179, 8, 0.35);
   color: #fef08a;
 }
+
 .card-category-badge.category-social {
   background: rgba(217, 70, 239, 0.14);
   border-color: rgba(217, 70, 239, 0.35);
   color: #f0abfc;
 }
+
 .card-category-badge.category-festivals {
   background: rgba(236, 72, 153, 0.16);
   border-color: rgba(236, 72, 153, 0.4);
   color: #f472b6;
 }
+
 .card-category-badge.category-markets,
 .card-category-badge.category-market {
   background: rgba(245, 158, 11, 0.14);
   border-color: rgba(245, 158, 11, 0.35);
   color: #fde047;
 }
+
 .card-category-badge.category-free-public-access {
   background: rgba(148, 163, 184, 0.12);
   border-color: rgba(148, 163, 184, 0.28);
   color: #cbd5e1;
 }
+
 .card-category-badge.badge-dropin {
   background: var(--freq-daily-bg);
   border-color: rgba(245, 158, 11, 0.42);
@@ -946,10 +980,12 @@
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.85);
   }
+
   70% {
     transform: scale(1.25);
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0);
   }
+
   100% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
@@ -998,10 +1034,12 @@
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
   }
+
   70% {
     transform: scale(1.15);
     box-shadow: 0 0 0 5px rgba(16, 185, 129, 0);
   }
+
   100% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
@@ -1058,7 +1096,8 @@
   border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
-.card-meta-pill.seasonal, .card-meta-pill.limited-run {
+.card-meta-pill.seasonal,
+.card-meta-pill.limited-run {
   background: var(--freq-seasonal-bg);
   color: var(--freq-seasonal);
   border: 1px solid rgba(16, 185, 129, 0.3);
@@ -1547,8 +1586,15 @@
 }
 
 @keyframes fadeInTiers {
-  from { opacity: 0; transform: translateY(-3px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .expanded-tiers-header {
@@ -1736,13 +1782,15 @@
   color: #f472b6;
 }
 
-.price-tier-tag.tier-advance, .price-tier-tag.tier-door {
+.price-tier-tag.tier-advance,
+.price-tier-tag.tier-door {
   background: rgba(236, 72, 153, 0.10);
   border-color: rgba(236, 72, 153, 0.28);
   color: #fbcfe8;
 }
 
-.price-tier-tag.tier-advance strong.tier-val, .price-tier-tag.tier-door strong.tier-val {
+.price-tier-tag.tier-advance strong.tier-val,
+.price-tier-tag.tier-door strong.tier-val {
   color: #f472b6;
 }
 
@@ -1940,6 +1988,7 @@
   .card-footer {
     gap: 8px;
   }
+
   .btn-ticket-cta {
     min-width: 110px;
     font-size: 0.74rem;
@@ -2322,8 +2371,15 @@
 }
 
 @keyframes modal-pop {
-  from { opacity: 0; transform: scale(0.92); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .modal-close-btn {
@@ -2365,8 +2421,13 @@
 }
 
 @keyframes spin-icon {
-  from { transform: rotate(0deg) scale(1.1); }
-  to { transform: rotate(360deg) scale(1.1); }
+  from {
+    transform: rotate(0deg) scale(1.1);
+  }
+
+  to {
+    transform: rotate(360deg) scale(1.1);
+  }
 }
 
 .roulette-result-title {
@@ -2732,8 +2793,15 @@
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .search-tips-header {
@@ -2920,6 +2988,7 @@
   margin-bottom: 8px;
   scrollbar-width: none;
 }
+
 .time-nav-bar::-webkit-scrollbar {
   display: none;
 }
@@ -3193,6 +3262,7 @@
   .time-group-cards-grid {
     grid-template-columns: 1fr;
   }
+
   .time-group-title {
     font-size: 1.15rem;
   }
@@ -3359,16 +3429,20 @@
     padding: 8px 10px;
     gap: 8px;
   }
+
   .pwa-banner-icon {
     width: 34px;
     height: 34px;
   }
+
   .pwa-banner-text strong {
     font-size: 0.80rem;
   }
+
   .pwa-banner-text span {
     display: none;
   }
+
   .btn-pwa-banner {
     padding: 6px 12px;
     font-size: 0.76rem;
@@ -3983,10 +4057,12 @@
     gap: 8px !important;
     padding: 10px 12px !important;
   }
+
   .festival-spotlight-left {
     width: 100% !important;
     min-width: 0 !important;
   }
+
   .festival-spotlight-right {
     width: 100% !important;
     flex-direction: column !important;
@@ -3995,6 +4071,7 @@
     gap: 8px !important;
     flex-wrap: wrap !important;
   }
+
   .btn-festival-display,
   .btn-festival-toggle {
     width: 100% !important;
@@ -4649,8 +4726,15 @@ body.van50-accessible .card-ticket-link {
 }
 
 @keyframes hours-expand-fade {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 7. Outing Spend Estimator ("Un-Boxed" Subtle Metadata Row) */
@@ -4989,9 +5073,11 @@ body.van50-accessible .card-ticket-link {
   0% {
     box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.8), 0 0 35px rgba(56, 189, 248, 0.6);
   }
+
   60% {
     box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4), 0 0 18px rgba(56, 189, 248, 0.3);
   }
+
   100% {
     box-shadow: none;
   }
@@ -5016,8 +5102,13 @@ body.van50-accessible .card-ticket-link {
 }
 
 @keyframes fadeInModal {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .accessibility-modal-card {
@@ -5035,8 +5126,15 @@ body.van50-accessible .card-ticket-link {
 }
 
 @keyframes scaleInModal {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .access-modal-header {
@@ -5262,6 +5360,7 @@ body.van50-accessible .card-ticket-link {
    MOBILE & CROSS-BROWSER RESPONSIVE OPTIMIZATIONS
    ============================================================================== */
 @media (max-width: 900px) {
+
   .categories-bar,
   .categories-bar.categories-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -5290,6 +5389,7 @@ body.van50-accessible .card-ticket-link {
 }
 
 @media (max-width: 380px) {
+
   .categories-bar,
   .categories-bar.categories-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5478,6 +5578,7 @@ body.van50-accessible .card-ticket-link {
 
 /* Mobile UI & UX Rules (<= 768px) */
 @media (max-width: 768px) {
+
   /* 2. Horizontal Swipeable Category Strip & Active Filter Chips */
   div[aria-label="Category Filters"],
   #categories-bar {
@@ -5892,6 +5993,7 @@ body.van50-accessible .card-ticket-link {
    MOBILE SPACING, SIZING & VIEWPORT CONTAINMENT REFINEMENTS (<= 768px)
    ============================================================================== */
 @media (max-width: 768px) {
+
   /* Strict viewport width containment so flex/grid children never cause horizontal overflow */
   main.container,
   .filters-hub,
@@ -6263,7 +6365,8 @@ div[aria-label="View Switcher"] {
 
 
 /* ============================================================================
-   VAN50 LIGHT THEME, SIMPLIFIED PALETTE & INCREASED BREATHING ROOM
+   VAN50 SEMANTIC THEME HIERARCHY, SURFACE ELEVATIONS & RESPONSIVE POLISH
+   Light Mode ("Stanley Park Daylight") & Dark Mode ("Pacific Dusk")
    ============================================================================ */
 
 /* 1. Ensure sticky search/filter bar works natively by keeping ancestors overflow-visible */
@@ -6273,31 +6376,55 @@ main.container {
 }
 
 body {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+  background-color: var(--bg-app) !important;
+  color: var(--text-main) !important;
   overflow-x: clip !important;
 }
 
-/* 2. Desktop & General Filter Hub Light Theme */
+/* 2. Desktop & General Filter Hub Surface Hierarchy */
 .filters-hub {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-sm) !important;
   padding: 20px 22px !important;
   margin-bottom: 24px !important;
   border-radius: 16px !important;
+}
+
+.neighborhoods-section,
+.frequencies-section,
+.days-section,
+.times-section,
+.spend-control-row,
+.more-filters-panel {
+  border-top-color: var(--border-subtle) !important;
+}
+
+.dual-slider-track {
+  background: var(--border-subtle) !important;
+}
+
+.dual-range-thumb::-webkit-slider-thumb {
+  background: var(--bg-card) !important;
+  border: 2px solid var(--brand-primary) !important;
+}
+
+.dual-range-thumb::-moz-range-thumb {
+  background: var(--bg-card) !important;
+  border: 2px solid var(--brand-primary) !important;
 }
 
 .category-pill,
 .day-pill,
 .time-pill,
 .neighborhood-pill,
+.nh-pill,
 .freq-filter-pill,
 .cost-quick-btn,
 .category-grid-toggle {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
   font-weight: 600 !important;
   box-shadow: none !important;
 }
@@ -6306,31 +6433,44 @@ body {
 .day-pill:hover,
 .time-pill:hover,
 .neighborhood-pill:hover,
+.nh-pill:hover,
 .freq-filter-pill:hover,
-.cost-quick-btn:hover {
-  background: #f1f5f9 !important;
-  border-color: #94a3b8 !important;
-  color: #0f172a !important;
+.cost-quick-btn:hover,
+.category-grid-toggle:hover {
+  background: var(--bg-elevated) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--text-main) !important;
 }
 
 .category-pill.active,
 .day-pill.active,
 .time-pill.active,
 .neighborhood-pill.active,
+.nh-pill.active,
 .freq-filter-pill.active,
 .cost-quick-btn.active {
-  background: #0d9488 !important;
-  border-color: #0d9488 !important;
-  color: #ffffff !important;
-  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.22) !important;
+  background: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
+  box-shadow: var(--shadow-glow) !important;
 }
 
 .scheduled-only-toggle,
+.ticketed-only-toggle,
 .accessible-only-toggle,
 .btn-reset-filters-top {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
+}
+
+.scheduled-only-toggle:hover,
+.ticketed-only-toggle:hover,
+.accessible-only-toggle:hover,
+.btn-reset-filters-top:hover {
+  background: var(--bg-elevated) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--text-main) !important;
 }
 
 .spend-range-label,
@@ -6338,24 +6478,24 @@ body {
 .times-header,
 .neighborhoods-header,
 .frequencies-header {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .spend-readout-badge {
-  background: rgba(13, 148, 136, 0.1) !important;
-  border: 1px solid rgba(13, 148, 136, 0.25) !important;
-  color: #0f766e !important;
+  background: var(--price-free-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--price-free-fg) !important;
 }
 
-/* 3. Results Count, Timeframe Quick-Nav & Section Headers (Light & Spacious) */
+/* 3. Results Count, Timeframe Quick-Nav & Section Headers */
 .results-count-bar {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
   font-size: 0.9rem !important;
   margin: 12px 0 16px !important;
 }
 
 .results-count-bar strong {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .time-nav-bar {
@@ -6365,23 +6505,23 @@ body {
 }
 
 .time-nav-pill {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
   padding: 8px 14px !important;
   font-weight: 600 !important;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  box-shadow: var(--shadow-sm) !important;
 }
 
 .time-nav-pill:hover {
-  background: #f1f5f9 !important;
-  border-color: #0d9488 !important;
-  color: #0f766e !important;
+  background: var(--bg-elevated) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--brand-primary) !important;
 }
 
 .time-nav-count {
-  background: #f1f5f9 !important;
-  color: #0f766e !important;
+  background: var(--bg-elevated) !important;
+  color: var(--brand-primary) !important;
   font-weight: 700 !important;
 }
 
@@ -6390,13 +6530,13 @@ body {
 }
 
 .time-group-header {
-  border-bottom: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
   padding-bottom: 12px !important;
   margin-bottom: 18px !important;
 }
 
 .time-group-header::after {
-  background: #0d9488 !important;
+  background: var(--brand-primary) !important;
   height: 2px !important;
   width: 64px !important;
 }
@@ -6406,186 +6546,291 @@ body {
 }
 
 .time-group-title {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
   font-size: 1.25rem !important;
 }
 
 .time-group-date-range {
-  background: #f1f5f9 !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #475569 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
   font-weight: 500 !important;
 }
 
 .btn-group-collapse-toggle {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #475569 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
 }
 
 .btn-group-collapse-toggle:hover {
-  background: #f1f5f9 !important;
-  color: #0f172a !important;
+  background: var(--bg-elevated) !important;
+  color: var(--text-main) !important;
 }
 
 .time-group-collapsed-banner {
-  background: #ffffff !important;
-  border: 1px dashed #cbd5e1 !important;
-  color: #475569 !important;
+  background: var(--bg-card) !important;
+  border: 1px dashed var(--border-subtle) !important;
+  color: var(--text-muted) !important;
 }
 
-/* 4. Event Cards (Clean White Cards, Subtle Borders, Increased Spacing) */
+/* 4. Event Cards (Crisp Card Surface over Page Canvas, Semantic Borders & Spacing) */
 .events-grid,
 .time-group-cards-grid {
   gap: 20px !important;
 }
 
 .event-card {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-sm) !important;
   padding: 20px 22px !important;
   border-radius: 16px !important;
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .event-card:hover {
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: var(--shadow-md) !important;
 }
 
 .event-card.card-happening-now {
-  border-color: rgba(13, 148, 136, 0.45) !important;
+  border-color: var(--brand-primary) !important;
 }
 
 .card-title,
 .card-title-link,
 .mobile-card-title {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
+}
+
+.card-title-link:hover,
+.card-title-link:focus-visible {
+  color: var(--brand-primary) !important;
 }
 
 .card-desc,
 .card-description {
-  color: #334155 !important;
+  color: var(--text-muted) !important;
   line-height: 1.55 !important;
 }
 
 .mobile-card-meta-text {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
 .mobile-card-price-pill {
-  background: #f0fdf4 !important;
-  border: 1px solid #bbf7d0 !important;
-  color: #15803d !important;
+  background: var(--price-std-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--price-std-fg) !important;
   font-weight: 700 !important;
 }
 
+.mobile-card-price-pill.is-low {
+  background: var(--price-low-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--price-low-fg) !important;
+}
+
 .mobile-card-price-pill.is-free {
-  background: #f0fdfa !important;
-  border: 1px solid #99f6e4 !important;
-  color: #0f766e !important;
+  background: var(--price-free-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--price-free-fg) !important;
 }
 
 .mobile-card-price-pill.is-sold-out {
-  background: #fef2f2 !important;
-  border: 1px solid #fecaca !important;
-  color: #b91c1c !important;
+  background: rgba(239, 68, 68, 0.14) !important;
+  border: 1px solid rgba(239, 68, 68, 0.35) !important;
+  color: #dc2626 !important;
 }
 
 .card-date-badge,
 .card-date-badge.badge-today,
 .card-date-badge.badge-tomorrow {
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
 }
 
 .card-category-badge {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #475569 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
 }
 
 .btn-card-action {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #475569 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
+}
+
+.btn-card-action:hover {
+  background: var(--bg-card) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--text-main) !important;
 }
 
 .card-venue-row,
 .venue-location-btn {
-  background: #f8fafc !important;
-  border-color: #e2e8f0 !important;
-  color: #0f172a !important;
+  background: var(--bg-elevated) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--text-main) !important;
 }
 
 .venue-name {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .venue-website-link,
 .btn-venue-filter {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #0f766e !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--brand-primary) !important;
+}
+
+.venue-website-link:hover,
+.btn-venue-filter:hover {
+  background: var(--bg-elevated) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--text-main) !important;
+}
+
+.btn-venue-filter.active {
+  background: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
 }
 
 .card-weekly-hours-block,
 .card-schedule-row,
 .card-showings-block {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  border-left: 3px solid #0d9488 !important;
-  color: #334155 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-left: 3px solid var(--brand-primary) !important;
+  color: var(--text-main) !important;
+}
+
+.weekly-hours-table.collapsible-hours,
+.showings-table.collapsible-showings {
+  background: var(--bg-app) !important;
+  border-top: 1px solid var(--border-subtle) !important;
 }
 
 .wh-active-day-box .wh-active-day-name {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
 .wh-active-day-box .wh-active-hours-val {
-  color: #0f766e !important;
+  color: var(--brand-primary) !important;
 }
 
 .price-main {
-  color: #0f766e !important;
+  color: var(--brand-primary) !important;
+}
+
+.price-main.free,
+.price-main.price-free {
+  background: var(--price-free-bg);
+  color: var(--price-free-fg) !important;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.price-main.price-low {
+  background: var(--price-low-bg);
+  color: var(--price-low-fg) !important;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.price-main.price-std {
+  background: var(--price-std-bg);
+  color: var(--price-std-fg) !important;
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 
 .btn-ticket-cta {
-  background: #0d9488 !important;
-  color: #ffffff !important;
+  background: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
   border: none !important;
-  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.2) !important;
+  box-shadow: var(--shadow-glow) !important;
 }
 
 .btn-ticket-cta:hover {
-  background: #0f766e !important;
+  filter: brightness(1.08);
+  color: var(--brand-primary-fg) !important;
 }
 
 .active-filter-chip {
-  background: #ffffff !important;
-  border: 1px solid #0d9488 !important;
-  color: #0f766e !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--brand-primary) !important;
+  color: var(--brand-primary) !important;
 }
 
-/* 5. Modals, Drawers & Filter Sheet Light Theme */
+/* 5. Modals, Drawers & Filter Sheet Surface Hierarchy */
 .modal-box,
 .modal-card,
-.itinerary-drawer {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16) !important;
+.itinerary-drawer,
+.accessibility-modal-card,
+.search-tips-popover,
+.pwa-install-banner,
+.van50-floating-toast {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
-.modal-close-btn {
-  background: #f1f5f9 !important;
-  color: #475569 !important;
-  border: 1px solid #e2e8f0 !important;
+.roulette-wheel-box,
+.itinerary-total-card,
+.itinerary-item-card,
+.access-dim-card,
+.access-transit-card,
+.quarantined-card {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
 }
 
-/* 6. Mobile Specific Spacious Layout & Light Filter Sheet (<= 768px) */
+.roulette-result-title,
+.itinerary-item-title,
+.quarantined-card-title,
+.access-modal-header h3,
+.pwa-banner-text strong,
+.zero-results-title,
+.card-artist-badge .artist-name,
+.card-organizer-badge .organizer-name {
+  color: var(--text-main) !important;
+}
+
+.access-dim-header,
+.access-transit-card p,
+.access-summary-banner,
+.quote-text {
+  color: var(--text-main) !important;
+}
+
+.access-modal-footer {
+  background: var(--bg-elevated) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+}
+
+.btn-modal-done,
+.modal-close-btn,
+#btn-cancel-price-feedback {
+  background: var(--bg-elevated) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.price-modal-input {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
+}
+
+/* 6. Mobile Specific Spacious Layout & Filter Sheet (<= 768px) */
 @media (max-width: 768px) {
   .filters-hub {
     background: transparent !important;
@@ -6632,9 +6877,9 @@ body {
   section[aria-label="Events List"] .event-card {
     padding: 16px 16px !important;
     border-radius: 14px !important;
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-sm) !important;
   }
 
   .mobile-card-compact-header {
@@ -6649,55 +6894,55 @@ body {
     font-size: 0.98rem !important;
     line-height: 1.35 !important;
     font-weight: 700 !important;
-    color: #0f172a !important;
+    color: var(--text-main) !important;
   }
 
   .mobile-card-row-2 {
     font-size: 0.82rem !important;
-    color: #475569 !important;
+    color: var(--text-muted) !important;
   }
 
   .event-card.mobile-expanded .card-expandable-details {
     margin-top: 14px !important;
     padding-top: 14px !important;
-    border-top: 1px solid #e2e8f0 !important;
+    border-top: 1px solid var(--border-subtle) !important;
   }
 
-  /* Light Mobile Bottom Filter Sheet with Generous Spacing */
+  /* Mobile Bottom Filter Sheet with Semantic Surface Tokens */
   #mobile-filters-sheet {
-    background: #ffffff !important;
-    border-top: 1px solid #cbd5e1 !important;
-    box-shadow: 0 -12px 32px rgba(15, 23, 42, 0.14) !important;
+    background: var(--bg-card) !important;
+    border-top: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-lg) !important;
     padding: 0 18px !important;
     gap: 16px !important;
-    color: #0f172a !important;
+    color: var(--text-main) !important;
   }
 
   .mobile-sheet-header {
-    background: #ffffff !important;
+    background: var(--bg-card) !important;
     margin: 0 -18px !important;
     padding: 8px 18px 12px 18px !important;
-    border-bottom: 1px solid #e2e8f0 !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
   }
 
   .mobile-sheet-handle {
-    background: #cbd5e1 !important;
+    background: var(--border-subtle) !important;
   }
 
   .mobile-sheet-title {
-    color: #0f172a !important;
+    color: var(--text-main) !important;
   }
 
   .mobile-sheet-close-btn {
-    background: #f1f5f9 !important;
-    border: 1px solid #e2e8f0 !important;
-    color: #334155 !important;
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-main) !important;
   }
 
   #mobile-filters-sheet .filter-category-row {
     gap: 10px !important;
     padding: 4px 0 12px 0 !important;
-    border-bottom: 1px solid #e2e8f0 !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
   }
 
   #mobile-filters-sheet #categories-bar {
@@ -6711,80 +6956,80 @@ body {
     min-height: 36px !important;
   }
 
-  /* Light Festival Cards Inside Filter Window */
+  /* Festival Cards Inside Filter Window */
   #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border-subtle) !important;
     padding: 12px 14px !important;
   }
 
   #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title,
   #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .theme-item-name {
-    color: #0f172a !important;
+    color: var(--text-main) !important;
   }
 
   #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
     padding: 10px 12px !important;
     gap: 6px !important;
   }
 
   .mobile-sheet-footer {
-    background: #ffffff !important;
+    background: var(--bg-card) !important;
     margin: 6px -18px 0 -18px !important;
     padding: 14px 18px calc(18px + env(safe-area-inset-bottom)) !important;
-    border-top: 1px solid #e2e8f0 !important;
-    box-shadow: 0 -6px 16px rgba(15, 23, 42, 0.06) !important;
+    border-top: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-md) !important;
   }
 
   .btn-mobile-sheet-reset {
-    background: #f1f5f9 !important;
-    border: 1px solid #cbd5e1 !important;
-    color: #334155 !important;
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-main) !important;
   }
 
   .btn-mobile-sheet-apply {
-    background: #0d9488 !important;
-    color: #ffffff !important;
+    background: var(--brand-primary) !important;
+    color: var(--brand-primary-fg) !important;
   }
 }
 
 
-/* 7. Light Theme High-Contrast Polish for Festival Badges, Expanded Cards & Section Titles */
+/* 7. Semantic Polish for Festival Badges, Expanded Cards & Section Titles */
 .festival-urgency-badge,
 .festival-urgency-badge.tier-1-live,
 .btn-theme-item-include {
-  background: #f0fdfa !important;
-  border: 1px solid #5eead4 !important;
-  color: #0f766e !important;
+  background: var(--price-free-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--price-free-fg) !important;
   font-weight: 700 !important;
 }
 
 .btn-theme-item-include.active {
-  background: #0d9488 !important;
-  border-color: #0d9488 !important;
-  color: #ffffff !important;
+  background: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
 }
 
 .festival-urgency-badge.tier-2-upcoming {
-  background: #f0f9ff !important;
-  border: 1px solid #7dd3fc !important;
-  color: #0369a1 !important;
+  background: var(--price-low-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--price-low-fg) !important;
   font-weight: 700 !important;
 }
 
 .theme-item-dates-pill {
-  background: #fffbeb !important;
-  border: 1px solid #fde68a !important;
-  color: #b45309 !important;
+  background: rgba(217, 119, 6, 0.14) !important;
+  border: 1px solid rgba(217, 119, 6, 0.35) !important;
+  color: var(--brand-accent) !important;
   font-weight: 600 !important;
 }
 
 .btn-theme-item-exclude {
-  background: #fff1f2 !important;
-  border: 1px solid #fecdd3 !important;
-  color: #be123c !important;
+  background: rgba(225, 29, 72, 0.12) !important;
+  border: 1px solid rgba(225, 29, 72, 0.3) !important;
+  color: #e11d48 !important;
   font-weight: 600 !important;
 }
 
@@ -6794,26 +7039,35 @@ body {
   color: #ffffff !important;
 }
 
-/* Expanded Card Details Contrast in Light Theme */
+/* Expanded Card Details Contrast */
 .card-pricing-block,
 .card-footer,
 .card-spend-estimator,
 .spend-estimator-row,
-.card-subdetails,
+.card-subdetails {
+  background: transparent !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--text-muted) !important;
+}
+
 .card-expanded-tiers {
-  background: #f8fafc !important;
-  border-color: #e2e8f0 !important;
-  color: #334155 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
 }
 
 .expanded-tiers-header,
 .tier-name,
 .tier-val {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
+}
+
+.expanded-tier-item .tier-dots-leader {
+  border-bottom-color: var(--border-subtle) !important;
 }
 
 .btn-suggest-price {
-  color: #0f766e !important;
+  color: var(--brand-primary) !important;
 }
 
 @media (max-width: 768px) {
@@ -6832,7 +7086,7 @@ body {
 
 
 /* ============================================================================
-   8. GLOBAL FESTIVAL SPOTLIGHT BOX LIGHT THEME (Desktop & Mobile)
+   8. GLOBAL FESTIVAL SPOTLIGHT BOX (Desktop & Mobile)
    ============================================================================ */
 .festival-spotlight-section {
   margin-bottom: 18px !important;
@@ -6840,9 +7094,9 @@ body {
 
 .festival-spotlight-card,
 section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-sm) !important;
   border-radius: 14px !important;
   padding: 14px 16px !important;
 }
@@ -6853,7 +7107,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
 
 .festival-spotlight-title,
 .festival-compact-header-row .festival-spotlight-title {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
   font-weight: 800 !important;
 }
 
@@ -6863,59 +7117,59 @@ section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
 
 .festival-theme-item-row,
 section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
   border-radius: 12px !important;
   padding: 10px 14px !important;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+  box-shadow: var(--shadow-sm) !important;
 }
 
 .festival-theme-item-row:hover,
 section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover {
-  background: #ffffff !important;
-  border-color: #94a3b8 !important;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06) !important;
+  background: var(--bg-card) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: var(--shadow-md) !important;
 }
 
 .festival-theme-item-row.item-row-selected {
-  background: #f0fdfa !important;
-  border-color: #0d9488 !important;
-  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.12) !important;
+  background: var(--price-free-bg) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: var(--shadow-glow) !important;
 }
 
 .festival-theme-item-row.item-row-excluded {
-  background: #fff1f2 !important;
-  border-color: #fecdd3 !important;
+  background: rgba(225, 29, 72, 0.08) !important;
+  border-color: rgba(225, 29, 72, 0.3) !important;
   opacity: 0.85 !important;
 }
 
 .festival-theme-item-row.item-row-excluded .theme-item-name,
 .festival-theme-item-row.item-row-excluded .theme-item-short-desc {
-  color: #be123c !important;
+  color: #e11d48 !important;
 }
 
 .theme-item-name-toggle,
 .theme-item-name {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
   font-weight: 700 !important;
 }
 
 .theme-item-name-toggle:hover,
 .theme-item-name-toggle:hover .theme-item-name {
-  color: #0d9488 !important;
+  color: var(--brand-primary) !important;
 }
 
 .theme-item-chevron {
-  color: #64748b !important;
+  color: var(--text-muted) !important;
 }
 
 .theme-item-name-toggle:hover .theme-item-chevron,
 .theme-item-name-toggle.expanded .theme-item-chevron {
-  color: #0d9488 !important;
+  color: var(--brand-primary) !important;
 }
 
 .festival-theme-item-drawer {
-  border-top: 1px solid #e2e8f0 !important;
+  border-top: 1px solid var(--border-subtle) !important;
   margin-top: 8px !important;
   padding-top: 8px !important;
 }
@@ -6923,16 +7177,17 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 .theme-item-short-desc,
 .festival-short-summary,
 .festival-spotlight-blurb {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
 
 /* ============================================================================
-   9. HIGH-CONTRAST LIGHT THEME POLISH & DESKTOP MULTI-COLUMN GRID
+   9. SEMANTIC POLISH & DESKTOP MULTI-COLUMN GRID
    ============================================================================ */
 
 /* Desktop Multi-Column Card Grid (>= 769px) */
 @media (min-width: 769px) {
+
   .events-grid,
   .time-group-cards-grid {
     display: grid !important;
@@ -6942,8 +7197,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
     align-items: stretch !important;
   }
 
-  .events-grid > .event-card,
-  .time-group-cards-grid > .event-card {
+  .events-grid>.event-card,
+  .time-group-cards-grid>.event-card {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
@@ -6954,33 +7209,33 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   }
 }
 
-/* Theme & Holiday Badges on Event Cards (Screenshots 3 & 5) */
+/* Theme & Holiday Badges on Event Cards */
 .card-theme-badge-pill {
-  background: #fffbeb !important;
-  border: 1px solid #f59e0b !important;
-  color: #92400e !important;
+  background: rgba(217, 119, 6, 0.14) !important;
+  border: 1px solid var(--brand-accent) !important;
+  color: var(--brand-accent) !important;
   font-weight: 700 !important;
 }
 
 .card-theme-badge-pill.active {
-  background: #0d9488 !important;
-  border-color: #0d9488 !important;
-  color: #ffffff !important;
+  background: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
 }
 
 .card-theme-badge-main {
-  color: #92400e !important;
+  color: var(--brand-accent) !important;
   font-weight: 700 !important;
 }
 
 .card-theme-badge-pill.active .card-theme-badge-main {
-  color: #ffffff !important;
+  color: var(--brand-primary-fg) !important;
 }
 
 .card-theme-badge-exclude {
-  background: #fef3c7 !important;
-  color: #78350f !important;
-  border-left: 1px solid #f59e0b !important;
+  background: rgba(217, 119, 6, 0.2) !important;
+  color: var(--brand-accent) !important;
+  border-left: 1px solid var(--brand-accent) !important;
   font-weight: 800 !important;
 }
 
@@ -6989,23 +7244,23 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   color: #ffffff !important;
 }
 
-/* Active Venue Filter Banner (Screenshot 4) */
+/* Active Venue Filter Banner */
 .active-venue-banner {
-  background: #f0fdfa !important;
-  border: 1px solid #0d9488 !important;
-  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.08) !important;
-  color: #0f172a !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--brand-primary) !important;
+  box-shadow: var(--shadow-sm) !important;
+  color: var(--text-main) !important;
 }
 
 .venue-banner-content,
 .venue-banner-content strong {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .btn-clear-venue {
-  background: #fff1f2 !important;
-  color: #be123c !important;
-  border: 1px solid #fda4af !important;
+  background: rgba(225, 29, 72, 0.12) !important;
+  color: #e11d48 !important;
+  border: 1px solid rgba(225, 29, 72, 0.35) !important;
   font-weight: 700 !important;
 }
 
@@ -7015,309 +7270,214 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   border-color: #e11d48 !important;
 }
 
-/* Category Badges on Cards — High Contrast Tone-on-Tone */
+/* Category Badges on Cards — Semantic Tone-on-Tone */
 .card-category-badge,
 .card-category-badge.category-free-public-access {
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
   font-weight: 700 !important;
 }
 
-.card-category-badge.category-music {
-  background: #faf5ff !important;
-  border-color: #d8b4fe !important;
-  color: #6b21a8 !important;
-}
-
-.card-category-badge.category-shows {
-  background: #fffbeb !important;
-  border-color: #fcd34d !important;
-  color: #92400e !important;
-}
-
-.card-category-badge.category-cinema {
-  background: #fff1f2 !important;
-  border-color: #fda4af !important;
-  color: #9f1239 !important;
-}
-
-.card-category-badge.category-crafts,
-.card-category-badge.category-festivals {
-  background: #fdf2f8 !important;
-  border-color: #f9a8d4 !important;
-  color: #9d174d !important;
-}
-
 .card-category-badge.category-outdoors {
-  background: #ecfdf5 !important;
-  border-color: #6ee7b7 !important;
-  color: #065f46 !important;
+  background: var(--price-free-bg) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--price-free-fg) !important;
 }
 
 .card-category-badge.category-activities {
-  background: #f0f9ff !important;
-  border-color: #7dd3fc !important;
-  color: #075985 !important;
-}
-
-.card-category-badge.category-arts {
-  background: #eef2ff !important;
-  border-color: #a5b4fc !important;
-  color: #3730a3 !important;
-}
-
-.card-category-badge.category-trivia,
-.card-category-badge.category-markets,
-.card-category-badge.category-market {
-  background: #fefce8 !important;
-  border-color: #fde047 !important;
-  color: #854d0e !important;
-}
-
-.card-category-badge.category-social {
-  background: #fdf4ff !important;
-  border-color: #f0abfc !important;
-  color: #86198f !important;
+  background: var(--price-low-bg) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--price-low-fg) !important;
 }
 
 /* Weekly Hours Table, Multi-Showings & Waypoints Contrast */
 .weekly-hours-header {
-  color: #475569 !important;
-  border-bottom-color: #e2e8f0 !important;
+  color: var(--text-muted) !important;
+  border-bottom-color: var(--border-subtle) !important;
 }
 
 .weekly-hour-day-row {
-  color: #334155 !important;
+  color: var(--text-muted) !important;
 }
 
 .weekly-hour-day-row .day-col {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .weekly-hour-day-row .hours-col {
-  color: #334155 !important;
+  color: var(--text-main) !important;
   font-weight: 600 !important;
 }
 
 .weekly-hour-day-row.current-day {
-  background: #f0fdfa !important;
-  border-left: 3px solid #0d9488 !important;
-  color: #0f766e !important;
+  background: var(--price-free-bg) !important;
+  border-left: 3px solid var(--brand-primary) !important;
+  color: var(--price-free-fg) !important;
 }
 
 .weekly-hour-day-row.current-day .day-col,
 .weekly-hour-day-row.current-day .hours-col {
-  color: #0f766e !important;
+  color: var(--price-free-fg) !important;
   font-weight: 700 !important;
 }
 
 .btn-toggle-hours,
 .btn-toggle-showings {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #0f766e !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--brand-primary) !important;
   font-weight: 700 !important;
 }
 
 .btn-toggle-hours:hover,
 .btn-toggle-showings:hover {
-  background: #f0fdfa !important;
-  border-color: #0d9488 !important;
+  background: var(--price-free-bg) !important;
+  border-color: var(--brand-primary) !important;
 }
 
 .showing-row {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
 }
 
 .showing-date,
 .showing-venue-link {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .showing-time,
 .showing-address {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
 .btn-showing-book {
-  background: #f0fdfa !important;
-  border: 1px solid #5eead4 !important;
-  color: #0f766e !important;
+  background: var(--price-free-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--price-free-fg) !important;
 }
 
 /* Price Tier Chips, Film Ratings, Advisory Boxes & Subtags */
 .price-tier-tag {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
 }
 
 .price-tier-tag strong,
 .price-tier-tag strong.tier-val {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .price-tier-tag.tier-student {
-  background: #f0f9ff !important;
-  border-color: #7dd3fc !important;
-  color: #075985 !important;
+  background: var(--price-low-bg) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--price-low-fg) !important;
 }
+
 .price-tier-tag.tier-student strong.tier-val {
-  color: #0369a1 !important;
+  color: var(--price-low-fg) !important;
 }
 
 .price-tier-tag.tier-adult {
-  background: #ecfdf5 !important;
-  border-color: #6ee7b7 !important;
-  color: #065f46 !important;
+  background: var(--price-free-bg) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--price-free-fg) !important;
 }
+
 .price-tier-tag.tier-adult strong.tier-val {
-  color: #047857 !important;
-}
-
-.price-tier-tag.tier-senior,
-.price-tier-tag.tier-door-only,
-.price-tier-tag.tier-door {
-  background: #fffbeb !important;
-  border-color: #fcd34d !important;
-  color: #92400e !important;
-}
-.price-tier-tag.tier-senior strong.tier-val,
-.price-tier-tag.tier-door-only strong.tier-val,
-.price-tier-tag.tier-door strong.tier-val {
-  color: #b45309 !important;
-}
-
-.price-tier-tag.tier-youth,
-.price-tier-tag.tier-member {
-  background: #faf5ff !important;
-  border-color: #d8b4fe !important;
-  color: #6b21a8 !important;
-}
-.price-tier-tag.tier-youth strong.tier-val,
-.price-tier-tag.tier-member strong.tier-val {
-  color: #7e22ce !important;
-}
-
-.price-tier-tag.tier-child,
-.price-tier-tag.tier-advance {
-  background: #fdf2f8 !important;
-  border-color: #f9a8d4 !important;
-  color: #9d174d !important;
-}
-.price-tier-tag.tier-child strong.tier-val,
-.price-tier-tag.tier-advance strong.tier-val {
-  color: #be185d !important;
+  color: var(--price-free-fg) !important;
 }
 
 .price-tier-tag strong.tier-free {
-  color: #0f766e !important;
+  color: var(--price-free-fg) !important;
   text-shadow: none !important;
 }
 
 .tier-status-pill.badge-sold-out {
-  background: #fef2f2 !important;
-  color: #b91c1c !important;
-  border-color: #fca5a5 !important;
+  background: rgba(239, 68, 68, 0.14) !important;
+  color: #dc2626 !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
 }
 
 .tier-status-pill.badge-ended {
-  background: #f1f5f9 !important;
-  color: #475569 !important;
-  border-color: #cbd5e1 !important;
+  background: var(--bg-elevated) !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border-subtle) !important;
 }
 
 .tier-status-pill.badge-door {
-  background: #fffbeb !important;
-  color: #92400e !important;
-  border-color: #fcd34d !important;
+  background: rgba(217, 119, 6, 0.14) !important;
+  color: var(--brand-accent) !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
 }
 
-.card-waypoints-box {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
+.card-waypoints-box,
+.card-film-reviews {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
 }
 
 .waypoints-box-header {
-  color: #0f766e !important;
-  border-bottom-color: #e2e8f0 !important;
+  color: var(--brand-primary) !important;
+  border-bottom-color: var(--border-subtle) !important;
 }
 
 .waypoint-name {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
   font-weight: 600 !important;
 }
 
 .waypoint-desc {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
 .film-rating-chip {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #0f172a !important;
-}
-
-.film-rating-chip.rt {
-  background: #fff1f2 !important;
-  border-color: #fda4af !important;
-  color: #be123c !important;
-}
-
-.film-rating-chip.letterboxd {
-  background: #ecfdf5 !important;
-  border-color: #6ee7b7 !important;
-  color: #047857 !important;
-}
-
-.film-rating-chip.imdb {
-  background: #fffbeb !important;
-  border-color: #fcd34d !important;
-  color: #92400e !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
 }
 
 .film-review-quote {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
 .card-content-advisory-box {
-  background: #fffbeb !important;
-  border: 1px solid #fcd34d !important;
-  color: #92400e !important;
+  background: rgba(217, 119, 6, 0.12) !important;
+  border: 1px solid rgba(217, 119, 6, 0.35) !important;
+  color: var(--brand-accent) !important;
 }
 
 .card-next-dates-box {
-  background: #f0fdfa !important;
-  border: 1px solid #99f6e4 !important;
+  background: var(--price-free-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
 }
 
 .next-dates-badge {
-  color: #0f766e !important;
+  color: var(--price-free-fg) !important;
 }
 
 .next-dates-text {
-  color: #0f172a !important;
+  color: var(--text-main) !important;
 }
 
 .policy-pill {
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
 }
 
 .subtag-pill,
 .buzzword-pill {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #475569 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
 }
 
 .subtag-pill:hover {
-  background: #f0fdfa !important;
-  border-color: #0d9488 !important;
-  color: #0f766e !important;
+  background: var(--price-free-bg) !important;
+  border-color: var(--brand-primary) !important;
+  color: var(--price-free-fg) !important;
 }
 
 
@@ -7338,10 +7498,10 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   min-width: 0 !important;
   padding: 8px 16px !important;
   margin: 8px 0 12px 0 !important;
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
   border-radius: 12px !important;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+  box-shadow: var(--shadow-sm) !important;
 }
 
 .dynamic-date-left {
@@ -7354,25 +7514,26 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   font-family: var(--font-heading) !important;
   font-size: 0.96rem !important;
   font-weight: 800 !important;
-  color: #0f172a !important;
+  color: var(--text-main) !important;
   letter-spacing: -0.01em !important;
   white-space: nowrap !important;
 }
 
 .results-count-bar .results-count-text {
   font-size: 0.84rem !important;
-  color: #475569 !important;
+  color: var(--text-muted) !important;
   font-weight: 500 !important;
   margin-left: auto !important;
   white-space: nowrap !important;
 }
 
 .results-count-bar .results-count-text strong {
-  color: #0f766e !important;
+  color: var(--brand-primary) !important;
   font-weight: 800 !important;
 }
 
 @media (max-width: 768px) {
+
   .results-count-bar,
   .dynamic-date-count-bar {
     padding: 6px 16px !important;
@@ -7389,7 +7550,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   }
 
   /* Show the first time-group-header ("Today's Events • Sunday, Nov 8th") on mobile */
-  section[aria-label="Events List"] .events-time-group:first-of-type > .time-group-header {
+  section[aria-label="Events List"] .events-time-group:first-of-type>.time-group-header {
     display: flex !important;
   }
 
@@ -7413,9 +7574,9 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
     padding: 8px 12px !important;
     border-radius: 12px !important;
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-sm) !important;
   }
 
   section[aria-label="Active Vancouver Festivals"] .festival-compact-header-row {
@@ -7424,7 +7585,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 
   section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title {
     font-size: 0.82rem !important;
-    color: #0f172a !important;
+    color: var(--text-main) !important;
   }
 
   section[aria-label="Active Vancouver Festivals"] .festival-active-items-list {
@@ -7448,8 +7609,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
     max-width: 82vw !important;
     padding: 8px 11px !important;
     white-space: normal !important;
-    background: #f8fafc !important;
-    border: 1px solid #cbd5e1 !important;
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle) !important;
     border-radius: 10px !important;
   }
 
@@ -7464,6 +7625,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
    VAN50 UX, FUNCTIONAL & ACCESSIBILITY POLISH (v7.9.4)
    ============================================================================ */
 @media (max-width: 768px) {
+
   .spend-sliders-container,
   div[aria-label="Spend Range Slider"] {
     display: none !important;
@@ -7496,38 +7658,38 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   border-radius: 9999px;
   font-size: 0.82rem;
   font-weight: 700;
-  color: #334155;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  box-shadow: var(--shadow-sm);
 }
 
 .quick-cat-pill:hover {
-  border-color: #0d9488;
-  color: #0f766e;
-  background: #f0fdfa;
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  background: var(--bg-elevated);
 }
 
 .quick-cat-pill.active {
-  background: #0d9488;
-  color: #ffffff;
-  border-color: #0d9488;
-  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
+  border-color: var(--brand-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .quick-cat-pill.quick-today-pill {
-  border-color: #f59e0b;
-  background: #fffbeb;
-  color: #b45309;
+  border-color: var(--brand-accent);
+  background: rgba(217, 119, 6, 0.12);
+  color: var(--brand-accent);
 }
 
 .quick-cat-pill.quick-today-pill.active {
-  background: #d97706;
+  background: var(--brand-accent);
   color: #ffffff;
-  border-color: #d97706;
+  border-color: var(--brand-accent);
   box-shadow: 0 2px 6px rgba(217, 119, 6, 0.28);
 }
 
@@ -7538,7 +7700,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 .itinerary-budget-meter-track {
   width: 100%;
   height: 6px;
-  background: #e2e8f0;
+  background: var(--border-subtle);
   border-radius: 9999px;
   overflow: hidden;
   margin-top: 10px;
@@ -7546,7 +7708,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 
 .itinerary-budget-meter-fill {
   height: 100%;
-  background: #10b981;
+  background: var(--brand-primary);
   border-radius: 9999px;
   transition: width 0.25s ease, background-color 0.25s ease;
 }
@@ -7582,24 +7744,24 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   grid-column: 1 / -1;
   text-align: center;
   padding: 48px 24px;
-  color: var(--text-secondary);
-  background: var(--bg-surface);
+  color: var(--text-muted);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow-md);
 }
 
 .zero-results-title {
   font-family: var(--font-heading);
   font-size: 1.32rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-main);
   margin-bottom: 8px;
 }
 
 .zero-results-subtitle {
   font-size: 0.92rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   max-width: 520px;
   margin: 0 auto 18px;
   line-height: 1.5;
@@ -7609,8 +7771,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   max-width: 620px;
   margin: 0 auto 22px;
   padding: 14px 16px;
-  background: rgba(15, 23, 42, 0.55);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
 }
 
@@ -7636,9 +7798,9 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   padding: 4px 11px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #e2e8f0;
-  background: rgba(56, 189, 248, 0.14);
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--price-low-fg);
+  background: var(--price-low-bg);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
 }
 
@@ -7662,8 +7824,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   justify-content: center;
   gap: 6px;
   padding: 11px 14px;
-  background: linear-gradient(135deg, #0ea5e9, #2563eb);
-  color: #fff;
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
   border: none;
   border-radius: var(--radius-md);
   font-size: 0.84rem;
@@ -7684,7 +7846,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   gap: 4px;
   padding: 11px 12px;
   background: rgba(244, 63, 94, 0.12);
-  color: #fda4af;
+  color: #e11d48;
   border: 1px solid rgba(244, 63, 94, 0.32);
   border-radius: var(--radius-md);
   font-size: 0.82rem;
@@ -7704,8 +7866,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 .inline-view-switcher {
   display: inline-flex;
   align-items: center;
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: 9999px;
   padding: 2px;
   gap: 2px;
@@ -7720,7 +7882,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   border-radius: 9999px;
   font-size: 0.76rem;
   font-weight: 700;
-  color: #475569;
+  color: var(--text-muted);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -7729,13 +7891,13 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 }
 
 .inline-view-mode-btn:hover {
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .inline-view-mode-btn.active {
-  background: #0d9488;
-  color: #ffffff;
-  box-shadow: 0 1px 4px rgba(13, 148, 136, 0.28);
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
+  box-shadow: var(--shadow-glow);
 }
 
 .map-jump-toolbar {
@@ -7743,8 +7905,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   flex-direction: column;
   gap: 8px;
   padding: 12px 14px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .map-jump-header {
@@ -7759,15 +7921,15 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   font-family: var(--font-heading);
   font-size: 0.84rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .map-pin-count-badge {
   font-size: 0.74rem;
   font-weight: 700;
-  color: #0f766e;
-  background: #f0fdfa;
-  border: 1px solid rgba(13, 148, 136, 0.3);
+  color: var(--price-free-fg);
+  background: var(--price-free-bg);
+  border: 1px solid var(--border-subtle);
   border-radius: 9999px;
   padding: 2px 10px;
 }
@@ -7787,44 +7949,44 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   border-radius: 9999px;
   font-size: 0.76rem;
   font-weight: 700;
-  color: #334155;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
 }
 
 .map-jump-pill:hover {
-  border-color: #0d9488;
-  color: #0f766e;
-  background: #f0fdfa;
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  background: var(--bg-elevated);
 }
 
 .map-jump-pill.active {
-  background: #0d9488;
-  color: #ffffff;
-  border-color: #0d9488;
-  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
+  border-color: var(--brand-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .map-jump-pill.map-jump-fit {
-  border-color: #0284c7;
-  color: #0369a1;
-  background: #f0f9ff;
+  border-color: var(--price-low-fg);
+  color: var(--price-low-fg);
+  background: var(--price-low-bg);
 }
 
 .map-jump-pill.map-jump-fit:hover,
 .map-jump-pill.map-jump-fit.active {
-  background: #0284c7;
-  color: #ffffff;
-  border-color: #0284c7;
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
+  border-color: var(--brand-primary);
 }
 
 /* Google Maps Shared InfoWindow Card */
 .gmap-infowindow-card {
   font-family: var(--font-body);
-  color: #0f172a;
+  color: var(--text-main);
   padding: 4px 2px;
   min-width: 220px;
   max-width: 290px;
@@ -7847,21 +8009,21 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 }
 
 .gmap-iw-badge.free {
-  background: #ecfdf5;
-  color: #047857;
-  border: 1px solid #6ee7b7;
+  background: var(--price-free-bg);
+  color: var(--price-free-fg);
+  border: 1px solid var(--border-subtle);
 }
 
 .gmap-iw-badge.paid {
-  background: #f0fdfa;
-  color: #0f766e;
-  border: 1px solid #5eead4;
+  background: var(--price-low-bg);
+  color: var(--price-low-fg);
+  border: 1px solid var(--border-subtle);
 }
 
 .gmap-iw-badge.sold-out {
-  background: #fef2f2;
-  color: #b91c1c;
-  border: 1px solid #fca5a5;
+  background: rgba(239, 68, 68, 0.14);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.35);
 }
 
 .gmap-iw-cat {
@@ -7869,7 +8031,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .gmap-iw-title {
@@ -7878,16 +8040,16 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   font-weight: 800;
   line-height: 1.3;
   margin: 0 0 6px 0;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .gmap-iw-title a {
-  color: #0f172a;
+  color: var(--text-main);
   text-decoration: none;
 }
 
 .gmap-iw-title a:hover {
-  color: #0d9488;
+  color: var(--brand-primary);
   text-decoration: underline;
 }
 
@@ -7896,21 +8058,21 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   flex-direction: column;
   gap: 4px;
   font-size: 0.78rem;
-  color: #334155;
+  color: var(--text-muted);
   margin-bottom: 10px;
 }
 
 .gmap-iw-hood {
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .gmap-iw-co-events {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #0369a1;
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  color: var(--price-low-fg);
+  background: var(--price-low-bg);
+  border: 1px solid var(--border-subtle);
   border-radius: 6px;
   padding: 4px 8px;
   margin-bottom: 8px;
@@ -7924,26 +8086,26 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 .gmap-iw-btn-primary {
   flex: 1 1 auto;
   text-align: center;
-  background: #0d9488;
-  color: #ffffff !important;
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg) !important;
   font-size: 0.76rem;
   font-weight: 700;
   padding: 7px 10px;
   border-radius: 8px;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition: filter 0.15s ease;
 }
 
 .gmap-iw-btn-primary:hover {
-  background: #0f766e;
+  filter: brightness(1.08);
 }
 
 .gmap-iw-btn-secondary {
   flex: 0 0 auto;
   text-align: center;
-  background: #f1f5f9;
-  color: #334155 !important;
-  border: 1px solid #cbd5e1;
+  background: var(--bg-elevated);
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-subtle);
   font-size: 0.74rem;
   font-weight: 700;
   padding: 7px 10px;
@@ -7953,8 +8115,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 }
 
 .gmap-iw-btn-secondary:hover {
-  background: #e2e8f0;
-  color: #0f172a !important;
+  background: var(--bg-card);
+  color: var(--brand-primary) !important;
 }
 
 #van50-map-canvas,
@@ -7963,7 +8125,7 @@ div[aria-label="Interactive Google Map of Events"] {
   height: 560px;
   border-radius: 12px;
   overflow: hidden;
-  background: #0f172a;
+  background: var(--bg-elevated);
 }
 
 @media (min-width: 769px) {
@@ -7981,6 +8143,7 @@ div[aria-label="Interactive Google Map of Events"] {
 }
 
 @media (max-width: 768px) {
+
   #mobile-view-toggle,
   .mobile-view-toggle {
     display: inline-flex !important;
@@ -8020,8 +8183,8 @@ div[aria-label="Interactive Google Map of Events"] {
 /* Prevent Flex/Grid Child Blowout across all containers & horizontal carousels */
 header,
 main,
-main > section,
-main > div,
+main>section,
+main>div,
 .mobile-search-filter-bar,
 .search-filter-main-row,
 .filters-hub,
@@ -8101,6 +8264,7 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 }
 
 @media (max-width: 768px) {
+
   #mobile-filters-sheet:not(.is-open),
   div[aria-label="Secondary Filters"][aria-hidden="true"] {
     pointer-events: none !important;
@@ -8128,7 +8292,7 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 /* Multi-Event Venue InfoWindow Styles */
 .gmap-venue-iw {
   font-family: var(--font-body);
-  color: #0f172a;
+  color: var(--text-main);
   min-width: 240px;
   max-width: 310px;
   padding: 2px;
@@ -8137,21 +8301,21 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 .gmap-venue-iw-header {
   padding-bottom: 8px;
   margin-bottom: 8px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .gmap-venue-iw-name {
   font-family: var(--font-heading);
   font-size: 0.98rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text-main);
   line-height: 1.25;
   margin: 0 0 3px 0;
 }
 
 .gmap-venue-iw-sub {
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -8170,8 +8334,8 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 }
 
 .gmap-venue-iw-item {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 8px 10px;
   display: flex;
@@ -8190,18 +8354,18 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-main);
   line-height: 1.25;
   flex: 1 1 auto;
 }
 
 .gmap-venue-iw-item-title a {
-  color: #0f172a;
+  color: var(--text-main);
   text-decoration: none;
 }
 
 .gmap-venue-iw-item-title a:hover {
-  color: #0d9488;
+  color: var(--brand-primary);
   text-decoration: underline;
 }
 
@@ -8211,13 +8375,13 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   justify-content: space-between;
   gap: 6px;
   font-size: 0.74rem;
-  color: #475569;
+  color: var(--text-muted);
 }
 
 .gmap-venue-iw-ticket-link {
   font-size: 0.74rem;
   font-weight: 700;
-  color: #0d9488 !important;
+  color: var(--brand-primary) !important;
   text-decoration: none;
 }
 
@@ -8237,6 +8401,7 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 
 /* Hide the mobile-only top bar map shortcut on desktop (> 768px) */
 @media (min-width: 769px) {
+
   #mobile-top-map-btn,
   .mobile-top-map-btn {
     display: none !important;
@@ -8244,6 +8409,7 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 }
 
 @media (max-width: 768px) {
+
   /* 1. Sticky Top Bar Map Button right next to Filters */
   #mobile-top-map-btn,
   .mobile-top-map-btn {
@@ -8254,26 +8420,26 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
     height: 40px !important;
     padding: 0 12px !important;
     border-radius: 999px !important;
-    border: 1.5px solid #0d9488 !important;
-    background: #f0fdfa !important;
-    color: #0f766e !important;
+    border: 1.5px solid var(--brand-primary) !important;
+    background: var(--bg-elevated) !important;
+    color: var(--brand-primary) !important;
     font-family: var(--font-heading) !important;
     font-size: 0.82rem !important;
     font-weight: 700 !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     cursor: pointer !important;
-    box-shadow: 0 1px 3px rgba(13, 148, 136, 0.12) !important;
+    box-shadow: var(--shadow-sm) !important;
     transition: all 0.15s ease !important;
   }
 
   #mobile-top-map-btn.active,
   .mobile-top-map-btn.active,
   #mobile-top-map-btn[aria-pressed="true"] {
-    background: #0d9488 !important;
-    border-color: #0f766e !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 6px rgba(13, 148, 136, 0.28) !important;
+    background: var(--brand-primary) !important;
+    border-color: var(--brand-primary) !important;
+    color: var(--brand-primary-fg) !important;
+    box-shadow: var(--shadow-glow) !important;
   }
 
   #mobile-filter-trigger {
@@ -8328,9 +8494,9 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   width: 100%;
   margin-top: 6px;
   padding: 5px 12px;
-  background: linear-gradient(90deg, #f0fdfa 0%, #f8fafc 100%);
-  border: 1px solid #99f6e4;
-  border-left: 3.5px solid #0d9488;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-left: 3.5px solid var(--brand-primary);
   border-radius: 8px;
   box-sizing: border-box;
 }
@@ -8339,7 +8505,7 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   font-family: var(--font-heading);
   font-size: 0.8rem;
   font-weight: 800;
-  color: #0f766e;
+  color: var(--brand-primary);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -8348,6 +8514,19 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   font-family: var(--font-heading);
   font-size: 0.82rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
+/* 4. WCAG AAA Accessible Mode Token Overrides */
+body.van50-accessible {
+  --bg-app: #000000 !important;
+  --bg-card: #0b1120 !important;
+  --bg-elevated: #0f172a !important;
+  --bg-glass: rgba(0, 0, 0, 0.94) !important;
+  --text-main: #ffffff !important;
+  --text-muted: #e2e8f0 !important;
+  --brand-primary: #34d399 !important;
+  --brand-primary-fg: #000000 !important;
+  --brand-accent: #fbbf24 !important;
+  --border-subtle: #64748b !important;
+}

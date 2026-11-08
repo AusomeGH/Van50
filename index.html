@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Van50 — Vancouver Events & Outings ($50 or Less)</title>
   <meta name="description" content="Discover authentic, affordable Vancouver events, comedy, indie cinema, music, trivia, and scenic outings strictly under $50.00 CAD total out-of-pocket per person.">
-  <meta name="theme-color" content="#f8fafc">
+  <meta name="theme-color" content="#F2F4F0">
 
   <!-- Android & iOS Mobile Web App Capabilities -->
   <link rel="manifest" href="manifest.json">
@@ -64,7 +64,7 @@
           <span class="nav-btn-label">Saved Events</span>
           <span class="itinerary-count-badge" id="itinerary-count">0</span>
         </button>
-        <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue" title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue" style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(13, 148, 136, 0.3); background: rgba(13, 148, 136, 0.08); color: #0f766e; padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
+        <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue" title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue" style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); color: var(--brand-primary); padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
           <span aria-hidden="true">💡</span>
           <span class="nav-btn-label">Suggest / Report</span>
         </button>
@@ -358,7 +358,7 @@
       <button class="modal-close-btn" id="close-review-queue-btn" aria-label="Close Review Queue">✕</button>
 
       <div class="modal-header">
-        <h2 class="modal-title" id="review-queue-title" style="color: #d97706;">
+        <h2 class="modal-title" id="review-queue-title" style="color: var(--brand-accent);">
           Manual Review Quarantine Queue
         </h2>
         <p class="modal-desc" style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px;">
@@ -425,7 +425,7 @@
         </div>
 
 
-        <div style="background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 12px;">
+        <div style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 12px;">
           <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.82rem; color: var(--text-primary); font-weight: 500;">
             <input type="checkbox" id="price-feedback-all-in" style="margin-top: 2px; accent-color: var(--accent-primary);">
             <span>Price is all-in / tax included (without tip)</span>
@@ -503,7 +503,7 @@
         Single Reference Source Architecture (Verified Local Feeds • 0 Client-Side Scraping).
       </p>
       <p style="margin-top: 12px;">
-        <button type="button" id="feedback-footer-btn" style="background: rgba(13, 148, 136, 0.08); border: 1px solid rgba(13, 148, 136, 0.3); color: #0f766e; border-radius: 20px; padding: 6px 18px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+        <button type="button" id="feedback-footer-btn" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--brand-primary); border-radius: 20px; padding: 6px 18px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
           💡 Suggest a Show (≤ $50 CAD) or Report an Issue
         </button>
       </p>
@@ -546,7 +546,7 @@
             required 
             placeholder="Type your feedback, suggestion, venue tip, or event update here...&#10;&#10;(Feel free to leave a contact email or phone number here if you'd like a reply)" 
             maxlength="2000" 
-            style="width: 100%; padding: 12px 14px; background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.88rem; line-height: 1.5; resize: vertical; box-sizing: border-box;"></textarea>
+            style="width: 100%; padding: 12px 14px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.88rem; line-height: 1.5; resize: vertical; box-sizing: border-box;"></textarea>
         </div>
 
         <input type="hidden" id="feedback-target-event-id" value="">
@@ -554,8 +554,8 @@
         <div id="feedback-alert" style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.82rem; margin-bottom: 14px;"></div>
 
         <div style="display: flex; justify-content: flex-end; gap: 10px;">
-          <button type="button" class="btn" id="btn-cancel-feedback" style="background: #f1f5f9; border: 1px solid var(--border-subtle); color: var(--text-secondary); cursor: pointer; padding: 8px 16px; border-radius: var(--radius-md);">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="btn-submit-feedback" style="background: #0d9488; border: none; font-weight: 600; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-md); color: #fff;">Send Feedback</button>
+          <button type="button" class="btn" id="btn-cancel-feedback" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary); cursor: pointer; padding: 8px 16px; border-radius: var(--radius-md);">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit-feedback" style="background: var(--brand-primary); border: none; font-weight: 600; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-md); color: var(--brand-primary-fg);">Send Feedback</button>
         </div>
       </form>
     </div>

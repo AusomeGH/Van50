@@ -4913,7 +4913,7 @@ function renderEventCards(events) {
       grid.innerHTML = `
         ${venueBannerHtml}
         <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
-          <h3 style="color: #fff; margin-bottom: 8px;">No Current Events Under $50 at ${state.selectedVenue}</h3>
+          <h3 style="color: var(--text-main); margin-bottom: 8px;">No Current Events Under $50 at ${state.selectedVenue}</h3>
           <button class="btn btn-roulette" onclick="clearSelectedVenue()">Clear Venue Filter</button>
         </div>
       `;
@@ -4934,13 +4934,13 @@ function renderEventCards(events) {
       ${venueBannerHtml}
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
         <div class="empty-icon-wrap" style="margin-bottom: 14px;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5; color: var(--accent-primary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
-        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #fff; margin-bottom: 8px;">No Outings Found Matching Filters</h3>
+        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">No Outings Found Matching Filters</h3>
         <p style="font-size: 0.9rem; max-width: 440px; margin: 0 auto 18px;">
           Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Scheduled Events Only".
         </p>
         <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
           <button class="btn btn-roulette" onclick="resetAllFilters()">Reset All Filters</button>
-          <button type="button" class="btn" onclick="filterByCategory('all')" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Show All Active Outings</button>
+          <button type="button" class="btn" onclick="filterByCategory('all')" style="background: var(--price-low-bg); border: 1px solid var(--border-subtle); color: var(--price-low-fg); padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Show All Active Outings</button>
         </div>
       </div>
     `;
@@ -5991,7 +5991,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
             <span class="mobile-card-title">${formatCardDisplayTitle(ev.title, ev)}</span>
-            <span class="mobile-card-price-pill ${isSoldOut ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : '')}">${isSoldOut ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
+            <span class="mobile-card-price-pill ${isSoldOut ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std'))}">${isSoldOut ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
           </div>
           <div class="mobile-card-row-2">
             <span class="mobile-card-meta-text">📍 ${(ev.neighborhood || ev.venue || 'Vancouver').split(',')[0]} • ${topDate.badgeText} • ${(() => {
@@ -6191,7 +6191,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <div class="price-box ${tiersInfo.hasTiers ? 'price-box-interactive' : ''}" 
                  ${tiersInfo.hasTiers ? `onclick="toggleAdmissionTiers('${bucketKey}', '${ev.id}', event)" role="button" tabindex="0" aria-expanded="false" title="Click to view all ${tiersInfo.count} admission tiers"` : ''}>
               <div class="price-breakdown-row">
-                <span class="price-main ${ev.isFree ? 'free' : ''}">${standardPrice}</span>
+                <span class="price-main ${ev.isFree || ev.price === 0 ? 'free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std')}">${standardPrice}</span>
                 ${tiersInfo.hasTiers ? `<span class="price-tiers-toggle-hint" id="${tiersInfo.hintId}">Tiers ▾</span>` : ''}
               </div>
             </div>
@@ -6482,7 +6482,7 @@ function renderReviewQueueModal() {
     list.innerHTML = `
       <div style="text-align: center; padding: 40px 20px; color: var(--text-secondary);">
         <div style="font-size: 2.2rem; margin-bottom: 8px;">✅</div>
-        <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 6px;">All Events Live Verified</h4>
+        <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 6px;">All Events Live Verified</h4>
         <p style="font-size: 0.85rem;">There are currently zero events quarantined for manual review. All catalog items have confirmed live check-out pricing.</p>
       </div>
     `;
