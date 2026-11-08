@@ -240,7 +240,7 @@ window.FESTIVAL_REGISTRY = window.FESTIVAL_REGISTRY || {
 };
 
 // Privacy-Preserving Anonymous Event Tracking (GoatCounter - 0 PII, Cookieless)
-window.trackAnonymousEvent = function(path, title) {
+window.trackAnonymousEvent = function (path, title) {
   try {
     const cleanPath = (path || '').replace(/^\/+/, '').replace(/\//g, '-');
     if (window.goatcounter && typeof window.goatcounter.count === 'function') {
@@ -276,20 +276,231 @@ const state = {
   searchQuery: '',
   savedEvents: new Set(),
   collapsedTimeGroups: new Set(),
-  expiredCount: 0
+  expiredCount: 0,
+  sortBy: 'date'
 };
 
 // Global reference for roulette & map
 window.currentFilteredEvents = [];
-let ALL_EVENTS = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS)) 
-  ? (window.VAN50_EVENTS || window.VANCOUVER_EVENTS).map(normalizeActiveEvent) 
+let ALL_EVENTS = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS))
+  ? (window.VAN50_EVENTS || window.VANCOUVER_EVENTS).map(normalizeActiveEvent)
   : (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS.map(normalizeActiveEvent) : (typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS.map(normalizeActiveEvent) : []));
+
+function restoreFiltersFromUrlParams() {
+  if (typeof window === 'undefined' || !window.location || !window.location.search) return;
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.has('q')) {
+    state.searchQuery = (params.get('q') || '').trim();
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.value = state.searchQuery;
+    const clearSearchBtn = document.getElementById('btn-clear-search');
+    if (clearSearchBtn) clearSearchBtn.style.display = state.searchQuery.length > 0 ? 'flex' : 'none';
+  }
+
+  if (params.has('cat')) {
+    const catVal = (params.get('cat') || '').trim();
+    if (catVal) state.category = catVal;
+  }
+
+  if (params.has('fest')) {
+    const festVal = (params.get('fest') || '').trim();
+    if (festVal) state.selectedThemeFilter = festVal;
+  }
+
+  if (params.has('cost')) {
+    const costVal = (params.get('cost') || '').trim().toLowerCase();
+    if (costVal === 'free' || costVal === '0') {
+      state.minBudget = 0;
+      state.maxBudget = 0;
+    } else if (costVal === 'under15') {
+      state.minBudget = 0;
+      state.maxBudget = 15;
+    } else if (costVal === 'under25') {
+      state.minBudget = 0;
+      state.maxBudget = 25;
+    } else if (costVal === 'paid') {
+      state.minBudget = 1;
+      state.maxBudget = 50;
+    } else if (costVal.includes('-')) {
+      const parts = costVal.split('-').map(n => parseInt(n, 10));
+      if (!isNaN(parts[0]) && !isNaN(parts[1])) {
+        state.minBudget = Math.max(0, Math.min(50, parts[0]));
+        state.maxBudget = Math.max(state.minBudget, Math.min(50, parts[1]));
+      }
+    } else {
+      const numCost = parseInt(costVal, 10);
+      if (!isNaN(numCost)) {
+        state.minBudget = 0;
+        state.maxBudget = Math.max(0, Math.min(50, numCost));
+      }
+    }
+    const minSlider = document.getElementById('min-spend-slider');
+    const maxSlider = document.getElementById('max-spend-slider');
+    if (minSlider) minSlider.value = state.minBudget;
+    if (maxSlider) maxSlider.value = state.maxBudget;
+  }
+
+  if (params.has('day')) {
+    const dayVal = (params.get('day') || '').trim();
+    if (dayVal) state.dayOfWeek = dayVal;
+  }
+
+  if (params.has('time')) {
+    const timeVal = (params.get('time') || '').trim();
+    if (timeVal) state.timeSlot = timeVal;
+  }
+
+  if (params.has('hood')) {
+    const hoodVal = (params.get('hood') || '').trim();
+    if (hoodVal && typeof window.NEIGHBORHOODS !== 'undefined') {
+      if (hoodVal.toLowerCase() === 'all') {
+        state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
+      } else {
+        const requested = hoodVal.split(',').map(s => s.trim()).filter(Boolean);
+        const matched = window.NEIGHBORHOODS.filter(n => requested.some(r => r.toLowerCase() === n.toLowerCase()));
+        if (matched.length > 0) {
+          state.selectedNeighborhoods = new Set(matched);
+        }
+      }
+    }
+  }
+
+  if (params.has('rec')) {
+    const recVal = (params.get('rec') || '').trim();
+    if (recVal) state.frequency = recVal;
+  }
+
+  if (params.has('sort')) {
+    const sortVal = (params.get('sort') || '').trim();
+    if (sortVal) state.sortBy = sortVal;
+  }
+}
+
+function syncFiltersToUrlParams() {
+  if (typeof window === 'undefined' || !window.history || !window.history.replaceState) return;
+  const params = new URLSearchParams(window.location.search);
+
+  ['q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort'].forEach(k => params.delete(k));
+
+  if (state.searchQuery && state.searchQuery.trim() !== '') {
+    params.set('q', state.searchQuery.trim());
+  }
+  if (state.category && state.category !== 'all') {
+    params.set('cat', state.category);
+  }
+  if (state.selectedThemeFilter) {
+    params.set('fest', state.selectedThemeFilter);
+  }
+  if (state.minBudget > 0 || state.maxBudget < 50) {
+    if (state.minBudget === 0 && state.maxBudget === 0) {
+      params.set('cost', 'free');
+    } else if (state.minBudget === 0 && state.maxBudget === 15) {
+      params.set('cost', 'under15');
+    } else if (state.minBudget === 0 && state.maxBudget === 25) {
+      params.set('cost', 'under25');
+    } else if (state.minBudget === 1 && state.maxBudget === 50) {
+      params.set('cost', 'paid');
+    } else {
+      params.set('cost', `${state.minBudget}-${state.maxBudget}`);
+    }
+  }
+  if (state.dayOfWeek && state.dayOfWeek !== 'all') {
+    params.set('day', state.dayOfWeek);
+  }
+  if (state.timeSlot && state.timeSlot !== 'all') {
+    params.set('time', state.timeSlot);
+  }
+  const allHoods = window.NEIGHBORHOODS || [];
+  if (state.selectedNeighborhoods && state.selectedNeighborhoods.size > 0 && state.selectedNeighborhoods.size < allHoods.length) {
+    params.set('hood', Array.from(state.selectedNeighborhoods).join(','));
+  }
+  if (state.frequency && state.frequency !== 'all') {
+    params.set('rec', state.frequency);
+  }
+  if (state.sortBy && state.sortBy !== 'date') {
+    params.set('sort', state.sortBy);
+  }
+
+  const queryStr = params.toString();
+  const newUrl = window.location.pathname + (queryStr ? `?${queryStr}` : '') + (window.location.hash || '');
+  const currentUrl = window.location.pathname + window.location.search + (window.location.hash || '');
+  if (newUrl !== currentUrl) {
+    window.history.replaceState(null, '', newUrl);
+  }
+}
+
+function getActiveFiltersSummaryList() {
+  const active = [];
+  if (state.searchQuery && state.searchQuery.trim() !== '') {
+    active.push(`Search: "${state.searchQuery.trim()}"`);
+  }
+  if (state.category && state.category !== 'all') {
+    const catObj = (typeof CATEGORIES !== 'undefined' ? CATEGORIES : []).find(c => c.id === state.category);
+    active.push(`Category: ${catObj ? `${catObj.icon} ${catObj.label}` : state.category}`);
+  }
+  if (state.selectedThemeFilter) {
+    const label = state.selectedThemeFilter.includes(':') ? state.selectedThemeFilter.split(':')[1] : state.selectedThemeFilter;
+    active.push(`Festival / Theme: ${label}`);
+  }
+  if (state.excludedThemes && state.excludedThemes.size > 0) {
+    const labels = Array.from(state.excludedThemes).map(k => k.includes(':') ? k.split(':')[1] : k);
+    active.push(`Hidden Themes: ${labels.join(', ')}`);
+  }
+  if (state.hideFestivalEvents) {
+    active.push('No Festival Events');
+  }
+  if (state.minBudget > 0 || state.maxBudget < 50) {
+    if (state.minBudget === 0 && state.maxBudget === 0) {
+      active.push('Cost: Free ($0)');
+    } else {
+      active.push(`Cost: $${state.minBudget} – $${state.maxBudget} CAD`);
+    }
+  }
+  if (state.dayOfWeek && state.dayOfWeek !== 'all') {
+    const dayObj = (typeof DAYS_OF_WEEK !== 'undefined' ? DAYS_OF_WEEK : []).find(d => d.id === state.dayOfWeek);
+    active.push(`Day: ${dayObj ? dayObj.label : state.dayOfWeek}`);
+  }
+  if (state.timeSlot && state.timeSlot !== 'all') {
+    const timeObj = (typeof TIME_SLOTS !== 'undefined' ? TIME_SLOTS : []).find(t => t.id === state.timeSlot);
+    active.push(`Time: ${timeObj ? timeObj.label : state.timeSlot}`);
+  }
+  const allHoods = window.NEIGHBORHOODS || [];
+  if (state.selectedNeighborhoods && state.selectedNeighborhoods.size < allHoods.length) {
+    if (state.selectedNeighborhoods.size === 0) {
+      active.push('Neighborhoods: None selected');
+    } else {
+      active.push(`Neighborhood: ${Array.from(state.selectedNeighborhoods).join(', ')}`);
+    }
+  }
+  if (state.frequency && state.frequency !== 'all') {
+    const freqObj = (typeof FREQUENCIES !== 'undefined' ? FREQUENCIES : []).find(f => f.id === state.frequency);
+    active.push(`Recurrence: ${freqObj ? freqObj.label : state.frequency}`);
+  }
+  if (state.selectedTag) {
+    active.push(`Tag: #${state.selectedTag}`);
+  }
+  if (state.selectedVenue) {
+    active.push(`Venue: ${state.selectedVenue}`);
+  }
+  if (state.hideDaily) {
+    active.push('Scheduled Events Only');
+  }
+  if (state.accessibleOnly) {
+    active.push('Accessible Venues Only');
+  }
+  if (state.sortBy && state.sortBy !== 'date') {
+    active.push(`Sort: ${state.sortBy}`);
+  }
+  return active;
+}
 
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedState();
   initAccessibility();
   setupEventListeners();
+  restoreFiltersFromUrlParams();
   renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
@@ -405,7 +616,7 @@ function resolveEventTiers(ev) {
         if (!isNaN(untilDate.getTime()) && untilDate < now && status === 'available') {
           status = 'expired';
         }
-      } catch (_) {}
+      } catch (_) { }
     }
 
     const isAvailable = (status === 'available');
@@ -995,8 +1206,28 @@ function normalizeActiveEvent(item) {
     venueUrl: item.details_url || item.websiteUrl || "#",
     ticketProvider: item.ticket_provider || item.ticketProvider || (isFreePublic ? "Free Public Access" : "Direct"),
     rawProvider: item.ticket_provider || (isFreePublic ? "Free Public Access" : "Direct"),
-    coordinates: [49.2827, -123.1207],
-    transitInfo: "Transit accessible via TransLink SkyTrain / bus service",
+    coordinates: (() => {
+      if (typeof window !== 'undefined' && typeof window.resolveEventCoordinates === 'function') {
+        return window.resolveEventCoordinates(item);
+      }
+      if (Array.isArray(item.coordinates) && item.coordinates.length >= 2) {
+        return [Number(item.coordinates[0]), Number(item.coordinates[1])];
+      }
+      return [49.145, -122.825];
+    })(),
+    lat: (() => {
+      if (typeof window !== 'undefined' && typeof window.resolveEventCoordinates === 'function') {
+        return window.resolveEventCoordinates(item)[0];
+      }
+      return Array.isArray(item.coordinates) && item.coordinates.length >= 2 ? Number(item.coordinates[0]) : 49.145;
+    })(),
+    lng: (() => {
+      if (typeof window !== 'undefined' && typeof window.resolveEventCoordinates === 'function') {
+        return window.resolveEventCoordinates(item)[1];
+      }
+      return Array.isArray(item.coordinates) && item.coordinates.length >= 2 ? Number(item.coordinates[1]) : -122.825;
+    })(),
+    transitInfo: item.transit_info || item.transitInfo || (item.dimension_audit && item.dimension_audit.D408_transit_waypoints && item.dimension_audit.D408_transit_waypoints.value && item.dimension_audit.D408_transit_waypoints.value !== 'search_exhausted_null' ? item.dimension_audit.D408_transit_waypoints.value : "Transit accessible via TransLink SkyTrain / bus service"),
     description: item.description || "",
     operatingHours: opHours || null,
     weekly_hours: wh,
@@ -1143,7 +1374,7 @@ async function loadCentralReference() {
 
   // Robust fallback to offline embedded data.js (window.VAN50_EVENTS)
   if (!loadedEvents || loadedEvents.length === 0) {
-    const fallbackList = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS)) 
+    const fallbackList = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS))
       || (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS : null);
     if (Array.isArray(fallbackList) && fallbackList.length > 0) {
       loadedEvents = fallbackList.map(normalizeActiveEvent);
@@ -1173,7 +1404,7 @@ async function loadCentralReference() {
         window.VENUES_MASTER = vList;
       }
     }
-  } catch (e) {}
+  } catch (e) { }
 
   // Also load festivals.json
   try {
@@ -1184,7 +1415,7 @@ async function loadCentralReference() {
         window.FESTIVALS = fList;
       }
     }
-  } catch (e) {}
+  } catch (e) { }
 
 
   // Also load quarantined manual review queue
@@ -1280,6 +1511,19 @@ function setupEventListeners() {
       }, 600);
     }
 
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        e.target.blur();
+      }
+    });
+
+    searchInput.addEventListener('search', (e) => {
+      state.searchQuery = e.target.value.trim();
+      updateClearBtnVisibility();
+      applyFiltersAndRender();
+    });
+
     searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value.trim();
       updateClearBtnVisibility();
@@ -1338,7 +1582,7 @@ function setupEventListeners() {
   });
 
   // Global search sample applicator
-  window.applySearchSample = function(sampleQuery) {
+  window.applySearchSample = function (sampleQuery) {
     if (searchInput) {
       searchInput.value = sampleQuery;
       searchInput.focus();
@@ -1438,29 +1682,32 @@ function setupEventListeners() {
     });
   }
 
-  // View Switcher (Cards vs Map)
+  // View Switcher (Cards vs Map) — Toggles CSS display only (never destroys or recreates the Google Map instance)
   const viewCardsBtn = document.getElementById('view-cards-btn');
   const viewMapBtn = document.getElementById('view-map-btn');
   const eventsGrid = document.getElementById('events-grid');
   const mapWrapper = document.getElementById('map-view-wrapper');
 
-  if (viewCardsBtn && viewMapBtn && eventsGrid && mapWrapper) {
-    viewCardsBtn.addEventListener('click', () => {
-      viewCardsBtn.classList.add('active');
-      viewMapBtn.classList.remove('active');
-      eventsGrid.style.display = 'grid';
-      const mobileViewToggle = document.getElementById('mobile-view-toggle');
-      if (mobileViewToggle) mobileViewToggle.innerHTML = '🗺️ Map';
-      mapWrapper.style.display = 'none';
-      mapWrapper.classList.remove('active');
+  window.setCatalogViewMode = function (mode) {
+    if (!eventsGrid || !mapWrapper) return;
+    const isMap = mode === 'map';
+    if (viewCardsBtn) viewCardsBtn.classList.toggle('active', !isMap);
+    if (viewMapBtn) viewMapBtn.classList.toggle('active', isMap);
+    document.querySelectorAll('.inline-view-mode-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-view-mode') === (isMap ? 'map' : 'cards'));
     });
 
-    viewMapBtn.addEventListener('click', () => {
-      viewMapBtn.classList.add('active');
-      viewCardsBtn.classList.remove('active');
+    const mobileViewToggle = document.getElementById('mobile-view-toggle');
+    if (mobileViewToggle) {
+      mobileViewToggle.innerHTML = isMap ? '📋 List' : '🗺️ Map';
+    }
+
+    if (!isMap) {
+      eventsGrid.style.display = 'grid';
+      mapWrapper.style.display = 'none';
+      mapWrapper.classList.remove('active');
+    } else {
       eventsGrid.style.display = 'none';
-      const mobileViewToggle = document.getElementById('mobile-view-toggle');
-      if (mobileViewToggle) mobileViewToggle.innerHTML = '📋 List';
       mapWrapper.style.display = 'block';
       mapWrapper.classList.add('active');
 
@@ -1472,27 +1719,25 @@ function setupEventListeners() {
       };
 
       if (!window.vancouverMapInstance && typeof initVancouverMap === 'function') {
-        initVancouverMap();
+        initVancouverMap(true);
       }
 
-      // Allow container to finish layout reflow before invalidating Leaflet size
       requestAnimationFrame(() => {
         setTimeout(() => {
-          if (window.vancouverMapInstance) {
-            window.vancouverMapInstance.invalidateSize();
+          if (typeof invalidateVancouverMap === 'function') {
+            invalidateVancouverMap();
           }
           if (typeof updateMapMarkers === 'function') {
             updateMapMarkers(getActiveEvents());
           }
-          if (window._pendingMapBounds && window.vancouverMapInstance) {
-            try {
-              window.vancouverMapInstance.fitBounds(window._pendingMapBounds, { padding: [40, 40], maxZoom: 15 });
-              window._pendingMapBounds = null;
-            } catch (e) {}
-          }
         }, 60);
       });
-    });
+    }
+  };
+
+  if (viewCardsBtn && viewMapBtn && eventsGrid && mapWrapper) {
+    viewCardsBtn.addEventListener('click', () => window.setCatalogViewMode('cards'));
+    viewMapBtn.addEventListener('click', () => window.setCatalogViewMode('map'));
   }
 
   // Neighborhood Toggle All
@@ -1589,19 +1834,63 @@ function setupEventListeners() {
   const mobileSheetApplyBtn = document.getElementById('mobile-sheet-apply-btn');
   const mobileViewToggle = document.getElementById('mobile-view-toggle');
 
-  window.openMobileFiltersSheet = function() {
+  const mobileBreakpointMql = typeof window.matchMedia === 'function' ? window.matchMedia('(max-width: 768px)') : null;
+
+  window.syncSecondaryFiltersA11y = function () {
+    if (!mobileFiltersSheet) return;
+    const isMobile = mobileBreakpointMql ? mobileBreakpointMql.matches : (window.innerWidth <= 768);
+    const isOpen = mobileFiltersSheet.classList.contains('is-open');
+    if (isMobile && !isOpen) {
+      mobileFiltersSheet.setAttribute('aria-hidden', 'true');
+      mobileFiltersSheet.setAttribute('inert', '');
+      mobileFiltersSheet.inert = true;
+    } else {
+      mobileFiltersSheet.removeAttribute('aria-hidden');
+      mobileFiltersSheet.removeAttribute('inert');
+      mobileFiltersSheet.inert = false;
+    }
+  };
+
+  window.openMobileFiltersSheet = function () {
+    if (mobileFiltersSheet) mobileFiltersSheet.classList.add('is-open');
+    if (mobileSheetBackdrop) mobileSheetBackdrop.classList.add('is-open');
+    if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'true');
+    window.syncSecondaryFiltersA11y();
+  };
+
+  window.closeMobileFiltersSheet = function () {
+    setTimeout(() => window.syncSecondaryFiltersA11y && window.syncSecondaryFiltersA11y(), 0);
+    if (mobileFiltersSheet) mobileFiltersSheet.classList.remove('is-open');
+    if (mobileSheetBackdrop) mobileSheetBackdrop.classList.remove('is-open');
+    if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'false');
+    window.syncSecondaryFiltersA11y();
+  };
+
+  if (mobileBreakpointMql) {
+    if (typeof mobileBreakpointMql.addEventListener === 'function') {
+      mobileBreakpointMql.addEventListener('change', window.syncSecondaryFiltersA11y);
+    } else if (typeof mobileBreakpointMql.addListener === 'function') {
+      mobileBreakpointMql.addListener(window.syncSecondaryFiltersA11y);
+    }
+  }
+  window.addEventListener('resize', window.syncSecondaryFiltersA11y);
+  window.syncSecondaryFiltersA11y();
+
+  window._legacyOpenMobileFiltersSheet = function () {
     if (mobileFiltersSheet) mobileFiltersSheet.classList.add('is-open');
     if (mobileSheetBackdrop) mobileSheetBackdrop.classList.add('is-open');
     if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'true');
   };
 
-  window.closeMobileFiltersSheet = function() {
+  window.closeMobileFiltersSheet = function () {
+    setTimeout(() => window.syncSecondaryFiltersA11y && window.syncSecondaryFiltersA11y(), 0);
     if (mobileFiltersSheet) mobileFiltersSheet.classList.remove('is-open');
     if (mobileSheetBackdrop) mobileSheetBackdrop.classList.remove('is-open');
     if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'false');
   };
 
-  window.resetSecondaryFilters = function() { state.category = 'all'; state.selectedThemeFilter = null; if (state.excludedThemes) state.excludedThemes.clear(); state.hideFestivalEvents = false; renderCategoryPills(); renderFestivalSpotlight();
+  window.resetSecondaryFilters = function () {
+    state.category = 'all'; state.selectedThemeFilter = null; if (state.excludedThemes) state.excludedThemes.clear(); state.hideFestivalEvents = false; renderCategoryPills(); renderFestivalSpotlight();
     state.minBudget = 0;
     state.maxBudget = 50;
     state.dayOfWeek = 'all';
@@ -1680,7 +1969,7 @@ function setupEventListeners() {
   const cancelPriceModalBtn = document.getElementById('btn-cancel-price-feedback');
   const priceFeedbackForm = document.getElementById('price-feedback-form');
 
-  window.openPriceFeedbackModal = function(venueName) {
+  window.openPriceFeedbackModal = function (venueName) {
     if (!priceModal) return;
     const vName = (venueName || 'Selected Venue').trim();
     const venueInput = document.getElementById('price-feedback-venue-input');
@@ -1716,7 +2005,7 @@ function setupEventListeners() {
     }, 100);
   };
 
-  window.closePriceFeedbackModal = function() {
+  window.closePriceFeedbackModal = function () {
     if (priceModal) { priceModal.classList.remove('active'); priceModal.setAttribute('aria-hidden', 'true'); priceModal.setAttribute('inert', ''); }
   };
 
@@ -1845,7 +2134,7 @@ function setupEventListeners() {
 function updateSliderVisuals() {
   const readout = document.getElementById('spend-readout');
   const highlight = document.getElementById('dual-slider-highlight');
-  
+
   if (readout) {
     if (state.minBudget === 0 && state.maxBudget === 0) {
       readout.textContent = "Free Outings ($0 CAD)";
@@ -2127,20 +2416,23 @@ function renderFestivalSpotlight() {
 
   const isHidden = state.hideFestivalEvents === true;
   const festCount = activeFestivalAndHolidayEvents.length;
-  const themeGroups = getSortedActiveFestivals(baseCatalog, now); if (themeGroups.length === 0) { container.style.display = 'none'; return; } container.style.display = 'block'; if (false) { if (false) {
+  const themeGroups = getSortedActiveFestivals(baseCatalog, now); if (themeGroups.length === 0) { container.style.display = 'none'; return; } container.style.display = 'block'; if (false) {
+    if (false) {
 
-  if (themeGroups.length === 0) {
+      if (themeGroups.length === 0) {
+      }
+      if (false) {
+        container.style.display = 'none';
+        return;
+      }
     }
-  if (false) { container.style.display = 'none';
-    return;
-  }
+    if (false) {
+
+    }
+    container.style.display = 'block';
   }
   if (false) {
-
-  }
-  container.style.display = 'block';
-    }
-  if (false) { container.style.display = 'none';
+    container.style.display = 'none';
     return;
   }
   container.style.display = 'block';
@@ -2160,11 +2452,11 @@ function renderFestivalSpotlight() {
   const activeItemsListHtml = themeGroups.length > 0 ? `
     <div class="festival-active-items-list" role="region" aria-label="Active festivals and holidays">
       ${themeGroups.map(g => {
-        const meta = getThemeMetadata(g);
-        const isSelected = state.selectedThemeFilter === g.key;
-        const isExcluded = state.excludedThemes && state.excludedThemes.has(g.key);
-        const isItemExpanded = state.expandedThemes && state.expandedThemes.has(g.key);
-        return `
+    const meta = getThemeMetadata(g);
+    const isSelected = state.selectedThemeFilter === g.key;
+    const isExcluded = state.excludedThemes && state.excludedThemes.has(g.key);
+    const isItemExpanded = state.expandedThemes && state.expandedThemes.has(g.key);
+    return `
           <div class="festival-theme-item-row ${isSelected ? 'item-row-selected' : ''} ${isExcluded ? 'item-row-excluded' : ''}">
             <button
               type="button"
@@ -2201,7 +2493,7 @@ function renderFestivalSpotlight() {
             ` : ''}
           </div>
         `;
-      }).join('')}
+  }).join('')}
     </div>
   ` : '';
 
@@ -2554,7 +2846,7 @@ function renderFrequencyPills() {
 }
 
 // Sub-tag click-to-filter helper with instant toggle-to-deselect
-window.filterBySubTag = function(tag) {
+window.filterBySubTag = function (tag) {
   const norm = String(tag).toLowerCase().trim().replace(/^#/, '');
   if (state.selectedTag === norm) {
     // Already selected -> toggle off / deselect
@@ -2566,7 +2858,7 @@ window.filterBySubTag = function(tag) {
   applyFiltersAndRender();
 };
 
-window.clearSelectedTag = function() {
+window.clearSelectedTag = function () {
   state.selectedTag = null;
   applyFiltersAndRender();
 };
@@ -2739,7 +3031,7 @@ function getEventClosingTimeToday(ev, now = new Date()) {
           };
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // 5. Operating hours text & days_open check for today's closure
@@ -3012,7 +3304,7 @@ function getEventStartTimeToday(ev, now = new Date()) {
       if (!isNaN(dt.getTime())) {
         return dt.getHours() * 60 + dt.getMinutes();
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // 4. Time from dateSchedule or operating_hours
@@ -3076,8 +3368,9 @@ function getReactiveDateHeaderLabel(now = new Date()) {
   if (!state.dayOfWeek || state.dayOfWeek === 'all') {
     return '📅 All Upcoming Outings';
   }
-  if (state.dayOfWeek === todayDayCode) { return `📅 Today • ${todayShort}`;
-  if (false) return '📅 All Upcoming Outings';
+  if (state.dayOfWeek === todayDayCode) {
+    return `📅 Today • ${todayShort}`;
+    if (false) return '📅 All Upcoming Outings';
     return '📅 All Upcoming Outings';
   }
   if (state.dayOfWeek === 'daily') {
@@ -3227,8 +3520,8 @@ function applyFiltersAndRender() {
           ev.lifecycleType === 'perennial_drop_in'
         )) ||
         (state.category === 'markets' && (
-          evCats.includes('markets') || 
-          evCats.includes('market') || 
+          evCats.includes('markets') ||
+          evCats.includes('market') ||
           (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('market'))) ||
           (ev.id && ev.id.includes('market')) ||
           (ev.title && ev.title.toLowerCase().includes('market'))
@@ -3260,10 +3553,10 @@ function applyFiltersAndRender() {
           (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('holiday') || t.toLowerCase().includes('viff') || t.toLowerCase().includes('diwali')))
         )) ||
         (state.category === 'social' && (
-          evCats.includes('crafts') || 
-          evCats.includes('arts') || 
-          evCats.includes('trivia') || 
-          evCats.includes('activities') || 
+          evCats.includes('crafts') ||
+          evCats.includes('arts') ||
+          evCats.includes('trivia') ||
+          evCats.includes('activities') ||
           evCats.includes('social') ||
           evCats.includes('cinema') // Artistic & cultural cinema screenings are also in Social & Arts
         )) || (state.category === 'trivia' && (evCats.includes('trivia') || ev.event_archetype === 'social_gaming' || (ev.subTags && ev.subTags.some(t => /trivia|bingo|game|quiz|board/i.test(t))) || /trivia|bingo|quiz|board game/i.test((ev.title || '') + ' ' + (ev.categoryLabel || '')))) || (state.category === 'arts' && (evCats.includes('arts') || evCats.includes('crafts') || evCats.includes('social') || ev.event_archetype === 'museum_gallery' || ev.event_archetype === 'workshop' || (ev.subTags && ev.subTags.some(t => /art|gallery|museum|exhibit|craft|theatre|dance|poetry|literary/i.test(t))) || /art|gallery|museum|exhibit|studio|craft/i.test((ev.title || '') + ' ' + (ev.venue || '') + ' ' + (ev.categoryLabel || '')))) || (state.category === 'sports' && (evCats.includes('sports') || evCats.includes('fitness') || ev.event_archetype === 'active_rec' || (ev.subTags && ev.subTags.some(t => /sport|golf|pitch|putt|skate|roller|curling|hockey|baseball|soccer|run|fitness|bowling/i.test(t))) || /sport|golf|pitch|putt|skate|roller|curling|hockey|baseball|soccer|stadium|coliseum|arena|bowling/i.test((ev.title || '') + ' ' + (ev.venue || '') + ' ' + (ev.categoryLabel || '')) || false
@@ -3275,13 +3568,13 @@ function applyFiltersAndRender() {
     if (state.dayOfWeek !== 'all') {
       // Check if weekly_hours explicitly marks this day as Closed
       const isDropInCard = (
-      (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
-      ev.access_model === 'open_public_space' ||
-      ev.access_model === 'free_public_access' ||
-      ev.access_model === 'drop_in_paid' ||
-      ev.isFreePublic
-    );
-    const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
+        (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+        ev.access_model === 'open_public_space' ||
+        ev.access_model === 'free_public_access' ||
+        ev.access_model === 'drop_in_paid' ||
+        ev.isFreePublic
+      );
+      const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
       if (wh && typeof wh === 'object') {
         const fullDayMap = {
           sun: 'sunday', mon: 'monday', tue: 'tuesday', wed: 'wednesday',
@@ -3376,7 +3669,16 @@ function applyFiltersAndRender() {
     filtered.sort((a, b) => (b._searchScore || 0) - (a._searchScore || 0));
   }
 
+  if (state.sortBy === 'price-asc' || state.sortBy === 'price') {
+    filtered.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+  } else if (state.sortBy === 'price-desc') {
+    filtered.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
+  } else if (state.sortBy === 'title') {
+    filtered.sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')));
+  }
+
   window.currentFilteredEvents = filtered;
+  syncFiltersToUrlParams();
   renderActiveFilterChips(filtered.length);
 
   // Update More Filters active counter badge
@@ -3423,15 +3725,15 @@ function applyFiltersAndRender() {
 
     const excludedPillsHtml = (state.excludedThemes && state.excludedThemes.size > 0)
       ? Array.from(state.excludedThemes).map(exKey => {
-          const exObj = themeGroups.find(g => g.key === exKey) || { key: exKey, label: exKey.split(':')[1] || exKey };
-          return `
+        const exObj = themeGroups.find(g => g.key === exKey) || { key: exKey, label: exKey.split(':')[1] || exKey };
+        return `
             <div class="active-tag-pill excluded-tag-pill" title="Excluding ${exObj.label}. Click ✕ to restore.">
               <span class="tag-label">Hidden:</span>
               <span>🚫 ${exObj.label}</span>
               <button type="button" class="btn-clear-tag" onclick="toggleExcludeTheme('${exKey}', event)" aria-label="Restore ${exObj.label}">✕</button>
             </div>
           `;
-        }).join('')
+      }).join('')
       : '';
 
     // Check for cross-category matches if current category yields 0
@@ -3450,9 +3752,17 @@ function applyFiltersAndRender() {
     }
 
     const reactiveDateText = getReactiveDateHeaderLabel(now);
+    const mapWrapperEl = document.getElementById('map-view-wrapper');
+    const isMapCurrentlyActive = Boolean(mapWrapperEl && (mapWrapperEl.classList.contains('active') || mapWrapperEl.style.display === 'block'));
     countBar.innerHTML = `<div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">${reactiveDateText}</span></div>
-      <div class="results-count-text">
-        Showing <strong>${filtered.length}</strong> outings under $50
+      <div class="results-count-right-group" style="display: inline-flex; align-items: center; gap: 10px; margin-left: auto;">
+        <div class="results-count-text">
+          Showing <strong>${filtered.length}</strong> outings under $50
+        </div>
+        <div class="inline-view-switcher" role="group" aria-label="Toggle Cards or Map View">
+          <button type="button" class="inline-view-mode-btn ${!isMapCurrentlyActive ? 'active' : ''}" data-view-mode="cards" onclick="window.setCatalogViewMode && window.setCatalogViewMode('cards')">📋 Cards</button>
+          <button type="button" class="inline-view-mode-btn ${isMapCurrentlyActive ? 'active' : ''}" data-view-mode="map" onclick="window.setCatalogViewMode && window.setCatalogViewMode('map')">🗺️ Map</button>
+        </div>
       </div>
       ${(tagBadgeHtml || themeFilterPillHtml || excludedPillsHtml) ? `<div style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;">` : '<div style="display:none;">'}
         ${tagBadgeHtml}
@@ -3775,8 +4085,8 @@ function matchesGoogleSearch(ev, parsed) {
     const tokNorm = normalizeSearchText(tok);
     const tokStem = stemWord(tokNorm);
     const matched = allContent.includes(tokNorm) ||
-                    docStems.includes(tokStem) ||
-                    docTokens.some(dt => isFuzzyTokenMatch(tokNorm, dt));
+      docStems.includes(tokStem) ||
+      docTokens.some(dt => isFuzzyTokenMatch(tokNorm, dt));
     if (!matched) {
       return [false, 0];
     }
@@ -3877,6 +4187,7 @@ function resetCategoryForSearch() {
 }
 
 function resetAllFilters() {
+  state.sortBy = 'date';
   state.minBudget = 0;
   state.maxBudget = 50;
   state.hideDaily = false;
@@ -3891,14 +4202,14 @@ function resetAllFilters() {
   state.selectedTag = null;
   state.selectedVenue = null;
   state.searchQuery = '';
-  
+
   const searchInput = document.getElementById('search-input');
   if (searchInput) searchInput.value = '';
   const minSlider = document.getElementById('min-spend-slider');
   const maxSlider = document.getElementById('max-spend-slider');
   if (minSlider) minSlider.value = 0;
   if (maxSlider) maxSlider.value = 50;
-  
+
   renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
@@ -4393,7 +4704,7 @@ function categorizeDateBucket(d, today, tomorrow, thisWeekSunday, nextWeekMonday
   }
 }
 
-window.toggleTimeGroup = function(groupKey) {
+window.toggleTimeGroup = function (groupKey) {
   if (!state.collapsedTimeGroups) {
     state.collapsedTimeGroups = new Set();
   }
@@ -4405,7 +4716,7 @@ window.toggleTimeGroup = function(groupKey) {
   applyFiltersAndRender();
 };
 
-window.smoothScrollToTimeGroup = function(groupId, event) {
+window.smoothScrollToTimeGroup = function (groupId, event) {
   if (event) event.preventDefault();
   const key = groupId.replace(/^group-/, '');
   if (state.collapsedTimeGroups && state.collapsedTimeGroups.has(key)) {
@@ -4422,7 +4733,7 @@ window.smoothScrollToTimeGroup = function(groupId, event) {
   }, 20);
 };
 
-window.toggleWeeklyHours = function(eventId, event) {
+window.toggleWeeklyHours = function (eventId, event) {
   if (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -4454,7 +4765,7 @@ window.toggleWeeklyHours = function(eventId, event) {
   }
 };
 
-window.toggleShowings = function(eventId, event) {
+window.toggleShowings = function (eventId, event) {
   if (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -4487,7 +4798,7 @@ window.toggleShowings = function(eventId, event) {
   }
 };
 
-window.toggleAdmissionTiers = function(bucketKey, eventId, event) {
+window.toggleAdmissionTiers = function (bucketKey, eventId, event) {
   if (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -4526,6 +4837,37 @@ function renderEventCards(events) {
       <button type="button" class="btn-clear-venue" onclick="clearSelectedVenue()" aria-label="Clear venue filter">Clear Venue Filter ✕</button>
     </div>
   ` : '';
+
+  if (events.length === 0) {
+    const activeFilterList = getActiveFiltersSummaryList();
+    const activePillsHtml = activeFilterList.length > 0
+      ? `<div class="zero-results-active-filters" role="region" aria-label="Active Filters Applied">
+           <div class="zero-results-filters-heading">Active Filters Currently Applied (${activeFilterList.length}):</div>
+           <div class="zero-results-filter-pills">
+             ${activeFilterList.map(f => `<span class="zero-results-filter-pill">${f}</span>`).join('')}
+           </div>
+         </div>`
+      : `<div class="zero-results-active-filters"><span class="zero-results-filter-pill">No custom filters active</span></div>`;
+
+    grid.innerHTML = `
+      ${venueBannerHtml}
+      <div class="zero-results-recovery-card" role="status" aria-live="polite" style="grid-column: 1 / -1;">
+        <div class="empty-icon-wrap" style="margin-bottom: 14px;">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; color: var(--accent-primary);" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <h3 class="zero-results-title">No Outings Match Your Current Filters</h3>
+        <p class="zero-results-subtitle">
+          0 Vancouver outings under $50 CAD matched this exact filter combination. Review your active filters below or reset to browse all verified outings.
+        </p>
+        ${activePillsHtml}
+        <div class="zero-results-actions">
+          <button type="button" class="btn btn-roulette btn-reset-all-primary" id="btn-zero-results-reset" onclick="resetAllFilters()">🔄 Reset All Filters</button>
+          ${state.selectedVenue ? `<button type="button" class="btn" onclick="clearSelectedVenue()" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Clear Venue Filter</button>` : ''}
+        </div>
+      </div>
+    `;
+    return;
+  }
 
   // When viewing events for a specific venue (via "See events here"), do away with Today/Tomorrow/Next Week labels
   if (state.selectedVenue) {
@@ -4593,7 +4935,7 @@ function renderEventCards(events) {
 
   const todayLabel = fmtFull(today);
   const tomorrowLabel = fmtFull(tomorrow);
-  
+
   // This Week label: after tomorrow through this week's Sunday
   let thisWeekLabel;
   const dayAfterTomorrow = new Date(tomorrow);
@@ -4615,7 +4957,7 @@ function renderEventCards(events) {
   } else {
     nextWeekLabel = `Mon – Sun, ${fmtMonthDay(nextWeekMonday)} – ${fmtMonthDay(nextWeekSunday)}`;
   }
-  
+
   const beyondDate = new Date(nextWeekSunday);
   beyondDate.setDate(beyondDate.getDate() + 1);
   const upcomingLabel = `Starting ${fmtMonthDay(beyondDate)} & Beyond`;
@@ -4805,7 +5147,7 @@ function formatCardTopDate(ev, bucketKey) {
           }
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // 3. startIso / single date
@@ -4835,7 +5177,7 @@ function formatCardTopDate(ev, bucketKey) {
           }
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // 4. daysOfWeek recurring
@@ -4955,8 +5297,8 @@ function formatCardDisplayTitle(rawTitle, ev) {
     } else {
       // Strip any verbose or legacy prefixes: "Vancouver Fringe Festival:", "Vancouver Fringe:", "FRINGE:", "Fringe:"
       t = t.replace(/^vancouver fringe festival:\s*/i, '')
-           .replace(/^vancouver fringe:\s*/i, '')
-           .replace(/^fringe:\s*/i, '');
+        .replace(/^vancouver fringe:\s*/i, '')
+        .replace(/^fringe:\s*/i, '');
       // Strip redundant trailing venue if present (e.g. "at Waterfront Theatre")
       if (ev && ev.venue) {
         const venueRegex = new RegExp(`\\s+at\\s+${ev.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i');
@@ -5085,38 +5427,38 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
 }
 
 function renderSingleEventCardHtml(ev, bucketKey) {
-    const isSaved = state.savedEvents.has(ev.id);
-    const freqClass = (ev.frequency || 'one-off').toLowerCase();
-    const isSoldOut = Boolean(ev.isSoldOut);
-    const standardPrice = formatStandardPrice(ev);
-    const topDate = formatCardTopDate(ev, bucketKey);
-    
-    // Hyperlinks & Direct Pinpoint Navigation Target (Google Maps coordinates)
-    let venueUrl = ev.venueUrl;
-    if (!venueUrl || /ra\.co\/events\/\d+/i.test(venueUrl) || /residentadvisor\.net\/events\/\d+/i.test(venueUrl)) {
-      venueUrl = (typeof VENUE_URLS !== 'undefined' ? (VENUE_URLS[ev.venue] || VENUE_URLS[ev.venue.replace(/^(The\s+)/i, '')]) : null) || ev.raVenueUrl || null;
-    }
-    if (!venueUrl) {
-      venueUrl = (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
-    }
-    const venueNameClean = (ev.venue || '').trim();
-    const addressClean = (ev.address || '').trim();
-    let placeQuery = venueNameClean;
-    if (addressClean) {
-      if (!addressClean.toLowerCase().includes(venueNameClean.toLowerCase())) {
-        placeQuery = `${venueNameClean}, ${addressClean}`;
-      } else {
-        placeQuery = addressClean;
-      }
-    } else {
-      placeQuery = `${venueNameClean}, Vancouver, BC`;
-    }
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeQuery)}`;
+  const isSaved = state.savedEvents.has(ev.id);
+  const freqClass = (ev.frequency || 'one-off').toLowerCase();
+  const isSoldOut = Boolean(ev.isSoldOut);
+  const standardPrice = formatStandardPrice(ev);
+  const topDate = formatCardTopDate(ev, bucketKey);
 
-    // Venue Event Count & Filter Button (Requirement 7)
-    const venueTotalCount = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e.venue === ev.venue).length;
-    const isThisVenueSelected = state.selectedVenue === ev.venue;
-    const venueOtherEventsBtnHtml = venueTotalCount > 1 ? `
+  // Hyperlinks & Direct Pinpoint Navigation Target (Google Maps coordinates)
+  let venueUrl = ev.venueUrl;
+  if (!venueUrl || /ra\.co\/events\/\d+/i.test(venueUrl) || /residentadvisor\.net\/events\/\d+/i.test(venueUrl)) {
+    venueUrl = (typeof VENUE_URLS !== 'undefined' ? (VENUE_URLS[ev.venue] || VENUE_URLS[ev.venue.replace(/^(The\s+)/i, '')]) : null) || ev.raVenueUrl || null;
+  }
+  if (!venueUrl) {
+    venueUrl = (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
+  }
+  const venueNameClean = (ev.venue || '').trim();
+  const addressClean = (ev.address || '').trim();
+  let placeQuery = venueNameClean;
+  if (addressClean) {
+    if (!addressClean.toLowerCase().includes(venueNameClean.toLowerCase())) {
+      placeQuery = `${venueNameClean}, ${addressClean}`;
+    } else {
+      placeQuery = addressClean;
+    }
+  } else {
+    placeQuery = `${venueNameClean}, Vancouver, BC`;
+  }
+  const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeQuery)}`;
+
+  // Venue Event Count & Filter Button (Requirement 7)
+  const venueTotalCount = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e.venue === ev.venue).length;
+  const isThisVenueSelected = state.selectedVenue === ev.venue;
+  const venueOtherEventsBtnHtml = venueTotalCount > 1 ? `
       <button 
         type="button" 
         class="btn-venue-filter ${isThisVenueSelected ? 'active' : ''}" 
@@ -5126,81 +5468,81 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         ${isThisVenueSelected ? 'Viewing this venue ✕' : 'See all ' + venueTotalCount + ' events here'}
       </button>
     ` : '';
-    
-    // Featuring Box Filtering (Requirement 7: Keep only if event has multiple music artists not redundant with title)
-    let featuringBoxHtml = '';
-    const isMusic = ev.category === 'music' || (Array.isArray(ev.categories) && ev.categories.includes('music'));
-    if (isMusic && (ev.artist || ev.performers)) {
-      const rawPerformers = ev.performers || ev.artist || '';
-      const performersList = Array.isArray(rawPerformers)
-        ? rawPerformers
-        : String(rawPerformers).split(/,\s*|\s+&\s+|\s+with\s+/i);
-      const validArtists = performersList.map(a => a.trim()).filter(a => a.length > 1);
 
-      if (validArtists.length >= 2) {
-        const titleLower = (ev.title || '').toLowerCase();
-        const isRedundantWithTitle = validArtists.every(a => titleLower.includes(a.toLowerCase()));
-        if (!isRedundantWithTitle) {
-          const artistStr = Array.isArray(ev.performers) ? ev.performers.join(', ') : (ev.artist || ev.performers);
-          featuringBoxHtml = `
+  // Featuring Box Filtering (Requirement 7: Keep only if event has multiple music artists not redundant with title)
+  let featuringBoxHtml = '';
+  const isMusic = ev.category === 'music' || (Array.isArray(ev.categories) && ev.categories.includes('music'));
+  if (isMusic && (ev.artist || ev.performers)) {
+    const rawPerformers = ev.performers || ev.artist || '';
+    const performersList = Array.isArray(rawPerformers)
+      ? rawPerformers
+      : String(rawPerformers).split(/,\s*|\s+&\s+|\s+with\s+/i);
+    const validArtists = performersList.map(a => a.trim()).filter(a => a.length > 1);
+
+    if (validArtists.length >= 2) {
+      const titleLower = (ev.title || '').toLowerCase();
+      const isRedundantWithTitle = validArtists.every(a => titleLower.includes(a.toLowerCase()));
+      if (!isRedundantWithTitle) {
+        const artistStr = Array.isArray(ev.performers) ? ev.performers.join(', ') : (ev.artist || ev.performers);
+        featuringBoxHtml = `
             <div class="card-artist-badge" title="Featured band / artist lineup">
               <span class="artist-icon"></span>
               <span class="artist-label">Featuring:</span>
               <strong class="artist-name">${artistStr}</strong>
             </div>
           `;
-        }
       }
     }
+  }
 
-    // Sub-tags chips (Hidden per user specification)
-    let subtagsHtml = '';
+  // Sub-tags chips (Hidden per user specification)
+  let subtagsHtml = '';
 
-    // Film Buzzwords, Topic Tags & Critical Reviews
-    const buzzwordsHtml = (ev.buzzwords && Array.isArray(ev.buzzwords) && ev.buzzwords.length > 0) ? `
+  // Film Buzzwords, Topic Tags & Critical Reviews
+  const buzzwordsHtml = (ev.buzzwords && Array.isArray(ev.buzzwords) && ev.buzzwords.length > 0) ? `
       <div class="card-buzzwords-row" title="Genre topics & non-spoiler themes">
         ${ev.buzzwords.map(bw => `<span class="card-buzzword-pill">${bw}</span>`).join('')}
       </div>
     ` : '';
 
-    const filmReviewsHtml = ((ev.ratings && Array.isArray(ev.ratings) && ev.ratings.length > 0) || ev.reviewQuote) ? `
+  const filmReviewsHtml = ((ev.ratings && Array.isArray(ev.ratings) && ev.ratings.length > 0) || ev.reviewQuote) ? `
       <div class="card-film-reviews">
         ${(ev.ratings && ev.ratings.length > 0) ? `
           <div class="film-ratings-pills">
             ${ev.ratings.map(r => {
-              const srcLower = (r.source || '').toLowerCase();
-              const srcClass = srcLower.includes('rotten') ? 'rt' : (srcLower.includes('letterboxd') ? 'letterboxd' : 'imdb');
-              return `<span class="film-rating-chip ${srcClass}" title="${r.source} rating">${r.icon || '⭐'} ${r.source}: <strong>${r.score}</strong></span>`;
-            }).join('')}
+    const srcLower = (r.source || '').toLowerCase();
+    const srcClass = srcLower.includes('rotten') ? 'rt' : (srcLower.includes('letterboxd') ? 'letterboxd' : 'imdb');
+    return `<span class="film-rating-chip ${srcClass}" title="${r.source} rating">${r.icon || '⭐'} ${r.source}: <strong>${r.score}</strong></span>`;
+  }).join('')}
           </div>
         ` : ''}
         ${ev.reviewQuote ? `<p class="film-review-quote">“${ev.reviewQuote}”</p>` : ''}
       </div>
     ` : '';
 
-    const contentAdvisoryHtml = ev.contentAdvisory ? `
+  const contentAdvisoryHtml = ev.contentAdvisory ? `
       <div class="card-content-advisory-box" title="Audience content advisory">
         <span aria-hidden="true" style="flex-shrink: 0;">⚠️</span>
         <span>${ev.contentAdvisory}</span>
       </div>
     ` : '';
 
-    // CTA button with Sold-Out handling (links to ticketing portal waitlist if sold out)
-    const escapedTitle = (ev.title || '').replace(/"/g, '&quot;');
-    // Resolve date-specific instance ticket URL (tied directly to specific event occurrence date)
-    const targetDateStr = (topDate && topDate.dateStr) || (ev._computedNextDate ? `${ev._computedNextDate.getFullYear()}-${String(ev._computedNextDate.getMonth() + 1).padStart(2, '0')}-${String(ev._computedNextDate.getDate()).padStart(2, '0')}` : null);
-    let matchedShowing = null;
-    if (targetDateStr && Array.isArray(ev.showings)) {
-      matchedShowing = ev.showings.find(s => s && s.date === targetDateStr && s.ticket_url);
-    }
-    if (!matchedShowing && targetDateStr && ev.repeatShowings) {
-      matchedShowing = [ev.repeatShowings.show_1, ev.repeatShowings.show_2, ev.repeatShowings.show_3]
-        .find(s => s && s.date === targetDateStr && s.ticket_url);
-    }
-    const primaryTicketUrl = (matchedShowing && matchedShowing.ticket_url) ? matchedShowing.ticket_url : ev.websiteUrl;
+  // CTA button with Sold-Out handling (links to ticketing portal waitlist if sold out)
+  const escapedTitle = (ev.title || '').replace(/"/g, '&quot;');
+  // Resolve date-specific instance ticket URL (tied directly to specific event occurrence date)
+  const targetDateStr = (topDate && topDate.dateStr) || (ev._computedNextDate ? `${ev._computedNextDate.getFullYear()}-${String(ev._computedNextDate.getMonth() + 1).padStart(2, '0')}-${String(ev._computedNextDate.getDate()).padStart(2, '0')}` : null);
+  let matchedShowing = null;
+  if (targetDateStr && Array.isArray(ev.showings)) {
+    matchedShowing = ev.showings.find(s => s && s.date === targetDateStr && s.ticket_url);
+  }
+  if (!matchedShowing && targetDateStr && ev.repeatShowings) {
+    matchedShowing = [ev.repeatShowings.show_1, ev.repeatShowings.show_2, ev.repeatShowings.show_3]
+      .find(s => s && s.date === targetDateStr && s.ticket_url);
+  }
+  const primaryTicketUrl = (matchedShowing && matchedShowing.ticket_url) ? matchedShowing.ticket_url : ev.websiteUrl;
 
-    const escapedVenue = (ev.venue || '').replace(/"/g, '&quot;');
-    const ctaButtonHtml = isSoldOut ? `
+  const escapedVenue = (ev.venue || '').replace(/"/g, '&quot;');
+  const ctaButtonHtml = isSoldOut ? `
       <a 
         href="${primaryTicketUrl}" 
         target="_blank" 
@@ -5236,134 +5578,134 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       </a>
     `;
 
-    // Pricing Verification Popover & Pre-tax Sticker Breakdown
-    const verification = ev.checkoutVerification || {};
-    const breakdownText = verification.feeBreakdown || '';
-    const detailsText = verification.details || '';
-    const tooltipText = [breakdownText, detailsText].filter(Boolean).join(' • ');
+  // Pricing Verification Popover & Pre-tax Sticker Breakdown
+  const verification = ev.checkoutVerification || {};
+  const breakdownText = verification.feeBreakdown || '';
+  const detailsText = verification.details || '';
+  const tooltipText = [breakdownText, detailsText].filter(Boolean).join(' • ');
 
-    let preTaxNoteHtml = '';
-    if (detailsText && detailsText.includes('pre-tax')) {
-      const match = detailsText.match(/displays pre-tax sticker prices \(([^)]+)\)/i) || 
-                    detailsText.match(/displays \$?([0-9\.]+) pre-tax/i);
-      if (match) {
-        const val = match[1].startsWith('$') || match[1].includes(':') ? match[1] : `$${match[1]}`;
-        preTaxNoteHtml = `<div class="price-pretax-note">Note: Displays ${val} pre-tax before checkout</div>`;
-      } else {
-        preTaxNoteHtml = `<div class="price-pretax-note">Note: Displays pre-tax sticker price before checkout</div>`;
-      }
+  let preTaxNoteHtml = '';
+  if (detailsText && detailsText.includes('pre-tax')) {
+    const match = detailsText.match(/displays pre-tax sticker prices \(([^)]+)\)/i) ||
+      detailsText.match(/displays \$?([0-9\.]+) pre-tax/i);
+    if (match) {
+      const val = match[1].startsWith('$') || match[1].includes(':') ? match[1] : `$${match[1]}`;
+      preTaxNoteHtml = `<div class="price-pretax-note">Note: Displays ${val} pre-tax before checkout</div>`;
+    } else {
+      preTaxNoteHtml = `<div class="price-pretax-note">Note: Displays pre-tax sticker price before checkout</div>`;
     }
+  }
 
 
-    // Pricing Model badge (shown cleanly without emojis or duplicate spend text)
-    let pricingModelHtml = '';
-    if (ev.pricing_model && ev.pricing_model !== 'free_access' && ev.pricing_model !== 'flat_ticket') {
-      const MODEL_LABELS = {
-        'pay_per_item': { label: 'Pay Per Item', class: 'model-item' },
-        'donation': { label: 'By Donation / PWYC', class: 'model-donation' },
-        'ticket_plus_pay_per_item': { label: 'Ticket + Pay Per Item', class: 'model-combo' }
-      };
-      const pm = MODEL_LABELS[ev.pricing_model];
-      if (pm) {
-        pricingModelHtml = `
+  // Pricing Model badge (shown cleanly without emojis or duplicate spend text)
+  let pricingModelHtml = '';
+  if (ev.pricing_model && ev.pricing_model !== 'free_access' && ev.pricing_model !== 'flat_ticket') {
+    const MODEL_LABELS = {
+      'pay_per_item': { label: 'Pay Per Item', class: 'model-item' },
+      'donation': { label: 'By Donation / PWYC', class: 'model-donation' },
+      'ticket_plus_pay_per_item': { label: 'Ticket + Pay Per Item', class: 'model-combo' }
+    };
+    const pm = MODEL_LABELS[ev.pricing_model];
+    if (pm) {
+      pricingModelHtml = `
           <div class="card-pricing-model-row">
             <span class="pricing-model-pill ${pm.class}">
               <strong>${pm.label}</strong>
             </span>
           </div>
         `;
-      }
+    }
+  }
+
+  // Access Model badge (Removed per user request; "Free Public Access" is already displayed in the top-right category badge)
+  let accessModelHtml = '';
+
+  // Structured Weekly Hours (Each day on its own line, starting with Monday)
+  let weeklyHoursHtml = '';
+  const isDropInCard = (
+    (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+    ev.access_model === 'open_public_space' ||
+    ev.access_model === 'free_public_access' ||
+    ev.access_model === 'drop_in_paid' ||
+    ev.isFreePublic
+  );
+  const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
+  if (wh && typeof wh === 'object') {
+    const dayOrder = [
+      { k: 'mon', full: 'monday', label: 'Monday' },
+      { k: 'tue', full: 'tuesday', label: 'Tuesday' },
+      { k: 'wed', full: 'wednesday', label: 'Wednesday' },
+      { k: 'thu', full: 'thursday', label: 'Thursday' },
+      { k: 'fri', full: 'friday', label: 'Friday' },
+      { k: 'sat', full: 'saturday', label: 'Saturday' },
+      { k: 'sun', full: 'sunday', label: 'Sunday' }
+    ];
+
+    // Contextual Day Resolution: Never display "Today (Thursday)" on tomorrow's/future cards
+    const nowD = new Date();
+    let targetDate = nowD;
+    if (bucketKey === 'tomorrow' || (topDate && topDate.isTomorrow)) {
+      targetDate = new Date(nowD.getFullYear(), nowD.getMonth(), nowD.getDate() + 1);
+    } else if (bucketKey === 'today' || (topDate && topDate.isToday)) {
+      targetDate = new Date(nowD.getFullYear(), nowD.getMonth(), nowD.getDate());
+    } else if (topDate && topDate.dateObj) {
+      targetDate = topDate.dateObj;
     }
 
-    // Access Model badge (Removed per user request; "Free Public Access" is already displayed in the top-right category badge)
-    let accessModelHtml = '';
+    const curDayNum = targetDate.getDay();
+    const curKey = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][curDayNum];
+    const curFull = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][curDayNum];
+    const activeDayLabel = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][curDayNum];
+    const cleanHoursStr = (str) => formatScheduleText12h((str || '').replace(/\s*\([^)]*\)/g, '').trim());
+    const activeHours = cleanHoursStr(wh[curKey] || wh[curFull] || 'Check schedule');
 
-    // Structured Weekly Hours (Each day on its own line, starting with Monday)
-    let weeklyHoursHtml = '';
-    const isDropInCard = (
+    // Determine if venue is a consistent facility offering consistent operations across days (e.g. Pitch & Putt, museums, galleries, parks)
+    // Venues with unique shows different days (e.g. live music, comedy, unique performances)
+    // or fewer than 4 operating days must NOT render a 7-day dropdown.
+    const validDays = Object.entries(wh).filter(([k, v]) => {
+      const val = String(v || '').toLowerCase();
+      return val && !val.includes('not listed') && !val.includes('closed');
+    });
+
+    const isLiveOrPerformance = (
+      ev.category === 'live_music' ||
+      ev.category === 'Live Music' ||
+      ev.category === 'comedy' ||
+      ev.category === 'Comedy & Shows' ||
+      (ev.lifecycleType || ev.lifecycle_type) === 'one_time' ||
+      (Array.isArray(ev.performers) && ev.performers.length > 0)
+    );
+
+    const isPerennialOrFacility = (
       (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
       ev.access_model === 'open_public_space' ||
-      ev.access_model === 'free_public_access' ||
-      ev.access_model === 'drop_in_paid' ||
-      ev.isFreePublic
+      ev.access_model === 'sports_facility' ||
+      ev.access_model === 'fenced_facility' ||
+      ev.category === 'free-public-access' ||
+      ev.category === 'outdoors' ||
+      ev.category === 'Sports & Fitness' ||
+      (ev.categories && (ev.categories.includes('outdoors') || ev.categories.includes('free-public-access')))
     );
-    const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
-    if (wh && typeof wh === 'object') {
-      const dayOrder = [
-        { k: 'mon', full: 'monday', label: 'Monday' },
-        { k: 'tue', full: 'tuesday', label: 'Tuesday' },
-        { k: 'wed', full: 'wednesday', label: 'Wednesday' },
-        { k: 'thu', full: 'thursday', label: 'Thursday' },
-        { k: 'fri', full: 'friday', label: 'Friday' },
-        { k: 'sat', full: 'saturday', label: 'Saturday' },
-        { k: 'sun', full: 'sunday', label: 'Sunday' }
-      ];
 
-      // Contextual Day Resolution: Never display "Today (Thursday)" on tomorrow's/future cards
-      const nowD = new Date();
-      let targetDate = nowD;
-      if (bucketKey === 'tomorrow' || (topDate && topDate.isTomorrow)) {
-        targetDate = new Date(nowD.getFullYear(), nowD.getMonth(), nowD.getDate() + 1);
-      } else if (bucketKey === 'today' || (topDate && topDate.isToday)) {
-        targetDate = new Date(nowD.getFullYear(), nowD.getMonth(), nowD.getDate());
-      } else if (topDate && topDate.dateObj) {
-        targetDate = topDate.dateObj;
-      }
+    const isConsistentFacility = (
+      !isLiveOrPerformance &&
+      validDays.length >= 4 &&
+      isPerennialOrFacility
+    );
 
-      const curDayNum = targetDate.getDay();
-      const curKey = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][curDayNum];
-      const curFull = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][curDayNum];
-      const activeDayLabel = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][curDayNum];
-      const cleanHoursStr = (str) => formatScheduleText12h((str || '').replace(/\s*\([^)]*\)/g, '').trim());
-      const activeHours = cleanHoursStr(wh[curKey] || wh[curFull] || 'Check schedule');
-
-      // Determine if venue is a consistent facility offering consistent operations across days (e.g. Pitch & Putt, museums, galleries, parks)
-      // Venues with unique shows different days (e.g. live music, comedy, unique performances)
-      // or fewer than 4 operating days must NOT render a 7-day dropdown.
-      const validDays = Object.entries(wh).filter(([k, v]) => {
-        const val = String(v || '').toLowerCase();
-        return val && !val.includes('not listed') && !val.includes('closed');
-      });
-
-      const isLiveOrPerformance = (
-        ev.category === 'live_music' || 
-        ev.category === 'Live Music' || 
-        ev.category === 'comedy' || 
-        ev.category === 'Comedy & Shows' ||
-        (ev.lifecycleType || ev.lifecycle_type) === 'one_time' ||
-        (Array.isArray(ev.performers) && ev.performers.length > 0)
-      );
-
-      const isPerennialOrFacility = (
-        (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
-        ev.access_model === 'open_public_space' ||
-        ev.access_model === 'sports_facility' ||
-        ev.access_model === 'fenced_facility' ||
-        ev.category === 'free-public-access' ||
-        ev.category === 'outdoors' ||
-        ev.category === 'Sports & Fitness' ||
-        (ev.categories && (ev.categories.includes('outdoors') || ev.categories.includes('free-public-access')))
-      );
-
-      const isConsistentFacility = (
-        !isLiveOrPerformance &&
-        validDays.length >= 4 &&
-        isPerennialOrFacility
-      );
-
-      if (isConsistentFacility || isDropInCard) {
-        const rows = dayOrder.map(d => {
-          const hoursStr = cleanHoursStr(wh[d.k] || wh[d.full] || 'Hours not listed');
-          const isCurrentDay = (d.k === curKey);
-          return `
+    if (isConsistentFacility || isDropInCard) {
+      const rows = dayOrder.map(d => {
+        const hoursStr = cleanHoursStr(wh[d.k] || wh[d.full] || 'Hours not listed');
+        const isCurrentDay = (d.k === curKey);
+        return `
             <div class="weekly-hour-day-row ${isCurrentDay ? 'current-day' : ''}">
               <span class="day-col">${d.label}:</span>
               <span class="hours-col">${hoursStr}</span>
             </div>
           `;
-        }).join('');
+      }).join('');
 
-        weeklyHoursHtml = `
+      weeklyHoursHtml = `
           <div class="card-weekly-hours-block" id="hours-block-${ev.id}">
             <div class="weekly-hours-summary-row" onclick="toggleWeeklyHours('${ev.id}', event)" title="Click to view/hide 7-day schedule">
               <div class="wh-summary-left">
@@ -5382,10 +5724,10 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             </div>
           </div>
         `;
-      } else {
-        // For venues or events with unique shows or limited days, display only the single active day/time without a dropdown
-        if (activeHours && !activeHours.toLowerCase().includes('not listed') && !activeHours.toLowerCase().includes('check schedule')) {
-          weeklyHoursHtml = `
+    } else {
+      // For venues or events with unique shows or limited days, display only the single active day/time without a dropdown
+      if (activeHours && !activeHours.toLowerCase().includes('not listed') && !activeHours.toLowerCase().includes('check schedule')) {
+        weeklyHoursHtml = `
             <div class="card-weekly-hours-block static-hours-block" id="hours-block-${ev.id}">
               <div class="weekly-hours-summary-row static-schedule-row">
                 <div class="wh-summary-left">
@@ -5397,43 +5739,43 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               </div>
             </div>
           `;
-        }
       }
     }
+  }
 
-    // Multi-Location Screenings / Upcoming Showings Block
-    let showingsHtml = '';
-    if (Array.isArray(ev.showings) && ev.showings.length > 1) {
-      const isFilmFestival = (ev.category === 'cinema' || ev.isFestival || (ev.subTags && ev.subTags.includes('festival')));
-      const sectionTitle = isFilmFestival 
-        ? `Festival Screenings &amp; Locations (${ev.showings.length})`
-        : `Upcoming Dates &amp; Times (${ev.showings.length})`;
+  // Multi-Location Screenings / Upcoming Showings Block
+  let showingsHtml = '';
+  if (Array.isArray(ev.showings) && ev.showings.length > 1) {
+    const isFilmFestival = (ev.category === 'cinema' || ev.isFestival || (ev.subTags && ev.subTags.includes('festival')));
+    const sectionTitle = isFilmFestival
+      ? `Festival Screenings &amp; Locations (${ev.showings.length})`
+      : `Upcoming Dates &amp; Times (${ev.showings.length})`;
 
-      const nowD = new Date();
-      const curTodayStr = `${nowD.getFullYear()}-${String(nowD.getMonth() + 1).padStart(2, '0')}-${String(nowD.getDate()).padStart(2, '0')}`;
-      const activeShowings = (Array.isArray(ev.showings) ? ev.showings : []).filter(s => s && s.status !== 'concluded' && (!s.date || s.date >= curTodayStr));
+    const nowD = new Date();
+    const curTodayStr = `${nowD.getFullYear()}-${String(nowD.getMonth() + 1).padStart(2, '0')}-${String(nowD.getDate()).padStart(2, '0')}`;
+    const activeShowings = (Array.isArray(ev.showings) ? ev.showings : []).filter(s => s && s.status !== 'concluded' && (!s.date || s.date >= curTodayStr));
 
-      const renderShowingRow = (s) => {
-        const dStr = s.date || '';
-        const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
-        const dateLabel = !isNaN(dObj.getTime())
-          ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
-          : dStr;
-        const isShowingToday = (dStr === curTodayStr);
-        const timeLabel = formatDisplayTime12h(s.start_time || '');
-        const venueLabel = s.venue_name || s.venue || ev.venue || ev.venue_name || 'Vancouver Venue';
-        const addrLabel = s.full_address || s.neighborhood || ev.address || ev.neighborhood || '';
-        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueLabel + ' ' + (addrLabel || 'Vancouver BC'))}`;
-        const bookUrl = s.ticket_url || ev.websiteUrl;
-        const costText = (s.cost !== undefined && s.cost !== null) ? (Number(s.cost) === 0 ? 'Free' : `$${Number(s.cost).toFixed(2)}`) : '';
-        const isSoldOut = s.status === 'sold_out' || s.is_sold_out;
-        const actionHtml = isSoldOut
-          ? `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="badge-showing-sold-out" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-block; cursor: pointer;" title="Sold out — click to check ticket portal or waitlist">Sold Out ↗</a>`
-          : `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
+    const renderShowingRow = (s) => {
+      const dStr = s.date || '';
+      const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
+      const dateLabel = !isNaN(dObj.getTime())
+        ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+        : dStr;
+      const isShowingToday = (dStr === curTodayStr);
+      const timeLabel = formatDisplayTime12h(s.start_time || '');
+      const venueLabel = s.venue_name || s.venue || ev.venue || ev.venue_name || 'Vancouver Venue';
+      const addrLabel = s.full_address || s.neighborhood || ev.address || ev.neighborhood || '';
+      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueLabel + ' ' + (addrLabel || 'Vancouver BC'))}`;
+      const bookUrl = s.ticket_url || ev.websiteUrl;
+      const costText = (s.cost !== undefined && s.cost !== null) ? (Number(s.cost) === 0 ? 'Free' : `$${Number(s.cost).toFixed(2)}`) : '';
+      const isSoldOut = s.status === 'sold_out' || s.is_sold_out;
+      const actionHtml = isSoldOut
+        ? `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="badge-showing-sold-out" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-block; cursor: pointer;" title="Sold out — click to check ticket portal or waitlist">Sold Out ↗</a>`
+        : `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
                 ${costText ? `${costText} ↗` : 'Book ↗'}
               </a>`;
 
-        return `
+      return `
           <div class="showing-row ${isShowingToday ? 'showing-today' : ''}">
             <div class="showing-time-col">
               <span class="showing-date">${dateLabel}</span>
@@ -5450,23 +5792,23 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             </div>
           </div>
         `;
-      };
+    };
 
-      if (activeShowings.length > 1) {
-        const todayIdx = activeShowings.findIndex(s => s && s.date === curTodayStr);
-        const primaryIdx = todayIdx >= 0 ? todayIdx : 0;
-        const primaryShowing = activeShowings[primaryIdx] || {};
+    if (activeShowings.length > 1) {
+      const todayIdx = activeShowings.findIndex(s => s && s.date === curTodayStr);
+      const primaryIdx = todayIdx >= 0 ? todayIdx : 0;
+      const primaryShowing = activeShowings[primaryIdx] || {};
 
-        const dStr = primaryShowing.date || '';
-        const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
-        const primaryDateLabel = !isNaN(dObj.getTime())
-          ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
-          : dStr;
-        const primaryTimeLabel = primaryShowing.start_time ? ` at ${formatDisplayTime12h(primaryShowing.start_time)}` : '';
+      const dStr = primaryShowing.date || '';
+      const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
+      const primaryDateLabel = !isNaN(dObj.getTime())
+        ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+        : dStr;
+      const primaryTimeLabel = primaryShowing.start_time ? ` at ${formatDisplayTime12h(primaryShowing.start_time)}` : '';
 
-        const allRowsHtml = activeShowings.map(renderShowingRow).join('');
+      const allRowsHtml = activeShowings.map(renderShowingRow).join('');
 
-        showingsHtml = `
+      showingsHtml = `
           <div class="card-showings-block" id="showings-block-${ev.id}">
             <div class="showings-summary-row" onclick="toggleShowings('${ev.id}', event)" title="Click to view/hide all ${activeShowings.length} upcoming scheduled dates">
               <div class="wh-summary-left">
@@ -5492,14 +5834,14 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             </div>
           </div>
         `;
-      }
     }
+  }
 
 
-    // Waypoints for consolidated hub attractions (e.g. Stanley Park)
-    let waypointsHtml = '';
-    if (Array.isArray(ev.waypoints) && ev.waypoints.length > 0) {
-      waypointsHtml = `
+  // Waypoints for consolidated hub attractions (e.g. Stanley Park)
+  let waypointsHtml = '';
+  if (Array.isArray(ev.waypoints) && ev.waypoints.length > 0) {
+    waypointsHtml = `
         <div class="card-waypoints-box">
           <div class="waypoints-box-header">
             <span>Featured Waypoints & Landmarks (${ev.waypoints.length})</span>
@@ -5514,85 +5856,85 @@ function renderSingleEventCardHtml(ev, bucketKey) {
           </div>
         </div>
       `;
-    }
+  }
 
-    // Venue-Accurate Spending Benchmarks & On-Site Food/Beverage Reality
-    let benchmarkHtml = '';
-    const benchItems = [];
-    if (ev.drink_benchmark) {
-      benchItems.push(`<span>Bar: <strong>${ev.drink_benchmark}</strong></span>`);
-    }
-    if (ev.concession_benchmark) {
-      benchItems.push(`<span>Concessions: <strong>${ev.concession_benchmark}</strong></span>`);
-    }
-    if (ev.coffee_benchmark) {
-      benchItems.push(`<span>Coffee: <strong>${ev.coffee_benchmark}</strong></span>`);
-    }
-    if (ev.food_service_note) {
-      benchItems.push(`<span class="food-service-note"><em>${ev.food_service_note}</em></span>`);
-    } else if (ev.meal_benchmark) {
-      benchItems.push(`<span>Meal: <strong>${ev.meal_benchmark}</strong></span>`);
-    }
+  // Venue-Accurate Spending Benchmarks & On-Site Food/Beverage Reality
+  let benchmarkHtml = '';
+  const benchItems = [];
+  if (ev.drink_benchmark) {
+    benchItems.push(`<span>Bar: <strong>${ev.drink_benchmark}</strong></span>`);
+  }
+  if (ev.concession_benchmark) {
+    benchItems.push(`<span>Concessions: <strong>${ev.concession_benchmark}</strong></span>`);
+  }
+  if (ev.coffee_benchmark) {
+    benchItems.push(`<span>Coffee: <strong>${ev.coffee_benchmark}</strong></span>`);
+  }
+  if (ev.food_service_note) {
+    benchItems.push(`<span class="food-service-note"><em>${ev.food_service_note}</em></span>`);
+  } else if (ev.meal_benchmark) {
+    benchItems.push(`<span>Meal: <strong>${ev.meal_benchmark}</strong></span>`);
+  }
 
-    if (benchItems.length > 0) {
-      benchmarkHtml = `
+  if (benchItems.length > 0) {
+    benchmarkHtml = `
         <div class="card-benchmarks-row" title="Venue food & drink pricing benchmarks">
           <span class="benchmark-label">On-Site &amp; Area Cost:</span>
           ${benchItems.join('<span class="benchmark-sep">•</span>')}
         </div>
       `;
+  }
+
+  // Option A: Outing Spend Estimator Pill (Direct Out-of-Pocket Transparency)
+  let spendEstimatorHtml = '';
+  const venueNameStr = ev.venue_name || ev.venue || ev.location || '';
+  const escapedVenueAttr = venueNameStr.replace(/"/g, '&quot;');
+  const suggestBtnHtml = `<button type="button" class="btn-suggest-price" data-suggest-venue="${escapedVenueAttr}" title="Suggest updated drink or item prices for ${escapedVenueAttr}">Suggest price ✎</button>`;
+
+  if (ev.typical_item_spend) {
+    let spendTag = (ev.typical_item_spend === 'No on-site concessions') ? 'On-Site Concessions' : 'Expected Outing Spend';
+    if (ev.typical_item_spend === 'No on-site concessions') { spendTag = 'On-Site Concessions'; } else if (ev.pricing_model === 'pay_per_item' || (ev.id && (ev.id.includes('croissant') || ev.id.includes('market')))) {
+      spendTag = 'Typical Item Spend';
+    } else if (ev.drink_benchmark) {
+      spendTag = 'In-Venue Drink Spend';
+    } else if (ev.concession_benchmark) {
+      spendTag = 'Concession Spend';
+    } else if (ev.isFree) {
+      spendTag = 'Typical Out-of-Pocket';
     }
 
-    // Option A: Outing Spend Estimator Pill (Direct Out-of-Pocket Transparency)
-    let spendEstimatorHtml = '';
-    const venueNameStr = ev.venue_name || ev.venue || ev.location || '';
-    const escapedVenueAttr = venueNameStr.replace(/"/g, '&quot;');
-    const suggestBtnHtml = `<button type="button" class="btn-suggest-price" data-suggest-venue="${escapedVenueAttr}" title="Suggest updated drink or item prices for ${escapedVenueAttr}">Suggest price ✎</button>`;
-
-    if (ev.typical_item_spend) {
-      let spendTag = (ev.typical_item_spend === 'No on-site concessions') ? 'On-Site Concessions' : 'Expected Outing Spend';
-      if (ev.typical_item_spend === 'No on-site concessions') { spendTag = 'On-Site Concessions'; } else if (ev.pricing_model === 'pay_per_item' || (ev.id && (ev.id.includes('croissant') || ev.id.includes('market')))) {
-        spendTag = 'Typical Item Spend';
-      } else if (ev.drink_benchmark) {
-        spendTag = 'In-Venue Drink Spend';
-      } else if (ev.concession_benchmark) {
-        spendTag = 'Concession Spend';
-      } else if (ev.isFree) {
-        spendTag = 'Typical Out-of-Pocket';
-      }
-
-      spendEstimatorHtml = `
+    spendEstimatorHtml = `
         <div class="card-spend-estimator-pill" title="Estimated out-of-pocket cost for purchases at this outing">
           <span class="spend-pill-label"><strong>${spendTag}:</strong> ${ev.typical_item_spend}</span>
           ${suggestBtnHtml}
         </div>
       `;
-    } else {
-      spendEstimatorHtml = `
+  } else {
+    spendEstimatorHtml = `
         <div class="card-spend-estimator-pill card-spend-uncalibrated" title="Help calibrate drinks and purchases at this venue">
           <span class="spend-pill-label"><strong>Drink / Item Spend:</strong> Uncalibrated</span>
           ${suggestBtnHtml}
         </div>
       `;
-    }
+  }
 
 
-    // Pricing sub-details: Pre-tax notices and pricing models (Admission tiers expand from bottom-left cost range)
-    const tiersInfo = renderAdmissionTiersHtml(ev, bucketKey);
-    const hasPreTax = Boolean(preTaxNoteHtml);
-    const subdetailsHtml = (pricingModelHtml || hasPreTax) ? `
+  // Pricing sub-details: Pre-tax notices and pricing models (Admission tiers expand from bottom-left cost range)
+  const tiersInfo = renderAdmissionTiersHtml(ev, bucketKey);
+  const hasPreTax = Boolean(preTaxNoteHtml);
+  const subdetailsHtml = (pricingModelHtml || hasPreTax) ? `
       <div class="card-price-subdetails">
         ${pricingModelHtml}
         ${preTaxNoteHtml}
       </div>
     ` : '';
 
-    const accessInfo = typeof window.getVenueAccessibility === 'function' 
-      ? window.getVenueAccessibility(ev.venue) 
-      : { status: 'accessible', label: 'Wheelchair Accessible', badgeIcon: '♿', summary: 'Ground-floor street level entrance.' };
-    const isHappeningNow = isEventHappeningNow(ev, new Date());
+  const accessInfo = typeof window.getVenueAccessibility === 'function'
+    ? window.getVenueAccessibility(ev.venue)
+    : { status: 'accessible', label: 'Wheelchair Accessible', badgeIcon: '♿', summary: 'Ground-floor street level entrance.' };
+  const isHappeningNow = isEventHappeningNow(ev, new Date());
 
-    return `
+  return `
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" data-scroll-date="${topDate.badgeText}" data-bucket-key="${bucketKey}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
         <div class="mobile-card-compact-header">
@@ -5602,10 +5944,10 @@ function renderSingleEventCardHtml(ev, bucketKey) {
           </div>
           <div class="mobile-card-row-2">
             <span class="mobile-card-meta-text">📍 ${(ev.neighborhood || ev.venue || 'Vancouver').split(',')[0]} • ${topDate.badgeText} • ${(() => {
-              const pCat = (Array.isArray(ev.categories) && ev.categories.length > 0) ? ev.categories[0] : (ev.category || 'Outing');
-              const cDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === pCat) : null;
-              return cDef ? (cDef.shortLabel || cDef.label) : (ev.categoryLabel || pCat);
-            })()}</span>
+      const pCat = (Array.isArray(ev.categories) && ev.categories.length > 0) ? ev.categories[0] : (ev.category || 'Outing');
+      const cDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === pCat) : null;
+      return cDef ? (cDef.shortLabel || cDef.label) : (ev.categoryLabel || pCat);
+    })()}</span>
             <span class="mobile-card-chevron" aria-hidden="true">▾</span>
           </div>
         </div>
@@ -5625,17 +5967,17 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               <span>${topDate.badgeText}</span>
             </span>
             ${(() => {
-              const primaryCat = (Array.isArray(ev.categories) && ev.categories.length > 0)
+      const primaryCat = (Array.isArray(ev.categories) && ev.categories.length > 0)
 
-                ? (ev.categories.includes('outdoors') && (ev.lifecycleType === 'perennial_drop_in' || ev.accessModel === 'open_public_space')
-                    ? 'outdoors'
-                    : (ev.categories.includes('free-public-access') && ev.category === 'free-public-access'
-                        ? 'free-public-access'
-                        : ev.categories[0]))
-                : (ev.category || 'misc');
-              const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === primaryCat) : null;
-              const label = catDef ? catDef.label : (primaryCat === ev.category ? (ev.categoryLabel || primaryCat) : primaryCat);
-              return `
+        ? (ev.categories.includes('outdoors') && (ev.lifecycleType === 'perennial_drop_in' || ev.accessModel === 'open_public_space')
+          ? 'outdoors'
+          : (ev.categories.includes('free-public-access') && ev.category === 'free-public-access'
+            ? 'free-public-access'
+            : ev.categories[0]))
+        : (ev.category || 'misc');
+      const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === primaryCat) : null;
+      const label = catDef ? catDef.label : (primaryCat === ev.category ? (ev.categoryLabel || primaryCat) : primaryCat);
+      return `
                 <button 
                   type="button" 
                   class="card-category-badge category-${primaryCat}" 
@@ -5647,10 +5989,10 @@ function renderSingleEventCardHtml(ev, bucketKey) {
                   <span class="category-badge-text">${label}</span>
                 </button>
               `;
-            })()}
+    })()}
             ${(Array.isArray(ev.themeBadges) && ev.themeBadges.length > 0) ? ev.themeBadges.map(tb => {
-              const isSelected = state.selectedThemeFilter === tb.key;
-              return `
+      const isSelected = state.selectedThemeFilter === tb.key;
+      return `
                 <div class="card-theme-badge-pill ${isSelected ? 'active' : ''}">
                   <button
                     type="button"
@@ -5670,7 +6012,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
                   >✕</button>
                 </div>
               `;
-            }).join('') : ''}
+    }).join('') : ''}
           </div>
 
           <!-- Top Right: Action Cluster (Accessibility, Share, Save) -->
@@ -5706,9 +6048,9 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               aria-label="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
               title="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
             >
-              ${isSaved 
-                ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' 
-                : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'}
+              ${isSaved
+      ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
+      : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'}
             </button>
           </div>
         </div>
@@ -5812,6 +6154,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 }
 
 function resetAllFilters() {
+  state.sortBy = 'date';
   state.minBudget = 0;
   state.maxBudget = 50;
   state.category = 'all';
@@ -5876,16 +6219,16 @@ function loadSavedState() {
         updateItineraryBadge();
       }
     }
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function persistSavedState() {
   try {
     localStorage.setItem('van50_saved', JSON.stringify(Array.from(state.savedEvents)));
-  } catch (e) {}
+  } catch (e) { }
 }
 
-window.toggleSaveEvent = function(eventId) {
+window.toggleSaveEvent = function (eventId) {
   if (state.savedEvents.has(eventId)) {
     state.savedEvents.delete(eventId);
   } else {
@@ -5913,6 +6256,11 @@ function renderItinerary() {
   const list = document.getElementById('itinerary-items-list');
   const totalEl = document.getElementById('itinerary-total-cost');
   const statusEl = document.getElementById('itinerary-budget-status');
+  const sharePlanBtn = document.getElementById('share-plan-btn');
+  const clearPlanBtn = document.getElementById('clear-plan-btn');
+  const currentSavedCount = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id)).length;
+  if (sharePlanBtn) sharePlanBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
+  if (clearPlanBtn) clearPlanBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
   if (!list || !totalEl) return;
 
   const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
@@ -5945,11 +6293,81 @@ function renderItinerary() {
 
   totalEl.textContent = `$${totalCost.toFixed(2)} CAD`;
   if (statusEl) {
-    statusEl.innerHTML = totalCost <= 50.00 
+    statusEl.innerHTML = totalCost <= 50.00
       ? `<span style="color: #0f766e; font-weight: 700;">🟢 $${(50 - totalCost).toFixed(2)} CAD remaining under $50 target</span>`
       : `<span style="color: #e11d48; font-weight: 700;">⚠️ $${(totalCost - 50).toFixed(2)} CAD over $50 outing target</span>`; const meterFill = document.getElementById('itinerary-budget-meter-fill'); if (meterFill) { const pct = Math.min(100, Math.max(0, (totalCost / 50) * 100)); meterFill.style.width = `${pct}%`; meterFill.style.background = totalCost <= 50 ? '#10b981' : '#e11d48'; }
   }
 }
+
+window.clearSavedEvents = function () {
+  state.savedEvents.clear();
+  persistSavedState();
+  updateItineraryBadge();
+  renderItinerary();
+  applyFiltersAndRender();
+  if (typeof window.showFloatingToast === 'function') {
+    window.showFloatingToast('Cleared saved outings.');
+  }
+};
+
+window.shareOutingPlan = async function () {
+  const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
+  if (savedList.length === 0) {
+    if (typeof window.showFloatingToast === 'function') {
+      window.showFloatingToast('Save at least 1 event first to share your plan!');
+    }
+    return;
+  }
+
+  let totalCost = 0;
+  const lines = ['My Van50 Outing Plan (Under $50 CAD):', ''];
+  savedList.forEach((ev, i) => {
+    const priceNum = Number(ev.price) || 0;
+    totalCost += priceNum;
+    const hood = ev.neighborhood ? ` — ${ev.neighborhood}` : '';
+    const priceLabel = formatStandardPrice(ev);
+    lines.push(`${i + 1}. ${ev.title}${hood} (${priceLabel})`);
+  });
+  lines.push('');
+  lines.push(`Total Estimated Cost: $${totalCost.toFixed(2)} CAD`);
+  const shareUrl = (typeof window !== 'undefined' && window.location && window.location.href)
+    ? window.location.href
+    : 'https://ausomegh.github.io/Van50/';
+  const text = lines.join('\n');
+  const fullClipboardText = `${text}\n${shareUrl}`;
+
+  if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+    try {
+      await navigator.share({
+        title: 'My Van50 Outing Plan',
+        text: text,
+        url: shareUrl
+      });
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+
+  try {
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      await navigator.clipboard.writeText(fullClipboardText);
+    }
+    if (typeof window.showFloatingToast === 'function') {
+      window.showFloatingToast('Copied to clipboard!');
+    }
+    const shareBtn = document.getElementById('share-plan-btn');
+    if (shareBtn) {
+      const orig = shareBtn.innerHTML;
+      shareBtn.innerHTML = '✓ Copied to clipboard!';
+      setTimeout(() => { shareBtn.innerHTML = orig; }, 2200);
+    }
+  } catch (e) {
+    if (typeof window.showFloatingToast === 'function') {
+      window.showFloatingToast('Copied to clipboard!');
+    }
+  }
+};
 
 function copyItineraryToClipboard() {
   const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
@@ -6063,7 +6481,7 @@ function initAccessibility() {
   try {
     const isAccessible = localStorage.getItem('van50_accessible_mode') === 'true';
     setAccessibilityMode(isAccessible, false);
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function setAccessibilityMode(enabled, notify = true) {
@@ -6083,12 +6501,12 @@ function setAccessibilityMode(enabled, notify = true) {
 
   try {
     localStorage.setItem('van50_accessible_mode', state.accessibleMode ? 'true' : 'false');
-  } catch (e) {}
+  } catch (e) { }
 
   if (notify && typeof showToast === 'function') {
     showToast(
-      state.accessibleMode 
-        ? '♿ Accessible Mode Enabled (High Contrast, Enhanced Text & 48px Touch Targets)' 
+      state.accessibleMode
+        ? '♿ Accessible Mode Enabled (High Contrast, Enhanced Text & 48px Touch Targets)'
         : '♿ Standard Display Mode Restored',
       'info'
     );
@@ -6257,7 +6675,7 @@ function initCommunityFeedbackModal() {
 }
 
 // Global hook for event cards to trigger "Report Issue"
-window.reportEventIssue = function(eventId, eventTitle) {
+window.reportEventIssue = function (eventId, eventTitle) {
   openFeedbackModal(eventTitle ? `Regarding "${eventTitle}": ` : '', eventId);
 };
 
@@ -6356,7 +6774,7 @@ function renderActiveFilterChips(filteredCount) {
   }).join('');
 }
 
-window.dismissSecondaryFilterChip = function(chipKey) {
+window.dismissSecondaryFilterChip = function (chipKey) {
   if (!chipKey) return; if (chipKey === 'category') { state.category = 'all'; renderCategoryPills(); } else if (chipKey === 'theme') { state.selectedThemeFilter = null; renderFestivalSpotlight(); } else if (chipKey.startsWith('exTheme:')) { const tk = chipKey.slice(8); if (state.excludedThemes) state.excludedThemes.delete(tk); renderFestivalSpotlight(); }
   if (chipKey === 'cost') {
     state.minBudget = 0;
@@ -6395,7 +6813,7 @@ window.dismissSecondaryFilterChip = function(chipKey) {
   applyFiltersAndRender();
 };
 
-window.toggleMobileCardAccordion = function(eventId, evObj) {
+window.toggleMobileCardAccordion = function (eventId, evObj) {
   if (typeof window !== 'undefined' && window.innerWidth > 768) return;
   if (evObj && evObj.target) {
     // Allow direct clicks on links/buttons inside expanded details without collapsing the card
@@ -6414,7 +6832,7 @@ window.toggleMobileCardAccordion = function(eventId, evObj) {
 // ==============================================================================
 // STICKY SEARCH/FILTER BAR & LIVE SCROLLED DATE INDICATOR
 // ==============================================================================
-window.updateScrollDateIndicator = function() {
+window.updateScrollDateIndicator = function () {
   const stickyBar = document.getElementById('mobile-search-filter-bar');
   const scrollDateBar = document.getElementById('scroll-date-bar');
   const scrollDateTitle = document.getElementById('scroll-date-title');

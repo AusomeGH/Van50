@@ -26,15 +26,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Leaflet Map CSS (Local Vendor with CDN Fallback) -->
-  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <!-- Google Maps JS API is loaded asynchronously once by js/map.js -->
 
   <!-- Cache & Security Headers -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="no-referrer">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <link rel="stylesheet" href="css/style.css?v=7.9.5">
   <link rel="stylesheet" href="css/components.css?v=7.9.5">
@@ -92,7 +91,7 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </span>
           <input 
-            type="text" 
+            type="search" enterkeyhint="search" 
             id="search-input" 
             class="search-input" 
             placeholder="Search events, venues, or tags..."
@@ -100,7 +99,7 @@
             autocomplete="off"
             spellcheck="false"
           >
-          <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">✕</button>
+          <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">×</button>
         </div>
         <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">⚙️ Filters</button>
       </div>
@@ -145,12 +144,12 @@
             <!-- Dynamically populated from js/data.js -->
           </div>
 
-          <div class="view-switch" role="group" aria-label="View Switcher" style="display: none;">
-            <button class="view-btn active" id="view-cards-btn" aria-label="Card View">
+          <div class="view-switch" role="group" aria-label="View Switcher">
+            <button type="button" class="view-btn active" id="view-cards-btn" aria-label="Card View">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
               <span>Cards</span>
             </button>
-            <button class="view-btn" id="view-map-btn" aria-label="Map View">
+            <button type="button" class="view-btn" id="view-map-btn" aria-label="Map View">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
               <span>Map</span>
             </button>
@@ -294,9 +293,26 @@
         <!-- Event cards dynamically rendered by js/app.js -->
       </div>
 
-      <!-- Map View Wrapper -->
+      <!-- Map View Wrapper (Single Map Instance — toggled via CSS display, never destroyed) -->
       <div class="map-view-wrapper" id="map-view-wrapper" style="display: none;">
-        <div id="vancouver-map"></div>
+        <div class="map-jump-toolbar" id="map-jump-bar" role="region" aria-label="Jump to Area">
+          <div class="map-jump-header">
+            <span class="map-jump-label">📍 Jump to Area:</span>
+            <span class="map-pin-count-badge" id="map-pin-count-badge">0 events plotted</span>
+          </div>
+          <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="Town Centre Quick Jump">
+            <button type="button" class="map-jump-pill" data-area="whalley" onclick="window.jumpToMapArea && window.jumpToMapArea('whalley')">City Centre / Whalley</button>
+            <button type="button" class="map-jump-pill" data-area="guildford" onclick="window.jumpToMapArea && window.jumpToMapArea('guildford')">Guildford</button>
+            <button type="button" class="map-jump-pill" data-area="fleetwood" onclick="window.jumpToMapArea && window.jumpToMapArea('fleetwood')">Fleetwood</button>
+            <button type="button" class="map-jump-pill" data-area="newton" onclick="window.jumpToMapArea && window.jumpToMapArea('newton')">Newton</button>
+            <button type="button" class="map-jump-pill" data-area="cloverdale" onclick="window.jumpToMapArea && window.jumpToMapArea('cloverdale')">Cloverdale</button>
+            <button type="button" class="map-jump-pill" data-area="south-surrey" onclick="window.jumpToMapArea && window.jumpToMapArea('south-surrey')">South Surrey</button>
+            <button type="button" class="map-jump-pill" data-area="surrey-all" onclick="window.jumpToMapArea && window.jumpToMapArea('surrey-all')">Surrey Overview</button>
+            <button type="button" class="map-jump-pill" data-area="vancouver" onclick="window.jumpToMapArea && window.jumpToMapArea('vancouver')">Vancouver</button>
+            <button type="button" class="map-jump-pill map-jump-fit" data-area="fit-bounds" onclick="window.fitActiveMapMarkers && window.fitActiveMapMarkers()">🎯 Fit Active Pins</button>
+          </div>
+        </div>
+        <div id="vancouver-map" role="application" aria-label="Interactive Google Map of Events"></div>
       </div>
     </section>
   </main>
@@ -464,9 +480,13 @@
     </div>
 
     <div style="padding-top: 14px; border-top: 1px solid var(--border-subtle); margin-top: auto;">
-      <button class="btn-copy-plan" id="copy-plan-btn" style="width: 100%; border: none;">
-        Copy Saved Events (with Direct Event Links)
-      </button>
+
+      <div class="itinerary-actions-row" id="itinerary-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button type="button" class="btn-share-plan" id="share-plan-btn" onclick="window.shareOutingPlan && window.shareOutingPlan()" style="flex: 1 1 auto; display: none;">📤 Share Plan</button>
+        <button type="button" class="btn-copy-plan" id="copy-plan-btn" style="flex: 1 1 auto; border: none;">📋 Copy Plan</button>
+        <button type="button" class="btn-clear-plan" id="clear-plan-btn" onclick="window.clearSavedEvents && window.clearSavedEvents()" style="display: none;" aria-label="Clear all saved events">🗑️ Clear</button>
+      </div>
+      <span style="display: none;"></span>
     </div>
   </aside>
 
@@ -539,12 +559,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="vendor/leaflet/leaflet.js"></script>
-  <script>
-    if (typeof L === 'undefined') {
-      document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
-    }
-  </script>
   <script src="js/data.js?v=7.9.5"></script>
   <script src="js/accessibility.js?v=1.0.0"></script>
   <script src="js/map.js?v=7.9.5"></script>
