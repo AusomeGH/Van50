@@ -114,7 +114,7 @@ export function pruneOrphanedProofKeyframes({
           prunedCount++;
           freedBytes += stat.size;
         }
-      } catch (_) { }
+      } catch (_) {}
     }
   } catch (err) {
     console.warn(`⚠️ [Keyframe Cleanup] Warning scanning proof_keyframes: ${err.message}`);
