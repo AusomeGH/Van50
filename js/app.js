@@ -1066,10 +1066,10 @@ function normalizeActiveEvent(item) {
       if (cocktail) parts.push(`Cocktails ${shortRange(cocktail)}`);
       if (!beer && !cocktail && coffee) parts.push(`Coffee/Drinks ${shortRange(coffee)}`);
       else if (coffee && parts.length < 2) parts.push(`Coffee ${shortRange(coffee)}`);
-      if (concession && parts.length < 2) parts.push(`Concessions ${shortRange(concession)}`);
+      if (concession && parts.length < 2 && (!coffee || shortRange(concession) !== shortRange(coffee))) parts.push(`Concessions ${shortRange(concession)}`);
       if (meal && parts.length < 2) parts.push(`Food ${shortRange(meal)}`);
       if (parts.length === 0 && otherCost) parts.push(otherCost);
-      return parts.length > 0 ? parts.join(' • ') : null;
+      return parts.length > 0 ? parts.join(' • ') : ((item.concession_benchmark === "none_available" || item.on_site_fnb === "none_available" || (typeof item.on_site_fnb === "string" && /\b(?:no\s+(?:on[- ]?site|permanent|regular|commercial(?:\s+public)?)\s+(?:cafe|bar|concession|food|restaurant)|none\s+inside|prohibited\s+inside)\b/i.test(item.on_site_fnb))) ? "No on-site concessions" : null);
     })(),
     sample_cost_label: sanitizeMojibake(item.sample_cost_label || null),
     coffee_benchmark: sanitizeMojibake(item.coffee_benchmark || null),
@@ -5550,8 +5550,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     const suggestBtnHtml = `<button type="button" class="btn-suggest-price" data-suggest-venue="${escapedVenueAttr}" title="Suggest updated drink or item prices for ${escapedVenueAttr}">Suggest price ✎</button>`;
 
     if (ev.typical_item_spend) {
-      let spendTag = 'Expected Outing Spend';
-      if (ev.pricing_model === 'pay_per_item' || (ev.id && (ev.id.includes('croissant') || ev.id.includes('market')))) {
+      let spendTag = (ev.typical_item_spend === 'No on-site concessions') ? 'On-Site Concessions' : 'Expected Outing Spend';
+      if (ev.typical_item_spend === 'No on-site concessions') { spendTag = 'On-Site Concessions'; } else if (ev.pricing_model === 'pay_per_item' || (ev.id && (ev.id.includes('croissant') || ev.id.includes('market')))) {
         spendTag = 'Typical Item Spend';
       } else if (ev.drink_benchmark) {
         spendTag = 'In-Venue Drink Spend';

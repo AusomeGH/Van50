@@ -1,5 +1,851 @@
 [
   {
+    "timestamp": "2026-11-08T01:02:12.023Z",
+    "event_id": "the-cinematheque-cameron-winter-at-carnegie-hal-2026-12-16",
+    "target_name": "Cameron Winter at Carnegie Hall",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T01:02:08.057Z",
+    "event_id": "the-cinematheque-adieu-bonaparte-2026-12-11",
+    "target_name": "Adieu Bonaparte",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T01:01:34.297Z",
+    "event_id": "the-cinematheque-christmas-at-moose-factory-rem-2026-12-09",
+    "target_name": "Light from the Darkness: Christmas at Moose Factory / Remaining Native",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-08T01:01:30.706Z",
+    "event_id": "the-cinematheque-put-your-soul-on-your-hand-and-2026-12-10",
+    "target_name": "Put Your Soul on Your Hand and Walk",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T01:00:54.512Z",
+    "event_id": "the-cinematheque-another-round-2026-12-08",
+    "target_name": "Another Round",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T01:00:52.699Z",
+    "event_id": "the-cinematheque-gangsterism-2026-12-07",
+    "target_name": "Gangsterism",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T01:00:18.672Z",
+    "event_id": "the-cinematheque-the-scar-2026-12-05",
+    "target_name": "The Scar",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T01:00:15.733Z",
+    "event_id": "the-cinematheque-the-calm-2026-12-05",
+    "target_name": "The Calm",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T00:59:44.253Z",
+    "event_id": "the-cinematheque-the-land-2026-12-02",
+    "target_name": "The Land (الأرض)",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:59:40.567Z",
+    "event_id": "the-cinematheque-the-double-life-of-v-ronique-2026-12-03",
+    "target_name": "The Double Life of Véronique",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:59:10.015Z",
+    "event_id": "the-cinematheque-dawn-of-a-new-day-2026-11-29",
+    "target_name": "Dawn of a New Day",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T00:59:05.710Z",
+    "event_id": "the-cinematheque-program-one-figure-and-ground-2026-11-30",
+    "target_name": "Program One: Figure and Ground",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:58:34.710Z",
+    "event_id": "the-cinematheque-the-host-2026-11-29",
+    "target_name": "The Host",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T00:58:31.271Z",
+    "event_id": "the-cinematheque-moving-histories-davra-2026-11-28",
+    "target_name": "Moving Histories: DAVRA",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T00:57:58.034Z",
+    "event_id": "the-cinematheque-cairo-station-2026-11-27",
+    "target_name": "Cairo Station",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T00:57:54.968Z",
+    "event_id": "the-cinematheque-traces-2026-11-26",
+    "target_name": "Traces",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-08T00:57:22.813Z",
+    "event_id": "the-cinematheque-hidden-people-2026-11-26",
+    "target_name": "Hidden People",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-08T00:57:15.773Z",
+    "event_id": "the-cinematheque-the-dormant-account-2026-11-25",
+    "target_name": "The Dormant Account",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:56:43.412Z",
+    "event_id": "the-cinematheque-impatience-of-the-heart-2026-11-25",
+    "target_name": "Impatience of the Heart",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T00:56:38.481Z",
+    "event_id": "the-cinematheque-invincibles-2026-11-24",
+    "target_name": "Invincibles",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:56:06.769Z",
+    "event_id": "the-cinematheque-dra-en-2026-11-24",
+    "target_name": "Dražen",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 37
+  },
+  {
+    "timestamp": "2026-11-08T00:56:01.050Z",
+    "event_id": "the-cinematheque-the-portuguese-2026-11-23",
+    "target_name": "The Portuguese",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:55:25.671Z",
+    "event_id": "the-cinematheque-the-secret-of-pin-up-island-2026-11-23",
+    "target_name": "The Secret of Pin-Up Island",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-08T00:55:23.894Z",
+    "event_id": "the-cinematheque-escape-net-2026-11-22",
+    "target_name": "Escape Net",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-08T00:54:47.411Z",
+    "event_id": "the-cinematheque-3-0-kilograms-of-happiness-2026-11-22",
+    "target_name": "3.0 Kilograms of Happiness",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 37
+  },
+  {
+    "timestamp": "2026-11-08T00:54:42.290Z",
+    "event_id": "the-cinematheque-family-time-2026-11-21",
+    "target_name": "Family Time",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T00:54:06.599Z",
+    "event_id": "the-cinematheque-rose-2026-11-20",
+    "target_name": "Rose",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-08T00:54:05.520Z",
+    "event_id": "the-cinematheque-hold-onto-me-2026-11-21",
+    "target_name": "Hold Onto Me",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T00:53:29.639Z",
+    "event_id": "the-cinematheque-stereo-girls-2026-11-20",
+    "target_name": "Stereo Girls",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:53:27.273Z",
+    "event_id": "the-cinematheque-life-is-life-2026-11-19",
+    "target_name": "Life Is Life",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:52:52.476Z",
+    "event_id": "the-cinematheque-green-light-2026-11-18",
+    "target_name": "Green Light",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 39
+  },
+  {
+    "timestamp": "2026-11-08T00:52:49.329Z",
+    "event_id": "the-cinematheque-still-afloat-2026-11-19",
+    "target_name": "Still Afloat",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:52:11.459Z",
+    "event_id": "the-cinematheque-castillo-2026-11-17",
+    "target_name": "Castillo",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:52:10.065Z",
+    "event_id": "the-cinematheque-romzsa-t-dor-2026-11-17",
+    "target_name": "Romzsa Tódor",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T00:51:34.017Z",
+    "event_id": "the-cinematheque-borderline-2026-11-16",
+    "target_name": "Borderline",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:51:33.730Z",
+    "event_id": "the-cinematheque-sleeping-with-a-tiger-2026-11-16",
+    "target_name": "Sleeping with a Tiger",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-08T00:50:56.313Z",
+    "event_id": "the-cinematheque-european-union-film-festival-2-2026-11-15",
+    "target_name": "My Family and Other Clowns",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-08T00:50:54.932Z",
+    "event_id": "the-cinematheque-chopin-a-sonata-in-paris-2026-11-15",
+    "target_name": "Chopin, a Sonata in Paris",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-08T00:50:16.613Z",
+    "event_id": "the-cinematheque-spiked-2026-11-15",
+    "target_name": "Spiked",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T00:50:13.299Z",
+    "event_id": "the-cinematheque-popeye-meets-sindbad-the-sailo-2026-11-15",
+    "target_name": "Popeye Meets Sindbad the Sailor and More Fleischer Cartoons",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T00:49:40.761Z",
+    "event_id": "celebrities-nightclu-playhouse-pres-no-thanks-boxin-2026-12-26",
+    "target_name": "No Thanks: Boxing Day Bash",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-08T00:49:37.623Z",
+    "event_id": "the-cinematheque-receptions-2026-11-14",
+    "target_name": "Receptions",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 30
+  },
+  {
+    "timestamp": "2026-11-08T00:49:04.147Z",
+    "event_id": "celebrities-nightclu-playhouse-pres-sidequest-2026-12-12",
+    "target_name": "Playhouse Presents: Sidequest",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-08T00:48:55.966Z",
+    "event_id": "the-cinematheque-the-dance-club-2026-11-14",
+    "target_name": "The Dance Club",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:48:21.889Z",
+    "event_id": "celebrities-nightclu-playhouse-pres-andrew-bayer-2026-12-05",
+    "target_name": "Playhouse Pres. Andrew Bayer",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-08T00:48:19.682Z",
+    "event_id": "the-cinematheque-european-union-film-festival-2-2026-11-13",
+    "target_name": "European Union Film Festival 2026: Our Girls",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-08T00:47:40.210Z",
+    "event_id": "celebrities-nightclu-playhouse-pres-whipped-cream-2026-11-28",
+    "target_name": "Playhouse Pres. Whipped Cream",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 42
+  },
+  {
+    "timestamp": "2026-11-08T00:47:32.280Z",
+    "event_id": "the-cinematheque-julie-keeps-quiet-2026-11-13",
+    "target_name": "Julie Keeps Quiet",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 30
+  },
+  {
+    "timestamp": "2026-11-08T00:46:58.437Z",
+    "event_id": "celebrities-nightclu-for-real-fridays-rihanna-4ever-2026-11-27",
+    "target_name": "For Real Fridays: Rihanna 4Ever",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-08T00:46:54.044Z",
+    "event_id": "the-cinematheque-blue-road-the-edna-o-brien-sto-2026-11-12",
+    "target_name": "Blue Road: The Edna O’Brien Story",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 30
+  },
+  {
+    "timestamp": "2026-11-08T00:46:20.021Z",
+    "event_id": "war-memorial-gym-ubc-thunderbirds-basketball-vs-2026-11-13",
+    "target_name": "UBC Thunderbirds Basketball vs. UNBC Timberwolves",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-08T00:46:13.834Z",
+    "event_id": "the-american-drawing-from-memory-2026-11-23",
+    "target_name": "Drawing From Memory",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-08T00:45:33.826Z",
+    "event_id": "celebrities-nightclu-for-real-fridays-the-weeknd-4e-2026-11-20",
+    "target_name": "For Real Fridays: The Weeknd 4Ever",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 40
+  },
+  {
+    "timestamp": "2026-11-08T00:45:29.879Z",
+    "event_id": "the-cinematheque-honouring-our-warriors-forgott-2026-11-11",
+    "target_name": "Honouring Our Warriors: Forgotten Warriors & Cree Code Talker",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 30
+  },
+  {
+    "timestamp": "2026-11-08T00:44:56.725Z",
+    "event_id": "thunderbird-stadium-2026-u-sports-women-s-soccer-c-2026-11-13",
+    "target_name": "2026 U SPORTS Women's Soccer Championship - DAY PASS Nov 13th SF's",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 48
+  },
+  {
+    "timestamp": "2026-11-08T00:44:49.453Z",
+    "event_id": "the-american-pub-jams-datguyry-2026-11-20",
+    "target_name": "PUB JAMS : DATGUYRY",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-08T00:44:07.890Z",
+    "event_id": "celebrities-nightclu-playhouse-pres-frank-walker-2026-11-21",
+    "target_name": "Playhouse: Frank Walker",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-08T00:44:04.920Z",
+    "event_id": "the-cinematheque-macuna-ma-2026-11-10",
+    "target_name": "Macunaíma",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 30
+  },
+  {
+    "timestamp": "2026-11-08T00:43:31.672Z",
+    "event_id": "the-american-no-skips-w-nicky-beatz-2026-11-13",
+    "target_name": "NO SKIPS w/ NICKY BEATZ",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:43:23.043Z",
+    "event_id": "thunderbird-stadium-2026-u-sports-women-s-soccer-c-2026-11-12",
+    "target_name": "2026 U SPORTS Women's Soccer Championship - TOURNAMENT PASS",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-08T00:42:52.800Z",
+    "event_id": "the-cinematheque-can-you-make-us-a-music-video-2026-11-09",
+    "target_name": "Can you make us a music video? Owen Ellis ft. YEP",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 30
+  },
+  {
+    "timestamp": "2026-11-08T00:42:32.963Z",
+    "event_id": "celebrities-nightclu-playhouse-pres-kyle-watson-2026-11-14",
+    "target_name": "Playhouse Pres. Kyle Watson",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-08T00:42:18.992Z",
+    "event_id": "museum-of-anthropolo-visual-material-culture-resear-2026-09-17",
+    "target_name": "Visual + Material Culture Research Seminar Series – Fall 2026",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:41:47.958Z",
+    "event_id": "the-american-karaoke-2026-11-12",
+    "target_name": "KARAOKE!",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-08T00:41:43.198Z",
+    "event_id": "war-memorial-gym-ubc-thunderbirds-volleyball-vs-2026-11-07",
+    "target_name": "UBC Thunderbirds Volleyball vs. TRU Wolfpack",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 47
+  },
+  {
+    "timestamp": "2026-11-08T00:41:07.458Z",
+    "event_id": "the-cinematheque-when-i-walk-2026-11-08",
+    "target_name": "When I Walk",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 29
+  },
+  {
+    "timestamp": "2026-11-08T00:40:52.605Z",
+    "event_id": "celebrities-nightclu-for-real-fridays-all4u-all-the-2026-11-13",
+    "target_name": "For Real Fridays: ALL4U - All the Love Songs of All Time",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-08T00:40:35.077Z",
+    "event_id": "downtown-vancouver-lumi-re-festival-2026-11-12",
+    "target_name": "Lumière Festival",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-08T00:40:07.413Z",
+    "event_id": "museum-of-anthropolo-opening-celebrations-of-from-t-2026-11-19",
+    "target_name": "Opening Celebrations of From the Deep: In the Wake of Drexciya",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 29
+  },
+  {
+    "timestamp": "2026-11-08T00:39:53.966Z",
+    "event_id": "the-american-pub-jams-christian-flores-2026-11-07",
+    "target_name": "PUB JAMS : CHRISTIAN FLORES",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-08T00:39:32.591Z",
+    "event_id": "doug-mitchell-thunde-ubc-thunderbirds-women-s-hocke-2026-11-07",
+    "target_name": "UBC Thunderbirds Women's Hockey vs. MRU Cougars",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 47
+  },
+  {
+    "timestamp": "2026-11-08T00:39:15.357Z",
+    "event_id": "the-cinematheque-tokyo-melody-a-film-about-ryui-2026-11-05",
+    "target_name": "Tokyo Melody: A Film About Ryuichi Sakamoto",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:38:42.035Z",
+    "event_id": "celebrities-nightclu-playhouse-pres-innellea-2026-11-07",
+    "target_name": "Playhouse: Innellea",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 45
+  },
+  {
+    "timestamp": "2026-11-08T00:38:37.681Z",
+    "event_id": "stanley-park-siwash-rock",
+    "target_name": "Siwash Rock",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 42
+  },
+  {
+    "timestamp": "2026-11-08T00:37:53.116Z",
+    "event_id": "the-polygon-gallery-parallelogram-volume-2-presenc-272026",
+    "target_name": "Parallelogram Volume 2: Presence",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:37:44.356Z",
+    "event_id": "museum-of-anthropolo-from-the-deep-tours-with-ayana-2026-11-21",
+    "target_name": "From the Deep Tours with Ayana V. Jackson",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 30
+  },
+  {
+    "timestamp": "2026-11-08T00:37:13.839Z",
+    "event_id": "the-american-iq-2000-trivia-2026-11-09",
+    "target_name": "IQ 2000 Trivia",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-08T00:37:09.417Z",
+    "event_id": "vancouver-maritime-m-an-evening-on-st-roch-2026-11-12",
+    "target_name": "An Evening on St.Roch",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:36:33.681Z",
+    "event_id": "science-world-after-dark-press-start-for-sci-2026-12-09",
+    "target_name": "After Dark: Press Start for Science – Video Games Edition",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 55
+  },
+  {
+    "timestamp": "2026-11-08T00:36:33.006Z",
+    "event_id": "the-american-besties-vol-3-the-american-2026-11-21",
+    "target_name": "BESTIES VOL 3. @ The American",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:35:58.468Z",
+    "event_id": "thunderbird-stadium-cw-playoffs-football-hardy-cup-2026-11-07",
+    "target_name": "CW Playoffs: Football Hardy Cup Semifinal UBC vs MAN",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-08T00:35:31.228Z",
+    "event_id": "massey-theatre-ballet-j-rgen-s-swan-lake-2027-02-06",
+    "target_name": "Ballet Jörgen’s Swan Lake",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-08T00:35:08.523Z",
+    "event_id": "pyatt-hall-april-chamber-players-2027-04-18",
+    "target_name": "April Chamber Players",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-08T00:34:49.403Z",
+    "event_id": "chan-centre-for-the-vso-vivaldi-s-the-four-seasons-2026-12-11",
+    "target_name": "VSO: Vivaldi’s The Four Seasons",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 39
+  },
+  {
+    "timestamp": "2026-11-08T00:34:29.281Z",
+    "event_id": "the-cinematheque-royal-space-force-the-wings-of-2026-11-05",
+    "target_name": "Royal Space Force: The Wings of Honnêamise",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 31
+  },
+  {
+    "timestamp": "2026-11-08T00:34:06.832Z",
+    "event_id": "celebrities-nightclu-for-real-fridays-r4p-b-2026-11-06",
+    "target_name": "For Real Fridays: R4P&B",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 42
+  },
+  {
+    "timestamp": "2026-11-08T00:33:54.606Z",
+    "event_id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
+    "target_name": "Diwali in Vancouver: Mehfil",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 43
+  },
+  {
+    "timestamp": "2026-11-08T00:33:20.623Z",
+    "event_id": "van50-vancouver-art-gallery-free-access",
+    "target_name": "Vancouver Art Gallery (General Admission & Access Programs)",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 56
+  },
+  {
+    "timestamp": "2026-11-08T00:32:50.000Z",
+    "event_id": "van50-queen-elizabeth-park-gardens",
+    "target_name": "Queen Elizabeth Park & Quarry Gardens",
+    "target_type": "event_qc",
+    "status": "VERIFIED_FREE_PUBLIC_ACCESS",
+    "success": true,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-08T00:32:49.936Z",
+    "event_id": "van50-polygon-gallery-lonsdale",
+    "target_name": "The Polygon Gallery Admission by Donation",
+    "target_type": "event_qc",
+    "status": "VERIFIED_FREE_PUBLIC_ACCESS",
+    "success": true,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-08T00:32:49.875Z",
+    "event_id": "van50-granville-island-public-market",
+    "target_name": "Granville Island Public Market & Boardwalks",
+    "target_type": "event_qc",
+    "status": "VERIFIED_FREE_PUBLIC_ACCESS",
+    "success": true,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-08T00:32:49.798Z",
+    "event_id": "museum-of-anthropolo-from-the-deep-in-the-wake-of-d-2026-11-19",
+    "target_name": "FROM THE DEEP: In the Wake of Drexciya with Ayana V. Jackson",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 32
+  },
+  {
+    "timestamp": "2026-11-08T00:32:20.672Z",
+    "event_id": "the-american-r3d-at-the-american-2026-11-27",
+    "target_name": "R3D AT THE AMERICAN",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 39
+  },
+  {
+    "timestamp": "2026-11-08T00:32:13.495Z",
+    "event_id": "vanier-park-winter-market-at-vanier-park-6",
+    "target_name": "Winter Market at Vanier Park",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 32
+  },
+  {
     "timestamp": "2026-11-06T17:32:14.816Z",
     "event_id": "orpheum-theatre-symphonic-encounters-beethoven-2026-11-26",
     "target_name": "Symphonic Encounters: Beethoven 1 & 3: Beginnings & Revolution",
@@ -3652,851 +4498,5 @@
     "status": "UNVERIFIED_PRICING",
     "success": false,
     "duration_seconds": 21
-  },
-  {
-    "timestamp": "2026-11-03T20:45:09.859Z",
-    "event_id": "rio-theatre-ricardo-quevedo-caer-con-estil-2026-11-11",
-    "target_name": "Ricardo Quevedo - CAER con estilo en Vancouver",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": false,
-    "duration_seconds": 36
-  },
-  {
-    "timestamp": "2026-11-03T20:44:27.445Z",
-    "event_id": "rio-theatre-justin-mcelroy-searching-for-t-2026-11-09",
-    "target_name": "Justin McElroy: Searching for the Best Place on Earth",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 34
-  },
-  {
-    "timestamp": "2026-11-03T20:43:47.190Z",
-    "event_id": "rio-theatre-mountains-on-stage-winter-2026-2026-12-09",
-    "target_name": "Mountains on Stage: Winter 2026",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-03T20:43:09.382Z",
-    "event_id": "rio-theatre-paper-flowers-special-presenta-2026-11-28",
-    "target_name": "Paper Flowers – Special Presentation",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-03T20:42:31.916Z",
-    "event_id": "rio-theatre-fight-fight-fight-2026-11-23",
-    "target_name": "FIGHT! FIGHT! FIGHT!",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 25
-  },
-  {
-    "timestamp": "2026-11-03T20:42:00.521Z",
-    "event_id": "rio-theatre-forward-filmmakers-in-attendan-2026-11-23",
-    "target_name": "Forward (Filmmakers in Attendance for Q&A)",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 26
-  },
-  {
-    "timestamp": "2026-11-03T20:41:27.915Z",
-    "event_id": "rio-theatre-being-heumann-free-community-s-2026-11-08",
-    "target_name": "Being Heumann (Free Community Screening)",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-03T20:40:50.956Z",
-    "event_id": "rio-theatre-just-joni-2026-11-07",
-    "target_name": "JUST JONI",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 43
-  },
-  {
-    "timestamp": "2026-11-03T20:40:02.198Z",
-    "event_id": "rio-theatre-coast-mountain-film-fest-snowb-2026-11-05",
-    "target_name": "Coast Mountain Film Fest: Snowboard Night",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 27
-  },
-  {
-    "timestamp": "2026-11-03T20:39:29.352Z",
-    "event_id": "rio-theatre-coast-mountain-film-fest-ski-n-2026-11-05",
-    "target_name": "Coast Mountain Film Fest: Ski Night and Double Feature Pass",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-03T20:38:51.218Z",
-    "event_id": "rio-theatre-chutzpah-festival-local-artist-2026-11-03",
-    "target_name": "Local Artists Showcase: Chutzpah! Opening Night",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 26
-  },
-  {
-    "timestamp": "2026-11-03T20:38:18.907Z",
-    "event_id": "rio-theatre-musk-2026-11-04",
-    "target_name": "Musk",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 24
-  },
-  {
-    "timestamp": "2026-11-03T20:37:48.348Z",
-    "event_id": "the-cultch-box-office-inquiry-customer-se",
-    "target_name": "Box Office Inquiry & Customer Service",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 28
-  },
-  {
-    "timestamp": "2026-11-03T20:37:13.793Z",
-    "event_id": "the-cultch-historic-for-frances-when-it-s-raining-2027-04-21",
-    "target_name": "For Frances when it's raining",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 28
-  },
-  {
-    "timestamp": "2026-11-03T20:36:38.806Z",
-    "event_id": "historic-theatre-at-wolf-cull-2027-04-01",
-    "target_name": "Wolf Cull",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-03T20:35:59.861Z",
-    "event_id": "historic-theatre-at-michel-le-2027-03-24",
-    "target_name": "Michel(le)",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 26
-  },
-  {
-    "timestamp": "2026-11-03T20:35:25.757Z",
-    "event_id": "york-theatre-hamza-a-song-for-everyone-tour-2027-03-20",
-    "target_name": "Hamza — A Song for Everyone Tour",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 46
-  },
-  {
-    "timestamp": "2026-11-03T20:34:33.655Z",
-    "event_id": "the-cultch-hamza-a-song-for-everyone-tour",
-    "target_name": "Hamza — A Song for Everyone Tour",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 48
-  },
-  {
-    "timestamp": "2026-11-03T20:33:39.501Z",
-    "event_id": "york-theatre-steve-dawson-with-fats-kaplin-2027-03-19",
-    "target_name": "Steve Dawson with Fats Kaplin",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 41
-  },
-  {
-    "timestamp": "2026-11-03T20:32:52.506Z",
-    "event_id": "historic-theatre-here-here-songs-we-sing-for-ho-2027-03-17",
-    "target_name": "Here Here: Songs We Sing for Home",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 26
-  },
-  {
-    "timestamp": "2026-11-03T20:32:18.666Z",
-    "event_id": "historic-theatre-the-no-apologies-2027-03-10",
-    "target_name": "No Apologies",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 25
-  },
-  {
-    "timestamp": "2026-11-03T20:15:13.597Z",
-    "event_id": "the-cultch-frank-cos-live-in-your-neighbo",
-    "target_name": "Frank Cos Live in Your Neighbourhood",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": false,
-    "duration_seconds": 36
-  },
-  {
-    "timestamp": "2026-11-03T20:14:30.934Z",
-    "event_id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "target_name": "Snowed In Comedy Tour",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 37
-  },
-  {
-    "timestamp": "2026-11-03T20:13:48.001Z",
-    "event_id": "the-cultch-cuff-live",
-    "target_name": "CUFF LIVE",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 56
-  },
-  {
-    "timestamp": "2026-11-03T20:08:06.057Z",
-    "event_id": "the-cultch-frank-cos-live-in-your-neighbo",
-    "target_name": "Frank & Cos Live in Your Neighbourhood",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 30
-  },
-  {
-    "timestamp": "2026-11-03T20:07:27.906Z",
-    "event_id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "target_name": "Snowed In Comedy Tour",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-03T20:06:47.833Z",
-    "event_id": "the-cultch-cuff-live",
-    "target_name": "CUFF LIVE",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 34
-  },
-  {
-    "timestamp": "2026-11-03T20:06:06.274Z",
-    "event_id": "york-theatre-theatre-replacement-s-east-van-2026-11-18",
-    "target_name": "East Van Panto: Hercules — PREMIUM Presentation",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 58
-  },
-  {
-    "timestamp": "2026-11-03T20:05:02.420Z",
-    "event_id": "the-cultch-incognito",
-    "target_name": "Incognito",
-    "target_type": "event_qc",
-    "status": "FATAL_DEAD_LINK",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T20:04:21.502Z",
-    "event_id": "viff-centre-three-comrades-2026-11-08",
-    "target_name": "Three Comrades",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 28
-  },
-  {
-    "timestamp": "2026-11-03T20:03:47.548Z",
-    "event_id": "viff-centre-naza-2026-11-11",
-    "target_name": "Naza",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-03T20:03:10.751Z",
-    "event_id": "viff-centre-naza-2026-11-10",
-    "target_name": "Naza",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 33
-  },
-  {
-    "timestamp": "2026-11-03T20:02:31.471Z",
-    "event_id": "viff-centre-the-mortal-storm-2026-11-08",
-    "target_name": "The Mortal Storm",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-03T20:01:53.358Z",
-    "event_id": "viff-centre-the-mortal-storm-2026-11-04",
-    "target_name": "The Mortal Storm",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 35
-  },
-  {
-    "timestamp": "2026-11-03T18:37:18.945Z",
-    "event_id": "the-cultch-frank-cos-live-in-your-neighbo",
-    "target_name": "Frank & Cos Live in Your Neighbourhood",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": false,
-    "duration_seconds": 60
-  },
-  {
-    "timestamp": "2026-11-03T18:36:12.267Z",
-    "event_id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "target_name": "Snowed in Comedy Tour",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 55
-  },
-  {
-    "timestamp": "2026-11-03T18:35:11.166Z",
-    "event_id": "the-cultch-cuff-live",
-    "target_name": "CUFF LIVE",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 49
-  },
-  {
-    "timestamp": "2026-11-03T18:34:16.324Z",
-    "event_id": "york-theatre-theatre-replacement-s-east-van-2026-11-18",
-    "target_name": "Theatre Replacement’s East Van Panto: Hercules",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 58
-  },
-  {
-    "timestamp": "2026-11-03T18:33:12.073Z",
-    "event_id": "the-cultch-incognito",
-    "target_name": "Incognito",
-    "target_type": "event_qc",
-    "status": "FATAL_DEAD_LINK",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T18:32:33.665Z",
-    "event_id": "viff-centre-three-comrades-2026-11-08",
-    "target_name": "Three Comrades",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 84
-  },
-  {
-    "timestamp": "2026-11-03T18:31:03.218Z",
-    "event_id": "viff-centre-naza-2026-11-11",
-    "target_name": "NAZA",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 84
-  },
-  {
-    "timestamp": "2026-11-03T18:29:32.721Z",
-    "event_id": "viff-centre-naza-2026-11-10",
-    "target_name": "Naza",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T18:28:00.188Z",
-    "event_id": "viff-centre-the-mortal-storm-2026-11-08",
-    "target_name": "The Mortal Storm",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 85
-  },
-  {
-    "timestamp": "2026-11-03T18:26:28.710Z",
-    "event_id": "viff-centre-the-mortal-storm-2026-11-04",
-    "target_name": "The Mortal Storm",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T16:52:41.389Z",
-    "event_id": "celebrities-nightclu-playhouse-pres-no-thanks-boxin-2026-12-26",
-    "target_name": "Playhouse Pres: No Thanks (Boxing Day Bash)",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 42
-  },
-  {
-    "timestamp": "2026-11-03T16:51:52.586Z",
-    "event_id": "celebrities-nightclu-playhouse-pres-sidequest-2026-12-12",
-    "target_name": "Playhouse Pres: SIDEQUEST",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 43
-  },
-  {
-    "timestamp": "2026-11-03T16:51:03.568Z",
-    "event_id": "celebrities-nightclu-playhouse-pres-andrew-bayer-2026-12-05",
-    "target_name": "Playhouse Pres: Andrew Bayer",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 43
-  },
-  {
-    "timestamp": "2026-11-03T16:50:13.670Z",
-    "event_id": "celebrities-nightclu-playhouse-pres-whipped-cream-2026-11-28",
-    "target_name": "Playhouse Pres: Whipped Cream",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 45
-  },
-  {
-    "timestamp": "2026-11-03T16:49:22.422Z",
-    "event_id": "celebrities-nightclu-for-real-fridays-rihanna-4ever-2026-11-27",
-    "target_name": "FOR REAL FRIDAYS: RIHANNA 4EVER",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 43
-  },
-  {
-    "timestamp": "2026-11-03T16:48:33.313Z",
-    "event_id": "celebrities-nightclu-for-real-fridays-the-weeknd-4e-2026-11-20",
-    "target_name": "FOR REAL FRIDAYS: THE WEEKND 4EVER",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 44
-  },
-  {
-    "timestamp": "2026-11-03T16:47:42.537Z",
-    "event_id": "celebrities-nightclu-playhouse-pres-frank-walker-2026-11-21",
-    "target_name": "Playhouse Pres: Frank Walker",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 44
-  },
-  {
-    "timestamp": "2026-11-03T16:46:52.198Z",
-    "event_id": "celebrities-nightclu-playhouse-pres-kyle-watson-2026-11-14",
-    "target_name": "Playhouse Pres: Kyle Watson",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 43
-  },
-  {
-    "timestamp": "2026-11-03T16:46:02.684Z",
-    "event_id": "celebrities-nightclu-for-real-fridays-all4u-all-the-2026-11-13",
-    "target_name": "FOR REAL FRIDAYS: ALL4U: ALL THE LOVE SONGS OF ALL TIME",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 47
-  },
-  {
-    "timestamp": "2026-11-03T16:45:09.199Z",
-    "event_id": "celebrities-nightclu-playhouse-pres-innellea-2026-11-07",
-    "target_name": "Playhouse Pres: Innellea",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 44
-  },
-  {
-    "timestamp": "2026-11-03T16:44:18.761Z",
-    "event_id": "celebrities-nightclu-for-real-fridays-r4p-b-2026-11-06",
-    "target_name": "FOR REAL FRIDAYS: r4p&b",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 54
-  },
-  {
-    "timestamp": "2026-11-03T16:43:17.555Z",
-    "event_id": "the-roxy-cabaret-throne-of-glass-trivia-series-2026-12-17",
-    "target_name": "Throne of Glass Trivia Series: Night 5- Tower of Dawn",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 61
-  },
-  {
-    "timestamp": "2026-11-03T16:42:10.377Z",
-    "event_id": "the-roxy-cabaret-nickelchick-nickelback-tribute-2026-12-11",
-    "target_name": "NICKELCHICK ( NICKELBACK TRIBUTE )",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 55
-  },
-  {
-    "timestamp": "2026-11-03T16:41:08.811Z",
-    "event_id": "viff-centre-shadow-of-a-doubt-2026-11-09",
-    "target_name": "Shadow of a Doubt",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 59
-  },
-  {
-    "timestamp": "2026-11-03T16:40:03.041Z",
-    "event_id": "viff-centre-three-comrades-2026-11-08",
-    "target_name": "Three Comrades",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T16:38:30.500Z",
-    "event_id": "viff-centre-naza-2026-11-11",
-    "target_name": "Naza",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T16:36:57.963Z",
-    "event_id": "viff-centre-naza-2026-11-10",
-    "target_name": "Naza",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T16:35:21.900Z",
-    "event_id": "viff-centre-naza-2026-11-08",
-    "target_name": "Naza",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 83
-  },
-  {
-    "timestamp": "2026-11-03T16:33:52.912Z",
-    "event_id": "viff-centre-the-mortal-storm-2026-11-08",
-    "target_name": "The Mortal Storm",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T16:32:20.364Z",
-    "event_id": "viff-centre-the-mortal-storm-2026-11-04",
-    "target_name": "The Mortal Storm",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T15:44:12.445Z",
-    "event_id": "viff-centre-the-mad-dog-of-europe-2026-11-08",
-    "target_name": "The Mad Dog of Europe",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T15:42:39.904Z",
-    "event_id": "viff-centre-the-mad-dog-of-europe-2026-11-05",
-    "target_name": "The Mad Dog of Europe",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T15:41:03.835Z",
-    "event_id": "viff-centre-the-mad-dog-of-europe-2026-11-04",
-    "target_name": "The Mad Dog of Europe",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T15:39:27.791Z",
-    "event_id": "viff-centre-to-be-or-not-to-be-2026-11-08",
-    "target_name": "To Be or Not to Be",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T15:37:55.242Z",
-    "event_id": "viff-centre-to-be-or-not-to-be-2026-11-03",
-    "target_name": "To Be Or Not To Be",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 57
-  },
-  {
-    "timestamp": "2026-11-03T15:36:52.610Z",
-    "event_id": "viff-centre-the-great-mcginty-2026-11-03",
-    "target_name": "The Great McGinty",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T15:35:16.547Z",
-    "event_id": "viff-centre-lochmadd-the-39-steps-2026-11-03",
-    "target_name": "The 39 Steps",
-    "target_type": "event_qc",
-    "status": "TIMEOUT_EXCEEDED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-03T15:33:40.495Z",
-    "event_id": "vancouver-horror-sho-vancouver-horror-show-film-fes",
-    "target_name": "Vancouver Horror Show Film Festival 2026",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 37
-  },
-  {
-    "timestamp": "2026-11-03T15:32:56.656Z",
-    "event_id": "the-roxy-cabaret-cfe-marks-night-2026-12-03",
-    "target_name": "CFE Marks Night!",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 56
-  },
-  {
-    "timestamp": "2026-11-03T15:31:53.925Z",
-    "event_id": "the-roxy-cabaret-throne-of-glass-trivia-series-2026-11-26",
-    "target_name": "Throne Of Glass Trivia Series: Night 4- Empire Of Storms",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 60
-  },
-  {
-    "timestamp": "2026-11-03T00:03:45.459Z",
-    "event_id": "the-roxy-cabaret-threeninesfine-focus-your-audi-2026-11-20",
-    "target_name": "THREENINESFINE / FOCUS YOUR AUDIO",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 37
-  },
-  {
-    "timestamp": "2026-11-03T00:03:01.614Z",
-    "event_id": "the-roxy-cabaret-vancouver-school-of-rock-2026-11-17",
-    "target_name": "VANCOUVER SCHOOL OF ROCK",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 34
-  },
-  {
-    "timestamp": "2026-11-03T00:02:21.303Z",
-    "event_id": "the-roxy-cabaret-52nd-street-billy-joel-tribute-2026-11-06",
-    "target_name": "52ND STREET (Billy Joel Tribute) / RUNNIN DOWN A DREAM (Tom Petty tribute)",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 42
-  },
-  {
-    "timestamp": "2026-11-03T00:01:32.838Z",
-    "event_id": "the-roxy-cabaret-bomber-love-bring-me-flowers-2026-11-04",
-    "target_name": "BOMBER LOVE / BRING ME FLOWERS",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 72
-  },
-  {
-    "timestamp": "2026-11-03T00:00:14.930Z",
-    "event_id": "the-roxy-cabaret-aureane-golden-mk-pangea-maste-2026-11-03",
-    "target_name": "AUREANE / GOLDEN MK / PANGEA / MASTER VOLUME",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 38
-  },
-  {
-    "timestamp": "2026-11-02T23:59:30.791Z",
-    "event_id": "tightrope-theatre-murder-she-improvised-2026-11-13",
-    "target_name": "Murder She Improvised",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 65
-  },
-  {
-    "timestamp": "2026-11-02T23:58:19.298Z",
-    "event_id": "rogers-field-at-nat-special-ticket-offers-2027",
-    "target_name": "Special Ticket Offers",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 20
-  },
-  {
-    "timestamp": "2026-11-02T23:57:50.530Z",
-    "event_id": "rogers-field-at-nat-single-game-tickets",
-    "target_name": "Vancouver Canadians Single Game Tickets",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 22
-  },
-  {
-    "timestamp": "2026-11-02T23:57:22.137Z",
-    "event_id": "portside-pub-dinner-reservations-2026-10-21",
-    "target_name": "Dinner Reservations & Guestlist",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 34
-  },
-  {
-    "timestamp": "2026-11-02T23:56:41.702Z",
-    "event_id": "vancouver-discover-vancouver-festivals-a",
-    "target_name": "Discover Vancouver Festivals & Annual Events",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 21
-  },
-  {
-    "timestamp": "2026-11-02T19:38:53.021Z",
-    "event_id": "the-cultch-christoph-the-ocean-hates-you-2027-02-09",
-    "target_name": "The Ocean Hates You",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 53
-  },
-  {
-    "timestamp": "2026-11-02T19:37:53.991Z",
-    "event_id": "the-cultch-the-ocean-hates-you",
-    "target_name": "The Ocean Hates You!",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 47
-  },
-  {
-    "timestamp": "2026-11-02T19:37:00.046Z",
-    "event_id": "historic-theatre-at-the-daisy-theatre-back-in-bloo-2027-02-09",
-    "target_name": "The Daisy Theatre: Back in Bloom",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 49
-  },
-  {
-    "timestamp": "2026-11-02T19:36:02.007Z",
-    "event_id": "vancouver-playhouse-hamlet-2027-02-04",
-    "target_name": "Hamlet",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 47
-  },
-  {
-    "timestamp": "2026-11-02T19:35:08.614Z",
-    "event_id": "vancouver-playhouse-knitting-peace-2027-01-27",
-    "target_name": "Knitting Peace",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 61
-  },
-  {
-    "timestamp": "2026-11-02T19:34:01.633Z",
-    "event_id": "york-theatre-rogers-v-rogers-2027-01-19",
-    "target_name": "Rogers v. Rogers",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 50
-  },
-  {
-    "timestamp": "2026-11-02T19:33:05.331Z",
-    "event_id": "the-cultch-number-13",
-    "target_name": "Number 13",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 47
-  },
-  {
-    "timestamp": "2026-11-02T19:32:12.588Z",
-    "event_id": "the-cultch-historic-winter-harp-2026-12-04",
-    "target_name": "Winter Harp",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 54
-  },
-  {
-    "timestamp": "2026-11-02T19:31:11.678Z",
-    "event_id": "the-cultch-winter-harp",
-    "target_name": "Winter Harp",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": true,
-    "duration_seconds": 48
-  },
-  {
-    "timestamp": "2026-11-02T19:30:17.495Z",
-    "event_id": "viff-centre-the-great-mcginty-2026-11-03",
-    "target_name": "The Great McGinty",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 84
   }
 ]

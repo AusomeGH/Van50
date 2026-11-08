@@ -114,7 +114,7 @@ export function pruneOrphanedProofKeyframes({
           prunedCount++;
           freedBytes += stat.size;
         }
-      } catch (_) {}
+      } catch (_) { }
     }
   } catch (err) {
     console.warn(`⚠️ [Keyframe Cleanup] Warning scanning proof_keyframes: ${err.message}`);
@@ -225,12 +225,12 @@ export function formatTime12h(rawTime) {
   if (!trimmed || /^(?:none_available|not_applicable|search_exhausted_null|TBD|unknown)$/i.test(trimmed)) {
     return rawTime;
   }
-  // Direct single time match: HH:MM(:SS)? (AM|PM)? or H(AM|PM)
-  const singleMatch = trimmed.match(/^(\d{1,2})(?::(\d{2}))?(?::\d{2})?\s*(AM|PM|am|pm)?$/);
+  // Direct single time match: HH:MM(:SS)? (AM|PM|a.m.|p.m.)? or H(AM|PM)
+  const singleMatch = trimmed.match(/^(\d{1,2})(?::(\d{2}))?(?::\d{2})?\s*(A\.?M\.?|P\.?M\.?|a\.?m\.?|p\.?m\.?)?$/);
   if (singleMatch) {
     let h = parseInt(singleMatch[1], 10);
     const m = singleMatch[2] || "00";
-    const mer = singleMatch[3] ? singleMatch[3].toUpperCase() : null;
+    const mer = singleMatch[3] ? singleMatch[3].replace(/\./g, "").toUpperCase() : null;
     if (h > 24) return rawTime;
     if (mer) {
       if (mer === "PM" && h < 12) h += 12;
@@ -249,10 +249,10 @@ export function formatTime12h(rawTime) {
  */
 export function formatSchedule12h(str) {
   if (!str || typeof str !== "string") return str;
-  return str.replace(/\b([01]?\d|2[0-3]):([0-5]\d)(?::[0-5]\d)?(\s*(?:AM|PM|am|pm))?\b/g, (full, hh, mm, mer) => {
+  return str.replace(/\b([01]?\d|2[0-3]):([0-5]\d)(?::[0-5]\d)?(\s*(?:A\.?M\.?|P\.?M\.?|a\.?m\.?|p\.?m\.?))?(?=\s|$|[^a-zA-Z0-9])/g, (full, hh, mm, mer) => {
     let h = parseInt(hh, 10);
     const m = mm;
-    const merUpper = mer ? mer.trim().toUpperCase() : null;
+    const merUpper = mer ? mer.replace(/\./g, "").trim().toUpperCase() : null;
     if (merUpper) {
       if (merUpper === "PM" && h < 12) h += 12;
       if (merUpper === "AM" && h === 12) h = 0;
@@ -972,8 +972,18 @@ export async function compileCatalog(options = {}) {
         existing.dimension_audit?.D806_curator_lock?.locked === true ||
         existing.dimension_audit?.D806_curator_lock?.value === true
       );
+      const hasExpiredExistingDate = Boolean(
+        existing.lifecycle_type !== "perennial_drop_in" &&
+        ((existing.date && /^\d{4}-\d{2}-\d{2}$/.test(existing.date) && existing.date < todayIso) ||
+          (Array.isArray(existing.showings) && existing.showings.some((s) => s && s.status !== "concluded" && /^\d{4}-\d{2}-\d{2}$/.test(s.date || "") && s.date < todayIso)))
+      );
       const isMissingRequiredFields = Boolean(
         !existing.dimension_audit?.D009_holiday_affiliation ||
+        !existing.venue_grounding?.is_grounded ||
+        !existing.typical_item_spend ||
+        existing.date === "perennial" ||
+        existing.dateSchedule === "perennial" ||
+        hasExpiredExistingDate ||
         (existing.lifecycle_type === "time_bound_event" && !existing.date) ||
         (existing.event_archetype === "festival" && existing.dimension_audit?.D791_festival_hub_directory?.status !== "verified")
       );
@@ -1003,10 +1013,16 @@ export async function compileCatalog(options = {}) {
 
     // 2. Match Venue Master Record & Compute Smart Weighting (Perennial Identity Lock)
     const isSeedPerennial = seedLifecycle === "perennial_drop_in" || existing.lifecycle_type === "perennial_drop_in";
-    const venueQuery = isSeedPerennial
-      ? (seedVenue || existing.venue_name || existing.venue || box.venue_name || sched.venue_name || sched.venue)
-      : (box.venue_name || sched.venue_name || sched.venue || seedVenue);
-    const matchedVenue = matchVenue(venueQuery, venues);
+    const candidateVenueQueries = isSeedPerennial
+      ? [seedVenue, existing.venue_name, existing.venue, box.venue_name, sched.venue_name, sched.venue]
+      : [box.venue_name, sched.venue_name, sched.venue, seedVenue, existing.venue_name, existing.venue];
+    let matchedVenue = null;
+    for (const vq of candidateVenueQueries) {
+      if (vq) {
+        matchedVenue = matchVenue(vq, venues);
+        if (matchedVenue) break;
+      }
+    }
 
     // Smart Weighting Architecture (Epistemic Precedence Hierarchy - Rule 2E):
     // Facilities grounded by Stage 4 Venue Detailer AI hold authoritative ground truth (Weight: 1.0).
@@ -1076,8 +1092,8 @@ export async function compileCatalog(options = {}) {
     // 3. AI ARBITRATION: Lifecycle & Showings (5 Slots)
     const explicitFallbackDate = extractFallbackDate(eventId, seedUrl || existing.ticket_url || box.ticket_url, seed, existing);
     const hasExplicitTimeBoundDate = Boolean(
-      (sched.date && sched.date !== "none_available" && sched.date !== "TBD") ||
-      (box.date && box.date !== "none_available" && box.date !== "TBD") ||
+      (sched.date && sched.date !== "none_available" && sched.date !== "TBD" && sched.date !== "perennial") ||
+      (box.date && box.date !== "none_available" && box.date !== "TBD" && box.date !== "perennial") ||
       explicitFallbackDate
     );
     const isExplicitTimeBound =
@@ -1089,6 +1105,8 @@ export async function compileCatalog(options = {}) {
     const isPerennial =
       (seedLifecycle === "perennial_drop_in" ||
         sched.lifecycle_type === "perennial_drop_in" ||
+        box.date === "perennial" ||
+        sched.date === "perennial" ||
         (venue.access_model === "open_public_space" && !isExplicitTimeBound)) &&
       Boolean(venue.weekly_hours || venue.grounding_source === "known_physical_ground_truth");
 
@@ -1151,7 +1169,7 @@ export async function compileCatalog(options = {}) {
         return null;
       };
       dateSchedule = formatSchedule12h(
-        (existing.dateSchedule && existing.dateSchedule !== "Schedule Pending Verification" && existing.dateSchedule !== "Perennial Daily Access (Year-Round)")
+        (existing.dateSchedule && existing.dateSchedule !== "Schedule Pending Verification" && existing.dateSchedule !== "Perennial Daily Access (Year-Round)" && existing.dateSchedule !== "perennial")
           ? existing.dateSchedule
           : (formatWeeklyHours(venue.weekly_hours) || "Perennial Daily Access (Year-Round)")
       );
@@ -1165,7 +1183,7 @@ export async function compileCatalog(options = {}) {
       const fallbackDoors = formatTime12h(seed.doors_time || existing.doors_time || null);
       const fallbackEnd = formatTime12h(seed.end_time || existing.end_time || null);
 
-      const isRealDate = (d) => Boolean(d && d !== "none_available" && d !== "TBD" && d !== "search_exhausted_null" && !String(d).includes("Pending"));
+      const isRealDate = (d) => Boolean(d && d !== "none_available" && d !== "TBD" && d !== "perennial" && d !== "search_exhausted_null" && !String(d).includes("Pending"));
       const validSchedShowings = Array.isArray(sched.showings) ? sched.showings.filter((s) => s && isRealDate(s.date)) : [];
       const schedDatesSet = new Set(validSchedShowings.map((s) => parseHumanDateToIso(s.date) || s.date).filter(Boolean));
       if (isRealDate(sched.date)) schedDatesSet.add(parseHumanDateToIso(sched.date) || sched.date);
@@ -2188,11 +2206,13 @@ export async function compileCatalog(options = {}) {
     const resolvedCocktailBenchmark = (!isConfirmedFacility || isAlcoholFreeArchetype) ? null : (venue.cocktail_benchmark || null);
     const resolvedCoffeeBenchmark = !isConfirmedFacility ? null : (venue.coffee_benchmark || (venue.spend_benchmarks && venue.spend_benchmarks.coffee) || null);
     const resolvedMealBenchmark = !isConfirmedFacility ? null : (venue.meal_benchmark || (venue.spend_benchmarks && venue.spend_benchmarks.meal) || null);
+    const resolvedConcessionBenchmark = !isConfirmedFacility ? null : (venue.concession_benchmark || (venue.spend_benchmarks && venue.spend_benchmarks.concession) || null);
     const resolvedSpendBenchmarks = {
       beer: resolvedBeerBenchmark,
       cocktail: resolvedCocktailBenchmark,
       coffee: resolvedCoffeeBenchmark,
-      meal: resolvedMealBenchmark
+      meal: resolvedMealBenchmark,
+      ...(resolvedConcessionBenchmark && resolvedConcessionBenchmark !== "none_available" ? { concession: resolvedConcessionBenchmark } : {})
     };
 
     // Provenance & Dimension Audit Object (Unified 0XX–8XX Clustered Matrix)
@@ -2469,7 +2489,7 @@ export async function compileCatalog(options = {}) {
       beer_benchmark: resolvedBeerBenchmark,
       cocktail_benchmark: resolvedCocktailBenchmark,
       meal_benchmark: resolvedMealBenchmark,
-      concession_benchmark: isConfirmedFacility ? (venue.concession_benchmark || (venue.spend_benchmarks && venue.spend_benchmarks.concession) || null) : null,
+      concession_benchmark: resolvedConcessionBenchmark && resolvedConcessionBenchmark !== "none_available" ? resolvedConcessionBenchmark : null,
       spend_benchmarks: resolvedSpendBenchmarks,
       drink_benchmark: (() => {
         const clean = (v) => (v && v !== "none_available" && v !== "not_applicable" && v !== "search_exhausted_null") ? v : null;
@@ -2484,14 +2504,24 @@ export async function compileCatalog(options = {}) {
         const b = clean(resolvedBeerBenchmark);
         const c = clean(resolvedCocktailBenchmark);
         const cf = clean(resolvedCoffeeBenchmark);
+        const con = clean(resolvedConcessionBenchmark);
         const m = clean(resolvedMealBenchmark);
         const parts = [];
         if (b) parts.push(`Beer ${shortRange(b)}`);
         if (c) parts.push(`Cocktails ${shortRange(c)}`);
         if (!b && !c && cf) parts.push(`Coffee/Drinks ${shortRange(cf)}`);
         else if (cf && parts.length < 2) parts.push(`Coffee ${shortRange(cf)}`);
+        if (con && parts.length < 2 && (!cf || shortRange(con) !== shortRange(cf))) parts.push(`Concessions ${shortRange(con)}`);
         if (m && parts.length < 2) parts.push(`Food ${shortRange(m)}`);
-        return parts.length > 0 ? parts.join(' • ') : null;
+        if (parts.length > 0) return parts.join(' • ');
+        const hasConfirmedNoOnSiteConcessions = Boolean(
+          isConfirmedFacility && (
+            resolvedConcessionBenchmark === "none_available" ||
+            onSiteFnb === "none_available" ||
+            (typeof onSiteFnb === "string" && /\b(?:no\s+(?:on[- ]?site|permanent|regular|commercial(?:\s+public)?)\s+(?:cafe|bar|concession|food|restaurant)|none\s+inside|prohibited\s+inside)\b/i.test(onSiteFnb))
+          )
+        );
+        return hasConfirmedNoOnSiteConcessions ? "No on-site concessions" : null;
       })(),
       access_model: verifiedAccessModel,
       environment_type: verifiedEnvironmentType,
@@ -2939,7 +2969,7 @@ export async function compileCatalog(options = {}) {
   fs.writeFileSync(EVENTS_PATH, JSON.stringify(finalCatalog, null, 2), "utf-8");
 
   // Synchronize manual review queue:
-  // 1. Evict graduated cards and permanently archived cards
+  // 1. Evict graduated cards, permanently archived cards, and past/concluded events
   const compiledIds = new Set(compiledEvents.map((c) => c.id || c.event_id));
   let queue = loadJson(QUEUE_PATH, { metadata: {}, quarantinedEvents: [] });
   queue.quarantinedEvents = queue.quarantinedEvents || [];
@@ -2947,6 +2977,18 @@ export async function compileCatalog(options = {}) {
   queue.quarantinedEvents = queue.quarantinedEvents.filter((q) => {
     const qId = q.id || q.event_id;
     if (compiledIds.has(qId) || archivedIds.has(qId)) return false;
+    const qDate = q.date || null;
+    const qShowings = Array.isArray(q.showings) ? q.showings : [];
+    const hasUpcomingQShowing = qShowings.some((s) => s && s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date >= todayIso);
+    if (!hasUpcomingQShowing && qDate && /^\d{4}-\d{2}-\d{2}$/.test(qDate) && qDate < todayIso) {
+      archivedIds.add(qId);
+      archivedEventsList.push({
+        ...q,
+        archive_reason: "past_event_expired",
+        archived_at: nowIso,
+      });
+      return false;
+    }
     return true;
   });
   const graduatedCount = prevQCount - queue.quarantinedEvents.length;
