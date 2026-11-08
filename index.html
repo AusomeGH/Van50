@@ -35,8 +35,9 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="css/style.css?v=7.9.6">
-  <link rel="stylesheet" href="css/components.css?v=7.9.6">
+  <link rel="stylesheet" href="css/style.css?v=7.9.7">
+  <link rel="stylesheet" href="css/components.css?v=7.9.7">
+  <script>window.VAN50_MAPS_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';</script>
 
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
@@ -145,11 +146,11 @@
           </div>
 
           <div class="view-switch" role="group" aria-label="View Switcher">
-            <button type="button" class="view-btn active" id="view-cards-btn" aria-label="Card View">
+            <button type="button" class="view-btn view-switcher-btn active" id="view-cards-btn" data-view="cards" aria-pressed="true" aria-label="Card View">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
               <span>Cards</span>
             </button>
-            <button type="button" class="view-btn" id="view-map-btn" aria-label="Map View">
+            <button type="button" class="view-btn view-switcher-btn" id="view-map-btn" data-view="map" aria-pressed="false" aria-label="Map View">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
               <span>Map</span>
             </button>
@@ -320,8 +321,8 @@
     </section>
   </main>
 
-  <!-- Floating Mobile Map/List Toggle Pill (Hidden per user request) -->
-  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" aria-label="Switch between Map and List view">🗺️ Map</button>
+  <!-- Floating Mobile Map/List Toggle Pill -->
+  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and List view">🗺️ Map</button>
 
   <!-- Surprise Outing Generator / Roulette Modal -->
   <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-label="Surprise Outing Generator" aria-labelledby="roulette-modal-title" aria-hidden="true" inert>
@@ -562,12 +563,12 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=7.9.6"></script>
+  <script src="js/data.js?v=7.9.7"></script>
   <script src="js/accessibility.js?v=1.0.0"></script>
-  <script src="js/map.js?v=7.9.6"></script>
-  <script src="js/roulette.js?v=7.9.6"></script>
-  <script src="js/app.js?v=7.9.6"></script>
-  <script src="js/pwa-install.js?v=7.9.6"></script>
+  <script src="js/map.js?v=7.9.7"></script>
+  <script src="js/roulette.js?v=7.9.7"></script>
+  <script src="js/app.js?v=7.9.7"></script>
+  <script src="js/pwa-install.js?v=7.9.7"></script>
 
 </body>
 </html>

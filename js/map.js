@@ -1,8 +1,11 @@
 // Van50 — Official Google Maps JavaScript API Integration
-// Lazy-loaded singleton Map View with resilient coordinate resolution, custom SVG price pins,
-// shared InfoWindow, and Town Centre Quick-Jump controls (1 map load per session, 0 Geocoding calls).
+// Lazy-loaded singleton Map View with resilient coordinate resolution, venue-grouped category emoji pins,
+// price-tier SVG pills, multi-event shared InfoWindow, and Town Centre Quick-Jump controls.
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';
+if (typeof window !== 'undefined' && !window.VAN50_MAPS_KEY) {
+  window.VAN50_MAPS_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';
+}
+const GOOGLE_MAPS_API_KEY = (typeof window !== 'undefined' && window.VAN50_MAPS_KEY) || 'YOUR_GOOGLE_MAPS_API_KEY';
 
 const HOOD_COORDS = {
   'Downtown': { lat: 49.2827, lng: -123.1207 },
@@ -37,8 +40,10 @@ const HOOD_COORDS = {
   'South Surrey': { lat: 49.0401, lng: -122.8042 }
 };
 
-window.GOOGLE_MAPS_API_KEY = GOOGLE_MAPS_API_KEY;
-window.HOOD_COORDS = HOOD_COORDS;
+if (typeof window !== 'undefined') {
+  window.GOOGLE_MAPS_API_KEY = GOOGLE_MAPS_API_KEY;
+  window.HOOD_COORDS = HOOD_COORDS;
+}
 
 let mapInstance = null;
 let sharedInfoWindow = null;
@@ -65,39 +70,41 @@ function renderMapDiagnosticMessage(title, detail) {
   const canvas = getMapCanvasElement();
   if (!canvas) return;
   canvas.innerHTML = `
-    <div class="van50-map-diagnostic" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:360px;padding:32px 24px;text-align:center;background:#0f172a;color:#f8fafc;border-radius:12px;">
+    <div class="van50-map-diagnostic" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:380px;padding:32px 24px;text-align:center;background:#0f172a;color:#f8fafc;border-radius:12px;">
       <div style="font-size:2rem;margin-bottom:10px;">🗺️</div>
       <h3 style="font-family:var(--font-heading, sans-serif);font-size:1.15rem;font-weight:800;margin:0 0 8px 0;color:#ffffff;">
-        ${escapeHtml(title || 'Google Map Unavailable')}
+        ${escapeHtml(title || 'Google Map Configuration Required')}
       </h3>
-      <p style="font-size:0.88rem;line-height:1.5;max-width:460px;color:#cbd5e1;margin:0;">
-        ${escapeHtml(detail || 'Verify that the Google Maps JavaScript API is enabled and the current domain is authorized in Google Cloud Console.')}
+      <p style="font-size:0.88rem;line-height:1.5;max-width:480px;color:#cbd5e1;margin:0;">
+        ${escapeHtml(detail || 'Set window.VAN50_MAPS_KEY or GOOGLE_MAPS_API_KEY in js/map.js and authorize this domain in Google Cloud Console.')}
       </p>
     </div>
   `;
 }
 
 // Official Google Maps authentication failure hook
-window.gm_authFailure = function () {
-  mapAuthFailed = true;
-  renderMapDiagnosticMessage(
-    'Google Maps API Authentication Restricted',
-    'The configured Google Maps API key rejected this origin or requires Maps JavaScript API activation in Google Cloud Console.'
-  );
-};
+if (typeof window !== 'undefined') {
+  window.gm_authFailure = function () {
+    mapAuthFailed = true;
+    renderMapDiagnosticMessage(
+      'Google Maps API Authentication Restricted',
+      'The configured Google Maps API key rejected this HTTP referrer or requires Maps JavaScript API activation in Google Cloud Console.'
+    );
+  };
+}
 
 /**
  * Dynamically injects the official Google Maps JS API script only when needed.
  */
 function loadGoogleMapsScript() {
-  if (window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
+  if (typeof window !== 'undefined' && window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
     return Promise.resolve(window.google.maps);
   }
 
-  if (!GOOGLE_MAPS_API_KEY || String(GOOGLE_MAPS_API_KEY).trim() === '') {
+  if (!GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY === 'YOUR_GOOGLE_MAPS_API_KEY' || String(GOOGLE_MAPS_API_KEY).trim() === '') {
     renderMapDiagnosticMessage(
-      'Google Maps API Key Missing',
-      'Set GOOGLE_MAPS_API_KEY in js/map.js to enable the interactive event map.'
+      'Google Maps API Key Not Set',
+      'Provide a valid key in window.VAN50_MAPS_KEY or const GOOGLE_MAPS_API_KEY in js/map.js to render the interactive map.'
     );
     return Promise.reject(new Error('Missing GOOGLE_MAPS_API_KEY'));
   }
@@ -151,7 +158,7 @@ function loadGoogleMapsScript() {
             googleMapsScriptPromise = null;
             renderMapDiagnosticMessage(
               'Google Maps Failed to Initialize',
-              'The Google Maps script loaded, but window.google.maps.Map was not available.'
+              'The Google Maps script loaded, but window.google.maps.Map was not initialized.'
             );
             reject(new Error('window.google.maps.Map unavailable'));
           }
@@ -163,7 +170,7 @@ function loadGoogleMapsScript() {
       googleMapsScriptPromise = null;
       renderMapDiagnosticMessage(
         'Unable to Reach Google Maps',
-        'Could not load https://maps.googleapis.com/maps/api/js. Check your network connection or content blocker.'
+        'Could not load https://maps.googleapis.com/maps/api/js. Check your network connection or ad/content blocker.'
       );
       reject(new Error('Failed to load Google Maps script'));
     };
@@ -201,7 +208,6 @@ function resolveEventCoords(event, index = 0) {
     const lat = parseFloat(rawLat);
     const lng = parseFloat(rawLng);
 
-    // Check if explicit numeric coordinates exist (and aren't the old hardcoded 49.2827, -123.1207 placeholder)
     const isOldPlaceholder = Math.abs(lat - 49.2827) < 0.00001 && Math.abs(lng - (-123.1207)) < 0.00001;
     if (!isNaN(lat) && !isNaN(lng) && !isOldPlaceholder) {
       return { lat, lng };
@@ -240,46 +246,81 @@ function resolveEventCoords(event, index = 0) {
   };
 }
 
-// Legacy compatibility wrapper returning [lat, lng]
 function resolveEventCoordinates(event, index = 0) {
   const c = resolveEventCoords(event, index);
   return [c.lat, c.lng];
 }
 
 /**
- * Formats price badge text and selects color tier:
- *   $0 / Free -> Emerald #10B981
- *   <= $25    -> Sky #0284C7
- *   $26-$50   -> Forest #0D6E52
+ * Maps an event's primary category / tags / title to its canonical category emoji:
+ *   🎤 Comedy | 🎬 Indie Cinema | 🎸 Live Music | 🌲 Outdoors | 🧠 Trivia/Games |
+ *   🎭 Arts/Theatre | 🏒 Sports | 🎪 Festivals | 📍 Default
  */
-function getMarkerPriceVisuals(event) {
-  const numPrice = parseFloat(event?.price ?? event?.price_all_in ?? 0);
-  const isFree = Boolean(event?.isFree || isNaN(numPrice) || numPrice <= 0);
-  let label = 'Free';
-  let bgColor = '#10B981'; // Emerald for Free / $0
+function getCategoryEmoji(event) {
+  if (!event) return '📍';
+  const cat = String(event.category || event.primary_category || '').toLowerCase();
+  const arch = String(event.event_archetype || event.archetype || '').toLowerCase();
+  const tags = Array.isArray(event.subTags)
+    ? event.subTags.join(' ').toLowerCase()
+    : (Array.isArray(event.tags) ? event.tags.join(' ').toLowerCase() : String(event.tags || '').toLowerCase());
+  const title = String(event.title || event.event_name || '').toLowerCase();
+  const combined = `${cat} ${arch} ${tags} ${title}`;
 
-  if (!isFree) {
-    label = `$${numPrice % 1 === 0 ? numPrice.toFixed(0) : numPrice.toFixed(2)}`;
-    if (numPrice <= 25) {
-      bgColor = '#0284C7'; // Sky for <= $25
-    } else {
-      bgColor = '#0D6E52'; // Forest for $26-$50
-    }
-  }
-
-  return { label, bgColor, isFree, numPrice: isNaN(numPrice) ? 0 : numPrice };
+  if (/\b(trivia|quiz|board-game|board game|bingo|social_gaming|chess|games)\b/.test(combined)) return '🧠';
+  if (/\b(comedy|stand-up|standup|improv|laugh)\b/.test(combined)) return '🎤';
+  if (cat === 'cinema' || arch === 'cinema' || /\b(cinema|film|movie|screening|35mm)\b/.test(combined)) return '🎬';
+  if (cat === 'music' || /\b(music|concert|band|jazz|dj|symphony|orchestra|gig|live-music)\b/.test(combined)) return '🎸';
+  if (/\b(hockey|sport|sports|basketball|football|soccer|skating|golf|pitch & putt|active_rec)\b/.test(combined)) return '🏒';
+  if (cat === 'outdoors' || arch === 'civic_park' || /\b(outdoors|outdoor|park|seawall|garden|beach|nature|trail)\b/.test(combined)) return '🌲';
+  if (cat === 'festivals' || arch === 'festival' || Boolean(event.isFestival) || /\b(festival|diwali|fringe|viff|market|markets)\b/.test(combined)) return '🎪';
+  if (cat === 'shows' || cat === 'social' || arch === 'live_stage' || arch === 'museum_gallery' || /\b(theatre|theater|arts|gallery|museum|exhibition|burlesque|cabaret|opera|dance)\b/.test(combined)) return '🎭';
+  return '📍';
 }
 
-function buildMarkerSvgIcon(label, bgColor) {
-  const safeText = String(label || 'Free').slice(0, 8);
-  const width = Math.max(46, Math.min(78, safeText.length * 7 + 18));
-  const height = 26;
+/**
+ * Determines Price-Tier colors based on lowest price at the venue:
+ *   $0 / Free : Emerald Green (#10B981, border #059669, text #FFFFFF)
+ *   $1 - $25  : Sky Blue      (#0284C7, border #0369A1, text #FFFFFF)
+ *   $26 - $50 : Deep Forest   (#0D6E52, border #064E3B, text #FFFFFF)
+ */
+function getPriceTierColors(minPrice) {
+  const p = parseFloat(minPrice);
+  if (isNaN(p) || p <= 0) {
+    return { bg: '#10B981', border: '#059669', text: '#FFFFFF', tierLabel: 'Free' };
+  }
+  if (p <= 25) {
+    return { bg: '#0284C7', border: '#0369A1', text: '#FFFFFF', tierLabel: `$${p % 1 === 0 ? p.toFixed(0) : p.toFixed(2)}` };
+  }
+  return { bg: '#0D6E52', border: '#064E3B', text: '#FFFFFF', tierLabel: `$${p % 1 === 0 ? p.toFixed(0) : p.toFixed(2)}` };
+}
+
+function getEventNumericPrice(event) {
+  const p = parseFloat(event?.price ?? event?.price_all_in ?? 0);
+  if (event?.isFree || isNaN(p) || p <= 0) return 0;
+  return p;
+}
+
+function formatEventPriceBadge(event) {
+  if (event?.isSoldOut || event?.is_sold_out) return 'Sold Out';
+  const p = getEventNumericPrice(event);
+  if (p <= 0) return 'Free';
+  return `$${p % 1 === 0 ? p.toFixed(0) : p.toFixed(2)} CAD`;
+}
+
+/**
+ * Builds an SVG pill/circle marker icon displaying the Category Emoji (+ count if multiple events)
+ * and colored by the venue's lowest price tier.
+ */
+function buildVenueGroupMarkerIcon(pinLabel, colors, isMulti) {
+  const width = isMulti ? Math.max(54, pinLabel.length * 8 + 18) : 36;
+  const height = 30;
   const halfW = Math.round(width / 2);
+  const rx = 14;
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height + 6}" viewBox="0 0 ${width} ${height + 6}">
-    <rect x="1" y="1" width="${width - 2}" height="${height - 2}" rx="12" fill="${bgColor}" stroke="#ffffff" stroke-width="1.8"/>
-    <polygon points="${halfW - 5},${height - 1} ${halfW + 5},${height - 1} ${halfW},${height + 5}" fill="${bgColor}"/>
-    <text x="${halfW}" y="17.5" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11.5" font-weight="800">${escapeHtml(safeText)}</text>
+    <rect x="1.5" y="1.5" width="${width - 3}" height="${height - 3}" rx="${rx}" fill="${colors.bg}" stroke="${colors.border}" stroke-width="2"/>
+    <polygon points="${halfW - 5},${height - 2} ${halfW + 5},${height - 2} ${halfW},${height + 5}" fill="${colors.border}"/>
+    <text x="${halfW}" y="19.5" text-anchor="middle" fill="${colors.text}" font-family="Plus Jakarta Sans, Segoe UI Emoji, Apple Color Emoji, Noto Color Emoji, sans-serif" font-size="12.5" font-weight="800">${escapeHtml(pinLabel)}</text>
   </svg>`;
 
   return {
@@ -289,44 +330,60 @@ function buildMarkerSvgIcon(label, bgColor) {
   };
 }
 
-function buildInfoWindowContent(event, priceVisuals) {
-  const title = event?.title || event?.event_name || 'Vancouver Outing';
-  const venue = (typeof event?.venue === 'string' ? event.venue : event?.venue_name) || 'Metro Vancouver Venue';
-  const neighborhood = event?.neighborhood || 'Vancouver';
-  const dayTime = event?.dateSchedule || event?.date_schedule || event?.date || 'Upcoming';
-  const ticketUrl = event?.websiteUrl || event?.ticket_url || event?.details_url || '#';
-  const priceBadgeText = priceVisuals.isFree
-    ? 'Free ($0 CAD)'
-    : (event?.priceLabel || `${priceVisuals.label} CAD`);
-  const gmapsQuery = encodeURIComponent(`${venue} ${neighborhood} BC`);
+/**
+ * Builds the multi-event InfoWindow HTML for a grouped venue marker.
+ */
+function buildVenueGroupInfoWindowHtml(group) {
+  const venueName = group.venueName || 'Metro Vancouver Venue';
+  const neighborhood = group.neighborhood || 'Vancouver';
+  const count = group.events.length;
+  const gmapsQuery = encodeURIComponent(`${venueName} ${neighborhood} BC`);
   const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
 
-  return `
-    <div class="gmap-infowindow-card">
-      <div class="gmap-iw-top-row">
-        <span class="gmap-iw-badge" style="background:${priceVisuals.bgColor};color:#ffffff;border:none;">
-          ${escapeHtml(priceBadgeText)}
-        </span>
-        ${event?.categoryLabel ? `<span class="gmap-iw-cat">${escapeHtml(event.categoryLabel)}</span>` : ''}
+  const itemsHtml = group.events.map((ev) => {
+    const emoji = getCategoryEmoji(ev);
+    const title = ev.title || ev.event_name || 'Event';
+    const dayTime = ev.dateSchedule || ev.date_schedule || ev.date || 'Upcoming';
+    const priceStr = formatEventPriceBadge(ev);
+    const evPrice = getEventNumericPrice(ev);
+    const tierColors = getPriceTierColors(evPrice);
+    const ticketUrl = ev.websiteUrl || ev.ticket_url || ev.details_url || '#';
+
+    return `
+      <div class="gmap-venue-iw-item">
+        <div class="gmap-venue-iw-item-top">
+          <div class="gmap-venue-iw-item-title">
+            <span>${emoji}</span>
+            <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
+          </div>
+          <span class="gmap-iw-badge" style="background:${tierColors.bg};color:#ffffff;border:none;flex-shrink:0;">
+            ${escapeHtml(priceStr)}
+          </span>
+        </div>
+        <div class="gmap-venue-iw-item-meta">
+          <span>🗓️ ${escapeHtml(dayTime)}</span>
+          <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-venue-iw-ticket-link">
+            Tickets / Details ↗
+          </a>
+        </div>
       </div>
-      <h4 class="gmap-iw-title">
-        <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer">
-          ${escapeHtml(title)} ↗
-        </a>
-      </h4>
-      <div class="gmap-iw-meta">
-        <div class="gmap-iw-venue">
-          📍 <strong>${escapeHtml(venue)}</strong> <span class="gmap-iw-hood">• ${escapeHtml(neighborhood)}</span>
+    `;
+  }).join('');
+
+  return `
+    <div class="gmap-venue-iw">
+      <div class="gmap-venue-iw-header">
+        <h4 class="gmap-venue-iw-name">📍 ${escapeHtml(venueName)}</h4>
+        <div class="gmap-venue-iw-sub">
+          <span>${escapeHtml(neighborhood)}</span>
+          <span>${count} ${count === 1 ? 'event' : 'events'}</span>
         </div>
-        <div class="gmap-iw-date">
-          🗓️ ${escapeHtml(dayTime)}
-        </div>
+      </div>
+      <div class="gmap-venue-iw-list">
+        ${itemsHtml}
       </div>
       <div class="gmap-iw-actions">
-        <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-iw-btn-primary">
-          Tickets / Details ↗
-        </a>
-        <a href="${escapeHtml(gmapsUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-iw-btn-secondary">
+        <a href="${escapeHtml(gmapsUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-iw-btn-primary" style="width:100%;">
           🗺️ Open in Google Maps
         </a>
       </div>
@@ -335,10 +392,11 @@ function buildInfoWindowContent(event, priceVisuals) {
 }
 
 /**
- * Plots markers on the active Google Map instance, opens shared InfoWindow on click,
- * fits bounds, and updates the "X events plotted" counter.
+ * Groups filteredEvents by venue / coordinate (rounded to 4 decimal places),
+ * plots category-emoji + price-tier SVG markers, updates the "X events plotted" counter,
+ * and fits bounds.
  */
-function renderGoogleMapMarkers(filteredEvents, options = {}) {
+function renderMapMarkers(filteredEvents, options = {}) {
   const eventsList = Array.isArray(filteredEvents)
     ? filteredEvents
     : (window.currentFilteredEvents && window.currentFilteredEvents.length > 0
@@ -346,14 +404,13 @@ function renderGoogleMapMarkers(filteredEvents, options = {}) {
       : (window.VAN50_EVENTS || window.VANCOUVER_EVENTS || []));
 
   latestFilteredEvents = eventsList;
+  updatePlottedCounterText(eventsList.length);
 
-  // If map is not yet instantiated, keep the cached events list ready for when Map View opens
   if (!mapInstance || !window.google || !window.google.maps || mapAuthFailed) {
-    updatePlottedCounterText(eventsList.length);
     return;
   }
 
-  // 1. Clear existing markers
+  // Clear existing markers
   for (let i = 0; i < markersArray.length; i++) {
     if (markersArray[i]) {
       markersArray[i].setMap(null);
@@ -362,46 +419,70 @@ function renderGoogleMapMarkers(filteredEvents, options = {}) {
   markersArray = [];
 
   if (!sharedInfoWindow) {
-    sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
+    sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 330 });
   }
 
-  const bounds = new window.google.maps.LatLngBounds();
-  const seenCoordsCount = new Map();
+  // Group events by coordinate (rounded to 4 decimal places) or normalized venue name
+  const venueGroupsMap = new Map();
+  const venueCoordsCache = new Map();
 
-  // 2. Plot a marker for every filtered event
   eventsList.forEach((event, index) => {
     if (!event) return;
-    const baseCoords = resolveEventCoords(event, index);
-    if (!baseCoords || isNaN(baseCoords.lat) || isNaN(baseCoords.lng)) return;
+    const rawVenue = (typeof event.venue === 'string' ? event.venue : (event.venue_name || 'Vancouver Venue')).trim();
+    const normVenueKey = rawVenue.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
-    // Prevent identical-venue markers from stacking on top of the exact same pixel
-    const coordKey = `${baseCoords.lat.toFixed(4)},${baseCoords.lng.toFixed(4)}`;
-    const dupIdx = seenCoordsCount.get(coordKey) || 0;
-    seenCoordsCount.set(coordKey, dupIdx + 1);
+    let coords = venueCoordsCache.get(normVenueKey);
+    if (!coords) {
+      coords = resolveEventCoords(event, index);
+      venueCoordsCache.set(normVenueKey, coords);
+    }
+    if (!coords || isNaN(coords.lat) || isNaN(coords.lng)) return;
 
-    let finalLat = baseCoords.lat;
-    let finalLng = baseCoords.lng;
-    if (dupIdx > 0) {
-      const angle = (dupIdx * 137.5) * (Math.PI / 180);
-      const radius = 0.00022 * Math.ceil(dupIdx / 6);
-      finalLat = baseCoords.lat + radius * Math.cos(angle);
-      finalLng = baseCoords.lng + radius * Math.sin(angle) * 1.35;
+    const coordKey = `${coords.lat.toFixed(4)},${coords.lng.toFixed(4)}`;
+    let group = venueGroupsMap.get(coordKey);
+    if (!group) {
+      group = {
+        coordKey,
+        venueName: rawVenue,
+        neighborhood: event.neighborhood || 'Vancouver',
+        lat: coords.lat,
+        lng: coords.lng,
+        events: [],
+        minPrice: Infinity
+      };
+      venueGroupsMap.set(coordKey, group);
     }
 
-    const position = { lat: finalLat, lng: finalLng };
-    const priceVisuals = getMarkerPriceVisuals(event);
-    const icon = buildMarkerSvgIcon(priceVisuals.label, priceVisuals.bgColor);
+    group.events.push(event);
+    const evPrice = getEventNumericPrice(event);
+    if (evPrice < group.minPrice) {
+      group.minPrice = evPrice;
+    }
+  });
+
+  const bounds = new window.google.maps.LatLngBounds();
+
+  venueGroupsMap.forEach((group) => {
+    const count = group.events.length;
+    const primaryEmoji = getCategoryEmoji(group.events[0]);
+    const pinLabel = count > 1 ? `${primaryEmoji} ×${count}` : primaryEmoji;
+    const minPrice = group.minPrice === Infinity ? 0 : group.minPrice;
+    const colors = getPriceTierColors(minPrice);
+    const icon = buildVenueGroupMarkerIcon(pinLabel, colors, count > 1);
+    const position = { lat: group.lat, lng: group.lng };
 
     const marker = new window.google.maps.Marker({
       position,
       map: mapInstance,
-      title: `${event.title || event.event_name || 'Event'} (${priceVisuals.label})`,
+      title: count > 1
+        ? `${group.venueName} (${count} events • from ${colors.tierLabel})`
+        : `${group.events[0].title || 'Event'} @ ${group.venueName} (${colors.tierLabel})`,
       icon,
       optimized: true
     });
 
     marker.addListener('click', () => {
-      sharedInfoWindow.setContent(buildInfoWindowContent(event, priceVisuals));
+      sharedInfoWindow.setContent(buildVenueGroupInfoWindowHtml(group));
       sharedInfoWindow.open({
         anchor: marker,
         map: mapInstance
@@ -413,11 +494,8 @@ function renderGoogleMapMarkers(filteredEvents, options = {}) {
   });
 
   window.activeMapMarkers = markersArray;
+  updatePlottedCounterText(eventsList.length);
 
-  // 3. Update "X events plotted" counter
-  updatePlottedCounterText(markersArray.length);
-
-  // 4. Fit bounds across plotted markers (unless caller suppressed camera movement)
   if (!options.skipFitBounds && markersArray.length > 0) {
     mapInstance.fitBounds(bounds);
     if (markersArray.length === 1) {
@@ -440,7 +518,6 @@ async function initVancouverMap() {
   const mapCanvas = getMapCanvasElement();
   if (!mapCanvas) return null;
 
-  // Do NOT initialize while the map container is still display: none on page load
   const isVisible = Boolean(
     (mapWrapper && mapWrapper.style.display !== 'none' && !mapWrapper.hidden) ||
     (mapCanvas.offsetWidth > 0 && mapCanvas.offsetHeight > 0)
@@ -455,11 +532,10 @@ async function initVancouverMap() {
       ? latestFilteredEvents
       : (window.VAN50_EVENTS || window.VANCOUVER_EVENTS || []));
 
-  // If map instance already exists, trigger resize inside requestAnimationFrame and re-render markers
   if (mapInstance && window.google && window.google.maps) {
     requestAnimationFrame(() => {
       window.google.maps.event.trigger(mapInstance, 'resize');
-      renderGoogleMapMarkers(activeEvents);
+      renderMapMarkers(activeEvents);
     });
     return mapInstance;
   }
@@ -480,7 +556,7 @@ async function initVancouverMap() {
         clickableIcons: false
       });
 
-      sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
+      sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 330 });
 
       mapInstance.addListener('click', () => {
         if (sharedInfoWindow) sharedInfoWindow.close();
@@ -490,7 +566,7 @@ async function initVancouverMap() {
       window.vancouverMapInfoWindow = sharedInfoWindow;
     }
 
-    renderGoogleMapMarkers(activeEvents);
+    renderMapMarkers(activeEvents);
     return mapInstance;
   } catch (err) {
     console.warn('[Van50 Map] Map initialization warning:', err);
@@ -548,7 +624,6 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng) {
 
   if (!targetCoords) return;
 
-  // Toggle .active state on Town Centre Quick Jump buttons
   const allJumpButtons = document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button');
   allJumpButtons.forEach((btn) => {
     btn.classList.toggle('active', btn === clickedBtn);
@@ -608,12 +683,16 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-window.loadGoogleMapsScript = loadGoogleMapsScript;
-window.resolveEventCoords = resolveEventCoords;
-window.resolveEventCoordinates = resolveEventCoordinates;
-window.renderGoogleMapMarkers = renderGoogleMapMarkers;
-window.updateMapMarkers = renderGoogleMapMarkers;
-window.initVancouverMap = initVancouverMap;
-window.invalidateVancouverMap = invalidateVancouverMap;
-window.jumpToMapArea = jumpToMapArea;
-window.fitActiveMapMarkers = fitActiveMapMarkers;
+if (typeof window !== 'undefined') {
+  window.loadGoogleMapsScript = loadGoogleMapsScript;
+  window.resolveEventCoords = resolveEventCoords;
+  window.resolveEventCoordinates = resolveEventCoordinates;
+  window.getCategoryEmoji = getCategoryEmoji;
+  window.renderMapMarkers = renderMapMarkers;
+  window.renderGoogleMapMarkers = renderMapMarkers;
+  window.updateMapMarkers = renderMapMarkers;
+  window.initVancouverMap = initVancouverMap;
+  window.invalidateVancouverMap = invalidateVancouverMap;
+  window.jumpToMapArea = jumpToMapArea;
+  window.fitActiveMapMarkers = fitActiveMapMarkers;
+}

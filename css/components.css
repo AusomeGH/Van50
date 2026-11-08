@@ -7329,11 +7329,14 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 .results-count-bar,
 .dynamic-date-count-bar {
   display: flex !important;
-  flex-wrap: nowrap !important;
+  flex-wrap: wrap !important;
   justify-content: space-between !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding: 6px 16px !important;
+  gap: 8px 12px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 8px 16px !important;
   margin: 8px 0 12px 0 !important;
   background: #ffffff !important;
   border: 1px solid #e2e8f0 !important;
@@ -8009,4 +8012,215 @@ div[aria-label="Interactive Google Map of Events"] {
     border-radius: 12px;
     overflow: hidden;
   }
+}
+
+/* ============================================================================
+   12. VIEWPORT CONTAINMENT, POINTER-EVENT GUARD & MULTI-EVENT INFOWINDOW
+   ============================================================================ */
+/* Prevent Flex/Grid Child Blowout across all containers & horizontal carousels */
+header,
+main,
+main > section,
+main > div,
+.mobile-search-filter-bar,
+.search-filter-main-row,
+.filters-hub,
+.results-count-bar,
+.dynamic-date-count-bar,
+.results-count-right-group,
+section[aria-label="Events List"] {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.results-count-right-group {
+  width: auto !important;
+  display: inline-flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 8px 10px !important;
+}
+
+/* Search Bar Flex Row (Search Input + Filters Button never overflows) */
+.search-filter-main-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+.search-filter-main-row .search-wrapper {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.search-filter-main-row #search-input,
+.search-filter-main-row .search-input {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Horizontal Scroll Carousels (Contained to 100% width with hidden scrollbars) */
+div[aria-label="Quick Category Filters"],
+.quick-category-strip,
+section[aria-label="Active Vancouver Festivals"],
+.time-nav-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+div[aria-label="Quick Category Filters"]::-webkit-scrollbar,
+.quick-category-strip::-webkit-scrollbar,
+section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
+.time-nav-bar::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Remove Pointer-Event Blockers on Closed Modals & Backdrops */
+#mobile-sheet-backdrop:not(.is-open),
+.mobile-sheet-backdrop:not(.is-open),
+.drawer-backdrop:not(.active),
+.modal-overlay:not(.active),
+.itinerary-drawer:not(.active),
+.modal-overlay[aria-hidden="true"],
+.itinerary-drawer[aria-hidden="true"] {
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+@media (max-width: 768px) {
+  #mobile-filters-sheet:not(.is-open),
+  div[aria-label="Secondary Filters"][aria-hidden="true"] {
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+}
+
+/* View Switcher Z-Index & Clickability Guard */
+[aria-label="View Switcher"],
+.view-switch,
+.inline-view-switcher {
+  position: relative !important;
+  z-index: 30 !important;
+  pointer-events: auto !important;
+}
+
+[aria-label="View Switcher"] button,
+.view-switcher-btn,
+.inline-view-mode-btn,
+#mobile-view-toggle {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Multi-Event Venue InfoWindow Styles */
+.gmap-venue-iw {
+  font-family: var(--font-body);
+  color: #0f172a;
+  min-width: 240px;
+  max-width: 310px;
+  padding: 2px;
+}
+
+.gmap-venue-iw-header {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.gmap-venue-iw-name {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  margin: 0 0 3px 0;
+}
+
+.gmap-venue-iw-sub {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.gmap-venue-iw-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 10px;
+}
+
+.gmap-venue-iw-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gmap-venue-iw-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.gmap-venue-iw-item-title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+  flex: 1 1 auto;
+}
+
+.gmap-venue-iw-item-title a {
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.gmap-venue-iw-item-title a:hover {
+  color: #0d9488;
+  text-decoration: underline;
+}
+
+.gmap-venue-iw-item-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: #475569;
+}
+
+.gmap-venue-iw-ticket-link {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #0d9488 !important;
+  text-decoration: none;
+}
+
+.gmap-venue-iw-ticket-link:hover {
+  text-decoration: underline;
 }

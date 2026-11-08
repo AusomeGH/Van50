@@ -1679,25 +1679,29 @@ function setupEventListeners() {
     });
   }
 
-  // View Switcher (Cards vs Map) — Toggles CSS display only (never destroys or recreates the Google Map instance)
-  const viewCardsBtn = document.getElementById('view-cards-btn');
-  const viewMapBtn = document.getElementById('view-map-btn');
+  // View Switcher (Cards vs Map) — Binds ALL view switcher buttons across PC & Mobile
   const eventsGrid = document.getElementById('events-grid');
   const mapWrapper = document.getElementById('map-view-wrapper');
 
   window.setCatalogViewMode = function (mode) {
     if (!eventsGrid || !mapWrapper) return;
     const isMap = mode === 'map';
-    if (viewCardsBtn) viewCardsBtn.classList.toggle('active', !isMap);
-    if (viewMapBtn) viewMapBtn.classList.toggle('active', isMap);
-    document.querySelectorAll('.inline-view-mode-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-view-mode') === (isMap ? 'map' : 'cards'));
-    });
 
-    const mobileViewToggle = document.getElementById('mobile-view-toggle');
-    if (mobileViewToggle) {
-      mobileViewToggle.innerHTML = isMap ? '📋 List' : '🗺️ Map';
-    }
+    const allToggleButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, [data-view]');
+    allToggleButtons.forEach((btn) => {
+      if (btn.id === 'mobile-view-toggle' || btn.getAttribute('data-view') === 'toggle') {
+        btn.innerHTML = isMap ? '📋 List' : '🗺️ Map';
+        btn.classList.toggle('active', isMap);
+        btn.setAttribute('aria-pressed', isMap ? 'true' : 'false');
+        return;
+      }
+      const btnMode = btn.getAttribute('data-view')
+        || btn.getAttribute('data-view-mode')
+        || (btn.id === 'view-map-btn' || /map/i.test(btn.textContent) ? 'map' : 'cards');
+      const isBtnActive = btnMode === (isMap ? 'map' : 'cards');
+      btn.classList.toggle('active', isBtnActive);
+      btn.setAttribute('aria-pressed', isBtnActive ? 'true' : 'false');
+    });
 
     if (!isMap) {
       eventsGrid.style.display = 'grid';
@@ -1715,10 +1719,27 @@ function setupEventListeners() {
     }
   };
 
-  if (viewCardsBtn && viewMapBtn && eventsGrid && mapWrapper) {
-    viewCardsBtn.addEventListener('click', () => window.setCatalogViewMode('cards'));
-    viewMapBtn.addEventListener('click', () => window.setCatalogViewMode('map'));
-  }
+  window.bindAllViewSwitcherButtons = function () {
+    const allButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, [data-view]');
+    allButtons.forEach((btn) => {
+      if (btn._van50ViewSwitcherBound) return;
+      btn._van50ViewSwitcherBound = true;
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (btn.id === 'mobile-view-toggle' || btn.getAttribute('data-view') === 'toggle') {
+          const isMapCurrentlyActive = Boolean(mapWrapper && (mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block'));
+          window.setCatalogViewMode(isMapCurrentlyActive ? 'cards' : 'map');
+          return;
+        }
+        const targetMode = btn.getAttribute('data-view')
+          || btn.getAttribute('data-view-mode')
+          || (btn.id === 'view-map-btn' || /map/i.test(btn.textContent) ? 'map' : 'cards');
+        window.setCatalogViewMode(targetMode);
+      });
+    });
+  };
+
+  window.bindAllViewSwitcherButtons();
 
   // Neighborhood Toggle All
   const toggleAllNhBtn = document.getElementById('btn-toggle-all-neighborhoods');
@@ -1905,21 +1926,6 @@ function setupEventListeners() {
   if (mobileSheetBackdrop) mobileSheetBackdrop.addEventListener('click', window.closeMobileFiltersSheet);
   if (mobileSheetApplyBtn) mobileSheetApplyBtn.addEventListener('click', window.closeMobileFiltersSheet);
   if (mobileSheetResetBtn) mobileSheetResetBtn.addEventListener('click', window.resetSecondaryFilters);
-
-  if (mobileViewToggle && mapWrapper) {
-    mobileViewToggle.addEventListener('click', () => {
-      const isMapActive = mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block';
-      if (typeof window.setCatalogViewMode === 'function') {
-        window.setCatalogViewMode(isMapActive ? 'cards' : 'map');
-      } else if (isMapActive && viewCardsBtn) {
-        viewCardsBtn.click();
-      } else if (!isMapActive && viewMapBtn) {
-        viewMapBtn.click();
-      }
-    });
-  }
-  if (false) {
-  }
 
   // Manual Review Queue Modal Handlers
   const openReviewQueueBtn = document.getElementById('btn-open-review-queue');
@@ -3741,9 +3747,9 @@ function applyFiltersAndRender() {
         <div class="results-count-text">
           Showing <strong>${filtered.length}</strong> outings under $50
         </div>
-        <div class="inline-view-switcher" role="group" aria-label="Toggle Cards or Map View">
-          <button type="button" class="inline-view-mode-btn ${!isMapCurrentlyActive ? 'active' : ''}" data-view-mode="cards" onclick="window.setCatalogViewMode && window.setCatalogViewMode('cards')">📋 Cards</button>
-          <button type="button" class="inline-view-mode-btn ${isMapCurrentlyActive ? 'active' : ''}" data-view-mode="map" onclick="window.setCatalogViewMode && window.setCatalogViewMode('map')">🗺️ Map</button>
+        <div class="inline-view-switcher" role="group" aria-label="View Switcher">
+          <button type="button" class="inline-view-mode-btn view-switcher-btn ${!isMapCurrentlyActive ? 'active' : ''}" data-view="cards" data-view-mode="cards" aria-pressed="${!isMapCurrentlyActive ? 'true' : 'false'}">📋 Cards</button>
+          <button type="button" class="inline-view-mode-btn view-switcher-btn ${isMapCurrentlyActive ? 'active' : ''}" data-view="map" data-view-mode="map" aria-pressed="${isMapCurrentlyActive ? 'true' : 'false'}">🗺️ Map</button>
         </div>
       </div>
       ${(tagBadgeHtml || themeFilterPillHtml || excludedPillsHtml) ? `<div style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;">` : '<div style="display:none;">'}
@@ -3753,6 +3759,9 @@ function applyFiltersAndRender() {
       </div>
       ${crossCategoryBannerHtml}
     `;
+    if (typeof window.bindAllViewSwitcherButtons === 'function') {
+      window.bindAllViewSwitcherButtons();
+    }
   }
 
   renderEventCards(filtered);
