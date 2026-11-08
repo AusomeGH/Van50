@@ -7954,9 +7954,26 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   color: #0f172a !important;
 }
 
+#van50-map-canvas,
+div[aria-label="Interactive Google Map of Events"] {
+  width: 100%;
+  height: 560px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
 @media (min-width: 769px) {
   div[aria-label="View Switcher"] {
     display: inline-flex !important;
+  }
+
+  #van50-map-canvas,
+  div[aria-label="Interactive Google Map of Events"] {
+    width: 100%;
+    height: 560px;
+    border-radius: 12px;
+    overflow: hidden;
   }
 }
 
@@ -7983,8 +8000,13 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
     max-height: none !important;
   }
 
+  #van50-map-canvas,
+  div[aria-label="Interactive Google Map of Events"],
   #vancouver-map {
-    height: calc(100dvh - 210px) !important;
-    max-height: calc(100dvh - 210px) !important;
+    width: 100%;
+    height: calc(100dvh - 190px) !important;
+    min-height: 380px !important;
+    border-radius: 12px;
+    overflow: hidden;
   }
 }

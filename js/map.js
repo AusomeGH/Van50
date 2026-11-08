@@ -1,405 +1,285 @@
-// Van50 — Interactive Google Maps JavaScript API Integration
-// Quota-Protected Architecture:
-//   • Strictly 1 Google Map instance load per user session (never destroyed or recreated on search/filter/view toggle)
-//   • Strictly 0 Geocoding / Places API calls in the browser (static venue & Town Centre coordinate dictionary)
-//   • Persistent marker pool & single shared google.maps.InfoWindow
+// Van50 — Official Google Maps JavaScript API Integration
+// Lazy-loaded singleton Map View with resilient coordinate resolution, custom SVG price pins,
+// shared InfoWindow, and Town Centre Quick-Jump controls (1 map load per session, 0 Geocoding calls).
 
-const GOOGLE_MAPS_CONFIG = {
-  apiKey: (typeof window !== 'undefined' && window.ENV && window.ENV.VITE_GOOGLE_MAPS_API_KEY)
-    || 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg',
-  defaultCenter: { lat: 49.145, lng: -122.825 }, // Default center for Surrey
-  defaultZoom: 11,
-  vancouverCenter: { lat: 49.2745, lng: -123.1165 },
-  vancouverZoom: 12,
-  metroCenter: { lat: 49.215, lng: -122.965 },
-  metroZoom: 11
+const GOOGLE_MAPS_API_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';
+
+const HOOD_COORDS = {
+  'Downtown': { lat: 49.2827, lng: -123.1207 },
+  'Gastown': { lat: 49.2833, lng: -123.1066 },
+  'Chinatown': { lat: 49.2797, lng: -123.0998 },
+  'Yaletown': { lat: 49.2756, lng: -123.1219 },
+  'West End': { lat: 49.2869, lng: -123.1369 },
+  'Stanley Park': { lat: 49.3017, lng: -123.1417 },
+  'Mount Pleasant': { lat: 49.2628, lng: -123.1011 },
+  'Main Street': { lat: 49.2546, lng: -123.1013 },
+  'Commercial Drive': { lat: 49.2719, lng: -123.0695 },
+  'East Van': { lat: 49.2750, lng: -123.0650 },
+  'Hastings-Sunrise': { lat: 49.2812, lng: -123.0440 },
+  'Kitsilano': { lat: 49.2684, lng: -123.1683 },
+  'Point Grey': { lat: 49.2654, lng: -123.2045 },
+  'UBC': { lat: 49.2606, lng: -123.2460 },
+  'Fairview': { lat: 49.2636, lng: -123.1268 },
+  'Granville Island': { lat: 49.2712, lng: -123.1340 },
+  'Kerrisdale': { lat: 49.2341, lng: -123.1554 },
+  'Marpole': { lat: 49.2104, lng: -123.1302 },
+  'North Shore': { lat: 49.3125, lng: -123.0792 },
+  'Burnaby': { lat: 49.2488, lng: -122.9805 },
+  'New Westminster': { lat: 49.2057, lng: -122.9110 },
+  'Richmond': { lat: 49.1666, lng: -123.1336 },
+  'Surrey Central': { lat: 49.1896, lng: -122.8479 },
+  'City Centre': { lat: 49.1896, lng: -122.8479 },
+  'Whalley': { lat: 49.1930, lng: -122.8450 },
+  'Guildford': { lat: 49.1897, lng: -122.8012 },
+  'Fleetwood': { lat: 49.1575, lng: -122.7905 },
+  'Newton': { lat: 49.1337, lng: -122.8467 },
+  'Cloverdale': { lat: 49.1044, lng: -122.7303 },
+  'South Surrey': { lat: 49.0401, lng: -122.8042 }
 };
 
-window.GOOGLE_MAPS_CONFIG = GOOGLE_MAPS_CONFIG;
+window.GOOGLE_MAPS_API_KEY = GOOGLE_MAPS_API_KEY;
+window.HOOD_COORDS = HOOD_COORDS;
 
-// Hardcoded Town Centre & Area Quick-Jump Coordinates (0 Places/Geocoding API calls)
-const MAP_JUMP_AREAS = {
-  'whalley': {
-    id: 'whalley',
-    label: 'City Centre / Whalley',
-    lat: 49.1896,
-    lng: -122.8479,
-    zoom: 13
-  },
-  'guildford': {
-    id: 'guildford',
-    label: 'Guildford',
-    lat: 49.1897,
-    lng: -122.8014,
-    zoom: 13
-  },
-  'fleetwood': {
-    id: 'fleetwood',
-    label: 'Fleetwood',
-    lat: 49.1578,
-    lng: -122.7797,
-    zoom: 13
-  },
-  'newton': {
-    id: 'newton',
-    label: 'Newton',
-    lat: 49.1362,
-    lng: -122.8468,
-    zoom: 13
-  },
-  'cloverdale': {
-    id: 'cloverdale',
-    label: 'Cloverdale',
-    lat: 49.1126,
-    lng: -122.7352,
-    zoom: 13
-  },
-  'south-surrey': {
-    id: 'south-surrey',
-    label: 'South Surrey / White Rock',
-    lat: 49.0405,
-    lng: -122.8055,
-    zoom: 13
-  },
-  'surrey-all': {
-    id: 'surrey-all',
-    label: 'Surrey Overview',
-    lat: 49.145,
-    lng: -122.825,
-    zoom: 11
-  },
-  'vancouver': {
-    id: 'vancouver',
-    label: 'Vancouver',
-    lat: 49.2745,
-    lng: -123.1165,
-    zoom: 12
-  }
-};
-
-window.MAP_JUMP_AREAS = MAP_JUMP_AREAS;
-
-// Static Venue & Town Centre Coordinate Lookup Dictionary (0 Browser Geocoding Calls)
-const STATIC_VENUE_COORDINATES = [
-  // Surrey Venues & Town Centres
-  { match: /surrey civic plaza|surrey central|city centre library|centre stage|surrey city hall|chuck bailey|whalley|holland park/i, coords: [49.1896, -122.8479] },
-  { match: /bear creek park|surrey art gallery|surrey arts centre|surrey nature centre/i, coords: [49.1633, -122.8415] },
-  { match: /bell performing arts centre|bell centre|sullivan heights/i, coords: [49.1165, -122.8231] },
-  { match: /cloverdale fairgrounds|museum of surrey|bill reid millennium amphitheatre|cloverdale|stetson bowl|cloverdale agriplex/i, coords: [49.1126, -122.7352] },
-  { match: /guildford town centre|guildford recreation|hjorth road|green timbers|guildford/i, coords: [49.1897, -122.8014] },
-  { match: /fleetwood community centre|fleetwood park|surrey sport & leisure|fleetwood/i, coords: [49.1578, -122.7797] },
-  { match: /newton cultural centre|newton arena|newton wave pool|newton seniors|newton/i, coords: [49.1362, -122.8468] },
-  { match: /historic stewart farm|crescent beach|blackie spit/i, coords: [49.0609, -122.8596] },
-  { match: /darts hill garden/i, coords: [49.0315, -122.7686] },
-  { match: /south surrey|white rock|semiahmoo|softball city|grandview heights|redwoods golf/i, coords: [49.0405, -122.8055] },
-  { match: /bridgeview|scott road|north surrey/i, coords: [49.2036, -122.8631] },
-
-  // Major Vancouver & Metro Vancouver Venues
-  { match: /rio theatre/i, coords: [49.2618, -123.0702] },
-  { match: /fox cabaret/i, coords: [49.2639, -123.1014] },
-  { match: /the cinematheque|cinematheque/i, coords: [49.2796, -123.1243] },
-  { match: /viff centre|vancity theatre/i, coords: [49.2775, -123.1246] },
-  { match: /the improv centre|granville island|waterfront theatre|performance works|revue stage|arts club/i, coords: [49.2713, -123.1340] },
-  { match: /tightrope theatre/i, coords: [49.2636, -123.1008] },
-  { match: /rickshaw theatre/i, coords: [49.2814, -123.0982] },
-  { match: /hollywood theatre/i, coords: [49.2644, -123.1753] },
-  { match: /commodore ballroom/i, coords: [49.2803, -123.1219] },
-  { match: /vogue theatre/i, coords: [49.2795, -123.1228] },
-  { match: /orpheum/i, coords: [49.2799, -123.1213] },
-  { match: /queen elizabeth theatre|vancouver playhouse/i, coords: [49.2801, -123.1128] },
-  { match: /chan centre|ubc|museum of anthropology|thunderbird|nitobe|beatty biodiversity/i, coords: [49.2696, -123.2554] },
-  { match: /the cultch|york theatre/i, coords: [49.2759, -123.0695] },
-  { match: /roundhouse community/i, coords: [49.2733, -123.1217] },
-  { match: /stanley park/i, coords: [49.3017, -123.1417] },
-  { match: /queen elizabeth park|bloedel conservatory|vandusen/i, coords: [49.2418, -123.1126] },
-  { match: /celebrities nightclub|junction|davie/i, coords: [49.2794, -123.1299] },
-  { match: /fortune sound club|chinatown|sun yat-sen/i, coords: [49.2796, -123.1005] },
-  { match: /guilt & company|gastown|frankie's jazz/i, coords: [49.2838, -123.1088] },
-  { match: /shipyards|lonsdale|polygon gallery|north vancouver|lynn canyon/i, coords: [49.3101, -123.0805] },
-  { match: /burnaby|deer lake|metrotown|shadbolt/i, coords: [49.2366, -122.9693] },
-  { match: /new westminster|anvil centre|massey theatre/i, coords: [49.2057, -122.9110] },
-  { match: /richmond|steveston|gateway theatre/i, coords: [49.1666, -123.1336] },
-
-  // Broad Neighborhood Fallbacks
-  { match: /surrey/i, coords: [49.1450, -122.8250] },
-  { match: /commercial drive|east van/i, coords: [49.2712, -123.0695] },
-  { match: /mount pleasant|main st/i, coords: [49.2636, -123.1011] },
-  { match: /kitsilano|point grey/i, coords: [49.2684, -123.1683] },
-  { match: /downtown|yaletown|west end/i, coords: [49.2827, -123.1207] }
-];
-
-// Singleton state (1 Map Load per session)
 let mapInstance = null;
 let sharedInfoWindow = null;
-let googleMapsLoaderPromise = null;
-let mapInitPromise = null;
-let activeMarkers = [];
-const markerPool = new Map(); // Persistent cache of google.maps.Marker keyed by event ID
+let markersArray = [];
+let googleMapsScriptPromise = null;
+let mapAuthFailed = false;
 let latestFilteredEvents = [];
-let hasPerformedInitialCameraFit = false;
-let userHasLockedArea = false;
 
-/**
- * Resolves [lat, lng] for an event without making any browser Geocoding API calls.
- * Priority:
- *   1. Explicit numeric ev.lat & ev.lng
- *   2. Explicit numeric ev.coordinates [lat, lng] (unless it's an uncalibrated placeholder)
- *   3. Nested dimension_audit.D403_coordinates.value
- *   4. Static Venue & Town Centre lookup dictionary match against venue / address / neighborhood
- *   5. Clean fallback (Surrey default [49.145, -122.825] if Surrey context, else Downtown Vancouver [49.2827, -123.1207])
- */
-function resolveEventCoordinates(ev) {
-  if (!ev) return [GOOGLE_MAPS_CONFIG.defaultCenter.lat, GOOGLE_MAPS_CONFIG.defaultCenter.lng];
-
-  // 1. Explicit lat/lng properties
-  const explicitLat = Number(ev.lat !== undefined ? ev.lat : ev.latitude);
-  const explicitLng = Number(ev.lng !== undefined ? ev.lng : ev.longitude);
-  if (Number.isFinite(explicitLat) && Number.isFinite(explicitLng) && Math.abs(explicitLat) > 1 && Math.abs(explicitLng) > 1) {
-    return [explicitLat, explicitLng];
-  }
-
-  // 2. Explicit coordinates array [lat, lng]
-  if (Array.isArray(ev.coordinates) && ev.coordinates.length >= 2) {
-    const cLat = Number(ev.coordinates[0]);
-    const cLng = Number(ev.coordinates[1]);
-    const isGenericDefault = (Math.abs(cLat - 49.2827) < 0.00001 && Math.abs(cLng - (-123.1207)) < 0.00001);
-    if (Number.isFinite(cLat) && Number.isFinite(cLng) && !isGenericDefault) {
-      return [cLat, cLng];
-    }
-  }
-
-  // 3. Check dimension_audit.D403_coordinates
-  const d403 = ev.dimension_audit && ev.dimension_audit.D403_coordinates && ev.dimension_audit.D403_coordinates.value;
-  if (Array.isArray(d403) && d403.length >= 2) {
-    const dLat = Number(d403[0]);
-    const dLng = Number(d403[1]);
-    if (Number.isFinite(dLat) && Number.isFinite(dLng)) {
-      return [dLat, dLng];
-    }
-  } else if (typeof d403 === 'string') {
-    const m = d403.match(/(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/);
-    if (m) {
-      return [Number(m[1]), Number(m[2])];
-    }
-  }
-
-  // 4. Static Venue & Town Centre Dictionary Lookup
-  const searchBlob = `${ev.venue || ''} ${ev.venue_name || ''} ${ev.address || ''} ${ev.full_address || ''} ${ev.neighborhood || ''} ${ev.title || ''}`;
-  for (let i = 0; i < STATIC_VENUE_COORDINATES.length; i++) {
-    if (STATIC_VENUE_COORDINATES[i].match.test(searchBlob)) {
-      return [...STATIC_VENUE_COORDINATES[i].coords];
-    }
-  }
-
-  // 5. If generic coordinates [49.2827, -123.1207] were provided on the item, use them or fallback
-  if (Array.isArray(ev.coordinates) && ev.coordinates.length >= 2) {
-    const cLat = Number(ev.coordinates[0]);
-    const cLng = Number(ev.coordinates[1]);
-    if (Number.isFinite(cLat) && Number.isFinite(cLng)) {
-      return [cLat, cLng];
-    }
-  }
-
-  return [GOOGLE_MAPS_CONFIG.defaultCenter.lat, GOOGLE_MAPS_CONFIG.defaultCenter.lng];
+function getMapCanvasElement() {
+  return document.getElementById('van50-map-canvas')
+    || document.querySelector('div[aria-label="Interactive Google Map of Events"]')
+    || document.getElementById('vancouver-map');
 }
 
-window.resolveEventCoordinates = resolveEventCoordinates;
-
-/**
- * Dynamically determines whether the active event feed is centered in Surrey or Vancouver.
- */
-function getDynamicFeedCenter(events) {
-  const list = Array.isArray(events) && events.length > 0 ? events : latestFilteredEvents;
-  if (!Array.isArray(list) || list.length === 0) {
-    return { center: GOOGLE_MAPS_CONFIG.defaultCenter, zoom: GOOGLE_MAPS_CONFIG.defaultZoom };
+function updatePlottedCounterText(count) {
+  const badge = document.getElementById('map-pin-count-badge')
+    || document.querySelector('div[aria-label="Jump to Area"] .map-pin-count-badge');
+  if (badge) {
+    badge.textContent = `${count} events plotted`;
   }
-
-  let surreyCount = 0;
-  let validCount = 0;
-
-  for (let i = 0; i < list.length; i++) {
-    const coords = resolveEventCoordinates(list[i]);
-    if (!coords) continue;
-    validCount++;
-    const [lat, lng] = coords;
-    const blob = `${list[i].venue || ''} ${list[i].address || ''} ${list[i].neighborhood || ''}`.toLowerCase();
-    if (blob.includes('surrey') || blob.includes('white rock') || blob.includes('cloverdale') || blob.includes('whalley') || blob.includes('guildford') || blob.includes('newton') || blob.includes('fleetwood') || (lat <= 49.22 && lng >= -122.92)) {
-      surreyCount++;
-    }
-  }
-
-  if (validCount === 0 || surreyCount / validCount >= 0.25) {
-    return { center: GOOGLE_MAPS_CONFIG.defaultCenter, zoom: GOOGLE_MAPS_CONFIG.defaultZoom };
-  }
-
-  return { center: GOOGLE_MAPS_CONFIG.vancouverCenter, zoom: GOOGLE_MAPS_CONFIG.vancouverZoom };
 }
 
+function renderMapDiagnosticMessage(title, detail) {
+  const canvas = getMapCanvasElement();
+  if (!canvas) return;
+  canvas.innerHTML = `
+    <div class="van50-map-diagnostic" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:360px;padding:32px 24px;text-align:center;background:#0f172a;color:#f8fafc;border-radius:12px;">
+      <div style="font-size:2rem;margin-bottom:10px;">🗺️</div>
+      <h3 style="font-family:var(--font-heading, sans-serif);font-size:1.15rem;font-weight:800;margin:0 0 8px 0;color:#ffffff;">
+        ${escapeHtml(title || 'Google Map Unavailable')}
+      </h3>
+      <p style="font-size:0.88rem;line-height:1.5;max-width:460px;color:#cbd5e1;margin:0;">
+        ${escapeHtml(detail || 'Verify that the Google Maps JavaScript API is enabled and the current domain is authorized in Google Cloud Console.')}
+      </p>
+    </div>
+  `;
+}
+
+// Official Google Maps authentication failure hook
+window.gm_authFailure = function () {
+  mapAuthFailed = true;
+  renderMapDiagnosticMessage(
+    'Google Maps API Authentication Restricted',
+    'The configured Google Maps API key rejected this origin or requires Maps JavaScript API activation in Google Cloud Console.'
+  );
+};
+
 /**
- * Loads the Google Maps JavaScript API script asynchronously ONCE per session.
+ * Dynamically injects the official Google Maps JS API script only when needed.
  */
 function loadGoogleMapsScript() {
-  if (typeof window !== 'undefined' && window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
+  if (window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
     return Promise.resolve(window.google.maps);
   }
 
-  if (googleMapsLoaderPromise) {
-    return googleMapsLoaderPromise;
+  if (!GOOGLE_MAPS_API_KEY || String(GOOGLE_MAPS_API_KEY).trim() === '') {
+    renderMapDiagnosticMessage(
+      'Google Maps API Key Missing',
+      'Set GOOGLE_MAPS_API_KEY in js/map.js to enable the interactive event map.'
+    );
+    return Promise.reject(new Error('Missing GOOGLE_MAPS_API_KEY'));
   }
 
-  googleMapsLoaderPromise = new Promise((resolve, reject) => {
-    const existingScript = document.getElementById('van50-google-maps-sdk');
+  if (googleMapsScriptPromise) {
+    return googleMapsScriptPromise;
+  }
+
+  googleMapsScriptPromise = new Promise((resolve, reject) => {
+    const existingScript = document.getElementById('van50-google-maps-js');
     if (existingScript) {
-      const checkInterval = setInterval(() => {
+      const timer = setInterval(() => {
         if (window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
-          clearInterval(checkInterval);
+          clearInterval(timer);
           resolve(window.google.maps);
         }
       }, 50);
-      setTimeout(() => clearInterval(checkInterval), 15000);
+      setTimeout(() => {
+        clearInterval(timer);
+        if (window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
+          resolve(window.google.maps);
+        } else {
+          googleMapsScriptPromise = null;
+          reject(new Error('Timed out waiting for Google Maps SDK'));
+        }
+      }, 12000);
       return;
     }
 
-    const callbackName = '__onVan50GoogleMapsLoaded';
-    window[callbackName] = function () {
-      if (window.google && window.google.maps) {
+    const script = document.createElement('script');
+    script.id = 'van50-google-maps-js';
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&v=weekly`;
+    script.async = true;
+    script.defer = true;
+
+    script.onload = () => {
+      if (window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
         resolve(window.google.maps);
       } else {
-        reject(new Error('Google Maps SDK callback fired without window.google.maps'));
+        const poll = setInterval(() => {
+          if (window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
+            clearInterval(poll);
+            resolve(window.google.maps);
+          }
+        }, 40);
+        setTimeout(() => {
+          clearInterval(poll);
+          if (window.google && window.google.maps && typeof window.google.maps.Map === 'function') {
+            resolve(window.google.maps);
+          } else {
+            googleMapsScriptPromise = null;
+            renderMapDiagnosticMessage(
+              'Google Maps Failed to Initialize',
+              'The Google Maps script loaded, but window.google.maps.Map was not available.'
+            );
+            reject(new Error('window.google.maps.Map unavailable'));
+          }
+        }, 5000);
       }
     };
 
-    const script = document.createElement('script');
-    script.id = 'van50-google-maps-sdk';
-    script.async = true;
-    script.defer = true;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(GOOGLE_MAPS_CONFIG.apiKey)}&v=weekly&loading=async&callback=${callbackName}`;
-    script.onerror = function () {
-      googleMapsLoaderPromise = null;
-      console.warn('[Van50 Map] Google Maps JS API could not be loaded (offline or blocked referrer).');
-      reject(new Error('Failed to load Google Maps JS API script'));
+    script.onerror = () => {
+      googleMapsScriptPromise = null;
+      renderMapDiagnosticMessage(
+        'Unable to Reach Google Maps',
+        'Could not load https://maps.googleapis.com/maps/api/js. Check your network connection or content blocker.'
+      );
+      reject(new Error('Failed to load Google Maps script'));
     };
 
     document.head.appendChild(script);
   });
 
-  return googleMapsLoaderPromise;
+  return googleMapsScriptPromise;
 }
 
 /**
- * Initializes the singleton google.maps.Map instance ONCE when the map view initializes.
- * Never destroys or recreates the map instance on search, filter, or tab switch.
+ * Resolves { lat, lng } for an event with resilient property checks and neighborhood fallbacks.
  */
-function initVancouverMap(forceInit = false) {
-  const mapContainer = document.getElementById('vancouver-map');
-  if (!mapContainer) return null;
+function resolveEventCoords(event, index = 0) {
+  const idx = typeof index === 'number' && !isNaN(index) ? index : 0;
 
-  // Return existing singleton map instance immediately (0 extra map loads)
-  if (mapInstance) {
-    invalidateVancouverMap();
-    return mapInstance;
+  if (event && typeof event === 'object') {
+    const rawLat = event.lat
+      ?? event.latitude
+      ?? event.coords?.[0]
+      ?? event.coordinates?.[0]
+      ?? event.location?.lat
+      ?? event.venue?.lat
+      ?? event.dimension_audit?.D403_coordinates?.value?.[0];
+
+    const rawLng = event.lng
+      ?? event.lon
+      ?? event.longitude
+      ?? event.coords?.[1]
+      ?? event.coordinates?.[1]
+      ?? event.location?.lng
+      ?? event.venue?.lng
+      ?? event.dimension_audit?.D403_coordinates?.value?.[1];
+
+    const lat = parseFloat(rawLat);
+    const lng = parseFloat(rawLng);
+
+    // Check if explicit numeric coordinates exist (and aren't the old hardcoded 49.2827, -123.1207 placeholder)
+    const isOldPlaceholder = Math.abs(lat - 49.2827) < 0.00001 && Math.abs(lng - (-123.1207)) < 0.00001;
+    if (!isNaN(lat) && !isNaN(lng) && !isOldPlaceholder) {
+      return { lat, lng };
+    }
   }
 
-  // Only load Google Maps when the map view is actually visible or explicitly requested
-  const mapWrapper = document.getElementById('map-view-wrapper');
-  const isWrapperVisible = Boolean(
-    forceInit ||
-    (mapWrapper && (mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block')) ||
-    (mapContainer.offsetWidth > 0 && mapContainer.offsetHeight > 0)
-  );
+  // Fallback: match event.neighborhood / event.area / event.location / event.venue against HOOD_COORDS
+  const searchStr = [
+    event?.neighborhood,
+    event?.area,
+    typeof event?.location === 'string' ? event.location : '',
+    typeof event?.venue === 'string' ? event.venue : (event?.venue_name || ''),
+    event?.address || event?.full_address || ''
+  ].filter(Boolean).join(' ').toLowerCase();
 
-  if (!isWrapperVisible) {
-    return null;
+  let matchedBase = null;
+  const hoodNames = Object.keys(HOOD_COORDS);
+  for (let i = 0; i < hoodNames.length; i++) {
+    const name = hoodNames[i];
+    if (searchStr.includes(name.toLowerCase())) {
+      matchedBase = HOOD_COORDS[name];
+      break;
+    }
   }
 
-  if (mapInitPromise) {
-    return mapInstance;
+  if (!matchedBase) {
+    matchedBase = HOOD_COORDS['Downtown'];
   }
 
-  mapInitPromise = loadGoogleMapsScript()
-    .then((gmaps) => {
-      if (mapInstance) return mapInstance;
+  const latOffset = ((idx % 7) - 3) * 0.0012;
+  const lngOffset = (((idx * 3) % 7) - 3) * 0.0015;
 
-      // Initialize with Surrey default center { lat: 49.145, lng: -122.825 }, zoom: 11
-      mapInstance = new gmaps.Map(mapContainer, {
-        center: GOOGLE_MAPS_CONFIG.defaultCenter,
-        zoom: GOOGLE_MAPS_CONFIG.defaultZoom,
-        minZoom: 9,
-        maxZoom: 18,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: true,
-        zoomControl: true,
-        gestureHandling: 'greedy',
-        clickableIcons: false,
-        styles: [
-          {
-            featureType: 'poi.business',
-            stylers: [{ visibility: 'simplified' }]
-          }
-        ]
-      });
+  return {
+    lat: matchedBase.lat + latOffset,
+    lng: matchedBase.lng + lngOffset
+  };
+}
 
-      // Single shared InfoWindow instance reused across all markers
-      sharedInfoWindow = new gmaps.InfoWindow({
-        maxWidth: 320
-      });
-
-      // Close InfoWindow when clicking bare map canvas
-      mapInstance.addListener('click', () => {
-        if (sharedInfoWindow) {
-          sharedInfoWindow.close();
-        }
-      });
-
-      window.vancouverMapInstance = mapInstance;
-      window.vancouverMapInfoWindow = sharedInfoWindow;
-
-      // Render current filtered events on the newly created map instance
-      const initialEvents = (latestFilteredEvents && latestFilteredEvents.length > 0)
-        ? latestFilteredEvents
-        : (window.currentFilteredEvents && window.currentFilteredEvents.length > 0
-          ? window.currentFilteredEvents
-          : (window.VAN50_EVENTS || window.VANCOUVER_EVENTS || []));
-
-      updateMapMarkers(initialEvents, { isInitialLoad: true });
-
-      return mapInstance;
-    })
-    .catch(() => {
-      mapInitPromise = null;
-      return null;
-    });
-
-  return mapInstance;
+// Legacy compatibility wrapper returning [lat, lng]
+function resolveEventCoordinates(event, index = 0) {
+  const c = resolveEventCoords(event, index);
+  return [c.lat, c.lng];
 }
 
 /**
- * Triggers a non-destructive layout resize on the existing singleton map instance.
+ * Formats price badge text and selects color tier:
+ *   $0 / Free -> Emerald #10B981
+ *   <= $25    -> Sky #0284C7
+ *   $26-$50   -> Forest #0D6E52
  */
-function invalidateVancouverMap() {
-  if (!mapInstance || !window.google || !window.google.maps) return;
-  try {
-    window.google.maps.event.trigger(mapInstance, 'resize');
-  } catch (_) {}
+function getMarkerPriceVisuals(event) {
+  const numPrice = parseFloat(event?.price ?? event?.price_all_in ?? 0);
+  const isFree = Boolean(event?.isFree || isNaN(numPrice) || numPrice <= 0);
+  let label = 'Free';
+  let bgColor = '#10B981'; // Emerald for Free / $0
+
+  if (!isFree) {
+    label = `$${numPrice % 1 === 0 ? numPrice.toFixed(0) : numPrice.toFixed(2)}`;
+    if (numPrice <= 25) {
+      bgColor = '#0284C7'; // Sky for <= $25
+    } else {
+      bgColor = '#0D6E52'; // Forest for $26-$50
+    }
+  }
+
+  return { label, bgColor, isFree, numPrice: isNaN(numPrice) ? 0 : numPrice };
 }
 
-/**
- * Builds a crisp SVG data-URI pill marker showing the event's price badge.
- */
-function createPriceMarkerIcon(priceText, isFree, isSoldOut) {
-  const bgFill = isSoldOut ? '#475569' : (isFree ? '#059669' : '#0f172a');
-  const strokeColor = isSoldOut ? '#94a3b8' : (isFree ? '#34d399' : '#0d9488');
-  const textColor = '#ffffff';
-  const label = String(priceText || '$').slice(0, 9);
-  const width = Math.max(46, Math.min(82, label.length * 7 + 18));
-  const height = 28;
+function buildMarkerSvgIcon(label, bgColor) {
+  const safeText = String(label || 'Free').slice(0, 8);
+  const width = Math.max(46, Math.min(78, safeText.length * 7 + 18));
+  const height = 26;
   const halfW = Math.round(width / 2);
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height + 6}" viewBox="0 0 ${width} ${height + 6}">
-    <rect x="1.5" y="1.5" width="${width - 3}" height="${height - 3}" rx="12.5" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2"/>
-    <polygon points="${halfW - 5},${height - 2} ${halfW + 5},${height - 2} ${halfW},${height + 5}" fill="${strokeColor}"/>
-    <text x="${halfW}" y="18" text-anchor="middle" fill="${textColor}" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11.5" font-weight="800">${escapeHtml(label)}</text>
+    <rect x="1" y="1" width="${width - 2}" height="${height - 2}" rx="12" fill="${bgColor}" stroke="#ffffff" stroke-width="1.8"/>
+    <polygon points="${halfW - 5},${height - 1} ${halfW + 5},${height - 1} ${halfW},${height + 5}" fill="${bgColor}"/>
+    <text x="${halfW}" y="17.5" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11.5" font-weight="800">${escapeHtml(safeText)}</text>
   </svg>`;
 
   return {
@@ -409,66 +289,45 @@ function createPriceMarkerIcon(priceText, isFree, isSoldOut) {
   };
 }
 
-/**
- * Formats the price badge text for a marker and InfoWindow.
- */
-function getEventPriceBadge(ev) {
-  if (!ev) return 'Free';
-  if (ev.isSoldOut || ev.is_sold_out) return 'Sold Out';
-  if (ev.isFree || Number(ev.price) === 0) return 'Free';
-  if (typeof ev.price === 'number' && Number.isFinite(ev.price)) {
-    return `$${ev.price.toFixed(ev.price % 1 === 0 ? 0 : 2)}`;
-  }
-  if (ev.priceLabel) {
-    return String(ev.priceLabel).replace(/\s*CAD|\s*all-in|\s*advance|\s*door/gi, '').trim();
-  }
-  return '≤ $50';
-}
-
-/**
- * Builds the HTML content for the shared google.maps.InfoWindow.
- */
-function buildInfoWindowHtml(ev, sameVenueCount) {
-  const title = ev.title || ev.event_name || 'Event';
-  const venueName = ev.venue || ev.venue_name || 'Metro Vancouver Venue';
-  const neighborhood = ev.neighborhood || '';
-  const dateSchedule = ev.dateSchedule || ev.date_schedule || ev.date || 'Upcoming Showing';
-  const priceBadge = getEventPriceBadge(ev);
-  const fullPriceDisplay = (ev.isFree || Number(ev.price) === 0)
+function buildInfoWindowContent(event, priceVisuals) {
+  const title = event?.title || event?.event_name || 'Vancouver Outing';
+  const venue = (typeof event?.venue === 'string' ? event.venue : event?.venue_name) || 'Metro Vancouver Venue';
+  const neighborhood = event?.neighborhood || 'Vancouver';
+  const dayTime = event?.dateSchedule || event?.date_schedule || event?.date || 'Upcoming';
+  const ticketUrl = event?.websiteUrl || event?.ticket_url || event?.details_url || '#';
+  const priceBadgeText = priceVisuals.isFree
     ? 'Free ($0 CAD)'
-    : (ev.priceLabel || `${priceBadge} CAD`);
-  const isSoldOut = Boolean(ev.isSoldOut || ev.is_sold_out);
-  const websiteUrl = ev.websiteUrl || ev.ticket_url || ev.details_url || '#';
-  const [lat, lng] = resolveEventCoordinates(ev);
-  const gmapsDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${venueName}, ${ev.address || 'BC'}`)}`;
-  const badgeClass = isSoldOut ? 'gmap-iw-badge sold-out' : (ev.isFree ? 'gmap-iw-badge free' : 'gmap-iw-badge paid');
+    : (event?.priceLabel || `${priceVisuals.label} CAD`);
+  const gmapsQuery = encodeURIComponent(`${venue} ${neighborhood} BC`);
+  const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
 
   return `
     <div class="gmap-infowindow-card">
       <div class="gmap-iw-top-row">
-        <span class="${badgeClass}">${escapeHtml(fullPriceDisplay)}</span>
-        ${ev.categoryLabel ? `<span class="gmap-iw-cat">${escapeHtml(ev.categoryLabel)}</span>` : ''}
+        <span class="gmap-iw-badge" style="background:${priceVisuals.bgColor};color:#ffffff;border:none;">
+          ${escapeHtml(priceBadgeText)}
+        </span>
+        ${event?.categoryLabel ? `<span class="gmap-iw-cat">${escapeHtml(event.categoryLabel)}</span>` : ''}
       </div>
       <h4 class="gmap-iw-title">
-        <a href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer">
+        <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer">
           ${escapeHtml(title)} ↗
         </a>
       </h4>
       <div class="gmap-iw-meta">
         <div class="gmap-iw-venue">
-          📍 <strong>${escapeHtml(venueName)}</strong>${neighborhood ? ` <span class="gmap-iw-hood">(${escapeHtml(neighborhood)})</span>` : ''}
+          📍 <strong>${escapeHtml(venue)}</strong> <span class="gmap-iw-hood">• ${escapeHtml(neighborhood)}</span>
         </div>
         <div class="gmap-iw-date">
-          🗓️ ${escapeHtml(dateSchedule)}
+          🗓️ ${escapeHtml(dayTime)}
         </div>
       </div>
-      ${sameVenueCount > 1 ? `<div class="gmap-iw-co-events">✨ ${sameVenueCount} events at this venue match your filters</div>` : ''}
       <div class="gmap-iw-actions">
-        <a href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-iw-btn-primary">
-          Get Tickets / Details ↗
+        <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-iw-btn-primary">
+          Tickets / Details ↗
         </a>
-        <a href="${escapeHtml(gmapsDirectionsUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-iw-btn-secondary" title="Open directions in Google Maps (${lat.toFixed(4)}, ${lng.toFixed(4)})">
-          Directions ↗
+        <a href="${escapeHtml(gmapsUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-iw-btn-secondary">
+          🗺️ Open in Google Maps
         </a>
       </div>
     </div>
@@ -476,185 +335,267 @@ function buildInfoWindowHtml(ev, sameVenueCount) {
 }
 
 /**
- * Updates markers on the existing singleton mapInstance to match the filtered events list.
- * Strictly 0 Geocoding API calls and 0 new Map loads.
+ * Plots markers on the active Google Map instance, opens shared InfoWindow on click,
+ * fits bounds, and updates the "X events plotted" counter.
  */
-function updateMapMarkers(events, options = {}) {
-  const eventList = Array.isArray(events) ? events : [];
-  latestFilteredEvents = eventList;
+function renderGoogleMapMarkers(filteredEvents, options = {}) {
+  const eventsList = Array.isArray(filteredEvents)
+    ? filteredEvents
+    : (window.currentFilteredEvents && window.currentFilteredEvents.length > 0
+      ? window.currentFilteredEvents
+      : (window.VAN50_EVENTS || window.VANCOUVER_EVENTS || []));
 
-  // Update the pin count badge in the Jump to Area toolbar
-  const countBadge = document.getElementById('map-pin-count-badge');
-  if (countBadge) {
-    countBadge.textContent = `${eventList.length} ${eventList.length === 1 ? 'outing' : 'outings'} plotted`;
-  }
+  latestFilteredEvents = eventsList;
 
-  // If the map hasn't been initialized yet (e.g., user is still in Cards view), just cache the events
-  if (!mapInstance || !window.google || !window.google.maps) {
-    const mapWrapper = document.getElementById('map-view-wrapper');
-    if (mapWrapper && (mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block')) {
-      initVancouverMap(true);
-    }
+  // If map is not yet instantiated, keep the cached events list ready for when Map View opens
+  if (!mapInstance || !window.google || !window.google.maps || mapAuthFailed) {
+    updatePlottedCounterText(eventsList.length);
     return;
   }
 
-  // Track co-located events at identical coordinates so pins don't completely hide one another
-  const coordCounts = new Map();
-  const coordTotals = new Map();
-
-  eventList.forEach((ev) => {
-    if (!ev) return;
-    const [lat, lng] = resolveEventCoordinates(ev);
-    const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
-    coordTotals.set(key, (coordTotals.get(key) || 0) + 1);
-  });
-
-  const nextActiveIds = new Set();
-  const nextActiveMarkers = [];
-
-  eventList.forEach((ev, idx) => {
-    if (!ev) return;
-    const evId = String(ev.id || ev.event_id || `ev-idx-${idx}`);
-    nextActiveIds.add(evId);
-
-    const [baseLat, baseLng] = resolveEventCoordinates(ev);
-    const coordKey = `${baseLat.toFixed(4)},${baseLng.toFixed(4)}`;
-    const seenIndex = coordCounts.get(coordKey) || 0;
-    coordCounts.set(coordKey, seenIndex + 1);
-    const totalAtSpot = coordTotals.get(coordKey) || 1;
-
-    // Deterministic micro-offset (~18m radius spiral) when multiple events share the exact same venue
-    let finalLat = baseLat;
-    let finalLng = baseLng;
-    if (seenIndex > 0) {
-      const angle = (seenIndex * 137.5) * (Math.PI / 180);
-      const radius = 0.00016 * Math.ceil(seenIndex / 6);
-      finalLat = baseLat + radius * Math.cos(angle);
-      finalLng = baseLng + radius * Math.sin(angle) * 1.4;
-    }
-
-    const priceText = getEventPriceBadge(ev);
-    const isFree = Boolean(ev.isFree || Number(ev.price) === 0);
-    const isSoldOut = Boolean(ev.isSoldOut || ev.is_sold_out);
-    const iconConfig = createPriceMarkerIcon(priceText, isFree, isSoldOut);
-
-    let marker = markerPool.get(evId);
-    if (!marker) {
-      marker = new window.google.maps.Marker({
-        position: { lat: finalLat, lng: finalLng },
-        map: mapInstance,
-        title: `${ev.title || 'Event'} — ${ev.venue || ''} (${priceText})`,
-        icon: iconConfig,
-        optimized: true
-      });
-
-      marker.addListener('click', () => {
-        if (!sharedInfoWindow) {
-          sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
-        }
-        const currentEv = marker._van50Event || ev;
-        const currentSameCount = marker._van50SameVenueCount || 1;
-        sharedInfoWindow.setContent(buildInfoWindowHtml(currentEv, currentSameCount));
-        sharedInfoWindow.open({
-          anchor: marker,
-          map: mapInstance
-        });
-      });
-
-      markerPool.set(evId, marker);
-    } else {
-      marker.setPosition({ lat: finalLat, lng: finalLng });
-      marker.setTitle(`${ev.title || 'Event'} — ${ev.venue || ''} (${priceText})`);
-      marker.setIcon(iconConfig);
-      if (marker.getMap() !== mapInstance) {
-        marker.setMap(mapInstance);
-      }
-    }
-
-    marker._van50Event = ev;
-    marker._van50SameVenueCount = totalAtSpot;
-    marker._van50EventId = evId;
-    nextActiveMarkers.push(marker);
-  });
-
-  // Hide any previously active markers that are no longer in the filtered events list
-  for (let i = 0; i < activeMarkers.length; i++) {
-    const oldMarker = activeMarkers[i];
-    if (oldMarker && !nextActiveIds.has(oldMarker._van50EventId)) {
-      oldMarker.setMap(null);
+  // 1. Clear existing markers
+  for (let i = 0; i < markersArray.length; i++) {
+    if (markersArray[i]) {
+      markersArray[i].setMap(null);
     }
   }
+  markersArray = [];
 
-  activeMarkers = nextActiveMarkers;
-  window.activeMapMarkers = activeMarkers;
+  if (!sharedInfoWindow) {
+    sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
+  }
 
-  // On first map open (if user hasn't manually clicked a Town Centre pill), center dynamically on active feed
-  if ((options.isInitialLoad || !hasPerformedInitialCameraFit) && !userHasLockedArea && activeMarkers.length > 0) {
-    hasPerformedInitialCameraFit = true;
-    const feedTarget = getDynamicFeedCenter(eventList);
-    mapInstance.setCenter(feedTarget.center);
-    mapInstance.setZoom(feedTarget.zoom);
+  const bounds = new window.google.maps.LatLngBounds();
+  const seenCoordsCount = new Map();
+
+  // 2. Plot a marker for every filtered event
+  eventsList.forEach((event, index) => {
+    if (!event) return;
+    const baseCoords = resolveEventCoords(event, index);
+    if (!baseCoords || isNaN(baseCoords.lat) || isNaN(baseCoords.lng)) return;
+
+    // Prevent identical-venue markers from stacking on top of the exact same pixel
+    const coordKey = `${baseCoords.lat.toFixed(4)},${baseCoords.lng.toFixed(4)}`;
+    const dupIdx = seenCoordsCount.get(coordKey) || 0;
+    seenCoordsCount.set(coordKey, dupIdx + 1);
+
+    let finalLat = baseCoords.lat;
+    let finalLng = baseCoords.lng;
+    if (dupIdx > 0) {
+      const angle = (dupIdx * 137.5) * (Math.PI / 180);
+      const radius = 0.00022 * Math.ceil(dupIdx / 6);
+      finalLat = baseCoords.lat + radius * Math.cos(angle);
+      finalLng = baseCoords.lng + radius * Math.sin(angle) * 1.35;
+    }
+
+    const position = { lat: finalLat, lng: finalLng };
+    const priceVisuals = getMarkerPriceVisuals(event);
+    const icon = buildMarkerSvgIcon(priceVisuals.label, priceVisuals.bgColor);
+
+    const marker = new window.google.maps.Marker({
+      position,
+      map: mapInstance,
+      title: `${event.title || event.event_name || 'Event'} (${priceVisuals.label})`,
+      icon,
+      optimized: true
+    });
+
+    marker.addListener('click', () => {
+      sharedInfoWindow.setContent(buildInfoWindowContent(event, priceVisuals));
+      sharedInfoWindow.open({
+        anchor: marker,
+        map: mapInstance
+      });
+    });
+
+    markersArray.push(marker);
+    bounds.extend(position);
+  });
+
+  window.activeMapMarkers = markersArray;
+
+  // 3. Update "X events plotted" counter
+  updatePlottedCounterText(markersArray.length);
+
+  // 4. Fit bounds across plotted markers (unless caller suppressed camera movement)
+  if (!options.skipFitBounds && markersArray.length > 0) {
+    mapInstance.fitBounds(bounds);
+    if (markersArray.length === 1) {
+      mapInstance.setZoom(15);
+    } else {
+      window.google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
+        if (mapInstance.getZoom() > 15) {
+          mapInstance.setZoom(15);
+        }
+      });
+    }
   }
 }
 
 /**
- * Pans and zooms the existing Google Map instance to a hardcoded Surrey Town Centre or Metro area.
- * Zero Places API or Geocoding API calls.
+ * Initializes or refreshes the Google Map ONLY after #map-view-wrapper is visible.
  */
-function jumpToMapArea(areaKey) {
-  const area = MAP_JUMP_AREAS[areaKey];
-  if (!area) return;
+async function initVancouverMap() {
+  const mapWrapper = document.getElementById('map-view-wrapper');
+  const mapCanvas = getMapCanvasElement();
+  if (!mapCanvas) return null;
 
-  userHasLockedArea = true;
+  // Do NOT initialize while the map container is still display: none on page load
+  const isVisible = Boolean(
+    (mapWrapper && mapWrapper.style.display !== 'none' && !mapWrapper.hidden) ||
+    (mapCanvas.offsetWidth > 0 && mapCanvas.offsetHeight > 0)
+  );
+  if (!isVisible) {
+    return null;
+  }
 
-  // Highlight active jump pill
-  const pills = document.querySelectorAll('.map-jump-pill');
-  pills.forEach((btn) => {
-    if (btn.getAttribute('data-area') === areaKey) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
+  const activeEvents = (window.currentFilteredEvents && window.currentFilteredEvents.length > 0)
+    ? window.currentFilteredEvents
+    : (latestFilteredEvents.length > 0
+      ? latestFilteredEvents
+      : (window.VAN50_EVENTS || window.VANCOUVER_EVENTS || []));
+
+  // If map instance already exists, trigger resize inside requestAnimationFrame and re-render markers
+  if (mapInstance && window.google && window.google.maps) {
+    requestAnimationFrame(() => {
+      window.google.maps.event.trigger(mapInstance, 'resize');
+      renderGoogleMapMarkers(activeEvents);
+    });
+    return mapInstance;
+  }
+
+  try {
+    await loadGoogleMapsScript();
+    if (mapAuthFailed) return null;
+
+    if (!mapInstance) {
+      mapInstance = new window.google.maps.Map(mapCanvas, {
+        center: { lat: 49.265, lng: -123.115 },
+        zoom: 12,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: true,
+        zoomControl: true,
+        gestureHandling: 'greedy',
+        clickableIcons: false
+      });
+
+      sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
+
+      mapInstance.addListener('click', () => {
+        if (sharedInfoWindow) sharedInfoWindow.close();
+      });
+
+      window.vancouverMapInstance = mapInstance;
+      window.vancouverMapInfoWindow = sharedInfoWindow;
     }
+
+    renderGoogleMapMarkers(activeEvents);
+    return mapInstance;
+  } catch (err) {
+    console.warn('[Van50 Map] Map initialization warning:', err);
+    return null;
+  }
+}
+
+function invalidateVancouverMap() {
+  if (!mapInstance || !window.google || !window.google.maps) return;
+  requestAnimationFrame(() => {
+    try {
+      window.google.maps.event.trigger(mapInstance, 'resize');
+    } catch (_) {}
+  });
+}
+
+/**
+ * Pans and zooms to a neighborhood or Town Centre when a Jump to Area button is clicked.
+ */
+async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng) {
+  let targetCoords = null;
+  let clickedBtn = null;
+
+  if (areaNameOrBtn && typeof areaNameOrBtn === 'object' && areaNameOrBtn.nodeType === 1) {
+    clickedBtn = areaNameOrBtn;
+    const attrArea = clickedBtn.getAttribute('data-area') || clickedBtn.textContent.trim();
+    if (attrArea === 'fit-bounds') {
+      document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button').forEach(b => b.classList.toggle('active', b === clickedBtn));
+      fitActiveMapMarkers();
+      return;
+    }
+    const attrLat = parseFloat(clickedBtn.getAttribute('data-lat'));
+    const attrLng = parseFloat(clickedBtn.getAttribute('data-lng'));
+    if (!isNaN(attrLat) && !isNaN(attrLng)) {
+      targetCoords = { lat: attrLat, lng: attrLng };
+    } else if (HOOD_COORDS[attrArea]) {
+      targetCoords = HOOD_COORDS[attrArea];
+    }
+  } else if (typeof areaNameOrBtn === 'string') {
+    const key = areaNameOrBtn.trim();
+    if (key === 'fit-bounds') {
+      fitActiveMapMarkers();
+      return;
+    }
+    if (!isNaN(parseFloat(explicitLat)) && !isNaN(parseFloat(explicitLng))) {
+      targetCoords = { lat: parseFloat(explicitLat), lng: parseFloat(explicitLng) };
+    } else if (HOOD_COORDS[key]) {
+      targetCoords = HOOD_COORDS[key];
+    } else {
+      const matchedKey = Object.keys(HOOD_COORDS).find(k => k.toLowerCase() === key.toLowerCase() || key.toLowerCase().includes(k.toLowerCase()));
+      if (matchedKey) targetCoords = HOOD_COORDS[matchedKey];
+    }
+    clickedBtn = document.querySelector(`div[aria-label="Town Centre Quick Jump"] button[data-area="${key}"]`);
+  }
+
+  if (!targetCoords) return;
+
+  // Toggle .active state on Town Centre Quick Jump buttons
+  const allJumpButtons = document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button');
+  allJumpButtons.forEach((btn) => {
+    btn.classList.toggle('active', btn === clickedBtn);
   });
 
   if (!mapInstance) {
-    initVancouverMap(true);
-    loadGoogleMapsScript().then(() => {
-      if (mapInstance) {
-        mapInstance.panTo({ lat: area.lat, lng: area.lng });
-        mapInstance.setZoom(area.zoom || 13);
-      }
-    }).catch(() => {});
-    return;
+    await initVancouverMap();
   }
 
-  mapInstance.panTo({ lat: area.lat, lng: area.lng });
-  mapInstance.setZoom(area.zoom || 13);
+  if (mapInstance && window.google && window.google.maps) {
+    mapInstance.panTo({ lat: targetCoords.lat, lng: targetCoords.lng });
+    mapInstance.setZoom(14);
+  }
 }
 
-/**
- * Fits the map viewport to all currently active filtered markers.
- */
 function fitActiveMapMarkers() {
-  if (!mapInstance || !window.google || !window.google.maps || activeMarkers.length === 0) return;
-
-  const pills = document.querySelectorAll('.map-jump-pill');
-  pills.forEach((btn) => {
-    btn.classList.toggle('active', btn.getAttribute('data-area') === 'fit-bounds');
-  });
-
+  if (!mapInstance || !window.google || !window.google.maps || markersArray.length === 0) return;
   const bounds = new window.google.maps.LatLngBounds();
-  activeMarkers.forEach((m) => {
+  markersArray.forEach((m) => {
     const pos = m.getPosition();
     if (pos) bounds.extend(pos);
   });
+  mapInstance.fitBounds(bounds);
+  if (markersArray.length === 1) {
+    mapInstance.setZoom(15);
+  }
+}
 
-  mapInstance.fitBounds(bounds, 48);
-  window.google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
-    if (mapInstance.getZoom() > 15) {
-      mapInstance.setZoom(15);
-    }
+function bindTownCentreJumpButtons() {
+  const jumpContainer = document.querySelector('div[aria-label="Town Centre Quick Jump"]');
+  if (!jumpContainer) return;
+  const buttons = jumpContainer.querySelectorAll('button');
+  buttons.forEach((btn) => {
+    if (btn._van50JumpBound) return;
+    btn._van50JumpBound = true;
+    btn.addEventListener('click', () => {
+      jumpToMapArea(btn);
+    });
   });
+}
+
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindTownCentreJumpButtons);
+  } else {
+    bindTownCentreJumpButtons();
+  }
 }
 
 function escapeHtml(str) {
@@ -667,8 +608,12 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+window.loadGoogleMapsScript = loadGoogleMapsScript;
+window.resolveEventCoords = resolveEventCoords;
+window.resolveEventCoordinates = resolveEventCoordinates;
+window.renderGoogleMapMarkers = renderGoogleMapMarkers;
+window.updateMapMarkers = renderGoogleMapMarkers;
 window.initVancouverMap = initVancouverMap;
-window.updateMapMarkers = updateMapMarkers;
 window.invalidateVancouverMap = invalidateVancouverMap;
 window.jumpToMapArea = jumpToMapArea;
 window.fitActiveMapMarkers = fitActiveMapMarkers;

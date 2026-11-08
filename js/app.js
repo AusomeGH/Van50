@@ -509,9 +509,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFrequencyPills();
   updateSliderVisuals();
   applyFiltersAndRender();
-  if (typeof initVancouverMap === 'function') {
-    initVancouverMap();
-  }
   updateReviewQueueBadge();
   loadCentralReference();
 
@@ -1709,29 +1706,12 @@ function setupEventListeners() {
     } else {
       eventsGrid.style.display = 'none';
       mapWrapper.style.display = 'block';
+      mapWrapper.removeAttribute('hidden');
       mapWrapper.classList.add('active');
 
-      const getActiveEvents = () => {
-        if (window.currentFilteredEvents && window.currentFilteredEvents.length > 0) {
-          return window.currentFilteredEvents;
-        }
-        return ALL_EVENTS || [];
-      };
-
-      if (!window.vancouverMapInstance && typeof initVancouverMap === 'function') {
-        initVancouverMap(true);
+      if (typeof initVancouverMap === 'function') {
+        initVancouverMap();
       }
-
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          if (typeof invalidateVancouverMap === 'function') {
-            invalidateVancouverMap();
-          }
-          if (typeof updateMapMarkers === 'function') {
-            updateMapMarkers(getActiveEvents());
-          }
-        }, 60);
-      });
     }
   };
 
@@ -1926,12 +1906,14 @@ function setupEventListeners() {
   if (mobileSheetApplyBtn) mobileSheetApplyBtn.addEventListener('click', window.closeMobileFiltersSheet);
   if (mobileSheetResetBtn) mobileSheetResetBtn.addEventListener('click', window.resetSecondaryFilters);
 
-  if (mobileViewToggle && viewCardsBtn && viewMapBtn && mapWrapper) {
+  if (mobileViewToggle && mapWrapper) {
     mobileViewToggle.addEventListener('click', () => {
       const isMapActive = mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block';
-      if (isMapActive) {
+      if (typeof window.setCatalogViewMode === 'function') {
+        window.setCatalogViewMode(isMapActive ? 'cards' : 'map');
+      } else if (isMapActive && viewCardsBtn) {
         viewCardsBtn.click();
-      } else {
+      } else if (!isMapActive && viewMapBtn) {
         viewMapBtn.click();
       }
     });

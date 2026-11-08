@@ -35,8 +35,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="css/style.css?v=7.9.5">
-  <link rel="stylesheet" href="css/components.css?v=7.9.5">
+  <link rel="stylesheet" href="css/style.css?v=7.9.6">
+  <link rel="stylesheet" href="css/components.css?v=7.9.6">
 
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
@@ -301,18 +301,21 @@
             <span class="map-pin-count-badge" id="map-pin-count-badge">0 events plotted</span>
           </div>
           <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="Town Centre Quick Jump">
-            <button type="button" class="map-jump-pill" data-area="whalley" onclick="window.jumpToMapArea && window.jumpToMapArea('whalley')">City Centre / Whalley</button>
-            <button type="button" class="map-jump-pill" data-area="guildford" onclick="window.jumpToMapArea && window.jumpToMapArea('guildford')">Guildford</button>
-            <button type="button" class="map-jump-pill" data-area="fleetwood" onclick="window.jumpToMapArea && window.jumpToMapArea('fleetwood')">Fleetwood</button>
-            <button type="button" class="map-jump-pill" data-area="newton" onclick="window.jumpToMapArea && window.jumpToMapArea('newton')">Newton</button>
-            <button type="button" class="map-jump-pill" data-area="cloverdale" onclick="window.jumpToMapArea && window.jumpToMapArea('cloverdale')">Cloverdale</button>
-            <button type="button" class="map-jump-pill" data-area="south-surrey" onclick="window.jumpToMapArea && window.jumpToMapArea('south-surrey')">South Surrey</button>
-            <button type="button" class="map-jump-pill" data-area="surrey-all" onclick="window.jumpToMapArea && window.jumpToMapArea('surrey-all')">Surrey Overview</button>
-            <button type="button" class="map-jump-pill" data-area="vancouver" onclick="window.jumpToMapArea && window.jumpToMapArea('vancouver')">Vancouver</button>
-            <button type="button" class="map-jump-pill map-jump-fit" data-area="fit-bounds" onclick="window.fitActiveMapMarkers && window.fitActiveMapMarkers()">🎯 Fit Active Pins</button>
+            <button type="button" class="map-jump-pill" data-area="City Centre" data-lat="49.1896" data-lng="-122.8479">City Centre / Whalley</button>
+            <button type="button" class="map-jump-pill" data-area="Guildford" data-lat="49.1897" data-lng="-122.8012">Guildford</button>
+            <button type="button" class="map-jump-pill" data-area="Fleetwood" data-lat="49.1575" data-lng="-122.7905">Fleetwood</button>
+            <button type="button" class="map-jump-pill" data-area="Newton" data-lat="49.1337" data-lng="-122.8467">Newton</button>
+            <button type="button" class="map-jump-pill" data-area="Cloverdale" data-lat="49.1044" data-lng="-122.7303">Cloverdale</button>
+            <button type="button" class="map-jump-pill" data-area="South Surrey" data-lat="49.0401" data-lng="-122.8042">South Surrey</button>
+            <button type="button" class="map-jump-pill" data-area="Downtown" data-lat="49.2827" data-lng="-123.1207">Downtown</button>
+            <button type="button" class="map-jump-pill" data-area="Mount Pleasant" data-lat="49.2628" data-lng="-123.1011">Mount Pleasant</button>
+            <button type="button" class="map-jump-pill" data-area="Commercial Drive" data-lat="49.2719" data-lng="-123.0695">Commercial Drive</button>
+            <button type="button" class="map-jump-pill" data-area="Kitsilano" data-lat="49.2684" data-lng="-123.1683">Kitsilano</button>
+            <button type="button" class="map-jump-pill" data-area="Granville Island" data-lat="49.2712" data-lng="-123.1340">Granville Island</button>
+            <button type="button" class="map-jump-pill map-jump-fit" data-area="fit-bounds">🎯 Fit Active Pins</button>
           </div>
         </div>
-        <div id="vancouver-map" role="application" aria-label="Interactive Google Map of Events"></div>
+        <div id="van50-map-canvas" role="application" aria-label="Interactive Google Map of Events"></div>
       </div>
     </section>
   </main>
@@ -559,12 +562,12 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=7.9.5"></script>
+  <script src="js/data.js?v=7.9.6"></script>
   <script src="js/accessibility.js?v=1.0.0"></script>
-  <script src="js/map.js?v=7.9.5"></script>
-  <script src="js/roulette.js?v=7.9.5"></script>
-  <script src="js/app.js?v=7.9.5"></script>
-  <script src="js/pwa-install.js?v=7.9.5"></script>
+  <script src="js/map.js?v=7.9.6"></script>
+  <script src="js/roulette.js?v=7.9.6"></script>
+  <script src="js/app.js?v=7.9.6"></script>
+  <script src="js/pwa-install.js?v=7.9.6"></script>
 
 </body>
 </html>
