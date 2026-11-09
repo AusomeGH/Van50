@@ -1192,7 +1192,9 @@ export async function runHybridRipper(targetUrl, options = {}) {
   console.log(`🎯 Target URL: ${targetUrl}`);
   console.log(`🧠 AI Engine: Google Gemini 3.8 Flash`);
   console.log(`================================================================\n`);
-  console.log(`${formatLogTime()} 📌 Processing [1/1]: Single Event [${targetUrl}]`);
+  if (!options.fromHarvester) {
+    console.log(`${formatLogTime()} 📌 Processing [1/1]: Single Event [${targetUrl}]`);
+  }
 
   let stagehand;
   let browser;
@@ -1256,7 +1258,9 @@ export async function runHybridRipper(targetUrl, options = {}) {
     console.log(`   Venue: ${extractedData.venue_name}`);
     const finalSlug = generateSlug(extractedData.venue_name, extractedData.title, extractedData.date);
     console.log(`✨ Extracted Event: "${extractedData.title}" (${extractedData.venue_name})`);
-    console.log(`📌 Processing [1/1]: ${extractedData.title} [${finalSlug || "single_card"}]`);
+    if (!options.fromHarvester) {
+      console.log(`📌 Processing [1/1]: ${extractedData.title} [${finalSlug || "single_card"}]`);
+    }
 
     // Load Venue Registry
     let venuesDb = [];
@@ -1473,11 +1477,34 @@ if (process.argv[1] && process.argv[1].endsWith("hybrid_ripper.js")) {
 
         if (step === "harvest" || step === "calendar" || step === "harvester") {
           const { runAllVenueFeedsBatch, runCalendarBatch } = await import("./calendar_harvester.js");
-          const effectiveResume = resume || innerUrl === "all:resume";
-          if (!innerUrl || innerUrl === "all" || innerUrl === "all:resume") {
-            await runAllVenueFeedsBatch({ maxEvents: limit, engine: "antigravity", resume: effectiveResume });
+          const rawInner = (innerUrl || "").trim().toLowerCase();
+          const effectiveResume = Boolean(resume || rawInner.endsWith(":resume"));
+          const isAllMode =
+            !rawInner ||
+            rawInner === "all" ||
+            rawInner === "vancouver" ||
+            rawInner === "surrey" ||
+            rawInner.startsWith("all:") ||
+            rawInner.endsWith(":resume");
+          const resolvedCity = rawInner.includes("vancouver")
+            ? "vancouver"
+            : rawInner.includes("surrey")
+              ? "surrey"
+              : (sp.get("city") || "all").toLowerCase();
+          if (isAllMode) {
+            await runAllVenueFeedsBatch({
+              maxEvents: limit,
+              engine: "antigravity",
+              resume: effectiveResume,
+              city: resolvedCity,
+            });
           } else {
-            await runCalendarBatch(innerUrl, { maxEvents: limit, engine: "antigravity", resume: effectiveResume });
+            const cleanTargetUrl = innerUrl.replace(/:resume$/i, "");
+            await runCalendarBatch(cleanTargetUrl, {
+              maxEvents: limit,
+              engine: "antigravity",
+              resume: effectiveResume,
+            });
           }
         } else if (step === "hunter" || step === "tier1_hunt") {
           const { huntBatchTier1Links } = await import("./tier1_hunter.js");

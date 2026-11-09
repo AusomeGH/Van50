@@ -672,9 +672,12 @@ export async function expandAccordionsAndExtractHiddenContext(page) {
       if (window.location.hostname.includes("vanartgallery.bc.ca")) {
         try {
           const bodyTxt = (document.body ? document.body.innerText : "").replace(/\s+/g, " ");
-          if (/included\s+with\s+(?:gallery\s+)?admission|with\s+gallery\s+admission|general\s+admission/i.test(bodyTxt)) {
+          if (
+            window.location.pathname.toLowerCase().includes("/exhibitions") ||
+            /included\s+with\s+(?:gallery\s+)?admission|with\s+gallery\s+admission|general\s+admission|book\s+tickets/i.test(bodyTxt)
+          ) {
             chunks.push(
-              `OFFICIAL VANCOUVER ART GALLERY BOX OFFICE ADMISSION RATES (vanartgallery.bc.ca/visit — MANDATORY: When an exhibition or tour states "included with Gallery admission" or "Free for members or with Gallery admission", Tier 1 MUST be Adult General Admission at $29.00 CAD; NEVER treat $0 Youth/Member as a free event for adults):\nGeneral Admission – Adult (19+): $29.00 | Youth (18 & Under): $0.00 (Free)`
+              `OFFICIAL VANCOUVER ART GALLERY BOX OFFICE ADMISSION RATES (vanartgallery.bc.ca/visit — MANDATORY: When an exhibition or tour is at Vancouver Art Gallery or states "included with Gallery admission", Tier 1 MUST be Adult General Admission at $29.00 CAD; NEVER treat $0 Youth/Member as a free event for adults):\nGeneral Admission – Adult (19+): $29.00 | Youth (18 & Under): $0.00 (Free)`
             );
           }
         } catch (_) { }
@@ -1561,8 +1564,8 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     const trimmedBodyText = String(pageInfo.text || "").trim();
     const isAntiBotBlocked =
       Boolean(pageInfo.hasAntiBotChallenge) ||
-      /^(?:just a moment|attention required|access denied|access blocked|pardon our interruption|ra\.co|security check)/i.test(trimmedTitle) ||
-      /performing security verification|verify you are human|enable js and disable any ad blocker|please verify you are a human|unusual activity from your network|datadome/i.test(trimmedBodyText) ||
+      /^(?:just a moment|attention required|access denied|access blocked|pardon our interruption|ra\.co|security check|fastly)/i.test(trimmedTitle) ||
+      /performing security verification|verify you are human|enable js and disable any ad blocker|please verify you are a human|unusual activity from your network|browsing activity has been paused|detected unusual behaviour|enter the characters seen in the image below|datadome/i.test(trimmedBodyText) ||
       (/ra\.co\/events\/\d+/i.test(targetUrl) && trimmedBodyText.length < 80);
 
     if (isAntiBotBlocked) {
@@ -2110,8 +2113,11 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       .filter((s, idx, arr) => arr.indexOf(s) === idx)
       .join("\n\n");
 
-    // Inject parent/expanded accordion context into DOM before stagehand.extract so Stagehand's accessibility tree sees it even if a drawer or redirect hid the parent page
-    if (combinedAccordionContext.length > 0) {
+    const fullMultiFrameSnap = await collectAllFramesText(page, combinedAccordionContext);
+
+    // Inject parent/expanded accordion & cross-origin iframe context (e.g. Eventbrite checkout iframe) into top-level DOM before stagehand.extract
+    const injectedContextText = [combinedAccordionContext, fullMultiFrameSnap].filter(Boolean).join("\n\n").slice(0, 12000);
+    if (injectedContextText.length > 0) {
       await page.evaluate((ctxText) => {
         let holder = document.getElementById("van50-expanded-accordion-context");
         if (!holder) {
@@ -2122,7 +2128,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           if (document.body) document.body.appendChild(holder);
         }
         holder.innerText = `EXPANDED EVENT TICKET INFO & SHOWTIMES:\n${ctxText}`;
-      }, combinedAccordionContext).catch(() => { });
+      }, injectedContextText).catch(() => { });
     }
 
     // Ensure all tiers in scrollable modals (e.g. Showpass) are hydrated
@@ -2208,7 +2214,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       Array.isArray(extracted.all_tiers) &&
       extracted.all_tiers.some((t) => t && (t.price_all_in != null || t.price_base != null || t.price != null));
     const liveBodyTextForRecovery = await page.evaluate(() => (document.body ? document.body.innerText : "")).catch(() => "");
-    const combinedPriceRecoverySource = [combinedAccordionContext, liveBodyTextForRecovery].filter(Boolean).join("\n\n");
+    const combinedPriceRecoverySource = [combinedAccordionContext, fullMultiFrameSnap, liveBodyTextForRecovery].filter(Boolean).join("\n\n");
     if (
       extracted.tier1_price_base == null &&
       extracted.tier1_price_all_in == null &&
@@ -2217,6 +2223,8 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     ) {
       const recoveredTiers = [];
       const tierPatterns = [
+        { re: /\b1\s*x\s*([^\n\r$]+?)\s+CA?\$\s*(\d+(?:\.\d{2})?)[\s\S]{0,180}?Fees(?:\s*[^\d\n]*)?\s+CA?\$\s*(\d+(?:\.\d{2})?)(?:[\s\S]{0,80}?GST\s+CA?\$\s*(\d+(?:\.\d{2})?))?[\s\S]{0,100}?Total\s+CA?\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].trim(), feeIdx: 3, taxIdx: 4, allInIdx: 5 },
+        { re: /\bCA?\$\s*(\d+(?:\.\d{2})?)\s*incl\.\s*CA?\$\s*(\d+(?:\.\d{2})?)\s*Fee(?:\s*\/\s*incl\.\s*CA?\$\s*(\d+(?:\.\d{2})?)\s*GST)?/gi, labelFn: () => "General Admission", isAllInFirst: true },
         { re: /\b(Section\s+[A-D]\+?)\s*:\s*\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => `${m[1]} Reserved` },
         { re: /\b(Front\s+Orchestra|Back\s+Orchestra|Front\s+Balcony|Back\s+Balcony|Dress\s+Circle|Upper\s+Circle)\s+\$\s*(\d+(?:\.\d{2})?)\s+to\s+\$\s*\d+(?:\.\d{2})?/gi, labelFn: (m) => `${m[1].trim()} (Starting Floor)` },
         { re: /\b(Adult|Senior|Student|Child(?:\s*\([^)]+\))?)\s+\$\s*(\d+(?:\.\d{2})?)\s*ticket\s*\+\s*\$\s*(\d+(?:\.\d{2})?)\s*fees\s+\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].trim(), feeIdx: 3, allInIdx: 4 },
@@ -2225,19 +2233,28 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         { re: /\b(Tickets\s+from|Starting\s+at)\s+\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: () => "Standard Admission (Starting Floor)" },
         { re: /\b(\d{1,2}:\d{2}\s*(?:AM|PM)\s+(?:Matinee|Evening))\s*:\s*\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].trim() },
       ];
-      for (const { re, labelFn, feeIdx, allInIdx } of tierPatterns) {
+      for (const { re, labelFn, feeIdx, taxIdx, allInIdx, isAllInFirst } of tierPatterns) {
         let match;
         while ((match = re.exec(combinedPriceRecoverySource)) !== null) {
-          const priceVal = parseFloat(match[2]);
-          const feeVal = feeIdx && match[feeIdx] ? parseFloat(match[feeIdx]) : 0;
-          const allInVal = allInIdx && match[allInIdx] ? parseFloat(match[allInIdx]) : priceVal;
+          let priceVal, feeVal, taxVal, allInVal;
+          if (isAllInFirst) {
+            allInVal = parseFloat(match[1]);
+            feeVal = parseFloat(match[2]) || 0;
+            taxVal = match[3] ? parseFloat(match[3]) : 0;
+            priceVal = Number((allInVal - feeVal - taxVal).toFixed(2));
+          } else {
+            priceVal = parseFloat(match[2]);
+            feeVal = feeIdx && match[feeIdx] ? parseFloat(match[feeIdx]) : 0;
+            taxVal = taxIdx && match[taxIdx] ? parseFloat(match[taxIdx]) : 0;
+            allInVal = allInIdx && match[allInIdx] ? parseFloat(match[allInIdx]) : priceVal;
+          }
           const nameVal = labelFn(match);
           if (!isNaN(priceVal) && priceVal > 0 && !recoveredTiers.some((t) => t.name === nameVal && t.price_all_in === allInVal)) {
             recoveredTiers.push({
               name: nameVal,
               price_base: priceVal,
               price_fee: feeVal,
-              price_tax: 0,
+              price_tax: taxVal,
               price_read: allInVal,
               price_all_in: allInVal,
               is_available: true,
@@ -2900,18 +2917,18 @@ export async function runEventBatchQC(options = {}) {
     targets = interleaveTargetsByDomain(targets);
   }
 
-  const displayTotal = resumeOffset + targets.length;
+  const displayTotal = targets.length;
   console.log(`\n================================================================`);
   console.log(`🚀 STAGEHAND BATCH QC ENGINE — 0XX–8XX CANONICAL ARCHITECTURE`);
   console.log(`📊 Catalog Size: ${events.length} events`);
-  console.log(`🎯 Targets Queued for Audit: ${displayTotal} events${resumeOffset > 0 ? ` (${resumeOffset} already verified, ${targets.length} remaining)` : ""}`);
+  console.log(`🎯 Targets Queued for Audit: ${displayTotal} events${resumeOffset > 0 ? ` (${resumeOffset} already verified in batch, ${targets.length} active in this run)` : ""}`);
   console.log(`⚡ Browser Concurrency: ${concurrency} isolated worker(s) (domain-interleaved)`);
   console.log(`================================================================\n`);
 
   if (options.dryRun) {
     console.log(`🔎 DRY RUN MODE — Target Queue Preview:`);
     targets.forEach((t, i) => {
-      console.log(`[#${resumeOffset + i + 1}] ${t.id || t.event_id} | ${t.venue || t.venue_name} | ${t.title || t.event_name}`);
+      console.log(`[#${i + 1}] ${t.id || t.event_id} | ${t.venue || t.venue_name} | ${t.title || t.event_name}`);
       console.log(`    URL: ${t.ticket_url || t.details_url || t.websiteUrl}`);
     });
     return;
@@ -2924,7 +2941,7 @@ export async function runEventBatchQC(options = {}) {
     targets,
     concurrency,
     async (target, i, workerId) => {
-      const displayIdx = resumeOffset + i + 1;
+      const displayIdx = i + 1;
       console.log(`\n────────────────────────────────────────────────────────────────`);
       console.log(`${formatLogTime()} 📌 [Worker #${workerId + 1}] Processing [${displayIdx}/${displayTotal}]: ${target.title || target.event_name} [${target.id || target.event_id}]`);
       logCuratorInfo({

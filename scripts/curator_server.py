@@ -2078,6 +2078,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     cmd.append("--quarantine")
                 if is_harvested:
                     cmd.append("--harvested")
+                if force:
+                    cmd.append("--force")
                 if qs.get("venue", [""])[0]:
                     cmd.extend(["--venue", qs.get("venue", [""])[0]])
                 if is_all and not is_harvested:
@@ -2086,11 +2088,10 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     cmd.extend(["--id", qs.get("id", [""])[0]])
                 elif qs.get("ids", [""])[0]:
                     cmd.extend(["--ids", qs.get("ids", [""])[0]])
-                else:
-                    if limit_str and limit_str != "0":
-                        cmd.extend(["--limit", str(limit_str)])
-                    if stale_val:
-                        cmd.extend(["--stale", str(stale_val)])
+                if limit_str and limit_str != "0":
+                    cmd.extend(["--limit", str(limit_str)])
+                if stale_val:
+                    cmd.extend(["--stale", str(stale_val)])
             else:
                 cmd = ["node", script_path, target_url]
                 if auto_approve:

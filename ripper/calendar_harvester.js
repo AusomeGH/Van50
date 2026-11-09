@@ -515,7 +515,7 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
       const itemStartMs = Date.now();
       try {
         // Discrete execution per event with fresh context, bounded by browser semaphore
-        const card = await step1aBrowserSemaphore.run(() => runHybridRipper(targetUrl, { autoApprove }));
+        const card = await step1aBrowserSemaphore.run(() => runHybridRipper(targetUrl, { autoApprove, fromHarvester: true }));
         const evDate = card.date || card.dateSchedule || "TBD";
         const evTime = card.time || card.doors_time || "";
         const evVenue = card.venue || card.venue_name || "Vancouver Venue";
@@ -865,13 +865,14 @@ export async function runAllVenueFeedsBatch(options = {}) {
   if (isResume && fs.existsSync(CHECKPOINT_PATH)) {
     try {
       const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
-      if (cp.status !== "completed") {
-        if (Array.isArray(cp.completed_feed_urls)) {
-          cp.completed_feed_urls.forEach((u) => completedFeedUrls.add(u));
-        }
-        if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length && (!cp.city_scope || cp.city_scope === cityScope)) {
-          startFeedIndex = cp.resume_from_index;
-        }
+      const rawCompleted = Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : [];
+      const feedUrlSet = new Set(feeds.map((f) => f.url));
+      const matchingCompleted = rawCompleted.filter((u) => feedUrlSet.has(u));
+      // Only treat as already 100% completed if every feed in the current scope was already scanned
+      if (matchingCompleted.length < feeds.length) {
+        rawCompleted.forEach((u) => completedFeedUrls.add(u));
+        const firstUnscannedIdx = feeds.findIndex((f) => !completedFeedUrls.has(f.url));
+        startFeedIndex = firstUnscannedIdx >= 0 ? firstUnscannedIdx : 0;
         priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
       }
     } catch (cpErr) {
@@ -889,8 +890,9 @@ export async function runAllVenueFeedsBatch(options = {}) {
   console.log(`\n================================================================`);
   console.log(`🌐 STEP 1A CALENDAR HARVESTER — [${cityLabel}]${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
   console.log(`📊 Prioritized ${feeds.length} source feeds for ${cityLabel} (from ${allFeeds.length} total registered sources)`);
-  if (isResume && (startFeedIndex > 0 || completedFeedUrls.size > 0)) {
-    console.log(`⏩ [Resume Mode] Skipping ${completedFeedUrls.size} completed feeds — starting at Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
+  if (isResume && completedFeedUrls.size > 0) {
+    const scannedInScope = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
+    console.log(`⏩ [Resume Mode] Skipping ${scannedInScope} completed feeds — next unscanned is Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
   }
   if (maxTotalEvents > 0) {
     console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
@@ -903,7 +905,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
 
   for (let i = 0; i < feeds.length; i++) {
     const feed = feeds[i];
-    if (isResume && (i < startFeedIndex || completedFeedUrls.has(feed.url))) {
+    if (isResume && completedFeedUrls.has(feed.url)) {
       continue;
     }
 

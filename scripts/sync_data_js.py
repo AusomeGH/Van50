@@ -20,19 +20,74 @@ except Exception:
     pass
 
 surrey_re = re.compile(
-    r"\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview|crescent beach|bridgeview)\b",
+    r"\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview)\b",
     re.IGNORECASE,
 )
 
-now_iso = "2026-11-08T23:59:00.000Z"
+now_iso = "2026-11-09T12:35:00.000Z"
 template_audit = copy.deepcopy(events[0].get("dimension_audit", {})) if events else {}
 
 updated_events = False
 
+DROP_IN_SCHEDULE_FIXES = {
+    "van50-bloedel-conservatory-dome": {
+        "dateSchedule": "Daily: 10:00 AM – 5:00 PM",
+        "weekly_hours": "Daily: 10:00 AM - 5:00 PM",
+        "time": "10:00 AM – 5:00 PM",
+    },
+    "van50-canada-place-promenade": {
+        "dateSchedule": "Daily: 6:00 AM – 11:00 PM • Free Outdoor Promenade",
+        "weekly_hours": "Daily: 6:00 AM - 11:00 PM",
+        "time": "6:00 AM – 11:00 PM",
+    },
+    "van50-the-shipyards-lonsdale-quay": {
+        "dateSchedule": "Daily: 10:00 AM – 8:00 PM (Outdoor Waterfront Plaza 24/7)",
+        "weekly_hours": "Daily: 10:00 AM - 8:00 PM",
+        "time": "10:00 AM – 8:00 PM",
+    },
+    "van50-vancouver-art-gallery-free-access": {
+        "dateSchedule": "Wed–Mon: 10:00 AM – 5:00 PM • Fri: 10:00 AM – 8:00 PM (Closed Tuesdays)",
+        "weekly_hours": "Wed-Thu: 10:00 AM - 5:00 PM; Fri: 10:00 AM - 8:00 PM; Sat-Mon: 10:00 AM - 5:00 PM; Tue: Closed",
+        "time": "10:00 AM – 5:00 PM (Fri until 8:00 PM)",
+    },
+    "van50-bill-reid-gallery-indigenous-art": {
+        "dateSchedule": "Wed–Sun: 10:00 AM – 5:00 PM (Closed Mon–Tue)",
+        "weekly_hours": "Wed-Sun: 10:00 AM - 5:00 PM; Mon-Tue: Closed",
+        "time": "10:00 AM – 5:00 PM",
+    },
+    "van50-sun-yat-sen-public-park": {
+        "dateSchedule": "Wed–Sun: 9:30 AM – 4:00 PM (Closed Mon–Tue)",
+        "weekly_hours": "Wed-Sun: 9:30 AM - 4:00 PM; Mon-Tue: Closed",
+        "time": "9:30 AM – 4:00 PM",
+    },
+    "stanley-park-seawall-rose-garden": {
+        "dateSchedule": "Open Daily: 6:00 AM – 10:00 PM",
+        "weekly_hours": "Daily: 6:00 AM - 10:00 PM",
+        "time": "6:00 AM – 10:00 PM",
+    },
+    "stanley-park-siwash-rock": {
+        "dateSchedule": "Open Daily: 6:00 AM – 10:00 PM",
+        "weekly_hours": "Daily: 6:00 AM - 10:00 PM",
+        "time": "6:00 AM – 10:00 PM",
+    },
+    "van50-diwali-fest-diwali-celebration-society-diwali-in-surrey-nov-15-2026": {
+        "weekly_hours": None,
+    },
+}
+
 # 1. Ensure every existing event has city, region, lat, lng, url, day, recurrence
 for ev in events:
-    raw_loc = f"{ev.get('city') or ''} {ev.get('region') or ''} {ev.get('neighborhood') or ''} {ev.get('address') or ''} {ev.get('full_address') or ''}"
-    inferred_city = "Surrey" if surrey_re.search(raw_loc) else "Vancouver"
+    ev_id = ev.get("id") or ev.get("event_id")
+    if ev_id in DROP_IN_SCHEDULE_FIXES:
+        for k, v in DROP_IN_SCHEDULE_FIXES[ev_id].items():
+            if ev.get(k) != v:
+                ev[k] = v
+                updated_events = True
+    raw_hood = str(ev.get("neighborhood") or "")
+    raw_addr = f"{ev.get('address') or ''} {ev.get('full_address') or ''}"
+    is_east_van_grandview = bool(re.search(r"grandview[- ]woodland", raw_hood, re.I) or re.search(r"\bvancouver\b", raw_addr, re.I))
+    raw_loc = f"{raw_hood} {raw_addr}"
+    inferred_city = "Surrey" if (not is_east_van_grandview and surrey_re.search(raw_loc)) else "Vancouver"
     if ev.get("city") != inferred_city or ev.get("region") != inferred_city:
         ev["city"] = inferred_city
         ev["region"] = inferred_city
@@ -148,7 +203,11 @@ for s in surrey_seeds:
         "transitInfo": f"TransLink Surrey Transit Hub ({s['neighborhood']})",
         "transit_info": f"TransLink Surrey Transit Hub ({s['neighborhood']})",
         "waypoints": [],
-        "access_model": s.get("access_model") or ("free_public_access" if is_free else "ticketed_or_drop_in"),
+        "access_model": s.get("access_model") or (
+            "free_public_access"
+            if (is_free and (s.get("lifecycle_type") or ("weekly_recurring_residency" if showings else "perennial_drop_in")) == "perennial_drop_in")
+            else ("walk_up_free" if is_free else "ticketed_or_drop_in")
+        ),
         "environment_type": "outdoor" if s["category"] == "outdoors" else "indoor",
         "venue_grounding": {
             "is_grounded": True,

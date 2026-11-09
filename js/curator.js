@@ -7578,15 +7578,104 @@ function initStagehandRipperUI() {
     return list;
   };
 
+  window.getHarvesterFeedStats = (cityOverride) => {
+    const cp = state.harvesterCheckpoint || {};
+    const completedSet = new Set(Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : []);
+    const activeCity = (cityOverride || window.harvesterCityScope || 'all').toLowerCase();
+    const allFeeds = (cachedVenueFeeds && cachedVenueFeeds.length > 0) ? cachedVenueFeeds : [];
+    const scopedFeeds = activeCity === 'all'
+      ? allFeeds
+      : allFeeds.filter(f => String(f.city || 'Vancouver').toLowerCase() === activeCity);
+
+    let totalFeeds = scopedFeeds.length > 0
+      ? scopedFeeds.length
+      : (cp.total_feeds != null ? Math.max(Number(cp.total_feeds), 227) : 227);
+
+    let completedFeeds = 0;
+    let resumeFeedNum = 1;
+    let nextUnscannedFeed = null;
+
+    if (scopedFeeds.length > 0) {
+      completedFeeds = scopedFeeds.filter(f => completedSet.has(f.url)).length;
+      const firstUnscannedIdx = scopedFeeds.findIndex(f => !completedSet.has(f.url));
+      resumeFeedNum = firstUnscannedIdx >= 0 ? (firstUnscannedIdx + 1) : totalFeeds;
+      nextUnscannedFeed = firstUnscannedIdx >= 0 ? scopedFeeds[firstUnscannedIdx] : null;
+    } else {
+      completedFeeds = cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : completedSet.size;
+      resumeFeedNum = Math.min(totalFeeds, completedFeeds + 1);
+    }
+
+    const remainingFeeds = Math.max(0, totalFeeds - completedFeeds);
+    const lastFeedName = nextUnscannedFeed
+      ? nextUnscannedFeed.name
+      : (cp.last_feed_name || 'The Orpheum Theatre');
+
+    return {
+      totalFeeds,
+      completedFeeds,
+      remainingFeeds,
+      resumeFeedNum,
+      lastFeedName
+    };
+  };
+
   window.getStageContinuationInfo = (stageKey) => {
     const key = stageKey || currentPipelineScanKey || 'harvest';
-    const cp = state.harvesterCheckpoint || {};
-    const completedFeeds = cp.status === 'completed' ? (cp.total_feeds != null ? Number(cp.total_feeds) : 126) : (cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49);
-    const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
-    const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : (completedFeeds + 1);
-    const remainingFeeds = Math.max(0, totalFeeds - completedFeeds);
+    const feedStats = window.getHarvesterFeedStats();
+    const { totalFeeds, completedFeeds, remainingFeeds, resumeFeedNum } = feedStats;
 
-    const done1AList = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
+    const uncompiledHarvested = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
+
+    // If an active pipeline batch (e.g. 56 Pipeline Events) is loaded, track the full batch cohort across Stages 1A -> 5
+    // so stage badges don't shrink to "10 Done" / "9 Queued" when cards are already in events.json or manual_review_queue.json.
+    let done1AList = uncompiledHarvested;
+    const hasActiveBatchCohort = Boolean(isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0);
+    if (hasActiveBatchCohort) {
+      const schedArr = Array.isArray(state.layerSchedules) ? state.layerSchedules : [];
+      const activeArr = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      const qArr = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+      const schedMap = new Map(schedArr.map(s => [String(s.event_id || s.id || '').toLowerCase(), s]));
+      const activeMap = new Map(activeArr.map(e => [String(e.event_id || e.id || '').toLowerCase(), e]));
+      const qMap = new Map(qArr.map(e => [String(e.event_id || e.id || '').toLowerCase(), e]));
+
+      const batchCohort = pipelineTestDiscoveredIds.map(rawId => {
+        const lid = String(rawId || '').toLowerCase();
+        const s = schedMap.get(lid) || {};
+        const a = activeMap.get(lid) || qMap.get(lid) || {};
+        const disc = (pipelineTestDiscoveredEvents || []).find(d => String(d.id || d.event_id || '').toLowerCase() === lid) || {};
+        const url = s.candidate_tier1_url || a.candidate_tier1_url || a.links?.tier1_checkout || s.ticket_url || a.ticket_url || s.details_url || a.details_url || disc.url || '';
+        const isFreeOrOpen = a.price === 0 || a.isFree || a.access_model === 'open_public_space' || a.access_model === 'free_public_access';
+        const hasStep1B = Boolean(
+          s.step1b_audited_at || a.step1b_audited_at ||
+          s.candidate_tier1_url || a.candidate_tier1_url || a.links?.tier1_checkout ||
+          a.dimension_audit?.D101_tier1_checkout?.status === 'verified' ||
+          isFreeOrOpen ||
+          /showpass|eventbrite|ticketweb|admitone|universe|vtix|spektrix|ticketmaster|eventive/i.test(String(url))
+        );
+        return {
+          id: rawId,
+          event_id: rawId,
+          title: a.title || a.event_name || s.title || s.event_name || disc.title || 'Pipeline Event',
+          venue: a.venue || a.venue_name || s.venue_name || s.venue || disc.venue || 'Vancouver Venue',
+          venue_name: a.venue_name || a.venue || s.venue_name || s.venue || disc.venue || 'Vancouver Venue',
+          date: a.date || a.dateSchedule || s.date || s.dateSchedule || disc.date || 'TBD',
+          time: a.time || s.start_time || s.doors_time || '',
+          price: a.priceLabel || (s.price_hint != null ? `$${Number(s.price_hint).toFixed(2)} CAD` : (disc.price || '')),
+          priceLabel: a.priceLabel || (s.price_hint != null ? `$${Number(s.price_hint).toFixed(2)} CAD` : (disc.price || 'Pending 1B/QC')),
+          url,
+          ticket_url: url,
+          candidate_tier1_url: s.candidate_tier1_url || a.candidate_tier1_url || null,
+          details_url: s.details_url || a.details_url || '',
+          lifecycle_type: a.lifecycle_type || s.lifecycle_type || null,
+          step1b_audited_at: hasStep1B ? (s.step1b_audited_at || a.step1b_audited_at || 'verified') : null,
+          step4_grounded_at: s.step4_grounded_at || a.step4_grounded_at || null,
+          isFreeOrOpen
+        };
+      });
+      if (batchCohort.length > 0) {
+        done1AList = batchCohort;
+      }
+    }
 
     const done1BList = done1AList.filter(e => Boolean(e.step1b_audited_at));
     const pending1BList = done1AList.filter(e => !e.step1b_audited_at);
@@ -7597,8 +7686,8 @@ function initStagehandRipperUI() {
         .filter(b => b && b.status && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR' && b.status !== 'SKIPPED_NO_URL' && b.status !== 'BUDGET_BREACH' && b.status !== 'ANTIBOT_CHALLENGE_BLOCKED' && !String(b.status).startsWith('FATAL_'))
         .map(b => String(b.id || b.event_id || '').toLowerCase())
     );
-    const done2QCList = done1BList.filter(e => boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
-    const pending2QCList = done1BList.filter(e => !boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const done2QCList = done1BList.filter(e => e.isFreeOrOpen || boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const pending2QCList = done1BList.filter(e => !e.isFreeOrOpen && !boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
 
     const edArr = state.layerEditorials || state.layerEditorial || [];
     const edSet = new Set(
@@ -7625,14 +7714,15 @@ function initStagehandRipperUI() {
       const vk = normVenueKey(e.venue || e.venue_name);
       return Boolean(vk && groundedVenueKeys.has(vk));
     };
-    const done3EnrichList = done2QCList.filter(e => edSet.has(String(e.id || e.event_id || '').toLowerCase()));
-    const pending3EnrichList = done2QCList.filter(e => !edSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const stage3InputPool = hasActiveBatchCohort ? done1AList : done2QCList;
+    const done3EnrichList = stage3InputPool.filter(e => edSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const pending3EnrichList = stage3InputPool.filter(e => !edSet.has(String(e.id || e.event_id || '').toLowerCase()));
 
     const done4VenueList = done3EnrichList.filter(e => isEventVenueGrounded(e));
     const pending4VenueList = done3EnrichList.filter(e => !isEventVenueGrounded(e));
 
     // Strict Stage 5 Gate: Events CANNOT skip Stage 4 (Venue Detailer) into Stage 5 (Compiler)
-    const pending5CompileList = done4VenueList;
+    const pending5CompileList = hasActiveBatchCohort ? uncompiledHarvested.filter(u => done4VenueList.some(d => String(d.id || d.event_id || '').toLowerCase() === String(u.id || u.event_id || '').toLowerCase())) : done4VenueList;
     const prev4Count = done4VenueList.length;
 
     if (key === 'harvest') {
@@ -7642,12 +7732,13 @@ function initStagehandRipperUI() {
         prevCompletedCount: completedFeeds,
         currentCompletedCount: completedFeeds,
         harvestedCount: done1AList.length,
+        uncompiledCount: uncompiledHarvested.length,
         pendingCount: remainingFeeds,
         pendingItems: [],
         allInputItems: [],
         unit: 'feeds',
         stepperStatusBadge: remainingFeeds > 0
-          ? `Queued: ${remainingFeeds} Feeds (${done1AList.length} Found)`
+          ? `Queued: ${remainingFeeds} Feeds (${done1AList.length} in Batch)`
           : `✅ 0 Queued (${done1AList.length} Found)`,
         pillLabel: remainingFeeds > 0 ? `▶️ Continue (#${resumeFeedNum}/${totalFeeds} • ${remainingFeeds} Queued)` : `✅ All ${totalFeeds} Feeds Done`,
         topBarLabel: remainingFeeds > 0 ? `▶️ Continue 1A (#${resumeFeedNum}/${totalFeeds} • ${remainingFeeds} Feeds Queued)` : `✅ All ${totalFeeds} Feeds Scanned`
@@ -7691,11 +7782,11 @@ function initStagehandRipperUI() {
       return {
         stageKey: 'enrich',
         prevStageLabel: 'Stage 2 QC',
-        prevCompletedCount: done2QCList.length,
+        prevCompletedCount: stage3InputPool.length,
         currentCompletedCount: done3EnrichList.length,
         pendingCount: pending3EnrichList.length,
         pendingItems: pending3EnrichList,
-        allInputItems: done2QCList,
+        allInputItems: stage3InputPool,
         unit: 'events',
         stepperStatusBadge: pending3EnrichList.length > 0
           ? `Queued: ${pending3EnrichList.length} • ${done3EnrichList.length} Done`
@@ -7725,14 +7816,14 @@ function initStagehandRipperUI() {
       stageKey: 'compile',
       prevStageLabel: 'Stage 4 Venue',
       prevCompletedCount: prev4Count,
-      currentCompletedCount: 0,
+      currentCompletedCount: hasActiveBatchCohort ? Math.max(0, prev4Count - pending5CompileList.length) : 0,
       pendingCount: pending5CompileList.length,
       pendingItems: pending5CompileList,
       allInputItems: done4VenueList,
       unit: 'events',
       stepperStatusBadge: pending5CompileList.length > 0
         ? `Queued: ${pending5CompileList.length} Ready`
-        : `Queued: 0`,
+        : (prev4Count > 0 ? `✅ 0 Queued (${prev4Count} Compiled)` : `Queued: 0`),
       pillLabel: `▶️ Continue from 4 (${pending5CompileList.length} Queued)`,
       topBarLabel: `▶️ Continue from Stage 4 (${pending5CompileList.length} Queued)`
     };
@@ -7756,7 +7847,11 @@ function initStagehandRipperUI() {
       const isStageRunning = isExecuting && window.activePipelineRunningStageKey === st;
       if (statusEl) {
         if (isStageRunning) {
-          statusEl.textContent = info.pendingCount > 0 ? `Running ⚡ (${info.pendingCount} Queued)` : 'Running ⚡';
+          const activeDone = pipelineProcessedCount || 0;
+          const activeTotal = pipelineTotalTargets || info.pendingCount || 0;
+          statusEl.textContent = activeTotal > 0
+            ? `Running ⚡ (${activeDone}/${activeTotal} Done)`
+            : 'Running ⚡';
           statusEl.className = 'test-step-status status-running';
         } else {
           statusEl.textContent = info.stepperStatusBadge;
@@ -7794,21 +7889,28 @@ function initStagehandRipperUI() {
     }
 
     const info = window.getStageContinuationInfo(targetStage);
-    if (!info || info.pendingCount <= 0) {
+    const hasCompletedPrevCohort = info && Array.isArray(info.allInputItems) && info.allInputItems.length > 0;
+    if (!info || (info.pendingCount <= 0 && !hasCompletedPrevCohort)) {
       if (typeof showToast === 'function') {
-        showToast(`No items waiting in ${targetStage.toUpperCase()} (${info.prevCompletedCount} completed ${info.prevStageLabel}, ${info.currentCompletedCount} already completed ${targetStage.toUpperCase()}).`, 'info');
+        showToast(`No items waiting in ${targetStage.toUpperCase()} (${info ? info.prevCompletedCount : 0} completed ${info ? info.prevStageLabel : 'previous stage'}, ${info ? info.currentCompletedCount : 0} already completed ${targetStage.toUpperCase()}).`, 'info');
       }
       return;
     }
 
-    const chosenCount = window.promptContinueEventCount(info.pendingCount, 'events');
+    // If only 0 or 1 item is left pending in Stage 1B because 48/49 harvested events were already 1B-audited,
+    // allow the curator to either run/carry the full Stage 1A cohort (allInputItems) or just the pending subset.
+    const sourcePool = (info.pendingCount <= 1 && hasCompletedPrevCohort && info.allInputItems.length > info.pendingCount)
+      ? info.allInputItems
+      : info.pendingItems;
+    const chosenCount = window.promptContinueEventCount(sourcePool.length, 'events');
     if (chosenCount === null) return;
+    currentPipelineScope = 'harvested';
     window.setPipelineBatchSize(chosenCount);
 
     const cap = (chosenCount === 'all' || chosenCount === 0)
-      ? info.pendingItems.length
-      : Math.min(Number(chosenCount) || info.pendingItems.length, info.pendingItems.length);
-    const picked = info.pendingItems.slice(0, cap);
+      ? sourcePool.length
+      : Math.min(Number(chosenCount) || sourcePool.length, sourcePool.length);
+    const picked = sourcePool.slice(0, cap);
 
     pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
     pipelineTestDiscoveredEvents = picked.map(e => ({
@@ -7827,20 +7929,16 @@ function initStagehandRipperUI() {
     savePipelineBatchState();
 
     if (typeof showToast === 'function') {
-      showToast(`▶️ Continuing ${targetStage.toUpperCase()} on ${picked.length} of ${info.pendingCount} events from ${info.prevStageLabel}!`, 'info');
+      showToast(`▶️ Continuing ${targetStage.toUpperCase()} on ${picked.length} of ${sourcePool.length} events from ${info.prevStageLabel}!`, 'info');
     }
 
     openPipelineTestStage(targetStage, true);
   };
 
   window.syncHarvesterCheckpointAndEventsUI = () => {
-    const cp = state.harvesterCheckpoint || {};
     const harvestedList = window.getUncompiledHarvestedEvents();
     const harvestedCount = harvestedList.length;
-    const completedFeeds = cp.status === 'completed' ? (cp.total_feeds != null ? Number(cp.total_feeds) : 126) : (cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : 49);
-    const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
-    const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : (completedFeeds + 1);
-    const lastFeedName = cp.last_feed_name || 'The Orpheum Theatre';
+    const { totalFeeds, completedFeeds, resumeFeedNum, lastFeedName } = window.getHarvesterFeedStats();
 
     if (!isExecuting) {
       harvesterSourcesScanned = completedFeeds;
@@ -7955,7 +8053,8 @@ function initStagehandRipperUI() {
         fetch('/data/archived_events.json?_t=' + Date.now()),
         fetch('/data/curator_learned_rules.json?_t=' + Date.now()),
         fetch('/data/layers/harvester_checkpoint.json?_t=' + Date.now()),
-        fetch('/data/venues.json?_t=' + Date.now())
+        fetch('/data/venues.json?_t=' + Date.now()),
+        typeof loadVenueFeedsList === 'function' ? loadVenueFeedsList() : Promise.resolve([])
       ]);
       if (evRes.status === 'fulfilled' && evRes.value.ok) {
         state.allEvents = await evRes.value.json();
@@ -10935,23 +11034,27 @@ function initStagehandRipperUI() {
   let harvesterDiscoveredEvents = [];
   let harvesterPreRunSourcesMap = new Map();
   let harvesterSourcesScanned = 0;
-  let harvesterTotalSources = 155;
+  let harvesterTotalSources = 227;
   let harvesterCurrentSourceName = '';
 
   function updateHarvesterSourcesProgressUI() {
-    if (currentPipelineScanKey !== 'harvest') return;
-    const scanned = harvesterSourcesScanned || 0;
-    const total = harvesterTotalSources || 155;
-    const foundCount = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
+    const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 227 };
+    const scanned = harvesterSourcesScanned || feedStats.completedFeeds || 0;
+    const total = harvesterTotalSources || feedStats.totalFeeds || 227;
+    const batchCount = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
+      ? pipelineTestDiscoveredIds.length
+      : ((harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0);
 
-    const trackerStatus = document.getElementById('pipeline-last-scanned-text');
-    if (trackerStatus) {
-      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned</span> • <span style="color: #4ade80; font-weight: 700;">+${foundCount} new events</span>`;
+    if (currentPipelineScanKey === 'harvest') {
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned</span> • <span style="color: #4ade80; font-weight: 700;">+${batchCount} events</span>`;
+      }
     }
 
     const stepSub = document.getElementById('test-step-sub-harvest');
-    if (stepSub && (scanned > 0 || isExecuting)) {
-      stepSub.textContent = `${scanned}/${total} sources scanned (+${foundCount} events)`;
+    if (stepSub) {
+      stepSub.textContent = `${scanned}/${total} sources scanned (+${batchCount} events)`;
     }
 
     const scannedBadge = document.getElementById('harvester-sources-scanned-badge');
@@ -11447,9 +11550,9 @@ function initStagehandRipperUI() {
   }
 
   function finalizeHarvesterRun(isSuccess = true) {
-    if (currentPipelineScanKey !== 'harvest') return;
+    if (currentPipelineScanKey !== 'harvest') return Promise.resolve();
 
-    fetch('/data/events.json?_t=' + Date.now())
+    return fetch('/data/events.json?_t=' + Date.now())
       .then(res => res.json())
       .then(freshEvents => {
         const preRunIds = new Set((harvesterPreRunEvents || []).map(e => e.id || e.event_id));
@@ -11471,6 +11574,25 @@ function initStagehandRipperUI() {
           }
         });
 
+        // Also merge all uncompiled Stage 1A harvested events from layer_schedules.json so Stage 1B -> 5 receives the full harvested cohort
+        if (typeof window.getUncompiledHarvestedEvents === 'function') {
+          const uncompiledList = window.getUncompiledHarvestedEvents() || [];
+          uncompiledList.forEach(u => {
+            const uid = u.id || u.event_id;
+            if (uid && !mergedNew.some(m => m.id === uid)) {
+              mergedNew.push({
+                id: uid,
+                title: u.title || u.event_name || 'Harvested Event',
+                date: u.date || u.dateSchedule || 'TBD',
+                time: u.time || u.doors_time || '',
+                venue: u.venue || u.venue_name || '',
+                price: u.priceLabel || 'Pending',
+                url: u.url || u.ticket_url || u.details_url || ''
+              });
+            }
+          });
+        }
+
         renderHarvesterComparisonView(true, mergedNew, false);
         updateComparisonStatusPill(
           isSuccess
@@ -11479,11 +11601,12 @@ function initStagehandRipperUI() {
           'updated'
         );
 
-        const batchLimit = (pipelineBatchSize === 'all' || pipelineBatchSize === 0) ? 9999 : (Number(pipelineBatchSize) || 5);
+        const batchLimit = (pipelineBatchSize === 'all' || pipelineBatchSize === 0) ? 9999 : (Number(pipelineBatchSize) || 50);
         const discoveredIds = mergedNew.map(x => x.id).filter(Boolean).slice(0, batchLimit);
         if (discoveredIds.length > 0) {
           pipelineTestDiscoveredIds = discoveredIds;
           pipelineTestDiscoveredEvents = mergedNew.filter(x => x.id && discoveredIds.includes(x.id)).slice(0, batchLimit);
+          currentPipelineScope = 'harvested';
         } else if (pipelineTestDiscoveredIds.length === 0 && Array.isArray(freshEvents) && freshEvents.length > 0) {
           const picked = freshEvents.slice(0, batchLimit);
           pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
@@ -11793,17 +11916,19 @@ function initStagehandRipperUI() {
     }
     showComparisonCardById(historyItem.id);
 
-    const baseDone = Number(window.pipelineBaselineAlreadyDoneCount) || 0;
-    const rawProcessed = baseDone + pipelineAuditedCardsHistory.length;
-    const syncedProcessed = Math.max(pipelineCurrentTargetIndex || 0, rawProcessed);
-    pipelineProcessedCount = (pipelineTotalTargets > 0 && syncedProcessed > pipelineTotalTargets)
+    // Strict completed count for the current run: never add skipped resume baseline or clamp ahead to in-progress index
+    const rawProcessed = pipelineAuditedCardsHistory.length;
+    pipelineProcessedCount = (pipelineTotalTargets > 0 && rawProcessed > pipelineTotalTargets)
       ? pipelineTotalTargets
-      : syncedProcessed;
+      : rawProcessed;
     const badge = document.getElementById('pipeline-diff-counter-badge');
     if (badge) {
       badge.textContent = pipelineTotalTargets > 0
-        ? `${pipelineProcessedCount} of ${pipelineTotalTargets} Processed`
-        : `${pipelineProcessedCount} Processed`;
+        ? `${pipelineProcessedCount} of ${pipelineTotalTargets} Completed`
+        : `${pipelineProcessedCount} Completed`;
+    }
+    if (typeof window.updateAllStageContinuationButtonsUI === 'function') {
+      window.updateAllStageContinuationButtonsUI();
     }
   }
 
@@ -12178,6 +12303,9 @@ function initStagehandRipperUI() {
     let targetPool = events;
     if (pipelineQuarantinedRunActive || currentPipelineScope === 'quarantined') {
       targetPool = qEvents;
+    } else if (currentPipelineScope === 'harvested' && typeof window.getUncompiledHarvestedEvents === 'function') {
+      const harvestedPool = window.getUncompiledHarvestedEvents();
+      if (harvestedPool && harvestedPool.length > 0) targetPool = harvestedPool;
     } else if (pipelineStaleFilterCategory && pipelineStaleFilterCategory !== 'all_stale') {
       const matched = events.filter(e => classifyEventStaleness(e) === pipelineStaleFilterCategory);
       if (matched.length > 0) targetPool = matched;
@@ -13150,8 +13278,10 @@ function initStagehandRipperUI() {
       const statusEl = document.getElementById(`test-step-status-${key}`);
       const info = typeof window.getStageContinuationInfo === 'function' ? window.getStageContinuationInfo(key) : null;
       const isStageRunning = isExecuting && window.activePipelineRunningStageKey === key;
+      const activeDone = pipelineProcessedCount || 0;
+      const activeTotal = pipelineTotalTargets || (info && info.pendingCount) || 0;
       const status = isStageRunning
-        ? (info && info.pendingCount > 0 ? `Running ⚡ (${info.pendingCount} Queued)` : 'Running ⚡')
+        ? (activeTotal > 0 ? `Running ⚡ (${activeDone}/${activeTotal} Done)` : 'Running ⚡')
         : (info ? info.stepperStatusBadge : (pipelineTestStageStatuses[key] || (i < idx ? 'Complete ✅' : (i === idx ? 'Active' : 'Awaiting'))));
       const isAllDoneForStage = info
         ? (info.pendingCount === 0 && (info.currentCompletedCount > 0 || (key === 'harvest' && info.harvestedCount > 0)))
@@ -13474,9 +13604,9 @@ function initStagehandRipperUI() {
     } else if (scope === 'harvest') {
       targetCount = 0;
       scopeTitle = 'Venue Feed Events';
-      const cp = state.harvesterCheckpoint || {};
-      const resumeNum = cp.resume_from_feed_number != null ? cp.resume_from_feed_number : 50;
-      const totalFeeds = cp.total_feeds != null ? cp.total_feeds : 126;
+      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { resumeFeedNum: 123, totalFeeds: 227 };
+      const resumeNum = feedStats.resumeFeedNum;
+      const totalFeeds = feedStats.totalFeeds;
       const stage1AName = window.harvesterResumeMode !== false
         ? `Schedule Harvester (Resume #${resumeNum}/${totalFeeds})`
         : 'Schedule Harvester (Fresh #1)';
@@ -16099,16 +16229,14 @@ function initStagehandRipperUI() {
     const isHarvestedTarget = (sc === 'harvested') || (sc === 'batch5' && isPipelineTestMode);
 
     if (key === 'harvest') {
-      const cp = state.harvesterCheckpoint || {};
-      const feeds = (cachedVenueFeeds && cachedVenueFeeds.length > 0)
-        ? cachedVenueFeeds
-        : ((state.masterCatalogsData && state.masterCatalogsData.venues_master) || Object.values(state.venuesData || {}));
-      const totalFeeds = cp.total_feeds || ((feeds && feeds.length) ? feeds.length : 123);
+      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 122, totalFeeds: 227, remainingFeeds: 105 };
+      const totalFeeds = feedStats.totalFeeds;
       harvesterTotalSources = totalFeeds;
-      const isHarvestComplete = (typeof pipelineTestStageStatuses !== 'undefined' && (pipelineTestStageStatuses['harvest'] || '').includes('Complete'));
-      const scannedCount = isHarvestComplete ? totalFeeds : (harvesterSourcesScanned || cp.completed_feeds_count || 0);
+      const scannedCount = harvesterSourcesScanned || feedStats.completedFeeds || 0;
       const remFeeds = Math.max(0, totalFeeds - scannedCount);
-      const foundEventsCount = harvestedList.length;
+      const foundEventsCount = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
+        ? pipelineTestDiscoveredIds.length
+        : harvestedList.length;
       trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scannedCount}/${totalFeeds} feeds scanned (${remFeeds} Queued)</span> • <span style="color: #4ade80; font-weight: 700;">${foundEventsCount} harvested events in Stage 1A</span>`;
     } else if (key === 'hunter') {
       if (isHarvestedTarget && stageInfo) {
@@ -16270,13 +16398,13 @@ function initStagehandRipperUI() {
     if (unscannedLabel) {
       if (preset.key === 'compile') {
         const uncompiled = calculateUncompiledEvents();
-        unscannedLabel.textContent = `Catalog Uncompiled (${uncompiled.length})`;
+        unscannedLabel.textContent = `Full Catalog Uncompiled (${uncompiled.length})`;
       } else if (preset.key === 'enrich') {
         const unenriched = calculateUnenrichedEvents();
-        unscannedLabel.textContent = `Catalog Unenriched (${unenriched.length})`;
+        unscannedLabel.textContent = `Full Catalog Unenriched (${unenriched.length})`;
       } else {
         const unscanned = calculateUnscannedEvents();
-        unscannedLabel.textContent = `Catalog Unscanned (${unscanned.length})`;
+        unscannedLabel.textContent = `Full Catalog Unscanned (${unscanned.length})`;
       }
     }
 
@@ -16626,24 +16754,23 @@ function initStagehandRipperUI() {
 
     if (mode === 'calendar' || mode === 'harvester') {
       captureHarvesterPreRunBaseline();
+      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 122, totalFeeds: 227, lastFeedName: 'The Orpheum Theatre' };
       const isResumeHarvest = Boolean(resume || String(url || '').endsWith(':resume'));
       if (!isResumeHarvest) {
         harvesterDiscoveredEvents = [];
         harvesterSourcesScanned = 0;
         harvesterCurrentSourceName = '';
       } else {
-        const cp = state.harvesterCheckpoint || {};
-        harvesterSourcesScanned = cp.completed_feeds_count || 49;
-        harvesterCurrentSourceName = cp.last_feed_name || 'The Orpheum Theatre';
+        harvesterSourcesScanned = feedStats.completedFeeds;
+        harvesterCurrentSourceName = feedStats.lastFeedName;
       }
-      const feedSel = document.getElementById('pipeline-select-venue-feed');
-      const optTotal = (feedSel && feedSel.options && feedSel.options.length > 1) ? (feedSel.options.length - 1) : 126;
-      const cpTotal = state.harvesterCheckpoint?.total_feeds || optTotal;
-      harvesterTotalSources = (all || !url || String(url).startsWith('all')) ? cpTotal : 1;
+      harvesterTotalSources = (all || !url || String(url).startsWith('all')) ? feedStats.totalFeeds : 1;
       updateHarvesterSourcesProgressUI();
       renderHarvesterComparisonView(false, harvesterDiscoveredEvents, true);
     }
 
+    window.pipelineBaselineAlreadyDoneCount = 0;
+    window.currentActiveEventLabel = '';
     pipelineProcessedCount = 0;
     pipelineTotalTargets = (limit !== undefined && limit !== null && Number(limit) > 0)
       ? Number(limit)
@@ -16923,21 +17050,40 @@ function initStagehandRipperUI() {
 
           const resumeMatch = line.match(/⏭️\s*\[(?:Step 1B|Stage 2 QC|Stage 3 Enricher)\s*Resume\]\s*Skipping\s*(\d+)/i);
           if (resumeMatch) {
-            window.pipelineBaselineAlreadyDoneCount = parseInt(resumeMatch[1], 10);
-            const uniqueDone = new Set(pipelineAuditedCardsHistory.map(h => h.id)).size;
-            pipelineProcessedCount = window.pipelineBaselineAlreadyDoneCount + uniqueDone;
-            const badge = document.getElementById('pipeline-diff-counter-badge');
-            if (badge && pipelineTotalTargets > 0) {
-              badge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets} Processed`;
-            }
+            window.pipelineBaselineAlreadyDoneCount = 0;
           }
+
+          const syncActiveBatchLabels = (activeTargetsCount) => {
+            if (!activeTargetsCount || activeStageKey === 'harvest') return;
+            const totalBatch = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
+              ? pipelineTestDiscoveredIds.length
+              : activeTargetsCount;
+            if (pipelineModalTitle) {
+              const baseTitle = String(pipelineModalTitle.innerHTML || '').replace(/\s*\(\d+[^)]*\)/i, '');
+              if (totalBatch > activeTargetsCount) {
+                pipelineModalTitle.innerHTML = `${baseTitle} (${activeTargetsCount} Active • ${totalBatch} Batch)`;
+              } else {
+                pipelineModalTitle.innerHTML = `${baseTitle} (${activeTargetsCount} Events)`;
+              }
+            }
+            const batchPillLabel = document.getElementById('scope-pill-batch5-label');
+            if (batchPillLabel && isPipelineTestMode && totalBatch > 0) {
+              batchPillLabel.textContent = totalBatch > activeTargetsCount
+                ? `🧪 ${totalBatch} Pipeline Events (${activeTargetsCount} Active)`
+                : `🧪 ${totalBatch} Pipeline Events`;
+            }
+            if (typeof window.updateAllStageContinuationButtonsUI === 'function') {
+              window.updateAllStageContinuationButtonsUI();
+            }
+          };
 
           const targetQueueMatch = line.match(/(?:🎯\s*Targets Queued for (?:Audit|Enrichment):\s*|🎯\s*Venues Targeted for Google Maps Grounding:\s*|🎯\s*Target Queue:\s*|Target Queue\s*\(\s*)(\d+)\s*(?:events?|candidates?|facilities|venues?|seeds?)?/i);
           if (targetQueueMatch) {
             pipelineTotalTargets = parseInt(targetQueueMatch[1], 10);
+            syncActiveBatchLabels(pipelineTotalTargets);
             const badge = document.getElementById('pipeline-diff-counter-badge');
             if (badge) {
-              badge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets} Processed`;
+              badge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets} Completed`;
             }
             if (pipelineItemProgress) {
               const pct = pipelineTotalTargets > 0 ? Math.round((pipelineProcessedCount / pipelineTotalTargets) * 100) : 0;
@@ -16988,7 +17134,7 @@ function initStagehandRipperUI() {
             }
           } else {
             // Pattern 1: Discrete Event Candidate Link: Processing [1/4]: https://...
-            const progressMatch = line.match(/(?:⚡|📌|✍️)?\s*Processing\s*\[(\d+)\/(\d+)\]/i) ||
+            const progressMatch = line.match(/(?:⚡|📌|✍️)?\s*(?:\[Worker\s*#\d+\]\s*)?Processing\s*\[(\d+)\/(\d+)\]/i) ||
               line.match(/\[(\d+)\/(\d+)\]\s*(?:⚡|📌|✍️)?\s*Processing/i);
             if (progressMatch) {
               const current = parseInt(progressMatch[1], 10);
@@ -16997,30 +17143,27 @@ function initStagehandRipperUI() {
                 pipelineCurrentTargetIndex = 0;
               }
               pipelineTotalTargets = total;
-              if (current <= (window.pipelineBaselineAlreadyDoneCount || 0)) {
-                window.pipelineBaselineAlreadyDoneCount = 0;
-              }
+              syncActiveBatchLabels(total);
               pipelineCurrentTargetIndex = Math.min(total, Math.max(pipelineCurrentTargetIndex || 0, current));
               const displayIdx = pipelineCurrentTargetIndex;
-              const rawDone = (window.pipelineBaselineAlreadyDoneCount || 0) + pipelineAuditedCardsHistory.length;
-              pipelineProcessedCount = Math.min(total, Math.max(displayIdx, rawDone));
+              pipelineProcessedCount = Math.min(total, pipelineAuditedCardsHistory.length);
               const barPct = Math.min(96, Math.max(4, Math.round(((displayIdx - 0.4) / total) * 100)));
               const labelPct = Math.min(100, Math.max(0, Math.round((displayIdx / total) * 100)));
               if (pipelineProgressBar) pipelineProgressBar.style.width = `${barPct}%`;
-              const itemsRunInSession = Math.max(1, displayIdx - (window.pipelineBaselineAlreadyDoneCount || 0));
+              const itemsRunInSession = Math.max(1, displayIdx);
               const unitTime = (itemsRunInSession > 1 && elapsed > 3)
                 ? Math.max(2, Math.round(elapsed / (itemsRunInSession - 1)))
                 : (BENCHMARKS[mode] || 18);
               if (pipelineItemProgress) {
                 if (activeStageKey === 'harvest') {
-                  pipelineItemProgress.textContent = `${harvesterSourcesScanned || 1}/${harvesterTotalSources || 155} sources scanned • Link ${displayIdx}/${total} (${labelPct}%)`;
+                  pipelineItemProgress.textContent = `${harvesterSourcesScanned || 1}/${harvesterTotalSources || 227} sources scanned • Link ${displayIdx}/${total} (${labelPct}%)`;
                 } else {
                   pipelineItemProgress.textContent = `Event ${displayIdx} of ${total} (${labelPct}%) • ~${Math.round(unitTime)}s / event`;
                 }
               }
               const counterBadge = document.getElementById('pipeline-diff-counter-badge');
               if (counterBadge && activeStageKey !== 'harvest') {
-                counterBadge.textContent = `${pipelineProcessedCount} of ${total} Processed`;
+                counterBadge.textContent = `${pipelineProcessedCount} of ${total} Completed (Event ${displayIdx} active)`;
               }
               const remainingItems = Math.max(1, total - displayIdx + 1);
               const recalibratedSec = Math.round(remainingItems * unitTime);
@@ -17029,7 +17172,7 @@ function initStagehandRipperUI() {
 
               if (activeStageKey === 'harvest') {
                 const sIdx = harvesterSourcesScanned || 1;
-                const sTot = harvesterTotalSources || 155;
+                const sTot = harvesterTotalSources || 227;
                 if (pipelineStatusText) {
                   pipelineStatusText.textContent = `Harvesting [${displayIdx} of ${total}] candidate links (${sIdx}/${sTot} sources scanned)...`;
                   pipelineStatusText.style.color = '#38bdf8';
@@ -17047,7 +17190,7 @@ function initStagehandRipperUI() {
           }
 
           // Real-Time Event Extraction & Diff Parsing (Request 3)
-          const itemStartMatch = line.match(/(?:📌|⚡|✍️)?\s*Processing\s*\[(\d+)\/(\d+)\]:\s*(.+)/i) ||
+          const itemStartMatch = line.match(/(?:📌|⚡|✍️)?\s*(?:\[Worker\s*#\d+\]\s*)?Processing\s*\[(\d+)\/(\d+)\]:\s*(.+)/i) ||
             line.match(/\[(\d+)\/(\d+)\]\s*(?:✍️|📌|⚡)?\s*Processing:\s*(.+)/i);
           if (itemStartMatch && activeStageKey !== 'harvest') {
             const batchItemIdx = parseInt(itemStartMatch[1], 10);
@@ -17056,13 +17199,10 @@ function initStagehandRipperUI() {
               pipelineCurrentTargetIndex = 0;
             }
             pipelineTotalTargets = batchTotal;
-            if (batchItemIdx <= (window.pipelineBaselineAlreadyDoneCount || 0)) {
-              window.pipelineBaselineAlreadyDoneCount = 0;
-            }
+            syncActiveBatchLabels(batchTotal);
             pipelineCurrentTargetIndex = Math.min(batchTotal, Math.max(pipelineCurrentTargetIndex || 0, batchItemIdx));
             const displayIdx = pipelineCurrentTargetIndex;
-            const rawDone = (window.pipelineBaselineAlreadyDoneCount || 0) + pipelineAuditedCardsHistory.length;
-            pipelineProcessedCount = Math.min(batchTotal, Math.max(displayIdx, rawDone));
+            pipelineProcessedCount = Math.min(batchTotal, pipelineAuditedCardsHistory.length);
             let itemTitle = itemStartMatch[3].trim();
             let directId = null;
             const idSuffixMatch = itemTitle.match(/\[([a-z0-9\-_]+)\]$/i);
@@ -17084,20 +17224,23 @@ function initStagehandRipperUI() {
                 : activeStageKey === 'compile'
                   ? 'Compiling'
                   : 'Auditing';
+            window.currentActiveEventLabel = `${stageActionVerb} [${displayIdx} of ${batchTotal}]: ${itemTitle}`;
             if (pipelineStatusText) {
-              pipelineStatusText.textContent = `${stageActionVerb} [${displayIdx} of ${batchTotal}]: ${itemTitle}`;
+              pipelineStatusText.textContent = window.currentActiveEventLabel;
               pipelineStatusText.style.color = '#38bdf8';
             }
             if (pipelineStatusSubtext) {
-              pipelineStatusSubtext.textContent = `Event ${displayIdx} of ${batchTotal} in progress...`;
+              const remCount = Math.max(0, batchTotal - pipelineProcessedCount);
+              pipelineStatusSubtext.textContent = `${pipelineProcessedCount}/${batchTotal} completed (${remCount} remaining) • Event ${displayIdx} of ${batchTotal} in progress...`;
             }
             const counterBadge = document.getElementById('pipeline-diff-counter-badge');
             if (counterBadge) {
-              counterBadge.textContent = `${pipelineProcessedCount} of ${batchTotal} Processed`;
+              counterBadge.textContent = `${pipelineProcessedCount} of ${batchTotal} Completed (Event ${displayIdx} active)`;
             }
             const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
             if (trackerStatusEl) {
-              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${batchTotal} Processed</span> • <span style="color: #38bdf8;">${stageActionVerb} [${displayIdx}/${batchTotal}]: ${escapeHtml(itemTitle)}</span>`;
+              const remCount = Math.max(0, batchTotal - pipelineProcessedCount);
+              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${batchTotal} Completed (${remCount} remaining)</span> • <span style="color: #38bdf8;">${stageActionVerb} [${displayIdx}/${batchTotal}]: ${escapeHtml(itemTitle)}</span>`;
             }
 
             let matchedEv = null;
@@ -17647,9 +17790,13 @@ function initStagehandRipperUI() {
             addEventDiffRow(commitCtx);
             activeContextsById.delete(committedId);
             const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+            const totalRun = pipelineTotalTargets || pipelineProcessedCount;
+            const remCount = Math.max(0, totalRun - pipelineProcessedCount);
             if (trackerStatusEl) {
-              const remCount = Math.max(0, (pipelineTotalTargets || pipelineProcessedCount) - pipelineProcessedCount);
-              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${pipelineTotalTargets || pipelineProcessedCount} Processed</span> • <span style="color: #94a3b8;">${remCount} remaining in current run</span>`;
+              const activeSuffix = (remCount > 0 && window.currentActiveEventLabel)
+                ? ` • <span style="color: #38bdf8;">${escapeHtml(window.currentActiveEventLabel)}</span>`
+                : ` • <span style="color: #94a3b8;">${remCount} remaining in current run</span>`;
+              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${totalRun} Completed (${remCount} remaining)</span>${activeSuffix}`;
             }
             if (typeof renderComparisonCards === 'function') {
               renderComparisonCards(commitCtx, beforeSnap, false);
@@ -17660,21 +17807,39 @@ function initStagehandRipperUI() {
           }
 
           if (pipelineStatusText) {
-            if (line.includes('📌 Processing [')) {
-              pipelineStatusText.textContent = line.replace('📌 ', '');
-              if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Active target inspection in progress...';
+            if (/📌\s*(?:\[Worker\s*#\d+\]\s*)?Processing\s*\[/i.test(line)) {
+              pipelineStatusText.textContent = window.currentActiveEventLabel || line.replace(/^.*?📌\s*(?:\[Worker\s*#\d+\]\s*)?/i, '');
+              if (pipelineStatusSubtext) {
+                const totalRun = pipelineTotalTargets || 1;
+                const remCount = Math.max(0, totalRun - pipelineProcessedCount);
+                pipelineStatusSubtext.textContent = `${pipelineProcessedCount}/${totalRun} completed (${remCount} remaining) • Event ${pipelineCurrentTargetIndex || 1} of ${totalRun} in progress...`;
+              }
               pipelineStatusText.style.color = '#38bdf8';
             } else if (line.includes('🛒 Navigating to checkout cart:')) {
-              pipelineStatusText.textContent = '🛒 Penetrating checkout cart modal...';
+              pipelineStatusText.textContent = window.currentActiveEventLabel
+                ? `${window.currentActiveEventLabel} — 🛒 Penetrating checkout cart...`
+                : '🛒 Penetrating checkout cart modal...';
               if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Extracting base ticket price, service fees & 5% GST...';
               pipelineStatusText.style.color = '#a855f7';
             } else if (line.includes('📸 Proof keyframe captured:')) {
-              pipelineStatusText.textContent = '📸 Proof keyframe captured!';
+              pipelineStatusText.textContent = window.currentActiveEventLabel
+                ? `${window.currentActiveEventLabel} — 📸 Proof keyframe captured!`
+                : '📸 Proof keyframe captured!';
               if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Visual keyframe evidence saved & linked.';
               pipelineStatusText.style.color = '#34d399';
             } else if (line.includes('💾 Committed updated event')) {
-              pipelineStatusText.textContent = `💾 Committed ${getCatalogDimensionsCount()}D verified card to events.json`;
-              pipelineStatusText.style.color = '#34d399';
+              const totalRun = pipelineTotalTargets || pipelineProcessedCount || 1;
+              const remCount = Math.max(0, totalRun - pipelineProcessedCount);
+              if (remCount > 0 && window.currentActiveEventLabel) {
+                pipelineStatusText.textContent = window.currentActiveEventLabel;
+                pipelineStatusText.style.color = '#38bdf8';
+                if (pipelineStatusSubtext) {
+                  pipelineStatusSubtext.textContent = `💾 ${pipelineProcessedCount}/${totalRun} completed (${remCount} remaining) • Event ${pipelineCurrentTargetIndex || 1} of ${totalRun} in progress...`;
+                }
+              } else {
+                pipelineStatusText.textContent = `💾 Committed ${pipelineProcessedCount}/${totalRun} verified card(s) to events.json`;
+                pipelineStatusText.style.color = '#34d399';
+              }
             } else if (line.includes('🏁 BATCH QC AUDIT COMPLETE')) {
               pipelineStatusText.textContent = '🏁 Batch QC Audit Complete!';
               pipelineStatusText.style.color = '#10b981';
@@ -17910,7 +18075,13 @@ function initStagehandRipperUI() {
         if (typeof loadQuarantineQueue === 'function') loadQuarantineQueue();
         if (typeof loadCuratorDashboard === 'function') loadCuratorDashboard();
         const reloadPromise = (typeof window.loadLayersAndEvents === 'function')
-          ? Promise.resolve(window.loadLayersAndEvents()).catch(() => {})
+          ? Promise.resolve(window.loadLayersAndEvents())
+              .then(() => {
+                if (finishedStageKey === 'harvest' && typeof finalizeHarvesterRun === 'function') {
+                  return finalizeHarvesterRun(true);
+                }
+              })
+              .catch(() => {})
           : Promise.resolve();
 
         // Auto-chain to next stage if full pipeline batch mode is active
@@ -18183,12 +18354,24 @@ function initStagehandRipperUI() {
         const stageInfo = typeof window.getStageContinuationInfo === 'function'
           ? window.getStageContinuationInfo(preset.key)
           : null;
-        const candidateEvents = (stageInfo && stageInfo.pendingItems && stageInfo.pendingItems.length > 0)
+        const pendingEvents = (stageInfo && stageInfo.pendingItems && stageInfo.pendingItems.length > 0)
           ? stageInfo.pendingItems
           : [];
-        let hIds = (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0 && candidateEvents.length === 0)
-          ? [...pipelineTestDiscoveredIds]
-          : candidateEvents.map(e => e.id || e.event_id).filter(Boolean);
+        const allInputEvents = (stageInfo && stageInfo.allInputItems && stageInfo.allInputItems.length > 0)
+          ? stageInfo.allInputItems
+          : [];
+        // Preserve full harvested cohort when pipelineTestDiscoveredIds already holds a multi-event batch (e.g., 49 events)
+        // and only 0 or 1 event lacks step1b_audited_at so the batch doesn't collapse to 1 event!
+        let hIds = [];
+        if (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 1 && pendingEvents.length <= 1 && allInputEvents.length > 1) {
+          hIds = [...pipelineTestDiscoveredIds];
+        } else if (pendingEvents.length > 0) {
+          hIds = pendingEvents.map(e => e.id || e.event_id).filter(Boolean);
+        } else if (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+          hIds = [...pipelineTestDiscoveredIds];
+        } else if (allInputEvents.length > 0) {
+          hIds = allInputEvents.map(e => e.id || e.event_id).filter(Boolean);
+        }
         if (hIds.length === 0) {
           if (typeof showToast === 'function') {
             showToast(`⏸️ Cannot run Stage ${preset.key.toUpperCase()}: 0 events are queued from ${stageInfo ? stageInfo.prevStageLabel : 'the previous stage'}. Events cannot skip pipeline stages!`, 'warning');
@@ -18196,11 +18379,16 @@ function initStagehandRipperUI() {
           return;
         }
         if (batchCap > 0 && hIds.length > batchCap) hIds = hIds.slice(0, batchCap);
+        // Ensure pipelineTestDiscoveredIds retains the full cohort for downstream stages (2 -> 5)
+        if (allInputEvents.length > hIds.length && (!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length <= 1)) {
+          const fullCohort = allInputEvents.map(e => e.id || e.event_id).filter(Boolean);
+          pipelineTestDiscoveredIds = batchCap > 0 ? fullCohort.slice(0, batchCap) : fullCohort;
+        }
         idsVal = hIds.length > 250 ? '' : hIds.join(',');
         limitVal = batchCap;
         offsetVal = 0;
         allParam = false;
-        forceVal = false;
+        forceVal = (pendingEvents.length === 0 && hIds.length > 0);
         uncompiledOnly = true;
       } else if (currentPipelineScope === 'batch5') {
         const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)

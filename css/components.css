@@ -4115,52 +4115,68 @@
 
 /* ==============================================================================
    WCAG AAA Accessible Mode (.van50-accessible)
-   High Contrast (Black / White / Amber / Cyan), Enlarged Fonts, 48px Touch Targets, Underlined Links
+   High-Contrast Accessible Version of the Lighter Theme ("Stanley Park Daylight"),
+   Enlarged Fonts, 48px Touch Targets, Underlined Links, Crisp Dark Borders
    ============================================================================== */
 
 body.van50-accessible {
-  --bg-base: #000000 !important;
-  --bg-surface: #0a0f1d !important;
-  --bg-card: #0d1527 !important;
-  --border-subtle: #475569 !important;
-  --border-medium: #94a3b8 !important;
-  --border-highlight: #ffffff !important;
-  --text-primary: #ffffff !important;
-  --text-secondary: #f8fafc !important;
-  --text-muted: #e2e8f0 !important;
-  --accent-primary: #34d399 !important;
-  --accent-secondary: #38bdf8 !important;
+  --bg-base: #EEF2EC !important;
+  --bg-app: #EEF2EC !important;
+  --bg-surface: #DCE4D8 !important;
+  --bg-elevated: #DCE4D8 !important;
+  --bg-card: #FFFFFF !important;
+  --bg-glass: rgba(238, 242, 236, 0.96) !important;
+  --border-subtle: #334E43 !important;
+  --border-medium: #1A2E26 !important;
+  --border-highlight: #050E0B !important;
+  --border-focus: #064E3B !important;
+  --text-main: #050E0B !important;
+  --text-primary: #050E0B !important;
+  --text-secondary: #11221C !important;
+  --text-muted: #1E352D !important;
+  --brand-primary: #064E3B !important;
+  --brand-primary-hover: #043927 !important;
+  --brand-primary-fg: #FFFFFF !important;
+  --brand-accent: #78350F !important;
+  --accent-primary: #064E3B !important;
+  --accent-secondary: #075985 !important;
+  --accent-amber: #78350F !important;
+  --accent-rose: #9F1239 !important;
+  background-color: #EEF2EC !important;
+  color: #050E0B !important;
   font-size: 108% !important;
   line-height: 1.6 !important;
 }
 
 body.van50-accessible .site-header {
-  background: #000000 !important;
-  border-bottom: 2px solid #64748b !important;
+  background: #FFFFFF !important;
+  border-bottom: 2px solid #1A2E26 !important;
 }
 
 body.van50-accessible .event-card {
-  border: 2px solid #64748b !important;
-  background: #0b1120 !important;
+  border: 2px solid #1A2E26 !important;
+  background: #FFFFFF !important;
+  color: #050E0B !important;
+  box-shadow: 0 2px 8px rgba(5, 14, 11, 0.12) !important;
 }
 
 body.van50-accessible .event-card:hover,
 body.van50-accessible .event-card:focus-within {
-  border-color: #38bdf8 !important;
-  box-shadow: 0 0 0 2px #38bdf8 !important;
+  border-color: #064E3B !important;
+  box-shadow: 0 0 0 3px #064E3B !important;
 }
 
 body.van50-accessible .card-title {
-  color: #ffffff !important;
+  color: #050E0B !important;
   text-decoration: underline !important;
   text-decoration-thickness: 2px !important;
   font-weight: 800 !important;
 }
 
 body.van50-accessible .card-price {
-  color: #ffffff !important;
-  background: #065f46 !important;
-  border: 2px solid #34d399 !important;
+  color: #FFFFFF !important;
+  background: #064E3B !important;
+  border: 2px solid #043927 !important;
   font-weight: 800 !important;
   font-size: 0.98rem !important;
   padding: 3px 10px !important;
@@ -4169,8 +4185,9 @@ body.van50-accessible .card-price {
 body.van50-accessible .card-category-badge,
 body.van50-accessible .card-date-badge,
 body.van50-accessible .venue-pill {
-  border: 1.5px solid #94a3b8 !important;
-  color: #ffffff !important;
+  background: #EEF2EC !important;
+  border: 2px solid #1A2E26 !important;
+  color: #050E0B !important;
   font-weight: 700 !important;
 }
 
@@ -4190,37 +4207,40 @@ body.van50-accessible .btn-festival-display {
 body.van50-accessible a:focus-visible,
 body.van50-accessible button:focus-visible,
 body.van50-accessible input:focus-visible {
-  outline: 3px solid #38bdf8 !important;
+  outline: 3px solid #064E3B !important;
   outline-offset: 3px !important;
 }
 
 body.van50-accessible .btn-accessibility {
-  border: 2px solid #38bdf8 !important;
-  color: #38bdf8 !important;
+  background: #FFFFFF !important;
+  border: 2px solid #064E3B !important;
+  color: #064E3B !important;
 }
 
 body.van50-accessible .btn-accessibility.active {
-  background: #38bdf8 !important;
-  color: #000000 !important;
+  background: #064E3B !important;
+  color: #FFFFFF !important;
+  border-color: #043927 !important;
   font-weight: 800 !important;
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.28) !important;
 }
 
 body.van50-accessible .festival-spotlight-card {
-  border: 2px solid #38bdf8 !important;
-  background: #060e1a !important;
+  border: 2px solid #064E3B !important;
+  background: #FFFFFF !important;
+  color: #050E0B !important;
 }
 
 body.van50-accessible .festival-spotlight-blurb {
-  color: #ffffff !important;
+  color: #050E0B !important;
   font-size: 0.98rem !important;
   line-height: 1.65 !important;
 }
 
 body.van50-accessible .festival-dates-lead {
-  background: #0369a1 !important;
-  color: #ffffff !important;
-  border: 2px solid #38bdf8 !important;
+  background: #075985 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #050E0B !important;
   font-size: 0.98rem !important;
   padding: 3px 10px !important;
 }
@@ -4231,8 +4251,11 @@ body.van50-accessible .card-ticket-link {
   align-items: center !important;
   justify-content: center !important;
   font-size: 1rem !important;
-  border: 2px solid #38bdf8 !important;
+  background: #064E3B !important;
+  color: #FFFFFF !important;
+  border: 2px solid #043927 !important;
   font-weight: 800 !important;
+  text-decoration: underline !important;
 }
 
 /* ==============================================================================
@@ -5668,9 +5691,9 @@ body.van50-accessible .card-ticket-link {
     transform: translateY(100%);
     transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
     padding: 8px 16px calc(16px + env(safe-area-inset-bottom));
-    background: #0f172a;
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.75);
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-subtle);
+    box-shadow: 0 -12px 40px rgba(17, 28, 24, 0.22);
   }
 
   #mobile-filters-sheet.is-open {
@@ -5694,13 +5717,13 @@ body.van50-accessible .card-ticket-link {
     font-family: var(--font-heading);
     font-size: 1.05rem;
     font-weight: 800;
-    color: #fff;
+    color: var(--text-main);
   }
 
   .mobile-sheet-close-btn {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--bg-elevated);
     border: 1px solid var(--border-subtle);
-    color: #cbd5e1;
+    color: var(--text-main);
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -5731,7 +5754,7 @@ body.van50-accessible .card-ticket-link {
     gap: 10px;
     position: sticky;
     bottom: 0;
-    background: #0f172a;
+    background: var(--bg-card);
     padding: 12px 0 4px;
     border-top: 1px solid var(--border-subtle);
     margin-top: 6px;
@@ -5743,9 +5766,9 @@ body.van50-accessible .card-ticket-link {
     min-height: 44px;
     padding: 0 16px;
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.07);
+    background: var(--bg-elevated);
     border: 1px solid var(--border-subtle);
-    color: #e2e8f0;
+    color: var(--text-main);
     font-weight: 700;
     font-size: 0.88rem;
     cursor: pointer;
@@ -5756,13 +5779,13 @@ body.van50-accessible .card-ticket-link {
     min-height: 44px;
     padding: 0 18px;
     border-radius: var(--radius-md);
-    background: linear-gradient(135deg, #10b981, #06b6d4);
+    background: var(--brand-primary);
     border: none;
-    color: #041018;
+    color: var(--brand-primary-fg);
     font-weight: 800;
     font-size: 0.92rem;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    box-shadow: var(--shadow-glow);
   }
 
   /* 4. Replace Continuous Spend Slider with Tappable Presets on Mobile */
@@ -5787,8 +5810,9 @@ body.van50-accessible .card-ticket-link {
     font-size: 0.84rem !important;
     font-weight: 700 !important;
     border-radius: var(--radius-full) !important;
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
-    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle) !important;
+    background: var(--bg-elevated);
+    color: var(--text-main);
     flex: 1 1 calc(33.333% - 8px);
     display: inline-flex;
     align-items: center;
@@ -5796,9 +5820,9 @@ body.van50-accessible .card-ticket-link {
   }
 
   div[aria-label="Cost Quick Filters"] .cost-quick-btn.active {
-    background: var(--accent-primary) !important;
-    border-color: var(--accent-primary) !important;
-    color: #041018 !important;
+    background: var(--brand-primary) !important;
+    border-color: var(--brand-primary) !important;
+    color: var(--brand-primary-fg) !important;
   }
 
   /* 5. Convert View Switcher to a Floating Bottom Action Pill (<= 768px) */
@@ -6198,7 +6222,7 @@ body.van50-accessible .card-ticket-link {
     position: sticky !important;
     top: 0 !important;
     z-index: 6 !important;
-    background: #0f172a !important;
+    background: var(--bg-card) !important;
     margin: 0 -16px !important;
     padding: 6px 16px 10px 16px !important;
     border-bottom: 1px solid var(--border-subtle) !important;
@@ -6208,11 +6232,11 @@ body.van50-accessible .card-ticket-link {
     position: sticky !important;
     bottom: 0 !important;
     z-index: 6 !important;
-    background: #0f172a !important;
+    background: var(--bg-card) !important;
     margin: 4px -16px 0 -16px !important;
     padding: 12px 16px calc(16px + env(safe-area-inset-bottom)) !important;
     border-top: 1px solid var(--border-subtle) !important;
-    box-shadow: 0 -8px 20px rgba(8, 12, 20, 0.85) !important;
+    box-shadow: 0 -8px 20px rgba(17, 28, 24, 0.12) !important;
   }
 
   #mobile-filters-sheet .spend-control-row {
@@ -8541,18 +8565,18 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   color: var(--text-main);
 }
 
-/* 4. WCAG AAA Accessible Mode Token Overrides */
+/* 4. WCAG AAA Accessible Mode Token Overrides (Lighter Theme Base) */
 body.van50-accessible {
-  --bg-app: #000000 !important;
-  --bg-card: #0b1120 !important;
-  --bg-elevated: #0f172a !important;
-  --bg-glass: rgba(0, 0, 0, 0.94) !important;
-  --text-main: #ffffff !important;
-  --text-muted: #e2e8f0 !important;
-  --brand-primary: #34d399 !important;
-  --brand-primary-fg: #000000 !important;
-  --brand-accent: #fbbf24 !important;
-  --border-subtle: #64748b !important;
+  --bg-app: #EEF2EC !important;
+  --bg-card: #FFFFFF !important;
+  --bg-elevated: #DCE4D8 !important;
+  --bg-glass: rgba(238, 242, 236, 0.96) !important;
+  --text-main: #050E0B !important;
+  --text-muted: #1E352D !important;
+  --brand-primary: #064E3B !important;
+  --brand-primary-fg: #FFFFFF !important;
+  --brand-accent: #78350F !important;
+  --border-subtle: #334E43 !important;
 }
 
 /* ============================================================================

@@ -1162,10 +1162,10 @@ export async function runEnricher(options = {}) {
 
   const requestedConcurrency = Number(options.concurrency || process.env.VAN50_ENRICHER_CONCURRENCY || 3);
   const concurrency = Math.max(1, Math.min(requestedConcurrency, targets.length || 1, 5));
-  const displayTotal = resumeOffset + targets.length;
-  console.log(`🎯 Targets Queued for Enrichment: ${displayTotal} events`);
+  const displayTotal = targets.length;
+  console.log(`🎯 Targets Queued for Enrichment: ${displayTotal} events${resumeOffset > 0 ? ` (${resumeOffset} already enriched in batch, ${targets.length} active in this run)` : ""}`);
   console.log(`⚡ Enricher Concurrency: ${concurrency} worker(s) (with SHA-1 input fingerprint caching & atomic per-card checkpointing)`);
-  console.log(`📋 Enriching ${targets.length} events${resumeOffset > 0 ? ` (Resuming at #${resumeOffset + 1}/${displayTotal})` : ""}...\n`);
+  console.log(`📋 Enriching ${targets.length} events...\n`);
   let enrichedCount = 0;
   let cacheHitCount = 0;
 
@@ -1216,7 +1216,7 @@ export async function runEnricher(options = {}) {
         } catch (_) { }
       }
 
-      const displayIdx = resumeOffset + i + 1;
+      const displayIdx = i + 1;
       console.log(`${formatLogTime()} ✍️ [Worker #${workerId + 1}] Processing [${displayIdx}/${displayTotal}]: ${title} (${venue}) [${eventId}]`);
       const curatorInfo = getCuratorInfo({ eventId, title, venue, existingCard: item });
       const activeCuratorNote = curatorInfo.effectiveNote || curatorInfo.eventInstructionText || curatorInfo.existingCuratorNotes;

@@ -1151,8 +1151,11 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
       const pending = targets.filter((s) => !s.step1b_audited_at);
       if (pending.length > 0 && pending.length < targets.length) {
         resumeOffset = targets.length - pending.length;
-        console.log(`⏭️ [Step 1B Resume] Skipping ${resumeOffset} newly harvested events already audited in Stage 1B — resuming on ${pending.length} remaining events!`);
+        console.log(`⏭️ [Step 1B Resume] ${resumeOffset}/${targets.length} harvested events were already audited in a previous Stage 1B pass — auditing the remaining ${pending.length} pending event(s) so all ${targets.length} events are ready for Stage 2!`);
         targets = pending;
+      } else if (pending.length === 0) {
+        console.log(`✅ [Step 1B] All ${targets.length} requested harvested events already have step1b_audited_at stamps and are ready for Stage 2 (Box Office QC).`);
+        targets = [];
       }
     }
   } else if (options.quarantine || options.quarantined) {
@@ -1478,6 +1481,7 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
   let isQuarantine = false;
   let isActiveOnly = false;
   let isHarvestedOnly = false;
+  let isForce = false;
   let offset = 0;
 
   for (let i = 0; i < args.length; i++) {
@@ -1500,6 +1504,8 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
       i++;
     } else if (a === "--all") {
       isAll = true;
+    } else if (a === "--force") {
+      isForce = true;
     } else if (a === "--active-only" || a === "--active") {
       isActiveOnly = true;
     } else if (a === "--quarantine" || a === "--quarantined") {
@@ -1528,8 +1534,14 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
   } catch (_) {}
   const todayCliIso = new Date().toISOString().split("T")[0];
 
-  if (isHarvestedOnly && !targetIds.length) {
-    runStep1BLinkUpgrader(null, { harvestedOnly: true, limit, offset, all: isAll })
+  if (isHarvestedOnly) {
+    runStep1BLinkUpgrader(targetIds.length > 0 ? targetIds : null, {
+      harvestedOnly: true,
+      limit,
+      offset,
+      all: isAll,
+      force: isForce,
+    })
       .then(() => {
         printAntigravityTimeoutSummary();
         process.exit(0);

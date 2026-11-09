@@ -819,12 +819,6 @@ function formatScheduleText12h(str) {
 }
 
 function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
-  if (rawWh && typeof rawWh === 'object' && !Array.isArray(rawWh)) {
-    return rawWh;
-  }
-  const sourceStr = sanitizeMojibake(String(rawWh || (isDropIn ? fallbackScheduleStr : '') || '').trim());
-  if (!sourceStr && !isDropIn) return null;
-
   const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
   const fullDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
   const dayMap = {
@@ -837,6 +831,30 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
     sun: 6, sunday: 6, sundays: 6
   };
 
+  if (rawWh && typeof rawWh === 'object' && !Array.isArray(rawWh)) {
+    const normalizedObj = {};
+    days.forEach((d, idx) => {
+      const full = fullDays[idx];
+      const rawVal = rawWh[d] || rawWh[full] || rawWh[d.charAt(0).toUpperCase() + d.slice(1)] || rawWh[full.charAt(0).toUpperCase() + full.slice(1)];
+      const formatted = rawVal ? formatScheduleText12h(sanitizeMojibake(String(rawVal).trim())) : 'Closed';
+      normalizedObj[d] = formatted;
+      normalizedObj[full] = formatted;
+    });
+    return normalizedObj;
+  }
+  const sourceStr = sanitizeMojibake(String(rawWh || (isDropIn ? fallbackScheduleStr : '') || '').trim());
+  if (!sourceStr && !isDropIn) return null;
+
+  // Guard: If no explicit weekly_hours was provided and fallbackScheduleStr is a specific calendar-date range
+  // (e.g., "Sat Nov 21 & Sun Nov 22, 2026 • 12:00 PM – 8:00 PM" or "2026-11-21"), never misparse it as a recurring 7-day weekly facility schedule!
+  if (!rawWh && sourceStr) {
+    const hasSpecificCalendarDate = /\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?\s+\d{1,2}\b/i.test(sourceStr) ||
+      /\b202\d-\d{2}-\d{2}\b/.test(sourceStr);
+    if (hasSpecificCalendarDate && !/\b(?:weekly|every\s+(?:mon|tue|wed|thu|fri|sat|sun|day|week)|open\s+daily|year-round)\b/i.test(sourceStr)) {
+      return null;
+    }
+  }
+
   const result = {};
   if (!sourceStr) {
     if (isDropIn) {
@@ -846,11 +864,16 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
     return null;
   }
 
-  // Strip parenthetical commentary that confuses day splitters unless it only has "Closed ..."
-  let cleaned = sourceStr.replace(/\s*•\s*(?:Current Exhibition|Running through|Free First Fridays).*$/i, '').trim();
+  // Strip trailing non-hours bullets (e.g., "• Current Exhibition...", "• Drop-In Day Pass...", "• Free Farmhouse Tours...")
+  let cleaned = formatScheduleText12h(
+    sourceStr
+      .replace(/\s*•\s*(?:Current Exhibition|Running through|Free First Fridays|Drop-In|Guided Flight|Single Drop-In|Free Gardens|Free Public|Free Shoreline|Free Farmhouse|Lit 9-Hole|Over 10km|Thursday Artist).*$/i, '')
+      .trim()
+  );
 
-  // Check if it's a "Daily: X" or "Open Daily: X" pattern
-  if (/^(?:open\s+)?daily\b/i.test(cleaned) && !/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(cleaned.replace(/\s*\([^)]*\)/g, ''))) {
+  // Check if it's a "Daily: X" or "Open Daily: X" pattern without day-specific exceptions
+  const hasDayOverrideInParens = /\((?:[^)]*\b(?:closed|until)\b[^)]*)\)/i.test(cleaned);
+  if (/^(?:open\s+)?daily\b/i.test(cleaned) && !/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(cleaned.replace(/\s*\([^)]*\)/g, '')) && !hasDayOverrideInParens) {
     const val = cleaned
       .replace(/^(?:open\s+)?daily(?:\s+year-round)?\s*[:•-]?\s*/i, '')
       .replace(/\s*\([^)]*\)/g, '')
@@ -860,23 +883,27 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
   }
 
   // Check if it has "Plaza & Commons: Daily 10:00 AM - 8:00 PM..."
-  const dailyMatch = cleaned.match(/\bDaily\s*[:•-]?\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM)\s*[-–—to]+\s*(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM)|Dusk|Sunset))/i);
-  if (dailyMatch && !/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(cleaned.replace(/\s*\([^)]*\)/g, ''))) {
+  const dailyMatch = cleaned.match(/\bDaily\s*[:•-]?\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM)\s*[-–—to]+\s*(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM)|Dusk|Sunset|Midnight))/i);
+  if (dailyMatch && !/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(cleaned.replace(/\s*\([^)]*\)/g, '')) && !hasDayOverrideInParens) {
     const val = dailyMatch[1].trim();
     days.forEach((d, idx) => { result[d] = val; result[fullDays[idx]] = val; });
     return result;
   }
 
-  // Split into clauses by ; or • or , when followed by a day name or Closed
+  // Only expand parenthetical notes into clauses when they are explicit day-closure or closing-time overrides
+  // (e.g., "(Closed Mondays)", "(Fri/Sat until Midnight)", "(open until 8:00 PM on Thursdays)")
   const withoutParens = cleaned.replace(/\(([^)]*)\)/g, (m, inner) => {
-    if (/\b(closed|until|mon|tue|wed|thu|fri|sat|sun)\b/i.test(inner)) {
-      return '; ' + inner;
+    const trimmedInner = inner.trim();
+    if (/^closed\b/i.test(trimmedInner) ||
+        /^(?:mon|tue|wed|thu|fri|sat|sun)[a-z/&-]*\s+until\b/i.test(trimmedInner) ||
+        /^(?:open\s+)?until\s+\d{1,2}(?::\d{2})?\s*(?:AM|PM|Midnight)\s+on\s+(?:mon|tue|wed|thu|fri|sat|sun)/i.test(trimmedInner)) {
+      return '; ' + trimmedInner;
     }
     return '';
   });
 
   const clauses = withoutParens
-    .split(/\s*[;•]\s*|\s*,\s*(?=(?:mon|tue|wed|thu|fri|sat|sun|daily|closed)\b)/i)
+    .split(/\s*[;•]\s*|\s*,\s*(?=(?:mon|tue|wed|thu|fri|sat|sun|daily|open\s+daily|closed)\b)/i)
     .map(c => c.trim())
     .filter(Boolean);
 
@@ -884,6 +911,51 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
 
   let matchedAny = false;
   for (const clause of clauses) {
+    // Handle "Daily: 10:00 AM - 5:00 PM" as a base clause before day-specific overrides
+    const dailyClauseMatch = clause.match(/^(?:open\s+)?daily(?:\s+year-round)?\s*[:•-]?\s*(.+)$/i);
+    if (dailyClauseMatch) {
+      const baseVal = dailyClauseMatch[1].trim();
+      days.forEach((d, idx) => {
+        result[d] = baseVal;
+        result[fullDays[idx]] = baseVal;
+      });
+      matchedAny = true;
+      continue;
+    }
+
+    // Handle "open until 8:00 PM on Thursdays"
+    const openUntilOnMatch = clause.match(/^(?:open\s+)?until\s+(\d{1,2}(?::\d{2})?\s*(?:AM|PM|Midnight))\s+on\s+([a-z]+)$/i);
+    if (openUntilOnMatch) {
+      const dIdx = dayMap[openUntilOnMatch[2].toLowerCase()];
+      if (dIdx !== undefined) {
+        const prev = result[days[dIdx]] || '10:00 AM – 5:00 PM';
+        const updated = prev.replace(/[-–—]\s*(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM)|Midnight|Dusk)/i, `– ${openUntilOnMatch[1].trim()}`);
+        result[days[dIdx]] = updated;
+        result[fullDays[dIdx]] = updated;
+        matchedAny = true;
+      }
+      continue;
+    }
+
+    // Handle "Fri/Sat until Midnight" or "Fri until 8:00 PM"
+    const untilMatch = clause.match(/^((?:mon|tue|wed|thu|fri|sat|sun)[a-z/&,\s-]*?)\s+until\s+(\d{1,2}(?::\d{2})?\s*(?:AM|PM)|Midnight)$/i);
+    if (untilMatch) {
+      let m;
+      dayRegex.lastIndex = 0;
+      while ((m = dayRegex.exec(untilMatch[1])) !== null) {
+        const dIdx = dayMap[m[1].toLowerCase()];
+        if (dIdx !== undefined) {
+          const prev = result[days[dIdx]] || '12:00 PM – 10:30 PM';
+          const endLabel = /midnight/i.test(untilMatch[2]) ? '12:00 AM' : untilMatch[2].trim();
+          const updated = prev.replace(/[-–—]\s*(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM)|Midnight|Dusk)/i, `– ${endLabel}`);
+          result[days[dIdx]] = updated;
+          result[fullDays[dIdx]] = updated;
+          matchedAny = true;
+        }
+      }
+      continue;
+    }
+
     // Handle "Closed Mondays" or "Closed Mon-Tue"
     const closedPrefix = clause.match(/^closed\s+(.+)$/i);
     let dayPart = '';
@@ -892,27 +964,14 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
     if (closedPrefix) {
       dayPart = closedPrefix[1];
       hoursPart = 'Closed';
-    } else if (/^(?:fri|thu|wed|tue|mon|sat|sun)[a-z]*\s+until\s+(\d{1,2}(?::\d{2})?\s*(?:AM|PM))/i.test(clause)) {
-      const untilM = clause.match(/^([a-z]+)\s+until\s+(.+)$/i);
-      if (untilM) {
-        const dIdx = dayMap[untilM[1].toLowerCase()];
-        if (dIdx !== undefined) {
-          const prev = result[days[dIdx]] || '10:00 AM - 5:00 PM';
-          const updated = prev.replace(/[-–—]\s*\d{1,2}(?::\d{2})?\s*(?:AM|PM)/i, `– ${untilM[2].trim()}`);
-          result[days[dIdx]] = updated;
-          result[fullDays[dIdx]] = updated;
-          matchedAny = true;
-        }
-      }
-      continue;
     } else {
       // Match day specification before colon or time
-      const colonIdx = clause.search(/:\s*(?=\d|Closed|Open|Sunrise|Dawn)/i);
+      const colonIdx = clause.search(/:\s*(?=\d|Closed|Open|Sunrise|Dawn|By\s+Appointment)/i);
       if (colonIdx !== -1) {
         dayPart = clause.slice(0, colonIdx).trim();
         hoursPart = clause.slice(colonIdx + 1).trim();
       } else {
-        const timeStart = clause.search(/\b(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm)|Closed|Open)\b/);
+        const timeStart = clause.search(/\b(?:\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm)|Closed|Open|Dawn|Sunrise|By\s+Appointment)\b/i);
         if (timeStart > 0) {
           dayPart = clause.slice(0, timeStart).trim();
           hoursPart = clause.slice(timeStart).trim();
@@ -924,7 +983,7 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
     hoursPart = hoursPart.replace(/^[:•-]\s*/, '').trim();
 
     // Parse ranges like "Mon-Wed", "Fri–Sun", "Wednesday, Friday–Sunday", "Tuesday to Sunday"
-    const rangeTokens = dayPart.split(/\s*(?:,|&|and)\s*/i);
+    const rangeTokens = dayPart.split(/\s*(?:,|&|\/|and)\s*/i);
     for (const tok of rangeTokens) {
       const rangeM = tok.match(/\b(mondays?|mon|tuesdays?|tues?|wednesdays?|weds?|thursdays?|thurs?|thur?|fridays?|fri|saturdays?|sat|sundays?|sun)\s*(?:[-–—]|to)\s*(mondays?|mon|tuesdays?|tues?|wednesdays?|weds?|thursdays?|thurs?|thur?|fridays?|fri|saturdays?|sat|sundays?|sun)\b/i);
       if (rangeM) {
@@ -997,7 +1056,15 @@ function normalizeActiveEvent(item) {
     : [show1.date, show2.date, show3.date].filter(Boolean);
 
   const catRaw = (item.category || "shows").toLowerCase();
-  const isFreePublic = catRaw.includes("public access") || catRaw.includes("free public") || catRaw === "free-public-access" || item.lifecycle_type === "perennial_drop_in" || item.lifecycleType === "perennial_drop_in";
+  const isDropIn = item.lifecycle_type === "perennial_drop_in" || item.lifecycleType === "perennial_drop_in" || item.access_model === "open_public_space" || item.access_model === "free_public_access";
+  const isFreePublic = price === 0 && (
+    catRaw.includes("public access") ||
+    catRaw.includes("free public") ||
+    catRaw === "free-public-access" ||
+    item.access_model === "open_public_space" ||
+    item.access_model === "free_public_access" ||
+    isDropIn
+  );
 
   const evTitle = sanitizeMojibake(item.event_name || item.title || "Event");
   const rawFestivalAff = (item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "none_available")
@@ -1048,19 +1115,21 @@ function normalizeActiveEvent(item) {
   let dateSchedule = "Upcoming";
   const opHours = sanitizeMojibake(item.operating_hours || item.open_hours || item.hours || item.operatingHours || "");
   const rawWh = item.weekly_hours || item.weeklyHours || null;
-  const wh = parseWeeklyHoursTo7DayObject(rawWh, opHours || item.dateSchedule || item.date_schedule, isFreePublic);
+  const wh = parseWeeklyHoursTo7DayObject(rawWh, opHours || item.dateSchedule || item.date_schedule, isDropIn);
 
   const primaryShow = showings[0] || show1;
 
-  if (isFreePublic) {
-    if (wh) {
-      dateSchedule = "Open Daily to the Public";
+  if (isDropIn || isFreePublic) {
+    if (item.dateSchedule && item.dateSchedule !== "Upcoming") {
+      dateSchedule = formatScheduleText12h(sanitizeMojibake(item.dateSchedule));
     } else if (opHours) {
       dateSchedule = `Visiting Hours: ${formatScheduleText12h(opHours)}`;
+    } else if (wh) {
+      dateSchedule = isFreePublic ? "Open Daily to the Public" : "Daily Drop-In Hours";
     } else if (show1.start_time && show1.end_time && !/none_available/i.test(show1.start_time)) {
       dateSchedule = `Open: ${formatDisplayTime12h(show1.start_time)} – ${formatDisplayTime12h(show1.end_time)}`;
     } else {
-      dateSchedule = "Open Daily to the Public";
+      dateSchedule = isFreePublic ? "Open Daily to the Public" : "Daily Drop-In";
     }
   } else if (showings.length > 1) {
     const isFilm = (catRaw.includes("cinema") || catRaw.includes("film") || isFest);
@@ -1214,10 +1283,26 @@ function normalizeActiveEvent(item) {
   // Calculate actual day-of-week codes (mon, tue, wed, etc.) - NEVER default to ['daily'] for timed events
   const DAY_CODES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
   let daysOfWeek = [];
-  if (isFreePublic) {
-    daysOfWeek = ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+  if (isDropIn || isFreePublic) {
+    if (wh && typeof wh === 'object') {
+      const openDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].filter(d => {
+        const val = String(wh[d] || '').trim();
+        return val && !/^(?:closed|by\s+appointment)$/i.test(val);
+      });
+      daysOfWeek = openDays.length === 7 ? ["daily", ...openDays] : (openDays.length > 0 ? openDays : ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"]);
+    } else if (Array.isArray(item.daysOfWeek) && item.daysOfWeek.length > 0) {
+      daysOfWeek = [...item.daysOfWeek];
+    } else {
+      daysOfWeek = ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    }
   } else {
     const daySet = new Set();
+    if (Array.isArray(item.daysOfWeek) && item.daysOfWeek.length > 0) {
+      item.daysOfWeek.forEach(d => {
+        const clean = String(d).trim().toLowerCase().slice(0, 3);
+        if (DAY_CODES.includes(clean)) daySet.add(clean);
+      });
+    }
     confirmedDates.forEach(dStr => {
       const d = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
       if (!isNaN(d.getTime())) daySet.add(DAY_CODES[d.getDay()]);
@@ -1234,7 +1319,7 @@ function normalizeActiveEvent(item) {
     }
   }
 
-  const finalPrice = isFreePublic ? 0.0 : price;
+  const finalPrice = price > 0 ? price : 0.0;
 
   // Build normalized subTags and structured Festival/Holiday theme badges
   const baseSubTags = Array.isArray(item.tags) ? [...item.tags] : (Array.isArray(item.subTags) ? [...item.subTags] : []);
@@ -1302,12 +1387,18 @@ function normalizeActiveEvent(item) {
 
   const rawHood = String(item.neighborhood || "").trim();
   const rawAddr = String(item.full_address || item.address || "").trim();
-  const isSurreyEvent = (
+  const isEastVanGrandview = /grandview[- ]woodland/i.test(rawHood) || /\bvancouver\b/i.test(rawAddr);
+  const isSurreyEvent = !isEastVanGrandview && (
     String(item.city || "").toLowerCase() === "surrey" ||
     String(item.region || "").toLowerCase() === "surrey" ||
-    /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|south surrey|grandview|crescent beach|bridgeview)\b/i.test(`${rawHood} ${rawAddr}`)
+    /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview)\b/i.test(`${rawHood} ${rawAddr}`)
   );
-  const resolvedCity = isSurreyEvent ? "Surrey" : (item.city || item.region || "Vancouver");
+  const resolvedCity = isSurreyEvent ? "Surrey" : "Vancouver";
+
+  const customPriceLabel = (item.priceLabel && typeof item.priceLabel === "string" && (
+    (finalPrice === 0 && /free/i.test(item.priceLabel)) ||
+    (finalPrice > 0 && item.priceLabel.includes(String(Math.floor(finalPrice))))
+  )) ? sanitizeMojibake(item.priceLabel) : null;
 
   const res = {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
@@ -1323,20 +1414,20 @@ function normalizeActiveEvent(item) {
     recurrence: item.recurrence || item.frequency || item.frequencyLabel || "Recurring",
     url: item.url || item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
     price: finalPrice,
-    priceLabel: finalPrice === 0 ? "Free ($0)" : `$${finalPrice.toFixed(2)} CAD`,
+    priceLabel: customPriceLabel || (finalPrice === 0 ? "Free ($0)" : `$${finalPrice.toFixed(2)} CAD`),
     pricingType: finalPrice === 0 ? "free" : "paid",
     isFree: finalPrice === 0,
-    frequency: isFreePublic ? "daily" : (confirmedDates.length > 1 ? "limited-run" : "one-off"),
-    frequencyLabel: isFreePublic ? "Open Daily Drop-In" : (confirmedDates.length > 1 ? "Verified Multiple Showings" : "Single Showing"),
+    frequency: (isDropIn || isFreePublic) ? "daily" : (confirmedDates.length > 1 ? "limited-run" : "one-off"),
+    frequencyLabel: item.frequencyLabel || ((isDropIn || isFreePublic) ? (isFreePublic ? "Open Daily Drop-In" : "Daily Drop-In") : (confirmedDates.length > 1 ? "Verified Multiple Showings" : "Single Showing")),
     daysOfWeek: daysOfWeek,
-    timeSlots: isFreePublic ? ["early-morning", "afternoon", "early-evening"] : ["early-evening", "late-evening"],
+    timeSlots: (isDropIn || isFreePublic) ? ["early-morning", "afternoon", "early-evening"] : ["early-evening", "late-evening"],
     category: cat,
     categories: categories,
-    categoryLabel: isFreePublic ? "Free Public Access" : (item.category || "Shows & Arts"),
+    categoryLabel: isFreePublic ? "Free Public Access" : (item.categoryLabel || item.category || "Shows & Arts"),
     categoryIcon: isFreePublic ? "🏛️" : (cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : (cat === "cinema" ? "🎬" : "🎭"))),
     subTags: baseSubTags,
     dateSchedule: dateSchedule,
-    startIso: (!isFreePublic && (showings[0]?.date || show1.date || item.date))
+    startIso: (!(isDropIn || isFreePublic) && (showings[0]?.date || show1.date || item.date))
       ? `${showings[0]?.date || show1.date || item.date}T${formatIsoTime(showings[0]?.start_time || show1.start_time || item.start_time || item.time, "19:00:00")}-07:00`
       : (item.startIso || null),
     endIso: (() => {
@@ -1497,7 +1588,9 @@ function normalizeActiveEvent(item) {
     if (activeTiers.length > 0 && !item.is_sold_out && !item.isSoldOut) {
       const minAvailable = Math.min(...activeTiers.map(t => t.price));
       res.price = minAvailable;
-      res.priceLabel = minAvailable === 0 ? "Free ($0)" : `$${minAvailable.toFixed(2)} CAD`;
+      if (!customPriceLabel || minAvailable !== finalPrice) {
+        res.priceLabel = minAvailable === 0 ? "Free ($0)" : `$${minAvailable.toFixed(2)} CAD`;
+      }
       res.isSoldOut = false;
       res.is_sold_out = false;
     } else {
@@ -3335,8 +3428,10 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     }
   }
 
-  // PRIORITY 2: Check direct start time or startIso if event date is today
-  if (ev.date === todayStr || (ev.startIso && String(ev.startIso).slice(0, 10) === todayStr)) {
+  const isDropInCard = ev.lifecycle_type === 'perennial_drop_in' || ev.lifecycleType === 'perennial_drop_in' || ev.access_model === 'open_public_space' || ev.access_model === 'free_public_access' || Boolean(ev.weekly_hours || ev.weeklyHours);
+
+  // PRIORITY 2: Check direct start time or startIso if event date is today (for non-drop-in time-bound events)
+  if (!isDropInCard && (ev.date === todayStr || (ev.startIso && String(ev.startIso).slice(0, 10) === todayStr))) {
     const rawTime = ev.start_time || ev.time;
     if (rawTime && typeof rawTime === 'string' && !/none_available|unknown/i.test(rawTime)) {
       const match = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
@@ -3373,7 +3468,7 @@ function getEventClosingTimeToday(ev, now = new Date()) {
   }
 
   // 4. Explicit endIso (if not end of year series placeholder)
-  if (ev.endIso && !ev.endIso.includes('12-31') && !ev.endIso.includes('03-31') && !ev.endIso.includes('05-31')) {
+  if (!isDropInCard && ev.endIso && !ev.endIso.includes('12-31') && !ev.endIso.includes('03-31') && !ev.endIso.includes('05-31')) {
     try {
       const endDt = new Date(ev.endIso);
       if (!isNaN(endDt.getTime())) {
@@ -3417,17 +3512,32 @@ function getEventClosingTimeToday(ev, now = new Date()) {
   const curKey = dayKeys[now.getDay()];
   const curFull = fullDayKeys[now.getDay()];
 
-  const wh = ev.weekly_hours || ev.weeklyHours || (typeof ev.weekly_schedule === 'object' ? ev.weekly_schedule : null);
+  const rawWh = ev.weekly_hours || ev.weeklyHours || (typeof ev.weekly_schedule === 'object' ? ev.weekly_schedule : null);
+  const wh = (rawWh && typeof rawWh === 'object' && !Array.isArray(rawWh))
+    ? parseWeeklyHoursTo7DayObject(rawWh, '', isDropInCard)
+    : (rawWh || isDropInCard ? parseWeeklyHoursTo7DayObject(rawWh, ds || op, isDropInCard) : null);
+
   if (wh && typeof wh === 'object') {
     const todayEntry = wh[curKey] || wh[curFull];
-    if (todayEntry && /closed/i.test(String(todayEntry).trim())) {
+    if (todayEntry && /closed|by\s+appointment/i.test(String(todayEntry).trim())) {
       return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today' };
     }
     if (todayEntry) {
       const entryStr = String(todayEntry).trim();
-      const timeMatch = entryStr.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
+      if (/24\s*hours|24\/7/i.test(entryStr)) {
+        return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Open 24/7' };
+      }
+      if (/[-–—to]+\s*(?:dusk|sunset)/i.test(entryStr)) {
+        const duskMinutes = 19 * 60 + 45;
+        return {
+          hasEnded: currentMinutes >= duskMinutes,
+          closingMinutes: duskMinutes,
+          closingTimeStr: 'Dusk (7:45 PM)'
+        };
+      }
+      const timeMatch = entryStr.match(/[-–—to]+\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm)|Midnight)/i);
       if (timeMatch) {
-        const rawTime = timeMatch[1].trim();
+        const rawTime = /midnight/i.test(timeMatch[1]) ? '12:00 AM' : timeMatch[1].trim();
         const m = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
         if (m) {
           let h = parseInt(m[1], 10);
@@ -3877,11 +3987,13 @@ function applyFiltersAndRender() {
           (ev.subTags && ev.subTags.some(t => /cinema|film|movie|screening/i.test(t))) ||
           (/cinematheque|theatre|cinema|viff/i.test(ev.venue || '') && /film|screening|movie|viff|kwaidan|pulse|destroyer|ser querido|lovers in the night|jekyll|matchstick/i.test(ev.title || ''))
         )) ||
-        (state.category === 'free-public-access' && (
+        (state.category === 'free-public-access' && hasFreeTier && (
           evCats.includes('free-public-access') ||
           evCats.includes('free public access') ||
           (ev.categoryLabel && ev.categoryLabel.toLowerCase().includes('public access')) ||
-          (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('public-access') || t.toLowerCase().includes('drop-in') || t.toLowerCase().includes('free-access'))) ||
+          (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('public-access') || t.toLowerCase().includes('free-access'))) ||
+          ev.access_model === 'open_public_space' ||
+          ev.access_model === 'free_public_access' ||
           ev.lifecycleType === 'perennial_drop_in'
         )) ||
         (state.category === 'markets' && (
@@ -5995,14 +6107,26 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
   // Structured Weekly Hours (Each day on its own line, starting with Monday)
   let weeklyHoursHtml = '';
-  const isDropInCard = (
-    (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+  const cardLifecycle = ev.lifecycleType || ev.lifecycle_type || '';
+  const hasDiscreteShowings = Array.isArray(ev.showings) && ev.showings.length > 0;
+  const isTimeBoundWithShowings = (
+    cardLifecycle === 'time_bound_event' ||
+    (hasDiscreteShowings && cardLifecycle !== 'perennial_drop_in')
+  );
+  const isDropInCard = !isTimeBoundWithShowings && (
+    cardLifecycle === 'perennial_drop_in' ||
     ev.access_model === 'open_public_space' ||
     ev.access_model === 'free_public_access' ||
     ev.access_model === 'drop_in_paid' ||
     ev.isFreePublic
   );
-  const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
+  const rawWeeklyHoursSource = isTimeBoundWithShowings
+    ? null
+    : (ev.weekly_hours || ev.weeklyHours);
+  const fallbackWeeklySource = isTimeBoundWithShowings
+    ? ''
+    : (ev.operatingHours || (isDropInCard ? ev.dateSchedule : ''));
+  const wh = parseWeeklyHoursTo7DayObject(rawWeeklyHoursSource, fallbackWeeklySource, isDropInCard);
   if (wh && typeof wh === 'object') {
     const dayOrder = [
       { k: 'mon', full: 'monday', label: 'Monday' },
