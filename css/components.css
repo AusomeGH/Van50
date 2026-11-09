@@ -510,10 +510,23 @@
   cursor: pointer;
 }
 
-/* More Filters Collapsible Toggle & Panel (Hidden per user specification) */
+/* More Filters Collapsible Toggle & Panel */
 .btn-more-filters,
 #btn-toggle-more-filters {
-  display: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .btn-more-filters:hover {
@@ -8540,4 +8553,150 @@ body.van50-accessible {
   --brand-primary-fg: #000000 !important;
   --brand-accent: #fbbf24 !important;
   --border-subtle: #64748b !important;
+}
+
+/* ============================================================================
+   14. METRO REGION FILTER BAR & SURREY NEIGHBORHOOD GROUPING (v8.0.0)
+   ============================================================================ */
+.region-filter-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 4px;
+  border-radius: 9999px;
+  margin: 0 auto 12px auto;
+  box-shadow: var(--shadow-sm);
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.hero-section + .region-filter-bar {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.region-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.region-pill:hover {
+  color: var(--text-main);
+  background: var(--bg-card);
+}
+
+.region-pill.active,
+.region-pill[aria-pressed="true"] {
+  background: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: var(--shadow-glow);
+}
+
+@media (max-width: 640px) {
+  .region-filter-bar {
+    width: 100%;
+    justify-content: space-between;
+    padding: 3px;
+    gap: 4px;
+  }
+
+  .region-pill {
+    flex: 1 1 auto;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Neighborhood Grouping & Surrey Macro Pills */
+.neighborhood-pills-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.nh-region-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 8px 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  transition: opacity 0.2s ease;
+}
+
+.nh-region-group.nh-dimmed-by-region {
+  opacity: 0.42;
+}
+
+.nh-group-label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.nh-pills-row,
+.nh-macro-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.nh-macro-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--bg-card) !important;
+  border: 1.5px dashed var(--brand-primary) !important;
+  color: var(--brand-primary) !important;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nh-macro-pill:hover {
+  background: var(--price-free-bg) !important;
+}
+
+.nh-macro-pill.active {
+  background: var(--brand-primary) !important;
+  border-style: solid !important;
+  color: var(--brand-primary-fg) !important;
+  box-shadow: var(--shadow-glow) !important;
+}
+
+.nh-pill.nh-dimmed-by-region,
+.nh-macro-pill.nh-dimmed-by-region {
+  opacity: 0.45;
 }

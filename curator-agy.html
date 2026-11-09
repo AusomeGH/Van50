@@ -1911,6 +1911,24 @@
                 </div>
               </div>
 
+              <!-- Step 1A Single-City Source Filter Bar (Scan One City at a Time) -->
+              <div id="harvester-city-scope-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 7px; padding: 6px 10px;">
+                <span style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: 0.04em;">
+                  <span>🌆</span> Scan City Scope (Step 1A):
+                </span>
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <button type="button" class="btn-limit-chip active" id="chip-harvester-city-all" data-city-scope="all" onclick="setHarvesterCityScope('all')" style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
+                    🌲 All Metro (<span id="harvester-city-count-all">All</span>)
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-vancouver" data-city-scope="vancouver" onclick="setHarvesterCityScope('vancouver')" style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
+                    🏙️ Vancouver Only (<span id="harvester-city-count-vancouver">Van</span>)
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-surrey" data-city-scope="surrey" onclick="setHarvesterCityScope('surrey')" style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
+                    🦌 Surrey Only (<span id="harvester-city-count-surrey">Surrey</span>)
+                  </button>
+                </div>
+              </div>
+
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
                 <label style="font-size: 0.74rem; font-weight: 700; color: #c084fc; display: flex; align-items: center; gap: 6px;">
                   <span>🏛️</span> Target Venue Feed:

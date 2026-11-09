@@ -13564,12 +13564,17 @@ function initStagehandRipperUI() {
 
         if (stageKey === 'harvest') {
           const shouldResume = window.harvesterResumeMode !== false;
+          const hCity = (window.harvesterCityScope === 'vancouver' || window.harvesterCityScope === 'surrey')
+            ? window.harvesterCityScope
+            : 'all';
+          const baseTarget = hCity === 'vancouver' ? 'all:vancouver' : (hCity === 'surrey' ? 'all:surrey' : 'all');
+          const cityTag = hCity === 'vancouver' ? ' • 🏙️ Vancouver Only' : (hCity === 'surrey' ? ' • 🦌 Surrey Only' : '');
           runPipelineAction({
             mode: 'calendar',
-            title: `🧪 Stage 1A: Schedule Harvester (${pipelineBatchSize === 'all' ? 'All' : batchCap} Events${shouldResume ? ' • Resuming' : ''})`,
-            initialStatus: `Crawling venue feeds${shouldResume ? ' from stopped checkpoint' : ''} to discover ${pipelineBatchSize === 'all' ? 'all' : batchCap} discrete events...`,
+            title: `🧪 Stage 1A: Schedule Harvester (${pipelineBatchSize === 'all' ? 'All' : batchCap} Events${cityTag}${shouldResume ? ' • Resuming' : ''})`,
+            initialStatus: `Crawling ${hCity === 'all' ? 'Metro' : hCity} venue & discovery feeds${shouldResume ? ' from stopped checkpoint' : ''} to discover ${pipelineBatchSize === 'all' ? 'all' : batchCap} discrete events...`,
             limit: batchCap,
-            url: shouldResume ? 'all:resume' : 'all',
+            url: shouldResume ? `${baseTarget}:resume` : baseTarget,
             all: true,
             resume: shouldResume,
             autoApprove: true
@@ -14448,6 +14453,27 @@ function initStagehandRipperUI() {
   };
 
   let cachedVenueFeeds = null;
+  window.harvesterCityScope = 'all';
+
+  function inferCuratorFeedCity(item = {}) {
+    const explicit = String(item.city || item.region || '').trim().toLowerCase();
+    if (explicit === 'surrey') return 'Surrey';
+    if (explicit === 'vancouver') return 'Vancouver';
+    const blob = `${item.venue_name || ''} ${item.name || ''} ${item.neighborhood || ''} ${item.full_address || ''} ${item.address || ''} ${item.url || ''} ${item.calendar_url || ''} ${item.website_url || ''} ${item.domain || ''}`.toLowerCase();
+    const surreyTokens = [
+      'surrey', 'whalley', 'guildford', 'fleetwood', 'newton', 'cloverdale',
+      'bear creek', 'panorama', 'crescent beach', 'grandview', 'fraser downs',
+      'fraser heights', 'bridgeview', 'clayton', 'sullivan heights',
+      'bellperformingartscentre', 'discoversurreybc', 'surreylibraries',
+      'surreycivictheatres', 'surreyeagles', 'surreyknights', 'russellbeer',
+      'dublincrossing', 'artscouncilofsurrey', 'cravingforagame',
+      'projectclimbing', 'centralcityfunpark', 'birdiesandbuckets',
+      'delllanes', 'vinoscentivineyards', 'downtownsurreybia',
+      'cloverdalebia', 'newtonbia', 'fleetwoodbia'
+    ];
+    if (surreyTokens.some(tok => blob.includes(tok))) return 'Surrey';
+    return 'Vancouver';
+  }
 
   async function loadVenueFeedsList() {
     if (cachedVenueFeeds && cachedVenueFeeds.length > 0) return cachedVenueFeeds;
@@ -14479,13 +14505,14 @@ function initStagehandRipperUI() {
             url,
             domain,
             neighborhood: v.neighborhood || '',
+            city: inferCuratorFeedCity({ ...v, url, domain }),
             type: 'venue'
           });
         }
       });
     }
 
-    // 2. Discovery sources (Do604, VIA, Straight, etc.)
+    // 2. Discovery sources (Do604, VIA, Straight, Surrey sources, etc.)
     let rawSources = (state.masterCatalogsData && state.masterCatalogsData.discovery_sources) || [];
     if (!rawSources || rawSources.length === 0) {
       try {
@@ -14510,27 +14537,56 @@ function initStagehandRipperUI() {
             name,
             url,
             domain: s.domain || domain,
+            city: inferCuratorFeedCity({ ...s, url, domain }),
             type: 'source'
           });
         }
       });
     }
 
+    // 3. Dedicated Surrey Reference Sources (/data/surrey_reference_sources.json)
+    try {
+      const sRes = await fetch('/data/surrey_reference_sources.json?_t=' + Date.now());
+      if (sRes.ok) {
+        const sRef = await sRes.json();
+        const surreyList = Array.isArray(sRef) ? sRef : (sRef.sources || []);
+        surreyList.forEach(s => {
+          const name = (s.name || s.id || '').trim();
+          const url = (s.url || '').trim();
+          if (name && url && url.startsWith('http') && !seenUrls.has(url)) {
+            seenUrls.add(url);
+            let domain = '';
+            try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
+            feeds.push({
+              name,
+              url,
+              domain,
+              neighborhood: 'Surrey',
+              city: 'Surrey',
+              type: 'source'
+            });
+          }
+        });
+      }
+    } catch (_) { }
+
     // Fallbacks if offline
     if (feeds.length === 0) {
       const fallbacks = [
-        { name: "The Improv Centre", url: "https://theimprovcentre.ca/shows/", domain: "theimprovcentre.ca", type: 'venue' },
-        { name: "Little Mountain Gallery", url: "https://littlemountaingallery.ca/schedule/", domain: "littlemountaingallery.ca", type: 'venue' },
-        { name: "The Rio Theatre", url: "https://riotheatre.ca/calendar/", domain: "riotheatre.ca", type: 'venue' },
-        { name: "The Cultch", url: "https://thecultch.com/events/", domain: "thecultch.com", type: 'venue' },
-        { name: "Tightrope Impro Theatre", url: "https://tightropetheatre.com/shows/", domain: "tightropetheatre.com", type: 'venue' },
-        { name: "Rickshaw Theatre", url: "https://rickshawtheatre.com/events/", domain: "rickshawtheatre.com", type: 'venue' },
-        { name: "Fox Cabaret", url: "https://www.foxcabaret.com/", domain: "foxcabaret.com", type: 'venue' },
-        { name: "VIFF Centre", url: "https://viff.org/whats-on/", domain: "viff.org", type: 'venue' },
-        { name: "Firehall Arts Centre", url: "https://firehallartscentre.ca/", domain: "firehallartscentre.ca", type: 'venue' },
-        { name: "Do604", url: "https://do604.com/events", domain: "do604.com", type: 'source' },
-        { name: "The Georgia Straight", url: "https://www.straight.com/listings", domain: "straight.com", type: 'source' },
-        { name: "Vancouver Is Awesome", url: "https://www.vancouverisawesome.com/events", domain: "vancouverisawesome.com", type: 'source' }
+        { name: "The Improv Centre", url: "https://theimprovcentre.ca/shows/", domain: "theimprovcentre.ca", city: 'Vancouver', type: 'venue' },
+        { name: "Little Mountain Gallery", url: "https://littlemountaingallery.ca/schedule/", domain: "littlemountaingallery.ca", city: 'Vancouver', type: 'venue' },
+        { name: "The Rio Theatre", url: "https://riotheatre.ca/calendar/", domain: "riotheatre.ca", city: 'Vancouver', type: 'venue' },
+        { name: "The Cultch", url: "https://thecultch.com/events/", domain: "thecultch.com", city: 'Vancouver', type: 'venue' },
+        { name: "Tightrope Impro Theatre", url: "https://tightropetheatre.com/shows/", domain: "tightropetheatre.com", city: 'Vancouver', type: 'venue' },
+        { name: "Rickshaw Theatre", url: "https://rickshawtheatre.com/events/", domain: "rickshawtheatre.com", city: 'Vancouver', type: 'venue' },
+        { name: "Fox Cabaret", url: "https://www.foxcabaret.com/", domain: "foxcabaret.com", city: 'Vancouver', type: 'venue' },
+        { name: "VIFF Centre", url: "https://viff.org/whats-on/", domain: "viff.org", city: 'Vancouver', type: 'venue' },
+        { name: "Firehall Arts Centre", url: "https://firehallartscentre.ca/", domain: "firehallartscentre.ca", city: 'Vancouver', type: 'venue' },
+        { name: "Do604", url: "https://do604.com/events", domain: "do604.com", city: 'Vancouver', type: 'source' },
+        { name: "The Georgia Straight", url: "https://www.straight.com/listings", domain: "straight.com", city: 'Vancouver', type: 'source' },
+        { name: "Vancouver Is Awesome", url: "https://www.vancouverisawesome.com/events", domain: "vancouverisawesome.com", city: 'Vancouver', type: 'source' },
+        { name: "Discover Surrey Official Events", url: "https://www.discoversurreybc.com/events", domain: "discoversurreybc.com", city: 'Surrey', type: 'source' },
+        { name: "Bell Performing Arts Centre", url: "https://www.bellperformingartscentre.com", domain: "bellperformingartscentre.com", city: 'Surrey', type: 'venue' }
       ];
       fallbacks.forEach(f => feeds.push(f));
     }
@@ -14539,27 +14595,76 @@ function initStagehandRipperUI() {
     return feeds;
   }
 
+  function updateHarvesterCityScopePillsUI(cityScope, feeds = []) {
+    const norm = (cityScope === 'vancouver' || cityScope === 'surrey') ? cityScope : 'all';
+    ['all', 'vancouver', 'surrey'].forEach(c => {
+      const btn = document.getElementById(`chip-harvester-city-${c}`);
+      if (btn) btn.classList.toggle('active', c === norm);
+    });
+    if (Array.isArray(feeds) && feeds.length > 0) {
+      const vanCount = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'vancouver').length;
+      const surCount = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'surrey').length;
+      const allEl = document.getElementById('harvester-city-count-all');
+      const vanEl = document.getElementById('harvester-city-count-vancouver');
+      const surEl = document.getElementById('harvester-city-count-surrey');
+      if (allEl) allEl.textContent = `${feeds.length} Sources`;
+      if (vanEl) vanEl.textContent = `${vanCount} Sources`;
+      if (surEl) surEl.textContent = `${surCount} Sources`;
+    }
+  }
+
+  window.setHarvesterCityScope = async function (city) {
+    const norm = (city === 'vancouver' || city === 'surrey') ? city : 'all';
+    window.harvesterCityScope = norm;
+    const feeds = await loadVenueFeedsList();
+    updateHarvesterCityScopePillsUI(norm, feeds);
+    const searchInput = document.getElementById('pipeline-search-venue-feed');
+    const q = searchInput ? searchInput.value : '';
+    await window.populateVenueFeedsDropdown(q);
+    const targetVal = norm === 'vancouver' ? 'all:vancouver' : (norm === 'surrey' ? 'all:surrey' : 'all');
+    const select = document.getElementById('pipeline-select-venue-feed');
+    if (select && !q) {
+      select.value = targetVal;
+      window.onVenueFeedSelected(targetVal);
+    }
+  };
+
   window.populateVenueFeedsDropdown = async function (filterQuery = '') {
     const select = document.getElementById('pipeline-select-venue-feed');
     if (!select) return;
 
     const feeds = await loadVenueFeedsList();
-    const q = (filterQuery || '').trim().toLowerCase();
-    const currentVal = select.value || 'all';
+    const cityScope = (window.harvesterCityScope === 'vancouver' || window.harvesterCityScope === 'surrey')
+      ? window.harvesterCityScope
+      : 'all';
+    updateHarvesterCityScopePillsUI(cityScope, feeds);
 
-    let venueFeeds = feeds.filter(f => f.type === 'venue').sort((a, b) => a.name.localeCompare(b.name));
-    let sourceFeeds = feeds.filter(f => f.type === 'source').sort((a, b) => a.name.localeCompare(b.name));
+    const q = (filterQuery || '').trim().toLowerCase();
+    const defaultBatchVal = cityScope === 'vancouver' ? 'all:vancouver' : (cityScope === 'surrey' ? 'all:surrey' : 'all');
+    const currentVal = select.value || defaultBatchVal;
+
+    const scopedFeeds = cityScope === 'all'
+      ? feeds
+      : feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === cityScope);
+
+    const vanTotal = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'vancouver').length;
+    const surTotal = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'surrey').length;
+
+    let venueFeeds = scopedFeeds.filter(f => f.type === 'venue').sort((a, b) => a.name.localeCompare(b.name));
+    let sourceFeeds = scopedFeeds.filter(f => f.type === 'source').sort((a, b) => a.name.localeCompare(b.name));
 
     if (q) {
       venueFeeds = venueFeeds.filter(v =>
         (v.name && v.name.toLowerCase().includes(q)) ||
         (v.domain && v.domain.toLowerCase().includes(q)) ||
         (v.neighborhood && v.neighborhood.toLowerCase().includes(q)) ||
+        (v.city && v.city.toLowerCase().includes(q)) ||
         (v.url && v.url.toLowerCase().includes(q))
       );
       sourceFeeds = sourceFeeds.filter(s =>
         (s.name && s.name.toLowerCase().includes(q)) ||
         (s.domain && s.domain.toLowerCase().includes(q)) ||
+        (s.city && s.city.toLowerCase().includes(q)) ||
         (s.url && s.url.toLowerCase().includes(q))
       );
     }
@@ -14568,27 +14673,33 @@ function initStagehandRipperUI() {
     let html = '';
 
     if (!q) {
-      html += `<option value="all" ${currentVal === 'all' ? 'selected' : ''}>🌐 All Venue Feeds (Default — Crawl entire catalog directory: ${feeds.filter(f => f.type === 'venue').length} feeds)</option>`;
+      html += `<option value="all" ${currentVal === 'all' ? 'selected' : ''}>🌲 All Metro Sources — Vancouver + Surrey (${feeds.length} sources)</option>`;
+      html += `<option value="all:vancouver" ${currentVal === 'all:vancouver' ? 'selected' : ''}>🏙️ All Vancouver Sources Only — Scan 1 City (${vanTotal} sources)</option>`;
+      html += `<option value="all:surrey" ${currentVal === 'all:surrey' ? 'selected' : ''}>🦌 All Surrey Sources Only — Scan 1 City (${surTotal} sources)</option>`;
     } else {
-      html += `<option value="all">🌐 All Venue Feeds (Clear search to crawl all)</option>`;
+      html += `<option value="${defaultBatchVal}">🌐 Clear search to crawl all ${cityScope === 'all' ? 'Metro' : cityScope} sources</option>`;
     }
 
+    const cityTagLabel = cityScope === 'vancouver' ? 'Vancouver ' : (cityScope === 'surrey' ? 'Surrey ' : '');
+
     if (venueFeeds.length > 0) {
-      html += `<optgroup label="Physical Venue Feeds (${venueFeeds.length}${q ? ' matching' : ''})">`;
+      html += `<optgroup label="${cityTagLabel}Physical Venue Feeds (${venueFeeds.length}${q ? ' matching' : ''})">`;
       venueFeeds.forEach(v => {
         const sub = v.domain || v.neighborhood || '';
+        const cityIcon = v.city === 'Surrey' ? '🦌 ' : '🏙️ ';
         const isSel = (currentVal === v.url) ? 'selected' : '';
-        html += `<option value="${escapeHtml(v.url)}" data-name="${escapeHtml(v.name)}" ${isSel}>${escapeHtml(v.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
+        html += `<option value="${escapeHtml(v.url)}" data-name="${escapeHtml(v.name)}" data-city="${escapeHtml(v.city || 'Vancouver')}" ${isSel}>${cityIcon}${escapeHtml(v.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
       });
       html += `</optgroup>`;
     }
 
     if (sourceFeeds.length > 0) {
-      html += `<optgroup label="Discovery Portals & Aggregators (${sourceFeeds.length}${q ? ' matching' : ''})">`;
+      html += `<optgroup label="${cityTagLabel}Discovery Portals &amp; Municipal Calendars (${sourceFeeds.length}${q ? ' matching' : ''})">`;
       sourceFeeds.forEach(s => {
         const sub = s.domain || '';
+        const cityIcon = s.city === 'Surrey' ? '🦌 ' : '🏙️ ';
         const isSel = (currentVal === s.url) ? 'selected' : '';
-        html += `<option value="${escapeHtml(s.url)}" data-name="${escapeHtml(s.name)}" ${isSel}>${escapeHtml(s.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
+        html += `<option value="${escapeHtml(s.url)}" data-name="${escapeHtml(s.name)}" data-city="${escapeHtml(s.city || 'Vancouver')}" ${isSel}>${cityIcon}${escapeHtml(s.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
       });
       html += `</optgroup>`;
     }
@@ -14616,8 +14727,12 @@ function initStagehandRipperUI() {
         badge.textContent = `${totalMatches} Match${totalMatches === 1 ? '' : 'es'}`;
         badge.style.background = 'rgba(56, 189, 248, 0.18)';
         badge.style.color = '#38bdf8';
+      } else if (currentVal === 'all:vancouver') {
+        badge.textContent = `🏙️ Vancouver (${vanTotal} Sources)`;
+      } else if (currentVal === 'all:surrey') {
+        badge.textContent = `🦌 Surrey (${surTotal} Sources)`;
       } else {
-        badge.textContent = currentVal === 'all' ? `All Feeds (${feeds.filter(f => f.type === 'venue').length})` : 'Single Feed';
+        badge.textContent = currentVal === 'all' ? `🌲 All Metro (${feeds.length} Sources)` : 'Single Feed';
       }
     }
   };
@@ -14651,28 +14766,39 @@ function initStagehandRipperUI() {
 
     const effectiveCount = (pipelineBatchSize === 'all') ? 'All' : (typeof pipelineBatchSize === 'number' ? pipelineBatchSize : 5);
 
-    if (!val || val === 'all') {
-      if (select) select.value = 'all';
+    if (!val || val === 'all' || val === 'all:vancouver' || val === 'all:surrey') {
+      const targetVal = (val === 'all:vancouver' || val === 'all:surrey')
+        ? val
+        : (window.harvesterCityScope === 'vancouver' ? 'all:vancouver' : (window.harvesterCityScope === 'surrey' ? 'all:surrey' : 'all'));
+      const cityKey = targetVal === 'all:vancouver' ? 'vancouver' : (targetVal === 'all:surrey' ? 'surrey' : 'all');
+      window.harvesterCityScope = cityKey;
+      updateHarvesterCityScopePillsUI(cityKey, cachedVenueFeeds || []);
+      const cityDisplay = cityKey === 'vancouver' ? '🏙️ Vancouver' : (cityKey === 'surrey' ? '🦌 Surrey' : '🌲 All Metro');
+
+      if (select) select.value = targetVal;
       if (badge) {
-        badge.textContent = `${effectiveCount}-Event Batch Mode`;
+        badge.textContent = `${cityDisplay} • ${effectiveCount}-Event Mode`;
         badge.style.background = 'rgba(192, 132, 252, 0.18)';
         badge.style.color = '#d8b4fe';
       }
-      if (resetBtn) resetBtn.style.display = 'none';
+      if (resetBtn) resetBtn.style.display = cityKey === 'all' ? 'none' : 'inline-block';
       if (displayEl) {
         displayEl.style.display = 'block';
-        displayEl.textContent = `Crawling venue calendars (capped at ${effectiveCount} events) into layer_schedules.json`;
+        displayEl.textContent = `Crawling ${cityDisplay} calendars sequentially (capped at ${effectiveCount} events) into layer_schedules.json`;
       }
       if (customInput) {
         customInput.style.display = 'none';
         customInput.value = '';
       }
-      if (inputUrl) inputUrl.value = 'all';
+      if (inputUrl) inputUrl.value = targetVal;
       if (customToggleBtn) customToggleBtn.textContent = 'Custom URL';
       if (hintEl) {
-        hintEl.innerHTML = `<span>Targeting <strong>active venue calendars</strong> sequentially to harvest ${effectiveCount} candidate event links into <code>layer_schedules.json</code>.</span>`;
+        hintEl.innerHTML = `<span>Targeting <strong>${cityDisplay} sources</strong> sequentially to harvest ${effectiveCount} candidate event links into <code>layer_schedules.json</code>.</span>`;
       }
-      if (btnLabelEl) btnLabelEl.textContent = `🚀 Harvest ${effectiveCount} Events`;
+      if (btnLabelEl) {
+        const shortCity = cityKey === 'vancouver' ? 'Vancouver' : (cityKey === 'surrey' ? 'Surrey' : 'Metro');
+        btnLabelEl.textContent = `🚀 Harvest ${effectiveCount} ${shortCity} Events`;
+      }
     } else if (val === 'custom') {
       if (badge) {
         badge.textContent = 'Custom URL';
@@ -14698,7 +14824,7 @@ function initStagehandRipperUI() {
       const opt = select && select.selectedOptions && select.selectedOptions[0];
       const venueName = (opt && opt.dataset.name) || (opt ? opt.textContent.split('—')[0].trim() : 'Venue');
       if (badge) {
-        badge.textContent = 'Single Venue';
+        badge.textContent = 'Single Source';
         badge.style.background = 'rgba(56, 189, 248, 0.18)';
         badge.style.color = '#38bdf8';
       }
@@ -14725,9 +14851,7 @@ function initStagehandRipperUI() {
     if (searchInput) searchInput.value = '';
     const clearBtn = document.getElementById('btn-clear-venue-search');
     if (clearBtn) clearBtn.style.display = 'none';
-    const select = document.getElementById('pipeline-select-venue-feed');
-    if (select) select.value = 'all';
-    window.onVenueFeedSelected('all');
+    window.setHarvesterCityScope('all');
   };
 
   window.toggleHarvesterCustomUrl = function () {
@@ -15874,8 +15998,11 @@ function initStagehandRipperUI() {
       if (singleCardWrapper) singleCardWrapper.style.display = 'none';
 
       if (typeof window.populateVenueFeedsDropdown === 'function') {
+        const initTarget = window.harvesterCityScope === 'vancouver'
+          ? 'all:vancouver'
+          : (window.harvesterCityScope === 'surrey' ? 'all:surrey' : 'all');
         window.populateVenueFeedsDropdown().then(() => {
-          window.onVenueFeedSelected('all');
+          window.onVenueFeedSelected(initTarget);
         });
       }
     } else if (preset.key === 'venue') {
@@ -16195,7 +16322,7 @@ function initStagehandRipperUI() {
 
     if (mode === 'calendar' || mode === 'harvester') {
       captureHarvesterPreRunBaseline();
-      const isResumeHarvest = Boolean(resume || url === 'all:resume');
+      const isResumeHarvest = Boolean(resume || String(url || '').endsWith(':resume'));
       if (!isResumeHarvest) {
         harvesterDiscoveredEvents = [];
         harvesterSourcesScanned = 0;
@@ -16208,7 +16335,7 @@ function initStagehandRipperUI() {
       const feedSel = document.getElementById('pipeline-select-venue-feed');
       const optTotal = (feedSel && feedSel.options && feedSel.options.length > 1) ? (feedSel.options.length - 1) : 126;
       const cpTotal = state.harvesterCheckpoint?.total_feeds || optTotal;
-      harvesterTotalSources = (all || !url || url === 'all' || url === 'all:resume') ? cpTotal : 1;
+      harvesterTotalSources = (all || !url || String(url).startsWith('all')) ? cpTotal : 1;
       updateHarvesterSourcesProgressUI();
       renderHarvesterComparisonView(false, harvesterDiscoveredEvents, true);
     }
@@ -16514,8 +16641,8 @@ function initStagehandRipperUI() {
             }
           }
 
-          // Pattern 0a: Prioritized N venue feeds header
-          const prioritizedFeedsMatch = line.match(/📊\s*Prioritized\s*(\d+)\s*venue feeds/i);
+          // Pattern 0a: Prioritized N venue/source feeds header
+          const prioritizedFeedsMatch = line.match(/📊\s*Prioritized\s*(\d+)\s*(?:venue|source)\s*feeds/i);
           if (prioritizedFeedsMatch && activeStageKey === 'harvest') {
             harvesterTotalSources = parseInt(prioritizedFeedsMatch[1], 10);
             updateHarvesterSourcesProgressUI();
@@ -16529,8 +16656,8 @@ function initStagehandRipperUI() {
             }
           }
 
-          // Pattern 0: Venue Feed Progress Log: 🏛️ [5/120] Venue Feed: The Rickshaw Theatre
-          const venueFeedMatch = line.match(/🏛️\s*\[(\d+)\/(\d+)\]\s*Venue Feed:\s*(.+)/i);
+          // Pattern 0: Venue/Source Feed Progress Log: 🏛️ [5/120] [Vancouver] Source Feed: The Rickshaw Theatre
+          const venueFeedMatch = line.match(/🏛️\s*\[(\d+)\/(\d+)\]\s*(?:\[[^\]]+\]\s*)?(?:Venue|Source)\s*Feed:\s*(.+)/i);
           if (venueFeedMatch) {
             const currentVenueIdx = parseInt(venueFeedMatch[1], 10);
             const totalVenues = parseInt(venueFeedMatch[2], 10);
@@ -17671,8 +17798,11 @@ function initStagehandRipperUI() {
           ? 0
           : (Number(window.pipelineBatchSize) || 0);
 
-        if (feedVal === 'all') {
-          url = (window.harvesterResumeMode !== false) ? 'all:resume' : 'all';
+        if (feedVal === 'all' || feedVal === 'all:vancouver' || feedVal === 'all:surrey') {
+          const baseScope = (feedVal === 'all:vancouver' || feedVal === 'all:surrey')
+            ? feedVal
+            : (window.harvesterCityScope === 'vancouver' ? 'all:vancouver' : (window.harvesterCityScope === 'surrey' ? 'all:surrey' : 'all'));
+          url = (window.harvesterResumeMode !== false) ? `${baseScope}:resume` : baseScope;
           allParam = true;
           limitVal = batchCap;
         } else if (feedVal === 'custom') {

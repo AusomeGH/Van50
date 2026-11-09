@@ -572,6 +572,7 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
 
         // Persist entry to layer_schedules.json atomically via mutex
         try {
+          const resolvedCity = card.city || options.city || inferFeedCity({ venue_name: evVenue, url: targetUrl });
           await safeUpdateJsonFile(SCHEDULES_PATH, [], (schedules) => {
             const existingIdx = schedules.findIndex((s) => (s.id || s.event_id) === card.id);
             const schedEntry = {
@@ -579,6 +580,8 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
               event_id: card.id,
               title: card.title,
               venue: evVenue,
+              city: resolvedCity,
+              region: resolvedCity,
               date: card.date,
               dateSchedule: card.dateSchedule || card.date,
               time: card.time,
@@ -687,10 +690,35 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
 }
 
 /**
+ * Infers city ("Surrey" | "Vancouver") from a venue or source record.
+ */
+export function inferFeedCity(item = {}) {
+  const explicit = String(item.city || item.region || "").trim().toLowerCase();
+  if (explicit === "surrey") return "Surrey";
+  if (explicit === "vancouver") return "Vancouver";
+  const blob = `${item.venue_name || ""} ${item.name || ""} ${item.neighborhood || ""} ${item.full_address || ""} ${item.address || ""} ${item.url || ""} ${item.calendar_url || ""} ${item.website_url || ""}`.toLowerCase();
+  const surreyTokens = [
+    "surrey", "whalley", "guildford", "fleetwood", "newton", "cloverdale",
+    "bear creek", "panorama", "crescent beach", "grandview", "fraser downs",
+    "fraser heights", "bridgeview", "clayton", "sullivan heights",
+    "bellperformingartscentre", "discoversurreybc", "surreylibraries",
+    "surreycivictheatres", "surreyeagles", "surreyknights", "russellbeer",
+    "dublincrossing", "artscouncilofsurrey", "cravingforagame",
+    "projectclimbing", "centralcityfunpark", "birdiesandbuckets",
+    "delllanes", "vinoscentivineyards", "downtownsurreybia",
+    "cloverdalebia", "newtonbia", "fleetwoodbia"
+  ];
+  if (surreyTokens.some((tok) => blob.includes(tok))) return "Surrey";
+  return "Vancouver";
+}
+
+/**
  * All Venue Feeds Harvester: Iterates through registered venue feeds from venues.json
+ * and discovery/reference sources, supporting single-city scanning (Vancouver or Surrey) or All Metro.
  */
 export async function runAllVenueFeedsBatch(options = {}) {
   const VENUES_PATH = path.join(ROOT_DIR, "data", "venues.json");
+  const SURREY_SOURCES_PATH = path.join(ROOT_DIR, "data", "surrey_reference_sources.json");
   let venues = [];
   try {
     if (fs.existsSync(VENUES_PATH)) {
@@ -700,34 +728,62 @@ export async function runAllVenueFeedsBatch(options = {}) {
     console.warn(`[WARN] Could not read venues.json: ${err.message}`);
   }
 
+  const rawCity = String(options.city || "all").trim().toLowerCase();
+  const cityScope = (rawCity === "vancouver" || rawCity === "surrey") ? rawCity : "all";
+
   const seenUrls = new Set();
-  const feeds = [];
+  const allFeeds = [];
   for (const v of venues) {
     const curatorInfo = getCuratorInfo({ venue: v.venue_name });
     const url = (curatorInfo.learnedVenueUrl || curatorInfo.instructedUrl || v.calendar_url || v.website_url || "").trim();
     if (url && url.startsWith("http") && !seenUrls.has(url)) {
       seenUrls.add(url);
-      feeds.push({ name: v.venue_name || "Venue", url });
+      allFeeds.push({
+        name: v.venue_name || "Venue",
+        url,
+        city: inferFeedCity({ ...v, url })
+      });
     }
   }
 
   // Include primary high-yield performing arts seeds if not present
   const seedFeeds = [
-    { name: "Little Mountain Gallery", url: "https://www.showpass.com/o/little-mountain-gallery/" },
-    { name: "The Rio Theatre", url: "https://riotheatre.ca/calendar/" },
-    { name: "The Cultch", url: "https://thecultch.com/whats-on/" },
-    { name: "Tightrope Impro Theatre", url: "https://tightropetheatre.com/shows" },
-    { name: "The Rickshaw Theatre", url: "https://rickshawtheatre.com/events/" },
-    { name: "The Fox Cabaret", url: "https://www.foxcabaret.com/calendar" },
-    { name: "VIFF Centre", url: "https://viff.org/whats-on/" },
-    { name: "Firehall Arts Centre", url: "https://www.firehallartscentre.ca/on-stage/" },
-    { name: "The Improv Centre", url: "https://theimprovcentre.ca/shows/" }
+    { name: "Little Mountain Gallery", url: "https://www.showpass.com/o/little-mountain-gallery/", city: "Vancouver" },
+    { name: "The Rio Theatre", url: "https://riotheatre.ca/calendar/", city: "Vancouver" },
+    { name: "The Cultch", url: "https://thecultch.com/whats-on/", city: "Vancouver" },
+    { name: "Tightrope Impro Theatre", url: "https://tightropetheatre.com/shows", city: "Vancouver" },
+    { name: "The Rickshaw Theatre", url: "https://rickshawtheatre.com/events/", city: "Vancouver" },
+    { name: "The Fox Cabaret", url: "https://www.foxcabaret.com/calendar", city: "Vancouver" },
+    { name: "VIFF Centre", url: "https://viff.org/whats-on/", city: "Vancouver" },
+    { name: "Firehall Arts Centre", url: "https://www.firehallartscentre.ca/on-stage/", city: "Vancouver" },
+    { name: "The Improv Centre", url: "https://theimprovcentre.ca/shows/", city: "Vancouver" }
   ];
   for (const s of seedFeeds) {
     if (!seenUrls.has(s.url)) {
       seenUrls.add(s.url);
-      feeds.push(s);
+      allFeeds.push(s);
     }
+  }
+
+  // Include verified Surrey reference sources
+  try {
+    if (fs.existsSync(SURREY_SOURCES_PATH)) {
+      const surreyRef = JSON.parse(fs.readFileSync(SURREY_SOURCES_PATH, "utf-8"));
+      const surreySources = Array.isArray(surreyRef) ? surreyRef : (surreyRef.sources || []);
+      for (const s of surreySources) {
+        const u = (s.url || "").trim();
+        if (u && u.startsWith("http") && !seenUrls.has(u)) {
+          seenUrls.add(u);
+          allFeeds.push({
+            name: s.name || "Surrey Source",
+            url: u,
+            city: "Surrey"
+          });
+        }
+      }
+    }
+  } catch (sErr) {
+    console.warn(`[WARN] Could not read surrey_reference_sources.json: ${sErr.message}`);
   }
 
   function scoreFeedPriority(feed) {
@@ -748,6 +804,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
     if (u.includes("biltmorecabaret.com") || n.includes("biltmore")) score += 75;
     if (u.includes("viff.org") || n.includes("viff")) score += 70;
     if (u.includes("firehallartscentre.ca") || n.includes("firehall")) score += 70;
+    if (u.includes("bellperformingartscentre.com") || u.includes("surrey-civic-theatres") || u.includes("discoversurreybc.com")) score += 85;
 
     // Explicit calendar / schedule / show paths
     if (u.includes("/schedule") || u.includes("/calendar") || u.includes("/whats-on") || u.includes("/shows") || u.includes("/events")) score += 40;
@@ -762,7 +819,12 @@ export async function runAllVenueFeedsBatch(options = {}) {
     return score;
   }
 
-  feeds.sort((a, b) => scoreFeedPriority(b) - scoreFeedPriority(a));
+  allFeeds.sort((a, b) => scoreFeedPriority(b) - scoreFeedPriority(a));
+
+  // Filter feeds by requested single city ("vancouver" | "surrey") or keep all ("all")
+  const feeds = cityScope === "all"
+    ? allFeeds
+    : allFeeds.filter((f) => String(f.city || "Vancouver").toLowerCase() === cityScope);
 
   const maxTotalEvents = (options.maxEvents !== undefined && options.maxEvents !== null) ? Number(options.maxEvents) : 0;
   const isResume = Boolean(options.resume);
@@ -776,13 +838,13 @@ export async function runAllVenueFeedsBatch(options = {}) {
     try {
       const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
       if (cp.status !== "completed") {
-      if (Array.isArray(cp.completed_feed_urls)) {
-        cp.completed_feed_urls.forEach((u) => completedFeedUrls.add(u));
-      }
-      if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length) {
-        startFeedIndex = cp.resume_from_index;
-      }
-      priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
+        if (Array.isArray(cp.completed_feed_urls)) {
+          cp.completed_feed_urls.forEach((u) => completedFeedUrls.add(u));
+        }
+        if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length && (!cp.city_scope || cp.city_scope === cityScope)) {
+          startFeedIndex = cp.resume_from_index;
+        }
+        priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
       }
     } catch (cpErr) {
       console.warn(`[WARN] Could not read harvester_checkpoint.json: ${cpErr.message}`);
@@ -790,17 +852,22 @@ export async function runAllVenueFeedsBatch(options = {}) {
   }
 
   let totalHarvestedEvents = 0;
+  const cityLabel = cityScope === "vancouver"
+    ? "🏙️ VANCOUVER ONLY"
+    : cityScope === "surrey"
+      ? "🦌 SURREY ONLY"
+      : "🌲 ALL METRO (VANCOUVER + SURREY)";
 
   console.log(`\n================================================================`);
-  console.log(`🌐 ALL VENUE FEEDS CALENDAR HARVESTER${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
-  console.log(`📊 Prioritized ${feeds.length} venue feeds from venues.json`);
+  console.log(`🌐 STEP 1A CALENDAR HARVESTER — [${cityLabel}]${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
+  console.log(`📊 Prioritized ${feeds.length} source feeds for ${cityLabel} (from ${allFeeds.length} total registered sources)`);
   if (isResume && (startFeedIndex > 0 || completedFeedUrls.size > 0)) {
     console.log(`⏩ [Resume Mode] Skipping ${completedFeedUrls.size} completed feeds — starting at Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
   }
   if (maxTotalEvents > 0) {
     console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
   } else {
-    console.log(`🎯 Scope: Unconstrained full catalog crawl`);
+    console.log(`🎯 Scope: Unconstrained full catalog crawl for ${cityLabel}`);
   }
   console.log(`================================================================\n`);
 
@@ -824,12 +891,14 @@ export async function runAllVenueFeedsBatch(options = {}) {
       await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
         ...cp,
         status: "running",
+        city_scope: cityScope,
         total_feeds: feeds.length,
         completed_feeds_count: completedFeedUrls.size,
         resume_from_index: i,
         resume_from_feed_number: i + 1,
         last_feed_name: feed.name,
         last_feed_url: feed.url,
+        last_feed_city: feed.city,
         completed_feed_urls: Array.from(completedFeedUrls),
         events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
         updated_at: new Date().toISOString(),
@@ -837,7 +906,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
     } catch (_) {}
 
     console.log(`\n────────────────────────────────────────────────────────────────`);
-    console.log(`${formatLogTime()} 🏛️ [${i + 1}/${feeds.length}] Venue Feed: ${feed.name}`);
+    console.log(`${formatLogTime()} 🏛️ [${i + 1}/${feeds.length}] [${feed.city}] Source Feed: ${feed.name}`);
     console.log(`🎯 URL: ${feed.url}`);
     logCuratorInfo({ venue: feed.name, prefix: "   " });
     if (maxTotalEvents > 0) {
@@ -846,13 +915,13 @@ export async function runAllVenueFeedsBatch(options = {}) {
     console.log(`────────────────────────────────────────────────────────────────`);
 
     try {
-      const res = await runCalendarBatch(feed.url, { ...options, maxEvents: needed, allowOverviewFallback: false, isAllVenuesBatch: true });
+      const res = await runCalendarBatch(feed.url, { ...options, city: feed.city, maxEvents: needed, allowOverviewFallback: false, isAllVenuesBatch: true });
       const succeededNew = Array.isArray(res) ? res.filter((r) => r && r.success && r.isNew).length : 0;
       const succeededTotal = Array.isArray(res) ? res.filter((r) => r && r.success).length : 0;
       totalHarvestedEvents += succeededNew;
-      allResults.push({ venue: feed.name, url: feed.url, results: res, harvestedCount: succeededNew, totalProcessed: succeededTotal });
+      allResults.push({ venue: feed.name, city: feed.city, url: feed.url, results: res, harvestedCount: succeededNew, totalProcessed: succeededTotal });
       if (succeededNew > 0) {
-        console.log(`✨ [Feed Yield] Harvested ${succeededNew} NEW event(s) from ${feed.name} (${totalHarvestedEvents}/${maxTotalEvents} total target collected).`);
+        console.log(`✨ [Feed Yield] Harvested ${succeededNew} NEW event(s) from ${feed.name} [${feed.city}] (${totalHarvestedEvents}/${maxTotalEvents} total target collected).`);
       }
 
       // Mark feed completed if we weren't halted early by maxTotalEvents cap
@@ -864,12 +933,14 @@ export async function runAllVenueFeedsBatch(options = {}) {
         await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
           ...cp,
           status: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? "completed" : "paused",
+          city_scope: cityScope,
           total_feeds: feeds.length,
           completed_feeds_count: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? feeds.length : completedFeedUrls.size,
           resume_from_index: nextIdx,
           resume_from_feed_number: nextIdx + 1,
           last_feed_name: feeds[nextIdx]?.name || feed.name,
           last_feed_url: feeds[nextIdx]?.url || feed.url,
+          last_feed_city: feeds[nextIdx]?.city || feed.city,
           completed_feed_urls: Array.from(completedFeedUrls),
           events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
           updated_at: new Date().toISOString(),
@@ -891,7 +962,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
   if (options.autoRun1B)
   try {
     console.log(`\n================================================================`);
-    console.log(`⚡ STEP 1A (All Feeds Harvest) COMPLETED (${totalHarvestedEvents} events discovered).`);
+    console.log(`⚡ STEP 1A (All Feeds Harvest — ${cityLabel}) COMPLETED (${totalHarvestedEvents} events discovered).`);
     console.log(`🚀 AUTOMATICALLY TRIGGERING STEP 1B (High-Fidelity Link Tier Upgrader)...`);
     console.log(`================================================================`);
     const allDiscovered = allResults.flatMap((r) => r.results || []);
@@ -907,21 +978,49 @@ export async function runAllVenueFeedsBatch(options = {}) {
 if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
   const cliArgs = process.argv.slice(2);
   const isResumeCli = cliArgs.includes("--resume");
-  const positional = cliArgs.filter((a) => !a.startsWith("--"));
-  let targetCal = positional[0];
+  let cliCity = null;
+  for (let i = 0; i < cliArgs.length; i++) {
+    const arg = cliArgs[i];
+    if (arg.startsWith("--city=")) {
+      cliCity = arg.split("=")[1]?.trim().toLowerCase() || null;
+    } else if (arg === "--city" && cliArgs[i + 1]) {
+      cliCity = cliArgs[i + 1].trim().toLowerCase();
+    }
+  }
+
+  const positional = cliArgs.filter((a, idx) => !a.startsWith("--") && (idx === 0 || cliArgs[idx - 1] !== "--city"));
+  let targetCal = (positional[0] || "").trim();
   const rawMax = positional[1];
   const max = (rawMax !== undefined && rawMax !== "") ? parseInt(rawMax, 10) : 0;
 
-  const isResumeTarget = targetCal === "all:resume" || isResumeCli;
-  if (!targetCal || targetCal === "all" || targetCal === "all:resume" || targetCal.trim() === "") {
-    runAllVenueFeedsBatch({ maxEvents: max, resume: isResumeTarget })
+  const normTarget = targetCal.toLowerCase();
+  const isBatchTarget =
+    !normTarget ||
+    normTarget === "all" ||
+    normTarget === "all:resume" ||
+    normTarget === "vancouver" ||
+    normTarget === "vancouver:resume" ||
+    normTarget === "all:vancouver" ||
+    normTarget === "all:vancouver:resume" ||
+    normTarget === "surrey" ||
+    normTarget === "surrey:resume" ||
+    normTarget === "all:surrey" ||
+    normTarget === "all:surrey:resume";
+
+  if (isBatchTarget) {
+    const isResumeTarget = normTarget.endsWith(":resume") || isResumeCli;
+    let resolvedCity = cliCity || "all";
+    if (normTarget.includes("vancouver")) resolvedCity = "vancouver";
+    else if (normTarget.includes("surrey")) resolvedCity = "surrey";
+
+    runAllVenueFeedsBatch({ maxEvents: max, resume: isResumeTarget, city: resolvedCity })
       .then(() => process.exit(0))
       .catch((err) => {
         console.error(`💥 All Feeds Harvester Error: ${err.message}`);
         process.exit(1);
       });
   } else {
-    runCalendarBatch(targetCal, { maxEvents: max, resume: isResumeCli })
+    runCalendarBatch(targetCal, { maxEvents: max, resume: isResumeCli, city: cliCity })
       .then(() => process.exit(0))
       .catch((err) => {
         console.error(`💥 Batch Harvester Error: ${err.message}`);

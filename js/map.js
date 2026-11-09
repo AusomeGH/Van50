@@ -31,13 +31,22 @@ const HOOD_COORDS = {
   'New Westminster': { lat: 49.2057, lng: -122.9110 },
   'Richmond': { lat: 49.1666, lng: -123.1336 },
   'Surrey Central': { lat: 49.1896, lng: -122.8479 },
+  'Surrey Central / Whalley': { lat: 49.1896, lng: -122.8479 },
   'City Centre': { lat: 49.1896, lng: -122.8479 },
   'Whalley': { lat: 49.1930, lng: -122.8450 },
+  'Bridgeview': { lat: 49.2045, lng: -122.8640 },
   'Guildford': { lat: 49.1897, lng: -122.8012 },
   'Fleetwood': { lat: 49.1575, lng: -122.7905 },
+  'Fraser Heights': { lat: 49.1936, lng: -122.7656 },
   'Newton': { lat: 49.1337, lng: -122.8467 },
+  'Bear Creek': { lat: 49.1610, lng: -122.8410 },
+  'Panorama': { lat: 49.1065, lng: -122.8360 },
+  'Sullivan Heights': { lat: 49.1120, lng: -122.8010 },
   'Cloverdale': { lat: 49.1044, lng: -122.7303 },
-  'South Surrey': { lat: 49.0401, lng: -122.8042 }
+  'Clayton': { lat: 49.1180, lng: -122.7050 },
+  'South Surrey': { lat: 49.0401, lng: -122.8042 },
+  'Grandview': { lat: 49.0458, lng: -122.7554 },
+  'Crescent Beach': { lat: 49.0583, lng: -122.8778 }
 };
 
 if (typeof window !== 'undefined') {
@@ -496,7 +505,11 @@ function renderMapMarkers(filteredEvents, options = {}) {
   window.activeMapMarkers = markersArray;
   updatePlottedCounterText(eventsList.length);
 
-  if (!options.skipFitBounds && markersArray.length > 0) {
+  const activeRegion = String(options.region || window.van50SelectedRegion || 'all').toLowerCase();
+  if (activeRegion === 'surrey') {
+    mapInstance.panTo({ lat: 49.135, lng: -122.820 });
+    mapInstance.setZoom(11);
+  } else if (!options.skipFitBounds && markersArray.length > 0) {
     mapInstance.fitBounds(bounds);
     if (markersArray.length === 1) {
       mapInstance.setZoom(15);
@@ -586,8 +599,9 @@ function invalidateVancouverMap() {
 /**
  * Pans and zooms to a neighborhood or Town Centre when a Jump to Area button is clicked.
  */
-async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng) {
+async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng, explicitZoom) {
   let targetCoords = null;
+  let targetZoom = !isNaN(parseInt(explicitZoom, 10)) ? parseInt(explicitZoom, 10) : 14;
   let clickedBtn = null;
 
   if (areaNameOrBtn && typeof areaNameOrBtn === 'object' && areaNameOrBtn.nodeType === 1) {
@@ -600,6 +614,12 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng) {
     }
     const attrLat = parseFloat(clickedBtn.getAttribute('data-lat'));
     const attrLng = parseFloat(clickedBtn.getAttribute('data-lng'));
+    const attrZoom = parseInt(clickedBtn.getAttribute('data-zoom'), 10);
+    if (!isNaN(attrZoom)) {
+      targetZoom = attrZoom;
+    } else if (attrArea === 'South Surrey') {
+      targetZoom = 13;
+    }
     if (!isNaN(attrLat) && !isNaN(attrLng)) {
       targetCoords = { lat: attrLat, lng: attrLng };
     } else if (HOOD_COORDS[attrArea]) {
@@ -611,6 +631,9 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng) {
       fitActiveMapMarkers();
       return;
     }
+    if (key === 'South Surrey' && isNaN(parseInt(explicitZoom, 10))) {
+      targetZoom = 13;
+    }
     if (!isNaN(parseFloat(explicitLat)) && !isNaN(parseFloat(explicitLng))) {
       targetCoords = { lat: parseFloat(explicitLat), lng: parseFloat(explicitLng) };
     } else if (HOOD_COORDS[key]) {
@@ -620,6 +643,10 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng) {
       if (matchedKey) targetCoords = HOOD_COORDS[matchedKey];
     }
     clickedBtn = document.querySelector(`div[aria-label="Town Centre Quick Jump"] button[data-area="${key}"]`);
+    if (clickedBtn && isNaN(parseInt(explicitZoom, 10))) {
+      const btnZoom = parseInt(clickedBtn.getAttribute('data-zoom'), 10);
+      if (!isNaN(btnZoom)) targetZoom = btnZoom;
+    }
   }
 
   if (!targetCoords) return;
@@ -635,7 +662,31 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng) {
 
   if (mapInstance && window.google && window.google.maps) {
     mapInstance.panTo({ lat: targetCoords.lat, lng: targetCoords.lng });
-    mapInstance.setZoom(14);
+    mapInstance.setZoom(targetZoom);
+  }
+}
+
+/**
+ * Pans and fits map bounds when the top-level Region filter changes ('all', 'vancouver', 'surrey').
+ */
+async function panMapToRegion(region) {
+  const norm = String(region || 'all').toLowerCase();
+  if (!mapInstance) {
+    const mapWrapper = document.getElementById('map-view-wrapper');
+    const isMapVisible = Boolean(mapWrapper && (mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block'));
+    if (!isMapVisible) return;
+    await initVancouverMap();
+  }
+  if (!mapInstance || !window.google || !window.google.maps) return;
+
+  if (norm === 'surrey') {
+    mapInstance.panTo({ lat: 49.135, lng: -122.820 });
+    mapInstance.setZoom(11);
+  } else if (norm === 'vancouver') {
+    mapInstance.panTo({ lat: 49.265, lng: -123.120 });
+    mapInstance.setZoom(12);
+  } else {
+    fitActiveMapMarkers();
   }
 }
 
@@ -694,5 +745,6 @@ if (typeof window !== 'undefined') {
   window.initVancouverMap = initVancouverMap;
   window.invalidateVancouverMap = invalidateVancouverMap;
   window.jumpToMapArea = jumpToMapArea;
+  window.panMapToRegion = panMapToRegion;
   window.fitActiveMapMarkers = fitActiveMapMarkers;
 }

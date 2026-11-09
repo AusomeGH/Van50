@@ -1,0 +1,409 @@
+[
+  {
+    "id": "surrey-ref-01",
+    "number": 1,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Discover Surrey Official Events",
+    "url": "https://www.discoversurreybc.com/events",
+    "description": "Tourism Surrey master calendar",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-02",
+    "number": 2,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "City of Surrey Events & Festivals",
+    "url": "https://www.surrey.ca/news-events/events",
+    "description": "Civic festivals, park activations, and workshops",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-03",
+    "number": 3,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Surrey Civic Theatres Box Office",
+    "url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres",
+    "description": "Main Stage, Studio Theatre, and Centre Stage at City Hall",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-04",
+    "number": 4,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Surrey Art Gallery Programs & Talks",
+    "url": "https://www.surrey.ca/arts-culture/surrey-art-gallery",
+    "description": "Exhibitions, artist talks, and studio sessions",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-05",
+    "number": 5,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Museum of Surrey Events",
+    "url": "https://www.surrey.ca/arts-culture/museum-of-surrey",
+    "description": "Heritage workshops, lectures, and family events",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-06",
+    "number": 6,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Historic Stewart Farm Calendar",
+    "url": "https://www.surrey.ca/arts-culture/historic-stewart-farm",
+    "description": "Heritage teas, seasonal markets, and tours",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-07",
+    "number": 7,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Surrey Nature Centre Programs",
+    "url": "https://www.surrey.ca/parks-recreation/surrey-nature-centre",
+    "description": "Guided forest walks, owl prowls, and nature events",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-08",
+    "number": 8,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Surrey Libraries Event Feed",
+    "url": "https://www.surreylibraries.ca/events",
+    "description": "Author readings, trivia, tabletop gaming, and tech clubs across 10 branches",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-09",
+    "number": 9,
+    "group": "A. Municipal, Tourism & Cultural Calendars",
+    "name": "Arts Council of Surrey",
+    "url": "https://www.artscouncilofsurrey.ca",
+    "description": "Newton Cultural Centre concerts, theatre, and gallery openings",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-10",
+    "number": 10,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Downtown Surrey BIA",
+    "url": "https://www.downtownsurreybia.com",
+    "description": "Surrey Central, Holland Park, and Whalley events",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-11",
+    "number": 11,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Cloverdale BIA",
+    "url": "https://www.cloverdalebia.com",
+    "description": "Historic Downtown Cloverdale street markets, car shows, and festivals",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-12",
+    "number": 12,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Cloverdale District Chamber of Commerce",
+    "url": "https://www.cloverdalechamber.ca",
+    "description": "Fairgrounds & community calendar",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-13",
+    "number": 13,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Newton BIA",
+    "url": "https://www.newtonbia.com",
+    "description": "Cultural walks, live music pop-ups, and Newton plaza activations",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-14",
+    "number": 14,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Fleetwood BIA",
+    "url": "https://www.fleetwoodbia.com",
+    "description": "Fleetwood community festivals and seasonal markets",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-15",
+    "number": 15,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "South Surrey & White Rock Chamber Events",
+    "url": "https://www.sswrchamber.ca/events",
+    "description": "Semiahmoo Peninsula community calendar",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-16",
+    "number": 16,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Explore White Rock / South Surrey Border Events",
+    "url": "https://www.explorewhiterock.com/events",
+    "description": "Concerts on the Pier, markets, and beachside festivals",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-17",
+    "number": 17,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Bell Performing Arts Centre Box Office",
+    "url": "https://www.bellperformingartscentre.com/events",
+    "description": "Touring comedy, concerts, and cultural showcases",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-18",
+    "number": 18,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Cloverdale Rodeo & Exhibition Association",
+    "url": "https://www.cloverdalerodeo.com",
+    "description": "Agriplex, Shannon Hall, and Fairgrounds trade shows/events",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-19",
+    "number": 19,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Royal Canadian Theatre Company",
+    "url": "https://www.rctheatreco.com",
+    "description": "Local theatre productions and pantomimes under $45",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-20",
+    "number": 20,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "White Rock Players' Club / Coast Capital Playhouse",
+    "url": "https://www.whiterockplayers.ca",
+    "description": "Community theatre right on the South Surrey border",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-21",
+    "number": 21,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Blue Frog Studios",
+    "url": "https://www.bluefrogstudios.ca",
+    "description": "Intimate live blues, roots, and tribute concerts",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-22",
+    "number": 22,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "SFU Surrey Public Events",
+    "url": "https://events.sfu.ca",
+    "secondary_url": "https://www.sfu.ca/surrey.html",
+    "description": "Public lectures, film screenings, and showcases",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-23",
+    "number": 23,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Kwantlen Polytechnic University (KPU) Events",
+    "url": "https://www.kpu.ca/events",
+    "description": "Music recitals, fine arts exhibitions, and talks at Newton & Cloverdale campuses",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-24",
+    "number": 24,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Fraser Valley Heritage Railway Society",
+    "url": "https://www.fvhrs.org",
+    "description": "Seasonal heritage interurban tram runs out of Cloverdale Station",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-25",
+    "number": 25,
+    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+    "name": "Eventbrite — Surrey Local Events",
+    "url": "https://www.eventbrite.ca/d/canada--surrey/events/",
+    "description": "Stand-up comedy, Paint Nites, pub trivia, and workshops",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-26",
+    "number": 26,
+    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+    "name": "Showpass — Surrey & Fraser Valley",
+    "url": "https://www.showpass.com",
+    "description": "Local taproom comedy, country bar gigs, and seasonal festivals",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-27",
+    "number": 27,
+    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+    "name": "Meetup — Surrey Outdoors, Board Games & Socials",
+    "url": "https://www.meetup.com/find/ca--bc--surrey/",
+    "description": "Recurring hikes, badminton, and tabletop RPGs",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-28",
+    "number": 28,
+    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+    "name": "Bandsintown — Surrey Live Music",
+    "url": "https://www.bandsintown.com/c/surrey-canada",
+    "description": "Pub bands, indie gigs, and touring acts",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-29",
+    "number": 29,
+    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+    "name": "Songkick — Metro Vancouver & Surrey Concerts",
+    "url": "https://www.songkick.com/metro-areas/27398-canada-vancouver",
+    "description": "Concert calendar tracking Surrey venues",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-30",
+    "number": 30,
+    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+    "name": "Yuk Yuk's Surrey / Touring Stand-Up Listings",
+    "url": "https://www.yukyuks.com",
+    "description": "Touring stand-up shows at Surrey pubs and theatres",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-31",
+    "number": 31,
+    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+    "name": "Paint Nite — Surrey & Cloverdale Venues",
+    "url": "https://www.paintnite.com/ca/bc/surrey",
+    "description": "Pub painting nights under $45",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-32",
+    "number": 32,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "Surrey Now-Leader Community Calendar",
+    "url": "https://www.surreynowleader.com/local-events",
+    "description": "Local arts, markets, and fundraiser listings",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-33",
+    "number": 33,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "Peace Arch News Events Calendar",
+    "url": "https://www.peacearchnews.com/local-events",
+    "description": "South Surrey, Crescent Beach, and Ocean Park events",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-34",
+    "number": 34,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "Cloverdale Reporter Community Events",
+    "url": "https://www.cloverdalereporter.com/local-events",
+    "description": "Cloverdale & Clayton community calendar",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-35",
+    "number": 35,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "Miss604 Weekend & Surrey Guides",
+    "url": "https://www.miss604.com",
+    "description": "Curated Metro Vancouver & Fraser Valley weekend event roundups",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-36",
+    "number": 36,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "604 Now — Surrey & Metro Vancouver",
+    "url": "https://www.604now.com",
+    "description": "Food truck festivals, night markets, and seasonal pop-ups",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-37",
+    "number": 37,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "To Do Canada — Vancouver & Fraser Valley",
+    "url": "https://www.todocanada.ca/city/vancouver/events/",
+    "description": "Family events, holiday light walks, and exhibitions",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-38",
+    "number": 38,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "do604",
+    "url": "https://do604.com",
+    "description": "Concerts, DJ nights, and indie arts across SkyTrain-accessible venues",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-39",
+    "number": 39,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "Scout Magazine — The Calendar",
+    "url": "https://scoutmagazine.ca/events/",
+    "description": "High-curation arts, food, and cultural pop-ups",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-40",
+    "number": 40,
+    "group": "E. Local Journalism & Regional Curators",
+    "name": "Vancouver's Best Places — Surrey Events",
+    "url": "https://vancouversbestplaces.com/surrey/",
+    "description": "Seasonal festivals and budget-friendly attraction guides",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-41",
+    "number": 41,
+    "group": "F. Spectator Sports & Recreation Schedules",
+    "name": "Surrey Eagles BCHL Schedule",
+    "url": "https://www.surreyeagles.ca/stats/schedule",
+    "description": "$18 Junior A hockey games at South Surrey Arena",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-42",
+    "number": 42,
+    "group": "F. Spectator Sports & Recreation Schedules",
+    "name": "Surrey Knights PJHL Schedule",
+    "url": "https://www.surreyknights.ca",
+    "description": "$12 Junior B hockey games at North Surrey Sport & Ice Complex",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-43",
+    "number": 43,
+    "group": "F. Spectator Sports & Recreation Schedules",
+    "name": "Canada Cup Softball Schedule",
+    "url": "https://www.canadacup.com",
+    "description": "International women's softball at Softball City",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-44",
+    "number": 44,
+    "group": "F. Spectator Sports & Recreation Schedules",
+    "name": "Fraser Downs Live Racing Calendar",
+    "url": "https://www.greatcanadian.com/destinations/britishcolumbia/elements-surrey/",
+    "description": "Free live harness racing nights in Cloverdale",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-45",
+    "number": 45,
+    "group": "F. Spectator Sports & Recreation Schedules",
+    "name": "City of Surrey Drop-In Recreation Schedules",
+    "url": "https://www.surrey.ca/activities-parks-recreation/drop-schedules",
+    "description": "Live drop-in public skate, wave pool, gymnasium, and fitness schedules across all 6 town centres",
+    "city": "Surrey"
+  }
+]
+

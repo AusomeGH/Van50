@@ -2,13 +2,48 @@
 // Strictly displays events under $50.00 CAD total out-of-pocket per person.
 
 // 0. CORE TAXONOMY & CLUSTER CONSTANTS (Authoritative Defaults)
-window.NEIGHBORHOODS = window.NEIGHBORHOODS || [
+window.VANCOUVER_NEIGHBORHOODS = window.VANCOUVER_NEIGHBORHOODS || [
   "Downtown, Gastown & Yaletown",
   "Mount Pleasant & South Vancouver",
   "Commercial Drive & East Vancouver",
   "Kitsilano, Point Grey & UBC",
   "Granville Island & False Creek",
   "North Shore, Burnaby & Metro"
+];
+
+window.SURREY_NEIGHBORHOODS = window.SURREY_NEIGHBORHOODS || [
+  "Surrey Central / Whalley",
+  "Guildford",
+  "Fleetwood",
+  "Newton",
+  "Cloverdale",
+  "South Surrey"
+];
+
+window.SURREY_MACRO_GROUPS = window.SURREY_MACRO_GROUPS || [
+  {
+    id: "north-surrey",
+    label: "🌲 North Surrey",
+    towns: ["Surrey Central / Whalley", "Guildford", "Fleetwood"],
+    aliases: ["Surrey Central", "Whalley", "City Centre", "Bridgeview", "Guildford", "Fleetwood", "Fraser Heights"]
+  },
+  {
+    id: "mid-surrey",
+    label: "🎭 Mid Surrey",
+    towns: ["Newton"],
+    aliases: ["Newton", "Bear Creek", "Panorama", "Sullivan Heights"]
+  },
+  {
+    id: "south-surrey-cloverdale",
+    label: "🌊 South Surrey & Cloverdale",
+    towns: ["Cloverdale", "South Surrey"],
+    aliases: ["Cloverdale", "Clayton", "South Surrey", "Grandview", "Crescent Beach"]
+  }
+];
+
+window.NEIGHBORHOODS = [
+  ...window.VANCOUVER_NEIGHBORHOODS,
+  ...window.SURREY_NEIGHBORHOODS
 ];
 
 window.DAYS_OF_WEEK = window.DAYS_OF_WEEK || [
@@ -236,6 +271,61 @@ window.FESTIVAL_REGISTRY = window.FESTIVAL_REGISTRY || {
     venues: "Cineplex International Village & Greta Bar YVR",
     officialUrl: "https://www.vancouverhorrorshow.com",
     officialLabel: "Official VHS Schedule ↗"
+  },
+  "bear-creek-lights": {
+    id: "bear-creek-lights",
+    label: "Bear Creek Lights",
+    icon: "✨",
+    datesLabel: "Nov 1 – Nov 15",
+    shortDesc: "Free illuminated nature walk & light installations through Bear Creek Park Gardens in Newton, Surrey.",
+    longDesc: "Experience Bear Creek Park's magical autumn light festival in Newton, Surrey, featuring illuminated garden trails, glowing nature installations, and family-friendly evening walks (Free admission, timed tickets required).",
+    venues: "Bear Creek Park (Newton, Surrey)",
+    officialUrl: "https://www.surrey.ca/news-events/events/bear-creek-lights",
+    officialLabel: "Official Bear Creek Lights Info ↗"
+  },
+  "surrey-tree-lighting-festival-holiday-market": {
+    id: "surrey-tree-lighting-festival-holiday-market",
+    label: "Surrey Tree Lighting Festival & Holiday Market",
+    icon: "🎄",
+    datesLabel: "Nov 21 – Nov 22",
+    shortDesc: "Surrey's signature free winter festival with a 60-foot holiday tree, live concerts & artisan market.",
+    longDesc: "Kick off the holiday season at Surrey Civic Plaza in Surrey Central with a dazzling 60-foot Christmas tree lighting ceremony, free live music stages, local holiday market vendors, light tunnels, and festive activities.",
+    venues: "Surrey Civic Plaza (Surrey Central)",
+    officialUrl: "https://www.surreytreelighting.ca",
+    officialLabel: "Official Tree Lighting Guide ↗"
+  },
+  "cloverdale-rodeo-country-fair": {
+    id: "cloverdale-rodeo-country-fair",
+    label: "Cloverdale Rodeo & Country Fair",
+    icon: "🤠",
+    datesLabel: "Victoria Day Long Weekend in May",
+    shortDesc: "Historic country fair, midway rides, live music stages, pro skateboarding & rodeo in Cloverdale ($15 CAD).",
+    longDesc: "One of Western Canada's longest-running traditions at the Cloverdale Fairgrounds, featuring country fair exhibits, live music, food trucks, outdoor stages, and championship rodeo events ($15 CAD gate admission).",
+    venues: "Cloverdale Fairgrounds (Cloverdale, Surrey)",
+    officialUrl: "https://www.cloverdalerodeo.com",
+    officialLabel: "Official Cloverdale Rodeo Site ↗"
+  },
+  "surrey-fusion-festival": {
+    id: "surrey-fusion-festival",
+    label: "Surrey Fusion Festival",
+    icon: "🌍",
+    datesLabel: "3rd Weekend in July",
+    shortDesc: "BC's largest free multicultural festival of music, food pavilions & culture at Holland Park.",
+    longDesc: "Celebrate global music, dance, and culinary traditions across 50+ cultural pavilions and multiple outdoor concert stages at Holland Park in Surrey Central (Free admission).",
+    venues: "Holland Park (Surrey Central)",
+    officialUrl: "https://www.surreyfusionfestival.ca",
+    officialLabel: "Official Fusion Festival Guide ↗"
+  },
+  "canada-cup-international-softball-championship": {
+    id: "canada-cup-international-softball-championship",
+    label: "Canada Cup International Softball Championship",
+    icon: "🥎",
+    datesLabel: "July",
+    shortDesc: "World-class international women's fastpitch softball tournament at Softball City in South Surrey ($15 CAD).",
+    longDesc: "Watch Olympic and national fastpitch softball teams from around the globe compete at Softball City in South Surrey, with single-day general admission passes under $50 CAD ($15 CAD).",
+    venues: "Softball City (South Surrey)",
+    officialUrl: "https://www.canadacup.com",
+    officialLabel: "Official Canada Cup Schedule ↗"
   }
 };
 
@@ -256,6 +346,7 @@ window.trackAnonymousEvent = function (path, title) {
 };
 
 const state = {
+  region: 'all',
   minBudget: 0,
   maxBudget: 50,
   hideDaily: false,
@@ -279,6 +370,7 @@ const state = {
   expiredCount: 0,
   sortBy: 'date'
 };
+window.van50SelectedRegion = 'all';
 
 // Global reference for roulette & map
 window.currentFilteredEvents = [];
@@ -289,6 +381,14 @@ let ALL_EVENTS = (typeof window !== 'undefined' && (window.VAN50_EVENTS || windo
 function restoreFiltersFromUrlParams() {
   if (typeof window === 'undefined' || !window.location || !window.location.search) return;
   const params = new URLSearchParams(window.location.search);
+
+  if (params.has('region')) {
+    const regVal = (params.get('region') || '').trim().toLowerCase();
+    if (regVal === 'vancouver' || regVal === 'surrey' || regVal === 'all') {
+      state.region = regVal;
+      window.van50SelectedRegion = regVal;
+    }
+  }
 
   if (params.has('q')) {
     state.searchQuery = (params.get('q') || '').trim();
@@ -380,9 +480,13 @@ function restoreFiltersFromUrlParams() {
 function syncFiltersToUrlParams() {
   if (typeof window === 'undefined' || !window.history || !window.history.replaceState) return;
   const params = new URLSearchParams(window.location.search);
+  const hadRegionParam = params.has('region');
 
-  ['q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort'].forEach(k => params.delete(k));
+  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort'].forEach(k => params.delete(k));
 
+  if (state.region && (state.region !== 'all' || hadRegionParam || window._userChangedRegion)) {
+    params.set('region', state.region);
+  }
   if (state.searchQuery && state.searchQuery.trim() !== '') {
     params.set('q', state.searchQuery.trim());
   }
@@ -432,6 +536,9 @@ function syncFiltersToUrlParams() {
 
 function getActiveFiltersSummaryList() {
   const active = [];
+  if (state.region && state.region !== 'all') {
+    active.push(`Region: ${state.region === 'surrey' ? '🦌 Surrey' : '🏙️ Vancouver'}`);
+  }
   if (state.searchQuery && state.searchQuery.trim() !== '') {
     active.push(`Search: "${state.searchQuery.trim()}"`);
   }
@@ -501,6 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccessibility();
   setupEventListeners();
   restoreFiltersFromUrlParams();
+  renderRegionPills();
   renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
@@ -1072,6 +1180,7 @@ function normalizeActiveEvent(item) {
   // Build ev.categories array (multi-category assignment)
   const categories = Array.isArray(item.categories) ? [...item.categories] : [];
   const addCat = (c) => { if (c && !categories.includes(c)) categories.push(c); };
+  if (item.category) addCat(String(item.category).toLowerCase());
   if (isCinema) addCat("cinema");
   if (isMusic) addCat("music");
   if (isShows) addCat("shows");
@@ -1191,6 +1300,15 @@ function normalizeActiveEvent(item) {
     }
   }
 
+  const rawHood = String(item.neighborhood || "").trim();
+  const rawAddr = String(item.full_address || item.address || "").trim();
+  const isSurreyEvent = (
+    String(item.city || "").toLowerCase() === "surrey" ||
+    String(item.region || "").toLowerCase() === "surrey" ||
+    /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|south surrey|grandview|crescent beach|bridgeview)\b/i.test(`${rawHood} ${rawAddr}`)
+  );
+  const resolvedCity = isSurreyEvent ? "Surrey" : (item.city || item.region || "Vancouver");
+
   const res = {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
     title: evTitle,
@@ -1198,6 +1316,12 @@ function normalizeActiveEvent(item) {
     venue: item.venue_name || item.venue || "Vancouver Venue",
     address: item.full_address || item.address || "Vancouver, BC",
     neighborhood: item.neighborhood || "Vancouver",
+    city: resolvedCity,
+    region: resolvedCity,
+    day: item.day || item.days_open || "Daily",
+    time: item.time || item.start_time || null,
+    recurrence: item.recurrence || item.frequency || item.frequencyLabel || "Recurring",
+    url: item.url || item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
     price: finalPrice,
     priceLabel: finalPrice === 0 ? "Free ($0)" : `$${finalPrice.toFixed(2)} CAD`,
     pricingType: finalPrice === 0 ? "free" : "paid",
@@ -1948,6 +2072,9 @@ function setupEventListeners() {
   };
 
   window.resetSecondaryFilters = function () {
+    state.region = 'all';
+    window.van50SelectedRegion = 'all';
+    renderRegionPills();
     state.category = 'all'; state.selectedThemeFilter = null; if (state.excludedThemes) state.excludedThemes.clear(); state.hideFestivalEvents = false; renderCategoryPills(); renderFestivalSpotlight();
     state.minBudget = 0;
     state.maxBudget = 50;
@@ -2263,6 +2390,26 @@ function getActiveThemeGroups(catalog) {
       });
     }
   });
+
+  // Also register all curated Vancouver & Surrey annual festivals from FESTIVAL_REGISTRY so seasonal banners surface automatically
+  if (typeof window !== 'undefined' && window.FESTIVAL_REGISTRY) {
+    Object.values(window.FESTIVAL_REGISTRY).forEach(fest => {
+      if (!fest || !fest.id) return;
+      const key = `festival:${fest.id}`;
+      if (!groupsMap.has(key)) {
+        groupsMap.set(key, {
+          key,
+          type: 'festival',
+          id: fest.id,
+          label: fest.label,
+          fullLabel: fest.label,
+          icon: fest.icon || '🎪',
+          count: 1
+        });
+      }
+    });
+  }
+
   return Array.from(groupsMap.values());
 }
 
@@ -2270,6 +2417,11 @@ function getActiveThemeGroups(catalog) {
 const THEME_DATE_WINDOWS = {
   'diwali': { startDate: '2026-11-05', endDate: '2026-11-15' },
   'diwali-fest': { startDate: '2026-11-05', endDate: '2026-11-15' },
+  'bear-creek-lights': { startDate: '2026-11-01', endDate: '2026-11-15' },
+  'surrey-tree-lighting-festival-holiday-market': { startDate: '2026-11-21', endDate: '2026-11-22' },
+  'cloverdale-rodeo-country-fair': { startDate: '05-15', endDate: '05-18' },
+  'surrey-fusion-festival': { startDate: '07-18', endDate: '07-19' },
+  'canada-cup-international-softball-championship': { startDate: '07-03', endDate: '07-12' },
   'downtown-eastside-heart-of-the-city-festival': { startDate: '2026-10-30', endDate: '2026-11-08' },
   'christmas': { startDate: '11-15', endDate: '12-30' },
   'new-years': { startDate: '12-26', endDate: '01-02' },
@@ -2843,15 +2995,112 @@ function renderTimePills() {
   });
 }
 
+function resolveCanonicalNeighborhoodCluster(nhStr, evCity) {
+  const s = String(nhStr || "").trim().toLowerCase();
+  if (!s) return evCity === "Surrey" ? "Surrey Central / Whalley" : "Downtown, Gastown & Yaletown";
+
+  // Surrey 6 Town Centres
+  if (/surrey central|whalley|city centre|bridgeview/i.test(s)) return "Surrey Central / Whalley";
+  if (/guildford|fraser heights/i.test(s)) return "Guildford";
+  if (/fleetwood/i.test(s)) return "Fleetwood";
+  if (/newton|bear creek|panorama|sullivan heights/i.test(s)) return "Newton";
+  if (/cloverdale|clayton/i.test(s)) return "Cloverdale";
+  if (/south surrey|grandview|crescent beach|white rock/i.test(s)) return "South Surrey";
+
+  // Vancouver 6 Neighborhood Clusters
+  if (/downtown|gastown|yaletown|chinatown|west end|coal harbour|crosstown|stanley park|davie|robson/i.test(s)) {
+    return "Downtown, Gastown & Yaletown";
+  }
+  if (/mount pleasant|south vancouver|main st|cambie|riley park|marpole|oakridge|kerrisdale|sunset|fraser/i.test(s)) {
+    return "Mount Pleasant & South Vancouver";
+  }
+  if (/commercial|east van|hastings|strathcona|grandview-woodland|renfrew|collingwood|killarney|trout lake/i.test(s)) {
+    return "Commercial Drive & East Vancouver";
+  }
+  if (/kitsilano|point grey|ubc|jericho|spanish banks|dunbar|arbutus|shaughnessy|west side/i.test(s)) {
+    return "Kitsilano, Point Grey & UBC";
+  }
+  if (/granville island|false creek|olympic village|fairview|south granville|senakw/i.test(s)) {
+    return "Granville Island & False Creek";
+  }
+  if (/north shore|north van|west van|burnaby|new west|richmond|coquitlam|port moody|metro/i.test(s)) {
+    return "North Shore, Burnaby & Metro";
+  }
+  return nhStr;
+}
+
+function eventMatchesNeighborhoodFilter(ev, selectedSet) {
+  if (!selectedSet || selectedSet.size === 0) return true;
+  const rawNh = String(ev.neighborhood || "").trim();
+  if (selectedSet.has(rawNh)) return true;
+  const canonical = resolveCanonicalNeighborhoodCluster(rawNh, ev.city || ev.region);
+  if (selectedSet.has(canonical)) return true;
+  return false;
+}
+
+function setRegionFilter(region) {
+  const norm = String(region || 'all').trim().toLowerCase();
+  const validRegion = (norm === 'vancouver' || norm === 'surrey') ? norm : 'all';
+  state.region = validRegion;
+  window.van50SelectedRegion = validRegion;
+  window._userChangedRegion = true;
+
+  renderRegionPills();
+  renderNeighborhoodPills();
+  applyFiltersAndRender();
+
+  if (typeof window.panMapToRegion === 'function') {
+    window.panMapToRegion(validRegion);
+  }
+}
+window.setRegionFilter = setRegionFilter;
+
+function renderRegionPills() {
+  const bar = document.getElementById('region-filter-bar');
+  if (!bar) return;
+  const pills = bar.querySelectorAll('.region-pill[data-region]');
+  pills.forEach(btn => {
+    const reg = (btn.getAttribute('data-region') || 'all').toLowerCase();
+    const isActive = state.region === reg;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    if (!btn._van50RegionBound) {
+      btn._van50RegionBound = true;
+      btn.addEventListener('click', () => {
+        setRegionFilter(reg);
+      });
+    }
+  });
+}
+window.renderRegionPills = renderRegionPills;
+
 function renderNeighborhoodPills() {
   const container = document.getElementById('neighborhood-pills-wrap');
   if (!container || typeof NEIGHBORHOODS === 'undefined') return;
 
   container.innerHTML = '';
-  NEIGHBORHOODS.forEach(nh => {
+
+  const vanList = window.VANCOUVER_NEIGHBORHOODS || [];
+  const surreyList = window.SURREY_NEIGHBORHOODS || [];
+  const macroGroups = window.SURREY_MACRO_GROUPS || [];
+
+  // 1. Vancouver Neighborhoods Group
+  const vanGroup = document.createElement('div');
+  vanGroup.className = `nh-region-group ${state.region === 'surrey' ? 'nh-dimmed-by-region' : ''}`;
+  vanGroup.setAttribute('data-region-group', 'vancouver');
+
+  const vanHeader = document.createElement('div');
+  vanHeader.className = 'nh-group-label';
+  vanHeader.textContent = '🏙️ Vancouver Neighborhoods';
+  vanGroup.appendChild(vanHeader);
+
+  vanList.forEach(nh => {
     const pill = document.createElement('button');
+    pill.type = 'button';
     const isSelected = state.selectedNeighborhoods.has(nh);
     pill.className = `nh-pill ${isSelected ? 'active' : ''}`;
+    pill.setAttribute('data-nh', nh);
+    pill.setAttribute('data-nh-region', 'vancouver');
     pill.innerHTML = `<span>${nh}</span>`;
     pill.addEventListener('click', () => {
       if (state.selectedNeighborhoods.has(nh)) {
@@ -2863,8 +3112,72 @@ function renderNeighborhoodPills() {
       renderNeighborhoodPills();
       applyFiltersAndRender();
     });
-    container.appendChild(pill);
+    vanGroup.appendChild(pill);
   });
+  container.appendChild(vanGroup);
+
+  // 2. Surrey Town Centres & Macro Quick-Select Group
+  const surreyGroup = document.createElement('div');
+  surreyGroup.className = `nh-region-group ${state.region === 'vancouver' ? 'nh-dimmed-by-region' : ''}`;
+  surreyGroup.setAttribute('data-region-group', 'surrey');
+
+  const surreyHeader = document.createElement('div');
+  surreyHeader.className = 'nh-group-label';
+  surreyHeader.textContent = '🦌 Surrey Town Centres & Macro Areas';
+  surreyGroup.appendChild(surreyHeader);
+
+  // Surrey Macro Quick-Select Pills (North Surrey, Mid Surrey, South Surrey & Cloverdale)
+  macroGroups.forEach(macro => {
+    const macroBtn = document.createElement('button');
+    macroBtn.type = 'button';
+    const allMacroSelected = macro.towns.every(t => state.selectedNeighborhoods.has(t));
+    const onlyMacroSelected = allMacroSelected && state.selectedNeighborhoods.size === macro.towns.length;
+    macroBtn.className = `nh-pill nh-macro-pill ${onlyMacroSelected ? 'active' : ''}`;
+    macroBtn.setAttribute('data-macro-id', macro.id);
+    macroBtn.setAttribute('data-nh-region', 'surrey');
+    macroBtn.title = `Filter to ${macro.aliases.join(', ')}`;
+    macroBtn.innerHTML = `<span>${macro.label}</span>`;
+    macroBtn.addEventListener('click', () => {
+      if (onlyMacroSelected) {
+        state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
+      } else {
+        state.selectedNeighborhoods = new Set(macro.towns);
+      }
+      renderNeighborhoodPills();
+      applyFiltersAndRender();
+    });
+    surreyGroup.appendChild(macroBtn);
+  });
+
+  // Surrey 6 Town Centre Pills
+  surreyList.forEach(nh => {
+    const pill = document.createElement('button');
+    pill.type = 'button';
+    const isSelected = state.selectedNeighborhoods.has(nh);
+    const allSelected = state.selectedNeighborhoods.size === window.NEIGHBORHOODS.length;
+    pill.className = `nh-pill ${isSelected ? 'active' : ''}`;
+    pill.setAttribute('data-nh', nh);
+    pill.setAttribute('data-nh-region', 'surrey');
+    pill.innerHTML = `<span>${nh}</span>`;
+    pill.addEventListener('click', () => {
+      // If all neighborhoods were selected by default and user clicks a specific Surrey town centre, isolate that town centre (or toggle if already isolated)
+      if (allSelected) {
+        state.selectedNeighborhoods = new Set([nh]);
+      } else if (state.selectedNeighborhoods.has(nh)) {
+        state.selectedNeighborhoods.delete(nh);
+        if (state.selectedNeighborhoods.size === 0) {
+          state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
+        }
+      } else {
+        state.selectedNeighborhoods.add(nh);
+      }
+      window.trackAnonymousEvent('neighborhood/' + nh.toLowerCase().replace(/[^a-z0-9]+/g, '-'), 'Neighborhood: ' + nh);
+      renderNeighborhoodPills();
+      applyFiltersAndRender();
+    });
+    surreyGroup.appendChild(pill);
+  });
+  container.appendChild(surreyGroup);
 
   const toggleBtn = document.getElementById('btn-toggle-all-neighborhoods');
   if (toggleBtn) {
@@ -3461,6 +3774,13 @@ function applyFiltersAndRender() {
     const p = parseFloat(ev.price || 0.0);
     if (p > 50.00) return false;
 
+    // 0. Top-Level Region Filter (all | vancouver | surrey)
+    if (state.region && state.region !== 'all') {
+      const evCity = String(ev.city || ev.region || 'Vancouver').trim().toLowerCase();
+      if (state.region === 'surrey' && evCity !== 'surrey') return false;
+      if (state.region === 'vancouver' && evCity !== 'vancouver') return false;
+    }
+
     // Venue Isolation Filter (Requirement 3: When clicking events at a venue, show all events at the venue)
     if (state.selectedVenue) {
       return ev.venue === state.selectedVenue;
@@ -3669,11 +3989,11 @@ function applyFiltersAndRender() {
     }
 
     // 6. Multi-Select Neighborhood
-    const allClustersCount = (window.NEIGHBORHOODS && window.NEIGHBORHOODS.length) || 6;
+    const allClustersCount = (window.NEIGHBORHOODS && window.NEIGHBORHOODS.length) || 12;
     if (state.selectedNeighborhoods.size === 0) {
       state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
     } else if (state.selectedNeighborhoods.size < allClustersCount) {
-      if (!state.selectedNeighborhoods.has(ev.neighborhood)) {
+      if (!eventMatchesNeighborhoodFilter(ev, state.selectedNeighborhoods)) {
         return false;
       }
     }

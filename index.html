@@ -78,12 +78,19 @@
     <!-- Hero Section -->
     <section class="hero-section" id="hero-banner">
       <h1 class="hero-title">
-        Vancouver Events &amp; Outings <span class="gradient-text">Under $50</span>
+        Vancouver &amp; Surrey Events <span class="gradient-text">Under $50</span>
       </h1>
       <p class="hero-subtitle">
-        Curated local comedy, indie cinema, live music, sports, trivia, and scenic outings across Vancouver, BC.
+        Curated local comedy, indie cinema, live music, sports, trivia, and scenic outings across Vancouver &amp; Surrey, BC.
       </p>
     </section>
+
+    <!-- Top-Level 3-Way Region Filter (All Metro, Vancouver, Surrey) -->
+    <div class="region-filter-bar" id="region-filter-bar" role="group" aria-label="Region Filter">
+      <button type="button" class="region-pill active" data-region="all" id="region-pill-all" aria-pressed="true">🌲 All (Van + Surrey)</button>
+      <button type="button" class="region-pill" data-region="vancouver" id="region-pill-vancouver" aria-pressed="false">🏙️ Vancouver</button>
+      <button type="button" class="region-pill" data-region="surrey" id="region-pill-surrey" aria-pressed="false">🦌 Surrey</button>
+    </div>
 
     <div class="mobile-search-filter-bar" id="mobile-search-filter-bar">
       <div class="search-filter-main-row">
@@ -213,8 +220,8 @@
               <span><strong>♿ Accessible Venues</strong></span>
             </label>
 
-            <!-- Collapsible More Filters Button (Hidden per user request) -->
-            <button type="button" class="btn-more-filters" id="btn-toggle-more-filters" aria-expanded="false" aria-controls="more-filters-panel" title="Expand additional date, time, and neighborhood filters" style="display: none;">
+            <!-- Collapsible More Filters Button -->
+            <button type="button" class="btn-more-filters" id="btn-toggle-more-filters" aria-expanded="false" aria-controls="more-filters-panel" title="Expand additional date, time, and neighborhood filters">
               <span>More Filters</span>
               <span class="more-filters-count" id="active-filters-count" style="display: none;">0</span>
               <span class="chevron-icon">▾</span>
@@ -301,17 +308,17 @@
             <span class="map-pin-count-badge" id="map-pin-count-badge">0 events plotted</span>
           </div>
           <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="Town Centre Quick Jump">
-            <button type="button" class="map-jump-pill" data-area="City Centre" data-lat="49.1896" data-lng="-122.8479">City Centre / Whalley</button>
-            <button type="button" class="map-jump-pill" data-area="Guildford" data-lat="49.1897" data-lng="-122.8012">Guildford</button>
-            <button type="button" class="map-jump-pill" data-area="Fleetwood" data-lat="49.1575" data-lng="-122.7905">Fleetwood</button>
-            <button type="button" class="map-jump-pill" data-area="Newton" data-lat="49.1337" data-lng="-122.8467">Newton</button>
-            <button type="button" class="map-jump-pill" data-area="Cloverdale" data-lat="49.1044" data-lng="-122.7303">Cloverdale</button>
-            <button type="button" class="map-jump-pill" data-area="South Surrey" data-lat="49.0401" data-lng="-122.8042">South Surrey</button>
-            <button type="button" class="map-jump-pill" data-area="Downtown" data-lat="49.2827" data-lng="-123.1207">Downtown</button>
-            <button type="button" class="map-jump-pill" data-area="Mount Pleasant" data-lat="49.2628" data-lng="-123.1011">Mount Pleasant</button>
-            <button type="button" class="map-jump-pill" data-area="Commercial Drive" data-lat="49.2719" data-lng="-123.0695">Commercial Drive</button>
-            <button type="button" class="map-jump-pill" data-area="Kitsilano" data-lat="49.2684" data-lng="-123.1683">Kitsilano</button>
-            <button type="button" class="map-jump-pill" data-area="Granville Island" data-lat="49.2712" data-lng="-123.1340">Granville Island</button>
+            <button type="button" class="map-jump-pill" data-area="Surrey Central" data-lat="49.1896" data-lng="-122.8479" data-zoom="14">Surrey Central</button>
+            <button type="button" class="map-jump-pill" data-area="Guildford" data-lat="49.1897" data-lng="-122.8012" data-zoom="14">Guildford</button>
+            <button type="button" class="map-jump-pill" data-area="Fleetwood" data-lat="49.1575" data-lng="-122.7905" data-zoom="14">Fleetwood</button>
+            <button type="button" class="map-jump-pill" data-area="Newton" data-lat="49.1337" data-lng="-122.8467" data-zoom="14">Newton</button>
+            <button type="button" class="map-jump-pill" data-area="Cloverdale" data-lat="49.1044" data-lng="-122.7303" data-zoom="14">Cloverdale</button>
+            <button type="button" class="map-jump-pill" data-area="South Surrey" data-lat="49.0401" data-lng="-122.8042" data-zoom="13">South Surrey</button>
+            <button type="button" class="map-jump-pill" data-area="Downtown" data-lat="49.2827" data-lng="-123.1207" data-zoom="14">Downtown</button>
+            <button type="button" class="map-jump-pill" data-area="Mount Pleasant" data-lat="49.2628" data-lng="-123.1011" data-zoom="14">Mount Pleasant</button>
+            <button type="button" class="map-jump-pill" data-area="Commercial Drive" data-lat="49.2719" data-lng="-123.0695" data-zoom="14">Commercial Drive</button>
+            <button type="button" class="map-jump-pill" data-area="Kitsilano" data-lat="49.2684" data-lng="-123.1683" data-zoom="14">Kitsilano</button>
+            <button type="button" class="map-jump-pill" data-area="Granville Island" data-lat="49.2712" data-lng="-123.1340" data-zoom="14">Granville Island</button>
             <button type="button" class="map-jump-pill map-jump-fit" data-area="fit-bounds">🎯 Fit Active Pins</button>
           </div>
         </div>
