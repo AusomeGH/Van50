@@ -834,17 +834,35 @@ export async function runAllVenueFeedsBatch(options = {}) {
   let startFeedIndex = 0;
   let priorEventsHarvested = 0;
 
-  if (isResume && fs.existsSync(CHECKPOINT_PATH)) {
+  if (fs.existsSync(CHECKPOINT_PATH)) {
     try {
       const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
-      if (cp.status !== "completed") {
+      if (isResume) {
         if (Array.isArray(cp.completed_feed_urls)) {
           cp.completed_feed_urls.forEach((u) => completedFeedUrls.add(u));
         }
-        if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length && (!cp.city_scope || cp.city_scope === cityScope)) {
-          startFeedIndex = cp.resume_from_index;
+        const uncompletedInScope = feeds.filter((f) => !completedFeedUrls.has(f.url));
+        if (uncompletedInScope.length === 0 && feeds.length > 0) {
+          // All feeds for this city scope were already completed in a prior pass — reset only this city scope's URLs to start fresh
+          feeds.forEach((f) => completedFeedUrls.delete(f.url));
+          startFeedIndex = 0;
+        } else {
+          const firstUncompletedIdx = feeds.findIndex((f) => !completedFeedUrls.has(f.url));
+          if (firstUncompletedIdx !== -1) {
+            startFeedIndex = firstUncompletedIdx;
+          } else if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length && (!cp.city_scope || cp.city_scope === cityScope)) {
+            startFeedIndex = cp.resume_from_index;
+          }
         }
         priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
+      } else {
+        // Fresh mode for this cityScope: preserve completed URLs from OTHER cities while resetting this city's URLs
+        if (cityScope !== "all" && Array.isArray(cp.completed_feed_urls)) {
+          const scopeUrlSet = new Set(feeds.map((f) => f.url));
+          cp.completed_feed_urls.forEach((u) => {
+            if (!scopeUrlSet.has(u)) completedFeedUrls.add(u);
+          });
+        }
       }
     } catch (cpErr) {
       console.warn(`[WARN] Could not read harvester_checkpoint.json: ${cpErr.message}`);
@@ -852,6 +870,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
   }
 
   let totalHarvestedEvents = 0;
+  const completedInScopeInitial = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
   const cityLabel = cityScope === "vancouver"
     ? "🏙️ VANCOUVER ONLY"
     : cityScope === "surrey"
@@ -861,8 +880,8 @@ export async function runAllVenueFeedsBatch(options = {}) {
   console.log(`\n================================================================`);
   console.log(`🌐 STEP 1A CALENDAR HARVESTER — [${cityLabel}]${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
   console.log(`📊 Prioritized ${feeds.length} source feeds for ${cityLabel} (from ${allFeeds.length} total registered sources)`);
-  if (isResume && (startFeedIndex > 0 || completedFeedUrls.size > 0)) {
-    console.log(`⏩ [Resume Mode] Skipping ${completedFeedUrls.size} completed feeds — starting at Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
+  if (isResume && (startFeedIndex > 0 || completedInScopeInitial > 0)) {
+    console.log(`⏩ [Resume Mode] Skipping ${completedInScopeInitial} completed ${cityLabel} feeds — starting at Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
   }
   if (maxTotalEvents > 0) {
     console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
@@ -875,7 +894,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
 
   for (let i = 0; i < feeds.length; i++) {
     const feed = feeds[i];
-    if (isResume && (i < startFeedIndex || completedFeedUrls.has(feed.url))) {
+    if (isResume && completedFeedUrls.has(feed.url)) {
       continue;
     }
 
@@ -885,6 +904,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
     }
 
     const needed = maxTotalEvents > 0 ? (maxTotalEvents - totalHarvestedEvents) : 0;
+    const completedInScopeNow = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
 
     // Persist checkpoint as we begin this feed so stopping mid-feed resumes right here
     try {
@@ -893,7 +913,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
         status: "running",
         city_scope: cityScope,
         total_feeds: feeds.length,
-        completed_feeds_count: completedFeedUrls.size,
+        completed_feeds_count: completedInScopeNow,
         resume_from_index: i,
         resume_from_feed_number: i + 1,
         last_feed_name: feed.name,
@@ -928,14 +948,19 @@ export async function runAllVenueFeedsBatch(options = {}) {
       if (!(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) {
         completedFeedUrls.add(feed.url);
       }
-      const nextIdx = (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) ? i : Math.min(feeds.length - 1, i + 1);
+      const completedInScopeAfter = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
+      const nextUncompletedIdx = feeds.findIndex((f, idx) => idx > i && !completedFeedUrls.has(f.url));
+      const nextIdx = (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)
+        ? i
+        : (nextUncompletedIdx !== -1 ? nextUncompletedIdx : Math.min(feeds.length - 1, i + 1));
+      const isScopeComplete = completedInScopeAfter >= feeds.length && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents);
       try {
         await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
           ...cp,
-          status: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? "completed" : "paused",
+          status: isScopeComplete ? "completed" : "paused",
           city_scope: cityScope,
           total_feeds: feeds.length,
-          completed_feeds_count: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? feeds.length : completedFeedUrls.size,
+          completed_feeds_count: isScopeComplete ? feeds.length : completedInScopeAfter,
           resume_from_index: nextIdx,
           resume_from_feed_number: nextIdx + 1,
           last_feed_name: feeds[nextIdx]?.name || feed.name,

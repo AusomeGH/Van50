@@ -12704,23 +12704,259 @@ function initStagehandRipperUI() {
     }
   };
 
-  window.continueHarvestFromCheckpoint = function (evt) {
-    if (evt) evt.stopPropagation();
-    if (isExecuting) {
-      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
-      return;
+  window.c1aModalState = {
+    cityScope: 'all',
+    resumeMode: true,
+    batchCount: 'all'
+  };
+
+  function ensureContinue1ACityModalExists() {
+    let modal = document.getElementById('continue-1a-city-modal');
+    if (modal) return modal;
+
+    modal = document.createElement('div');
+    modal.id = 'continue-1a-city-modal';
+    modal.style.cssText = 'display: none; position: fixed; inset: 0; z-index: 12000; background: rgba(2, 6, 23, 0.84); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 16px;';
+    modal.innerHTML = `
+      <div style="background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%); border: 1px solid rgba(192, 132, 252, 0.45); border-radius: 14px; max-width: 580px; width: 100%; padding: 20px 22px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75); color: #f8fafc; font-family: inherit;" onclick="event.stopPropagation()">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 1.05rem; font-weight: 800; color: #f8fafc;">
+              <span>▶️</span>
+              <span>Continue Stage 1A Scan — Select Cities</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #cbd5e1; margin-top: 3px;">
+              Choose which cities you want the Schedule Harvester (Step 1A) to scan through and how many new events to collect.
+            </div>
+          </div>
+          <button type="button" onclick="window.closeContinue1ACityModal()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #cbd5e1; border-radius: 6px; width: 28px; height: 28px; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center;" title="Close">✕</button>
+        </div>
+
+        <!-- 1. Select Cities -->
+        <div style="margin-bottom: 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+            <label style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em;">
+              1. Select Cities to Scan
+            </label>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.76rem; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.3); padding: 4px 10px; border-radius: 6px;">
+              <label style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 700; color: #e2e8f0;">
+                <input type="checkbox" id="c1a-chk-vancouver" checked onchange="window.onC1ACityCheckboxChange('vancouver')" style="accent-color: #38bdf8; cursor: pointer;">
+                <span>🏙️ Vancouver</span>
+              </label>
+              <label style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 700; color: #e2e8f0;">
+                <input type="checkbox" id="c1a-chk-surrey" checked onchange="window.onC1ACityCheckboxChange('surrey')" style="accent-color: #34d399; cursor: pointer;">
+                <span>🦌 Surrey</span>
+              </label>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div id="c1a-card-all" onclick="window.selectC1ACityScope('all')" style="cursor: pointer; padding: 10px 12px; border-radius: 9px; border: 1px solid #c084fc; background: rgba(168, 85, 247, 0.18); transition: all 0.15s ease;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.85rem; font-weight: 800; color: #f8fafc;">🌲 All Metro (Vancouver + Surrey)</span>
+                <span id="c1a-badge-all" style="font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.45);">All Sources</span>
+              </div>
+              <div id="c1a-sub-all" style="font-size: 0.72rem; color: #cbd5e1; margin-top: 3px;">
+                Scans official venue calendars and discovery feeds across both Vancouver and Surrey.
+              </div>
+            </div>
+
+            <div id="c1a-card-vancouver" onclick="window.selectC1ACityScope('vancouver')" style="cursor: pointer; padding: 10px 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65); transition: all 0.15s ease;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.85rem; font-weight: 800; color: #f8fafc;">🏙️ Vancouver Only</span>
+                <span id="c1a-badge-vancouver" style="font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);">Vancouver Sources</span>
+              </div>
+              <div id="c1a-sub-vancouver" style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">
+                Scans only Vancouver venues, theatres, comedy clubs, and cultural calendars.
+              </div>
+            </div>
+
+            <div id="c1a-card-surrey" onclick="window.selectC1ACityScope('surrey')" style="cursor: pointer; padding: 10px 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65); transition: all 0.15s ease;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.85rem; font-weight: 800; color: #f8fafc;">🦌 Surrey Only</span>
+                <span id="c1a-badge-surrey" style="font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.4);">Surrey Sources</span>
+              </div>
+              <div id="c1a-sub-surrey" style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">
+                Scans only Surrey venues, 6 town centres (Whalley, Guildford, Fleetwood, Newton, Cloverdale, South Surrey), and civic calendars.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Scan Start Mode -->
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">
+            2. Scan Position
+          </label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" id="c1a-mode-resume" onclick="window.selectC1AResumeMode(true)" class="btn-limit-chip active" style="flex: 1; padding: 7px 10px; font-size: 0.74rem; font-weight: 700; justify-content: center;">
+              ▶️ Continue Unscanned Sources
+            </button>
+            <button type="button" id="c1a-mode-fresh" onclick="window.selectC1AResumeMode(false)" class="btn-limit-chip" style="flex: 1; padding: 7px 10px; font-size: 0.74rem; font-weight: 700; justify-content: center;">
+              🔄 Start Fresh from Source #1
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. How Many Events to Harvest -->
+        <div style="margin-bottom: 18px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <label style="font-size: 0.75rem; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 0.05em;">
+              3. Target Event Count to Harvest
+            </label>
+            <span style="font-size: 0.7rem; color: #94a3b8;">Click a preset or type any number</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+            <button type="button" class="btn-limit-chip active" id="c1a-chip-all" onclick="window.selectC1ABatchCount('all')" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">All</button>
+            <button type="button" class="btn-limit-chip" id="c1a-chip-5" onclick="window.selectC1ABatchCount(5)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">5</button>
+            <button type="button" class="btn-limit-chip" id="c1a-chip-10" onclick="window.selectC1ABatchCount(10)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">10</button>
+            <button type="button" class="btn-limit-chip" id="c1a-chip-25" onclick="window.selectC1ABatchCount(25)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">25</button>
+            <button type="button" class="btn-limit-chip" id="c1a-chip-50" onclick="window.selectC1ABatchCount(50)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">50</button>
+            <button type="button" class="btn-limit-chip" id="c1a-chip-100" onclick="window.selectC1ABatchCount(100)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">100</button>
+            <input type="text" id="c1a-custom-count-input" value="all" oninput="window.onC1ACustomCountInput(this.value)" placeholder="all or #" style="width: 90px; padding: 5px 9px; font-size: 0.76rem; font-weight: 700; color: #f8fafc; background: rgba(0,0,0,0.45); border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 6px; text-align: center;">
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
+          <button type="button" onclick="window.closeContinue1ACityModal()" style="padding: 8px 14px; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 7px; cursor: pointer;">
+            Cancel
+          </button>
+          <button type="button" id="c1a-btn-confirm" onclick="window.confirmContinue1ACityModal()" style="padding: 8px 16px; font-size: 0.8rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #0284c7 100%); border: 1px solid #c084fc; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 14px rgba(147, 51, 234, 0.45);">
+            ▶️ Start 1A Scan (All Metro • All Events)
+          </button>
+        </div>
+      </div>
+    `;
+    modal.addEventListener('click', () => window.closeContinue1ACityModal());
+    document.body.appendChild(modal);
+    return modal;
+  }
+
+  function refreshContinue1AModalUI() {
+    const scope = window.c1aModalState.cityScope || 'all';
+    const resume = window.c1aModalState.resumeMode !== false;
+    const count = window.c1aModalState.batchCount || 'all';
+
+    const chkVan = document.getElementById('c1a-chk-vancouver');
+    const chkSur = document.getElementById('c1a-chk-surrey');
+    if (chkVan) chkVan.checked = (scope === 'all' || scope === 'vancouver');
+    if (chkSur) chkSur.checked = (scope === 'all' || scope === 'surrey');
+
+    ['all', 'vancouver', 'surrey'].forEach(key => {
+      const card = document.getElementById(`c1a-card-${key}`);
+      if (!card) return;
+      const isSelected = key === scope;
+      card.style.borderColor = isSelected ? '#c084fc' : 'rgba(255,255,255,0.15)';
+      card.style.background = isSelected ? 'rgba(168, 85, 247, 0.2)' : 'rgba(15, 23, 42, 0.65)';
+      card.style.boxShadow = isSelected ? '0 0 14px rgba(168, 85, 247, 0.28)' : 'none';
+    });
+
+    const btnRes = document.getElementById('c1a-mode-resume');
+    const btnFresh = document.getElementById('c1a-mode-fresh');
+    if (btnRes) btnRes.classList.toggle('active', resume);
+    if (btnFresh) btnFresh.classList.toggle('active', !resume);
+
+    ['all', '5', '10', '25', '50', '100'].forEach(k => {
+      const chip = document.getElementById(`c1a-chip-${k}`);
+      if (chip) chip.classList.toggle('active', String(count) === k);
+    });
+
+    const btnConfirm = document.getElementById('c1a-btn-confirm');
+    if (btnConfirm) {
+      const cityLabel = scope === 'vancouver' ? '🏙️ Vancouver Only' : (scope === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro');
+      const countLabel = (count === 'all' || count === 0) ? 'All Events' : `${count} Events`;
+      const modeLabel = resume ? 'Continue' : 'Fresh';
+      btnConfirm.textContent = `▶️ ${modeLabel} 1A Scan — ${cityLabel} (${countLabel})`;
     }
-    const chosenCount = window.promptContinueEventCount(null, 'events');
-    if (chosenCount === null) return;
+  }
 
-    window.harvesterResumeMode = true;
-    const cp = state.harvesterCheckpoint || {};
-    const resumeFeedNum = cp.resume_from_feed_number != null ? Number(cp.resume_from_feed_number) : 50;
-    const totalFeeds = cp.total_feeds != null ? Number(cp.total_feeds) : 126;
-    const lastFeedName = cp.last_feed_name || 'The Orpheum Theatre';
+  window.selectC1ACityScope = function (scope) {
+    window.c1aModalState.cityScope = (scope === 'vancouver' || scope === 'surrey') ? scope : 'all';
+    refreshContinue1AModalUI();
+  };
 
+  window.onC1ACityCheckboxChange = function (changedCity) {
+    const chkVan = document.getElementById('c1a-chk-vancouver');
+    const chkSur = document.getElementById('c1a-chk-surrey');
+    let vanChecked = chkVan ? chkVan.checked : true;
+    let surChecked = chkSur ? chkSur.checked : true;
+    if (!vanChecked && !surChecked) {
+      // Ensure at least one city remains checked
+      if (changedCity === 'vancouver') {
+        surChecked = true;
+        if (chkSur) chkSur.checked = true;
+      } else {
+        vanChecked = true;
+        if (chkVan) chkVan.checked = true;
+      }
+    }
+    if (vanChecked && surChecked) window.c1aModalState.cityScope = 'all';
+    else if (vanChecked) window.c1aModalState.cityScope = 'vancouver';
+    else window.c1aModalState.cityScope = 'surrey';
+    refreshContinue1AModalUI();
+  };
+
+  window.selectC1AResumeMode = function (resumeBool) {
+    window.c1aModalState.resumeMode = Boolean(resumeBool);
+    refreshContinue1AModalUI();
+  };
+
+  window.selectC1ABatchCount = function (val) {
+    window.c1aModalState.batchCount = val;
+    const inp = document.getElementById('c1a-custom-count-input');
+    if (inp) inp.value = String(val);
+    refreshContinue1AModalUI();
+  };
+
+  window.onC1ACustomCountInput = function (rawVal) {
+    const trimmed = String(rawVal || '').trim().toLowerCase();
+    if (!trimmed || trimmed === 'all' || trimmed === '0') {
+      window.c1aModalState.batchCount = 'all';
+    } else {
+      const parsed = parseInt(trimmed, 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        window.c1aModalState.batchCount = parsed;
+      }
+    }
+    refreshContinue1AModalUI();
+  };
+
+  window.closeContinue1ACityModal = function () {
+    const modal = document.getElementById('continue-1a-city-modal');
+    if (modal) modal.style.display = 'none';
+  };
+
+  window.confirmContinue1ACityModal = async function () {
+    const chosenCity = window.c1aModalState.cityScope || 'all';
+    const chosenResume = window.c1aModalState.resumeMode !== false;
+    const chosenCount = window.c1aModalState.batchCount || 'all';
+    window.closeContinue1ACityModal();
+
+    if (typeof window.setHarvesterCityScope === 'function') {
+      await window.setHarvesterCityScope(chosenCity);
+    }
+    window.harvesterResumeMode = chosenResume;
     window.setPipelineBatchSize(chosenCount);
     const chosenLimit = (chosenCount === 'all' || chosenCount === 0) ? 0 : (Number(chosenCount) || 0);
+
+    const feeds = await loadVenueFeedsList();
+    const cp = state.harvesterCheckpoint || {};
+    const doneSet = new Set(Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : []);
+    const scopedFeeds = chosenCity === 'all'
+      ? feeds
+      : feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === chosenCity);
+    const totalFeeds = scopedFeeds.length || (cp.total_feeds != null ? Number(cp.total_feeds) : 126);
+    const firstUnscannedIdx = scopedFeeds.findIndex(f => !doneSet.has(f.url));
+    const resumeFeedNum = (chosenResume && firstUnscannedIdx !== -1) ? (firstUnscannedIdx + 1) : 1;
+    const nextFeedName = (chosenResume && firstUnscannedIdx !== -1 && scopedFeeds[firstUnscannedIdx])
+      ? scopedFeeds[firstUnscannedIdx].name
+      : (scopedFeeds[0]?.name || cp.last_feed_name || 'Feed #1');
+
+    const cityTag = chosenCity === 'vancouver' ? '🏙️ Vancouver Only' : (chosenCity === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro (Van + Surrey)');
+    const baseTarget = chosenCity === 'vancouver' ? 'all:vancouver' : (chosenCity === 'surrey' ? 'all:surrey' : 'all');
+    const targetUrl = chosenResume ? `${baseTarget}:resume` : baseTarget;
+
     isPipelineTestMode = true;
     isPipelineAutoChaining = false;
     pipelineQuarantinedRunActive = false;
@@ -12734,21 +12970,79 @@ function initStagehandRipperUI() {
     updateStageNavButtons();
 
     if (typeof showToast === 'function') {
-      showToast(`▶️ Resuming Stage 1A from Feed #${resumeFeedNum}/${totalFeeds} (${lastFeedName}) • Target: ${chosenLimit > 0 ? chosenLimit + ' events' : 'All events'}...`, 'info');
+      showToast(`▶️ Stage 1A [${cityTag}]: ${chosenResume ? `Continuing at Feed #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Starting Fresh at Feed #1/${totalFeeds}`} • Target: ${chosenLimit > 0 ? chosenLimit + ' events' : 'All events'}...`, 'info');
     }
 
     setTimeout(() => {
       runPipelineAction({
         mode: 'calendar',
-        title: `▶️ Stage 1A: Continuing Scan from Feed #${resumeFeedNum}/${totalFeeds} (${lastFeedName} • ${chosenLimit > 0 ? chosenLimit + ' Events' : 'All Events'})`,
-        initialStatus: `Resuming Stage 1A at Feed #${resumeFeedNum}/${totalFeeds}: ${lastFeedName} (${chosenLimit > 0 ? chosenLimit + ' events' : 'all events'})...`,
+        title: `▶️ Stage 1A [${cityTag}]: ${chosenResume ? `Continuing from #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Fresh Scan (#1/${totalFeeds})`} • ${chosenLimit > 0 ? chosenLimit + ' Events' : 'All Events'}`,
+        initialStatus: `${chosenResume ? 'Resuming' : 'Starting'} Stage 1A [${cityTag}] at Feed #${resumeFeedNum}/${totalFeeds}: ${nextFeedName} (${chosenLimit > 0 ? chosenLimit + ' events' : 'all events'})...`,
         limit: chosenLimit,
-        url: 'all:resume',
+        url: targetUrl,
+        city: chosenCity,
         all: true,
-        resume: true,
+        resume: chosenResume,
         autoApprove: true
       });
     }, 200);
+  };
+
+  window.continueHarvestFromCheckpoint = async function (evt) {
+    if (evt) evt.stopPropagation();
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
+      return;
+    }
+    const modal = ensureContinue1ACityModalExists();
+    const feeds = await loadVenueFeedsList();
+    const cp = state.harvesterCheckpoint || {};
+    const doneSet = new Set(Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : []);
+
+    const vanFeeds = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'vancouver');
+    const surFeeds = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'surrey');
+
+    const vanDone = vanFeeds.filter(f => doneSet.has(f.url)).length;
+    const surDone = surFeeds.filter(f => doneSet.has(f.url)).length;
+    const allDone = vanDone + surDone;
+
+    const vanRem = Math.max(0, vanFeeds.length - vanDone);
+    const surRem = Math.max(0, surFeeds.length - surDone);
+    const allRem = Math.max(0, feeds.length - allDone);
+
+    const bAll = document.getElementById('c1a-badge-all');
+    const bVan = document.getElementById('c1a-badge-vancouver');
+    const bSur = document.getElementById('c1a-badge-surrey');
+    if (bAll) bAll.textContent = `${allDone}/${feeds.length} Scanned • ${allRem} Remaining`;
+    if (bVan) bVan.textContent = `${vanDone}/${vanFeeds.length} Scanned • ${vanRem} Remaining`;
+    if (bSur) bSur.textContent = `${surDone}/${surFeeds.length} Scanned • ${surRem} Remaining`;
+
+    const subVan = document.getElementById('c1a-sub-vancouver');
+    const subSur = document.getElementById('c1a-sub-surrey');
+    const firstVanUnscanned = vanFeeds.find(f => !doneSet.has(f.url));
+    const firstSurUnscanned = surFeeds.find(f => !doneSet.has(f.url));
+    if (subVan) {
+      subVan.textContent = firstVanUnscanned
+        ? `Next unscanned Vancouver feed: ${firstVanUnscanned.name} (${vanRem} remaining)`
+        : `All ${vanFeeds.length} Vancouver feeds scanned — selecting Vancouver will start a fresh pass from #1.`;
+    }
+    if (subSur) {
+      subSur.textContent = firstSurUnscanned
+        ? `Next unscanned Surrey feed: ${firstSurUnscanned.name} (${surRem} remaining)`
+        : `All ${surFeeds.length} Surrey feeds scanned — selecting Surrey will start a fresh pass from #1.`;
+    }
+
+    if (window.harvesterCityScope === 'vancouver' || window.harvesterCityScope === 'surrey') {
+      window.c1aModalState.cityScope = window.harvesterCityScope;
+    } else if (vanRem === 0 && surRem > 0) {
+      // Smart default: if all Vancouver feeds are done and Surrey feeds are waiting, default to Surrey (or user can click All/Vancouver)
+      window.c1aModalState.cityScope = 'surrey';
+    } else {
+      window.c1aModalState.cityScope = 'all';
+    }
+    window.c1aModalState.resumeMode = true;
+    refreshContinue1AModalUI();
+    modal.style.display = 'flex';
   };
 
   window.autoRunHarvestedStages1BTo5 = function (evt) {
@@ -14600,6 +14894,8 @@ function initStagehandRipperUI() {
     ['all', 'vancouver', 'surrey'].forEach(c => {
       const btn = document.getElementById(`chip-harvester-city-${c}`);
       if (btn) btn.classList.toggle('active', c === norm);
+      const optBtn = document.getElementById(`btn-opt-harvest-city-${c}`);
+      if (optBtn) optBtn.classList.toggle('active', c === norm);
     });
     if (Array.isArray(feeds) && feeds.length > 0) {
       const vanCount = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'vancouver').length;
@@ -14610,6 +14906,9 @@ function initStagehandRipperUI() {
       if (allEl) allEl.textContent = `${feeds.length} Sources`;
       if (vanEl) vanEl.textContent = `${vanCount} Sources`;
       if (surEl) surEl.textContent = `${surCount} Sources`;
+    }
+    if (typeof window.updateAutoPipelineFlowPreview === 'function') {
+      window.updateAutoPipelineFlowPreview();
     }
   }
 
