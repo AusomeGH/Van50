@@ -290,7 +290,7 @@ export async function harvestCalendarLinks(calendarUrl) {
             if (["o", "s", "search", "login", "signup", "cart", "checkout", "about", "terms", "privacy", "organizations", "cities", "venues", "explore", "sell", "pricing", "contact", "support", "help", "faq", "blog", "app", "download", "features", "resources", "partners"].includes(firstSeg)) {
               continue;
             }
-          } catch (_) {}
+          } catch (_) { }
         }
 
         // 1. Known Ticketing Platform Deep Links
@@ -353,12 +353,12 @@ export async function harvestCalendarLinks(calendarUrl) {
     if (stagehand) {
       try {
         await stagehand.close();
-      } catch (_) {}
+      } catch (_) { }
     }
     if (browser) {
       try {
         await browser.close();
-      } catch (_) {}
+      } catch (_) { }
     }
   }
 }
@@ -706,7 +706,12 @@ export function inferFeedCity(item = {}) {
     "dublincrossing", "artscouncilofsurrey", "cravingforagame",
     "projectclimbing", "centralcityfunpark", "birdiesandbuckets",
     "delllanes", "vinoscentivineyards", "downtownsurreybia",
-    "cloverdalebia", "newtonbia", "fleetwoodbia"
+    "cloverdalebia", "newtonbia", "fleetwoodbia", "surreyschools",
+    "sswrchamber", "surreynowleader", "peacearchnews", "cloverdalereporter",
+    "allevents.in/surrey", "admitone.com/events/surrey", "cloverdalerodeo",
+    "artsculture.surrey", "cloverdalemarket", "surreymarket",
+    "guildfordtowncentre", "centralcity.ca", "legion240", "sfu.ca/surrey",
+    "kpu.ca", "r/surreybc", "vancouverfc", "businessinsurrey"
   ];
   if (surreyTokens.some((tok) => blob.includes(tok))) return "Surrey";
   return "Vancouver";
@@ -718,6 +723,7 @@ export function inferFeedCity(item = {}) {
  */
 export async function runAllVenueFeedsBatch(options = {}) {
   const VENUES_PATH = path.join(ROOT_DIR, "data", "venues.json");
+  const DISCOVERY_SOURCES_PATH = path.join(ROOT_DIR, "data", "discovery_sources.json");
   const SURREY_SOURCES_PATH = path.join(ROOT_DIR, "data", "surrey_reference_sources.json");
   let venues = [];
   try {
@@ -763,6 +769,28 @@ export async function runAllVenueFeedsBatch(options = {}) {
       seenUrls.add(s.url);
       allFeeds.push(s);
     }
+  }
+
+  // Include verified regional & Vancouver discovery sources
+  try {
+    if (fs.existsSync(DISCOVERY_SOURCES_PATH)) {
+      const discRaw = JSON.parse(fs.readFileSync(DISCOVERY_SOURCES_PATH, "utf-8"));
+      const discSources = Array.isArray(discRaw) ? discRaw : (discRaw.sources || []);
+      for (const s of discSources) {
+        if (s.id === "testy-canary-feed" || s.type === "canary_test_feed") continue;
+        const u = (s.eventsUrl || s.calendarUrl || s.url || "").trim();
+        if (u && u.startsWith("http") && !u.includes("127.0.0.1") && !seenUrls.has(u)) {
+          seenUrls.add(u);
+          allFeeds.push({
+            name: s.name || s.id || "Discovery Source",
+            url: u,
+            city: inferFeedCity({ ...s, url: u })
+          });
+        }
+      }
+    }
+  } catch (dErr) {
+    console.warn(`[WARN] Could not read discovery_sources.json: ${dErr.message}`);
   }
 
   // Include verified Surrey reference sources
@@ -834,35 +862,17 @@ export async function runAllVenueFeedsBatch(options = {}) {
   let startFeedIndex = 0;
   let priorEventsHarvested = 0;
 
-  if (fs.existsSync(CHECKPOINT_PATH)) {
+  if (isResume && fs.existsSync(CHECKPOINT_PATH)) {
     try {
       const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
-      if (isResume) {
+      if (cp.status !== "completed") {
         if (Array.isArray(cp.completed_feed_urls)) {
           cp.completed_feed_urls.forEach((u) => completedFeedUrls.add(u));
         }
-        const uncompletedInScope = feeds.filter((f) => !completedFeedUrls.has(f.url));
-        if (uncompletedInScope.length === 0 && feeds.length > 0) {
-          // All feeds for this city scope were already completed in a prior pass — reset only this city scope's URLs to start fresh
-          feeds.forEach((f) => completedFeedUrls.delete(f.url));
-          startFeedIndex = 0;
-        } else {
-          const firstUncompletedIdx = feeds.findIndex((f) => !completedFeedUrls.has(f.url));
-          if (firstUncompletedIdx !== -1) {
-            startFeedIndex = firstUncompletedIdx;
-          } else if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length && (!cp.city_scope || cp.city_scope === cityScope)) {
-            startFeedIndex = cp.resume_from_index;
-          }
+        if (typeof cp.resume_from_index === "number" && cp.resume_from_index >= 0 && cp.resume_from_index < feeds.length && (!cp.city_scope || cp.city_scope === cityScope)) {
+          startFeedIndex = cp.resume_from_index;
         }
         priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
-      } else {
-        // Fresh mode for this cityScope: preserve completed URLs from OTHER cities while resetting this city's URLs
-        if (cityScope !== "all" && Array.isArray(cp.completed_feed_urls)) {
-          const scopeUrlSet = new Set(feeds.map((f) => f.url));
-          cp.completed_feed_urls.forEach((u) => {
-            if (!scopeUrlSet.has(u)) completedFeedUrls.add(u);
-          });
-        }
       }
     } catch (cpErr) {
       console.warn(`[WARN] Could not read harvester_checkpoint.json: ${cpErr.message}`);
@@ -870,7 +880,6 @@ export async function runAllVenueFeedsBatch(options = {}) {
   }
 
   let totalHarvestedEvents = 0;
-  const completedInScopeInitial = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
   const cityLabel = cityScope === "vancouver"
     ? "🏙️ VANCOUVER ONLY"
     : cityScope === "surrey"
@@ -880,8 +889,8 @@ export async function runAllVenueFeedsBatch(options = {}) {
   console.log(`\n================================================================`);
   console.log(`🌐 STEP 1A CALENDAR HARVESTER — [${cityLabel}]${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
   console.log(`📊 Prioritized ${feeds.length} source feeds for ${cityLabel} (from ${allFeeds.length} total registered sources)`);
-  if (isResume && (startFeedIndex > 0 || completedInScopeInitial > 0)) {
-    console.log(`⏩ [Resume Mode] Skipping ${completedInScopeInitial} completed ${cityLabel} feeds — starting at Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
+  if (isResume && (startFeedIndex > 0 || completedFeedUrls.size > 0)) {
+    console.log(`⏩ [Resume Mode] Skipping ${completedFeedUrls.size} completed feeds — starting at Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
   }
   if (maxTotalEvents > 0) {
     console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
@@ -894,7 +903,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
 
   for (let i = 0; i < feeds.length; i++) {
     const feed = feeds[i];
-    if (isResume && completedFeedUrls.has(feed.url)) {
+    if (isResume && (i < startFeedIndex || completedFeedUrls.has(feed.url))) {
       continue;
     }
 
@@ -904,7 +913,6 @@ export async function runAllVenueFeedsBatch(options = {}) {
     }
 
     const needed = maxTotalEvents > 0 ? (maxTotalEvents - totalHarvestedEvents) : 0;
-    const completedInScopeNow = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
 
     // Persist checkpoint as we begin this feed so stopping mid-feed resumes right here
     try {
@@ -913,7 +921,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
         status: "running",
         city_scope: cityScope,
         total_feeds: feeds.length,
-        completed_feeds_count: completedInScopeNow,
+        completed_feeds_count: completedFeedUrls.size,
         resume_from_index: i,
         resume_from_feed_number: i + 1,
         last_feed_name: feed.name,
@@ -923,7 +931,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
         events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
         updated_at: new Date().toISOString(),
       }));
-    } catch (_) {}
+    } catch (_) { }
 
     console.log(`\n────────────────────────────────────────────────────────────────`);
     console.log(`${formatLogTime()} 🏛️ [${i + 1}/${feeds.length}] [${feed.city}] Source Feed: ${feed.name}`);
@@ -948,19 +956,14 @@ export async function runAllVenueFeedsBatch(options = {}) {
       if (!(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) {
         completedFeedUrls.add(feed.url);
       }
-      const completedInScopeAfter = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
-      const nextUncompletedIdx = feeds.findIndex((f, idx) => idx > i && !completedFeedUrls.has(f.url));
-      const nextIdx = (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)
-        ? i
-        : (nextUncompletedIdx !== -1 ? nextUncompletedIdx : Math.min(feeds.length - 1, i + 1));
-      const isScopeComplete = completedInScopeAfter >= feeds.length && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents);
+      const nextIdx = (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) ? i : Math.min(feeds.length - 1, i + 1);
       try {
         await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
           ...cp,
-          status: isScopeComplete ? "completed" : "paused",
+          status: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? "completed" : "paused",
           city_scope: cityScope,
           total_feeds: feeds.length,
-          completed_feeds_count: isScopeComplete ? feeds.length : completedInScopeAfter,
+          completed_feeds_count: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? feeds.length : completedFeedUrls.size,
           resume_from_index: nextIdx,
           resume_from_feed_number: nextIdx + 1,
           last_feed_name: feeds[nextIdx]?.name || feed.name,
@@ -970,7 +973,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
           events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
           updated_at: new Date().toISOString(),
         }));
-      } catch (_) {}
+      } catch (_) { }
     } catch (feedErr) {
       console.error(`❌ Error harvesting feed ${feed.name}: ${feedErr.message}`);
     }
@@ -984,16 +987,17 @@ export async function runAllVenueFeedsBatch(options = {}) {
   }
 
   // STEP 1B: Automatically trigger distinct High-Fidelity Link Tier Upgrader & Hunter pass across all feeds (only when explicitly requested)
-  if (options.autoRun1B)
-  try {
-    console.log(`\n================================================================`);
-    console.log(`⚡ STEP 1A (All Feeds Harvest — ${cityLabel}) COMPLETED (${totalHarvestedEvents} events discovered).`);
-    console.log(`🚀 AUTOMATICALLY TRIGGERING STEP 1B (High-Fidelity Link Tier Upgrader)...`);
-    console.log(`================================================================`);
-    const allDiscovered = allResults.flatMap((r) => r.results || []);
-    await runStep1BLinkUpgrader(allDiscovered, options);
-  } catch (hunterErr) {
-    console.warn(`⚠️ Warning in Step 1B Link Tier Upgrader pass: ${hunterErr.message}`);
+  if (options.autoRun1B) {
+    try {
+      console.log(`\n================================================================`);
+      console.log(`⚡ STEP 1A (All Feeds Harvest — ${cityLabel}) COMPLETED (${totalHarvestedEvents} events discovered).`);
+      console.log(`🚀 AUTOMATICALLY TRIGGERING STEP 1B (High-Fidelity Link Tier Upgrader)...`);
+      console.log(`================================================================`);
+      const allDiscovered = allResults.flatMap((r) => r.results || []);
+      await runStep1BLinkUpgrader(allDiscovered, options);
+    } catch (hunterErr) {
+      console.warn(`⚠️ Warning in Step 1B Link Tier Upgrader pass: ${hunterErr.message}`);
+    }
   }
 
   return allResults;
@@ -1014,7 +1018,7 @@ if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
   }
 
   const positional = cliArgs.filter((a, idx) => !a.startsWith("--") && (idx === 0 || cliArgs[idx - 1] !== "--city"));
-  let targetCal = (positional[0] || "").trim();
+  const targetCal = (positional[0] || "").trim();
   const rawMax = positional[1];
   const max = (rawMax !== undefined && rawMax !== "") ? parseInt(rawMax, 10) : 0;
 

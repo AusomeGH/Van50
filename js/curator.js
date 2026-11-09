@@ -14763,7 +14763,12 @@ function initStagehandRipperUI() {
       'dublincrossing', 'artscouncilofsurrey', 'cravingforagame',
       'projectclimbing', 'centralcityfunpark', 'birdiesandbuckets',
       'delllanes', 'vinoscentivineyards', 'downtownsurreybia',
-      'cloverdalebia', 'newtonbia', 'fleetwoodbia'
+      'cloverdalebia', 'newtonbia', 'fleetwoodbia', 'surreyschools',
+      'sswrchamber', 'surreynowleader', 'peacearchnews', 'cloverdalereporter',
+      'allevents.in/surrey', 'admitone.com/events/surrey', 'cloverdalerodeo',
+      'artsculture.surrey', 'cloverdalemarket', 'surreymarket',
+      'guildfordtowncentre', 'centralcity.ca', 'legion240', 'sfu.ca/surrey',
+      'kpu.ca', 'r/surreybc', 'vancouverfc', 'businessinsurrey'
     ];
     if (surreyTokens.some(tok => blob.includes(tok))) return 'Surrey';
     return 'Vancouver';

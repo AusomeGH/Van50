@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "1.3.0",
-    "updatedAt": "2026-10-05",
-    "totalSources": 61,
+    "version": "1.4.0",
+    "updatedAt": "2026-11-09",
+    "totalSources": 66,
     "region": "Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
   },
@@ -1252,6 +1252,114 @@
       "last_scout_yield": 30
     },
     {
+      "id": "daily-hive-listed",
+      "name": "Daily Hive Listed (Vancouver Events)",
+      "domain": "dailyhive.com",
+      "eventsUrl": "https://dailyhive.com/vancouver/listed",
+      "calendarUrl": "https://dailyhive.com/vancouver/listed",
+      "type": "editorial_aggregator",
+      "typeLabel": "Curated City Events & Things To Do Directory",
+      "focus": "Daily Hive Listed event roundups, concerts, markets, food festivals, and pop-ups under $50 CAD",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "activities",
+        "outdoors"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate event title and venue; follow outbound ticket link to primary box office or venue checkout.",
+      "status": "active",
+      "last_scouted_at": null,
+      "last_scout_yield": 0
+    },
+    {
+      "id": "narcity-vancouver",
+      "name": "Narcity Vancouver",
+      "domain": "narcity.com",
+      "eventsUrl": "https://www.narcity.com/vancouver",
+      "calendarUrl": "https://www.narcity.com/vancouver",
+      "type": "editorial_aggregator",
+      "typeLabel": "Local Lifestyle & Event Guides",
+      "focus": "Trending Vancouver pop-ups, seasonal festivals, date night ideas, and budget outings",
+      "bestForCategories": [
+        "activities",
+        "outdoors",
+        "shows"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract featured events and venues; resolve to official venue or ticket provider URL.",
+      "status": "active",
+      "last_scouted_at": null,
+      "last_scout_yield": 0
+    },
+    {
+      "id": "inside-vancouver",
+      "name": "Inside Vancouver Blog & Event Roundups",
+      "domain": "insidevancouver.ca",
+      "eventsUrl": "https://www.insidevancouver.ca",
+      "calendarUrl": "https://www.insidevancouver.ca",
+      "type": "editorial_aggregator",
+      "typeLabel": "Tourism & Cultural Blog",
+      "focus": "Weekend event roundups, cultural festivals, theatre previews, and free civic happenings",
+      "bestForCategories": [
+        "arts",
+        "outdoors",
+        "shows",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate events from weekly roundups and resolve to canonical venue or box office link.",
+      "status": "active",
+      "last_scouted_at": null,
+      "last_scout_yield": 0
+    },
+    {
+      "id": "family-fun-vancouver",
+      "name": "Family Fun Vancouver",
+      "domain": "familyfuncanada.com",
+      "eventsUrl": "https://www.familyfuncanada.com/vancouver",
+      "calendarUrl": "https://www.familyfuncanada.com/vancouver",
+      "type": "editorial_aggregator",
+      "typeLabel": "Regional Family & Community Calendar",
+      "focus": "Community festivals, outdoor movie nights, museum free days, markets, and all-ages workshops across Metro Vancouver & Surrey",
+      "bestForCategories": [
+        "outdoors",
+        "activities",
+        "arts",
+        "movies"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate events and resolve to official municipal, museum, or venue page.",
+      "status": "active",
+      "last_scouted_at": null,
+      "last_scout_yield": 0
+    },
+    {
+      "id": "chatterblock-vancouver",
+      "name": "ChatterBlock Vancouver & Lower Mainland Events",
+      "domain": "chatterblock.com",
+      "eventsUrl": "https://www.chatterblock.com",
+      "calendarUrl": "https://www.chatterblock.com",
+      "type": "editorial_aggregator",
+      "typeLabel": "Community Activities & Events Directory",
+      "focus": "Local drop-in activities, seasonal fairs, outdoor recreation, and community events",
+      "bestForCategories": [
+        "activities",
+        "outdoors",
+        "arts"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate events and verify direct venue or organizer URL.",
+      "status": "active",
+      "last_scouted_at": null,
+      "last_scout_yield": 0
+    },
+    {
       "id": "testy-canary-feed",
       "name": "TESTY Canary Zero-Information Control Feed",
       "domain": "127.0.0.1:8080",
@@ -1596,7 +1704,7 @@
       "number": 36,
       "group": "E. Local Journalism & Regional Curators",
       "name": "604 Now — Surrey & Metro Vancouver",
-      "url": "https://www.604now.com",
+      "url": "https://604now.com/events",
       "description": "Food truck festivals, night markets, and seasonal pop-ups",
       "city": "Surrey"
     },
@@ -1679,6 +1787,123 @@
       "name": "City of Surrey Drop-In Recreation Schedules",
       "url": "https://www.surrey.ca/activities-parks-recreation/drop-schedules",
       "description": "Live drop-in public skate, wave pool, gymnasium, and fitness schedules across all 6 town centres",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-46",
+      "number": 46,
+      "group": "A. Municipal, Tourism & Cultural Calendars",
+      "name": "Surrey Schools (SD36) Community & Cultural Events",
+      "url": "https://www.surreyschools.ca",
+      "description": "District arts festivals, student theatre showcases, and community workshops",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-47",
+      "number": 47,
+      "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+      "name": "AllEvents.in — Surrey Local Events Directory",
+      "url": "https://allevents.in/surrey",
+      "description": "Aggregated Surrey workshops, cultural festivals, live music, and community meetups",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-48",
+      "number": 48,
+      "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
+      "name": "AdmitOne — Surrey Concerts & Live Events",
+      "url": "https://admitone.com/events/surrey",
+      "description": "Ticketed concerts, touring comedy, and live shows in Surrey",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-49",
+      "number": 49,
+      "group": "A. Municipal, Tourism & Cultural Calendars",
+      "name": "City of Surrey Arts & Culture Portal",
+      "url": "https://artsculture.surrey.ca",
+      "description": "Dedicated cultural listings across Surrey galleries, theatres, and heritage sites",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-50",
+      "number": 50,
+      "group": "B. Town Centre BIAs & Local Chambers",
+      "name": "Cloverdale Market Days",
+      "url": "https://cloverdalemarket.ca",
+      "description": "Open-air street market, artisan vendors, and live buskers on 176 Street",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-51",
+      "number": 51,
+      "group": "B. Town Centre BIAs & Local Chambers",
+      "name": "Surrey Urban Farmers Market",
+      "url": "https://surreymarket.org",
+      "description": "Weekly community farmers market, local food producers, and live entertainment at Royal Kwantlen Park",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-52",
+      "number": 52,
+      "group": "B. Town Centre BIAs & Local Chambers",
+      "name": "Guildford Town Centre Events & Pop-Ups",
+      "url": "https://guildfordtowncentre.com/events",
+      "description": "Seasonal cultural installations, family workshops, and pop-up activations",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-53",
+      "number": 53,
+      "group": "B. Town Centre BIAs & Local Chambers",
+      "name": "Central City Shopping Centre & Plaza Events",
+      "url": "https://centralcity.ca/events",
+      "description": "Surrey Central outdoor plaza festivals, community markets, and live performances",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-54",
+      "number": 54,
+      "group": "C. Major Theatres, Fairgrounds & University Campuses",
+      "name": "Crescent Beach Legion Branch 240",
+      "url": "https://legion240.org",
+      "description": "Live bands, meat draws, trivia nights, and community dances in South Surrey",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-55",
+      "number": 55,
+      "group": "C. Major Theatres, Fairgrounds & University Campuses",
+      "name": "SFU Surrey Campus Community Events",
+      "url": "https://www.sfu.ca/surrey",
+      "description": "Public talks, open houses, and cultural programming at SFU Surrey Central",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-56",
+      "number": 56,
+      "group": "E. Local Journalism & Regional Curators",
+      "name": "r/SurreyBC Community Event Threads",
+      "url": "https://www.reddit.com/r/SurreyBC",
+      "description": "Grassroots local event announcements, weekend threads, and neighbourhood pop-ups",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-57",
+      "number": 57,
+      "group": "F. Spectator Sports & Recreation Schedules",
+      "name": "Vancouver FC (Canadian Premier League)",
+      "url": "https://vancouverfc.com",
+      "description": "CPL professional soccer matchdays and fan festivals accessible to Surrey & Fraser Valley",
+      "city": "Surrey"
+    },
+    {
+      "id": "surrey-ref-58",
+      "number": 58,
+      "group": "B. Town Centre BIAs & Local Chambers",
+      "name": "Surrey Board of Trade (Business in Surrey Events)",
+      "url": "https://businessinsurrey.com",
+      "description": "Civic forums, public networking mixers, and cultural business showcases",
       "city": "Surrey"
     }
   ]
