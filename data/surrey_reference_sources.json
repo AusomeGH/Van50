@@ -418,9 +418,9 @@
     "id": "surrey-ref-47",
     "number": 47,
     "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
-    "name": "AllEvents.in — Surrey Local Events Directory",
-    "url": "https://allevents.in/surrey",
-    "description": "Aggregated Surrey workshops, cultural festivals, live music, and community meetups",
+    "name": "Surrey Civic Theatres Online Box Office",
+    "url": "https://tickets.surrey.ca",
+    "description": "Official Surrey Arts Centre & Centre Stage first-party ticketing portal for theatre, music, comedy, and cultural performances",
     "city": "Surrey"
   },
   {
@@ -520,6 +520,429 @@
     "name": "Surrey Board of Trade (Business in Surrey Events)",
     "url": "https://businessinsurrey.com",
     "description": "Civic forums, public networking mixers, and cultural business showcases",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-59",
+    "number": 59,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Galint Gaming Events (Pataka Esports Festival Organizer)",
+    "url": "https://www.galint.gg/events",
+    "description": "Esports tournaments, gaming festivals, and Super Smash Bros. community events in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-60",
+    "number": 60,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Pataka Esports Festival (Discover Surrey)",
+    "url": "https://discoversurreybc.com/events/pataka-esports-festival/",
+    "description": "Annual Surrey esports tournament, South Asian gaming showcase, and LAN festival",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-61",
+    "number": 61,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Music City Showcase (Discover Surrey)",
+    "url": "https://discoversurreybc.com/events/music-city-showcase/",
+    "description": "Live local artist showcases and concert nights in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-62",
+    "number": 62,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Salaam Events Ramadan Fest Surrey",
+    "url": "https://salaamevents.com/ramadanfest/",
+    "description": "Annual Ramadan night market, halal food festival, and cultural bazaar in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-63",
+    "number": 63,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Bell Performing Arts Centre (Main Portal)",
+    "url": "https://bellperformingartscentre.com/",
+    "description": "Surrey's flagship 1,050-seat performing arts theatre in Sullivan Heights",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-64",
+    "number": 64,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Surrey Schools International Children's Festival & Jazz Festival History",
+    "url": "https://www.surreyschools.ca/festival-history",
+    "description": "Surrey Schools annual student jazz, dance, theatre, and performing arts festivals",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-65",
+    "number": 65,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Wake Up! Music Festival at KPU Surrey",
+    "url": "https://www.wakeupmusicfestival.com/about-wake-up-at-kpu",
+    "description": "Youth-led live music festival and mental health awareness concert at KPU Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-66",
+    "number": 66,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Rango Ki Holi — The Color Festival (Surrey)",
+    "url": "https://www.todocanada.ca/city/vancouver/event/rango-ki-holi-the-color-festival/",
+    "description": "Spring festival of colours, Bollywood music, dance, and outdoor celebration in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-67",
+    "number": 67,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Festival of Dance",
+    "url": "https://surreyfestival.com/",
+    "description": "One of North America's largest amateur dance competitions and spring festivals in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-68",
+    "number": 68,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Khalsa Day Vaisakhi Parade",
+    "url": "https://www.surreyvaisakhiparade.com/",
+    "description": "World's largest Vaisakhi parade and cultural celebration in Newton, Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-69",
+    "number": 69,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Party for the Planet",
+    "url": "https://partyfortheplanet.ca/",
+    "description": "BC's largest Earth Day festival at Surrey Civic Plaza with free concerts and eco-workshops",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-70",
+    "number": 70,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "5X Fest (South Asian Youth Culture, Music & Art)",
+    "url": "https://www.5xfest.com/",
+    "description": "Premier South Asian contemporary music, visual art, and block party festival in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-71",
+    "number": 71,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Cloverdale Rodeo Bed Races (Cloverdale BIA)",
+    "url": "https://cloverdalebia.com/bed-races/",
+    "description": "Annual Cloverdale street parade warm-up and bed race community tradition",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-72",
+    "number": 72,
+    "group": "A. Core Tourism & Civic Event Portals",
+    "name": "City of Surrey Online Box Office (purchase.surrey.ca)",
+    "url": "https://purchase.surrey.ca/",
+    "description": "Official City of Surrey ticketing portal for Surrey Civic Theatres and International Children's Festival",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-73",
+    "number": 73,
+    "group": "D. Heritage, Nature & Eco-Centre Experiences",
+    "name": "Cloverdale Station & Fraser Valley Heritage Railway (Cloverdale AE)",
+    "url": "https://www.cloverdale-ae.ca/about.html",
+    "description": "Historic Cloverdale heritage rail and agricultural community showcase",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-74",
+    "number": 74,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Alex Fest at Alexandra Neighbourhood House (Crescent Beach)",
+    "url": "https://www.alexhouse.net/alex-fest",
+    "description": "Free family arts, live music, and community festival at Camp Alexandra in Crescent Beach, Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-75",
+    "number": 75,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Car Free Day Surrey (Newton)",
+    "url": "https://www.carfree.ca/city/surrey",
+    "description": "Annual street festival in Newton Town Centre with live stages, food trucks, and artisan vendors",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-76",
+    "number": 76,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Pride Festival",
+    "url": "https://surreypride.ca/",
+    "description": "Annual Pride festival at Surrey Civic Plaza celebrating 2SLGBTQ+ community with live drag and music",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-77",
+    "number": 77,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Fest Downtown",
+    "url": "http://surreyfest.ca/",
+    "description": "Long-running Whalley community festival at Holland Park with live music and community booths",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-78",
+    "number": 78,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Fest Downtown (Discover Surrey)",
+    "url": "https://discoversurreybc.com/events/surrey-fest-downtown/",
+    "description": "Discover Surrey guide to Surrey Fest Downtown at Holland Park",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-79",
+    "number": 79,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Canada Day at Bill Reid Millennium Amphitheatre",
+    "url": "https://surreycanadaday.ca/",
+    "description": "Western Canada's largest free Canada Day concert, midway, and fireworks festival in Cloverdale",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-80",
+    "number": 80,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "FVDED in the Park at Holland Park",
+    "url": "https://www.fvdedinthepark.com/",
+    "description": "Major summer outdoor electronic and hip-hop music festival at Holland Park, Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-81",
+    "number": 81,
+    "group": "F. Spectator Sports & Recreation Schedules",
+    "name": "Canada Cup International Softball Championship (Softball City Surrey)",
+    "url": "https://canadacup.com/about-us/",
+    "description": "International women's fastpitch softball tournament at Softball City in South Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-82",
+    "number": 82,
+    "group": "A. Core Tourism & Civic Event Portals",
+    "name": "Sounds of Summer Concert Series in Surrey Parks",
+    "url": "https://www.surrey.ca/parks-recreation/surrey-parks/park-programs/sounds-of-summer",
+    "description": "Free weekly summer evening outdoor concerts across Surrey city parks and gardens",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-83",
+    "number": 83,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Fusion Festival at Holland Park",
+    "url": "https://surreyfusionfestival.ca/",
+    "description": "BC's largest free multicultural music, food pavilion, and cultural celebration at Holland Park",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-84",
+    "number": 84,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Fleetwood Block Party (Discover Surrey)",
+    "url": "https://discoversurreybc.com/events/fleetwood-block-party/",
+    "description": "Neighbourhood summer street party and family festival in Fleetwood, Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-85",
+    "number": 85,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Naija Food Fest Surrey",
+    "url": "https://www.naijafoodfest.ca/",
+    "description": "Nigerian and West African culinary, music, and cultural festival in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-86",
+    "number": 86,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "BC Hot Rod Association (Classic Car Shows in Surrey)",
+    "url": "https://bchra.ca/",
+    "description": "Hot rod, custom car, and vintage auto shows at Cloverdale Fairgrounds and Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-87",
+    "number": 87,
+    "group": "D. Heritage, Nature & Eco-Centre Experiences",
+    "name": "BC Vintage Truck Museum (Surrey Museum Plaza / Cloverdale)",
+    "url": "https://bcvintagetruckmuseum.org/",
+    "description": "Historic commercial truck exhibits and heritage vehicle showcases in Cloverdale, Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-88",
+    "number": 88,
+    "group": "G. Craft Breweries, Vineyards & Live Pubs",
+    "name": "Battle of the Brews Surrey Charity Craft Beer Festival",
+    "url": "https://discoversurreybc.com/events/battle-of-the-brews/",
+    "description": "Annual craft beer tasting festival and charity event at Surrey City Hall Plaza",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-89",
+    "number": 89,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Greek Food Festival",
+    "url": "https://www.surreygreekfoodfest.com/about-us-2/",
+    "description": "Annual Greek food, pastry, live music, and folk dance festival in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-90",
+    "number": 90,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "Peninsula Productions Theatre Society (South Surrey)",
+    "url": "https://www.penmar.ca/home-1",
+    "description": "Live community theatre plays, staged readings, and musical productions in South Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-91",
+    "number": 91,
+    "group": "C. Major Theatres, Fairgrounds & University Campuses",
+    "name": "New Vision Music Society (Surrey)",
+    "url": "https://newvisionmusicsociety.org/",
+    "description": "South Asian classical, Sufi, and fusion music concerts and workshops in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-92",
+    "number": 92,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Access Afro-Caribbean Festival of Surrey (Discover Surrey)",
+    "url": "https://discoversurreybc.com/events/access-afro-caribbean-festival-of-surrey/",
+    "description": "Afro-Caribbean live reggae, soca, dance, and culinary celebration in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-93",
+    "number": 93,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Folk Star Arts Academy Events (Surrey)",
+    "url": "https://folkstaracademy.org/events/",
+    "description": "Punjabi folk dance, Bhangra, Giddha, and cultural showcases in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-94",
+    "number": 94,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Fleetwood BIA Community Events Hub",
+    "url": "https://fleetwoodbia.com/home/fleetwood-bia-c-3/",
+    "description": "Fleetwood Business Improvement Association street activations and seasonal events",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-95",
+    "number": 95,
+    "group": "D. Heritage, Nature & Eco-Centre Experiences",
+    "name": "Darts Hill Garden Park Conservatory Trust (South Surrey)",
+    "url": "https://dartshill.ca/",
+    "description": "Botanical garden open houses, plant sales, and guided seasonal walks in South Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-96",
+    "number": 96,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "International South Asian Film Festival (iSAFF Surrey)",
+    "url": "https://isaff.ca/film-festival/who-we-are/",
+    "description": "Annual South Asian cinema screenings, filmmaker Q&As, and gala nights in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-97",
+    "number": 97,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "World Folk Festival Surrey",
+    "url": "https://www.worldfolkfestival.com/",
+    "description": "International folk dance, traditional music, and heritage festival in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-98",
+    "number": 98,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Cougar Creek's House of Horrors (Surrey Halloween Attraction)",
+    "url": "https://www.cougarcreekhouseofhorrors.com/",
+    "description": "Seasonal haunted houses, spooky mazes, and live Halloween entertainment in West Newton, Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-99",
+    "number": 99,
+    "group": "D. Heritage, Nature & Eco-Centre Experiences",
+    "name": "Bear Creek Park Train & Mini Golf (BC Trains Surrey)",
+    "url": "https://www.bctrains.com/",
+    "description": "Miniature forest railway, Halloween pumpkin express, and Christmas night train in Bear Creek Park",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-100",
+    "number": 100,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Bear Creek Lights Festival (City of Surrey)",
+    "url": "https://www.surrey.ca/bearcreeklights",
+    "description": "Free illuminated autumn nature walk and light installations in Bear Creek Park, Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-101",
+    "number": 101,
+    "group": "A. Core Tourism & Civic Event Portals",
+    "name": "Bear Creek Lights Ticketing Portal (bearcreektickets.surrey.ca)",
+    "url": "https://bearcreektickets.surrey.ca/",
+    "description": "Official free timed-entry ticket reservation portal for Bear Creek Lights in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-102",
+    "number": 102,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Diwali Fest Surrey (Diwali Downtown Surrey)",
+    "url": "https://www.diwalifest.ca/",
+    "description": "Annual Diwali celebration with music, dance, rangoli, and South Asian arts in Surrey",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-103",
+    "number": 103,
+    "group": "B. Town Centre BIAs & Local Chambers",
+    "name": "Downtown Surrey BIA Events Calendar",
+    "url": "https://www.downtownsurreybia.com/Events",
+    "description": "Outdoor movies at Holland Park, Long Table dinners, and Surrey Central plaza events",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-104",
+    "number": 104,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Surrey Tree Lighting Festival & Holiday Market",
+    "url": "https://www.surreytreelighting.ca/",
+    "description": "Annual free winter holiday festival, tree lighting concert, and market at Surrey Civic Plaza",
+    "city": "Surrey"
+  },
+  {
+    "id": "surrey-ref-105",
+    "number": 105,
+    "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
+    "name": "Noel Surrey Holiday Light Festival at Cloverdale Fairgrounds",
+    "url": "https://www.noelfestival.com/",
+    "description": "Immersive indoor/outdoor Christmas light walk, holiday market, and Santa village in Cloverdale",
     "city": "Surrey"
   }
 ]

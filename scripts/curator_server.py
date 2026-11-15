@@ -1188,35 +1188,60 @@ def apply_curator_event_corrections(event_id: str, instruction_text: str, action
 
 
 def map_super_cluster(ev_or_venue):
-    old_n = ev_or_venue.get('neighborhood', '')
-    title_l = ev_or_venue.get('title', '').lower() if 'title' in ev_or_venue else ''
-    venue_l = ev_or_venue.get('venue', ev_or_venue.get('name', '')).lower()
-    ev_id = ev_or_venue.get('id', ev_or_venue.get('venueId', '')).lower()
+    old_n = str(ev_or_venue.get('neighborhood') or '')
+    old_nl = old_n.lower()
+    addr_l = f"{ev_or_venue.get('address') or ''} {ev_or_venue.get('full_address') or ''}".lower()
+    city_l = str(ev_or_venue.get('city') or ev_or_venue.get('region') or '').lower()
+    title_l = str(ev_or_venue.get('title') or ev_or_venue.get('event_name') or '').lower()
+    venue_l = str(ev_or_venue.get('venue') or ev_or_venue.get('venue_name') or ev_or_venue.get('name') or '').lower()
+    ev_id = str(ev_or_venue.get('id') or ev_or_venue.get('venueId') or '').lower()
 
-    if ('granville island' in old_n.lower() or 'granville island' in venue_l or 
+    # Preserve Surrey neighborhood taxonomy
+    is_east_van_grandview = ('grandview-woodland' in old_nl or 'grandview woodland' in old_nl or 'vancouver' in addr_l)
+    is_surrey = (city_l == 'surrey') or (not is_east_van_grandview and any(
+        k in f"{old_nl} {addr_l}" for k in (
+            'surrey', 'whalley', 'guildford', 'fleetwood', 'fraser heights',
+            'newton', 'bear creek', 'panorama', 'sullivan', 'cloverdale',
+            'clayton', 'south surrey', 'grandview heights', 'crescent beach', 'bridgeview'
+        )
+    ))
+    if is_surrey:
+        if any(k in f"{old_nl} {addr_l}" for k in ('south surrey', 'white rock', 'crescent beach', 'grandview heights', 'morgan creek', 'elgin', 'sunnyside')):
+            return 'South Surrey'
+        if any(k in f"{old_nl} {addr_l}" for k in ('cloverdale', 'clayton')):
+            return 'Cloverdale'
+        if any(k in f"{old_nl} {addr_l}" for k in ('newton', 'bear creek', 'panorama', 'sullivan')):
+            return 'Newton'
+        if 'fleetwood' in f"{old_nl} {addr_l}":
+            return 'Fleetwood'
+        if any(k in f"{old_nl} {addr_l}" for k in ('guildford', 'fraser heights', 'green timbers')):
+            return 'Guildford'
+        return 'Surrey Central / Whalley'
+
+    if ('granville island' in old_nl or 'granville island' in venue_l or 
         'false creek' in title_l or 'false creek' in venue_l or 'science world' in venue_l):
         return 'Granville Island & False Creek'
 
-    if ('kitsilano' in old_n.lower() or 'ubc' in old_n.lower() or 'ubc' in venue_l or 
-        'ubc' in title_l or 'point grey' in old_n.lower() or 'hollywood' in venue_l or 
+    if ('kitsilano' in old_nl or 'ubc' in old_nl or 'ubc' in venue_l or 
+        'ubc' in title_l or 'point grey' in old_nl or 'hollywood' in venue_l or 
         'showboat' in title_l or 'wreck beach' in title_l):
         return 'Kitsilano, Point Grey & UBC'
 
-    if ('mount pleasant' in old_n.lower() or 'south vancouver' in old_n.lower() or 
-        'cambie' in old_n.lower() or 'queen elizabeth' in venue_l or 'bloedel' in venue_l or 
-        'riley park' in title_l or 'nat bailey' in venue_l or 'main street' in old_n.lower() or
-        'marpole' in old_n.lower() or 'oakridge' in old_n.lower() or 'fraser' in old_n.lower() or
+    if ('mount pleasant' in old_nl or 'south vancouver' in old_nl or 
+        'cambie' in old_nl or 'queen elizabeth' in venue_l or 'bloedel' in venue_l or 
+        'riley park' in title_l or 'nat bailey' in venue_l or 'main street' in old_nl or
+        'marpole' in old_nl or 'oakridge' in old_nl or 'fraser' in old_nl or
         'qe-park' in ev_id):
         return 'Mount Pleasant & South Vancouver'
 
-    if ('commercial drive' in old_n.lower() or 'east van' in old_n.lower() or 
-        'hastings' in old_n.lower() or 'rupert' in venue_l or 'slice of life' in venue_l or 
+    if ('commercial drive' in old_nl or 'east van' in old_nl or 
+        'hastings' in old_nl or 'rupert' in venue_l or 'slice of life' in venue_l or 
         'hand eye' in venue_l or 'cafe au clay' in venue_l or 'trout lake' in title_l or 
-        'dude chilling' in venue_l or 'rio theatre' in venue_l or 'rio' in old_n.lower() or
-        'arts factory' in venue_l or 'cultch' in venue_l):
+        'dude chilling' in venue_l or 'rio theatre' in venue_l or 'rio' in old_nl or
+        'arts factory' in venue_l or 'cultch' in venue_l or 'grandview' in old_nl):
         return 'Commercial Drive & East Vancouver'
 
-    if ('north shore' in old_n.lower() or 'burnaby' in old_n.lower() or 'lynn canyon' in venue_l or 
+    if ('north shore' in old_nl or 'burnaby' in old_nl or 'lynn canyon' in venue_l or 
         'shipyards' in venue_l or 'central park' in venue_l or 'lonsdale' in venue_l):
         return 'North Shore, Burnaby & Metro'
 
@@ -1509,6 +1534,12 @@ def sync_js_data_file():
 
         for ev in events:
             ev["neighborhood"] = map_super_cluster(ev)
+            if ev["neighborhood"] in ("Surrey Central / Whalley", "Guildford", "Fleetwood", "Newton", "Cloverdale", "South Surrey"):
+                ev["city"] = "Surrey"
+                ev["region"] = "Surrey"
+            elif not ev.get("city"):
+                ev["city"] = "Vancouver"
+                ev["region"] = "Vancouver"
 
         quarantined = []
         if os.path.exists(MANUAL_QUEUE_PATH):
@@ -1518,6 +1549,15 @@ def sync_js_data_file():
 
         for q in quarantined:
             q["neighborhood"] = map_super_cluster(q)
+
+        surrey_sources = []
+        surrey_src_path = os.path.join(DATA_DIR, "surrey_reference_sources.json")
+        if os.path.exists(surrey_src_path):
+            try:
+                with open(surrey_src_path, "r", encoding="utf-8-sig") as sf:
+                    surrey_sources = json.load(sf)
+            except Exception:
+                pass
 
         discovery_sources = []
         disc_path = os.path.join(DATA_DIR, "discovery_sources.json")
@@ -1544,15 +1584,19 @@ def sync_js_data_file():
 
 
         timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
-        js_content = f"""// Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
+        js_content = f"""// Van50 — Vancouver & Surrey Events & Outings (Strictly <= $50 CAD)
 // AUTO-GENERATED from central data/events.json on {timestamp}
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = {json.dumps(events, indent=2, ensure_ascii=False)};
 const MANUAL_REVIEW_QUEUE = {json.dumps(quarantined, indent=2, ensure_ascii=False)};
+const SURREY_REFERENCE_SOURCES = {json.dumps(surrey_sources, indent=2, ensure_ascii=False)};
 
-// Regional Super-Clusters (Option B)
-const NEIGHBORHOODS = [
+window.VAN50_EVENTS = VANCOUVER_EVENTS;
+window.VANCOUVER_EVENTS = VANCOUVER_EVENTS;
+window.SURREY_REFERENCE_SOURCES = SURREY_REFERENCE_SOURCES;
+
+const VANCOUVER_NEIGHBORHOODS = [
   "Downtown, Gastown & Yaletown",
   "Mount Pleasant & South Vancouver",
   "Commercial Drive & East Vancouver",
@@ -1560,6 +1604,24 @@ const NEIGHBORHOODS = [
   "Granville Island & False Creek",
   "North Shore, Burnaby & Metro"
 ];
+
+const SURREY_NEIGHBORHOODS = [
+  "Surrey Central / Whalley",
+  "Guildford",
+  "Fleetwood",
+  "Newton",
+  "Cloverdale",
+  "South Surrey"
+];
+
+const NEIGHBORHOODS = [
+  ...VANCOUVER_NEIGHBORHOODS,
+  ...SURREY_NEIGHBORHOODS
+];
+
+window.VANCOUVER_NEIGHBORHOODS = VANCOUVER_NEIGHBORHOODS;
+window.SURREY_NEIGHBORHOODS = SURREY_NEIGHBORHOODS;
+window.NEIGHBORHOODS = NEIGHBORHOODS;
 
 // Days of the Week
 const DAYS_OF_WEEK = [
@@ -2436,18 +2498,19 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
             return self._send_json(200, disc_src)
 
-        # 7. API: Get festival registry
-        if path == "/api/curator/festivals":
+        # 7. API: Get festival registry (festivals.json)
+        if path in ("/api/curator/festivals", "/api/curator/festivals/master"):
             if not self._check_authenticated():
                 return self._send_json(401, {"error": "Authentication required", "authenticated": False})
-            fests = {"metadata": {}, "festivals": []}
-            if os.path.exists(FESTIVAL_REGISTRY_PATH):
+            fests = []
+            if os.path.exists(FESTIVALS_PATH):
                 try:
-                    with open(FESTIVAL_REGISTRY_PATH, "r", encoding="utf-8") as f:
-                        fests = json.load(f)
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as f:
+                        loaded = json.load(f)
+                        fests = loaded if isinstance(loaded, list) else loaded.get("festivals", [])
                 except Exception:
                     pass
-            return self._send_json(200, fests)
+            return self._send_json(200, {"festivals": fests, "total": len(fests)})
 
         # 8. API: Get Venues (venues.json)
         if path in ("/api/curator/venues", "/api/curator/venues/master"):
@@ -2461,19 +2524,6 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
             return self._send_json(200, {"venues": venues, "total": len(venues)})
-
-        # 9. API: Get Festivals (festivals.json)
-        if path in ("/api/curator/festivals", "/api/curator/festivals/master"):
-            if not self._check_authenticated():
-                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
-            fests = []
-            if os.path.exists(FESTIVALS_PATH):
-                try:
-                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as f:
-                        fests = json.load(f)
-                except Exception:
-                    pass
-            return self._send_json(200, {"festivals": fests, "total": len(fests)})
 
         # 10. API: Get Ticketing Sources (ticketing_sources.json)
         if path == "/api/curator/ticketing_sources":
@@ -4979,6 +5029,214 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "success": True,
                 "message": f"Holiday '{holiday_id}' dismissed from pending list.",
                 "remainingPending": len(h_data.get("pendingHolidays", []))
+            })
+
+        # API: Approve pending festival in festivals.json
+        if path == "/api/curator/approve-festival":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            fest_id = (payload.get("festivalId") or payload.get("slug") or payload.get("id") or "").strip().lower()
+            fest_name = (payload.get("name") or payload.get("festival_name") or "").strip()
+            if not fest_id and not fest_name:
+                return self._send_json(400, {"error": "Missing festivalId or name"})
+
+            fests = []
+            if os.path.exists(FESTIVALS_PATH):
+                try:
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as ff:
+                        loaded = json.load(ff)
+                        fests = loaded if isinstance(loaded, list) else loaded.get("festivals", [])
+                except Exception:
+                    pass
+
+            matched_fest = None
+            for f in fests:
+                f_slug = str(f.get("slug") or f.get("id") or "").strip().lower()
+                f_label = str(f.get("festival_name") or f.get("name") or "").strip()
+                if (fest_id and f_slug == fest_id) or (fest_name and f_label.lower() == fest_name.lower()):
+                    f["status"] = "approved"
+                    f["approvalStatus"] = "approved"
+                    f["approvedAt"] = datetime.now().strftime("%Y-%m-%d")
+                    if fest_name:
+                        f["name"] = fest_name
+                        f["festival_name"] = fest_name
+                    matched_fest = f
+                    break
+
+            if not matched_fest and fest_name:
+                slug_val = fest_id or re.sub(r"[^a-z0-9]+", "-", fest_name.lower()).strip("-")
+                matched_fest = {
+                    "id": slug_val,
+                    "slug": slug_val,
+                    "name": fest_name,
+                    "festival_name": fest_name,
+                    "aliases": [],
+                    "status": "approved",
+                    "approvalStatus": "approved",
+                    "approvedAt": datetime.now().strftime("%Y-%m-%d"),
+                    "start_date": payload.get("start_date") or datetime.now().strftime("%Y-%m-%d"),
+                    "end_date": payload.get("end_date") or datetime.now().strftime("%Y-%m-%d"),
+                    "category": payload.get("category") or "Arts & Culture",
+                    "description": payload.get("description") or f"Curated Vancouver festival: {fest_name}",
+                    "price": float(payload.get("price") or 0.0),
+                }
+                fests.append(matched_fest)
+
+            with open(FESTIVALS_PATH, "w", encoding="utf-8") as ff:
+                json.dump(fests, ff, indent=2, ensure_ascii=False)
+
+            canonical_name = matched_fest.get("festival_name") or matched_fest.get("name") or fest_name
+            disc_event_id = matched_fest.get("discovered_from_event_id")
+            updated_events = 0
+            if os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                        ev_list = json.load(ef)
+                    for ev in ev_list:
+                        ev_id = ev.get("id") or ev.get("event_id")
+                        ev_title = str(ev.get("title") or "").lower()
+                        if (disc_event_id and ev_id == disc_event_id) or (canonical_name and canonical_name.lower() in ev_title):
+                            ev["festival_affiliation"] = canonical_name
+                            ev["festivalAffiliation"] = canonical_name
+                            updated_events += 1
+                    if updated_events > 0:
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                            json.dump(ev_list, ef, indent=2, ensure_ascii=False)
+                        sync_js_data_file()
+                except Exception:
+                    pass
+
+            remaining_pending = sum(
+                1 for f in fests
+                if f.get("status") == "pending_curator_approval" or f.get("approvalStatus") == "pending"
+            )
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Festival '{canonical_name}' approved and activated ({updated_events} event(s) linked).",
+                "festival": matched_fest,
+                "updatedEventsCount": updated_events,
+                "remainingPending": remaining_pending
+            })
+
+        # API: Merge an overlapping / duplicate festival into an existing canonical festival
+        if path == "/api/curator/merge-festival":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            source_id = (payload.get("sourceFestivalId") or payload.get("festivalId") or payload.get("id") or "").strip().lower()
+            source_name = (payload.get("sourceName") or payload.get("name") or "").strip()
+            target_id = (payload.get("targetFestivalId") or payload.get("targetSlug") or "").strip().lower()
+            if not target_id or (not source_id and not source_name):
+                return self._send_json(400, {"error": "Missing sourceFestivalId or targetFestivalId"})
+
+            fests = []
+            if os.path.exists(FESTIVALS_PATH):
+                try:
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as ff:
+                        loaded = json.load(ff)
+                        fests = loaded if isinstance(loaded, list) else loaded.get("festivals", [])
+                except Exception:
+                    pass
+
+            target_fest = None
+            source_fest = None
+            new_fests = []
+            for f in fests:
+                f_slug = str(f.get("slug") or f.get("id") or "").strip().lower()
+                f_label = str(f.get("festival_name") or f.get("name") or "").strip()
+                if f_slug == target_id or f_label.lower() == target_id:
+                    target_fest = f
+                    new_fests.append(f)
+                elif (source_id and f_slug == source_id) or (source_name and f_label.lower() == source_name.lower()):
+                    source_fest = f
+                else:
+                    new_fests.append(f)
+
+            if not target_fest:
+                return self._send_json(404, {"error": f"Target festival '{target_id}' not found"})
+
+            alias_to_add = (source_fest.get("festival_name") if source_fest else None) or source_name or source_id
+            aliases = target_fest.get("aliases")
+            if not isinstance(aliases, list):
+                aliases = []
+            if alias_to_add and alias_to_add not in aliases:
+                aliases.append(alias_to_add)
+            if source_fest and isinstance(source_fest.get("aliases"), list):
+                for al in source_fest["aliases"]:
+                    if al and al not in aliases:
+                        aliases.append(al)
+            target_fest["aliases"] = aliases
+
+            with open(FESTIVALS_PATH, "w", encoding="utf-8") as ff:
+                json.dump(new_fests, ff, indent=2, ensure_ascii=False)
+
+            canonical_name = target_fest.get("festival_name") or target_fest.get("name")
+            disc_event_id = source_fest.get("discovered_from_event_id") if source_fest else None
+            updated_events = 0
+            if os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                        ev_list = json.load(ef)
+                    for ev in ev_list:
+                        ev_id = ev.get("id") or ev.get("event_id")
+                        ev_aff = str(ev.get("festival_affiliation") or ev.get("festivalAffiliation") or "").strip()
+                        ev_title = str(ev.get("title") or "").lower()
+                        if (
+                            (disc_event_id and ev_id == disc_event_id) or
+                            (alias_to_add and ev_aff.lower() == alias_to_add.lower()) or
+                            (alias_to_add and alias_to_add.lower() in ev_title)
+                        ):
+                            ev["festival_affiliation"] = canonical_name
+                            ev["festivalAffiliation"] = canonical_name
+                            updated_events += 1
+                    if updated_events > 0:
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                            json.dump(ev_list, ef, indent=2, ensure_ascii=False)
+                        sync_js_data_file()
+                except Exception:
+                    pass
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Merged '{alias_to_add}' into '{canonical_name}' ({updated_events} event(s) unified).",
+                "targetFestival": target_fest,
+                "updatedEventsCount": updated_events
+            })
+
+        # API: Reject / Dismiss pending festival
+        if path == "/api/curator/reject-festival":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            fest_id = (payload.get("festivalId") or payload.get("slug") or payload.get("id") or "").strip().lower()
+            fest_name = (payload.get("name") or payload.get("festival_name") or "").strip()
+            if not fest_id and not fest_name:
+                return self._send_json(400, {"error": "Missing festivalId or name"})
+
+            fests = []
+            if os.path.exists(FESTIVALS_PATH):
+                try:
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as ff:
+                        loaded = json.load(ff)
+                        fests = loaded if isinstance(loaded, list) else loaded.get("festivals", [])
+                except Exception:
+                    pass
+
+            for f in fests:
+                f_slug = str(f.get("slug") or f.get("id") or "").strip().lower()
+                f_label = str(f.get("festival_name") or f.get("name") or "").strip()
+                if (fest_id and f_slug == fest_id) or (fest_name and f_label.lower() == fest_name.lower()):
+                    f["status"] = "rejected"
+                    f["approvalStatus"] = "rejected"
+                    f["rejectedAt"] = datetime.now().strftime("%Y-%m-%d")
+
+            with open(FESTIVALS_PATH, "w", encoding="utf-8") as ff:
+                json.dump(fests, ff, indent=2, ensure_ascii=False)
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Festival '{fest_name or fest_id}' dismissed (events remain standalone cards)."
             })
 
         # API: Approve candidate source and enroll into discovery_sources.json

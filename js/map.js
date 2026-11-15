@@ -357,6 +357,20 @@ function buildVenueGroupInfoWindowHtml(group) {
     const evPrice = getEventNumericPrice(ev);
     const tierColors = getPriceTierColors(evPrice);
     const ticketUrl = ev.websiteUrl || ev.ticket_url || ev.details_url || '#';
+    const inferredTags = (typeof window !== 'undefined' && typeof window.inferHolidaySubTags === 'function')
+      ? window.inferHolidaySubTags(ev)
+      : (Array.isArray(ev.tags) ? ev.tags : (Array.isArray(ev.subTags) ? ev.subTags : []));
+    const tagSet = new Set([
+      ...(Array.isArray(ev.tags) ? ev.tags : []),
+      ...(Array.isArray(ev.subTags) ? ev.subTags : []),
+      ...(Array.isArray(inferredTags) ? inferredTags : [])
+    ].map(t => String(t || '').toLowerCase().trim()));
+    let contextSubBadgeHtml = '';
+    if (tagSet.has('faith-based') || tagSet.has('religious-service')) {
+      contextSubBadgeHtml = `<span class="gmap-iw-context-badge" style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px;border-radius:6px;background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle);font-size:0.7rem;font-weight:600;white-space:nowrap;">⛪ Faith-Based</span>`;
+    } else if (tagSet.has('sacred-music') || tagSet.has('choral')) {
+      contextSubBadgeHtml = `<span class="gmap-iw-context-badge" style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px;border-radius:6px;background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle);font-size:0.7rem;font-weight:600;white-space:nowrap;">🎼 Sacred Choral</span>`;
+    }
 
     return `
       <div class="gmap-venue-iw-item">
@@ -369,8 +383,11 @@ function buildVenueGroupInfoWindowHtml(group) {
             ${escapeHtml(priceStr)}
           </span>
         </div>
-        <div class="gmap-venue-iw-item-meta">
-          <span>🗓️ ${escapeHtml(dayTime)}</span>
+        <div class="gmap-venue-iw-item-meta" style="flex-wrap:wrap;">
+          <span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;">
+            <span>🗓️ ${escapeHtml(dayTime)}</span>
+            ${contextSubBadgeHtml}
+          </span>
           <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-venue-iw-ticket-link">
             Tickets / Details ↗
           </a>

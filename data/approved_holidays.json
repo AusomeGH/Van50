@@ -51,13 +51,14 @@
     },
     {
       "id": "christmas",
-      "label": "Winter Holidays & Christmas",
-      "icon": "🎄",
-      "window_start": "11-12",
-      "window_end": "12-30",
-      "dates_label": "Nov 15 – Dec 30",
-      "short_description": "Festive light displays, winter craft markets, holiday concerts, and seasonal theatre.",
-      "long_description": "Celebrate the winter holiday season across Metro Vancouver with botanical garden light displays, indie artisan craft markets, festive choir and jazz concerts, ugly sweater comedy nights, and holiday cinema under $50 CAD.",
+      "aliases": ["winter-holiday-season", "winter-holidays"],
+      "label": "❄️ Winter & Holiday Season",
+      "icon": "❄️",
+      "window_start": "11-15",
+      "window_end": "01-03",
+      "dates_label": "Nov 15 – Jan 3",
+      "short_description": "Winter light walks, holiday artisan markets, choral concerts, solstice celebrations, and festive outings.",
+      "long_description": "Explore Metro Vancouver's winter and holiday season (Nov 15 – Jan 3) with illuminated garden walks, indie artisan markets, classical choral concerts, winter solstice lantern celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
       "approvedAt": "2026-10-03"
     },
     {
@@ -114,6 +115,17 @@
       "short_description": "Spring garden blooms, artisan markets, and long-weekend cultural outings.",
       "long_description": "Enjoy the Easter and spring season across Metro Vancouver with botanical garden blooms, family-friendly park activities, spring artisan markets, and long-weekend live shows.",
       "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "vaisakhi",
+      "label": "Vaisakhi",
+      "icon": "🌾",
+      "window_start": "04-10",
+      "window_end": "04-26",
+      "dates_label": "Mid–Late April",
+      "short_description": "Vibrant Vaisakhi parades, South Asian music & dance stages, and community celebrations.",
+      "long_description": "Experience Vancouver and Surrey's iconic Vaisakhi celebrations—among the largest outside India—featuring colourful Nagar Kirtan processions, free community stages, traditional folk music, and cultural festivities.",
+      "approvedAt": "2026-11-14"
     },
     {
       "id": "canada-day",

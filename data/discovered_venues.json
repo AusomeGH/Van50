@@ -545,24 +545,46 @@
       "name": "quarantine_fatal",
       "websiteUrl": "https://admitone.com/community/b2b",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-01T17:01:34.478Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-01T17:01:34.478Z",
+      "dismissedAt": "2026-11-10T22:58:28.876821+00:00"
     },
     {
       "id": "venue-1793554974223-o0g1",
       "name": "Historic Theatre",
       "websiteUrl": "https://thecultch.com/event/dirt/",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-01T17:42:54.223Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-01T17:42:54.223Z",
+      "dismissedAt": "2026-11-10T22:58:37.941733+00:00"
     },
     {
       "id": "venue-1793555708722-744p",
       "name": "Historic Theatre (The Cultch)",
       "websiteUrl": "https://thecultch.com/event/no-apologies/",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-01T17:55:08.722Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-01T17:55:08.722Z",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "Historic Theatre (The Cultch)",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://thecultch.com/event/no-apologies/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "",
+        "summary": "Standard venue record registered for Historic Theatre (The Cultch).",
+        "distilledAt": "2026-11-10T22:59:44.085363+00:00"
+      },
+      "approvedAt": "2026-11-10T22:59:44.167920+00:00"
     },
     {
       "id": "venue-1793561113466-i2aq",
@@ -995,6 +1017,1918 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-07T05:55:19.590Z"
+    },
+    {
+      "id": "venue-1794273756613-jnha",
+      "name": "FloHockey (Online Broadcast)",
+      "websiteUrl": "https://flohockey.tv/events/16107153",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:22:36.614Z"
+    },
+    {
+      "id": "venue-1794274010566-3tdx",
+      "name": "FloSports / FloHockey",
+      "websiteUrl": "https://flohockey.tv/events/16117323",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:26:50.566Z"
+    },
+    {
+      "id": "venue-1794274141078-e7z9",
+      "name": "FloHockey",
+      "websiteUrl": "https://flohockey.tv/events/16109359",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:29:01.078Z"
+    },
+    {
+      "id": "venue-1794274241033-lzvb",
+      "name": "FloSports / Online Broadcast",
+      "websiteUrl": "https://flohockey.tv/events/16116666",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:30:41.033Z"
+    },
+    {
+      "id": "venue-1794274346149-vtpr",
+      "name": "Surrey Knights",
+      "websiteUrl": "https://www.surreyknights.ca/stats/roster/10/53",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:32:26.149Z"
+    },
+    {
+      "id": "venue-1794274422555-58js",
+      "name": "Port Moody Recreation Complex",
+      "websiteUrl": "https://www.surreyknights.ca/stats/game-center/6104",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:33:42.555Z"
+    },
+    {
+      "id": "venue-1794274612152-n8ul",
+      "name": "Cloverdale Arena",
+      "websiteUrl": "https://www.surreyknights.ca/stats/game-center/6105",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:36:52.152Z"
+    },
+    {
+      "id": "venue-1794274749335-pugs",
+      "name": "MSA Arena",
+      "websiteUrl": "https://www.surreyknights.ca/stats/game-center/6107",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:39:09.335Z"
+    },
+    {
+      "id": "venue-1794274794941-o9py",
+      "name": "FloHockey (Online Stream)",
+      "websiteUrl": "https://flohockey.tv/events/16117217",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:39:54.941Z"
+    },
+    {
+      "id": "venue-1794274864473-t18j",
+      "name": "Mission City Leisure Centre",
+      "websiteUrl": "https://www.surreyknights.ca/stats/game-center/6108",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:41:04.473Z"
+    },
+    {
+      "id": "venue-1794274989580-hpxp",
+      "name": "Harry Jerome Rec Centre",
+      "websiteUrl": "https://www.surreyknights.ca/stats/game-center/6109",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:43:09.580Z"
+    },
+    {
+      "id": "venue-1794274989991-llqz",
+      "name": "Centennial Arena",
+      "websiteUrl": "https://www.surreyknights.ca/stats/game-center/6110",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:43:09.991Z"
+    },
+    {
+      "id": "venue-1794275082761-930j",
+      "name": "FloHockey (Online / Stream)",
+      "websiteUrl": "https://flohockey.tv/events/16116615",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:44:42.761Z"
+    },
+    {
+      "id": "venue-1794275336264-0ler",
+      "name": "Aldergrove Community Centre",
+      "websiteUrl": "https://www.surreyknights.ca/stats/game-center/6115",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T01:48:56.264Z"
+    },
+    {
+      "id": "venue-1794276766801-nxoi",
+      "name": "FloHockey / Port Moody Arena",
+      "websiteUrl": "https://flohockey.tv/events/16116813",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:12:46.801Z"
+    },
+    {
+      "id": "venue-1794276881437-v1hv",
+      "name": "FloHockey / FloSports Stream",
+      "websiteUrl": "https://flohockey.tv/events/16116780",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:14:41.437Z"
+    },
+    {
+      "id": "venue-1794277057378-fpzd",
+      "name": "FloSports / FloHockey (Online Broadcast)",
+      "websiteUrl": "https://flohockey.tv/events/16116821",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:17:37.378Z"
+    },
+    {
+      "id": "venue-1794277246225-zxf5",
+      "name": "Surrey Libraries - Fleetwood Branch",
+      "websiteUrl": "https://www.surreylibraries.ca/events/practice-speaking-french-1",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:20:46.225Z"
+    },
+    {
+      "id": "venue-1794277257208-3ugs",
+      "name": "Surrey Libraries - Guildford Branch",
+      "websiteUrl": "https://www.surreylibraries.ca/events/adapted-stories-adults-and-teens-43",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:20:57.208Z"
+    },
+    {
+      "id": "venue-1794277316587-mtmv",
+      "name": "Surrey Libraries - City Centre Branch",
+      "websiteUrl": "https://www.surreylibraries.ca/events/settlement-services-newcomers-36",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:21:56.587Z"
+    },
+    {
+      "id": "venue-1794277384289-nr9r",
+      "name": "Surrey Libraries - Ocean Park Branch",
+      "websiteUrl": "https://www.surreylibraries.ca/events/adult-book-club-37",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:23:04.289Z"
+    },
+    {
+      "id": "venue-1794277453381-lzt7",
+      "name": "Fleetwood Branch - Surrey Libraries",
+      "websiteUrl": "https://www.surreylibraries.ca/events/preteen-intro-cursive-writing",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:24:13.381Z"
+    },
+    {
+      "id": "venue-1794277499391-63pt",
+      "name": "Surrey Libraries - Newton Branch",
+      "websiteUrl": "https://www.surreylibraries.ca/events/reading-buddies-64",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:24:59.391Z"
+    },
+    {
+      "id": "venue-1794277630611-cxnz",
+      "name": "Explore White Rock",
+      "websiteUrl": "https://explorewhiterock.com/events-calendar/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:27:10.611Z"
+    },
+    {
+      "id": "venue-1794277705694-nwap",
+      "name": "Simon Fraser University",
+      "websiteUrl": "https://events.sfu.ca/live/image/gid/18/width/650/7279_banner06.jpg",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:28:25.694Z"
+    },
+    {
+      "id": "venue-1794277781862-rev8",
+      "name": "Online",
+      "websiteUrl": "https://events.sfu.ca/event/50822-idea-to-app-softmax-data-ai-hackathon",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:29:41.862Z"
+    },
+    {
+      "id": "venue-1794277821218-rzpg",
+      "name": "Simon Fraser University (Online / Burnaby Campus)",
+      "websiteUrl": "https://events.sfu.ca/event/51168-tutorattutoring-centre",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:30:21.218Z"
+    },
+    {
+      "id": "venue-1794277840556-00uq",
+      "name": "The Cabinet | Room 4390 – SFU School for the Contemporary Arts",
+      "websiteUrl": "https://events.sfu.ca/event/51235-wetin-you-dey-do-for-here",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:30:40.556Z"
+    },
+    {
+      "id": "venue-1794277886123-wgys",
+      "name": "Simon Fraser University (Online / Burnaby)",
+      "websiteUrl": "https://events.sfu.ca/event/51172-tutorattutoring-centre",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:31:26.123Z"
+    },
+    {
+      "id": "venue-1794277955536-zx1g",
+      "name": "Simon Fraser University - Burnaby Campus (Blusson Hall 9920)",
+      "websiteUrl": "https://events.sfu.ca/event/51063-fhs-research-seminar-mave-leduc-terena-good-exploring-",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:32:35.536Z"
+    },
+    {
+      "id": "venue-1794277971655-vy0z",
+      "name": "SFU Sci-Space (AQ 3146)",
+      "websiteUrl": "https://events.sfu.ca/event/50031-drop-in-career-chats",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:32:51.655Z"
+    },
+    {
+      "id": "venue-1794278025423-q5am",
+      "name": "Segal Graduate School of Business",
+      "websiteUrl": "https://events.sfu.ca/event/50956-why-asia-matters-for-canadian-business",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:33:45.423Z"
+    },
+    {
+      "id": "venue-1794278043696-hv1z",
+      "name": "Simon Fraser University (SFU Burnaby - WMC 1384)",
+      "websiteUrl": "https://events.sfu.ca/event/48880-fostering-critical-thinking-and-argumentation-with-the",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:34:03.696Z"
+    },
+    {
+      "id": "venue-1794278096098-mr6z",
+      "name": "Presentation Studio at SFU’s Big Data Hub",
+      "websiteUrl": "https://events.sfu.ca/event/50990-forward-looking-science-and-stewardship-in-salmon",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:34:56.099Z"
+    },
+    {
+      "id": "venue-1794278111972-r74f",
+      "name": "SFU Surrey Campus (SRYC 4355)",
+      "websiteUrl": "https://www.sfu.ca/chang-institute/events/founders-circle.html",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:35:11.972Z"
+    },
+    {
+      "id": "venue-1794278166631-l3l1",
+      "name": "Simon Fraser University (Online / Zoom)",
+      "websiteUrl": "https://events.sfu.ca/event/50624-info-session-med-in-educational-practice-practitioner-",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:36:06.631Z"
+    },
+    {
+      "id": "venue-1794278183029-1ola",
+      "name": "Djavad Mowafaghian Cinema, SFU School for the Contemporary Arts",
+      "websiteUrl": "https://events.sfu.ca/event/51186-luke-fowler-electro-pythagoras-a-portrait-of",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:36:23.029Z"
+    },
+    {
+      "id": "venue-1794278245397-0w7o",
+      "name": "West Gym (SFU Burnaby)",
+      "websiteUrl": "https://events.sfu.ca/event/50616-home-game-mens-basketball-vs-langara",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:37:25.397Z"
+    },
+    {
+      "id": "venue-1794278254964-5fh4",
+      "name": "SFU Harbour Centre",
+      "websiteUrl": "https://events.sfu.ca/event/50732-creative-knowledge-mobilization-workshop-series-podcas",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:37:34.964Z"
+    },
+    {
+      "id": "venue-1794278332012-c6hl",
+      "name": "SUB Ballroom, SFU Burnaby Campus",
+      "websiteUrl": "https://events.sfu.ca/event/51043-coffee-with-profs",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:38:52.012Z"
+    },
+    {
+      "id": "venue-1794278332598-gsw8",
+      "name": "SFU Vancouver Wellness Studio, Harbour Centre",
+      "websiteUrl": "https://events.sfu.ca/event/50672-sfu-vancouver-wellness-class-meditation",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:38:52.598Z"
+    },
+    {
+      "id": "venue-1794278406132-62ft",
+      "name": "Global Student Centre (GSC)",
+      "websiteUrl": "https://events.sfu.ca/event/50077-pop-up-pantry",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:40:06.132Z"
+    },
+    {
+      "id": "venue-1794278411385-jpsx",
+      "name": "SFU Black Student Centre Lounge, MBC 2270",
+      "websiteUrl": "https://events.sfu.ca/event/51019-black-mental-health-fair-2026",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:40:11.385Z"
+    },
+    {
+      "id": "venue-1794278479595-lf34",
+      "name": "Simon Fraser University - Burnaby Campus (Library 7200)",
+      "websiteUrl": "https://events.sfu.ca/event/50485-open-education-at-sfu-learnings-and-celebrations",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:41:19.595Z"
+    },
+    {
+      "id": "venue-1794278487987-ecat",
+      "name": "Simon Fraser University - Global Student Centre (GSC)",
+      "websiteUrl": "https://events.sfu.ca/event/50081-conversational-english-for-the-canadian-workforce",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:41:27.987Z"
+    },
+    {
+      "id": "venue-1794278545391-ap7t",
+      "name": "SFU Dining Commons",
+      "websiteUrl": "https://events.sfu.ca/event/51011-dining-commons-teaching-kitchen-make-your-own",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:42:25.391Z"
+    },
+    {
+      "id": "venue-1794278602799-h0ng",
+      "name": "Simon Fraser University (Burnaby Campus) - WMC 3621",
+      "websiteUrl": "https://events.sfu.ca/event/51144-whats-your-big-idea-pitch-sessions",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:43:22.799Z"
+    },
+    {
+      "id": "venue-1794278671673-h9ch",
+      "name": "Online / Zoom (Simon Fraser University)",
+      "websiteUrl": "https://events.sfu.ca/event/51030-sfu-urban-studies-graduate-information-session",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:44:31.673Z"
+    },
+    {
+      "id": "venue-1794278792605-w065",
+      "name": "Simon Fraser University (TASC1 9204)",
+      "websiteUrl": "https://events.sfu.ca/event/50835-bofan-yu-msc-thesis-defence",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:46:32.605Z"
+    },
+    {
+      "id": "venue-1794278982206-c2xl",
+      "name": "KPU Surrey Conference Centre",
+      "websiteUrl": "https://www.kpu.ca/events/kpus-inaugural-anti-ableism-disability-justice-symposium",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:49:42.206Z"
+    },
+    {
+      "id": "venue-1794278987213-5jx5",
+      "name": "Kwantlen Polytechnic University",
+      "websiteUrl": "https://www.kpu.ca/learningcentres/events/workshops/business-skills/accounting-2293-exam-review-110926-o",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:49:47.213Z"
+    },
+    {
+      "id": "venue-1794279271469-ue31",
+      "name": "KPU Surrey Library (Special Collections Room)",
+      "websiteUrl": "https://www.kpu.ca/events/analogue-hour",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:54:31.469Z"
+    },
+    {
+      "id": "venue-1794279342648-q4uu",
+      "name": "KPU Surrey",
+      "websiteUrl": "https://www.kpu.ca/events/grab-go-student-food-pantry-and-peer-wellness-information-booth-11",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:55:42.648Z"
+    },
+    {
+      "id": "venue-1794279354702-9615",
+      "name": "KPU Richmond",
+      "websiteUrl": "https://www.kpu.ca/events/kpu-richmond-multi-faith-centre-international-focus-week-community-wall",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:55:54.702Z"
+    },
+    {
+      "id": "venue-1794279437092-hkk1",
+      "name": "Cedar Conference Center, KPU Surrey Campus",
+      "websiteUrl": "https://www.kpu.ca/events/teacher-ed-forum",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:57:17.092Z"
+    },
+    {
+      "id": "venue-1794279458705-kplj",
+      "name": "Kwantlen Polytechnic University (KPU Surrey)",
+      "websiteUrl": "https://www.kpu.ca/events/zumba-f26-cycle2",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:57:38.705Z"
+    },
+    {
+      "id": "venue-1794279513638-bfpp",
+      "name": "KPU Sport and Recreation",
+      "websiteUrl": "https://www.kpu.ca/events/tai-chi-f26-cycle2",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:58:33.638Z"
+    },
+    {
+      "id": "venue-1794279548884-eto6",
+      "name": "KPU Surrey (Fitness Centre & Gymnasium)",
+      "websiteUrl": "https://www.kpu.ca/events/introduction-strength-training-f26",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:59:08.884Z"
+    },
+    {
+      "id": "venue-1794279570326-ljtk",
+      "name": "KPU Surrey Cedar Conference Centre",
+      "websiteUrl": "https://www.kpu.ca/events/kpu-int-diwali-celebration-nov-6",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T02:59:30.326Z"
+    },
+    {
+      "id": "venue-1794279606759-7qou",
+      "name": "KPU Brew Lab",
+      "websiteUrl": "https://www.kpu.ca/events/kpu-brew-beer-sales-0",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:00:06.759Z"
+    },
+    {
+      "id": "venue-1794279697793-p6k2",
+      "name": "KPU Richmond Campus",
+      "websiteUrl": "https://www.kpu.ca/events/creative-connections-2026",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:01:37.793Z"
+    },
+    {
+      "id": "venue-1794280287424-nqna",
+      "name": "CAMP Beer Co.",
+      "websiteUrl": "https://www.kpu.ca/events/youre-invited-2026-student-pioneer-tap-series",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:11:27.424Z"
+    },
+    {
+      "id": "venue-1794280405544-jqhx",
+      "name": "Kwantlen Polytechnic University (KPU)",
+      "websiteUrl": "https://www.kpu.ca/events/psych-day",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:13:25.544Z"
+    },
+    {
+      "id": "venue-1794280468991-32y6",
+      "name": "KPU Surrey Campus — Conference Centre, Cedar 1205",
+      "websiteUrl": "https://www.kpu.ca/events/operation-and-technical-management-otm-club-presents-pulse-2026",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:14:28.991Z"
+    },
+    {
+      "id": "venue-1794280507679-6ck9",
+      "name": "KPU Surrey (FIR 128)",
+      "websiteUrl": "https://www.kpu.ca/events/naloxone-training-session-students",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:15:07.679Z"
+    },
+    {
+      "id": "venue-1794280566719-1frb",
+      "name": "Grassroots Café, KPU Surrey",
+      "websiteUrl": "https://www.kpu.ca/events/candles-cocoa",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:16:06.719Z"
+    },
+    {
+      "id": "venue-1794280577817-l2k2",
+      "name": "Kwantlen Polytechnic University (KPU Surrey - Maple 160)",
+      "websiteUrl": "https://www.kpu.ca/events/kpu-peer-wellness-rock-painting-social",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:16:17.817Z"
+    },
+    {
+      "id": "venue-1794280670038-ey0u",
+      "name": "Online (KPU)",
+      "websiteUrl": "https://www.kpu.ca/climatebookclub",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:17:50.038Z"
+    },
+    {
+      "id": "venue-1794280682198-y6gu",
+      "name": "Kwantlen Polytechnic University – Surrey Campus",
+      "websiteUrl": "https://www.kpu.ca/events/restorative-justice-week-2026",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:18:02.198Z"
+    },
+    {
+      "id": "venue-1794280724099-t392",
+      "name": "Kwantlen Polytechnic University (Surrey Campus)",
+      "websiteUrl": "https://www.kpu.ca/events/zumba-f26-cycle-2",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:18:44.099Z"
+    },
+    {
+      "id": "venue-1794280789862-v5t9",
+      "name": "KPU Richmond (Student Common Space)",
+      "websiteUrl": "https://www.kpu.ca/events/unwind-craft-connect",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:19:49.862Z"
+    },
+    {
+      "id": "venue-1794280882014-0day",
+      "name": "KPU Surrey Campus",
+      "websiteUrl": "https://www.kpu.ca/events/registration-101-information-session-8",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:21:22.014Z"
+    },
+    {
+      "id": "venue-1794280939090-rwuo",
+      "name": "Emily Carr University of Art and Design",
+      "websiteUrl": "https://www.kpu.ca/events/national-portfolio-day",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:22:19.090Z"
+    },
+    {
+      "id": "venue-1794281052428-mqtm",
+      "name": "KPU Surrey - Cedar Student Commons (Airport Lounge, Cedar 1135)",
+      "websiteUrl": "https://www.kpu.ca/events/kpu-surrey-multi-faith-centre-international-focus-week-community-wall",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:24:12.428Z"
+    },
+    {
+      "id": "venue-1794281290612-f3j9",
+      "name": "KPU Richmond - Wilson School of Design",
+      "websiteUrl": "https://www.kpu.ca/events/wilson-school-design-info-session",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:28:10.612Z"
+    },
+    {
+      "id": "venue-1794281340947-z3mx",
+      "name": "Online / Virtual",
+      "websiteUrl": "https://www.kpu.ca/events/national-portfolio-day-undergraduate-virtual-0",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:29:00.947Z"
+    },
+    {
+      "id": "venue-1794282516375-hpdv",
+      "name": "Hawksworth Restaurant",
+      "websiteUrl": "https://scoutmagazine.ca/venue/hawksworth/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:48:36.375Z"
+    },
+    {
+      "id": "venue-1794282516429-03c5",
+      "name": "Downtown Vancouver",
+      "websiteUrl": "https://scoutmagazine.ca/hoods/archive/downtown/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:48:36.429Z"
+    },
+    {
+      "id": "venue-1794282949190-syab",
+      "name": "Par-Tee Putt",
+      "websiteUrl": "https://admitone.com/events/vancouver/community/sports/par-tee-putt-entry/NW6VW6",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:55:49.190Z"
+    },
+    {
+      "id": "venue-1794282972392-cz85",
+      "name": "Lavenderland",
+      "websiteUrl": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/R1S7RL",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:56:12.392Z"
+    },
+    {
+      "id": "venue-1794283049221-rp09",
+      "name": "Dublin Calling",
+      "websiteUrl": "https://admitone.com/events/vancouver/community/food_and_drink/music-bingo/TMEGAL",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:57:29.221Z"
+    },
+    {
+      "id": "venue-1794283065505-j4nn",
+      "name": "Par-Tee Putt Vancouver",
+      "websiteUrl": "https://admitone.com/events/surrey/community",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:57:45.505Z"
+    },
+    {
+      "id": "venue-1794283129110-1evt",
+      "name": "Dublin Calling Adelaide",
+      "websiteUrl": "https://admitone.com/new-years",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:58:49.110Z"
+    },
+    {
+      "id": "venue-1794283163609-5uqm",
+      "name": "High Score Lounge",
+      "websiteUrl": "https://admitone.com/events/surrey/community/arts_and_culture",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:59:23.609Z"
+    },
+    {
+      "id": "venue-1794283187826-ahyw",
+      "name": "D/6 Bar & Lounge",
+      "websiteUrl": "https://admitone.com/events/surrey/community/award_show",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T03:59:47.826Z"
+    },
+    {
+      "id": "venue-1794283227969-nn0n",
+      "name": "Honeybee Centre",
+      "websiteUrl": "https://admitone.com/events/surrey/community/carnival_or_fair",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:00:27.969Z"
+    },
+    {
+      "id": "venue-1794283243226-y4cf",
+      "name": "Imagine One Dance Studios",
+      "websiteUrl": "https://admitone.com/events/surrey/community/class_training_or_info_session",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:00:43.226Z"
+    },
+    {
+      "id": "venue-1794283289633-szr0",
+      "name": "Mansion Nightclub",
+      "websiteUrl": "https://admitone.com/events/surrey/community/club_night",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:01:29.633Z"
+    },
+    {
+      "id": "venue-1794283392930-gq0k",
+      "name": "Woven",
+      "websiteUrl": "https://admitone.com/events/surrey/community/fashion_show",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:03:12.930Z"
+    },
+    {
+      "id": "venue-1794283444919-4izm",
+      "name": "Utopia Wellness & Gifts",
+      "websiteUrl": "https://admitone.com/events/surrey/community/fitness",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:04:04.919Z"
+    },
+    {
+      "id": "venue-1794283501704-j2o4",
+      "name": "Dublin Calling Vancouver",
+      "websiteUrl": "https://admitone.com/events/surrey/community/food_and_drink",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:05:01.704Z"
+    },
+    {
+      "id": "venue-1794283506063-y5s6",
+      "name": "New Westminster Secondary School",
+      "websiteUrl": "https://admitone.com/events/surrey/community/fundraiser_or_charity",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:05:06.063Z"
+    },
+    {
+      "id": "venue-1794283562041-obme",
+      "name": "The Rec Room Brentwood",
+      "websiteUrl": "https://admitone.com/events/surrey/community/music",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:06:02.041Z"
+    },
+    {
+      "id": "venue-1794283563142-wewv",
+      "name": "Karma Lounge",
+      "websiteUrl": "https://admitone.com/events/surrey/community/party",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:06:03.142Z"
+    },
+    {
+      "id": "venue-1794283619001-5z5e",
+      "name": "slate. Event Space",
+      "websiteUrl": "https://admitone.com/events/surrey/community/performance",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:06:59.001Z"
+    },
+    {
+      "id": "venue-1794283962811-co9i",
+      "name": "Galint Gaming",
+      "websiteUrl": "https://www.galint.gg/events/battle-of-bc-5",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:12:42.811Z"
+    },
+    {
+      "id": "venue-1794284019553-8muw",
+      "name": "Chantilly, Virginia",
+      "websiteUrl": "https://www.galint.gg/events/super-smash-con",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:13:39.553Z"
+    },
+    {
+      "id": "venue-1794284019821-2i48",
+      "name": "Golden Guardians Training Facility",
+      "websiteUrl": "https://www.galint.gg/events/golden-gauntlet",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:13:39.821Z"
+    },
+    {
+      "id": "venue-1794284072854-r3vk",
+      "name": "Secaucus, New Jersey",
+      "websiteUrl": "https://www.galint.gg/events/apex-2022",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:14:32.854Z"
+    },
+    {
+      "id": "venue-1794284128472-6uyt",
+      "name": "Japan, 〒111-0043 Tokyo, Taito City, Komagata, 2-chōme−3−４ 第一荒井ビル ２F",
+      "websiteUrl": "https://www.start.gg/tournament/shuuten-x-galint-2025-20-player-cap/events",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:15:28.472Z"
+    },
+    {
+      "id": "venue-1794284231018-43vp",
+      "name": "Central City Shopping Centre",
+      "websiteUrl": "https://www.downtownsurreybia.com/Events/PumpkinCarvingContest",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:17:11.018Z"
+    },
+    {
+      "id": "venue-1794284266992-zsix",
+      "name": "Holland Park",
+      "websiteUrl": "https://www.downtownsurreybia.com/Events/FusionFestival",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:17:46.992Z"
+    },
+    {
+      "id": "venue-1794284339449-ymvq",
+      "name": "Civic Hotel, Autograph Collection",
+      "websiteUrl": "https://www.downtownsurreybia.com/Events/PayItForward",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:18:59.449Z"
+    },
+    {
+      "id": "venue-1794284419038-fgiu",
+      "name": "Downtown Surrey BIA",
+      "websiteUrl": "https://www.downtownsurreybia.com/Events/OtherEvents",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:20:19.038Z"
+    },
+    {
+      "id": "venue-1794284750175-1h0v",
+      "name": "City of Surrey Recreation Facilities",
+      "websiteUrl": "https://www.surrey.ca/parks-recreation/recreation-facilities/holiday-hours-recreation-facilities",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T04:25:50.175Z"
+    },
+    {
+      "id": "venue-1794287581498-4axp",
+      "name": "Oceana PARC Playhouse",
+      "websiteUrl": "https://whiterockplayers.vbotickets.com/event/The_Little_Mermaid_Panto/205263",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:13:01.498Z"
+    },
+    {
+      "id": "venue-1794287690207-yg3m",
+      "name": "5X Festival",
+      "websiteUrl": "https://www.5xfest.com/sponsor",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:14:50.207Z"
+    },
+    {
+      "id": "venue-1794287783046-8jab",
+      "name": "New Vision Music Society",
+      "websiteUrl": "https://newvisionmusicsociety.org/wp-content/uploads/2024/04/summerfest-day-1-2023-jay.june-3130.jpg",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:16:23.046Z"
+    },
+    {
+      "id": "venue-1794288095043-5q5v",
+      "name": "Cougar Creek's House of Horrors",
+      "websiteUrl": "https://discoversurreybc.com/events/cougar-house-of-horrors/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:21:35.043Z"
+    },
+    {
+      "id": "venue-1794288413070-7whs",
+      "name": "Veterans Square",
+      "websiteUrl": "https://www.surrey.ca/news-events/events/remembrance-day-ceremonies",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:26:53.070Z"
+    },
+    {
+      "id": "venue-1794289041361-5lon",
+      "name": "Cloverdale District Chamber of Commerce",
+      "websiteUrl": "https://www.cloverdalechamber.ca/wp-login.php",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:37:21.361Z"
+    },
+    {
+      "id": "venue-1794289047492-46xj",
+      "name": "Shannon Hall",
+      "websiteUrl": "https://www.cloverdalechamber.ca/2026/07/28/taste-of-cloverdale-returns-for-2026-an-evening-of-local-flavours-live-music-and-community-spirit/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:37:27.492Z"
+    },
+    {
+      "id": "venue-1794289089913-f80q",
+      "name": "Northview Golf and Country Club",
+      "websiteUrl": "https://www.cloverdalechamber.ca/2026/05/12/cloverdale-chamber-announces-nominations-for-11th-annual-clovies-awards/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:38:09.913Z"
+    },
+    {
+      "id": "venue-1794289119867-m3ck",
+      "name": "Show Barn on the Cloverdale Fairgrounds",
+      "websiteUrl": "https://www.cloverdalechamber.ca/2026/04/15/3rd-annual-chicken-dinner-dance-returns-to-cloverdale/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:38:39.867Z"
+    },
+    {
+      "id": "venue-1794289206758-qnof",
+      "name": "Newton Town Centre",
+      "websiteUrl": "https://www.newtonbia.com/program-listings/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:40:06.758Z"
+    },
+    {
+      "id": "venue-1794289207698-pqw2",
+      "name": "Bombay Banquet Hall",
+      "websiteUrl": "https://www.newtonbia.com/program-listings/state-of-newton/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:40:07.698Z"
+    },
+    {
+      "id": "venue-1794289257120-ab2o",
+      "name": "137 Street (between 72A Ave & 74 Ave)",
+      "websiteUrl": "https://www.newtonbia.com/program-listings/car-free-day-surrey/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:40:57.120Z"
+    },
+    {
+      "id": "venue-1794289308126-6y54",
+      "name": "Newton Mural Laneway",
+      "websiteUrl": "https://www.newtonbia.com/program-listings/mural-laneway/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:41:48.126Z"
+    },
+    {
+      "id": "venue-1794289311605-cdy5",
+      "name": "Newton Pop-up Plaza",
+      "websiteUrl": "https://www.newtonbia.com/program-listings/newton-pop-up-plaza/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:41:51.605Z"
+    },
+    {
+      "id": "venue-1794289427761-rcko",
+      "name": "Fleetwood Business Improvement Association",
+      "websiteUrl": "https://www.fleetwoodbia.com/fleetwood-bia-overview/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:43:47.761Z"
+    },
+    {
+      "id": "venue-1794289427888-3q6t",
+      "name": "Francis Park",
+      "websiteUrl": "https://www.fleetwoodbia.com/event",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:43:47.888Z"
+    },
+    {
+      "id": "venue-1794289545341-zbto",
+      "name": "Cloverdale Fairgrounds",
+      "websiteUrl": "https://cloverdalerodeo.com/country-fair/event-schedule/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:45:45.341Z"
+    },
+    {
+      "id": "venue-1794289731403-c8tm",
+      "name": "Champlain Heights Community Centre",
+      "websiteUrl": "https://www.meetup.com/vancouver-environment-meetup/events/317091812/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:48:51.403Z"
+    },
+    {
+      "id": "venue-1794289788252-3747",
+      "name": "Yorkson Creek Middle School",
+      "websiteUrl": "https://www.meetup.com/vancouverdesis/events/317026392/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:49:48.252Z"
+    },
+    {
+      "id": "venue-1794289794901-q3t6",
+      "name": "Central City Mall",
+      "websiteUrl": "https://www.meetup.com/coworking-surrey-hosted-by-morantech/events/317318113/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:49:54.901Z"
+    },
+    {
+      "id": "venue-1794289846879-23zg",
+      "name": "Guildford Public Library (Surrey)",
+      "websiteUrl": "https://www.meetup.com/vanlug-bc/events/317314570/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:50:46.879Z"
+    },
+    {
+      "id": "venue-1794289852188-tg7n",
+      "name": "Trees Organic Cafe",
+      "websiteUrl": "https://www.meetup.com/vancouver-french-meetup/events/315971024/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:50:52.188Z"
+    },
+    {
+      "id": "venue-1794289918520-akjn",
+      "name": "delta heritage airpark",
+      "websiteUrl": "https://www.meetup.com/meetup-group-spfasclx/events/317075977/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:51:58.520Z"
+    },
+    {
+      "id": "venue-1794289926938-bgcp",
+      "name": "Delicia Cafe & Bakery",
+      "websiteUrl": "https://www.meetup.com/vancouver-french-meetup/events/315829459/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:52:06.938Z"
+    },
+    {
+      "id": "venue-1794289979470-fvy9",
+      "name": "Muench Bar",
+      "websiteUrl": "https://www.meetup.com/regional-parks-connect-metro-vancouver/events/317209334/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:52:59.470Z"
+    },
+    {
+      "id": "venue-1794289986278-b95s",
+      "name": "Waves Coffee House - Kingsway",
+      "websiteUrl": "https://www.meetup.com/coffee-conversations-family-future/events/317108386/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:53:06.278Z"
+    },
+    {
+      "id": "venue-1794290039924-ekii",
+      "name": "New Westminster Public Library",
+      "websiteUrl": "https://www.meetup.com/vancouver-writers-group/events/317085116/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:53:59.924Z"
+    },
+    {
+      "id": "venue-1794290047691-bbbq",
+      "name": "Anvil Centre",
+      "websiteUrl": "https://www.meetup.com/meeple-leaf/events/312348289/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:54:07.691Z"
+    },
+    {
+      "id": "venue-1794290098873-zyj6",
+      "name": "Royal Canadian Legion Branch 133",
+      "websiteUrl": "https://www.meetup.com/coquitlam-night-life-salsa-dancing/events/317347624/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:54:58.874Z"
+    },
+    {
+      "id": "venue-1794290106830-h9ol",
+      "name": "Elgin Heritage Park",
+      "websiteUrl": "https://www.meetup.com/surrey-trekkers-volkssport-club-meet/events/316983999/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:55:06.830Z"
+    },
+    {
+      "id": "venue-1794290159183-pm0m",
+      "name": "Joyce Collingwood Station",
+      "websiteUrl": "https://www.meetup.com/meetup-group-rlfpdlmb/events/317328017/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:55:59.183Z"
+    },
+    {
+      "id": "venue-1794290166043-ya6r",
+      "name": "Saravanaa Bhavan",
+      "websiteUrl": "https://www.meetup.com/meatlessmeetup/events/316563196/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:56:06.043Z"
+    },
+    {
+      "id": "venue-1794290217332-ew6v",
+      "name": "Cat & Fiddle",
+      "websiteUrl": "https://www.meetup.com/port-moodys-passion-for-life/events/317133237/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:56:57.332Z"
+    },
+    {
+      "id": "venue-1794290225573-afww",
+      "name": "Woody's On Brunette",
+      "websiteUrl": "https://www.meetup.com/port-moodys-passion-for-life/events/317132877/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:57:05.573Z"
+    },
+    {
+      "id": "venue-1794290273028-vqox",
+      "name": "Mariner Brewing",
+      "websiteUrl": "https://www.meetup.com/port-moodys-passion-for-life/events/311573961/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:57:53.028Z"
+    },
+    {
+      "id": "venue-1794290283932-rrr2",
+      "name": "Mud Bay Park",
+      "websiteUrl": "https://www.meetup.com/the-abbotsford-meetup-group/events/317001363/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:58:03.932Z"
+    },
+    {
+      "id": "venue-1794290330135-bp6h",
+      "name": "New Westminster Christian Reformed Church",
+      "websiteUrl": "https://www.meetup.com/the-estuary-at-connections-coffee/events/317319045/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:58:50.135Z"
+    },
+    {
+      "id": "venue-1794290341844-9ezp",
+      "name": "Barnside Brewing Co.",
+      "websiteUrl": "https://www.meetup.com/vancouver-singles-parties/events/316931192/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:59:01.844Z"
+    },
+    {
+      "id": "venue-1794290388811-jalk",
+      "name": "WINGS Restaurants & Pubs - Burnaby",
+      "websiteUrl": "https://www.meetup.com/single-in-vancouver-speed-dating-events/events/317186258/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:59:48.811Z"
+    },
+    {
+      "id": "venue-1794290399903-hebz",
+      "name": "Cuatro Coffee",
+      "websiteUrl": "https://www.meetup.com/surrey-trekkers-volkssport-club-meet/events/316984117/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T05:59:59.903Z"
+    },
+    {
+      "id": "venue-1794290446358-mejo",
+      "name": "Hume Park",
+      "websiteUrl": "https://www.meetup.com/surrey-trekkers-volkssport-club-meet/events/316984802/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:00:46.358Z"
+    },
+    {
+      "id": "venue-1794290457238-05cj",
+      "name": "Queen's Park Arena",
+      "websiteUrl": "https://www.meetup.com/surrey-trekkers-volkssport-club-meet/events/316983917/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:00:57.238Z"
+    },
+    {
+      "id": "venue-1794290504870-5axv",
+      "name": "Beer Shack",
+      "websiteUrl": "https://www.meetup.com/meetup-group-ruvadajb/events/317008784/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:01:44.870Z"
+    },
+    {
+      "id": "venue-1794290516826-kl92",
+      "name": "3 Dogs Brewing",
+      "websiteUrl": "https://www.meetup.com/meetup-group-ruvadajb/events/317239601/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:01:56.826Z"
+    },
+    {
+      "id": "venue-1794290578098-g7gv",
+      "name": "Sawbucks pub",
+      "websiteUrl": "https://www.meetup.com/meetup-group-ruvadajb/events/316177239/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:02:58.098Z"
+    },
+    {
+      "id": "venue-1794290622338-1dgm",
+      "name": "New Balance Delta",
+      "websiteUrl": "https://www.meetup.com/surrey-trekkers-volkssport-club-meet/events/316984394/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:03:42.338Z"
+    },
+    {
+      "id": "venue-1794290637349-8gxz",
+      "name": "Banting Middle School",
+      "websiteUrl": "https://www.meetup.com/femalebasketball/events/316391147/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:03:57.349Z"
+    },
+    {
+      "id": "venue-1794290707816-w796",
+      "name": "Mountain View Park",
+      "websiteUrl": "https://www.meetup.com/metamorephiit-get-more-fit/events/317286519/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:05:07.816Z"
+    },
+    {
+      "id": "venue-1794290712786-upr9",
+      "name": "Edmonds Park",
+      "websiteUrl": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317136739/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:05:12.786Z"
+    },
+    {
+      "id": "venue-1794290767523-p0d4",
+      "name": "The Gillnetter Pub",
+      "websiteUrl": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317208345/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:06:07.523Z"
+    },
+    {
+      "id": "venue-1794290777769-5gav",
+      "name": "Edmonds Park Washrooms",
+      "websiteUrl": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317210619/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:06:17.769Z"
+    },
+    {
+      "id": "venue-1794290825248-2943",
+      "name": "Burnaby Lake Rugby Club",
+      "websiteUrl": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317206437/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:07:05.248Z"
+    },
+    {
+      "id": "venue-1794290884267-nnjq",
+      "name": "Queensborough Community Centre",
+      "websiteUrl": "https://www.meetup.com/vancouver-venturers-meetup/events/317247631/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:08:04.267Z"
+    },
+    {
+      "id": "venue-1794290893849-n7wp",
+      "name": "5980 Kathleen Ave",
+      "websiteUrl": "https://www.meetup.com/sing-together-victoria/events/317278470/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:08:13.849Z"
+    },
+    {
+      "id": "venue-1794290940610-46f1",
+      "name": "Fraser Heights Secondary School",
+      "websiteUrl": "https://www.meetup.com/soundscape-a-cappella-chorus/events/316963371/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:09:00.610Z"
+    },
+    {
+      "id": "venue-1794291218528-f372",
+      "name": "Browns Socialhouse Brewery District",
+      "websiteUrl": "https://www.paintnite.com/ca/bc/events",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:13:38.528Z"
+    },
+    {
+      "id": "venue-1794291222236-s1vr",
+      "name": "Smugglers Trail",
+      "websiteUrl": "https://www.paintnite.com/ca/events",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:13:42.236Z"
+    },
+    {
+      "id": "venue-1794291394096-z2aw",
+      "name": "The One Sixty Wine Bar & Cafe",
+      "websiteUrl": "https://www.paintnite.com/ca/bc/port-moody/events/poppy-field-tickets-10371603",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:16:34.096Z"
+    },
+    {
+      "id": "venue-1794291411999-1rti",
+      "name": "Night Owl Kitchen + Bar",
+      "websiteUrl": "https://www.paintnite.com/ca/bc/langley/events/chasing-the-tide-tickets-10371473",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:16:51.999Z"
+    },
+    {
+      "id": "venue-1794291470067-6rge",
+      "name": "LuLu Island Winery",
+      "websiteUrl": "https://www.paintnite.com/ca/bc/richmond/events/moonshine-mountains-tickets-10370996",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:17:50.067Z"
+    },
+    {
+      "id": "venue-1794291481078-sjhc",
+      "name": "Canlan Sports- Langley Twin Rinks",
+      "websiteUrl": "https://www.paintnite.com/ca/bc/langley/events/beachside-campfire-tickets-10372057",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:18:01.078Z"
+    },
+    {
+      "id": "venue-1794291537776-w61m",
+      "name": "Guildford Golf & Country Club",
+      "websiteUrl": "https://www.paintnite.com/us/bc/surrey/events/stardust-tickets-10368719",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:18:57.776Z"
+    },
+    {
+      "id": "venue-1794291764510-huml",
+      "name": "D Lounge Kitchen and Bar",
+      "websiteUrl": "https://www.paintnite.com/us/bc/surrey/events/a-winters-night-tickets-10375004",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:22:44.510Z"
+    },
+    {
+      "id": "venue-1794291824809-w7m2",
+      "name": "Crave Bistro & Bar",
+      "websiteUrl": "https://www.paintnite.com/us/bc/port-coquitlam/events/dreamy-winter-night-tickets-10377092",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:23:44.809Z"
+    },
+    {
+      "id": "venue-1794291830501-6bkw",
+      "name": "Samz Pub Port Coquitlam",
+      "websiteUrl": "https://www.paintnite.com/us/bc/port-coquitlam/events/van-goghs-cat-tickets-10375580",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:23:50.501Z"
+    },
+    {
+      "id": "venue-1794291980088-8p4i",
+      "name": "Dine Kanadiyan",
+      "websiteUrl": "https://www.paintnite.com/us/bc/new-westminster/events/paint-your-pet-tickets-10374925",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:26:20.088Z"
+    },
+    {
+      "id": "venue-1794291996890-vr4h",
+      "name": "Poco Inn & Suites Hotel",
+      "websiteUrl": "https://www.paintnite.com/us/bc/port-coquitlam/events/riveredge-sunset-tickets-10369717",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:26:36.890Z"
+    },
+    {
+      "id": "venue-1794292211920-ioap",
+      "name": "Night Owl - DELTA",
+      "websiteUrl": "https://www.paintnite.com/us/bc/delta/events/peaceful-pine-lake-tickets-10377270",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T06:30:11.920Z"
+    },
+    {
+      "id": "venue-1794297496690-eza1",
+      "name": "Metro Vancouver",
+      "websiteUrl": "https://vancouversbestplaces.com/events-calendar/festivals-and-events/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T07:58:16.690Z"
+    },
+    {
+      "id": "venue-1794297554146-68a9",
+      "name": "Vancouver's Best Places",
+      "websiteUrl": "https://vancouversbestplaces.com/events-calendar/november/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T07:59:14.146Z"
+    },
+    {
+      "id": "venue-1794297592959-zeu4",
+      "name": "Various Venues (Vancouver's Best Places Aggregator)",
+      "websiteUrl": "https://vancouversbestplaces.com/events-calendar/vancouver-weekend-events/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T07:59:52.959Z"
+    },
+    {
+      "id": "venue-1794297651921-abta",
+      "name": "Chor Leoni Choral Society",
+      "websiteUrl": "https://chorleoni.org/event/the-soul-flies-away/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:00:51.921Z"
+    },
+    {
+      "id": "venue-1794298089261-ctsr",
+      "name": "FloSports / Online Stream",
+      "websiteUrl": "https://flohockey.tv/events/16109022",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:08:09.261Z"
+    },
+    {
+      "id": "venue-1794298151993-q17k",
+      "name": "Surrey Knights (North Surrey Sport & Ice Complex)",
+      "websiteUrl": "https://www.surreyknights.ca/pacific-junior-hockey-league-positioned-as-b-c-s-first-u20-junior-development-league",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:09:11.993Z"
+    },
+    {
+      "id": "venue-1794298366893-9aak",
+      "name": "Surrey Softball City",
+      "websiteUrl": "https://canadacup.com/schedule-2026/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:12:46.893Z"
+    },
+    {
+      "id": "venue-1794298455606-l9a2",
+      "name": "Surrey Schools",
+      "websiteUrl": "https://www.surreyschools.ca/events-organizations",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:14:15.606Z"
+    },
+    {
+      "id": "venue-1794298457978-hlkh",
+      "name": "Surrey School District",
+      "websiteUrl": "https://boundaries.districtintelligence.com/event/page.webGisPublic/DistrictCode/BC36",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:14:17.978Z"
+    },
+    {
+      "id": "venue-1794298504583-muif",
+      "name": "Surrey Schools (District School Board)",
+      "websiteUrl": "https://www.surreyschools.ca/program-information-meetings",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:15:04.583Z"
+    },
+    {
+      "id": "venue-1794298682107-0wy6",
+      "name": "13615 Fraser Hwy",
+      "websiteUrl": "https://allevents.in/surrey/the-diwali-affair/100002004103335024",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:18:02.107Z"
+    },
+    {
+      "id": "venue-1794298756818-tdr7",
+      "name": "CLUB 240 @ Crescent Beach Legion",
+      "websiteUrl": "https://allevents.in/surrey/performances",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:19:16.818Z"
+    },
+    {
+      "id": "venue-1794298799915-2t56",
+      "name": "D Lounge Kitchen & Bar",
+      "websiteUrl": "https://allevents.in/surrey/diwali-paint-n-sip-tickets/80003289900821",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:19:59.915Z"
+    },
+    {
+      "id": "venue-1794298823536-wb0e",
+      "name": "Gupshup Social Lounge",
+      "websiteUrl": "https://allevents.in/surrey/desi-muse-paint-n-sip-tickets/80001324276627",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:20:23.536Z"
+    },
+    {
+      "id": "venue-1794298885052-mfcc",
+      "name": "Downtown Cloverdale",
+      "websiteUrl": "https://allevents.in/surrey/surrey-santa-parade-of-lights/200029947865257",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:21:25.052Z"
+    },
+    {
+      "id": "venue-1794298905272-1hn2",
+      "name": "Grand Taj Banquet Hall",
+      "websiteUrl": "https://allevents.in/surrey/our-journey-to-anandpur-sahib/100001999805514126",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:21:45.272Z"
+    },
+    {
+      "id": "venue-1794298947341-fz7x",
+      "name": "Taj Park Convention Centre",
+      "websiteUrl": "https://allevents.in/surrey/sufi-qawali-night-with-bm-khan/100002003999685004",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:22:27.341Z"
+    },
+    {
+      "id": "venue-1794298965613-mwei",
+      "name": "SFU Surrey Engineering Building (SRYE)",
+      "websiteUrl": "https://allevents.in/surrey/builders-bonanza-with-lego-bricks-sfu-sry-nov-21-grades-k-7/100002004561436217",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:22:45.613Z"
+    },
+    {
+      "id": "venue-1794298986838-rjio",
+      "name": "Sheraton Vancouver Guildford Hotel",
+      "websiteUrl": "https://allevents.in/surrey/free-surrey-2-hiring-and-education-expo-2026/100001996131586309",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:23:06.838Z"
+    },
+    {
+      "id": "venue-1794299005187-q7ol",
+      "name": "WorkBC Centre South Surrey - White Rock",
+      "websiteUrl": "https://allevents.in/surrey/youth-hiring-event-south-surrey-white-rock/100002003797843290",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:23:25.187Z"
+    },
+    {
+      "id": "venue-1794299217255-5k83",
+      "name": "Rusty's Pub",
+      "websiteUrl": "https://allevents.in/surrey/today",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:26:57.257Z"
+    },
+    {
+      "id": "venue-1794299288150-2vyx",
+      "name": "10362 King George Blvd",
+      "websiteUrl": "https://allevents.in/surrey/tomorrow",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:28:08.150Z"
+    },
+    {
+      "id": "venue-1794299365362-94v8",
+      "name": "West Coast Gardens",
+      "websiteUrl": "https://allevents.in/surrey/trim-and-gather-celebration-at-west-coast-gardens/100002004257253398",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:29:25.362Z"
+    },
+    {
+      "id": "venue-1794299393117-hdg1",
+      "name": "5738 176 Street, Surrey, BC",
+      "websiteUrl": "https://allevents.in/surrey/nov",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:29:53.117Z"
+    },
+    {
+      "id": "venue-1794299410349-vh41",
+      "name": "Cloverdale",
+      "websiteUrl": "https://allevents.in/surrey/christmas-cookie-decorating-workshop/200030995121227",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:30:10.349Z"
+    },
+    {
+      "id": "venue-1794299435775-psyg",
+      "name": "Regent Christian Academy",
+      "websiteUrl": "https://allevents.in/surrey/rca-community-christmas-market/200031012144710",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:30:35.775Z"
+    },
+    {
+      "id": "venue-1794299527370-ekkn",
+      "name": "City Centre Church",
+      "websiteUrl": "https://allevents.in/surrey/christmas-with-the-king-elvis-sings-christmas/200031009390117",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:32:07.370Z"
+    },
+    {
+      "id": "venue-1794299657610-xn01",
+      "name": "Royal King Palace",
+      "websiteUrl": "https://allevents.in/surrey/marians-live-in-vancouver-with-shihan-mihiranga/200030045561128",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:34:17.610Z"
+    },
+    {
+      "id": "venue-1794299730226-3e46",
+      "name": "Grand Empire Banquet Hall",
+      "websiteUrl": "https://allevents.in/surrey/jamming-bethak-diwali-edition/100002004212467442",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:35:30.226Z"
+    },
+    {
+      "id": "venue-1794299806103-wm12",
+      "name": "Royal Canadian Legion Branch 240",
+      "websiteUrl": "https://allevents.in/surrey/concerts",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:36:46.103Z"
+    },
+    {
+      "id": "venue-1794299918071-e0xh",
+      "name": "10350 University Dr",
+      "websiteUrl": "https://allevents.in/surrey/queer-in-colour/100001992673117937",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:38:38.071Z"
+    },
+    {
+      "id": "venue-1794299970132-hgkj",
+      "name": "Pacific Riding School",
+      "websiteUrl": "https://allevents.in/surrey/pac-ride-cold-toes-and-chocolate-souls-series-2/200030961765809",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:39:30.132Z"
+    },
+    {
+      "id": "venue-1794300023424-8ewk",
+      "name": "RCL - Whalley Legion Br 229",
+      "websiteUrl": "https://allevents.in/surrey/trivia-thursdays-at-the-whalley-legion/200030746883631",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:40:23.424Z"
+    },
+    {
+      "id": "venue-1794300024094-hh3j",
+      "name": "Malary's Creative Hub",
+      "websiteUrl": "https://allevents.in/surrey/connect-share-and-be-inspired-soroptimist-of-surrey-delta/200031002184256",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:40:24.094Z"
+    },
+    {
+      "id": "venue-1794300144468-9gip",
+      "name": "École Gabrielle-Roy",
+      "websiteUrl": "https://allevents.in/surrey/4e-%C3%A9dition-du-march%C3%A9-dhiver-de-l%C3%89cole-gabrielle-roy/200030896640740",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:42:24.468Z"
+    },
+    {
+      "id": "venue-1794300233684-bp9z",
+      "name": "Aria Banquet Hall",
+      "websiteUrl": "https://allevents.in/surrey/bcabc-a-diamond-jubliee/200030915833859",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:43:53.684Z"
+    },
+    {
+      "id": "venue-1794300414008-fvyw",
+      "name": "Cloverdale Legion Branch 6",
+      "websiteUrl": "https://allevents.in/surrey/party-like-its-1927-new-years-eve-with-the-imposters/200030981399950",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:46:54.008Z"
+    },
+    {
+      "id": "venue-1794300419548-i729",
+      "name": "Art's Nursery Ltd.",
+      "websiteUrl": "https://allevents.in/surrey/ugly-christmas-sweater-plant-bingo/200030913780607",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:46:59.548Z"
+    },
+    {
+      "id": "venue-1794300485649-5lil",
+      "name": "Port Kells Community Hall",
+      "websiteUrl": "https://allevents.in/surrey/the-safe-haven-conference-2026/100001998129390796",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:48:05.650Z"
+    },
+    {
+      "id": "venue-1794300554519-b0sq",
+      "name": "Kensington Prairie Community Centre",
+      "websiteUrl": "https://allevents.in/surrey/agm/200030981400352",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:49:14.519Z"
+    },
+    {
+      "id": "venue-1794300615413-pbaa",
+      "name": "Clayton Community Centre",
+      "websiteUrl": "https://allevents.in/surrey/annual-general-meeting-agm-cloverdale-community-association/200031009390319",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:50:15.413Z"
+    },
+    {
+      "id": "venue-1794300679881-hz0l",
+      "name": "Hazelmere Golf & Tennis Club",
+      "websiteUrl": "https://allevents.in/surrey/career-transitions-retirement-practice-and-beyond/100002002162382583",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:51:19.881Z"
+    },
+    {
+      "id": "venue-1794300737000-wi7s",
+      "name": "Options Community Services",
+      "websiteUrl": "https://allevents.in/surrey/canadian-job-search-strategies-workshop-in-person/10000560946906297",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:52:17.000Z"
+    },
+    {
+      "id": "venue-1794300777455-1vje",
+      "name": "10326 Whalley Blvd",
+      "websiteUrl": "https://allevents.in/surrey/open-level-choreography-dance-class/100001987795447694",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:52:57.455Z"
+    },
+    {
+      "id": "venue-1794300801218-oj46",
+      "name": "Primerica Financial Services",
+      "websiteUrl": "https://allevents.in/surrey/women-and-money/100002003215118344",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:53:21.218Z"
+    },
+    {
+      "id": "venue-1794300817116-9bby",
+      "name": "Surrey Libraries – Newton Branch",
+      "websiteUrl": "https://allevents.in/surrey/salcbc-ple-workshop-family-law-myths/100002003797423033",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:53:37.116Z"
+    },
+    {
+      "id": "venue-1794301086047-rkws",
+      "name": "Royal Kwantlen Park",
+      "websiteUrl": "https://surreymarket.org/mailing-list/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:58:06.047Z"
+    },
+    {
+      "id": "venue-1794301143613-5kz4",
+      "name": "SFU Surrey, SRYC Mezzanine",
+      "websiteUrl": "https://events.sfu.ca/event/50150-surrey-campus-dog-therapy",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:59:03.613Z"
+    },
+    {
+      "id": "venue-1794301146282-0qjc",
+      "name": "SFU Surrey (SRYC 5360)",
+      "websiteUrl": "https://events.sfu.ca/live/events/50379-mse-colloquium-series-2026",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:59:06.282Z"
+    },
+    {
+      "id": "venue-1794301185717-1hds",
+      "name": "Simon Fraser University - Dining Commons",
+      "websiteUrl": "https://events.sfu.ca/all/tags/homepage-feature",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:59:45.717Z"
+    },
+    {
+      "id": "venue-1794301188950-zr8l",
+      "name": "SFU Surrey Campus (E Building Atrium)",
+      "websiteUrl": "https://events.sfu.ca/live/events/51062-the-national-day-of-remembrance-and-action-on-violence",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T08:59:48.950Z"
+    },
+    {
+      "id": "venue-1794301296825-vicq",
+      "name": "Vancouver FC",
+      "websiteUrl": "https://www.cplsoccer.com/vancouverfc/tickets/2027-season-memberships",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:01:36.825Z"
+    },
+    {
+      "id": "venue-1794301301905-ey3c",
+      "name": "The Stadium at Langley Events Centre",
+      "websiteUrl": "https://www.cplsoccer.com/vancouverfc/schedule",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:01:41.905Z"
+    },
+    {
+      "id": "venue-1794301396897-e1h7",
+      "name": "Surrey & White Rock Board of Trade",
+      "websiteUrl": "https://swrbot.com/events/practical-ai-for-small-businesses/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:03:16.897Z"
+    },
+    {
+      "id": "venue-1794301577697-yfzg",
+      "name": "Surrey Festival of Dance Society",
+      "websiteUrl": "https://surreyfestival.com/non-competitive-dance/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:06:17.697Z"
+    },
+    {
+      "id": "venue-1794301619762-4hfz",
+      "name": "Surrey Festival of Dance",
+      "websiteUrl": "https://surreyfestival.com/studio-scholarship-program/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:06:59.762Z"
+    },
+    {
+      "id": "venue-1794301710218-wwt0",
+      "name": "Streets of Surrey",
+      "websiteUrl": "https://www.surreyvaisakhiparade.com/event-day-information/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:08:30.218Z"
+    },
+    {
+      "id": "venue-1794301712102-uodz",
+      "name": "Gurdwara Sahib Dasmesh Darbar / Northwest Newton Streets",
+      "websiteUrl": "https://www.surreyvaisakhiparade.com/event-day-information/road-closure-information/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:08:32.102Z"
+    },
+    {
+      "id": "venue-1794301974087-wlii",
+      "name": "West Langley Hall",
+      "websiteUrl": "https://www.bchra.ca/event/bchra-monthly-meetings-2/2026-12-01/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:12:54.087Z"
+    },
+    {
+      "id": "venue-1794302064549-46t8",
+      "name": "BC Hot Rod Association",
+      "websiteUrl": "https://www.bchra.ca/event-directory/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:14:24.549Z"
+    },
+    {
+      "id": "venue-1794302274591-vgtb",
+      "name": "Skye Avenue",
+      "websiteUrl": "https://isaff.ca/film-festival/passes/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:17:54.591Z"
+    },
+    {
+      "id": "venue-1794302346037-icxc",
+      "name": "Surrey Fire Services",
+      "websiteUrl": "https://www.surrey.ca/city-government/city-departments/public-safety/fire-services",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:19:06.037Z"
+    },
+    {
+      "id": "venue-1794302383699-io00",
+      "name": "Surrey Animal Resource Centre",
+      "websiteUrl": "https://www.surrey.ca/services-payments/animals/surrey-animal-resource-centre",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:19:43.699Z"
+    },
+    {
+      "id": "venue-1794302521034-xkcq",
+      "name": "Tsawwassen Mills",
+      "websiteUrl": "https://diwalifest.ca/events/diwali-at-tsawwassen-mills-nov-1-2026/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:22:01.034Z"
+    },
+    {
+      "id": "venue-1794302522256-vqhz",
+      "name": "Marine Gateway",
+      "websiteUrl": "https://diwalifest.ca/events/diwali-at-marine-gateway-oct-24-2026/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:22:02.256Z"
+    },
+    {
+      "id": "venue-1794302822798-s6ob",
+      "name": "Alex Neighbourhood House",
+      "websiteUrl": "https://www.alexhouse.net/events-calendar-landing",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-10T09:27:02.798Z"
     }
   ]
 }

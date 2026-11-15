@@ -29,7 +29,7 @@
     rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/curator.css?v=1.1.4">
+  <link rel="stylesheet" href="css/curator.css?v=1.2.0">
   <style>
     @keyframes spin {
       0% {
@@ -56,61 +56,45 @@
           Engine</span>
       </a>
 
-      <div class="curator-stats-strip">
-        <div class="stat-pill clickable-pill" id="stat-quarantined-pill" style="cursor: pointer;"
-          title="Click to select and display quarantined events awaiting review">
-          <span>⚠️ Quarantined:</span>
-          <span class="stat-val" id="stat-pending-count">0</span>
+      <!-- Reference & Catalogs Strip (Pending approvals live prominently in the Inbox strip below) -->
+      <div class="curator-stats-strip" aria-label="Reference Catalogs and Learned Rules">
+        <span style="font-size: 0.68rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 2px;">Reference:</span>
+        <div class="stat-pill clickable-pill" id="stat-master-pill" style="cursor: pointer;"
+          title="Inspect and search Master Catalogs (live events, venues, festivals, ticketing, discovery sources)">
+          <span>✅ Master Catalogs:</span>
+          <span class="stat-val" id="stat-master-count">0</span>
         </div>
         <div class="stat-pill clickable-pill" id="stat-rules-pill" style="cursor: pointer;"
-          title="Click to inspect, edit, or delete Learned Rules">
+          title="Inspect, edit, or delete Learned Scraper Rules">
           <span>🧠 Learned Rules:</span>
           <span class="stat-val" id="stat-rules-count">0</span>
         </div>
         <div class="stat-pill clickable-pill" id="stat-instructions-pill" style="cursor: pointer;"
-          title="Click to inspect, edit, or delete Curator Feedback Guidelines and Scraper Rules">
-          <span>📋 Feedback Rules:</span>
+          title="Inspect Curator Feedback History and Venue Guidelines">
+          <span>📋 Feedback History:</span>
           <span class="stat-val" id="stat-instructions-count">0</span>
         </div>
-        <div class="stat-pill" title="Candidate venues discovered via festivals & discovery feeds"
-          id="stat-discovered-venues-pill" style="cursor: pointer;">
-          <span>🏛️ Discovered Venues:</span>
-          <span class="stat-val" id="stat-discovered-venues-count">0</span>
-        </div>
-        <div class="stat-pill clickable-pill"
-          title="Candidate event sources &amp; ticketing platforms discovered via AI operations"
-          id="stat-discovered-sources-pill" style="cursor: pointer;">
-          <span>📡 Discovered Sources:</span>
-          <span class="stat-val" id="stat-discovered-sources-count">0</span>
-        </div>
-        <div class="stat-pill clickable-pill" title="Community submissions and corrections quarantined for review"
-          id="stat-user-feedback-pill" style="cursor: pointer; border: 1px solid rgba(52, 211, 153, 0.35);">
-          <span>💬 User Submissions:</span>
-          <span class="stat-val" id="stat-user-feedback-count" style="color: #6ee7b7;">0</span>
-        </div>
-        <div class="stat-pill clickable-pill" id="stat-master-pill" style="cursor: pointer;"
-          title="Click to inspect and search Master Catalogs (events, venues, festivals, ticketing, discovery)">
-          <span>✅ Master Catalogs:</span>
-          <span class="stat-val" id="stat-master-count">0</span>
-        </div>
-        <div class="stat-pill clickable-pill" id="stat-audit-pill" style="cursor: pointer;"
-          title="Click to review Festivals &amp; Holidays awaiting approval">
-          <span>🎉 Festivals / Holidays:</span>
-          <span class="stat-val" id="stat-audit-count" style="color: #fed7aa; font-weight: 700;">0</span>
+        <!-- Hidden legacy header pills kept synced for JS compatibility; surfaced prominently in #curator-pending-actions-inbox -->
+        <div style="display: none;">
+          <div id="stat-quarantined-pill"><span id="stat-pending-count">0</span></div>
+          <div id="stat-discovered-venues-pill"><span id="stat-discovered-venues-count">0</span></div>
+          <div id="stat-discovered-sources-pill"><span id="stat-discovered-sources-count">0</span></div>
+          <div id="stat-user-feedback-pill"><span id="stat-user-feedback-count">0</span></div>
+          <div id="stat-audit-pill"><span id="stat-audit-count">0</span></div>
         </div>
       </div>
 
       <div class="curator-nav-actions">
-        <!-- Global Main Page Stop Run Button (Request 2) -->
+        <!-- Global Main Page Live Status / Stop Run Button -->
         <button type="button" class="btn-curator btn-main-stop-run is-idle" id="btn-curator-stop-run"
-          title="Not running — No active scan or worker process in background">
+          title="Pipeline is idle — no active scan running">
           <span id="curator-stop-indicator" class="main-stop-dot"></span>
-          <span id="curator-stop-label">Not Running</span>
+          <span id="curator-stop-label">Pipeline Idle</span>
         </button>
         <button type="button" class="btn-curator btn-curator-danger" id="btn-restart-system"
-          title="Restart all background services, clear browser &amp; service worker caches, unregister service workers, reset stuck automation, and reload fresh catalog">
+          title="Restart the local Python server, stop stuck worker processes, clear browser caches, and reload fresh data">
           <span id="btn-restart-icon">🔄</span>
-          <span id="btn-restart-text">Clear Caches</span>
+          <span id="btn-restart-text">Restart Server &amp; Refresh Data</span>
         </button>
         <button type="button" class="btn-curator btn-curator-ghost btn-accessibility" id="curator-accessibility-btn"
           aria-label="Toggle Accessibility Mode" aria-pressed="false"
@@ -121,18 +105,18 @@
         <a href="curator.html" class="btn-curator btn-curator-ghost"
           style="border: 1px solid rgba(16, 185, 129, 0.55); background: rgba(16, 185, 129, 0.14); color: #34d399; font-weight: 700;"
           title="Switch back to Classic Gemini API Curator Studio">
-          <span>☁️ Classic Gemini API UI ↗</span>
+          <span>☁️ Classic Gemini UI ↗</span>
         </a>
         <a href="curator-table.html" class="btn-curator btn-curator-ghost"
           style="border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8;"
           title="Open high-density compressed table view">
-          <span>📊 Compressed Table ↗</span>
+          <span>📊 Table View ↗</span>
         </a>
-        <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank" title="View live public catalog">
-          <span>🌲 Public Catalog ↗</span>
+        <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank" title="View live public Van50 catalog">
+          <span>🌲 Public Site ↗</span>
         </a>
         <button type="button" class="btn-curator btn-curator-ghost" id="btn-curator-logout" title="Lock Curator Studio">
-          <span>🔒 Lock Studio</span>
+          <span>🔒 Lock</span>
         </button>
       </div>
     </div>
@@ -141,28 +125,101 @@
   <!-- Main Workspace -->
   <main class="curator-container" style="flex: 1;">
 
-    <!-- Expandable & Collapsible AI Scans & Architecture Guide Panel (Antigravity Engine Edition) -->
-    <div class="ai-scans-dropdown-panel is-collapsed" id="ai-scans-dropdown-panel" style="margin: 0 0 18px 0;">
-      <div class="scans-guide-header">
-        <div class="scans-guide-title-group">
-          <div class="scans-guide-title">
-            Autonomous AI Scans &amp; Pipeline Architecture (Antigravity Engine)
-            <span class="curator-badge"
-              style="background: rgba(236, 72, 153, 0.18); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.45); font-size: 0.68rem; padding: 2px 8px; border-radius: 999px;">
-              Fresh 1-Event Antigravity Workers • Zero AI Laziness
-            </span>
+    <!-- Sticky Docked Floating Mini-Progress Bar (Visible when Pipeline Modal is minimized during an active scan) -->
+    <div class="curator-docked-pipeline-bar" id="curator-docked-pipeline-bar" role="status" aria-live="polite">
+      <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 240px;">
+        <span class="pipeline-loader-ring" style="width: 16px; height: 16px; flex-shrink: 0;"></span>
+        <div style="min-width: 0;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <strong id="docked-pipeline-stage-label" style="font-size: 0.82rem; color: #f8fafc;">Running Pipeline...</strong>
+            <span id="docked-pipeline-progress-text" style="font-size: 0.72rem; font-family: monospace; color: #7dd3fc; background: rgba(0,0,0,0.35); padding: 1px 7px; border-radius: 999px;">0 / 0</span>
+            <span id="docked-pipeline-eta-text" style="font-size: 0.72rem; color: #fde68a; font-weight: 600;"></span>
           </div>
-          <div class="scans-guide-subtitle">
-            Decoupled 5-stage multi-layer engine powered behind the scenes by disposable 1-event Antigravity CLI workers
-            (<code>agy.exe</code>).
+          <div id="docked-pipeline-current-item" style="font-size: 0.73rem; color: #cbd5e1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 560px;">
+            Live stream running in background — you can safely review cards while workers finish.
           </div>
         </div>
-        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;" onclick="event.stopPropagation()">
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <div class="docked-pipeline-progress-track">
+          <div class="docked-pipeline-progress-fill" id="docked-pipeline-progress-fill"></div>
+        </div>
+        <button type="button" class="btn-curator" onclick="reopenLivePipelineModal()"
+          style="padding: 6px 12px; font-size: 0.76rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #38bdf8); border: 1px solid #7dd3fc; color: #fff; border-radius: 6px; cursor: pointer;">
+          📟 Open Live Log &amp; Diff
+        </button>
+        <button type="button" class="btn-curator" onclick="stopActiveStagehand()"
+          style="padding: 6px 11px; font-size: 0.75rem; font-weight: 700; background: rgba(239, 68, 68, 0.22); border: 1px solid #f87171; color: #fecaca; border-radius: 6px; cursor: pointer;">
+          ⏹ Stop Run
+        </button>
+      </div>
+    </div>
+
+    <!-- Prominent Pending Curator Actions Inbox Strip (Festivals, Holidays, Venues, Sources, Submissions, Quarantine) -->
+    <section class="curator-pending-inbox all-clear" id="curator-pending-actions-inbox" aria-label="Pending Curator Approvals and Actions">
+      <div class="pending-inbox-title-group">
+        <span class="pending-inbox-badge" id="pending-inbox-status-badge">✅ All Approvals Clear</span>
+        <span id="pending-inbox-summary-text" style="font-size: 0.78rem; color: #cbd5e1; font-weight: 600;">
+          Click any queue to review pending festivals, holidays, venues, sources, or quarantined events:
+        </span>
+      </div>
+      <div class="pending-inbox-pills">
+        <button type="button" class="inbox-action-pill pill-holidays" id="inbox-pill-holidays"
+          onclick="selectPendingInboxFilter('holidays')"
+          title="Approve, merge, or dismiss newly detected Festivals and Holiday categories">
+          <span>🎉 Festivals &amp; Holidays</span>
+          <span class="inbox-pill-count" id="inbox-count-holidays">0</span>
+        </button>
+        <button type="button" class="inbox-action-pill pill-venues" id="inbox-pill-venues"
+          onclick="selectPendingInboxFilter('discovered_venues')"
+          title="Review and onboard newly discovered physical venues into venues.json">
+          <span>🏛️ Discovered Venues</span>
+          <span class="inbox-pill-count" id="inbox-count-venues">0</span>
+        </button>
+        <button type="button" class="inbox-action-pill pill-sources" id="inbox-pill-sources"
+          onclick="selectPendingInboxFilter('discovered_sources')"
+          title="Approve or dismiss candidate event calendars and ticketing feeds">
+          <span>📡 Discovered Sources</span>
+          <span class="inbox-pill-count" id="inbox-count-sources">0</span>
+        </button>
+        <button type="button" class="inbox-action-pill pill-submissions" id="inbox-pill-submissions"
+          onclick="selectPendingInboxFilter('user_feedback')"
+          title="Review community event submissions and corrections">
+          <span>💬 User Submissions</span>
+          <span class="inbox-pill-count" id="inbox-count-submissions">0</span>
+        </button>
+        <button type="button" class="inbox-action-pill pill-quarantine" id="inbox-pill-quarantined"
+          onclick="selectPendingInboxFilter('all')"
+          title="Review quarantined events needing price, link, or guidance decisions">
+          <span>⚠️ Quarantined Events</span>
+          <span class="inbox-pill-count" id="inbox-count-quarantined">0</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Always-Visible 6-Step Pipeline Rail (1A -> 1B -> 2 -> 3 -> 4 -> 5) -->
+    <section class="agy-pipeline-rail-panel" id="ai-scans-dropdown-panel">
+      <div class="agy-rail-top-header">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <h2 style="margin: 0; font-size: 1rem; font-weight: 800; color: #f8fafc;">
+              6-Step Event Verification Pipeline
+            </h2>
+            <span class="curator-badge"
+              style="background: rgba(236, 72, 153, 0.16); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); font-size: 0.68rem; padding: 2px 8px; border-radius: 999px;">
+              1-Event Antigravity Workers
+            </span>
+          </div>
+          <div style="font-size: 0.76rem; color: #94a3b8; margin-top: 2px;">
+            Click any step below to inspect or continue the exact events waiting at that stage — run just that step, or continue straight through to Publish.
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
           <div
-            style="display: flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(236, 72, 153, 0.35); padding: 3px 9px; border-radius: 6px;">
+            style="display: flex; align-items: center; gap: 6px; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(236, 72, 153, 0.35); padding: 4px 10px; border-radius: 7px;">
             <label for="agy-model-select"
-              style="font-size: 0.72rem; font-weight: 700; color: #f472b6; white-space: nowrap;">🧠 Worker
-              Model:</label>
+              style="font-size: 0.72rem; font-weight: 700; color: #f472b6; white-space: nowrap;">🤖 Worker Model:</label>
             <select id="agy-model-select" class="curator-select"
               style="padding: 2px 6px; font-size: 0.74rem; background: #0f172a; border-color: rgba(236, 72, 153, 0.4); color: #f8fafc;"
               onchange="const modalSel = document.getElementById('pipeline-modal-agy-model-select'); if (modalSel) modalSel.value = this.value;">
@@ -174,397 +231,284 @@
               <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium)</option>
             </select>
           </div>
-          <button type="button" class="btn-pipeline-test-header" id="btn-header-continue-1a"
-            onclick="continueHarvestFromCheckpoint(event)"
-            style="background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border-color: #c084fc;"
-            title="Continue Stage 1A scanning for new events starting from where the last scan stopped (Feed #50/126: The Orpheum Theatre)">
-            <span id="btn-header-continue-1a-label">▶️ Continue 1A Scan (#50/126)</span>
-          </button>
-          <button type="button" class="btn-pipeline-test-header" id="btn-header-process-1b"
-            onclick="autoRunHarvestedStages1BTo5(event)"
-            style="background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border-color: #34d399;"
-            title="Start processing newly harvested events starting at Stage 1B through Stage 5">
-            <span id="btn-header-process-1b-label">✨ Process New Events (1B ➔ 5)</span>
-          </button>
-          <button type="button" class="btn-pipeline-test-header" id="btn-header-run-quarantine"
-            onclick="autoRunQuarantinedStages1BTo4(event)"
-            style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border-color: #f59e0b;"
-            title="Run Antigravity through the Quarantine Queue (Stages 1B ➔ 5)">
-            <span id="btn-header-run-quarantine-label">🛡️ Run Quarantine Queue</span>
-          </button>
-          <button type="button" class="btn-pipeline-test-header" id="btn-header-run-newest-passed"
-            onclick="autoRunNewestPassedBatchStages1BTo5(event)"
-            style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border-color: #34d399;"
-            title="Run Antigravity through the newest batch of events that passed through the pipeline (Stages 1B ➔ 5)">
-            <span id="btn-header-run-newest-passed-label">✅ Run Newest Passed Batch</span>
-          </button>
           <button type="button" class="btn-pipeline-test-header" id="btn-pipeline-test-header"
             onclick="openAutoPipelineOptionsModal(event)"
-            title="Configure target scope & batch size to run entire pipeline">
-            <span>🚀 Run Entire Pipeline (Batch)</span>
-          </button>
-          <button type="button" class="btn-close-scans-guide" id="btn-close-scans-guide"
-            onclick="toggleScansGuidePanel(event)" title="Toggle between collapsed preview and full scan details">
-            <span id="scans-guide-toggle-label">▼ Expand Details</span>
+            title="Choose a target queue and batch size to run Steps 1A–5 end-to-end">
+            <span>🚀 Run Full Pipeline…</span>
           </button>
         </div>
       </div>
 
-      <!-- End-to-End Pipeline Batch Runner Banner (Above the 5 stages) -->
-      <div class="pipeline-test-banner" id="pipeline-test-banner">
-        <div class="pipeline-test-info">
-          <div class="pipeline-test-title">
-            <span style="font-size: 1.15rem;">🚀</span>
-            <span>End-to-End Autonomous Pipeline Batch Runner</span>
-            <span class="pipeline-test-pill"
-              style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);">All
-              4 Stages Automated</span>
+      <!-- 6-Step Horizontal Pipeline Cards -->
+      <div class="agy-rail-grid">
+        <!-- Step 1A -->
+        <div class="agy-rail-step-card step-1a" data-scan-key="harvest" onclick="continueHarvestFromCheckpoint(event)">
+          <div>
+            <div class="agy-step-top-row">
+              <span class="agy-step-code" style="color: #d8b4fe; background: rgba(168, 85, 247, 0.2);">STEP 1A</span>
+              <span class="agy-step-waiting-badge" id="rail-wait-harvest">Feeds Ready</span>
+            </div>
+            <div class="agy-step-title" style="margin-top: 6px;">1A. Discover Events</div>
+            <div class="agy-step-desc" style="margin-top: 3px;">Scan venue &amp; city calendars for upcoming dates and showtimes.</div>
           </div>
-          <div class="pipeline-test-desc">
-            Automatically runs a batch through the entire autonomous pipeline sequentially using Antigravity Workers and
-            tracks what each AI did:
-            <span style="color: #c084fc; font-weight: 700;">1. Harvester</span> (find events &amp; 1B upgrade) ➔
-            <span style="color: #38bdf8; font-weight: 700;">2. Stagehand</span> (audit live cart &amp; &le;$50 fees) ➔
-            <span style="color: #fbbf24; font-weight: 700;">3. Enricher</span> (clean titles &amp; lineups) ➔
-            <span style="color: #22d3ee; font-weight: 700;">4. Venue Detailer</span> (ground physical facilities) ➔
-            <span style="color: #34d399; font-weight: 700;">5. Compiler</span> (arbitrate &amp; publish live).
+          <div>
+            <div class="agy-step-meta" style="margin-bottom: 6px;">
+              <span>Last run:</span>
+              <span id="scan-sched-last">Ready</span>
+            </div>
+            <div style="display: flex; gap: 5px;">
+              <button type="button" class="agy-step-cta-btn" id="rail-btn-continue-harvest"
+                onclick="event.stopPropagation(); continueHarvestFromCheckpoint(event)"
+                style="flex: 1; background: rgba(168, 85, 247, 0.2); border-color: rgba(192, 132, 252, 0.5); color: #f3e8ff;">
+                <span id="rail-btn-label-harvest">▶ Resume 1A</span>
+              </button>
+              <button type="button" class="agy-step-cta-btn" onclick="event.stopPropagation(); openScanModal('harvest', event)"
+                style="width: auto; padding: 6px 8px;" title="Open Step 1A Venue &amp; City Feed Controls">⚙️</button>
+            </div>
           </div>
         </div>
-        <div class="pipeline-test-actions" style="display: flex; gap: 8px; flex-wrap: wrap;"
-          onclick="event.stopPropagation()">
-          <button type="button" class="btn-pipeline-test-start" id="btn-banner-continue-1a"
-            onclick="continueHarvestFromCheckpoint(event)"
-            style="background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%); box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);"
-            title="Continue Stage 1A scanning from where the last run stopped">
-            <span id="btn-banner-continue-1a-label">▶️ Continue 1A Scan (#50/126)</span>
-          </button>
-          <button type="button" class="btn-pipeline-test-start" id="btn-banner-process-1b"
+
+        <!-- Step 1B -->
+        <div class="agy-rail-step-card step-1b" data-scan-key="hunter" onclick="openStageQueueLauncherModal('hunter', event)">
+          <div>
+            <div class="agy-step-top-row">
+              <span class="agy-step-code" style="color: #5eead4; background: rgba(20, 184, 166, 0.2);">STEP 1B</span>
+              <span class="agy-step-waiting-badge" id="rail-wait-hunter">0 waiting</span>
+            </div>
+            <div class="agy-step-title" style="margin-top: 6px;">1B. Find Ticket Links</div>
+            <div class="agy-step-desc" style="margin-top: 3px;">Follow event pages &amp; buttons to direct ticket checkout URLs.</div>
+          </div>
+          <div>
+            <div class="agy-step-meta" style="margin-bottom: 6px;">
+              <span>From Step 1A</span>
+              <span id="rail-sub-hunter">Queue ready</span>
+            </div>
+            <div style="display: flex; gap: 5px;">
+              <button type="button" class="agy-step-cta-btn" id="rail-btn-continue-hunter"
+                onclick="event.stopPropagation(); openStageQueueLauncherModal('hunter', event)"
+                style="flex: 1; background: rgba(20, 184, 166, 0.2); border-color: rgba(45, 212, 191, 0.5); color: #ccfbf1;">
+                <span id="rail-btn-label-hunter">▶ Select &amp; Run 1B</span>
+              </button>
+              <button type="button" class="agy-step-cta-btn" onclick="event.stopPropagation(); openScanModal('hunter', event)"
+                style="width: auto; padding: 6px 8px;" title="Open Step 1B Live Console">⚙️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="agy-rail-step-card step-2" data-scan-key="qc" onclick="openStageQueueLauncherModal('qc', event)">
+          <div>
+            <div class="agy-step-top-row">
+              <span class="agy-step-code" style="color: #7dd3fc; background: rgba(56, 189, 248, 0.2);">STEP 2</span>
+              <span class="agy-step-waiting-badge" id="rail-wait-qc">0 waiting</span>
+            </div>
+            <div class="agy-step-title" style="margin-top: 6px;">2. Verify Prices &amp; Fees</div>
+            <div class="agy-step-desc" style="margin-top: 3px;">Open live cart, check base + fees + tax &le; $50 CAD &amp; save proof.</div>
+          </div>
+          <div>
+            <div class="agy-step-meta" style="margin-bottom: 6px;">
+              <span>Last run:</span>
+              <span id="scan-qc-last">Ready</span>
+            </div>
+            <div style="display: flex; gap: 5px;">
+              <button type="button" class="agy-step-cta-btn" id="rail-btn-continue-qc"
+                onclick="event.stopPropagation(); openStageQueueLauncherModal('qc', event)"
+                style="flex: 1; background: rgba(2, 132, 199, 0.24); border-color: rgba(56, 189, 248, 0.5); color: #e0f2fe;">
+                <span id="rail-btn-label-qc">▶ Select &amp; Run 2</span>
+              </button>
+              <button type="button" class="agy-step-cta-btn" onclick="event.stopPropagation(); openScanModal('qc', event)"
+                style="width: auto; padding: 6px 8px;" title="Open Step 2 Live Console">⚙️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="agy-rail-step-card step-3" data-scan-key="venue" onclick="openStageQueueLauncherModal('venue', event)">
+          <div>
+            <div class="agy-step-top-row">
+              <span class="agy-step-code" style="color: #67e8f9; background: rgba(6, 182, 212, 0.2);">STEP 3</span>
+              <span class="agy-step-waiting-badge" id="rail-wait-venue">0 waiting</span>
+            </div>
+            <div class="agy-step-title" style="margin-top: 6px;">3. Verify Venue Info</div>
+            <div class="agy-step-desc" style="margin-top: 3px;">Confirm street address, GPS pin, hours, accessibility &amp; drink prices.</div>
+          </div>
+          <div>
+            <div class="agy-step-meta" style="margin-bottom: 6px;">
+              <span>Venues:</span>
+              <span id="scan-venue-count">Master DB</span>
+            </div>
+            <div style="display: flex; gap: 5px;">
+              <button type="button" class="agy-step-cta-btn" id="rail-btn-continue-venue"
+                onclick="event.stopPropagation(); openStageQueueLauncherModal('venue', event)"
+                style="flex: 1; background: rgba(8, 145, 178, 0.24); border-color: rgba(34, 211, 238, 0.5); color: #cffafe;">
+                <span id="rail-btn-label-venue">▶ Select &amp; Run 3</span>
+              </button>
+              <button type="button" class="agy-step-cta-btn" onclick="event.stopPropagation(); openScanModal('venue', event)"
+                style="width: auto; padding: 6px 8px;" title="Open Step 3 Venue Controls">⚙️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="agy-rail-step-card step-4" data-scan-key="enrich" onclick="openStageQueueLauncherModal('enrich', event)">
+          <div>
+            <div class="agy-step-top-row">
+              <span class="agy-step-code" style="color: #fcd34d; background: rgba(245, 158, 11, 0.2);">STEP 4</span>
+              <span class="agy-step-waiting-badge" id="rail-wait-enrich">0 waiting</span>
+            </div>
+            <div class="agy-step-title" style="margin-top: 6px;">4. Clean Titles &amp; Details</div>
+            <div class="agy-step-desc" style="margin-top: 3px;">Polish headline, artist lineup, category, 2-sentence summary &amp; 19+ ID.</div>
+          </div>
+          <div>
+            <div class="agy-step-meta" style="margin-bottom: 6px;">
+              <span>Last run:</span>
+              <span id="scan-enrich-last">Ready</span>
+            </div>
+            <div style="display: flex; gap: 5px;">
+              <button type="button" class="agy-step-cta-btn" id="rail-btn-continue-enrich"
+                onclick="event.stopPropagation(); openStageQueueLauncherModal('enrich', event)"
+                style="flex: 1; background: rgba(217, 119, 6, 0.24); border-color: rgba(251, 191, 36, 0.5); color: #fef3c7;">
+                <span id="rail-btn-label-enrich">▶ Select &amp; Run 4</span>
+              </button>
+              <button type="button" class="agy-step-cta-btn" onclick="event.stopPropagation(); openScanModal('enrich', event)"
+                style="width: auto; padding: 6px 8px;" title="Open Step 4 Live Console">⚙️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="agy-rail-step-card step-5" data-scan-key="compile" onclick="openStageQueueLauncherModal('compile', event)">
+          <div>
+            <div class="agy-step-top-row">
+              <span class="agy-step-code" style="color: #6ee7b7; background: rgba(16, 185, 129, 0.2);">STEP 5</span>
+              <span class="agy-step-waiting-badge" id="rail-wait-compile">0 waiting</span>
+            </div>
+            <div class="agy-step-title" style="margin-top: 6px;">5. Merge &amp; Publish</div>
+            <div class="agy-step-desc" style="margin-top: 3px;">Combine multi-day showings, verify &le; $50 cap &amp; publish to Van50.</div>
+          </div>
+          <div>
+            <div class="agy-step-meta" style="margin-bottom: 6px;">
+              <span>Last publish:</span>
+              <span id="scan-compile-last">Ready</span>
+            </div>
+            <div style="display: flex; gap: 5px;">
+              <button type="button" class="agy-step-cta-btn" id="rail-btn-continue-compile"
+                onclick="event.stopPropagation(); openStageQueueLauncherModal('compile', event)"
+                style="flex: 1; background: rgba(5, 150, 105, 0.26); border-color: rgba(52, 211, 153, 0.55); color: #d1fae5;">
+                <span id="rail-btn-label-compile">▶ Publish Ready</span>
+              </button>
+              <button type="button" class="agy-step-cta-btn" onclick="event.stopPropagation(); openScanModal('compile', event)"
+                style="width: auto; padding: 6px 8px;" title="Open Step 5 Compiler &amp; Consolidator">⚙️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Batch Workflows Bar (Cleanly Grouped, Non-Duplicated) -->
+      <div class="agy-secondary-workflows-bar">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em;">Quick Batch Shortcuts:</span>
+          <button type="button" class="btn-limit-chip" id="btn-header-process-1b"
             onclick="autoRunHarvestedStages1BTo5(event)"
-            style="background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);"
-            title="Start processing newly harvested events starting at Stage 1B">
-            <span id="btn-banner-process-1b-label">✨ Process New Events (Start at 1B)</span>
+            style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(52, 211, 153, 0.45); color: #6ee7b7;">
+            <span id="btn-header-process-1b-label">✨ Process Unfinished Harvested Events (1B ➔ 5)</span>
           </button>
-          <button type="button" class="btn-pipeline-test-start" id="btn-banner-run-quarantine"
+          <button type="button" class="btn-limit-chip" id="btn-header-run-quarantine"
             onclick="autoRunQuarantinedStages1BTo4(event)"
-            style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4); border: 1px solid #f59e0b;"
-            title="Run Antigravity through the Quarantine Queue (Stages 1B ➔ 5)">
-            <span id="btn-banner-run-quarantine-label">🛡️ Run Quarantine Queue</span>
+            style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(217, 119, 6, 0.16); border: 1px solid rgba(245, 158, 11, 0.5); color: #fde68a;">
+            <span id="btn-header-run-quarantine-label">🛡️ Re-Check Quarantined Queue</span>
           </button>
-          <button type="button" class="btn-pipeline-test-start" id="btn-banner-run-newest-passed"
+          <button type="button" class="btn-limit-chip" onclick="autoRunOutOfDateStages1BTo4()"
+            style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(14, 165, 233, 0.14); border: 1px solid rgba(56, 189, 248, 0.4); color: #7dd3fc;">
+            <span>⏱️ Refresh Out-of-Date (&gt;24h)</span>
+          </button>
+          <button type="button" class="btn-limit-chip" id="btn-header-run-newest-passed"
             onclick="autoRunNewestPassedBatchStages1BTo5(event)"
-            style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4); border: 1px solid #34d399;"
-            title="Run Antigravity through the newest batch of events that passed through the pipeline (Stages 1B ➔ 5)">
-            <span id="btn-banner-run-newest-passed-label">✅ Run Newest Passed Batch</span>
-          </button>
-          <button type="button" class="btn-pipeline-test-start" id="btn-pipeline-test-start"
-            onclick="openAutoPipelineOptionsModal(event)"
-            style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #ec4899 100%); box-shadow: 0 4px 14px rgba(168, 85, 247, 0.45);"
-            title="Configure and auto-run entire pipeline">
-            <span>🚀 Auto-Run Entire Pipeline</span>
-          </button>
-          <button type="button" class="btn-pipeline-test-start" id="btn-pipeline-step-start"
-            onclick="startFiveEventPipelineTest(event)"
-            style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1;"
-            title="Step through one stage at a time">
-            <span>▶ Step-by-Step QA</span>
+            style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18); color: #cbd5e1;">
+            <span id="btn-header-run-newest-passed-label">🔄 Re-Audit Last Published Batch</span>
           </button>
         </div>
+
+        <details style="font-size: 0.72rem; color: #94a3b8;">
+          <summary style="cursor: pointer; font-weight: 700; color: #cbd5e1; user-select: none;">ℹ️ Data Layers &amp; Dimension Guide</summary>
+          <div style="margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(255,255,255,0.08); line-height: 1.5; max-width: 920px;">
+            <div><strong>1A Discover Events</strong> (<code>layer_schedules.json</code>) → <strong>1B Find Ticket Links</strong> (<code>candidate_tier1_url</code>) → <strong>2 Verify Prices &amp; Fees</strong> (<code>layer_box_office.json</code> + <code>_cart.png</code>) → <strong>3 Verify Venue Info</strong> (<code>venues.json</code>) → <strong>4 Clean Titles &amp; Details</strong> (<code>layer_editorial.json</code>) → <strong>5 Merge &amp; Publish</strong> (<code>events.json</code> + <code>js/data.js</code>).</div>
+            <div style="margin-top: 4px; color: #64748b;">Whenever you add Curator Guidance notes or screenshots to a quarantined event, workers read those notes first on the next check.</div>
+          </div>
+        </details>
       </div>
 
-      <div class="scans-guide-grid">
-        <!-- Scan 1: Schedule Harvester -->
-        <div class="scan-guide-card scan-card-sched" data-scan-key="harvest" onclick="openScanModal('harvest', event)">
-          <div class="scan-card-header">
-            <span class="scan-card-icon" style="font-size: 0.85rem; font-weight: 800; color: #c084fc;">01</span>
-            <div style="flex: 1;">
-              <span class="scan-card-name">1. Schedule Harvester</span>
-              <div><span class="tech-pill tech-pill-stagehand">[Stagehand Harvester]</span></div>
-            </div>
-            <span class="scan-card-badge badge-sched">Daily / Frequent</span>
-          </div>
-          <div class="scan-card-output">Layer: <code>layer_schedules.json</code></div>
-          <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (10 Dims):</strong> D1–D5 (Link Hierarchy), D8–D10 (Metro Van / CAD / PST), D35
-            (Start ISO Date), D39–D40 (Schedule / Frequency), D43–D45 (Physical Venue &amp; GPS), D53–D54 (Active
-            Showings).
-          </div>
-          <div class="scan-card-body">
-            <strong>What It Scans &amp; Validates:</strong> Deterministic crawler scans physical venue calendars, ticket
-            feeds, and client-side JS widgets (Tockify, Time.ly, DICE). Ingests event titles, physical venue names,
-            recurrence rules, and upcoming individual dated showings.
-          </div>
-          <div class="scan-card-stats-block">
-            <div class="scan-stat-row">
-              <span>Scanned Events:</span>
-              <span class="scan-stat-val" id="scan-sched-count">156 / 156 (100%)</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Last Scan:</span>
-              <span class="scan-stat-val" id="scan-sched-last">Today at 03:00 AM PST</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Next Automated Run:</span>
-              <span class="scan-stat-val" id="scan-sched-next" style="color: #c084fc;">Daily at 3:00 AM PST
-                (Antigravity)</span>
-            </div>
-          </div>
-          <div class="scan-card-actions">
-            <button type="button" id="btn-scan-trigger-sched" class="btn-scan-trigger btn-scan-trigger-sched"
-              onclick="openScanModal('harvest', event)">
-              <span>Open Status &amp; Run Harvester</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Scan 2: Box Office QC -->
-        <div class="scan-guide-card scan-card-qc" data-scan-key="qc" onclick="openScanModal('qc', event)">
-          <div class="scan-card-header">
-            <span class="scan-card-icon" style="font-size: 0.85rem; font-weight: 800; color: #38bdf8;">02</span>
-            <div style="flex: 1;">
-              <span class="scan-card-name">2. Stagehand</span>
-              <div><span class="tech-pill tech-pill-stagehand">[Stagehand]</span></div>
-            </div>
-            <span class="scan-card-badge badge-qc">24h Volatile SLA</span>
-          </div>
-          <div class="scan-card-output">Layer: <code>layer_box_office.json</code></div>
-          <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (14 Volatile Dims):</strong> D1 (Live Checkout Cart), D6 (Best Available Link),
-            D7 (Operational Status / Sold Out), D11–D15 (Tier 1 Base, Fees, 5% GST, All-In), D16–D25 (Tiers 2 &amp; 3
-            Breakdown), D26 (Tier Count), D28 (&le;$50 CAD Cap), D31 (Ticket Provider), D35 (Inventory Date).
-          </div>
-          <div class="scan-card-body">
-            <strong>What It Scans &amp; Validates:</strong> Autonomous Stagehand Chromium + Antigravity Worker
-            penetrates live checkout cart modals; clicks into ticket options, extracts hidden platform fees &amp;
-            facility surcharges, calculates 5% GST, and enforces the strict &le; $50.00 CAD all-in ceiling. Captures
-            visual screenshot keyframe proof.
-          </div>
-          <div class="scan-card-stats-block">
-            <div class="scan-stat-row">
-              <span>Scanned Events:</span>
-              <span class="scan-stat-val" id="scan-qc-count">124 / 156 (79%)</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Last Scan:</span>
-              <span class="scan-stat-val" id="scan-qc-last">1 hour ago</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Next Automated Run:</span>
-              <span class="scan-stat-val" id="scan-qc-next" style="color: #38bdf8;">Hourly / Every 24h Volatile
-                SLA</span>
-            </div>
-          </div>
-          <div class="scan-card-actions">
-            <button type="button" id="btn-scan-trigger-qc" class="btn-scan-trigger btn-scan-trigger-qc"
-              onclick="openScanModal('qc', event)">
-              <span>Open Status &amp; Run Stagehand</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Scan 3: AI Semantic Enricher -->
-        <div class="scan-guide-card scan-card-enrich" data-scan-key="enrich" onclick="openScanModal('enrich', event)">
-          <div class="scan-card-header">
-            <span class="scan-card-icon" style="font-size: 0.85rem; font-weight: 800; color: #fbbf24;">03</span>
-            <div style="flex: 1;">
-              <span class="scan-card-name">3. AI Enricher</span>
-              <div><span class="tech-pill tech-pill-llm">[Cognitive NLP Worker]</span></div>
-            </div>
-            <span class="scan-card-badge badge-enrich">On-Demand / Batch</span>
-          </div>
-          <div class="scan-card-output">Layer: <code>layer_editorial.json</code></div>
-          <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (14 Dynamic Dims):</strong> D32 (Booking Protocol), D33 (Event Title &amp;
-            Artist), D34 (Performer Lineup), D36 (Doors Time), D37 (Showtime Curtain), D38 (Curfew / Conclusion), D41
-            (Category Taxonomy), D42 (19+ Age Restriction &amp; ID), D51 (Editorial Summary), D52 (Festival
-            Affiliation).
-          </div>
-          <div class="scan-card-body">
-            <strong>What It Scans &amp; Validates:</strong> Disposable 1-event Antigravity Cognitive NLP Worker
-            sanitizes messy scraped headlines, extracts performer lineups, generates concise 2-sentence visitor
-            synopses, assigns category tags, and validates 19+ age restriction ID rules.
-          </div>
-          <div class="scan-card-stats-block">
-            <div class="scan-stat-row">
-              <span>Scanned Events:</span>
-              <span class="scan-stat-val" id="scan-enrich-count">156 / 156 (100%)</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Last Scan:</span>
-              <span class="scan-stat-val" id="scan-enrich-last">2 hours ago</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Next Automated Run:</span>
-              <span class="scan-stat-val" id="scan-enrich-next" style="color: #fbbf24;">On Ingestion / Webhook
-                Trigger</span>
-            </div>
-          </div>
-          <div class="scan-card-actions">
-            <button type="button" id="btn-scan-trigger-enrich" class="btn-scan-trigger btn-scan-trigger-enrich"
-              onclick="openScanModal('enrich', event)">
-              <span>Open Status &amp; Run AI Enricher</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Scan 4: Venue Detailer -->
-        <div class="scan-guide-card scan-card-venue" data-scan-key="venue" onclick="openScanModal('venue', event)">
-          <div class="scan-card-header">
-            <span class="scan-card-icon" style="font-size: 0.85rem; font-weight: 800; color: #22d3ee;">04</span>
-            <div style="flex: 1;">
-              <span class="scan-card-name">4. Venue Detailer</span>
-              <div><span class="tech-pill tech-pill-venue"
-                  style="background: rgba(6, 182, 212, 0.15); color: #22d3ee; border-color: rgba(6, 182, 212, 0.35);">[Venue
-                  Detailer AI]</span></div>
-            </div>
-            <span class="scan-card-badge badge-venue"
-              style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.4);">Physical
-              Facility Grounding</span>
-          </div>
-          <div class="scan-card-output">Layer: <code>venues.json</code> (Facility DB)</div>
-          <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (8 Facility Dims):</strong> D8 (Metro Vancouver Boundary), D43 (Physical Venue
-            Name), D44 (Civic Street Address), D45 (GPS Coordinates), D46 (Venue Access Model), D47 (Environment Type),
-            D49 (Spend Benchmarks), D50 (Transit Waypoints).
-          </div>
-          <div class="scan-card-body">
-            <strong>What It Scans &amp; Grounds:</strong> Grounds physical venue invariants against official physical
-            address registries. Resolves civic street addresses, verifies GPS coordinates, access models, operating
-            hours, neighborhood coffee/beer/meal spend benchmarks, and TransLink transit waypoints into
-            <code>venues.json</code>.
-          </div>
-          <div class="scan-card-stats-block">
-            <div class="scan-stat-row">
-              <span>Registered Venues:</span>
-              <span class="scan-stat-val" id="scan-venue-count">133 Master Facilities</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Last Audit:</span>
-              <span class="scan-stat-val" id="scan-venue-last">Today</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Next Automated Run:</span>
-              <span class="scan-stat-val" id="scan-venue-next" style="color: #22d3ee;">On Venue Discovery / Weekly
-                Grounding</span>
-            </div>
-          </div>
-          <div class="scan-card-actions">
-            <button type="button" id="btn-scan-trigger-venue" class="btn-scan-trigger btn-scan-trigger-venue"
-              style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); border-color: #06b6d4;"
-              onclick="openScanModal('venue', event)">
-              <span>Open Status &amp; Run Venue Detailer</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Scan 5: Compiler, Consolidator & Live Publisher -->
-        <div class="scan-guide-card scan-card-compile" data-scan-key="compile"
-          onclick="openScanModal('compile', event)">
-          <div class="scan-card-header">
-            <span class="scan-card-icon" style="font-size: 0.85rem; font-weight: 800; color: #34d399;">05</span>
-            <div style="flex: 1;">
-              <span class="scan-card-name">5. Compiler &amp; Consolidator</span>
-              <div><span class="tech-pill tech-pill-agent"
-                  style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.35);">[Compiler
-                  &amp; Consolidator AI]</span></div>
-            </div>
-            <span class="scan-card-badge badge-compile">Deduplicate &amp; Publish</span>
-          </div>
-          <div class="scan-card-output">Layer: <code>events.json</code> + <code>js/data.js</code></div>
-          <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (12 Governance + Consolidation Dims):</strong> D28 (Budget Math: base + fee + tax
-            = all_in &le; $50), D303–D309/D804 (Multi-Day Showing Rollup &amp; Entity Fingerprinting), D46–D50 (Access,
-            Venue Environment, Hours, Drink Benchmarks, Transit), D55–D58 (Provenance, Curator Locks, Publish Stamp).
-          </div>
-          <div class="scan-card-body">
-            <strong>What It Scans, Deduplicates &amp; Arbitrates:</strong> Reconciles specialist layers across the
-            0XX–8XX Arbitration Matrix, validates financial invariants (&le; $50 CAD), runs
-            <code>consolidate_events.js</code> to detect and merge any multi-day or cross-source duplicate event cards
-            into a single master card with unified <code>showings[]</code>, and publishes live to
-            <code>js/data.js</code>.
-          </div>
-          <div class="scan-card-stats-block">
-            <div class="scan-stat-row">
-              <span>Scanned Events:</span>
-              <span class="scan-stat-val" id="scan-compile-count">Checking compilation status...</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Last Scan:</span>
-              <span class="scan-stat-val" id="scan-compile-last">Just now</span>
-            </div>
-            <div class="scan-stat-row">
-              <span>Next Automated Run:</span>
-              <span class="scan-stat-val" id="scan-compile-next" style="color: #34d399;">On Git Commit &amp;
-                Deployment</span>
-            </div>
-          </div>
-          <div class="scan-card-actions" style="display: flex; gap: 6px; flex-wrap: wrap;">
-            <button type="button" id="btn-scan-trigger-compile" class="btn-scan-trigger btn-scan-trigger-compile"
-              style="flex: 1;" onclick="openScanModal('compile', event)">
-              <span>Compile, Deduplicate &amp; Publish</span>
-            </button>
-            <button type="button" id="btn-scan-trigger-consolidate" class="btn-scan-trigger"
-              style="background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(52, 211, 153, 0.45); color: #6ee7b7; padding: 6px 10px; font-size: 0.72rem;"
-              onclick="openScanModal('consolidate', event)"
-              title="Run standalone Consolidator &amp; Multi-Day Merger (ripper/consolidate_events.js)">
-              <span>🔀 Merge Duplicates Only</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="scans-guide-footer-note">
-        <span><strong>Curator Feedback &amp; Re-Check Loop:</strong> Whenever you disapprove an event with notes or
-          attach proof screenshots, the AI Feedback handler prioritizes those venues for targeted re-inspection,
-          updating venue rules in <code>curator_learned_rules.json</code>.</span>
-      </div>
-
-      <!-- Hidden legacy button mirrors for backward compatibility -->
+      <!-- Hidden legacy DOM mirrors so zero existing JS selectors break -->
       <div style="display: none;">
+        <button type="button" id="btn-header-continue-1a"><span id="btn-header-continue-1a-label"></span></button>
+        <button type="button" id="btn-close-scans-guide"><span id="scans-guide-toggle-label"></span></button>
+        <button type="button" id="btn-banner-continue-1a"><span id="btn-banner-continue-1a-label"></span></button>
+        <button type="button" id="btn-banner-process-1b"><span id="btn-banner-process-1b-label"></span></button>
+        <button type="button" id="btn-banner-run-quarantine"><span id="btn-banner-run-quarantine-label"></span></button>
+        <button type="button" id="btn-banner-run-newest-passed"><span id="btn-banner-run-newest-passed-label"></span></button>
+        <button type="button" id="btn-pipeline-test-start"></button>
+        <button type="button" id="btn-pipeline-step-start"></button>
+        <span id="scan-sched-count"></span><span id="scan-sched-next"></span>
+        <span id="scan-qc-count"></span><span id="scan-qc-next"></span>
+        <span id="scan-enrich-count"></span><span id="scan-enrich-next"></span>
+        <span id="scan-venue-last"></span><span id="scan-venue-next"></span>
+        <span id="scan-compile-count"></span><span id="scan-compile-next"></span>
+        <button type="button" id="btn-scan-trigger-sched"></button>
+        <button type="button" id="btn-scan-trigger-qc"></button>
+        <button type="button" id="btn-scan-trigger-enrich"></button>
+        <button type="button" id="btn-scan-trigger-venue"></button>
+        <button type="button" id="btn-scan-trigger-compile"></button>
+        <button type="button" id="btn-scan-trigger-consolidate"></button>
         <button type="button" id="btn-pipeline-harvest"></button>
         <button type="button" id="btn-pipeline-qc"></button>
         <button type="button" id="btn-pipeline-enrich"><span id="badge-pipeline-unenriched-count">0</span></button>
         <button type="button" id="btn-pipeline-compile"><span id="badge-pipeline-uncompiled-count">0</span></button>
         <button type="button" id="btn-pipeline-master"></button>
       </div>
-    </div>
+    </section>
 
     <!-- Controls Section -->
     <section class="curator-controls-section">
       <div class="curator-filters-row">
-        <!-- Filter Pills -->
-        <div class="curator-pills-group" id="filter-pills-group">
-          <button type="button" class="curator-filter-pill active" data-filter="all">All Quarantined (<span
+        <!-- Grouped Filter Pills: Primary Queues vs Quarantine Sub-Filters -->
+        <div class="curator-pills-group" id="filter-pills-group" style="align-items: center;">
+          <button type="button" class="curator-filter-pill active" data-filter="all">⚠️ All Quarantined (<span
               id="pill-count-all">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="unhandled"
+            title="Quarantined events that have not yet received curator instructions">⚡ Needs Curator Review (<span
+              id="pill-count-unhandled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="feedback"
             style="border: 1px solid rgba(192, 132, 252, 0.5); color: #d8b4fe;"
-            title="Items with curator feedback notes or uploaded screenshots">📝 Has Feedback (<span
+            title="Quarantined events where you wrote notes or attached screenshots">📝 Has Curator Notes (<span
               id="pill-count-feedback">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="discovered_venues">🏛️ Discovered Venues (<span
-              id="pill-count-discovered-venues">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="handled"
+            title="Events with saved curator guidance ready for re-check">📋 Guidance Saved (<span
+              id="pill-count-handled">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="drift">⚠️ Page Changed (<span
+              id="pill-count-drift">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="unverified">Unverified Price (<span
+              id="pill-count-unverified">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="brokenlink">Broken / 404 Link (<span
+              id="pill-count-brokenlink">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="course">Multi-Week Course (<span
+              id="pill-count-course">0</span>)</button>
+
+          <span class="curator-filter-divider" aria-hidden="true"></span>
+
           <button type="button" class="curator-filter-pill" data-filter="holidays"
             style="border: 1px solid rgba(251, 146, 60, 0.5); color: #fed7aa;"
             title="Festivals and holiday categories awaiting curator approval">🎉 Festivals &amp; Holidays (<span
               id="pill-count-holidays">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="discovered_venues">🏛️ Discovered Venues (<span
+              id="pill-count-discovered-venues">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="discovered_sources"
             style="border: 1px solid rgba(56, 189, 248, 0.5); color: #7dd3fc;"
-            title="Candidate event sources and ticketing platforms discovered by AI awaiting curator approval">📡
+            title="Candidate event calendars and ticketing feeds discovered by AI">📡
             Discovered Sources (<span id="pill-count-discovered-sources">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="user_feedback"
             style="border: 1px solid rgba(52, 211, 153, 0.5); color: #6ee7b7;"
-            title="Community suggestions and corrections quarantined for review">💬 User Submissions (<span
+            title="Community event submissions and corrections">💬 User Submissions (<span
               id="pill-count-user-feedback">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="unhandled">⚡ Needs Action (<span
-              id="pill-count-unhandled">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="handled">📋 Rule Queued (<span
-              id="pill-count-handled">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="drift">⚠️ Page Drift (<span
-              id="pill-count-drift">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="unverified">Unverified Cart (<span
-              id="pill-count-unverified">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="brokenlink">Missing / 404 Link (<span
-              id="pill-count-brokenlink">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="course">Multi-Week Course (<span
-              id="pill-count-course">0</span>)</button>
         </div>
 
         <!-- Search & Sort Row -->
@@ -598,10 +542,10 @@
           </select>
 
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-clear-settings"
-            title="Clear current settings, reset all filters, and reload the page from scratch"
+            title="Reset search text, platform filter, sort order, and active queue view without restarting the server"
             style="border: 1px solid rgba(255, 255, 255, 0.16); color: #cbd5e1; font-size: 0.82rem; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer; border-radius: 8px;">
-            <span>✕</span>
-            <span>Clear Settings</span>
+            <span>↺</span>
+            <span>Reset Search &amp; Filters</span>
           </button>
         </div>
       </div>
@@ -614,17 +558,15 @@
           <button type="button" class="btn-curator" id="btn-status-run-quarantine"
             onclick="autoRunQuarantinedStages1BTo4(event)"
             style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border: 1px solid #f59e0b; color: #fff; font-size: 0.78rem; font-weight: 700; padding: 6px 13px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);"
-            title="Run Antigravity through the Quarantine Queue (Stages 1B ➔ 5)">
-            <span id="btn-status-run-quarantine-label">🛡️ Run Quarantine Queue</span>
+            title="Re-run quarantined items through Steps 1B ➔ 5 using any saved curator notes">
+            <span id="btn-status-run-quarantine-label">🛡️ Re-Check Quarantined Queue</span>
           </button>
           <button type="button" class="btn-curator" id="btn-status-run-newest-passed"
             onclick="autoRunNewestPassedBatchStages1BTo5(event)"
             style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border: 1px solid #34d399; color: #fff; font-size: 0.78rem; font-weight: 700; padding: 6px 13px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);"
-            title="Run Antigravity through the newest batch of events that passed through the pipeline (Stages 1B ➔ 5)">
-            <span id="btn-status-run-newest-passed-label">✅ Run Newest Passed Batch</span>
+            title="Re-audit the most recently published batch of events through Steps 1B ➔ 5">
+            <span id="btn-status-run-newest-passed-label">🔄 Re-Audit Last Published Batch</span>
           </button>
-          <div style="font-size: 0.8rem; opacity: 0.8;">💡 Quarantined items are annotated here and reviewed prior to
-            live release.</div>
         </div>
       </div>
     </section>
@@ -1887,7 +1829,7 @@
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Crawls official venue feeds for newly scheduled dates, then automatically upgrades links (1B), audits
-                checkout carts (2), normalizes metadata (3), grounds venues (4), and publishes qualifying cards (5).
+                checkout carts (2), grounds venues (3), normalizes metadata (4), and publishes qualifying cards (5).
               </div>
               <div id="opt-harvest-resume-bar"
                 style="display: flex; align-items: center; gap: 8px; margin-top: 8px; flex-wrap: wrap;"
@@ -1941,7 +1883,7 @@
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Processes the newly harvested uncompiled events from Stage 1A
                 (<code>data/layers/layer_schedules.json</code>). Skips Stage 1A and starts directly at <strong>Stage 1B
-                  (Tier 1 Hunter) ➔ Stage 2 (Stagehand Box Office QC) ➔ Stage 3 (Enricher) ➔ Stage 4 (Venue Detailer) ➔
+                  (Tier 1 Hunter) ➔ Stage 2 (Stagehand Box Office QC) ➔ Stage 3 (Venue Detailer) ➔ Stage 4 (Enricher) ➔
                   Stage 5 (Compiler &amp; Publisher)</strong>.
               </div>
             </div>
@@ -1961,7 +1903,7 @@
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Audits events whose live cart proof is expired (&gt;24h) or missing. Skips harvester and runs
-                <strong>Stage 1B (Hunter) ➔ Stage 2 (Stagehand AI QC) ➔ Stage 3 (Enricher) ➔ Stage 4 (Venue Detailer) ➔
+                <strong>Stage 1B (Hunter) ➔ Stage 2 (Stagehand AI QC) ➔ Stage 3 (Venue Detailer) ➔ Stage 4 (Enricher) ➔
                   Stage 5 (Compiler)</strong> directly on these items.
               </div>
             </div>
@@ -1981,8 +1923,8 @@
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Audits all items currently in <code>data/manual_review_queue.json</code>. Skips Harvester and starts
-                directly at <strong>Stage 1B (Tier 1 Hunter) ➔ Stage 2 (Stagehand Box Office QC) ➔ Stage 3 (Enricher) ➔
-                  Stage 4 (Venue Detailer) ➔ Stage 5 (Compiler &amp; Publisher)</strong>.
+                directly at <strong>Stage 1B (Tier 1 Hunter) ➔ Stage 2 (Stagehand Box Office QC) ➔ Stage 3 (Venue Detailer) ➔
+                  Stage 4 (Enricher) ➔ Stage 5 (Compiler &amp; Publisher)</strong>.
               </div>
             </div>
           </div>
@@ -2157,9 +2099,10 @@
         <div style="display: flex; gap: 8px; align-items: center;">
           <button type="button" class="curator-modal-close-btn" id="btn-close-pipeline-modal"
             style="position: static; font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 5px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.22); color: #f1f5f9; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s ease;"
-            aria-label="Return to Curator">
-            <span style="font-size: 0.9rem; line-height: 1;">✕</span>
-            <span>Return to Curator</span>
+            title="Hide this window and return to Curator Studio (any active scan keeps running in the background)"
+            aria-label="Minimize or Return to Curator">
+            <span id="btn-close-pipeline-modal-icon" style="font-size: 0.9rem; line-height: 1;">🗕</span>
+            <span id="btn-close-pipeline-modal-text">Return to Curator</span>
           </button>
         </div>
       </div>
@@ -2170,16 +2113,15 @@
         <div class="test-stepper-header"
           style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
           <div class="test-stepper-badge-group" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-            <span class="test-stepper-badge">🚀 AI PIPELINE STAGE NAVIGATOR</span>
-            <span id="test-stepper-current-label" class="test-stepper-stage-title">Stage 1 of 5: Schedule
-              Harvester</span>
+            <span class="test-stepper-badge">🚀 6-STEP PIPELINE</span>
+            <span id="test-stepper-current-label" class="test-stepper-stage-title">Step 1A: Discover Events</span>
           </div>
 
           <!-- Batch Size Versatility Controls -->
           <div class="pipeline-batch-size-selector"
             style="display: flex; align-items: center; gap: 4px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 2px 7px;">
             <span
-              style="font-size: 0.68rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.03em;">Batch:</span>
+              style="font-size: 0.68rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.03em;">Batch Limit:</span>
             <button type="button" class="btn-limit-chip" id="chip-batch-1" onclick="setPipelineBatchSize(1)">1</button>
             <button type="button" class="btn-limit-chip" id="chip-batch-5" onclick="setPipelineBatchSize(5)">5</button>
             <button type="button" class="btn-limit-chip" id="chip-batch-10"
@@ -2194,112 +2136,94 @@
               title="Enter custom count">#</button>
           </div>
 
-          <!-- Navigation buttons between stages & Auto-run buttons -->
+          <!-- Clean Stage Navigation & Queue Picker -->
           <div class="test-stepper-nav-actions" id="test-stepper-nav-actions"
             style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+            <button type="button" class="btn-stepper-auto-pipeline"
+              onclick="openStageQueueLauncherModal(null, event)"
+              style="background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border-color: #34d399;"
+              title="Inspect and pick exact events waiting for this step">
+              <span>📋 Pick Waiting Events…</span>
+            </button>
             <button type="button" class="btn-stepper-auto-pipeline" id="btn-stepper-auto-pipeline"
               onclick="openAutoPipelineOptionsModal(event)"
-              title="Configure and auto-run pipeline with custom scope and batch size">
-              <span id="btn-stepper-auto-label">🚀 Auto-Run (Configure)</span>
-            </button>
-            <button type="button" class="btn-stepper-auto-pipeline" id="btn-stepper-continue-harvest"
-              onclick="continueHarvestFromCheckpoint(event)"
-              style="background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border-color: #c084fc;"
-              title="Continue Stage 1A scanning for new events starting from where we stopped (#50/126: The Orpheum Theatre)">
-              <span id="btn-stepper-continue-harvest-label">▶️ Continue 1A (#50/126)</span>
-            </button>
-            <button type="button" class="btn-stepper-auto-pipeline" id="btn-stepper-auto-harvested"
-              onclick="autoRunHarvestedStages1BTo5(event)"
-              style="background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border-color: #34d399;"
-              title="Start processing newly harvested events starting at Stage 1B through Stage 5">
-              <span id="btn-stepper-auto-harvested-label">✨ Process New Events (1B ➔ 5)</span>
-            </button>
-            <button type="button" class="btn-stepper-auto-pipeline" id="btn-stepper-auto-stale"
-              onclick="autoRunOutOfDateStages1BTo4()"
-              style="background: linear-gradient(135deg, #0d9488 0%, #059669 100%); border-color: #14b8a6;"
-              title="Automatically run selected out-of-date events through Stage 1B (Hunter) to 5 (Compiler)">
-              <span id="btn-stepper-auto-stale-label">⚡ Auto-Run Out-of-Date (1B ➔ 5)</span>
-            </button>
-            <button type="button" class="btn-stepper-auto-pipeline" id="btn-stepper-auto-quarantined"
-              onclick="autoRunQuarantinedStages1BTo4(event)"
-              style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border-color: #f59e0b;"
-              title="Automatically run all quarantined items through Stage 1B (Hunter) to 5 (Compiler)">
-              <span id="btn-stepper-auto-quarantined-label">🛡️ Run Quarantine Queue</span>
-            </button>
-            <button type="button" class="btn-stepper-auto-pipeline" id="btn-stepper-auto-newest-passed"
-              onclick="autoRunNewestPassedBatchStages1BTo5(event)"
-              style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border-color: #34d399;"
-              title="Run Antigravity through the newest batch of events that passed through the pipeline (Stages 1B ➔ 5)">
-              <span id="btn-stepper-auto-newest-passed-label">✅ Run Newest Passed Batch</span>
+              title="Configure and auto-run full pipeline">
+              <span id="btn-stepper-auto-label">🚀 Run Full Pipeline…</span>
             </button>
             <button type="button" class="btn-stepper-prev" id="btn-stepper-prev" onclick="stepPipelineTestStage(-1)"
-              title="Go back to previous stage">
-              <span>◀ Previous</span>
+              title="Go back to previous step">
+              <span>◀ Prev Step</span>
             </button>
             <button type="button" class="btn-stepper-next" id="btn-stepper-next" onclick="stepPipelineTestStage(1)"
-              title="Move to next stage in pipeline">
-              <span id="btn-stepper-next-label">Next Stage ➔</span>
+              title="Move to next step in pipeline">
+              <span id="btn-stepper-next-label">Next Step ➔</span>
             </button>
-            <button type="button" class="btn-limit-chip" id="btn-toggle-stepper-compact"
-              onclick="togglePipelineStepperCompact()" title="Toggle compact navigator mode"
-              style="display: none !important;">
-              <span id="stepper-compact-icon">⯅</span> <span id="stepper-compact-label">Compact Bar</span>
-            </button>
+            <!-- Hidden legacy buttons preserved so JS label updates never fail -->
+            <div style="display: none;">
+              <button type="button" id="btn-stepper-continue-harvest"><span id="btn-stepper-continue-harvest-label"></span></button>
+              <button type="button" id="btn-stepper-auto-harvested"><span id="btn-stepper-auto-harvested-label"></span></button>
+              <button type="button" id="btn-stepper-auto-stale"><span id="btn-stepper-auto-stale-label"></span></button>
+              <button type="button" id="btn-stepper-auto-quarantined"><span id="btn-stepper-auto-quarantined-label"></span></button>
+              <button type="button" id="btn-stepper-auto-newest-passed"><span id="btn-stepper-auto-newest-passed-label"></span></button>
+              <button type="button" id="btn-toggle-stepper-compact"><span id="stepper-compact-icon">⯅</span><span id="stepper-compact-label"></span></button>
+            </div>
           </div>
         </div>
 
-        <!-- Catalog Staleness Intelligence Dashboard Bar -->
-        <div id="pipeline-staleness-dashboard-bar"
-          style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 6px; padding: 5px 10px;">
-          <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-            <span
-              style="font-size: 0.68rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em;">Audit
-              Staleness:</span>
-            <div class="stale-filter-chip fresh" id="stale-chip-fresh" onclick="selectStaleFilter('fresh')"
-              title="Audited within the last 24 hours">
-              <span>🟢 &lt;24h:</span> <strong id="stale-count-fresh">0</strong>
+        <!-- Collapsible Audit Staleness Filter Bar (Keeps modal uncluttered by default) -->
+        <details id="pipeline-staleness-details-toggle" style="font-size: 0.7rem;">
+          <summary style="cursor: pointer; color: #94a3b8; font-weight: 700; padding: 2px 4px; user-select: none;">
+            ⏱️ Filter by Last Check Age (&lt;24h / &gt;24h / &gt;1w / Never Checked)
+          </summary>
+          <div id="pipeline-staleness-dashboard-bar"
+            style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 6px; padding: 5px 10px; margin-top: 4px;">
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span
+                style="font-size: 0.68rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em;">Last Checked:</span>
+              <div class="stale-filter-chip fresh" id="stale-chip-fresh" onclick="selectStaleFilter('fresh')"
+                title="Checked within the last 24 hours">
+                <span>🟢 &lt;24h:</span> <strong id="stale-count-fresh">0</strong>
+              </div>
+              <div class="stale-filter-chip stale-day" id="stale-chip-day" onclick="selectStaleFilter('day')"
+                title="Checked between 24 hours and 7 days ago">
+                <span>🟡 &gt;24h:</span> <strong id="stale-count-day">0</strong>
+              </div>
+              <div class="stale-filter-chip stale-week" id="stale-chip-week" onclick="selectStaleFilter('week')"
+                title="Checked between 7 days and 30 days ago">
+                <span>🟠 &gt;1w:</span> <strong id="stale-count-week">0</strong>
+              </div>
+              <div class="stale-filter-chip stale-month" id="stale-chip-month" onclick="selectStaleFilter('month')"
+                title="Checked over 30 days ago">
+                <span>🔴 &gt;1m:</span> <strong id="stale-count-month">0</strong>
+              </div>
+              <div class="stale-filter-chip stale-never" id="stale-chip-never" onclick="selectStaleFilter('never')"
+                title="Never checked in live cart">
+                <span>⚪ Never:</span> <strong id="stale-count-never">0</strong>
+              </div>
             </div>
-            <div class="stale-filter-chip stale-day" id="stale-chip-day" onclick="selectStaleFilter('day')"
-              title="Audited between 24 hours and 7 days ago">
-              <span>🟡 &gt;24h:</span> <strong id="stale-count-day">0</strong>
-            </div>
-            <div class="stale-filter-chip stale-week" id="stale-chip-week" onclick="selectStaleFilter('week')"
-              title="Audited between 7 days and 30 days ago">
-              <span>🟠 &gt;1w:</span> <strong id="stale-count-week">0</strong>
-            </div>
-            <div class="stale-filter-chip stale-month" id="stale-chip-month" onclick="selectStaleFilter('month')"
-              title="Audited over 30 days ago">
-              <span>🔴 &gt;1m:</span> <strong id="stale-count-month">0</strong>
-            </div>
-            <div class="stale-filter-chip stale-never" id="stale-chip-never" onclick="selectStaleFilter('never')"
-              title="Never audited through live box office">
-              <span>⚪ Never:</span> <strong id="stale-count-never">0</strong>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span id="stale-selection-summary" style="font-size: 0.7rem; color: #38bdf8; font-weight: 600;">Click any age group to target</span>
+              <button type="button" class="btn-limit-chip" id="btn-select-all-stale"
+                onclick="selectStaleFilter('all_stale')"
+                style="font-size: 0.68rem; padding: 2px 7px; color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.1);">Target All Out-of-Date</button>
             </div>
           </div>
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <span id="stale-selection-summary" style="font-size: 0.7rem; color: #38bdf8; font-weight: 600;">Click any
-              stale group to target</span>
-            <button type="button" class="btn-limit-chip" id="btn-select-all-stale"
-              onclick="selectStaleFilter('all_stale')"
-              style="font-size: 0.68rem; padding: 2px 7px; color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.1);">Select
-              All Out-of-Date</button>
-          </div>
-        </div>
+        </details>
 
         <!-- 6 Interactive Stage Steps Tracker -->
         <div class="test-stepper-stages-row">
           <div class="test-stage-step step-stage-harvest active" id="test-step-harvest"
-            onclick="switchPipelineTestStage('harvest')" title="Switch to Schedule Harvester view">
-            <div class="test-step-num">01</div>
+            onclick="switchPipelineTestStage('harvest')" title="Step 1A: Scan venue &amp; city calendars">
+            <div class="test-step-num">1A</div>
             <div class="test-step-body">
-              <div class="test-step-name">1A. Schedule Harvester</div>
-              <div class="test-step-sub" id="test-step-sub-harvest">Find Events (Venue Feeds)</div>
+              <div class="test-step-name">1A. Discover Events</div>
+              <div class="test-step-sub" id="test-step-sub-harvest">Venue &amp; City Calendars</div>
               <button type="button" class="btn-limit-chip" id="btn-stage-continue-harvest"
                 onclick="continueStageFromPrevious('harvest', event)"
                 style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border: 1px solid #c084fc; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;"
-                title="Continue scanning remaining venue feeds from checkpoint">
+                title="Resume scanning remaining venue calendars">
                 <span id="btn-stage-continue-harvest-label"
-                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue (77 Feeds)</span>
+                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Resume 1A</span>
               </button>
             </div>
             <span class="test-step-status" id="test-step-status-harvest">Ready</span>
@@ -2308,17 +2232,17 @@
           <div class="test-step-connector">➔</div>
 
           <div class="test-stage-step step-stage-hunter" id="test-step-hunter"
-            onclick="switchPipelineTestStage('hunter')" title="Switch to Tier 1 Hunter view">
+            onclick="switchPipelineTestStage('hunter')" title="Step 1B: Follow event pages to direct checkout links">
             <div class="test-step-num">1B</div>
             <div class="test-step-body">
-              <div class="test-step-name">1B. Tier 1 Hunter</div>
-              <div class="test-step-sub" id="test-step-sub-hunter">Upgrade to Checkout Carts</div>
+              <div class="test-step-name">1B. Find Ticket Links</div>
+              <div class="test-step-sub" id="test-step-sub-hunter">Direct Checkout URLs</div>
               <button type="button" class="btn-limit-chip" id="btn-stage-continue-hunter"
                 onclick="continueStageFromPrevious('hunter', event)"
                 style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); border: 1px solid #2dd4bf; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;"
-                title="Continue Stage 1B on events that completed Stage 1A but not Stage 1B">
+                title="Select and run events waiting for Step 1B">
                 <span id="btn-stage-continue-hunter-label"
-                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 1A (0)</span>
+                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Waiting (0)</span>
               </button>
             </div>
             <span class="test-step-status" id="test-step-status-hunter">Awaiting</span>
@@ -2327,17 +2251,17 @@
           <div class="test-step-connector">➔</div>
 
           <div class="test-stage-step step-stage-qc" id="test-step-qc" onclick="switchPipelineTestStage('qc')"
-            title="Switch to Stagehand AI QC view">
+            title="Step 2: Check live ticket cart prices, fees &amp; screenshot proof">
             <div class="test-step-num">02</div>
             <div class="test-step-body">
-              <div class="test-step-name">2. Stagehand AI QC</div>
-              <div class="test-step-sub" id="test-step-sub-qc">Audit Cart &amp; Fees</div>
+              <div class="test-step-name">2. Verify Prices &amp; Fees</div>
+              <div class="test-step-sub" id="test-step-sub-qc">Live Cart &le; $50 + Screenshot</div>
               <button type="button" class="btn-limit-chip" id="btn-stage-continue-qc"
                 onclick="continueStageFromPrevious('qc', event)"
                 style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border: 1px solid #7dd3fc; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;"
-                title="Continue Stage 2 QC on events that completed Stage 1B but not Stage 2">
+                title="Select and run events waiting for Step 2 price check">
                 <span id="btn-stage-continue-qc-label"
-                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 1B (0)</span>
+                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Waiting (0)</span>
               </button>
             </div>
             <span class="test-step-status" id="test-step-status-qc">Awaiting</span>
@@ -2345,37 +2269,18 @@
 
           <div class="test-step-connector">➔</div>
 
-          <div class="test-stage-step step-stage-enrich" id="test-step-enrich"
-            onclick="switchPipelineTestStage('enrich')" title="Switch to AI Enricher view">
+          <div class="test-stage-step step-stage-venue" id="test-step-venue" onclick="switchPipelineTestStage('venue')"
+            title="Step 3: Confirm physical address, GPS map pin, accessibility &amp; drink benchmarks">
             <div class="test-step-num">03</div>
             <div class="test-step-body">
-              <div class="test-step-name">3. AI Enricher</div>
-              <div class="test-step-sub" id="test-step-sub-enrich">Normalize Lineup &amp; 19+ ID</div>
-              <button type="button" class="btn-limit-chip" id="btn-stage-continue-enrich"
-                onclick="continueStageFromPrevious('enrich', event)"
-                style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); border: 1px solid #fcd34d; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;"
-                title="Continue Stage 3 Enricher on events that completed Stage 2 QC but not Stage 3">
-                <span id="btn-stage-continue-enrich-label"
-                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 2 (0)</span>
-              </button>
-            </div>
-            <span class="test-step-status" id="test-step-status-enrich">Awaiting</span>
-          </div>
-
-          <div class="test-step-connector">➔</div>
-
-          <div class="test-stage-step step-stage-venue" id="test-step-venue" onclick="switchPipelineTestStage('venue')"
-            title="Switch to Venue Detailer view">
-            <div class="test-step-num">04</div>
-            <div class="test-step-body">
-              <div class="test-step-name">4. Venue Detailer</div>
-              <div class="test-step-sub" id="test-step-sub-venue">Ground Facilities &amp; GPS</div>
+              <div class="test-step-name">3. Verify Venue Info</div>
+              <div class="test-step-sub" id="test-step-sub-venue">Address, GPS &amp; Accessibility</div>
               <button type="button" class="btn-limit-chip" id="btn-stage-continue-venue"
                 onclick="continueStageFromPrevious('venue', event)"
                 style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); border: 1px solid #67e8f9; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;"
-                title="Continue Stage 4 Venue Detailer on events that completed Stage 3 but not Stage 4">
+                title="Select and run events waiting for Step 3 venue check">
                 <span id="btn-stage-continue-venue-label"
-                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 3 (0)</span>
+                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Waiting (0)</span>
               </button>
             </div>
             <span class="test-step-status" id="test-step-status-venue">Awaiting</span>
@@ -2383,18 +2288,37 @@
 
           <div class="test-step-connector">➔</div>
 
+          <div class="test-stage-step step-stage-enrich" id="test-step-enrich"
+            onclick="switchPipelineTestStage('enrich')" title="Step 4: Clean event title, lineup, summary &amp; age restriction">
+            <div class="test-step-num">04</div>
+            <div class="test-step-body">
+              <div class="test-step-name">4. Clean Titles &amp; Details</div>
+              <div class="test-step-sub" id="test-step-sub-enrich">Headline, Lineup &amp; 19+ ID</div>
+              <button type="button" class="btn-limit-chip" id="btn-stage-continue-enrich"
+                onclick="continueStageFromPrevious('enrich', event)"
+                style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); border: 1px solid #fcd34d; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;"
+                title="Select and run events waiting for Step 4 editorial cleanup">
+                <span id="btn-stage-continue-enrich-label"
+                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Waiting (0)</span>
+              </button>
+            </div>
+            <span class="test-step-status" id="test-step-status-enrich">Awaiting</span>
+          </div>
+
+          <div class="test-step-connector">➔</div>
+
           <div class="test-stage-step step-stage-compile" id="test-step-compile"
-            onclick="switchPipelineTestStage('compile')" title="Switch to Compiler, Consolidator &amp; Publisher view">
+            onclick="switchPipelineTestStage('compile')" title="Step 5: Merge multi-day showings &amp; publish live">
             <div class="test-step-num">05</div>
             <div class="test-step-body">
-              <div class="test-step-name">5. Compiler &amp; Consolidator</div>
-              <div class="test-step-sub" id="test-step-sub-compile">Merge Multi-Day &amp; Publish</div>
+              <div class="test-step-name">5. Merge &amp; Publish</div>
+              <div class="test-step-sub" id="test-step-sub-compile">Combine Dates &amp; Go Live</div>
               <button type="button" class="btn-limit-chip" id="btn-stage-continue-compile"
                 onclick="continueStageFromPrevious('compile', event)"
                 style="margin-top: 3px; min-height: 22px; height: auto; padding: 2px 8px; line-height: 1.2; font-size: 0.64rem; font-weight: 800; background: linear-gradient(135deg, #059669 0%, #10b981 100%); border: 1px solid #6ee7b7; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden;"
-                title="Continue Stage 5 Compiler &amp; Consolidator on events that completed Stage 4">
+                title="Select and publish ready events in Step 5">
                 <span id="btn-stage-continue-compile-label"
-                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Continue from 4 (0)</span>
+                  style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">▶️ Waiting (0)</span>
               </button>
             </div>
             <span class="test-step-status" id="test-step-status-compile">Awaiting</span>
@@ -2714,63 +2638,73 @@
                 style="font-size: 0.68rem; color: #94a3b8;">Clear</button>
             </div>
 
-            <!-- Target Scan Scope Selection (Pills Row with Auto-Commit) -->
+            <!-- Target Scan Scope Selection (Primary Waiting Queue First + Expandable Secondary Scopes) -->
             <div id="pipeline-scope-selector-section"
               style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 6px;">
               <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; flex: 1; min-width: 0;"
                 id="pipeline-scope-selector-grid">
                 <span
                   style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; white-space: nowrap; margin-right: 2px;">
-                  Scope:
+                  Target Queue:
                 </span>
                 <button type="button" class="pipeline-scope-pill active" data-scope="unscanned"
-                  id="scope-card-unscanned" onclick="setPipelineScope('unscanned')">
-                  <span class="scope-radio-dot">●</span> <span id="scope-pill-unscanned-label">Unscanned Only</span>
+                  id="scope-card-unscanned" onclick="setPipelineScope('unscanned')"
+                  title="Events waiting for this step">
+                  <span class="scope-radio-dot">●</span> <span id="scope-pill-unscanned-label">Waiting for This Step</span>
                 </button>
                 <button type="button" class="pipeline-scope-pill" data-scope="harvested" id="scope-card-harvested"
                   onclick="setPipelineScope('harvested')"
-                  title="Target newly harvested uncompiled events from Stage 1A (layer_schedules.json)">
-                  <span class="scope-radio-dot">○</span> <span id="scope-pill-harvested-label">✨ New Harvested (<span
-                      id="scope-count-harvested">569</span>)</span>
-                </button>
-                <button type="button" class="pipeline-scope-pill" data-scope="incomplete" id="scope-card-incomplete"
-                  onclick="setPipelineScope('incomplete')"
-                  title="Target events missing any scan layer (Box Office, Harvester, Editorial, or Compiler)">
-                  <span class="scope-radio-dot">○</span> <span id="scope-pill-incomplete-label">Incomplete Scans</span>
-                </button>
-                <button type="button" class="pipeline-scope-pill" data-scope="stale" id="scope-card-stale"
-                  onclick="setPipelineScope('stale')"
-                  title="Target events not audited within selected time window (24h, 48h, 1w, etc.)">
-                  <span class="scope-radio-dot">○</span> <span id="scope-pill-stale-label">Stale (&gt;24h)</span>
+                  title="Target newly harvested uncompiled events from Step 1A">
+                  <span class="scope-radio-dot">○</span> <span id="scope-pill-harvested-label">✨ Unfinished Harvested (<span
+                      id="scope-count-harvested">0</span>)</span>
                 </button>
                 <button type="button" class="pipeline-scope-pill" data-scope="quarantined" id="scope-card-quarantined"
                   onclick="setPipelineScope('quarantined')"
-                  title="Target all events currently in manual review queue / quarantine">
+                  title="Target events currently in the Quarantined queue">
                   <span class="scope-radio-dot">○</span> <span id="scope-pill-quarantined-label">Quarantined (<span
                       id="scope-count-quarantined">0</span>)</span>
                 </button>
-                <button type="button" class="pipeline-scope-pill" data-scope="batch5" id="scope-card-batch5"
-                  onclick="setPipelineScope('batch5')">
-                  <span class="scope-radio-dot">○</span> <span id="scope-pill-batch5-label">5 Events</span>
-                </button>
-                <button type="button" class="pipeline-scope-pill" data-scope="range" id="scope-card-range"
-                  onclick="setPipelineScope('range')">
-                  <span class="scope-radio-dot">○</span> <span>Card Range</span>
-                </button>
                 <button type="button" class="pipeline-scope-pill" data-scope="single_card" id="scope-card-single_card"
                   onclick="setPipelineScope('single_card')">
-                  <span class="scope-radio-dot">○</span> <span id="scope-pill-single-label">Single Card</span>
+                  <span class="scope-radio-dot">○</span> <span id="scope-pill-single-label">Single Event</span>
                 </button>
-                <button type="button" class="pipeline-scope-pill" data-scope="all" id="scope-card-all"
-                  onclick="setPipelineScope('all')"
-                  title="Force re-scan of ALL events across catalog even if already verified">
-                  <span class="scope-radio-dot">○</span> <span id="scope-pill-all-label">Re-scan All</span>
-                </button>
+
+                <details id="pipeline-more-scopes-details" style="display: inline-block;">
+                  <summary style="cursor: pointer; font-size: 0.7rem; font-weight: 700; color: #94a3b8; padding: 3px 8px; border-radius: 999px; border: 1px dashed rgba(148,163,184,0.35); list-style: none; user-select: none;">
+                    + More Scopes ▾
+                  </summary>
+                  <div style="display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-left: 6px; vertical-align: middle;">
+                    <button type="button" class="pipeline-scope-pill" data-scope="stale" id="scope-card-stale"
+                      onclick="setPipelineScope('stale')"
+                      title="Target events not checked within selected time window (24h, 48h, 1w, etc.)">
+                      <span class="scope-radio-dot">○</span> <span id="scope-pill-stale-label">Out-of-Date (&gt;24h)</span>
+                    </button>
+                    <button type="button" class="pipeline-scope-pill" data-scope="incomplete" id="scope-card-incomplete"
+                      onclick="setPipelineScope('incomplete')"
+                      title="Target events missing any verification layer">
+                      <span class="scope-radio-dot">○</span> <span id="scope-pill-incomplete-label">Incomplete Layers</span>
+                    </button>
+                    <button type="button" class="pipeline-scope-pill" data-scope="batch5" id="scope-card-batch5"
+                      onclick="setPipelineScope('batch5')">
+                      <span class="scope-radio-dot">○</span> <span id="scope-pill-batch5-label">Sample 5</span>
+                    </button>
+                    <button type="button" class="pipeline-scope-pill" data-scope="range" id="scope-card-range"
+                      onclick="setPipelineScope('range')">
+                      <span class="scope-radio-dot">○</span> <span>Card # Range</span>
+                    </button>
+                    <button type="button" class="pipeline-scope-pill" data-scope="all" id="scope-card-all"
+                      onclick="setPipelineScope('all')"
+                      title="Force re-check of ALL events across catalog">
+                      <span class="scope-radio-dot">○</span> <span id="scope-pill-all-label">Full Catalog</span>
+                    </button>
+                  </div>
+                </details>
               </div>
               <label
-                style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; color: #94a3b8; font-size: 0.72rem; flex-shrink: 0; margin-left: auto;">
+                style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; color: #94a3b8; font-size: 0.72rem; flex-shrink: 0; margin-left: auto;"
+                title="Automatically save verified updates to the stage layer file as each worker finishes">
                 <input type="checkbox" id="pipeline-input-auto-approve" checked style="accent-color: #38bdf8;">
-                <span>Auto-commit</span>
+                <span>Save updates automatically</span>
               </label>
             </div>
 
@@ -2962,30 +2896,50 @@
           <div id="pipeline-completion-summary-banner" style="display: none; margin-top: 8px; margin-bottom: 4px;">
           </div>
 
-          <!-- Dedicated Full-Height Terminal Log Panel extending to bottom of AI Window -->
+          <!-- Dedicated Full-Height Two-Tab Live Activity & Terminal Log Panel -->
           <div id="pipeline-live-diff-panel"
             style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.4); flex: 1 1 0; display: flex; flex-direction: column; min-height: 120px;">
             <div
-              style="display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: rgba(255, 255, 255, 0.04); border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span
-                  style="font-size: 0.74rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 5px;">
-                  <span>📟</span> Live Terminal Log
-                </span>
+              style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: rgba(255, 255, 255, 0.04); border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0; gap: 6px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <button type="button" class="live-log-tab-btn active" id="tab-btn-readable-log"
+                  onclick="switchPipelineLiveLogTab('readable')">
+                  📋 Activity Feed
+                </button>
+                <button type="button" class="live-log-tab-btn" id="tab-btn-raw-console"
+                  onclick="switchPipelineLiveLogTab('raw')">
+                  📟 Raw Console
+                </button>
                 <span id="pipeline-diff-counter-badge"
                   style="font-size: 0.66rem; font-weight: 700; background: rgba(56, 189, 248, 0.18); color: #38bdf8; padding: 1px 7px; border-radius: 999px; border: 1px solid rgba(56, 189, 248, 0.3);">
                   0 Finished
                 </span>
+                <span id="pipeline-active-workers-pill"
+                  style="display: none; font-size: 0.65rem; font-weight: 700; background: rgba(168, 85, 247, 0.2); color: #e9d5ff; padding: 1px 7px; border-radius: 999px; border: 1px solid rgba(192, 132, 252, 0.4);">
+                  1 worker active
+                </span>
               </div>
               <div style="display: flex; gap: 6px; align-items: center;">
+                <button type="button" class="btn-limit-chip" id="btn-toggle-log-warnings-only"
+                  onclick="toggleReadableLogWarningsOnly()"
+                  style="font-size: 0.65rem; padding: 1px 7px;" title="Show only quarantined items, warnings, or timeouts">
+                  ⚠️ Warnings Only
+                </button>
                 <button type="button" class="btn-limit-chip" onclick="clearPipelineTerminal()"
                   style="font-size: 0.66rem; padding: 1px 7px;">Clear Log</button>
               </div>
             </div>
 
-            <!-- Terminal Output stretching to bottom -->
+            <!-- Default Tab: Human-Readable Activity Timeline -->
+            <div id="pipeline-readable-feed" class="readable-feed-container">
+              <div style="color: #64748b; font-size: 0.74rem; padding: 12px 6px; text-align: center;">
+                Ready — start any step above to see live plain-English updates for each event. Click any finished row to inspect its Before / After changes.
+              </div>
+            </div>
+
+            <!-- Secondary Tab: Verbatim Raw Terminal Output -->
             <pre id="pipeline-console-output"
-              style="flex: 1 1 0; height: 100%; min-height: 80px; max-height: none; overflow-y: auto; background: #000; color: #a7f3d0; padding: 10px 12px; font-size: 0.72rem; font-family: monospace; white-space: pre-wrap; margin: 0; line-height: 1.45; border: none;"></pre>
+              style="display: none; flex: 1 1 0; height: 100%; min-height: 80px; max-height: none; overflow-y: auto; background: #000; color: #a7f3d0; padding: 10px 12px; font-size: 0.72rem; font-family: monospace; white-space: pre-wrap; margin: 0; line-height: 1.45; border: none;"></pre>
 
             <!-- Hidden tbody for backward-compatibility with diff row registration -->
             <table style="display: none;">
@@ -2996,25 +2950,24 @@
 
         <!-- DRAGGABLE RESIZER BETWEEN TERMINAL AND YIELD COMPARISON -->
         <div class="pipeline-main-resizer" id="pipeline-main-resizer"
-          title="Click and drag to resize Terminal vs Yield columns"></div>
+          title="Click and drag to resize Live Log vs Before/After Comparison"></div>
 
         <!-- RIGHT COLUMN: Side-by-side card yield inspection (Before vs. After) -->
         <div class="pipeline-modal-right-col" id="pipeline-modal-right-col">
-          <!-- Comparison Header Toolbar (Row 1: Title + Centered Active Stage Label + Stage Dimensions Filter Button at top-right) -->
+          <!-- Comparison Header Toolbar -->
           <div
-            style="display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 4px; min-height: 28px;">
+            style="display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 4px; min-height: 28px; flex-wrap: wrap;">
             <div
               style="font-size: 0.84rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
-              <span>📋</span> <span id="pipeline-comparison-header-title">AI Card Yield Comparison (Before vs.
-                After)</span>
+              <span>📋</span> <span id="pipeline-comparison-header-title">Before vs. After Changes</span>
             </div>
 
             <!-- TOP-CENTER STAGE INDICATOR FOR BEFORE / AFTER VIEW -->
             <div style="display: flex; align-items: center; justify-content: center; flex: 0 0 auto; margin: 0 auto;">
               <div id="pipeline-comp-stage-banner"
                 style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: #7dd3fc; background: rgba(56, 189, 248, 0.16); border: 1.5px solid rgba(56, 189, 248, 0.55); box-shadow: 0 0 12px rgba(56, 189, 248, 0.18); white-space: nowrap;"
-                title="Active Pipeline Stage shown in this Before vs. After view">
-                <span id="pipeline-comp-stage-banner-text">🎟️ Stage 2: Box Office QC — Before / After</span>
+                title="Active Pipeline Step shown in this Before vs. After view">
+                <span id="pipeline-comp-stage-banner-text">🎟️ Step 2: Verify Prices &amp; Fees — Before / After</span>
               </div>
             </div>
 
@@ -3023,28 +2976,40 @@
                 id="pipeline-scope-target-dims-text"></strong></span>
             <div style="display: none;" id="pipeline-comparison-header-desc"></div>
 
-            <!-- Top Right: Button to display specific dimensions for that stage -->
-            <button type="button" class="btn-limit-chip" id="btn-comp-filter-inscope"
-              onclick="toggleComparisonInScopeFilter()"
-              style="height: 26px; padding: 0 10px; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8;"
-              title="Toggle between showing all 0XX–8XX dimensions vs only dimensions modified by this pipeline step">
-              <span id="btn-comp-filter-icon">🎯</span>
-              <span id="btn-comp-filter-label">Show Step Dimensions Only</span>
-              <span id="btn-comp-filter-count"
-                style="font-size: 0.62rem; padding: 1px 6px; border-radius: 9999px; background: rgba(56, 189, 248, 0.25); color: #38bdf8; margin-left: 2px; font-weight: 800;">(0)</span>
-            </button>
+            <!-- Top Right: Changed-First Toggle + Step Dimensions Filter -->
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <button type="button" class="btn-limit-chip active" id="btn-comp-changed-first"
+                onclick="toggleComparisonChangedFirst()"
+                style="height: 26px; padding: 0 9px; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; border-radius: 4px; cursor: pointer; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(52, 211, 153, 0.5); color: #6ee7b7;"
+                title="Pin modified and newly filled fields to the top of the table">
+                <span>✨ Changed First</span>
+              </button>
+              <button type="button" class="btn-limit-chip" id="btn-comp-filter-inscope"
+                onclick="toggleComparisonInScopeFilter()"
+                style="height: 26px; padding: 0 10px; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8;"
+                title="Toggle between showing all fields vs only fields checked in this step">
+                <span id="btn-comp-filter-icon">🎯</span>
+                <span id="btn-comp-filter-label">Step Fields Only</span>
+                <span id="btn-comp-filter-count"
+                  style="font-size: 0.62rem; padding: 1px 6px; border-radius: 9999px; background: rgba(56, 189, 248, 0.25); color: #38bdf8; margin-left: 2px; font-weight: 800;">(0)</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Comparison Stage Navigation & Card Inspection Toolbar (Left: Prev Stage, Middle: Card Select & Arrows, Right: Next Stage) -->
+          <!-- Per-Stage Immutable Snapshot Tabs (Click any stage to view what changed in that exact step) -->
+          <div class="comp-stage-snapshots-bar" id="pipeline-stage-snapshots-tabs" style="display: none;">
+          </div>
+
+          <!-- Comparison Stage Navigation & Card Inspection Toolbar -->
           <div id="pipeline-comparison-stage-nav-row"
-            style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 4px; padding-bottom: 4px; min-height: 30px; width: 100%;">
+            style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 4px; padding-bottom: 4px; min-height: 30px; width: 100%; flex-wrap: wrap;">
             <!-- Left: Previous Stage Button -->
-            <div id="pipeline-comp-left-stage-nav" style="display: flex; align-items: center; min-width: 175px;">
+            <div id="pipeline-comp-left-stage-nav" style="display: flex; align-items: center; min-width: 155px;">
               <button type="button" class="btn-limit-chip" id="btn-comp-prev-stage"
                 onclick="navigatePipelineDisplayStage(-1)"
                 style="height: 26px; padding: 0 10px; font-size: 0.7rem; font-weight: 700; color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); background: rgba(56, 189, 248, 0.08); display: inline-flex; align-items: center; gap: 5px; cursor: pointer; border-radius: 4px; transition: all 0.15s ease;"
-                title="Switch displayed Before/After comparison to previous pipeline stage">
-                <span>◀</span> <span id="btn-comp-prev-stage-label">Previous Stage: 1A. Schedule Harvester</span>
+                title="Switch displayed Before/After comparison to previous pipeline step">
+                <span>◀</span> <span id="btn-comp-prev-stage-label">Prev Step</span>
               </button>
             </div>
 
@@ -3052,15 +3017,15 @@
             <div id="pipeline-comparison-nav-toolbar"
               style="display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1;">
               <button type="button" class="btn-limit-chip" id="btn-comp-prev-card" onclick="stepComparisonCard(-1)"
-                title="Previous audited card" disabled style="height: 26px; padding: 0 8px; font-size: 0.7rem;">◀
+                title="Previous audited event" disabled style="height: 26px; padding: 0 8px; font-size: 0.7rem;">◀
                 Prev</button>
               <select id="pipeline-comparison-card-select" class="curator-input"
-                style="height: 26px; font-size: 0.72rem; padding: 0 6px; max-width: 260px; background: #0f172a; color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);"
+                style="height: 26px; font-size: 0.72rem; padding: 0 6px; max-width: 280px; background: #0f172a; color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);"
                 onchange="onComparisonCardSelectChange(this.value)">
-                <option value="">Awaiting scan...</option>
+                <option value="">Waiting for first event...</option>
               </select>
               <button type="button" class="btn-limit-chip" id="btn-comp-next-card" onclick="stepComparisonCard(1)"
-                title="Next audited card" disabled style="height: 26px; padding: 0 8px; font-size: 0.7rem;">Next
+                title="Next audited event" disabled style="height: 26px; padding: 0 8px; font-size: 0.7rem;">Next
                 ▶</button>
               <!-- Hidden status pill -->
               <span id="pipeline-comp-status-pill" style="display: none;"></span>
@@ -3068,21 +3033,27 @@
 
             <!-- Right: Live Follow & Next Stage Button -->
             <div id="pipeline-comp-right-stage-nav"
-              style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; min-width: 175px;">
+              style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; min-width: 155px;">
               <button type="button" class="btn-limit-chip" id="btn-comp-live-follow"
                 onclick="resumeLiveComparisonFollow()"
                 style="display: none; height: 26px; padding: 0 8px; font-size: 0.68rem; color: #38bdf8; border-color: rgba(56, 189, 248, 0.5); background: rgba(56, 189, 248, 0.18); font-weight: 700;"
-                title="Click to resume following the currently auditing card in real-time">⚡ Follow Live</button>
+                title="Click to resume following the latest checked event in real time">⚡ Follow Live</button>
               <button type="button" class="btn-limit-chip" id="btn-comp-next-stage"
                 onclick="navigatePipelineDisplayStage(1)"
                 style="height: 26px; padding: 0 10px; font-size: 0.7rem; font-weight: 700; color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); background: rgba(56, 189, 248, 0.08); display: inline-flex; align-items: center; gap: 5px; cursor: pointer; border-radius: 4px; transition: all 0.15s ease;"
-                title="Switch displayed Before/After comparison to next pipeline stage">
-                <span id="btn-comp-next-stage-label">Next Stage: 2. Stagehand AI QC</span> <span>▶</span>
+                title="Switch displayed Before/After comparison to next pipeline step">
+                <span id="btn-comp-next-stage-label">Next Step</span> <span>▶</span>
               </button>
               <button type="button" id="btn-comparison-advance-stage" style="display: none;"><span
                   id="btn-comparison-advance-label"></span></button>
             </div>
           </div>
+
+          <!-- Horizontal Clickable Audited-Batch Strip (#1 Event ✅ +4, #2 Event 🛡️, ...) -->
+          <div class="pipeline-audited-cards-strip" id="pipeline-audited-cards-strip" style="display: none;"></div>
+
+          <!-- Pinned Live Checkout Screenshot Proof Box (Shown when event has _cart.png proof) -->
+          <div id="pipeline-pinned-proof-box" style="display: none;"></div>
 
           <div id="pipeline-scope-highlight-banner" style="display: none;"><span id="pipeline-scope-accent-pill"></span>
           </div>
@@ -3312,7 +3283,7 @@
     });
     window.VAN50_ENGINE = 'antigravity';
   </script>
-  <script src="js/curator.js?v=1.4.6"></script>
+  <script src="js/curator.js?v=1.5.2"></script>
 </body>
 
 </html>

@@ -147,10 +147,20 @@ export function getExistingCatalogLookup() {
 
   const isNonEventPolicyPage = (title, url, detailsUrl) => {
     const rawTitle = (title || "").toLowerCase().trim();
-    if (["event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404", "404 not found", "granville island directory", "events & programs", "community events calendar", "vancouver events calendar", "plan your visit", "schools and groups", "become a member", "submit an event", "event booking guide", "filming in the city"].includes(rawTitle)) {
+    if ([
+      "event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404", "404 not found",
+      "granville island directory", "events & programs", "events & organizations", "community events calendar",
+      "vancouver events calendar", "plan your visit", "schools and groups", "become a member", "submit an event",
+      "event booking guide", "filming in the city", "choose seats", "select seats", "find tickets", "buy tickets",
+      "get tickets", "book tickets", "tickets", "be a sponsor", "sponsorship", "trophies", "transportation division",
+      "surrey fire services"
+    ].includes(rawTitle)) {
       return true;
     }
-    if (/\b(?:closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404)\b/i.test(rawTitle)) {
+    if (/^discover\s+events\s+in\s+/i.test(rawTitle)) {
+      return true;
+    }
+    if (/\b(?:closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|exhibition\s+catalogue|school\s+boundaries|roster\s+(?:202\d[-–]\d{2}|regular\s+season)|(?:@|at)\s+(?:abbotsford\s+pilots|mission\s+city\s+outlaws|chilliwack\s+jets))\b/i.test(rawTitle)) {
       return true;
     }
     if (/^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|standard[- ]?pricing|concession[- ]?menu)$/i.test(rawTitle)) {
@@ -161,11 +171,17 @@ export function getExistingCatalogLookup() {
     }
     const checkUrls = [url, detailsUrl].filter(Boolean).map((u) => normalizeUrl(u));
     for (const cu of checkUrls) {
-      if (/\.pdf(\?|$)/i.test(cu)) return true;
+      if (/\.(?:pdf|jpg|jpeg|png|webp|gif|svg|mp4|zip)(\?|$)/i.test(cu)) return true;
+      if (/\/wp-content\/uploads\//i.test(cu)) return true;
+      if (/\.aspx(\?|$)/i.test(cu) && !/chooseseats\.aspx|ticketsearchcriteria\.aspx\?evtinfo=/i.test(cu)) return true;
+      if (/allevents\.in\/pages\/|flohockey\.tv|flosports\.tv|showpass\.com\/(?:m|discover|cities|explore|o|s)(?:\/|$)/i.test(cu)) return true;
+      if (/\/stats\/(?:roster|standings|leaders|player|game-center|schedule)(?:\/|$)/i.test(cu)) return true;
+      if (/\/(?:season-pass|annual-pass|membership-pass)(?:[-/]|$)/i.test(cu)) return true;
       if (/eventbrite\.(?:ca|com)\/(?:d|ttd|l|o|cc)\//i.test(cu)) return true;
       if (/gretabar\.com\/(?:toronto|calgary|edmonton)\b/i.test(cu)) return true;
-      if (/\/(?:directory|library-archives|past-exhibitions|student-exhibitions|permanent-exhibitions|new-installations|collections|conservation|curatorial|sourcebooks|museum-shop|acquisitions-donations|moa-donors|indigenous-access|group-bookings|moa-access-pass|school-programs|public-programs|plan-your-visit|schools-and-groups|submit-event|event-booking-guide|filming-in-the-city|become-a-member|private-party|private-event)(\/|$)/i.test(cu)) return true;
-      if (/\/(?:ticket-info|ticket-policies|pricing|admission-rates|concession-menu|support|corporate-giving|patrons-circle|major-gifts|tickets\/single-game-tickets|tickets\/special-offers|tickets\/season-tickets|tickets\/mini-plans|tickets\/group-tickets|series\/|education\/)\b/i.test(cu)) return true;
+      if (/\/(?:[a-z0-9-]*-)?(?:coll(?:e|a)ge-grad|graduation-ceremony|convocation)(?:\/|$)/i.test(cu)) return true;
+      if (/\/(?:directory|library-archives|past-exhibitions|student-exhibitions|permanent-exhibitions|new-installations|collections|conservation|curatorial|sourcebooks|museum-shop|acquisitions-donations|moa-donors|indigenous-access|group-bookings|moa-access-pass|school-programs|public-programs|plan-your-visit|schools-and-groups|submit-event|event-booking-guide|filming-in-the-city|become-a-member|private-party|private-event|city-government|city-departments|public-safety|gallery-publications|exhibition-catalogues|who-we-are|be-a-sponsor|sponsor|sponsorship|trophies|season-memberships)(\/|$)/i.test(cu)) return true;
+      if (/\/(?:ticket-info|ticket-policies|pricing|admission-rates|concession-menu|support|corporate-giving|patrons-circle|major-gifts|tickets\/single-game-tickets|tickets\/special-offers|tickets\/season-tickets|tickets\/mini-plans|tickets\/group-tickets|series\/|education\/|scholarship|scholarships)\b/i.test(cu)) return true;
       if (cu.endsWith("/ticket-info") || cu.endsWith("/ticket-policies") || cu.endsWith("/pricing") || cu.endsWith("/rates") || cu.endsWith("/concession-menu") || cu.includes("vancouversymphony.ca/series") || cu.includes("artsclub.com/education")) return true;
     }
     return false;
@@ -251,7 +267,7 @@ export async function harvestCalendarLinks(calendarUrl) {
     const links = await page.evaluate((origin, calendarUrl) => {
       const anchors = Array.from(document.querySelectorAll("a[href]"));
       const eventRegex = /\/(?:events?|shows?|films?|tickets?|schedule|performances?|screenings?|chooseseats|production|whats-on|whatson|season|concert|exhibition|program)\b/i;
-      const ignoreRegex = /\/(?:login|signup|cart|basket|viewbasket|myaccount|account|privacy|terms|contact|about|donate|donations?|ticket-donations?|support|corporate-giving|patrons-circle|major-gifts|gift-cards?|vouchers?|faq|volunteer|membership|merchandise|merch|shop|ticket-info|tickets-info|ticketinfo|ticket-policies|pricing|admission-rates|rates|concession-menu|menus?|rentals?|private-events?|health-and-safety|house-rules|protocols|press|careers|staff|board|sponsors|accessibility|directions|parking|series|education)\b/i;
+      const ignoreRegex = /\/(?:login|signup|cart|basket|viewbasket|myaccount|account|privacy|terms|contact|about|who-we-are|donate|donations?|ticket-donations?|support|corporate-giving|patrons-circle|major-gifts|gift-cards?|vouchers?|faq|volunteer|volunteering|membership|season-memberships?|season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|stats\/(?:roster|standings|leaders|player|game-center|schedule|team)|merchandise|merch|shop|ticket-info|tickets-info|ticketinfo|ticket-policies|pricing|admission-rates|rates|concession-menu|menus?|rentals?|private-events?|health-and-safety|house-rules|protocols|press|careers|staff|board|sponsors?|be-a-sponsor|sponsorship|scholarships?|trophies|gallery-publications|exhibition-catalogues|city-government|city-departments|public-safety|wp-content\/uploads|accessibility|directions|parking|series|education)\b/i;
       const ctaTextRegex = /\b(?:buy\s+tickets?|get\s+tickets?|book\s+now|tickets?|reserve|more\s+info|event\s+details|view\s+event|view\s+show|learn\s+more|select\s+date)\b/i;
       const dateBadgeRegex = /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}\b|\b\d{1,2}:\d{2}\s*(?:am|pm)\b/i;
 
@@ -282,12 +298,12 @@ export async function harvestCalendarLinks(calendarUrl) {
           continue;
         }
 
-        // Skip Showpass non-event organizer/utility links
+        // Skip Showpass non-event organizer/utility/city-discovery links
         if (href.includes("showpass.com/")) {
           try {
             const spPath = new URL(href).pathname.replace(/^\/|\/$/g, "");
             const firstSeg = spPath.split("/")[0].toLowerCase();
-            if (["o", "s", "search", "login", "signup", "cart", "checkout", "about", "terms", "privacy", "organizations", "cities", "venues", "explore", "sell", "pricing", "contact", "support", "help", "faq", "blog", "app", "download", "features", "resources", "partners"].includes(firstSeg)) {
+            if (["o", "s", "m", "discover", "search", "login", "signup", "cart", "checkout", "about", "terms", "privacy", "organizations", "cities", "venues", "explore", "sell", "pricing", "contact", "support", "help", "faq", "blog", "app", "download", "features", "resources", "partners"].includes(firstSeg)) {
               continue;
             }
           } catch (_) { }
@@ -547,6 +563,24 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
           return;
         }
 
+        // Gate 3 Physical Venue Invariant: Reject raw street addresses, online streaming broadcasts, or ungrounded aggregators as venue names
+        const cleanVenueStr = String(evVenue || "").trim();
+        if (
+          !cleanVenueStr ||
+          /^(?:none_available|search_exhausted_null|quarantine_fatal|online|virtual|zoom|teams|flohockey|flosports)/i.test(cleanVenueStr) ||
+          /\b(?:flohockey|flosports|online\s+broadcast)\b/i.test(cleanVenueStr) ||
+          /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(cleanVenueStr)
+        ) {
+          console.log(`🛡️ [Gate 3 Venue Invariant] Suppressing "${card.title}" — invalid/non-physical venue "${cleanVenueStr}" (${targetUrl}).`);
+          results.push({
+            url: targetUrl,
+            success: false,
+            isNew: false,
+            error: `Gate 3 non-physical or street-address venue: ${cleanVenueStr}`,
+          });
+          return;
+        }
+
         // Check if card is already archived or quarantined
         if (lookup.archivedIds.has(cardIdNorm)) {
           console.log(`🛡️ [Archived Event Suppressed] "${card.title}" [${card.id}] is permanently archived/disqualified. Suppressing from layer_schedules.json.`);
@@ -711,10 +745,30 @@ export function inferFeedCity(item = {}) {
     "allevents.in/surrey", "admitone.com/events/surrey", "cloverdalerodeo",
     "artsculture.surrey", "cloverdalemarket", "surreymarket",
     "guildfordtowncentre", "centralcity.ca", "legion240", "sfu.ca/surrey",
-    "kpu.ca", "r/surreybc", "vancouverfc", "businessinsurrey"
+    "kpu.ca", "r/surreybc", "vancouverfc", "businessinsurrey",
+    "galint.gg", "pataka-esports", "salaamevents.com/ramadanfest",
+    "wakeupmusicfestival", "rango-ki-holi", "surreyfestival",
+    "surreyvaisakhiparade", "partyfortheplanet", "5xfest",
+    "purchase.surrey.ca", "cloverdale-ae", "alexhouse.net",
+    "carfree.ca/city/surrey", "surreypride", "surreyfest",
+    "surreycanadaday", "fvdedinthepark", "canadacup.com",
+    "fvhrs.org", "surreyfusionfestival", "naijafoodfest",
+    "bchra.ca", "bcvintagetruckmuseum", "surreygreekfoodfest",
+    "penmar.ca", "newvisionmusicsociety", "folkstaracademy",
+    "dartshill.ca", "isaff.ca", "worldfolkfestival",
+    "cougarcreekhouseofhorrors", "bctrains.com", "bearcreektickets",
+    "diwalifest.ca", "surreytreelighting", "noelfestival"
   ];
   if (surreyTokens.some((tok) => blob.includes(tok))) return "Surrey";
   return "Vancouver";
+}
+
+function normalizeCrawlerFeedUrl(u = "") {
+  return String(u || "")
+    .trim()
+    .toLowerCase()
+    .replace(/^https?:\/\/(www\.)?/, "")
+    .replace(/\/+$/, "");
 }
 
 /**
@@ -742,8 +796,9 @@ export async function runAllVenueFeedsBatch(options = {}) {
   for (const v of venues) {
     const curatorInfo = getCuratorInfo({ venue: v.venue_name });
     const url = (curatorInfo.learnedVenueUrl || curatorInfo.instructedUrl || v.calendar_url || v.website_url || "").trim();
-    if (url && url.startsWith("http") && !seenUrls.has(url)) {
-      seenUrls.add(url);
+    const norm = normalizeCrawlerFeedUrl(url);
+    if (url && url.startsWith("http") && norm && !seenUrls.has(norm)) {
+      seenUrls.add(norm);
       allFeeds.push({
         name: v.venue_name || "Venue",
         url,
@@ -765,8 +820,9 @@ export async function runAllVenueFeedsBatch(options = {}) {
     { name: "The Improv Centre", url: "https://theimprovcentre.ca/shows/", city: "Vancouver" }
   ];
   for (const s of seedFeeds) {
-    if (!seenUrls.has(s.url)) {
-      seenUrls.add(s.url);
+    const norm = normalizeCrawlerFeedUrl(s.url);
+    if (norm && !seenUrls.has(norm)) {
+      seenUrls.add(norm);
       allFeeds.push(s);
     }
   }
@@ -779,8 +835,9 @@ export async function runAllVenueFeedsBatch(options = {}) {
       for (const s of discSources) {
         if (s.id === "testy-canary-feed" || s.type === "canary_test_feed") continue;
         const u = (s.eventsUrl || s.calendarUrl || s.url || "").trim();
-        if (u && u.startsWith("http") && !u.includes("127.0.0.1") && !seenUrls.has(u)) {
-          seenUrls.add(u);
+        const norm = normalizeCrawlerFeedUrl(u);
+        if (u && u.startsWith("http") && !u.includes("127.0.0.1") && norm && !seenUrls.has(norm)) {
+          seenUrls.add(norm);
           allFeeds.push({
             name: s.name || s.id || "Discovery Source",
             url: u,
@@ -800,8 +857,9 @@ export async function runAllVenueFeedsBatch(options = {}) {
       const surreySources = Array.isArray(surreyRef) ? surreyRef : (surreyRef.sources || []);
       for (const s of surreySources) {
         const u = (s.url || "").trim();
-        if (u && u.startsWith("http") && !seenUrls.has(u)) {
-          seenUrls.add(u);
+        const norm = normalizeCrawlerFeedUrl(u);
+        if (u && u.startsWith("http") && norm && !seenUrls.has(norm)) {
+          seenUrls.add(norm);
           allFeeds.push({
             name: s.name || "Surrey Source",
             url: u,

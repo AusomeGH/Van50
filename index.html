@@ -109,12 +109,19 @@
           >
           <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">×</button>
         </div>
-        <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">⚙️ Filters</button>
-        <button type="button" id="mobile-top-map-btn" class="mobile-filter-trigger mobile-top-map-btn view-switcher-btn" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and Card view">🗺️ Map</button>
+        <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="10" y1="18" x2="14" y2="18"></line></svg>
+          <span id="mobile-filter-trigger-label">Filters</span>
+        </button>
+        <button type="button" id="mobile-top-map-btn" class="mobile-filter-trigger mobile-top-map-btn view-switcher-btn" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and Card view">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+          <span>Map</span>
+        </button>
       </div>
       <!-- Live Scrolled Date Indicator (Visible when scrolling through events) -->
       <div class="scroll-date-bar" id="scroll-date-bar" style="display: none;" aria-live="polite">
         <span class="time-group-title" id="scroll-date-title">Today</span>
+        <span class="scroll-date-sep" id="scroll-date-sep" aria-hidden="true">|</span>
         <span class="time-group-date-range" id="scroll-date-range"></span>
       </div>
     </div>
@@ -277,6 +284,19 @@
               <!-- Dynamically generated frequency pills -->
             </div>
           </div>
+
+          <!-- Event Focus / Preferences Filter -->
+          <div class="event-focus-section" id="event-focus-section">
+            <div class="event-focus-header">
+              <span><strong>Event Focus / Preferences:</strong></span>
+            </div>
+            <div class="event-focus-pills-wrap" id="event-focus-pills-wrap" role="group" aria-label="Religious and Cultural Filter">
+              <button type="button" class="focus-pill active" data-focus="all" aria-pressed="true">All Outings</button>
+              <button type="button" class="focus-pill" data-focus="no-worship" aria-pressed="false">Secular &amp; Choral Only</button>
+              <button type="button" class="focus-pill" data-focus="secular" aria-pressed="false">Strictly Secular</button>
+              <button type="button" class="focus-pill" data-focus="faith" aria-pressed="false">Faith-Based &amp; Sacred Only</button>
+            </div>
+          </div>
         </div>
 
         <!-- Sticky Bottom Action Bar for Mobile Filters Sheet -->
@@ -328,7 +348,10 @@
   </main>
 
   <!-- Floating Mobile Map/List Toggle Pill -->
-  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and List view">🗺️ Map</button>
+  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and List view">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+    <span>Map</span>
+  </button>
 
   <!-- Surprise Outing Generator / Roulette Modal -->
   <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-label="Surprise Outing Generator" aria-labelledby="roulette-modal-title" aria-hidden="true" inert>

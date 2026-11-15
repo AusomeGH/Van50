@@ -5910,24 +5910,54 @@ body.van50-accessible .card-ticket-link {
   section[aria-label="Events List"] .mobile-card-row-2 {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 6px;
-    font-size: 0.8rem;
-    opacity: 0.85;
-    color: var(--text-secondary);
     min-width: 0;
+    width: 100%;
+    opacity: 1;
+  }
+
+  section[aria-label="Events List"] .row2-category-pill {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--bg-elevated);
+    color: var(--text-main);
+    border: 1px solid var(--border-subtle);
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  section[aria-label="Events List"] .row2-context-pill {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    line-height: 1.35;
+    white-space: nowrap;
   }
 
   section[aria-label="Events List"] .mobile-card-meta-text {
+    flex: 1 1 auto;
+    min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    flex: 1 1 auto;
-    min-width: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
   }
 
   section[aria-label="Events List"] .mobile-card-chevron {
-    flex: 0 0 auto;
+    flex-shrink: 0;
+    margin-left: auto;
     font-size: 0.78rem;
     color: var(--accent-primary);
     transition: transform 0.2s ease;
@@ -8438,69 +8468,79 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 }
 
 /* ============================================================================
-   13. MOBILE MAP BUTTONS & STICKY SCROLLED DAY BANNER (v7.9.8)
+   13. MOBILE MAP BUTTON DEDUPLICATION & STICKY SCROLLED DAY BANNER
    ============================================================================ */
-/* Always keep the [📋 Cards | 🗺️ Map] segmented toggle visible on both desktop and mobile */
-.results-count-bar div[aria-label="View Switcher"],
-.results-count-bar .inline-view-switcher {
-  display: inline-flex !important;
-  flex-shrink: 0 !important;
-}
-
-/* Hide the mobile-only top bar map shortcut on desktop (> 768px) */
+/* Desktop (> 768px): Show inline [Cards | Map] segmented toggle; hide mobile shortcuts */
 @media (min-width: 769px) {
 
+  .results-count-bar div[aria-label="View Switcher"],
+  .results-count-bar .inline-view-switcher {
+    display: inline-flex !important;
+    flex-shrink: 0 !important;
+  }
+
   #mobile-top-map-btn,
-  .mobile-top-map-btn {
+  .mobile-top-map-btn,
+  #mobile-view-toggle,
+  .mobile-view-toggle {
     display: none !important;
   }
 }
 
 @media (max-width: 768px) {
 
-  /* 1. Sticky Top Bar Map Button right next to Filters */
+  /* 1. Hide duplicate Map buttons on mobile — keep ONLY the floating bottom-center #mobile-view-toggle pill */
   #mobile-top-map-btn,
-  .mobile-top-map-btn {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 4px !important;
-    height: 40px !important;
-    padding: 0 12px !important;
-    border-radius: 999px !important;
-    border: 1.5px solid var(--brand-primary) !important;
-    background: var(--bg-elevated) !important;
-    color: var(--brand-primary) !important;
-    font-family: var(--font-heading) !important;
-    font-size: 0.82rem !important;
-    font-weight: 700 !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    cursor: pointer !important;
-    box-shadow: var(--shadow-sm) !important;
-    transition: all 0.15s ease !important;
-  }
-
-  #mobile-top-map-btn.active,
-  .mobile-top-map-btn.active,
-  #mobile-top-map-btn[aria-pressed="true"] {
-    background: var(--brand-primary) !important;
-    border-color: var(--brand-primary) !important;
-    color: var(--brand-primary-fg) !important;
-    box-shadow: var(--shadow-glow) !important;
+  .mobile-top-map-btn,
+  .results-count-bar div[aria-label="View Switcher"],
+  .results-count-bar .inline-view-switcher {
+    display: none !important;
   }
 
   #mobile-filter-trigger {
-    padding: 0 12px !important;
-    height: 40px !important;
-    font-size: 0.82rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 0 14px !important;
+    height: 42px !important;
+    font-size: 0.84rem !important;
     flex-shrink: 0 !important;
   }
 
-  /* 2. Ensure the Status Bar [📋 Cards | 🗺️ Map] wraps cleanly inside mobile viewport */
+  /* Ensure Sticky Search/Filter + Scrolled Date Header spans 100% width with opaque full-bleed shield */
+  .mobile-search-filter-bar {
+    margin: 0 0 8px 0 !important;
+    padding: 10px 0 8px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: var(--bg-app) !important;
+    box-sizing: border-box !important;
+  }
+
+  .mobile-search-filter-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: -20px;
+    right: -20px;
+    background: var(--bg-app);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  section[aria-label="Events List"] .time-group-header {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Ensure the Status Bar wraps cleanly inside mobile viewport */
   .results-count-bar.dynamic-date-count-bar {
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     align-items: center !important;
     justify-content: space-between !important;
     gap: 6px 10px !important;
@@ -8508,45 +8548,42 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   }
 
   .results-count-right-group {
-    width: 100% !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
+    width: auto !important;
+    display: inline-flex !important;
     align-items: center !important;
-    justify-content: space-between !important;
+    justify-content: flex-end !important;
     gap: 6px 8px !important;
-    margin-left: 0 !important;
+    margin-left: auto !important;
   }
 
   .results-count-bar .results-count-text {
     margin-left: 0 !important;
   }
-
-  .results-count-bar .inline-view-switcher {
-    display: inline-flex !important;
-    padding: 2px !important;
-    border-radius: 999px !important;
-  }
-
-  .results-count-bar .inline-view-mode-btn {
-    padding: 4px 10px !important;
-    font-size: 0.76rem !important;
-  }
 }
 
-/* 3. Scrolled Day Banner ("Today • Sunday, Nov 8th") inside sticky bar */
+/* 3. Scrolled Day Banner ("TODAY | Saturday, Nov 14th") inside sticky bar */
 .scroll-date-bar {
   display: none;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 8px;
   width: 100%;
+  max-width: 100%;
   margin-top: 6px;
-  padding: 5px 12px;
+  padding: 6px 12px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-left: 3.5px solid var(--brand-primary);
   border-radius: 8px;
   box-sizing: border-box;
+}
+
+.scroll-date-bar .scroll-date-sep {
+  color: var(--text-muted);
+  opacity: 0.65;
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-shrink: 0;
 }
 
 .scroll-date-bar .time-group-title {
@@ -8723,4 +8760,99 @@ body.van50-accessible {
 .nh-pill.nh-dimmed-by-region,
 .nh-macro-pill.nh-dimmed-by-region {
   opacity: 0.45;
+}
+
+/* ============================================================================
+   15. SEASONAL HOLIDAY & EVENT FOCUS PREFERENCES + CONTEXT SUB-BADGES
+   ============================================================================ */
+/* Compact, neutral context sub-badge on Event Cards (expanded/desktop) */
+.card-context-subbadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  line-height: 1.35;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Quiet Event Focus / Preferences Row inside Secondary Filters */
+.event-focus-section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.event-focus-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+.event-focus-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.event-focus-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.focus-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.focus-pill:hover {
+  color: var(--text-main);
+  border-color: var(--brand-primary);
+}
+
+.focus-pill.active,
+.focus-pill[aria-pressed="true"] {
+  background: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
+  border-color: var(--brand-primary) !important;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow);
+}
+
+/* 1-Tap Quick Refinement Sub-Pill inside Active Filters Strip */
+.active-filter-chip.quick-refine-subpill {
+  background: var(--bg-elevated) !important;
+  color: var(--text-muted) !important;
+  border: 1px dashed var(--border-subtle) !important;
+  font-weight: 600 !important;
+}
+
+.active-filter-chip.quick-refine-subpill:hover {
+  color: var(--text-main) !important;
+  border-color: var(--brand-primary) !important;
 }

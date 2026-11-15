@@ -103,13 +103,27 @@ window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
   },
   "christmas": {
     id: "christmas",
-    label: "Winter Holidays & Christmas",
-    icon: "🎄",
-    datesLabel: "Nov 15 – Dec 30",
-    shortDesc: "Festive light displays, winter craft markets, holiday concerts, and seasonal theatre.",
-    longDesc: "Celebrate the winter holiday season across Metro Vancouver with botanical garden light displays, indie artisan craft markets, festive choir and jazz concerts, ugly sweater comedy nights, and holiday cinema under $50 CAD.",
-    venues: "Metro Vancouver Theatres, Markets & Botanical Gardens",
-    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice"
+    label: "❄️ Winter & Holiday Season",
+    icon: "❄️",
+    datesLabel: "Nov 15 – Jan 3",
+    startDate: "11-15",
+    endDate: "01-03",
+    shortDesc: "Winter light walks, holiday artisan markets, choral concerts, solstice celebrations, and festive outings.",
+    longDesc: "Explore Metro Vancouver's winter and holiday season (Nov 15 – Jan 3) with illuminated garden walks, indie artisan markets, classical choral concerts, winter solstice lantern celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
+    venues: "Metro Vancouver Theatres, Markets, Parks & Botanical Gardens",
+    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice winter holiday season"
+  },
+  "winter-holiday-season": {
+    id: "christmas",
+    label: "❄️ Winter & Holiday Season",
+    icon: "❄️",
+    datesLabel: "Nov 15 – Jan 3",
+    startDate: "11-15",
+    endDate: "01-03",
+    shortDesc: "Winter light walks, holiday artisan markets, choral concerts, solstice celebrations, and festive outings.",
+    longDesc: "Explore Metro Vancouver's winter and holiday season (Nov 15 – Jan 3) with illuminated garden walks, indie artisan markets, classical choral concerts, winter solstice lantern celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
+    venues: "Metro Vancouver Theatres, Markets, Parks & Botanical Gardens",
+    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice winter holiday season"
   },
   "dia-de-los-muertos": {
     id: "dia-de-los-muertos",
@@ -182,6 +196,18 @@ window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
     longDesc: "Enjoy the Easter and spring season across Metro Vancouver with botanical garden blooms, family-friendly park activities, spring artisan markets, and long-weekend live shows.",
     venues: "Metro Vancouver Gardens, Parks & Markets",
     keywords: "easter spring equinox"
+  },
+  "vaisakhi": {
+    id: "vaisakhi",
+    label: "Vaisakhi",
+    icon: "🌾",
+    datesLabel: "Mid–Late April",
+    startDate: "04-10",
+    endDate: "04-26",
+    shortDesc: "Vibrant Vaisakhi parades, South Asian music & dance stages, and community celebrations.",
+    longDesc: "Experience Vancouver and Surrey's iconic Vaisakhi celebrations—among the largest outside India—featuring colourful Nagar Kirtan processions, free community stages, traditional folk music, and cultural festivities.",
+    venues: "Sunset / Main Street (Punjabi Market) & Newton (Surrey)",
+    keywords: "vaisakhi baisakhi nagar kirtan khalsa day punjabi"
   },
   "canada-day": {
     id: "canada-day",
@@ -294,6 +320,39 @@ window.FESTIVAL_REGISTRY = window.FESTIVAL_REGISTRY || {
     officialUrl: "https://www.surreytreelighting.ca",
     officialLabel: "Official Tree Lighting Guide ↗"
   },
+  "vancouver-christmas-market": {
+    id: "vancouver-christmas-market",
+    label: "Vancouver Christmas Market",
+    icon: "🎄",
+    datesLabel: "Nov 13 – Dec 24",
+    shortDesc: "Outdoor European-style artisan village with 90+ huts, festive lights, and waterfront treats.",
+    longDesc: "Experience Vancouver's outdoor European-style holiday market at Jack Poole Plaza featuring 90+ artisan huts, festive light installations, carousel rides, and seasonal treats along the waterfront.",
+    venues: "Jack Poole Plaza (1055 Canada Pl, Downtown Vancouver)",
+    officialUrl: "https://www.vancouverchristmasmarket.com",
+    officialLabel: "Official Market Site ↗"
+  },
+  "vandusen-festival-of-lights": {
+    id: "vandusen-festival-of-lights",
+    label: "VanDusen Festival of Lights",
+    icon: "✨",
+    datesLabel: "Nov 27 – Jan 3",
+    shortDesc: "Magical winter walk through 15 acres of VanDusen Botanical Garden illuminated with 1M+ lights.",
+    longDesc: "Stroll through 15 acres of VanDusen Botanical Garden transformed by over one million twinkling lights, themed botanical displays, and Dancing Lights shows.",
+    venues: "VanDusen Botanical Garden (5251 Oak St, Vancouver)",
+    officialUrl: "https://vandusengarden.org/explore/events/festival-of-lights/",
+    officialLabel: "Official Festival of Lights Guide ↗"
+  },
+  "bright-nights": {
+    id: "bright-nights",
+    label: "Bright Nights",
+    icon: "✨",
+    datesLabel: "Nov 26 – Jan 3",
+    shortDesc: "Beloved holiday light walk with illuminated tunnels and displays supporting the BC Burn Fund.",
+    longDesc: "Explore millions of twinkling lights, glowing tunnels, and festive outdoor displays supporting the BC Professional Fire Fighters' Burn Fund.",
+    venues: "Noel Booth Community Park / Stanley Park",
+    officialUrl: "https://www.brightnights.ca",
+    officialLabel: "Official Bright Nights Info ↗"
+  },
   "cloverdale-rodeo-country-fair": {
     id: "cloverdale-rodeo-country-fair",
     label: "Cloverdale Rodeo & Country Fair",
@@ -326,6 +385,28 @@ window.FESTIVAL_REGISTRY = window.FESTIVAL_REGISTRY || {
     venues: "Softball City (South Surrey)",
     officialUrl: "https://www.canadacup.com",
     officialLabel: "Official Canada Cup Schedule ↗"
+  },
+  "european-union-film-festival": {
+    id: "european-union-film-festival",
+    label: "European Union Film Festival (EUFF)",
+    icon: "🎬",
+    datesLabel: "Nov 13 – Nov 26, 2026",
+    shortDesc: "Annual showcase of contemporary European cinema from EU member states at The Cinematheque ($15 CAD).",
+    longDesc: "The Cinematheque presents the annual European Union Film Festival (EUFF), screening acclaimed contemporary feature films representing European Union member states in downtown Vancouver.",
+    venues: "The Cinematheque (1131 Howe St, Vancouver)",
+    officialUrl: "https://thecinematheque.ca/series/european-union-film-festival-2026",
+    officialLabel: "Official EUFF Schedule ↗"
+  },
+  "lumiere-festival": {
+    id: "lumiere-festival",
+    label: "Lumière Festival",
+    icon: "✨",
+    datesLabel: "Nov 12 – Nov 16, 2026",
+    shortDesc: "Free outdoor interactive light art installations, projections, and live performances across Downtown & the West End.",
+    longDesc: "Lumière Festival illuminates Downtown Vancouver, the West End, Yaletown, and Gastown with free outdoor light art installations, interactive projection mapping, and open-air performances.",
+    venues: "Vancouver Art Gallery Plaza, West End, Yaletown & Gastown",
+    officialUrl: "https://www.lumiereyvr.com",
+    officialLabel: "Official Lumière Map & Schedule ↗"
   }
 };
 
@@ -357,6 +438,7 @@ const state = {
   excludedThemes: new Set(),
   accessibleMode: false,
   accessibleOnly: false,
+  eventFocus: 'all',
   category: 'all',
   frequency: 'all',
   dayOfWeek: 'all',
@@ -475,6 +557,13 @@ function restoreFiltersFromUrlParams() {
     const sortVal = (params.get('sort') || '').trim();
     if (sortVal) state.sortBy = sortVal;
   }
+
+  if (params.has('focus')) {
+    const focusVal = (params.get('focus') || '').trim().toLowerCase();
+    if (['all', 'no-worship', 'secular', 'faith'].includes(focusVal)) {
+      state.eventFocus = focusVal;
+    }
+  }
 }
 
 function syncFiltersToUrlParams() {
@@ -482,7 +571,7 @@ function syncFiltersToUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const hadRegionParam = params.has('region');
 
-  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort'].forEach(k => params.delete(k));
+  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort', 'focus'].forEach(k => params.delete(k));
 
   if (state.region && (state.region !== 'all' || hadRegionParam || window._userChangedRegion)) {
     params.set('region', state.region);
@@ -524,6 +613,9 @@ function syncFiltersToUrlParams() {
   }
   if (state.sortBy && state.sortBy !== 'date') {
     params.set('sort', state.sortBy);
+  }
+  if (state.eventFocus && state.eventFocus !== 'all') {
+    params.set('focus', state.eventFocus);
   }
 
   const queryStr = params.toString();
@@ -596,6 +688,14 @@ function getActiveFiltersSummaryList() {
   if (state.accessibleOnly) {
     active.push('Accessible Venues Only');
   }
+  if (state.eventFocus && state.eventFocus !== 'all') {
+    const focusLabels = {
+      'no-worship': 'Secular & Choral Only',
+      'secular': 'Strictly Secular',
+      'faith': 'Faith-Based & Sacred Only'
+    };
+    active.push(`Event Focus: ${focusLabels[state.eventFocus] || state.eventFocus}`);
+  }
   if (state.sortBy && state.sortBy !== 'date') {
     active.push(`Sort: ${state.sortBy}`);
   }
@@ -615,6 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTimePills();
   renderNeighborhoodPills();
   renderFrequencyPills();
+  renderEventFocusPills();
   updateSliderVisuals();
   applyFiltersAndRender();
   updateReviewQueueBadge();
@@ -1036,6 +1137,198 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
   return null;
 }
 
+/**
+ * Orthogonal 3-Tier Seasonal & Cultural Sub-Tag Helper:
+ * 1. Secular Festive: "holiday-lights", "holiday-market", "winter-festive", "cultural-festival"
+ * 2. Sacred Music & Cultural Crossover: "sacred-music", "choral"
+ * 3. Devotional / Liturgical: "faith-based", "religious-service"
+ */
+function inferHolidaySubTags(event) {
+  if (!event || typeof event !== 'object') return [];
+  const out = new Set();
+  const explicitArr = [
+    ...(Array.isArray(event.tags) ? event.tags : []),
+    ...(Array.isArray(event.subTags) ? event.subTags : [])
+  ];
+  const existingSet = new Set(explicitArr.map(t => String(t || '').toLowerCase().trim()).filter(Boolean));
+  for (const known of ['holiday-lights', 'holiday-market', 'winter-festive', 'cultural-festival', 'sacred-music', 'choral', 'faith-based', 'religious-service']) {
+    if (existingSet.has(known)) out.add(known);
+  }
+
+  const titleStr = String(event.title || event.event_name || '').trim();
+  const descStr = String(event.description || '').trim();
+  const venueStr = String(event.venue || event.venue_name || '').trim();
+  const titleDesc = `${titleStr} ${descStr}`;
+  const titleDescVenue = `${titleDesc} ${venueStr}`;
+  const holAff = String(event.holidayAffiliation || event.holiday_affiliation || '').toLowerCase().trim();
+
+  const catSignals = [
+    event.category,
+    event.categoryLabel,
+    ...(Array.isArray(event.categories) ? event.categories : [])
+  ].filter(Boolean).join(' ').toLowerCase();
+  const isMusicOrArts = /\b(music|live music|art|arts|theatre|theater|shows|stage|social|culture|classical|choral|concert|festivals?)\b/i.test(catSignals) ||
+    /^(live_stage|festival)$/i.test(String(event.event_archetype || event.archetype || ''));
+
+  // Exclude secular Fever "Candlelight Concert" / "Candlelight:" string quartets unless explicit worship terms exist
+  const isSecularCandlelightConcert = /\bcandlelight(?:\s*:\s*|\s+concert|\s+tribute|\s+string|\s+quartet)/i.test(titleStr) &&
+    !/\b(worship|mass|liturgy|sermon|christmas\s+eve\s+service|good\s+friday\s+service)\b/i.test(titleDesc);
+
+  const explicitNotReligious = event.is_religious === false || event.isReligious === false;
+  const explicitReligious = (event.is_religious === true || event.isReligious === true) && !/\b(messiah|cantata|lessons\s*(?:and|&)\s*carols|requiem|vespers)\b/i.test(titleStr);
+
+  // Tier 3: Devotional / Liturgical ("faith-based", "religious-service")
+  const matchesFaithRegex = !isSecularCandlelightConcert && (
+    /\b(worship|mass|nativity|liturgy|sermon|prayer|candlelight\s+service|christmas\s+eve\s+service|good\s+friday\s+service)\b/i.test(titleDescVenue) ||
+    /\b(worship\s*service|worship\s*night|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|church\s*fellowship)\b/i.test(titleDesc)
+  );
+
+  if (!explicitNotReligious && (explicitReligious || matchesFaithRegex)) {
+    out.add('faith-based');
+    if (/\b(service|worship|mass|liturgy|sermon|eucharist|puja|diwan|jummah)\b/i.test(titleDescVenue)) {
+      out.add('religious-service');
+    }
+  }
+
+  // Tier 2: Sacred Music & Cultural Crossover ("sacred-music", "choral")
+  if (!out.has('faith-based')) {
+    if (isMusicOrArts && /\b(messiah|choral|cantata|lessons\s*(?:and|&)\s*carols|choir|requiem|vespers)\b/i.test(titleDesc)) {
+      out.add('sacred-music');
+      if (/\b(choral|choir|lessons\s*(?:and|&)\s*carols|cantata|messiah|requiem|vespers)\b/i.test(titleDesc)) {
+        out.add('choral');
+      }
+    }
+  }
+
+  // Tier 1: Secular Festive ("holiday-lights", "holiday-market", "winter-festive", "cultural-festival")
+  if (/\b(festival\s+of\s+lights|bear\s+creek\s+lights|canyon\s+lights|bright\s+nights|lights\s+of\s+hope|lumi[eè]re|tree\s+lighting|light\s+walk|holiday\s+lights|winter\s+lights|lantern\s+festival)\b/i.test(titleDesc)) {
+    out.add('holiday-lights');
+  }
+  if (/\b(christmas\s+market|holiday\s+market|winter\s+market|holiday\s+bazaar|winter\s+craft\s+market|holiday\s+craft)\b/i.test(titleDesc)) {
+    out.add('holiday-market');
+  }
+  if (!out.has('faith-based') && (holAff === 'christmas' || holAff === 'winter-holiday-season' || holAff === 'new-years' ||
+      /\b(santa|nutcracker|panto|pantomime|ugly\s+sweater|keithmas|krampus|gingerbread|winter\s+solstice|polar\s+bear\s+swim|holiday\s+comedy|holiday\s+trivia|yuletide)\b/i.test(titleDesc))) {
+    out.add('winter-festive');
+  }
+  if (holAff === 'diwali' || holAff === 'vaisakhi' || holAff === 'lunar-new-year' || holAff === 'dia-de-los-muertos' ||
+      /\b(diwali|vaisakhi|lunar\s+new\s+year|chinese\s+new\s+year|dia\s+de\s+los\s+muertos|day\s+of\s+the\s+dead|lion\s+dance)\b/i.test(titleDesc)) {
+    out.add('cultural-festival');
+  }
+
+  return Array.from(out);
+}
+window.inferHolidaySubTags = inferHolidaySubTags;
+
+function getCompactRow2CategoryLabel(ev) {
+  if (!ev) return 'Arts';
+  const titleStr = String(ev.title || ev.event_name || '');
+  const catLabel = String(ev.categoryLabel || ev.category || '');
+  const cats = Array.isArray(ev.categories) ? ev.categories.map(c => String(c || '').toLowerCase()) : [String(ev.category || '').toLowerCase()];
+  const subTagsStr = Array.isArray(ev.subTags) ? ev.subTags.join(' ') : '';
+  const arch = String(ev.event_archetype || ev.archetype || '').toLowerCase();
+  const combined = `${titleStr} ${catLabel} ${subTagsStr}`;
+
+  if (cats.includes('trivia') || arch === 'social_gaming' || /\b(social\s*&\s*games|trivia\s*&\s*games|board\s*game|bingo|trivia|quiz)\b/i.test(combined)) {
+    return /\b(trivia|quiz)\b/i.test(combined) ? 'Trivia' : 'Games';
+  }
+  if (cats.includes('cinema') || arch === 'cinema' || /\bindie\s*cinema\b/i.test(catLabel)) {
+    return 'Cinema';
+  }
+  if (cats.includes('comedy') || /\b(comedy|stand-?up|improv)\b/i.test(`${titleStr} ${catLabel}`)) {
+    return 'Comedy';
+  }
+  if (cats.includes('music') || /\b(live\s*music|concert|symphony|orchestra|choir|choral|jazz|dj|rave)\b/i.test(`${titleStr} ${catLabel}`)) {
+    return 'Music';
+  }
+  if (cats.includes('markets') || /\bmarket\b/i.test(catLabel) || /\b(holiday\s+market|christmas\s+market|winter\s+market|artisan\s+market|craft\s+market|farmers\s+market)\b/i.test(titleStr)) {
+    return 'Markets';
+  }
+  if (cats.includes('sports') || arch === 'active_rec' || /\b(sports?|golf|pitch\s*&\s*putt|skating|curling|hockey|baseball|soccer|bowling|roller)\b/i.test(combined)) {
+    return 'Sports';
+  }
+  if (cats.includes('outdoors') || arch === 'civic_park' || (cats.includes('free-public-access') && /\b(park|beach|seawall|garden|trail|canyon|quay|pier|promenade|plaza|island|lights|walk)\b/i.test(`${ev.venue || ''} ${titleStr}`))) {
+    return 'Outdoors';
+  }
+  if (/\b(theatre|theater|play|musical|panto|pantomime|ballet|opera|cabaret|drag|burlesque|fringe)\b/i.test(combined)) {
+    return 'Theatre';
+  }
+  if (cats.includes('shows') || cats.includes('social') || cats.includes('arts') || cats.includes('free-public-access') || arch === 'museum_gallery' || arch === 'workshop') {
+    return 'Arts';
+  }
+  if (cats.includes('festivals')) {
+    return 'Festival';
+  }
+  return 'Arts';
+}
+window.getCompactRow2CategoryLabel = getCompactRow2CategoryLabel;
+
+function getEventRow2TimeDisplay(ev, topDate, bucketKey) {
+  if (!ev) return 'All Day';
+  const isDropInSpot = Boolean(
+    ev.isFreePublic ||
+    ev.lifecycleType === 'perennial_drop_in' ||
+    ev.lifecycle_type === 'perennial_drop_in' ||
+    ev.access_model === 'open_public_space' ||
+    ev.access_model === 'free_public_access' ||
+    ev.frequency === 'daily'
+  );
+
+  // Locate matching showing for topDate.dateStr or earliest upcoming showing
+  let rawStart = '';
+  let rawEnd = '';
+  if (Array.isArray(ev.showings) && ev.showings.length > 0) {
+    const targetIso = topDate && topDate.dateStr ? topDate.dateStr : null;
+    const matched = (targetIso && ev.showings.find(s => s && s.date === targetIso)) || ev.showings[0];
+    if (matched) {
+      rawStart = matched.start_time || matched.time || '';
+      rawEnd = matched.end_time || '';
+    }
+  }
+  if (!rawStart && ev.time && !/^(daily|varies|check|none_available|unknown|all day)$/i.test(String(ev.time).trim())) {
+    rawStart = String(ev.time).trim();
+  }
+  if (!rawStart && ev.startIso && String(ev.startIso).includes('T')) {
+    const timePart = String(ev.startIso).split('T')[1]?.slice(0, 5);
+    if (timePart && timePart !== '00:00') rawStart = timePart;
+  }
+
+  let timeLabel = '';
+  if (rawStart && !/^(none_available|unknown|tba|tbd|varies)$/i.test(rawStart)) {
+    if (/all\s*day|24\s*hours|dawn/i.test(rawStart)) {
+      timeLabel = 'All Day';
+    } else {
+      const fmtStart = typeof formatDisplayTime12h === 'function' ? formatDisplayTime12h(rawStart) : rawStart;
+      if (isDropInSpot && rawEnd && !/^(none_available|unknown)$/i.test(rawEnd)) {
+        const fmtEnd = typeof formatDisplayTime12h === 'function' ? formatDisplayTime12h(rawEnd) : rawEnd;
+        timeLabel = (fmtStart && fmtEnd && fmtStart !== fmtEnd) ? `${fmtStart} – ${fmtEnd}` : (fmtStart || 'All Day');
+      } else {
+        timeLabel = fmtStart || (isDropInSpot ? 'All Day' : 'Evening');
+      }
+    }
+  } else if (isDropInSpot) {
+    timeLabel = 'All Day';
+  } else {
+    const schedStr = String(ev.dateSchedule || '');
+    const clockMatch = schedStr.match(/\b(\d{1,2}(?::\d{2})?\s*(?:AM|PM))\b/i);
+    if (clockMatch) {
+      timeLabel = clockMatch[1].toUpperCase();
+    } else if (/afternoon|matinee/i.test(schedStr)) {
+      timeLabel = 'Afternoon';
+    } else if (/morning/i.test(schedStr)) {
+      timeLabel = 'Morning';
+    } else {
+      timeLabel = 'Evening';
+    }
+  }
+
+  // Only include the date string on collapsed Row 2 when viewing an ungrouped list (!bucketKey)
+  if (!bucketKey && topDate && topDate.badgeText) {
+    return `${topDate.badgeText} • ${timeLabel}`;
+  }
+  return timeLabel;
+}
+
 function normalizeActiveEvent(item) {
   if (!item) return item;
 
@@ -1074,7 +1367,10 @@ function normalizeActiveEvent(item) {
 
   const rawHolidayAff = (() => {
     const explicit = item.holiday_affiliation || item.holidayAffiliation || (item.dimension_audit && (item.dimension_audit.D008_holiday_affiliation?.value || item.dimension_audit.D009_holiday_affiliation?.value));
-    if (explicit && explicit !== "None" && explicit !== "none_available") return String(explicit).toLowerCase().trim();
+    if (explicit && explicit !== "None" && explicit !== "none_available") {
+      const normExp = String(explicit).toLowerCase().trim();
+      return (normExp === "winter-holiday-season" || normExp === "winter-holidays") ? "christmas" : normExp;
+    }
     const checkText = `${evTitle} ${(Array.isArray(item.tags) ? item.tags.join(" ") : "")} ${item.description || ""}`.toLowerCase();
     const primaryDateStr = confirmedDates[0] || item.date || null;
     const eventMmdd = (primaryDateStr && /^\d{4}-\d{2}-\d{2}$/.test(primaryDateStr)) ? primaryDateStr.slice(5, 10) : null;
@@ -1093,11 +1389,12 @@ function normalizeActiveEvent(item) {
     if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(checkText)) return "valentines-day";
     if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s day)\b/i.test(checkText)) return "st-patricks-day";
     if (/\b(?:easter|egg hunt|good friday|ostara)\b/i.test(checkText)) return "easter";
+    if (/\b(?:vaisakhi|baisakhi|nagar kirtan)\b/i.test(checkText)) return "vaisakhi";
     if (/\b(?:canada day)\b/i.test(checkText)) return "canada-day";
     if (/\b(?:pride festival|vancouver pride|pride parade|queer pride)\b/i.test(checkText)) return "pride";
     if (inSeason("10-01", "11-03") && /\b(?:haunted|spooky|horror|slasher|thriller|costume|masquerade|zombie|vampire|vampyr|witch|witches|ghost|goth|gothic|occult|macabre|monster|pumpkin|fright|scream|creepy|murder mystery|deadly dinner|unexplained|paranormal|x[- ]files|yes files|seance|séance|rocky horror|nosferatu|frankenstein|dracula|evil dead|exorcist|dark cabaret|freak show)\b/i.test(checkText)) return "halloween";
     if (inSeason("10-15", "11-20") && /\b(?:festival of lights|rangoli|bhangra|bollywood|garba|dandiya|mehfil|diya)\b/i.test(checkText)) return "diwali";
-    if (inSeason("11-12", "12-30") && /\b(?:holiday market|winter market|craft market|winter solstice|festive|ugly sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar express|canyon lights|bright nights|winter wonderland|holiday special|holiday show|holiday concert|holiday party)\b/i.test(checkText)) return "christmas";
+    if (inSeason("11-15", "01-03") && /\b(?:holiday market|winter market|craft market|winter solstice|festive|ugly sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar express|canyon lights|bright nights|winter wonderland|holiday special|holiday show|holiday concert|holiday party)\b/i.test(checkText)) return "christmas";
     return null;
   })();
   const hasHolidayAffiliation = Boolean(rawHolidayAff);
@@ -1321,65 +1618,133 @@ function normalizeActiveEvent(item) {
 
   const finalPrice = price > 0 ? price : 0.0;
 
+  // Canonical Festival Resolver: unifies overlapping festival names/aliases into a single canonical slug & label
+  const resolveCanonicalFestival = (rawAff, titleStr, idStr) => {
+    const combined = `${rawAff || ''} ${titleStr || ''} ${idStr || ''}`.trim();
+    if (!rawAff && !/\b(?:lumi[eè]re\s*festival|diwali\s*(?:fest|in\s*surrey|downtown\s*surrey)|european\s*union\s*film\s*festival|vancouver\s*christmas\s*market|vandusen\s*festival\s*of\s*lights|bright\s*nights)\b/i.test(combined)) {
+      return null;
+    }
+    const lower = String(rawAff || combined).toLowerCase();
+    // Skip any festival currently pending curator approval or rejected in window.FESTIVALS
+    if (Array.isArray(window.FESTIVALS)) {
+      const pendingMatch = window.FESTIVALS.find(f => {
+        if (!f || (f.status !== 'pending_curator_approval' && f.approvalStatus !== 'pending' && f.status !== 'rejected')) return false;
+        const fn = String(f.festival_name || f.name || '').toLowerCase();
+        return fn && lower.includes(fn);
+      });
+      if (pendingMatch) return null;
+    }
+    if (/\bdiwali\b/i.test(lower)) {
+      return { slug: 'diwali-fest', label: 'Diwali Fest', fullLabel: 'Diwali Fest (Festival of Lights)', icon: '🪔' };
+    }
+    if (/\b(?:european\s*union\s*film\s*festival|euff)\b/i.test(lower)) {
+      return { slug: 'european-union-film-festival', label: 'European Union Film Festival', fullLabel: 'European Union Film Festival (EUFF)', icon: '🎬' };
+    }
+    if (/\blumi[eè]re\s*festival\b/i.test(lower)) {
+      return { slug: 'lumiere-festival', label: 'Lumière Festival', fullLabel: 'Lumière Festival', icon: '✨' };
+    }
+    if (/\bculture\s*days\b/i.test(lower)) {
+      return { slug: 'bc-culture-days', label: 'BC Culture Days', fullLabel: 'BC Culture Days', icon: '🎨' };
+    }
+    if (/\bheart\s*of\s*the\s*city\b/i.test(lower)) {
+      return { slug: 'downtown-eastside-heart-of-the-city-festival', label: 'DTES Heart of the City Festival', fullLabel: 'Downtown Eastside Heart of the City Festival', icon: '❤️' };
+    }
+    if (/\b(?:muertos|day\s*of\s*the\s*dead)\b/i.test(lower)) {
+      return { slug: 'dia-de-los-muertos-festival-day-of-the-dead', label: 'Día de los Muertos Festival', fullLabel: 'Día de los Muertos Festival (Day of the Dead)', icon: '💀' };
+    }
+    if (/\bsurrey\s*tree\s*lighting\b/i.test(lower)) {
+      return { slug: 'surrey-tree-lighting-festival-holiday-market', label: 'Surrey Tree Lighting Festival', fullLabel: 'Surrey Tree Lighting Festival & Holiday Market', icon: '🎄' };
+    }
+    if (/\bbear\s*creek\s*lights\b/i.test(lower)) {
+      return { slug: 'bear-creek-lights', label: 'Bear Creek Lights', fullLabel: 'Bear Creek Lights', icon: '✨' };
+    }
+    if (/\bvancouver\s*christmas\s*market\b/i.test(lower)) {
+      return { slug: 'vancouver-christmas-market', label: 'Vancouver Christmas Market', fullLabel: 'Vancouver Christmas Market', icon: '🎄' };
+    }
+    if (/\bvandusen\s*festival\s*of\s*lights\b/i.test(lower)) {
+      return { slug: 'vandusen-festival-of-lights', label: 'VanDusen Festival of Lights', fullLabel: 'VanDusen Festival of Lights', icon: '✨' };
+    }
+    if (/\bbright\s*nights\b/i.test(lower)) {
+      return { slug: 'bright-nights', label: 'Bright Nights', fullLabel: 'Bright Nights', icon: '✨' };
+    }
+    if (!rawAff) return null;
+    const festShort = String(rawAff).replace(/\s*\(.*?\)\s*/g, '').trim();
+    const festSlug = festShort.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const festIcon = /viff|film/i.test(rawAff) ? '🎬' : '🎪';
+    return { slug: festSlug, label: festShort, fullLabel: rawAff, icon: festIcon };
+  };
+
   // Build normalized subTags and structured Festival/Holiday theme badges
   const baseSubTags = Array.isArray(item.tags) ? [...item.tags] : (Array.isArray(item.subTags) ? [...item.subTags] : []);
   const themeBadges = [];
-  if (rawFestivalAff) {
-    const festShort = String(rawFestivalAff).replace(/\s*\(.*?\)\s*/g, '').trim();
-    const festSlug = festShort.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    const festIcon = /diwali/i.test(rawFestivalAff) ? '🪔' : (/viff|film/i.test(rawFestivalAff) ? '🎬' : '🎪');
+  const canonicalFest = resolveCanonicalFestival(rawFestivalAff, evTitle, item.id || item.event_id);
+  if (canonicalFest) {
     themeBadges.push({
-      key: `festival:${festSlug}`,
+      key: `festival:${canonicalFest.slug}`,
       type: 'festival',
-      id: festSlug,
-      label: festShort,
-      fullLabel: rawFestivalAff,
-      icon: festIcon
+      id: canonicalFest.slug,
+      label: canonicalFest.label,
+      fullLabel: canonicalFest.fullLabel,
+      icon: canonicalFest.icon
     });
-    for (const t of ['festival', festSlug, `festival:${festSlug}`]) {
+    for (const t of ['festival', canonicalFest.slug, `festival:${canonicalFest.slug}`]) {
       if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
     }
   }
   if (rawHolidayAff) {
-    const holMeta = (window.HOLIDAY_REGISTRY && window.HOLIDAY_REGISTRY[rawHolidayAff]) || {
-      id: rawHolidayAff,
-      label: rawHolidayAff.charAt(0).toUpperCase() + rawHolidayAff.slice(1),
-      icon: '🎉',
-      keywords: rawHolidayAff
-    };
-    // Avoid duplicate badge if Diwali Fest is already added as festival:diwali-fest, but still tag both
-    const alreadyCoveredByFestival = themeBadges.some(b => b.id.includes(rawHolidayAff) || rawHolidayAff.includes(b.id));
-    if (!alreadyCoveredByFestival) {
-      themeBadges.push({
-        key: `holiday:${rawHolidayAff}`,
-        type: 'holiday',
+    // Unify holiday:diwali into festival:diwali-fest so Diwali events never split into two separate pills
+    if (String(rawHolidayAff).toLowerCase() === 'diwali') {
+      if (!themeBadges.some(b => b.key === 'festival:diwali-fest')) {
+        themeBadges.push({
+          key: 'festival:diwali-fest',
+          type: 'festival',
+          id: 'diwali-fest',
+          label: 'Diwali Fest',
+          fullLabel: 'Diwali Fest (Festival of Lights)',
+          icon: '🪔'
+        });
+      }
+      for (const t of ['festival', 'diwali-fest', 'festival:diwali-fest', 'holiday', 'diwali', 'holiday:diwali']) {
+        if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
+      }
+    } else {
+      const holMeta = (window.HOLIDAY_REGISTRY && window.HOLIDAY_REGISTRY[rawHolidayAff]) || {
         id: rawHolidayAff,
-        label: holMeta.label,
-        fullLabel: holMeta.label,
-        icon: holMeta.icon
-      });
-    }
-    for (const t of ['holiday', rawHolidayAff, `holiday:${rawHolidayAff}`]) {
-      if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
+        label: rawHolidayAff.charAt(0).toUpperCase() + rawHolidayAff.slice(1),
+        icon: '🎉',
+        keywords: rawHolidayAff
+      };
+      const alreadyCoveredByFestival = themeBadges.some(b => b.id.includes(rawHolidayAff) || rawHolidayAff.includes(b.id));
+      if (!alreadyCoveredByFestival) {
+        themeBadges.push({
+          key: `holiday:${rawHolidayAff}`,
+          type: 'holiday',
+          id: rawHolidayAff,
+          label: holMeta.label,
+          fullLabel: holMeta.label,
+          icon: holMeta.icon
+        });
+      }
+      for (const t of ['holiday', rawHolidayAff, `holiday:${rawHolidayAff}`]) {
+        if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
+      }
     }
   }
 
-  // Option 1: Content-based Religious / Spiritual detection (never triggered by church/temple venue building alone)
-  const isReligious = (() => {
-    if (item.is_religious === true || item.isReligious === true) return true;
-    if (item.is_religious === false || item.isReligious === false) return false;
-    const contentText = `${evTitle} ${(Array.isArray(item.tags) ? item.tags.join(" ") : "")} ${item.description || ""}`.toLowerCase();
-    return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
-  })();
+  // Orthogonal 3-Tier Seasonal & Cultural Sub-Tag Inference (Secular Festive / Sacred Choral / Devotional Faith-Based)
+  const inferredHolidayTags = inferHolidaySubTags({
+    ...item,
+    title: evTitle,
+    venue: item.venue_name || item.venue || '',
+    category: cat,
+    categories: categories,
+    holidayAffiliation: rawHolidayAff
+  });
+  for (const ht of inferredHolidayTags) {
+    if (ht && !baseSubTags.some(x => String(x).toLowerCase() === ht)) baseSubTags.push(ht);
+  }
+  const isReligious = inferredHolidayTags.includes('faith-based') || inferredHolidayTags.includes('religious-service');
   if (isReligious) {
-    themeBadges.push({
-      key: 'religious:religious',
-      type: 'religious',
-      id: 'religious',
-      label: 'Religious / Spiritual',
-      fullLabel: 'Religious / Spiritual',
-      icon: '🕯️'
-    });
     for (const t of ['religious', 'spiritual', 'religious:religious']) {
       if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
     }
@@ -1425,6 +1790,7 @@ function normalizeActiveEvent(item) {
     categories: categories,
     categoryLabel: isFreePublic ? "Free Public Access" : (item.categoryLabel || item.category || "Shows & Arts"),
     categoryIcon: isFreePublic ? "🏛️" : (cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : (cat === "cinema" ? "🎬" : "🎭"))),
+    tags: baseSubTags,
     subTags: baseSubTags,
     dateSchedule: dateSchedule,
     startIso: (!(isDropIn || isFreePublic) && (showings[0]?.date || show1.date || item.date))
@@ -1948,10 +2314,13 @@ function setupEventListeners() {
     if (!eventsGrid || !mapWrapper) return;
     const isMap = mode === 'map';
 
+    const cardsSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>';
+    const mapSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>';
+
     const allToggleButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, #mobile-top-map-btn, [data-view]');
     allToggleButtons.forEach((btn) => {
       if (btn.id === 'mobile-view-toggle' || btn.id === 'mobile-top-map-btn' || btn.getAttribute('data-view') === 'toggle') {
-        btn.innerHTML = isMap ? '📋 Cards' : '🗺️ Map';
+        btn.innerHTML = isMap ? `${cardsSvg}<span>Cards</span>` : `${mapSvg}<span>Map</span>`;
         btn.classList.toggle('active', isMap);
         btn.setAttribute('aria-pressed', isMap ? 'true' : 'false');
         return;
@@ -2177,6 +2546,7 @@ function setupEventListeners() {
     state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
     state.hideDaily = false;
     state.accessibleOnly = false;
+    state.eventFocus = 'all';
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 50;
     if (hideDailyToggle) hideDailyToggle.checked = false;
@@ -2185,6 +2555,7 @@ function setupEventListeners() {
     renderTimePills();
     renderNeighborhoodPills();
     renderFrequencyPills();
+    renderEventFocusPills();
     clearActiveQuickButtons();
     updateSliderVisuals();
     applyFiltersAndRender();
@@ -2455,15 +2826,23 @@ function clearActiveQuickButtons() {
 
 function eventMatchesThemeKey(ev, themeKey) {
   if (!ev || !themeKey) return false;
-  if (Array.isArray(ev.themeBadges) && ev.themeBadges.some(b => b.key === themeKey)) return true;
-  const [type, slug] = String(themeKey).split(':');
+  let normalizedTargetKey = (themeKey === 'holiday:diwali') ? 'festival:diwali-fest' : themeKey;
+  if (normalizedTargetKey === 'holiday:winter-holiday-season' || normalizedTargetKey === 'holiday:winter-holidays') {
+    normalizedTargetKey = 'holiday:christmas';
+  }
+  if (Array.isArray(ev.themeBadges) && ev.themeBadges.some(b => b.key === normalizedTargetKey || b.key === themeKey)) return true;
+  const [type, slug] = String(normalizedTargetKey).split(':');
   if (type === 'religious' && (ev.isReligious || ev.is_religious)) return true;
-  if (type === 'holiday' && ev.holidayAffiliation && String(ev.holidayAffiliation).toLowerCase() === slug) return true;
+  if (slug === 'diwali-fest' && (String(ev.holidayAffiliation || '').toLowerCase() === 'diwali' || /\bdiwali\b/i.test(String(ev.festivalAffiliation || '')))) return true;
+  if (type === 'holiday' && ev.holidayAffiliation) {
+    const evHol = String(ev.holidayAffiliation).toLowerCase();
+    if (evHol === slug || (slug === 'christmas' && evHol === 'winter-holiday-season')) return true;
+  }
   if (type === 'festival' && ev.festivalAffiliation) {
     const fSlug = String(ev.festivalAffiliation).toLowerCase().replace(/\s*\(.*?\)\s*/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    if (fSlug === slug || fSlug.includes(slug)) return true;
+    if (fSlug === slug || fSlug.includes(slug) || slug.includes(fSlug)) return true;
   }
-  if (Array.isArray(ev.subTags) && ev.subTags.some(t => String(t).toLowerCase() === themeKey || String(t).toLowerCase() === slug)) return true;
+  if (Array.isArray(ev.subTags) && ev.subTags.some(t => String(t).toLowerCase() === normalizedTargetKey || String(t).toLowerCase() === slug)) return true;
   return false;
 }
 
@@ -2476,10 +2855,22 @@ function getActiveThemeGroups(catalog) {
       ev.themeBadges.forEach(b => {
         // Option 1: Keep the top banner strictly for Festivals & Holidays; religious badges appear on cards only
         if (!b || b.type === 'religious') return;
-        if (!groupsMap.has(b.key)) {
-          groupsMap.set(b.key, { ...b, count: 0 });
+        const canonicalKey = (b.key === 'holiday:diwali') ? 'festival:diwali-fest' : b.key;
+        if (!groupsMap.has(canonicalKey)) {
+          const regMeta = (canonicalKey.startsWith('festival:') && window.FESTIVAL_REGISTRY)
+            ? window.FESTIVAL_REGISTRY[canonicalKey.slice(9)]
+            : null;
+          groupsMap.set(canonicalKey, {
+            ...b,
+            key: canonicalKey,
+            id: canonicalKey.split(':')[1] || b.id,
+            label: regMeta?.label || b.label,
+            fullLabel: regMeta?.label || b.fullLabel || b.label,
+            icon: regMeta?.icon || b.icon,
+            count: 0
+          });
         }
-        groupsMap.get(b.key).count++;
+        groupsMap.get(canonicalKey).count++;
       });
     }
   });
@@ -2510,18 +2901,25 @@ function getActiveThemeGroups(catalog) {
 const THEME_DATE_WINDOWS = {
   'diwali': { startDate: '2026-11-05', endDate: '2026-11-15' },
   'diwali-fest': { startDate: '2026-11-05', endDate: '2026-11-15' },
+  'european-union-film-festival': { startDate: '2026-11-13', endDate: '2026-11-26' },
+  'lumiere-festival': { startDate: '2026-11-12', endDate: '2026-11-16' },
   'bear-creek-lights': { startDate: '2026-11-01', endDate: '2026-11-15' },
   'surrey-tree-lighting-festival-holiday-market': { startDate: '2026-11-21', endDate: '2026-11-22' },
+  'vancouver-christmas-market': { startDate: '2026-11-13', endDate: '2026-12-24' },
+  'vandusen-festival-of-lights': { startDate: '2026-11-27', endDate: '2027-01-03' },
+  'bright-nights': { startDate: '2026-11-26', endDate: '2027-01-03' },
   'cloverdale-rodeo-country-fair': { startDate: '05-15', endDate: '05-18' },
   'surrey-fusion-festival': { startDate: '07-18', endDate: '07-19' },
   'canada-cup-international-softball-championship': { startDate: '07-03', endDate: '07-12' },
   'downtown-eastside-heart-of-the-city-festival': { startDate: '2026-10-30', endDate: '2026-11-08' },
-  'christmas': { startDate: '11-15', endDate: '12-30' },
-  'new-years': { startDate: '12-26', endDate: '01-02' },
+  'christmas': { startDate: '11-15', endDate: '01-03' },
+  'winter-holiday-season': { startDate: '11-15', endDate: '01-03' },
+  'new-years': { startDate: '12-26', endDate: '01-03' },
   'lunar-new-year': { startDate: '01-25', endDate: '02-20' },
   'valentines-day': { startDate: '02-01', endDate: '02-15' },
   'st-patricks-day': { startDate: '03-10', endDate: '03-18' },
   'easter': { startDate: '03-25', endDate: '04-12' },
+  'vaisakhi': { startDate: '04-10', endDate: '04-26' },
   'canada-day': { startDate: '06-28', endDate: '07-02' },
   'pride': { startDate: '07-24', endDate: '08-05' },
   'vancouver-fringe-festival': { startDate: '09-10', endDate: '09-20' },
@@ -3295,6 +3693,41 @@ function renderFrequencyPills() {
     container.appendChild(pill);
   });
 }
+
+const EVENT_FOCUS_OPTIONS = [
+  { id: 'all', label: 'All Outings', chipLabel: 'All Outings' },
+  { id: 'no-worship', label: 'Secular & Choral Only', chipLabel: 'Secular & Choral Only' },
+  { id: 'secular', label: 'Strictly Secular', chipLabel: 'Strictly Secular' },
+  { id: 'faith', label: 'Faith-Based & Sacred Only', chipLabel: 'Faith-Based & Sacred Only' }
+];
+
+function renderEventFocusPills() {
+  const container = document.getElementById('event-focus-pills-wrap');
+  if (!container) return;
+  const curFocus = state.eventFocus || 'all';
+  container.innerHTML = '';
+  EVENT_FOCUS_OPTIONS.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    const isActive = curFocus === opt.id;
+    btn.className = `focus-pill freq-filter-pill ${isActive ? 'active' : ''}`;
+    btn.setAttribute('data-focus', opt.id);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    btn.textContent = opt.label;
+    btn.addEventListener('click', () => {
+      window.setEventFocusFilter(opt.id);
+    });
+    container.appendChild(btn);
+  });
+}
+window.renderEventFocusPills = renderEventFocusPills;
+
+window.setEventFocusFilter = function (focusMode) {
+  const valid = ['all', 'no-worship', 'secular', 'faith'];
+  state.eventFocus = valid.includes(focusMode) ? focusMode : 'all';
+  renderEventFocusPills();
+  applyFiltersAndRender();
+};
 
 // Sub-tag click-to-filter helper with instant toggle-to-deselect
 window.filterBySubTag = function (tag) {
@@ -4123,6 +4556,20 @@ function applyFiltersAndRender() {
       }
     }
 
+    // 7b. Event Focus / Religious & Cultural Preference Filter
+    if (state.eventFocus && state.eventFocus !== 'all') {
+      const focusTagSet = new Set([
+        ...(Array.isArray(ev.tags) ? ev.tags : []),
+        ...(Array.isArray(ev.subTags) ? ev.subTags : []),
+        ...inferHolidaySubTags(ev)
+      ].map(t => String(t || '').toLowerCase().trim()));
+      const isFaithEvent = focusTagSet.has('faith-based') || focusTagSet.has('religious-service');
+      const isSacredChoralEvent = focusTagSet.has('sacred-music') || focusTagSet.has('choral');
+      if (state.eventFocus === 'no-worship' && isFaithEvent) return false;
+      if (state.eventFocus === 'secular' && (isFaithEvent || isSacredChoralEvent)) return false;
+      if (state.eventFocus === 'faith' && !isFaithEvent && !isSacredChoralEvent) return false;
+    }
+
     // 8. Hashtag Filter (Click on hashtag to isolate cards with that tag; easily deselectable)
     if (state.selectedTag) {
       const hasTag = ev.subTags && ev.subTags.some(t => t.toLowerCase().replace(/^#/, '') === state.selectedTag);
@@ -4163,6 +4610,7 @@ function applyFiltersAndRender() {
   if (state.dayOfWeek !== 'all') secondaryFilterCount++;
   if (state.timeSlot !== 'all') secondaryFilterCount++;
   if (state.frequency !== 'all') secondaryFilterCount++;
+  if (state.eventFocus && state.eventFocus !== 'all') secondaryFilterCount++;
   if (typeof NEIGHBORHOODS !== 'undefined' && state.selectedNeighborhoods.size > 0 && state.selectedNeighborhoods.size < NEIGHBORHOODS.length) {
     secondaryFilterCount++;
   }
@@ -4192,10 +4640,16 @@ function applyFiltersAndRender() {
       ? (themeGroups.find(g => g.key === state.selectedThemeFilter) || { key: state.selectedThemeFilter, label: state.selectedThemeFilter.split(':')[1] || state.selectedThemeFilter, icon: '🎉' })
       : null;
 
+    const activeThemeDisplay = activeThemeObj
+      ? (String(activeThemeObj.label || '').startsWith(activeThemeObj.icon || '___')
+        ? activeThemeObj.label
+        : `${activeThemeObj.icon || '🎉'} ${activeThemeObj.label}`.trim())
+      : '';
+
     const themeFilterPillHtml = activeThemeObj ? `
       <div class="active-tag-pill" title="Filtered to ${activeThemeObj.label}. Click ✕ to clear.">
         <span class="tag-label">Theme:</span>
-        <span>${activeThemeObj.icon || '🎉'} ${activeThemeObj.label}</span>
+        <span>${activeThemeDisplay}</span>
         <button type="button" class="btn-clear-tag" onclick="toggleThemeFilter('${activeThemeObj.key}')" aria-label="Clear theme filter">✕</button>
       </div>
     ` : '';
@@ -4237,8 +4691,8 @@ function applyFiltersAndRender() {
           Showing <strong>${filtered.length}</strong> outings under $50
         </div>
         <div class="inline-view-switcher" role="group" aria-label="View Switcher">
-          <button type="button" class="inline-view-mode-btn view-switcher-btn ${!isMapCurrentlyActive ? 'active' : ''}" data-view="cards" data-view-mode="cards" aria-pressed="${!isMapCurrentlyActive ? 'true' : 'false'}">📋 Cards</button>
-          <button type="button" class="inline-view-mode-btn view-switcher-btn ${isMapCurrentlyActive ? 'active' : ''}" data-view="map" data-view-mode="map" aria-pressed="${isMapCurrentlyActive ? 'true' : 'false'}">🗺️ Map</button>
+          <button type="button" class="inline-view-mode-btn view-switcher-btn ${!isMapCurrentlyActive ? 'active' : ''}" data-view="cards" data-view-mode="cards" aria-pressed="${!isMapCurrentlyActive ? 'true' : 'false'}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span>Cards</span></button>
+          <button type="button" class="inline-view-mode-btn view-switcher-btn ${isMapCurrentlyActive ? 'active' : ''}" data-view="map" data-view-mode="map" aria-pressed="${isMapCurrentlyActive ? 'true' : 'false'}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg><span>Map</span></button>
         </div>
       </div>
       ${(tagBadgeHtml || themeFilterPillHtml || excludedPillsHtml) ? `<div style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;">` : '<div style="display:none;">'}
@@ -4625,6 +5079,7 @@ function filterByVenue(venueName) {
     state.selectedTag = null;
     state.searchQuery = '';
     state.pricingType = 'all';
+    state.eventFocus = 'all';
     if (state.activeFestivalId) state.activeFestivalId = null;
 
     const searchInput = document.getElementById('search-input');
@@ -4646,6 +5101,7 @@ function filterByVenue(venueName) {
     renderTimePills();
     renderNeighborhoodPills();
     renderFrequencyPills();
+    renderEventFocusPills();
     updateSliderVisuals();
   }
   applyFiltersAndRender();
@@ -4663,40 +5119,6 @@ function clearSelectedVenue() {
 function resetCategoryForSearch() {
   state.category = 'all';
   renderCategoryPills();
-  applyFiltersAndRender();
-}
-
-function resetAllFilters() {
-  state.sortBy = 'date';
-  state.minBudget = 0;
-  state.maxBudget = 50;
-  state.hideDaily = false;
-  state.hideFestivalEvents = false;
-  state.selectedThemeFilter = null;
-  if (state.excludedThemes) state.excludedThemes.clear();
-  state.category = 'all';
-  state.frequency = 'all';
-  state.dayOfWeek = 'all';
-  state.timeSlot = 'all';
-  state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
-  state.selectedTag = null;
-  state.selectedVenue = null;
-  state.searchQuery = '';
-
-  const searchInput = document.getElementById('search-input');
-  if (searchInput) searchInput.value = '';
-  const minSlider = document.getElementById('min-spend-slider');
-  const maxSlider = document.getElementById('max-spend-slider');
-  if (minSlider) minSlider.value = 0;
-  if (maxSlider) maxSlider.value = 50;
-
-  renderFestivalSpotlight();
-  renderCategoryPills();
-  renderDayPills();
-  renderTimePills();
-  renderNeighborhoodPills();
-  renderFrequencyPills();
-  updateSliderVisuals();
   applyFiltersAndRender();
 }
 
@@ -6439,6 +6861,27 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     ? `${topDate.dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short' })} ${getOrdSuffix(topDate.dateObj.getDate())}`
     : (topDate.badgeText || '');
 
+  const cardTagSet = new Set([
+    ...(Array.isArray(ev.tags) ? ev.tags : []),
+    ...(Array.isArray(ev.subTags) ? ev.subTags : []),
+    ...inferHolidaySubTags(ev)
+  ].map(t => String(t || '').toLowerCase().trim()));
+  const isFaithCard = cardTagSet.has('faith-based') || cardTagSet.has('religious-service');
+  const isChoralCard = !isFaithCard && (cardTagSet.has('sacred-music') || cardTagSet.has('choral'));
+  const row2ContextPillHtml = isFaithCard
+    ? '<span class="row2-context-pill">Faith-Based</span>'
+    : (isChoralCard ? '<span class="row2-context-pill">Choral</span>' : '');
+  const expandedContextSubBadgeHtml = isFaithCard
+    ? '<span class="card-context-subbadge" title="Devotional or liturgical event">⛪ Faith-Based</span>'
+    : (isChoralCard ? '<span class="card-context-subbadge" title="Classical choral or sacred music concert">🎼 Sacred Choral</span>' : '');
+  const shortNeighborhood = String(ev.neighborhood || ev.venue || 'Vancouver')
+    .split(' / ')[0]
+    .split('/')[0]
+    .split(',')[0]
+    .split(' & ')[0]
+    .trim();
+  const row2TimeDisplay = getEventRow2TimeDisplay(ev, topDate, bucketKey);
+
   return `
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" data-scroll-date="${topDate.badgeText}" data-scroll-day="${scrollDayFull}" data-bucket-key="${bucketKey}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
@@ -6448,11 +6891,9 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <span class="mobile-card-price-pill ${isSoldOut ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std'))}">${isSoldOut ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
           </div>
           <div class="mobile-card-row-2">
-            <span class="mobile-card-meta-text">📍 ${(ev.neighborhood || ev.venue || 'Vancouver').split(',')[0]} • ${topDate.badgeText} • ${(() => {
-      const pCat = (Array.isArray(ev.categories) && ev.categories.length > 0) ? ev.categories[0] : (ev.category || 'Outing');
-      const cDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === pCat) : null;
-      return cDef ? (cDef.shortLabel || cDef.label) : (ev.categoryLabel || pCat);
-    })()}</span>
+            <span class="row2-category-pill">${getCompactRow2CategoryLabel(ev)}</span>
+            ${row2ContextPillHtml}
+            <span class="mobile-card-meta-text">${shortNeighborhood} • ${row2TimeDisplay}</span>
             <span class="mobile-card-chevron" aria-hidden="true">▾</span>
           </div>
         </div>
@@ -6497,6 +6938,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     })()}
             ${(Array.isArray(ev.themeBadges) && ev.themeBadges.length > 0) ? ev.themeBadges.map(tb => {
       const isSelected = state.selectedThemeFilter === tb.key;
+      const showIcon = Boolean(tb.icon && !String(tb.label || '').startsWith(tb.icon));
       return `
                 <div class="card-theme-badge-pill ${isSelected ? 'active' : ''}">
                   <button
@@ -6505,7 +6947,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
                     onclick="toggleThemeFilter('${tb.key}', event)"
                     title="${isSelected ? `Showing only ${tb.label}. Click to clear` : `Click to filter by ${tb.label}`}"
                   >
-                    <span>${tb.icon}</span>
+                    ${showIcon ? `<span>${tb.icon}</span>` : ''}
                     <span>${tb.label}</span>
                   </button>
                   <button
@@ -6518,6 +6960,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
                 </div>
               `;
     }).join('') : ''}
+            ${expandedContextSubBadgeHtml}
           </div>
 
           <!-- Top Right: Action Cluster (Accessibility, Share, Save) -->
@@ -6674,6 +7117,7 @@ function resetAllFilters() {
   state.selectedTag = null;
   state.selectedVenue = null;
   state.searchQuery = '';
+  state.eventFocus = 'all';
 
   const searchInput = document.getElementById('search-input');
   if (searchInput) searchInput.value = '';
@@ -6705,6 +7149,7 @@ function resetAllFilters() {
   renderTimePills();
   renderNeighborhoodPills();
   renderFrequencyPills();
+  renderEventFocusPills();
   clearActiveQuickButtons();
   updateSliderVisuals();
   applyFiltersAndRender();
@@ -7205,7 +7650,28 @@ function renderActiveFilterChips(filteredCount) {
     mobileSheetApplyBtn.textContent = `Show ${filteredCount} Outing${filteredCount === 1 ? '' : 's'}`;
   }
 
-  const chips = []; if (state.category && state.category !== 'all') { const cDef = (window.CATEGORIES || []).find(c => c.id === state.category) || QUICK_CATEGORY_ITEMS.find(c => c.id === state.category); chips.push({ key: 'category', label: cDef ? (cDef.shortLabel || cDef.label) : state.category }); } if (state.selectedThemeFilter) { const meta = getThemeMetadata({ key: state.selectedThemeFilter, id: String(state.selectedThemeFilter).split(':')[1] || state.selectedThemeFilter, type: String(state.selectedThemeFilter).split(':')[0] || 'festival' }); chips.push({ key: 'theme', label: '🎪 ' + (meta ? meta.label : state.selectedThemeFilter) }); } if (state.excludedThemes && state.excludedThemes.size > 0) { Array.from(state.excludedThemes).forEach(tk => { const meta = getThemeMetadata({ key: tk, id: String(tk).split(':')[1] || tk, type: String(tk).split(':')[0] || 'festival' }); chips.push({ key: 'exTheme:' + tk, label: 'Hide ' + (meta ? meta.label : tk) }); }); }
+  const chips = [];
+  if (state.category && state.category !== 'all') {
+    const cDef = (window.CATEGORIES || []).find(c => c.id === state.category) || QUICK_CATEGORY_ITEMS.find(c => c.id === state.category);
+    chips.push({ key: 'category', label: cDef ? (cDef.shortLabel || cDef.label) : state.category });
+  }
+  if (state.selectedThemeFilter) {
+    const meta = getThemeMetadata({
+      key: state.selectedThemeFilter,
+      id: String(state.selectedThemeFilter).split(':')[1] || state.selectedThemeFilter,
+      type: String(state.selectedThemeFilter).split(':')[0] || 'festival'
+    });
+    const themeLabel = meta
+      ? (String(meta.label || '').startsWith(meta.icon || '___') ? meta.label : `${meta.icon || ''} ${meta.label}`.trim())
+      : state.selectedThemeFilter;
+    chips.push({ key: 'theme', label: themeLabel });
+  }
+  if (state.excludedThemes && state.excludedThemes.size > 0) {
+    Array.from(state.excludedThemes).forEach(tk => {
+      const meta = getThemeMetadata({ key: tk, id: String(tk).split(':')[1] || tk, type: String(tk).split(':')[0] || 'festival' });
+      chips.push({ key: 'exTheme:' + tk, label: 'Hide ' + (meta ? meta.label : tk) });
+    });
+  }
 
   // 1. Spend / Cost Filter
   if (state.minBudget !== 0 || state.maxBudget !== 50) {
@@ -7251,21 +7717,47 @@ function renderActiveFilterChips(filteredCount) {
 
   // 7. Accessible Venues Only
   if (state.accessibleOnly) {
-    chips.push({ key: 'accessibleOnly', label: '♿ Accessible' });
+    chips.push({ key: 'accessibleOnly', label: 'Accessible' });
+  }
+
+  // 8. Event Focus / Religious & Cultural Preference
+  if (state.eventFocus && state.eventFocus !== 'all') {
+    const focusChipLabels = {
+      'no-worship': 'Secular & Choral Only',
+      'secular': 'Strictly Secular',
+      'faith': 'Faith-Based & Sacred Only'
+    };
+    chips.push({ key: 'eventFocus', label: focusChipLabels[state.eventFocus] || state.eventFocus });
   }
 
   const activeCount = chips.length;
   if (mobileFilterTrigger) {
-    mobileFilterTrigger.textContent = activeCount > 0 ? `⚙️ Filters (${activeCount})` : '⚙️ Filters';
+    const labelText = activeCount > 0 ? `Filters (${activeCount})` : 'Filters';
+    const triggerLabelEl = document.getElementById('mobile-filter-trigger-label') || mobileFilterTrigger.querySelector('span');
+    if (triggerLabelEl) {
+      triggerLabelEl.textContent = labelText;
+    } else {
+      mobileFilterTrigger.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg><span id="mobile-filter-trigger-label">${labelText}</span>`;
+    }
     mobileFilterTrigger.classList.toggle('has-active-filters', activeCount > 0);
   }
 
   if (!chipsContainer) return;
-  if (chips.length === 0) {
+
+  const isHolidayOrFestivalActive = Boolean(state.selectedThemeFilter) || state.category === 'festivals';
+  const showQuickHideWorshipSubPill = isHolidayOrFestivalActive && (!state.eventFocus || state.eventFocus === 'all');
+
+  if (chips.length === 0 && !showQuickHideWorshipSubPill) {
     chipsContainer.style.display = 'none';
     chipsContainer.innerHTML = '';
     return;
   }
+
+  const quickHideWorshipHtml = showQuickHideWorshipSubPill ? `
+      <button type="button" class="active-filter-chip quick-refine-subpill" onclick="setEventFocusFilter('no-worship')" title="Exclude devotional worship services while keeping secular & choral concerts" aria-label="Hide Worship Services">
+        <span>Hide Worship Services</span>
+      </button>
+    ` : '';
 
   chipsContainer.style.display = 'flex';
   chipsContainer.innerHTML = chips.map(c => {
@@ -7276,11 +7768,25 @@ function renderActiveFilterChips(filteredCount) {
         <span class="chip-dismiss" aria-hidden="true">×</span>
       </button>
     `;
-  }).join('');
+  }).join('') + quickHideWorshipHtml;
 }
 
 window.dismissSecondaryFilterChip = function (chipKey) {
-  if (!chipKey) return; if (chipKey === 'category') { state.category = 'all'; renderCategoryPills(); } else if (chipKey === 'theme') { state.selectedThemeFilter = null; renderFestivalSpotlight(); } else if (chipKey.startsWith('exTheme:')) { const tk = chipKey.slice(8); if (state.excludedThemes) state.excludedThemes.delete(tk); renderFestivalSpotlight(); }
+  if (!chipKey) return;
+  if (chipKey === 'category') {
+    state.category = 'all';
+    renderCategoryPills();
+  } else if (chipKey === 'theme') {
+    state.selectedThemeFilter = null;
+    renderFestivalSpotlight();
+  } else if (chipKey.startsWith('exTheme:')) {
+    const tk = chipKey.slice(8);
+    if (state.excludedThemes) state.excludedThemes.delete(tk);
+    renderFestivalSpotlight();
+  } else if (chipKey === 'eventFocus') {
+    state.eventFocus = 'all';
+    renderEventFocusPills();
+  }
   if (chipKey === 'cost') {
     state.minBudget = 0;
     state.maxBudget = 50;
@@ -7411,10 +7917,14 @@ window.updateScrollDateIndicator = function () {
     rangeDisplay = parts[1] || rangeDisplay || '';
   }
 
+  const scrollDateSep = document.getElementById('scroll-date-sep');
   if (titleDisplay) {
     scrollDateTitle.textContent = titleDisplay;
+    const showRange = Boolean(rangeDisplay && rangeDisplay.toLowerCase() !== titleDisplay.toLowerCase());
+    if (scrollDateSep) {
+      scrollDateSep.style.display = showRange ? 'inline-flex' : 'none';
+    }
     if (scrollDateRange) {
-      const showRange = rangeDisplay && rangeDisplay.toLowerCase() !== titleDisplay.toLowerCase();
       scrollDateRange.textContent = showRange ? rangeDisplay : '';
       scrollDateRange.style.display = showRange ? 'inline-flex' : 'none';
     }

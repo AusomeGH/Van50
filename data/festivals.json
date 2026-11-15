@@ -1,19 +1,28 @@
 [
   {
+    "id": "vancouver-fringe-festival",
+    "slug": "vancouver-fringe-festival",
+    "name": "Vancouver Fringe Festival",
     "festival_name": "Vancouver Fringe Festival",
+    "aliases": [
+      "Vancouver Fringe",
+      "Fringe Festival"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://vancouverfringe.com",
     "schedule_url": "https://vancouverfringe.com/shows/",
     "location": "Waterfront Theatre, The Nest (Granville Island), Performance Works, Carousel Theatre, Arts Factory, The Revue Stage",
     "start_date": "2026-09-10",
     "end_date": "2026-09-20",
-    "description": "shows",
+    "description": "BC's largest independent theatre festival featuring over 85 uncensored theatre, comedy, and performance art shows across Granville Island.",
     "category": "Comedy & Shows",
     "access_model": "open_public_space",
-    "pricing_model": "free_access",
-    "price": 0.0,
+    "pricing_model": "flat_ticket",
+    "price": 15,
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2712,
+      -123.134
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver Fringe Festival",
     "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
@@ -23,16 +32,8 @@
         "name": "Main Stage / Welcome Pavilion",
         "type": "hub",
         "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
+          49.2712,
+          -123.134
         ]
       }
     ],
@@ -41,339 +42,284 @@
         "date": "2026-09-10",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 0.0
+        "cost": 15
       },
       {
         "date": "2026-09-20",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 0.0
+        "cost": 15
       }
     ]
   },
   {
+    "id": "vancouver-international-film-festival-viff",
+    "slug": "vancouver-international-film-festival-viff",
+    "name": "Vancouver International Film Festival (VIFF)",
     "festival_name": "Vancouver International Film Festival (VIFF)",
+    "aliases": [
+      "VIFF",
+      "Vancouver International Film Festival"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://viff.org",
     "schedule_url": "https://viff.org/festival/",
     "location": "VIFF Centre, The Cinematheque, Rio Theatre, SFU Goldcorp Centre for the Arts",
     "start_date": "2026-09-24",
     "end_date": "2026-10-04",
-    "description": "cinema",
+    "description": "Annual international cinema showcase featuring over 130 feature films, documentaries, shorts, and live talks across Vancouver theatres.",
     "category": "Arts & Culture",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price": 18.0,
+    "price": 18,
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2778,
+      -123.1246
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver International Film Festival (VIFF)",
     "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-09-24",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 18
       },
       {
         "date": "2026-10-04",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 18
       }
     ]
   },
   {
+    "id": "khatsahlano-street-party",
+    "slug": "khatsahlano-street-party",
+    "name": "Khatsahlano Street Party",
     "festival_name": "Khatsahlano Street Party",
+    "aliases": [
+      "Khatsahlano",
+      "Khatsahlano Music + Art Festival"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://khatsahlano.com",
     "schedule_url": "https://khatsahlano.com/lineup/",
     "location": "West 4th Avenue (Burrard to MacDonald)",
     "start_date": "2026-07-11",
     "end_date": "2026-07-11",
-    "description": "music",
+    "description": "Vancouver's largest free music and arts street festival spanning 10 blocks along West 4th Avenue in Kitsilano.",
     "category": "Arts & Culture",
     "access_model": "open_public_space",
     "pricing_model": "free_access",
-    "price": 0.0,
+    "price": 0,
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2683,
+      -123.1552
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Khatsahlano Street Party",
     "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-07-11",
-        "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 0.0
-      },
-      {
-        "date": "2026-07-11",
-        "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 0.0
+        "start_time": "11:00",
+        "end_time": "21:00",
+        "cost": 0
       }
     ]
   },
   {
+    "id": "vancouver-folk-music-festival",
+    "slug": "vancouver-folk-music-festival",
+    "name": "Vancouver Folk Music Festival",
     "festival_name": "Vancouver Folk Music Festival",
+    "aliases": [
+      "Folk Fest",
+      "Vancouver Folk Fest"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://thefestival.bc.ca",
     "schedule_url": "https://thefestival.bc.ca/artists/",
     "location": "Jericho Beach Park",
     "start_date": "2026-07-17",
     "end_date": "2026-07-19",
-    "description": "music",
+    "description": "Outdoor world and folk music festival held on the oceanfront lawns of Jericho Beach Park.",
     "category": "Live Music",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price": 18.0,
+    "price": 45,
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2719,
+      -123.195
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver Folk Music Festival",
     "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-07-17",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
-      },
-      {
-        "date": "2026-07-19",
-        "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 18.0
+        "cost": 45
       }
     ]
   },
   {
+    "id": "car-free-days-vancouver",
+    "slug": "car-free-days-vancouver",
+    "name": "Car Free Days Vancouver",
     "festival_name": "Car Free Days Vancouver",
+    "aliases": [
+      "Car Free Day",
+      "Car Free Day Commercial Drive",
+      "Car Free Day Main Street",
+      "Car Free Day West End"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://www.carfreevancouver.org",
     "schedule_url": "https://www.carfreevancouver.org",
     "location": "Commercial Drive, Main Street, Denman Street (West End)",
     "start_date": "2026-09-06",
     "end_date": "2026-09-20",
-    "description": "outdoors",
+    "description": "Community street festivals reclaiming Commercial Drive, Main Street, and the West End for pedestrians, live stages, and local artisans.",
     "category": "Arts & Culture",
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price": 18.0,
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2725,
+      -123.0695
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Car Free Days Vancouver",
-    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "restrictions": "All Ages / Family Friendly",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-09-06",
         "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 18.0
-      },
-      {
-        "date": "2026-09-20",
-        "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 18.0
+        "end_time": "19:00",
+        "cost": 0
       }
     ]
   },
   {
+    "id": "bc-culture-days",
+    "slug": "bc-culture-days",
+    "name": "BC Culture Days",
     "festival_name": "BC Culture Days",
+    "aliases": [
+      "Culture Days BC",
+      "Culture Days"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://culturedays.ca/en/bc",
-    "schedule_url": "https://culturedays.ca/en/bc",
+    "schedule_url": "https://culturedays.ca/en/events",
     "location": "Multiple Venues across Metro Vancouver",
     "start_date": "2026-09-20",
     "end_date": "2026-10-15",
     "description": "Province-wide arts and culture festival providing free access to interactive workshops, open artist studios, and live pop-up music.",
     "category": "Arts & Culture",
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price": 18.0,
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
     "coordinates": [
       49.2827,
       -123.1207
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for BC Culture Days",
-    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "restrictions": "All Ages / Family Friendly",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-09-20",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 0
       },
       {
         "date": "2026-10-15",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 0
       }
     ]
   },
   {
+    "id": "downtown-eastside-heart-of-the-city-festival",
+    "slug": "downtown-eastside-heart-of-the-city-festival",
+    "name": "Downtown Eastside Heart of the City Festival",
     "festival_name": "Downtown Eastside Heart of the City Festival",
+    "aliases": [
+      "Heart of the City Festival",
+      "DTES Heart of the City Festival"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://www.heartofthecityfestival.com/",
-    "schedule_url": "https://curiocity.com/free-festival-100-arts-culture-events-vancouver-fall/",
+    "schedule_url": "https://www.heartofthecityfestival.com/",
     "location": "Over 30 Venues across Vancouver's Downtown Eastside",
     "start_date": "2026-10-30",
     "end_date": "2026-11-07",
     "description": "Community-led multi-arts festival featuring over 100 free or pay-what-you-can concerts, readings, art displays, films, and theater pieces celebrating DTES culture.",
     "category": "Arts & Culture",
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price": 18.0,
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2815,
+      -123.0998
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Downtown Eastside Heart of the City Festival",
-    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "restrictions": "All Ages / Family Friendly",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-10-30",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 0
       },
       {
         "date": "2026-11-07",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 0
       }
     ]
   },
   {
+    "id": "public-disco-festival",
+    "slug": "public-disco-festival",
+    "name": "Public Disco Festival",
     "festival_name": "Public Disco Festival",
+    "aliases": [
+      "Public Disco",
+      "Public Disco Block Party"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://publicdisco.ca",
-    "schedule_url": "https://admitone.com/events/north-vancouver/community/party/public-disco-festival/JLKBC4?referral=laylo",
+    "schedule_url": "https://publicdisco.ca",
     "start_date": "2026-10-03",
     "end_date": "2026-10-03",
     "description": "Open-air electronic and dance music festival transforming urban public spaces in Metro Vancouver with multiple stages, sound installations, and local art.",
     "category": "Arts & Culture",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price": 18.0,
+    "price": 18,
     "coordinates": [
       49.2827,
       -123.1207
@@ -381,41 +327,27 @@
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Public Disco Festival",
     "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-10-03",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
-      },
-      {
-        "date": "2026-10-03",
-        "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 18.0
+        "cost": 18
       }
     ]
   },
   {
+    "id": "vancouver-writers-fest",
+    "slug": "vancouver-writers-fest",
+    "name": "Vancouver Writers Fest",
     "festival_name": "Vancouver Writers Fest",
+    "aliases": [
+      "Writers Fest",
+      "Vancouver International Writers Festival"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://writersfest.bc.ca/",
     "schedule_url": "https://writersfest.bc.ca/festival",
     "location": "Granville Island, Vancouver, BC",
@@ -425,101 +357,40 @@
     "category": "Arts & Culture",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price": 18.0,
+    "price": 18,
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2712,
+      -123.134
     ],
     "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver Writers Fest",
-    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "restrictions": "All Ages / Family Friendly",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-10-19",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 18
       },
       {
         "date": "2026-10-25",
         "start_time": "12:00",
         "end_time": "22:00",
-        "cost": 18.0
+        "cost": 18
       }
     ]
   },
   {
-    "festival_name": "Culture Days BC",
-    "website_url": "https://culturedays.ca/en/bc",
-    "schedule_url": "https://culturedays.ca/en/events",
-    "location": "Multiple Venues across Metro Vancouver",
-    "start_date": "2026-09-20",
-    "end_date": "2026-10-15",
-    "description": "Nationwide celebration of arts and culture offering hundreds of free participatory workshops, studio tours, and outdoor performances.",
-    "category": "Arts & Culture",
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price": 18.0,
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "lineup": "Curated multidisciplinary ensemble and festival lineup for Culture Days BC",
-    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
-    "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Main Stage / Welcome Pavilion",
-        "type": "hub",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      },
-      {
-        "name": "Information & Box Office Kiosk",
-        "type": "info",
-        "coordinates": [
-          49.2827,
-          -123.1207
-        ]
-      }
-    ],
-    "showings": [
-      {
-        "date": "2026-09-20",
-        "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 18.0
-      },
-      {
-        "date": "2026-10-15",
-        "start_time": "12:00",
-        "end_time": "22:00",
-        "cost": 18.0
-      }
-    ]
-  },
-  {
+    "id": "small-file-media-festival-7th-annual",
+    "slug": "small-file-media-festival-7th-annual",
+    "name": "Small File Media Festival (7th Annual)",
     "festival_name": "Small File Media Festival (7th Annual)",
+    "aliases": [
+      "Small File Media Festival"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://smallfile.ca",
     "schedule_url": "https://thecinematheque.ca",
     "location": "The Cinematheque (1131 Howe St, Vancouver, BC)",
@@ -529,7 +400,7 @@
     "category": "Arts & Culture",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price": 15.0,
+    "price": 15,
     "coordinates": [
       49.2787,
       -123.1264
@@ -537,43 +408,46 @@
     "lineup": "85 international filmmakers, SFU School for the Contemporary Arts, The Cinematheque",
     "restrictions": "All Ages / PG",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "The Cinematheque Main Auditorium",
-        "type": "theatre",
-        "coordinates": [
-          49.2787,
-          -123.1264
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-10-17",
         "start_time": "14:00",
         "end_time": "22:00",
-        "cost": 15.0
+        "cost": 15
       },
       {
         "date": "2026-10-18",
         "start_time": "14:00",
         "end_time": "22:00",
-        "cost": 15.0
+        "cost": 15
       }
     ]
   },
   {
+    "id": "diwali-fest",
+    "slug": "diwali-fest",
+    "name": "Diwali Fest (Festival of Lights)",
     "festival_name": "Diwali Fest (Festival of Lights)",
+    "aliases": [
+      "Diwali Fest",
+      "Diwali Downtown Surrey",
+      "Diwali in Surrey",
+      "Diwali Festival of Lights",
+      "Diwali"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://www.diwalifest.ca",
     "schedule_url": "https://www.diwalifest.ca",
     "location": "Roundhouse Community Centre, Evergreen Cultural Centre, Surrey City Hall",
     "start_date": "2026-11-05",
     "end_date": "2026-11-15",
-    "description": "Annual multicultural celebration of Diwali presenting South Asian music, dance, theatre, and visual arts across Metro Vancouver.",
+    "description": "Annual multicultural celebration of Diwali presenting South Asian music, dance, theatre, rangoli, and visual arts across Vancouver and Surrey.",
     "category": "Arts & Culture",
     "access_model": "open_public_space",
     "pricing_model": "free_access",
-    "price": 0.0,
+    "price": 0,
     "coordinates": [
       49.2734,
       -123.1215
@@ -587,12 +461,28 @@
         "date": "2026-11-07",
         "start_time": "14:00",
         "end_time": "17:00",
-        "cost": 0.0
+        "cost": 0
+      },
+      {
+        "date": "2026-11-15",
+        "start_time": "14:00",
+        "end_time": "17:00",
+        "cost": 0
       }
     ]
   },
   {
+    "id": "dia-de-los-muertos-festival-day-of-the-dead",
+    "slug": "dia-de-los-muertos-festival-day-of-the-dead",
+    "name": "Día de los Muertos Festival (Day of the Dead)",
     "festival_name": "Día de los Muertos Festival (Day of the Dead)",
+    "aliases": [
+      "Día de los Muertos Festival",
+      "Day of the Dead Festival",
+      "Dia de los Muertos"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://latincouver.ca",
     "schedule_url": "https://latincouver.ca",
     "location": "Granville Island & Gastown Historic District, Vancouver",
@@ -602,7 +492,7 @@
     "category": "Arts & Culture",
     "access_model": "open_public_space",
     "pricing_model": "free_access",
-    "price": 0.0,
+    "price": 0,
     "coordinates": [
       49.2838,
       -123.1065
@@ -616,12 +506,21 @@
         "date": "2026-11-02",
         "start_time": "17:00",
         "end_time": "18:00",
-        "cost": 0.0
+        "cost": 0
       }
     ]
   },
   {
+    "id": "vancouver-horror-show-film-festival",
+    "slug": "vancouver-horror-show-film-festival",
+    "name": "Vancouver Horror Show Film Festival",
     "festival_name": "Vancouver Horror Show Film Festival",
+    "aliases": [
+      "Vancouver Horror Show",
+      "VHS Film Festival"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://www.vancouverhorrorshow.com",
     "schedule_url": "https://vhs2026.eventive.org/schedule",
     "location": "Cineplex Cinemas International Village & Greta Bar YVR",
@@ -631,7 +530,7 @@
     "category": "Arts & Culture",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price": 10.0,
+    "price": 10,
     "coordinates": [
       49.2807,
       -123.1068
@@ -639,65 +538,36 @@
     "lineup": "Michael Dougherty (Trick 'r Treat 19th Anniversary), Canadian feature premieres (Encryption, Sleep No More, Crave's YAGA), 5 curated shorts programs, Table Reads, and Golden Tape Awards",
     "restrictions": "19+ / Unrated festival screenings (Two pieces of ID required for licensed screenings)",
     "is_sold_out": false,
-    "waypoints": [
-      {
-        "name": "Cineplex Cinemas International Village (3rd Floor)",
-        "type": "hub",
-        "coordinates": [
-          49.2807,
-          -123.1068
-        ]
-      },
-      {
-        "name": "Greta Bar YVR (Launch Party)",
-        "type": "party",
-        "coordinates": [
-          49.2825,
-          -123.1061
-        ]
-      }
-    ],
+    "waypoints": [],
     "showings": [
       {
         "date": "2026-10-13",
         "start_time": "19:30",
         "end_time": "22:30",
-        "cost": 50.0
-      },
-      {
-        "date": "2026-10-14",
-        "start_time": "18:30",
-        "end_time": "23:00",
-        "cost": 22.5
-      },
-      {
-        "date": "2026-10-15",
-        "start_time": "11:00",
-        "end_time": "23:15",
-        "cost": 10.0
-      },
-      {
-        "date": "2026-10-16",
-        "start_time": "11:00",
-        "end_time": "23:10",
-        "cost": 15.0
-      },
-      {
-        "date": "2026-10-17",
-        "start_time": "11:10",
-        "end_time": "23:00",
-        "cost": 15.0
+        "cost": 50
       },
       {
         "date": "2026-10-18",
         "start_time": "11:00",
         "end_time": "22:15",
-        "cost": 10.0
+        "cost": 10
       }
     ]
   },
   {
+    "id": "european-union-film-festival",
+    "slug": "european-union-film-festival",
+    "name": "European Union Film Festival (EUFF)",
     "festival_name": "European Union Film Festival (EUFF)",
+    "aliases": [
+      "European Union Film Festival",
+      "The 29th Annual European Union Film Festival",
+      "EUFF",
+      "EU Film Festival",
+      "european-union-film-festival-euff"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "website_url": "https://thecinematheque.ca/series/european-union-film-festival-2026",
     "schedule_url": "https://thecinematheque.ca/films/calendar",
     "location": "The Cinematheque (1131 Howe St, Vancouver, BC)",
@@ -707,7 +577,7 @@
     "category": "Arts & Culture",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price": 15.0,
+    "price": 15,
     "coordinates": [
       49.2778,
       -123.1264
@@ -730,20 +600,56 @@
         "date": "2026-11-13",
         "start_time": "18:30",
         "end_time": "22:30",
-        "cost": 15.0
+        "cost": 15
       },
       {
         "date": "2026-11-26",
         "start_time": "18:30",
         "end_time": "22:30",
-        "cost": 15.0
+        "cost": 15
       }
     ]
   },
   {
-    "festival_name": "Bear Creek Lights",
-    "name": "Bear Creek Lights",
+    "id": "lumiere-festival",
+    "slug": "lumiere-festival",
+    "name": "Lumière Festival",
+    "festival_name": "Lumière Festival",
+    "aliases": [
+      "Lumiere Festival",
+      "Lumiere Vancouver",
+      "Lumière Vancouver"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://www.lumiereyvr.com",
+    "schedule_url": "https://www.lumiereyvr.com",
+    "location": "Downtown Vancouver, West End, Yaletown & Gastown",
+    "start_date": "2026-11-12",
+    "end_date": "2026-11-16",
+    "description": "Annual interactive light art festival illuminating Downtown Vancouver, the West End, and Yaletown with outdoor installations, projection mapping, and live performances.",
+    "category": "Arts & Culture",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "International and local light artists, projection mapping installations, and roving performers",
+    "restrictions": "All Ages",
+    "is_sold_out": false
+  },
+  {
+    "id": "bear-creek-lights",
     "slug": "bear-creek-lights",
+    "name": "Bear Creek Lights",
+    "festival_name": "Bear Creek Lights",
+    "aliases": [
+      "Bear Creek Park Lights"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "city": "Surrey",
     "region": "Surrey",
     "neighborhood": "Newton",
@@ -758,20 +664,27 @@
     "ticket_url": "https://www.surrey.ca/news-events/events/bear-creek-lights",
     "booking_note": "Free entry (timed-entry tickets required online)",
     "description": "Surrey's signature autumn light festival illuminating the 1km walking loop through Bear Creek Park Gardens with glowing nature installations, lantern displays, and guided night walks.",
-    "price": 0.0,
+    "price": 0,
     "price_label": "Free (tickets required)",
     "coordinates": [
-      49.1610,
-      -122.8410
+      49.161,
+      -122.841
     ],
     "lineup": "Illuminated forest trail installations, glowing whimsical sculptures, and nature interpreters",
     "restrictions": "All Ages (Free timed-entry tickets required)",
     "is_sold_out": false
   },
   {
-    "festival_name": "Surrey Tree Lighting Festival & Holiday Market",
-    "name": "Surrey Tree Lighting Festival & Holiday Market",
+    "id": "surrey-tree-lighting-festival-holiday-market",
     "slug": "surrey-tree-lighting-festival-holiday-market",
+    "name": "Surrey Tree Lighting Festival & Holiday Market",
+    "festival_name": "Surrey Tree Lighting Festival & Holiday Market",
+    "aliases": [
+      "Surrey Tree Lighting Festival",
+      "Surrey Holiday Market"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "city": "Surrey",
     "region": "Surrey",
     "neighborhood": "Surrey Central",
@@ -785,20 +698,27 @@
     "url": "https://www.surreytreelighting.ca",
     "ticket_url": "https://www.surreytreelighting.ca",
     "description": "Annual two-day holiday kick-off at Surrey Civic Plaza featuring the lighting of a 60-foot Christmas tree, free live concerts, holiday artisan market, light tunnel, and food trucks.",
-    "price": 0.0,
+    "price": 0,
     "price_label": "Free",
     "coordinates": [
       49.1913,
-      -122.8490
+      -122.849
     ],
     "lineup": "60-foot Holiday Tree lighting ceremony, live music stages, local artisan market, and light installations",
     "restrictions": "All Ages",
     "is_sold_out": false
   },
   {
-    "festival_name": "Cloverdale Rodeo & Country Fair",
-    "name": "Cloverdale Rodeo & Country Fair",
+    "id": "cloverdale-rodeo-country-fair",
     "slug": "cloverdale-rodeo-country-fair",
+    "name": "Cloverdale Rodeo & Country Fair",
+    "festival_name": "Cloverdale Rodeo & Country Fair",
+    "aliases": [
+      "Cloverdale Rodeo",
+      "Cloverdale Country Fair"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "city": "Surrey",
     "region": "Surrey",
     "neighborhood": "Cloverdale",
@@ -812,7 +732,7 @@
     "url": "https://www.cloverdalerodeo.com",
     "ticket_url": "https://www.cloverdalerodeo.com",
     "description": "One of Canada's longest-running country fairs and invitational rodeos held every Victoria Day Long Weekend at the Cloverdale Fairgrounds with midway rides, live country stages, ribfest, and pro skateboarding.",
-    "price": 15.0,
+    "price": 15,
     "price_label": "$15 CAD",
     "coordinates": [
       49.1128,
@@ -823,9 +743,15 @@
     "is_sold_out": false
   },
   {
-    "festival_name": "Surrey Fusion Festival",
-    "name": "Surrey Fusion Festival",
+    "id": "surrey-fusion-festival",
     "slug": "surrey-fusion-festival",
+    "name": "Surrey Fusion Festival",
+    "festival_name": "Surrey Fusion Festival",
+    "aliases": [
+      "Fusion Festival Surrey"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "city": "Surrey",
     "region": "Surrey",
     "neighborhood": "Surrey Central",
@@ -839,7 +765,7 @@
     "url": "https://www.surreyfusionfestival.ca",
     "ticket_url": "https://www.surreyfusionfestival.ca",
     "description": "BC's largest multicultural celebration of music, food, and culture at Holland Park in Surrey Central, featuring over 50 cultural pavilions and multiple free world-music concert stages on the 3rd weekend in July.",
-    "price": 0.0,
+    "price": 0,
     "price_label": "Free",
     "coordinates": [
       49.1837,
@@ -850,9 +776,15 @@
     "is_sold_out": false
   },
   {
-    "festival_name": "Canada Cup International Softball Championship",
-    "name": "Canada Cup International Softball Championship",
+    "id": "canada-cup-international-softball-championship",
     "slug": "canada-cup-international-softball-championship",
+    "name": "Canada Cup International Softball Championship",
+    "festival_name": "Canada Cup International Softball Championship",
+    "aliases": [
+      "Canada Cup Softball"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "city": "Surrey",
     "region": "Surrey",
     "neighborhood": "South Surrey",
@@ -866,7 +798,7 @@
     "url": "https://www.canadacup.com",
     "ticket_url": "https://www.canadacup.com",
     "description": "Premier international women's fastpitch softball tournament at Softball City in South Surrey, bringing Olympic and national teams from around the world each July with single-day passes at $15 CAD.",
-    "price": 15.0,
+    "price": 15,
     "price_label": "$15 CAD",
     "coordinates": [
       49.0428,
@@ -875,5 +807,381 @@
     "lineup": "Team Canada Women's National Softball Team & International Women's Fastpitch Contenders",
     "restrictions": "All Ages",
     "is_sold_out": false
+  },
+  {
+    "id": "winter-solstice-lantern-festival",
+    "slug": "winter-solstice-lantern-festival",
+    "name": "Winter Solstice Lantern Festival",
+    "festival_name": "Winter Solstice Lantern Festival",
+    "aliases": [
+      "Secret Lantern Society Winter Solstice Festival"
+    ],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "secret-lantern-society-winter-solstice-lantern-festival-2026-12-21",
+    "venue_name": "Granville Island & Yaletown Roundhouse",
+    "location": "Granville Island & Yaletown Roundhouse, Vancouver",
+    "start_date": "2026-12-21",
+    "end_date": "2026-12-21",
+    "dates_label": "Dec 21",
+    "category": "Arts & Culture",
+    "website_url": "https://www.secretlantern.org",
+    "description": "Annual community lantern procession, fire performances, and labyrinth of light celebrating the longest night of the year on Granville Island.",
+    "price": 0,
+    "price_label": "Free / By Donation",
+    "coordinates": [
+      49.2712,
+      -123.134
+    ]
+  },
+  {
+    "id": "lights-of-hope-st-pauls",
+    "slug": "lights-of-hope-st-pauls",
+    "name": "Lights of Hope at St. Paul's Hospital",
+    "festival_name": "Lights of Hope at St. Paul's Hospital",
+    "aliases": [
+      "Lights of Hope"
+    ],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "st-pauls-foundation-lights-of-hope-2026-11-27",
+    "venue_name": "St. Paul's Hospital (Burrard Street)",
+    "location": "1081 Burrard St, Vancouver, BC",
+    "start_date": "2026-11-27",
+    "end_date": "2027-01-05",
+    "dates_label": "Nov 27 – Jan 5",
+    "category": "Outdoors",
+    "website_url": "https://helpstpauls.com/lights-of-hope/",
+    "description": "Annual holiday light display illuminating Burrard Street with over 100,000 bulbs and fireworks kickoff in support of St. Paul's Foundation.",
+    "price": 0,
+    "price_label": "Free",
+    "coordinates": [
+      49.2806,
+      -123.1286
+    ]
+  },
+  {
+    "id": "fan-expo-vancouver",
+    "slug": "fan-expo-vancouver",
+    "name": "Fan Expo Vancouver",
+    "festival_name": "Fan Expo Vancouver",
+    "aliases": [
+      "FAN EXPO Vancouver 2026"
+    ],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "fan-expo-hq-fan-expo-vancouver-2026-11-27",
+    "venue_name": "Vancouver Convention Centre",
+    "location": "1055 Canada Pl, Vancouver, BC",
+    "start_date": "2026-11-27",
+    "end_date": "2026-11-29",
+    "dates_label": "Nov 27 – Nov 29",
+    "category": "Activities",
+    "website_url": "https://fanexpohq.com/fanexpovancouver/",
+    "description": "Three-day pop culture, comics, sci-fi, anime, and gaming convention at the Vancouver Convention Centre.",
+    "price": 42,
+    "price_label": "$42 CAD",
+    "coordinates": [
+      49.2889,
+      -123.1115
+    ]
+  },
+  {
+    "id": "winter-trout-fest",
+    "slug": "winter-trout-fest",
+    "name": "Winter Trout Fest",
+    "festival_name": "Winter Trout Fest",
+    "aliases": [
+      "Trout Lake Winter Fest"
+    ],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "trout-lake-cc-association-winter-trout-fest-2026-11-22",
+    "venue_name": "Trout Lake Community Centre",
+    "location": "3360 Victoria Dr, Vancouver, BC",
+    "start_date": "2026-11-22",
+    "end_date": "2026-11-22",
+    "dates_label": "Nov 22",
+    "category": "Arts & Culture",
+    "website_url": "https://troutlakecc.com",
+    "description": "East Vancouver community winter festival at Trout Lake Community Centre with local artisan craft tables, live music, and seasonal activities.",
+    "price": 0,
+    "price_label": "Free",
+    "coordinates": [
+      49.2562,
+      -123.0655
+    ]
+  },
+  {
+    "id": "winter-trout-fest-pancake-lunch",
+    "slug": "winter-trout-fest-pancake-lunch",
+    "name": "Winter Trout Fest & Pancake Lunch",
+    "festival_name": "Winter Trout Fest & Pancake Lunch",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "trout-lake-community-winter-trout-fest-pancake-lunc-2026-12-13",
+    "venue_name": "Trout Lake Community Centre",
+    "location": "3360 Victoria Dr, Vancouver, BC V5N 4M4",
+    "start_date": "2026-12-13",
+    "end_date": "2026-12-13",
+    "category": "outdoors",
+    "website_url": "https://troutlakecc.com/news-events/winter-trout-fest-pancake-lunch/",
+    "description": "Celebrate the winter season at Trout Lake with free community ice skating, hands-on crafts, children's activities, and an indoor bouncy castle play gym. Families can also warm up with an optional five-dollar pancake lunch featuring sausages and fruit across two reserved seatings.",
+    "price": 0
+  },
+  {
+    "id": "pottery-bake-quilt-knit-sale",
+    "slug": "pottery-bake-quilt-knit-sale",
+    "name": "Pottery, Bake, Quilt, Knit Sale",
+    "festival_name": "Pottery, Bake, Quilt, Knit Sale",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "trout-lake-community-pottery-bake-quilt-knit-sale-2026-11-27",
+    "venue_name": "Trout Lake Community Centre",
+    "location": "3360 Victoria Dr, Vancouver, BC V5N 4M4",
+    "start_date": "2026-11-27",
+    "end_date": "2026-11-27",
+    "category": "markets",
+    "website_url": "https://troutlakecc.com/news-events/pottery-bake-quilt-knit-sale/",
+    "description": "Browse a charming seasonal marketplace showcasing one-of-a-kind handmade pottery, handcrafted quilts, and warm knit creations by local makers. Visitors can pick up artisan gifts while enjoying an array of delicious, freshly baked homemade treats.",
+    "price": 0
+  },
+  {
+    "id": "portobello-west-holiday-market",
+    "slug": "portobello-west-holiday-market",
+    "name": "Portobello West Holiday Market",
+    "festival_name": "Portobello West Holiday Market",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "roundhouse-community-portobello-west-holiday-market-2026-11-28",
+    "venue_name": "Roundhouse Community Arts & Recreation Centre",
+    "location": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
+    "start_date": "2026-11-28",
+    "end_date": "2026-11-28",
+    "category": "markets",
+    "website_url": "https://www.eventbrite.ca/e/portobello-west-holiday-market-2026-sat-sun-nov-28-29-tickets-1999805892257",
+    "description": "Portobello West returns for a festive two-day seasonal market showcasing curated local creators and independent designers. Visitors can discover unique handcrafted goods, artisanal fashion, and bespoke gifts in a vibrant community atmosphere.",
+    "price": 6.66
+  },
+  {
+    "id": "concord-christmas",
+    "slug": "concord-christmas",
+    "name": "Concord Christmas",
+    "festival_name": "Concord Christmas",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "roundhouse-community-concord-christmas-2026-12-06",
+    "venue_name": "Roundhouse Community Arts & Recreation Centre",
+    "location": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
+    "start_date": "2026-12-06",
+    "end_date": "2026-12-06",
+    "category": "festivals",
+    "website_url": "https://www.roundhouse.ca/event/concord-christmas/",
+    "description": "Gather for a holiday community celebration featuring photos with Santa, live entertainment, face painting, and festive light displays. Families can warm up with hot chocolate while diving into cookie decorating and hands-on seasonal crafts.",
+    "price": 0
+  },
+  {
+    "id": "breakfast-or-brunch-with-santa",
+    "slug": "breakfast-or-brunch-with-santa",
+    "name": "Breakfast or Brunch with Santa",
+    "festival_name": "Breakfast or Brunch with Santa",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "roundhouse-community-breakfast-or-brunch-with-santa-2026-12-12",
+    "venue_name": "Roundhouse Community Arts & Recreation Centre",
+    "location": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
+    "start_date": "2026-12-12",
+    "end_date": "2026-12-12",
+    "category": "festivals",
+    "website_url": "https://www.roundhouse.ca/event/breakfast-or-brunch-with-santa/",
+    "description": "Celebrate the season with Santa and his helpers over a warm pancake brunch, hands-on cookie decorating, and festive arts and crafts. Families can enjoy live holiday music together in a cheerful community setting requiring active parent participation.",
+    "price": 18
+  },
+  {
+    "id": "merry-gay-bright",
+    "slug": "merry-gay-bright",
+    "name": "Merry, Gay, & Bright",
+    "festival_name": "Merry, Gay, & Bright",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "roundhouse-arts-recr-merry-gay-bright-2026-12-20",
+    "venue_name": "Roundhouse Community Arts & Recreation Centre",
+    "location": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
+    "start_date": "2026-12-20",
+    "end_date": "2026-12-20",
+    "category": "markets",
+    "website_url": "https://www.roundhouse.ca/event/merry-gay-bright/",
+    "description": "Browse a vibrant curated queer market showcasing handcrafted artisanal goods, innovative art, and design from local 2SLGBTQIA+ creators. Between shopping, catch high-energy live performances from an electrifying lineup of drag artists celebrating self-expression and community.",
+    "price": 9.74
+  },
+  {
+    "id": "33rd-annual-winter-solstice-festival",
+    "slug": "33rd-annual-winter-solstice-festival",
+    "name": "33rd Annual Winter Solstice Festival",
+    "festival_name": "33rd Annual Winter Solstice Festival",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "roundhouse-community-33rd-annual-winter-solstice-fe-2026-12-21",
+    "venue_name": "Roundhouse Community Arts & Recreation Centre",
+    "location": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
+    "start_date": "2026-12-21",
+    "end_date": "2026-12-21",
+    "category": "festivals",
+    "website_url": "https://www.roundhouse.ca/event/33rd-annual-winter-solstice-festival/",
+    "description": "Celebrate the longest night of the year with glowing community lanterns, a contemplative Labyrinth of Light, and an evening family walk. Patrons can craft their own lanterns in afternoon workshops before joining the celebratory community procession through the Performance Centre and Exhibition Hall.",
+    "price": 15
+  },
+  {
+    "id": "lights-of-hope",
+    "slug": "lights-of-hope",
+    "name": "Lights of Hope",
+    "festival_name": "Lights of Hope",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "st-andrew-s-wesley-u-lights-of-hope-2026-11-12",
+    "venue_name": "St. Andrew's-Wesley United Church",
+    "location": "1022 Nelson St, Vancouver, BC V6E 4S7",
+    "start_date": "2026-11-12",
+    "end_date": "2026-11-12",
+    "category": "festivals",
+    "website_url": "https://standrewswesley.com/events/lights-of-hope/",
+    "description": "Gather in community to celebrate the Lights of Hope with warm cups of hot cocoa, fresh cookies, and live acoustic music. Families and neighbors can connect through hands-on children's crafts and seasonal cheer inside the historic sanctuary.",
+    "price": 0
+  },
+  {
+    "id": "winter-market-at-vanier-park",
+    "slug": "winter-market-at-vanier-park",
+    "name": "Winter Market at Vanier Park",
+    "festival_name": "Winter Market at Vanier Park",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "vanier-park-winter-market-at-vanier-park-6",
+    "venue_name": "Vancouver Maritime Museum",
+    "location": "1905 Ogden Avenue, Vancouver, BC V6J 1A3",
+    "start_date": "2026-12-06",
+    "end_date": "2026-12-06",
+    "category": "markets",
+    "website_url": "https://vanmaritime.com/explore/events-and-programs/winter-market-at-vanier-park/",
+    "description": "Gather along the waterfront for a vibrant holiday gathering uniting local artisan vendors, seasonal treats, and live entertainment across Vanier Park's premier cultural institutions. Visitors can explore family-friendly activities alongside Pay What You Can admission to the neighborhood's maritime and historic museums.",
+    "price": 0
+  },
+  {
+    "id": "discover-events-in-edmonton",
+    "slug": "discover-events-in-edmonton",
+    "name": "Discover Events in Edmonton",
+    "festival_name": "Discover Events in Edmonton",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "none-available-discover-events-in-edmonton",
+    "venue_name": "none_available",
+    "location": "none_available",
+    "start_date": "2026-11-10",
+    "end_date": "2026-11-10",
+    "category": "culture",
+    "website_url": "https://www.showpass.com/discover/edmonton/",
+    "description": "Explore Edmonton's diverse attractions featuring everything from winter ice castles and bison encounters at Elk Island to buzzing festivals and live concerts. Whether craving local culinary favorites like poutine or splashing at vibrant waterparks, there is an adventure for every explorer.",
+    "price": 0
+  },
+  {
+    "id": "discover-events-in-winnipeg",
+    "slug": "discover-events-in-winnipeg",
+    "name": "Discover Events in Winnipeg",
+    "festival_name": "Discover Events in Winnipeg",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "showpass-discovery-p-discover-events-in-winnipeg",
+    "venue_name": "Showpass Discovery Portal (Winnipeg)",
+    "location": "Showpass Discovery Portal (Winnipeg)",
+    "start_date": "2026-11-10",
+    "end_date": "2026-11-10",
+    "category": "culture",
+    "website_url": "https://www.showpass.com/discover/winnipeg/",
+    "description": "Welcome to Winnipeg, the heart and soul of the prairies! Immerse yourself in a city that has a blend of rich history, thriving arts, and a bustling culinary scene.",
+    "price": 0
+  },
+  {
+    "id": "vandusen-festival-of-lights",
+    "slug": "vandusen-festival-of-lights",
+    "name": "VanDusen Festival of Lights",
+    "festival_name": "VanDusen Festival of Lights",
+    "aliases": ["Festival of Lights at VanDusen"],
+    "status": "approved",
+    "approvalStatus": "approved",
+    "discovered_from_event_id": "vandusen-botanical-g-vandusen-festival-of-lights-2026-11-27",
+    "venue_name": "VanDusen Botanical Garden",
+    "location": "5251 Oak St, Vancouver, BC",
+    "start_date": "2026-11-27",
+    "end_date": "2027-01-03",
+    "dates_label": "Nov 27 – Jan 3",
+    "category": "outdoors",
+    "website_url": "https://vandusengarden.org/explore/events/festival-of-lights/",
+    "description": "Magical winter walk through 15 acres of VanDusen Botanical Garden illuminated with over one million twinkling lights and themed displays.",
+    "price": 29.10
+  },
+  {
+    "id": "vancouver-christmas-market",
+    "slug": "vancouver-christmas-market",
+    "name": "Vancouver Christmas Market",
+    "festival_name": "Vancouver Christmas Market",
+    "aliases": ["German Christmas Market Vancouver"],
+    "status": "approved",
+    "approvalStatus": "approved",
+    "discovered_from_event_id": "jack-poole-plaza-vancouver-christmas-market-202-2026-11-16",
+    "venue_name": "Jack Poole Plaza",
+    "location": "1055 Canada Pl, Vancouver, BC V6C 3L5",
+    "start_date": "2026-11-13",
+    "end_date": "2026-12-24",
+    "dates_label": "Nov 13 – Dec 24",
+    "category": "markets",
+    "website_url": "https://www.vancouverchristmasmarket.com/",
+    "description": "Experience Vancouver's outdoor European-style holiday market at Jack Poole Plaza featuring 90+ artisan huts, festive lights, carousel rides, and seasonal treats along the waterfront.",
+    "price": 7.99
+  },
+  {
+    "id": "bright-nights",
+    "slug": "bright-nights",
+    "name": "Bright Nights",
+    "festival_name": "Bright Nights",
+    "aliases": ["Bright Nights in Stanley Park", "Bright Nights Surrey", "Bright Nights Noel Booth"],
+    "status": "approved",
+    "approvalStatus": "approved",
+    "venue_name": "Noel Booth Community Park / Stanley Park",
+    "location": "Metro Vancouver",
+    "start_date": "2026-11-26",
+    "end_date": "2027-01-03",
+    "dates_label": "Nov 26 – Jan 3",
+    "category": "outdoors",
+    "website_url": "https://www.brightnights.ca/",
+    "description": "Beloved annual holiday light walk featuring millions of twinkling lights, illuminated tunnels, and festive displays supporting the BC Professional Fire Fighters' Burn Fund.",
+    "price": 0
+  },
+  {
+    "id": "meet-santa-at-central-city",
+    "slug": "meet-santa-at-central-city",
+    "name": "Meet Santa at Central City",
+    "festival_name": "Meet Santa at Central City",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "central-city-meet-santa-at-central-city-2026-11-21",
+    "venue_name": "Central City Fun Park",
+    "location": "11125 124 St, Surrey, BC V3V 4V2",
+    "start_date": "2026-11-21",
+    "end_date": "2026-11-21",
+    "category": "culture",
+    "website_url": "https://centralcity.ca/events/central-city-meet-santa-at-central-city",
+    "description": "Bring the family to Central City for a festive photo opportunity and seasonal visit with Santa Claus. Young visitors can share their holiday wish lists and celebrate the Christmas tradition in Surrey.",
+    "price": 27.99
   }
 ]

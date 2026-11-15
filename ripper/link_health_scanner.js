@@ -150,6 +150,12 @@ export async function scanSingleLinkHealth(url, eventCard = {}, options = {}) {
     // Aggregator search/browse index or generic directory stub
     if (
       pName.startsWith("/d/") ||
+      pName === "/discover" ||
+      pName.startsWith("/discover/") ||
+      pName.startsWith("/cities/") ||
+      pName.startsWith("/explore/") ||
+      pName.startsWith("/ttd/") ||
+      pName.startsWith("/cc/") ||
       pName === "/events" ||
       pName === "/browse" ||
       pName === "/shows" ||
@@ -209,6 +215,18 @@ export async function scanSingleLinkHealth(url, eventCard = {}, options = {}) {
         detectedTier: "none",
         httpStatus: resp.status,
         reason: `HTTP ${resp.status} Dead Link / Page Not Found`,
+        url: cleanUrl,
+        checkedAt: new Date().toISOString()
+      };
+    }
+
+    if (resp.status === 511) {
+      return {
+        healthy: false,
+        status: "DEGRADED_NETWORK_PROXY_RESTRICTED",
+        detectedTier: "none",
+        httpStatus: 511,
+        reason: "HTTP 511 Local Proxy / Sandbox Network Restriction (unverified offline)",
         url: cleanUrl,
         checkedAt: new Date().toISOString()
       };

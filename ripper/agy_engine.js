@@ -86,9 +86,9 @@ export function parseJsonFromText(rawText) {
 }
 
 const MODEL_TIMEOUT_MS = {
-  "gemini-3.8-flash-low": 80000,
-  "gemini-3.8-flash-medium": 95000,
-  "gemini-3.8-flash-high": 120000,
+  "gemini-3.8-flash-low": 95000,
+  "gemini-3.8-flash-medium": 105000,
+  "gemini-3.8-flash-high": 125000,
   "gemini-4-argon-low": 95000,
   "gemini-4-argon-medium": 120000,
   "gemini-4-argon-high": 150000,
@@ -170,11 +170,14 @@ export async function runAntigravityOnce(prompt, options = {}) {
       model,
       "--disable-slash-commands",
       "--dangerously-skip-permissions",
-      "-p",
-      prompt,
     ];
+    if (/-low$/i.test(model)) {
+      args.push("--effort", "low");
+    }
+    args.push("-p", prompt);
 
     const { stdout, stderr } = await execFileAsync(agyBin, args, {
+      cwd: options.noTools ? os.tmpdir() : process.cwd(),
       encoding: "utf8",
       timeout: timeoutMs,
       maxBuffer: 4 * 1024 * 1024,
@@ -233,31 +236,49 @@ export async function runAntigravityOnce(prompt, options = {}) {
  * Inspects rendered DOM text from the live checkout cart and extracts structured Tier 1/2/3 pricing.
  */
 export async function callAntigravityBoxOfficeExtractor(domSnapshotText, targetUrl, existingCard = {}) {
-  const truncatedDom = String(domSnapshotText || "").slice(0, 14000);
+  const seenLines = new Set();
+  const dedupedDom = String(domSnapshotText || "")
+    .split(/\r?\n/)
+    .map((l) => l.trimEnd())
+    .filter((l) => {
+      const k = l.trim();
+      if (!k) return true;
+      if (k.length > 24 && seenLines.has(k)) return false;
+      seenLines.add(k);
+      return true;
+    })
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .slice(0, 8500);
   const curatorHint = existingCard?.curator_notes
     ? `\nMANDATORY CURATOR NOTE: "${existingCard.curator_notes}"\n`
     : "";
 
   const prompt = `You are a fresh 1-Event Van50 Box Office Auditor inspecting a live rendered checkout page in Metro Vancouver (<= $50.00 CAD ceiling).
+CRITICAL SINGLE-TURN RULE: Do NOT invoke any tools, terminal commands, web searches, or file reads. Respond IMMEDIATELY in a single turn using ONLY the Rendered Page & Cart Modal Text provided below.
 Target URL: ${targetUrl}
 Seed Title Hint: "${existingCard?.title || existingCard?.seed_title || ""}"
 Seed Venue Hint: "${existingCard?.venue || existingCard?.venue_name || existingCard?.seed_venue || ""}"${curatorHint}
 
 Rendered Page & Cart Modal Text:
 """
-${truncatedDom}
+${dedupedDom}
 """
 
 Instructions:
 1. Extract the exact show/event title (never a generic button like "Buy Tickets" or "General Admission" if a real title is present), venue_name, calendar date (YYYY-MM-DD if possible), start_time (12-hour AM/PM e.g. "8:00 PM"), doors_time (12-hour AM/PM e.g. "7:00 PM"), end_time, and age_restriction.
 2. Extract ticket pricing tiers in CAD strictly from the rendered page/cart text above (never guess or fabricate prices if none are present in the text):
-   - Tier 1 MUST be the primary single-visit Adult / General Admission / lowest-priced reserved section tier <= $50.00 CAD (never an optional add-on like club rental, and never $0 Child/Member if a paid Adult tier exists).
+   - Tier 1 MUST be the primary unconditional single-visit Adult / General Admission / lowest-priced available reserved section tier <= $50.00 CAD (never an optional add-on like club rental, and never $0 Child/Member if a paid Adult tier exists).
+   - Standalone Pass Disqualifier (Gate 4): NEVER extract Season Passes, Annual Passes, or Memberships as single-visit tiers. If the page ONLY sells a Season Pass or Annual Pass (e.g. "Season Pass - Vancouver Christmas Market"), return null for tier1_price_base / tier1_price_all_in and [] for all_tiers.
+   - Outer Price-Range Banner Guard: NEVER extract the lower bound of an outer summary banner (e.g. "Price $33.77 - $49.62 CAD") when the live ticket list/modal shows that lower tier is sold out, ended, or absent! Extract ONLY actively available tiers shown in the live ticket list/modal.
+   - Mandatory 5% GST Calculation When Unitemized: If a Canadian checkout modal shows base + fee + "+ Applicable taxes at checkout" (because tax is only itemized at final payment, e.g. "$49.62 ($45.00 CAD + $4.62 Fees) + Applicable taxes"), compute the mandatory 5% GST on (base + fee) as tier1_price_tax (e.g. 2.48 -> tier1_price_all_in = 52.10) so >$50.00 CAD budget breaches are accurately caught.
+   - Conditional Free Cutoff Rule: If a $0 tier is conditional on early arrival (e.g. "FREE ENTRY BEFORE 10:30PM $0.00") alongside an unconditional paid General Admission tier (e.g. "GENERAL ADMISSION $9.07"), set the unconditional paid General Admission tier as Tier 1 and record the conditional free tier as Tier 2 with its exact cutoff label.
    - VSO / Tessitura Section Price Ranges: If the page displays section price ranges such as "Front Orchestra $32.00 to $110.00", "Back Orchestra $32.00 to $110.00", or "Back Balcony $32.00 to $70.00", extract the starting floor price of each section (e.g. $32.00, $40.50, $45.00) as a valid tier (e.g. name: "Back Balcony", price_base: 32.0, price_all_in: 32.0, quote: "Back Balcony $32.00 to $70.00").
    - VSO / Chan Centre Fee Breakdown & STX Buttons: If buttons display "$46.67 ticket + $3.33 fees $50.00" or "STX-Adult $45.00 / STX-Senior $43.00 / STX-Studnt $40.50", extract the exact base, fee, and all-in total for Adult (Tier 1), Senior (Tier 2), and Student/Child (Tier 3).
    - Museum/Gallery Admission & Starting Floors: If an exhibition/tour states "included with Gallery admission" alongside an official General Admission rate (e.g. "General Admission – Adult (19+): $29.00"), or a theatre show page states "Tickets from $39", extract that Adult / Starting Floor rate as Tier 1.
    - Extract tier1_name, tier1_price_base, tier1_price_fee, tier1_price_tax, tier1_price_all_in, tier1_price_read, and verbatim tier1_quote. If no price is stated in the text, return null for the numeric price fields!
    - Also populate tier2_* and tier3_* if secondary/student/senior/early-bird/section tiers exist, and list all visible single-visit tiers in all_tiers.
-3. Gate 4 Sold-Out Rule: Set is_sold_out to true ONLY if every eligible single-visit admission tier (<= $50 CAD) is sold out.
+3. Gate 4 Sold-Out & Timezone Rule: Set is_sold_out to true ONLY if every eligible single-visit admission tier (<= $50 CAD) is sold out. If a promoter displays showtimes in MT (Mountain Time) for a Metro Vancouver venue, convert the time to America/Vancouver PT (-1 hour from MT).
 
 Return ONLY a valid JSON object matching this exact structure (no markdown commentary):
 {
@@ -322,7 +343,8 @@ Return ONLY a valid JSON object matching this exact structure (no markdown comme
     eventId: evId,
     eventTitle: evTitle,
     stage: "Stage 2: Box Office Cart Extractor",
-    timeoutMs: 75000,
+    timeoutMs: 95000,
+    noTools: true,
   });
 }
 
@@ -345,7 +367,7 @@ Input Event:
 - Primary Event Page Text: "${(eventCard.description || "").slice(0, 2800)}"${curatorPrompt}
 
 Requirements:
-1. "clean_title": Strip out all promotional artifacts, dates, times, buttons ("Tickets On Sale", "Apr 4", "MoreInfo->"), and ALL-CAPS shouting.
+1. "clean_title": Strip out all promotional artifacts, dates, times, buttons ("Tickets On Sale", "Apr 4", "MoreInfo->"), and ALL-CAPS shouting. CRITICAL: NEVER strip "Season Pass", "Annual Pass", "All Day Pass", "Afternoon Show", or "Evening Show" qualifiers from a title, so pass listings or separate matinee/evening programs never collide with single-visit shows.
 2. "artist": Extract the lead artist, band, performer, or speaker name (or null if general/recreation).
 3. "lineup": Array of performer names if present (or []).
 4. "category": Strictly one of ["shows", "comedy", "arts", "outdoors", "culture", "free-public-access"].
@@ -480,11 +502,11 @@ Live HTTP Probe & Candidate Link Diagnostics:
 ${JSON.stringify(linkDiagnostics, null, 2)}
 
 5-Tier Link Hierarchy Rules:
-- "tier1_checkout": Strictly a direct online ticket checkout/cart URL (Showpass, Eventbrite, Ticketweb, Ticketmaster, Zeffy, Ticket Tailor / tickets.tightropetheatre.com, Agile / tickets.thecinematheque.ca, Spektrix / purchase.theimprovcentre.ca, Blackbaud / tickets.vanartgallery.bc.ca, Tock / exploretock.com, or /tickets-checkout/). MUST BE null for free public parks, drop-in pitch-and-putts, free community festivals, or informational pages with no online checkout cart!
-- "tier2_event_page": Specific event/exhibition/facility details page.
-- "tier3_calendar": Venue events calendar or exhibitions listing page (must be HTTP 200 and not redirect to past archives or 404).
-- "tier4_civic_destination": Non-WAF destination or visitor guide for perennial drop-ins (never vancouver.ca/*.aspx; must not duplicate tier5_venue_home).
-- "tier5_venue_home": Live root homepage of the physical venue (must not be a dead domain).
+- "tier1_checkout": Strictly a direct online ticket checkout/cart URL (Showpass, Eventbrite, Ticketweb, Ticketmaster, Zeffy, Ticket Tailor / tickets.tightropetheatre.com, Agile / tickets.thecinematheque.ca, Spektrix / purchase.theimprovcentre.ca / purchase.surrey.ca, Blackbaud / tickets.vanartgallery.bc.ca, Tock / exploretock.com, VBO / vbotickets.com, Theatre Manager / tickets.bellperformingartscentre.com, or /tickets-checkout/). MUST BE null for free public parks, drop-in pitch-and-putts, free community festivals, or informational pages with no online checkout cart!
+- "tier2_event_page": Specific event/exhibition/facility details page (e.g. /events/<slug>/). NEVER downgrade a specific /events/<slug>/ page to a generic /events/ calendar index, and NEVER use any *.aspx URL or allevents.in URL.
+- "tier3_calendar": Venue events calendar or exhibitions listing page (must be HTTP 200 and not redirect to past archives, 404, or *.aspx).
+- "tier4_civic_destination": Non-WAF destination or visitor guide for perennial drop-ins (NEVER use any *.aspx URL such as vancouver.ca/*.aspx or tol.ca/*.aspx; must not duplicate tier5_venue_home).
+- "tier5_venue_home": Live root homepage of the physical venue (must not be a dead domain or *.aspx URL).
 - Never allow a perennial drop-in venue (e.g. pinball bar) to use a one-off concert Eventbrite link with ?fbclid= as its candidate_tier1_url.
 
 Return ONLY a valid JSON object matching this exact schema (no markdown commentary):

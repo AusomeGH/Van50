@@ -184,8 +184,8 @@ export function extractFallbackDate(eventId, url, seed = {}, existing = {}) {
   if (seedParsed) return seedParsed;
   const existParsed = parseHumanDateToIso(existing?.date);
   if (existParsed) return existParsed;
-  if (seed?.date && seed.date !== "none_available" && seed.date !== "Schedule Pending Verification") return seed.date;
-  if (existing?.date && existing.date !== "none_available" && existing.date !== "Schedule Pending Verification") return existing.date;
+  if (seed?.date && seed.date !== "none_available" && seed.date !== "search_exhausted_null" && seed.date !== "quarantine_fatal" && seed.date !== "Schedule Pending Verification") return seed.date;
+  if (existing?.date && existing.date !== "none_available" && existing.date !== "search_exhausted_null" && existing.date !== "quarantine_fatal" && existing.date !== "Schedule Pending Verification") return existing.date;
   if (seed?.startIso) {
     const m = String(seed.startIso).match(/^(\d{4}-\d{2}-\d{2})/);
     if (m) return m[1];
@@ -284,10 +284,21 @@ export function matchVenue(venueQuery, venues) {
   matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
-  // 3. Clean query containment (strip parenthetical suffixes from venue names first so "The Polygon Gallery (The Shipyards)" doesn't hijack "The Shipyards")
+  // 3. Clean query containment (word-boundary aligned; leftover tokens must only be benign articles or city qualifiers so "Central City" never hijacks "Central City Fun Park")
+  const SAFE_CONTAINMENT_QUALIFIERS = new Set([
+    "the", "vancouver", "surrey", "burnaby", "richmond", "coquitlam", "langley", "delta",
+    "yvr", "bc", "canada", "downtown", "inc", "ltd"
+  ]);
   const containmentCandidates = candidateVenues.filter((v) => {
     const vNoParens = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-    return vNoParens.length > 6 && (cleanQuery.includes(vNoParens) || vNoParens.includes(cleanQuery));
+    if (vNoParens.length <= 6 || cleanQuery.length <= 4) return false;
+    const shorter = cleanQuery.length <= vNoParens.length ? cleanQuery : vNoParens;
+    const longer = cleanQuery.length <= vNoParens.length ? vNoParens : cleanQuery;
+    const escapedShorter = shorter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    if (!new RegExp(`(?:^|\\s)${escapedShorter}(?:\\s|$)`).test(longer)) return false;
+    const remainder = longer.replace(new RegExp(`(?:^|\\s)${escapedShorter}(?:\\s|$)`), " ").trim();
+    const remTokens = remainder ? remainder.split(/\s+/).filter(Boolean) : [];
+    return remTokens.every((t) => SAFE_CONTAINMENT_QUALIFIERS.has(t));
   });
   if (containmentCandidates.length > 0) {
     containmentCandidates.sort((a, b) => {
@@ -488,11 +499,420 @@ export async function compileCatalog(options = {}) {
   quarantinedEventsPool.forEach((q) => quarantinedMap.set(q.id || q.event_id, q));
 
   const learnedRules = loadJson(path.join(DATA_DIR, "curator_learned_rules.json"), {});
-  const festivalsRegistry = loadJson(path.join(DATA_DIR, "festivals.json"), []);
+  const festivalsPath = path.join(DATA_DIR, "festivals.json");
+  const festivalsRegistry = loadJson(festivalsPath, []);
+  let festivalsRegistryDirty = false;
   const holidaysRegistryDoc = loadJson(path.join(DATA_DIR, "approved_holidays.json"), { approvedHolidays: [] });
   const approvedHolidaysList = Array.isArray(holidaysRegistryDoc.approvedHolidays) ? holidaysRegistryDoc.approvedHolidays : [];
   const archivedDoc = loadJson(ARCHIVED_PATH, { archivedEvents: [] });
   let archivedEventsList = Array.isArray(archivedDoc) ? archivedDoc : (archivedDoc.archivedEvents || []);
+
+  // Permanently closed Surrey venues that must be archived and evicted from active catalog
+  const CLOSED_VENUE_EVENT_IDS = new Set([
+    "fraser-downs-live-harness-horse-racing",
+    "dell-lanes-cosmic-bowling-surrey-central",
+  ]);
+  let closedVenueArchivedCount = 0;
+  for (const closedId of CLOSED_VENUE_EVENT_IDS) {
+    const existingClosed = existingEvents.find((e) => (e.id || e.event_id) === closedId);
+    if (existingClosed && !archivedEventsList.some((a) => (a.id || a.event_id) === closedId)) {
+      archivedEventsList.unshift({
+        ...existingClosed,
+        archiveReason: "venue_permanently_closed",
+        reviewStatus: "archived_closed_venue",
+        audit_error: "Venue permanently closed (verified during Surrey catalog audit)",
+        archivedAt: nowIso,
+      });
+      closedVenueArchivedCount++;
+    }
+  }
+  if (closedVenueArchivedCount > 0) {
+    if (Array.isArray(archivedDoc)) {
+      fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedEventsList, null, 2), "utf-8");
+    } else if (archivedDoc && typeof archivedDoc === "object") {
+      archivedDoc.archivedEvents = archivedEventsList;
+      if (archivedDoc.metadata) {
+        archivedDoc.metadata.archivedCount = archivedEventsList.length;
+        archivedDoc.metadata.totalArchived = archivedEventsList.length;
+        archivedDoc.metadata.updatedAt = nowIso;
+      }
+      fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedDoc, null, 2), "utf-8");
+    }
+  }
+
+  // Layer Hygiene & Civic .aspx WAF Evasion Sanitizer:
+  // Evict polluted non-event stubs (generic CTA buttons, CEFA graduations, 1980s exhibition catalogues, raw street address venues,
+  // FloHockey streams, AllEvents profile stubs) and strip .aspx civic links across specialist layers.
+  const isPollutedHarvestRecord = (rec) => {
+    if (!rec || typeof rec !== "object") return true;
+    const t = String(rec.title || rec.clean_title || rec.event_name || "").trim();
+    const v = String(rec.venue_name || rec.venue || "").trim();
+    const u = String(rec.details_url || rec.ticket_url || rec.candidate_tier1_url || rec.source_url || "").trim();
+    if (/^(?:choose\s+seats|select\s+seats|find\s+tickets|buy\s+tickets|get\s+tickets|book\s+tickets)$/i.test(t)) return true;
+    if (/^discover\s+events\s+in\s+/i.test(t)) return true;
+    if (/\b(?:cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|all[- ]access\s+pass(?:es)?|subscription\s+packages?|exhibition\s+catalogue|school\s+boundaries)\b/i.test(t)) return true;
+    if (/@\s*(?:abbotsford(?:\s+pilots)?|mission(?:\s+city(?:\s+outlaws)?)?|chilliwack(?:\s+jets)?|aldergrove(?:\s+ironmen)?)\b/i.test(t)) return true;
+    if (u && (
+      /allevents\.in\/pages\/|flohockey\.tv|flosports\.tv|showpass\.com\/(?:m|discover|cities|explore|o|s)(?:\/|[?#]|$)|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)|\/wp-content\/uploads\/|\.(?:jpg|jpeg|png|gif|webp|svg)(?:[?#]|$)/i.test(u) ||
+      /\/stats\/(?:roster|standings|leaders|player|game-center|schedule|team)(?:\/|[?#]|$)/i.test(u) ||
+      /\/(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|coll(?:e|a)ge-grad|graduation-ceremony|convocation)(?:\/|[?#]|$)/i.test(u) ||
+      /\/(?:city-government|city-departments|public-safety|gallery-publications|exhibition-catalogues)(?:\/|$)/i.test(u) ||
+      /\/(?:who-we-are|be-a-sponsor|sponsor|sponsorship|trophies|scholarship|season-memberships)(?:\/|$)/i.test(u) ||
+      (/\.aspx(?:[?#]|$)/i.test(u) && !/chooseseats\.aspx|ticketsearchcriteria\.aspx\?evtinfo=/i.test(u))
+    )) {
+      return true;
+    }
+    if (v && (
+      /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(v) ||
+      /^(?:flohockey|flosports|online|virtual|zoom|livestream|stream)$/i.test(v) ||
+      /\b(?:msa\s+arena|mission\s+city\s+leisure\s+centre|chilliwack\s+coliseum|abbotsford\s+centre)\b/i.test(v)
+    )) {
+      return true;
+    }
+    return false;
+  };
+
+  const pollutedLayerIds = new Set();
+  const pollutedArchivedRecords = [];
+  const stripCivicAspx = (url) => {
+    if (!url || typeof url !== "string") return null;
+    try {
+      const uObj = new URL(url.trim());
+      if (uObj.hostname.toLowerCase().includes("ticketing.purchase.surrey.ca") && /chooseseats\.aspx/i.test(uObj.pathname)) {
+        const instParam = uObj.searchParams.get("EventInstanceId") || uObj.searchParams.get("eventinstanceid") || "";
+        const numMatch = String(instParam).match(/^(\d+)/);
+        if (numMatch) return `https://purchase.surrey.ca/ChooseSeats/${numMatch[1]}`;
+      }
+    } catch (_) { }
+    if (/\.aspx(?:[?#]|$)/i.test(url) && !/chooseseats\.aspx|ticketsearchcriteria\.aspx\?evtinfo=/i.test(url)) return null;
+    if (/allevents\.in|flohockey\.tv|flosports\.tv|showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)/i.test(url)) return null;
+    return url;
+  };
+
+  let schedulesCleaned = false;
+  for (let i = schedules.length - 1; i >= 0; i--) {
+    const s = schedules[i];
+    const sid = s && (s.id || s.event_id);
+    if (isPollutedHarvestRecord(s)) {
+      if (sid) {
+        pollutedLayerIds.add(sid);
+        pollutedArchivedRecords.push(s);
+      }
+      schedules.splice(i, 1);
+      schedulesCleaned = true;
+      continue;
+    }
+    // Strip .aspx civic links from surviving schedule records
+    for (const field of ["candidate_tier1_url", "ticket_url", "details_url"]) {
+      if (s[field] && !stripCivicAspx(s[field])) {
+        s[field] = s.source_url && stripCivicAspx(s.source_url) ? s.source_url : null;
+        schedulesCleaned = true;
+      }
+    }
+    if (s.links && typeof s.links === "object") {
+      for (const lk of ["tier1_checkout", "tier2_event_page", "tier3_calendar", "tier4_civic_destination", "tier5_venue_home", "best_available"]) {
+        if (s.links[lk] && !stripCivicAspx(s.links[lk])) {
+          s.links[lk] = null;
+          schedulesCleaned = true;
+        }
+      }
+      if (!s.links.best_available) {
+        s.links.best_available = s.links.tier1_checkout || s.links.tier2_event_page || s.links.tier3_calendar || s.links.tier4_civic_destination || s.links.tier5_venue_home || s.details_url || s.source_url || null;
+      }
+    }
+  }
+  if (schedulesCleaned) {
+    fs.writeFileSync(SCHEDULES_PATH, JSON.stringify(schedules, null, 2), "utf-8");
+  }
+
+  const schedDetailUrlById = new Map(
+    schedules.map((s) => [s.id || s.event_id, s.details_url || (s.links && s.links.tier2_event_page) || null])
+  );
+  let boxCleaned = false;
+  for (let i = boxOffices.length - 1; i >= 0; i--) {
+    const b = boxOffices[i];
+    const bid = b && (b.id || b.event_id);
+    if ((bid && pollutedLayerIds.has(bid)) || isPollutedHarvestRecord(b)) {
+      if (bid) pollutedLayerIds.add(bid);
+      boxOffices.splice(i, 1);
+      boxCleaned = true;
+      continue;
+    }
+    // Restore specific Tier 2 event URL if Stage 2 previously overwrote ticket_url with a generic /events/ calendar index
+    const specificUrl = bid ? schedDetailUrlById.get(bid) : null;
+    if (
+      b.ticket_url &&
+      /\/events\/?$/i.test(b.ticket_url) &&
+      specificUrl &&
+      !/\/events\/?$/i.test(specificUrl)
+    ) {
+      b.ticket_url = specificUrl;
+      boxCleaned = true;
+    }
+  }
+  if (boxCleaned) {
+    fs.writeFileSync(BOX_OFFICE_PATH, JSON.stringify(boxOffices, null, 2), "utf-8");
+  }
+
+  let edCleaned = false;
+  for (let i = editorials.length - 1; i >= 0; i--) {
+    const e = editorials[i];
+    const eid = e && (e.id || e.event_id);
+    if ((eid && pollutedLayerIds.has(eid)) || isPollutedHarvestRecord(e)) {
+      editorials.splice(i, 1);
+      edCleaned = true;
+    }
+  }
+  if (edCleaned) {
+    fs.writeFileSync(EDITORIAL_PATH, JSON.stringify(editorials, null, 2), "utf-8");
+  }
+
+  let quarantinedPoolCleaned = false;
+  for (let i = quarantinedEventsPool.length - 1; i >= 0; i--) {
+    const q = quarantinedEventsPool[i];
+    const qid = q && (q.id || q.event_id);
+    if ((qid && pollutedLayerIds.has(qid)) || isPollutedHarvestRecord(q)) {
+      if (qid) {
+        pollutedLayerIds.add(qid);
+        pollutedArchivedRecords.push(q);
+      }
+      quarantinedEventsPool.splice(i, 1);
+      if (qid) quarantinedMap.delete(qid);
+      quarantinedPoolCleaned = true;
+    }
+  }
+  if (pollutedArchivedRecords.length > 0) {
+    let archivedDirty = false;
+    for (const pr of pollutedArchivedRecords) {
+      const pid = pr && (pr.id || pr.event_id);
+      if (!pid) continue;
+      if (!archivedEventsList.some((a) => (a.id || a.event_id) === pid)) {
+        archivedEventsList.unshift({
+          ...pr,
+          id: pid,
+          event_id: pid,
+          archiveReason: "non_event_or_directory_stub",
+          reviewStatus: "archived_non_event",
+          archivedAt: nowIso,
+        });
+        archivedDirty = true;
+      }
+    }
+    if (archivedDirty) {
+      if (Array.isArray(archivedDoc)) {
+        fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedEventsList, null, 2), "utf-8");
+      } else if (archivedDoc && typeof archivedDoc === "object") {
+        archivedDoc.archivedEvents = archivedEventsList;
+        if (archivedDoc.metadata) {
+          archivedDoc.metadata.archivedCount = archivedEventsList.length;
+          archivedDoc.metadata.totalArchived = archivedEventsList.length;
+          archivedDoc.metadata.updatedAt = nowIso;
+        }
+        fs.writeFileSync(ARCHIVED_PATH, JSON.stringify(archivedDoc, null, 2), "utf-8");
+      }
+    }
+  }
+  if (quarantinedPoolCleaned) {
+    if (Array.isArray(queueData)) {
+      fs.writeFileSync(QUEUE_PATH, JSON.stringify(quarantinedEventsPool, null, 2), "utf-8");
+    } else if (queueData && typeof queueData === "object") {
+      queueData.quarantinedEvents = quarantinedEventsPool;
+      if (queueData.metadata) {
+        queueData.metadata.pendingCount = quarantinedEventsPool.length;
+        queueData.metadata.updatedAt = nowIso;
+      }
+      fs.writeFileSync(QUEUE_PATH, JSON.stringify(queueData, null, 2), "utf-8");
+    }
+  }
+
+  // Register any verified municipal seed records (e.g., data/surrey_seed_events.json) into the 4 canonical pipeline layers
+  // so no city or municipality ever bypasses Stage 1A/1B (schedules), Stage 2 (box office), Stage 3 (editorial), Stage 4 (venues), or Stage 5 (compiler).
+  const surreySeedEvents = loadJson(path.join(DATA_DIR, "surrey_seed_events.json"), []);
+  if (Array.isArray(surreySeedEvents) && surreySeedEvents.length > 0) {
+    let seedsUpdated = false;
+    let schedulesUpdated = false;
+    let boxUpdated = false;
+    let editorialUpdated = false;
+    const seedIdsSet = new Set(seeds.map((s) => s.id || s.event_id));
+    const schedMap = new Map(schedules.map((s, i) => [s.id || s.event_id, i]));
+    const boxMap = new Map(boxOffices.map((b, i) => [b.id || b.event_id, i]));
+    const editMap = new Map(editorials.map((e, i) => [e.id || e.event_id, i]));
+
+    for (const sr of surreySeedEvents) {
+      const sid = sr.id || sr.event_id;
+      if (!sid || CLOSED_VENUE_EVENT_IDS.has(sid)) continue;
+      const primaryUrl = sr.ticket_url || sr.details_url || sr.url || null;
+      const isPerennial = sr.lifecycle_type === "perennial_drop_in" || sr.date === "perennial";
+      const priceVal = Number(sr.price ?? 0);
+
+      if (!seedIdsSet.has(sid)) {
+        seeds.push({
+          id: sid,
+          event_id: sid,
+          seed_title: sr.title,
+          title: sr.title,
+          seed_venue: sr.venue_name || sr.venue,
+          venue: sr.venue_name || sr.venue,
+          seed_url: primaryUrl,
+          ticket_url: sr.ticket_url || primaryUrl,
+          details_url: sr.details_url || primaryUrl,
+          lifecycle_type: sr.lifecycle_type || (isPerennial ? "perennial_drop_in" : "time_bound_event"),
+          city: sr.city || "Surrey",
+          region: sr.region || "Surrey",
+        });
+        seedIdsSet.add(sid);
+        seedsUpdated = true;
+      }
+
+      const schedPayload = {
+        id: sid,
+        event_id: sid,
+        title: sr.title,
+        venue: sr.venue_name || sr.venue,
+        venue_name: sr.venue_name || sr.venue,
+        city: sr.city || "Surrey",
+        region: sr.region || "Surrey",
+        neighborhood: sr.neighborhood || "Surrey Central",
+        date: isPerennial ? null : (sr.date || null),
+        dateSchedule: sr.dateSchedule || null,
+        frequency: sr.frequency || (isPerennial ? "Daily" : "One-Time"),
+        frequencyLabel: sr.frequencyLabel || sr.dateSchedule || null,
+        time: sr.time || sr.start_time || null,
+        start_time: sr.start_time || sr.time || null,
+        doors_time: sr.doors_time || null,
+        end_time: sr.end_time || null,
+        showings: Array.isArray(sr.showings) ? sr.showings : [],
+        ticket_url: sr.ticket_url || primaryUrl,
+        details_url: sr.details_url || primaryUrl,
+        source_url: primaryUrl,
+        candidate_tier1_url: sr.ticket_url || primaryUrl,
+        candidate_tier1_source: "verified_municipal_schedule",
+        candidate_tier1_confidence: 1.0,
+        lifecycle_type: sr.lifecycle_type || (isPerennial ? "perennial_drop_in" : "time_bound_event"),
+        festival_affiliation: sr.festival_affiliation || null,
+        audited_at: nowIso,
+        step1b_audited_at: nowIso,
+        step4_grounded_at: nowIso,
+      };
+      if (!schedMap.has(sid)) {
+        schedules.push(schedPayload);
+        schedMap.set(sid, schedules.length - 1);
+        schedulesUpdated = true;
+      } else {
+        schedules[schedMap.get(sid)] = { ...schedules[schedMap.get(sid)], ...schedPayload };
+        schedulesUpdated = true;
+      }
+
+      const srTiers = Array.isArray(sr.tiers) && sr.tiers.length > 0
+        ? sr.tiers
+        : [
+            {
+              name: priceVal === 0 ? "Free Public Access" : "General Admission",
+              price: priceVal,
+              price_base: Number(sr.price_base ?? priceVal),
+              price_fee: Number(sr.price_fee ?? 0),
+              price_tax: Number(sr.price_tax ?? 0),
+              price_read: priceVal,
+              price_calculated: priceVal,
+              price_all_in: priceVal,
+              is_available: !sr.is_sold_out,
+            },
+          ];
+      const boxPayload = {
+        id: sid,
+        event_id: sid,
+        title: sr.title,
+        venue_name: sr.venue_name || sr.venue,
+        status: "VERIFIED",
+        operational_status: sr.is_sold_out ? "sold_out" : "available",
+        is_sold_out: Boolean(sr.is_sold_out),
+        is_free: Boolean(sr.isFree ?? (priceVal === 0)),
+        pricing_model: sr.pricing_model || (priceVal === 0 ? "free_access" : "flat_ticket"),
+        booking_protocol: sr.booking_protocol || (priceVal === 0 ? "walk_up_only" : "online_advance"),
+        ticket_provider: sr.ticket_provider || "Venue Direct / Civic Portal",
+        ticket_url: sr.ticket_url || primaryUrl,
+        details_url: sr.details_url || primaryUrl,
+        tier1_name: srTiers[0]?.name || (priceVal === 0 ? "Free Public Access" : "General Admission"),
+        tier1_price_base: Number(srTiers[0]?.price_base ?? sr.price_base ?? priceVal),
+        tier1_price_fee: Number(srTiers[0]?.price_fee ?? sr.price_fee ?? 0),
+        tier1_price_tax: Number(srTiers[0]?.price_tax ?? sr.price_tax ?? 0),
+        tier1_price_read: Number(srTiers[0]?.price ?? priceVal),
+        tier1_price_calculated: Number(srTiers[0]?.price ?? priceVal),
+        tier1_price_all_in: Number(srTiers[0]?.price ?? priceVal),
+        tier1_quote: sr.priceLabel || (priceVal === 0 ? "Free" : `$${priceVal.toFixed(2)} CAD`),
+        ...(srTiers[1]
+          ? {
+              tier2_name: srTiers[1].name,
+              tier2_price_base: Number(srTiers[1].price_base ?? srTiers[1].price ?? 0),
+              tier2_price_fee: Number(srTiers[1].price_fee ?? 0),
+              tier2_price_tax: Number(srTiers[1].price_tax ?? 0),
+              tier2_price_read: Number(srTiers[1].price ?? 0),
+              tier2_price_all_in: Number(srTiers[1].price ?? 0),
+            }
+          : {}),
+        ...(srTiers[2]
+          ? {
+              tier3_name: srTiers[2].name,
+              tier3_price_base: Number(srTiers[2].price_base ?? srTiers[2].price ?? 0),
+              tier3_price_fee: Number(srTiers[2].price_fee ?? 0),
+              tier3_price_tax: Number(srTiers[2].price_tax ?? 0),
+              tier3_price_read: Number(srTiers[2].price ?? 0),
+              tier3_price_all_in: Number(srTiers[2].price ?? 0),
+            }
+          : {}),
+        all_tiers: srTiers,
+        tiers: srTiers,
+        other_cost_label: sr.other_cost_label || null,
+        other_cost_price: sr.other_cost_price ?? null,
+        audited_at: nowIso,
+      };
+      if (!boxMap.has(sid)) {
+        boxOffices.push(boxPayload);
+        boxMap.set(sid, boxOffices.length - 1);
+        boxUpdated = true;
+      } else {
+        boxOffices[boxMap.get(sid)] = { ...boxOffices[boxMap.get(sid)], ...boxPayload };
+        boxUpdated = true;
+      }
+
+      const editPayload = {
+        id: sid,
+        event_id: sid,
+        clean_title: sr.title,
+        title: sr.title,
+        artist: sr.artist || null,
+        lineup: Array.isArray(sr.lineup) ? sr.lineup : (sr.lineup ? [sr.lineup] : []),
+        description: sr.description,
+        synopsis: sr.description,
+        event_archetype: sr.event_archetype || sr.archetype || "civic_park",
+        archetype: sr.event_archetype || sr.archetype || "civic_park",
+        lifecycle_type: sr.lifecycle_type || (isPerennial ? "perennial_drop_in" : "time_bound_event"),
+        category: sr.category || "outdoors",
+        categories: Array.isArray(sr.categories) ? sr.categories : [sr.category || "outdoors"],
+        tags: Array.isArray(sr.tags) ? sr.tags : [sr.category || "outdoors"],
+        sub_tags: Array.isArray(sr.subTags) ? sr.subTags : [],
+        restrictions: sr.restrictions || "All Ages",
+        festival_affiliation: sr.festival_affiliation || null,
+        source_engine: "enricher_ai_v2",
+        enriched_at: nowIso,
+        audited_at: nowIso,
+        step4_grounded_at: nowIso,
+      };
+      if (!editMap.has(sid)) {
+        editorials.push(editPayload);
+        editMap.set(sid, editorials.length - 1);
+        editorialUpdated = true;
+      } else {
+        editorials[editMap.get(sid)] = { ...editorials[editMap.get(sid)], ...editPayload };
+        editorialUpdated = true;
+      }
+    }
+
+    if (seedsUpdated) fs.writeFileSync(SEEDS_PATH, JSON.stringify(seeds, null, 2), "utf-8");
+    if (schedulesUpdated) fs.writeFileSync(SCHEDULES_PATH, JSON.stringify(schedules, null, 2), "utf-8");
+    if (boxUpdated) fs.writeFileSync(BOX_OFFICE_PATH, JSON.stringify(boxOffices, null, 2), "utf-8");
+    if (editorialUpdated) fs.writeFileSync(EDITORIAL_PATH, JSON.stringify(editorials, null, 2), "utf-8");
+  }
 
   // Self-heal any events falsely archived as fatal_mismatched_stub due to anti-bot challenge walls (e.g. DataDome on ra.co)
   const boxById = new Map(boxOffices.map((b) => [b.id || b.event_id, b]));
@@ -612,9 +1032,23 @@ export async function compileCatalog(options = {}) {
       .filter((b) => b && (b.id || b.event_id) && b.status !== "TIMEOUT_EXCEEDED" && b.status !== "AI_TIMEOUT" && b.status !== "EXECUTION_ERROR")
       .map((b) => String(b.id || b.event_id).toLowerCase())
   );
+  const terminalBoxDispositionIds = new Set(
+    boxOffices
+      .filter(
+        (b) =>
+          b &&
+          (b.id || b.event_id) &&
+          (b.status === "BUDGET_BREACH" ||
+            b.status === "UNVERIFIED_PRICING" ||
+            b.status === "ANTIBOT_CHALLENGE_BLOCKED" ||
+            (typeof b.status === "string" && b.status.startsWith("FATAL_")) ||
+            Boolean(b.quarantine_reason))
+      )
+      .map((b) => String(b.id || b.event_id).toLowerCase())
+  );
   const edDoneIds = new Set(
     editorials
-      .filter((e) => e && (e.id || e.event_id) && e.clean_title && e.description && e.source_engine !== "heuristic_rules" && e.source_engine !== "unverified")
+      .filter((e) => e && (e.id || e.event_id) && e.clean_title && (e.description || e.enriched_at) && e.source_engine !== "heuristic_rules" && e.source_engine !== "unverified")
       .map((e) => String(e.id || e.event_id).toLowerCase())
   );
   const stage4DoneIds = new Set([
@@ -625,11 +1059,14 @@ export async function compileCatalog(options = {}) {
   function isUncompiledReadyForStage5(id) {
     const idLower = String(id || "").toLowerCase();
     if (!idLower) return false;
-    if (!step1bDoneIds.has(idLower) || !boxDoneIds.has(idLower) || !edDoneIds.has(idLower)) return false;
+    if (!step1bDoneIds.has(idLower) || !boxDoneIds.has(idLower)) return false;
+    if (terminalBoxDispositionIds.has(idLower)) return true;
+    if (!edDoneIds.has(idLower)) return false;
     if (stage4DoneIds.has(idLower)) return true;
     const schedRec = schedules.find((s) => String(s?.id || s?.event_id || "").toLowerCase() === idLower);
     const boxRec = boxOffices.find((b) => String(b?.id || b?.event_id || "").toLowerCase() === idLower);
-    const vQuery = boxRec?.venue_name || schedRec?.venue_name || schedRec?.venue || null;
+    const exRec = existingEvents.find((e) => String(e?.id || e?.event_id || "").toLowerCase() === idLower);
+    const vQuery = boxRec?.venue_name || schedRec?.venue_name || schedRec?.venue || exRec?.venue_name || exRec?.venue || null;
     const matchedV = vQuery ? matchVenue(vQuery, venues) : null;
     return Boolean(matchedV && matchedV.last_grounded_at);
   }
@@ -685,11 +1122,11 @@ export async function compileCatalog(options = {}) {
     return null;
   }
 
-  // Combined pool of all potential non-archived seeds, quarantined cards, and newly harvested schedules (strictly Stage 4-completed if uncompiled)
+  // Combined pool of all potential non-archived seeds, quarantined cards, and newly harvested schedules (strictly Stage 4-completed across all cities/locations)
   const activeOrUnarchivedSeeds = seeds.filter((s) => {
     const id = s.id || s.event_id;
     if (!id || archivedIds.has(id)) return false;
-    return existingMap.has(id) || quarantinedMap.has(id) || isUncompiledReadyForStage5(id);
+    return quarantinedMap.has(id) || isUncompiledReadyForStage5(id);
   });
   const combinedAll = [...activeOrUnarchivedSeeds];
   const seenIds = new Set(activeOrUnarchivedSeeds.map((s) => s.id || s.event_id));
@@ -709,7 +1146,7 @@ export async function compileCatalog(options = {}) {
     if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return;
     const hasUpcomingSlot = Array.isArray(s.showings) && s.showings.some((sh) => sh && sh.date && sh.date >= todayCompileIso);
     if (s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date < todayCompileIso && !hasUpcomingSlot && s.lifecycle_type !== "perennial_drop_in") return;
-    const isEligible = existingMap.has(id) || quarantinedMap.has(id) || isUncompiledReadyForStage5(id);
+    const isEligible = quarantinedMap.has(id) || isUncompiledReadyForStage5(id);
     if (id && !seenIds.has(id) && !archivedIds.has(id) && isEligible) {
       const seedLike = {
         id,
@@ -729,6 +1166,16 @@ export async function compileCatalog(options = {}) {
       if (!existingMap.has(id)) {
         harvestedScheduleSeeds.push(seedLike);
       }
+    }
+  });
+  // Also include any existing active cards that passed all 4 stages so they are evaluated by the compiler
+  existingEvents.forEach((ex) => {
+    const id = ex.id || ex.event_id;
+    if (id && !seenIds.has(id) && !archivedIds.has(id) && isUncompiledReadyForStage5(id)) {
+      combinedAll.push(ex);
+      seenIds.add(id);
+    } else if (id && !seenIds.has(id) && !archivedIds.has(id) && !isUncompiledReadyForStage5(id)) {
+      console.warn(`🛡️ [Stage 5 Anti-Skip Gate] Evicting/holding card "${ex.title || id}" [${id}] (${ex.city || "Metro Vancouver"}): missing required Stage 1A/1B, 2, 3, or 4 records.`);
     }
   });
 
@@ -977,7 +1424,16 @@ export async function compileCatalog(options = {}) {
         ((existing.date && /^\d{4}-\d{2}-\d{2}$/.test(existing.date) && existing.date < todayIso) ||
           (Array.isArray(existing.showings) && existing.showings.some((s) => s && s.status !== "concluded" && /^\d{4}-\d{2}-\d{2}$/.test(s.date || "") && s.date < todayIso)))
       );
+      const auditSynopsis = existing.dimension_audit?.D310_synopsis?.value || "";
+      const auditVenue = existing.dimension_audit?.D401_venue_name?.value || "";
+      const cardVenue = existing.venue_name || existing.venue || "";
+      const hasClonedOrMismatchedAudit = Boolean(
+        !isUncompiledReadyForStage5(eventId) ||
+        (existing.description && auditSynopsis && auditSynopsis !== existing.description) ||
+        (cardVenue && auditVenue && auditVenue !== cardVenue)
+      );
       const isMissingRequiredFields = Boolean(
+        hasClonedOrMismatchedAudit ||
         !existing.dimension_audit?.D009_holiday_affiliation ||
         !existing.venue_grounding?.is_grounded ||
         !existing.typical_item_spend ||
@@ -1092,8 +1548,8 @@ export async function compileCatalog(options = {}) {
     // 3. AI ARBITRATION: Lifecycle & Showings (5 Slots)
     const explicitFallbackDate = extractFallbackDate(eventId, seedUrl || existing.ticket_url || box.ticket_url, seed, existing);
     const hasExplicitTimeBoundDate = Boolean(
-      (sched.date && sched.date !== "none_available" && sched.date !== "TBD" && sched.date !== "perennial") ||
-      (box.date && box.date !== "none_available" && box.date !== "TBD" && box.date !== "perennial") ||
+      (sched.date && sched.date !== "none_available" && sched.date !== "search_exhausted_null" && sched.date !== "quarantine_fatal" && sched.date !== "TBD" && sched.date !== "perennial") ||
+      (box.date && box.date !== "none_available" && box.date !== "search_exhausted_null" && box.date !== "quarantine_fatal" && box.date !== "TBD" && box.date !== "perennial") ||
       explicitFallbackDate
     );
     const isExplicitTimeBound =
@@ -1461,10 +1917,25 @@ export async function compileCatalog(options = {}) {
     const tier1Read = isBoxPriceRejected ? null : (box.tier1_price_read ?? box.tier1_price_all_in ?? tier1Calculated);
     const tier1Delta = (tier1Read != null && tier1Calculated != null) ? Math.abs(tier1Read - tier1Calculated) : null;
 
-    // Guardrail: Sold Out !== Free, and Paid Perennials (e.g. Museums <= $50) !== Free
-    let finalAllInPrice = tier1Read;
+    // Guardrail: When modal displays pre-tax subtotal (base + fee == tier1Read) and defers GST ("+ Applicable taxes"), true all-in patron price is tier1Calculated!
+    const isDeferredTaxSubtotal =
+      tier1Calculated != null &&
+      tier1Read != null &&
+      tier1Base != null &&
+      tier1Tax != null &&
+      tier1Tax > 0 &&
+      Math.abs((tier1Base + (tier1Fee ?? 0)) - tier1Read) < 0.05;
+    let finalAllInPrice = isDeferredTaxSubtotal ? Number(tier1Calculated.toFixed(2)) : tier1Read;
     let priceLabel = "Pending Box Office QC";
     let isFree = false;
+    const pwycRegex = /\b(?:pay[- ]what[- ]you[- ](?:choose|can|want|wish)|pwyc|by\s+donation|sliding\s+scale)\b/i;
+    const hasPwycQuote = Boolean(
+      pwycRegex.test(String(box.tier1_name || "")) ||
+      pwycRegex.test(String(box.tier1_quote || "")) ||
+      box.pricing_model === "pwyc" ||
+      box.pricing_model === "donation" ||
+      (Array.isArray(box.all_tiers) && box.all_tiers.some((t) => pwycRegex.test(`${t?.name || ""} ${t?.label || ""} ${t?.quote || ""}`)))
+    );
 
     const isPaidPerennial = isPerennial && tier1Read != null && tier1Read > 0 && venue.access_model !== "open_public_space" && venue.access_model !== "free_public_access";
 
@@ -1484,7 +1955,8 @@ export async function compileCatalog(options = {}) {
       const hasFreeQuote = Boolean(
         (box.tier1_quote && (box.tier1_quote.toLowerCase().includes("free") || box.tier1_quote.includes("$0"))) ||
         (box.tier1_name && box.tier1_name.toLowerCase().includes("free")) ||
-        box.pricing_model === "free_access"
+        box.pricing_model === "free_access" ||
+        hasPwycQuote
       );
       if (finalAllInPrice === 0 && (hasFreeQuote || Boolean(box.tier1_quote))) {
         isFree = true;
@@ -1602,8 +2074,8 @@ export async function compileCatalog(options = {}) {
     const isNonPerformerName = (name) => {
       if (!name || typeof name !== "string") return true;
       const mClean = name.toLowerCase().trim();
-      if (/^(?:none|null|n\/a|none_available|not_applicable|various artists|lineup tba|tba|tbd|general admission|admission|playhouse|playhouse presents?|playhouse pres\.?|for real fridays?)$/i.test(mClean)) return true;
-      if (/\b(?:productions?\s+inc\.?|the\s+world\s+is\s+ours\s+productions?|modo[- ]live|timbre\s+concerts|livenation|live\s+nation|blueprint\s+events|this\s+is\s+blueprint)\b/i.test(mClean)) return true;
+      if (/^(?:none|null|n\/a|none_available|not_applicable|various artists|lineup tba|tba|tbd|general admission|admission|playhouse|playhouse presents?|playhouse pres\.?|for real fridays?|surrey spark stages|surrey spark series|surrey civic theatres)$/i.test(mClean)) return true;
+      if (/\b(?:productions?\s+inc\.?|the\s+world\s+is\s+ours\s+productions?|modo[- ]live|timbre\s+concerts|livenation|live\s+nation|blueprint\s+events|this\s+is\s+blueprint|surrey\s+spark\s+(?:stages|series)|surrey\s+civic\s+theatres)\b/i.test(mClean)) return true;
       return false;
     };
     const hasExplicitEditArtist = Boolean(edit.artist && typeof edit.artist === "string" && edit.artist.trim().length > 0 && !isNonPerformerName(edit.artist));
@@ -1652,13 +2124,28 @@ export async function compileCatalog(options = {}) {
       if (!rawUrl || typeof rawUrl !== "string") return null;
       let u = rawUrl.trim();
       if (!u.startsWith("http")) return null;
+      // Normalize raw cross-origin Surrey Spektrix ChooseSeats.aspx?EventInstanceId=<ID> URL into clean wrapper URL
+      try {
+        const uObj = new URL(u);
+        if (uObj.hostname.toLowerCase().includes("ticketing.purchase.surrey.ca") && /chooseseats\.aspx/i.test(uObj.pathname)) {
+          const instParam = uObj.searchParams.get("EventInstanceId") || uObj.searchParams.get("eventinstanceid") || "";
+          const numMatch = String(instParam).match(/^(\d+)/);
+          if (numMatch) {
+            u = `https://purchase.surrey.ca/ChooseSeats/${numMatch[1]}`;
+          }
+        }
+      } catch (_) { }
       // Convert AllEvents wrapper URLs with embedded Eventbrite IDs (10000 + 13-digit eid) to canonical Eventbrite checkout
       const aeEbMatch = u.match(/^https?:\/\/(?:www\.)?allevents\.in\/[^/]+\/[^/]+\/10000(\d{10,})(?:[/?#]|$)/i);
       if (aeEbMatch) {
         u = `https://www.eventbrite.com/checkout-external?eid=${aeEbMatch[1]}`;
       }
-      // Reject blacklisted aggregators
-      if (/allevents\.in|do604\.com|facebook\.com\/events|eventbrite\.(?:ca|com)\/d\//i.test(u)) {
+      // Reject blacklisted aggregators, city discovery hubs (/discover/*, /d/*), and online streaming broadcasts
+      if (/allevents\.in|do604\.com|facebook\.com\/events|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)|showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)|flohockey\.tv|flosports\.tv/i.test(u)) {
+        return null;
+      }
+      // Enforce Gate 3 Civic .aspx WAF Evasion Policy (reject any .aspx URL unless verified Agile/Tessitura ticketing checkout)
+      if (/\.aspx(?:[?#]|$)/i.test(u) && !isWhitelistedTicketingUrl(u) && !/chooseseats\.aspx|ticketsearchcriteria\.aspx\?evtinfo=/i.test(u)) {
         return null;
       }
       // Strip Ticket Tailor ephemeral CSRF/session hash (/chk/<hex>)
@@ -1884,14 +2371,17 @@ export async function compileCatalog(options = {}) {
     const fullFestivalSearchText = `${combinedAffiliationText} ${description || ""} ${edit.description || ""} ${sched.description || ""}`.toLowerCase();
     const matchedFestival = Array.isArray(festivalsRegistry)
       ? festivalsRegistry.find((f) => {
-        if (!f || !f.festival_name) return false;
+        const fCanonical = f?.festival_name || f?.name;
+        if (!f || !fCanonical) return false;
         // Date window guard: if both the event and festival have ISO dates, never affiliate an event outside the festival's run window
         if (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate) && f.start_date && f.end_date) {
           if (heroDate < f.start_date || heroDate > f.end_date) return false;
         }
-        const fName = f.festival_name.toLowerCase();
+        const fName = fCanonical.toLowerCase();
         if (combinedAffiliationText.includes(fName)) return true;
+        if (Array.isArray(f.aliases) && f.aliases.some((al) => al && combinedAffiliationText.includes(String(al).toLowerCase()))) return true;
         if (fName.includes("diwali") && /\bdiwali\b/i.test(combinedAffiliationText)) return true;
+        if (fName.includes("lumière") && /\blumi[eè]re\s*festival\b/i.test(combinedAffiliationText)) return true;
         if (fName.includes("writers fest") && /\bwriters\s*fest\b/i.test(combinedAffiliationText)) return true;
         if (fName.includes("viff") && /\bviff\b/i.test(combinedAffiliationText)) return true;
         if (fName.includes("fringe") && /\bfringe\b/i.test(combinedAffiliationText)) return true;
@@ -1910,14 +2400,56 @@ export async function compileCatalog(options = {}) {
       }) || null
       : null;
 
-    const resolvedFestivalAffiliation =
-      (sched.festival_affiliation && sched.festival_affiliation !== "None")
+    const rawCandidateFestName =
+      (sched.festival_affiliation && sched.festival_affiliation !== "None" && sched.festival_affiliation !== "none_available" && sched.festival_affiliation !== "not_applicable")
         ? sched.festival_affiliation
-        : (edit.festival_affiliation && edit.festival_affiliation !== "None")
+        : (edit.festival_affiliation && edit.festival_affiliation !== "None" && edit.festival_affiliation !== "none_available" && edit.festival_affiliation !== "not_applicable")
           ? edit.festival_affiliation
-          : matchedFestival
-            ? matchedFestival.festival_name
-            : null;
+          : (archetype === "festival" ? cleanTitle : null);
+
+    // Auto-stage newly discovered unapproved festivals into data/festivals.json with status: "pending_curator_approval"
+    // so the Antigravity Curator prompts the user to approve, merge into an existing festival, or reject it!
+    if (!matchedFestival && rawCandidateFestName && Array.isArray(festivalsRegistry)) {
+      const candSlug = String(rawCandidateFestName).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      const alreadyInRegistry = festivalsRegistry.some((f) => {
+        const s = f.slug || f.id || String(f.festival_name || f.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+        return s === candSlug;
+      });
+      if (candSlug && !alreadyInRegistry) {
+        festivalsRegistry.push({
+          id: candSlug,
+          slug: candSlug,
+          name: rawCandidateFestName,
+          festival_name: rawCandidateFestName,
+          aliases: [],
+          status: "pending_curator_approval",
+          approvalStatus: "pending",
+          discovered_from_event_id: eventId,
+          venue_name: venue.venue_name || null,
+          location: venue.full_address || venue.address || venue.venue_name || "Metro Vancouver",
+          start_date: (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate)) ? heroDate : todayIso,
+          end_date: (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate)) ? heroDate : todayIso,
+          category: (categories && categories[0]) || "Arts & Culture",
+          website_url: ticketUrl || detailsUrl || bestAvailableLink || null,
+          description: description || `${rawCandidateFestName} at ${venue.venue_name || "Metro Vancouver"}`,
+          price: finalAllInPrice ?? 0,
+        });
+        festivalsRegistryDirty = true;
+        console.log(`🎉 [Compiler Festival Discovery] Staged new festival candidate "${rawCandidateFestName}" [${candSlug}] for Curator approval.`);
+      }
+    }
+
+    const isMatchedFestivalApproved = Boolean(
+      matchedFestival &&
+      matchedFestival.status !== "pending_curator_approval" &&
+      matchedFestival.approvalStatus !== "pending" &&
+      matchedFestival.status !== "rejected" &&
+      matchedFestival.approvalStatus !== "rejected"
+    );
+
+    const resolvedFestivalAffiliation = isMatchedFestivalApproved
+      ? (matchedFestival.festival_name || matchedFestival.name)
+      : null;
 
     const resolvedHolidayAffiliation = (() => {
       const eventMmdd = (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate)) ? heroDate.slice(5, 10) : null;
@@ -1937,6 +2469,7 @@ export async function compileCatalog(options = {}) {
         "valentines-day",
         "st-patricks-day",
         "easter",
+        "vaisakhi",
         "canada-day",
         "pride",
       ]);
@@ -1944,6 +2477,7 @@ export async function compileCatalog(options = {}) {
         if (!rawVal || typeof rawVal !== "string") return null;
         const v = rawVal.trim().toLowerCase().replace(/\s+/g, "-").replace(/['’]/g, "");
         if (v === "new-year" || v === "new-years-eve" || v === "new-years-day") return "new-years";
+        if (v === "winter-holiday-season" || v === "winter-holidays") return "christmas";
         return CANONICAL_HOLIDAYS.has(v) ? v : null;
       };
       const isChristmasInTitle = /\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*market)\b/i.test(cleanTitle || "");
@@ -1977,6 +2511,7 @@ export async function compileCatalog(options = {}) {
       if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(fullHolidayText)) return "valentines-day";
       if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s\s*day)\b/i.test(fullHolidayText)) return "st-patricks-day";
       if (/\b(?:easter|egg\s*hunt|good\s*friday|ostara)\b/i.test(fullHolidayText)) return "easter";
+      if (/\b(?:vaisakhi|baisakhi|nagar\s*kirtan)\b/i.test(fullHolidayText)) return "vaisakhi";
       if (/\b(?:canada\s*day)\b/i.test(fullHolidayText)) return "canada-day";
       if (/\b(?:pride\s*festival|vancouver\s*pride|pride\s*parade|queer\s*pride)\b/i.test(fullHolidayText)) return "pride";
 
@@ -1993,7 +2528,7 @@ export async function compileCatalog(options = {}) {
       if (inSeason("10-01", "10-16") && /\b(?:harvest\s*dinner|turkey\s*dinner|autumn\s*harvest|gratitude\s*feast)\b/i.test(fullHolidayText)) {
         return "thanksgiving";
       }
-      if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|vandusen\s*festival\s*of\s*lights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party|deck\s*the\s*halls|jingle)\b/i.test(fullHolidayText) && (archetype !== "cinema" || isChristmasInTitle)) {
+      if (inSeason("11-15", "01-03") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|vandusen\s*festival\s*of\s*lights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party|deck\s*the\s*halls|jingle)\b/i.test(fullHolidayText) && (archetype !== "cinema" || isChristmasInTitle)) {
         return "christmas";
       }
       if (inSeason("12-26", "01-03") && /\b(?:countdown|midnight\s*toast|champagne\s*toast|ball\s*drop|first\s*day|ring\s*in\s*the\s*new)\b/i.test(fullHolidayText)) {
@@ -2021,15 +2556,64 @@ export async function compileCatalog(options = {}) {
       return null;
     })();
 
-    // Option 1 Religious/Spiritual Detection (Content-based only; never triggered by church/temple venue building alone)
-    const isExplicitlyReligious = (() => {
-      if (sched.is_religious === true || edit.is_religious === true || existing.is_religious === true || seed.is_religious === true) return true;
-      if (sched.is_religious === false || edit.is_religious === false) return false;
-      const contentText = `${cleanTitle || ""} ${(tags || []).join(" ")} ${(subTags || []).join(" ")} ${description || ""} ${edit.description || ""} ${sched.description || ""}`.toLowerCase();
-      return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
+    // Orthogonal 3-Tier Seasonal & Cultural Sub-Tag Classification (Secular Festive / Sacred Music / Devotional Faith-Based)
+    const inferredHolidaySubTags = (() => {
+      const out = new Set();
+      const existingTagSet = new Set([...(tags || []), ...(subTags || [])].map(t => String(t || "").toLowerCase().trim()));
+      const titleDescText = `${cleanTitle || ""} ${description || ""} ${edit.description || ""} ${sched.description || ""}`;
+      const titleDescVenueText = `${titleDescText} ${(venue && venue.venue_name) || ""}`;
+      const isSecularCandlelightConcert = /\bcandlelight(?:\s*:\s*|\s+concert|\s+tribute|\s+string|\s+quartet)/i.test(cleanTitle || "") && !/\b(?:worship|mass|liturgy|sermon|christmas\s+eve\s+service|good\s+friday\s+service)\b/i.test(titleDescText);
+      const isMusicOrArts = (categories || []).some(c => /^(music|shows|arts|social|culture|festivals)$/i.test(String(c || ""))) || /^(live_stage|festival)$/i.test(String(archetype || ""));
+
+      // Tier 3: Devotional / Liturgical ("faith-based", "religious-service")
+      const explicitFaith = sched.is_religious === true || edit.is_religious === true || existing.is_religious === true || seed.is_religious === true ||
+        existingTagSet.has("faith-based") || existingTagSet.has("religious-service");
+      const explicitNotFaith = sched.is_religious === false || edit.is_religious === false;
+      const matchesWorshipRegex = !isSecularCandlelightConcert && (
+        /\b(worship|mass|nativity|liturgy|sermon|prayer|candlelight\s+service|christmas\s+eve\s+service|good\s+friday\s+service)\b/i.test(titleDescVenueText) ||
+        /\b(worship\s*service|worship\s*night|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|evensong\s*service|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|church\s*fellowship)\b/i.test(titleDescText)
+      );
+      if (!explicitNotFaith && (explicitFaith || matchesWorshipRegex)) {
+        out.add("faith-based");
+        if (/\b(service|worship|mass|liturgy|sermon|eucharist|puja|diwan|jummah)\b/i.test(titleDescVenueText) || existingTagSet.has("religious-service")) {
+          out.add("religious-service");
+        }
+      }
+
+      // Tier 2: Sacred Music & Cultural Crossover ("sacred-music", "choral")
+      if (!out.has("faith-based")) {
+        if ((isMusicOrArts && /\b(messiah|choral|cantata|lessons\s*(?:and|&)\s*carols|choir|requiem|vespers)\b/i.test(titleDescText)) ||
+            existingTagSet.has("sacred-music") || existingTagSet.has("choral")) {
+          out.add("sacred-music");
+          if (/\b(choral|choir|lessons\s*(?:and|&)\s*carols|cantata|messiah|requiem|vespers)\b/i.test(titleDescText) || existingTagSet.has("choral")) {
+            out.add("choral");
+          }
+        }
+      }
+
+      // Tier 1: Secular Festive ("holiday-lights", "holiday-market", "winter-festive", "cultural-festival")
+      if (/\b(festival\s+of\s+lights|bear\s+creek\s+lights|canyon\s+lights|bright\s+nights|lights\s+of\s+hope|lumi[eè]re|tree\s+lighting|light\s+walk|holiday\s+lights|winter\s+lights|lantern\s+festival)\b/i.test(titleDescText) || existingTagSet.has("holiday-lights")) {
+        out.add("holiday-lights");
+      }
+      if (/\b(christmas\s+market|holiday\s+market|winter\s+market|holiday\s+bazaar|winter\s+craft\s+market|holiday\s+craft)\b/i.test(titleDescText) || existingTagSet.has("holiday-market")) {
+        out.add("holiday-market");
+      }
+      if (!out.has("faith-based") && (resolvedHolidayAffiliation === "christmas" || resolvedHolidayAffiliation === "new-years" ||
+          /\b(santa|nutcracker|panto|pantomime|ugly\s+sweater|keithmas|krampus|gingerbread|winter\s+solstice|polar\s+bear\s+swim|holiday\s+comedy|holiday\s+trivia|yuletide)\b/i.test(titleDescText) ||
+          existingTagSet.has("winter-festive"))) {
+        out.add("winter-festive");
+      }
+      if (resolvedHolidayAffiliation === "diwali" || resolvedHolidayAffiliation === "vaisakhi" || resolvedHolidayAffiliation === "lunar-new-year" || resolvedHolidayAffiliation === "dia-de-los-muertos" ||
+          /\b(diwali|vaisakhi|lunar\s+new\s+year|chinese\s+new\s+year|dia\s+de\s+los\s+muertos|day\s+of\s+the\s+dead|lion\s+dance)\b/i.test(titleDescText) ||
+          existingTagSet.has("cultural-festival")) {
+        out.add("cultural-festival");
+      }
+      return Array.from(out);
     })();
 
-    // Auto-inject canonical Festival, Holiday & Religious tags into tags and subTags for user filtering and search
+    const isExplicitlyReligious = inferredHolidaySubTags.includes("faith-based") || inferredHolidaySubTags.includes("religious-service");
+
+    // Auto-inject canonical Festival, Holiday & 3-Tier Seasonal/Cultural sub-tags into tags and subTags
     if (resolvedFestivalAffiliation) {
       const festSlug = String(resolvedFestivalAffiliation).toLowerCase().replace(/\s*\(.*?\)\s*/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
       for (const ft of ["festival", festSlug, `festival:${festSlug}`]) {
@@ -2044,6 +2628,10 @@ export async function compileCatalog(options = {}) {
         if (ht && !tags.some((t) => String(t).toLowerCase() === ht)) tags.push(ht);
         if (ht && !subTags.some((t) => String(t).toLowerCase() === ht)) subTags.push(ht);
       }
+    }
+    for (const st of inferredHolidaySubTags) {
+      if (st && !tags.some((t) => String(t).toLowerCase() === st)) tags.push(st);
+      if (st && !subTags.some((t) => String(t).toLowerCase() === st)) subTags.push(st);
     }
     if (isExplicitlyReligious) {
       for (const rt of ["religious", "spiritual", "religious:religious"]) {
@@ -2269,7 +2857,7 @@ export async function compileCatalog(options = {}) {
       D215_tier3_price_all_in: { status: tier3Read != null ? "verified" : "none_available", value: tier3Read, source_tool: "stagehand_box_office", audited_at: box.audited_at || nowIso },
 
       D216_tier_count_verified: { status: (box.tier1_name || tier1Read != null) ? "verified" : "none_available", count: eligibleAllTiers.length > 0 ? eligibleAllTiers.length : (tier3Name ? 3 : (tier2Name ? 2 : (tier1Read != null || box.tier1_name ? 1 : 0))), source_tool: "compiler_ai", audited_at: nowIso },
-      D217_pricing_model: { status: (isFree || box.pricing_model || finalAllInPrice != null) ? "verified" : "none_available", value: isFree ? "free_access" : (box.pricing_model || (finalAllInPrice != null ? "standard" : null)), source_tool: "compiler_ai", audited_at: nowIso },
+      D217_pricing_model: { status: (isFree || box.pricing_model || finalAllInPrice != null) ? "verified" : "none_available", value: box.pricing_model || (hasPwycQuote ? "pwyc" : (isFree ? "free_access" : (finalAllInPrice != null ? "standard" : null))), source_tool: "compiler_ai", audited_at: nowIso },
       D218_budget_qualified_under_50: { status: finalAllInPrice != null ? "verified" : "search_exhausted_null", qualified: finalAllInPrice != null ? finalAllInPrice <= 50.0 : null, total: finalAllInPrice, source_tool: "compiler_ai", audited_at: nowIso },
       D219_other_cost_label: { status: tier1Other > 0 ? "verified" : "none_available", value: box.other_cost_label || null, source_tool: "stagehand_box_office", audited_at: box.audited_at || nowIso },
       D221_ticket_provider: { status: resolvedTicketProvider ? "verified" : "none_available", value: resolvedTicketProvider, source_tool: "stagehand_box_office", audited_at: box.audited_at || nowIso },
@@ -2424,11 +3012,11 @@ export async function compileCatalog(options = {}) {
       neighborhood: isLocationConfirmed ? venue.neighborhood : null,
       city: (() => {
         const raw = `${existing.city || ""} ${existing.region || ""} ${venue.city || ""} ${venue.neighborhood || ""} ${venue.full_address || venue.address || ""}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview|crescent beach|bridgeview)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview)\b/i.test(raw) ? "Surrey" : "Vancouver";
       })(),
       region: (() => {
         const raw = `${existing.city || ""} ${existing.region || ""} ${venue.city || ""} ${venue.neighborhood || ""} ${venue.full_address || venue.address || ""}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview|crescent beach|bridgeview)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview)\b/i.test(raw) ? "Surrey" : "Vancouver";
       })(),
       coordinates: isLocationConfirmed ? (normalizedCoordinates || venue.coordinates) : null,
       lat: isLocationConfirmed && Array.isArray(normalizedCoordinates || venue.coordinates) ? (normalizedCoordinates || venue.coordinates)[0] : (existing.lat ?? null),
@@ -2745,8 +3333,9 @@ export async function compileCatalog(options = {}) {
       archiveCard("synthetic_test_fixture", "archived_test_fixture", "Synthetic test harness fixture");
     } else if (
       /^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|box\s*office\s*inquiry.*|search_exhausted_null|none_available|standard[- ]?pricing|concession[- ]?menu|event|events)$/i.test((compiledCard.title || '').trim()) ||
-      /\b(?:all[- ]access\s+pass|season\s+pass|annual\s+pass|membership\s+pass|subscription\s+package)\b/i.test((compiledCard.title || '').trim()) ||
-      /\/(?:ticket-info|pricing|admission-rates|concession-menu|box-office|all-access-pass|memberships?|subscriptions?|gift-certificates?|donate)\b/i.test(compiledCard.details_url || compiledCard.source_url || '')
+      /^discover\s+events\s+in\s+/i.test((compiledCard.title || '').trim()) ||
+      /\b(?:all[- ]access\s+pass(?:es)?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|subscription\s+packages?|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?)\b/i.test((compiledCard.title || '').trim()) ||
+      /\/(?:ticket-info|pricing|admission-rates|concession-menu|box-office|all-access-pass(?:es)?|season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|memberships?|subscriptions?|gift-certificates?|donate|stats\/(?:roster|standings|leaders|player|game-center|schedule)|(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|coll(?:e|a)ge-grad|graduation-ceremony|convocation))(?:\/|[?#]|$|\b)/i.test(`${compiledCard.ticket_url || ''} ${compiledCard.details_url || ''} ${compiledCard.source_url || ''}`)
     ) {
       console.log(`🛡️ [Compiler Archive] Auto-archiving non-event pricing/policy, membership pass, or stub page: "${compiledCard.title}" [${eventId}]`);
       archiveCard("non_event_pricing_policy", "archived_non_event", "Detected venue pricing, membership/discount pass program, admission policy, or empty placeholder stub page rather than a discrete cultural event");
@@ -2980,6 +3569,10 @@ export async function compileCatalog(options = {}) {
   });
 
   fs.writeFileSync(EVENTS_PATH, JSON.stringify(finalCatalog, null, 2), "utf-8");
+  if (festivalsRegistryDirty) {
+    fs.writeFileSync(festivalsPath, JSON.stringify(festivalsRegistry, null, 2), "utf-8");
+    console.log(`🎉 Updated ${festivalsPath} with newly staged pending festival candidates for Curator approval.`);
+  }
 
   // Synchronize manual review queue:
   // 1. Evict graduated cards, permanently archived cards, and past/concluded events
@@ -2989,7 +3582,7 @@ export async function compileCatalog(options = {}) {
   const prevQCount = queue.quarantinedEvents.length;
   queue.quarantinedEvents = queue.quarantinedEvents.filter((q) => {
     const qId = q.id || q.event_id;
-    if (compiledIds.has(qId) || archivedIds.has(qId)) return false;
+    if (compiledIds.has(qId) || archivedIds.has(qId) || pollutedLayerIds.has(qId) || isPollutedHarvestRecord(q)) return false;
     const qDate = q.date || null;
     const qShowings = Array.isArray(q.showings) ? q.showings : [];
     const hasUpcomingQShowing = qShowings.some((s) => s && s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date >= todayIso);
@@ -3027,6 +3620,10 @@ export async function compileCatalog(options = {}) {
     }
   }
   queue.metadata.pendingCount = queue.quarantinedEvents.length;
+  queue.metadata.quarantinedCount = queue.quarantinedEvents.length;
+  queue.metadata.totalQuarantined = queue.quarantinedEvents.length;
+  queue.metadata.total_quarantined = queue.quarantinedEvents.length;
+  queue.metadata.updatedAt = nowIso;
   fs.writeFileSync(QUEUE_PATH, JSON.stringify(queue, null, 2), "utf-8");
 
   // 3. Persist updated archived registry (evicting any newly compiled/graduated events)

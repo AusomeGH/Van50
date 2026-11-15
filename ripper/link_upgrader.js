@@ -62,7 +62,13 @@ export const TICKETING_PLATFORMS = [
   "tickets.ubc.ca",
   "ticketpro.ca",
   "ww2.ticketpro.ca",
-  "ticketleader.ca"
+  "ticketleader.ca",
+  "purchase.surrey.ca",
+  "tickets.surrey.ca",
+  "tickets.bellperformingartscentre.com",
+  "vbotickets.com",
+  "gatehopper.com",
+  "tickettailor.com"
 ];
 
 /**
@@ -162,9 +168,10 @@ export function isWhitelistedTicketingUrl(url) {
       if (!/\d{5,}/.test(path)) return false;
     }
 
-    // Showpass specific check: must not be a bare platform directory
+    // Showpass specific check: must not be a bare platform directory, city discovery hub, or organizer/membership index
     if (host.includes("showpass")) {
-      if (["/shows", "/events", "/season", "/venues", "/organizations"].includes(path)) return false;
+      if (["/shows", "/events", "/season", "/venues", "/organizations", "/discover", "/cities", "/explore", "/search"].includes(path)) return false;
+      if (/^\/(?:discover|cities|explore|o|s|m|venues|organizations|search)(?:\/|$)/i.test(path)) return false;
     }
 
     // Reject empty shopping basket / account / login / donation utility endpoints (e.g. Agile ViewBasket.aspx, Spektrix /MyAccount)
@@ -245,12 +252,19 @@ export function isGenericDirectoryStub(url) {
   if (!url || typeof url !== "string") return false;
   try {
     const u = new URL(url);
+    const host = u.hostname.toLowerCase();
     const path = u.pathname.toLowerCase().replace(/\/+$/, "");
     if (!path || path === "" || path === "/") return true;
+    if (host.includes("showpass.") && /^\/(?:discover|cities|explore|o|s|m|venues|organizations|search)(?:\/|$)/i.test(path)) {
+      return true;
+    }
+    if (host.includes("eventbrite.") && /^\/(?:d|ttd|cc|o|l)(?:\/|$)/i.test(path)) {
+      return true;
+    }
     const genericEndpoints = [
       "/events", "/shows", "/calendar", "/whats-on", "/schedule",
       "/tickets", "/programs", "/exhibitions", "/adult-programs",
-      "/nature-programs", "/season", "/performances"
+      "/nature-programs", "/season", "/performances", "/discover"
     ];
     // If path exactly matches or is just a single segment of generic directory without query params or sub-slug
     if (genericEndpoints.includes(path) && !u.search && (!u.hash || u.hash.length <= 1)) {

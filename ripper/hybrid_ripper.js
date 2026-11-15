@@ -160,7 +160,16 @@ export function isValidDeepLink(url) {
       return false;
     }
     if (KNOWN_PORTAL_DOMAINS.has(host)) {
-      if (!path || path === "" || path === "/events" || path === "/home" || path === "/d" || path === "/explore") {
+      if (
+        !path ||
+        path === "" ||
+        path === "/events" ||
+        path === "/home" ||
+        path === "/d" ||
+        path === "/explore" ||
+        path === "/discover" ||
+        /^\/(?:discover|cities|explore|d|o|s|m|ttd|cc)(?:\/|$)/i.test(lowerPath)
+      ) {
         return false;
       }
     }
@@ -246,10 +255,21 @@ export function matchVenue(venueQuery, venues) {
   matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
-  // 3. Clean query containment (strip parenthetical suffixes from venue names first so "The Polygon Gallery (The Shipyards)" doesn't hijack "The Shipyards")
+  // 3. Clean query containment (word-boundary aligned; leftover tokens must only be benign articles or city qualifiers so "Central City" never hijacks "Central City Fun Park")
+  const SAFE_CONTAINMENT_QUALIFIERS = new Set([
+    "the", "vancouver", "surrey", "burnaby", "richmond", "coquitlam", "langley", "delta",
+    "yvr", "bc", "canada", "downtown", "inc", "ltd"
+  ]);
   const containmentCandidates = candidateVenues.filter((v) => {
     const vNoParens = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-    return vNoParens.length > 6 && (cleanQuery.includes(vNoParens) || vNoParens.includes(cleanQuery));
+    if (vNoParens.length <= 6 || cleanQuery.length <= 4) return false;
+    const shorter = cleanQuery.length <= vNoParens.length ? cleanQuery : vNoParens;
+    const longer = cleanQuery.length <= vNoParens.length ? vNoParens : cleanQuery;
+    const escapedShorter = shorter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    if (!new RegExp(`(?:^|\\s)${escapedShorter}(?:\\s|$)`).test(longer)) return false;
+    const remainder = longer.replace(new RegExp(`(?:^|\\s)${escapedShorter}(?:\\s|$)`), " ").trim();
+    const remTokens = remainder ? remainder.split(/\s+/).filter(Boolean) : [];
+    return remTokens.every((t) => SAFE_CONTAINMENT_QUALIFIERS.has(t));
   });
   if (containmentCandidates.length > 0) {
     containmentCandidates.sort((a, b) => {
@@ -454,35 +474,73 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
   extracted.all_tiers = allTiersList;
   if (allTiersList.length > 0) {
     if (!extracted.tier1_name && allTiersList[0]) {
-      extracted.tier1_name = allTiersList[0].name;
-      if (priceBase == null) priceBase = allTiersList[0].price_base;
-      if (priceFee == null) priceFee = allTiersList[0].price_fee;
-      if (priceTax == null) priceTax = allTiersList[0].price_tax;
+      extracted.tier1_name = allTiersList[0].name || allTiersList[0].label;
+      if (priceBase == null) priceBase = allTiersList[0].price_base ?? allTiersList[0].price ?? null;
+      if (priceFee == null) priceFee = allTiersList[0].price_fee ?? null;
+      if (priceTax == null) priceTax = allTiersList[0].price_tax ?? null;
     }
     if (!t2Name && allTiersList[1]) {
-      t2Name = allTiersList[1].name;
-      if (t2Base == null) t2Base = allTiersList[1].price_base;
-      if (t2Fee == null) t2Fee = allTiersList[1].price_fee;
-      if (t2Tax == null) t2Tax = allTiersList[1].price_tax;
-      t2Read = allTiersList[1].price_all_in ?? allTiersList[1].price_read ?? t2Read;
+      t2Name = allTiersList[1].name || allTiersList[1].label;
+      if (t2Base == null) t2Base = allTiersList[1].price_base ?? allTiersList[1].price ?? null;
+      if (t2Fee == null) t2Fee = allTiersList[1].price_fee ?? null;
+      if (t2Tax == null) t2Tax = allTiersList[1].price_tax ?? null;
+      t2Read = allTiersList[1].price_all_in ?? allTiersList[1].price_read ?? allTiersList[1].price ?? t2Read;
     }
     if (!extracted.tier3_name && allTiersList[2]) {
-      extracted.tier3_name = allTiersList[2].name;
+      extracted.tier3_name = allTiersList[2].name || allTiersList[2].label;
     }
   }
 
-  const priceCalculated = (priceBase != null && priceFee != null && priceTax != null) ? (priceBase + priceFee + priceTax) : (extracted.tier1_price_all_in ?? null);
+  // Mandatory 5% GST completion when modal explicitly states "+ Applicable taxes" / "+ GST" with tax unitemized
+  const tier1TaxDeferredQuote = `${extracted.tier1_quote || ""} ${allTiersList[0]?.quote || ""}`;
+  if (
+    priceBase != null &&
+    priceBase > 0 &&
+    (priceTax == null || priceTax === 0) &&
+    /\+\s*(?:applicable\s+taxes|taxes\s+at\s+checkout|5%\s*gst|gst\b)/i.test(tier1TaxDeferredQuote)
+  ) {
+    const taxableSub = priceBase + (priceFee || 0);
+    priceTax = Number((taxableSub * 0.05).toFixed(2));
+    const withGst = Number((taxableSub + priceTax).toFixed(2));
+    if (extracted.tier1_price_all_in == null || Math.abs(extracted.tier1_price_all_in - taxableSub) < 0.05) {
+      extracted.tier1_price_all_in = withGst;
+      extracted.tier1_price_read = withGst;
+    }
+  }
+
+  const priceCalculated = (priceBase != null && priceFee != null && priceTax != null) ? Number((priceBase + priceFee + priceTax).toFixed(2)) : (extracted.tier1_price_all_in ?? null);
   const priceRead = extracted.tier1_price_read ?? extracted.tier1_price_all_in ?? priceCalculated ?? null;
   const priceDelta = (priceRead != null && priceCalculated != null) ? Math.abs(priceRead - priceCalculated) : 0;
 
-  let priceAllIn = priceRead;
+  // When checkout displays a pre-tax subtotal (base + fee == priceRead) and defers GST ("+ Applicable taxes"), true all-in patron cost is priceCalculated!
+  const isDeferredTaxPreSubtotal =
+    priceCalculated != null &&
+    priceRead != null &&
+    priceBase != null &&
+    priceTax != null &&
+    priceTax > 0 &&
+    Math.abs((priceBase + (priceFee || 0)) - priceRead) < 0.05;
+  let priceAllIn = isDeferredTaxPreSubtotal ? priceCalculated : priceRead;
 
   // Anti-Fake-Free Gate: Only mark isFree if positive evidence exists!
   // CRITICAL: A quote of "$0" or "$0.00" on a paid ticketing platform with paid tiers or a non-zero range is NOT proof of free general admission!
+  const pwycRegex = /\b(?:pay[- ]what[- ]you[- ](?:choose|can|want|wish)|pwyc|by\s+donation|sliding\s+scale)\b/i;
+  const hasPwycQuote = Boolean(
+    pwycRegex.test(String(extracted.tier1_name || "")) ||
+    pwycRegex.test(String(extracted.tier1_quote || "")) ||
+    allTiersList.some((t) => pwycRegex.test(`${t?.name || ""} ${t?.label || ""} ${t?.quote || ""}`)) ||
+    extracted.pricing_model === "pwyc" ||
+    extracted.pricing_model === "donation"
+  );
   const hasFreeQuote = Boolean(
-    (extracted.tier1_quote && /\b(free admission|free event|free access|no charge|admission is free|complimentary)\b/i.test(extracted.tier1_quote)) ||
+    (extracted.tier1_quote && /\b(free admission|free event|free access|no charge|admission is free|complimentary|free\s*\(\$0\))\b/i.test(extracted.tier1_quote)) ||
     (extracted.tier1_name && /\bfree\b/i.test(extracted.tier1_name) && !/\b(member|infant|preschool|child)\b/i.test(extracted.tier1_name)) ||
-    extracted.pricing_model === "free_access"
+    allTiersList.some((t) => {
+      const combinedTierText = `${t?.name || ""} ${t?.label || ""} ${t?.quote || ""}`;
+      return /\bfree(\s+admission|\s+entry|\s*\(\$0\))?\b/i.test(combinedTierText) && !/\b(member|infant|preschool|child)\b/i.test(combinedTierText);
+    }) ||
+    extracted.pricing_model === "free_access" ||
+    hasPwycQuote
   );
 
   // If page text or extracted values indicate a non-zero paid tier (e.g. Adult $14.86 or range $0.00 - $14.86)
@@ -492,19 +550,19 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
     (extracted.tier2_price_base && extracted.tier2_price_base > 0) ||
     (t2Read && t2Read > 0) ||
     (t3Read && t3Read > 0) ||
-    allTiersList.some(t => Number(t.price_all_in ?? t.price_read ?? t.price_base ?? 0) > 0)
+    allTiersList.some(t => Number(t.price_all_in ?? t.price_read ?? t.price_base ?? t.price ?? 0) > 0)
   );
 
   // If Tier 1 was erroneously recorded as 0 but Tier 2/3/all_tiers has the paid Adult/GA price, promote the paid tier to Tier 1!
   if (priceAllIn === 0 && hasPaidTiers) {
-    const paidTier = allTiersList.find(t => Number(t.price_all_in ?? t.price_read ?? t.price_base ?? 0) > 0 && /adult|general/i.test(t.name || ""))
-      || allTiersList.find(t => Number(t.price_all_in ?? t.price_read ?? t.price_base ?? 0) > 0);
+    const paidTier = allTiersList.find(t => Number(t.price_all_in ?? t.price_read ?? t.price_base ?? t.price ?? 0) > 0 && /adult|general/i.test(t.name || t.label || ""))
+      || allTiersList.find(t => Number(t.price_all_in ?? t.price_read ?? t.price_base ?? t.price ?? 0) > 0);
     if (paidTier) {
-      priceAllIn = Number(paidTier.price_all_in ?? paidTier.price_read ?? paidTier.price_base);
+      priceAllIn = Number(paidTier.price_all_in ?? paidTier.price_read ?? paidTier.price_base ?? paidTier.price);
       priceBase = paidTier.price_base != null ? Number(paidTier.price_base) : priceAllIn;
       priceFee = paidTier.price_fee != null ? Number(paidTier.price_fee) : 0;
       priceTax = paidTier.price_tax != null ? Number(paidTier.price_tax) : 0;
-      extracted.tier1_name = paidTier.name || "General Admission (Adult)";
+      extracted.tier1_name = paidTier.name || paidTier.label || "General Admission (Adult)";
     } else if (t2Read && t2Read > 0) {
       priceAllIn = t2Read;
       priceBase = t2Base || t2Read;
@@ -521,7 +579,15 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
   }
 
   const isFree = !isSoldOut && !hasPaidTiers && ((priceAllIn === 0 && hasFreeQuote) || (hasFreeQuote && (priceAllIn === 0 || priceAllIn == null)));
-  if (!isFree && priceAllIn === 0 && !hasFreeQuote && !extracted.tier1_quote) {
+  if (isFree) {
+    if (priceAllIn == null) priceAllIn = 0;
+    if (priceBase == null) priceBase = 0;
+    if (priceFee == null) priceFee = 0;
+    if (priceTax == null) priceTax = 0;
+    if (hasPwycQuote && !extracted.pricing_model) {
+      extracted.pricing_model = "pwyc";
+    }
+  } else if (priceAllIn === 0 && !hasFreeQuote && !extracted.tier1_quote) {
     priceAllIn = null;
   }
 

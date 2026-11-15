@@ -33,9 +33,33 @@ const RULES_PATH = path.join(DATA_DIR, "curator_learned_rules.json");
 const SCHEDULES_PATH = path.join(DATA_DIR, "layers", "layer_schedules.json");
 const BOX_OFFICE_PATH = path.join(DATA_DIR, "layers", "layer_box_office.json");
 
+/**
+ * Rewrites raw cross-origin Spektrix iframe URLs (ticketing.purchase.surrey.ca/.../ChooseSeats.aspx?EventInstanceId=<ID>)
+ * into the clean public wrapper URL https://purchase.surrey.ca/ChooseSeats/<numericId>
+ */
+export function normalizeSurreyCheckoutWrapperUrl(rawUrl) {
+  if (!rawUrl || typeof rawUrl !== "string") return rawUrl;
+  try {
+    const u = new URL(rawUrl.trim());
+    if (
+      u.hostname.toLowerCase().includes("ticketing.purchase.surrey.ca") &&
+      /chooseseats\.aspx/i.test(u.pathname)
+    ) {
+      const instParam = u.searchParams.get("EventInstanceId") || u.searchParams.get("eventinstanceid") || "";
+      const numMatch = String(instParam).match(/^(\d+)/);
+      if (numMatch) {
+        return `https://purchase.surrey.ca/ChooseSeats/${numMatch[1]}`;
+      }
+    }
+    return rawUrl;
+  } catch (_) {
+    return rawUrl;
+  }
+}
+
 function sanitizeExtractedUrl(rawUrl) {
   if (!rawUrl || typeof rawUrl !== "string") return rawUrl;
-  let cleaned = rawUrl.replace(/&amp;/gi, "&").trim();
+  let cleaned = normalizeSurreyCheckoutWrapperUrl(rawUrl.replace(/&amp;/gi, "&").trim());
   try {
     const u = new URL(cleaned);
     for (const k of [...u.searchParams.keys()]) {
@@ -47,6 +71,106 @@ function sanitizeExtractedUrl(rawUrl) {
   } catch (_) {
     return cleaned;
   }
+}
+
+/**
+ * Enforces Civic .aspx WAF Evasion & Aggregator Hygiene in Step 1B
+ */
+export function isBlockedCivicAspxUrl(rawUrl, { allowWhitelistedTier1 = false } = {}) {
+  if (!rawUrl || typeof rawUrl !== "string") return false;
+  const u = rawUrl.trim();
+  if (!u.startsWith("http")) return true;
+  if (/showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)/i.test(u)) return true;
+  if (/eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)/i.test(u)) return true;
+  if (/\/stats\/(?:roster|standings|leaders|player|game-center|schedule|team)(?:\/|[?#]|$)/i.test(u)) return true;
+  if (/\/(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?)(?:\/|[?#]|$)/i.test(u)) return true;
+  if (/\.aspx(?:[?#]|$)/i.test(u)) {
+    if (allowWhitelistedTier1 && (isWhitelistedTicketingUrl(u) || /chooseseats\.aspx|ticketsearchcriteria\.aspx\?evtinfo=/i.test(u))) {
+      return false;
+    }
+    return true;
+  }
+  return false;
+}
+
+export function isGenericCalendarIndexUrl(rawUrl) {
+  if (!rawUrl || typeof rawUrl !== "string") return false;
+  try {
+    const u = new URL(rawUrl.trim());
+    const host = u.hostname.toLowerCase();
+    const p = u.pathname.replace(/\/+$/, "").toLowerCase();
+    if (host.includes("showpass.") && /^\/(?:discover|cities|explore|o|s|m|venues|organizations|search)(?:\/|$)/i.test(p)) {
+      return true;
+    }
+    if (host.includes("eventbrite.") && /^\/(?:d|ttd|cc|o|l)(?:\/|$)/i.test(p)) {
+      return true;
+    }
+    if (u.search && u.search.length > 1) return false;
+    return ["", "/events", "/shows", "/calendar", "/whats-on", "/whatson", "/tickets", "/season", "/programs", "/exhibitions", "/upcoming-events", "/discover"].includes(p);
+  } catch (_) {
+    return false;
+  }
+}
+
+function sanitizeStep1BCandidateLink(rawUrl, { allowWhitelistedTier1 = false } = {}) {
+  if (!rawUrl || typeof rawUrl !== "string") return null;
+  const cleaned = sanitizeExtractedUrl(rawUrl);
+  if (!cleaned || !cleaned.startsWith("http")) return null;
+  if (isBlockedCivicAspxUrl(cleaned, { allowWhitelistedTier1 })) return null;
+  return cleaned;
+}
+
+function applySanitizedAiLinkAudit(card, aiAudit) {
+  if (!card || !aiAudit) return { upgradedTier1: false };
+  let upgradedTier1 = false;
+  const cleanT1 = sanitizeStep1BCandidateLink(aiAudit.tier1_checkout, { allowWhitelistedTier1: true });
+  const cleanT2 = sanitizeStep1BCandidateLink(aiAudit.tier2_event_page);
+  const cleanT3 = sanitizeStep1BCandidateLink(aiAudit.tier3_calendar);
+  const cleanT4 = sanitizeStep1BCandidateLink(aiAudit.tier4_civic_destination);
+  const cleanT5 = sanitizeStep1BCandidateLink(aiAudit.tier5_venue_home);
+  const cleanTicket = sanitizeStep1BCandidateLink(aiAudit.ticket_url, { allowWhitelistedTier1: true });
+  const cleanDetails = sanitizeStep1BCandidateLink(aiAudit.details_url);
+
+  // Never allow AI Link Auditor to downgrade a dedicated single-event URL (/events/<slug>) to a generic calendar index (/events/)
+  const existingSpecificUrl = [card.details_url, card.ticket_url, card.source_url, card.links?.tier2_event_page].find(
+    (u) => u && typeof u === "string" && u.startsWith("http") && !isGenericCalendarIndexUrl(u) && !/allevents\.in/i.test(u) && !isBlockedCivicAspxUrl(u)
+  );
+
+  if (cleanTicket) {
+    if (isGenericCalendarIndexUrl(cleanTicket) && existingSpecificUrl && !isWhitelistedTicketingUrl(cleanTicket)) {
+      card.ticket_url = existingSpecificUrl;
+    } else {
+      card.ticket_url = cleanTicket;
+    }
+  }
+  if (cleanDetails) {
+    if (isGenericCalendarIndexUrl(cleanDetails) && existingSpecificUrl) {
+      card.details_url = existingSpecificUrl;
+    } else {
+      card.details_url = cleanDetails;
+    }
+  }
+
+  if (!card.links) card.links = {};
+  if (aiAudit.tier1_checkout !== undefined) {
+    card.links.tier1_checkout = cleanT1 || null;
+    if (cleanT1 && isWhitelistedTicketingUrl(cleanT1)) {
+      card.candidate_tier1_url = cleanT1;
+      upgradedTier1 = true;
+    } else if (aiAudit.tier1_checkout === null || !cleanT1) {
+      delete card.candidate_tier1_url;
+    }
+  }
+  if (aiAudit.tier2_event_page !== undefined) {
+    card.links.tier2_event_page = (cleanT2 && !isGenericCalendarIndexUrl(cleanT2))
+      ? cleanT2
+      : (existingSpecificUrl || cleanT2 || null);
+  }
+  if (aiAudit.tier3_calendar !== undefined) card.links.tier3_calendar = cleanT3 || null;
+  if (aiAudit.tier4_civic_destination !== undefined) card.links.tier4_civic_destination = cleanT4 || null;
+  if (aiAudit.tier5_venue_home !== undefined) card.links.tier5_venue_home = cleanT5 || null;
+  if (aiAudit.best_tier) card.links.best_tier = aiAudit.best_tier;
+  return { upgradedTier1 };
 }
 
 /**
@@ -74,7 +198,7 @@ function extractLinksFromHtml(html, baseUrl, contextSnippet = "") {
   let baseOrigin = "";
   try {
     baseOrigin = new URL(baseUrl).origin;
-  } catch (_) {}
+  } catch (_) { }
 
   // 1. Matches <a ... href="..." ...>(.*?)<\/a>
   const aRegex = /<a\s+(?:[^>]*?\s+)?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
@@ -208,7 +332,7 @@ export async function dynamicBrowserInspectTicketLink(url, title, date, venue) {
               !/[?&]aff=ebdssb/i.test(href) &&
               !seen.has(href) &&
               (/\b(ticket|tickets|buy|purchase|register|book|seats|admission|rsvp)\b/i.test(combined) ||
-               /\b(eventbrite|showpass|ticketweb|admitone|universe|vtix|spektrix|dice\.fm|ovationtix|zaui|riotheatretickets|bloomtickets|humanitix|secure\.vancouversymphony\.ca|tickets\.ubc\.ca|ticketpro\.ca|ticketleader\.ca)\b/i.test(href))
+                /\b(eventbrite|showpass|ticketweb|admitone|universe|vtix|spektrix|dice\.fm|ovationtix|zaui|riotheatretickets|bloomtickets|humanitix|secure\.vancouversymphony\.ca|tickets\.ubc\.ca|ticketpro\.ca|ticketleader\.ca)\b/i.test(href))
             ) {
               seen.add(href);
               candidates.push({ url: href, text: combined, type: "anchor" });
@@ -268,7 +392,7 @@ export async function dynamicBrowserInspectTicketLink(url, title, date, venue) {
             stagehand.close(),
             new Promise((r) => setTimeout(r, 3000))
           ]);
-        } catch (_) {}
+        } catch (_) { }
       }
       if (browser) {
         try {
@@ -276,7 +400,7 @@ export async function dynamicBrowserInspectTicketLink(url, title, date, venue) {
             browser.close(),
             new Promise((r) => setTimeout(r, 3000))
           ]);
-        } catch (_) {}
+        } catch (_) { }
       }
     }
   });
@@ -566,6 +690,146 @@ export async function resolveArtsClubShowUrl(rawUrl, eventCard = {}) {
   }
 }
 
+let _surreySpektrixEventsCache = null;
+
+function formatLocalIsoTo12h(isoDateTimeStr) {
+  const m = String(isoDateTimeStr || "").match(/T(\d{2}):(\d{2})/);
+  if (!m) return null;
+  let h = parseInt(m[1], 10);
+  const mins = m[2];
+  const mer = h >= 12 ? "PM" : "AM";
+  if (h === 0) h = 12;
+  else if (h > 12) h -= 12;
+  return `${h}:${mins} ${mer}`;
+}
+
+/**
+ * Surrey Civic Theatres (purchase.surrey.ca / Spektrix) Direct Instance & Schedule Resolver:
+ * 1. Normalizes raw cross-origin Spektrix ChooseSeats.aspx?EventInstanceId=<ID> URLs to https://purchase.surrey.ca/ChooseSeats/<ID>.
+ * 2. Upgrades intermediate https://purchase.surrey.ca/EventAvailability?EventId=<ID> (and surrey.ca/news-events/events/<slug>)
+ *    directly to https://purchase.surrey.ca/ChooseSeats/<InstanceId> using Spektrix's public /api/v3/events & /instances endpoints,
+ *    and recovers upcoming performance dates/showings when Stage 1A date was unhydrated ("none_available" / "search_exhausted_null").
+ */
+export async function resolveSurreyDirectCheckoutUrl(rawUrl, eventCard = {}) {
+  try {
+    if (!rawUrl || typeof rawUrl !== "string") return null;
+    const normalized = normalizeSurreyCheckoutWrapperUrl(rawUrl.trim());
+    const lower = normalized.toLowerCase();
+    const isSurreyTarget =
+      lower.includes("purchase.surrey.ca") ||
+      lower.includes("surrey.ca/news-events/events/");
+    if (!isSurreyTarget) return null;
+
+    const existingChooseMatch = normalized.match(/^https?:\/\/purchase\.surrey\.ca\/ChooseSeats\/(\d+)/i);
+    const availEventIdMatch = normalized.match(/[?&]EventId=(\d+)/i);
+    const cardDateRaw = String(eventCard.date || "").trim();
+    const hasValidCardDate = /^\d{4}-\d{2}-\d{2}$/.test(cardDateRaw);
+
+    if (!_surreySpektrixEventsCache) {
+      const evJson = await fetchHtmlText("https://ticketing.purchase.surrey.ca/surreycivictheatresbc/api/v3/events", 7000);
+      if (evJson) {
+        try {
+          const parsed = JSON.parse(evJson);
+          if (Array.isArray(parsed)) _surreySpektrixEventsCache = parsed;
+        } catch (_) { }
+      }
+    }
+
+    const eventsList = Array.isArray(_surreySpektrixEventsCache) ? _surreySpektrixEventsCache : [];
+    const cardTitleNorm = String(eventCard.title || eventCard.event_name || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+
+    let matchedSpektrixEvent = null;
+    if (availEventIdMatch && eventsList.length > 0) {
+      const targetPrefix = availEventIdMatch[1];
+      matchedSpektrixEvent = eventsList.find((ev) => String(parseInt(ev.id, 10)) === targetPrefix || String(ev.id || "").startsWith(targetPrefix));
+    }
+    if (!matchedSpektrixEvent && cardTitleNorm.length >= 3 && eventsList.length > 0) {
+      matchedSpektrixEvent = eventsList.find((ev) => {
+        const evNameNorm = String(ev.name || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+        return evNameNorm && (evNameNorm === cardTitleNorm || evNameNorm.includes(cardTitleNorm) || cardTitleNorm.includes(evNameNorm));
+      });
+    }
+
+    let instances = [];
+    if (matchedSpektrixEvent && matchedSpektrixEvent.id) {
+      const instJson = await fetchHtmlText(
+        `https://ticketing.purchase.surrey.ca/surreycivictheatresbc/api/v3/events/${encodeURIComponent(matchedSpektrixEvent.id)}/instances`,
+        7000
+      );
+      if (instJson) {
+        try {
+          const parsedInst = JSON.parse(instJson);
+          if (Array.isArray(parsedInst)) instances = parsedInst;
+        } catch (_) { }
+      }
+    }
+
+    const todayIso = new Date().toISOString().slice(0, 10);
+    const upcomingInstances = instances
+      .filter((inst) => inst && inst.id && inst.start && String(inst.start).slice(0, 10) >= todayIso && inst.isCancelled !== true)
+      .sort((a, b) => String(a.start).localeCompare(String(b.start)));
+
+    let chosenInst = null;
+    if (existingChooseMatch && upcomingInstances.length > 0) {
+      chosenInst =
+        upcomingInstances.find((inst) => String(parseInt(inst.id, 10)) === existingChooseMatch[1]) ||
+        upcomingInstances[0];
+    } else if (hasValidCardDate && upcomingInstances.length > 0) {
+      chosenInst =
+        upcomingInstances.find((inst) => String(inst.start).slice(0, 10) === cardDateRaw && inst.isOnSale !== false) ||
+        upcomingInstances.find((inst) => inst.isOnSale !== false) ||
+        upcomingInstances[0];
+    } else if (upcomingInstances.length > 0) {
+      chosenInst = upcomingInstances.find((inst) => inst.isOnSale !== false) || upcomingInstances[0];
+    }
+
+    const directCheckoutUrl = existingChooseMatch
+      ? `https://purchase.surrey.ca/ChooseSeats/${existingChooseMatch[1]}`
+      : (chosenInst ? `https://purchase.surrey.ca/ChooseSeats/${parseInt(chosenInst.id, 10)}` : null);
+
+    if (!directCheckoutUrl) return null;
+
+    const showings = upcomingInstances.slice(0, 5).map((inst, idx) => ({
+      slot: idx + 1,
+      date: String(inst.start).slice(0, 10),
+      start_time: formatLocalIsoTo12h(inst.start) || "none_available",
+      doors_time: "none_available",
+      end_time: "none_available",
+      status: "upcoming",
+    }));
+
+    const firstDate = chosenInst
+      ? String(chosenInst.start).slice(0, 10)
+      : (matchedSpektrixEvent?.firstInstanceDateTime ? String(matchedSpektrixEvent.firstInstanceDateTime).slice(0, 10) : null);
+    const firstStartTime = chosenInst
+      ? formatLocalIsoTo12h(chosenInst.start)
+      : (matchedSpektrixEvent?.firstInstanceDateTime ? formatLocalIsoTo12h(matchedSpektrixEvent.firstInstanceDateTime) : null);
+
+    const eventAvailabilityUrl =
+      matchedSpektrixEvent && matchedSpektrixEvent.id
+        ? `https://purchase.surrey.ca/EventAvailability?EventId=${parseInt(matchedSpektrixEvent.id, 10)}`
+        : null;
+
+    const seriesEventUrl = lower.includes("surrey.ca/news-events/events/")
+      ? normalized
+      : (eventCard.details_url && eventCard.details_url.includes("surrey.ca/") ? eventCard.details_url : eventAvailabilityUrl);
+
+    return {
+      directCheckoutUrl,
+      eventAvailabilityUrl,
+      seriesEventUrl,
+      firstDate,
+      firstStartTime,
+      showings,
+    };
+  } catch (_) {
+    return null;
+  }
+}
+
 /**
  * Autonomous Tier 1 Hunter: Dedicated to discovering and verifying direct checkout cart URLs
  */
@@ -664,11 +928,38 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
       eventCard.links.tier2_event_page = artsClubUpgrade.directShowUrl;
       eventCard.links.best_available = artsClubUpgrade.directShowUrl;
     }
+    const surreyUpgrade = await resolveSurreyDirectCheckoutUrl(currentBestUrl, eventCard);
+    if (surreyUpgrade && surreyUpgrade.directCheckoutUrl) {
+      console.log(`🎟️ [Surrey Spektrix Direct Checkout] Upgraded ${currentBestUrl} -> ${surreyUpgrade.directCheckoutUrl}`);
+      currentBestUrl = surreyUpgrade.directCheckoutUrl;
+      eventCard.ticket_url = surreyUpgrade.directCheckoutUrl;
+      eventCard.candidate_tier1_url = surreyUpgrade.directCheckoutUrl;
+      if (surreyUpgrade.seriesEventUrl) {
+        eventCard.details_url = surreyUpgrade.seriesEventUrl;
+      }
+      if (surreyUpgrade.firstDate && (!eventCard.date || eventCard.date === "none_available" || eventCard.date === "search_exhausted_null")) {
+        eventCard.date = surreyUpgrade.firstDate;
+        if (surreyUpgrade.firstStartTime) {
+          eventCard.time = surreyUpgrade.firstStartTime;
+          eventCard.start_time = surreyUpgrade.firstStartTime;
+        }
+        if (Array.isArray(surreyUpgrade.showings) && surreyUpgrade.showings.length > 0) {
+          eventCard.showings = surreyUpgrade.showings;
+        }
+      }
+      if (!eventCard.links) eventCard.links = {};
+      eventCard.links.tier1_checkout = surreyUpgrade.directCheckoutUrl;
+      eventCard.links.best_available = surreyUpgrade.directCheckoutUrl;
+      eventCard.links.best_tier = "tier1";
+      if (surreyUpgrade.seriesEventUrl) {
+        eventCard.links.tier2_event_page = surreyUpgrade.seriesEventUrl;
+      }
+    }
     const health = await scanSingleLinkHealth(currentBestUrl, eventCard);
     if (health.healthy && health.detectedTier === "tier1" && isWhitelistedTicketingUrl(currentBestUrl)) {
       console.log(`✅ [Tier 1 Hunter AI] Current link is already a healthy, verified Tier 1 cart: ${currentBestUrl}`);
-      if (!eventCard.ticket_url) eventCard.ticket_url = currentBestUrl;
-      if (!eventCard.candidate_tier1_url) eventCard.candidate_tier1_url = currentBestUrl;
+      if (!eventCard.ticket_url || isBlockedCivicAspxUrl(eventCard.ticket_url)) eventCard.ticket_url = currentBestUrl;
+      if (!eventCard.candidate_tier1_url || isBlockedCivicAspxUrl(eventCard.candidate_tier1_url)) eventCard.candidate_tier1_url = currentBestUrl;
       if (!eventCard.candidate_tier1_source) eventCard.candidate_tier1_source = "existing_verified";
       if (!eventCard.candidate_tier1_staged_at) eventCard.candidate_tier1_staged_at = new Date().toISOString();
       if (!eventCard.links) eventCard.links = {};
@@ -733,7 +1024,7 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
   // ─────────────────────────────────────────────────────────────────────────────
   if (!discoveredTier1 && currentBestUrl && currentBestUrl.startsWith("http")) {
     let origin = "";
-    try { origin = new URL(currentBestUrl).origin; } catch (_) {}
+    try { origin = new URL(currentBestUrl).origin; } catch (_) { }
 
     if (origin) {
       console.log(`🔍 [Hop 2] Scanning venue program and event subdirectories on ${origin}...`);
@@ -791,8 +1082,8 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
             }
           }
 
-          // If not in slice, check whole page links
-          if (false && !discoveredTier1) {
+          // If not in slice, check whole page links when subUrl is a dedicated single-event page (not a calendar index)
+          if (!discoveredTier1 && !isGenericCalendarIndexUrl(subUrl)) {
             const allSubLinks = extractLinksFromHtml(subHtml, subUrl, subHtml);
             for (const item of allSubLinks) {
               if (isWhitelistedTicketingUrl(item.url)) {
@@ -838,7 +1129,7 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
   if (!discoveredTier1) {
     console.log(`🔍 [Hop 3] Fallback to targeted domain query for "${title}" "${venue}"...`);
     let domain = "";
-    try { domain = new URL(currentBestUrl).hostname.replace(/^www\./, ""); } catch (_) {}
+    try { domain = new URL(currentBestUrl).hostname.replace(/^www\./, ""); } catch (_) { }
 
     const searchQueries = [
       domain ? `https://html.duckduckgo.com/html/?q=site%3A${encodeURIComponent(domain)}+${encodeURIComponent(title)}` : null,
@@ -1023,26 +1314,7 @@ export async function huntBatchTier1Links(cardsList, options = {}) {
         aiAudit = await callAntigravityLinkAuditor(card, diag);
         if (aiAudit) {
           aiAuditedCount++;
-          if (aiAudit.ticket_url && aiAudit.ticket_url.startsWith("http")) {
-            card.ticket_url = aiAudit.ticket_url;
-          }
-          if (aiAudit.details_url && aiAudit.details_url.startsWith("http")) {
-            card.details_url = aiAudit.details_url;
-          }
-          if (!card.links) card.links = {};
-          if (aiAudit.tier1_checkout !== undefined) {
-            card.links.tier1_checkout = aiAudit.tier1_checkout || null;
-            if (aiAudit.tier1_checkout && aiAudit.tier1_checkout.startsWith("http")) {
-              card.candidate_tier1_url = aiAudit.tier1_checkout;
-            } else if (aiAudit.tier1_checkout === null) {
-              delete card.candidate_tier1_url;
-            }
-          }
-          if (aiAudit.tier2_event_page !== undefined) card.links.tier2_event_page = aiAudit.tier2_event_page || null;
-          if (aiAudit.tier3_calendar !== undefined) card.links.tier3_calendar = aiAudit.tier3_calendar || null;
-          if (aiAudit.tier4_civic_destination !== undefined) card.links.tier4_civic_destination = aiAudit.tier4_civic_destination || null;
-          if (aiAudit.tier5_venue_home !== undefined) card.links.tier5_venue_home = aiAudit.tier5_venue_home || null;
-          if (aiAudit.best_tier) card.links.best_tier = aiAudit.best_tier;
+          applySanitizedAiLinkAudit(card, aiAudit);
           card._aiLinkAudit = aiAudit;
           console.log(`   🤖 [1-Event AI Link Audit] ${eventId}: changed=${Boolean(aiAudit.changed)} | best_tier=${aiAudit.best_tier} | reason="${aiAudit.audit_reason || ""}"`);
         }
@@ -1093,13 +1365,13 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
         if (a.event_id) archivedIds.add(String(a.event_id).toLowerCase());
       });
     }
-  } catch (_) {}
+  } catch (_) { }
   try {
     if (fs.existsSync(RULES_PATH)) {
       const rData = JSON.parse(fs.readFileSync(RULES_PATH, "utf-8"));
       (rData.archived_event_ids || []).forEach((id) => archivedIds.add(String(id).toLowerCase()));
     }
-  } catch (_) {}
+  } catch (_) { }
 
   let schedules = [];
   if (fs.existsSync(SCHEDULES_PATH)) {
@@ -1120,12 +1392,13 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
     ? options.ids
     : (options.id ? String(options.id).split(",").map((x) => x.trim()).filter(Boolean) : []);
 
-  if (Array.isArray(discoveredCards) && discoveredCards.length > 0) {
+  if (Array.isArray(discoveredCards) && discoveredCards.length > 0 && typeof discoveredCards[0] === "object") {
     const discoveredIds = new Set(discoveredCards.map((c) => c.id || c.event_id || c.slug).filter(Boolean));
     targets = schedules.filter((s) => discoveredIds.has(s.id || s.event_id));
     if (targets.length === 0) targets = discoveredCards;
-  } else if (requestedIds.length > 0) {
-    const reqSet = new Set(requestedIds.map((x) => String(x).toLowerCase()));
+  } else if (requestedIds.length > 0 || (Array.isArray(discoveredCards) && discoveredCards.length > 0 && typeof discoveredCards[0] === "string")) {
+    const effectiveReqIds = requestedIds.length > 0 ? requestedIds : discoveredCards;
+    const reqSet = new Set(effectiveReqIds.map((x) => String(x).toLowerCase()));
     const combined = [...schedules];
     const seen = new Set(schedules.map((s) => String(s.id || s.event_id || "").toLowerCase()));
     if (fs.existsSync(EVENTS_PATH)) {
@@ -1135,7 +1408,7 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
           const eid = String(e.id || e.event_id || "").toLowerCase();
           if (eid && !seen.has(eid)) { combined.push(e); seen.add(eid); }
         }
-      } catch (_) {}
+      } catch (_) { }
     }
     if (fs.existsSync(QUEUE_PATH)) {
       try {
@@ -1144,24 +1417,31 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
           const eid = String(e.id || e.event_id || "").toLowerCase();
           if (eid && !seen.has(eid)) { combined.push(e); seen.add(eid); }
         }
-      } catch (_) {}
+      } catch (_) { }
     }
-    targets = combined.filter((c) => reqSet.has(String(c.id || c.event_id || c.slug || "").toLowerCase()));
-    if ((options.harvestedOnly || options.scope === "harvested") && !options.force && targets.length > 1) {
+    const combinedById = new Map();
+    for (const c of combined) {
+      const cid = String(c.id || c.event_id || c.slug || "").toLowerCase();
+      if (cid && !combinedById.has(cid)) combinedById.set(cid, c);
+    }
+    targets = effectiveReqIds
+      .map((id) => combinedById.get(String(id || "").toLowerCase()))
+      .filter(Boolean);
+    if ((options.harvestedOnly || options.scope === "harvested") && !options.force && targets.length > 0) {
       const pending = targets.filter((s) => !s.step1b_audited_at);
       if (pending.length > 0 && pending.length < targets.length) {
         resumeOffset = targets.length - pending.length;
-        console.log(`⏭️ [Step 1B Resume] ${resumeOffset}/${targets.length} harvested events were already audited in a previous Stage 1B pass — auditing the remaining ${pending.length} pending event(s) so all ${targets.length} events are ready for Stage 2!`);
+        console.log(`⏭️ [Step 1B Resume] ${resumeOffset}/${targets.length} harvested events in this batch cohort were already audited — auditing the remaining ${pending.length} pending event(s) so all ${targets.length} cohort events are ready for Stage 2!`);
         targets = pending;
       } else if (pending.length === 0) {
-        console.log(`✅ [Step 1B] All ${targets.length} requested harvested events already have step1b_audited_at stamps and are ready for Stage 2 (Box Office QC).`);
-        targets = [];
+        // NEVER swap out the explicitly requested batch cohort for unrelated global layer_schedules items!
+        console.log(`🔄 [Step 1B Cohort Lock] All ${targets.length} requested batch events already have step1b_audited_at stamps — re-verifying the locked cohort (${targets.length} events) in-place without swapping events.`);
       }
     }
   } else if (options.quarantine || options.quarantined) {
     let queue = { quarantinedEvents: [] };
     if (fs.existsSync(QUEUE_PATH)) {
-      try { queue = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf-8")); } catch (_) {}
+      try { queue = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf-8")); } catch (_) { }
     }
     targets = queue.quarantinedEvents || [];
   } else if (options.harvestedOnly || options.scope === "harvested") {
@@ -1173,7 +1453,7 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
           const eid = String(e.id || e.event_id || "").toLowerCase();
           if (eid) compiledIds.add(eid);
         }
-      } catch (_) {}
+      } catch (_) { }
     }
     let quarantinedIds = new Set();
     if (fs.existsSync(QUEUE_PATH)) {
@@ -1183,7 +1463,7 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
           const qid = String(q.id || q.event_id || "").toLowerCase();
           if (qid) quarantinedIds.add(qid);
         }
-      } catch (_) {}
+      } catch (_) { }
     }
     const allUncompiled = schedules.filter((s) => {
       const sid0 = String(s.id || s.event_id || "").toLowerCase();
@@ -1192,6 +1472,10 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
       if (!u0 || /\.pdf(\?|$)/i.test(u0)) return false;
       const rawTitle0 = String(s.title || s.event_name || "").trim().toLowerCase();
       if (!rawTitle0 || ["event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404"].includes(rawTitle0)) return false;
+      if (/^discover\s+events\s+in\s+/i.test(rawTitle0)) return false;
+      if (/\b(?:graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|all[- ]access\s+pass(?:es)?)\b/i.test(rawTitle0)) return false;
+      if (/@\s*(?:abbotsford(?:\s+pilots)?|mission(?:\s+city(?:\s+outlaws)?)?|chilliwack(?:\s+jets)?|aldergrove(?:\s+ironmen)?)\b/i.test(rawTitle0)) return false;
+      if (/showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|$)|\/stats\/(?:roster|standings|leaders|player|game-center|schedule|team)(?:\/|[?#]|$)|\/(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|coll(?:e|a)ge-grad|graduation-ceremony|convocation)(?:\/|[?#]|$)/i.test(u0)) return false;
       if (s.lifecycle_type !== "perennial_drop_in") {
         const isoShowings = Array.isArray(s.showings) ? s.showings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
         const hasUpcomingShowing = isoShowings.some((sh) => sh.date >= todayIso);
@@ -1240,9 +1524,7 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
     targets = targets.slice(options.offset);
   }
 
-  if (options.limit && options.limit > 0 && !options.all && requestedIds.length === 0 && !(options.harvestedOnly || options.scope === "harvested")) {
-    targets = targets.slice(0, options.limit);
-  } else if (options.limit && options.limit > 0 && !options.all && requestedIds.length === 0 && (options.harvestedOnly || options.scope === "harvested") && options.limit < (resumeOffset + targets.length)) {
+  if (options.limit && options.limit > 0 && !options.all && targets.length > options.limit) {
     targets = targets.slice(0, options.limit);
   }
 
@@ -1251,9 +1533,10 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
     return { total: 0, upgradedCount: 0, alreadyTier1Count: 0, retainedTier2Count: 0 };
   }
 
+  const batchTotal = targets.length;
   const displayTotal = resumeOffset + targets.length;
-  console.log(`🎯 Targets Queued for Audit: ${displayTotal} events`);
-  console.log(`🎯 Target Queue: ${targets.length} event(s) awaiting Tier 1 elevation (Concurrency: ${Math.min(concurrency, targets.length)}${resumeOffset > 0 ? `, Resuming at #${resumeOffset + 1}/${displayTotal}` : ""})`);
+  console.log(`🎯 Targets Queued for Audit: ${batchTotal} events`);
+  console.log(`🎯 Target Queue: ${batchTotal} event(s) awaiting Tier 1 elevation (Concurrency: ${Math.min(concurrency, batchTotal)}${resumeOffset > 0 ? `, Overall #${resumeOffset + 1}–${displayTotal}` : ""})`);
 
   let upgradedCount = 0;
   let alreadyTier1Count = 0;
@@ -1265,9 +1548,10 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
     async (card, i) => {
       const eventId = card.id || card.event_id || card.slug;
       const title = card.title || card.event_name || "Event";
+      const batchIdx = i + 1;
       const displayIdx = resumeOffset + i + 1;
-      console.log(`\n─── [${displayIdx}/${displayTotal}] Step 1B Audit: "${title}" (${eventId}) ───`);
-      console.log(`${formatLogTime()} 📌 Processing [${displayIdx}/${displayTotal}]: ${title} [${eventId}]`);
+      console.log(`\n─── [${batchIdx}/${batchTotal}${resumeOffset > 0 ? ` | Overall #${displayIdx}/${displayTotal}` : ""}] Step 1B Audit: "${title}" (${eventId}) ───`);
+      console.log(`${formatLogTime()} 📌 Processing [${batchIdx}/${batchTotal}]: ${title} [${eventId}]`);
       console.log(`🎯 URL: ${card.candidate_tier1_url || card.ticket_url || card.details_url || card.source_url || "(None)"}`);
 
       let alreadyVerifiedFastPath = false;
@@ -1322,23 +1606,12 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
               const diag = await probeEventLinksDiagnostics(card);
               const aiAudit = await callAntigravityLinkAuditor(card, diag);
               if (aiAudit) {
-                if (aiAudit.ticket_url && aiAudit.ticket_url.startsWith("http")) card.ticket_url = aiAudit.ticket_url;
-                if (aiAudit.details_url && aiAudit.details_url.startsWith("http")) card.details_url = aiAudit.details_url;
-                if (!card.links) card.links = {};
-                if (aiAudit.tier1_checkout !== undefined) {
-                  card.links.tier1_checkout = aiAudit.tier1_checkout || null;
-                  if (aiAudit.tier1_checkout && aiAudit.tier1_checkout.startsWith("http")) {
-                    card.candidate_tier1_url = aiAudit.tier1_checkout;
-                    card.candidate_tier1_source = "ai_link_auditor";
-                    card.candidate_tier1_staged_at = new Date().toISOString();
-                    upgradedCount++;
-                  }
+                const { upgradedTier1 } = applySanitizedAiLinkAudit(card, aiAudit);
+                if (upgradedTier1) {
+                  card.candidate_tier1_source = "ai_link_auditor";
+                  card.candidate_tier1_staged_at = new Date().toISOString();
+                  upgradedCount++;
                 }
-                if (aiAudit.tier2_event_page !== undefined) card.links.tier2_event_page = aiAudit.tier2_event_page || null;
-                if (aiAudit.tier3_calendar !== undefined) card.links.tier3_calendar = aiAudit.tier3_calendar || null;
-                if (aiAudit.tier4_civic_destination !== undefined) card.links.tier4_civic_destination = aiAudit.tier4_civic_destination || null;
-                if (aiAudit.tier5_venue_home !== undefined) card.links.tier5_venue_home = aiAudit.tier5_venue_home || null;
-                if (aiAudit.best_tier) card.links.best_tier = aiAudit.best_tier;
                 console.log(`   🤖 [1-Event AI Link Audit] ${eventId}: changed=${Boolean(aiAudit.changed)} | best_tier=${aiAudit.best_tier} | reason="${aiAudit.audit_reason || ""}"`);
               }
             } catch (aiErr) {
@@ -1414,7 +1687,7 @@ export async function runStep1BLinkUpgrader(discoveredCards = null, options = {}
             }
             return qData;
           });
-        } catch (_) {}
+        } catch (_) { }
       }
 
       // Brief backoff per worker
@@ -1531,12 +1804,13 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
       const rData = JSON.parse(fs.readFileSync(RULES_PATH, "utf-8"));
       (rData.archived_event_ids || []).forEach((id) => archivedCliIds.add(String(id).toLowerCase()));
     }
-  } catch (_) {}
+  } catch (_) { }
   const todayCliIso = new Date().toISOString().split("T")[0];
 
   if (isHarvestedOnly) {
     runStep1BLinkUpgrader(targetIds.length > 0 ? targetIds : null, {
       harvestedOnly: true,
+      ids: targetIds,
       limit,
       offset,
       all: isAll,
@@ -1569,7 +1843,7 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
               foundIds.add(sid);
             }
           });
-        } catch (_) {}
+        } catch (_) { }
       }
     } else if (staleVal) {
       const parseDurationMs = (str) => {
@@ -1603,7 +1877,7 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
       .then(async (stats) => {
         // 1. Sync upgraded leads to manual_review_queue.json if any were quarantined
         try {
-          if (fs.existsSync(QUEUE_PATH) && (options.quarantine || options.quarantined)) {
+          if (fs.existsSync(QUEUE_PATH) && isQuarantine) {
             let qUpdated = false;
             await safeUpdateJsonFile(QUEUE_PATH, { metadata: {}, quarantinedEvents: [] }, (qData) => {
               for (const card of targetCards) {
@@ -1692,7 +1966,7 @@ if (process.argv[1] && process.argv[1].endsWith("tier1_hunter.js")) {
                 console.log(`💾 Synced audited ticket_url / details_url to layer_box_office.json`);
               }
             }
-          } catch (_) {}
+          } catch (_) { }
         }
         printAntigravityTimeoutSummary();
         process.exit(0);

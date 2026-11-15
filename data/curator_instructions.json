@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-06T00:22:50.665549+00:00",
+    "updatedAt": "2026-11-10T23:49:00.000Z",
     "pendingCount": 0,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements.",
     "totalInstructions": 78
@@ -3555,6 +3555,47 @@
       "isMultiEventSplit": false,
       "subEvents": [],
       "subEventsCount": 0
+    },
+    {
+      "id": "inst_1794351571932",
+      "createdAt": "2026-11-10T22:59:31.934089+00:00",
+      "status": "resolved",
+      "applied": true,
+      "resolvedAt": "2026-11-10T23:49:00.000Z",
+      "eventId": "venue-1793555708722-744p",
+      "eventTitle": "Venue: Historic Theatre (The Cultch)",
+      "venueName": "Historic Theatre (The Cultch)",
+      "sourceUrl": "https://thecultch.com/whats-on/",
+      "instructionText": "Curator triaged venue 'Historic Theatre (The Cultch)' with UniversalVenueCrawler.",
+      "screenshotPath": "data/curator_screenshots/screenshot_1794351571932_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1794351571932_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "venue_grounded_from_screenshot",
+      "curatorNote": "Grounded from screenshot_1794351571932_0.png: 1895 Venables St, Vancouver, BC V5L 2H6 (Commercial Drive & East Vancouver), calendarUrl upgraded from single show page to https://thecultch.com/whats-on/.",
+      "targetScraperOrEngine": "UniversalVenueCrawler",
+      "aiLearned": true,
+      "distilledRules": {
+        "venueName": "Historic Theatre (The Cultch)",
+        "category": "shows",
+        "neighborhood": "Commercial Drive & East Vancouver",
+        "calendarUrl": "https://thecultch.com/whats-on/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "1895 Venables St, Vancouver, BC V5L 2H6",
+        "summary": "Grounded Historic Theatre (The Cultch) at 1895 Venables St, Vancouver, BC V5L 2H6.",
+        "distilledAt": "2026-11-10T23:49:00.000Z"
+      },
+      "aiLearnedSummary": "Grounded Historic Theatre (The Cultch) at 1895 Venables St, Vancouver, BC V5L 2H6 with canonical calendar https://thecultch.com/whats-on/."
     }
   ],
   "lastLearnedAt": "2026-09-26T11:01:14.885134+00:00"

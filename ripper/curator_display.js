@@ -56,8 +56,10 @@ function loadLearnedRules() {
 export function isEligibleCuratorUrl(url) {
   if (!url || typeof url !== "string" || !url.startsWith("http")) return false;
   if (/maps\.app\.goo\.gl|goo\.gl\/maps|google\.com\/maps|google\.com\/search|bing\.com/i.test(url)) return false;
-  if (/vancouver\.ca\/.*\.aspx/i.test(url)) return false;
-  if (/par3nearme\.com/i.test(url)) return false;
+  if (/\.aspx(?:[?#]|$)/i.test(url) && !/chooseseats\.aspx|ticketsearchcriteria\.aspx\?evtinfo=/i.test(url)) return false;
+  if (/par3nearme\.com|allevents\.in/i.test(url)) return false;
+  if (/showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)/i.test(url)) return false;
+  if (/eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)/i.test(url)) return false;
   return true;
 }
 

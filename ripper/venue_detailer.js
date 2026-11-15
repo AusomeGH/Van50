@@ -84,10 +84,21 @@ function matchVenue(venueQuery, venues) {
   matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
-  // 3. Clean query containment (strip parenthetical suffixes from venue names first)
+  // 3. Clean query containment (word-boundary aligned; leftover tokens must only be benign articles or city qualifiers so "Central City" never hijacks "Central City Fun Park")
+  const SAFE_CONTAINMENT_QUALIFIERS = new Set([
+    "the", "vancouver", "surrey", "burnaby", "richmond", "coquitlam", "langley", "delta",
+    "yvr", "bc", "canada", "downtown", "inc", "ltd"
+  ]);
   const containmentCandidates = candidateVenues.filter(v => {
     const vNoParens = (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-    return vNoParens.length > 6 && (cleanQuery.includes(vNoParens) || vNoParens.includes(cleanQuery));
+    if (vNoParens.length <= 6 || cleanQuery.length <= 4) return false;
+    const shorter = cleanQuery.length <= vNoParens.length ? cleanQuery : vNoParens;
+    const longer = cleanQuery.length <= vNoParens.length ? vNoParens : cleanQuery;
+    const escapedShorter = shorter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    if (!new RegExp(`(?:^|\\s)${escapedShorter}(?:\\s|$)`).test(longer)) return false;
+    const remainder = longer.replace(new RegExp(`(?:^|\\s)${escapedShorter}(?:\\s|$)`), " ").trim();
+    const remTokens = remainder ? remainder.split(/\s+/).filter(Boolean) : [];
+    return remTokens.every((t) => SAFE_CONTAINMENT_QUALIFIERS.has(t));
   });
   if (containmentCandidates.length > 0) {
     containmentCandidates.sort((a, b) => {
@@ -150,6 +161,72 @@ function matchVenue(venueQuery, venues) {
  * Standard Ground Truth definitions for known physical facilities
  */
 const KNOWN_PHYSICAL_GROUND_TRUTH = {
+  "central city": {
+    venue_name: "Central City Shopping Centre",
+    venue_type: "shopping_centre_atrium",
+    website_url: "https://centralcity.ca/",
+    calendar_url: "https://centralcity.ca/events/",
+    full_address: "10153 King George Blvd, Surrey, BC V3T 2W1",
+    neighborhood: "Surrey Central / Whalley",
+    coordinates: [49.1867, -122.8486],
+    weekly_hours: "Mon–Wed & Sat 10:00 AM – 6:00 PM, Thu–Fri 10:00 AM – 8:00 PM, Sun 11:00 AM – 6:00 PM",
+    access_model: "free_public_access",
+    environment_type: "indoor",
+    transit_info: "Directly adjacent to Surrey Central SkyTrain Station & Bus Loop (Expo Line)",
+    description: "Major Surrey City Centre shopping centre, community plaza, and SFU Surrey campus atrium hosting seasonal markets, fitness classes, and family events.",
+    step_free_entrance: "Level barrier-free automatic sliding doors at all street-level and SkyTrain concourse entrances",
+    elevator_lift: "Multiple passenger elevators serving mall concourses, parkade, and SFU campus levels",
+    accessible_washrooms: "Wheelchair-accessible public and family washrooms near the Food Court and Guest Services",
+    sensory_calibrations: "Brightly lit indoor shopping concourse with moderate ambient crowd acoustics",
+    hearing_loop: "none_available",
+    service_animals: "Certified guide dogs and service animals welcome throughout the shopping centre",
+    access_parking: "Free 3-hour surface and covered parkade parking with designated accessible stalls near entrances",
+    access_seating: "Abundant public food court tables and concourse bench seating",
+    on_site_fnb: "Full 25+ vendor food court, T&T Supermarket, Tim Hortons, Starbucks, and Central City Brewers + Distillers nearby",
+    outside_food_policy: "Outside beverages and snacks permitted in public concourse areas",
+    water_refill_station: "Bottle-filling water fountains located outside main concourse washrooms",
+    coat_check: "none_available",
+    payment_methods: "Free public concourse access; merchants accept Credit, Debit, Apple/Google Pay & Cash",
+    beer_benchmark: null,
+    cocktail_benchmark: null,
+    coffee_benchmark: "$2.50 – $5.50 CAD (Tim Hortons / Starbucks / Blenz)",
+    meal_benchmark: "$12.00 – $18.00 CAD (Food Court entrees)",
+    concession_benchmark: "$4.00 – $8.00 CAD (bakery, bubble tea & snacks)",
+    restrictions: "All Ages Welcome (Family Friendly)"
+  },
+  "central city shopping centre": {
+    venue_name: "Central City Shopping Centre",
+    venue_type: "shopping_centre_atrium",
+    website_url: "https://centralcity.ca/",
+    calendar_url: "https://centralcity.ca/events/",
+    full_address: "10153 King George Blvd, Surrey, BC V3T 2W1",
+    neighborhood: "Surrey Central / Whalley",
+    coordinates: [49.1867, -122.8486],
+    weekly_hours: "Mon–Wed & Sat 10:00 AM – 6:00 PM, Thu–Fri 10:00 AM – 8:00 PM, Sun 11:00 AM – 6:00 PM",
+    access_model: "free_public_access",
+    environment_type: "indoor",
+    transit_info: "Directly adjacent to Surrey Central SkyTrain Station & Bus Loop (Expo Line)",
+    description: "Major Surrey City Centre shopping centre, community plaza, and SFU Surrey campus atrium hosting seasonal markets, fitness classes, and family events.",
+    step_free_entrance: "Level barrier-free automatic sliding doors at all street-level and SkyTrain concourse entrances",
+    elevator_lift: "Multiple passenger elevators serving mall concourses, parkade, and SFU campus levels",
+    accessible_washrooms: "Wheelchair-accessible public and family washrooms near the Food Court and Guest Services",
+    sensory_calibrations: "Brightly lit indoor shopping concourse with moderate ambient crowd acoustics",
+    hearing_loop: "none_available",
+    service_animals: "Certified guide dogs and service animals welcome throughout the shopping centre",
+    access_parking: "Free 3-hour surface and covered parkade parking with designated accessible stalls near entrances",
+    access_seating: "Abundant public food court tables and concourse bench seating",
+    on_site_fnb: "Full 25+ vendor food court, T&T Supermarket, Tim Hortons, Starbucks, and Central City Brewers + Distillers nearby",
+    outside_food_policy: "Outside beverages and snacks permitted in public concourse areas",
+    water_refill_station: "Bottle-filling water fountains located outside main concourse washrooms",
+    coat_check: "none_available",
+    payment_methods: "Free public concourse access; merchants accept Credit, Debit, Apple/Google Pay & Cash",
+    beer_benchmark: null,
+    cocktail_benchmark: null,
+    coffee_benchmark: "$2.50 – $5.50 CAD (Tim Hortons / Starbucks / Blenz)",
+    meal_benchmark: "$12.00 – $18.00 CAD (Food Court entrees)",
+    concession_benchmark: "$4.00 – $8.00 CAD (bakery, bubble tea & snacks)",
+    restrictions: "All Ages Welcome (Family Friendly)"
+  },
   "canada place": {
     venue_name: "Canada Place",
     venue_type: "park_beach_outdoor",
@@ -887,23 +964,31 @@ async function groundVenueRecord(venue, options = {}) {
         };
       }
 
-      // Extract Amenities & Policies (Cluster 6XX)
+      // Extract Amenities & Policies (Cluster 6XX) with prompt-template leakage sanitization
+      const cleanPromptLeak = (val) => {
+        if (val == null || typeof val !== "string") return val ?? null;
+        const cleaned = val
+          .replace(/\s+or\s+(?:null|none_available|not_applicable)\s*$/i, "")
+          .replace(/^(?:null|undefined)$/i, "")
+          .trim();
+        return cleaned.length > 0 ? cleaned : null;
+      };
       if (aiDetails.amenities_and_policies && typeof aiDetails.amenities_and_policies === "object") {
         const pol = aiDetails.amenities_and_policies;
-        v.on_site_fnb = pol.on_site_fnb || v.on_site_fnb;
-        v.outside_food_policy = pol.outside_food_policy || v.outside_food_policy;
-        v.water_refill_station = pol.water_refill_station || v.water_refill_station;
-        v.coat_check = pol.coat_check || v.coat_check;
-        v.payment_methods = pol.payment_methods || v.payment_methods;
-        v.concession_benchmark = pol.concession_benchmark || v.concession_benchmark;
-        if (pol.restrictions) v.restrictions = pol.restrictions;
+        v.on_site_fnb = cleanPromptLeak(pol.on_site_fnb) || v.on_site_fnb;
+        v.outside_food_policy = cleanPromptLeak(pol.outside_food_policy) || v.outside_food_policy;
+        v.water_refill_station = cleanPromptLeak(pol.water_refill_station) || v.water_refill_station;
+        v.coat_check = cleanPromptLeak(pol.coat_check) || v.coat_check;
+        v.payment_methods = cleanPromptLeak(pol.payment_methods) || v.payment_methods;
+        v.concession_benchmark = cleanPromptLeak(pol.concession_benchmark) || v.concession_benchmark;
+        if (pol.restrictions) v.restrictions = cleanPromptLeak(pol.restrictions) || v.restrictions;
 
         // Venue-type conditioned alcohol benchmarks
-        const isAlcoholFreeType = v.venue_type === "park_beach_outdoor" || v.venue_type === "civic_library_community_centre";
-        v.beer_benchmark = isAlcoholFreeType ? null : (pol.beer_benchmark || null);
-        v.cocktail_benchmark = isAlcoholFreeType ? null : (pol.cocktail_benchmark || null);
-        v.coffee_benchmark = pol.coffee_benchmark || null;
-        v.meal_benchmark = pol.meal_benchmark || null;
+        const isAlcoholFreeType = v.venue_type === "park_beach_outdoor" || v.venue_type === "civic_library_community_centre" || v.venue_type === "shopping_centre_atrium";
+        v.beer_benchmark = isAlcoholFreeType ? null : (cleanPromptLeak(pol.beer_benchmark) || null);
+        v.cocktail_benchmark = isAlcoholFreeType ? null : (cleanPromptLeak(pol.cocktail_benchmark) || null);
+        v.coffee_benchmark = cleanPromptLeak(pol.coffee_benchmark) || null;
+        v.meal_benchmark = cleanPromptLeak(pol.meal_benchmark) || null;
 
         v.spend_benchmarks = {
           beer: v.beer_benchmark,
@@ -1149,7 +1234,7 @@ export async function runVenueDetailer(options = {}) {
       const eds = JSON.parse(fs.readFileSync(ED_LAYER_PATH, "utf-8"));
       (Array.isArray(eds) ? eds : []).forEach((e) => {
         const eid = String(e.id || e.event_id || "").toLowerCase();
-        if (eid && e.clean_title && e.description && e.source_engine !== "heuristic_rules" && e.source_engine !== "unverified") {
+        if (eid && e.clean_title && (e.description || e.enriched_at) && e.source_engine !== "heuristic_rules" && e.source_engine !== "unverified") {
           edIds.add(eid);
           if (e.step4_grounded_at) edGroundedIds.add(eid);
         }
@@ -1161,13 +1246,13 @@ export async function runVenueDetailer(options = {}) {
     if (fs.existsSync(SCHED_LAYER_PATH)) {
       try {
         const schedData = JSON.parse(fs.readFileSync(SCHED_LAYER_PATH, "utf-8"));
-        // Strict Stage 4 Gate: Uncompiled events MUST complete Stage 1B + Stage 2 + Stage 3 before Stage 4
+        // Stage 3B/4 Gate: Ground venues for uncompiled events as soon as Stage 1B + Stage 2 complete (so Venue Detailer can run BEFORE Stage 3A Enricher!)
         const doneEdUncomp = (Array.isArray(schedData) ? schedData : []).filter((s) => {
           const sid = String(s.id || s.event_id || "").toLowerCase();
           const u = String(s.ticket_url || s.details_url || "").toLowerCase();
-          if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts)(\/|$)/i.test(u)) return false;
+          if (/\/(support|donate|corporate-giving|patrons-circle|major-gifts|stats\/roster)(\/|$)/i.test(u)) return false;
           if (s.date && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date < todayIso && s.lifecycle_type !== "perennial_drop_in") return false;
-          return sid && !publishedIds.has(sid) && Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid) && edIds.has(sid);
+          return sid && !publishedIds.has(sid) && Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid);
         });
         let uncomp = doneEdUncomp;
         const pendingStage4 = uncomp.filter((s) => {
@@ -1183,7 +1268,7 @@ export async function runVenueDetailer(options = {}) {
       } catch (_) { }
     }
     if (!targetIds || targetIds.length === 0) {
-      console.log("✅ [Stage 4 Venue Detailer] 0 Stage 3-completed events queued for Stage 4 grounding (events cannot skip Stages 1B, 2, or 3).");
+      console.log("✅ [Stage 3 Venue Detailer] 0 Stage 2-completed events queued for Stage 3 venue grounding (events cannot skip Stages 1B or 2).");
       console.log("🎯 Targets Queued for Audit: 0 events");
       return { venuesGroundedCount: 0, cardsGroundedCount: 0, inBoundsCount: 0 };
     }
@@ -1275,11 +1360,11 @@ export async function runVenueDetailer(options = {}) {
     if (fs.existsSync(SCHED_LAYER_PATH)) {
       try {
         const schedData = JSON.parse(fs.readFileSync(SCHED_LAYER_PATH, "utf-8"));
-        // Allow explicitly targeted IDs or uncompiled schedule cards that completed Stages 1B, 2, and 3
+        // Allow explicitly targeted IDs or uncompiled schedule cards that completed Stages 1B and 2 (runs before Stage 4 Enricher)
         if (Array.isArray(schedData)) {
           schedData.forEach((s) => {
             const sid = String(s.id || s.event_id || "").toLowerCase();
-            if (sid && (idSet.has(sid) || (Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid) && edIds.has(sid)))) {
+            if (sid && (idSet.has(sid) || (Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid)))) {
               allCheckCards.push(s);
             }
           });
@@ -1287,12 +1372,18 @@ export async function runVenueDetailer(options = {}) {
       } catch (_) { }
     }
 
+    const NON_BUILDING_ENTITY_RE = /\b(?:surrey\s+knights|north\s+vancouver\s+wolf\s+pack|white\s+rock\s+whalers|abbotsford\s+pilots|mission\s+city\s+outlaws|port\s+moody\s+panthers|aldergrove\s+ironmen|cloverdale\s+hc|eventbrite|showpass|do604|songkick)\b/i;
+    const OUT_OF_MARKET_VENUE_RE = /\b(?:msa\s+arena|mission\s+city\s+leisure\s+centre|abbotsford\s+centre)\b/i;
     const matchedCards = allCheckCards.filter(c => idSet.has((c.id || c.event_id || "").toLowerCase()));
     for (const card of matchedCards) {
       const rawVName = (card.venue || card.venue_name || "").trim();
       if (!rawVName) continue;
-      const vName = rawVName.toLowerCase();
-      const matchIdx = venues.findIndex(v => (v.venue_name || v.name || "").toLowerCase() === vName || (v.venue_name || v.name || "").toLowerCase().includes(vName));
+      if (NON_BUILDING_ENTITY_RE.test(rawVName) || OUT_OF_MARKET_VENUE_RE.test(rawVName)) {
+        console.warn(`🚫 [Physical Venue Gate] Skipping non-building or out-of-market entity "${rawVName}".`);
+        continue;
+      }
+      const matchedObj = matchVenue(rawVName, venues);
+      const matchIdx = matchedObj ? venues.indexOf(matchedObj) : -1;
       if (matchIdx >= 0) {
         if (!targetVenueIndices.includes(matchIdx)) {
           targetVenueIndices.push(matchIdx);
@@ -1418,10 +1509,10 @@ export async function runVenueDetailer(options = {}) {
     if (fs.existsSync(SCHED_LAYER_PATH)) {
       try {
         const schedData = JSON.parse(fs.readFileSync(SCHED_LAYER_PATH, "utf-8"));
-        // Allow explicitly targeted IDs or uncompiled schedule cards that completed Stages 1B, 2, and 3
+        // Allow explicitly targeted IDs or uncompiled schedule cards that completed Stages 1B and 2 (runs before Stage 4 Enricher)
         (Array.isArray(schedData) ? schedData : []).forEach((s) => {
           const sid = String(s.id || s.event_id || "").toLowerCase();
-          if (sid && !seenCardIds.has(sid) && (idSet.has(sid) || (Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid) && edIds.has(sid)))) {
+          if (sid && !seenCardIds.has(sid) && (idSet.has(sid) || (Boolean(s.step1b_audited_at) && boxAuditedIds.has(sid)))) {
             combinedCards.push(s);
             seenCardIds.add(sid);
           }
@@ -1507,10 +1598,29 @@ export async function runVenueDetailer(options = {}) {
         const edData = JSON.parse(fs.readFileSync(ED_PATH, "utf-8"));
         if (Array.isArray(edData)) {
           let edChanged = false;
+          const groundedByCardId = new Map();
+          targetCards.forEach((tc) => {
+            const tcid = String(tc.id || tc.event_id || "").toLowerCase();
+            if (tcid) {
+              const gCard = groundEventCard(tc, venues, nowIso);
+              groundedByCardId.set(tcid, gCard);
+            }
+          });
           edData.forEach((e) => {
             const eid = String(e.id || e.event_id || "").toLowerCase();
             if (eid && groundedIdSet.has(eid)) {
               e.step4_grounded_at = nowIso;
+              const gc = groundedByCardId.get(eid);
+              if (gc && gc.full_address) {
+                if (gc.step_free_entrance) e.step_free_entrance = gc.step_free_entrance;
+                if (gc.elevator_lift) e.elevator_lift = gc.elevator_lift;
+                if (gc.accessible_washrooms) e.accessible_washrooms = gc.accessible_washrooms;
+                if (gc.service_animals) e.service_animals = gc.service_animals;
+                if (gc.payment_methods) e.payment_methods = gc.payment_methods;
+                if (gc.water_refill_station) e.water_refill_station = gc.water_refill_station;
+                if (gc.outside_food_policy) e.outside_food_policy = gc.outside_food_policy;
+                if (gc.coat_check) e.coat_check = gc.coat_check;
+              }
               edChanged = true;
             }
           });

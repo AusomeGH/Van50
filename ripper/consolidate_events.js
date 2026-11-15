@@ -208,10 +208,16 @@ export function scoreMasterCandidate(card) {
   ).toLowerCase();
   const title = String(card.title || card.event_name || "");
 
-  // 1. Prefer official Tier 1 checkout links over aggregators
+  // 1. Prefer official Tier 1 checkout links over aggregators (including dedicated tickets.<event/venue>.* subdomains)
+  const isDedicatedTicketsSubdomain = /^https?:\/\/(?:tickets|purchase|secure|boxoffice)\.[a-z0-9-]+\.(?:com|ca|org|bc\.ca)\//i.test(url);
+  const isStandaloneSeasonOrAnnualPass =
+    /\b(?:season[-_\s]+pass|annual[-_\s]+pass|membership[-_\s]+pass|12[-_\s]+month[-_\s]+pass)\b/i.test(`${id} ${url} ${title}`);
+  if (isStandaloneSeasonOrAnnualPass) {
+    score -= 250;
+  }
   if (AGGREGATOR_DOMAINS.some((d) => url.includes(d))) {
     score -= 100;
-  } else if (TIER1_CHECKOUT_DOMAINS.some((d) => url.includes(d))) {
+  } else if (TIER1_CHECKOUT_DOMAINS.some((d) => url.includes(d)) || isDedicatedTicketsSubdomain) {
     score += 60;
   }
 
@@ -541,16 +547,26 @@ export function consolidateCatalogCards(cards, options = {}) {
     if (rootI !== rootJ) parent[rootJ] = rootI;
   };
 
+  const STANDALONE_PASS_RE = /\b(?:season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|all[- ]access\s+pass(?:es)?|flex\s+pass(?:es)?|multi[- ]game\s+pack|subscription\s+packages?)\b/i;
+  const STANDALONE_PASS_URL_RE = /\/(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?)(?:\/|[?#]|$)/i;
+
   const meta = cards.map((c, idx) => {
     const venueRaw = c.venue_name || c.venue || "";
     const titleRaw = c.title || c.event_name || "";
+    const rawUrl = c.ticket_url || c.candidate_tier1_url || c.details_url || c.websiteUrl || c.url || "";
     const venueKey = canonicalizeVenueKey(venueRaw);
     const titleKey = canonicalizeTitleKey(titleRaw, venueRaw);
     const urlKey = normalizeSpecificTicketUrl(c.ticket_url || c.candidate_tier1_url || c.websiteUrl || c.url);
     const dates = new Set(extractShowingsFromCard(c).map((s) => s.date));
     if (c.date && /^\d{4}-\d{2}-\d{2}$/.test(c.date)) dates.add(c.date);
-    return { idx, venueKey, titleKey, urlKey, dates };
+    const isStandalonePass = STANDALONE_PASS_RE.test(titleRaw) || STANDALONE_PASS_URL_RE.test(rawUrl);
+    return { idx, venueKey, titleKey, urlKey, dates, isStandalonePass };
   });
+
+  const safeUnion = (i, j) => {
+    if (meta[i].isStandalonePass !== meta[j].isStandalonePass) return;
+    union(i, j);
+  };
 
   // Index by (venueKey, titleKey)
   const venueTitleMap = new Map();
@@ -560,9 +576,9 @@ export function consolidateCatalogCards(cards, options = {}) {
   for (let i = 0; i < n; i++) {
     const m = meta[i];
     if (m.venueKey && m.titleKey && m.titleKey.length >= 3) {
-      const vtKey = `${m.venueKey}::${m.titleKey}`;
+      const vtKey = `${m.venueKey}::${m.titleKey}::${m.isStandalonePass ? "pass" : "event"}`;
       if (venueTitleMap.has(vtKey)) {
-        union(venueTitleMap.get(vtKey), i);
+        safeUnion(venueTitleMap.get(vtKey), i);
       } else {
         venueTitleMap.set(vtKey, i);
       }
@@ -573,11 +589,12 @@ export function consolidateCatalogCards(cards, options = {}) {
         const otherIdx = urlMap.get(m.urlKey);
         const otherMeta = meta[otherIdx];
         if (
-          otherMeta.titleKey === m.titleKey ||
-          otherMeta.titleKey.includes(m.titleKey) ||
-          m.titleKey.includes(otherMeta.titleKey)
+          otherMeta.isStandalonePass === m.isStandalonePass &&
+          (otherMeta.titleKey === m.titleKey ||
+            otherMeta.titleKey.includes(m.titleKey) ||
+            m.titleKey.includes(otherMeta.titleKey))
         ) {
-          union(otherIdx, i);
+          safeUnion(otherIdx, i);
         }
       } else {
         urlMap.set(m.urlKey, i);
@@ -591,6 +608,7 @@ export function consolidateCatalogCards(cards, options = {}) {
       if (find(i) === find(j)) continue;
       const a = meta[i];
       const b = meta[j];
+      if (a.isStandalonePass !== b.isStandalonePass) continue;
       if (!a.venueKey || a.venueKey !== b.venueKey) continue;
       if (!a.titleKey || !b.titleKey || a.titleKey.length < 6 || b.titleKey.length < 6) continue;
 
@@ -604,7 +622,7 @@ export function consolidateCatalogCards(cards, options = {}) {
       if (!sharesDate) continue;
 
       if (a.titleKey.startsWith(b.titleKey + "-") || b.titleKey.startsWith(a.titleKey + "-")) {
-        union(i, j);
+        safeUnion(i, j);
       }
     }
   }
@@ -875,7 +893,9 @@ export async function runConsolidationStage(options = {}) {
   try {
     const nowIso = new Date().toISOString();
     const qDb = fs.existsSync(QUEUE_PATH) ? JSON.parse(fs.readFileSync(QUEUE_PATH, "utf8")) : { quarantinedEvents: [] };
-    const dataJsContent = `// Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
+    const surreyRefPath = path.join(ROOT_DIR, "data", "surrey_reference_sources.json");
+    const surreySources = fs.existsSync(surreyRefPath) ? JSON.parse(fs.readFileSync(surreyRefPath, "utf8")) : [];
+    const dataJsContent = `// Van50 — Vancouver & Surrey Events & Outings (Strictly <= $50 CAD)
 // AUTO-GENERATED by Van50 Compiler & Consolidator AI on ${nowIso}
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
@@ -883,11 +903,13 @@ const VANCOUVER_EVENTS = ${JSON.stringify(consolidatedCards, null, 2)};
 
 const MANUAL_REVIEW_QUEUE = ${JSON.stringify(qDb.quarantinedEvents || [], null, 2)};
 
+const SURREY_REFERENCE_SOURCES = ${JSON.stringify(surreySources, null, 2)};
+
 window.VAN50_EVENTS = VANCOUVER_EVENTS;
 window.VANCOUVER_EVENTS = VANCOUVER_EVENTS;
+window.SURREY_REFERENCE_SOURCES = SURREY_REFERENCE_SOURCES;
 
-// Regional Super-Clusters (Option B)
-const NEIGHBORHOODS = [
+const VANCOUVER_NEIGHBORHOODS = [
   "Downtown, Gastown & Yaletown",
   "Mount Pleasant & South Vancouver",
   "Commercial Drive & East Vancouver",
@@ -895,6 +917,24 @@ const NEIGHBORHOODS = [
   "Granville Island & False Creek",
   "North Shore, Burnaby & Metro"
 ];
+
+const SURREY_NEIGHBORHOODS = [
+  "Surrey Central / Whalley",
+  "Guildford",
+  "Fleetwood",
+  "Newton",
+  "Cloverdale",
+  "South Surrey"
+];
+
+const NEIGHBORHOODS = [
+  ...VANCOUVER_NEIGHBORHOODS,
+  ...SURREY_NEIGHBORHOODS
+];
+
+window.VANCOUVER_NEIGHBORHOODS = VANCOUVER_NEIGHBORHOODS;
+window.SURREY_NEIGHBORHOODS = SURREY_NEIGHBORHOODS;
+window.NEIGHBORHOODS = NEIGHBORHOODS;
 
 // Days of the Week
 const DAYS_OF_WEEK = [

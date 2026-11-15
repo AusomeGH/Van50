@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import { scanCatalogLinkHealth } from "./link_health_scanner.js";
 import { huntBatchTier1Links } from "./tier1_hunter.js";
 import { parseDurationMs, isEventStale, isScanIncomplete } from "./event_batch_qc.js";
+import { matchVenue } from "./compile_catalog.js";
 import { logCuratorInfo, getCuratorInfo } from "./curator_display.js";
 import {
   isAntigravityEngine,
@@ -221,7 +222,7 @@ export function classifyArchetype(title, category, venue, rawArchetype, extra = 
 
   // 7. Civic Grounds, Parks & Public Waterfront (Archetype E: 750–759)
   if (/\b(?:seawall|park|garden|botanical|conservatory|promenade|public market|farmers market|shipyards|plaza|quay|pier|beach|trail|canyon|suspension bridge|bloedel|vandusen|queen elizabeth|sun yat-sen public|waterfront|granville island)\b/i.test(combined)) {
-    if (isPerennialDropIn || !/\b(?:concert|comedy|show|theatre|play|festival)\b/i.test(title || "")) {
+    if (isPerennialDropIn || !/\b(?:concert|comedy|show|theatre|play|festival|cabaret|musical|orchestra|symphony|recital|tribute|dance)\b/i.test(`${title || ""} ${extra.description || ""}`)) {
       return "civic_park";
     }
   }
@@ -464,7 +465,10 @@ export function isCannedOrSyntheticDesc(desc, title) {
     /The production explores engaging themes with sharp dialogue, compelling character dynamics/i.test(d) ||
     /The performance features dynamic live instrumentation, rich melodic textures/i.test(d) ||
     /The exhibition highlights distinctive artistic vision, nuanced craftsmanship/i.test(d) ||
-    /^(?:tickets?\s+(?:on\s+sale|available|checkout)|find\s+event\s+and\s+ticket\s+information|click\s+here\s+for\s+tickets)/i.test(d)
+    /^(?:tickets?\s+(?:on\s+sale|available|checkout)|find\s+event\s+and\s+ticket\s+information|click\s+here\s+for\s+tickets)/i.test(d) ||
+    /\btickets,\s*set\s*times,\s*lineup\s*and\s*more\b/i.test(d) ||
+    /\bexplore\s+upcoming\s+events\s+happening\s+in\b/i.test(d) ||
+    /\bdiscover\s+upcoming\s+events\s+(?:at|in)\b/i.test(d)
   );
 }
 
@@ -808,7 +812,7 @@ Input Event:
 - Primary Event Page Text: "${eventCard.description || ""}"${curatorPrompt}
 
 Requirements:
-1. "clean_title": Strip out all promotional artifacts, dates, times, buttons ("Tickets On Sale", "Apr 4", "MoreInfo->"), and capitalization shouting.
+1. "clean_title": Strip out all promotional artifacts, dates, times, buttons ("Tickets On Sale", "Apr 4", "MoreInfo->"), and capitalization shouting. NEVER strip "Season Pass", "Annual Pass", "Membership Pass", "All Day Pass", "Afternoon Show", "Evening Show", or "Matinee" qualifiers—preserve those exact scope words in clean_title so downstream pass filters and distinct showtime cards remain intact.
 2. "artist": Extract the lead artist, band, performer, or speaker name (or null if general).
 3. "lineup": Array of performer names if present (or []).
 4. "category": Strictly one of ["shows", "comedy", "arts", "outdoors", "culture", "free-public-access"].
@@ -817,8 +821,8 @@ Requirements:
 7. "weekly_recurring_day": If lifecycle_type is "weekly_recurring_residency", the day name ("Monday".."Sunday"), else null.
 8. "description": Exactly 2 evocative sentences written for patrons based strictly on real facts. CRITICAL MANDATE: When the event is a specific show/event (comedy, concert, play, screening, performance, etc.), the description MUST be about the show itself (comedic style, jokes, music genre, plot, themes, performance) and NOT about the venue, room, bar, or venue history. Only describe the venue/grounds when the event is an outdoor park, beach, garden, or perennial drop-in venue visit.
 9. "restrictions": "All Ages", "19+ w/ ID", "16+", or "All Ages / Family Friendly".
-10. "holiday_affiliation": Generously infer if the event fits the theme, genre, vibe, or celebration of an upcoming holiday within its seasonal window. Strictly one of ["halloween", "dia-de-los-muertos", "diwali", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "canada-day", "pride"] or null.
-11. "is_religious": Boolean. Set true ONLY if the event's actual activity involves prayer, worship, liturgy, mass, devotional chanting, scripture, or a faith service. Never set true simply because a secular show is hosted in a church/temple hall or celebrates a secular holiday like Christmas or Diwali.
+10. "holiday_affiliation": Generously infer if the event fits the theme, genre, vibe, or celebration of an upcoming holiday within its seasonal window. Strictly one of ["halloween", "dia-de-los-muertos", "diwali", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "vaisakhi", "canada-day", "pride"] or null ("christmas" maps to the inclusive "❄️ Winter & Holiday Season" umbrella running Nov 15 – Jan 3).
+11. "is_religious": Boolean. Set true ONLY if the event's actual activity is devotional/liturgical (prayer, worship service, mass, nativity pageant, liturgy, sermon, church fellowship dinner, or temple/gurdwara religious service). Never set true for classical choral concerts (Handel's Messiah, Bach cantatas, Lessons & Carols) or secular shows hosted in a church/temple hall.
 
 Respond ONLY with a valid JSON object matching these keys.`;
 
@@ -921,7 +925,18 @@ export async function runEnricher(options = {}) {
 
   const boxAuditedIds = new Set(
     (Array.isArray(boxOffices) ? boxOffices : [])
-      .filter((b) => b && (b.id || b.event_id) && b.status !== "TIMEOUT_EXCEEDED" && b.status !== "AI_TIMEOUT" && b.status !== "EXECUTION_ERROR")
+      .filter(
+        (b) =>
+          b &&
+          (b.id || b.event_id) &&
+          b.status !== "TIMEOUT_EXCEEDED" &&
+          b.status !== "AI_TIMEOUT" &&
+          b.status !== "EXECUTION_ERROR" &&
+          b.status !== "UNVERIFIED_PRICING" &&
+          b.status !== "BUDGET_BREACH" &&
+          b.status !== "SKIPPED_NO_URL" &&
+          !String(b.status || "").startsWith("FATAL_")
+      )
       .map((b) => String(b.id || b.event_id).toLowerCase())
   );
   const step1bAuditedIds = new Set(
@@ -930,7 +945,7 @@ export async function runEnricher(options = {}) {
       .map((s) => String(s.id || s.event_id).toLowerCase())
   );
 
-  // Strict Stage 3 Gate: Uncompiled seed/schedule events can NEVER skip Stage 1B or Stage 2 QC
+  // Strict Stage 3 Gate: Uncompiled seed/schedule events in untargeted scans can NEVER skip Stage 1B or Stage 2 QC
   seeds.forEach((s) => {
     const sId = s.id || s.event_id;
     const sIdLower = String(sId || "").toLowerCase();
@@ -965,7 +980,9 @@ export async function runEnricher(options = {}) {
       entry.description.includes("A cultural exhibition and artistic showcase featuring") ||
       entry.description.includes("Designed for accessible cultural enjoyment under $50 CAD")
     )) return true;
-    if (!entry.category || !entry.description) return true;
+    if (!entry.category) return true;
+    const isHonestAbsenceNull = entry.description === null && Boolean(entry.enriched_at);
+    if (!entry.description && !isHonestAbsenceNull) return true;
     return false;
   };
 
@@ -979,6 +996,19 @@ export async function runEnricher(options = {}) {
     sourcePool.forEach((s) => {
       const sid = s.id || s.event_id;
       if (sid && !poolMap.has(sid)) poolMap.set(sid, s);
+    });
+    // Also allow explicitly targeted batch cohort IDs from schedules and seeds so no batch item is dropped mid-pipeline
+    schedules.forEach((sc) => {
+      const scId = sc.id || sc.event_id;
+      if (scId && !poolMap.has(scId) && !archivedIds.has(scId)) {
+        poolMap.set(scId, sc);
+      }
+    });
+    seeds.forEach((s) => {
+      const sId = s.id || s.event_id;
+      if (sId && !poolMap.has(sId) && !archivedIds.has(sId)) {
+        poolMap.set(sId, s);
+      }
     });
     targets = cleanIds.map((id) => poolMap.get(id)).filter(Boolean);
     if (targets.length === 0) {
@@ -1024,7 +1054,25 @@ export async function runEnricher(options = {}) {
       const u0 = String(s.details_url || s.candidate_tier1_url || s.ticket_url || "").toLowerCase();
       if (!u0 || /\.pdf(\?|$)/i.test(u0)) return false;
       const rawTitle0 = String(s.title || s.event_name || "").trim().toLowerCase();
-      if (!rawTitle0 || ["event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404"].includes(rawTitle0)) return false;
+      if (
+        !rawTitle0 ||
+        [
+          "event",
+          "events",
+          "search_exhausted_null",
+          "quarantine_fatal",
+          "page not found",
+          "error 404",
+          "choose seats",
+          "select seats",
+          "find tickets",
+          "buy tickets",
+          "get tickets",
+          "book tickets"
+        ].includes(rawTitle0)
+      ) {
+        return false;
+      }
       if (s.lifecycle_type !== "perennial_drop_in") {
         const isoShowings = Array.isArray(s.showings) ? s.showings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
         const hasUpcomingShowing = isoShowings.some((sh) => sh.date >= todayIso);
@@ -1187,7 +1235,7 @@ export async function runEnricher(options = {}) {
         title = seed.seed_title || item.seed_title || sched.title || box.title || title || "Cultural Event";
       }
       const venue = item.venue || item.venue_name || ev.venue || ev.venue_name || sched.venue || box.venue_name || seed.seed_venue || item.seed_venue || null;
-      const venueObj = venue ? (venuesMap.get((venue || "").toLowerCase().trim()) || null) : null;
+      const venueObj = venue ? (venuesMap.get((venue || "").toLowerCase().trim()) || matchVenue(venue, venues) || null) : null;
       const cleanLayerDesc = (d) => (d && !isCannedOrSyntheticDesc(d, title)) ? d : "";
       // Strict Stage 3 Isolation: Do NOT pull AI-generated descriptions or categories from Stage 2 (layer_box_office.json)
       let rawDesc = cleanLayerDesc(sched.description) || cleanLayerDesc(item.description) || cleanLayerDesc(ev.description) || "";
@@ -1243,8 +1291,9 @@ export async function runEnricher(options = {}) {
         !isCorruptedOrStale(existingEd) &&
         existingEd.input_fingerprint &&
         existingEd.input_fingerprint === inputFingerprint &&
-        existingEd.description &&
-        !isCannedOrSyntheticDesc(existingEd.description, title)
+        (existingEd.description === null
+          ? Boolean(existingEd.enriched_at)
+          : (Boolean(existingEd.description) && !isCannedOrSyntheticDesc(existingEd.description, title)))
       );
 
       if (canReuseCachedEditorial) {
@@ -1365,6 +1414,7 @@ export async function runEnricher(options = {}) {
           "valentines-day",
           "st-patricks-day",
           "easter",
+          "vaisakhi",
           "canada-day",
           "pride",
         ]);
@@ -1372,6 +1422,7 @@ export async function runEnricher(options = {}) {
           if (!rawVal || typeof rawVal !== "string") return null;
           const v = rawVal.trim().toLowerCase().replace(/\s+/g, "-").replace(/['’]/g, "");
           if (v === "new-year" || v === "new-years-eve" || v === "new-years-day") return "new-years";
+          if (v === "winter-holiday-season" || v === "winter-holidays") return "christmas";
           return CANONICAL_HOLIDAYS.has(v) ? v : null;
         };
         const titleAndIdText = `${cleanTitle || ""} ${eventId || ""}`.toLowerCase();
@@ -1405,18 +1456,21 @@ export async function runEnricher(options = {}) {
         if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(fullText)) return "valentines-day";
         if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s\s*day)\b/i.test(fullText)) return "st-patricks-day";
         if (/\b(?:easter|egg\s*hunt|good\s*friday|ostara)\b/i.test(fullText)) return "easter";
+        if (/\b(?:vaisakhi|baisakhi|nagar\s*kirtan)\b/i.test(fullText)) return "vaisakhi";
         if (/\b(?:canada\s*day)\b/i.test(fullText)) return "canada-day";
         if (/\b(?:pride\s*festival|vancouver\s*pride|pride\s*parade|queer\s*pride)\b/i.test(fullText)) return "pride";
         if (inSeason("10-01", "11-03") && /\b(?:haunted|spooky|horror|slasher|thriller|costume|masquerade|zombie|vampire|vampyr|witch|witches|ghost|goth|gothic|occult|macabre|monster|pumpkin|fright|scream|creepy|murder\s*mystery|deadly\s*dinner|unexplained|paranormal|x[- ]files|yes\s*files|seance|séance|rocky\s*horror|nosferatu|frankenstein|dracula|evil\s*dead|exorcist|dark\s*cabaret|freak\s*show)\b/i.test(fullText)) return "halloween";
         if (inSeason("10-15", "11-20") && /\b(?:festival\s*of\s*lights|rangoli|bhangra|bollywood|garba|dandiya|mehfil|diya)\b/i.test(fullText)) return "diwali";
-        if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party)\b/i.test(fullText)) return "christmas";
+        if (inSeason("11-15", "01-03") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party)\b/i.test(fullText)) return "christmas";
         return undefined;
       })();
 
       const inferredIsReligious = (() => {
         if (typeof aiResult?.is_religious === "boolean") return aiResult.is_religious;
         const contentText = `${cleanTitle || ""} ${description || ""} ${rawDesc || ""}`.toLowerCase();
-        return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
+        const isSecularCandlelight = /\bcandlelight(?:\s*:\s*|\s+concert|\s+tribute|\s+string|\s+quartet)/i.test(cleanTitle || "") && !/\b(?:worship|mass|liturgy|sermon|christmas\s+eve\s+service|good\s+friday\s+service)\b/i.test(contentText);
+        if (isSecularCandlelight) return false;
+        return /\b(?:prayer|prayers|worship\s*service|worship\s*night|worship|nativity|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|candlelight\s*service|christmas\s*eve\s*service|good\s*friday\s*service|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|church\s*fellowship)\b/i.test(contentText);
       })();
 
       const editorialEntry = {

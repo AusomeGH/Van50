@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import zlib from "zlib";
 import { Stagehand, localBrowser } from "@browserbasehq/stagehand";
 import {
   SingleEventExtractionSchema,
@@ -10,7 +11,15 @@ import {
 } from "./hybrid_ripper.js";
 import { inspectCardForCandidateLink, isWhitelistedTicketingUrl, LOW_SALIENCE_WORDS } from "./link_upgrader.js";
 import { scanSingleLinkHealth } from "./link_health_scanner.js";
-import { huntTier1LinkForEvent, resolveTicketTailorDirectCheckoutUrl, resolveViffActiveBookUrl, resolveVsoDirectCheckoutUrl, resolveArtsClubShowUrl } from "./tier1_hunter.js";
+import {
+  huntTier1LinkForEvent,
+  resolveTicketTailorDirectCheckoutUrl,
+  resolveViffActiveBookUrl,
+  resolveVsoDirectCheckoutUrl,
+  resolveArtsClubShowUrl,
+  resolveSurreyDirectCheckoutUrl,
+  normalizeSurreyCheckoutWrapperUrl,
+} from "./tier1_hunter.js";
 import { logCuratorInfo, getCuratorInfo } from "./curator_display.js";
 import {
   isAntigravityEngine,
@@ -46,6 +55,243 @@ const BENCHMARKS_PATH = path.join(DATA_DIR, "ai_runtime_benchmarks.json");
 // Ensure directories exist
 if (!fs.existsSync(PROOFS_DIR)) fs.mkdirSync(PROOFS_DIR, { recursive: true });
 if (!fs.existsSync(BACKUP_DIR)) fs.mkdirSync(BACKUP_DIR, { recursive: true });
+
+let _geminiApiCreditsDepleted = false;
+function noteGeminiApiStatus(err) {
+  const msg = String((err && err.message) || err || "");
+  if (!_geminiApiCreditsDepleted && /prepayment credits are depleted|API_KEY_INVALID|billing.*disabled/i.test(msg)) {
+    _geminiApiCreditsDepleted = true;
+    console.warn(`⚡ [Stagehand API Fast-Failover] AI Studio prepayment credits depleted — bypassing direct Stagehand LLM calls in favor of DOM controls + Antigravity Box Office Extractor.`);
+  }
+}
+
+let _surreySpektrixEventsRuntimeCache = null;
+let _surreySpektrixInstancesRuntimeCache = null;
+async function fetchSurreySpektrixLiveCartContext(rawUrl) {
+  try {
+    if (!rawUrl || typeof rawUrl !== "string") return "";
+    const chooseMatch = rawUrl.match(/purchase\.surrey\.ca\/ChooseSeats\/(\d+)/i) || rawUrl.match(/EventInstanceId=(\d+)/i);
+    const availEventMatch = rawUrl.match(/purchase\.surrey\.ca\/EventAvailability\?.*EventId=(\d+)/i);
+    if (!chooseMatch && !availEventMatch) return "";
+    const targetNumericInstId = chooseMatch ? chooseMatch[1] : null;
+    const targetNumericEventId = availEventMatch ? availEventMatch[1] : null;
+
+    if (!_surreySpektrixEventsRuntimeCache) {
+      const evRes = await fetch("https://ticketing.purchase.surrey.ca/surreycivictheatresbc/api/v3/events", { signal: AbortSignal.timeout(6000) });
+      if (evRes.ok) {
+        const parsed = await evRes.json();
+        if (Array.isArray(parsed)) _surreySpektrixEventsRuntimeCache = parsed;
+      }
+    }
+    const eventsList = Array.isArray(_surreySpektrixEventsRuntimeCache) ? _surreySpektrixEventsRuntimeCache : [];
+
+    // Locate the full alphanumeric Spektrix Instance ID & parent Event from /api/v3/instances?instanceStart_from=today
+    if (!_surreySpektrixInstancesRuntimeCache) {
+      const todayIso = new Date().toISOString().slice(0, 10);
+      const instListRes = await fetch(
+        `https://ticketing.purchase.surrey.ca/surreycivictheatresbc/api/v3/instances?instanceStart_from=${todayIso}`,
+        { signal: AbortSignal.timeout(6000) }
+      );
+      if (instListRes.ok) {
+        const allInsts = await instListRes.json();
+        if (Array.isArray(allInsts)) _surreySpektrixInstancesRuntimeCache = allInsts;
+      }
+    }
+    const matchedInst = Array.isArray(_surreySpektrixInstancesRuntimeCache)
+      ? _surreySpektrixInstancesRuntimeCache.find((inst) => {
+          if (!inst) return false;
+          if (targetNumericInstId) return String(parseInt(inst.id, 10)) === targetNumericInstId;
+          if (targetNumericEventId && inst.event?.id) return String(parseInt(inst.event.id, 10)) === targetNumericEventId;
+          return false;
+        })
+      : null;
+    if (!matchedInst) return "";
+
+    const parentEventId = matchedInst.event && matchedInst.event.id ? matchedInst.event.id : null;
+    const parentEvent = parentEventId
+      ? eventsList.find((ev) => ev && ev.id === parentEventId) || null
+      : null;
+
+    const [statusRes, priceRes] = await Promise.all([
+      fetch(`https://ticketing.purchase.surrey.ca/surreycivictheatresbc/api/v3/instances/${encodeURIComponent(matchedInst.id)}/status`, {
+        signal: AbortSignal.timeout(6000),
+      }).catch(() => null),
+      fetch(`https://ticketing.purchase.surrey.ca/surreycivictheatresbc/api/v3/instances/${encodeURIComponent(matchedInst.id)}/price-list`, {
+        signal: AbortSignal.timeout(6000),
+      }).catch(() => null),
+    ]);
+
+    const statusJson = statusRes && statusRes.ok ? await statusRes.json().catch(() => null) : null;
+    const priceJson = priceRes && priceRes.ok ? await priceRes.json().catch(() => null) : null;
+
+    const eventName = parentEvent?.name || "";
+    const eventDesc = String(parentEvent?.htmlDescription || parentEvent?.description || "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const startIso = String(matchedInst.start || "");
+    const availableCount = statusJson && typeof statusJson.available === "number" ? statusJson.available : null;
+    const capacityCount = statusJson && typeof statusJson.capacity === "number" ? statusJson.capacity : null;
+    const hallName = statusJson?.name || "";
+
+    const tierLines = [];
+    if (priceJson && Array.isArray(priceJson.prices)) {
+      const seen = new Set();
+      const sorted = [...priceJson.prices]
+        .filter((p) => p && typeof p.amount === "number")
+        .sort((a, b) => a.amount - b.amount);
+      for (const p of sorted) {
+        const tName = p.ticketType?.name || "General Admission";
+        const bName = p.priceBand?.name || "";
+        const key = `${tName}:${p.amount}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        tierLines.push(`- ${tName}${bName ? ` (${bName})` : ""}: $${p.amount.toFixed(2)} CAD (fees & taxes included, base=$${p.amount.toFixed(2)}, fee=$0.00, tax=$0.00, all_in=$${p.amount.toFixed(2)})`);
+      }
+    }
+
+    const isClaytonHall = /clayton\s+community\s+centre/i.test(`${hallName} ${eventName} ${eventDesc}`);
+    const resolvedVenueLine = isClaytonHall
+      ? `VENUE: Clayton Community Centre (7155 187A St, Surrey, BC — ${hallName || "Performing Arts Studio"})`
+      : (hallName ? `STAGE / HALL: ${hallName} (Surrey Civic Theatres / Surrey Arts Centre)` : "");
+
+    return [
+      `--- LIVE SURREY CIVIC THEATRES SPEKTRIX CHECKOUT LEDGER (purchase.surrey.ca/ChooseSeats/${targetNumericInstId}) ---`,
+      eventName ? `EVENT TITLE: ${eventName}` : "",
+      resolvedVenueLine,
+      startIso ? `PERFORMANCE START: ${startIso}` : "",
+      availableCount !== null ? `INVENTORY STATUS: ${availableCount > 0 ? `AVAILABLE (${availableCount} of ${capacityCount || "?"} seats remaining — is_sold_out: false)` : "SOLD OUT (0 seats remaining — is_sold_out: true)"}` : "",
+      tierLines.length > 0 ? `VERIFIED SINGLE-VISIT TICKET TIERS (CAD):\n${tierLines.join("\n")}` : "",
+      eventDesc ? `EVENT DESCRIPTION: ${eventDesc.slice(0, 800)}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  } catch (_) {
+    return "";
+  }
+}
+
+const _bellSpektrixRuntimeCache = new Map();
+async function fetchBellSpektrixLiveCartContext(rawUrl, extraText = "") {
+  try {
+    const combinedProbe = `${rawUrl || ""}\n${extraText || ""}`;
+    if (!/bellperformingartscentre\.com/i.test(combinedProbe)) return "";
+    const instMatch =
+      combinedProbe.match(/[?&]EventInstanceId=(\d+)/i) ||
+      combinedProbe.match(/ChooseSeats\/(\d+)/i);
+    const eventMatch = combinedProbe.match(/[?&](?:EventId|WebEventId)=(\d+)/i);
+    if (!instMatch && !eventMatch) return "";
+    const targetNumericInstId = instMatch ? instMatch[1] : null;
+    const targetNumericEventId = eventMatch ? eventMatch[1] : null;
+
+    const explicitSlugMatch = combinedProbe.match(/(?:tickets\.bellperformingartscentre\.com|system\.spektrix\.com)\/([a-z0-9_-]+)\//i);
+    const clientCandidates = Array.from(
+      new Set([explicitSlugMatch ? explicitSlugMatch[1] : null, "bellperformingartscentre", "bellcentre"].filter(Boolean))
+    );
+    const hostCandidates = ["https://tickets.bellperformingartscentre.com", "https://system.spektrix.com"];
+
+    let activeBase = null;
+    let eventsList = [];
+    let instancesList = [];
+    const todayIso = new Date().toISOString().slice(0, 10);
+
+    for (const host of hostCandidates) {
+      for (const slug of clientCandidates) {
+        const base = `${host}/${slug}/api/v3`;
+        if (_bellSpektrixRuntimeCache.has(base)) {
+          const cached = _bellSpektrixRuntimeCache.get(base);
+          if (cached) {
+            activeBase = base;
+            eventsList = cached.events;
+            instancesList = cached.instances;
+            break;
+          }
+          continue;
+        }
+        const instRes = await fetch(`${base}/instances?instanceStart_from=${todayIso}`, {
+          signal: AbortSignal.timeout(5000),
+        }).catch(() => null);
+        if (instRes && instRes.ok) {
+          const parsedInsts = await instRes.json().catch(() => null);
+          if (Array.isArray(parsedInsts)) {
+            const evRes = await fetch(`${base}/events`, { signal: AbortSignal.timeout(5000) }).catch(() => null);
+            const parsedEvs = evRes && evRes.ok ? await evRes.json().catch(() => []) : [];
+            eventsList = Array.isArray(parsedEvs) ? parsedEvs : [];
+            instancesList = parsedInsts;
+            _bellSpektrixRuntimeCache.set(base, { events: eventsList, instances: instancesList });
+            activeBase = base;
+            break;
+          }
+        }
+        _bellSpektrixRuntimeCache.set(base, null);
+      }
+      if (activeBase) break;
+    }
+
+    if (!activeBase || instancesList.length === 0) return "";
+    const matchedInst = instancesList.find((inst) => {
+      if (!inst) return false;
+      if (targetNumericInstId) return String(parseInt(inst.id, 10)) === targetNumericInstId;
+      if (targetNumericEventId && inst.event?.id) return String(parseInt(inst.event.id, 10)) === targetNumericEventId;
+      return false;
+    });
+    if (!matchedInst) return "";
+
+    const parentEvent = matchedInst.event?.id
+      ? eventsList.find((ev) => ev && ev.id === matchedInst.event.id) || null
+      : null;
+
+    const [statusRes, priceRes] = await Promise.all([
+      fetch(`${activeBase}/instances/${encodeURIComponent(matchedInst.id)}/status`, {
+        signal: AbortSignal.timeout(5000),
+      }).catch(() => null),
+      fetch(`${activeBase}/instances/${encodeURIComponent(matchedInst.id)}/price-list`, {
+        signal: AbortSignal.timeout(5000),
+      }).catch(() => null),
+    ]);
+    const statusJson = statusRes && statusRes.ok ? await statusRes.json().catch(() => null) : null;
+    const priceJson = priceRes && priceRes.ok ? await priceRes.json().catch(() => null) : null;
+
+    const eventName = parentEvent?.name || "";
+    const eventDesc = String(parentEvent?.htmlDescription || parentEvent?.description || "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const startIso = String(matchedInst.start || "");
+    const availableCount = statusJson && typeof statusJson.available === "number" ? statusJson.available : null;
+    const capacityCount = statusJson && typeof statusJson.capacity === "number" ? statusJson.capacity : null;
+
+    const tierLines = [];
+    if (priceJson && Array.isArray(priceJson.prices)) {
+      const seen = new Set();
+      const sorted = [...priceJson.prices]
+        .filter((p) => p && typeof p.amount === "number")
+        .sort((a, b) => a.amount - b.amount);
+      for (const p of sorted) {
+        const tName = p.ticketType?.name || "Reserved Seating";
+        const bName = p.priceBand?.name || "";
+        const key = `${tName}:${p.amount}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        tierLines.push(`- ${tName}${bName ? ` (${bName})` : ""}: $${p.amount.toFixed(2)} CAD (base=$${p.amount.toFixed(2)}, fee=$0.00, tax=$0.00, all_in=$${p.amount.toFixed(2)})`);
+      }
+    }
+
+    return [
+      `--- LIVE BELL PERFORMING ARTS CENTRE SPEKTRIX CHECKOUT LEDGER ---`,
+      eventName ? `EVENT TITLE: ${eventName}` : "",
+      `VENUE: Bell Performing Arts Centre (6250 144 St, Surrey, BC)`,
+      startIso ? `PERFORMANCE START: ${startIso}` : "",
+      availableCount !== null ? `INVENTORY STATUS: ${availableCount > 0 ? `AVAILABLE (${availableCount} of ${capacityCount || "?"} seats remaining — is_sold_out: false)` : "SOLD OUT (0 seats remaining — is_sold_out: true)"}` : "",
+      tierLines.length > 0 ? `VERIFIED SINGLE-VISIT TICKET TIERS (CAD):\n${tierLines.join("\n")}` : "",
+      eventDesc ? `EVENT DESCRIPTION: ${eventDesc.slice(0, 800)}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  } catch (_) {
+    return "";
+  }
+}
 
 /**
  * Rotates `data/backups/` so each backup series (`events_`, `venues_`, `queue_`) retains
@@ -83,7 +329,7 @@ export function rotateBackupDirectory(maxPerSeries = 10) {
             fs.unlinkSync(item.fullPath);
             prunedCount++;
             freedBytes += item.size;
-          } catch (_) {}
+          } catch (_) { }
         }
       }
     }
@@ -356,7 +602,13 @@ export async function findDirectTicketingUrl(page) {
     "tickets.admitone.com",
     "tickets.jflvancouver.com",
     "secure.vancouversymphony.ca",
-    "tickets.ubc.ca"
+    "tickets.ubc.ca",
+    "purchase.surrey.ca",
+    "tickets.surrey.ca",
+    "tickets.bellperformingartscentre.com",
+    "vbotickets.com",
+    "gatehopper.com",
+    "tickettailor.com"
   ];
 
   const normalizeEmbeddedWidgetUrl = (rawUrl) => {
@@ -370,6 +622,14 @@ export async function findDirectTicketingUrl(page) {
           return `https://www.eventbrite.ca/e/${eid}`;
         }
       }
+      // Convert raw cross-origin Surrey Spektrix ChooseSeats.aspx?EventInstanceId=123 iframe URL into clean wrapper URL
+      if (u.hostname.toLowerCase().includes("ticketing.purchase.surrey.ca") && /chooseseats\.aspx/i.test(u.pathname)) {
+        const instParam = u.searchParams.get("EventInstanceId") || u.searchParams.get("eventinstanceid") || "";
+        const numMatch = String(instParam).match(/^(\d+)/);
+        if (numMatch) {
+          return `https://purchase.surrey.ca/ChooseSeats/${numMatch[1]}`;
+        }
+      }
       return rawUrl;
     } catch (_) {
       return rawUrl;
@@ -380,7 +640,10 @@ export async function findDirectTicketingUrl(page) {
     // 0. Check Playwright/Stagehand child frames first for cross-origin ticketing widgets
     if (typeof page.frames === "function") {
       const currentMainUrl = String((await page.url()) || "");
-      if (!ticketDomains.some((d) => currentMainUrl.toLowerCase().includes(d))) {
+      if (
+        !ticketDomains.some((d) => currentMainUrl.toLowerCase().includes(d)) &&
+        !/purchase\.surrey\.ca\/(?:ChooseSeats\/\d+|EventAvailability)/i.test(currentMainUrl)
+      ) {
         for (const frame of page.frames()) {
           try {
             const fUrl = frame.url() || "";
@@ -389,7 +652,14 @@ export async function findDirectTicketingUrl(page) {
                 const promoted = normalizeEmbeddedWidgetUrl(fUrl);
                 const u = new URL(promoted);
                 const p = u.pathname.replace(/\/+$/, "");
-                if (p && p.length > 2 && p !== "/events" && p !== "/home") {
+                if (
+                  p &&
+                  p.length > 2 &&
+                  p !== "/events" &&
+                  p !== "/home" &&
+                  p !== "/discover" &&
+                  !/^\/(?:discover|cities|explore|d|m|o|s|ttd|cc)(?:\/|$)/i.test(p)
+                ) {
                   return {
                     href: promoted,
                     text: "embedded_cross_origin_iframe",
@@ -410,7 +680,8 @@ export async function findDirectTicketingUrl(page) {
       if (
         domains.some((d) => currentHref.toLowerCase().includes(d)) ||
         /viff\.org\/whats-on\/[^/]+\/book\/[a-z0-9_-]+/i.test(currentHref) ||
-        /thecultch\.com\/ticket\/[^?]*\?(?:.*(?:EventInstanceId=|WebEventId=))/i.test(currentHref)
+        /thecultch\.com\/ticket\/[^?]*\?(?:.*(?:EventInstanceId=|WebEventId=))/i.test(currentHref) ||
+        /purchase\.surrey\.ca\/(?:ChooseSeats\/\d+|EventAvailability)/i.test(currentHref)
       ) {
         return null;
       }
@@ -461,8 +732,15 @@ export async function findDirectTicketingUrl(page) {
             try {
               const u = new URL(href);
               const path = u.pathname.replace(/\/+$/, "");
-              // Reject root landing pages or generic directories
-              if (path && path.length > 2 && path !== "/events" && path !== "/home") {
+              // Reject root landing pages, city discovery directories (/discover/*, /d/*), or organizer indexes
+              if (
+                path &&
+                path.length > 2 &&
+                path !== "/events" &&
+                path !== "/home" &&
+                path !== "/discover" &&
+                !/^\/(?:discover|cities|explore|d|m|o|s|ttd|cc|venues|organizations)(?:\/|$)/i.test(path)
+              ) {
                 return {
                   href,
                   text: (a.innerText || "").trim(),
@@ -489,8 +767,14 @@ export async function findDirectTicketingUrl(page) {
         }
       }
 
-      // Priority 2: Anchor with prominent "Buy Tickets" / "Get Tickets" text pointing to different path
+      // Priority 2: Anchor with prominent "Buy Tickets" / "Get Tickets" / "Choose Seats" text pointing to different path
+      const genericNavPaths = new Set([
+        "/events", "/shows", "/calendar", "/whats-on", "/whatson",
+        "/tickets", "/season", "/home", "/programs", "/exhibitions",
+        "/upcoming-events", "/schedule"
+      ]);
       for (const a of anchors) {
+        if (a.closest("header, nav, footer, [role='navigation']")) continue;
         const text = (a.innerText || "").trim().toLowerCase();
         const href = a.href || "";
         if (
@@ -503,12 +787,15 @@ export async function findDirectTicketingUrl(page) {
             text === "purchase tickets" ||
             text === "book tickets" ||
             text === "book now" ||
+            text === "choose seats" ||
+            text === "select seats" ||
+            text === "find tickets" ||
             text === "tickets")
         ) {
           try {
             const u = new URL(href);
             const path = u.pathname.replace(/\/+$/, "");
-            if (path && path.length > 2) {
+            if (path && path.length > 2 && !genericNavPaths.has(path.toLowerCase())) {
               return {
                 href,
                 text: (a.innerText || "").trim(),
@@ -708,24 +995,26 @@ export async function collectAllFramesText(page, extraContextText = "") {
       // while preserving all main content, modals, dialogs, and checkout widgets.
       const mainContainer = document.querySelector("main, [role='main'], #main, #content, .main-content");
       const modals = Array.from(
-        document.querySelectorAll("[role='dialog'], [aria-modal='true'], .modal.show, .modal.in, [class*='checkout' i], [class*='ticket' i], [class*='cart' i]")
+        document.querySelectorAll(
+          ".cdk-overlay-container, [role='dialog'], [aria-modal='true'], .modal-dialog, .modal-content, .modal.show, .modal.in, .chakra-modal__content, [class*='modal-body' i], [class*='checkout' i], [class*='cart' i]"
+        )
       )
+        .filter((el) => el.offsetParent !== null)
         .map((el) => (el.innerText || "").trim())
         .filter((t) => t.length > 15);
+      const uniqueModals = Array.from(new Set(modals));
       let rawBodyText = "";
       if (mainContainer && (mainContainer.innerText || "").trim().length > 150) {
-        rawBodyText = [mainContainer.innerText, ...modals].join("\n\n");
+        rawBodyText = mainContainer.innerText.trim();
       } else {
-        const clone = document.body.cloneNode(true);
-        clone
-          .querySelectorAll("header, nav, footer, [role='navigation'], [role='contentinfo'], [class*='cookie' i], [id*='cookie' i], [class*='newsletter' i]")
-          .forEach((el) => el.remove());
-        const clonedText = (clone.innerText || "").trim();
-        rawBodyText = clonedText.length > 100 ? clonedText : document.body.innerText || "";
+        rawBodyText = (document.body.innerText || "").trim();
       }
-      return { title, text: rawBodyText };
+      return { title, modalsText: uniqueModals.join("\n\n"), text: rawBodyText };
     });
     sections.push(`PAGE TITLE: ${mainSnap.title}`);
+    if (mainSnap.modalsText && mainSnap.modalsText.length > 0) {
+      sections.push(`\n--- LIVE INTERACTIVE CHECKOUT MODAL / OVERLAY (HIGHEST PRIORITY — SUPERSEDES OUTER BANNERS) ---\n${mainSnap.modalsText}`);
+    }
     if (accordionText && accordionText.trim().length > 0) {
       sections.push(`\n--- HIGH-SIGNAL EXPANDED ACCORDION & BOX OFFICE PRICING CONTEXT ---\n${accordionText.trim()}`);
     }
@@ -769,7 +1058,58 @@ export async function collectAllFramesText(page, extraContextText = "") {
       } catch (_) { }
     }
   }
+  try {
+    const liveUrl = (typeof page.url === "function" ? await page.url() : "") || "";
+    if (/purchase\.surrey\.ca\/(?:ChooseSeats\/\d+|EventAvailability)|EventInstanceId=\d+/i.test(liveUrl)) {
+      const surreyCtx = await fetchSurreySpektrixLiveCartContext(liveUrl);
+      if (surreyCtx) sections.push(`\n${surreyCtx}`);
+    }
+    if (/bellperformingartscentre\.com/i.test(liveUrl)) {
+      const bellCtx = await fetchBellSpektrixLiveCartContext(liveUrl, sections.join("\n"));
+      if (bellCtx) sections.push(`\n${bellCtx}`);
+    }
+  } catch (_) { }
   return sections.join("\n").slice(0, 18000);
+}
+
+/**
+ * Waits for cross-origin ticketing iframes (e.g. Surrey Spektrix ChooseSeats/<ID>) to mount & render,
+ * and enriches `info.text` with embedded child frame text + live Spektrix API checkout context so
+ * Gate 5 (`checkEntityMatchesPage`) and `_cart.png` keyframes never inspect an empty parent SPA shell.
+ */
+async function enrichPageInfoWithFrames(page, info, urlHint = "") {
+  if (!page || !info) return info;
+  const activeUrl = String(info.url || urlHint || "");
+  const isSurreyChooseSeats = /purchase\.surrey\.ca\/ChooseSeats\/\d+/i.test(activeUrl);
+  const hasAnyIframe = isSurreyChooseSeats || (await page.evaluate(() => document.querySelectorAll("iframe").length > 0).catch(() => false));
+  if (!hasAnyIframe) return info;
+
+  if (isSurreyChooseSeats && typeof page.frames === "function") {
+    const startWait = Date.now();
+    while (Date.now() - startWait < 4500) {
+      let frameReady = false;
+      const mainF = typeof page.mainFrame === "function" ? page.mainFrame() : null;
+      for (const f of page.frames()) {
+        if (mainF && f === mainF) continue;
+        const fu = (f.url() || "").toLowerCase();
+        if (fu.includes("spektrix") || fu.includes("ticketing.purchase.surrey.ca")) {
+          const ft = await f.evaluate(() => (document.body ? document.body.innerText : "")).catch(() => "");
+          if (ft && ft.trim().length > 30) {
+            frameReady = true;
+            break;
+          }
+        }
+      }
+      if (frameReady) break;
+      await new Promise((r) => setTimeout(r, 350));
+    }
+  }
+
+  const multiFrameText = await collectAllFramesText(page).catch(() => "");
+  if (multiFrameText && multiFrameText.trim().length > 0) {
+    info.text = `${info.text || ""}\n\n${multiFrameText}`;
+  }
+  return info;
 }
 
 /**
@@ -1265,6 +1605,38 @@ function interleaveTargetsByDomain(targets) {
 async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = null) {
   const eventId = eventCard.id || eventCard.event_id;
 
+  // Gate 2d Fast-Path Exclusion: Closed school/college graduation ceremonies & aggregator city directory stubs (/discover/*)
+  // Immediately stamp FATAL_EMPTY_STUB without launching Chromium so cohort runs persist 100% of items to layer_box_office.json and Stage 5 auto-archives them.
+  const rawCheckTitle = String(eventCard.title || eventCard.event_name || "").trim();
+  const rawCheckUrls = [eventCard.ticket_url, eventCard.details_url, eventCard.candidate_tier1_url, eventCard.source_url]
+    .filter((u) => u && typeof u === "string");
+  const isAggregatorCityDirectoryOnly =
+    /^discover\s+events\s+in\s+/i.test(rawCheckTitle) ||
+    (rawCheckUrls.length > 0 && rawCheckUrls.every((u) => /showpass\.com\/(?:discover|cities|explore|m)(?:\/|[?#]|$)|eventbrite\.(?:ca|com)\/(?:d|ttd|cc)(?:\/|[?#]|$)/i.test(u)));
+  const isClosedGraduationCeremony =
+    /\b(?:graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?)\b/i.test(rawCheckTitle) ||
+    rawCheckUrls.some((u) => /\/(?:[a-z0-9-]*-)?(?:coll(?:e|a)ge-grad|graduation-ceremony|convocation)(?:\/|[?#]|$)/i.test(u));
+
+  if (isAggregatorCityDirectoryOnly || isClosedGraduationCeremony) {
+    const excludeReason = isClosedGraduationCeremony
+      ? `Excluded non-public graduation/convocation ceremony ("${rawCheckTitle}")`
+      : `Excluded aggregator city discovery directory stub ("${rawCheckTitle}")`;
+    console.log(`🛑 [Gate 2d Non-Event Exclusion] Skipping Chromium launch for ${eventId}: ${excludeReason}`);
+    return {
+      success: false,
+      eventId,
+      status: "FATAL_EMPTY_STUB",
+      error: excludeReason,
+      card: {
+        ...eventCard,
+        ticket_url: null,
+        failed_url: rawCheckUrls[0] || null,
+        quarantineReason: "fatal_empty_stub",
+      },
+      durationSec: 0,
+    };
+  }
+
   // Rule 1.1 & 1.2 + Anti-Laziness Safety Rails 1 & 2:
   // Stagehand browser bypass is strictly restricted to Venue-Registry Grounded Open Public Spaces (`open_public_space` / `free_public_access` in venues.json)
   // that have ZERO specific calendar dates, ZERO showtimes, ZERO paid prices, and ZERO ticketing portal URLs.
@@ -1351,10 +1723,48 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     console.warn(`⚠️ Warning in Stagehand pre-flight link check: ${preErr.message}`);
   }
 
-  let targetUrl = eventCard.ticket_url || eventCard.details_url || eventCard.websiteUrl || eventCard.discovery_url;
-  let candidateUrl = eventCard.candidate_tier1_url;
+  const isGenericIndexTargetUrl = (raw) => {
+    if (!raw || typeof raw !== "string" || !raw.startsWith("http")) return false;
+    try {
+      const u = new URL(raw);
+      const host = u.hostname.toLowerCase();
+      const p = u.pathname.replace(/\/+$/, "").toLowerCase();
+      if (host.includes("showpass.") && /^\/(?:discover|cities|explore|o|s|m|venues|organizations|search)(?:\/|$)/i.test(p)) {
+        return true;
+      }
+      if (host.includes("eventbrite.") && /^\/(?:d|ttd|cc|o|l)(?:\/|$)/i.test(p)) {
+        return true;
+      }
+      return (
+        !u.search &&
+        ["", "/events", "/shows", "/calendar", "/whats-on", "/whatson", "/tickets", "/programs", "/exhibitions", "/upcoming-events", "/discover"].includes(p)
+      );
+    } catch (_) {
+      return false;
+    }
+  };
+  const specificEventUrl = [
+    eventCard.details_url,
+    eventCard.links && eventCard.links.tier2_event_page,
+    eventCard.source_url,
+    eventCard.discovery_url
+  ].find((u) => u && typeof u === "string" && u.startsWith("http") && !isGenericIndexTargetUrl(u));
+
+  let targetUrl = normalizeSurreyCheckoutWrapperUrl(
+    (eventCard.ticket_url && !isGenericIndexTargetUrl(eventCard.ticket_url) ? eventCard.ticket_url : null) ||
+    specificEventUrl ||
+    eventCard.ticket_url ||
+    eventCard.details_url ||
+    eventCard.websiteUrl ||
+    eventCard.discovery_url
+  );
+  let candidateUrl =
+    eventCard.candidate_tier1_url && !isGenericIndexTargetUrl(eventCard.candidate_tier1_url)
+      ? normalizeSurreyCheckoutWrapperUrl(eventCard.candidate_tier1_url)
+      : null;
   let candidateVerified = false;
 
+  let resolvedSurreyAvailabilityUrl = null;
   // Upgrade Tightrope Theatre / Ticket Tailor series or modal widget URLs directly to Step 2 Ticket Selection URLs
   for (const urlToUpgrade of [candidateUrl, targetUrl].filter(Boolean)) {
     if (/tightropetheatre\.com\/events\/|tickettailor\.com\/events\//i.test(urlToUpgrade)) {
@@ -1397,6 +1807,33 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         break;
       }
     }
+    if (/purchase\.surrey\.ca\/|surrey\.ca\/news-events\/events\//i.test(urlToUpgrade)) {
+      const surreyUp = await resolveSurreyDirectCheckoutUrl(urlToUpgrade, eventCard);
+      if (surreyUp && surreyUp.directCheckoutUrl) {
+        if (urlToUpgrade !== surreyUp.directCheckoutUrl) {
+          console.log(`🎟️ [Surrey Spektrix Direct Checkout] Upgraded ${urlToUpgrade} -> ${surreyUp.directCheckoutUrl}`);
+        }
+        targetUrl = surreyUp.directCheckoutUrl;
+        candidateUrl = surreyUp.directCheckoutUrl;
+        resolvedSurreyAvailabilityUrl = surreyUp.eventAvailabilityUrl || null;
+        eventCard.ticket_url = surreyUp.directCheckoutUrl;
+        eventCard.candidate_tier1_url = surreyUp.directCheckoutUrl;
+        if (surreyUp.seriesEventUrl) {
+          eventCard.details_url = surreyUp.seriesEventUrl;
+        }
+        if (surreyUp.firstDate && (!eventCard.date || eventCard.date === "none_available" || eventCard.date === "search_exhausted_null")) {
+          eventCard.date = surreyUp.firstDate;
+          if (surreyUp.firstStartTime) {
+            eventCard.time = surreyUp.firstStartTime;
+            eventCard.start_time = surreyUp.firstStartTime;
+          }
+          if (Array.isArray(surreyUp.showings) && surreyUp.showings.length > 0) {
+            eventCard.showings = surreyUp.showings;
+          }
+        }
+        break;
+      }
+    }
   }
 
   let preservedViffBookUrl = null;
@@ -1405,11 +1842,25 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       /^https?:\/\/(?:www\.)?viff\.org\/whats-on\/[^/]+\/book\/[^/]+/i.test(String(u)) ||
       /^https?:\/\/tickets\.thecinematheque\.ca\/.*evtinfo=/i.test(String(u)) ||
       /^https?:\/\/secure\.vancouversymphony\.ca\/\d+/i.test(String(u)) ||
-      /^https?:\/\/tickets\.ubc\.ca\/online\//i.test(String(u))
+      /^https?:\/\/tickets\.ubc\.ca\/online\//i.test(String(u)) ||
+      /^https?:\/\/purchase\.surrey\.ca\/ChooseSeats\/\d+/i.test(String(u))
     ) {
       preservedViffBookUrl = u;
       break;
     }
+  }
+
+  // Surrey Civic Theatres (`ticketing.purchase.surrey.ca/.../ChooseSeats.aspx` iframe) serves Cloudflare 403 `X-Frame-Options: SAMEORIGIN`
+  // to headless browsers (rendering Chrome's grey blocked-frame icon), whereas `purchase.surrey.ca/EventAvailability?EventId=<ID>`
+  // renders natively via React + Spektrix REST API v3! Navigate headless Chromium to `EventAvailability` for clean DOM & `_cart.png`
+  // keyframe capture while preserving `preservedViffBookUrl` (`https://purchase.surrey.ca/ChooseSeats/<InstanceId>`) as the Tier 1 checkout link.
+  if (
+    targetUrl &&
+    /^https?:\/\/purchase\.surrey\.ca\/ChooseSeats\/\d+/i.test(targetUrl) &&
+    resolvedSurreyAvailabilityUrl
+  ) {
+    targetUrl = resolvedSurreyAvailabilityUrl;
+    candidateUrl = null;
   }
 
   // Agile Ticketing (tickets.thecinematheque.ca) serves an Imperva Incapsula WAF challenge to headless browsers;
@@ -1455,6 +1906,30 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     };
   }
 
+  // Gate 4 Pre-Flight Disqualifier: Reject standalone Season/Annual Passes and non-event team roster tables before browser launch
+  const rawTitleForGate4 = String(eventCard.title || eventCard.event_name || "").trim();
+  const isStandalonePassOrRoster =
+    /\/(?:season-pass|annual-pass|membership-pass)(?:[-/]|$)/i.test(targetUrl) ||
+    /\/stats\/roster\//i.test(targetUrl) ||
+    /^(?:season\s+pass|annual\s+pass|membership\s+pass)\b|\b(?:season\s+pass|annual\s+pass)\s*[-–:]|\broster\s+(?:202\d[-–]\d{2}|regular\s+season)\b/i.test(rawTitleForGate4);
+  if (isStandalonePassOrRoster) {
+    const disqReason = /roster/i.test(`${targetUrl} ${rawTitleForGate4}`)
+      ? "Sports team player roster table (not a ticketed event)"
+      : "Standalone season/annual pass listing excluded per Gate 4 single-visit rule";
+    console.warn(`🚫 [Gate 4 Disqualifier] Rejecting "${rawTitleForGate4}" (${targetUrl}): ${disqReason}`);
+    return {
+      success: false,
+      eventId,
+      status: "FATAL_MERCH_OR_PASS",
+      error: disqReason,
+      card: {
+        ...eventCard,
+        quarantine_reason: "fatal_merch_or_pass",
+        last_qc_audited_at: new Date().toISOString(),
+      },
+    };
+  }
+
   console.log(`\n================================================================`);
   console.log(`⚡ AUDITING: ${eventCard.title || eventCard.event_name}`);
   console.log(`🏛️ Venue: ${eventCard.venue || eventCard.venue_name}`);
@@ -1491,6 +1966,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           text: document.body ? document.body.innerText : "",
           url: window.location.href,
         }));
+        await enrichPageInfoWithFrames(candidatePage, candInfo, candidateUrl);
 
         const candDead = checkPageDeadOr404(candInfo);
         const candEntity = checkEntityMatchesPage(eventCard.title || eventCard.event_name, candInfo.title, candInfo.text, {
@@ -1558,6 +2034,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         hasAntiBotChallenge,
       };
     });
+    await enrichPageInfoWithFrames(page, pageInfo, targetUrl);
 
     let deadCheck = checkPageDeadOr404(pageInfo);
     const trimmedTitle = String(pageInfo.title || "").trim();
@@ -1668,12 +2145,27 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     // Pre-navigation Accordion & Cookie Hygiene: Expand collapsed accordions (e.g. The Cultch "Ticket Info")
     // on the initial event page BEFORE following external/secondary links so parent-page pricing is never lost!
     const parentAccordionContext = await expandAccordionsAndExtractHiddenContext(page);
+    const parentPageSummaryContext = await page.evaluate(() => {
+      const mainEl = document.querySelector("main, [role='main'], #main, #content, .main-content, article") || document.body;
+      if (!mainEl) return "";
+      const txt = (mainEl.innerText || "").replace(/\s+/g, " ").trim();
+      return txt.length > 30 ? `PARENT TIER-2 EVENT PAGE SUMMARY:\n${txt.slice(0, 3000)}` : "";
+    }).catch(() => "");
 
     // Direct Ticketing Button, Cross-Origin Iframe & External Portal Traversal
     const ticketingTarget = await findDirectTicketingUrl(page);
     let checkoutUrl = targetUrl;
     const currentLivePageUrl = (await page.url().catch(() => "")) || pageInfo?.url || targetUrl;
-    if (
+    const isBellBlockedSpektrixChooseSeats =
+      /bellperformingartscentre\.com\/events\//i.test(currentLivePageUrl) &&
+      ticketingTarget?.href &&
+      /bellperformingartscentre\.com\/(?:choose-seats|.*ChooseSeats\.aspx)/i.test(ticketingTarget.href);
+    if (isBellBlockedSpektrixChooseSeats) {
+      if (!preservedViffBookUrl && /[?&]EventInstanceId=\d+/i.test(ticketingTarget.href)) {
+        preservedViffBookUrl = ticketingTarget.href;
+      }
+      console.log(`🛡️ [Bell Spektrix Iframe Guard] Preserving ${ticketingTarget.href} without leaving verified /events/ page (prevents Cloudflare X-Frame-Options blank iframe).`);
+    } else if (
       ticketingTarget &&
       ticketingTarget.href &&
       ticketingTarget.href !== currentLivePageUrl
@@ -1692,6 +2184,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           text: document.body ? document.body.innerText : "",
           url: window.location.href,
         }));
+        await enrichPageInfoWithFrames(page, portalInfo, checkoutUrl);
         const portalDead = checkPageDeadOr404(portalInfo);
         const portalEntity = checkEntityMatchesPage(
           eventCard.title || eventCard.event_name,
@@ -1774,7 +2267,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       const cartDomInspection = await page.evaluate(() => {
         const text = (document.body ? document.body.innerText : "").toLowerCase();
         const currentUrl = window.location.href.toLowerCase();
-        const isKnownTicketPlatform = /showpass\.|eventbrite\.|ticketmaster\.|spektrix\.|universe\.|ticketweb\.|admitone\.|admitonelive\.|riotheatretickets\.|bloomtickets\.|humanitix\.|jflvancouver\.|secure\.vancouversymphony\.ca|tickets\.ubc\.ca|dice\.fm|ovationtix\.|vtixonline\.|tickit\.ca|zeffy\.|exploretock\.|weeztix\./i.test(currentUrl);
+        const isKnownTicketPlatform = /showpass\.|eventbrite\.|ticketmaster\.|spektrix\.|purchase\.surrey\.ca|universe\.|ticketweb\.|admitone\.|admitonelive\.|riotheatretickets\.|bloomtickets\.|humanitix\.|jflvancouver\.|secure\.vancouversymphony\.ca|tickets\.ubc\.ca|dice\.fm|ovationtix\.|vtixonline\.|tickit\.ca|zeffy\.|exploretock\.|weeztix\./i.test(currentUrl);
 
         // Check actual interactive elements (buttons, links, inputs, selects, dialogs) for cart/checkout triggers
         const clickables = Array.from(document.querySelectorAll('button, a[href], [role="button"], input[type="button"], input[type="submit"]'));
@@ -1801,15 +2294,16 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
             !text.includes("cart"));
 
         const isAlreadyOnDirectCartPage =
-          /\/whats-on\/[^/]+\/book\/|\/ticket\/.*[?&](?:eventinstanceid|webeventid)=|chooseseats\.aspx|\/checkout\/|secure\.vancouversymphony\.ca\/\d+|tickets\.ubc\.ca\/online\//i.test(currentUrl);
+          /\/whats-on\/[^/]+\/book\/|\/ticket\/.*[?&](?:eventinstanceid|webeventid)=|chooseseats\.aspx|purchase\.surrey\.ca\/(?:chooseseats\/\d+|eventavailability)|\/checkout\/|secure\.vancouversymphony\.ca\/\d+|tickets\.ubc\.ca\/online\//i.test(currentUrl);
 
         const isCinemathequeFilmPage = currentUrl.includes("thecinematheque.ca/");
+        const isBellEventSubpage = currentUrl.includes("bellperformingartscentre.com/events/");
 
         return {
-          hasInteractiveCart: !isCinemathequeFilmPage && Boolean(isKnownTicketPlatform || isAlreadyOnDirectCartPage || hasActionableTicketTrigger || hasQuantityControls || hasTicketingIframe),
+          hasInteractiveCart: !isCinemathequeFilmPage && !isBellEventSubpage && Boolean(isKnownTicketPlatform || isAlreadyOnDirectCartPage || hasActionableTicketTrigger || hasQuantityControls || hasTicketingIframe),
           isAlreadyOnDirectCartPage,
           hasQuantityControls,
-          isStaticWalkUpOrPerennial: isCinemathequeFilmPage || isStaticWalkUpOrPerennial,
+          isStaticWalkUpOrPerennial: isCinemathequeFilmPage || isBellEventSubpage || isStaticWalkUpOrPerennial,
         };
       });
 
@@ -1818,7 +2312,26 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         // Skip Act 1 ("Buy Tickets" modal trigger) if we are already on a direct checkout cart or quantity controls are already rendered
         if (!cartDomInspection.isAlreadyOnDirectCartPage && !cartDomInspection.hasQuantityControls) {
           const clickedBuyViaDom = await page.evaluate(() => {
-            const btns = Array.from(document.querySelectorAll('button, a[href], [role="button"]')).filter((b) => !b.disabled && b.offsetParent !== null);
+            const genericNavPaths = new Set([
+              "/events", "/shows", "/calendar", "/whats-on", "/whatson",
+              "/tickets", "/season", "/home", "/programs", "/exhibitions",
+              "/upcoming-events", "/schedule"
+            ]);
+            const currentHref = window.location.href;
+            const btns = Array.from(document.querySelectorAll('button, a[href], [role="button"]')).filter((b) => {
+              if (b.disabled || b.offsetParent === null) return false;
+              if (b.closest("header, nav, footer, [role='navigation'], .site-header, .navbar, .menu")) return false;
+              if (b.tagName && b.tagName.toLowerCase() === "a") {
+                const href = b.href || "";
+                if (!href || href === currentHref || href.endsWith("#")) return false;
+                try {
+                  const u = new URL(href, currentHref);
+                  const p = u.pathname.replace(/\/+$/, "").toLowerCase();
+                  if (!p || genericNavPaths.has(p)) return false;
+                } catch (_) { }
+              }
+              return true;
+            });
             for (const b of btns) {
               const t = (b.innerText || b.getAttribute("aria-label") || "").trim().toLowerCase();
               if (/^(buy\s*now|find\s*tickets?|buy\s*tickets?|get\s*tickets?|book\s*tickets?|choose\s*seats)$/i.test(t)) {
@@ -1829,13 +2342,26 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
             return false;
           }).catch(() => false);
 
-          if (!clickedBuyViaDom) {
-            await Promise.race([
-              stagehand.act(
-                "If there is a 'Tickets', 'Buy Now', 'Find Tickets', 'Buy Tickets', 'Get Tickets', 'Book Your Seats', or 'Register' button, click it to open the cart modal. Dismiss any cookie banners first if present."
-              ),
-              new Promise((_, reject) => setTimeout(() => reject(new Error("Cart button act timeout")), 12000))
-            ]).catch((e) => console.log(`ℹ️ [Act 1] ${e.message}`));
+          if (!clickedBuyViaDom && !_geminiApiCreditsDepleted) {
+            const runAct1 = () =>
+              Promise.race([
+                stagehand.act(
+                  "In the main event content (never in the top site header or navigation bar), if there is a 'Tickets', 'Buy Now', 'Find Tickets', 'Buy Tickets', 'Get Tickets', 'Choose Seats', 'Book Your Seats', or 'Register' button for this specific event, click it to open the cart modal. Dismiss any cookie banners first if present."
+                ),
+                new Promise((_, reject) => setTimeout(() => reject(new Error("Cart button act timeout")), 12000))
+              ]);
+            await runAct1().catch(async (e) => {
+              noteGeminiApiStatus(e);
+              if (!_geminiApiCreditsDepleted && /extension world not ready for frame/i.test(String(e && e.message))) {
+                await new Promise((r) => setTimeout(r, 1500));
+                await runAct1().catch((e2) => {
+                  noteGeminiApiStatus(e2);
+                  console.log(`ℹ️ [Act 1 Retry] ${e2.message}`);
+                });
+              } else {
+                console.log(`ℹ️ [Act 1] ${e.message}`);
+              }
+            });
           }
 
           await waitForDomReady(page, { maxWaitMs: 2000, minWaitMs: 350 });
@@ -1843,16 +2369,22 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           console.log(`⚡ [Act 1 Bypass] Already on direct checkout cart or quantity controls visible — advancing directly to seat/quantity selection.`);
         }
 
-        // Act 1.5 (Intermediate Date / Time Slot Picker Navigation):
-        // If an intermediate "Select a Date", "Choose a Date", or calendar day/time list is displayed,
-        // click the first available date or matching event date button to navigate to the ticket tier drawer!
-        // Act 1.5 (Intermediate Date / Time Slot Picker & "Choose Seats" Drawer Navigation):
-        // If an intermediate "Select a Date", "Choose a Date", "Tickets & Showtimes", or "Choose Seats" list is displayed,
-        // click the first available date or "CHOOSE SEATS" button to penetrate to the ticket tier drawer!
+        // Act 1.5 (Intermediate Date / Time Slot Picker & "Choose Seats" / "Book Now" Drawer Navigation):
+        // If an intermediate "Select a Date", "Dates and Times", "Tickets & Showtimes", "Choose Seats", or "Book Now" list is displayed,
+        // extract upcoming performance row date/time (if unhydrated in Stage 1A) and click "BOOK NOW" / "CHOOSE SEATS" to penetrate to the ticket tier drawer!
         try {
-          const dateModalVisible = await page.evaluate(() => {
+          const skipSurreyChooseSeatsClick = Boolean(
+            preservedViffBookUrl && /^https?:\/\/purchase\.surrey\.ca\/ChooseSeats\/\d+/i.test(preservedViffBookUrl)
+          );
+          const dateModalVisible = skipSurreyChooseSeatsClick
+            ? false
+            : await page.evaluate(() => {
+                const hrefLower = (window.location.href || "").toLowerCase();
+                if (/purchase\.surrey\.ca\/chooseseats\/\d+|chooseseats\.aspx/i.test(hrefLower)) return false;
             const bodyText = (document.body ? document.body.innerText : "").toLowerCase();
             return (
+              hrefLower.includes("eventavailability") ||
+              bodyText.includes("dates and times") ||
               bodyText.includes("select a date") ||
               bodyText.includes("choose a date") ||
               bodyText.includes("select date") ||
@@ -1860,40 +2392,126 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
               bodyText.includes("choose a time") ||
               bodyText.includes("tickets & showtimes") ||
               bodyText.includes("choose seats") ||
-              bodyText.includes("select seats")
+              bodyText.includes("select seats") ||
+              (Boolean(document.querySelector("#DatesAndTimes, .EventDates")) && bodyText.includes("book now"))
             );
           });
 
           if (dateModalVisible) {
             console.log(`📅 [Act 1.5 - Date / Seat Picker] Intermediate date or seat selection list detected. Selecting slot...`);
-            // DOM-level click for Showpass / Cultch "CHOOSE SEATS" / dialog cards first for speed and reliability
-            const clickedDom = await page.evaluate(() => {
-              const chooseSeatBtn = document.querySelector("a.button-choose-seats, a[href*='EventInstanceId='], a[href*='WebEventId=']");
-              if (chooseSeatBtn && chooseSeatBtn.href) {
-                chooseSeatBtn.click();
-                return true;
+            // DOM-level click for Showpass / Cultch / Surrey Spektrix "BOOK NOW" / "CHOOSE SEATS" / dialog cards first for speed and reliability
+            const domSlotResult = await page.evaluate(() => {
+              // Scroll any #DatesAndTimes / Spektrix / EventAvailability table into viewport first
+              const datesSection = document.querySelector("#DatesAndTimes, .EventDates, table, iframe[src*='spektrix' i]");
+              if (datesSection && typeof datesSection.scrollIntoView === "function") {
+                datesSection.scrollIntoView({ behavior: "instant", block: "center" });
               }
-              const cards = Array.from(document.querySelectorAll('[role="dialog"] button, [role="dialog"] a, [role="dialog"] [class*="card"], [class*="modal"] button, [class*="modal"] a, [class*="drawer"] button, .chakra-modal__body button, [class*="date-item"], .event-row a'));
-              for (const c of cards) {
-                const txt = (c.innerText || "").toLowerCase();
-                if (txt.includes("choose seats") || txt.includes("select seats") || txt.includes("2026") || txt.includes("2027") || txt.includes("oct") || txt.includes("nov") || txt.includes("dec") || txt.includes("jan") || txt.includes("feb") || txt.includes("am") || txt.includes("pm") || txt.includes("starts")) {
-                  c.click();
-                  return true;
+              const sectionText = datesSection ? (datesSection.innerText || "") : "";
+              const dateRowMatch = sectionText.match(/\b((?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2},?\s+202\d|\b202\d-\d{2}-\d{2}\b)/i);
+              const timeRowMatch = sectionText.match(/\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b/i);
+
+              const chooseSeatBtn = document.querySelector(
+                "#DatesAndTimes a[href*='ChooseSeats' i], a.button-choose-seats, a[href*='EventInstanceId='], a[href*='WebEventId='], a[href*='ChooseSeats' i]"
+              );
+              if (chooseSeatBtn && chooseSeatBtn.href) {
+                const targetHref = chooseSeatBtn.href;
+                chooseSeatBtn.click();
+                return { clicked: true, targetHref, rowDate: dateRowMatch ? dateRowMatch[1] : null, rowTime: timeRowMatch ? timeRowMatch[1] : null };
+              }
+              // Priority: Showpass / multi-step calendar day tiles ("Select date 1 of 2" green/available day cells)
+              const modalRoot = document.querySelector('[role="dialog"], .chakra-modal__body, [class*="modal" i], [class*="drawer" i]') || document;
+              if (/select\s+a?\s*date|1\s+of\s+2/i.test(document.body?.innerText || "")) {
+                const calDayTiles = Array.from(modalRoot.querySelectorAll('button, [role="gridcell"], [role="button"], td, div, span, a')).filter((el) => {
+                  if (el.disabled || el.getAttribute("aria-disabled") === "true" || el.offsetParent === null) return false;
+                  if (el.children.length > 2) return false;
+                  const cls = String(el.className || "").toLowerCase();
+                  if (cls.includes("disabled") || cls.includes("unavailable") || cls.includes("sold-out") || cls.includes("muted") || cls.includes("outside")) return false;
+                  const txt = (el.innerText || el.textContent || "").trim();
+                  if (!/^(?:[1-9]|[12]\d|3[01])$/.test(txt)) return false;
+                  const st = window.getComputedStyle(el);
+                  const bg = st.backgroundColor || "";
+                  const rgb = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/i);
+                  const hasTintedBg = rgb
+                    ? (rgb[4] === undefined || parseFloat(rgb[4]) > 0.15) &&
+                      (parseInt(rgb[2], 10) > parseInt(rgb[1], 10) + 4 || parseInt(rgb[1], 10) < 246 || parseInt(rgb[3], 10) < 246)
+                    : false;
+                  return st.cursor === "pointer" || hasTintedBg || el.tagName === "BUTTON" || cls.includes("day") || cls.includes("avail");
+                });
+                if (calDayTiles.length > 0) {
+                  calDayTiles[0].click();
+                  return { clicked: true, isTwoStepCalendar: true, targetHref: null, rowDate: dateRowMatch ? dateRowMatch[1] : null, rowTime: timeRowMatch ? timeRowMatch[1] : null };
                 }
               }
-              return false;
+              const cards = Array.from(document.querySelectorAll('#DatesAndTimes a, #DatesAndTimes button, .EventDates a, .EventDates button, [role="dialog"] button, [role="dialog"] a, [role="dialog"] [class*="card"], [class*="modal"] button, [class*="modal"] a, [class*="drawer"] button, .chakra-modal__body button, [class*="date-item"], .event-row a, table a, table button'));
+              for (const c of cards) {
+                if (c.closest("header, nav, footer")) continue;
+                if (c.disabled || c.getAttribute("aria-disabled") === "true") continue;
+                const txt = (c.innerText || "").toLowerCase().trim();
+                if (/^(?:close|cancel|back|clear|previous|next\s+month|prev\s+month|×|x)$/i.test(txt)) continue;
+                if (txt.includes("book now") || txt.includes("choose seats") || txt.includes("select seats") || txt.includes("buy tickets") || txt.includes("2026") || txt.includes("2027") || txt.includes("oct") || txt.includes("nov") || txt.includes("dec") || txt.includes("jan") || txt.includes("feb") || txt.includes("am") || txt.includes("pm") || txt.includes("starts")) {
+                  const targetHref = c.href || null;
+                  c.click();
+                  return { clicked: true, targetHref, rowDate: dateRowMatch ? dateRowMatch[1] : null, rowTime: timeRowMatch ? timeRowMatch[1] : null };
+                }
+              }
+              return { clicked: false, targetHref: null, rowDate: dateRowMatch ? dateRowMatch[1] : null, rowTime: timeRowMatch ? timeRowMatch[1] : null };
             });
 
-            if (!clickedDom) {
-              await Promise.race([
-                stagehand.act(
-                  "If 'Select a Date', 'Tickets & Showtimes', or 'Choose Seats' is shown, click on the first available 'Choose Seats' or date option to reveal the ticket tiers."
-                ),
-                new Promise((_, reject) => setTimeout(() => reject(new Error("Date selector act timeout")), 10000))
-              ]).catch((e) => console.log(`ℹ️ [Act 1.5 - Date Picker] ${e.message}`));
+            // Showpass 2-step date + time slot advancement ("1 of 2" date tile -> "2 of 2" time slot -> "Continue")
+            if (domSlotResult?.isTwoStepCalendar) {
+              await waitForDomReady(page, { maxWaitMs: 2200, minWaitMs: 900 });
+              await page.evaluate(() => {
+                const modalRoot = document.querySelector('[role="dialog"], .chakra-modal__body, [class*="modal" i], [class*="drawer" i]') || document;
+                const slotBtns = Array.from(modalRoot.querySelectorAll('button, [role="button"], div, li, a')).filter((el) => {
+                  if (el.disabled || el.getAttribute("aria-disabled") === "true" || el.offsetParent === null) return false;
+                  if (el.children.length > 5) return false;
+                  const txt = (el.innerText || "").trim();
+                  if (!/\b\d{1,2}:\d{2}\s*(?:AM|PM)\b/i.test(txt) || /sold\s*out/i.test(txt)) return false;
+                  const st = window.getComputedStyle(el);
+                  return el.tagName === "BUTTON" || st.cursor === "pointer" || el.getAttribute("role") === "button";
+                });
+                if (slotBtns.length > 0) slotBtns[0].click();
+              }).catch(() => {});
+              await new Promise((r) => setTimeout(r, 800));
+              await page.evaluate(() => {
+                const modalRoot = document.querySelector('[role="dialog"], .chakra-modal__body, [class*="modal" i], [class*="drawer" i]') || document;
+                const contBtn = Array.from(modalRoot.querySelectorAll('button, [role="button"]')).find((b) => {
+                  if (b.disabled || b.offsetParent === null) return false;
+                  const t = (b.innerText || "").trim();
+                  return /\b(?:continue|next|select\s+tickets?|view\s+tickets?|confirm|proceed)\b/i.test(t) && t.length <= 28;
+                });
+                if (contBtn) contBtn.click();
+              }).catch(() => {});
+              await waitForDomReady(page, { maxWaitMs: 2200, minWaitMs: 750 });
             }
 
-            await waitForDomReady(page, { maxWaitMs: 2000, minWaitMs: 350 });
+            if (domSlotResult?.rowDate && (!eventCard.date || eventCard.date === "none_available" || eventCard.date === "search_exhausted_null")) {
+              const isoFromRow = normalizeDate(domSlotResult.rowDate);
+              if (isoFromRow) eventCard.date = isoFromRow;
+              if (domSlotResult.rowTime && (!eventCard.start_time || eventCard.start_time === "none_available")) {
+                eventCard.start_time = domSlotResult.rowTime;
+                eventCard.time = domSlotResult.rowTime;
+              }
+            }
+
+            if (!domSlotResult?.clicked && !_geminiApiCreditsDepleted) {
+              await Promise.race([
+                stagehand.act(
+                  "If 'Dates and Times', 'Book Now', 'Select a Date', 'Tickets & Showtimes', or 'Choose Seats' is shown, click on the first available 'Book Now', 'Choose Seats', or date option to reveal the ticket tiers."
+                ),
+                new Promise((_, reject) => setTimeout(() => reject(new Error("Date selector act timeout")), 10000))
+              ]).catch((e) => {
+                noteGeminiApiStatus(e);
+                console.log(`ℹ️ [Act 1.5 - Date Picker] ${e.message}`);
+              });
+            }
+
+            await waitForDomReady(page, { maxWaitMs: 3200, minWaitMs: 550 });
+            const postClickUrl = normalizeSurreyCheckoutWrapperUrl(String((await page.url()) || ""));
+            if (postClickUrl && /purchase\.surrey\.ca\/ChooseSeats\/\d+/i.test(postClickUrl)) {
+              checkoutUrl = postClickUrl;
+              preservedViffBookUrl = postClickUrl;
+            }
           }
         } catch (dateErr) {
           console.log(`ℹ️ [Act 1.5 Note] ${dateErr.message}`);
@@ -1938,7 +2556,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
 
           if (needsBestAvailFallback) {
             console.log(`🎻 [VSO Tessitura SSR Mode] Switching from SYOS map to server-rendered section & tier pricing: ${needsBestAvailFallback}`);
-            await page.goto(needsBestAvailFallback, { waitUntil: "domcontentloaded", timeout: 25000 }).catch(() => {});
+            await page.goto(needsBestAvailFallback, { waitUntil: "domcontentloaded", timeout: 25000 }).catch(() => { });
             await waitForDomReady(page, { maxWaitMs: 3000, minWaitMs: 450 });
           }
         }
@@ -2046,12 +2664,60 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
               return true;
             }
           }
-          // Fallback: buttons whose visible text is literally "+" (e.g. VIFF /book/ stepper controls)
-          const allBtns = Array.from(document.querySelectorAll("button, [role='button']")).filter((b) => !b.disabled && b.offsetParent !== null);
-          for (const b of allBtns) {
-            const t = (b.innerText || b.textContent || "").trim();
-            if (t === "+" || t === "＋") {
-              b.click();
+          // Fallback: buttons whose visible text is literally "+" (excluding reserved map zoom controls when "Select a seat" is active)
+          const isSeatMapZoomPage = /select\s+a\s+seat/i.test(document.body?.innerText || "");
+          if (!isSeatMapZoomPage) {
+            const allBtns = Array.from(document.querySelectorAll("button, [role='button']")).filter((b) => !b.disabled && b.offsetParent !== null);
+            const plusTextBtns = allBtns.filter((b) => {
+              const t = (b.innerText || b.textContent || "").trim();
+              return t === "+" || t === "＋";
+            });
+            if (plusTextBtns.length > 0) {
+              const paidPlusBtn = plusTextBtns.find((b) => {
+                const cardText = (b.parentElement?.parentElement?.parentElement?.innerText || b.parentElement?.parentElement?.innerText || "");
+                return /\$\s*[1-9]\d*(?:\.\d{2})?/.test(cardText) && !/annual|season\s*pass|membership/i.test(cardText);
+              });
+              (paidPlusBtn || plusTextBtns[0]).click();
+              return true;
+            }
+          }
+          // Fallback C: Showpass / Eventbrite / Chakra <input value="0"> + <svg> stepper pairs ([ - ] [ <input value="0"> ] [ + ])
+          const modalScope = document.querySelector('[role="dialog"], .chakra-modal__body, [class*="modal" i], [class*="drawer" i]') || document;
+          const zeroInputs = Array.from(modalScope.querySelectorAll("input")).filter(
+            (inp) => inp.offsetParent !== null && (inp.value || "").trim() === "0"
+          );
+          if (zeroInputs.length > 0) {
+            const candidates = [];
+            for (const inp of zeroInputs) {
+              const stepperWrap = inp.parentElement?.querySelectorAll("button").length >= 2
+                ? inp.parentElement
+                : inp.parentElement?.parentElement;
+              if (!stepperWrap) continue;
+              const wrapBtns = Array.from(stepperWrap.querySelectorAll("button")).filter((b) => !b.disabled && b.offsetParent !== null);
+              const plusBtn = wrapBtns[wrapBtns.length - 1];
+              if (plusBtn) {
+                let tierCard = stepperWrap;
+                while (tierCard && tierCard !== modalScope && !/\$\s*\d/.test(tierCard.innerText || "")) {
+                  tierCard = tierCard.parentElement;
+                }
+                const rowText = (tierCard?.innerText || "");
+                const isPaid = /\$\s*[1-9]\d*(?:\.\d{2})?/.test(rowText) && !/annual|season\s*pass|membership/i.test(rowText);
+                candidates.push({ plusBtn, isPaid });
+              }
+            }
+            if (candidates.length > 0) {
+              const chosen = candidates.find((c) => c.isPaid) || candidates[0];
+              chosen.plusBtn.click();
+              return true;
+            }
+          }
+          const svgIconBtns = Array.from(modalScope.querySelectorAll("button")).filter((b) => b.offsetParent !== null && !b.closest("header, nav, footer"));
+          for (let bi = 0; bi < svgIconBtns.length; bi++) {
+            const btn = svgIconBtns[bi];
+            if (btn.disabled) continue;
+            const svgHtml = (btn.querySelector("svg, i")?.outerHTML || "").toLowerCase();
+            if (!isSeatMapZoomPage && /fa-plus|icon-plus|mdi-plus|plus-circle|add_circle|m19\s*13h-6v6h-2v-6h5v-2h6v5h2v6h6v2/i.test(svgHtml)) {
+              btn.click();
               return true;
             }
           }
@@ -2067,17 +2733,20 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         } else if (incrementedViaDom === "vso_section_ranges_visible" || incrementedViaDom === "vso_section_drilled") {
           console.log(`🎻 [Act 2 - VSO Section Pricing] Preserving live Tessitura section prices without triggering SYOS error modal (${incrementedViaDom}).`);
           await waitForDomReady(page, { maxWaitMs: 1500, minWaitMs: 300 });
-        } else if (!incrementedViaDom) {
+        } else if (!incrementedViaDom && !_geminiApiCreditsDepleted) {
           await Promise.race([
             stagehand.act(
               "If a ticket quantity selector is visible, click '+' or set quantity to 1 for Adult / General Admission / Regular ticket to reveal base price, platform service fees, and taxes."
             ),
             new Promise((_, reject) => setTimeout(() => reject(new Error("Quantity selector act timeout")), 10000))
-          ]).catch((e) => console.log(`ℹ️ [Act 2] ${e.message}`));
+          ]).catch((e) => {
+            noteGeminiApiStatus(e);
+            console.log(`ℹ️ [Act 2] ${e.message}`);
+          });
           await waitForDomReady(page, { maxWaitMs: 1500, minWaitMs: 300 });
-        } else {
+        } else if (incrementedViaDom) {
           console.log(`➕ [Act 2 - DOM Quantity Stepper] Incremented first ticket tier quantity to 1 via DOM control.`);
-          await waitForDomReady(page, { maxWaitMs: 1500, minWaitMs: 300 });
+          await waitForDomReady(page, { maxWaitMs: 2200, minWaitMs: 1100 });
         }
       } else {
         await expandAccordionsAndExtractHiddenContext(page);
@@ -2087,19 +2756,298 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       console.log(`ℹ️ Note on interactive cart action: ${actErr.message || "Proceeded directly"}`);
     }
 
-    // [3/4] Photographic Proof Keyframe Capture
+    // [3/4] Photographic Proof Keyframe Capture (wait out reserved-seating "Loading Seating Map" spinners & seats.io mount first!)
+    for (let mapWait = 0; mapWait < 16; mapWait++) {
+      const mapHydrationState = await page.evaluate(() => {
+        const txt = (document.body ? document.body.innerText : "").toLowerCase();
+        const host = window.location.hostname.toLowerCase();
+        const hasLoading = txt.includes("loading seating map") || txt.includes("loading tickets...") || txt.includes("loading seat map");
+        const hasSeatsIoIframe = Boolean(document.querySelector("iframe[src*='seats.io' i], [id*='seat' i] canvas, [class*='seat' i] iframe"));
+        const hasSelectASeat = txt.includes("select a seat");
+        const hasNonZeroDollar = /\$\s*(?:[1-9]\d*|\d+\.\d*[1-9])/.test(txt);
+        // On Showpass reserved pages, wait until either dollar prices appear OR the seats.io iframe + "Select a seat" panel finishes mounting
+        const waitingForShowpassMount = host.includes("showpass.com") && !hasNonZeroDollar && (!hasSelectASeat || (hasSelectASeat && !hasSeatsIoIframe));
+        return { stillLoading: hasLoading || waitingForShowpassMount };
+      }).catch(() => ({ stillLoading: false }));
+      if (!mapHydrationState.stillLoading) break;
+      if (mapWait === 0) {
+        console.log(`⏳ [Reserved Map Guard] Waiting for Showpass/portal seating map to finish rendering...`);
+      }
+      await new Promise((r) => setTimeout(r, 550));
+    }
+    // Give seats.io WebGL/2D canvas inside child iframe an extra 1200ms to paint colored seat dots
+    const hasSeatMapPanel = await page.evaluate(() => /select\s+a\s+seat/i.test(document.body ? document.body.innerText : "")).catch(() => false);
+    if (hasSeatMapPanel) {
+      await new Promise((r) => setTimeout(r, 1200));
+    }
+
+    // If a Showpass/portal reserved seating map rendered ("Select a seat" & "$0.00"), select an available seat via Stagehand CDP page.click(x, y) so live Subtotal/Fees/Taxes populate!
+    let seatPopoverTariffContext = "";
+    try {
+      const isUnselectedSeatMap = await page.evaluate(() => {
+        const bodyTxt = document.body ? document.body.innerText : "";
+        return (/select\s+a\s+seat/i.test(bodyTxt) && /\$0\.00/.test(bodyTxt)) || Boolean(document.querySelector("iframe[src*='seats.io' i]"));
+      }).catch(() => false);
+
+      if (isUnselectedSeatMap) {
+        console.log(`🎯 [Reserved Seating Detected] Unselected seat map ($0.00) detected — locating available single-visit seat to compute live fees & taxes...`);
+
+        // Pure Node.js PNG decoder (bypasses Showpass/portal CSP img-src restrictions & handles Buffer, Uint8Array, or base64 from Stagehand 4.2.1!)
+        const decodePngRgb = (input) => {
+          const buf = Buffer.isBuffer(input)
+            ? input
+            : input instanceof Uint8Array
+              ? Buffer.from(input.buffer, input.byteOffset, input.byteLength)
+              : typeof input === "string" && input.length > 44
+                ? Buffer.from(input.replace(/^data:image\/\w+;base64,/, ""), "base64")
+                : null;
+          if (!buf || buf.length < 33 || buf[0] !== 0x89 || buf[1] !== 0x50) return null;
+          let pos = 8, width = 0, height = 0, bpp = 4;
+          const idats = [];
+          while (pos + 12 <= buf.length) {
+            const len = buf.readUInt32BE(pos);
+            const type = buf.toString("ascii", pos + 4, pos + 8);
+            const chunk = buf.subarray(pos + 8, pos + 8 + len);
+            if (type === "IHDR") {
+              width = chunk.readUInt32BE(0);
+              height = chunk.readUInt32BE(4);
+              const colorType = chunk[9];
+              bpp = colorType === 2 ? 3 : colorType === 6 ? 4 : 0;
+            } else if (type === "IDAT") {
+              idats.push(chunk);
+            } else if (type === "IEND") {
+              break;
+            }
+            pos += 12 + len;
+          }
+          if (!width || !height || !bpp || idats.length === 0) return null;
+          const raw = zlib.inflateSync(Buffer.concat(idats));
+          const stride = width * bpp;
+          const out = new Uint8Array(height * stride);
+          for (let y = 0; y < height; y++) {
+            const filter = raw[y * (stride + 1)];
+            const rowIn = y * (stride + 1) + 1;
+            const rowOut = y * stride;
+            const prevOut = (y - 1) * stride;
+            for (let i = 0; i < stride; i++) {
+              const x = raw[rowIn + i];
+              const a = i >= bpp ? out[rowOut + i - bpp] : 0;
+              const b = y > 0 ? out[prevOut + i] : 0;
+              const c = y > 0 && i >= bpp ? out[prevOut + i - bpp] : 0;
+              let val = x;
+              if (filter === 1) val = (x + a) & 255;
+              else if (filter === 2) val = (x + b) & 255;
+              else if (filter === 3) val = (x + ((a + b) >> 1)) & 255;
+              else if (filter === 4) {
+                const p = a + b - c;
+                const pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c);
+                const pr = pa <= pb && pa <= pc ? a : pb <= pc ? b : c;
+                val = (x + pr) & 255;
+              }
+              out[rowOut + i] = val;
+            }
+          }
+          return { width, height, bpp, data: out };
+        };
+
+        const vpBounds = await page.evaluate(() => {
+          const mapEl =
+            Array.from(document.querySelectorAll("iframe")).find((el) => {
+              const r = el.getBoundingClientRect();
+              return r.width >= 240 && r.height >= 200 && r.left >= 0 && r.left < 850 && r.top >= 0 && r.top < 600 && (/seats\.io|seat|chart/i.test(`${el.src || ""} ${el.id || ""} ${el.className || ""}`) || r.left < 800);
+            }) ||
+            Array.from(document.querySelectorAll("canvas, [class*='seating' i], [class*='seat-map' i]")).find((el) => {
+              const r = el.getBoundingClientRect();
+              return r.width >= 240 && r.height >= 200 && r.left >= 0 && r.left < 850 && r.top >= 0 && r.top < 600;
+            });
+          const rawRect = mapEl ? mapEl.getBoundingClientRect() : null;
+          const b = rawRect && rawRect.width >= 240 && rawRect.height >= 200
+            ? rawRect
+            : { left: 200, top: 225, width: 560, height: 470 };
+          return {
+            vw: window.innerWidth || 1280,
+            vh: window.innerHeight || 720,
+            left: b.left,
+            top: b.top,
+            width: b.width,
+            height: b.height,
+          };
+        }).catch(() => ({ vw: 1280, vh: 720, left: 200, top: 225, width: 560, height: 470 }));
+
+        // Poll up to 4 times (1.3s apart) until seats.io finishes painting colored available seat dots inside its iframe
+        let basePng = null;
+        let candidateSeatCoords = [];
+        for (let paintAttempt = 0; paintAttempt < 4; paintAttempt++) {
+          const rawShot = await page.screenshot({ type: "png", fullPage: false }).catch(() => null);
+          basePng = decodePngRgb(rawShot);
+          if (basePng) {
+            const scaleX = basePng.width / vpBounds.vw;
+            const scaleY = basePng.height / vpBounds.vh;
+            const minX = Math.max(10, Math.round((vpBounds.left + 24) * scaleX));
+            const maxX = Math.min(basePng.width - 10, Math.round((vpBounds.left + vpBounds.width - 65) * scaleX));
+            const minY = Math.max(10, Math.round((vpBounds.top + 40) * scaleY));
+            const maxY = Math.min(basePng.height - 10, Math.round((vpBounds.top + vpBounds.height - 15) * scaleY));
+
+            const picked = [];
+            for (let py = maxY; py >= minY && picked.length < 8; py -= 2) {
+              for (let px = minX; px <= maxX && picked.length < 8; px += 2) {
+                const idx = (py * basePng.width + px) * basePng.bpp;
+                const r = basePng.data[idx], g = basePng.data[idx + 1], b = basePng.data[idx + 2];
+                const mx = Math.max(r, g, b);
+                const mn = Math.min(r, g, b);
+                const sat = mx - mn;
+                if (sat < 60 || mn > 210 || mx < 95) continue;
+                if (g > r + 28 && g > b + 28) continue; // skip green stage/section outline
+                // Compute small local centroid of the colored seat dot so click hits dead-center!
+                let sx = 0, sy = 0, sc = 0;
+                for (let dy = -4; dy <= 4; dy++) {
+                  for (let dx = -4; dx <= 4; dx++) {
+                    const ny = py + dy, nx = px + dx;
+                    if (ny < 0 || ny >= basePng.height || nx < 0 || nx >= basePng.width) continue;
+                    const ni = (ny * basePng.width + nx) * basePng.bpp;
+                    const nr = basePng.data[ni], ng = basePng.data[ni + 1], nb = basePng.data[ni + 2];
+                    if (Math.max(nr, ng, nb) - Math.min(nr, ng, nb) >= 45 && !(ng > nr + 28 && ng > nb + 28)) {
+                      sx += nx; sy += ny; sc++;
+                    }
+                  }
+                }
+                if (sc < 4) continue;
+                const cssX = Math.round((sx / sc) / scaleX);
+                const cssY = Math.round((sy / sc) / scaleY);
+                if (picked.some((p) => Math.hypot(p.x - cssX, p.y - cssY) < 22)) continue;
+                picked.push({ x: cssX, y: cssY });
+              }
+            }
+            candidateSeatCoords = picked;
+          }
+          if (candidateSeatCoords.length > 0) break;
+          await new Promise((r) => setTimeout(r, 1300));
+        }
+        console.log(`🔎 [Seat Pixel Scanner] Found ${candidateSeatCoords.length} available colored seat dot(s) on seating map.`);
+
+        for (const pt of candidateSeatCoords.slice(0, 4)) {
+          if (typeof page.hover === "function") {
+            await page.hover(pt.x, pt.y).catch(() => {});
+            await new Promise((r) => setTimeout(r, 150));
+          }
+          await page.click(pt.x, pt.y).catch(() => {});
+          await new Promise((r) => setTimeout(r, 950));
+
+          let cartHasNonZero = await page.evaluate(() => {
+            const txt = document.body ? document.body.innerText : "";
+            const matches = Array.from(txt.matchAll(/(?:subtotal|total)\s*[:\s]*\$\s*(\d+(?:\.\d{2})?)/gi));
+            return matches.some((m) => parseFloat(m[1]) > 0);
+          }).catch(() => false);
+
+          // If clicking a multi-tariff seat opened a seats.io cross-origin tariff popover, locate the newly rendered popover via Node.js PNG diff and click its Adult/first tariff row!
+          if (!cartHasNonZero && basePng) {
+            const afterRaw = await page.screenshot({ type: "png", fullPage: false }).catch(() => null);
+            const afterPng = decodePngRgb(afterRaw);
+            if (afterPng && afterPng.width === basePng.width && afterPng.height === basePng.height) {
+              const scaleX = basePng.width / vpBounds.vw;
+              const scaleY = basePng.height / vpBounds.vh;
+              let minX = basePng.width, maxX = 0, minY = basePng.height, maxY = 0, changedCount = 0;
+              const searchLeft = Math.max(0, Math.round((pt.x - 240) * scaleX));
+              const searchRight = Math.min(basePng.width - 1, Math.round((pt.x + 240) * scaleX));
+              const searchTop = Math.max(0, Math.round((pt.y - 260) * scaleY));
+              const searchBot = Math.min(basePng.height - 1, Math.round((pt.y + 180) * scaleY));
+              for (let y = searchTop; y <= searchBot; y += 2) {
+                for (let x = searchLeft; x <= searchRight; x += 2) {
+                  const i = (y * basePng.width + x) * basePng.bpp;
+                  const diff =
+                    Math.abs(basePng.data[i] - afterPng.data[i]) +
+                    Math.abs(basePng.data[i + 1] - afterPng.data[i + 1]) +
+                    Math.abs(basePng.data[i + 2] - afterPng.data[i + 2]);
+                  if (diff > 45) {
+                    changedCount++;
+                    if (x < minX) minX = x;
+                    if (x > maxX) maxX = x;
+                    if (y < minY) minY = y;
+                    if (y > maxY) maxY = y;
+                  }
+                }
+              }
+              if (changedCount >= 30) {
+                const boxLeft = minX / scaleX;
+                const boxTop = minY / scaleY;
+                const boxW = (maxX - minX) / scaleX;
+                const boxH = (maxY - minY) / scaleY;
+                console.log(`🪟 [Seat Popover Detected] Bounding box (${Math.round(boxLeft)}, ${Math.round(boxTop)}, ${Math.round(boxW)}x${Math.round(boxH)}) around seat (${pt.x}, ${pt.y})`);
+                if (!seatPopoverTariffContext) {
+                  const snapTxt = await collectAllFramesText(page, "").catch(() => "");
+                  if (snapTxt && /\$\s*\d+/.test(snapTxt)) {
+                    seatPopoverTariffContext = `RESERVED SEATING TARIFF POPOVER OPTIONS:\n${snapTxt.slice(0, 2500)}`;
+                  }
+                }
+                if (boxW >= 50 && boxH >= 28) {
+                  // Try Stagehand deep cross-iframe locator on Adult / General tariff row first, then proportional PNG-diff coordinates
+                  if (typeof page.locator === "function") {
+                    for (const deepSel of ["iframe >> text=Adult", "iframe >> button:has-text('Select')", "iframe >> [role='button']:has-text('$')"]) {
+                      await page.locator(deepSel).click().catch(() => {});
+                      await new Promise((r) => setTimeout(r, 700));
+                      cartHasNonZero = await page.evaluate(() => {
+                        const txt = document.body ? document.body.innerText : "";
+                        return Array.from(txt.matchAll(/(?:subtotal|total)\s*[:\s]*\$\s*(\d+(?:\.\d{2})?)/gi)).some((m) => parseFloat(m[1]) > 0);
+                      }).catch(() => false);
+                      if (cartHasNonZero) {
+                        console.log(`🎟️ [Seat Tariff Popover] Selected ticket tariff via cross-iframe locator (${deepSel})!`);
+                        break;
+                      }
+                    }
+                  }
+                  if (!cartHasNonZero) {
+                    const cx = Math.round(boxLeft + boxW * 0.45);
+                    const btnX = Math.round(boxLeft + boxW * 0.82);
+                    const row1Y = Math.round(boxTop + Math.max(boxH * 0.34, 48));
+                    const row2Y = Math.round(boxTop + Math.max(boxH * 0.54, 78));
+                    const popoverTargets = [
+                      { x: btnX, y: row1Y },
+                      { x: cx, y: row1Y },
+                      { x: btnX, y: row2Y },
+                      { x: cx, y: row2Y },
+                    ];
+                    for (const tPt of popoverTargets) {
+                      await page.click(tPt.x, tPt.y).catch(() => {});
+                      await new Promise((r) => setTimeout(r, 950));
+                      cartHasNonZero = await page.evaluate(() => {
+                        const txt = document.body ? document.body.innerText : "";
+                        const matches = Array.from(txt.matchAll(/(?:subtotal|total)\s*[:\s]*\$\s*(\d+(?:\.\d{2})?)/gi));
+                        return matches.some((m) => parseFloat(m[1]) > 0);
+                      }).catch(() => false);
+                      if (cartHasNonZero) {
+                        console.log(`🎟️ [Seat Tariff Popover] Selected ticket tariff inside seats.io popover at (${tPt.x}, ${tPt.y})!`);
+                        break;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          if (cartHasNonZero) {
+            console.log(`💺 [Available Seat Selected] Clicked available seat at (${pt.x}, ${pt.y}) — live Subtotal, Fees & Taxes populated!`);
+            await new Promise((r) => setTimeout(r, 1400));
+            break;
+          }
+        }
+      }
+    } catch (seatErr) {
+      console.log(`ℹ️ [Reserved Seat Picker Note] ${seatErr.message}`);
+    }
+
     const screenshotFileName = `${eventId}_cart.png`;
     const screenshotFilePath = path.join(PROOFS_DIR, screenshotFileName);
     console.log(`📸 [3/4] Capturing photographic cart keyframe: ${screenshotFileName}...`);
     try {
       await page.evaluate(() => {
         const showtimesEl =
-          document.querySelector(".tn-ticket-selector__pricetype-selector, .tn-ticket-selector__zone-selector, .tn-syos-section-list, .tn-ticket-type-list, .tn-cart, [class*='syos-section' i], .film-showtimes, .showtimes, #tickets, .ticket-prices, [class*='showtime' i]") ||
-          Array.from(document.querySelectorAll("h2, h3, h4")).find((h) => /choose\s+your\s+own\s+seat|select\s+a\s+section|available\s+sections/i.test(h.innerText || ""));
+          document.querySelector("#DatesAndTimes, .EventDates, .tn-ticket-selector__pricetype-selector, .tn-ticket-selector__zone-selector, .tn-syos-section-list, .tn-ticket-type-list, .tn-cart, [class*='syos-section' i], .film-showtimes, .showtimes, #tickets, .ticket-prices, [class*='showtime' i]") ||
+          Array.from(document.querySelectorAll("h2, h3, h4")).find((h) => /dates\s+and\s+times|choose\s+your\s+own\s+seat|select\s+a\s+section|available\s+sections/i.test(h.innerText || ""));
         if (showtimesEl && typeof showtimesEl.scrollIntoView === "function") {
           showtimesEl.scrollIntoView({ behavior: "instant", block: "center" });
         }
-      }).catch(() => {});
+      }).catch(() => { });
       await page.screenshot({ path: screenshotFilePath, fullPage: false });
     } catch (shotErr) {
       console.warn(`⚠️ Warning capturing keyframe: ${shotErr.message}`);
@@ -2108,7 +3056,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     // [4/4] AI Extraction of Volatile Facts
     console.log(`🔍 [4/4] Extracting live box office pricing, fees, and schedule...`);
     const postActionAccordionContext = await expandAccordionsAndExtractHiddenContext(page);
-    const combinedAccordionContext = [parentAccordionContext, postActionAccordionContext]
+    const combinedAccordionContext = [parentAccordionContext, parentPageSummaryContext, postActionAccordionContext, seatPopoverTariffContext]
       .filter((s) => s && s.trim().length > 0)
       .filter((s, idx, arr) => arr.indexOf(s) === idx)
       .join("\n\n");
@@ -2163,9 +3111,9 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       venue: eventCard.venue || eventCard.venue_name || eventCard.seed_venue || "",
       curator_notes: activeCuratorNote || eventCard.curator_notes || null,
     };
-    if (isAntigravityEngine()) {
+    if (isAntigravityEngine() || _geminiApiCreditsDepleted) {
       console.log(`🚀 [Antigravity Box Office Mode] Capturing rendered DOM, cart modal & iframe text for 1-event Antigravity Worker (${getAntigravityModel()})...`);
-      const domSnapshot = await collectAllFramesText(page, typeof combinedAccordionContext !== "undefined" ? combinedAccordionContext : "");
+      const domSnapshot = fullMultiFrameSnap || (await collectAllFramesText(page, typeof combinedAccordionContext !== "undefined" ? combinedAccordionContext : ""));
       const agyData = await callAntigravityBoxOfficeExtractor(domSnapshot, checkoutUrl || targetUrl, blindfoldedIdentity);
       if (agyData && typeof agyData === "object") {
         extracted = agyData;
@@ -2173,35 +3121,40 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     }
 
     if (!extracted || Object.keys(extracted).length === 0) {
-      try {
-        const extraction = await stagehand.extract(
-          "Extract the full event and ticketing facts: exact venue name, title, headliner artist, date, showtime, doors time, curfew/end time (D38), age restrictions, ticket purchase link, sold out state.\n" +
-          curatorGuidancePrompt +
-          "IMPORTANT TICKET TIERS & PRICING RULES:\n" +
-          "- Extract single-event / single-visit admission tiers visible in the modal or page into the all_tiers array: Adult (19-64 years), Senior (65+ years), Youth (13-18 years), Child (5-12 years), Preschooler (4 and under), Student, etc. with exact name, base price, fees, taxes, and all-in total in CAD.\n" +
-          "- DO NOT extract annual memberships, 12-month passes, season subscriptions, or donation upsells as ticket tiers.\n" +
-          "- Tier 1 MUST be the standard Adult / General Admission single-visit ticket tier (e.g. Adult 19-64 years or BC Resident General Admission). If an event offers a free preschooler ($0), child/youth ($0), or member tier alongside a paid Adult ticket (e.g. $14.86 or $29.00 CAD), do NOT record the $0 tier as General Admission! You must record the paid Adult / General Admission price as Tier 1.\n" +
-          "- Also populate tier1, tier2, and tier3 with the primary single-visit tiers <= $50.00 CAD (e.g. tier1 = Adult, tier2 = Senior/Student, tier3 = Youth/Child).\n" +
-          "- CRITICAL SOLD-OUT RULE: Set is_sold_out: false whenever at least one single-visit admission tier (e.g. General Admission, Regular, or Student) is available for purchase in the checkout modal. Do NOT set is_sold_out: true merely because a single early-bird/VIP tier is sold out, or because 'Sold Out' appears on a sidebar/related event listing.\n" +
-          "- Extract single-event / single-visit admission tiers visible in the modal, page, or EXPANDED EVENT TICKET INFO section into the all_tiers array: Adult (19-64 years), Section C / Section B / Section A reserved seats, Senior (65+ years), Youth (13-18 years), Child (5-12 years), Preschooler (4 and under), Student, etc. with exact name, base price, fees, taxes, and all-in total in CAD.\n" +
-          "- DO NOT extract annual memberships, 12-month passes, season subscriptions, or donation upsells (e.g. 'All donations above $25 will receive a tax receipt') as ticket tiers.\n" +
-          "- Tier 1 MUST be the lowest-priced standard Adult / General Admission / Section C single-visit ticket tier <= $50.00 CAD. If an event offers a free preschooler ($0), child/youth ($0), or member tier alongside a paid Adult ticket (e.g. $14.86 or $29.00 CAD), do NOT record the $0 tier as General Admission! You must record the paid Adult / General Admission price as Tier 1.\n" +
-          "- Also populate tier1, tier2, and tier3 with the primary single-visit tiers <= $50.00 CAD (e.g. tier1 = Section C / Adult, tier2 = Section B / Senior / Student, tier3 = Youth/Child).\n" +
-          "- CRITICAL SOLD-OUT RULE: Set is_sold_out: false whenever at least one single-visit admission tier (e.g. General Admission, Regular, Section C/B, or Student) is available for purchase in the checkout modal. Do NOT set is_sold_out: true merely because a single early-bird/VIP tier is sold out, or because 'Sold Out' appears on a sidebar/related event listing.\n" +
-          "- If multiple show dates/times exist, extract up to 5 showings into the showings array.",
-          SingleEventExtractionSchema
-        );
-        extracted = extraction.data || extraction || {};
-      } catch (extErr) {
-        console.warn(`⚠️ [Stagehand Extract Fallback] Stagehand extension world / cross-origin iframe error (${extErr.message}). Falling back to multi-frame DOM + Box Office Extractor...`);
+      if (_geminiApiCreditsDepleted) {
+        console.warn(`⚠️ [Antigravity Box Office Mode] Primary extraction returned empty; proceeding to deterministic price-table & structured-data recovery.`);
+      } else {
         try {
-          const domSnapshot = await collectAllFramesText(page, typeof combinedAccordionContext !== "undefined" ? combinedAccordionContext : "");
-          const fallbackData = await callAntigravityBoxOfficeExtractor(domSnapshot, checkoutUrl || targetUrl, blindfoldedIdentity);
-          if (fallbackData && typeof fallbackData === "object") {
-            extracted = fallbackData;
+          const extraction = await stagehand.extract(
+            "Extract the full event and ticketing facts: exact venue name, title, headliner artist, date, showtime, doors time, curfew/end time (D38), age restrictions, ticket purchase link, sold out state.\n" +
+            curatorGuidancePrompt +
+            "IMPORTANT TICKET TIERS & PRICING RULES:\n" +
+            "- Extract single-event / single-visit admission tiers visible in the modal or page into the all_tiers array: Adult (19-64 years), Senior (65+ years), Youth (13-18 years), Child (5-12 years), Preschooler (4 and under), Student, etc. with exact name, base price, fees, taxes, and all-in total in CAD.\n" +
+            "- DO NOT extract annual memberships, 12-month passes, season subscriptions, or donation upsells as ticket tiers.\n" +
+            "- Tier 1 MUST be the standard Adult / General Admission single-visit ticket tier (e.g. Adult 19-64 years or BC Resident General Admission). If an event offers a free preschooler ($0), child/youth ($0), or member tier alongside a paid Adult ticket (e.g. $14.86 or $29.00 CAD), do NOT record the $0 tier as General Admission! You must record the paid Adult / General Admission price as Tier 1.\n" +
+            "- Also populate tier1, tier2, and tier3 with the primary single-visit tiers <= $50.00 CAD (e.g. tier1 = Adult, tier2 = Senior/Student, tier3 = Youth/Child).\n" +
+            "- CRITICAL SOLD-OUT RULE: Set is_sold_out: false whenever at least one single-visit admission tier (e.g. General Admission, Regular, or Student) is available for purchase in the checkout modal. Do NOT set is_sold_out: true merely because a single early-bird/VIP tier is sold out, or because 'Sold Out' appears on a sidebar/related event listing.\n" +
+            "- Extract single-event / single-visit admission tiers visible in the modal, page, or EXPANDED EVENT TICKET INFO section into the all_tiers array: Adult (19-64 years), Section C / Section B / Section A reserved seats, Senior (65+ years), Youth (13-18 years), Child (5-12 years), Preschooler (4 and under), Student, etc. with exact name, base price, fees, taxes, and all-in total in CAD.\n" +
+            "- DO NOT extract annual memberships, 12-month passes, season subscriptions, or donation upsells (e.g. 'All donations above $25 will receive a tax receipt') as ticket tiers.\n" +
+            "- Tier 1 MUST be the lowest-priced standard Adult / General Admission / Section C single-visit ticket tier <= $50.00 CAD. If an event offers a free preschooler ($0), child/youth ($0), or member tier alongside a paid Adult ticket (e.g. $14.86 or $29.00 CAD), do NOT record the $0 tier as General Admission! You must record the paid Adult / General Admission price as Tier 1.\n" +
+            "- Also populate tier1, tier2, and tier3 with the primary single-visit tiers <= $50.00 CAD (e.g. tier1 = Section C / Adult, tier2 = Section B / Senior / Student, tier3 = Youth/Child).\n" +
+            "- CRITICAL SOLD-OUT RULE: Set is_sold_out: false whenever at least one single-visit admission tier (e.g. General Admission, Regular, Section C/B, or Student) is available for purchase in the checkout modal. Do NOT set is_sold_out: true merely because a single early-bird/VIP tier is sold out, or because 'Sold Out' appears on a sidebar/related event listing.\n" +
+            "- If multiple show dates/times exist, extract up to 5 showings into the showings array.",
+            SingleEventExtractionSchema
+          );
+          extracted = extraction.data || extraction || {};
+        } catch (extErr) {
+          noteGeminiApiStatus(extErr);
+          console.warn(`⚠️ [Stagehand Extract Fallback] Stagehand extension world / cross-origin iframe error (${extErr.message}). Falling back to multi-frame DOM + Box Office Extractor...`);
+          try {
+            const domSnapshot = fullMultiFrameSnap || (await collectAllFramesText(page, typeof combinedAccordionContext !== "undefined" ? combinedAccordionContext : ""));
+            const fallbackData = await callAntigravityBoxOfficeExtractor(domSnapshot, checkoutUrl || targetUrl, blindfoldedIdentity);
+            if (fallbackData && typeof fallbackData === "object") {
+              extracted = fallbackData;
+            }
+          } catch (fbErr) {
+            console.warn(`⚠️ [Stagehand Extract Fallback] Multi-frame DOM fallback note: ${fbErr.message}`);
           }
-        } catch (fbErr) {
-          console.warn(`⚠️ [Stagehand Extract Fallback] Multi-frame DOM fallback note: ${fbErr.message}`);
         }
       }
     }
@@ -2223,6 +3176,18 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     ) {
       const recoveredTiers = [];
       const tierPatterns = [
+        // Showpass live selected-seat / cart summary footer: "Subtotal: $48.50 ... Fees: $4.21 ... Taxes: $2.64 ... Total: $55.35"
+        {
+          re: /Subtotal\s*:\s*\$\s*([1-9]\d*(?:\.\d{2})?|\d+\.\d*[1-9])(?:\s*CAD)?(?:[\s\S]{0,120}?(?:Service\s+)?Fees?\s*:\s*\$\s*(\d+(?:\.\d{2})?))?(?:[\s\S]{0,120}?(?:Taxes?|GST)\s*:\s*\$\s*(\d+(?:\.\d{2})?))?[\s\S]{0,140}?Total\s*:\s*\$\s*(\d+(?:\.\d{2})?)/gi,
+          labelFn: () => "Reserved Seat Admission",
+          showpassSummaryFooter: true,
+        },
+        // Showpass live modal tier breakdown: "<Tier Name>\n$49.62\n$45.00 CAD + $4.62 Fees + Applicable taxes at checkout"
+        {
+          re: /(?:^|\n)\s*([A-Za-z0-9][^\n\r$]{2,68}?)\s*\r?\n+\s*\$\s*(\d+(?:\.\d{2})?)\s*\r?\n+\s*\$\s*(\d+(?:\.\d{2})?)\s*CAD\s*\+\s*\$\s*(\d+(?:\.\d{2})?)\s*Fees(?:\s*\+\s*(Applicable\s+taxes[^\n\r]*|\$\s*\d+(?:\.\d{2})?\s*(?:GST|Tax(?:es)?)))?/gi,
+          labelFn: (m) => m[1].trim(),
+          showpassCard: true,
+        },
         { re: /\b1\s*x\s*([^\n\r$]+?)\s+CA?\$\s*(\d+(?:\.\d{2})?)[\s\S]{0,180}?Fees(?:\s*[^\d\n]*)?\s+CA?\$\s*(\d+(?:\.\d{2})?)(?:[\s\S]{0,80}?GST\s+CA?\$\s*(\d+(?:\.\d{2})?))?[\s\S]{0,100}?Total\s+CA?\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].trim(), feeIdx: 3, taxIdx: 4, allInIdx: 5 },
         { re: /\bCA?\$\s*(\d+(?:\.\d{2})?)\s*incl\.\s*CA?\$\s*(\d+(?:\.\d{2})?)\s*Fee(?:\s*\/\s*incl\.\s*CA?\$\s*(\d+(?:\.\d{2})?)\s*GST)?/gi, labelFn: () => "General Admission", isAllInFirst: true },
         { re: /\b(Section\s+[A-D]\+?)\s*:\s*\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => `${m[1]} Reserved` },
@@ -2230,14 +3195,40 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         { re: /\b(Adult|Senior|Student|Child(?:\s*\([^)]+\))?)\s+\$\s*(\d+(?:\.\d{2})?)\s*ticket\s*\+\s*\$\s*(\d+(?:\.\d{2})?)\s*fees\s+\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].trim(), feeIdx: 3, allInIdx: 4 },
         { re: /\bSTX-(Adult|Senior|Stud(?:e)?nt|Child)\s*\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].replace(/Studnt/i, "Student") },
         { re: /\b(General\s+Admission(?:\s*[–-]\s*Adult\s*\(?19\+\)?)?|Adult(?:\s*\(?19\+\)?)?)\s*:\s*\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].trim() },
-        { re: /\b(Tickets\s+from|Starting\s+at)\s+\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: () => "Standard Admission (Starting Floor)" },
+        { re: /-\s*(All\s+Tickets|Choose\s+Your\s+Price\s*\(\$\d+\)|Regular|Student|Senior|Youth)(?:\s*\([^)]+\))?\s*:\s*\$\s*(\d+(?:\.\d{2})?)\s*CAD/gi, labelFn: (m) => m[1].trim() },
+        { re: /\b(Tickets\s+from|Starting\s+at|FROM)\s+\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: () => "Standard Admission (Starting Floor)" },
+        { re: /\b(Ticket\s+Prices?|Tickets?|Admission|All\s+Day\s+Pass)\s*:\s*\$\s*(\d+(?:\.\d{2})?)(?:\s*[–-]\s*\$\s*\d+(?:\.\d{2})?)?/gi, labelFn: (m) => (/all\s+day\s+pass/i.test(m[1]) ? "All Day Pass" : "Standard Admission (Starting Floor)") },
         { re: /\b(\d{1,2}:\d{2}\s*(?:AM|PM)\s+(?:Matinee|Evening))\s*:\s*\$\s*(\d+(?:\.\d{2})?)/gi, labelFn: (m) => m[1].trim() },
       ];
-      for (const { re, labelFn, feeIdx, taxIdx, allInIdx, isAllInFirst } of tierPatterns) {
+      for (const { re, labelFn, feeIdx, taxIdx, allInIdx, isAllInFirst, showpassCard, showpassSummaryFooter } of tierPatterns) {
         let match;
         while ((match = re.exec(combinedPriceRecoverySource)) !== null) {
           let priceVal, feeVal, taxVal, allInVal;
-          if (isAllInFirst) {
+          if (showpassSummaryFooter) {
+            priceVal = parseFloat(match[1]);
+            feeVal = match[2] ? parseFloat(match[2]) : 0;
+            taxVal = match[3] ? parseFloat(match[3]) : 0;
+            allInVal = parseFloat(match[4]);
+            // If Showpass deferred GST until next step ("+ Applicable taxes") and Total == Subtotal + Fees, apply 5% BC GST if stated on page
+            if (taxVal === 0 && Math.abs(allInVal - (priceVal + feeVal)) <= 0.02 && /applicable\s+tax/i.test(combinedPriceRecoverySource)) {
+              taxVal = Number(((priceVal + feeVal) * 0.05).toFixed(2));
+              allInVal = Number((allInVal + taxVal).toFixed(2));
+            }
+          } else if (showpassCard) {
+            const preTaxTotal = parseFloat(match[2]);
+            priceVal = parseFloat(match[3]);
+            feeVal = parseFloat(match[4]) || 0;
+            const taxClause = String(match[5] || "");
+            const explicitTax = taxClause.match(/\$\s*(\d+(?:\.\d{2})?)/);
+            if (explicitTax) {
+              taxVal = parseFloat(explicitTax[1]);
+            } else if (/applicable\s+tax/i.test(taxClause)) {
+              taxVal = Number(((priceVal + feeVal) * 0.05).toFixed(2));
+            } else {
+              taxVal = 0;
+            }
+            allInVal = Number(((preTaxTotal || priceVal + feeVal) + taxVal).toFixed(2));
+          } else if (isAllInFirst) {
             allInVal = parseFloat(match[1]);
             feeVal = parseFloat(match[2]) || 0;
             taxVal = match[3] ? parseFloat(match[3]) : 0;
@@ -2249,6 +3240,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
             allInVal = allInIdx && match[allInIdx] ? parseFloat(match[allInIdx]) : priceVal;
           }
           const nameVal = labelFn(match);
+          if (/season\s*pass|annual\s*pass|membership|sold\s*out/i.test(nameVal)) continue;
           if (!isNaN(priceVal) && priceVal > 0 && !recoveredTiers.some((t) => t.name === nameVal && t.price_all_in === allInVal)) {
             recoveredTiers.push({
               name: nameVal,
@@ -2270,19 +3262,21 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         console.log(`🪗 [Accordion Price Recovery] Recovered ${recoveredTiers.length} ticket tier(s) from expanded accordion: ${primaryTiers.map((t) => `${t.name} ($${t.price_all_in.toFixed(2)})`).join(", ")}`);
         extracted.tier1_name = primaryTiers[0].name;
         extracted.tier1_price_base = primaryTiers[0].price_base;
+        extracted.tier1_price_fee = primaryTiers[0].price_fee;
+        extracted.tier1_price_tax = primaryTiers[0].price_tax;
         extracted.tier1_price_read = primaryTiers[0].price_read;
         extracted.tier1_price_all_in = primaryTiers[0].price_all_in;
         extracted.tier1_quote = primaryTiers[0].quote;
         if (primaryTiers[1]) {
           extracted.tier2_name = primaryTiers[1].name;
           extracted.tier2_price_base = primaryTiers[1].price_base;
+          extracted.tier2_price_fee = primaryTiers[1].price_fee;
+          extracted.tier2_price_tax = primaryTiers[1].price_tax;
           extracted.tier2_price_read = primaryTiers[1].price_read;
           extracted.tier2_price_all_in = primaryTiers[1].price_all_in;
           extracted.tier2_quote = primaryTiers[1].quote;
         }
-        if (under50.length > 0) {
-          extracted.all_tiers = under50;
-        }
+        extracted.all_tiers = primaryTiers;
       }
     }
 
@@ -2761,7 +3755,13 @@ export async function runEventBatchQC(options = {}) {
       const bData = JSON.parse(fs.readFileSync(BOX_OFFICE_LAYER_PATH, "utf-8"));
       (Array.isArray(bData) ? bData : []).forEach((b) => {
         const bid = String(b.id || b.event_id || "").toLowerCase();
-        if (bid && b.status !== "TIMEOUT_EXCEEDED" && b.status !== "AI_TIMEOUT" && b.status !== "EXECUTION_ERROR") {
+        if (
+          bid &&
+          b.status !== "TIMEOUT_EXCEEDED" &&
+          b.status !== "AI_TIMEOUT" &&
+          b.status !== "EXECUTION_ERROR" &&
+          b.status !== "UNVERIFIED_PRICING"
+        ) {
           boxAuditedIds.add(bid);
         }
       });
@@ -2777,6 +3777,19 @@ export async function runEventBatchQC(options = {}) {
     combinedPool.forEach((e) => {
       const eid = e.id || e.event_id;
       if (eid && !poolMap.has(eid)) poolMap.set(eid, e);
+    });
+    // Ensure any explicitly requested batch ID from schedules or seeds is resolved even if step1b_audited_at wasn't stamped yet
+    schedules.forEach((sEv) => {
+      const sid = sEv.id || sEv.event_id;
+      if (sid && !poolMap.has(sid) && !archivedIds.has(String(sid).toLowerCase())) {
+        poolMap.set(sid, sEv);
+      }
+    });
+    seeds.forEach((seedEv) => {
+      const sid = seedEv.id || seedEv.event_id;
+      if (sid && !poolMap.has(sid) && !archivedIds.has(String(sid).toLowerCase())) {
+        poolMap.set(sid, seedEv);
+      }
     });
     targets = cleanIds.map((id) => poolMap.get(id)).filter(Boolean);
     if ((options.harvestedOnly || options.scope === "harvested") && !options.force && targets.length > 1) {
@@ -2812,7 +3825,7 @@ export async function runEventBatchQC(options = {}) {
           return false;
         }
         return true;
-      }).filter(isTicketedOrPaidEvent);
+      });
 
       const allHarvested = allHarvestedRaw.filter((s) => {
         const sId0 = String(s.id || s.event_id || "").toLowerCase();
@@ -2893,8 +3906,35 @@ export async function runEventBatchQC(options = {}) {
       }
     }
 
-    // Stagehand Live Cart QC only runs on paid / ticketed events (free public parks & drop-in spaces are grounded via Google Maps / Venue Detailer)
-    targets = targets.filter(isTicketedOrPaidEvent);
+    // Stagehand Live Cart QC only launches Chromium on paid / ticketed events; however, in harvestedOnly mode we let auditSingleEventCard
+    // run its 0ms Chromium-free VERIFIED_FREE_PUBLIC_ACCESS fast-path so newly harvested free parks still receive a layer_box_office.json record!
+    if (!(options.harvestedOnly || options.scope === "harvested")) {
+      targets = targets.filter(isTicketedOrPaidEvent);
+    }
+
+    // Deduplicate cross-source harvested cards by normalized (venue, date, title) before launching Chromium
+    const seenTargetKeys = new Set();
+    targets = targets.filter((t) => {
+      const vKey = String(t.venue || t.venue_name || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+      const dKey = String(t.date || "").trim().slice(0, 10);
+      const tKey = String(t.title || t.event_name || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+      if (!tKey) return false;
+      if (/^(?:choose\s+seats|select\s+seats|find\s+tickets|buy\s+tickets|get\s+tickets|book\s+tickets)$/i.test(tKey)) {
+        return false;
+      }
+      const compositeKey = `${vKey}|${dKey}|${tKey}`;
+      if (dKey && seenTargetKeys.has(compositeKey)) {
+        return false;
+      }
+      if (dKey) seenTargetKeys.add(compositeKey);
+      return true;
+    });
 
     // Offset only applies when paginating a sequential scan across catalog, NOT when targeting specific event ID(s)
     if (options.offset) {
@@ -2953,9 +3993,9 @@ export async function runEventBatchQC(options = {}) {
       });
       console.log(`────────────────────────────────────────────────────────────────`);
 
-      // Watchdog: Max 90s per event card to prevent stalled web pages, with guaranteed browser teardown
+      // Watchdog: Max 150s per event card (accommodates 80s Antigravity CLI worker + Chromium navigation/iframe hydration) with guaranteed browser teardown
       let result;
-      const timeoutMs = 90000;
+      const timeoutMs = 150000;
       let timeoutHandle;
       const sessionRef = { stagehand: null, browser: null };
       const timeoutPromise = new Promise((_, reject) => {
@@ -3026,6 +4066,8 @@ export async function runEventBatchQC(options = {}) {
           tier3_price_all_in: isTimeoutOrError ? null : (result.card.tier3_price_all_in ?? result.card.dimension_audit?.D215_tier3_price_all_in?.value ?? t3Obj?.price_all_in ?? null),
           tier3_quote: isTimeoutOrError ? null : (result.card.tier3_quote || result.card.dimension_audit?.D215_tier3_price_read?.evidence_quote || t3Obj?.evidence_quote || null),
           all_tiers: allTiersArr,
+          pricing_model: isTimeoutOrError ? null : (result.card.dimension_audit?.D217_pricing_model?.value || result.card.pricing_model || null),
+          is_free: isTimeoutOrError ? false : Boolean(result.card.isFree),
           is_sold_out: isTimeoutOrError ? false : Boolean(result.card.is_sold_out),
           ticket_provider: isTimeoutOrError ? null : (result.card.ticket_provider || null),
           ticket_url: (result.status && result.status.startsWith("FATAL_")) ? null : (isTimeoutOrError ? null : (result.card.ticket_url || null)),
@@ -3060,7 +4102,7 @@ export async function runEventBatchQC(options = {}) {
           return boxLayer;
         });
         console.log(`💾 Persisted box office audit (${result.eventId} [${result.status}]) to layer_box_office.json [Awaiting Compiler publication]`);
-        console.log(`Committed updated event (${result.eventId})`);
+        console.log(`💾 Committed updated event (${result.eventId})`);
       }
 
       // Record progress in ledger atomically
