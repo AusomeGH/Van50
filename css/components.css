@@ -8540,10 +8540,10 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   /* 2. Ensure the Status Bar wraps cleanly inside mobile viewport */
   .results-count-bar.dynamic-date-count-bar {
     display: flex !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 6px 10px !important;
+    gap: 4px 10px !important;
     padding: 8px 12px !important;
   }
 
@@ -9108,6 +9108,7 @@ section[aria-label="Events List"] .row2-category-pill,
 
 @media (max-width: 768px) {
   .pre-feed-controls-row {
+    flex-wrap: wrap;
     gap: 6px;
     margin: 0 0 6px 0;
   }
@@ -9127,6 +9128,19 @@ section[aria-label="Events List"] .row2-category-pill,
 /* ==============================================================================
    UNIFIED SINGLE CATEGORY STRIP, DESKTOP FILTER DRAWER & CARD DENSITY CLAMP
    ============================================================================== */
+.filters-hub {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  min-height: 0 !important;
+}
+
+.filters-hub .active-filter-chips {
+  margin: 4px 0 12px;
+}
+
 /* Hide duplicate category grid & accordion toggle inside filter sheet (keeps DOM intact for smoke tests) */
 #mobile-filters-sheet .filter-category-row,
 #mobile-filters-sheet .btn-reset-filters-top,
