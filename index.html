@@ -125,6 +125,16 @@
         <span class="time-group-date-range" id="scroll-date-range"></span>
       </div>
     </div>
+    <div class="top-quick-toggles-bar" id="top-quick-toggles-bar" role="group" aria-label="Quick Outing Toggles">
+      <button type="button" class="top-quick-toggle-pill" id="top-toggle-paid" aria-pressed="false" title="Show only paid or ticketed outings ($1 – $50 CAD)">
+        <span class="toggle-pill-indicator" aria-hidden="true"></span>
+        <span>Paid</span>
+      </button>
+      <button type="button" class="top-quick-toggle-pill" id="top-toggle-hide-daily" aria-pressed="false" title="Hide everyday drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
+        <span class="toggle-pill-indicator" aria-hidden="true"></span>
+        <span>Hide Daily Drop-In</span>
+      </button>
+    </div>
     <div class="quick-category-strip" id="quick-category-strip" role="group" aria-label="Quick Category Filters"></div>
     <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;" aria-label="Active Vancouver Festivals"></section>
     <!-- Filter Controls Hub -->
@@ -205,21 +215,14 @@
           </div>
 
           <div class="spend-actions-group">
-            <!-- Quick Cost Filters (Free, <= $15, <= $25, <= $50, Paid, All) -->
+            <!-- Quick Cost Filters (All, Free, <= $15, <= $25, <= $50) -->
             <div class="cost-quick-tabs" role="group" aria-label="Cost Quick Filters">
               <button type="button" class="cost-quick-btn active" data-quick="all" id="quick-cost-all">All</button>
               <button type="button" class="cost-quick-btn" data-quick="free" id="quick-cost-free">Free</button>
               <button type="button" class="cost-quick-btn" data-quick="under15" id="quick-cost-15">≤ $15</button>
               <button type="button" class="cost-quick-btn" data-quick="under25" id="quick-cost-25">≤ $25</button>
               <button type="button" class="cost-quick-btn" data-quick="under50" id="quick-cost-50">≤ $50</button>
-              <button type="button" class="cost-quick-btn" data-quick="paid" id="quick-cost-paid">Paid</button>
             </div>
-
-            <!-- Hide Daily Drop-In Spots Toggle -->
-            <label class="scheduled-only-toggle ticketed-only-toggle" for="hide-daily-toggle" title="Hide everyday drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
-              <input type="checkbox" id="hide-daily-toggle">
-              <span><strong>Hide Daily Drop-In Spots</strong></span>
-            </label>
 
             <!-- Wheelchair Accessible Only Toggle -->
             <label class="accessible-only-toggle" for="chk-accessible-only" title="Show only venues with verified wheelchair accessibility">

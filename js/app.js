@@ -105,25 +105,25 @@ window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
     id: "christmas",
     label: "❄️ Winter & Holiday Season",
     icon: "❄️",
-    datesLabel: "Nov 15 – Jan 3",
-    startDate: "11-15",
+    datesLabel: "Nov 13 – Jan 3",
+    startDate: "11-13",
     endDate: "01-03",
-    shortDesc: "Winter light walks, holiday artisan markets, choral concerts, solstice celebrations, and festive outings.",
-    longDesc: "Explore Metro Vancouver's winter and holiday season (Nov 15 – Jan 3) with illuminated garden walks, indie artisan markets, classical choral concerts, winter solstice lantern celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
+    shortDesc: "Vancouver Christmas Market, VanDusen Lights, Bright Nights, Surrey Tree Lighting, choral concerts & festive outings.",
+    longDesc: "Explore Metro Vancouver's combined winter and holiday season (Nov 13 – Jan 3)—including the Vancouver Christmas Market, VanDusen Festival of Lights, Bright Nights, Surrey Tree Lighting, indie artisan markets, classical choral concerts, winter solstice celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
     venues: "Metro Vancouver Theatres, Markets, Parks & Botanical Gardens",
-    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice winter holiday season"
+    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice winter holiday season vancouver christmas market vandusen lights bright nights surrey tree lighting"
   },
   "winter-holiday-season": {
     id: "christmas",
     label: "❄️ Winter & Holiday Season",
     icon: "❄️",
-    datesLabel: "Nov 15 – Jan 3",
-    startDate: "11-15",
+    datesLabel: "Nov 13 – Jan 3",
+    startDate: "11-13",
     endDate: "01-03",
-    shortDesc: "Winter light walks, holiday artisan markets, choral concerts, solstice celebrations, and festive outings.",
-    longDesc: "Explore Metro Vancouver's winter and holiday season (Nov 15 – Jan 3) with illuminated garden walks, indie artisan markets, classical choral concerts, winter solstice lantern celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
+    shortDesc: "Vancouver Christmas Market, VanDusen Lights, Bright Nights, Surrey Tree Lighting, choral concerts & festive outings.",
+    longDesc: "Explore Metro Vancouver's combined winter and holiday season (Nov 13 – Jan 3)—including the Vancouver Christmas Market, VanDusen Festival of Lights, Bright Nights, Surrey Tree Lighting, indie artisan markets, classical choral concerts, winter solstice celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
     venues: "Metro Vancouver Theatres, Markets, Parks & Botanical Gardens",
-    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice winter holiday season"
+    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice winter holiday season vancouver christmas market vandusen lights bright nights surrey tree lighting"
   },
   "dia-de-los-muertos": {
     id: "dia-de-los-muertos",
@@ -308,50 +308,6 @@ window.FESTIVAL_REGISTRY = window.FESTIVAL_REGISTRY || {
     venues: "Bear Creek Park (Newton, Surrey)",
     officialUrl: "https://www.surrey.ca/news-events/events/bear-creek-lights",
     officialLabel: "Official Bear Creek Lights Info ↗"
-  },
-  "surrey-tree-lighting-festival-holiday-market": {
-    id: "surrey-tree-lighting-festival-holiday-market",
-    label: "Surrey Tree Lighting Festival & Holiday Market",
-    icon: "🎄",
-    datesLabel: "Nov 21 – Nov 22",
-    shortDesc: "Surrey's signature free winter festival with a 60-foot holiday tree, live concerts & artisan market.",
-    longDesc: "Kick off the holiday season at Surrey Civic Plaza in Surrey Central with a dazzling 60-foot Christmas tree lighting ceremony, free live music stages, local holiday market vendors, light tunnels, and festive activities.",
-    venues: "Surrey Civic Plaza (Surrey Central)",
-    officialUrl: "https://www.surreytreelighting.ca",
-    officialLabel: "Official Tree Lighting Guide ↗"
-  },
-  "vancouver-christmas-market": {
-    id: "vancouver-christmas-market",
-    label: "Vancouver Christmas Market",
-    icon: "🎄",
-    datesLabel: "Nov 13 – Dec 24",
-    shortDesc: "Outdoor European-style artisan village with 90+ huts, festive lights, and waterfront treats.",
-    longDesc: "Experience Vancouver's outdoor European-style holiday market at Jack Poole Plaza featuring 90+ artisan huts, festive light installations, carousel rides, and seasonal treats along the waterfront.",
-    venues: "Jack Poole Plaza (1055 Canada Pl, Downtown Vancouver)",
-    officialUrl: "https://www.vancouverchristmasmarket.com",
-    officialLabel: "Official Market Site ↗"
-  },
-  "vandusen-festival-of-lights": {
-    id: "vandusen-festival-of-lights",
-    label: "VanDusen Festival of Lights",
-    icon: "✨",
-    datesLabel: "Nov 27 – Jan 3",
-    shortDesc: "Magical winter walk through 15 acres of VanDusen Botanical Garden illuminated with 1M+ lights.",
-    longDesc: "Stroll through 15 acres of VanDusen Botanical Garden transformed by over one million twinkling lights, themed botanical displays, and Dancing Lights shows.",
-    venues: "VanDusen Botanical Garden (5251 Oak St, Vancouver)",
-    officialUrl: "https://vandusengarden.org/explore/events/festival-of-lights/",
-    officialLabel: "Official Festival of Lights Guide ↗"
-  },
-  "bright-nights": {
-    id: "bright-nights",
-    label: "Bright Nights",
-    icon: "✨",
-    datesLabel: "Nov 26 – Jan 3",
-    shortDesc: "Beloved holiday light walk with illuminated tunnels and displays supporting the BC Burn Fund.",
-    longDesc: "Explore millions of twinkling lights, glowing tunnels, and festive outdoor displays supporting the BC Professional Fire Fighters' Burn Fund.",
-    venues: "Noel Booth Community Park / Stanley Park",
-    officialUrl: "https://www.brightnights.ca",
-    officialLabel: "Official Bright Nights Info ↗"
   },
   "cloverdale-rodeo-country-fair": {
     id: "cloverdale-rodeo-country-fair",
@@ -1652,20 +1608,12 @@ function normalizeActiveEvent(item) {
     if (/\b(?:muertos|day\s*of\s*the\s*dead)\b/i.test(lower)) {
       return { slug: 'dia-de-los-muertos-festival-day-of-the-dead', label: 'Día de los Muertos Festival', fullLabel: 'Día de los Muertos Festival (Day of the Dead)', icon: '💀' };
     }
-    if (/\bsurrey\s*tree\s*lighting\b/i.test(lower)) {
-      return { slug: 'surrey-tree-lighting-festival-holiday-market', label: 'Surrey Tree Lighting Festival', fullLabel: 'Surrey Tree Lighting Festival & Holiday Market', icon: '🎄' };
-    }
     if (/\bbear\s*creek\s*lights\b/i.test(lower)) {
       return { slug: 'bear-creek-lights', label: 'Bear Creek Lights', fullLabel: 'Bear Creek Lights', icon: '✨' };
     }
-    if (/\bvancouver\s*christmas\s*market\b/i.test(lower)) {
-      return { slug: 'vancouver-christmas-market', label: 'Vancouver Christmas Market', fullLabel: 'Vancouver Christmas Market', icon: '🎄' };
-    }
-    if (/\bvandusen\s*festival\s*of\s*lights\b/i.test(lower)) {
-      return { slug: 'vandusen-festival-of-lights', label: 'VanDusen Festival of Lights', fullLabel: 'VanDusen Festival of Lights', icon: '✨' };
-    }
-    if (/\bbright\s*nights\b/i.test(lower)) {
-      return { slug: 'bright-nights', label: 'Bright Nights', fullLabel: 'Bright Nights', icon: '✨' };
+    // Single-venue winter holiday attractions roll directly into "❄️ Winter & Holiday Season" (holiday:christmas)
+    if (/\b(?:surrey\s*tree\s*lighting|vancouver\s*christmas\s*market|vandusen\s*festival\s*of\s*lights|bright\s*nights)\b/i.test(lower)) {
+      return null;
     }
     if (!rawAff) return null;
     const festShort = String(rawAff).replace(/\s*\(.*?\)\s*/g, '').trim();
@@ -1677,6 +1625,10 @@ function normalizeActiveEvent(item) {
   // Build normalized subTags and structured Festival/Holiday theme badges
   const baseSubTags = Array.isArray(item.tags) ? [...item.tags] : (Array.isArray(item.subTags) ? [...item.subTags] : []);
   const themeBadges = [];
+  const isMergedWinterAttraction = /\b(?:surrey\s*tree\s*lighting|vancouver\s*christmas\s*market|vandusen\s*festival\s*of\s*lights|bright\s*nights)\b/i.test(`${rawFestivalAff || ''} ${evTitle || ''}`);
+  if (isMergedWinterAttraction && !rawHolidayAff) {
+    rawHolidayAff = 'christmas';
+  }
   const canonicalFest = resolveCanonicalFestival(rawFestivalAff, evTitle, item.id || item.event_id);
   if (canonicalFest) {
     themeBadges.push({
@@ -2284,15 +2236,46 @@ function setupEventListeners() {
       if (minSlider) minSlider.value = state.minBudget;
       if (maxSlider) maxSlider.value = state.maxBudget;
       updateSliderVisuals();
+      if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
       applyFiltersAndRender();
     });
   });
 
-  // Scheduled Only Toggle
+  // Top Quick-Bar Toggles (Outside Filter Dropdown: "Paid" & "Hide Daily Drop-In")
+  const topTogglePaid = document.getElementById('top-toggle-paid');
+  if (topTogglePaid) {
+    topTogglePaid.addEventListener('click', () => {
+      const isPaidCurrentlyActive = state.minBudget >= 1 && state.maxBudget === 50;
+      if (isPaidCurrentlyActive) {
+        state.minBudget = 0;
+        state.maxBudget = 50;
+      } else {
+        state.minBudget = 1;
+        state.maxBudget = 50;
+      }
+      if (minSlider) minSlider.value = state.minBudget;
+      if (maxSlider) maxSlider.value = state.maxBudget;
+      updateSliderVisuals();
+      clearActiveQuickButtons();
+      applyFiltersAndRender();
+    });
+  }
+
+  const topToggleHideDaily = document.getElementById('top-toggle-hide-daily');
+  if (topToggleHideDaily) {
+    topToggleHideDaily.addEventListener('click', () => {
+      state.hideDaily = !state.hideDaily;
+      if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
+      applyFiltersAndRender();
+    });
+  }
+
+  // Legacy Scheduled Only Checkbox fallback (if present)
   const hideDailyToggle = document.getElementById('hide-daily-toggle');
   if (hideDailyToggle) {
     hideDailyToggle.addEventListener('change', (e) => {
       state.hideDaily = e.target.checked;
+      if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
       applyFiltersAndRender();
     });
   }
@@ -2818,16 +2801,45 @@ function clearActiveQuickButtons() {
     const allBtn = document.getElementById('quick-cost-all');
     if (allBtn) allBtn.classList.add('active');
   }
+  if (typeof window.syncTopQuickToggles === 'function') {
+    window.syncTopQuickToggles();
+  }
 }
+
+window.syncTopQuickToggles = function () {
+  const topPaidBtn = document.getElementById('top-toggle-paid');
+  const topHideDailyBtn = document.getElementById('top-toggle-hide-daily');
+  const isPaidOnly = state.minBudget >= 1 && state.maxBudget === 50;
+  if (topPaidBtn) {
+    topPaidBtn.classList.toggle('active', isPaidOnly);
+    topPaidBtn.setAttribute('aria-pressed', isPaidOnly ? 'true' : 'false');
+  }
+  if (topHideDailyBtn) {
+    const isHideDaily = Boolean(state.hideDaily);
+    topHideDailyBtn.classList.toggle('active', isHideDaily);
+    topHideDailyBtn.setAttribute('aria-pressed', isHideDaily ? 'true' : 'false');
+  }
+  const legacyHideDailyChk = document.getElementById('hide-daily-toggle');
+  if (legacyHideDailyChk) legacyHideDailyChk.checked = Boolean(state.hideDaily);
+};
 
 // ==============================================================================
 // 1.5 FESTIVAL & HOLIDAY SPOTLIGHT, TAG CHIPS & EXPANDABLE DETAILS ENGINE
 // ==============================================================================
 
+const MERGED_WINTER_ATTRACTION_KEYS = new Set([
+  'holiday:winter-holiday-season',
+  'holiday:winter-holidays',
+  'festival:vancouver-christmas-market',
+  'festival:vandusen-festival-of-lights',
+  'festival:bright-nights',
+  'festival:surrey-tree-lighting-festival-holiday-market'
+]);
+
 function eventMatchesThemeKey(ev, themeKey) {
   if (!ev || !themeKey) return false;
   let normalizedTargetKey = (themeKey === 'holiday:diwali') ? 'festival:diwali-fest' : themeKey;
-  if (normalizedTargetKey === 'holiday:winter-holiday-season' || normalizedTargetKey === 'holiday:winter-holidays') {
+  if (MERGED_WINTER_ATTRACTION_KEYS.has(normalizedTargetKey)) {
     normalizedTargetKey = 'holiday:christmas';
   }
   if (Array.isArray(ev.themeBadges) && ev.themeBadges.some(b => b.key === normalizedTargetKey || b.key === themeKey)) return true;
@@ -2837,6 +2849,9 @@ function eventMatchesThemeKey(ev, themeKey) {
   if (type === 'holiday' && ev.holidayAffiliation) {
     const evHol = String(ev.holidayAffiliation).toLowerCase();
     if (evHol === slug || (slug === 'christmas' && evHol === 'winter-holiday-season')) return true;
+  }
+  if (slug === 'christmas' && /\b(?:surrey\s*tree\s*lighting|vancouver\s*christmas\s*market|vandusen\s*festival\s*of\s*lights|bright\s*nights)\b/i.test(`${ev.festivalAffiliation || ''} ${ev.title || ''}`)) {
+    return true;
   }
   if (type === 'festival' && ev.festivalAffiliation) {
     const fSlug = String(ev.festivalAffiliation).toLowerCase().replace(/\s*\(.*?\)\s*/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -2852,17 +2867,24 @@ function getActiveThemeGroups(catalog) {
   (catalog || []).forEach(ev => {
     if (!ev || isEventInPast(ev, now) || isAwaitingSchedule(ev) || parseFloat(ev.price || 0) > 50) return;
     if (Array.isArray(ev.themeBadges)) {
+      const seenKeysForEvent = new Set();
       ev.themeBadges.forEach(b => {
         // Option 1: Keep the top banner strictly for Festivals & Holidays; religious badges appear on cards only
         if (!b || b.type === 'religious') return;
-        const canonicalKey = (b.key === 'holiday:diwali') ? 'festival:diwali-fest' : b.key;
+        let canonicalKey = (b.key === 'holiday:diwali') ? 'festival:diwali-fest' : b.key;
+        if (MERGED_WINTER_ATTRACTION_KEYS.has(canonicalKey)) {
+          canonicalKey = 'holiday:christmas';
+        }
+        if (seenKeysForEvent.has(canonicalKey)) return;
+        seenKeysForEvent.add(canonicalKey);
         if (!groupsMap.has(canonicalKey)) {
           const regMeta = (canonicalKey.startsWith('festival:') && window.FESTIVAL_REGISTRY)
             ? window.FESTIVAL_REGISTRY[canonicalKey.slice(9)]
-            : null;
+            : (canonicalKey.startsWith('holiday:') && window.HOLIDAY_REGISTRY ? window.HOLIDAY_REGISTRY[canonicalKey.slice(8)] : null);
           groupsMap.set(canonicalKey, {
             ...b,
             key: canonicalKey,
+            type: canonicalKey.split(':')[0] || b.type,
             id: canonicalKey.split(':')[1] || b.id,
             label: regMeta?.label || b.label,
             fullLabel: regMeta?.label || b.fullLabel || b.label,
@@ -2875,25 +2897,6 @@ function getActiveThemeGroups(catalog) {
     }
   });
 
-  // Also register all curated Vancouver & Surrey annual festivals from FESTIVAL_REGISTRY so seasonal banners surface automatically
-  if (typeof window !== 'undefined' && window.FESTIVAL_REGISTRY) {
-    Object.values(window.FESTIVAL_REGISTRY).forEach(fest => {
-      if (!fest || !fest.id) return;
-      const key = `festival:${fest.id}`;
-      if (!groupsMap.has(key)) {
-        groupsMap.set(key, {
-          key,
-          type: 'festival',
-          id: fest.id,
-          label: fest.label,
-          fullLabel: fest.label,
-          icon: fest.icon || '🎪',
-          count: 1
-        });
-      }
-    });
-  }
-
   return Array.from(groupsMap.values());
 }
 
@@ -2904,16 +2907,12 @@ const THEME_DATE_WINDOWS = {
   'european-union-film-festival': { startDate: '2026-11-13', endDate: '2026-11-26' },
   'lumiere-festival': { startDate: '2026-11-12', endDate: '2026-11-16' },
   'bear-creek-lights': { startDate: '2026-11-01', endDate: '2026-11-15' },
-  'surrey-tree-lighting-festival-holiday-market': { startDate: '2026-11-21', endDate: '2026-11-22' },
-  'vancouver-christmas-market': { startDate: '2026-11-13', endDate: '2026-12-24' },
-  'vandusen-festival-of-lights': { startDate: '2026-11-27', endDate: '2027-01-03' },
-  'bright-nights': { startDate: '2026-11-26', endDate: '2027-01-03' },
   'cloverdale-rodeo-country-fair': { startDate: '05-15', endDate: '05-18' },
   'surrey-fusion-festival': { startDate: '07-18', endDate: '07-19' },
   'canada-cup-international-softball-championship': { startDate: '07-03', endDate: '07-12' },
   'downtown-eastside-heart-of-the-city-festival': { startDate: '2026-10-30', endDate: '2026-11-08' },
-  'christmas': { startDate: '11-15', endDate: '01-03' },
-  'winter-holiday-season': { startDate: '11-15', endDate: '01-03' },
+  'christmas': { startDate: '11-13', endDate: '01-03' },
+  'winter-holiday-season': { startDate: '11-13', endDate: '01-03' },
   'new-years': { startDate: '12-26', endDate: '01-03' },
   'lunar-new-year': { startDate: '01-25', endDate: '02-20' },
   'valentines-day': { startDate: '02-01', endDate: '02-15' },
@@ -5102,6 +5101,7 @@ function filterByVenue(venueName) {
     renderNeighborhoodPills();
     renderFrequencyPills();
     renderEventFocusPills();
+    clearActiveQuickButtons();
     updateSliderVisuals();
   }
   applyFiltersAndRender();
@@ -7642,6 +7642,9 @@ if (document.readyState === 'loading') {
 // ==============================================================================
 
 function renderActiveFilterChips(filteredCount) {
+  if (typeof window.syncTopQuickToggles === 'function') {
+    window.syncTopQuickToggles();
+  }
   const chipsContainer = document.getElementById('active-filter-chips');
   const mobileFilterTrigger = document.getElementById('mobile-filter-trigger');
   const mobileSheetApplyBtn = document.getElementById('mobile-sheet-apply-btn');
@@ -7712,7 +7715,7 @@ function renderActiveFilterChips(filteredCount) {
 
   // 6. Hide Daily Drop-In Spots
   if (state.hideDaily) {
-    chips.push({ key: 'hideDaily', label: 'Scheduled Only' });
+    chips.push({ key: 'hideDaily', label: 'Hide Daily Drop-In' });
   }
 
   // 7. Accessible Venues Only
@@ -7730,16 +7733,17 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'eventFocus', label: focusChipLabels[state.eventFocus] || state.eventFocus });
   }
 
-  const activeCount = chips.length;
+  // Count only filters located inside the Filters dropdown (Paid & Hide Daily Drop-In live in the top quick-bar)
+  const drawerActiveCount = chips.filter(c => c.key !== 'hideDaily' && !(c.key === 'cost' && c.label === 'Paid')).length;
   if (mobileFilterTrigger) {
-    const labelText = activeCount > 0 ? `Filters (${activeCount})` : 'Filters';
+    const labelText = drawerActiveCount > 0 ? `Filters (${drawerActiveCount})` : 'Filters';
     const triggerLabelEl = document.getElementById('mobile-filter-trigger-label') || mobileFilterTrigger.querySelector('span');
     if (triggerLabelEl) {
       triggerLabelEl.textContent = labelText;
     } else {
-      mobileFilterTrigger.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg><span id="mobile-filter-trigger-label">${labelText}</span>`;
+      mobileFilterTrigger.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg><span id="mobile-filter-trigger-label">${labelText}</span>`;
     }
-    mobileFilterTrigger.classList.toggle('has-active-filters', activeCount > 0);
+    mobileFilterTrigger.classList.toggle('has-active-filters', drawerActiveCount > 0);
   }
 
   if (!chipsContainer) return;

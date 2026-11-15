@@ -8856,3 +8856,88 @@ body.van50-accessible {
   color: var(--text-main) !important;
   border-color: var(--brand-primary) !important;
 }
+
+/* ==========================================================================
+   TOP QUICK-BAR TOGGLES ("Paid" & "Hide Daily Drop-In" Outside Filter Drawer)
+   ========================================================================== */
+.top-quick-toggles-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  padding: 2px 2px 4px 2px;
+  margin: 0 0 2px 0;
+  box-sizing: border-box;
+}
+
+.top-quick-toggle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text-main);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  user-select: none;
+}
+
+.top-quick-toggle-pill:hover {
+  border-color: var(--brand-primary);
+}
+
+.top-quick-toggle-pill:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.top-quick-toggle-pill .toggle-pill-indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.75px solid var(--text-muted);
+  background: transparent;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.top-quick-toggle-pill:hover .toggle-pill-indicator {
+  border-color: var(--brand-primary);
+}
+
+.top-quick-toggle-pill.active,
+.top-quick-toggle-pill[aria-pressed="true"] {
+  background: var(--brand-primary) !important;
+  color: var(--brand-primary-fg) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: var(--shadow-glow);
+}
+
+.top-quick-toggle-pill.active .toggle-pill-indicator,
+.top-quick-toggle-pill[aria-pressed="true"] .toggle-pill-indicator {
+  background: currentColor;
+  border-color: currentColor;
+}
+
+@media (max-width: 768px) {
+  .top-quick-toggles-bar {
+    gap: 6px;
+    padding: 2px 0 4px 0;
+  }
+
+  .top-quick-toggle-pill {
+    min-height: 34px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+  }
+}

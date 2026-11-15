@@ -2409,7 +2409,8 @@ export async function compileCatalog(options = {}) {
 
     // Auto-stage newly discovered unapproved festivals into data/festivals.json with status: "pending_curator_approval"
     // so the Antigravity Curator prompts the user to approve, merge into an existing festival, or reject it!
-    if (!matchedFestival && rawCandidateFestName && Array.isArray(festivalsRegistry)) {
+    const isWinterHolidaySubAttraction = /\b(?:christmas|santa|holiday\s*market|winter\s*market|winter\s*solstice|lights\s*of\s*hope|vandusen\s*festival\s*of\s*lights|bright\s*nights|surrey\s*tree\s*lighting|winter\s*trout\s*fest|merry,\s*gay)\b/i.test(rawCandidateFestName || "");
+    if (!matchedFestival && rawCandidateFestName && !isWinterHolidaySubAttraction && Array.isArray(festivalsRegistry)) {
       const candSlug = String(rawCandidateFestName).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
       const alreadyInRegistry = festivalsRegistry.some((f) => {
         const s = f.slug || f.id || String(f.festival_name || f.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -2441,10 +2442,11 @@ export async function compileCatalog(options = {}) {
 
     const isMatchedFestivalApproved = Boolean(
       matchedFestival &&
-      matchedFestival.status !== "pending_curator_approval" &&
+      matchedFestival.status === "approved" &&
       matchedFestival.approvalStatus !== "pending" &&
-      matchedFestival.status !== "rejected" &&
-      matchedFestival.approvalStatus !== "rejected"
+      matchedFestival.approvalStatus !== "rejected" &&
+      matchedFestival.approvalStatus !== "merged" &&
+      !matchedFestival.merged_into_holiday
     );
 
     const resolvedFestivalAffiliation = isMatchedFestivalApproved
@@ -2452,6 +2454,9 @@ export async function compileCatalog(options = {}) {
       : null;
 
     const resolvedHolidayAffiliation = (() => {
+      if (matchedFestival && matchedFestival.merged_into_holiday) {
+        return matchedFestival.merged_into_holiday;
+      }
       const eventMmdd = (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate)) ? heroDate.slice(5, 10) : null;
       const inSeason = (startMmdd, endMmdd) => {
         if (!eventMmdd) return false;
@@ -2528,7 +2533,7 @@ export async function compileCatalog(options = {}) {
       if (inSeason("10-01", "10-16") && /\b(?:harvest\s*dinner|turkey\s*dinner|autumn\s*harvest|gratitude\s*feast)\b/i.test(fullHolidayText)) {
         return "thanksgiving";
       }
-      if (inSeason("11-15", "01-03") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|vandusen\s*festival\s*of\s*lights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party|deck\s*the\s*halls|jingle)\b/i.test(fullHolidayText) && (archetype !== "cinema" || isChristmasInTitle)) {
+      if (inSeason("11-13", "01-03") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|vandusen\s*festival\s*of\s*lights|surrey\s*tree\s*lighting|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party|deck\s*the\s*halls|jingle)\b/i.test(fullHolidayText) && (archetype !== "cinema" || isChristmasInTitle)) {
         return "christmas";
       }
       if (inSeason("12-26", "01-03") && /\b(?:countdown|midnight\s*toast|champagne\s*toast|ball\s*drop|first\s*day|ring\s*in\s*the\s*new)\b/i.test(fullHolidayText)) {

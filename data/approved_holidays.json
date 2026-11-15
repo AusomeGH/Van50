@@ -51,14 +51,21 @@
     },
     {
       "id": "christmas",
-      "aliases": ["winter-holiday-season", "winter-holidays"],
+      "aliases": [
+        "winter-holiday-season",
+        "winter-holidays",
+        "vancouver-christmas-market",
+        "vandusen-festival-of-lights",
+        "bright-nights",
+        "surrey-tree-lighting-festival-holiday-market"
+      ],
       "label": "❄️ Winter & Holiday Season",
       "icon": "❄️",
-      "window_start": "11-15",
+      "window_start": "11-13",
       "window_end": "01-03",
-      "dates_label": "Nov 15 – Jan 3",
-      "short_description": "Winter light walks, holiday artisan markets, choral concerts, solstice celebrations, and festive outings.",
-      "long_description": "Explore Metro Vancouver's winter and holiday season (Nov 15 – Jan 3) with illuminated garden walks, indie artisan markets, classical choral concerts, winter solstice lantern celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
+      "dates_label": "Nov 13 – Jan 3",
+      "short_description": "Vancouver Christmas Market, VanDusen Lights, Bright Nights, Surrey Tree Lighting, choral concerts & festive outings.",
+      "long_description": "Explore Metro Vancouver's combined winter and holiday season (Nov 13 – Jan 3)—including the Vancouver Christmas Market, VanDusen Festival of Lights, Bright Nights, Surrey Tree Lighting, indie artisan markets, classical choral concerts, winter solstice celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
       "approvedAt": "2026-10-03"
     },
     {

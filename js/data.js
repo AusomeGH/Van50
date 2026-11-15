@@ -48405,15 +48405,11 @@ const VANCOUVER_EVENTS = [
       "music",
       "arts",
       "social",
-      "free-public-access",
-      "festivals"
+      "free-public-access"
     ],
     "categoryLabel": "MUSIC",
     "tags": [
       "music",
-      "festival",
-      "surrey-tree-lighting-festival-holiday-market",
-      "festival:surrey-tree-lighting-festival-holiday-market",
       "holiday",
       "christmas",
       "holiday:christmas",
@@ -48423,9 +48419,6 @@ const VANCOUVER_EVENTS = [
     ],
     "subTags": [
       "music",
-      "festival",
-      "surrey-tree-lighting-festival-holiday-market",
-      "festival:surrey-tree-lighting-festival-holiday-market",
       "holiday",
       "christmas",
       "holiday:christmas",
@@ -48433,8 +48426,8 @@ const VANCOUVER_EVENTS = [
       "holiday-market",
       "winter-festive"
     ],
-    "festival_affiliation": "Surrey Tree Lighting Festival & Holiday Market",
-    "festivalAffiliation": "Surrey Tree Lighting Festival & Holiday Market",
+    "festival_affiliation": null,
+    "festivalAffiliation": null,
     "holiday_affiliation": "christmas",
     "holidayAffiliation": "christmas",
     "is_religious": false,
@@ -48527,19 +48520,19 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Surrey Tree Lighting Festival & Holiday Market",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D002_event_num_perm": {
         "status": "verified",
         "value": "Event_Num_Perm_000000048",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D003_event_num_card": {
         "status": "verified",
         "value": "Event_Num_Card_000000048",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D004_category": {
         "status": "verified",
@@ -48548,19 +48541,15 @@ const VANCOUVER_EVENTS = [
           "music",
           "arts",
           "social",
-          "free-public-access",
-          "festivals"
+          "free-public-access"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D005_tags": {
         "status": "verified",
         "value": [
           "music",
-          "festival",
-          "surrey-tree-lighting-festival-holiday-market",
-          "festival:surrey-tree-lighting-festival-holiday-market",
           "holiday",
           "christmas",
           "holiday:christmas",
@@ -48570,9 +48559,6 @@ const VANCOUVER_EVENTS = [
         ],
         "subTags": [
           "music",
-          "festival",
-          "surrey-tree-lighting-festival-holiday-market",
-          "festival:surrey-tree-lighting-festival-holiday-market",
           "holiday",
           "christmas",
           "holiday:christmas",
@@ -48581,297 +48567,297 @@ const VANCOUVER_EVENTS = [
           "winter-festive"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D006_lifecycle_type": {
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "festival",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D009_holiday_affiliation": {
         "status": "verified",
         "value": "christmas",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D102_tier2_event_page": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D103_tier3_calendar": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D107_operational_status": {
         "status": "verified",
         "value": "available",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D108_geo_jurisdiction": {
         "status": "verified",
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D201_tier1_name": {
         "status": "verified",
         "value": "Free Public Access",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D202_tier1_price_base": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D203_tier1_price_fee": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D204_tier1_price_tax": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_price_read": {
         "status": "verified",
         "value": 0,
         "quote": "Free ($0)",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_price_calculated": {
         "status": "verified",
         "value": 0,
         "formula": "base($0) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D207_tier2_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D208_tier2_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D209_tier2_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D211_tier3_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D212_tier3_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D213_tier3_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D214_tier3_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D216_tier_count_verified": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "free_access",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D221_ticket_provider": {
         "status": "verified",
         "value": "Venue Direct / Civic Portal",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D222_booking_protocol": {
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D302_artist": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D303_date": {
         "status": "verified",
         "value": "2026-11-21",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -48897,61 +48883,61 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D305_doors_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D306_start_time": {
         "status": "verified",
         "value": "12:00 PM",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D307_end_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "none_available",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D308_dateSchedule": {
         "status": "verified",
         "value": "2026-11-21 • 12:00 PM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D310_synopsis": {
         "status": "verified",
         "value": "Surrey's signature two-day holiday festival at Surrey Civic Plaza right beside Surrey Central SkyTrain, featuring the lighting of a 60-foot holiday tree, free live music stages, artisan market, and light tunnel.",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D311_festival_affiliation": {
-        "status": "verified",
-        "value": "Surrey Tree Lighting Festival & Holiday Market",
+        "status": "none_available",
+        "value": null,
         "source_tool": "festival_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Surrey Civic Plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "13450 104 Ave, Surrey, BC V3T 1V8",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -48966,116 +48952,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Surrey Central / Whalley",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "free_public_access",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "outdoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Open Daily: 6:00 AM - 11:00 PM (Surrey Tree Lighting Festival: Sat Nov 21 & Sun Nov 22, 12:00 PM - 8:00 PM)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "Directly adjacent to Surrey Central SkyTrain Station (Expo Line) & Surrey Central Bus Loop (R1 RapidBus, #314, #320, #321, #323, #324, #325, #335, #501, #502)",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Fully paved, level civic plaza with barrier-free access from Surrey Central SkyTrain Station, City Hall atrium, and City Centre Library",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Full elevator access inside Surrey City Hall atrium and City Centre Library overlooking the plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible public washrooms inside Surrey City Hall atrium and City Centre Library",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified guide and service animals welcome throughout the plaza and indoor atrium",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Prado Cafe inside Surrey City Hall atrium plus 20+ festival food trucks and holiday market vendors on event weekends",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.50 CAD (Prado Cafe espresso / hot apple cider)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$14.00 CAD (Festival food truck entree)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside food and non-alcoholic beverages welcome on the outdoor civic plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Free Festival Admission ($0.00 CAD); food trucks and artisan market vendors accept Debit, Credit & Tap",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D608_water_refill_station": {
         "status": "verified",
         "value": "Water refill stations inside City Hall atrium and City Centre Library",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -49291,37 +49277,37 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D792_festival_pass_type": {
         "status": "verified",
         "value": "Free Public Festival Admission (No Pass Required)",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D793_rush_seating_rules": {
         "status": "verified",
         "value": "Standby rush line opens 15–30 mins prior to showtime subject to capacity",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D794_central_box_office": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D795_volunteer_ticket_exchange": {
         "status": "verified",
         "value": "Official Surrey Tree Lighting Festival & Holiday Market Volunteer & Community Access Program",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D801_srsa_compliance": {
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -49332,24 +49318,24 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
         "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D804_active_showings": {
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -49357,35 +49343,35 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": null,
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_qc_audited_at": "2026-11-15T02:47:06.329Z"
+        "last_pulse_qc_at": "2026-11-15T03:12:05.267Z",
+        "last_content_qc_at": "2026-11-15T03:12:05.267Z",
+        "last_full_qc_at": "2026-11-15T03:12:05.267Z",
+        "last_qc_audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D809_civic_provider_rules": {
         "status": "search_exhausted_null",
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       }
     },
-    "last_qc_audited_at": "2026-11-15T02:47:06.329Z",
-    "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_qc_audited_at": "2026-11-15T03:12:05.267Z",
+    "last_pulse_qc_at": "2026-11-15T03:12:05.267Z",
+    "last_content_qc_at": "2026-11-15T03:12:05.267Z",
+    "last_full_qc_at": "2026-11-15T03:12:05.267Z",
+    "last_compiled_batch_at": "2026-11-15T03:12:05.267Z",
     "candidate_tier1_url": "https://www.surreytreelighting.ca",
     "candidate_tier1_source": "verified_municipal_schedule",
     "candidate_tier1_confidence": 1,
@@ -273546,14 +273532,10 @@ const VANCOUVER_EVENTS = [
     },
     "category": "outdoors",
     "categories": [
-      "outdoors",
-      "festivals"
+      "outdoors"
     ],
     "categoryLabel": "OUTDOORS",
     "tags": [
-      "festival",
-      "vandusen-festival-of-lights",
-      "festival:vandusen-festival-of-lights",
       "holiday",
       "christmas",
       "holiday:christmas",
@@ -273561,17 +273543,14 @@ const VANCOUVER_EVENTS = [
       "winter-festive"
     ],
     "subTags": [
-      "festival",
-      "vandusen-festival-of-lights",
-      "festival:vandusen-festival-of-lights",
       "holiday",
       "christmas",
       "holiday:christmas",
       "holiday-lights",
       "winter-festive"
     ],
-    "festival_affiliation": "VanDusen Festival of Lights",
-    "festivalAffiliation": "VanDusen Festival of Lights",
+    "festival_affiliation": null,
+    "festivalAffiliation": null,
     "holiday_affiliation": "christmas",
     "holidayAffiliation": "christmas",
     "is_religious": false,
@@ -273670,20 +273649,19 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Event_Num_Perm_000000256",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D003_event_num_card": {
         "status": "verified",
         "value": "Event_Num_Card_000000256",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D004_category": {
         "status": "verified",
         "value": "outdoors",
         "categories": [
-          "outdoors",
-          "festivals"
+          "outdoors"
         ],
         "source_tool": "ai_semantic_enricher",
         "audited_at": "2026-11-11T14:27:53.993Z"
@@ -273691,9 +273669,6 @@ const VANCOUVER_EVENTS = [
       "D005_tags": {
         "status": "verified",
         "value": [
-          "festival",
-          "vandusen-festival-of-lights",
-          "festival:vandusen-festival-of-lights",
           "holiday",
           "christmas",
           "holiday:christmas",
@@ -273701,9 +273676,6 @@ const VANCOUVER_EVENTS = [
           "winter-festive"
         ],
         "subTags": [
-          "festival",
-          "vandusen-festival-of-lights",
-          "festival:vandusen-festival-of-lights",
           "holiday",
           "christmas",
           "holiday:christmas",
@@ -273717,25 +273689,25 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "festival",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages / Family Friendly",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D009_holiday_affiliation": {
         "status": "verified",
         "value": "christmas",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D101_tier1_checkout": {
         "status": "verified",
@@ -273753,26 +273725,26 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://vandusengarden.org/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://vandusengarden.org",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.showpass.com/vandusen-festival-of-lights-126/",
         "best_tier": "Tier 1: Checkout Cart",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D107_operational_status": {
         "status": "verified",
@@ -273785,19 +273757,19 @@ const VANCOUVER_EVENTS = [
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D201_tier1_name": {
         "status": "verified",
@@ -273835,20 +273807,20 @@ const VANCOUVER_EVENTS = [
         "value": 33.98,
         "formula": "base($28) + fee($4.36) + tax($1.62) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "discrepancy_logged",
         "delta": 1.6199999999999974,
         "note": "Platform checkout surcharge or unlisted fee detected",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 33.98,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D206_tier2_name": {
         "status": "verified",
@@ -273885,13 +273857,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": 22.22,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "discrepancy_logged",
         "delta": 1.0599999999999987,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_price_all_in": {
         "status": "verified",
@@ -273934,13 +273906,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": 22.22,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "discrepancy_logged",
         "delta": 1.0599999999999987,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_price_all_in": {
         "status": "verified",
@@ -273952,20 +273924,20 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 5,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "standard",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 33.98,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
@@ -273983,7 +273955,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
@@ -274001,7 +273973,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-27",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -274054,7 +274026,7 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D305_doors_time": {
         "status": "none_available",
@@ -274078,13 +274050,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-27 • 4:00 PM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D310_synopsis": {
         "status": "verified",
@@ -274093,22 +274065,22 @@ const VANCOUVER_EVENTS = [
         "audited_at": "2026-11-11T14:27:53.993Z"
       },
       "D311_festival_affiliation": {
-        "status": "verified",
-        "value": "VanDusen Festival of Lights",
+        "status": "none_available",
+        "value": null,
         "source_tool": "festival_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "VanDusen Botanical Garden",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "5251 Oak St, Vancouver, BC V6M 4H1",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -274123,116 +274095,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Shaughnessy / South Cambie, Vancouver",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "drop_in_paid",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "hybrid",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Daily: 10:00 AM - 4:00 PM (seasonal variations apply; summer hours extend up to 7:00 PM)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "TransLink Bus #17 (Oak / Downtown) stops directly outside; #25 (Brentwood Station / UBC) stops at King Edward & Oak St; Canada Line SkyTrain via Oakridge-41st Station or King Edward Station with connection",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Level, step-free access through the modern Visitor Centre entrance with automated sliding doors and wide paved ramps into main garden paths",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Elevator access within the two-level Visitor Centre for conference and observation areas; garden perimeter paths are grade-level or ramped",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible individual and multi-stall universal washrooms located in the Visitor Centre and throughout garden service pavilions",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified guide dogs and service animals permitted with documentation; pets and comfort animals are strictly prohibited in the garden",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Garden Cafe (counter-service casual dining, coffee, pastries, light lunches) and Shaughnessy Restaurant (full-service sit-down dining)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.50 CAD (drip / espresso drink at Garden Cafe)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$18.00 CAD (sandwich, soup, or bowl at Garden Cafe)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside food and personal picnic lunches permitted in designated outdoor lawn areas; alcohol, cooking appliances, and commercial catering prohibited",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Credit card (Visa, Mastercard, Amex), Debit / Interac, Apple Pay / Google Pay; cashless preferred at admissions desk",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D608_water_refill_station": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -274448,37 +274420,37 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://www.showpass.com/vandusen-festival-of-lights-126/",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D792_festival_pass_type": {
         "status": "verified",
         "value": "Free Public Festival Admission (No Pass Required)",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D793_rush_seating_rules": {
         "status": "verified",
         "value": "Standby rush line opens 15–30 mins prior to showtime subject to capacity",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D794_central_box_office": {
         "status": "verified",
         "value": "5251 Oak St, Vancouver, BC",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D795_volunteer_ticket_exchange": {
         "status": "verified",
         "value": "Official VanDusen Festival of Lights Volunteer & Community Access Program",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D801_srsa_compliance": {
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -274492,7 +274464,7 @@ const VANCOUVER_EVENTS = [
           "category disagreement across layers (outdoors vs shows)"
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
@@ -274503,13 +274475,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 5,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -274517,20 +274489,20 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": "data/proof_keyframes/vandusen-botanical-g-vandusen-festival-of-lights-2026-11-27_cart.png",
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
         "last_pulse_qc_at": "2026-11-11T15:46:34.331Z",
         "last_content_qc_at": "2026-11-10T01:12:13.337Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
+        "last_full_qc_at": "2026-11-15T03:12:05.267Z",
         "last_qc_audited_at": "2026-11-11T15:46:34.331Z"
       },
       "D809_civic_provider_rules": {
@@ -274538,14 +274510,14 @@ const VANCOUVER_EVENTS = [
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       }
     },
     "last_qc_audited_at": "2026-11-11T15:46:34.331Z",
     "last_pulse_qc_at": "2026-11-11T15:46:34.331Z",
     "last_content_qc_at": "2026-11-10T01:12:13.337Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_full_qc_at": "2026-11-15T03:12:05.267Z",
+    "last_compiled_batch_at": "2026-11-15T03:12:05.267Z",
     "candidate_tier1_url": "https://www.showpass.com/vandusen-festival-of-lights-126/",
     "candidate_tier1_source": "existing_verified",
     "candidate_tier1_staged_at": "2026-11-10T10:28:12.760Z",
@@ -280120,14 +280092,10 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "category": "culture",
     "categories": [
-      "culture",
-      "festivals"
+      "culture"
     ],
     "categoryLabel": "CULTURE",
     "tags": [
-      "festival",
-      "vancouver-christmas-market",
-      "festival:vancouver-christmas-market",
       "holiday",
       "christmas",
       "holiday:christmas",
@@ -280135,17 +280103,14 @@ const VANCOUVER_EVENTS = [
       "winter-festive"
     ],
     "subTags": [
-      "festival",
-      "vancouver-christmas-market",
-      "festival:vancouver-christmas-market",
       "holiday",
       "christmas",
       "holiday:christmas",
       "holiday-market",
       "winter-festive"
     ],
-    "festival_affiliation": "Vancouver Christmas Market",
-    "festivalAffiliation": "Vancouver Christmas Market",
+    "festival_affiliation": null,
+    "festivalAffiliation": null,
     "holiday_affiliation": "christmas",
     "holidayAffiliation": "christmas",
     "is_religious": false,
@@ -280244,20 +280209,19 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Event_Num_Perm_000000262",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D003_event_num_card": {
         "status": "verified",
         "value": "Event_Num_Card_000000262",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D004_category": {
         "status": "verified",
         "value": "culture",
         "categories": [
-          "culture",
-          "festivals"
+          "culture"
         ],
         "source_tool": "ai_semantic_enricher",
         "audited_at": "2026-11-11T15:25:00.000Z"
@@ -280265,9 +280229,6 @@ const VANCOUVER_EVENTS = [
       "D005_tags": {
         "status": "verified",
         "value": [
-          "festival",
-          "vancouver-christmas-market",
-          "festival:vancouver-christmas-market",
           "holiday",
           "christmas",
           "holiday:christmas",
@@ -280275,9 +280236,6 @@ const VANCOUVER_EVENTS = [
           "winter-festive"
         ],
         "subTags": [
-          "festival",
-          "vancouver-christmas-market",
-          "festival:vancouver-christmas-market",
           "holiday",
           "christmas",
           "holiday:christmas",
@@ -280291,25 +280249,25 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "festival",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages / Family Friendly",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D009_holiday_affiliation": {
         "status": "verified",
         "value": "christmas",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
@@ -280327,26 +280285,26 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://www.vancouverchristmasmarket.com/entertainment-schedules/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.vancouverchristmasmarket.com/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.vancouverchristmasmarket.com/",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D107_operational_status": {
         "status": "verified",
@@ -280359,19 +280317,19 @@ const VANCOUVER_EVENTS = [
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D201_tier1_name": {
         "status": "verified",
@@ -280409,20 +280367,20 @@ const VANCOUVER_EVENTS = [
         "value": 7.99,
         "formula": "base($7.99) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 7.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D206_tier2_name": {
         "status": "verified",
@@ -280459,13 +280417,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": 29.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D210_tier2_price_all_in": {
         "status": "verified",
@@ -280508,13 +280466,13 @@ const VANCOUVER_EVENTS = [
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
@@ -280526,20 +280484,20 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "standard",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 7.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
@@ -280557,7 +280515,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
@@ -280575,7 +280533,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-16",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -280601,7 +280559,7 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D305_doors_time": {
         "status": "verified",
@@ -280625,13 +280583,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-16 • 11:30 AM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D310_synopsis": {
         "status": "verified",
@@ -280640,22 +280598,22 @@ const VANCOUVER_EVENTS = [
         "audited_at": "2026-11-11T15:25:00.000Z"
       },
       "D311_festival_affiliation": {
-        "status": "verified",
-        "value": "Vancouver Christmas Market",
+        "status": "none_available",
+        "value": null,
         "source_tool": "festival_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Jack Poole Plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "1055 Canada Pl, Vancouver, BC V6C 3L5",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -280670,116 +280628,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Coal Harbour / Downtown Vancouver",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "open_public_space",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "outdoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Open daily 24 hours (public waterfront plaza; adjacent restaurant and convention centre hours vary)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "Waterfront Station (Expo Line, Canada Line, SeaBus, West Coast Express) approx. 6-minute walk; Burrard Station (Expo Line) approx. 7-minute walk; TransLink buses along West Pender and Burrard Streets",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Seamless step-free, paved concrete pedestrian concourse accessible directly from Thurlow Street, Canada Place, and Burrard Street walkway; gradual ramps connect upper plaza deck to lower seawall pathway",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Public and convention centre elevator access connects underground parkade, Vancouver Convention Centre West concourses, and the plaza deck",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible public washrooms available inside the adjacent Vancouver Convention Centre West building during operating hours",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Service animals welcome throughout the plaza; on-leash dogs permitted in open outdoor plaza areas",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Direct access to Tap & Barrel Convention Centre (outdoor patio & craft beer bar/restaurant), adjacent waterfront cafes, and convention food vendors during major events",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.50 CAD (drip coffee at nearby waterfront cafes)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$22.00 CAD (handheld / burger / pizza entree at plaza restaurant)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside food, drinks, and casual seating/picnicking fully permitted in open plaza public spaces; licensed alcohol restricted to designated restaurant patios and special event zones",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Free access to public plaza; contactless credit, debit, and mobile pay accepted at on-site restaurants and food vendors (predominantly cashless)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D608_water_refill_station": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -280995,37 +280953,37 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://tickets.vancouverchristmasmarket.com/",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D792_festival_pass_type": {
         "status": "verified",
         "value": "Single Event Tickets & Festival Passes ($7.99 CAD)",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D793_rush_seating_rules": {
         "status": "verified",
         "value": "Standby rush line opens 15–30 mins prior to showtime subject to capacity",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D794_central_box_office": {
         "status": "verified",
         "value": "1055 Canada Pl, Vancouver, BC V6C 3L5",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D795_volunteer_ticket_exchange": {
         "status": "verified",
         "value": "Official Vancouver Christmas Market Volunteer & Community Access Program",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D801_srsa_compliance": {
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -281039,7 +280997,7 @@ const VANCOUVER_EVENTS = [
           "category disagreement across layers (culture vs markets)"
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
@@ -281050,13 +281008,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -281064,20 +281022,20 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": "data/proof_keyframes/jack-poole-plaza-vancouver-christmas-market-202-2026-11-16_cart.png",
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
         "last_pulse_qc_at": "2026-11-11T15:30:01.411Z",
         "last_content_qc_at": "2026-11-11T15:22:00.000Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
+        "last_full_qc_at": "2026-11-15T03:12:05.267Z",
         "last_qc_audited_at": "2026-11-11T15:30:01.411Z"
       },
       "D809_civic_provider_rules": {
@@ -281085,14 +281043,14 @@ const VANCOUVER_EVENTS = [
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T03:12:05.267Z"
       }
     },
     "last_qc_audited_at": "2026-11-11T15:30:01.411Z",
     "last_pulse_qc_at": "2026-11-11T15:30:01.411Z",
     "last_content_qc_at": "2026-11-11T15:22:00.000Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_full_qc_at": "2026-11-15T03:12:05.267Z",
+    "last_compiled_batch_at": "2026-11-15T03:12:05.267Z",
     "all_tiers": [
       {
         "name": "Single-Day Ticket",
