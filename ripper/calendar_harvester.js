@@ -947,7 +947,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
     return score;
   }
 
-  allFeeds.sort((a, b) => scoreFeedPriority(b) - scoreFeedPriority(a));
+  allFeeds.sort((a, b) => (scoreFeedPriority(b) - scoreFeedPriority(a)) || String(a.name || "").localeCompare(String(b.name || "")));
 
   // Filter feeds by requested single city ("vancouver" | "surrey") or keep all ("all")
   const feeds = cityScope === "all"
@@ -959,203 +959,245 @@ export async function runAllVenueFeedsBatch(options = {}) {
   const CHECKPOINT_PATH = path.join(ROOT_DIR, "data", "layers", "harvester_checkpoint.json");
 
   let completedFeedUrls = new Set();
+  let completedNormUrls = new Set();
   let startFeedIndex = 0;
   let priorEventsHarvested = 0;
 
-  if (isResume && fs.existsSync(CHECKPOINT_PATH)) {
-    try {
-      const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
-      const rawCompleted = Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : [];
-      const feedUrlSet = new Set(feeds.map((f) => f.url));
-      const matchingCompleted = rawCompleted.filter((u) => feedUrlSet.has(u));
-      // Only treat as already 100% completed if every feed in the current scope was already scanned
-      if (matchingCompleted.length < feeds.length) {
-        rawCompleted.forEach((u) => completedFeedUrls.add(u));
-        const firstUnscannedIdx = feeds.findIndex((f) => !completedFeedUrls.has(f.url));
-        startFeedIndex = firstUnscannedIdx >= 0 ? firstUnscannedIdx : 0;
-        priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
+    if (fs.existsSync(CHECKPOINT_PATH)) {
+      try {
+        const cp = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf-8"));
+        const rawCompleted = Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : [];
+          const scopeNormSet = new Set(feeds.map((f) => normalizeCrawlerFeedUrl(f.url)).filter(Boolean));
+          if (isResume) {
+            const matchingCompletedCount = feeds.filter((f) => {
+              const nf = normalizeCrawlerFeedUrl(f.url);
+              return nf && rawCompleted.some((u) => normalizeCrawlerFeedUrl(u) === nf);
+            }).length;
+            // Only treat as already 100% completed if every feed in the current scope was already scanned
+            if (matchingCompletedCount < feeds.length) {
+              rawCompleted.forEach((u) => {
+                completedFeedUrls.add(u);
+                const nu = normalizeCrawlerFeedUrl(u);
+                if (nu) completedNormUrls.add(nu);
+              });
+              const firstUnscannedIdx = feeds.findIndex((f) => !completedNormUrls.has(normalizeCrawlerFeedUrl(f.url)));
+              startFeedIndex = firstUnscannedIdx >= 0 ? firstUnscannedIdx : 0;
+              priorEventsHarvested = Number(cp.events_harvested_in_run) || 0;
+            } else if (cityScope !== "all") {
+              // Preserve other city's completed URLs when restarting a completed single-city scope
+              rawCompleted.forEach((u) => {
+                const nu = normalizeCrawlerFeedUrl(u);
+                if (nu && !scopeNormSet.has(nu)) {
+                  completedFeedUrls.add(u);
+                  completedNormUrls.add(nu);
+                }
+              });
+            }
+          } else if (cityScope !== "all") {
+            // Fresh pass on a single city: clear only this city's URLs while preserving other city's progress
+            rawCompleted.forEach((u) => {
+              const nu = normalizeCrawlerFeedUrl(u);
+              if (nu && !scopeNormSet.has(nu)) {
+                completedFeedUrls.add(u);
+                completedNormUrls.add(nu);
+              }
+            });
+          }
+        } catch (cpErr) {
+          console.warn(`[WARN] Could not read harvester_checkpoint.json: ${cpErr.message}`);
+        }
       }
-    } catch (cpErr) {
-      console.warn(`[WARN] Could not read harvester_checkpoint.json: ${cpErr.message}`);
-    }
-  }
 
   let totalHarvestedEvents = 0;
-  const cityLabel = cityScope === "vancouver"
-    ? "🏙️ VANCOUVER ONLY"
-    : cityScope === "surrey"
-      ? "🦌 SURREY ONLY"
-      : "🌲 ALL METRO (VANCOUVER + SURREY)";
+      const cityLabel = cityScope === "vancouver"
+        ? "🏙️ VANCOUVER ONLY"
+        : cityScope === "surrey"
+          ? "🦌 SURREY ONLY"
+          : "🌲 ALL METRO (VANCOUVER + SURREY)";
 
-  console.log(`\n================================================================`);
-  console.log(`🌐 STEP 1A CALENDAR HARVESTER — [${cityLabel}]${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
-  console.log(`📊 Prioritized ${feeds.length} source feeds for ${cityLabel} (from ${allFeeds.length} total registered sources)`);
-  if (isResume && completedFeedUrls.size > 0) {
-    const scannedInScope = feeds.filter((f) => completedFeedUrls.has(f.url)).length;
-    console.log(`⏩ [Resume Mode] Skipping ${scannedInScope} completed feeds — next unscanned is Feed [${startFeedIndex + 1}/${feeds.length}]: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
-  }
-  if (maxTotalEvents > 0) {
-    console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
-  } else {
-    console.log(`🎯 Scope: Unconstrained full catalog crawl for ${cityLabel}`);
-  }
-  console.log(`================================================================\n`);
+      const initialScannedInScope = feeds.filter((f) => completedNormUrls.has(normalizeCrawlerFeedUrl(f.url))).length;
+      console.log(`\n================================================================`);
+      console.log(`🌐 STEP 1A CALENDAR HARVESTER — [${cityLabel}]${isResume ? " (RESUMING FROM CHECKPOINT)" : ""}`);
+      console.log(`📊 Prioritized ${feeds.length} source feeds for ${cityLabel} (from ${allFeeds.length} total registered sources)`);
+        if (isResume && initialScannedInScope > 0) {
+          console.log(`⏩ [Resume Mode] ${initialScannedInScope}/${feeds.length} feeds already scanned — continuing at Source #${Math.min(feeds.length, initialScannedInScope + 1)}/${feeds.length}: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
+        }
+        if (maxTotalEvents > 0) {
+          console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
+        } else {
+          console.log(`🎯 Scope: Unconstrained full catalog crawl for ${cityLabel}`);
+        }
+        console.log(`================================================================\n`);
 
-  const allResults = [];
+        const allResults = [];
 
-  for (let i = 0; i < feeds.length; i++) {
-    const feed = feeds[i];
-    if (isResume && completedFeedUrls.has(feed.url)) {
-      continue;
-    }
+        for (let i = 0; i < feeds.length; i++) {
+          const feed = feeds[i];
+            const normFeedUrl = normalizeCrawlerFeedUrl(feed.url);
+            if (isResume && normFeedUrl && completedNormUrls.has(normFeedUrl)) {
+              continue;
+            }
 
-    if (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) {
-      console.log(`\n🎯 REACHED TARGET LIMIT: Successfully harvested ${totalHarvestedEvents}/${maxTotalEvents} discrete events.`);
-      break;
-    }
+            if (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) {
+              console.log(`\n🎯 REACHED TARGET LIMIT: Successfully harvested ${totalHarvestedEvents}/${maxTotalEvents} discrete events.`);
+              break;
+            }
 
-    const needed = maxTotalEvents > 0 ? (maxTotalEvents - totalHarvestedEvents) : 0;
+            const needed = maxTotalEvents > 0 ? (maxTotalEvents - totalHarvestedEvents) : 0;
+            const scannedInScopeBefore = feeds.filter((f) => completedNormUrls.has(normalizeCrawlerFeedUrl(f.url))).length;
+            const activeSourceNum = Math.min(feeds.length, scannedInScopeBefore + 1);
 
-    // Persist checkpoint as we begin this feed so stopping mid-feed resumes right here
-    try {
-      await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
-        ...cp,
-        status: "running",
-        city_scope: cityScope,
-        total_feeds: feeds.length,
-        completed_feeds_count: completedFeedUrls.size,
-        resume_from_index: i,
-        resume_from_feed_number: i + 1,
-        last_feed_name: feed.name,
-        last_feed_url: feed.url,
-        last_feed_city: feed.city,
-        completed_feed_urls: Array.from(completedFeedUrls),
-        events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
-        updated_at: new Date().toISOString(),
-      }));
-    } catch (_) { }
+            // Persist checkpoint as we begin this feed so stopping mid-feed resumes right here
+            try {
+              await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
+                ...cp,
+                status: "running",
+                city_scope: cityScope,
+                total_feeds: feeds.length,
+                completed_feeds_count: scannedInScopeBefore,
+                resume_from_index: i,
+                resume_from_feed_number: activeSourceNum,
+                last_feed_name: feed.name,
+                last_feed_url: feed.url,
+                last_feed_city: feed.city,
+                completed_feed_urls: Array.from(completedFeedUrls),
+                events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
+                updated_at: new Date().toISOString(),
+              }));
+            } catch (_) { }
 
-    console.log(`\n────────────────────────────────────────────────────────────────`);
-    console.log(`${formatLogTime()} 🏛️ [${i + 1}/${feeds.length}] [${feed.city}] Source Feed: ${feed.name}`);
-    console.log(`🎯 URL: ${feed.url}`);
-    logCuratorInfo({ venue: feed.name, prefix: "   " });
-    if (maxTotalEvents > 0) {
-      console.log(`📊 Progress: ${totalHarvestedEvents}/${maxTotalEvents} events harvested (${needed} more needed)`);
-    }
-    console.log(`────────────────────────────────────────────────────────────────`);
+            console.log(`\n────────────────────────────────────────────────────────────────`);
+            console.log(`${formatLogTime()} 🏛️ [${activeSourceNum}/${feeds.length}] [${feed.city}] Source Feed: ${feed.name}`);
+            console.log(`🎯 URL: ${feed.url}`);
+            logCuratorInfo({ venue: feed.name, prefix: "   " });
+            if (maxTotalEvents > 0) {
+              console.log(`📊 Progress: ${totalHarvestedEvents}/${maxTotalEvents} events harvested (${needed} more needed)`);
+            }
+            console.log(`────────────────────────────────────────────────────────────────`);
 
-    try {
-      const res = await runCalendarBatch(feed.url, { ...options, city: feed.city, maxEvents: needed, allowOverviewFallback: false, isAllVenuesBatch: true });
-      const succeededNew = Array.isArray(res) ? res.filter((r) => r && r.success && r.isNew).length : 0;
-      const succeededTotal = Array.isArray(res) ? res.filter((r) => r && r.success).length : 0;
-      totalHarvestedEvents += succeededNew;
-      allResults.push({ venue: feed.name, city: feed.city, url: feed.url, results: res, harvestedCount: succeededNew, totalProcessed: succeededTotal });
-      if (succeededNew > 0) {
-        console.log(`✨ [Feed Yield] Harvested ${succeededNew} NEW event(s) from ${feed.name} [${feed.city}] (${totalHarvestedEvents}/${maxTotalEvents} total target collected).`);
-      }
+            try {
+              const res = await runCalendarBatch(feed.url, { ...options, city: feed.city, maxEvents: needed, allowOverviewFallback: false, isAllVenuesBatch: true });
+              const succeededNew = Array.isArray(res) ? res.filter((r) => r && r.success && r.isNew).length : 0;
+              const succeededTotal = Array.isArray(res) ? res.filter((r) => r && r.success).length : 0;
+              totalHarvestedEvents += succeededNew;
+              allResults.push({ venue: feed.name, city: feed.city, url: feed.url, results: res, harvestedCount: succeededNew, totalProcessed: succeededTotal });
+              if (succeededNew > 0) {
+                console.log(`✨ [Feed Yield] Harvested ${succeededNew} NEW event(s) from ${feed.name} [${feed.city}] (${totalHarvestedEvents}/${maxTotalEvents} total target collected).`);
+              }
 
-      // Mark feed completed if we weren't halted early by maxTotalEvents cap
-      if (!(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) {
-        completedFeedUrls.add(feed.url);
-      }
-      const nextIdx = (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) ? i : Math.min(feeds.length - 1, i + 1);
-      try {
-        await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
-          ...cp,
-          status: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? "completed" : "paused",
-          city_scope: cityScope,
-          total_feeds: feeds.length,
-          completed_feeds_count: (i === feeds.length - 1 && !(maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents)) ? feeds.length : completedFeedUrls.size,
-          resume_from_index: nextIdx,
-          resume_from_feed_number: nextIdx + 1,
-          last_feed_name: feeds[nextIdx]?.name || feed.name,
-          last_feed_url: feeds[nextIdx]?.url || feed.url,
-          last_feed_city: feeds[nextIdx]?.city || feed.city,
-          completed_feed_urls: Array.from(completedFeedUrls),
-          events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
-          updated_at: new Date().toISOString(),
-        }));
-      } catch (_) { }
-    } catch (feedErr) {
-      console.error(`❌ Error harvesting feed ${feed.name}: ${feedErr.message}`);
-    }
+              const hitCapOnFeed = maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents;
+              // Mark feed completed if we weren't halted early by maxTotalEvents cap
+                if (!hitCapOnFeed) {
+                  completedFeedUrls.add(feed.url);
+                  if (normFeedUrl) completedNormUrls.add(normFeedUrl);
+                }
+                const scannedInScopeAfter = feeds.filter((f) => completedNormUrls.has(normalizeCrawlerFeedUrl(f.url))).length;
+                if (!hitCapOnFeed) {
+                  console.log(`✅ [Source Completed] ${scannedInScopeAfter}/${feeds.length} sources scanned (${feed.name})`);
+                }
+                const nextUnscannedIdx = hitCapOnFeed
+                  ? i
+                  : feeds.findIndex((f) => !completedNormUrls.has(normalizeCrawlerFeedUrl(f.url)));
+                const isScopeComplete = nextUnscannedIdx === -1 && scannedInScopeAfter >= feeds.length;
+                const resolvedNextIdx = nextUnscannedIdx >= 0 ? nextUnscannedIdx : 0;
+                const resolvedResumeNum = isScopeComplete ? 1 : Math.min(feeds.length, scannedInScopeAfter + 1);
+                try {
+                  await safeUpdateJsonFile(CHECKPOINT_PATH, {}, (cp) => ({
+                    ...cp,
+                    status: isScopeComplete ? "completed" : "paused",
+                    city_scope: cityScope,
+                    total_feeds: feeds.length,
+                    completed_feeds_count: scannedInScopeAfter,
+                    resume_from_index: resolvedNextIdx,
+                    resume_from_feed_number: resolvedResumeNum,
+                    last_feed_name: feeds[resolvedNextIdx]?.name || feed.name,
+                    last_feed_url: feeds[resolvedNextIdx]?.url || feed.url,
+                    last_feed_city: feeds[resolvedNextIdx]?.city || feed.city,
+                    completed_feed_urls: Array.from(completedFeedUrls),
+                    events_harvested_in_run: priorEventsHarvested + totalHarvestedEvents,
+                    updated_at: new Date().toISOString(),
+                  }));
+                } catch (_) { }
+              } catch (feedErr) {
+                console.error(`❌ Error harvesting feed ${feed.name}: ${feedErr.message}`);
+              }
 
-    if (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) {
-      console.log(`\n🎯 REACHED TARGET LIMIT: Successfully harvested ${totalHarvestedEvents}/${maxTotalEvents} NEW discrete events.`);
-      break;
-    }
+              if (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) {
+                console.log(`\n🎯 REACHED TARGET LIMIT: Successfully harvested ${totalHarvestedEvents}/${maxTotalEvents} NEW discrete events.`);
+                break;
+              }
 
-    await new Promise((r) => setTimeout(r, 1000));
-  }
+              await new Promise((r) => setTimeout(r, 1000));
+            }
 
   // STEP 1B: Automatically trigger distinct High-Fidelity Link Tier Upgrader & Hunter pass across all feeds (only when explicitly requested)
   if (options.autoRun1B) {
-    try {
-      console.log(`\n================================================================`);
-      console.log(`⚡ STEP 1A (All Feeds Harvest — ${cityLabel}) COMPLETED (${totalHarvestedEvents} events discovered).`);
-      console.log(`🚀 AUTOMATICALLY TRIGGERING STEP 1B (High-Fidelity Link Tier Upgrader)...`);
-      console.log(`================================================================`);
-      const allDiscovered = allResults.flatMap((r) => r.results || []);
-      await runStep1BLinkUpgrader(allDiscovered, options);
-    } catch (hunterErr) {
-      console.warn(`⚠️ Warning in Step 1B Link Tier Upgrader pass: ${hunterErr.message}`);
-    }
-  }
+              try {
+                console.log(`\n================================================================`);
+                console.log(`⚡ STEP 1A (All Feeds Harvest — ${cityLabel}) COMPLETED (${totalHarvestedEvents} events discovered).`);
+                console.log(`🚀 AUTOMATICALLY TRIGGERING STEP 1B (High-Fidelity Link Tier Upgrader)...`);
+                console.log(`================================================================`);
+                const allDiscovered = allResults.flatMap((r) => r.results || []);
+                await runStep1BLinkUpgrader(allDiscovered, options);
+              } catch (hunterErr) {
+                console.warn(`⚠️ Warning in Step 1B Link Tier Upgrader pass: ${hunterErr.message}`);
+              }
+            }
 
-  return allResults;
-}
+            return allResults;
+          }
 
-// CLI Entrypoint
-if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
-  const cliArgs = process.argv.slice(2);
-  const isResumeCli = cliArgs.includes("--resume");
-  let cliCity = null;
-  for (let i = 0; i < cliArgs.length; i++) {
-    const arg = cliArgs[i];
-    if (arg.startsWith("--city=")) {
-      cliCity = arg.split("=")[1]?.trim().toLowerCase() || null;
-    } else if (arg === "--city" && cliArgs[i + 1]) {
-      cliCity = cliArgs[i + 1].trim().toLowerCase();
-    }
-  }
+          // CLI Entrypoint
+          if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
+            const cliArgs = process.argv.slice(2);
+            const isResumeCli = cliArgs.includes("--resume");
+            let cliCity = null;
+            for (let i = 0; i < cliArgs.length; i++) {
+              const arg = cliArgs[i];
+              if (arg.startsWith("--city=")) {
+                cliCity = arg.split("=")[1]?.trim().toLowerCase() || null;
+              } else if (arg === "--city" && cliArgs[i + 1]) {
+                cliCity = cliArgs[i + 1].trim().toLowerCase();
+              }
+            }
 
-  const positional = cliArgs.filter((a, idx) => !a.startsWith("--") && (idx === 0 || cliArgs[idx - 1] !== "--city"));
-  const targetCal = (positional[0] || "").trim();
-  const rawMax = positional[1];
-  const max = (rawMax !== undefined && rawMax !== "") ? parseInt(rawMax, 10) : 0;
+            const positional = cliArgs.filter((a, idx) => !a.startsWith("--") && (idx === 0 || cliArgs[idx - 1] !== "--city"));
+            const targetCal = (positional[0] || "").trim();
+            const rawMax = positional[1];
+            const max = (rawMax !== undefined && rawMax !== "") ? parseInt(rawMax, 10) : 0;
 
-  const normTarget = targetCal.toLowerCase();
-  const isBatchTarget =
-    !normTarget ||
-    normTarget === "all" ||
-    normTarget === "all:resume" ||
-    normTarget === "vancouver" ||
-    normTarget === "vancouver:resume" ||
-    normTarget === "all:vancouver" ||
-    normTarget === "all:vancouver:resume" ||
-    normTarget === "surrey" ||
-    normTarget === "surrey:resume" ||
-    normTarget === "all:surrey" ||
-    normTarget === "all:surrey:resume";
+            const normTarget = targetCal.toLowerCase();
+            const isBatchTarget =
+              !normTarget ||
+              normTarget === "all" ||
+              normTarget === "all:resume" ||
+              normTarget === "vancouver" ||
+              normTarget === "vancouver:resume" ||
+              normTarget === "all:vancouver" ||
+              normTarget === "all:vancouver:resume" ||
+              normTarget === "surrey" ||
+              normTarget === "surrey:resume" ||
+              normTarget === "all:surrey" ||
+              normTarget === "all:surrey:resume";
 
-  if (isBatchTarget) {
-    const isResumeTarget = normTarget.endsWith(":resume") || isResumeCli;
-    let resolvedCity = cliCity || "all";
-    if (normTarget.includes("vancouver")) resolvedCity = "vancouver";
-    else if (normTarget.includes("surrey")) resolvedCity = "surrey";
+            if (isBatchTarget) {
+              const isResumeTarget = normTarget.endsWith(":resume") || isResumeCli;
+              let resolvedCity = cliCity || "all";
+              if (normTarget.includes("vancouver")) resolvedCity = "vancouver";
+              else if (normTarget.includes("surrey")) resolvedCity = "surrey";
 
-    runAllVenueFeedsBatch({ maxEvents: max, resume: isResumeTarget, city: resolvedCity })
-      .then(() => process.exit(0))
-      .catch((err) => {
-        console.error(`💥 All Feeds Harvester Error: ${err.message}`);
-        process.exit(1);
-      });
-  } else {
-    runCalendarBatch(targetCal, { maxEvents: max, resume: isResumeCli, city: cliCity })
-      .then(() => process.exit(0))
-      .catch((err) => {
-        console.error(`💥 Batch Harvester Error: ${err.message}`);
-        process.exit(1);
-      });
-  }
-}
+              runAllVenueFeedsBatch({ maxEvents: max, resume: isResumeTarget, city: resolvedCity })
+                .then(() => process.exit(0))
+                .catch((err) => {
+                  console.error(`💥 All Feeds Harvester Error: ${err.message}`);
+                  process.exit(1);
+                });
+            } else {
+              runCalendarBatch(targetCal, { maxEvents: max, resume: isResumeCli, city: cliCity })
+                .then(() => process.exit(0))
+                .catch((err) => {
+                  console.error(`💥 Batch Harvester Error: ${err.message}`);
+                  process.exit(1);
+                });
+            }
+          }

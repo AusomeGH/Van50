@@ -1,11 +1,11 @@
 {
   "status": "paused",
   "total_feeds": 298,
-  "completed_feeds_count": 269,
-  "resume_from_index": 119,
-  "resume_from_feed_number": 120,
-  "last_feed_name": "The Cinematheque (Downtown Independent Cinema)",
-  "last_feed_url": "https://thecinematheque.ca/films",
+  "completed_feeds_count": 246,
+  "resume_from_index": 246,
+  "resume_from_feed_number": 247,
+  "last_feed_name": "Fox Cabaret",
+  "last_feed_url": "https://www.foxcabaret.com/monthly-calendar",
   "completed_feed_urls": [
     "https://www.showpass.com/o/little-mountain-gallery/",
     "https://vhs2026.eventive.org/schedule",

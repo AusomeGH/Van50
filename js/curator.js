@@ -7883,44 +7883,72 @@ function initStagehandRipperUI() {
     return list;
   };
 
+  let venueFeedsAutoLoadTriggered = false;
+
   window.getHarvesterFeedStats = (cityOverride) => {
     const cp = state.harvesterCheckpoint || {};
-    const completedSet = new Set(Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : []);
+    const rawCompleted = Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : [];
+    const completedNormSet = new Set(rawCompleted.map(u => normalizeCuratorFeedUrl(u)).filter(Boolean));
     const activeCity = (cityOverride || window.harvesterCityScope || 'all').toLowerCase();
     const allFeeds = (cachedVenueFeeds && cachedVenueFeeds.length > 0) ? cachedVenueFeeds : [];
+
+    if (allFeeds.length === 0 && !venueFeedsAutoLoadTriggered && typeof loadVenueFeedsList === 'function') {
+      venueFeedsAutoLoadTriggered = true;
+      loadVenueFeedsList().then(() => {
+        if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
+          window.syncHarvesterCheckpointAndEventsUI();
+        }
+        if (typeof window.updateAutoPipelineFlowPreview === 'function') {
+          window.updateAutoPipelineFlowPreview();
+        }
+      }).catch(() => { });
+    }
+
     const scopedFeeds = activeCity === 'all'
       ? allFeeds
       : allFeeds.filter(f => String(f.city || 'Vancouver').toLowerCase() === activeCity);
 
     let totalFeeds = scopedFeeds.length > 0
       ? scopedFeeds.length
-      : (cp.total_feeds != null ? Math.max(Number(cp.total_feeds), 227) : 227);
+      : (cp.total_feeds != null ? Math.max(Number(cp.total_feeds), 1) : 298);
 
     let completedFeeds = 0;
     let resumeFeedNum = 1;
     let nextUnscannedFeed = null;
+    let firstFeedName = scopedFeeds[0]?.name || cp.last_feed_name || 'Source #1';
 
     if (scopedFeeds.length > 0) {
-      completedFeeds = scopedFeeds.filter(f => completedSet.has(f.url)).length;
-      const firstUnscannedIdx = scopedFeeds.findIndex(f => !completedSet.has(f.url));
-      resumeFeedNum = firstUnscannedIdx >= 0 ? (firstUnscannedIdx + 1) : totalFeeds;
-      nextUnscannedFeed = firstUnscannedIdx >= 0 ? scopedFeeds[firstUnscannedIdx] : null;
+      completedFeeds = scopedFeeds.filter(f => {
+        const nf = normalizeCuratorFeedUrl(f.url);
+        return nf && completedNormSet.has(nf);
+      }).length;
+      nextUnscannedFeed = scopedFeeds.find(f => {
+        const nf = normalizeCuratorFeedUrl(f.url);
+        return !nf || !completedNormSet.has(nf);
+      }) || null;
+      const rem = Math.max(0, totalFeeds - completedFeeds);
+      resumeFeedNum = rem > 0 ? Math.min(totalFeeds, completedFeeds + 1) : 1;
     } else {
-      completedFeeds = cp.completed_feeds_count != null ? Number(cp.completed_feeds_count) : completedSet.size;
-      resumeFeedNum = Math.min(totalFeeds, completedFeeds + 1);
+      completedFeeds = cp.completed_feeds_count != null
+        ? Math.min(totalFeeds, Number(cp.completed_feeds_count))
+        : Math.min(totalFeeds, completedNormSet.size);
+      const rem = Math.max(0, totalFeeds - completedFeeds);
+      resumeFeedNum = rem > 0 ? Math.min(totalFeeds, completedFeeds + 1) : 1;
     }
 
     const remainingFeeds = Math.max(0, totalFeeds - completedFeeds);
     const lastFeedName = nextUnscannedFeed
       ? nextUnscannedFeed.name
-      : (cp.last_feed_name || 'The Orpheum Theatre');
+      : firstFeedName;
 
     return {
       totalFeeds,
       completedFeeds,
       remainingFeeds,
       resumeFeedNum,
-      lastFeedName
+      lastFeedName,
+      firstFeedName,
+      isComplete: totalFeeds > 0 && remainingFeeds === 0
     };
   };
 
@@ -8566,7 +8594,7 @@ function initStagehandRipperUI() {
   window.syncHarvesterCheckpointAndEventsUI = () => {
     const harvestedList = window.getUncompiledHarvestedEvents();
     const harvestedCount = harvestedList.length;
-    const { totalFeeds, completedFeeds, resumeFeedNum, lastFeedName } = window.getHarvesterFeedStats();
+    const { totalFeeds, completedFeeds, remainingFeeds, resumeFeedNum, lastFeedName, firstFeedName, isComplete } = window.getHarvesterFeedStats();
 
     if (!isExecuting) {
       harvesterSourcesScanned = completedFeeds;
@@ -8579,15 +8607,49 @@ function initStagehandRipperUI() {
 
     const badgeHarvest = document.getElementById('badge-count-harvest');
     if (badgeHarvest) {
-      badgeHarvest.textContent = `${completedFeeds}/${totalFeeds} Sources Scanned • Resume #${resumeFeedNum}`;
+      if (isComplete) {
+        badgeHarvest.textContent = `${totalFeeds}/${totalFeeds} Sources Scanned • All Done`;
+      } else if (completedFeeds === 0) {
+        badgeHarvest.textContent = `0/${totalFeeds} Sources Scanned • ${totalFeeds} Ready`;
+      } else {
+        badgeHarvest.textContent = `${completedFeeds}/${totalFeeds} Sources Scanned • ${remainingFeeds} Left`;
+      }
     }
     const resumeFeedLabel = document.getElementById('opt-harvest-resume-feed-label');
     if (resumeFeedLabel) {
-      resumeFeedLabel.textContent = `Feed #${resumeFeedNum}/${totalFeeds}: ${lastFeedName}`;
+      if (isComplete) {
+        resumeFeedLabel.textContent = `All ${totalFeeds} Scanned — Restart #1/${totalFeeds}`;
+      } else if (completedFeeds === 0) {
+        resumeFeedLabel.textContent = `Source #1/${totalFeeds}: ${firstFeedName}`;
+      } else {
+        resumeFeedLabel.textContent = `Source #${resumeFeedNum}/${totalFeeds}: ${lastFeedName}`;
+      }
     }
+    const freshFeedLabel = document.getElementById('opt-harvest-fresh-feed-label');
+    if (freshFeedLabel) {
+      freshFeedLabel.textContent = `Source #1/${totalFeeds}`;
+    } else {
+      const btnFresh = document.getElementById('btn-opt-harvest-fresh');
+      if (btnFresh) {
+        btnFresh.innerHTML = `🔄 Start Fresh (<span id="opt-harvest-fresh-feed-label">Source #1/${totalFeeds}</span>)`;
+      }
+    }
+
+    if (cachedVenueFeeds && cachedVenueFeeds.length > 0) {
+      const allStats = window.getHarvesterFeedStats('all');
+      const vanStats = window.getHarvesterFeedStats('vancouver');
+      const surStats = window.getHarvesterFeedStats('surrey');
+      const optCityAll = document.getElementById('btn-opt-harvest-city-all');
+      const optCityVan = document.getElementById('btn-opt-harvest-city-vancouver');
+      const optCitySur = document.getElementById('btn-opt-harvest-city-surrey');
+      if (optCityAll) optCityAll.textContent = `🌲 All Metro (${allStats.completedFeeds}/${allStats.totalFeeds})`;
+      if (optCityVan) optCityVan.textContent = `🏙️ Vancouver Only (${vanStats.completedFeeds}/${vanStats.totalFeeds})`;
+      if (optCitySur) optCitySur.textContent = `🦌 Surrey Only (${surStats.completedFeeds}/${surStats.totalFeeds})`;
+    }
+
     const badgeHarvested = document.getElementById('badge-count-harvested');
     if (badgeHarvested) {
-      badgeHarvested.textContent = `${harvestedCount} New Events Ready`;
+      badgeHarvested.textContent = `${harvestedCount} New Event${harvestedCount === 1 ? '' : 's'} Ready`;
     }
     const scopeCountHarvested = document.getElementById('scope-count-harvested');
     if (scopeCountHarvested) {
@@ -8596,11 +8658,17 @@ function initStagehandRipperUI() {
 
     const cpBannerTitle = document.getElementById('harvester-checkpoint-banner-title');
     if (cpBannerTitle) {
-      cpBannerTitle.textContent = `Stopped at Feed #${resumeFeedNum}/${totalFeeds}: ${lastFeedName}`;
+      if (isComplete) {
+        cpBannerTitle.textContent = `All ${totalFeeds}/${totalFeeds} Sources Scanned`;
+      } else if (completedFeeds === 0) {
+        cpBannerTitle.textContent = `Ready at Source #1/${totalFeeds}: ${firstFeedName}`;
+      } else {
+        cpBannerTitle.textContent = `Paused after ${completedFeeds}/${totalFeeds} Scanned • Next (#${resumeFeedNum}): ${lastFeedName}`;
+      }
     }
     const cpBannerSub = document.getElementById('harvester-checkpoint-banner-sub');
     if (cpBannerSub) {
-      cpBannerSub.innerHTML = `${completedFeeds}/${totalFeeds} sources scanned • <strong>${harvestedCount} new events</strong> harvested &amp; ready for Stage 1B`;
+      cpBannerSub.innerHTML = `${completedFeeds}/${totalFeeds} sources scanned (${remainingFeeds} remaining) • <strong>${harvestedCount} new event${harvestedCount === 1 ? '' : 's'}</strong> harvested &amp; ready for Stage 1B`;
     }
 
     const contLabels = [
@@ -8612,9 +8680,15 @@ function initStagehandRipperUI() {
     contLabels.forEach(id => {
       const el = document.getElementById(id);
       if (el) {
-        el.textContent = id.includes('stepper')
-          ? `▶️ Continue 1A (#${resumeFeedNum}/${totalFeeds})`
-          : `▶️ Continue 1A Scan (#${resumeFeedNum}/${totalFeeds})`;
+        if (isComplete) {
+          el.textContent = id.includes('stepper')
+            ? `🔄 Restart 1A (#1/${totalFeeds})`
+            : `🔄 Restart 1A Scan (#1/${totalFeeds})`;
+        } else {
+          el.textContent = id.includes('stepper')
+            ? `▶️ Continue 1A (#${resumeFeedNum}/${totalFeeds})`
+            : `▶️ Continue 1A Scan (#${resumeFeedNum}/${totalFeeds})`;
+        }
       }
     });
 
@@ -11993,13 +12067,14 @@ function initStagehandRipperUI() {
   let harvesterDiscoveredEvents = [];
   let harvesterPreRunSourcesMap = new Map();
   let harvesterSourcesScanned = 0;
-  let harvesterTotalSources = 227;
+  let harvesterTotalSources = 298;
   let harvesterCurrentSourceName = '';
 
   function updateHarvesterSourcesProgressUI() {
-    const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 227 };
-    const scanned = harvesterSourcesScanned || feedStats.completedFeeds || 0;
-    const total = harvesterTotalSources || feedStats.totalFeeds || 227;
+    const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 298 };
+    const isHarvestRunning = window.activePipelineRunningStageKey === 'harvest';
+    const scanned = isHarvestRunning ? (harvesterSourcesScanned ?? 0) : (feedStats.completedFeeds ?? harvesterSourcesScanned ?? 0);
+    const total = (isHarvestRunning && harvesterTotalSources > 0) ? harvesterTotalSources : (feedStats.totalFeeds || harvesterTotalSources || 298);
     const batchCount = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
       ? pipelineTestDiscoveredIds.length
       : ((harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0);
@@ -12332,7 +12407,7 @@ function initStagehandRipperUI() {
               <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                 <span style="font-weight: 800;">✨ AFTER RUN • NEW DATA SOURCES &amp; EVENTS</span>
                 <span class="badge-card-number" id="harvester-sources-scanned-badge" style="background: rgba(168, 85, 247, 0.2); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.45);">
-                  📡 ${harvesterSourcesScanned || 0}/${harvesterTotalSources || 155} sources scanned
+                  📡 ${harvesterSourcesScanned ?? 0}/${harvesterTotalSources || 298} sources scanned
                 </span>
                 <span class="badge-card-number" style="background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4);">
                   +${newEventsCount} New Events (${totalNewSources} Yielding Sources)
@@ -12583,6 +12658,7 @@ function initStagehandRipperUI() {
           ? `✅ Complete (${pipelineTestDiscoveredIds.length} Harvested)`
           : `⚠️ Halted (${pipelineTestDiscoveredIds.length} Harvested)`;
         savePipelineBatchState();
+        if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') window.syncHarvesterCheckpointAndEventsUI();
         if (typeof renderPipelineTestEventsList === 'function') renderPipelineTestEventsList();
         if (typeof updatePipelineTestStepperUI === 'function') updatePipelineTestStepperUI();
       })
@@ -12600,6 +12676,7 @@ function initStagehandRipperUI() {
         }
         pipelineTestStageStatuses.harvest = `✅ Complete (${pipelineTestDiscoveredIds.length} Harvested)`;
         savePipelineBatchState();
+        if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') window.syncHarvesterCheckpointAndEventsUI();
         if (typeof renderPipelineTestEventsList === 'function') renderPipelineTestEventsList();
         if (typeof updatePipelineTestStepperUI === 'function') updatePipelineTestStepperUI();
       });
@@ -13794,7 +13871,9 @@ function initStagehandRipperUI() {
       btnFresh.style.background = !window.harvesterResumeMode ? 'rgba(56, 189, 248, 0.2)' : 'rgba(0,0,0,0.35)';
       btnFresh.style.color = !window.harvesterResumeMode ? '#38bdf8' : '#94a3b8';
     }
-    if (typeof window.updateAutoPipelineFlowPreview === 'function') {
+    if (window.selectedAutoPipelineScope !== 'harvest' && typeof window.selectAutoPipelineScope === 'function') {
+      window.selectAutoPipelineScope('harvest', true);
+    } else if (typeof window.updateAutoPipelineFlowPreview === 'function') {
       window.updateAutoPipelineFlowPreview();
     }
   };
@@ -14035,18 +14114,13 @@ function initStagehandRipperUI() {
     window.setPipelineBatchSize(chosenCount);
     const chosenLimit = (chosenCount === 'all' || chosenCount === 0) ? 0 : (Number(chosenCount) || 0);
 
-    const feeds = await loadVenueFeedsList();
-    const cp = state.harvesterCheckpoint || {};
-    const doneSet = new Set(Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : []);
-    const scopedFeeds = chosenCity === 'all'
-      ? feeds
-      : feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === chosenCity);
-    const totalFeeds = scopedFeeds.length || (cp.total_feeds != null ? Number(cp.total_feeds) : 126);
-    const firstUnscannedIdx = scopedFeeds.findIndex(f => !doneSet.has(f.url));
-    const resumeFeedNum = (chosenResume && firstUnscannedIdx !== -1) ? (firstUnscannedIdx + 1) : 1;
-    const nextFeedName = (chosenResume && firstUnscannedIdx !== -1 && scopedFeeds[firstUnscannedIdx])
-      ? scopedFeeds[firstUnscannedIdx].name
-      : (scopedFeeds[0]?.name || cp.last_feed_name || 'Feed #1');
+    await loadVenueFeedsList();
+    const cityStats = window.getHarvesterFeedStats(chosenCity);
+    const totalFeeds = cityStats.totalFeeds;
+    const resumeFeedNum = (chosenResume && !cityStats.isComplete) ? cityStats.resumeFeedNum : 1;
+    const nextFeedName = (chosenResume && !cityStats.isComplete)
+      ? cityStats.lastFeedName
+      : cityStats.firstFeedName;
 
     const cityTag = chosenCity === 'vancouver' ? '🏙️ Vancouver Only' : (chosenCity === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro (Van + Surrey)');
     const baseTarget = chosenCity === 'vancouver' ? 'all:vancouver' : (chosenCity === 'surrey' ? 'all:surrey' : 'all');
@@ -14065,14 +14139,14 @@ function initStagehandRipperUI() {
     updateStageNavButtons();
 
     if (typeof showToast === 'function') {
-      showToast(`▶️ Stage 1A [${cityTag}]: ${chosenResume ? `Continuing at Feed #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Starting Fresh at Feed #1/${totalFeeds}`} • Target: ${chosenLimit > 0 ? chosenLimit + ' events' : 'All events'}...`, 'info');
+      showToast(`▶️ Stage 1A [${cityTag}]: ${chosenResume && !cityStats.isComplete ? `Continuing at Source #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Starting Fresh at Source #1/${totalFeeds}`} • Target: ${chosenLimit > 0 ? chosenLimit + ' events' : 'All events'}...`, 'info');
     }
 
     setTimeout(() => {
       runPipelineAction({
         mode: 'calendar',
-        title: `▶️ Stage 1A [${cityTag}]: ${chosenResume ? `Continuing from #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Fresh Scan (#1/${totalFeeds})`} • ${chosenLimit > 0 ? chosenLimit + ' Events' : 'All Events'}`,
-        initialStatus: `${chosenResume ? 'Resuming' : 'Starting'} Stage 1A [${cityTag}] at Feed #${resumeFeedNum}/${totalFeeds}: ${nextFeedName} (${chosenLimit > 0 ? chosenLimit + ' events' : 'all events'})...`,
+        title: `▶️ Stage 1A [${cityTag}]: ${chosenResume && !cityStats.isComplete ? `Continuing from #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Fresh Scan (#1/${totalFeeds})`} • ${chosenLimit > 0 ? chosenLimit + ' Events' : 'All Events'}`,
+        initialStatus: `${chosenResume && !cityStats.isComplete ? 'Resuming' : 'Starting'} Stage 1A [${cityTag}] at Source #${resumeFeedNum}/${totalFeeds}: ${nextFeedName} (${chosenLimit > 0 ? chosenLimit + ' events' : 'all events'})...`,
         limit: chosenLimit,
         url: targetUrl,
         city: chosenCity,
@@ -14090,47 +14164,34 @@ function initStagehandRipperUI() {
       return;
     }
     const modal = ensureContinue1ACityModalExists();
-    const feeds = await loadVenueFeedsList();
-    const cp = state.harvesterCheckpoint || {};
-    const doneSet = new Set(Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : []);
-
-    const vanFeeds = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'vancouver');
-    const surFeeds = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'surrey');
-
-    const vanDone = vanFeeds.filter(f => doneSet.has(f.url)).length;
-    const surDone = surFeeds.filter(f => doneSet.has(f.url)).length;
-    const allDone = vanDone + surDone;
-
-    const vanRem = Math.max(0, vanFeeds.length - vanDone);
-    const surRem = Math.max(0, surFeeds.length - surDone);
-    const allRem = Math.max(0, feeds.length - allDone);
+    await loadVenueFeedsList();
+    const allStats = window.getHarvesterFeedStats('all');
+    const vanStats = window.getHarvesterFeedStats('vancouver');
+    const surStats = window.getHarvesterFeedStats('surrey');
 
     const bAll = document.getElementById('c1a-badge-all');
     const bVan = document.getElementById('c1a-badge-vancouver');
     const bSur = document.getElementById('c1a-badge-surrey');
-    if (bAll) bAll.textContent = `${allDone}/${feeds.length} Scanned • ${allRem} Remaining`;
-    if (bVan) bVan.textContent = `${vanDone}/${vanFeeds.length} Scanned • ${vanRem} Remaining`;
-    if (bSur) bSur.textContent = `${surDone}/${surFeeds.length} Scanned • ${surRem} Remaining`;
+    if (bAll) bAll.textContent = `${allStats.completedFeeds}/${allStats.totalFeeds} Scanned • ${allStats.remainingFeeds} Remaining`;
+    if (bVan) bVan.textContent = `${vanStats.completedFeeds}/${vanStats.totalFeeds} Scanned • ${vanStats.remainingFeeds} Remaining`;
+    if (bSur) bSur.textContent = `${surStats.completedFeeds}/${surStats.totalFeeds} Scanned • ${surStats.remainingFeeds} Remaining`;
 
     const subVan = document.getElementById('c1a-sub-vancouver');
     const subSur = document.getElementById('c1a-sub-surrey');
-    const firstVanUnscanned = vanFeeds.find(f => !doneSet.has(f.url));
-    const firstSurUnscanned = surFeeds.find(f => !doneSet.has(f.url));
     if (subVan) {
-      subVan.textContent = firstVanUnscanned
-        ? `Next unscanned Vancouver feed: ${firstVanUnscanned.name} (${vanRem} remaining)`
-        : `All ${vanFeeds.length} Vancouver feeds scanned — selecting Vancouver will start a fresh pass from #1.`;
+      subVan.textContent = vanStats.remainingFeeds > 0
+        ? `Next unscanned (#${vanStats.resumeFeedNum}/${vanStats.totalFeeds}): ${vanStats.lastFeedName} (${vanStats.remainingFeeds} remaining)`
+        : `All ${vanStats.totalFeeds} Vancouver feeds scanned — selecting Vancouver will start a fresh pass from #1.`;
     }
     if (subSur) {
-      subSur.textContent = firstSurUnscanned
-        ? `Next unscanned Surrey feed: ${firstSurUnscanned.name} (${surRem} remaining)`
-        : `All ${surFeeds.length} Surrey feeds scanned — selecting Surrey will start a fresh pass from #1.`;
+      subSur.textContent = surStats.remainingFeeds > 0
+        ? `Next unscanned (#${surStats.resumeFeedNum}/${surStats.totalFeeds}): ${surStats.lastFeedName} (${surStats.remainingFeeds} remaining)`
+        : `All ${surStats.totalFeeds} Surrey feeds scanned — selecting Surrey will start a fresh pass from #1.`;
     }
 
     if (window.harvesterCityScope === 'vancouver' || window.harvesterCityScope === 'surrey') {
       window.c1aModalState.cityScope = window.harvesterCityScope;
-    } else if (vanRem === 0 && surRem > 0) {
-      // Smart default: if all Vancouver feeds are done and Surrey feeds are waiting, default to Surrey (or user can click All/Vancouver)
+    } else if (vanStats.remainingFeeds === 0 && surStats.remainingFeeds > 0) {
       window.c1aModalState.cityScope = 'surrey';
     } else {
       window.c1aModalState.cityScope = 'all';
@@ -14363,6 +14424,12 @@ function initStagehandRipperUI() {
     if (evt && typeof evt.stopPropagation === 'function') evt.stopPropagation();
     if (typeof evt === 'string' && evt) window.selectedAutoPipelineScope = evt;
     window.updateCatalogStalenessDashboard();
+    if (typeof loadVenueFeedsList === 'function' && (!cachedVenueFeeds || cachedVenueFeeds.length === 0)) {
+      loadVenueFeedsList().then(() => {
+        if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') window.syncHarvesterCheckpointAndEventsUI();
+        if (typeof window.updateAutoPipelineFlowPreview === 'function') window.updateAutoPipelineFlowPreview();
+      }).catch(() => { });
+    }
     if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
       window.syncHarvesterCheckpointAndEventsUI();
     }
@@ -14380,15 +14447,15 @@ function initStagehandRipperUI() {
     const harvestedEvents = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
 
     const badgeHarvested = document.getElementById('badge-count-harvested');
-    if (badgeHarvested) badgeHarvested.textContent = `${harvestedEvents.length} New Events Ready`;
+    if (badgeHarvested) badgeHarvested.textContent = `${harvestedEvents.length} New Event${harvestedEvents.length === 1 ? '' : 's'} Ready`;
     const badgeStale = document.getElementById('badge-count-stale');
-    if (badgeStale) badgeStale.textContent = `Recommended • ${staleEvents.length} Cards`;
+    if (badgeStale) badgeStale.textContent = `Recommended • ${staleEvents.length} Card${staleEvents.length === 1 ? '' : 's'}`;
     const badgeQuarantined = document.getElementById('badge-count-quarantined');
-    if (badgeQuarantined) badgeQuarantined.textContent = `Review Queue • ${qEvents.length} Cards`;
+    if (badgeQuarantined) badgeQuarantined.textContent = `Review Queue • ${qEvents.length} Card${qEvents.length === 1 ? '' : 's'}`;
     const badgeUnverified = document.getElementById('badge-count-unverified');
-    if (badgeUnverified) badgeUnverified.textContent = `${unverifiedEvents.length} Cards Need Cart QC`;
+    if (badgeUnverified) badgeUnverified.textContent = `${unverifiedEvents.length} Card${unverifiedEvents.length === 1 ? '' : 's'} Need${unverifiedEvents.length === 1 ? 's' : ''} Cart QC`;
     const badgeAll = document.getElementById('badge-count-all');
-    if (badgeAll) badgeAll.textContent = `${events.length} Total Cards`;
+    if (badgeAll) badgeAll.textContent = `${events.length} Total Card${events.length === 1 ? '' : 's'}`;
 
     const initialBatch = window.selectedAutoModalBatchSize || pipelineBatchSize || 5;
     window.selectAutoPipelineScope(window.selectedAutoPipelineScope || 'harvest', true);
@@ -14536,12 +14603,14 @@ function initStagehandRipperUI() {
     } else if (scope === 'harvest') {
       targetCount = 0;
       scopeTitle = 'Venue Feed Events';
-      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { resumeFeedNum: 123, totalFeeds: 227 };
+      const feedStats = typeof window.getHarvesterFeedStats === 'function'
+        ? window.getHarvesterFeedStats()
+        : { resumeFeedNum: 1, totalFeeds: 298, completedFeeds: 0, remainingFeeds: 298, isComplete: false };
       const resumeNum = feedStats.resumeFeedNum;
       const totalFeeds = feedStats.totalFeeds;
-      const stage1AName = window.harvesterResumeMode !== false
-        ? `Schedule Harvester (Resume #${resumeNum}/${totalFeeds})`
-        : 'Schedule Harvester (Fresh #1)';
+      const stage1AName = (window.harvesterResumeMode !== false && !feedStats.isComplete && feedStats.completedFeeds > 0)
+        ? `Schedule Harvester (Source #${resumeNum}/${totalFeeds})`
+        : `Schedule Harvester (Fresh #1/${totalFeeds})`;
       stages = [
         { num: '1A', name: stage1AName, color: '#a855f7' },
         { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
@@ -14600,12 +14669,13 @@ function initStagehandRipperUI() {
       else chipAll.textContent = 'All Qualifying';
     }
 
+    const singleScopeTitle = targetCount === 1 ? scopeTitle.replace(/s$/, '') : scopeTitle;
     const batchNote = document.getElementById('auto-modal-batch-note');
     if (batchNote) {
       if (batchSize === 'all') {
         batchNote.textContent = scope === 'harvest'
-          ? (window.harvesterResumeMode !== false ? 'Auto-aligned: Resuming official venue calendar feeds from stopped point' : 'Auto-aligned: Crawling all official venue calendar feeds from #1')
-          : `Auto-aligned: Processing all ${targetCount} ${scopeTitle}`;
+          ? (window.harvesterResumeMode !== false ? 'Auto-aligned: Resuming official venue calendar sources from stopped point' : 'Auto-aligned: Crawling all official venue calendar sources from #1')
+          : `Auto-aligned: Processing all ${targetCount} ${singleScopeTitle}`;
       } else if (batchSize === 5) {
         batchNote.textContent = 'Quick spot-check (~3–4 mins)';
       } else if (batchSize === 10) {
@@ -14615,15 +14685,22 @@ function initStagehandRipperUI() {
       } else if (batchSize === 50) {
         batchNote.textContent = 'Deep batch (~35–40 mins)';
       } else {
-        batchNote.textContent = `Custom batch: ${batchSize} events`;
+        batchNote.textContent = `Custom batch: ${batchSize} event${batchSize === 1 ? '' : 's'}`;
       }
     }
 
     const summaryEl = document.getElementById('auto-modal-target-summary');
     if (summaryEl) {
-      summaryEl.textContent = scope === 'harvest'
-        ? (window.harvesterResumeMode !== false ? 'Continues harvesting official venue calendar feeds from stopped feed' : 'Harvests official venue calendar feeds from start')
-        : `${targetCount} matching events ready`;
+      if (scope === 'harvest') {
+        const fStats = typeof window.getHarvesterFeedStats === 'function'
+          ? window.getHarvesterFeedStats()
+          : { totalFeeds: 298, completedFeeds: 0, remainingFeeds: 298, isComplete: false };
+        summaryEl.textContent = (window.harvesterResumeMode !== false && fStats.remainingFeeds > 0 && fStats.completedFeeds > 0)
+          ? `Selected: Calendar Discovery • ${fStats.remainingFeeds} of ${fStats.totalFeeds} sources left (${fStats.completedFeeds} scanned)`
+          : `Selected: Calendar Discovery • ${fStats.totalFeeds} venue sources ready`;
+      } else {
+        summaryEl.textContent = `Selected: ${scopeTitle} • ${targetCount} event${targetCount === 1 ? '' : 's'} ready`;
+      }
     }
 
     const stagesContainer = document.getElementById('auto-modal-flow-stages');
@@ -14646,16 +14723,21 @@ function initStagehandRipperUI() {
     const etaStr = minutes > 0 ? `~${minutes}m ${seconds > 0 ? seconds + 's' : ''}` : `~${seconds}s`;
 
     const etaEl = document.getElementById('auto-modal-flow-eta');
-    if (etaEl) etaEl.textContent = `Est. Runtime: ${etaStr} (${numEventsForEst} events)`;
+    if (etaEl) etaEl.textContent = `Est. Runtime: ${etaStr} (${numEventsForEst} event${numEventsForEst === 1 ? '' : 's'})`;
 
     const launchBtn = document.getElementById('btn-launch-configured-pipeline');
     if (launchBtn) {
       if (scope === 'harvest') {
-        const cp = state.harvesterCheckpoint || {};
-        const resumeNum = cp.resume_from_feed_number != null ? cp.resume_from_feed_number : 50;
-        const totalFeeds = cp.total_feeds != null ? cp.total_feeds : 126;
-        const modePrefix = window.harvesterResumeMode !== false ? `Continue From #${resumeNum}/${totalFeeds} • ` : 'Start Fresh • ';
-        const hCountDisp = (batchSize === 'all') ? `${modePrefix}All Remaining Feeds` : `${modePrefix}${batchSize} Discovered Events`;
+        const fStats = typeof window.getHarvesterFeedStats === 'function'
+          ? window.getHarvesterFeedStats()
+          : { resumeFeedNum: 1, totalFeeds: 298, remainingFeeds: 298, completedFeeds: 0, isComplete: false };
+        const isResuming = window.harvesterResumeMode !== false && !fStats.isComplete && fStats.completedFeeds > 0;
+        const modePrefix = isResuming
+          ? `Continue Source #${fStats.resumeFeedNum}/${fStats.totalFeeds} • `
+          : `Start Fresh #1/${fStats.totalFeeds} • `;
+        const hCountDisp = (batchSize === 'all')
+          ? `${modePrefix}${isResuming ? `${fStats.remainingFeeds} Remaining Sources` : `All ${fStats.totalFeeds} Sources`}`
+          : `${modePrefix}${batchSize} New Event${batchSize === 1 ? '' : 's'}`;
         launchBtn.innerHTML = `<span>🚀 Start Auto-Pipeline Run (${hCountDisp})</span>`;
       } else {
         const countDisplay = (batchSize === 'all') ? `All ${targetCount}` : `${effectiveCount}`;
@@ -15858,10 +15940,47 @@ function initStagehandRipperUI() {
       .replace(/\/+$/, '');
   }
 
+  function scoreCuratorFeedPriority(feed) {
+    let score = 0;
+    const u = String(feed.url || '').toLowerCase();
+    const n = String(feed.name || '').toLowerCase();
+
+    if (u.includes('showpass.com') || u.includes('eventive.org') || u.includes('ticketweb.ca')) score += 100;
+
+    if (u.includes('littlemountaingallery.ca') || n.includes('little mountain')) score += 95;
+    if (u.includes('riotheatre.ca') || n.includes('rio theatre')) score += 90;
+    if (u.includes('thecultch.com') || n.includes('cultch')) score += 85;
+    if (u.includes('tightropetheatre.com') || n.includes('tightrope')) score += 80;
+    if (u.includes('rickshawtheatre.com') || n.includes('rickshaw')) score += 80;
+    if (u.includes('foxcabaret.com') || n.includes('fox cabaret')) score += 75;
+    if (u.includes('biltmorecabaret.com') || n.includes('biltmore')) score += 75;
+    if (u.includes('viff.org') || n.includes('viff')) score += 70;
+    if (u.includes('firehallartscentre.ca') || n.includes('firehall')) score += 70;
+    if (u.includes('bellperformingartscentre.com') || u.includes('surrey-civic-theatres') || u.includes('discoversurreybc.com')) score += 85;
+
+    if (u.includes('/schedule') || u.includes('/calendar') || u.includes('/whats-on') || u.includes('/shows') || u.includes('/events')) score += 40;
+    if (/theatre|gallery|comedy|improv|music|club|centre|cabaret|cinema|hall/i.test(n)) score += 25;
+
+    if (/park|beach|trail|seawall|garden|greenhouse|conservatory|library/i.test(n)) score -= 60;
+    if (u.includes('destinationvancouver.com') || u.includes('ecologycentre.ca') || u.includes('vpl.ca') || u.includes('vancouver.ca/parks')) score -= 70;
+
+    return score;
+  }
+
   async function loadVenueFeedsList() {
     if (cachedVenueFeeds && cachedVenueFeeds.length > 0) return cachedVenueFeeds;
     const feeds = [];
     const seenUrls = new Set();
+
+    // Load learned venue deep-link overrides so feed URLs match calendar_harvester.js
+    let learnedVenueLinks = {};
+    try {
+      const lrRes = await fetch('/data/curator_learned_rules.json?_t=' + Date.now());
+      if (lrRes.ok) {
+        const lrData = await lrRes.json();
+        learnedVenueLinks = lrData.venue_calendar_deep_links || {};
+      }
+    } catch (_) { }
 
     // 1. Physical Venues from master or /data/venues.json
     let rawVenues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || [];
@@ -15878,9 +15997,10 @@ function initStagehandRipperUI() {
     if (Array.isArray(rawVenues)) {
       rawVenues.forEach(v => {
         const name = (v.venue_name || v.name || '').trim();
-        const url = (v.calendar_url || v.calendarUrl || v.website_url || v.websiteUrl || '').trim();
+        const learnedUrl = name ? (learnedVenueLinks[name] || learnedVenueLinks[name.toLowerCase()] || '') : '';
+        const url = (learnedUrl || v.calendar_url || v.calendarUrl || v.website_url || v.websiteUrl || '').trim();
         const norm = normalizeCuratorFeedUrl(url);
-        if (name && url && url.startsWith('http') && norm && !seenUrls.has(norm)) {
+        if (name && url && url.startsWith('http') && !url.includes('127.0.0.1') && norm && !seenUrls.has(norm)) {
           seenUrls.add(norm);
           let domain = '';
           try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
@@ -15895,6 +16015,28 @@ function initStagehandRipperUI() {
         }
       });
     }
+
+    // 1B. Primary high-yield performing arts seeds (mirrors calendar_harvester.js)
+    const seedFeeds = [
+      { name: 'Little Mountain Gallery', url: 'https://www.showpass.com/o/little-mountain-gallery/', city: 'Vancouver', type: 'venue' },
+      { name: 'The Rio Theatre', url: 'https://riotheatre.ca/calendar/', city: 'Vancouver', type: 'venue' },
+      { name: 'The Cultch', url: 'https://thecultch.com/whats-on/', city: 'Vancouver', type: 'venue' },
+      { name: 'Tightrope Impro Theatre', url: 'https://tightropetheatre.com/shows', city: 'Vancouver', type: 'venue' },
+      { name: 'The Rickshaw Theatre', url: 'https://rickshawtheatre.com/events/', city: 'Vancouver', type: 'venue' },
+      { name: 'The Fox Cabaret', url: 'https://www.foxcabaret.com/calendar', city: 'Vancouver', type: 'venue' },
+      { name: 'VIFF Centre', url: 'https://viff.org/whats-on/', city: 'Vancouver', type: 'venue' },
+      { name: 'Firehall Arts Centre', url: 'https://www.firehallartscentre.ca/on-stage/', city: 'Vancouver', type: 'venue' },
+      { name: 'The Improv Centre', url: 'https://theimprovcentre.ca/shows/', city: 'Vancouver', type: 'venue' }
+    ];
+    seedFeeds.forEach(sf => {
+      const norm = normalizeCuratorFeedUrl(sf.url);
+      if (norm && !seenUrls.has(norm)) {
+        seenUrls.add(norm);
+        let domain = '';
+        try { domain = new URL(sf.url).hostname.replace(/^www\./i, ''); } catch (_) { }
+        feeds.push({ ...sf, domain });
+      }
+    });
 
     // 2. Discovery sources (Do604, VIA, Straight, Surrey sources, etc.)
     let rawSources = (state.masterCatalogsData && state.masterCatalogsData.discovery_sources) || [];
@@ -15911,10 +16053,11 @@ function initStagehandRipperUI() {
 
     if (Array.isArray(rawSources)) {
       rawSources.forEach(s => {
+        if (s.id === 'testy-canary-feed' || s.type === 'canary_test_feed') return;
         const name = (s.name || s.id || '').trim();
         const url = (s.eventsUrl || s.calendarUrl || s.url || '').trim();
         const norm = normalizeCuratorFeedUrl(url);
-        if (name && url && url.startsWith('http') && norm && !seenUrls.has(norm)) {
+        if (name && url && url.startsWith('http') && !url.includes('127.0.0.1') && norm && !seenUrls.has(norm)) {
           seenUrls.add(norm);
           let domain = '';
           try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
@@ -15939,7 +16082,7 @@ function initStagehandRipperUI() {
           const name = (s.name || s.id || '').trim();
           const url = (s.url || '').trim();
           const norm = normalizeCuratorFeedUrl(url);
-          if (name && url && url.startsWith('http') && norm && !seenUrls.has(norm)) {
+          if (name && url && url.startsWith('http') && !url.includes('127.0.0.1') && norm && !seenUrls.has(norm)) {
             seenUrls.add(norm);
             let domain = '';
             try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
@@ -15977,6 +16120,9 @@ function initStagehandRipperUI() {
       fallbacks.forEach(f => feeds.push(f));
     }
 
+    // Sort identically to calendar_harvester.js so UI feed numbers match crawler order 1-to-1
+    feeds.sort((a, b) => (scoreCuratorFeedPriority(b) - scoreCuratorFeedPriority(a)) || String(a.name || '').localeCompare(String(b.name || '')));
+
     cachedVenueFeeds = feeds;
     return feeds;
   }
@@ -15999,6 +16145,9 @@ function initStagehandRipperUI() {
       if (vanEl) vanEl.textContent = `${vanCount} Sources`;
       if (surEl) surEl.textContent = `${surCount} Sources`;
     }
+    if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
+      window.syncHarvesterCheckpointAndEventsUI();
+    }
     if (typeof window.updateAutoPipelineFlowPreview === 'function') {
       window.updateAutoPipelineFlowPreview();
     }
@@ -16007,6 +16156,10 @@ function initStagehandRipperUI() {
   window.setHarvesterCityScope = async function (city) {
     const norm = (city === 'vancouver' || city === 'surrey') ? city : 'all';
     window.harvesterCityScope = norm;
+    const autoModal = document.getElementById('auto-pipeline-options-modal');
+    if (autoModal && autoModal.style.display === 'flex' && window.selectedAutoPipelineScope !== 'harvest' && typeof window.selectAutoPipelineScope === 'function') {
+      window.selectAutoPipelineScope('harvest', true);
+    }
     const feeds = await loadVenueFeedsList();
     updateHarvesterCityScopePillsUI(norm, feeds);
     const searchInput = document.getElementById('pipeline-search-venue-feed');
@@ -17196,15 +17349,16 @@ function initStagehandRipperUI() {
     const isHarvestedTarget = (sc === 'harvested') || (sc === 'batch5' && isPipelineTestMode);
 
     if (key === 'harvest') {
-      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 122, totalFeeds: 227, remainingFeeds: 105 };
+      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 298, remainingFeeds: 298 };
       const totalFeeds = feedStats.totalFeeds;
       harvesterTotalSources = totalFeeds;
-      const scannedCount = harvesterSourcesScanned || feedStats.completedFeeds || 0;
+      const isHarvestRunning = window.activePipelineRunningStageKey === 'harvest';
+      const scannedCount = isHarvestRunning ? (harvesterSourcesScanned ?? 0) : (feedStats.completedFeeds ?? harvesterSourcesScanned ?? 0);
       const remFeeds = Math.max(0, totalFeeds - scannedCount);
       const foundEventsCount = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
         ? pipelineTestDiscoveredIds.length
         : harvestedList.length;
-      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scannedCount}/${totalFeeds} feeds scanned (${remFeeds} Queued)</span> • <span style="color: #4ade80; font-weight: 700;">${foundEventsCount} harvested events in Stage 1A</span>`;
+      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scannedCount}/${totalFeeds} sources scanned (${remFeeds} Queued)</span> • <span style="color: #4ade80; font-weight: 700;">${foundEventsCount} harvested events in Stage 1A</span>`;
     } else if (key === 'hunter') {
       if (isHarvestedTarget && stageInfo) {
         const totH = stageInfo.prevCompletedCount;
@@ -18103,10 +18257,18 @@ function initStagehandRipperUI() {
 
           // Pattern 0b: Single calendar link harvest header (when running 1 feed)
           if (/📅\s*HARVESTING CALENDAR LINKS from:/i.test(line) && activeStageKey === 'harvest') {
-            if (harvesterSourcesScanned === 0) {
-              harvesterSourcesScanned = 1;
-              updateHarvesterSourcesProgressUI();
+            if (!window.harvesterActiveSourceOrdinal) {
+              window.harvesterActiveSourceOrdinal = (harvesterSourcesScanned || 0) + 1;
             }
+            updateHarvesterSourcesProgressUI();
+          }
+
+          // Pattern 0c: Source Feed Completed Log: ✅ [Source Completed] 217/298 sources scanned (...)
+          const sourceCompletedMatch = line.match(/✅\s*\[Source Completed\]\s*(\d+)\/(\d+)\s*sources scanned/i);
+          if (sourceCompletedMatch && activeStageKey === 'harvest') {
+            harvesterSourcesScanned = parseInt(sourceCompletedMatch[1], 10);
+            harvesterTotalSources = parseInt(sourceCompletedMatch[2], 10);
+            updateHarvesterSourcesProgressUI();
           }
 
           // Pattern 0: Venue/Source Feed Progress Log: 🏛️ [5/120] [Vancouver] Source Feed: The Rickshaw Theatre
@@ -18115,25 +18277,27 @@ function initStagehandRipperUI() {
             const currentVenueIdx = parseInt(venueFeedMatch[1], 10);
             const totalVenues = parseInt(venueFeedMatch[2], 10);
             const venueName = venueFeedMatch[3].trim();
-            harvesterSourcesScanned = currentVenueIdx;
+            const completedBefore = Math.max(0, currentVenueIdx - 1);
+            harvesterSourcesScanned = completedBefore;
             harvesterTotalSources = totalVenues;
             harvesterCurrentSourceName = venueName;
+            window.harvesterActiveSourceOrdinal = currentVenueIdx;
             updateHarvesterSourcesProgressUI();
             if (pipelineStatusText && activeStageKey === 'harvest') {
-              pipelineStatusText.textContent = `Scanning Source ${currentVenueIdx}/${totalVenues}: ${venueName}`;
+              pipelineStatusText.textContent = `Scanning Source #${currentVenueIdx}/${totalVenues}: ${venueName}`;
               pipelineStatusText.style.color = '#c084fc';
             }
             if (pipelineStatusSubtext) {
               pipelineStatusSubtext.style.display = 'block';
-              pipelineStatusSubtext.textContent = `🏛️ ${currentVenueIdx}/${totalVenues} sources scanned • Current: ${venueName}`;
+              pipelineStatusSubtext.textContent = `🏛️ Source #${currentVenueIdx} of ${totalVenues} (${completedBefore} completed) • ${venueName}`;
             }
             if (pipelineItemProgress && activeStageKey === 'harvest') {
-              pipelineItemProgress.textContent = `${currentVenueIdx}/${totalVenues} sources scanned • +${harvesterDiscoveredEvents.length} events found`;
+              pipelineItemProgress.textContent = `${completedBefore}/${totalVenues} sources completed (scanning #${currentVenueIdx}) • +${harvesterDiscoveredEvents.length} new events`;
             }
             const counterBadge = document.getElementById('pipeline-diff-counter-badge');
             if (counterBadge && activeStageKey === 'harvest') {
               const count = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
-              counterBadge.textContent = `${currentVenueIdx}/${totalVenues} sources scanned • ${count} Discovered`;
+              counterBadge.textContent = `Source #${currentVenueIdx}/${totalVenues} • ${count} Discovered`;
             }
           } else {
             // Pattern 1: Discrete Event Candidate Link: Processing [1/4]: https://...
@@ -18159,7 +18323,9 @@ function initStagehandRipperUI() {
                 : (BENCHMARKS[mode] || 18);
               if (pipelineItemProgress) {
                 if (activeStageKey === 'harvest') {
-                  pipelineItemProgress.textContent = `${harvesterSourcesScanned || 1}/${harvesterTotalSources || 227} sources scanned • Link ${displayIdx}/${total} (${labelPct}%)`;
+                  const activeOrd = window.harvesterActiveSourceOrdinal || ((harvesterSourcesScanned || 0) + 1);
+                  const totSrc = harvesterTotalSources || 298;
+                  pipelineItemProgress.textContent = `Source #${activeOrd}/${totSrc} (${harvesterSourcesScanned || 0} completed) • Link ${displayIdx}/${total} (${labelPct}%)`;
                 } else {
                   pipelineItemProgress.textContent = `Event ${displayIdx} of ${total} (${labelPct}% done) • ~${Math.round(unitTime)}s / event`;
                 }
@@ -18174,18 +18340,18 @@ function initStagehandRipperUI() {
               if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(recalibratedSec)}`;
 
               if (activeStageKey === 'harvest') {
-                const sIdx = harvesterSourcesScanned || 1;
-                const sTot = harvesterTotalSources || 227;
+                const activeOrd = window.harvesterActiveSourceOrdinal || ((harvesterSourcesScanned || 0) + 1);
+                const sTot = harvesterTotalSources || 298;
                 if (pipelineStatusText) {
-                  pipelineStatusText.textContent = `Harvesting [${displayIdx} of ${total}] candidate links (${sIdx}/${sTot} sources scanned)...`;
+                  pipelineStatusText.textContent = `Harvesting Link ${displayIdx}/${total} on Source #${activeOrd}/${sTot}${harvesterCurrentSourceName ? `: ${harvesterCurrentSourceName}` : ''}...`;
                   pipelineStatusText.style.color = '#38bdf8';
                 }
                 if (pipelineStatusSubtext) {
                   pipelineStatusSubtext.style.display = 'block';
-                  pipelineStatusSubtext.textContent = `🏛️ ${sIdx}/${sTot} sources scanned${harvesterCurrentSourceName ? ` • ${harvesterCurrentSourceName}` : ''} • Link ${displayIdx} of ${total}`;
+                  pipelineStatusSubtext.textContent = `🏛️ Source #${activeOrd} of ${sTot} (${harvesterSourcesScanned || 0} completed)${harvesterCurrentSourceName ? ` • ${harvesterCurrentSourceName}` : ''} • Link ${displayIdx} of ${total}`;
                 }
                 if (counterBadge) {
-                  counterBadge.textContent = `${sIdx}/${sTot} sources scanned • ${harvesterDiscoveredEvents.length} Discovered • [${displayIdx}/${total} Links]`;
+                  counterBadge.textContent = `Source #${activeOrd}/${sTot} • ${harvesterDiscoveredEvents.length} Discovered • [Link ${displayIdx}/${total}]`;
                 }
                 updateHarvesterSourcesProgressUI();
               }
@@ -19774,7 +19940,11 @@ function initStagehandRipperUI() {
 
   // Kick off initial loading of layers and uncompiled badges
   if (typeof window.loadLayersAndEvents === 'function') {
-    window.loadLayersAndEvents();
+    Promise.resolve(window.loadLayersAndEvents()).then(() => {
+      if (_urlParams.get('modal') === 'auto-pipeline' && typeof window.openAutoPipelineOptionsModal === 'function') {
+        window.openAutoPipelineOptionsModal();
+      }
+    });
   }
 }
 

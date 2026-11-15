@@ -16540,7 +16540,7 @@
         } else if (batchSize === 50) {
           batchNote.textContent = `Deep batch (~35–40 mins)`;
         } else {
-          batchNote.textContent = `Custom batch: ${batchSize} events`;
+          batchNote.textContent = `Custom batch: ${batchSize} ${batchSize === 1 ? 'event' : 'events'}`;
         }
       }
 
@@ -16548,7 +16548,7 @@
       if (summaryEl) {
         summaryEl.textContent = scope === 'harvest' 
           ? 'Harvests official venue calendar feeds' 
-          : `${targetCount} matching events found in catalog`;
+          : `${targetCount} matching ${targetCount === 1 ? 'event' : 'events'} found in catalog`;
       }
 
       const stagesContainer = document.getElementById('auto-modal-flow-stages');

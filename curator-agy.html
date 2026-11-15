@@ -1856,8 +1856,8 @@
                 <span style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">📅 Venue Calendar Discovery (Harvest
                   New Events)</span>
                 <span class="opt-badge" id="badge-count-harvest"
-                  style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);">49/126
-                  Sources Scanned • Resume Ready</span>
+                  style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);">Loading
+                  Sources…</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Crawls official venue feeds for newly scheduled dates, then automatically upgrades links (1B), audits
@@ -1869,12 +1869,11 @@
                 <button type="button" id="btn-opt-harvest-resume" class="btn-limit-chip active"
                   onclick="setHarvestResumeMode(true)"
                   style="font-size: 0.72rem; padding: 4px 10px; border-color: #c084fc; background: rgba(168, 85, 247, 0.25); color: #f3e8ff; font-weight: 700;">
-                  ▶️ Continue From Stopped (<span id="opt-harvest-resume-feed-label">Feed #50/126: The Orpheum
-                    Theatre</span>)
+                  ▶️ Continue From Stopped (<span id="opt-harvest-resume-feed-label">Loading checkpoint…</span>)
                 </button>
                 <button type="button" id="btn-opt-harvest-fresh" class="btn-limit-chip"
                   onclick="setHarvestResumeMode(false)" style="font-size: 0.72rem; padding: 4px 10px; color: #94a3b8;">
-                  🔄 Start Fresh (Feed #1/126)
+                  🔄 Start Fresh (<span id="opt-harvest-fresh-feed-label">Source #1</span>)
                 </button>
               </div>
               <div id="opt-harvest-city-bar"
@@ -2430,18 +2429,18 @@
                   <div
                     style="font-size: 0.75rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                     <span>⏸️</span>
-                    <span id="harvester-checkpoint-banner-title">Stopped at Feed #50/126: The Orpheum Theatre</span>
+                    <span id="harvester-checkpoint-banner-title">Loading Harvester Checkpoint…</span>
                   </div>
                   <div id="harvester-checkpoint-banner-sub" style="font-size: 0.69rem; color: #a7f3d0;">
-                    49/126 sources scanned • <strong>569 new events</strong> harvested &amp; ready for Stage 1B
+                    Syncing scanned sources &amp; harvested queue…
                   </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                   <button type="button" class="btn-curator" id="btn-continue-harvest-stopped"
                     onclick="continueHarvestFromCheckpoint(event)"
                     style="padding: 5px 11px; font-size: 0.72rem; font-weight: 800; background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border: 1px solid #c084fc; color: #fff; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(147, 51, 234, 0.4);"
-                    title="Continue scanning venue feeds starting from Feed #50/126 where we stopped">
-                    <span id="btn-continue-harvest-stopped-label">▶️ Continue Scan From Stopped (#50/126)</span>
+                    title="Continue scanning remaining unscanned venue feeds">
+                    <span id="btn-continue-harvest-stopped-label">▶️ Continue 1A Scan</span>
                   </button>
                   <button type="button" class="btn-curator" id="btn-process-harvested-1b"
                     onclick="startProcessingHarvestedAt1B(event)"
