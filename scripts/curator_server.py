@@ -1721,21 +1721,22 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Pragma", "no-cache")
         self.send_header("Expires", "0")
 
-        # Defense-in-Depth Security Headers
+        # Defense-in-Depth Security Headers (SAMEORIGIN allows local simulator.html iframe preview)
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("X-Frame-Options", "SAMEORIGIN")
         self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("Permissions-Policy", "geolocation=(), camera=(), microphone=(), payment=()")
         self.send_header("X-XSS-Protection", "1; mode=block")
         self.send_header(
             "Content-Security-Policy",
             "default-src 'self'; "
-            "script-src 'self' 'unsafe-inline'; "
+            "script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://gc.zgo.at; "
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
-            "font-src 'self' https://fonts.gstatic.com; "
+            "font-src 'self' https://fonts.gstatic.com data:; "
             "img-src 'self' data: https:; "
-            "connect-src 'self'; "
-            "frame-ancestors 'none'; "
+            "connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://van50.goatcounter.com; "
+            "frame-src 'self'; "
+            "frame-ancestors 'self'; "
             "object-src 'none'; "
             "base-uri 'self';"
         )

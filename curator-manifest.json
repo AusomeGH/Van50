@@ -3,7 +3,7 @@
   "name": "Van50 Curator Studio",
   "short_name": "Curator",
   "description": "Master control, quarantine triage, and autonomous discovery engine for Van50.",
-  "start_url": "./curator.html",
+  "start_url": "./curator-agy.html",
   "scope": "./",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],

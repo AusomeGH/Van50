@@ -4055,7 +4055,7 @@
   <header class="table-header">
     <div class="header-top">
       <div class="brand-group">
-        <a href="curator.html" style="text-decoration: none;">
+        <a href="curator-agy.html" style="text-decoration: none;">
           <h1 class="brand-title">Van<span>50</span> Curator</h1>
         </a>
         <span class="badge-pill">Interactive Table</span>
@@ -4082,9 +4082,10 @@
           <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981;"></span>
           <span>Daily Sync: 04:00 AM</span>
         </div>
-        <a href="curator.html" class="btn-nav" title="Switch back to full-feature Card Studio">
+        <a href="curator-agy.html" class="btn-nav" title="Switch back to Curator Studio (Antigravity Engine)">
           <span>Cards View</span>
         </a>
+        <a href="simulator.html" target="_blank" rel="noopener" class="btn-nav curator-preview-btn" style="border: 1px solid rgba(56, 189, 248, 0.5); background: rgba(14, 165, 233, 0.16); color: #e0f2fe; font-weight: 700;" title="Open Multi-Device User Preview in New Tab">User Preview ↗</a>
         <a href="index.html" class="btn-nav" title="View live public web app" onclick="openCuratorWindow('index.html'); return false;">
           <span>Public App ↗</span>
         </a>
@@ -5035,19 +5036,6 @@
                 </select>
                 <button type="button" class="btn-limit-chip" id="btn-reset-venue-feed" onclick="resetVenueFeedToAll()" style="padding: 4px 10px; font-size: 0.7rem; color: #c084fc; border-color: rgba(192, 132, 252, 0.4); display: none;" title="Reset selection to All Venue Feeds">
                   ↺ All Feeds
-                </button>
-              </div>
-
-              <!-- Dedicated Isolated Canary Test Harness Run Button (Request 2) -->
-              <div id="pipeline-harvester-test-harness-row" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; background: rgba(236, 72, 153, 0.08); border: 1px dashed rgba(236, 72, 153, 0.4); border-radius: 6px; padding: 6px 10px;">
-                <div style="display: flex; align-items: center; gap: 6px;">
-                  <span style="font-size: 0.8rem;">🧪</span>
-                  <span style="font-size: 0.72rem; font-weight: 700; color: #f472b6;">Canary Test Harness:</span>
-                  <span style="font-size: 0.68rem; color: #94a3b8;">10 zero-information test events</span>
-                </div>
-                <button type="button" class="btn-action" id="btn-run-canary-test-feed" onclick="runCanaryTestFeed()" style="padding: 3px 12px; font-size: 0.72rem; font-weight: 800; background: linear-gradient(135deg, #db2777 0%, #f472b6 100%); border: 1px solid #f472b6; color: #fff; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(219, 39, 119, 0.35);">
-                  <span>🧪</span>
-                  <span>Run Canary Test Feed (10 Events)</span>
                 </button>
               </div>
 
@@ -17781,40 +17769,6 @@
       const select = document.getElementById('pipeline-select-venue-detailer');
       if (select) select.value = 'all';
       window.onVenueDetailerSelected('all');
-    };
-
-    // Dedicated Isolated Canary Test Harness Run Button (Request 2)
-    window.runCanaryTestFeed = function() {
-      const feedSelect = document.getElementById('pipeline-select-venue-feed');
-      const feedBadge = document.getElementById('pipeline-harvester-feed-count-badge');
-      const urlDisplay = document.getElementById('pipeline-harvester-url-display');
-      const customInput = document.getElementById('pipeline-harvester-custom-url');
-
-      const canaryUrl = 'http://127.0.0.1:8080/test_harness/index.html';
-
-      if (feedSelect) {
-        let testOpt = Array.from(feedSelect.options).find(o => o.value && o.value.includes('test_harness'));
-        if (!testOpt) {
-          testOpt = document.createElement('option');
-          testOpt.value = canaryUrl;
-          testOpt.textContent = '🧪 Canary Zero-Information Test Harness Feed';
-          feedSelect.appendChild(testOpt);
-        }
-        feedSelect.value = testOpt.value;
-      }
-      if (feedBadge) {
-        feedBadge.textContent = 'Canary Test Feed Mode';
-        feedBadge.style.background = 'rgba(236, 72, 153, 0.2)';
-        feedBadge.style.color = '#f472b6';
-      }
-      if (urlDisplay) urlDisplay.textContent = canaryUrl;
-      if (customInput) customInput.value = canaryUrl;
-
-      // Automatically trigger harvester run on canary feed
-      const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
-      if (btnTrigger && !isPipelineRunning) {
-        btnTrigger.click();
-      }
     };
 
     const STAGE_ORDER_ALL = ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'compile'];

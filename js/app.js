@@ -7370,6 +7370,10 @@ function updateReviewQueueBadge() {
   if (container) {
     container.style.display = isCurator ? 'block' : 'none';
   }
+  const headerPreviewBtn = document.getElementById('header-curator-preview-btn');
+  if (headerPreviewBtn) {
+    headerPreviewBtn.style.display = isCurator ? 'inline-flex' : 'none';
+  }
 }
 
 function renderReviewQueueModal() {
