@@ -44,7 +44,7 @@
       "id": "discovered-the-cinematheque",
       "name": "The Cinematheque (Downtown Independent Cinema)",
       "domain": "thecinematheque.ca",
-      "eventsUrl": "https://thecinematheque.ca/films",
+      "eventsUrl": "https://thecinematheque.ca/films/calendar",
       "type": "independent_cinema",
       "typeLabel": "Non-Profit Film Institute & Cinematheque",
       "focus": "35mm film retrospectives, international cinema, documentary screenings ($14 CAD)",

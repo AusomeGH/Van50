@@ -1289,15 +1289,17 @@ export async function runHybridRipper(targetUrl, options = {}) {
       console.log(`ℹ️ Note on interactive cart action: ${actErr.message || "Proceeded directly to extraction"}`);
     }
 
-    // Capture visual keyframe screenshot proof (unique random suffix prevents parallel collision)
+    // Capture visual keyframe screenshot proof ONLY outside Step 1A Harvester (Step 2 captures verified paid cart keyframes)
     const tempSlug = `proof_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
     const screenshotFileName = `${tempSlug}_cart.png`;
     const screenshotFilePath = path.join(PROOFS_DIR, screenshotFileName);
-    console.log(`📸 [3/4] Capturing photographic keyframe proof to ${screenshotFileName}...`);
-    try {
-      await page.screenshot({ path: screenshotFilePath, fullPage: false });
-    } catch (shotErr) {
-      console.warn(`⚠️ Warning capturing keyframe: ${shotErr.message}`);
+    if (!options?.fromHarvester) {
+      console.log(`📸 [3/4] Capturing photographic keyframe proof to ${screenshotFileName}...`);
+      try {
+        await page.screenshot({ path: screenshotFilePath, fullPage: false });
+      } catch (shotErr) {
+        console.warn(`⚠️ Warning capturing keyframe: ${shotErr.message}`);
+      }
     }
 
     // AI Extraction with strict Zod Schema (~25 Volatile Box Office & Event Facts)
@@ -1361,12 +1363,12 @@ export async function runHybridRipper(targetUrl, options = {}) {
     const venueData = hydrateVenueDimensions(extractedData.venue_name, venuesDb);
     console.log(`🏛️ Venue Hydration: ${venueData.venue_matched ? "MATCHED ✅ (" + venueData.venue_name + ")" : "UNMATCHED (Fallback used)"}`);
 
-    // If venue is uncataloged, stage candidate to discovered_venues.json
-    if (!venueData.venue_matched && extractedData.venue_name) {
+    // If venue is uncataloged (and NOT a raw Step 1A schedule scan), stage candidate to discovered_venues.json
+    if (!options?.fromHarvester && !venueData.venue_matched && extractedData.venue_name) {
       await stageDiscoveredVenue(extractedData.venue_name, targetUrl);
     }
 
-    // Rename screenshot to permanent event slug
+    // Rename screenshot to permanent event slug (when captured)
     const permanentScreenshotPath = path.join(PROOFS_DIR, `${finalSlug}_cart.png`);
     if (fs.existsSync(screenshotFilePath)) {
       try {
@@ -1377,11 +1379,14 @@ export async function runHybridRipper(targetUrl, options = {}) {
     }
 
     // Stages 1 & 5: Build full 0XX–8XX canonical card
+    const resolvedShotPath = fs.existsSync(permanentScreenshotPath)
+      ? permanentScreenshotPath
+      : (fs.existsSync(screenshotFilePath) ? screenshotFilePath : null);
     const fullEventCard = buildFullDimensions(
       extractedData,
       venueData,
       targetUrl,
-      fs.existsSync(permanentScreenshotPath) ? permanentScreenshotPath : screenshotFilePath
+      resolvedShotPath
     );
 
     console.log(`✨ Full 0XX–8XX Canonical Card Built (${fullEventCard.id})`);
@@ -1416,14 +1421,23 @@ export async function runHybridRipper(targetUrl, options = {}) {
 
 // Stage candidate venue into data/discovered_venues.json (Mutex + Atomic Write Safe)
 async function stageDiscoveredVenue(venueName, sourceUrl) {
-  if (!venueName || venueName === "none_available" || venueName === "Vancouver Venue" || venueName === "Vancouver Cultural Venue") {
+  const cleanV = String(venueName || "").trim();
+  if (!cleanV || cleanV === "none_available" || cleanV === "Vancouver Venue" || cleanV === "Vancouver Cultural Venue") {
     return;
   }
-  const aggregatorTokens = ["destinationvancouver.com", "vancouverisawesome.com", "straight.com", "do604.com", "dailyhive.com", "eventbrite", "showpass", "ticketmaster", "universe.com", "songkick", "orangetickets", "vtix"];
+  if (
+    /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(cleanV) ||
+    /^(?:vancouver|metro\s+vancouver|surrey|burnaby|richmond|victoria|tba|tbd|online|virtual|zoom|[eé]v[eè]nement\s+en\s+ligne|vancouver['’]s\s+best\s+places|vancouver\s+rainy\s+day\s+activities|604\s*now|miss604|503\s+service\s+unavailable)$/i.test(cleanV) ||
+    /^(?:various\s+venues|multiple\s+venues)\b/i.test(cleanV) ||
+    /\b(?:cobble\s+hill|cobblestone\s+pub|sea\s+to\s+sky\s+gondola|brackendale|squamish|whistler|chilliwack|abbotsford|nanaimo|kelowna|victoria)\b/i.test(`${cleanV} ${sourceUrl || ""}`)
+  ) {
+    return;
+  }
+  const aggregatorTokens = ["destinationvancouver.com", "vancouversbestplaces.com", "victoriasbestplaces.com", "vancouverisawesome.com", "straight.com", "do604.com", "miss604.com", "604now.com", "dailyhive.com", "eventbrite", "showpass", "ticketmaster", "admitone", "universe.com", "songkick", "orangetickets", "vtix"];
   if (sourceUrl && aggregatorTokens.some(tok => sourceUrl.toLowerCase().includes(tok))) {
     return;
   }
-  if (venueName && aggregatorTokens.some(tok => venueName.toLowerCase().includes(tok))) {
+  if (cleanV && aggregatorTokens.some(tok => cleanV.toLowerCase().includes(tok))) {
     return;
   }
 

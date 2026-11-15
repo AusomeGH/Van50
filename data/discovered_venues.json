@@ -2,8 +2,9 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Candidate venues detected via discovery feeds and festival programs.",
-    "updatedAt": "2026-10-09T00:19:28.903040+00:00",
-    "totalDiscovered": 15
+    "updatedAt": "2026-11-15T15:01:01.834Z",
+    "totalDiscovered": 330,
+    "pendingCount": 309
   },
   "discoveredVenues": [
     {
@@ -576,7 +577,7 @@
         "pricingType": "standard",
         "isFree": false,
         "minimumSpend": null,
-        "priceCeiling": 50.0,
+        "priceCeiling": 50,
         "scheduleDays": [],
         "genres": [],
         "blacklistPatterns": [],
@@ -707,14 +708,6 @@
       "discoveredAt": "2026-11-01T21:50:28.001Z"
     },
     {
-      "id": "venue-1793570048565-ifzn",
-      "name": "520 Alexander Street",
-      "websiteUrl": "https://ra.co/events/2571088",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-01T21:54:08.565Z"
-    },
-    {
       "id": "venue-1793570099687-rlyz",
       "name": "Meo",
       "websiteUrl": "https://ra.co/events/2563260",
@@ -729,14 +722,6 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-01T21:55:20.449Z"
-    },
-    {
-      "id": "venue-1793570191226-wetv",
-      "name": "TBA",
-      "websiteUrl": "https://ra.co/events/2506663",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-01T21:56:31.226Z"
     },
     {
       "id": "venue-1793570247658-dni8",
@@ -1217,14 +1202,6 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-10T02:28:25.694Z"
-    },
-    {
-      "id": "venue-1794277781862-rev8",
-      "name": "Online",
-      "websiteUrl": "https://events.sfu.ca/event/50822-idea-to-app-softmax-data-ai-hackathon",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T02:29:41.862Z"
     },
     {
       "id": "venue-1794277821218-rzpg",
@@ -2139,14 +2116,6 @@
       "discoveredAt": "2026-11-10T05:57:53.028Z"
     },
     {
-      "id": "venue-1794290283932-rrr2",
-      "name": "Mud Bay Park",
-      "websiteUrl": "https://www.meetup.com/the-abbotsford-meetup-group/events/317001363/",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:58:03.932Z"
-    },
-    {
       "id": "venue-1794290330135-bp6h",
       "name": "New Westminster Christian Reformed Church",
       "websiteUrl": "https://www.meetup.com/the-estuary-at-connections-coffee/events/317319045/",
@@ -2283,14 +2252,6 @@
       "discoveredAt": "2026-11-10T06:08:04.267Z"
     },
     {
-      "id": "venue-1794290893849-n7wp",
-      "name": "5980 Kathleen Ave",
-      "websiteUrl": "https://www.meetup.com/sing-together-victoria/events/317278470/",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:08:13.849Z"
-    },
-    {
       "id": "venue-1794290940610-46f1",
       "name": "Fraser Heights Secondary School",
       "websiteUrl": "https://www.meetup.com/soundscape-a-cappella-chorus/events/316963371/",
@@ -2403,30 +2364,6 @@
       "discoveredAt": "2026-11-10T06:30:11.920Z"
     },
     {
-      "id": "venue-1794297496690-eza1",
-      "name": "Metro Vancouver",
-      "websiteUrl": "https://vancouversbestplaces.com/events-calendar/festivals-and-events/",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T07:58:16.690Z"
-    },
-    {
-      "id": "venue-1794297554146-68a9",
-      "name": "Vancouver's Best Places",
-      "websiteUrl": "https://vancouversbestplaces.com/events-calendar/november/",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T07:59:14.146Z"
-    },
-    {
-      "id": "venue-1794297592959-zeu4",
-      "name": "Various Venues (Vancouver's Best Places Aggregator)",
-      "websiteUrl": "https://vancouversbestplaces.com/events-calendar/vancouver-weekend-events/",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T07:59:52.959Z"
-    },
-    {
       "id": "venue-1794297651921-abta",
       "name": "Chor Leoni Choral Society",
       "websiteUrl": "https://chorleoni.org/event/the-soul-flies-away/",
@@ -2481,14 +2418,6 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-10T08:15:04.583Z"
-    },
-    {
-      "id": "venue-1794298682107-0wy6",
-      "name": "13615 Fraser Hwy",
-      "websiteUrl": "https://allevents.in/surrey/the-diwali-affair/100002004103335024",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:18:02.107Z"
     },
     {
       "id": "venue-1794298756818-tdr7",
@@ -2571,28 +2500,12 @@
       "discoveredAt": "2026-11-10T08:26:57.257Z"
     },
     {
-      "id": "venue-1794299288150-2vyx",
-      "name": "10362 King George Blvd",
-      "websiteUrl": "https://allevents.in/surrey/tomorrow",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:28:08.150Z"
-    },
-    {
       "id": "venue-1794299365362-94v8",
       "name": "West Coast Gardens",
       "websiteUrl": "https://allevents.in/surrey/trim-and-gather-celebration-at-west-coast-gardens/100002004257253398",
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-10T08:29:25.362Z"
-    },
-    {
-      "id": "venue-1794299393117-hdg1",
-      "name": "5738 176 Street, Surrey, BC",
-      "websiteUrl": "https://allevents.in/surrey/nov",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:29:53.117Z"
     },
     {
       "id": "venue-1794299410349-vh41",
@@ -2641,14 +2554,6 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-10T08:36:46.103Z"
-    },
-    {
-      "id": "venue-1794299918071-e0xh",
-      "name": "10350 University Dr",
-      "websiteUrl": "https://allevents.in/surrey/queer-in-colour/100001992673117937",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:38:38.071Z"
     },
     {
       "id": "venue-1794299970132-hgkj",
@@ -2745,14 +2650,6 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-10T08:52:17.000Z"
-    },
-    {
-      "id": "venue-1794300777455-1vje",
-      "name": "10326 Whalley Blvd",
-      "websiteUrl": "https://allevents.in/surrey/open-level-choreography-dance-class/100001987795447694",
-      "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:52:57.455Z"
     },
     {
       "id": "venue-1794300801218-oj46",
@@ -2929,6 +2826,238 @@
       "source": "Stagehand Hybrid Ripper",
       "status": "pending",
       "discoveredAt": "2026-11-10T09:27:02.798Z"
+    },
+    {
+      "id": "venue-1794717925171-9f2a",
+      "name": "Central City",
+      "websiteUrl": "https://centralcity.ca/events/central-city-upcoming-holiday-events-at-central-city",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T04:45:25.171Z"
+    },
+    {
+      "id": "venue-1794719716442-dpi1",
+      "name": "Granville Island (Kids Market)",
+      "websiteUrl": "https://granvilleisland.com/event/visit-with-santa",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:15:16.442Z"
+    },
+    {
+      "id": "venue-1794719747323-ao03",
+      "name": "Granville Island",
+      "websiteUrl": "https://granvilleisland.com/event/a-wonderheads-christmas-carol",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:15:47.323Z"
+    },
+    {
+      "id": "venue-1794721525713-j04w",
+      "name": "Fraser Heights Recreation Centre",
+      "websiteUrl": "https://culturedays.ca/en/events",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:45:25.713Z"
+    },
+    {
+      "id": "venue-1794721527376-kl3x",
+      "name": "Kwikwetlem First Nation",
+      "websiteUrl": "https://culturedays.ca/events/map",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:45:27.376Z"
+    },
+    {
+      "id": "venue-1794721730275-9cin",
+      "name": "Pitt Meadows Art Gallery",
+      "websiteUrl": "https://culturedays.ca/events/9abc7915-32ab-4d86-80d8-91b9957dc4b4",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:48:50.275Z"
+    },
+    {
+      "id": "venue-1794721733692-tnaa",
+      "name": "Online! (Surrey, BC)",
+      "websiteUrl": "https://culturedays.ca/events/6c84ab44-7d6b-4f37-a268-9d5c1acf3f35",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:48:53.692Z"
+    },
+    {
+      "id": "venue-1794721763917-9lfi",
+      "name": "Cloverdale Recreation Centre",
+      "websiteUrl": "https://culturedays.ca/events/62ab55fe-9bfa-4614-898e-a0e88623ba7b",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:49:23.917Z"
+    },
+    {
+      "id": "venue-1794721766637-zthy",
+      "name": "Pitt Meadows City Hall",
+      "websiteUrl": "https://culturedays.ca/events/2087bf3f-957e-4496-811e-ae504eebfd89",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:49:26.637Z"
+    },
+    {
+      "id": "venue-1794721798592-d7r5",
+      "name": "Pitt Meadows Public Library",
+      "websiteUrl": "https://culturedays.ca/events/211214fc-c40e-40a6-95d5-be06742cd024",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:49:58.592Z"
+    },
+    {
+      "id": "venue-1794721832702-gmg3",
+      "name": "Surrey Nature Centre",
+      "websiteUrl": "https://culturedays.ca/events/d5f25a16-b9c8-48a0-95f6-a55687ae9e4f",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:50:32.702Z"
+    },
+    {
+      "id": "venue-1794721834625-x9pp",
+      "name": "Pitt Meadows Museum",
+      "websiteUrl": "https://culturedays.ca/events/15ad1779-2128-424d-a090-416eb33edd5f",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:50:34.625Z"
+    },
+    {
+      "id": "venue-1794721868459-qnsz",
+      "name": "Muriel Arnason Library - Willowbrook",
+      "websiteUrl": "https://culturedays.ca/events/ad053a73-32f7-471e-8271-f3de0674a4ce",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:51:08.459Z"
+    },
+    {
+      "id": "venue-1794722005847-agx5",
+      "name": "UrbanScreen (Surrey Art Gallery)",
+      "websiteUrl": "https://culturedays.ca/events/a5d330ea-8b76-4066-9976-5176e826311b",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:53:25.847Z"
+    },
+    {
+      "id": "venue-1794722036842-5dd4",
+      "name": "Guru Angad Dev School",
+      "websiteUrl": "https://culturedays.ca/events/8dd2b1a6-79e1-4e28-a35d-ce90434e5e46",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:53:56.842Z"
+    },
+    {
+      "id": "venue-1794722039403-zne2",
+      "name": "Timms Community Centre (A Step Above Cultural Gallery)",
+      "websiteUrl": "https://culturedays.ca/events/c7eb121f-e21e-482d-b28e-f0aafd846111",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:53:59.403Z"
+    },
+    {
+      "id": "venue-1794722071234-84r3",
+      "name": "Timms Community Centre (MPR 2 - MADSEN)",
+      "websiteUrl": "https://culturedays.ca/events/9b22decc-74ec-4471-9ec1-14bed47d9293",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:54:31.234Z"
+    },
+    {
+      "id": "venue-1794722073005-co5y",
+      "name": "Timms Community Centre (MPR 1 - REDEKOP ROOM)",
+      "websiteUrl": "https://culturedays.ca/events/3a4fd36d-0661-4ff9-8e44-b98d7d81bf5b",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:54:33.005Z"
+    },
+    {
+      "id": "venue-1794722139742-fvc5",
+      "name": "City of Langley Library",
+      "websiteUrl": "https://culturedays.ca/events/d8fc41e5-f151-4a0b-b2b8-d18e14054291",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T05:55:39.742Z"
+    },
+    {
+      "id": "venue-1794723363924-we7m",
+      "name": "Latincouver Hub",
+      "websiteUrl": "https://www.latincouver.ca/events/list/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:16:03.924Z"
+    },
+    {
+      "id": "venue-1794723365215-6c5c",
+      "name": "Latincouver",
+      "websiteUrl": "https://www.latincouver.ca/events-3/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:16:05.215Z"
+    },
+    {
+      "id": "venue-1794723437594-0g4i",
+      "name": "Latincouver (68 Water St Unit 301)",
+      "websiteUrl": "https://www.latincouver.ca/event/navigating-grief-gently/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:17:17.594Z"
+    },
+    {
+      "id": "venue-1794723440264-i0n0",
+      "name": "Latincouver (Online / Zoom)",
+      "websiteUrl": "https://www.latincouver.ca/event/vaccination-and-the-latin-canadian-community/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:17:20.264Z"
+    },
+    {
+      "id": "venue-1794723478450-92qf",
+      "name": "Gastown",
+      "websiteUrl": "https://latincouver.ca/lahm",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:17:58.450Z"
+    },
+    {
+      "id": "venue-1794723558564-zq75",
+      "name": "Eastside Arts District",
+      "websiteUrl": "https://thedrive.ca/culturecrawl-2026/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:19:18.565Z"
+    },
+    {
+      "id": "venue-1794723597901-2srw",
+      "name": "Grandview Park",
+      "websiteUrl": "https://thedrive.ca/christmas-2026/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:19:57.901Z"
+    },
+    {
+      "id": "venue-1794723646811-jyr4",
+      "name": "Vancouver Writers Fest",
+      "websiteUrl": "https://writersfest.bc.ca/events/list/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:20:46.811Z"
+    },
+    {
+      "id": "venue-1794723697238-vobb",
+      "name": "Vancouver Poetry House",
+      "websiteUrl": "https://www.vancouverpoetryhouse.com/events/month/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:21:37.238Z"
+    },
+    {
+      "id": "venue-1794723895499-0xkj",
+      "name": "Großes Festspielhaus",
+      "websiteUrl": "https://www.vancouversymphony.ca/europeantour/",
+      "source": "Stagehand Hybrid Ripper",
+      "status": "pending",
+      "discoveredAt": "2026-11-15T06:24:55.499Z"
     }
   ]
 }

@@ -149,18 +149,20 @@ export function getExistingCatalogLookup() {
     const rawTitle = (title || "").toLowerCase().trim();
     if ([
       "event", "events", "search_exhausted_null", "quarantine_fatal", "page not found", "error 404", "404 not found",
+      "503 service unavailable", "502 bad gateway", "504 gateway timeout", "403 forbidden",
       "granville island directory", "events & programs", "events & organizations", "community events calendar",
       "vancouver events calendar", "plan your visit", "schools and groups", "become a member", "submit an event",
+      "list your event", "list your event - 604 now",
       "event booking guide", "filming in the city", "choose seats", "select seats", "find tickets", "buy tickets",
       "get tickets", "book tickets", "tickets", "be a sponsor", "sponsorship", "trophies", "transportation division",
       "surrey fire services"
     ].includes(rawTitle)) {
       return true;
     }
-    if (/^discover\s+events\s+in\s+/i.test(rawTitle)) {
+    if (/^(?:discover\s+events\s+in\s+|things\s+to\s+do\s+in\s+|free\s+holiday\s+events\s+in\s+|toy\s+drives\s+around\s+|upcoming\s+holiday\s+events\s+at\s+|victoria\s+festivals\s+and\s+events|vancouver['’]s\s+best\s+|vancouver\s+history\s+and\s+culture|vancouver\s+rainy\s+day\s+activities|list\s+your\s+event\b)/i.test(rawTitle)) {
       return true;
     }
-    if (/\b(?:closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|exhibition\s+catalogue|school\s+boundaries|roster\s+(?:202\d[-–]\d{2}|regular\s+season)|(?:@|at)\s+(?:abbotsford\s+pilots|mission\s+city\s+outlaws|chilliwack\s+jets))\b/i.test(rawTitle)) {
+    if (/\b(?:503\s+service\s+unavailable|502\s+bad\s+gateway|closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|exhibition\s+catalogue|school\s+boundaries|roster\s+(?:202\d[-–]\d{2}|regular\s+season)|(?:@|at)\s+(?:abbotsford\s+pilots|mission\s+city\s+outlaws|chilliwack\s+jets))\b/i.test(rawTitle)) {
       return true;
     }
     if (/^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|standard[- ]?pricing|concession[- ]?menu)$/i.test(rawTitle)) {
@@ -177,10 +179,15 @@ export function getExistingCatalogLookup() {
       if (/allevents\.in\/pages\/|flohockey\.tv|flosports\.tv|showpass\.com\/(?:m|discover|cities|explore|o|s)(?:\/|$)/i.test(cu)) return true;
       if (/\/stats\/(?:roster|standings|leaders|player|game-center|schedule)(?:\/|$)/i.test(cu)) return true;
       if (/\/(?:season-pass|annual-pass|membership-pass)(?:[-/]|$)/i.test(cu)) return true;
-      if (/eventbrite\.(?:ca|com)\/(?:d|ttd|l|o|cc)\//i.test(cu)) return true;
+      if (/eventbrite\.(?:ca|com)\/(?:b|d|ttd|l|o|cc)\//i.test(cu)) return true;
+      if (/thecinematheque\.ca\/films\/(?:director\/|20(?:1\d|2[0-5])\/)/i.test(cu)) return true;
+      if (/vancouversbestplaces\.com\/(?:best-places|on-a-rainy-day|events-calendar)(?:\/|$)|victoriasbestplaces\.com/i.test(cu)) return true;
+      if (/miss604\.com\/202\d\/|604now\.com\/list-events/i.test(cu)) return true;
+      if (/admitone\.com\/events\/(?:cobble-hill|victoria|nanaimo|kelowna|kamloops|calgary|edmonton|toronto|seattle)(?:\/|$)/i.test(cu)) return true;
+      if (/admitone\.com\/events\/[^/]+(?:$|\/(?:community|pro)(?:\/[a-z0-9_-]+)?$)/i.test(cu)) return true;
       if (/gretabar\.com\/(?:toronto|calgary|edmonton)\b/i.test(cu)) return true;
       if (/\/(?:[a-z0-9-]*-)?(?:coll(?:e|a)ge-grad|graduation-ceremony|convocation)(?:\/|$)/i.test(cu)) return true;
-      if (/\/(?:directory|library-archives|past-exhibitions|student-exhibitions|permanent-exhibitions|new-installations|collections|conservation|curatorial|sourcebooks|museum-shop|acquisitions-donations|moa-donors|indigenous-access|group-bookings|moa-access-pass|school-programs|public-programs|plan-your-visit|schools-and-groups|submit-event|event-booking-guide|filming-in-the-city|become-a-member|private-party|private-event|city-government|city-departments|public-safety|gallery-publications|exhibition-catalogues|who-we-are|be-a-sponsor|sponsor|sponsorship|trophies|season-memberships)(\/|$)/i.test(cu)) return true;
+      if (/\/(?:directory|library-archives|past-exhibitions|student-exhibitions|permanent-exhibitions|new-installations|collections|conservation|curatorial|sourcebooks|museum-shop|acquisitions-donations|moa-donors|indigenous-access|group-bookings|moa-access-pass|school-programs|public-programs|plan-your-visit|schools-and-groups|submit-event|list-events|event-booking-guide|filming-in-the-city|become-a-member|private-party|private-event|city-government|city-departments|public-safety|gallery-publications|exhibition-catalogues|who-we-are|be-a-sponsor|sponsor|sponsorship|trophies|season-memberships)(\/|$)/i.test(cu)) return true;
       if (/\/(?:ticket-info|ticket-policies|pricing|admission-rates|concession-menu|support|corporate-giving|patrons-circle|major-gifts|tickets\/single-game-tickets|tickets\/special-offers|tickets\/season-tickets|tickets\/mini-plans|tickets\/group-tickets|series\/|education\/|scholarship|scholarships)\b/i.test(cu)) return true;
       if (cu.endsWith("/ticket-info") || cu.endsWith("/ticket-policies") || cu.endsWith("/pricing") || cu.endsWith("/rates") || cu.endsWith("/concession-menu") || cu.includes("vancouversymphony.ca/series") || cu.includes("artsclub.com/education")) return true;
     }
@@ -308,6 +315,14 @@ export async function harvestCalendarLinks(calendarUrl) {
             }
           } catch (_) { }
         }
+
+        // Skip archival Cinematheque director/pre-2026 pages, tourism guide hubs, and out-of-market/hub AdmitOne pages
+        if (/thecinematheque\.ca\/films\/(?:director\/|20(?:1\d|2[0-5])\/)/i.test(hrefNorm)) continue;
+        if (/vancouversbestplaces\.com\/(?:best-places|on-a-rainy-day|events-calendar)(?:\/|$)|victoriasbestplaces\.com/i.test(hrefNorm)) continue;
+        if (/miss604\.com\/202\d\/|604now\.com\/list-events/i.test(hrefNorm)) continue;
+        if (/eventbrite\.(?:ca|com)\/(?:b|d|ttd|l|o|cc)\//i.test(hrefNorm)) continue;
+        if (/admitone\.com\/events\/(?:cobble-hill|victoria|nanaimo|kelowna|kamloops|calgary|edmonton|toronto|seattle)(?:\/|$)/i.test(hrefNorm)) continue;
+        if (/admitone\.com\/events\/[^/]+(?:$|\/(?:community|pro)(?:\/[a-z0-9_-]+)?$)/i.test(hrefNorm)) continue;
 
         // 1. Known Ticketing Platform Deep Links
         let isCandidate = false;
@@ -538,17 +553,41 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
 
         const cardIdNorm = (card.id || "").toLowerCase();
         const todayIsoNow = new Date().toLocaleDateString("en-CA", { timeZone: "America/Vancouver" });
+        const currentYearMonthNow = todayIsoNow.slice(0, 7);
+        const monthMapNow = { jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06", jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12" };
         if (card.lifecycle_type !== "perennial_drop_in") {
-          const isoShowings = Array.isArray(card.showings) ? card.showings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date)) : [];
+          const allShowings = Array.isArray(card.showings) ? card.showings : [];
+          const isoShowings = allShowings.filter((sh) => sh && sh.date && /^\d{4}-\d{2}-\d{2}$/.test(sh.date));
           const hasUpcomingShowing = isoShowings.some((sh) => sh.date >= todayIsoNow);
-          const rawDateStr = String(card.date || card.dateSchedule || "");
+          const rawDateStr = String(card.date || card.dateSchedule || "").trim();
           const isoMatch = rawDateStr.match(/\b(202\d-\d{2}-\d{2})\b/);
           const extractedIso = isoMatch ? isoMatch[1] : null;
-          if ((extractedIso && extractedIso < todayIsoNow && !hasUpcomingShowing) || (isoShowings.length > 0 && !hasUpcomingShowing)) {
-            console.log(`🛡️ [Past Event Suppressed] "${card.title}" (${extractedIso || rawDateStr}) has already concluded (< ${todayIsoNow}). Suppressing from layer_schedules.json.`);
-            results.push({ url: targetUrl, success: false, isNew: false, error: "Concluded past event" });
+          const ymMatch = rawDateStr.match(/^(20\d{2})[-/](0[1-9]|1[0-2]|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/i);
+          const extractedYm = ymMatch ? `${ymMatch[1]}-${monthMapNow[ymMatch[2].toLowerCase().slice(0, 3)] || ymMatch[2]}` : null;
+          const isPre2026YearOnly = /^20(?:1\d|2[0-5])\b/.test(rawDateStr);
+          const allSlotsConcluded = allShowings.length > 0 && allShowings.every((sh) => sh && sh.status === "concluded");
+          const isMissingDateNonPerennial = !hasUpcomingShowing && (rawDateStr === "none_available" || rawDateStr === "");
+
+          if (
+            (extractedIso && extractedIso < todayIsoNow && !hasUpcomingShowing) ||
+            (isoShowings.length > 0 && !hasUpcomingShowing) ||
+            (!hasUpcomingShowing && extractedYm && extractedYm < currentYearMonthNow) ||
+            (!hasUpcomingShowing && isPre2026YearOnly) ||
+            (!hasUpcomingShowing && allSlotsConcluded) ||
+            isMissingDateNonPerennial
+          ) {
+            console.log(`🛡️ [Past / Unscheduled Event Suppressed] "${card.title}" (${extractedIso || rawDateStr || "none_available"}) is past or lacks upcoming dates (< ${todayIsoNow}). Suppressing from layer_schedules.json.`);
+            results.push({ url: targetUrl, success: false, isNew: false, error: "Concluded or unscheduled past event" });
             return;
           }
+        }
+
+        // Gate 3 Budget Ceiling on Harvest: Reject events already verified > $50.00 CAD single-visit floor
+        const harvestedAllIn = Number(card.price_all_in ?? card.price ?? NaN);
+        if (!Number.isNaN(harvestedAllIn) && harvestedAllIn > 50 && card.budget_qualified_under_50 === false) {
+          console.log(`🛡️ [Gate 3 Budget Ceiling] Suppressing "${card.title}" ($${harvestedAllIn.toFixed(2)} CAD > $50.00 cap) from layer_schedules.json.`);
+          results.push({ url: targetUrl, success: false, isNew: false, error: `Budget breach > $50 CAD ($${harvestedAllIn})` });
+          return;
         }
 
         // Check if discovered card is a non-event pricing or admission policy page
@@ -563,20 +602,23 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
           return;
         }
 
-        // Gate 3 Physical Venue Invariant: Reject raw street addresses, online streaming broadcasts, or ungrounded aggregators as venue names
+        // Gate 3 Physical Venue & Metro Vancouver Geofence Invariant: Reject raw street addresses, aggregators, placeholder venues, and out-of-market cities
         const cleanVenueStr = String(evVenue || "").trim();
+        const geoCheckBlob = `${cleanVenueStr} ${targetUrl || ""} ${card.title || ""}`;
         if (
           !cleanVenueStr ||
-          /^(?:none_available|search_exhausted_null|quarantine_fatal|online|virtual|zoom|teams|flohockey|flosports)/i.test(cleanVenueStr) ||
+          /^(?:none_available|search_exhausted_null|quarantine_fatal|online|virtual|zoom|teams|flohockey|flosports|[eé]v[eè]nement\s+en\s+ligne|vancouver|metro\s+vancouver|surrey|burnaby|richmond|victoria|604\s*now|miss604|do604|daily\s*hive|admitone|eventbrite|showpass|vancouver['’]s\s+best\s+places|vancouver\s+rainy\s+day\s+activities)$/i.test(cleanVenueStr) ||
+          /^(?:various\s+venues|multiple\s+venues)\b/i.test(cleanVenueStr) ||
           /\b(?:flohockey|flosports|online\s+broadcast)\b/i.test(cleanVenueStr) ||
-          /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(cleanVenueStr)
+          /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(cleanVenueStr) ||
+          /\b(?:cobble\s+hill|cobblestone\s+pub|sea\s+to\s+sky\s+gondola|brackendale|squamish|whistler|chilliwack|abbotsford|nanaimo|kelowna|victoriasbestplaces)\b/i.test(geoCheckBlob)
         ) {
-          console.log(`🛡️ [Gate 3 Venue Invariant] Suppressing "${card.title}" — invalid/non-physical venue "${cleanVenueStr}" (${targetUrl}).`);
+          console.log(`🛡️ [Gate 3 Venue / Geofence Invariant] Suppressing "${card.title}" — invalid/non-physical or out-of-market venue "${cleanVenueStr}" (${targetUrl}).`);
           results.push({
             url: targetUrl,
             success: false,
             isNew: false,
-            error: `Gate 3 non-physical or street-address venue: ${cleanVenueStr}`,
+            error: `Gate 3 non-physical, aggregator, or out-of-market venue: ${cleanVenueStr}`,
           });
           return;
         }

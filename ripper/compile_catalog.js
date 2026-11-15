@@ -542,18 +542,33 @@ export async function compileCatalog(options = {}) {
 
   // Layer Hygiene & Civic .aspx WAF Evasion Sanitizer:
   // Evict polluted non-event stubs (generic CTA buttons, CEFA graduations, 1980s exhibition catalogues, raw street address venues,
-  // FloHockey streams, AllEvents profile stubs) and strip .aspx civic links across specialist layers.
-  const isPollutedHarvestRecord = (rec) => {
+  // FloHockey streams, AllEvents profile stubs, Cinematheque archival director pages, tourism listicles, AdmitOne category hubs,
+  // out-of-market cities, and HTTP 503 error pages) and strip .aspx civic links across specialist layers.
+  const activeCatalogIdsEarly = new Set(
+    existingEvents.map((e) => String(e?.id || e?.event_id || "").trim().toLowerCase()).filter(Boolean)
+  );
+  const todayCompileIsoEarly = new Date().toLocaleDateString("en-CA", { timeZone: "America/Vancouver" });
+  const currentYearMonthEarly = todayCompileIsoEarly.slice(0, 7);
+  const monthNameMapEarly = { jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06", jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12" };
+
+  const isPollutedHarvestRecord = (rec, { isScheduleRecord = false } = {}) => {
     if (!rec || typeof rec !== "object") return true;
+    const recIdLower = String(rec.id || rec.event_id || "").trim().toLowerCase();
+    const isActivePublished = Boolean(recIdLower && activeCatalogIdsEarly.has(recIdLower));
     const t = String(rec.title || rec.clean_title || rec.event_name || "").trim();
     const v = String(rec.venue_name || rec.venue || "").trim();
     const u = String(rec.details_url || rec.ticket_url || rec.candidate_tier1_url || rec.source_url || "").trim();
-    if (/^(?:choose\s+seats|select\s+seats|find\s+tickets|buy\s+tickets|get\s+tickets|book\s+tickets)$/i.test(t)) return true;
-    if (/^discover\s+events\s+in\s+/i.test(t)) return true;
-    if (/\b(?:cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|all[- ]access\s+pass(?:es)?|subscription\s+packages?|exhibition\s+catalogue|school\s+boundaries)\b/i.test(t)) return true;
+    if (/^(?:choose\s+seats|select\s+seats|find\s+tickets|buy\s+tickets|get\s+tickets|book\s+tickets|503\s+service\s+unavailable|502\s+bad\s+gateway|504\s+gateway\s+timeout|403\s+forbidden|404\s+not\s+found)$/i.test(t)) return true;
+    if (/^(?:discover\s+events\s+in\s+|things\s+to\s+do\s+in\s+|free\s+holiday\s+events\s+in\s+|toy\s+drives\s+around\s+|upcoming\s+holiday\s+events\s+at\s+|victoria\s+festivals\s+and\s+events|vancouver['’]s\s+best\s+|vancouver\s+history\s+and\s+culture|vancouver\s+rainy\s+day\s+activities|list\s+your\s+event\b)/i.test(t)) return true;
+    if (/\b(?:503\s+service\s+unavailable|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|all[- ]access\s+pass(?:es)?|subscription\s+packages?|exhibition\s+catalogue|school\s+boundaries)\b/i.test(t)) return true;
     if (/@\s*(?:abbotsford(?:\s+pilots)?|mission(?:\s+city(?:\s+outlaws)?)?|chilliwack(?:\s+jets)?|aldergrove(?:\s+ironmen)?)\b/i.test(t)) return true;
     if (u && (
-      /allevents\.in\/pages\/|flohockey\.tv|flosports\.tv|showpass\.com\/(?:m|discover|cities|explore|o|s)(?:\/|[?#]|$)|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)|\/wp-content\/uploads\/|\.(?:jpg|jpeg|png|gif|webp|svg)(?:[?#]|$)/i.test(u) ||
+      /allevents\.in\/pages\/|flohockey\.tv|flosports\.tv|showpass\.com\/(?:m|discover|cities|explore|o|s)(?:\/|[?#]|$)|eventbrite\.(?:ca|com)\/(?:b|d|ttd|cc|o|l)(?:\/|[?#]|$)|\/wp-content\/uploads\/|\.(?:jpg|jpeg|png|gif|webp|svg)(?:[?#]|$)/i.test(u) ||
+      /thecinematheque\.ca\/films\/(?:director\/|20(?:1\d|2[0-5])\/)/i.test(u) ||
+      /vancouversbestplaces\.com\/(?:best-places|on-a-rainy-day|events-calendar)(?:\/|[?#]|$)|victoriasbestplaces\.com/i.test(u) ||
+      /miss604\.com\/202\d\/|604now\.com\/list-events/i.test(u) ||
+      /admitone\.com\/events\/(?:cobble-hill|victoria|nanaimo|kelowna|kamloops|calgary|edmonton|toronto|seattle)(?:\/|[?#]|$)/i.test(u) ||
+      /admitone\.com\/events\/[^/?#]+(?:[/?#]*$|\/(?:community|pro)(?:\/[a-z0-9_-]+)?\/?(?:[?#].*)?$)/i.test(u) ||
       /\/stats\/(?:roster|standings|leaders|player|game-center|schedule|team)(?:\/|[?#]|$)/i.test(u) ||
       /\/(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|coll(?:e|a)ge-grad|graduation-ceremony|convocation)(?:\/|[?#]|$)/i.test(u) ||
       /\/(?:city-government|city-departments|public-safety|gallery-publications|exhibition-catalogues)(?:\/|$)/i.test(u) ||
@@ -562,12 +577,34 @@ export async function compileCatalog(options = {}) {
     )) {
       return true;
     }
-    if (v && (
+    if (!isActivePublished && v && (
       /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(v) ||
-      /^(?:flohockey|flosports|online|virtual|zoom|livestream|stream)$/i.test(v) ||
-      /\b(?:msa\s+arena|mission\s+city\s+leisure\s+centre|chilliwack\s+coliseum|abbotsford\s+centre)\b/i.test(v)
+      /^(?:flohockey|flosports|online|virtual|zoom|livestream|stream|[eé]v[eè]nement\s+en\s+ligne|vancouver|metro\s+vancouver|surrey|burnaby|richmond|victoria|604\s*now|miss604|do604|daily\s*hive|admitone|eventbrite|showpass|vancouver['’]s\s+best\s+places|vancouver\s+rainy\s+day\s+activities)$/i.test(v) ||
+      /^(?:various\s+venues|multiple\s+venues)\b/i.test(v) ||
+      /\b(?:msa\s+arena|mission\s+city\s+leisure\s+centre|chilliwack\s+coliseum|district\s+1881\s+downtown\s+chilliwack|abbotsford\s+centre|sea\s+to\s+sky\s+gondola|brackendale\s+art\s+gallery|cobblestone\s+pub)\b/i.test(v)
     )) {
       return true;
+    }
+    // For uncompiled Stage 1A schedule records (not in active events.json and not in manual_review_queue.json), evict past/archival/unparsed/over-$50 stubs
+    if (isScheduleRecord && !isActivePublished && !(recIdLower && quarantinedMap.has(rec.id || rec.event_id)) && rec.lifecycle_type !== "perennial_drop_in") {
+      const dStr = String(rec.date || "").trim();
+      const showingsArr = Array.isArray(rec.showings) ? rec.showings : [];
+      const hasUpcomingIsoSlot = showingsArr.some((sh) => sh && /^\d{4}-\d{2}-\d{2}$/.test(String(sh.date || "")) && String(sh.date) >= todayCompileIsoEarly);
+      if (!hasUpcomingIsoSlot) {
+        if (/^\d{4}-\d{2}-\d{2}$/.test(dStr) && dStr < todayCompileIsoEarly) return true;
+        const ymMatch = dStr.match(/^(20\d{2})[-/](0[1-9]|1[0-2]|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/i);
+        if (ymMatch) {
+          const mm = monthNameMapEarly[ymMatch[2].toLowerCase().slice(0, 3)] || ymMatch[2];
+          if (`${ymMatch[1]}-${mm}` < currentYearMonthEarly) return true;
+        }
+        if (/^20(?:1\d|2[0-5])\b/.test(dStr)) return true;
+        if (dStr === "none_available" && !rec.step1b_audited_at) return true;
+        if (showingsArr.length > 0 && showingsArr.every((sh) => sh && sh.status === "concluded")) return true;
+      }
+      const rawPrice = Number(rec.price_all_in ?? rec.price ?? NaN);
+      if (!Number.isNaN(rawPrice) && rawPrice > 50 && !rec.ai_curator_appeal) {
+        return true;
+      }
     }
     return false;
   };
@@ -593,7 +630,7 @@ export async function compileCatalog(options = {}) {
   for (let i = schedules.length - 1; i >= 0; i--) {
     const s = schedules[i];
     const sid = s && (s.id || s.event_id);
-    if (isPollutedHarvestRecord(s)) {
+    if (isPollutedHarvestRecord(s, { isScheduleRecord: true })) {
       if (sid) {
         pollutedLayerIds.add(sid);
         pollutedArchivedRecords.push(s);
@@ -2099,11 +2136,49 @@ export async function compileCatalog(options = {}) {
       ? String(rawCandidateArtist).trim()
       : (lineup.length > 0 ? lineup[0] : null);
 
-    // 6. AI ARBITRATION: Categories & Search Tags
+    // 6. AI ARBITRATION: Categories & Search Tags (Enforce Canonical 10-Category Taxonomy)
+    const CANONICAL_CATEGORIES = new Set([
+      "music", "cinema", "shows", "outdoors", "arts", "markets", "social", "festivals", "sports", "trivia", "free-public-access"
+    ]);
+    const normalizeCanonicalCategory = (rawCat, titleStr = "", venueStr = "") => {
+      const c = String(rawCat || "").trim().toLowerCase();
+      const blob = `${titleStr} ${venueStr}`.toLowerCase();
+      if (/\b(?:tree\s+lighting\s+festival|fan\s+expo)\b/i.test(blob)) return "festivals";
+      if (/\b(?:christmas\s+market|holiday\s+market|farmers\s+market|night\s+market|craft\s+market)\b/i.test(blob) && !/\b(?:festival\s+&\s+holiday\s+market|tree\s+lighting)\b/i.test(blob)) {
+        if (c === "culture" || !CANONICAL_CATEGORIES.has(c)) return "markets";
+      }
+      if (CANONICAL_CATEGORIES.has(c)) return c;
+      if (c === "comedy" || c === "theatre" || c === "theater" || c === "performing-arts" || c === "live_stage") return "shows";
+      if (c === "movies" || c === "film" || c === "screening") return "cinema";
+      if (c === "activities" || c === "recreation") {
+        if (/\b(?:bouldering|climbing|aquatic|swimming|diving|hockey|soccer|skating|curling|golf|pitch\s*&\s*putt|athletic|sport)\b/i.test(blob)) {
+          return "sports";
+        }
+        return "social";
+      }
+      if (c === "culture" || c === "cultural" || c === "holiday") {
+        if (/\bmarket\b/i.test(blob)) return "markets";
+        if (/\b(?:festival|expo|parade|celebration|carnival)\b/i.test(blob)) return "festivals";
+        if (/\b(?:meet\s+santa|visit\s+with\s+santa|social|meetup)\b/i.test(blob)) return "social";
+        return "arts";
+      }
+      if (c === "crafts" || c === "workshop" || c === "workshops") return "arts";
+      if (c === "nightlife" || c === "games") return "social";
+      return c || null;
+    };
     const rawCategory = edit.category || sched.category || box.category || null;
-    const categories = (Array.isArray(edit.categories) && edit.categories.length > 0 && edit.categories[0])
+    const rawCatList = (Array.isArray(edit.categories) && edit.categories.length > 0 && edit.categories[0])
       ? edit.categories
       : (rawCategory ? [rawCategory] : (isPerennial ? ["free-public-access"] : []));
+    const categories = rawCatList
+      .map((c) => normalizeCanonicalCategory(c, cleanTitle, venue.venue_name))
+      .filter(Boolean);
+    // Deduplicate while preserving primary order
+    const seenCats = new Set();
+    for (let ci = categories.length - 1; ci >= 0; ci--) {
+      if (seenCats.has(categories[ci])) categories.splice(ci, 1);
+      else seenCats.add(categories[ci]);
+    }
 
     // D005: Do not infer fake tags if not explicitly provided by organizer/page
     let tags = (Array.isArray(edit.tags) && edit.tags.length > 0)

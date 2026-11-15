@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class="light-mode">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Van50 — Vancouver Events & Outings ($50 or Less)</title>
-  <meta name="description" content="Discover authentic, affordable Vancouver events, comedy, indie cinema, music, trivia, and scenic outings strictly under $50.00 CAD total out-of-pocket per person.">
+  <meta name="description"
+    content="Discover authentic, affordable Vancouver events, comedy, indie cinema, music, trivia, and scenic outings strictly under $50.00 CAD total out-of-pocket per person.">
   <meta name="theme-color" content="#F2F4F0">
 
   <!-- Android & iOS Mobile Web App Capabilities -->
@@ -18,13 +20,16 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Van50 — Vancouver Events & Outings Under $50">
-  <meta property="og:description" content="Curated authentic Vancouver events strictly under $50 CAD total out-of-pocket per person. Real checkout pricing with zero false advertising.">
+  <meta property="og:description"
+    content="Curated authentic Vancouver events strictly under $50 CAD total out-of-pocket per person. Real checkout pricing with zero false advertising.">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Google Maps JS API is loaded asynchronously once by js/map.js -->
 
@@ -43,6 +48,7 @@
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
+
 <body data-theme="light" class="light-mode">
 
   <!-- Site Header -->
@@ -55,17 +61,27 @@
       </a>
 
       <div class="nav-actions">
-        <a href="simulator.html" target="_blank" rel="noopener" id="header-curator-preview-btn" class="header-curator-preview-link" title="Open Multi-Device User Preview in New Tab" hidden style="display: none;">Preview ↗</a>
-        <button class="btn btn-accessibility" id="accessibility-btn" aria-label="Toggle Accessibility Mode" aria-pressed="false" title="Toggle Accessible Mode (High contrast, larger text, enhanced focus, 48px targets)">
+        <a href="simulator.html" target="_blank" rel="noopener" id="header-curator-preview-btn"
+          class="header-curator-preview-link" title="Open Multi-Device User Preview in New Tab" hidden
+          style="display: none;">Preview ↗</a>
+        <button class="btn btn-accessibility" id="accessibility-btn" aria-label="Toggle Accessibility Mode"
+          aria-pressed="false"
+          title="Toggle Accessible Mode (High contrast, larger text, enhanced focus, 48px targets)">
           <span class="access-icon" aria-hidden="true">♿</span>
           <span class="access-label">Accessibility</span>
         </button>
         <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Events">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true"
+            style="margin-right: 4px; vertical-align: -2px;">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
           <span class="nav-btn-label">Saved Events</span>
           <span class="itinerary-count-badge" id="itinerary-count">0</span>
         </button>
-        <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue" title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue" style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); color: var(--brand-primary); padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
+        <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue"
+          title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue"
+          style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); color: var(--brand-primary); padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
           <span aria-hidden="true">💡</span>
           <span class="nav-btn-label">Suggest / Report</span>
         </button>
@@ -75,30 +91,36 @@
 
   <!-- Main Content Area -->
   <main class="container">
-    
+
     <!-- Hero Section -->
     <section class="hero-section" id="hero-banner">
       <h1 class="hero-title">
         Vancouver &amp; Surrey Events <span class="gradient-text">Under $50</span>
       </h1>
       <p class="hero-subtitle">
-        Curated local comedy, indie cinema, live music, sports, trivia, and scenic outings across Vancouver &amp; Surrey, BC.
+        Curated local comedy, indie cinema, live music, sports, trivia, and scenic outings across Vancouver &amp;
+        Surrey, BC.
       </p>
     </section>
 
     <!-- Combined Single-Row Pre-Feed Controls: Region Filter + Quick Outing Toggles -->
     <div class="pre-feed-controls-row" id="pre-feed-controls-row">
       <div class="region-filter-bar" id="region-filter-bar" role="group" aria-label="Region Filter">
-        <button type="button" class="region-pill active" data-region="all" id="region-pill-all" aria-pressed="true">All</button>
-        <button type="button" class="region-pill" data-region="vancouver" id="region-pill-vancouver" aria-pressed="false">Vancouver</button>
-        <button type="button" class="region-pill" data-region="surrey" id="region-pill-surrey" aria-pressed="false">Surrey</button>
+        <button type="button" class="region-pill active" data-region="all" id="region-pill-all"
+          aria-pressed="true">All</button>
+        <button type="button" class="region-pill" data-region="vancouver" id="region-pill-vancouver"
+          aria-pressed="false">Vancouver</button>
+        <button type="button" class="region-pill" data-region="surrey" id="region-pill-surrey"
+          aria-pressed="false">Surrey</button>
       </div>
       <div class="top-quick-toggles-bar" id="top-quick-toggles-bar" role="group" aria-label="Quick Outing Toggles">
-        <button type="button" class="top-quick-toggle-pill" id="top-toggle-paid" aria-pressed="false" title="Show only paid or ticketed outings ($1 – $50 CAD)">
+        <button type="button" class="top-quick-toggle-pill" id="top-toggle-paid" aria-pressed="false"
+          title="Show only paid or ticketed outings ($1 – $50 CAD)">
           <span class="toggle-pill-indicator" aria-hidden="true"></span>
           <span>Paid</span>
         </button>
-        <button type="button" class="top-quick-toggle-pill" id="top-toggle-hide-daily" aria-pressed="false" title="Hide everyday drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
+        <button type="button" class="top-quick-toggle-pill" id="top-toggle-hide-daily" aria-pressed="false"
+          title="Hide everyday drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
           <span class="toggle-pill-indicator" aria-hidden="true"></span>
           <span>Hide Daily Drop-In</span>
         </button>
@@ -109,40 +131,55 @@
       <div class="search-filter-main-row">
         <div class="search-wrapper">
           <span class="search-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
           </span>
-          <input 
-            type="search" enterkeyhint="search" 
-            id="search-input" 
-            class="search-input" 
-            placeholder="Search events, venues, or tags..."
-            aria-label="Search events"
-            autocomplete="off"
-            spellcheck="false"
-          >
-          <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">×</button>
+          <input type="search" enterkeyhint="search" id="search-input" class="search-input"
+            placeholder="Search events, venues, or tags..." aria-label="Search events" autocomplete="off"
+            spellcheck="false">
+          <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search"
+            aria-label="Clear search" style="display: none;">×</button>
         </div>
-        <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters" aria-expanded="false" aria-controls="mobile-filters-sheet">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="10" y1="18" x2="14" y2="18"></line></svg>
+        <button type="button" id="mobile-filter-trigger" class="mobile-filter-trigger" aria-label="Open Filters"
+          aria-expanded="false" aria-controls="mobile-filters-sheet">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="7" y1="12" x2="17" y2="12"></line>
+            <line x1="10" y1="18" x2="14" y2="18"></line>
+          </svg>
           <span id="mobile-filter-trigger-label">Filters</span>
         </button>
-        <button type="button" id="btn-open-roulette" class="mobile-filter-trigger btn-surprise-me" aria-label="Surprise Outing Generator" title="Spin for a random Vancouver outing matching your active filters">
+        <button type="button" id="btn-open-roulette" class="mobile-filter-trigger btn-surprise-me"
+          aria-label="Surprise Outing Generator"
+          title="Spin for a random Vancouver outing matching your active filters">
           <span aria-hidden="true">🎲</span>
           <span class="surprise-me-label">Surprise</span>
         </button>
-        <button type="button" id="mobile-top-map-btn" class="mobile-filter-trigger mobile-top-map-btn view-switcher-btn" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and Card view">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+        <button type="button" id="mobile-top-map-btn" class="mobile-filter-trigger mobile-top-map-btn view-switcher-btn"
+          data-view="toggle" aria-pressed="false" aria-label="Switch between Map and Card view">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+            <line x1="8" y1="2" x2="8" y2="18"></line>
+            <line x1="16" y1="6" x2="16" y2="22"></line>
+          </svg>
           <span>Map</span>
         </button>
       </div>
     </div>
     <div class="quick-category-strip" id="quick-category-strip" role="group" aria-label="Quick Category Filters"></div>
-    <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;" aria-label="Active Vancouver Festivals"></section>
+    <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;"
+      aria-label="Active Vancouver Festivals"></section>
     <!-- Filter Controls Hub -->
     <section class="filters-hub" id="filters-hub" aria-label="Event Filters">
-      
+
       <!-- Active Filter Summary Strip (Mobile & Quick Dismissible Chips) -->
-      <div id="active-filter-chips" class="active-filter-chips" aria-label="Active Filters" style="display: none;"></div>
+      <div id="active-filter-chips" class="active-filter-chips" aria-label="Active Filters" style="display: none;">
+      </div>
 
       <!-- Mobile Bottom Sheet Backdrop -->
       <div id="mobile-sheet-backdrop" class="mobile-sheet-backdrop" aria-hidden="true"></div>
@@ -153,13 +190,14 @@
           <div class="mobile-sheet-handle" aria-hidden="true"></div>
           <div class="mobile-sheet-title-row">
             <span class="mobile-sheet-title">Filters</span>
-            <button type="button" class="mobile-sheet-close-btn" id="mobile-sheet-close-btn" aria-label="Close filters">✕</button>
+            <button type="button" class="mobile-sheet-close-btn" id="mobile-sheet-close-btn"
+              aria-label="Close filters">✕</button>
           </div>
         </div>
 
         <!-- Dynamic Festival Spotlight & Toggle Banner (Inside Filter Window on Mobile) -->
         <!--Moved Active Vancouver Festivals above filters-hub-->
-          <!-- Dynamically generated by js/app.js -->
+        <!-- Dynamically generated by js/app.js -->
         <!---->
 
         <!-- Primary Controls Row 1: Category Pills & View Switcher (Inside Filter Window on Mobile) -->
@@ -170,12 +208,26 @@
           </div>
 
           <div class="view-switch" role="group" aria-label="View Switcher">
-            <button type="button" class="view-btn view-switcher-btn active" id="view-cards-btn" data-view="cards" aria-pressed="true" aria-label="Card View">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+            <button type="button" class="view-btn view-switcher-btn active" id="view-cards-btn" data-view="cards"
+              aria-pressed="true" aria-label="Card View">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                style="margin-right: 4px; vertical-align: -2px;">
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+              </svg>
               <span>Cards</span>
             </button>
-            <button type="button" class="view-btn view-switcher-btn" id="view-map-btn" data-view="map" aria-pressed="false" aria-label="Map View">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+            <button type="button" class="view-btn view-switcher-btn" id="view-map-btn" data-view="map"
+              aria-pressed="false" aria-label="Map View">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                style="margin-right: 4px; vertical-align: -2px;">
+                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                <line x1="8" y1="2" x2="8" y2="18"></line>
+                <line x1="16" y1="6" x2="16" y2="22"></line>
+              </svg>
               <span>Map</span>
             </button>
           </div>
@@ -186,32 +238,16 @@
           <div class="spend-sliders-container">
             <span class="spend-range-label">Spend:</span>
             <span class="spend-readout-badge" id="spend-readout">$0 — $50 CAD</span>
-            
+
             <!-- Single Continuous Track with Overlapping Dual Thumbs -->
             <div class="dual-slider-box" aria-label="Spend Range Slider">
               <div class="dual-slider-track">
                 <div class="dual-slider-highlight" id="dual-slider-highlight"></div>
               </div>
-              <input 
-                type="range" 
-                id="min-spend-slider" 
-                class="dual-range-thumb" 
-                min="0" 
-                max="50" 
-                step="1" 
-                value="0" 
-                aria-label="Minimum spend"
-              >
-              <input 
-                type="range" 
-                id="max-spend-slider" 
-                class="dual-range-thumb" 
-                min="0" 
-                max="50" 
-                step="1" 
-                value="50" 
-                aria-label="Maximum spend"
-              >
+              <input type="range" id="min-spend-slider" class="dual-range-thumb" min="0" max="50" step="1" value="0"
+                aria-label="Minimum spend">
+              <input type="range" id="max-spend-slider" class="dual-range-thumb" min="0" max="50" step="1" value="50"
+                aria-label="Maximum spend">
             </div>
           </div>
 
@@ -226,21 +262,29 @@
             </div>
 
             <!-- Wheelchair Accessible Only Toggle -->
-            <label class="accessible-only-toggle" for="chk-accessible-only" title="Show only venues with verified wheelchair accessibility">
+            <label class="accessible-only-toggle" for="chk-accessible-only"
+              title="Show only venues with verified wheelchair accessibility">
               <input type="checkbox" id="chk-accessible-only">
               <span><strong>♿ Accessible Venues</strong></span>
             </label>
 
             <!-- Collapsible More Filters Button -->
-            <button type="button" class="btn-more-filters" id="btn-toggle-more-filters" aria-expanded="false" aria-controls="more-filters-panel" title="Expand additional date, time, and neighborhood filters">
+            <button type="button" class="btn-more-filters" id="btn-toggle-more-filters" aria-expanded="false"
+              aria-controls="more-filters-panel" title="Expand additional date, time, and neighborhood filters">
               <span>More Filters</span>
               <span class="more-filters-count" id="active-filters-count" style="display: none;">0</span>
               <span class="chevron-icon">▾</span>
             </button>
 
             <!-- Top Section Reset All Filters Button -->
-            <button type="button" class="btn-reset-filters-top" id="btn-reset-filters-top" onclick="resetAllFilters()" title="Reset all search, category, spend, and date filters to default" aria-label="Reset all filters">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 4px; vertical-align: -1px;"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+            <button type="button" class="btn-reset-filters-top" id="btn-reset-filters-top" onclick="resetAllFilters()"
+              title="Reset all search, category, spend, and date filters to default" aria-label="Reset all filters">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                style="margin-right: 4px; vertical-align: -1px;">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
               <span>Reset</span>
             </button>
           </div>
@@ -274,7 +318,8 @@
               <span><strong>Neighborhoods:</strong></span>
               <button class="btn-toggle-all-nh" id="btn-toggle-all-neighborhoods">Select All</button>
             </div>
-            <div class="neighborhood-pills-wrap" id="neighborhood-pills-wrap" role="group" aria-label="Select Neighborhoods">
+            <div class="neighborhood-pills-wrap" id="neighborhood-pills-wrap" role="group"
+              aria-label="Select Neighborhoods">
               <!-- Dynamically generated neighborhood pills -->
             </div>
           </div>
@@ -284,7 +329,8 @@
             <div class="frequencies-header">
               <span><strong>Recurrence Frequency:</strong></span>
             </div>
-            <div class="frequency-pills-wrap" id="frequency-pills-wrap" role="group" aria-label="Filter by Event Recurrence">
+            <div class="frequency-pills-wrap" id="frequency-pills-wrap" role="group"
+              aria-label="Filter by Event Recurrence">
               <!-- Dynamically generated frequency pills -->
             </div>
           </div>
@@ -294,11 +340,15 @@
             <div class="event-focus-header">
               <span><strong>Event Focus / Preferences:</strong></span>
             </div>
-            <div class="event-focus-pills-wrap" id="event-focus-pills-wrap" role="group" aria-label="Religious and Cultural Filter">
+            <div class="event-focus-pills-wrap" id="event-focus-pills-wrap" role="group"
+              aria-label="Religious and Cultural Filter">
               <button type="button" class="focus-pill active" data-focus="all" aria-pressed="true">All Outings</button>
-              <button type="button" class="focus-pill" data-focus="no-worship" aria-pressed="false">Secular &amp; Choral Only</button>
-              <button type="button" class="focus-pill" data-focus="secular" aria-pressed="false">Strictly Secular</button>
-              <button type="button" class="focus-pill" data-focus="faith" aria-pressed="false">Faith-Based &amp; Sacred Only</button>
+              <button type="button" class="focus-pill" data-focus="no-worship" aria-pressed="false">Secular &amp; Choral
+                Only</button>
+              <button type="button" class="focus-pill" data-focus="secular" aria-pressed="false">Strictly
+                Secular</button>
+              <button type="button" class="focus-pill" data-focus="faith" aria-pressed="false">Faith-Based &amp; Sacred
+                Only</button>
             </div>
           </div>
         </div>
@@ -314,7 +364,9 @@
 
     <!-- Results Count Bar -->
     <div class="results-count-bar dynamic-date-count-bar" id="results-count" aria-live="polite">
-      <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">📅 All Upcoming Outings</span></div><div class="results-count-text" id="results-count-text">Showing <strong>40</strong> outings under $50</div>
+      <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">📅
+          All Upcoming Outings</span></div>
+      <div class="results-count-text" id="results-count-text">Showing <strong>40</strong> outings under $50</div>
     </div>
 
     <!-- Events Content Section -->
@@ -332,17 +384,28 @@
             <span class="map-pin-count-badge" id="map-pin-count-badge">0 events plotted</span>
           </div>
           <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="Town Centre Quick Jump">
-            <button type="button" class="map-jump-pill" data-area="Surrey Central" data-lat="49.1896" data-lng="-122.8479" data-zoom="14">Surrey Central</button>
-            <button type="button" class="map-jump-pill" data-area="Guildford" data-lat="49.1897" data-lng="-122.8012" data-zoom="14">Guildford</button>
-            <button type="button" class="map-jump-pill" data-area="Fleetwood" data-lat="49.1575" data-lng="-122.7905" data-zoom="14">Fleetwood</button>
-            <button type="button" class="map-jump-pill" data-area="Newton" data-lat="49.1337" data-lng="-122.8467" data-zoom="14">Newton</button>
-            <button type="button" class="map-jump-pill" data-area="Cloverdale" data-lat="49.1044" data-lng="-122.7303" data-zoom="14">Cloverdale</button>
-            <button type="button" class="map-jump-pill" data-area="South Surrey" data-lat="49.0401" data-lng="-122.8042" data-zoom="13">South Surrey</button>
-            <button type="button" class="map-jump-pill" data-area="Downtown" data-lat="49.2827" data-lng="-123.1207" data-zoom="14">Downtown</button>
-            <button type="button" class="map-jump-pill" data-area="Mount Pleasant" data-lat="49.2628" data-lng="-123.1011" data-zoom="14">Mount Pleasant</button>
-            <button type="button" class="map-jump-pill" data-area="Commercial Drive" data-lat="49.2719" data-lng="-123.0695" data-zoom="14">Commercial Drive</button>
-            <button type="button" class="map-jump-pill" data-area="Kitsilano" data-lat="49.2684" data-lng="-123.1683" data-zoom="14">Kitsilano</button>
-            <button type="button" class="map-jump-pill" data-area="Granville Island" data-lat="49.2712" data-lng="-123.1340" data-zoom="14">Granville Island</button>
+            <button type="button" class="map-jump-pill" data-area="Surrey Central" data-lat="49.1896"
+              data-lng="-122.8479" data-zoom="14">Surrey Central</button>
+            <button type="button" class="map-jump-pill" data-area="Guildford" data-lat="49.1897" data-lng="-122.8012"
+              data-zoom="14">Guildford</button>
+            <button type="button" class="map-jump-pill" data-area="Fleetwood" data-lat="49.1575" data-lng="-122.7905"
+              data-zoom="14">Fleetwood</button>
+            <button type="button" class="map-jump-pill" data-area="Newton" data-lat="49.1337" data-lng="-122.8467"
+              data-zoom="14">Newton</button>
+            <button type="button" class="map-jump-pill" data-area="Cloverdale" data-lat="49.1044" data-lng="-122.7303"
+              data-zoom="14">Cloverdale</button>
+            <button type="button" class="map-jump-pill" data-area="South Surrey" data-lat="49.0401" data-lng="-122.8042"
+              data-zoom="13">South Surrey</button>
+            <button type="button" class="map-jump-pill" data-area="Downtown" data-lat="49.2827" data-lng="-123.1207"
+              data-zoom="14">Downtown</button>
+            <button type="button" class="map-jump-pill" data-area="Mount Pleasant" data-lat="49.2628"
+              data-lng="-123.1011" data-zoom="14">Mount Pleasant</button>
+            <button type="button" class="map-jump-pill" data-area="Commercial Drive" data-lat="49.2719"
+              data-lng="-123.0695" data-zoom="14">Commercial Drive</button>
+            <button type="button" class="map-jump-pill" data-area="Kitsilano" data-lat="49.2684" data-lng="-123.1683"
+              data-zoom="14">Kitsilano</button>
+            <button type="button" class="map-jump-pill" data-area="Granville Island" data-lat="49.2712"
+              data-lng="-123.1340" data-zoom="14">Granville Island</button>
             <button type="button" class="map-jump-pill map-jump-fit" data-area="fit-bounds">🎯 Fit Active Pins</button>
           </div>
         </div>
@@ -352,19 +415,27 @@
   </main>
 
   <!-- Floating Mobile Map/List Toggle Pill -->
-  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and List view">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+  <button type="button" id="mobile-view-toggle" class="mobile-view-toggle" data-view="toggle" aria-pressed="false"
+    aria-label="Switch between Map and List view">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+      <line x1="8" y1="2" x2="8" y2="18"></line>
+      <line x1="16" y1="6" x2="16" y2="22"></line>
+    </svg>
     <span>Map</span>
   </button>
 
   <!-- Surprise Outing Generator / Roulette Modal -->
-  <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-label="Surprise Outing Generator" aria-labelledby="roulette-modal-title" aria-hidden="true" inert>
+  <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-label="Surprise Outing Generator"
+    aria-labelledby="roulette-modal-title" aria-hidden="true" inert>
     <div class="modal-box">
       <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-roulette-modal" aria-label="Close modal">✕</button>
-      
+
       <div class="roulette-container">
-        <h2 id="roulette-modal-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">
+        <h2 id="roulette-modal-title"
+          style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">
           Surprise Outing Generator
         </h2>
         <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 16px;">
@@ -379,7 +450,9 @@
           </div>
         </div>
 
-        <button class="btn-copy-plan" id="roulette-action-btn" data-goatcounter-click="roulette-spin" data-goatcounter-title="Outing Roulette Spin" data-goatcounter-no-session="1" style="width: 100%; border: none;">
+        <button class="btn-copy-plan" id="roulette-action-btn" data-goatcounter-click="roulette-spin"
+          data-goatcounter-title="Outing Roulette Spin" data-goatcounter-no-session="1"
+          style="width: 100%; border: none;">
           Spin for an Outing
         </button>
       </div>
@@ -387,23 +460,28 @@
   </div>
 
   <!-- Crowdsourced Price Feedback Modal -->
-  <div class="modal-overlay" id="price-feedback-modal" role="dialog" aria-modal="true" aria-label="Suggest Price Update" aria-labelledby="price-feedback-title" aria-hidden="true" inert>
+  <div class="modal-overlay" id="price-feedback-modal" role="dialog" aria-modal="true" aria-label="Suggest Price Update"
+    aria-labelledby="price-feedback-title" aria-hidden="true" inert>
     <div class="modal-box" style="max-width: 520px; text-align: left;">
       <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-price-feedback-btn" aria-label="Close Price Feedback">✕</button>
 
       <div style="margin-bottom: 16px;">
-        <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-primary); background: rgba(13, 148, 136, 0.1); border: 1px solid rgba(13, 148, 136, 0.25); border-radius: 4px; padding: 2px 8px; margin-bottom: 6px;">
+        <span
+          style="display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-primary); background: rgba(13, 148, 136, 0.1); border: 1px solid rgba(13, 148, 136, 0.25); border-radius: 4px; padding: 2px 8px; margin-bottom: 6px;">
           Vancouver Outing Budgeting
         </span>
-        <h2 id="price-feedback-title" style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">
+        <h2 id="price-feedback-title"
+          style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">
           Suggest Price Update
         </h2>
-        <div id="price-feedback-venue-display" style="font-size: 0.96rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">
+        <div id="price-feedback-venue-display"
+          style="font-size: 0.96rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">
           📍 <span id="price-feedback-venue-name">Venue</span>
         </div>
         <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45; margin: 0;">
-          Help fellow Vancouverites budget accurately. Submit menu prices directly—no account or personal data collected.
+          Help fellow Vancouverites budget accurately. Submit menu prices directly—no account or personal data
+          collected.
         </p>
       </div>
 
@@ -413,12 +491,15 @@
         <input type="text" id="price-feedback-hp" style="display: none;" tabindex="-1" autocomplete="off">
 
         <div>
-          <label for="price-feedback-pint" style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">
+          <label for="price-feedback-pint"
+            style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">
             Cheapest Pint of Beer / Cider ($ CAD)
           </label>
           <div style="position: relative;">
-            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;">$</span>
-            <input type="number" step="any" id="price-feedback-pint" class="price-modal-input" placeholder="e.g. 8.50" style="padding-left: 28px; width: 100%;">
+            <span
+              style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;">$</span>
+            <input type="number" step="any" id="price-feedback-pint" class="price-modal-input" placeholder="e.g. 8.50"
+              style="padding-left: 28px; width: 100%;">
           </div>
           <span style="display: block; font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;">
             What is the cheapest Pint available? Enter the menu price without tax and without tip.
@@ -426,12 +507,15 @@
         </div>
 
         <div>
-          <label for="price-feedback-cocktail" style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">
+          <label for="price-feedback-cocktail"
+            style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">
             Cheapest Cocktail / Highball ($ CAD)
           </label>
           <div style="position: relative;">
-            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;">$</span>
-            <input type="number" step="any" id="price-feedback-cocktail" class="price-modal-input" placeholder="e.g. 14.00" style="padding-left: 28px; width: 100%;">
+            <span
+              style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;">$</span>
+            <input type="number" step="any" id="price-feedback-cocktail" class="price-modal-input"
+              placeholder="e.g. 14.00" style="padding-left: 28px; width: 100%;">
           </div>
           <span style="display: block; font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;">
             What is the cheapest Cocktail or standard Highball? Enter the menu price without tax and without tip.
@@ -439,28 +523,38 @@
         </div>
 
 
-        <div style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 12px;">
-          <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.82rem; color: var(--text-primary); font-weight: 500;">
-            <input type="checkbox" id="price-feedback-all-in" style="margin-top: 2px; accent-color: var(--accent-primary);">
+        <div
+          style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 12px;">
+          <label
+            style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.82rem; color: var(--text-primary); font-weight: 500;">
+            <input type="checkbox" id="price-feedback-all-in"
+              style="margin-top: 2px; accent-color: var(--accent-primary);">
             <span>Price is all-in / tax included (without tip)</span>
           </label>
-          <span style="display: block; font-size: 0.72rem; color: var(--text-secondary); margin-left: 22px; margin-top: 2px; line-height: 1.35;">
-            Check this if the venue advertises flat tax-in prices (e.g. cash-only bars or round-dollar event counters). Otherwise, BC liquor tax (10% PST + 5% GST) is calculated automatically.
+          <span
+            style="display: block; font-size: 0.72rem; color: var(--text-secondary); margin-left: 22px; margin-top: 2px; line-height: 1.35;">
+            Check this if the venue advertises flat tax-in prices (e.g. cash-only bars or round-dollar event counters).
+            Otherwise, BC liquor tax (10% PST + 5% GST) is calculated automatically.
           </span>
         </div>
 
         <div>
-          <label for="price-feedback-note" style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">
+          <label for="price-feedback-note"
+            style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">
             Optional Note / Source
           </label>
-          <input type="text" id="price-feedback-note" class="price-modal-input" maxlength="200" placeholder="e.g. Happy hour chalkboard, Google Maps photo" style="width: 100%;">
+          <input type="text" id="price-feedback-note" class="price-modal-input" maxlength="200"
+            placeholder="e.g. Happy hour chalkboard, Google Maps photo" style="width: 100%;">
         </div>
 
-        <div id="price-feedback-status" style="display: none; padding: 10px; border-radius: var(--radius-sm); font-size: 0.82rem;"></div>
+        <div id="price-feedback-status"
+          style="display: none; padding: 10px; border-radius: var(--radius-sm); font-size: 0.82rem;"></div>
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
-          <button type="button" id="btn-cancel-price-feedback" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.85rem;">Cancel</button>
-          <button type="submit" id="btn-submit-price-feedback" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">Submit Price Update</button>
+          <button type="button" id="btn-cancel-price-feedback" class="btn btn-ghost"
+            style="padding: 8px 16px; font-size: 0.85rem;">Cancel</button>
+          <button type="submit" id="btn-submit-price-feedback" class="btn btn-primary"
+            style="padding: 8px 18px; font-size: 0.85rem;">Submit Price Update</button>
         </div>
       </form>
     </div>
@@ -471,24 +565,33 @@
   <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Saved Events Drawer" aria-hidden="true" inert>
     <div class="mobile-sheet-handle" aria-hidden="true"></div>
     <div class="itinerary-header">
-      <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <h3
+        style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true">
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
         <span>Saved Events</span>
       </h3>
-      <button class="modal-close-btn" id="close-itinerary-btn" style="position: static; font-size: 1.2rem;" aria-label="Close Saved Events">✕</button>
+      <button class="modal-close-btn" id="close-itinerary-btn" style="position: static; font-size: 1.2rem;"
+        aria-label="Close Saved Events">✕</button>
     </div>
 
     <div class="itinerary-total-card">
       <div>
-        <div style="font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Total Estimated Cost</div>
-        <div id="itinerary-total-cost" style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--accent-primary);">
+        <div style="font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Total
+          Estimated Cost</div>
+        <div id="itinerary-total-cost"
+          style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--accent-primary);">
           $0.00 CAD
         </div>
       </div>
-      <div id="itinerary-budget-status" style="font-size: 0.78rem; text-align: right; max-width: 195px; color: var(--text-secondary);">
+      <div id="itinerary-budget-status"
+        style="font-size: 0.78rem; text-align: right; max-width: 195px; color: var(--text-secondary);">
         Add events to calculate
       </div>
-      <div class="itinerary-budget-meter-track" id="itinerary-budget-meter-track" aria-hidden="true"><div class="itinerary-budget-meter-fill" id="itinerary-budget-meter-fill" style="width: 0%;"></div>
+      <div class="itinerary-budget-meter-track" id="itinerary-budget-meter-track" aria-hidden="true">
+        <div class="itinerary-budget-meter-fill" id="itinerary-budget-meter-fill" style="width: 0%;"></div>
       </div>
     </div>
 
@@ -499,30 +602,39 @@
     <div style="padding-top: 14px; border-top: 1px solid var(--border-subtle); margin-top: auto;">
 
       <div class="itinerary-actions-row" id="itinerary-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <button type="button" class="btn-share-plan" id="share-plan-btn" onclick="window.shareOutingPlan && window.shareOutingPlan()" style="flex: 1 1 auto; display: none;">📤 Share Plan</button>
-        <button type="button" class="btn-copy-plan" id="copy-plan-btn" style="flex: 1 1 auto; border: none;">📋 Copy Plan</button>
-        <button type="button" class="btn-clear-plan" id="clear-plan-btn" onclick="window.clearSavedEvents && window.clearSavedEvents()" style="display: none;" aria-label="Clear all saved events">🗑️ Clear</button>
+        <button type="button" class="btn-share-plan" id="share-plan-btn"
+          onclick="window.shareOutingPlan && window.shareOutingPlan()" style="flex: 1 1 auto; display: none;">📤 Share
+          Plan</button>
+        <button type="button" class="btn-copy-plan" id="copy-plan-btn" style="flex: 1 1 auto; border: none;">📋 Copy
+          Plan</button>
+        <button type="button" class="btn-clear-plan" id="clear-plan-btn"
+          onclick="window.clearSavedEvents && window.clearSavedEvents()" style="display: none;"
+          aria-label="Clear all saved events">🗑️ Clear</button>
       </div>
       <span style="display: none;"></span>
     </div>
   </aside>
 
   <!-- Site Footer -->
-  <footer class="site-footer" style="border-top: 1px solid var(--border-subtle); padding: 36px 0 32px; text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: auto;">
+  <footer class="site-footer"
+    style="border-top: 1px solid var(--border-subtle); padding: 36px 0 32px; text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: auto;">
     <div class="container">
       <p style="margin-bottom: 6px; color: var(--text-secondary);">
-        <strong>Van50</strong> — Curated Vancouver Events &amp; Outings Guide (Under $50 CAD). Strictly local independent arts, comedy, music, and outdoors.
+        <strong>Van50</strong> — Curated Vancouver Events &amp; Outings Guide (Under $50 CAD). Strictly local
+        independent arts, comedy, music, and outdoors.
       </p>
       <p style="font-size: 0.74rem; color: var(--text-muted);">
         Single Reference Source Architecture (Verified Local Feeds • 0 Client-Side Scraping).
       </p>
       <p style="margin-top: 12px;">
-        <button type="button" id="feedback-footer-btn" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--brand-primary); border-radius: 20px; padding: 6px 18px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+        <button type="button" id="feedback-footer-btn"
+          style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--brand-primary); border-radius: 20px; padding: 6px 18px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
           💡 Suggest a Show (≤ $50 CAD) or Report an Issue
         </button>
       </p>
       <div id="curator-footer-container" style="margin-top: 14px; display: none;">
-        <a href="curator-agy.html" class="btn btn-review-queue-footer" id="btn-open-review-queue" aria-label="Curator Studio" title="Open Van50 Curator Studio">
+        <a href="curator-agy.html" class="btn btn-review-queue-footer" id="btn-open-review-queue"
+          aria-label="Curator Studio" title="Open Van50 Curator Studio">
           <span>Curator Studio</span>
           <span class="review-queue-badge" id="review-queue-count">0</span>
         </a>
@@ -531,19 +643,22 @@
   </footer>
 
   <!-- Community Feedback & Suggestions Modal (Single Open-Ended Form) -->
-  <div class="modal-overlay" id="feedback-modal" role="dialog" aria-modal="true" aria-label="Feedback and Suggestions" aria-hidden="true" inert>
+  <div class="modal-overlay" id="feedback-modal" role="dialog" aria-modal="true" aria-label="Feedback and Suggestions"
+    aria-hidden="true" inert>
     <div class="modal-box" style="text-align: left; max-width: 520px; padding: 24px;">
       <div class="mobile-sheet-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" id="close-feedback-btn" aria-label="Close modal">✕</button>
 
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
         <span style="font-size: 1.4rem;">💬</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin: 0;">
+        <h3
+          style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin: 0;">
           Feedback &amp; Suggestions
         </h3>
       </div>
       <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5;">
-        Have an event or venue recommendation (≤ $50 CAD), issue/price update, or thought to share? Enter it below. If you'd like us to follow up, feel free to include your contact email or phone number in the box.
+        Have an event or venue recommendation (≤ $50 CAD), issue/price update, or thought to share? Enter it below. If
+        you'd like us to follow up, feel free to include your contact email or phone number in the box.
       </p>
 
       <form id="community-feedback-form">
@@ -553,23 +668,24 @@
         </div>
 
         <div style="margin-bottom: 16px;">
-          <textarea 
-            id="feedback-message" 
-            name="feedback_message" 
-            rows="6" 
-            required 
-            placeholder="Type your feedback, suggestion, venue tip, or event update here...&#10;&#10;(Feel free to leave a contact email or phone number here if you'd like a reply)" 
-            maxlength="2000" 
+          <textarea id="feedback-message" name="feedback_message" rows="6" required
+            placeholder="Type your feedback, suggestion, venue tip, or event update here...&#10;&#10;(Feel free to leave a contact email or phone number here if you'd like a reply)"
+            maxlength="2000"
             style="width: 100%; padding: 12px 14px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.88rem; line-height: 1.5; resize: vertical; box-sizing: border-box;"></textarea>
         </div>
 
         <input type="hidden" id="feedback-target-event-id" value="">
 
-        <div id="feedback-alert" style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.82rem; margin-bottom: 14px;"></div>
+        <div id="feedback-alert"
+          style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.82rem; margin-bottom: 14px;">
+        </div>
 
         <div style="display: flex; justify-content: flex-end; gap: 10px;">
-          <button type="button" class="btn" id="btn-cancel-feedback" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary); cursor: pointer; padding: 8px 16px; border-radius: var(--radius-md);">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="btn-submit-feedback" style="background: var(--brand-primary); border: none; font-weight: 600; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-md); color: var(--brand-primary-fg);">Send Feedback</button>
+          <button type="button" class="btn" id="btn-cancel-feedback"
+            style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary); cursor: pointer; padding: 8px 16px; border-radius: var(--radius-md);">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit-feedback"
+            style="background: var(--brand-primary); border: none; font-weight: 600; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-md); color: var(--brand-primary-fg);">Send
+            Feedback</button>
         </div>
       </form>
     </div>
@@ -584,4 +700,5 @@
   <script src="js/pwa-install.js?v=8.0.1"></script>
 
 </body>
+
 </html>

@@ -31006,12 +31006,12 @@ const VANCOUVER_EVENTS = [
       "ticket_url": "https://www.russellbeer.com/tap-room"
     },
     "show_3": null,
-    "category": "comedy",
+    "category": "shows",
     "categories": [
-      "comedy",
+      "shows",
       "social"
     ],
-    "categoryLabel": "COMEDY",
+    "categoryLabel": "SHOWS",
     "tags": [
       "comedy"
     ],
@@ -31112,29 +31112,29 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Taproom Stand-Up Comedy & Craft Beer Night",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D002_event_num_perm": {
         "status": "verified",
         "value": "Event_Num_Perm_000000031",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
         "value": "Event_Num_Card_000000031",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "comedy",
+        "value": "shows",
         "categories": [
-          "comedy",
+          "shows",
           "social"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D005_tags": {
         "status": "verified",
@@ -31145,297 +31145,297 @@ const VANCOUVER_EVENTS = [
           "comedy"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D006_lifecycle_type": {
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "live_stage",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "19+ (Valid Government Photo ID Required)",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D102_tier2_event_page": {
         "status": "verified",
         "value": "https://www.russellbeer.com/tap-room",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D103_tier3_calendar": {
         "status": "verified",
         "value": "https://www.russellbeer.com/tap-room",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.russellbeer.com/tap-room",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.russellbeer.com/tap-room",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
         "value": "available",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D108_geo_jurisdiction": {
         "status": "verified",
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
         "value": "General Admission",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D202_tier1_price_base": {
         "status": "verified",
         "value": 15,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D203_tier1_price_fee": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D204_tier1_price_tax": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_read": {
         "status": "verified",
         "value": 15,
         "quote": "$15.00 CAD",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_calculated": {
         "status": "verified",
         "value": 15,
         "formula": "base($15) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 15,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D207_tier2_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D208_tier2_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D209_tier2_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D211_tier3_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D212_tier3_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D213_tier3_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D214_tier3_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D216_tier_count_verified": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "flat_ticket",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 15,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D221_ticket_provider": {
         "status": "verified",
         "value": "Venue Direct / Civic Portal",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D222_booking_protocol": {
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D302_artist": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D303_date": {
         "status": "verified",
         "value": "2026-11-20",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -31461,61 +31461,61 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D306_start_time": {
         "status": "verified",
         "value": "8:00 PM",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D307_end_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "none_available",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D308_dateSchedule": {
         "status": "verified",
         "value": "2026-11-20 • 8:00 PM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
         "value": "Intimate Friday night stand-up comedy inside Russell Brewing Company's Newton taproom, pairing touring Metro Vancouver comics with fresh small-batch craft beer pours.",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D311_festival_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Russell Brewing Company",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "13018 80 Ave, Surrey, BC V3W 3B2",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -31530,116 +31530,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Newton",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "ticketed_admission",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "indoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Mon-Thu: 11:00 AM - 8:00 PM; Fri-Sat: 11:00 AM - 10:00 PM; Sun: 12:00 PM - 7:00 PM",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "TransLink R6 Scott Road / Newton Exchange RapidBus & Route #301 / #319 along 80 Ave / 128 St",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Ground-level step-free entrance into the Newton brewery taproom and tasting lounge",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "not_applicable (Single-level ground floor taproom)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible washroom on main taproom floor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified service animals welcome",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Full craft brewery taproom serving small-batch IPAs, lagers, sours, cider, and taproom snack plates",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "verified",
         "value": "$7.50 CAD (16oz craft sleeve)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$14.00 CAD (Taproom share plates / flatbreads)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside alcohol prohibited; taproom food and rotating food pop-ups available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Visa, MasterCard, Debit, Apple Pay, Google Pay",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -31680,31 +31680,31 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D722_intermission_details": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D723_sound_curfew_time": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D724_earplug_availability": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D725_stage_sightlines": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D731_materials_provided": {
         "status": "not_applicable",
@@ -31885,7 +31885,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -31896,24 +31896,24 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
         "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D804_active_showings": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -31921,35 +31921,35 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": null,
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_qc_audited_at": "2026-11-15T02:47:06.329Z"
+        "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_qc_audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D809_civic_provider_rules": {
         "status": "search_exhausted_null",
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
-    "last_qc_audited_at": "2026-11-15T02:47:06.329Z",
-    "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_qc_audited_at": "2026-11-15T15:01:18.291Z",
+    "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "candidate_tier1_url": "https://www.russellbeer.com/tap-room",
     "candidate_tier1_source": "verified_municipal_schedule",
     "candidate_tier1_confidence": 1,
@@ -32057,12 +32057,12 @@ const VANCOUVER_EVENTS = [
       "ticket_url": "https://www.claytonpublichouse.com/"
     },
     "show_3": null,
-    "category": "comedy",
+    "category": "shows",
     "categories": [
-      "comedy",
+      "shows",
       "social"
     ],
-    "categoryLabel": "COMEDY",
+    "categoryLabel": "SHOWS",
     "tags": [
       "comedy"
     ],
@@ -32163,29 +32163,29 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Stand-Up Comedy Showcase",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D002_event_num_perm": {
         "status": "verified",
         "value": "Event_Num_Perm_000000032",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
         "value": "Event_Num_Card_000000032",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "comedy",
+        "value": "shows",
         "categories": [
-          "comedy",
+          "shows",
           "social"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D005_tags": {
         "status": "verified",
@@ -32196,297 +32196,297 @@ const VANCOUVER_EVENTS = [
           "comedy"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D006_lifecycle_type": {
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "live_stage",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "19+ (Valid Government Photo ID Required)",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D102_tier2_event_page": {
         "status": "verified",
         "value": "https://www.claytonpublichouse.com/",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D103_tier3_calendar": {
         "status": "verified",
         "value": "https://www.claytonpublichouse.com/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.claytonpublichouse.com/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.claytonpublichouse.com/",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
         "value": "available",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D108_geo_jurisdiction": {
         "status": "verified",
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
         "value": "General Admission",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D202_tier1_price_base": {
         "status": "verified",
         "value": 20,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D203_tier1_price_fee": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D204_tier1_price_tax": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_read": {
         "status": "verified",
         "value": 20,
         "quote": "$20.00 CAD",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_calculated": {
         "status": "verified",
         "value": 20,
         "formula": "base($20) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 20,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D207_tier2_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D208_tier2_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D209_tier2_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D211_tier3_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D212_tier3_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D213_tier3_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D214_tier3_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D216_tier_count_verified": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "flat_ticket",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 20,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D221_ticket_provider": {
         "status": "verified",
         "value": "Venue Direct / Civic Portal",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D222_booking_protocol": {
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D302_artist": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D303_date": {
         "status": "verified",
         "value": "2026-11-21",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -32512,61 +32512,61 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D306_start_time": {
         "status": "verified",
         "value": "8:00 PM",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D307_end_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "none_available",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D308_dateSchedule": {
         "status": "verified",
         "value": "2026-11-21 • 8:00 PM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
         "value": "Saturday night neighborhood stand-up comedy showcase at The Clayton Public House in Cloverdale featuring headlining West Coast comedians, pub comfort fare, and local taps.",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D311_festival_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "The Clayton Public House",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "5640 188 St, Surrey, BC V3S 7Y1",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -32581,116 +32581,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Cloverdale",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "ticketed_admission",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "indoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Mon-Thu: 11:00 AM - 12:00 AM; Fri: 11:00 AM - 1:00 AM; Sat: 10:00 AM - 1:00 AM; Sun: 10:00 AM - 12:00 AM",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "TransLink Bus #320, #370 & #502 along Fraser Hwy / Hwy 10 at 188 St in Cloverdale",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Street-level step-free entrance into the main dining room and pub stage area",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "not_applicable (Single-level ground floor neighbourhood pub)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible washrooms on the main floor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified service animals welcome",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Full-service neighbourhood gastropub serving local craft beer on tap, cocktails, burgers, wings, and comfort fare",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$3.75 CAD",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "verified",
         "value": "$8.25 CAD (20oz local draught pint)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$19.50 CAD (Pub burger & fries / entrees)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "No outside food or beverages permitted",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Visa, MasterCard, Amex, Debit, Contactless Tap, Cash",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -32731,31 +32731,31 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D722_intermission_details": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D723_sound_curfew_time": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D724_earplug_availability": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D725_stage_sightlines": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D731_materials_provided": {
         "status": "not_applicable",
@@ -32936,7 +32936,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -32947,24 +32947,24 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
         "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D804_active_showings": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -32972,35 +32972,35 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": null,
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_qc_audited_at": "2026-11-15T02:47:06.329Z"
+        "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_qc_audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D809_civic_provider_rules": {
         "status": "search_exhausted_null",
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
-    "last_qc_audited_at": "2026-11-15T02:47:06.329Z",
-    "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_qc_audited_at": "2026-11-15T15:01:18.291Z",
+    "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "candidate_tier1_url": "https://www.claytonpublichouse.com/",
     "candidate_tier1_source": "verified_municipal_schedule",
     "candidate_tier1_confidence": 1,
@@ -34178,13 +34178,12 @@ const VANCOUVER_EVENTS = [
       "status": "upcoming",
       "ticket_url": "https://www.bellperformingartscentre.com/events/"
     },
-    "category": "theatre",
+    "category": "music",
     "categories": [
-      "theatre",
       "music",
-      "comedy"
+      "shows"
     ],
-    "categoryLabel": "THEATRE",
+    "categoryLabel": "MUSIC",
     "tags": [
       "theatre"
     ],
@@ -34285,30 +34284,29 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Touring Theatre & Tribute Series",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D002_event_num_perm": {
         "status": "verified",
         "value": "Event_Num_Perm_000000034",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
         "value": "Event_Num_Card_000000034",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "theatre",
+        "value": "music",
         "categories": [
-          "theatre",
           "music",
-          "comedy"
+          "shows"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D005_tags": {
         "status": "verified",
@@ -34319,297 +34317,297 @@ const VANCOUVER_EVENTS = [
           "theatre"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D006_lifecycle_type": {
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "live_stage",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D102_tier2_event_page": {
         "status": "verified",
         "value": "https://www.bellperformingartscentre.com/events/",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D103_tier3_calendar": {
         "status": "verified",
         "value": "https://www.bellperformingartscentre.com/events/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.bellperformingartscentre.com/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.bellperformingartscentre.com/events/",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
         "value": "available",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D108_geo_jurisdiction": {
         "status": "verified",
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
         "value": "General Admission",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D202_tier1_price_base": {
         "status": "verified",
         "value": 38,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D203_tier1_price_fee": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D204_tier1_price_tax": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_read": {
         "status": "verified",
         "value": 38,
         "quote": "$38.00 CAD",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_calculated": {
         "status": "verified",
         "value": 38,
         "formula": "base($38) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 38,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D207_tier2_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D208_tier2_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D209_tier2_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D211_tier3_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D212_tier3_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D213_tier3_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D214_tier3_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D216_tier_count_verified": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "flat_ticket",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 38,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D221_ticket_provider": {
         "status": "verified",
         "value": "Venue Direct / Civic Portal",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D222_booking_protocol": {
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D302_artist": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D303_date": {
         "status": "verified",
         "value": "2026-11-15",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -34644,61 +34642,61 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D306_start_time": {
         "status": "verified",
         "value": "7:30 PM",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D307_end_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "none_available",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D308_dateSchedule": {
         "status": "verified",
         "value": "2026-11-15 • 7:30 PM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
         "value": "Experience touring concerts, symphonic tributes, stand-up comedy, and theatrical showcases inside Surrey's flagship 1,050-seat Bell Performing Arts Centre.",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D311_festival_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Bell Performing Arts Centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "6250 144 St, Surrey, BC V3X 1A2",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -34713,116 +34711,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Newton / Sullivan Heights, Surrey",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "ticketed_admission",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "indoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Box Office: Monday - Friday: 8:30 AM - 4:00 PM (Closed 1:00 PM - 2:00 PM; closed weekends and statutory holidays); Performance Doors & Will Call: 1 hour prior to showtime",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "TransLink bus routes #342 and #321 stopping at 144 St & 62 Ave / 64 Ave; connects to Newton Exchange and Surrey Central or King George SkyTrain Stations (Expo Line)",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Level grade, step-free main entrance from designated accessible exterior pathways and parking stalls; step-free orchestra left seating with ramped access to orchestra right",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Public passenger elevator located in the main lobby near concessions providing direct access to the balcony foyer and accessible balcony seating",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible multi-stall and single-occupancy universal washrooms on main lobby level",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified guide dogs and service animals permitted; notification recommended when booking accessible seating",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Lobby concession service offering coffee, bottled beverages, beer, wine, and theatre snacks during ticketed performance intervals",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.00 CAD (Freshly brewed drip coffee at lobby concession)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "verified",
         "value": "$8.50 CAD (Domestic canned beer / craft tall can at concession bar)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "No outside food or beverages permitted inside the theatre auditorium (sealed personal water bottles permitted in lobby)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Debit, Visa, MasterCard, and Cash",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -34863,31 +34861,31 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D722_intermission_details": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D723_sound_curfew_time": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D724_earplug_availability": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D725_stage_sightlines": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D731_materials_provided": {
         "status": "not_applicable",
@@ -35068,7 +35066,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -35079,24 +35077,24 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
         "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D804_active_showings": {
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -35104,35 +35102,35 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": null,
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_qc_audited_at": "2026-11-15T02:47:06.329Z"
+        "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_qc_audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D809_civic_provider_rules": {
         "status": "search_exhausted_null",
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
-    "last_qc_audited_at": "2026-11-15T02:47:06.329Z",
-    "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_qc_audited_at": "2026-11-15T15:01:18.291Z",
+    "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "candidate_tier1_url": "https://www.bellperformingartscentre.com/events/",
     "candidate_tier1_source": "verified_municipal_schedule",
     "candidate_tier1_confidence": 1,
@@ -38172,1090 +38170,10 @@ const VANCOUVER_EVENTS = [
     ]
   },
   {
-    "id": "landmark-cinemas-guildford-reel-deals",
-    "event_id": "landmark-cinemas-guildford-reel-deals",
-    "Event_Num_Perm": "Event_Num_Perm_000000038",
-    "Event_Num_Card": "Event_Num_Card_000000038",
-    "event_archetype": "cinema",
-    "archetype": "cinema",
-    "title": "Reel Deals & Indie Screenings",
-    "event_name": "Reel Deals & Indie Screenings",
-    "artist": null,
-    "lineup": null,
-    "venue": "Landmark Cinemas Guildford",
-    "venue_name": "Landmark Cinemas Guildford",
-    "venue_type": "standard",
-    "address": "15051 101 Ave, Surrey, BC V3R 7Z1",
-    "full_address": "15051 101 Ave, Surrey, BC V3R 7Z1",
-    "neighborhood": "Guildford",
-    "city": "Surrey",
-    "region": "Surrey",
-    "coordinates": [
-      49.1872,
-      -122.8038
-    ],
-    "lat": 49.1872,
-    "lng": -122.8038,
-    "day": "Tue/Daily Evenings",
-    "recurrence": "Daily / Weekly",
-    "url": "https://www.landmarkcinemas.com/showtimes/guildford",
-    "date": "2026-11-17",
-    "time": "6:30 PM",
-    "start_time": "6:30 PM",
-    "doors_time": null,
-    "end_time": null,
-    "startIso": "2026-11-17T18:30:00-07:00",
-    "dateSchedule": "2026-11-17 • 6:30 PM",
-    "frequency": "One-Off",
-    "frequencyLabel": "One-Time Event",
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-10",
-        "start_time": "6:30 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "concluded",
-        "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-13",
-        "start_time": "7:00 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "concluded",
-        "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-      },
-      {
-        "slot": 3,
-        "date": "2026-11-17",
-        "start_time": "6:30 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-      }
-    ],
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-10",
-      "start_time": "6:30 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "concluded",
-      "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-11-13",
-      "start_time": "7:00 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "concluded",
-      "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-    },
-    "show_3": {
-      "slot": 3,
-      "date": "2026-11-17",
-      "start_time": "6:30 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-    },
-    "category": "movies",
-    "categories": [
-      "movies"
-    ],
-    "categoryLabel": "MOVIES",
-    "tags": [
-      "movies"
-    ],
-    "subTags": [
-      "movies"
-    ],
-    "festival_affiliation": null,
-    "festivalAffiliation": null,
-    "holiday_affiliation": null,
-    "holidayAffiliation": null,
-    "is_religious": false,
-    "isReligious": false,
-    "price": 13,
-    "price_base": 13,
-    "price_fee": 0,
-    "price_tax": 0,
-    "price_read": 13,
-    "price_calculated": 13,
-    "price_delta": 0,
-    "price_all_in": 13,
-    "priceLabel": "$13.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "is_sold_out": false,
-    "isSoldOut": false,
-    "operational_status": "available",
-    "booking_protocol": "online_reservation",
-    "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford",
-    "details_url": "https://www.landmarkcinemas.com/showtimes/guildford",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.landmarkcinemas.com/showtimes/guildford",
-      "tier3_calendar": "https://www.landmarkcinemas.com/showtimes/guildford",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.landmarkcinemas.com/showtimes/guildford",
-      "best_available": "https://www.landmarkcinemas.com/showtimes/guildford",
-      "best_tier": "tier2"
-    },
-    "ticket_provider": "Venue Direct / Civic Portal",
-    "description": "Enjoy luxury heated power-recliner seating at Landmark Cinemas Guildford Town Centre with $13 Reel Deals Tuesdays, Monday Mystery Movies, and curated indie cinema screenings.",
-    "restrictions": "All Ages",
-    "transitInfo": "Adjacent to Guildford Town Centre Bus Exchange (R1 King George / Guildford RapidBus, #320, #326, #335, #337, #501)",
-    "transit_info": "Adjacent to Guildford Town Centre Bus Exchange (R1 King George / Guildford RapidBus, #320, #326, #335, #337, #501)",
-    "waypoints": [],
-    "coffee_benchmark": "$4.50 CAD (Fountain drink / hot beverage)",
-    "beer_benchmark": null,
-    "cocktail_benchmark": null,
-    "meal_benchmark": "$14.50 CAD (Popcorn & drink movie combo)",
-    "concession_benchmark": "$8.50 CAD (Medium movie popcorn)",
-    "spend_benchmarks": {
-      "beer": null,
-      "cocktail": null,
-      "coffee": "$4.50 CAD (Fountain drink / hot beverage)",
-      "meal": "$14.50 CAD (Popcorn & drink movie combo)",
-      "concession": "$8.50 CAD (Medium movie popcorn)"
-    },
-    "drink_benchmark": null,
-    "typical_item_spend": "Coffee/Drinks $4.50 • Concessions $8.50",
-    "access_model": "ticketed_admission",
-    "environment_type": "indoor",
-    "weekly_hours": "Daily: 11:30 AM - 11:30 PM (Box office opens 30 minutes prior to first matinee screening)",
-    "venue_grounding": {
-      "is_grounded": true,
-      "trust_weight": 1,
-      "source": "venue_detailer_ai",
-      "last_grounded_at": "2026-11-09T20:00:00.000Z"
-    },
-    "last_grounded_at": "2026-11-09T20:00:00.000Z",
-    "access_parking": null,
-    "access_seating": null,
-    "payment_methods": "Visa, MasterCard, Amex, Debit, Apple Pay, Google Pay, Landmark EXTRAS",
-    "water_refill_station": null,
-    "step_free_entrance": "Level street entrance with automatic doors and reserved wheelchair/companion recliner spaces in all 12 auditoriums",
-    "elevator_lift": "Escalators and full passenger elevator serving the upper theatre concourse",
-    "accessible_washrooms": "Wheelchair-accessible washrooms on the main theatre concourse",
-    "sensory_calibrations": null,
-    "hearing_loop": "Fidelio assistive listening devices and CaptiView closed-captioning displays available free at Guest Services",
-    "service_animals": "Certified guide and service animals welcome in all auditoriums",
-    "outside_food_policy": "No outside food or beverages permitted inside auditoriums",
-    "coat_check": null,
-    "on_site_fnb": "Full cinema Marketplace concession serving fresh buttered popcorn, freestyle fountain drinks, pretzel bites, and hot dogs",
-    "film_runtime_minutes": null,
-    "film_language_subtitles": null,
-    "projection_format": null,
-    "print_condition_notes": null,
-    "concession_alcohol": null,
-    "festival_pass_rules": null,
-    "seat_reservation_type": null,
-    "lifecycle_type": "time_bound_event",
-    "approval_status": "Verified-138D",
-    "budget_qualified_under_50": true,
-    "curator_notes": null,
-    "curator_instructions": null,
-    "proof_keyframes": {
-      "cart": null,
-      "schedule": null,
-      "venue": null
-    },
-    "dimension_audit": {
-      "D001_event_name": {
-        "status": "verified",
-        "value": "Reel Deals & Indie Screenings",
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D002_event_num_perm": {
-        "status": "verified",
-        "value": "Event_Num_Perm_000000038",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D003_event_num_card": {
-        "status": "verified",
-        "value": "Event_Num_Card_000000038",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D004_category": {
-        "status": "verified",
-        "value": "movies",
-        "categories": [
-          "movies"
-        ],
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D005_tags": {
-        "status": "verified",
-        "value": [
-          "movies"
-        ],
-        "subTags": [
-          "movies"
-        ],
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D006_lifecycle_type": {
-        "status": "verified",
-        "value": "time_bound_event",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D007_event_archetype": {
-        "status": "verified",
-        "value": "cinema",
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D008_restrictions": {
-        "status": "verified",
-        "value": "All Ages",
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D009_holiday_affiliation": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D101_tier1_checkout": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D102_tier2_event_page": {
-        "status": "verified",
-        "value": "https://www.landmarkcinemas.com/showtimes/guildford",
-        "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D103_tier3_calendar": {
-        "status": "verified",
-        "value": "https://www.landmarkcinemas.com/showtimes/guildford",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D104_tier4_civic_destination": {
-        "status": "not_applicable",
-        "value": null,
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D105_tier5_venue_home": {
-        "status": "verified",
-        "value": "https://www.landmarkcinemas.com/showtimes/guildford",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D106_best_available_link": {
-        "status": "verified",
-        "value": "https://www.landmarkcinemas.com/showtimes/guildford",
-        "best_tier": "Tier 2: Event Page",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D107_operational_status": {
-        "status": "verified",
-        "value": "available",
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D108_geo_jurisdiction": {
-        "status": "verified",
-        "value": "Metro Vancouver (British Columbia)",
-        "in_market": true,
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D109_currency_standard": {
-        "status": "verified",
-        "value": "CAD",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D110_iana_timezone": {
-        "status": "verified",
-        "value": "America/Vancouver",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D201_tier1_name": {
-        "status": "verified",
-        "value": "General Admission",
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D202_tier1_price_base": {
-        "status": "verified",
-        "value": 13,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D203_tier1_price_fee": {
-        "status": "verified",
-        "value": 0,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D204_tier1_price_tax": {
-        "status": "verified",
-        "value": 0,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D205_tier1_price_read": {
-        "status": "verified",
-        "value": 13,
-        "quote": "$13.00 CAD",
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D205_tier1_price_calculated": {
-        "status": "verified",
-        "value": 13,
-        "formula": "base($13) + fee($0) + tax($0) + other($0)",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D205_tier1_discrepancy_delta": {
-        "status": "verified_reconciled",
-        "delta": 0,
-        "note": "Exact match",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D205_tier1_price_all_in": {
-        "status": "verified",
-        "value": 13,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D206_tier2_name": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D207_tier2_price_base": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D208_tier2_price_fee": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D209_tier2_price_tax": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D210_tier2_price_read": {
-        "status": "none_available",
-        "value": null,
-        "quote": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D210_tier2_price_calculated": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D210_tier2_discrepancy_delta": {
-        "status": "none_available",
-        "delta": null,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D210_tier2_price_all_in": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D211_tier3_name": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D212_tier3_price_base": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D213_tier3_price_fee": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D214_tier3_price_tax": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D215_tier3_price_read": {
-        "status": "none_available",
-        "value": null,
-        "quote": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D215_tier3_price_calculated": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D215_tier3_discrepancy_delta": {
-        "status": "none_available",
-        "delta": null,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D215_tier3_price_all_in": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D216_tier_count_verified": {
-        "status": "verified",
-        "count": 1,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D217_pricing_model": {
-        "status": "verified",
-        "value": "flat_ticket",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D218_budget_qualified_under_50": {
-        "status": "verified",
-        "qualified": true,
-        "total": 13,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D219_other_cost_label": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D221_ticket_provider": {
-        "status": "verified",
-        "value": "Venue Direct / Civic Portal",
-        "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D222_booking_protocol": {
-        "status": "verified",
-        "value": "online_reservation",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D301_lineup": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D302_artist": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D303_date": {
-        "status": "verified",
-        "value": "2026-11-17",
-        "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D304_showings_slots": {
-        "status": "verified",
-        "slot_count": 3,
-        "showings": [
-          {
-            "slot": 1,
-            "date": "2026-11-10",
-            "start_time": "6:30 PM",
-            "doors_time": null,
-            "end_time": null,
-            "status": "concluded",
-            "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-          },
-          {
-            "slot": 2,
-            "date": "2026-11-13",
-            "start_time": "7:00 PM",
-            "doors_time": null,
-            "end_time": null,
-            "status": "concluded",
-            "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-          },
-          {
-            "slot": 3,
-            "date": "2026-11-17",
-            "start_time": "6:30 PM",
-            "doors_time": null,
-            "end_time": null,
-            "status": "upcoming",
-            "ticket_url": "https://www.landmarkcinemas.com/showtimes/guildford"
-          }
-        ],
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D305_doors_time": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D306_start_time": {
-        "status": "verified",
-        "value": "6:30 PM",
-        "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D307_end_time": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "none_available",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D308_dateSchedule": {
-        "status": "verified",
-        "value": "2026-11-17 • 6:30 PM",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D309_frequencyLabel": {
-        "status": "verified",
-        "value": "One-Time Event",
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D310_synopsis": {
-        "status": "verified",
-        "value": "Enjoy luxury heated power-recliner seating at Landmark Cinemas Guildford Town Centre with $13 Reel Deals Tuesdays, Monday Mystery Movies, and curated indie cinema screenings.",
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D311_festival_affiliation": {
-        "status": "none_available",
-        "value": null,
-        "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D401_venue_name": {
-        "status": "verified",
-        "value": "Landmark Cinemas Guildford",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D402_full_address": {
-        "status": "verified",
-        "value": "15051 101 Ave, Surrey, BC V3R 7Z1",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D403_coordinates": {
-        "status": "verified",
-        "value": [
-          49.1872,
-          -122.8038
-        ],
-        "source_tool": "venue_detailer_ai",
-        "audited_at": "2026-11-09T20:00:00.000Z"
-      },
-      "D404_neighborhood": {
-        "status": "verified",
-        "value": "Guildford",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D405_access_model": {
-        "status": "verified",
-        "value": "ticketed_admission",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D406_environment_type": {
-        "status": "verified",
-        "value": "indoor",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D407_weekly_hours": {
-        "status": "verified",
-        "value": "Daily: 11:30 AM - 11:30 PM (Box office opens 30 minutes prior to first matinee screening)",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D408_transit_waypoints": {
-        "status": "verified",
-        "transit": "Adjacent to Guildford Town Centre Bus Exchange (R1 King George / Guildford RapidBus, #320, #326, #335, #337, #501)",
-        "waypoints": [],
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D501_step_free_entrance": {
-        "status": "verified",
-        "value": "Level street entrance with automatic doors and reserved wheelchair/companion recliner spaces in all 12 auditoriums",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D502_elevator_lift": {
-        "status": "verified",
-        "value": "Escalators and full passenger elevator serving the upper theatre concourse",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D503_accessible_washrooms": {
-        "status": "verified",
-        "value": "Wheelchair-accessible washrooms on the main theatre concourse",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D504_sensory_calibrations": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D505_hearing_loop": {
-        "status": "verified",
-        "value": "Fidelio assistive listening devices and CaptiView closed-captioning displays available free at Guest Services",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D506_service_animals": {
-        "status": "verified",
-        "value": "Certified guide and service animals welcome in all auditoriums",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D601_on_site_fnb": {
-        "status": "verified",
-        "value": "Full cinema Marketplace concession serving fresh buttered popcorn, freestyle fountain drinks, pretzel bites, and hot dogs",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D602_coffee_benchmark": {
-        "status": "verified",
-        "value": "$4.50 CAD (Fountain drink / hot beverage)",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D603_beer_benchmark": {
-        "status": "none_available",
-        "value": "none_available",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D604_meal_benchmark": {
-        "status": "verified",
-        "value": "$14.50 CAD (Popcorn & drink movie combo)",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D605_outside_food_policy": {
-        "status": "verified",
-        "value": "No outside food or beverages permitted inside auditoriums",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D606_coat_check": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D607_payment_methods": {
-        "status": "verified",
-        "value": "Visa, MasterCard, Amex, Debit, Apple Pay, Google Pay, Landmark EXTRAS",
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D608_water_refill_station": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D711_film_runtime": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D712_film_language_subtitles": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D713_projection_format": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D714_print_condition_notes": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D715_concession_alcohol": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D716_festival_pass_rules": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D717_seat_reservation_type": {
-        "status": "search_exhausted_null",
-        "value": null,
-        "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D721_stage_seating_layout": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "live_stage"
-      },
-      "D722_intermission_details": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "live_stage"
-      },
-      "D723_sound_curfew_time": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "live_stage"
-      },
-      "D724_earplug_availability": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "live_stage"
-      },
-      "D725_stage_sightlines": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "live_stage"
-      },
-      "D731_materials_provided": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "workshop"
-      },
-      "D732_take_home_outcome": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "workshop"
-      },
-      "D733_workshop_capacity_cap": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "workshop"
-      },
-      "D734_registration_cutoff": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "workshop"
-      },
-      "D735_prerequisite_skill_level": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "workshop"
-      },
-      "D736_instructor_credentials": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "workshop"
-      },
-      "D741_table_cover_fee": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "social_gaming"
-      },
-      "D742_minimum_fnb_spend": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "social_gaming"
-      },
-      "D743_table_time_limit": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "social_gaming"
-      },
-      "D744_game_library_size": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "social_gaming"
-      },
-      "D745_rules_teacher_present": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "social_gaming"
-      },
-      "D746_tournament_prizes": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "social_gaming"
-      },
-      "D751_trail_terrain_surface": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "civic_park"
-      },
-      "D752_pet_leash_policy": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "civic_park"
-      },
-      "D753_seasonal_washrooms": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "civic_park"
-      },
-      "D754_equipment_rentals": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "civic_park"
-      },
-      "D755_picnic_shelter_rules": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "civic_park"
-      },
-      "D761_exhibition_run_dates": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "museum_gallery"
-      },
-      "D762_special_exhibit_surcharge": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "museum_gallery"
-      },
-      "D763_docent_tour_schedule": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "museum_gallery"
-      },
-      "D764_bag_check_rules": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "museum_gallery"
-      },
-      "D771_digital_waiver_required": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "active_rec"
-      },
-      "D772_required_safety_gear": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "active_rec"
-      },
-      "D773_locker_availability": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "active_rec"
-      },
-      "D774_physical_intensity_level": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "active_rec"
-      },
-      "D775_rainout_policy": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "active_rec"
-      },
-      "D781_location_reveal_protocol": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "roving_series"
-      },
-      "D782_byo_seating_policy": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "roving_series"
-      },
-      "D783_open_mic_signup_protocol": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "roving_series"
-      },
-      "D784_organizer_channel": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "roving_series"
-      },
-      "D791_festival_hub_directory": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "festival"
-      },
-      "D792_festival_pass_type": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "festival"
-      },
-      "D793_rush_seating_rules": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "festival"
-      },
-      "D794_central_box_office": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "festival"
-      },
-      "D795_volunteer_ticket_exchange": {
-        "status": "not_applicable",
-        "value": null,
-        "archetype_required": "festival"
-      },
-      "D801_srsa_compliance": {
-        "status": "verified",
-        "compliant": true,
-        "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D802_multi_layer_provenance": {
-        "status": "verified",
-        "sources": {
-          "schedules": "layer_schedules",
-          "box_office": "stagehand_layer_box_office",
-          "editorial": "ai_semantic_enricher",
-          "venue": "venue_master_registry"
-        },
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D803_spa_hydration_provenance": {
-        "status": "verified",
-        "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D804_active_showings": {
-        "status": "verified",
-        "count": 1,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D805_archived_showings": {
-        "status": "verified",
-        "count": 2,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D806_curator_lock": {
-        "status": "verified",
-        "locked": false,
-        "ai_curator_appeal": false,
-        "curator_note": null,
-        "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D807_proof_keyframes": {
-        "status": "verified",
-        "cart": null,
-        "schedule": null,
-        "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D808_timestamp_lockstep": {
-        "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_qc_audited_at": "2026-11-15T02:47:06.329Z"
-      },
-      "D809_civic_provider_rules": {
-        "status": "search_exhausted_null",
-        "rules": null,
-        "value": null,
-        "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
-      }
-    },
-    "last_qc_audited_at": "2026-11-15T02:47:06.329Z",
-    "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
-    "candidate_tier1_url": "https://www.landmarkcinemas.com/showtimes/guildford",
-    "candidate_tier1_source": "verified_municipal_schedule",
-    "candidate_tier1_confidence": 1,
-    "all_tiers": [
-      {
-        "name": "General Admission",
-        "price": 13,
-        "price_base": 13,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 13,
-        "price_calculated": 13,
-        "price_all_in": 13,
-        "is_available": true
-      }
-    ],
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 13,
-        "price_base": 13,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 13,
-        "price_calculated": 13,
-        "price_delta": 0,
-        "label": "$13.00 CAD",
-        "isAvailable": true
-      }
-    ]
-  },
-  {
     "id": "craving-for-a-game-friday-night-magic-board-games",
     "event_id": "craving-for-a-game-friday-night-magic-board-games",
-    "Event_Num_Perm": "Event_Num_Perm_000000039",
-    "Event_Num_Card": "Event_Num_Card_000000039",
+    "Event_Num_Perm": "Event_Num_Perm_000000038",
+    "Event_Num_Card": "Event_Num_Card_000000038",
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
     "title": "Friday Night Magic & Tabletop Board Game Drop-In",
@@ -39445,7 +38363,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000039",
+        "value": "Event_Num_Card_000000038",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -40309,8 +39227,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "project-climbing-centre-cloverdale-bouldering",
     "event_id": "project-climbing-centre-cloverdale-bouldering",
-    "Event_Num_Perm": "Event_Num_Perm_000000040",
-    "Event_Num_Card": "Event_Num_Card_000000040",
+    "Event_Num_Perm": "Event_Num_Perm_000000039",
+    "Event_Num_Card": "Event_Num_Card_000000039",
     "event_archetype": "active_rec",
     "archetype": "active_rec",
     "title": "Indoor Bouldering Evening Session",
@@ -40347,13 +39265,12 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "category": "activities",
+    "category": "outdoors",
     "categories": [
-      "activities",
       "outdoors",
       "sports"
     ],
-    "categoryLabel": "ACTIVITIES",
+    "categoryLabel": "OUTDOORS",
     "tags": [
       "activities"
     ],
@@ -40454,30 +39371,29 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Indoor Bouldering Evening Session",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D002_event_num_perm": {
         "status": "verified",
         "value": "Event_Num_Perm_000000040",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000040",
+        "value": "Event_Num_Card_000000039",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "activities",
+        "value": "outdoors",
         "categories": [
-          "activities",
           "outdoors",
           "sports"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D005_tags": {
         "status": "verified",
@@ -40488,358 +39404,358 @@ const VANCOUVER_EVENTS = [
           "activities"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D006_lifecycle_type": {
         "status": "verified",
         "value": "perennial_drop_in",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "active_rec",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D102_tier2_event_page": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D103_tier3_calendar": {
         "status": "verified",
         "value": "https://www.projectclimbing.ca/rates/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "verified",
         "value": "https://www.projectclimbing.ca/rates/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.projectclimbing.ca/cloverdale/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.projectclimbing.ca/rates/",
         "best_tier": "Tier 3: Calendar",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
         "value": "available",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D108_geo_jurisdiction": {
         "status": "verified",
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
         "value": "General Admission",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D202_tier1_price_base": {
         "status": "verified",
         "value": 24,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D203_tier1_price_fee": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D204_tier1_price_tax": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_read": {
         "status": "verified",
         "value": 24,
         "quote": "$24.00 CAD",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_calculated": {
         "status": "verified",
         "value": 24,
         "formula": "base($24) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 24,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D207_tier2_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D208_tier2_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D209_tier2_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D211_tier3_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D212_tier3_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D213_tier3_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D214_tier3_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D216_tier_count_verified": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "flat_ticket",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 24,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D221_ticket_provider": {
         "status": "verified",
         "value": "Venue Direct / Civic Portal",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D222_booking_protocol": {
         "status": "verified",
         "value": "drop_in",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D302_artist": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D303_date": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "none_available",
         "slot_count": 0,
         "showings": [],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D306_start_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D307_end_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "none_available",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D308_dateSchedule": {
         "status": "verified",
         "value": "Mon–Fri: 6:00 AM – 10:00 PM • Sat–Sun: 9:00 AM – 9:00 PM • Drop-In Day Pass $24 CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "Perennial Drop-In",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
         "value": "Drop in for an afternoon or evening bouldering session at Project Climbing Centre in Cloverdale, featuring weekly freshly-set bouldering problems for beginners through advanced climbers.",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D311_festival_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Project Climbing Centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "17535 55B Ave #205, Surrey, BC V3S 6C9",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -40854,116 +39770,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Cloverdale",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "drop_in_paid",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "indoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Mon-Fri: 6:00 AM - 10:00 PM; Sat-Sun: 9:00 AM - 9:00 PM",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "TransLink Bus #320, #342 & #370 stop near Hwy 10 / 56 Ave & 176 St in Cloverdale (3-minute walk)",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Ground-floor check-in counter and padded bouldering mat floor viewing area",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "not_applicable (Bouldering walls and training area)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Accessible washrooms and change rooms with lockers on site",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified service animals welcome in spectator areas",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Energy bars, electrolyte drinks, kombucha, and coffee available at the front desk pro shop",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.00 CAD (Kombucha / electrolyte beverage)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Personal water bottles and snacks welcome in the lounge area (off the padded climbing mats)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Visa, MasterCard, Debit, Apple Pay, Google Pay",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "verified",
         "value": "Filtered water bottle refill station on site",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -41134,31 +40050,31 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D772_required_safety_gear": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D773_locker_availability": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D774_physical_intensity_level": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D775_rainout_policy": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D781_location_reveal_protocol": {
         "status": "not_applicable",
@@ -41209,7 +40125,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -41220,24 +40136,24 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
         "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D804_active_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -41245,35 +40161,35 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": null,
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_qc_audited_at": "2026-11-15T02:47:06.329Z"
+        "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_qc_audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D809_civic_provider_rules": {
         "status": "search_exhausted_null",
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
-    "last_qc_audited_at": "2026-11-15T02:47:06.329Z",
-    "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_qc_audited_at": "2026-11-15T15:01:18.291Z",
+    "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "candidate_tier1_url": "https://www.projectclimbing.ca/rates/",
     "candidate_tier1_source": "verified_municipal_schedule",
     "candidate_tier1_confidence": 1,
@@ -41308,8 +40224,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
     "event_id": "birdies-and-buckets-pitch-putt-heated-range",
-    "Event_Num_Perm": "Event_Num_Perm_000000041",
-    "Event_Num_Card": "Event_Num_Card_000000041",
+    "Event_Num_Perm": "Event_Num_Perm_000000040",
+    "Event_Num_Card": "Event_Num_Card_000000040",
     "event_archetype": "active_rec",
     "archetype": "active_rec",
     "title": "Lit 9-Hole Par-3 Pitch & Putt / Heated Range",
@@ -41463,7 +40379,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000041",
+        "value": "Event_Num_Card_000000040",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -42307,8 +41223,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "grandview-heights-aquatic-centre-drop-in",
     "event_id": "grandview-heights-aquatic-centre-drop-in",
-    "Event_Num_Perm": "Event_Num_Perm_000000042",
-    "Event_Num_Card": "Event_Num_Card_000000042",
+    "Event_Num_Perm": "Event_Num_Perm_000000041",
+    "Event_Num_Card": "Event_Num_Card_000000041",
     "event_archetype": "active_rec",
     "archetype": "active_rec",
     "title": "Olympic Diving Boards, Lazy River & Steam Room Drop-In",
@@ -42345,13 +41261,12 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "category": "activities",
+    "category": "outdoors",
     "categories": [
-      "activities",
       "outdoors",
       "sports"
     ],
-    "categoryLabel": "ACTIVITIES",
+    "categoryLabel": "OUTDOORS",
     "tags": [
       "activities"
     ],
@@ -42452,30 +41367,29 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Olympic Diving Boards, Lazy River & Steam Room Drop-In",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D002_event_num_perm": {
         "status": "verified",
         "value": "Event_Num_Perm_000000042",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000042",
+        "value": "Event_Num_Card_000000041",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "activities",
+        "value": "outdoors",
         "categories": [
-          "activities",
           "outdoors",
           "sports"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D005_tags": {
         "status": "verified",
@@ -42486,358 +41400,358 @@ const VANCOUVER_EVENTS = [
           "activities"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D006_lifecycle_type": {
         "status": "verified",
         "value": "perennial_drop_in",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "active_rec",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D102_tier2_event_page": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D103_tier3_calendar": {
         "status": "verified",
         "value": "https://www.surrey.ca/parks-recreation/recreation-facilities/grandview-heights-aquatic-centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.surrey.ca/parks-recreation/recreation-facilities/grandview-heights-aquatic-centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.surrey.ca/parks-recreation/recreation-facilities/grandview-heights-aquatic-centre",
         "best_tier": "Tier 3: Calendar",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
         "value": "available",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D108_geo_jurisdiction": {
         "status": "verified",
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
         "value": "General Admission",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D202_tier1_price_base": {
         "status": "verified",
         "value": 7.5,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D203_tier1_price_fee": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D204_tier1_price_tax": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_read": {
         "status": "verified",
         "value": 7.5,
         "quote": "$7.50 CAD",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_calculated": {
         "status": "verified",
         "value": 7.5,
         "formula": "base($7.5) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 7.5,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D207_tier2_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D208_tier2_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D209_tier2_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D211_tier3_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D212_tier3_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D213_tier3_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D214_tier3_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D216_tier_count_verified": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "flat_ticket",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 7.5,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D221_ticket_provider": {
         "status": "verified",
         "value": "Venue Direct / Civic Portal",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D222_booking_protocol": {
         "status": "verified",
         "value": "drop_in",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D302_artist": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D303_date": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "none_available",
         "slot_count": 0,
         "showings": [],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D306_start_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D307_end_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "none_available",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D308_dateSchedule": {
         "status": "verified",
         "value": "Mon–Fri: 6:00 AM – 9:30 PM • Sat–Sun: 7:00 AM – 9:00 PM • Single Drop-In $7.50 CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "Perennial Drop-In",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
         "value": "Architectural award-winning aquatic centre in South Surrey featuring a 10-lane 50m Olympic pool, 10m diving tower, lazy river, family waterslides, hot tubs, and steam room for $7.50 CAD.",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D311_festival_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Grandview Heights Aquatic Centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "16855 24 Ave, Surrey, BC V3Z 0Y3",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -42852,116 +41766,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "South Surrey",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "drop_in_paid",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "indoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Mon-Fri: 6:00 AM - 9:30 PM; Sat-Sun: 7:00 AM - 9:00 PM",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "TransLink Bus #354 & #531 stop directly on 24 Ave at 168 St in Grandview Heights",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Rick Hansen Foundation Accessibility Certified Gold facility with zero-depth beach-entry leisure pool, aquatic wheelchairs, overhead lifts, and ramp access to hot tubs",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Passenger elevator connecting main lobby, fitness mezzanine, and spectator viewing gallery",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Universal accessible change rooms with adult change tables, ceiling track lifts, and roll-in showers",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified service animals welcome in lobby and viewing areas",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Lobby cafe and vending machines offering coffee, smoothies, sandwiches, and post-swim snacks",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.00 CAD (Lobby cafe coffee / smoothie)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$9.00 CAD (Cafe wrap / sandwich)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Plastic water bottles permitted on pool deck; food allowed in lobby seating area",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Visa, MasterCard, Debit, Contactless Tap, Cash ($7.50 Adult / $5.50 Student & Senior single drop-in)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "verified",
         "value": "Filtered water bottle refill stations on pool deck and fitness floor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -43132,31 +42046,31 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D772_required_safety_gear": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D773_locker_availability": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D774_physical_intensity_level": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D775_rainout_policy": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D781_location_reveal_protocol": {
         "status": "not_applicable",
@@ -43207,7 +42121,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -43218,24 +42132,24 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
         "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D804_active_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -43243,35 +42157,35 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": null,
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-        "last_qc_audited_at": "2026-11-15T02:47:06.329Z"
+        "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_qc_audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D809_civic_provider_rules": {
         "status": "search_exhausted_null",
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
-    "last_qc_audited_at": "2026-11-15T02:47:06.329Z",
-    "last_pulse_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_content_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_qc_audited_at": "2026-11-15T15:01:18.291Z",
+    "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "candidate_tier1_url": "https://www.surrey.ca/parks-recreation/recreation-facilities/grandview-heights-aquatic-centre",
     "candidate_tier1_source": "verified_municipal_schedule",
     "candidate_tier1_confidence": 1,
@@ -43306,8 +42220,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vinoscenti-vineyards-weekend-wine-tasting",
     "event_id": "vinoscenti-vineyards-weekend-wine-tasting",
-    "Event_Num_Perm": "Event_Num_Perm_000000043",
-    "Event_Num_Card": "Event_Num_Card_000000043",
+    "Event_Num_Perm": "Event_Num_Perm_000000042",
+    "Event_Num_Card": "Event_Num_Card_000000042",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Weekend Estate Wine Tasting",
@@ -43462,7 +42376,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000043",
+        "value": "Event_Num_Card_000000042",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -44307,8 +43221,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "bear-creek-park-gardens-trails-mini-train",
     "event_id": "bear-creek-park-gardens-trails-mini-train",
-    "Event_Num_Perm": "Event_Num_Perm_000000044",
-    "Event_Num_Card": "Event_Num_Card_000000044",
+    "Event_Num_Perm": "Event_Num_Perm_000000043",
+    "Event_Num_Card": "Event_Num_Card_000000043",
     "event_archetype": "civic_park",
     "archetype": "civic_park",
     "title": "Bear Creek Park Gardens, Walking Trails & Mini Train",
@@ -44470,7 +43384,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000044",
+        "value": "Event_Num_Card_000000043",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -45336,8 +44250,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
     "event_id": "redwood-park-giant-sequoia-trails-treehouse",
-    "Event_Num_Perm": "Event_Num_Perm_000000045",
-    "Event_Num_Card": "Event_Num_Card_000000045",
+    "Event_Num_Perm": "Event_Num_Perm_000000044",
+    "Event_Num_Card": "Event_Num_Card_000000044",
     "event_archetype": "civic_park",
     "archetype": "civic_park",
     "title": "Giant Sequoia Forest Trails & Historic Treehouse",
@@ -45490,7 +44404,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000045",
+        "value": "Event_Num_Card_000000044",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -46333,8 +45247,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
     "event_id": "blackie-spit-crescent-beach-pier-sunset-walk",
-    "Event_Num_Perm": "Event_Num_Perm_000000046",
-    "Event_Num_Card": "Event_Num_Card_000000046",
+    "Event_Num_Perm": "Event_Num_Perm_000000045",
+    "Event_Num_Card": "Event_Num_Card_000000045",
     "event_archetype": "civic_park",
     "archetype": "civic_park",
     "title": "Sunset Boardwalk & Birdwatching",
@@ -46487,7 +45401,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000046",
+        "value": "Event_Num_Card_000000045",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -47330,8 +46244,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
     "event_id": "green-timbers-urban-forest-trail-walk-nature-centre",
-    "Event_Num_Perm": "Event_Num_Perm_000000047",
-    "Event_Num_Card": "Event_Num_Card_000000047",
+    "Event_Num_Perm": "Event_Num_Perm_000000046",
+    "Event_Num_Card": "Event_Num_Card_000000046",
     "event_archetype": "civic_park",
     "archetype": "civic_park",
     "title": "Urban Forest Trail Walk & Nature Centre",
@@ -47484,7 +46398,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000047",
+        "value": "Event_Num_Card_000000046",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -48327,8 +47241,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "fest-surrey-tree-lighting-festival-holiday-market",
     "event_id": "fest-surrey-tree-lighting-festival-holiday-market",
-    "Event_Num_Perm": "Event_Num_Perm_000000048",
-    "Event_Num_Card": "Event_Num_Card_000000048",
+    "Event_Num_Perm": "Event_Num_Perm_000000047",
+    "Event_Num_Card": "Event_Num_Card_000000047",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Surrey Tree Lighting Festival & Holiday Market",
@@ -48400,14 +47314,11 @@ const VANCOUVER_EVENTS = [
       "ticket_url": "https://www.surreytreelighting.ca"
     },
     "show_3": null,
-    "category": "music",
+    "category": "festivals",
     "categories": [
-      "music",
-      "arts",
-      "social",
-      "free-public-access"
+      "festivals"
     ],
-    "categoryLabel": "MUSIC",
+    "categoryLabel": "FESTIVALS",
     "tags": [
       "music",
       "holiday",
@@ -48520,31 +47431,28 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Surrey Tree Lighting Festival & Holiday Market",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D002_event_num_perm": {
         "status": "verified",
         "value": "Event_Num_Perm_000000048",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000048",
+        "value": "Event_Num_Card_000000047",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "music",
+        "value": "festivals",
         "categories": [
-          "music",
-          "arts",
-          "social",
-          "free-public-access"
+          "festivals"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D005_tags": {
         "status": "verified",
@@ -48567,297 +47475,297 @@ const VANCOUVER_EVENTS = [
           "winter-festive"
         ],
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D006_lifecycle_type": {
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "festival",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "verified",
         "value": "christmas",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D102_tier2_event_page": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D103_tier3_calendar": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.surreytreelighting.ca",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
         "value": "available",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D108_geo_jurisdiction": {
         "status": "verified",
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
         "value": "Free Public Access",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D202_tier1_price_base": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D203_tier1_price_fee": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D204_tier1_price_tax": {
         "status": "verified",
         "value": 0,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_read": {
         "status": "verified",
         "value": 0,
         "quote": "Free ($0)",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_calculated": {
         "status": "verified",
         "value": 0,
         "formula": "base($0) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D207_tier2_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D208_tier2_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D209_tier2_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D211_tier3_name": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D212_tier3_price_base": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D213_tier3_price_fee": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D214_tier3_price_tax": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_read": {
         "status": "none_available",
         "value": null,
         "quote": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_calculated": {
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D216_tier_count_verified": {
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "free_access",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
         "value": null,
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D221_ticket_provider": {
         "status": "verified",
         "value": "Venue Direct / Civic Portal",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D222_booking_protocol": {
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D302_artist": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D303_date": {
         "status": "verified",
         "value": "2026-11-21",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -48883,61 +47791,61 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D306_start_time": {
         "status": "verified",
         "value": "12:00 PM",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D307_end_time": {
         "status": "none_available",
         "value": null,
         "source_tool": "none_available",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D308_dateSchedule": {
         "status": "verified",
         "value": "2026-11-21 • 12:00 PM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
         "value": "Surrey's signature two-day holiday festival at Surrey Civic Plaza right beside Surrey Central SkyTrain, featuring the lighting of a 60-foot holiday tree, free live music stages, artisan market, and light tunnel.",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D311_festival_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "festival_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Surrey Civic Plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "13450 104 Ave, Surrey, BC V3T 1V8",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -48952,116 +47860,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Surrey Central / Whalley",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "free_public_access",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "outdoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Open Daily: 6:00 AM - 11:00 PM (Surrey Tree Lighting Festival: Sat Nov 21 & Sun Nov 22, 12:00 PM - 8:00 PM)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "Directly adjacent to Surrey Central SkyTrain Station (Expo Line) & Surrey Central Bus Loop (R1 RapidBus, #314, #320, #321, #323, #324, #325, #335, #501, #502)",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Fully paved, level civic plaza with barrier-free access from Surrey Central SkyTrain Station, City Hall atrium, and City Centre Library",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Full elevator access inside Surrey City Hall atrium and City Centre Library overlooking the plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible public washrooms inside Surrey City Hall atrium and City Centre Library",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified guide and service animals welcome throughout the plaza and indoor atrium",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Prado Cafe inside Surrey City Hall atrium plus 20+ festival food trucks and holiday market vendors on event weekends",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.50 CAD (Prado Cafe espresso / hot apple cider)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$14.00 CAD (Festival food truck entree)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside food and non-alcoholic beverages welcome on the outdoor civic plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Free Festival Admission ($0.00 CAD); food trucks and artisan market vendors accept Debit, Credit & Tap",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "verified",
         "value": "Water refill stations inside City Hall atrium and City Centre Library",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -49277,37 +48185,37 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D792_festival_pass_type": {
         "status": "verified",
         "value": "Free Public Festival Admission (No Pass Required)",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D793_rush_seating_rules": {
         "status": "verified",
         "value": "Standby rush line opens 15–30 mins prior to showtime subject to capacity",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D794_central_box_office": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D795_volunteer_ticket_exchange": {
         "status": "verified",
         "value": "Official Surrey Tree Lighting Festival & Holiday Market Volunteer & Community Access Program",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D801_srsa_compliance": {
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -49318,24 +48226,24 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
         "method": "stagehand_live_cart",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D804_active_showings": {
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -49343,35 +48251,35 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": null,
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
-        "last_pulse_qc_at": "2026-11-15T03:12:05.267Z",
-        "last_content_qc_at": "2026-11-15T03:12:05.267Z",
-        "last_full_qc_at": "2026-11-15T03:12:05.267Z",
-        "last_qc_audited_at": "2026-11-15T03:12:05.267Z"
+        "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+        "last_qc_audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D809_civic_provider_rules": {
         "status": "search_exhausted_null",
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
-    "last_qc_audited_at": "2026-11-15T03:12:05.267Z",
-    "last_pulse_qc_at": "2026-11-15T03:12:05.267Z",
-    "last_content_qc_at": "2026-11-15T03:12:05.267Z",
-    "last_full_qc_at": "2026-11-15T03:12:05.267Z",
-    "last_compiled_batch_at": "2026-11-15T03:12:05.267Z",
+    "last_qc_audited_at": "2026-11-15T15:01:18.291Z",
+    "last_pulse_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_content_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "candidate_tier1_url": "https://www.surreytreelighting.ca",
     "candidate_tier1_source": "verified_municipal_schedule",
     "candidate_tier1_confidence": 1,
@@ -49406,8 +48314,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "portside-pub-dinner-reservations-2026-10-21",
     "event_id": "portside-pub-dinner-reservations-2026-10-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000049",
-    "Event_Num_Card": "Event_Num_Card_000000049",
+    "Event_Num_Perm": "Event_Num_Perm_000000048",
+    "Event_Num_Card": "Event_Num_Card_000000048",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Dinner Reservations",
@@ -49582,7 +48490,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000049",
+        "value": "Event_Num_Card_000000048",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -50465,8 +49373,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-roxy-cabaret-nickelchick-nickelback-tribute-2026-12-11",
     "event_id": "the-roxy-cabaret-nickelchick-nickelback-tribute-2026-12-11",
-    "Event_Num_Perm": "Event_Num_Perm_000000050",
-    "Event_Num_Card": "Event_Num_Card_000000050",
+    "Event_Num_Perm": "Event_Num_Perm_000000049",
+    "Event_Num_Card": "Event_Num_Card_000000049",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Nickelchick (Nickelback Tribute)",
@@ -50634,7 +49542,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000050",
+        "value": "Event_Num_Card_000000049",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -51509,8 +50417,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-roxy-cabaret-throne-of-glass-trivia-series-2026-12-17",
     "event_id": "the-roxy-cabaret-throne-of-glass-trivia-series-2026-12-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000051",
-    "Event_Num_Card": "Event_Num_Card_000000051",
+    "Event_Num_Perm": "Event_Num_Perm_000000050",
+    "Event_Num_Card": "Event_Num_Card_000000050",
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
     "title": "Throne of Glass Trivia Series: Night 5 - Tower of Dawn",
@@ -51678,7 +50586,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000051",
+        "value": "Event_Num_Card_000000050",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -52532,8 +51440,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "york-theatre-theatre-replacement-s-east-van-2026-11-18",
     "event_id": "york-theatre-theatre-replacement-s-east-van-2026-11-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000052",
-    "Event_Num_Card": "Event_Num_Card_000000052",
+    "Event_Num_Perm": "Event_Num_Perm_000000051",
+    "Event_Num_Card": "Event_Num_Card_000000051",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Theatre Replacement’s East Van Panto: Hercules",
@@ -52759,7 +51667,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000052",
+        "value": "Event_Num_Card_000000051",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -53701,8 +52609,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cultch-cuff-live",
     "event_id": "the-cultch-cuff-live",
-    "Event_Num_Perm": "Event_Num_Perm_000000053",
-    "Event_Num_Card": "Event_Num_Card_000000053",
+    "Event_Num_Perm": "Event_Num_Perm_000000052",
+    "Event_Num_Card": "Event_Num_Card_000000052",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Cuff Live",
@@ -53868,7 +52776,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000053",
+        "value": "Event_Num_Card_000000052",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -54762,8 +53670,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cultch-york-thea-snowed-in-comedy-tour",
     "event_id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "Event_Num_Perm": "Event_Num_Perm_000000054",
-    "Event_Num_Card": "Event_Num_Card_000000054",
+    "Event_Num_Perm": "Event_Num_Perm_000000053",
+    "Event_Num_Card": "Event_Num_Card_000000053",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Snowed In Comedy Tour",
@@ -54930,7 +53838,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000054",
+        "value": "Event_Num_Card_000000053",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -55780,8 +54688,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "historic-theatre-the-no-apologies-2027-03-10",
     "event_id": "historic-theatre-the-no-apologies-2027-03-10",
-    "Event_Num_Perm": "Event_Num_Perm_000000055",
-    "Event_Num_Card": "Event_Num_Card_000000055",
+    "Event_Num_Perm": "Event_Num_Perm_000000054",
+    "Event_Num_Card": "Event_Num_Card_000000054",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "No Apologies",
@@ -56003,7 +54911,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000055",
+        "value": "Event_Num_Card_000000054",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -56916,8 +55824,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "historic-theatre-here-here-songs-we-sing-for-ho-2027-03-17",
     "event_id": "historic-theatre-here-here-songs-we-sing-for-ho-2027-03-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000056",
-    "Event_Num_Card": "Event_Num_Card_000000056",
+    "Event_Num_Perm": "Event_Num_Perm_000000055",
+    "Event_Num_Card": "Event_Num_Card_000000055",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Here Here: Songs We Sing for Home",
@@ -57138,7 +56046,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000056",
+        "value": "Event_Num_Card_000000055",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -58050,8 +56958,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "york-theatre-steve-dawson-with-fats-kaplin-2027-03-19",
     "event_id": "york-theatre-steve-dawson-with-fats-kaplin-2027-03-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000057",
-    "Event_Num_Card": "Event_Num_Card_000000057",
+    "Event_Num_Perm": "Event_Num_Perm_000000056",
+    "Event_Num_Card": "Event_Num_Card_000000056",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Steve Dawson with Fats Kaplin",
@@ -58237,7 +57145,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000057",
+        "value": "Event_Num_Card_000000056",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -59095,8 +58003,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cultch-hamza-a-song-for-everyone-tour",
     "event_id": "the-cultch-hamza-a-song-for-everyone-tour",
-    "Event_Num_Perm": "Event_Num_Perm_000000058",
-    "Event_Num_Card": "Event_Num_Card_000000058",
+    "Event_Num_Perm": "Event_Num_Perm_000000057",
+    "Event_Num_Card": "Event_Num_Card_000000057",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Hamza — A Song for Everyone Tour",
@@ -59264,7 +58172,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000058",
+        "value": "Event_Num_Card_000000057",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -60187,8 +59095,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "historic-theatre-at-michel-le-2027-03-24",
     "event_id": "historic-theatre-at-michel-le-2027-03-24",
-    "Event_Num_Perm": "Event_Num_Perm_000000059",
-    "Event_Num_Card": "Event_Num_Card_000000059",
+    "Event_Num_Perm": "Event_Num_Perm_000000058",
+    "Event_Num_Card": "Event_Num_Card_000000058",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Michel(le)",
@@ -60414,7 +59322,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000059",
+        "value": "Event_Num_Card_000000058",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -61334,8 +60242,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "historic-theatre-at-wolf-cull-2027-04-01",
     "event_id": "historic-theatre-at-wolf-cull-2027-04-01",
-    "Event_Num_Perm": "Event_Num_Perm_000000060",
-    "Event_Num_Card": "Event_Num_Card_000000060",
+    "Event_Num_Perm": "Event_Num_Perm_000000059",
+    "Event_Num_Card": "Event_Num_Card_000000059",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Wolf Cull",
@@ -61561,7 +60469,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000060",
+        "value": "Event_Num_Card_000000059",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -62478,8 +61386,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cultch-historic-for-frances-when-it-s-raining-2027-04-21",
     "event_id": "the-cultch-historic-for-frances-when-it-s-raining-2027-04-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000061",
-    "Event_Num_Card": "Event_Num_Card_000000061",
+    "Event_Num_Perm": "Event_Num_Perm_000000060",
+    "Event_Num_Card": "Event_Num_Card_000000060",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "For Frances when it’s raining",
@@ -62706,7 +61614,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000061",
+        "value": "Event_Num_Card_000000060",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -63600,8 +62508,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-forward-filmmakers-in-attendan-2026-11-23",
     "event_id": "rio-theatre-forward-filmmakers-in-attendan-2026-11-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000062",
-    "Event_Num_Card": "Event_Num_Card_000000062",
+    "Event_Num_Perm": "Event_Num_Perm_000000061",
+    "Event_Num_Card": "Event_Num_Card_000000061",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Forward (Filmmakers in Attendance for Q&A)",
@@ -63781,7 +62689,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000062",
+        "value": "Event_Num_Card_000000061",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -64646,8 +63554,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-fight-fight-fight-2026-11-23",
     "event_id": "rio-theatre-fight-fight-fight-2026-11-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000063",
-    "Event_Num_Card": "Event_Num_Card_000000063",
+    "Event_Num_Perm": "Event_Num_Perm_000000062",
+    "Event_Num_Card": "Event_Num_Card_000000062",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Fight! Fight! Fight!",
@@ -64827,7 +63735,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000063",
+        "value": "Event_Num_Card_000000062",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -65692,8 +64600,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-paper-flowers-special-presenta-2026-11-28",
     "event_id": "rio-theatre-paper-flowers-special-presenta-2026-11-28",
-    "Event_Num_Perm": "Event_Num_Perm_000000064",
-    "Event_Num_Card": "Event_Num_Card_000000064",
+    "Event_Num_Perm": "Event_Num_Perm_000000063",
+    "Event_Num_Card": "Event_Num_Card_000000063",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Paper Flowers",
@@ -65873,7 +64781,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000064",
+        "value": "Event_Num_Card_000000063",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -66735,8 +65643,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-mountains-on-stage-winter-2026-2026-12-09",
     "event_id": "rio-theatre-mountains-on-stage-winter-2026-2026-12-09",
-    "Event_Num_Perm": "Event_Num_Perm_000000065",
-    "Event_Num_Card": "Event_Num_Card_000000065",
+    "Event_Num_Perm": "Event_Num_Perm_000000064",
+    "Event_Num_Card": "Event_Num_Card_000000064",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Mountains on Stage",
@@ -66914,7 +65822,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000065",
+        "value": "Event_Num_Card_000000064",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -67774,8 +66682,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-nick-colletti-2026-11-20",
     "event_id": "rio-theatre-nick-colletti-2026-11-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000066",
-    "Event_Num_Card": "Event_Num_Card_000000066",
+    "Event_Num_Perm": "Event_Num_Perm_000000065",
+    "Event_Num_Card": "Event_Num_Card_000000065",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Nick Colletti",
@@ -67951,7 +66859,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000066",
+        "value": "Event_Num_Card_000000065",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -68812,8 +67720,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-the-east-van-opry-xiii-2026-11-21",
     "event_id": "rio-theatre-the-east-van-opry-xiii-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000067",
-    "Event_Num_Card": "Event_Num_Card_000000067",
+    "Event_Num_Perm": "Event_Num_Perm_000000066",
+    "Event_Num_Card": "Event_Num_Card_000000066",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "The East Van Opry XIII",
@@ -68993,7 +67901,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000067",
+        "value": "Event_Num_Card_000000066",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -69855,8 +68763,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-jenny-tian-ripe-2026-11-22",
     "event_id": "rio-theatre-jenny-tian-ripe-2026-11-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000068",
-    "Event_Num_Card": "Event_Num_Card_000000068",
+    "Event_Num_Perm": "Event_Num_Perm_000000067",
+    "Event_Num_Card": "Event_Num_Card_000000067",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Jenny Tian: Ripe",
@@ -70034,7 +68942,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000068",
+        "value": "Event_Num_Card_000000067",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -70921,8 +69829,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-burlesque-long-form-encore-edi-2026-11-28",
     "event_id": "rio-theatre-burlesque-long-form-encore-edi-2026-11-28",
-    "Event_Num_Perm": "Event_Num_Perm_000000069",
-    "Event_Num_Card": "Event_Num_Card_000000069",
+    "Event_Num_Perm": "Event_Num_Perm_000000068",
+    "Event_Num_Card": "Event_Num_Card_000000068",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Burlesque Long Form: Encore Edition",
@@ -71099,7 +70007,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000069",
+        "value": "Event_Num_Card_000000068",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -72006,8 +70914,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-let-it-be-done-the-fiat-echoes-2026-12-05",
     "event_id": "rio-theatre-let-it-be-done-the-fiat-echoes-2026-12-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000070",
-    "Event_Num_Card": "Event_Num_Card_000000070",
+    "Event_Num_Perm": "Event_Num_Perm_000000069",
+    "Event_Num_Card": "Event_Num_Card_000000069",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Let It Be Done: The Fiat Echoes Still",
@@ -72202,7 +71110,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000070",
+        "value": "Event_Num_Card_000000069",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -73071,8 +71979,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-travis-holp-life-after-life-li-2027-01-09",
     "event_id": "rio-theatre-travis-holp-life-after-life-li-2027-01-09",
-    "Event_Num_Perm": "Event_Num_Perm_000000071",
-    "Event_Num_Card": "Event_Num_Card_000000071",
+    "Event_Num_Perm": "Event_Num_Perm_000000070",
+    "Event_Num_Card": "Event_Num_Card_000000070",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Travis Holp: Life After Life Live",
@@ -73266,7 +72174,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000071",
+        "value": "Event_Num_Card_000000070",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -74158,8 +73066,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "rio-theatre-susan-rice-2027-02-07",
     "event_id": "rio-theatre-susan-rice-2027-02-07",
-    "Event_Num_Perm": "Event_Num_Perm_000000072",
-    "Event_Num_Card": "Event_Num_Card_000000072",
+    "Event_Num_Perm": "Event_Num_Perm_000000071",
+    "Event_Num_Card": "Event_Num_Card_000000071",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Susan Rice",
@@ -74352,7 +73260,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000072",
+        "value": "Event_Num_Card_000000071",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -75219,8 +74127,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "commodore-ballroom-strangelove-the-depeche-mode-e-2027-02-19",
     "event_id": "commodore-ballroom-strangelove-the-depeche-mode-e-2027-02-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000073",
-    "Event_Num_Card": "Event_Num_Card_000000073",
+    "Event_Num_Perm": "Event_Num_Perm_000000072",
+    "Event_Num_Card": "Event_Num_Card_000000072",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Strangelove: The Depeche Mode Experience",
@@ -75388,7 +74296,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000073",
+        "value": "Event_Num_Card_000000072",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -76239,8 +75147,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "fox-cabaret-the-sunday-service-2026-11-01",
     "event_id": "fox-cabaret-the-sunday-service-2026-11-01",
-    "Event_Num_Perm": "Event_Num_Perm_000000074",
-    "Event_Num_Card": "Event_Num_Card_000000074",
+    "Event_Num_Perm": "Event_Num_Perm_000000073",
+    "Event_Num_Card": "Event_Num_Card_000000073",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "The Sunday Service",
@@ -76449,7 +75357,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000074",
+        "value": "Event_Num_Card_000000073",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -77324,8 +76232,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "fox-cabaret-lesbian-heartthrob-audalei-liv-2026-11-16",
     "event_id": "fox-cabaret-lesbian-heartthrob-audalei-liv-2026-11-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000075",
-    "Event_Num_Card": "Event_Num_Card_000000075",
+    "Event_Num_Perm": "Event_Num_Perm_000000074",
+    "Event_Num_Card": "Event_Num_Card_000000074",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "audalei: Lesbian Heartthrob",
@@ -77514,7 +76422,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000075",
+        "value": "Event_Num_Card_000000074",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -78377,8 +77285,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "fox-cabaret-bratty-90s-now-dance-party-2026-11-20",
     "event_id": "fox-cabaret-bratty-90s-now-dance-party-2026-11-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000076",
-    "Event_Num_Card": "Event_Num_Card_000000076",
+    "Event_Num_Perm": "Event_Num_Perm_000000075",
+    "Event_Num_Card": "Event_Num_Card_000000075",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "bratty: 90s-Now Dance Party",
@@ -78545,7 +77453,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000076",
+        "value": "Event_Num_Card_000000075",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -79391,8 +78299,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "fox-cabaret-john-muirhead-2026-11-21",
     "event_id": "fox-cabaret-john-muirhead-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000077",
-    "Event_Num_Card": "Event_Num_Card_000000077",
+    "Event_Num_Perm": "Event_Num_Perm_000000076",
+    "Event_Num_Card": "Event_Num_Card_000000076",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "John Muirhead",
@@ -79579,7 +78487,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000077",
+        "value": "Event_Num_Card_000000076",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -80440,8 +79348,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "fox-cabaret-90s-vs-00s-night-2026-11-21",
     "event_id": "fox-cabaret-90s-vs-00s-night-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000078",
-    "Event_Num_Card": "Event_Num_Card_000000078",
+    "Event_Num_Perm": "Event_Num_Perm_000000077",
+    "Event_Num_Card": "Event_Num_Card_000000077",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "90s vs 00s Night",
@@ -80610,7 +79518,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000078",
+        "value": "Event_Num_Card_000000077",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -81458,8 +80366,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-popeye-meets-sindbad-the-sailo-2026-11-15",
     "event_id": "the-cinematheque-popeye-meets-sindbad-the-sailo-2026-11-15",
-    "Event_Num_Perm": "Event_Num_Perm_000000079",
-    "Event_Num_Card": "Event_Num_Card_000000079",
+    "Event_Num_Perm": "Event_Num_Perm_000000078",
+    "Event_Num_Card": "Event_Num_Card_000000078",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Popeye Meets Sindbad the Sailor and More Fleischer Cartoons",
@@ -81630,7 +80538,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000079",
+        "value": "Event_Num_Card_000000078",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -82583,8 +81491,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-spiked-2026-11-15",
     "event_id": "the-cinematheque-spiked-2026-11-15",
-    "Event_Num_Perm": "Event_Num_Perm_000000080",
-    "Event_Num_Card": "Event_Num_Card_000000080",
+    "Event_Num_Perm": "Event_Num_Perm_000000079",
+    "Event_Num_Card": "Event_Num_Card_000000079",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Spiked",
@@ -82764,7 +81672,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000080",
+        "value": "Event_Num_Card_000000079",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -83678,8 +82586,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-chopin-a-sonata-in-paris-2026-11-15",
     "event_id": "the-cinematheque-chopin-a-sonata-in-paris-2026-11-15",
-    "Event_Num_Perm": "Event_Num_Perm_000000081",
-    "Event_Num_Card": "Event_Num_Card_000000081",
+    "Event_Num_Perm": "Event_Num_Perm_000000080",
+    "Event_Num_Card": "Event_Num_Card_000000080",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Chopin, a Sonata in Paris",
@@ -83859,7 +82767,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000081",
+        "value": "Event_Num_Card_000000080",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -84773,8 +83681,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-european-union-film-festival-2-2026-11-15",
     "event_id": "the-cinematheque-european-union-film-festival-2-2026-11-15",
-    "Event_Num_Perm": "Event_Num_Perm_000000082",
-    "Event_Num_Card": "Event_Num_Card_000000082",
+    "Event_Num_Perm": "Event_Num_Perm_000000081",
+    "Event_Num_Card": "Event_Num_Card_000000081",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "European Union Film Festival: My Family and Other Clowns",
@@ -84954,7 +83862,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000082",
+        "value": "Event_Num_Card_000000081",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -85865,8 +84773,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-sleeping-with-a-tiger-2026-11-16",
     "event_id": "the-cinematheque-sleeping-with-a-tiger-2026-11-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000083",
-    "Event_Num_Card": "Event_Num_Card_000000083",
+    "Event_Num_Perm": "Event_Num_Perm_000000082",
+    "Event_Num_Card": "Event_Num_Card_000000082",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Sleeping with a Tiger",
@@ -86046,7 +84954,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000083",
+        "value": "Event_Num_Card_000000082",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -86960,8 +85868,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-borderline-2026-11-16",
     "event_id": "the-cinematheque-borderline-2026-11-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000084",
-    "Event_Num_Card": "Event_Num_Card_000000084",
+    "Event_Num_Perm": "Event_Num_Perm_000000083",
+    "Event_Num_Card": "Event_Num_Card_000000083",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Borderline",
@@ -87141,7 +86049,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000084",
+        "value": "Event_Num_Card_000000083",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -88055,8 +86963,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-romzsa-t-dor-2026-11-17",
     "event_id": "the-cinematheque-romzsa-t-dor-2026-11-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000085",
-    "Event_Num_Card": "Event_Num_Card_000000085",
+    "Event_Num_Perm": "Event_Num_Perm_000000084",
+    "Event_Num_Card": "Event_Num_Card_000000084",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Romzsa Tódor",
@@ -88236,7 +87144,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000085",
+        "value": "Event_Num_Card_000000084",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -89150,8 +88058,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-castillo-2026-11-17",
     "event_id": "the-cinematheque-castillo-2026-11-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000086",
-    "Event_Num_Card": "Event_Num_Card_000000086",
+    "Event_Num_Perm": "Event_Num_Perm_000000085",
+    "Event_Num_Card": "Event_Num_Card_000000085",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Castillo",
@@ -89331,7 +88239,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000086",
+        "value": "Event_Num_Card_000000085",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -90245,8 +89153,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-green-light-2026-11-18",
     "event_id": "the-cinematheque-green-light-2026-11-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000087",
-    "Event_Num_Card": "Event_Num_Card_000000087",
+    "Event_Num_Perm": "Event_Num_Perm_000000086",
+    "Event_Num_Card": "Event_Num_Card_000000086",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Green Light",
@@ -90427,7 +89335,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000087",
+        "value": "Event_Num_Card_000000086",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -91342,8 +90250,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-still-afloat-2026-11-19",
     "event_id": "the-cinematheque-still-afloat-2026-11-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000088",
-    "Event_Num_Card": "Event_Num_Card_000000088",
+    "Event_Num_Perm": "Event_Num_Perm_000000087",
+    "Event_Num_Card": "Event_Num_Card_000000087",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Still Afloat",
@@ -91523,7 +90431,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000088",
+        "value": "Event_Num_Card_000000087",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -92437,8 +91345,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-life-is-life-2026-11-19",
     "event_id": "the-cinematheque-life-is-life-2026-11-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000089",
-    "Event_Num_Card": "Event_Num_Card_000000089",
+    "Event_Num_Perm": "Event_Num_Perm_000000088",
+    "Event_Num_Card": "Event_Num_Card_000000088",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Life Is Life",
@@ -92618,7 +91526,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000089",
+        "value": "Event_Num_Card_000000088",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -93532,8 +92440,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-stereo-girls-2026-11-20",
     "event_id": "the-cinematheque-stereo-girls-2026-11-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000090",
-    "Event_Num_Card": "Event_Num_Card_000000090",
+    "Event_Num_Perm": "Event_Num_Perm_000000089",
+    "Event_Num_Card": "Event_Num_Card_000000089",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Stereo Girls",
@@ -93715,7 +92623,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000090",
+        "value": "Event_Num_Card_000000089",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -94631,8 +93539,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-rose-2026-11-20",
     "event_id": "the-cinematheque-rose-2026-11-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000091",
-    "Event_Num_Card": "Event_Num_Card_000000091",
+    "Event_Num_Perm": "Event_Num_Perm_000000090",
+    "Event_Num_Card": "Event_Num_Card_000000090",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Rose",
@@ -94812,7 +93720,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000091",
+        "value": "Event_Num_Card_000000090",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -95726,8 +94634,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-hold-onto-me-2026-11-21",
     "event_id": "the-cinematheque-hold-onto-me-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000092",
-    "Event_Num_Card": "Event_Num_Card_000000092",
+    "Event_Num_Perm": "Event_Num_Perm_000000091",
+    "Event_Num_Card": "Event_Num_Card_000000091",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Hold Onto Me",
@@ -95907,7 +94815,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000092",
+        "value": "Event_Num_Card_000000091",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -96821,8 +95729,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-family-time-2026-11-21",
     "event_id": "the-cinematheque-family-time-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000093",
-    "Event_Num_Card": "Event_Num_Card_000000093",
+    "Event_Num_Perm": "Event_Num_Perm_000000092",
+    "Event_Num_Card": "Event_Num_Card_000000092",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Family Time",
@@ -97002,7 +95910,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000093",
+        "value": "Event_Num_Card_000000092",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -97916,8 +96824,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-3-0-kilograms-of-happiness-2026-11-22",
     "event_id": "the-cinematheque-3-0-kilograms-of-happiness-2026-11-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000094",
-    "Event_Num_Card": "Event_Num_Card_000000094",
+    "Event_Num_Perm": "Event_Num_Perm_000000093",
+    "Event_Num_Card": "Event_Num_Card_000000093",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "3.0 Kilograms of Happiness",
@@ -98097,7 +97005,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000094",
+        "value": "Event_Num_Card_000000093",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -99011,8 +97919,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-escape-net-2026-11-22",
     "event_id": "the-cinematheque-escape-net-2026-11-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000095",
-    "Event_Num_Card": "Event_Num_Card_000000095",
+    "Event_Num_Perm": "Event_Num_Perm_000000094",
+    "Event_Num_Card": "Event_Num_Card_000000094",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Escape Net",
@@ -99192,7 +98100,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000095",
+        "value": "Event_Num_Card_000000094",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -100106,8 +99014,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-secret-of-pin-up-island-2026-11-23",
     "event_id": "the-cinematheque-the-secret-of-pin-up-island-2026-11-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000096",
-    "Event_Num_Card": "Event_Num_Card_000000096",
+    "Event_Num_Perm": "Event_Num_Perm_000000095",
+    "Event_Num_Card": "Event_Num_Card_000000095",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Secret of Pin-Up Island",
@@ -100287,7 +99195,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000096",
+        "value": "Event_Num_Card_000000095",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -101201,8 +100109,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-portuguese-2026-11-23",
     "event_id": "the-cinematheque-the-portuguese-2026-11-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000097",
-    "Event_Num_Card": "Event_Num_Card_000000097",
+    "Event_Num_Perm": "Event_Num_Perm_000000096",
+    "Event_Num_Card": "Event_Num_Card_000000096",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Portuguese",
@@ -101382,7 +100290,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000097",
+        "value": "Event_Num_Card_000000096",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -102296,8 +101204,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-dra-en-2026-11-24",
     "event_id": "the-cinematheque-dra-en-2026-11-24",
-    "Event_Num_Perm": "Event_Num_Perm_000000098",
-    "Event_Num_Card": "Event_Num_Card_000000098",
+    "Event_Num_Perm": "Event_Num_Perm_000000097",
+    "Event_Num_Card": "Event_Num_Card_000000097",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Dražen",
@@ -102478,7 +101386,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000098",
+        "value": "Event_Num_Card_000000097",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -103393,8 +102301,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-invincibles-2026-11-24",
     "event_id": "the-cinematheque-invincibles-2026-11-24",
-    "Event_Num_Perm": "Event_Num_Perm_000000099",
-    "Event_Num_Card": "Event_Num_Card_000000099",
+    "Event_Num_Perm": "Event_Num_Perm_000000098",
+    "Event_Num_Card": "Event_Num_Card_000000098",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Invincibles",
@@ -103574,7 +102482,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000099",
+        "value": "Event_Num_Card_000000098",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -104488,8 +103396,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-impatience-of-the-heart-2026-11-25",
     "event_id": "the-cinematheque-impatience-of-the-heart-2026-11-25",
-    "Event_Num_Perm": "Event_Num_Perm_000000100",
-    "Event_Num_Card": "Event_Num_Card_000000100",
+    "Event_Num_Perm": "Event_Num_Perm_000000099",
+    "Event_Num_Card": "Event_Num_Card_000000099",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Impatience of the Heart",
@@ -104669,7 +103577,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000100",
+        "value": "Event_Num_Card_000000099",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -105583,8 +104491,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-dormant-account-2026-11-25",
     "event_id": "the-cinematheque-the-dormant-account-2026-11-25",
-    "Event_Num_Perm": "Event_Num_Perm_000000101",
-    "Event_Num_Card": "Event_Num_Card_000000101",
+    "Event_Num_Perm": "Event_Num_Perm_000000100",
+    "Event_Num_Card": "Event_Num_Card_000000100",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Dormant Account",
@@ -105764,7 +104672,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000101",
+        "value": "Event_Num_Card_000000100",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -106678,8 +105586,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-hidden-people-2026-11-26",
     "event_id": "the-cinematheque-hidden-people-2026-11-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000102",
-    "Event_Num_Card": "Event_Num_Card_000000102",
+    "Event_Num_Perm": "Event_Num_Perm_000000101",
+    "Event_Num_Card": "Event_Num_Card_000000101",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Hidden People",
@@ -106859,7 +105767,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000102",
+        "value": "Event_Num_Card_000000101",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -107773,8 +106681,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-traces-2026-11-26",
     "event_id": "the-cinematheque-traces-2026-11-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000103",
-    "Event_Num_Card": "Event_Num_Card_000000103",
+    "Event_Num_Perm": "Event_Num_Perm_000000102",
+    "Event_Num_Card": "Event_Num_Card_000000102",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Traces",
@@ -107955,7 +106863,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000103",
+        "value": "Event_Num_Card_000000102",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -108870,8 +107778,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-cairo-station-2026-11-27",
     "event_id": "the-cinematheque-cairo-station-2026-11-27",
-    "Event_Num_Perm": "Event_Num_Perm_000000104",
-    "Event_Num_Card": "Event_Num_Card_000000104",
+    "Event_Num_Perm": "Event_Num_Perm_000000103",
+    "Event_Num_Card": "Event_Num_Card_000000103",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Cairo Station",
@@ -109059,7 +107967,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000104",
+        "value": "Event_Num_Card_000000103",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -109973,8 +108881,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-moving-histories-davra-2026-11-28",
     "event_id": "the-cinematheque-moving-histories-davra-2026-11-28",
-    "Event_Num_Perm": "Event_Num_Perm_000000105",
-    "Event_Num_Card": "Event_Num_Card_000000105",
+    "Event_Num_Perm": "Event_Num_Perm_000000104",
+    "Event_Num_Card": "Event_Num_Card_000000104",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Moving Histories: DAVRA",
@@ -110146,7 +109054,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000105",
+        "value": "Event_Num_Card_000000104",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -111052,8 +109960,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-host-2026-11-29",
     "event_id": "the-cinematheque-the-host-2026-11-29",
-    "Event_Num_Perm": "Event_Num_Perm_000000106",
-    "Event_Num_Card": "Event_Num_Card_000000106",
+    "Event_Num_Perm": "Event_Num_Perm_000000105",
+    "Event_Num_Card": "Event_Num_Card_000000105",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Host",
@@ -111258,7 +110166,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000106",
+        "value": "Event_Num_Card_000000105",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -112181,8 +111089,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-program-one-figure-and-ground-2026-11-30",
     "event_id": "the-cinematheque-program-one-figure-and-ground-2026-11-30",
-    "Event_Num_Perm": "Event_Num_Perm_000000107",
-    "Event_Num_Card": "Event_Num_Card_000000107",
+    "Event_Num_Perm": "Event_Num_Perm_000000106",
+    "Event_Num_Card": "Event_Num_Card_000000106",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Program One: Figure and Ground",
@@ -112353,7 +111261,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000107",
+        "value": "Event_Num_Card_000000106",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -113258,8 +112166,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-dawn-of-a-new-day-2026-11-29",
     "event_id": "the-cinematheque-dawn-of-a-new-day-2026-11-29",
-    "Event_Num_Perm": "Event_Num_Perm_000000108",
-    "Event_Num_Card": "Event_Num_Card_000000108",
+    "Event_Num_Perm": "Event_Num_Perm_000000107",
+    "Event_Num_Card": "Event_Num_Card_000000107",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Dawn of a New Day",
@@ -113447,7 +112355,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000108",
+        "value": "Event_Num_Card_000000107",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -114361,8 +113269,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-double-life-of-v-ronique-2026-12-03",
     "event_id": "the-cinematheque-the-double-life-of-v-ronique-2026-12-03",
-    "Event_Num_Perm": "Event_Num_Perm_000000109",
-    "Event_Num_Card": "Event_Num_Card_000000109",
+    "Event_Num_Perm": "Event_Num_Perm_000000108",
+    "Event_Num_Card": "Event_Num_Card_000000108",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Double Life of Véronique",
@@ -114567,7 +113475,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000109",
+        "value": "Event_Num_Card_000000108",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -115490,8 +114398,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-land-2026-12-02",
     "event_id": "the-cinematheque-the-land-2026-12-02",
-    "Event_Num_Perm": "Event_Num_Perm_000000110",
-    "Event_Num_Card": "Event_Num_Card_000000110",
+    "Event_Num_Perm": "Event_Num_Perm_000000109",
+    "Event_Num_Card": "Event_Num_Card_000000109",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Land (الأرض)",
@@ -115679,7 +114587,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000110",
+        "value": "Event_Num_Card_000000109",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -116593,8 +115501,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-calm-2026-12-05",
     "event_id": "the-cinematheque-the-calm-2026-12-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000111",
-    "Event_Num_Card": "Event_Num_Card_000000111",
+    "Event_Num_Perm": "Event_Num_Perm_000000110",
+    "Event_Num_Card": "Event_Num_Card_000000110",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Calm",
@@ -116766,7 +115674,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000111",
+        "value": "Event_Num_Card_000000110",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -117672,8 +116580,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-scar-2026-12-05",
     "event_id": "the-cinematheque-the-scar-2026-12-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000112",
-    "Event_Num_Card": "Event_Num_Card_000000112",
+    "Event_Num_Perm": "Event_Num_Perm_000000111",
+    "Event_Num_Card": "Event_Num_Card_000000111",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Scar",
@@ -117847,7 +116755,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000112",
+        "value": "Event_Num_Card_000000111",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -118755,8 +117663,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-gangsterism-2026-12-07",
     "event_id": "the-cinematheque-gangsterism-2026-12-07",
-    "Event_Num_Perm": "Event_Num_Perm_000000113",
-    "Event_Num_Card": "Event_Num_Card_000000113",
+    "Event_Num_Perm": "Event_Num_Perm_000000112",
+    "Event_Num_Card": "Event_Num_Card_000000112",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Gangsterism",
@@ -118928,7 +117836,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000113",
+        "value": "Event_Num_Card_000000112",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -119834,8 +118742,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-another-round-2026-12-08",
     "event_id": "the-cinematheque-another-round-2026-12-08",
-    "Event_Num_Perm": "Event_Num_Perm_000000114",
-    "Event_Num_Card": "Event_Num_Card_000000114",
+    "Event_Num_Perm": "Event_Num_Perm_000000113",
+    "Event_Num_Card": "Event_Num_Card_000000113",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Another Round",
@@ -120006,7 +118914,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000114",
+        "value": "Event_Num_Card_000000113",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -120863,8 +119771,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-christmas-at-moose-factory-rem-2026-12-09",
     "event_id": "the-cinematheque-christmas-at-moose-factory-rem-2026-12-09",
-    "Event_Num_Perm": "Event_Num_Perm_000000115",
-    "Event_Num_Card": "Event_Num_Card_000000115",
+    "Event_Num_Perm": "Event_Num_Perm_000000114",
+    "Event_Num_Card": "Event_Num_Card_000000114",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Christmas at Moose Factory / Remaining Native",
@@ -121047,7 +119955,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000115",
+        "value": "Event_Num_Card_000000114",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -121965,8 +120873,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-put-your-soul-on-your-hand-and-2026-12-10",
     "event_id": "the-cinematheque-put-your-soul-on-your-hand-and-2026-12-10",
-    "Event_Num_Perm": "Event_Num_Perm_000000116",
-    "Event_Num_Card": "Event_Num_Card_000000116",
+    "Event_Num_Perm": "Event_Num_Perm_000000115",
+    "Event_Num_Card": "Event_Num_Card_000000115",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Put Your Soul on Your Hand and Walk",
@@ -122139,7 +121047,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000116",
+        "value": "Event_Num_Card_000000115",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -123046,8 +121954,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-adieu-bonaparte-2026-12-13",
     "event_id": "the-cinematheque-adieu-bonaparte-2026-12-13",
-    "Event_Num_Perm": "Event_Num_Perm_000000117",
-    "Event_Num_Card": "Event_Num_Card_000000117",
+    "Event_Num_Perm": "Event_Num_Perm_000000116",
+    "Event_Num_Card": "Event_Num_Card_000000116",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Adieu Bonaparte",
@@ -123232,7 +122140,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000117",
+        "value": "Event_Num_Card_000000116",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -124168,8 +123076,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-cameron-winter-at-carnegie-hal-2026-12-17",
     "event_id": "the-cinematheque-cameron-winter-at-carnegie-hal-2026-12-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000118",
-    "Event_Num_Card": "Event_Num_Card_000000118",
+    "Event_Num_Perm": "Event_Num_Perm_000000117",
+    "Event_Num_Card": "Event_Num_Card_000000117",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Cameron Winter at Carnegie Hall",
@@ -124354,7 +123262,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000118",
+        "value": "Event_Num_Card_000000117",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -125289,8 +124197,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-kie-lowski-documentaries-6-2026-12-12",
     "event_id": "the-cinematheque-kie-lowski-documentaries-6-2026-12-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000119",
-    "Event_Num_Card": "Event_Num_Card_000000119",
+    "Event_Num_Perm": "Event_Num_Perm_000000118",
+    "Event_Num_Card": "Event_Num_Card_000000118",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Kieślowski Documentaries × 6",
@@ -125461,7 +124369,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000119",
+        "value": "Event_Num_Card_000000118",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -126366,8 +125274,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-camera-buff-2026-12-20",
     "event_id": "the-cinematheque-camera-buff-2026-12-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000120",
-    "Event_Num_Card": "Event_Num_Card_000000120",
+    "Event_Num_Perm": "Event_Num_Perm_000000119",
+    "Event_Num_Card": "Event_Num_Card_000000119",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Camera Buff",
@@ -126552,7 +125460,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000120",
+        "value": "Event_Num_Card_000000119",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -127488,8 +126396,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-program-two-mother-and-daughte-2026-12-14",
     "event_id": "the-cinematheque-program-two-mother-and-daughte-2026-12-14",
-    "Event_Num_Perm": "Event_Num_Perm_000000121",
-    "Event_Num_Card": "Event_Num_Card_000000121",
+    "Event_Num_Perm": "Event_Num_Perm_000000120",
+    "Event_Num_Card": "Event_Num_Card_000000120",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Program Two: Mother and Daughter",
@@ -127660,7 +126568,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000121",
+        "value": "Event_Num_Card_000000120",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -128565,8 +127473,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-i-swear-2026-12-16",
     "event_id": "the-cinematheque-i-swear-2026-12-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000122",
-    "Event_Num_Card": "Event_Num_Card_000000122",
+    "Event_Num_Perm": "Event_Num_Perm_000000121",
+    "Event_Num_Card": "Event_Num_Card_000000121",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "I Swear",
@@ -128737,7 +127645,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000122",
+        "value": "Event_Num_Card_000000121",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -129642,8 +128550,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-that-day-on-the-beach-2026-12-17",
     "event_id": "the-cinematheque-that-day-on-the-beach-2026-12-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000123",
-    "Event_Num_Card": "Event_Num_Card_000000123",
+    "Event_Num_Perm": "Event_Num_Perm_000000122",
+    "Event_Num_Card": "Event_Num_Card_000000122",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "That Day on the Beach",
@@ -129849,7 +128757,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000123",
+        "value": "Event_Num_Card_000000122",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -130773,8 +129681,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-misfits-2026-12-18",
     "event_id": "the-cinematheque-the-misfits-2026-12-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000124",
-    "Event_Num_Card": "Event_Num_Card_000000124",
+    "Event_Num_Perm": "Event_Num_Perm_000000123",
+    "Event_Num_Card": "Event_Num_Card_000000123",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Misfits",
@@ -130981,7 +129889,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000124",
+        "value": "Event_Num_Card_000000123",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -131906,8 +130814,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-blind-chance-2026-12-19",
     "event_id": "the-cinematheque-blind-chance-2026-12-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000125",
-    "Event_Num_Card": "Event_Num_Card_000000125",
+    "Event_Num_Perm": "Event_Num_Perm_000000124",
+    "Event_Num_Card": "Event_Num_Card_000000124",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Blind Chance",
@@ -132096,7 +131004,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000125",
+        "value": "Event_Num_Card_000000124",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -133011,8 +131919,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-three-colours-blue-2026-12-19",
     "event_id": "the-cinematheque-three-colours-blue-2026-12-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000126",
-    "Event_Num_Card": "Event_Num_Card_000000126",
+    "Event_Num_Perm": "Event_Num_Perm_000000125",
+    "Event_Num_Card": "Event_Num_Card_000000125",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Three Colours: Blue",
@@ -133200,7 +132108,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000126",
+        "value": "Event_Num_Card_000000125",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -134114,8 +133022,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-tales-of-hoffmann-2026-12-19",
     "event_id": "the-cinematheque-the-tales-of-hoffmann-2026-12-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000127",
-    "Event_Num_Card": "Event_Num_Card_000000127",
+    "Event_Num_Perm": "Event_Num_Perm_000000126",
+    "Event_Num_Card": "Event_Num_Card_000000126",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Tales of Hoffmann",
@@ -134322,7 +133230,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000127",
+        "value": "Event_Num_Card_000000126",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -135247,8 +134155,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-rex-a-dinosaur-s-story-2026-12-20",
     "event_id": "the-cinematheque-rex-a-dinosaur-s-story-2026-12-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000128",
-    "Event_Num_Card": "Event_Num_Card_000000128",
+    "Event_Num_Perm": "Event_Num_Perm_000000127",
+    "Event_Num_Card": "Event_Num_Card_000000127",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Rex: A Dinosaur’s Story",
@@ -135420,7 +134328,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000128",
+        "value": "Event_Num_Card_000000127",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -136374,8 +135282,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-no-end-2026-12-20",
     "event_id": "the-cinematheque-no-end-2026-12-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000129",
-    "Event_Num_Card": "Event_Num_Card_000000129",
+    "Event_Num_Perm": "Event_Num_Perm_000000128",
+    "Event_Num_Card": "Event_Num_Card_000000128",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "No End",
@@ -136548,7 +135456,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000129",
+        "value": "Event_Num_Card_000000128",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -137455,8 +136363,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-three-colours-white-2026-12-21",
     "event_id": "the-cinematheque-three-colours-white-2026-12-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000130",
-    "Event_Num_Card": "Event_Num_Card_000000130",
+    "Event_Num_Perm": "Event_Num_Perm_000000129",
+    "Event_Num_Card": "Event_Num_Card_000000129",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Three Colours: White",
@@ -137646,7 +136554,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000130",
+        "value": "Event_Num_Card_000000129",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -138562,8 +137470,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-the-piano-2026-12-21",
     "event_id": "the-cinematheque-the-piano-2026-12-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000131",
-    "Event_Num_Card": "Event_Num_Card_000000131",
+    "Event_Num_Perm": "Event_Num_Perm_000000130",
+    "Event_Num_Card": "Event_Num_Card_000000130",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "The Piano",
@@ -138768,7 +137676,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000131",
+        "value": "Event_Num_Card_000000130",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -139691,8 +138599,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-a-short-film-about-love-2026-12-22",
     "event_id": "the-cinematheque-a-short-film-about-love-2026-12-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000132",
-    "Event_Num_Card": "Event_Num_Card_000000132",
+    "Event_Num_Perm": "Event_Num_Perm_000000131",
+    "Event_Num_Card": "Event_Num_Card_000000131",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "A Short Film About Love",
@@ -139881,7 +138789,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000132",
+        "value": "Event_Num_Card_000000131",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -140796,8 +139704,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-a-short-film-about-killing-2026-12-22",
     "event_id": "the-cinematheque-a-short-film-about-killing-2026-12-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000133",
-    "Event_Num_Card": "Event_Num_Card_000000133",
+    "Event_Num_Perm": "Event_Num_Perm_000000132",
+    "Event_Num_Card": "Event_Num_Card_000000132",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "A Short Film About Killing",
@@ -140989,7 +139897,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000133",
+        "value": "Event_Num_Card_000000132",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -141907,8 +140815,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-three-colours-red-2026-12-23",
     "event_id": "the-cinematheque-three-colours-red-2026-12-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000134",
-    "Event_Num_Card": "Event_Num_Card_000000134",
+    "Event_Num_Perm": "Event_Num_Perm_000000133",
+    "Event_Num_Card": "Event_Num_Card_000000133",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Three Colours: Red",
@@ -142096,7 +141004,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000134",
+        "value": "Event_Num_Card_000000133",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -143010,8 +141918,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-marketa-lazarov-2026-12-26",
     "event_id": "the-cinematheque-marketa-lazarov-2026-12-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000135",
-    "Event_Num_Card": "Event_Num_Card_000000135",
+    "Event_Num_Perm": "Event_Num_Perm_000000134",
+    "Event_Num_Card": "Event_Num_Card_000000134",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Marketa Lazarová",
@@ -143217,7 +142125,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000135",
+        "value": "Event_Num_Card_000000134",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -144141,8 +143049,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-morvern-callar-2026-12-23",
     "event_id": "the-cinematheque-morvern-callar-2026-12-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000136",
-    "Event_Num_Card": "Event_Num_Card_000000136",
+    "Event_Num_Perm": "Event_Num_Perm_000000135",
+    "Event_Num_Card": "Event_Num_Card_000000135",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Morvern Callar",
@@ -144331,7 +143239,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000136",
+        "value": "Event_Num_Card_000000135",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -145246,8 +144154,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-cinematheque-dekalog-2026-12-26",
     "event_id": "the-cinematheque-dekalog-2026-12-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000137",
-    "Event_Num_Card": "Event_Num_Card_000000137",
+    "Event_Num_Perm": "Event_Num_Perm_000000136",
+    "Event_Num_Card": "Event_Num_Card_000000136",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Dekalog",
@@ -145471,7 +144379,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000137",
+        "value": "Event_Num_Card_000000136",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -146413,8 +145321,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-art-galler-the-making-place-yarn-composit-2026-11-15",
     "event_id": "vancouver-art-galler-the-making-place-yarn-composit-2026-11-15",
-    "Event_Num_Perm": "Event_Num_Perm_000000138",
-    "Event_Num_Card": "Event_Num_Card_000000138",
+    "Event_Num_Perm": "Event_Num_Perm_000000137",
+    "Event_Num_Card": "Event_Num_Card_000000137",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "The Making Place: Yarn Compositions and Paper Animal Sculptures",
@@ -146584,7 +145492,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000138",
+        "value": "Event_Num_Card_000000137",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -147461,8 +146369,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-art-galler-the-making-place-wire-composit-2026-11-22",
     "event_id": "vancouver-art-galler-the-making-place-wire-composit-2026-11-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000139",
-    "Event_Num_Card": "Event_Num_Card_000000139",
+    "Event_Num_Perm": "Event_Num_Perm_000000138",
+    "Event_Num_Card": "Event_Num_Card_000000138",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "The Making Place: Wire Compositions and Collage",
@@ -147629,7 +146537,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000139",
+        "value": "Event_Num_Card_000000138",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -148503,8 +147411,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-art-galler-the-making-place-stapler-scene-2026-11-29",
     "event_id": "vancouver-art-galler-the-making-place-stapler-scene-2026-11-29",
-    "Event_Num_Perm": "Event_Num_Perm_000000140",
-    "Event_Num_Card": "Event_Num_Card_000000140",
+    "Event_Num_Perm": "Event_Num_Perm_000000139",
+    "Event_Num_Card": "Event_Num_Card_000000139",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "The Making Place: Stapler Scenes and Hard-Edge Painting",
@@ -148671,7 +147579,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000140",
+        "value": "Event_Num_Card_000000139",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -149545,8 +148453,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "trout-lake-community-winter-trout-fest-pancake-lunc-2026-12-13",
     "event_id": "trout-lake-community-winter-trout-fest-pancake-lunc-2026-12-13",
-    "Event_Num_Perm": "Event_Num_Perm_000000141",
-    "Event_Num_Card": "Event_Num_Card_000000141",
+    "Event_Num_Perm": "Event_Num_Perm_000000140",
+    "Event_Num_Card": "Event_Num_Card_000000140",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Winter Trout Fest & Pancake Lunch",
@@ -149749,7 +148657,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000141",
+        "value": "Event_Num_Card_000000140",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -150643,8 +149551,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "trout-lake-community-pottery-bake-quilt-knit-sale-2026-11-27",
     "event_id": "trout-lake-community-pottery-bake-quilt-knit-sale-2026-11-27",
-    "Event_Num_Perm": "Event_Num_Perm_000000142",
-    "Event_Num_Card": "Event_Num_Card_000000142",
+    "Event_Num_Perm": "Event_Num_Perm_000000141",
+    "Event_Num_Card": "Event_Num_Card_000000141",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Pottery, Bake, Quilt, Knit Sale",
@@ -150830,7 +149738,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000142",
+        "value": "Event_Num_Card_000000141",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -151691,8 +150599,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-arts-recr-comic-maker-meet-up-2026-11-04",
     "event_id": "roundhouse-arts-recr-comic-maker-meet-up-2026-11-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000143",
-    "Event_Num_Card": "Event_Num_Card_000000143",
+    "Event_Num_Perm": "Event_Num_Perm_000000142",
+    "Event_Num_Card": "Event_Num_Card_000000142",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Comic Maker Meet-Up",
@@ -151907,7 +150815,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000143",
+        "value": "Event_Num_Card_000000142",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -152789,8 +151697,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-community-2026-bc-achievement-fna-aad-co-2026-11-17",
     "event_id": "roundhouse-community-2026-bc-achievement-fna-aad-co-2026-11-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000144",
-    "Event_Num_Card": "Event_Num_Card_000000144",
+    "Event_Num_Perm": "Event_Num_Perm_000000143",
+    "Event_Num_Card": "Event_Num_Card_000000143",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "BC Achievement First Nations Art & Applied Art + Design Combined Exhibition",
@@ -153010,7 +151918,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000144",
+        "value": "Event_Num_Card_000000143",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -153896,8 +152804,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-community-portobello-west-holiday-market-2026-11-28",
     "event_id": "roundhouse-community-portobello-west-holiday-market-2026-11-28",
-    "Event_Num_Perm": "Event_Num_Perm_000000145",
-    "Event_Num_Card": "Event_Num_Card_000000145",
+    "Event_Num_Perm": "Event_Num_Perm_000000144",
+    "Event_Num_Card": "Event_Num_Card_000000144",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Portobello West Holiday Market",
@@ -154099,7 +153007,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000145",
+        "value": "Event_Num_Card_000000144",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -155002,8 +153910,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-community-concord-christmas-2026-12-06",
     "event_id": "roundhouse-community-concord-christmas-2026-12-06",
-    "Event_Num_Perm": "Event_Num_Perm_000000146",
-    "Event_Num_Card": "Event_Num_Card_000000146",
+    "Event_Num_Perm": "Event_Num_Perm_000000145",
+    "Event_Num_Card": "Event_Num_Card_000000145",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Concord Christmas",
@@ -155182,7 +154090,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000146",
+        "value": "Event_Num_Card_000000145",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -156043,8 +154951,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-community-gingerbread-house-decorating-2026-12-07",
     "event_id": "roundhouse-community-gingerbread-house-decorating-2026-12-07",
-    "Event_Num_Perm": "Event_Num_Perm_000000147",
-    "Event_Num_Card": "Event_Num_Card_000000147",
+    "Event_Num_Perm": "Event_Num_Perm_000000146",
+    "Event_Num_Card": "Event_Num_Card_000000146",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Gingerbread House Decorating",
@@ -156225,7 +155133,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000147",
+        "value": "Event_Num_Card_000000146",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -157088,8 +155996,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-community-breakfast-or-brunch-with-santa-2026-12-12",
     "event_id": "roundhouse-community-breakfast-or-brunch-with-santa-2026-12-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000148",
-    "Event_Num_Card": "Event_Num_Card_000000148",
+    "Event_Num_Perm": "Event_Num_Perm_000000147",
+    "Event_Num_Card": "Event_Num_Card_000000147",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Breakfast or Brunch with Santa",
@@ -157285,7 +156193,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000148",
+        "value": "Event_Num_Card_000000147",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -158155,8 +157063,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-arts-recr-merry-gay-bright-2026-12-20",
     "event_id": "roundhouse-arts-recr-merry-gay-bright-2026-12-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000149",
-    "Event_Num_Card": "Event_Num_Card_000000149",
+    "Event_Num_Perm": "Event_Num_Perm_000000148",
+    "Event_Num_Card": "Event_Num_Card_000000148",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Merry, Gay, & Bright",
@@ -158337,7 +157245,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000149",
+        "value": "Event_Num_Card_000000148",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -159224,8 +158132,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roundhouse-community-33rd-annual-winter-solstice-fe-2026-12-21",
     "event_id": "roundhouse-community-33rd-annual-winter-solstice-fe-2026-12-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000150",
-    "Event_Num_Card": "Event_Num_Card_000000150",
+    "Event_Num_Perm": "Event_Num_Perm_000000149",
+    "Event_Num_Card": "Event_Num_Card_000000149",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "33rd Annual Winter Solstice Festival",
@@ -159407,7 +158315,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000150",
+        "value": "Event_Num_Card_000000149",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -160295,8 +159203,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "massey-theatre-ballet-j-rgen-s-swan-lake-2027-02-06",
     "event_id": "massey-theatre-ballet-j-rgen-s-swan-lake-2027-02-06",
-    "Event_Num_Perm": "Event_Num_Perm_000000151",
-    "Event_Num_Card": "Event_Num_Card_000000151",
+    "Event_Num_Perm": "Event_Num_Perm_000000150",
+    "Event_Num_Card": "Event_Num_Card_000000150",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Ballet Jörgen’s Swan Lake",
@@ -160466,7 +159374,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000151",
+        "value": "Event_Num_Card_000000150",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -161322,8 +160230,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "massey-theatre-international-guitar-night-2027-01-31",
     "event_id": "massey-theatre-international-guitar-night-2027-01-31",
-    "Event_Num_Perm": "Event_Num_Perm_000000152",
-    "Event_Num_Card": "Event_Num_Card_000000152",
+    "Event_Num_Perm": "Event_Num_Perm_000000151",
+    "Event_Num_Card": "Event_Num_Card_000000151",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "International Guitar Night",
@@ -161494,7 +160402,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000152",
+        "value": "Event_Num_Card_000000151",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -162348,8 +161256,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-sunday-morning-2026-11-01",
     "event_id": "st-andrew-s-wesley-u-sunday-morning-2026-11-01",
-    "Event_Num_Perm": "Event_Num_Perm_000000153",
-    "Event_Num_Card": "Event_Num_Card_000000153",
+    "Event_Num_Perm": "Event_Num_Perm_000000152",
+    "Event_Num_Card": "Event_Num_Card_000000152",
     "event_archetype": "roving_series",
     "archetype": "roving_series",
     "title": "Sunday Morning",
@@ -162580,7 +161488,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000153",
+        "value": "Event_Num_Card_000000152",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -163478,8 +162386,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-congregational-choir-rehearsal-2026-11-01",
     "event_id": "st-andrew-s-wesley-u-congregational-choir-rehearsal-2026-11-01",
-    "Event_Num_Perm": "Event_Num_Perm_000000154",
-    "Event_Num_Card": "Event_Num_Card_000000154",
+    "Event_Num_Perm": "Event_Num_Perm_000000153",
+    "Event_Num_Card": "Event_Num_Card_000000153",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Congregational Choir Rehearsal",
@@ -163708,7 +162616,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000154",
+        "value": "Event_Num_Card_000000153",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -164601,8 +163509,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-good-news-cafe-2026-11-03",
     "event_id": "st-andrew-s-wesley-u-good-news-cafe-2026-11-03",
-    "Event_Num_Perm": "Event_Num_Perm_000000155",
-    "Event_Num_Card": "Event_Num_Card_000000155",
+    "Event_Num_Perm": "Event_Num_Perm_000000154",
+    "Event_Num_Card": "Event_Num_Card_000000154",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Good News Cafe",
@@ -164812,7 +163720,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000155",
+        "value": "Event_Num_Card_000000154",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -165689,8 +164597,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-parent-tot-2026-11-04",
     "event_id": "st-andrew-s-wesley-u-parent-tot-2026-11-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000156",
-    "Event_Num_Card": "Event_Num_Card_000000156",
+    "Event_Num_Perm": "Event_Num_Perm_000000155",
+    "Event_Num_Card": "Event_Num_Card_000000155",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Parent & Tot",
@@ -165900,7 +164808,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000156",
+        "value": "Event_Num_Card_000000155",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -166777,8 +165685,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-ignite-children-s-group-2026-11-03",
     "event_id": "st-andrew-s-wesley-u-ignite-children-s-group-2026-11-03",
-    "Event_Num_Perm": "Event_Num_Perm_000000157",
-    "Event_Num_Card": "Event_Num_Card_000000157",
+    "Event_Num_Perm": "Event_Num_Perm_000000156",
+    "Event_Num_Card": "Event_Num_Card_000000156",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Ignite! Children’s Group",
@@ -166999,7 +165907,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000157",
+        "value": "Event_Num_Card_000000156",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -167887,8 +166795,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-west-end-singers-2026-11-04",
     "event_id": "st-andrew-s-wesley-u-west-end-singers-2026-11-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000158",
-    "Event_Num_Card": "Event_Num_Card_000000158",
+    "Event_Num_Perm": "Event_Num_Perm_000000157",
+    "Event_Num_Card": "Event_Num_Card_000000157",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "West End Singers",
@@ -168109,7 +167017,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000158",
+        "value": "Event_Num_Card_000000157",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -168997,8 +167905,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-light-and-shadow-bible-study-2026-11-05",
     "event_id": "st-andrew-s-wesley-u-light-and-shadow-bible-study-2026-11-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000159",
-    "Event_Num_Card": "Event_Num_Card_000000159",
+    "Event_Num_Perm": "Event_Num_Perm_000000158",
+    "Event_Num_Card": "Event_Num_Card_000000158",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Light and Shadow Bible Study",
@@ -169225,7 +168133,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000159",
+        "value": "Event_Num_Card_000000158",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -170119,8 +169027,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-west-end-children-s-choir-2026-09-10",
     "event_id": "st-andrew-s-wesley-u-west-end-children-s-choir-2026-09-10",
-    "Event_Num_Perm": "Event_Num_Perm_000000160",
-    "Event_Num_Card": "Event_Num_Card_000000160",
+    "Event_Num_Perm": "Event_Num_Perm_000000159",
+    "Event_Num_Card": "Event_Num_Card_000000159",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "West End Children's Choir",
@@ -170350,7 +169258,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000160",
+        "value": "Event_Num_Card_000000159",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -171247,8 +170155,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-lifelines-poetry-2026-11-17",
     "event_id": "st-andrew-s-wesley-u-lifelines-poetry-2026-11-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000161",
-    "Event_Num_Card": "Event_Num_Card_000000161",
+    "Event_Num_Perm": "Event_Num_Perm_000000160",
+    "Event_Num_Card": "Event_Num_Card_000000160",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Lifelines Poetry",
@@ -171416,7 +170324,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000161",
+        "value": "Event_Num_Card_000000160",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -172267,8 +171175,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-spirit-given-gifts-workshop-2026-11-17",
     "event_id": "st-andrew-s-wesley-u-spirit-given-gifts-workshop-2026-11-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000162",
-    "Event_Num_Card": "Event_Num_Card_000000162",
+    "Event_Num_Perm": "Event_Num_Perm_000000161",
+    "Event_Num_Card": "Event_Num_Card_000000161",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Spirit-Given Gifts Workshop",
@@ -172448,7 +171356,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000162",
+        "value": "Event_Num_Card_000000161",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -173311,8 +172219,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-parent-pie-and-prayer-2026-11-17",
     "event_id": "st-andrew-s-wesley-u-parent-pie-and-prayer-2026-11-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000163",
-    "Event_Num_Card": "Event_Num_Card_000000163",
+    "Event_Num_Perm": "Event_Num_Perm_000000162",
+    "Event_Num_Card": "Event_Num_Card_000000162",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Parent, Pie and Prayer",
@@ -173489,7 +172397,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000163",
+        "value": "Event_Num_Card_000000162",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -174349,8 +173257,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-poetry-with-amy-h-2026-11-18",
     "event_id": "st-andrew-s-wesley-u-poetry-with-amy-h-2026-11-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000164",
-    "Event_Num_Card": "Event_Num_Card_000000164",
+    "Event_Num_Perm": "Event_Num_Perm_000000163",
+    "Event_Num_Card": "Event_Num_Card_000000163",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Poetry with Amy H.",
@@ -174520,7 +173428,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000164",
+        "value": "Event_Num_Card_000000163",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -175373,8 +174281,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-invisible-rivers-annie-bloch-2026-11-21",
     "event_id": "st-andrew-s-wesley-u-invisible-rivers-annie-bloch-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000165",
-    "Event_Num_Card": "Event_Num_Card_000000165",
+    "Event_Num_Perm": "Event_Num_Perm_000000164",
+    "Event_Num_Card": "Event_Num_Card_000000164",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Invisible Rivers: Annie Bloch",
@@ -175542,7 +174450,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000165",
+        "value": "Event_Num_Card_000000164",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -176393,8 +175301,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-break-the-silence-series-2026-11-22",
     "event_id": "st-andrew-s-wesley-u-break-the-silence-series-2026-11-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000166",
-    "Event_Num_Card": "Event_Num_Card_000000166",
+    "Event_Num_Perm": "Event_Num_Perm_000000165",
+    "Event_Num_Card": "Event_Num_Card_000000165",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Break the Silence Series",
@@ -176576,7 +175484,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000166",
+        "value": "Event_Num_Card_000000165",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -177441,8 +176349,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-trans-day-of-remembrance-vigil-2026-11-22",
     "event_id": "st-andrew-s-wesley-u-trans-day-of-remembrance-vigil-2026-11-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000167",
-    "Event_Num_Card": "Event_Num_Card_000000167",
+    "Event_Num_Perm": "Event_Num_Perm_000000166",
+    "Event_Num_Card": "Event_Num_Card_000000166",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Trans Day of Remembrance Vigil",
@@ -177624,7 +176532,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000167",
+        "value": "Event_Num_Card_000000166",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -178489,8 +177397,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-word-is-out-2026-11-24",
     "event_id": "st-andrew-s-wesley-u-word-is-out-2026-11-24",
-    "Event_Num_Perm": "Event_Num_Perm_000000168",
-    "Event_Num_Card": "Event_Num_Card_000000168",
+    "Event_Num_Perm": "Event_Num_Perm_000000167",
+    "Event_Num_Card": "Event_Num_Card_000000167",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Word is OUT!",
@@ -178667,7 +177575,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000168",
+        "value": "Event_Num_Card_000000167",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -179527,8 +178435,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-stitching-circle-2026-11-26",
     "event_id": "st-andrew-s-wesley-u-stitching-circle-2026-11-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000169",
-    "Event_Num_Card": "Event_Num_Card_000000169",
+    "Event_Num_Perm": "Event_Num_Perm_000000168",
+    "Event_Num_Card": "Event_Num_Card_000000168",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Stitching Circle",
@@ -179696,7 +178604,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000169",
+        "value": "Event_Num_Card_000000168",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -180547,8 +179455,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-eat-pray-love-christian-new-ye-2026-11-28",
     "event_id": "st-andrew-s-wesley-u-eat-pray-love-christian-new-ye-2026-11-28",
-    "Event_Num_Perm": "Event_Num_Perm_000000170",
-    "Event_Num_Card": "Event_Num_Card_000000170",
+    "Event_Num_Perm": "Event_Num_Perm_000000169",
+    "Event_Num_Card": "Event_Num_Card_000000169",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Eat Pray Love Christian New Year",
@@ -180725,7 +179633,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000170",
+        "value": "Event_Num_Card_000000169",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -181585,8 +180493,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-celebrating-the-start-of-the-a-2026-11-29",
     "event_id": "st-andrew-s-wesley-u-celebrating-the-start-of-the-a-2026-11-29",
-    "Event_Num_Perm": "Event_Num_Perm_000000171",
-    "Event_Num_Card": "Event_Num_Card_000000171",
+    "Event_Num_Perm": "Event_Num_Perm_000000170",
+    "Event_Num_Card": "Event_Num_Card_000000170",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Celebrating the Start of the Advent Season",
@@ -181767,7 +180675,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000171",
+        "value": "Event_Num_Card_000000170",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -182631,8 +181539,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "st-andrew-s-wesley-u-last-christian-in-bethlehem-sc-2026-11-30",
     "event_id": "st-andrew-s-wesley-u-last-christian-in-bethlehem-sc-2026-11-30",
-    "Event_Num_Perm": "Event_Num_Perm_000000172",
-    "Event_Num_Card": "Event_Num_Card_000000172",
+    "Event_Num_Perm": "Event_Num_Perm_000000171",
+    "Event_Num_Card": "Event_Num_Card_000000171",
     "event_archetype": "cinema",
     "archetype": "cinema",
     "title": "Last Christian in Bethlehem Screening and Palestinian Art Market",
@@ -182824,7 +181732,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000172",
+        "value": "Event_Num_Card_000000171",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -183694,8 +182602,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-nest-52-stories-2026-11-26",
     "event_id": "the-nest-52-stories-2026-11-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000173",
-    "Event_Num_Card": "Event_Num_Card_000000173",
+    "Event_Num_Perm": "Event_Num_Perm_000000172",
+    "Event_Num_Card": "Event_Num_Card_000000172",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "52 Stories",
@@ -183897,7 +182805,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000173",
+        "value": "Event_Num_Card_000000172",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -184763,8 +183671,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "waterfront-theatre-stuart-little-2026-12-04",
     "event_id": "waterfront-theatre-stuart-little-2026-12-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000174",
-    "Event_Num_Card": "Event_Num_Card_000000174",
+    "Event_Num_Perm": "Event_Num_Perm_000000173",
+    "Event_Num_Card": "Event_Num_Card_000000173",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Stuart Little",
@@ -184993,7 +183901,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000174",
+        "value": "Event_Num_Card_000000173",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -185910,8 +184818,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "roedde-house-museum-vico-concert-in-the-parlour-uz-2026-11-20",
     "event_id": "roedde-house-museum-vico-concert-in-the-parlour-uz-2026-11-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000175",
-    "Event_Num_Card": "Event_Num_Card_000000175",
+    "Event_Num_Perm": "Event_Num_Perm_000000174",
+    "Event_Num_Card": "Event_Num_Card_000000174",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "VICO Concert in the Parlour: Uzbek Musical Heritage",
@@ -186082,7 +184990,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000175",
+        "value": "Event_Num_Card_000000174",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -186938,8 +185846,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "pyatt-hall-november-chamber-players-2026-11-18",
     "event_id": "pyatt-hall-november-chamber-players-2026-11-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000176",
-    "Event_Num_Card": "Event_Num_Card_000000176",
+    "Event_Num_Perm": "Event_Num_Perm_000000175",
+    "Event_Num_Card": "Event_Num_Card_000000175",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Vancouver Symphony Orchestra Chamber Players",
@@ -187123,7 +186031,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000176",
+        "value": "Event_Num_Card_000000175",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -187978,8 +186886,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-beethoven-1-3-beginnings-revol-2026-11-26",
     "event_id": "orpheum-beethoven-1-3-beginnings-revol-2026-11-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000177",
-    "Event_Num_Card": "Event_Num_Card_000000177",
+    "Event_Num_Perm": "Event_Num_Perm_000000176",
+    "Event_Num_Card": "Event_Num_Card_000000176",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Beethoven 1 & 3: Beginnings & Revolution",
@@ -188147,7 +187055,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000177",
+        "value": "Event_Num_Card_000000176",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -189070,8 +187978,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-beethoven-2-7-dance-vitality-2026-11-29",
     "event_id": "orpheum-beethoven-2-7-dance-vitality-2026-11-29",
-    "Event_Num_Perm": "Event_Num_Perm_000000178",
-    "Event_Num_Card": "Event_Num_Card_000000178",
+    "Event_Num_Perm": "Event_Num_Perm_000000177",
+    "Event_Num_Card": "Event_Num_Card_000000177",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Beethoven 2 & 7: Dance & Vitality",
@@ -189239,7 +188147,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000178",
+        "value": "Event_Num_Card_000000177",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -190162,8 +189070,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-musically-speaking-philip-glas-2026-12-04",
     "event_id": "orpheum-musically-speaking-philip-glas-2026-12-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000179",
-    "Event_Num_Card": "Event_Num_Card_000000179",
+    "Event_Num_Perm": "Event_Num_Perm_000000178",
+    "Event_Num_Card": "Event_Num_Card_000000178",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Philip Glass & The Firebird",
@@ -190331,7 +189239,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000179",
+        "value": "Event_Num_Card_000000178",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -191350,8 +190258,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-the-muppet-christmas-carol-in-2026-12-19",
     "event_id": "orpheum-the-muppet-christmas-carol-in-2026-12-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000180",
-    "Event_Num_Card": "Event_Num_Card_000000180",
+    "Event_Num_Perm": "Event_Num_Perm_000000179",
+    "Event_Num_Card": "Event_Num_Card_000000179",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "The Muppet Christmas Carol In Concert Live to Film",
@@ -191548,7 +190456,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000180",
+        "value": "Event_Num_Card_000000179",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -192516,8 +191424,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-vienna-after-beethoven-2027-01-14",
     "event_id": "orpheum-vienna-after-beethoven-2027-01-14",
-    "Event_Num_Perm": "Event_Num_Perm_000000181",
-    "Event_Num_Card": "Event_Num_Card_000000181",
+    "Event_Num_Perm": "Event_Num_Perm_000000180",
+    "Event_Num_Card": "Event_Num_Card_000000180",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Vienna After Beethoven",
@@ -192685,7 +191593,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000181",
+        "value": "Event_Num_Card_000000180",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -193611,8 +192519,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-tea-trumpets-2027-01-14",
     "event_id": "orpheum-tea-trumpets-2027-01-14",
-    "Event_Num_Perm": "Event_Num_Perm_000000182",
-    "Event_Num_Card": "Event_Num_Card_000000182",
+    "Event_Num_Perm": "Event_Num_Perm_000000181",
+    "Event_Num_Card": "Event_Num_Card_000000181",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Tea & Trumpets: Magic & Fairy Tales",
@@ -193825,7 +192733,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000182",
+        "value": "Event_Num_Card_000000181",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -194705,8 +193613,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-broadway-reimagined-with-sarah-2027-01-15",
     "event_id": "orpheum-broadway-reimagined-with-sarah-2027-01-15",
-    "Event_Num_Perm": "Event_Num_Perm_000000183",
-    "Event_Num_Card": "Event_Num_Card_000000183",
+    "Event_Num_Perm": "Event_Num_Perm_000000182",
+    "Event_Num_Card": "Event_Num_Card_000000182",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Broadway Reimagined with Sarah Slean",
@@ -194891,7 +193799,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000183",
+        "value": "Event_Num_Card_000000182",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -195826,8 +194734,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-kids-concerts-peter-and-the-wo-2027-01-17",
     "event_id": "orpheum-kids-concerts-peter-and-the-wo-2027-01-17",
-    "Event_Num_Perm": "Event_Num_Perm_000000184",
-    "Event_Num_Card": "Event_Num_Card_000000184",
+    "Event_Num_Perm": "Event_Num_Perm_000000183",
+    "Event_Num_Card": "Event_Num_Card_000000183",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Kids Concerts: Peter and the Wolf",
@@ -195995,7 +194903,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000184",
+        "value": "Event_Num_Card_000000183",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -196918,8 +195826,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-masterworks-gold-brahms-sibeli-2027-01-22",
     "event_id": "orpheum-masterworks-gold-brahms-sibeli-2027-01-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000185",
-    "Event_Num_Card": "Event_Num_Card_000000185",
+    "Event_Num_Perm": "Event_Num_Perm_000000184",
+    "Event_Num_Card": "Event_Num_Card_000000184",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Masterworks Gold: Brahms, Sibelius & Debussy",
@@ -197104,7 +196012,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000185",
+        "value": "Event_Num_Card_000000184",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -198036,8 +196944,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-assante-masterworks-diamond-gr-2027-01-29",
     "event_id": "orpheum-assante-masterworks-diamond-gr-2027-01-29",
-    "Event_Num_Perm": "Event_Num_Perm_000000186",
-    "Event_Num_Card": "Event_Num_Card_000000186",
+    "Event_Num_Perm": "Event_Num_Perm_000000185",
+    "Event_Num_Card": "Event_Num_Card_000000185",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Vancouver Symphony Orchestra: Grieg, Liszt, Fung & Strauss",
@@ -198222,7 +197130,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000186",
+        "value": "Event_Num_Card_000000185",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -199154,8 +198062,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-beethoven-4-5-surprise-destiny-2027-02-04",
     "event_id": "orpheum-beethoven-4-5-surprise-destiny-2027-02-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000187",
-    "Event_Num_Card": "Event_Num_Card_000000187",
+    "Event_Num_Perm": "Event_Num_Perm_000000186",
+    "Event_Num_Card": "Event_Num_Card_000000186",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Beethoven 4 & 5: Surprise & Destiny",
@@ -199323,7 +198231,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000187",
+        "value": "Event_Num_Card_000000186",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -200246,8 +199154,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-beethoven-6-8-nature-play-2027-02-07",
     "event_id": "orpheum-beethoven-6-8-nature-play-2027-02-07",
-    "Event_Num_Perm": "Event_Num_Perm_000000188",
-    "Event_Num_Card": "Event_Num_Card_000000188",
+    "Event_Num_Perm": "Event_Num_Perm_000000187",
+    "Event_Num_Card": "Event_Num_Card_000000187",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Beethoven 6 & 8: Nature & Play",
@@ -200415,7 +199323,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000188",
+        "value": "Event_Num_Card_000000187",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -201338,8 +200246,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-musically-speaking-rachmaninof-2027-02-12",
     "event_id": "orpheum-musically-speaking-rachmaninof-2027-02-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000189",
-    "Event_Num_Card": "Event_Num_Card_000000189",
+    "Event_Num_Perm": "Event_Num_Perm_000000188",
+    "Event_Num_Card": "Event_Num_Card_000000188",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Musically Speaking: Rachmaninoff’s Third Piano Concerto",
@@ -201507,7 +200415,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000189",
+        "value": "Event_Num_Card_000000188",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -202430,8 +201338,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-parc-retirement-living-tea-tru-2027-02-18",
     "event_id": "orpheum-parc-retirement-living-tea-tru-2027-02-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000190",
-    "Event_Num_Card": "Event_Num_Card_000000190",
+    "Event_Num_Perm": "Event_Num_Perm_000000189",
+    "Event_Num_Card": "Event_Num_Card_000000189",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Tea & Trumpets: ¡Viva España!",
@@ -202599,7 +201507,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000190",
+        "value": "Event_Num_Card_000000189",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -203546,8 +202454,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-circus-incognitus-2027-02-21",
     "event_id": "orpheum-circus-incognitus-2027-02-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000191",
-    "Event_Num_Card": "Event_Num_Card_000000191",
+    "Event_Num_Perm": "Event_Num_Perm_000000190",
+    "Event_Num_Card": "Event_Num_Card_000000190",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Circus Incognitus",
@@ -203717,7 +202625,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000191",
+        "value": "Event_Num_Card_000000190",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -204670,8 +203578,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "bell-performing-arts-surrey-sundays-series-2027-02-28",
     "event_id": "bell-performing-arts-surrey-sundays-series-2027-02-28",
-    "Event_Num_Perm": "Event_Num_Perm_000000192",
-    "Event_Num_Card": "Event_Num_Card_000000192",
+    "Event_Num_Perm": "Event_Num_Perm_000000191",
+    "Event_Num_Card": "Event_Num_Card_000000191",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Surrey Sundays Series",
@@ -204873,7 +203781,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000192",
+        "value": "Event_Num_Card_000000191",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -205811,8 +204719,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-masterworks-gold-strauss-schum-2027-03-05",
     "event_id": "orpheum-masterworks-gold-strauss-schum-2027-03-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000193",
-    "Event_Num_Card": "Event_Num_Card_000000193",
+    "Event_Num_Perm": "Event_Num_Perm_000000192",
+    "Event_Num_Card": "Event_Num_Card_000000192",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Masterworks Gold: Strauss, Schumann & Respighi",
@@ -205997,7 +204905,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000193",
+        "value": "Event_Num_Card_000000192",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -206929,8 +205837,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-musically-speaking-dvor-k-s-ce-2027-03-12",
     "event_id": "orpheum-musically-speaking-dvor-k-s-ce-2027-03-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000194",
-    "Event_Num_Card": "Event_Num_Card_000000194",
+    "Event_Num_Perm": "Event_Num_Perm_000000193",
+    "Event_Num_Card": "Event_Num_Card_000000193",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Musically Speaking: Dvořák’s Cello Concerto",
@@ -207115,7 +206023,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000194",
+        "value": "Event_Num_Card_000000193",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -208047,8 +206955,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-assante-masterworks-diamond-mo-2027-03-19",
     "event_id": "orpheum-assante-masterworks-diamond-mo-2027-03-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000195",
-    "Event_Num_Card": "Event_Num_Card_000000195",
+    "Event_Num_Perm": "Event_Num_Perm_000000194",
+    "Event_Num_Card": "Event_Num_Card_000000194",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Mozart & Shostakovich 8",
@@ -208233,7 +207141,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000195",
+        "value": "Event_Num_Card_000000194",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -209165,8 +208073,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-parc-retirement-living-tea-tru-2027-04-01",
     "event_id": "orpheum-parc-retirement-living-tea-tru-2027-04-01",
-    "Event_Num_Perm": "Event_Num_Perm_000000196",
-    "Event_Num_Card": "Event_Num_Card_000000196",
+    "Event_Num_Perm": "Event_Num_Perm_000000195",
+    "Event_Num_Card": "Event_Num_Card_000000195",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Tea & Trumpets: Gershwin’s Rhapsody in Blue",
@@ -209334,7 +208242,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000196",
+        "value": "Event_Num_Card_000000195",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -210281,8 +209189,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-london-drugs-vso-pops-the-musi-2027-04-02",
     "event_id": "orpheum-london-drugs-vso-pops-the-musi-2027-04-02",
-    "Event_Num_Perm": "Event_Num_Perm_000000197",
-    "Event_Num_Card": "Event_Num_Card_000000197",
+    "Event_Num_Perm": "Event_Num_Perm_000000196",
+    "Event_Num_Card": "Event_Num_Card_000000196",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "The Music of Zimmer vs Williams",
@@ -210469,7 +209377,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000197",
+        "value": "Event_Num_Card_000000196",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -211403,8 +210311,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-air-china-classical-afterworks-2027-04-09",
     "event_id": "orpheum-air-china-classical-afterworks-2027-04-09",
-    "Event_Num_Perm": "Event_Num_Perm_000000198",
-    "Event_Num_Card": "Event_Num_Card_000000198",
+    "Event_Num_Perm": "Event_Num_Perm_000000197",
+    "Event_Num_Card": "Event_Num_Card_000000197",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Classical Afterworks: Mozart, Brahms & Strauss",
@@ -211606,7 +210514,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000198",
+        "value": "Event_Num_Card_000000197",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -212547,8 +211455,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-kids-concerts-beethoven-lives-2027-04-04",
     "event_id": "orpheum-kids-concerts-beethoven-lives-2027-04-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000199",
-    "Event_Num_Card": "Event_Num_Card_000000199",
+    "Event_Num_Perm": "Event_Num_Perm_000000198",
+    "Event_Num_Card": "Event_Num_Card_000000198",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Beethoven Lives Upstairs",
@@ -212716,7 +211624,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000199",
+        "value": "Event_Num_Card_000000198",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -213663,8 +212571,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-assante-masterworks-diamond-sc-2027-04-16",
     "event_id": "orpheum-assante-masterworks-diamond-sc-2027-04-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000200",
-    "Event_Num_Card": "Event_Num_Card_000000200",
+    "Event_Num_Perm": "Event_Num_Perm_000000199",
+    "Event_Num_Card": "Event_Num_Card_000000199",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Assante Masterworks Diamond: Schumann & Wagner",
@@ -213849,7 +212757,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000200",
+        "value": "Event_Num_Card_000000199",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -214754,8 +213662,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "pyatt-hall-april-chamber-players-2027-04-18",
     "event_id": "pyatt-hall-april-chamber-players-2027-04-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000201",
-    "Event_Num_Card": "Event_Num_Card_000000201",
+    "Event_Num_Perm": "Event_Num_Perm_000000200",
+    "Event_Num_Card": "Event_Num_Card_000000200",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "April Chamber Players",
@@ -214941,7 +213849,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000201",
+        "value": "Event_Num_Card_000000200",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -215801,8 +214709,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-masterworks-gold-brahms-dvo-k-2027-04-23",
     "event_id": "orpheum-masterworks-gold-brahms-dvo-k-2027-04-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000202",
-    "Event_Num_Card": "Event_Num_Card_000000202",
+    "Event_Num_Perm": "Event_Num_Perm_000000201",
+    "Event_Num_Card": "Event_Num_Card_000000201",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Masterworks Gold | Brahms & Dvořák 8",
@@ -215987,7 +214895,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000202",
+        "value": "Event_Num_Card_000000201",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -216892,8 +215800,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-disney-and-pixar-s-up-in-conce-2027-04-30",
     "event_id": "orpheum-disney-and-pixar-s-up-in-conce-2027-04-30",
-    "Event_Num_Perm": "Event_Num_Perm_000000203",
-    "Event_Num_Card": "Event_Num_Card_000000203",
+    "Event_Num_Perm": "Event_Num_Perm_000000202",
+    "Event_Num_Card": "Event_Num_Card_000000202",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Disney and Pixar’s Up In Concert Live to Film",
@@ -217079,7 +215987,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000203",
+        "value": "Event_Num_Card_000000202",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -217961,8 +216869,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-jan-lisiecki-plays-beethoven-s-2027-05-07",
     "event_id": "orpheum-jan-lisiecki-plays-beethoven-s-2027-05-07",
-    "Event_Num_Perm": "Event_Num_Perm_000000204",
-    "Event_Num_Card": "Event_Num_Card_000000204",
+    "Event_Num_Perm": "Event_Num_Perm_000000203",
+    "Event_Num_Card": "Event_Num_Card_000000203",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Jan Lisiecki Plays Beethoven’s Emperor",
@@ -218147,7 +217055,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000204",
+        "value": "Event_Num_Card_000000203",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -219028,8 +217936,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-musically-speaking-mozart-bart-2027-05-14",
     "event_id": "orpheum-musically-speaking-mozart-bart-2027-05-14",
-    "Event_Num_Perm": "Event_Num_Perm_000000205",
-    "Event_Num_Card": "Event_Num_Card_000000205",
+    "Event_Num_Perm": "Event_Num_Perm_000000204",
+    "Event_Num_Card": "Event_Num_Card_000000204",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Musically Speaking | Mozart, Bartók & Ligeti",
@@ -219197,7 +218105,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000205",
+        "value": "Event_Num_Card_000000204",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -220093,8 +219001,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-natural-woman-shel-a-sings-are-2027-05-21",
     "event_id": "orpheum-natural-woman-shel-a-sings-are-2027-05-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000206",
-    "Event_Num_Card": "Event_Num_Card_000000206",
+    "Event_Num_Perm": "Event_Num_Perm_000000205",
+    "Event_Num_Card": "Event_Num_Card_000000205",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Natural Woman: Sheléa Sings Aretha Franklin",
@@ -220279,7 +219187,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000206",
+        "value": "Event_Num_Card_000000205",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -221211,8 +220119,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-kids-concerts-m-is-for-mystery-2027-05-23",
     "event_id": "orpheum-kids-concerts-m-is-for-mystery-2027-05-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000207",
-    "Event_Num_Card": "Event_Num_Card_000000207",
+    "Event_Num_Perm": "Event_Num_Perm_000000206",
+    "Event_Num_Card": "Event_Num_Card_000000206",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Kids Concerts: M is for Mystery",
@@ -221380,7 +220288,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000207",
+        "value": "Event_Num_Card_000000206",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -222303,8 +221211,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-masterworks-gold-stravinsky-s-2027-05-28",
     "event_id": "orpheum-masterworks-gold-stravinsky-s-2027-05-28",
-    "Event_Num_Perm": "Event_Num_Perm_000000208",
-    "Event_Num_Card": "Event_Num_Card_000000208",
+    "Event_Num_Perm": "Event_Num_Perm_000000207",
+    "Event_Num_Card": "Event_Num_Card_000000207",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Masterworks Gold: Stravinsky’s Petrushka",
@@ -222491,7 +221399,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000208",
+        "value": "Event_Num_Card_000000207",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -223449,8 +222357,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-elgar-s-violin-mahler-10-2027-06-04",
     "event_id": "orpheum-elgar-s-violin-mahler-10-2027-06-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000209",
-    "Event_Num_Card": "Event_Num_Card_000000209",
+    "Event_Num_Perm": "Event_Num_Perm_000000208",
+    "Event_Num_Card": "Event_Num_Card_000000208",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Elgar’s Violin & Mahler 10",
@@ -223635,7 +222543,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000209",
+        "value": "Event_Num_Card_000000208",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -224594,8 +223502,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-beethoven-9-ode-to-joy-2027-06-11",
     "event_id": "orpheum-beethoven-9-ode-to-joy-2027-06-11",
-    "Event_Num_Perm": "Event_Num_Perm_000000210",
-    "Event_Num_Card": "Event_Num_Card_000000210",
+    "Event_Num_Perm": "Event_Num_Perm_000000209",
+    "Event_Num_Card": "Event_Num_Card_000000209",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Beethoven 9: Ode to Joy",
@@ -224786,7 +223694,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000210",
+        "value": "Event_Num_Card_000000209",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -225748,8 +224656,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "pyatt-hall-june-chamber-players-2027-06-13",
     "event_id": "pyatt-hall-june-chamber-players-2027-06-13",
-    "Event_Num_Perm": "Event_Num_Perm_000000211",
-    "Event_Num_Card": "Event_Num_Card_000000211",
+    "Event_Num_Perm": "Event_Num_Perm_000000210",
+    "Event_Num_Card": "Event_Num_Card_000000210",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "June Chamber Players",
@@ -225935,7 +224843,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000211",
+        "value": "Event_Num_Card_000000210",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -226795,8 +225703,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-orpheum-m-is-for-mystery-elementary-sc-2026-11-18",
     "event_id": "the-orpheum-m-is-for-mystery-elementary-sc-2026-11-18",
-    "Event_Num_Perm": "Event_Num_Perm_000000212",
-    "Event_Num_Card": "Event_Num_Card_000000212",
+    "Event_Num_Perm": "Event_Num_Perm_000000211",
+    "Event_Num_Card": "Event_Num_Card_000000211",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "M is for Mystery - Elementary School Concerts",
@@ -227016,7 +225924,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000212",
+        "value": "Event_Num_Card_000000211",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -227903,8 +226811,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "annex-theatre-jean-coulthard-readings-and-me-2027-04-20",
     "event_id": "annex-theatre-jean-coulthard-readings-and-me-2027-04-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000213",
-    "Event_Num_Card": "Event_Num_Card_000000213",
+    "Event_Num_Perm": "Event_Num_Perm_000000212",
+    "Event_Num_Card": "Event_Num_Card_000000212",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Jean Coulthard Readings and Mentorship Program",
@@ -228072,7 +226980,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000213",
+        "value": "Event_Num_Card_000000212",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -228920,8 +227828,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-polygon-gallery-parallelogram-volume-2-presenc-272026",
     "event_id": "the-polygon-gallery-parallelogram-volume-2-presenc-272026",
-    "Event_Num_Perm": "Event_Num_Perm_000000214",
-    "Event_Num_Card": "Event_Num_Card_000000214",
+    "Event_Num_Perm": "Event_Num_Perm_000000213",
+    "Event_Num_Card": "Event_Num_Card_000000213",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "Parallelogram Volume 2: Presence",
@@ -229095,7 +228003,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000214",
+        "value": "Event_Num_Card_000000213",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -229952,8 +228860,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-polygon-gallery-kids-first-2026-11-07",
     "event_id": "the-polygon-gallery-kids-first-2026-11-07",
-    "Event_Num_Perm": "Event_Num_Perm_000000215",
-    "Event_Num_Card": "Event_Num_Card_000000215",
+    "Event_Num_Perm": "Event_Num_Perm_000000214",
+    "Event_Num_Card": "Event_Num_Card_000000214",
     "event_archetype": "workshop",
     "archetype": "workshop",
     "title": "Kids First",
@@ -230156,7 +229064,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000215",
+        "value": "Event_Num_Card_000000214",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -231074,8 +229982,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-polygon-gallery-when-the-one-to-author-the-cut-2026-11-19",
     "event_id": "the-polygon-gallery-when-the-one-to-author-the-cut-2026-11-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000216",
-    "Event_Num_Card": "Event_Num_Card_000000216",
+    "Event_Num_Perm": "Event_Num_Perm_000000215",
+    "Event_Num_Card": "Event_Num_Card_000000215",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "when the one to author the cut is gone a hole in the shape of a portal forms",
@@ -231245,7 +230153,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000216",
+        "value": "Event_Num_Card_000000215",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -232098,8 +231006,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-polygon-gallery-exhibitions-at-the-polygon-gal-2026-11-04",
     "event_id": "the-polygon-gallery-exhibitions-at-the-polygon-gal-2026-11-04",
-    "Event_Num_Perm": "Event_Num_Perm_000000217",
-    "Event_Num_Card": "Event_Num_Card_000000217",
+    "Event_Num_Perm": "Event_Num_Perm_000000216",
+    "Event_Num_Card": "Event_Num_Card_000000216",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "Exhibitions at The Polygon Gallery",
@@ -232332,7 +231240,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000217",
+        "value": "Event_Num_Card_000000216",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -233233,8 +232141,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-polygon-gallery-the-lind-biennial-opening-cele-2026-11-26",
     "event_id": "the-polygon-gallery-the-lind-biennial-opening-cele-2026-11-26",
-    "Event_Num_Perm": "Event_Num_Perm_000000218",
-    "Event_Num_Card": "Event_Num_Card_000000218",
+    "Event_Num_Perm": "Event_Num_Perm_000000217",
+    "Event_Num_Card": "Event_Num_Card_000000217",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "The Lind Biennial Opening Celebration",
@@ -233424,7 +232332,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000218",
+        "value": "Event_Num_Card_000000217",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -234289,8 +233197,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "revue-stage-christmas-presence-2026-12-19",
     "event_id": "revue-stage-christmas-presence-2026-12-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000219",
-    "Event_Num_Card": "Event_Num_Card_000000219",
+    "Event_Num_Perm": "Event_Num_Perm_000000218",
+    "Event_Num_Card": "Event_Num_Card_000000218",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Christmas Presence",
@@ -234522,7 +233430,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000219",
+        "value": "Event_Num_Card_000000218",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -235445,8 +234353,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "pacific-theatre-mental-2027-04-07",
     "event_id": "pacific-theatre-mental-2027-04-07",
-    "Event_Num_Perm": "Event_Num_Perm_000000220",
-    "Event_Num_Card": "Event_Num_Card_000000220",
+    "Event_Num_Perm": "Event_Num_Perm_000000219",
+    "Event_Num_Card": "Event_Num_Card_000000219",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Mental",
@@ -235666,7 +234574,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000220",
+        "value": "Event_Num_Card_000000219",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -236574,8 +235482,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-art-galler-modern-iran-and-the-avant-gard-2026-12-11",
     "event_id": "vancouver-art-galler-modern-iran-and-the-avant-gard-2026-12-11",
-    "Event_Num_Perm": "Event_Num_Perm_000000221",
-    "Event_Num_Card": "Event_Num_Card_000000221",
+    "Event_Num_Perm": "Event_Num_Perm_000000220",
+    "Event_Num_Card": "Event_Num_Card_000000220",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "Modern Iran and the Avant-Gardes, 1948–78",
@@ -236772,7 +235680,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000221",
+        "value": "Event_Num_Card_000000220",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -237673,8 +236581,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-art-galler-vancouver-now-annie-briard-2026-12-11",
     "event_id": "vancouver-art-galler-vancouver-now-annie-briard-2026-12-11",
-    "Event_Num_Perm": "Event_Num_Perm_000000222",
-    "Event_Num_Card": "Event_Num_Card_000000222",
+    "Event_Num_Perm": "Event_Num_Perm_000000221",
+    "Event_Num_Card": "Event_Num_Card_000000221",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "Vancouver Now! Annie Briard",
@@ -237841,7 +236749,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000222",
+        "value": "Event_Num_Card_000000221",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -238715,8 +237623,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-art-galler-made-in-hong-kong-from-the-col-2027-02-12",
     "event_id": "vancouver-art-galler-made-in-hong-kong-from-the-col-2027-02-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000223",
-    "Event_Num_Card": "Event_Num_Card_000000223",
+    "Event_Num_Perm": "Event_Num_Perm_000000222",
+    "Event_Num_Card": "Event_Num_Card_000000222",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "Made in Hong Kong: From the Collection",
@@ -238883,7 +237791,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000223",
+        "value": "Event_Num_Card_000000222",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -239754,8 +238662,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-art-galler-vancouver-now-manjot-kaur-2027-04-16",
     "event_id": "vancouver-art-galler-vancouver-now-manjot-kaur-2027-04-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000224",
-    "Event_Num_Card": "Event_Num_Card_000000224",
+    "Event_Num_Perm": "Event_Num_Perm_000000223",
+    "Event_Num_Card": "Event_Num_Card_000000223",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "Vancouver Now! Manjot Kaur",
@@ -239922,7 +238830,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000224",
+        "value": "Event_Num_Card_000000223",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -240796,8 +239704,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "craft-council-of-bc-the-ornament-collection-2026-11-24",
     "event_id": "craft-council-of-bc-the-ornament-collection-2026-11-24",
-    "Event_Num_Perm": "Event_Num_Perm_000000225",
-    "Event_Num_Card": "Event_Num_Card_000000225",
+    "Event_Num_Perm": "Event_Num_Perm_000000224",
+    "Event_Num_Card": "Event_Num_Card_000000224",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "The Ornament Collection",
@@ -240979,7 +239887,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000225",
+        "value": "Event_Num_Card_000000224",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -241844,8 +240752,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-revue-stage-infidels-jazz-presents-casey-t-2026-12-11",
     "event_id": "the-revue-stage-infidels-jazz-presents-casey-t-2026-12-11",
-    "Event_Num_Perm": "Event_Num_Perm_000000226",
-    "Event_Num_Card": "Event_Num_Card_000000226",
+    "Event_Num_Perm": "Event_Num_Perm_000000225",
+    "Event_Num_Card": "Event_Num_Card_000000225",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Casey Thomas-Burns Sings Ella X-Mas",
@@ -242024,7 +240932,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000226",
+        "value": "Event_Num_Card_000000225",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -242910,8 +241818,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "performance-works-little-ravers-vancouver-2026-12-12",
     "event_id": "performance-works-little-ravers-vancouver-2026-12-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000227",
-    "Event_Num_Card": "Event_Num_Card_000000227",
+    "Event_Num_Perm": "Event_Num_Perm_000000226",
+    "Event_Num_Card": "Event_Num_Card_000000226",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Little Ravers",
@@ -243094,7 +242002,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000227",
+        "value": "Event_Num_Card_000000226",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -243978,8 +242886,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "bell-performing-arts-mozart-bartok-ligeti-2027-05-16",
     "event_id": "bell-performing-arts-mozart-bartok-ligeti-2027-05-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000228",
-    "Event_Num_Card": "Event_Num_Card_000000228",
+    "Event_Num_Perm": "Event_Num_Perm_000000227",
+    "Event_Num_Card": "Event_Num_Card_000000227",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Surrey Sundays: Mozart, Bartók & Ligeti",
@@ -244149,7 +243057,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000228",
+        "value": "Event_Num_Card_000000227",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -245076,8 +243984,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-revue-stage-infidels-jazz-presents-happies-2026-12-05",
     "event_id": "the-revue-stage-infidels-jazz-presents-happies-2026-12-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000229",
-    "Event_Num_Card": "Event_Num_Card_000000229",
+    "Event_Num_Perm": "Event_Num_Perm_000000228",
+    "Event_Num_Card": "Event_Num_Card_000000228",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Happiest Jazz Band Plays Disney for the Holidays",
@@ -245253,7 +244161,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000229",
+        "value": "Event_Num_Card_000000228",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -246115,8 +245023,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-revue-stage-infidels-jazz-presents-dean-th-2026-12-13",
     "event_id": "the-revue-stage-infidels-jazz-presents-dean-th-2026-12-13",
-    "Event_Num_Perm": "Event_Num_Perm_000000230",
-    "Event_Num_Card": "Event_Num_Card_000000230",
+    "Event_Num_Perm": "Event_Num_Perm_000000229",
+    "Event_Num_Card": "Event_Num_Card_000000229",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Dean Thiessen Plays Charlie Brown",
@@ -246309,7 +245217,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000230",
+        "value": "Event_Num_Card_000000229",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -247180,8 +246088,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "thunderbird-stadium-2026-u-sports-women-s-soccer-c-2026-11-12",
     "event_id": "thunderbird-stadium-2026-u-sports-women-s-soccer-c-2026-11-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000231",
-    "Event_Num_Card": "Event_Num_Card_000000231",
+    "Event_Num_Perm": "Event_Num_Perm_000000230",
+    "Event_Num_Card": "Event_Num_Card_000000230",
     "event_archetype": "active_rec",
     "archetype": "active_rec",
     "title": "2026 U SPORTS Women's Soccer Championship: Tournament Pass",
@@ -247384,7 +246292,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000231",
+        "value": "Event_Num_Card_000000230",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -248287,8 +247195,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "science-world-after-dark-press-start-for-sci-2026-12-09",
     "event_id": "science-world-after-dark-press-start-for-sci-2026-12-09",
-    "Event_Num_Perm": "Event_Num_Perm_000000232",
-    "Event_Num_Card": "Event_Num_Card_000000232",
+    "Event_Num_Perm": "Event_Num_Perm_000000231",
+    "Event_Num_Card": "Event_Num_Card_000000231",
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
     "title": "After Dark: Press Start for Science – Video Games Edition",
@@ -248456,7 +247364,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000232",
+        "value": "Event_Num_Card_000000231",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -249331,8 +248239,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-american-iq-2000-trivia-2026-11-09",
     "event_id": "the-american-iq-2000-trivia-2026-11-09",
-    "Event_Num_Perm": "Event_Num_Perm_000000233",
-    "Event_Num_Card": "Event_Num_Card_000000233",
+    "Event_Num_Perm": "Event_Num_Perm_000000232",
+    "Event_Num_Card": "Event_Num_Card_000000232",
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
     "title": "IQ 2000 Trivia",
@@ -249545,7 +248453,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000233",
+        "value": "Event_Num_Card_000000232",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -250425,8 +249333,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-american-karaoke-2026-11-12",
     "event_id": "the-american-karaoke-2026-11-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000234",
-    "Event_Num_Card": "Event_Num_Card_000000234",
+    "Event_Num_Perm": "Event_Num_Perm_000000233",
+    "Event_Num_Card": "Event_Num_Card_000000233",
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
     "title": "Karaoke at The American",
@@ -250631,7 +249539,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000234",
+        "value": "Event_Num_Card_000000233",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -251503,8 +250411,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-american-pub-jams-datguyry-2026-11-20",
     "event_id": "the-american-pub-jams-datguyry-2026-11-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000235",
-    "Event_Num_Card": "Event_Num_Card_000000235",
+    "Event_Num_Perm": "Event_Num_Perm_000000234",
+    "Event_Num_Card": "Event_Num_Card_000000234",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Pub Jams: Datguyry",
@@ -251672,7 +250580,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000235",
+        "value": "Event_Num_Card_000000234",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -252520,8 +251428,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-american-besties-vol-3-the-american-2026-11-21",
     "event_id": "the-american-besties-vol-3-the-american-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000236",
-    "Event_Num_Card": "Event_Num_Card_000000236",
+    "Event_Num_Perm": "Event_Num_Perm_000000235",
+    "Event_Num_Card": "Event_Num_Card_000000235",
     "event_archetype": "roving_series",
     "archetype": "roving_series",
     "title": "Besties Vol. 3",
@@ -252691,7 +251599,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000236",
+        "value": "Event_Num_Card_000000235",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -253568,8 +252476,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-american-drawing-from-memory-2026-11-23",
     "event_id": "the-american-drawing-from-memory-2026-11-23",
-    "Event_Num_Perm": "Event_Num_Perm_000000237",
-    "Event_Num_Card": "Event_Num_Card_000000237",
+    "Event_Num_Perm": "Event_Num_Perm_000000236",
+    "Event_Num_Card": "Event_Num_Card_000000236",
     "event_archetype": "social_gaming",
     "archetype": "social_gaming",
     "title": "Drawing From Memory",
@@ -253741,7 +252649,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000237",
+        "value": "Event_Num_Card_000000236",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -254596,8 +253504,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "the-american-r3d-at-the-american-2026-11-27",
     "event_id": "the-american-r3d-at-the-american-2026-11-27",
-    "Event_Num_Perm": "Event_Num_Perm_000000238",
-    "Event_Num_Card": "Event_Num_Card_000000238",
+    "Event_Num_Perm": "Event_Num_Perm_000000237",
+    "Event_Num_Card": "Event_Num_Card_000000237",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "R3D",
@@ -254763,7 +253671,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000238",
+        "value": "Event_Num_Card_000000237",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -255609,8 +254517,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vanier-park-winter-market-at-vanier-park-6",
     "event_id": "vanier-park-winter-market-at-vanier-park-6",
-    "Event_Num_Perm": "Event_Num_Perm_000000239",
-    "Event_Num_Card": "Event_Num_Card_000000239",
+    "Event_Num_Perm": "Event_Num_Perm_000000238",
+    "Event_Num_Card": "Event_Num_Card_000000238",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Winter Market at Vanier Park",
@@ -255796,7 +254704,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000239",
+        "value": "Event_Num_Card_000000238",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -256664,8 +255572,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "museum-of-anthropolo-from-the-deep-in-the-wake-of-d-2026-11-19",
     "event_id": "museum-of-anthropolo-from-the-deep-in-the-wake-of-d-2026-11-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000240",
-    "Event_Num_Card": "Event_Num_Card_000000240",
+    "Event_Num_Perm": "Event_Num_Perm_000000239",
+    "Event_Num_Card": "Event_Num_Card_000000239",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "From the Deep: In the Wake of Drexciya with Ayana V. Jackson",
@@ -256850,7 +255758,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000240",
+        "value": "Event_Num_Card_000000239",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -257758,8 +256666,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "museum-of-anthropolo-opening-celebrations-of-from-t-2026-11-19",
     "event_id": "museum-of-anthropolo-opening-celebrations-of-from-t-2026-11-19",
-    "Event_Num_Perm": "Event_Num_Perm_000000241",
-    "Event_Num_Card": "Event_Num_Card_000000241",
+    "Event_Num_Perm": "Event_Num_Perm_000000240",
+    "Event_Num_Card": "Event_Num_Card_000000240",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "Opening Celebrations: From the Deep: In the Wake of Drexciya",
@@ -257928,7 +256836,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000241",
+        "value": "Event_Num_Card_000000240",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -258780,8 +257688,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "museum-of-anthropolo-from-the-deep-tours-with-ayana-2026-11-21",
     "event_id": "museum-of-anthropolo-from-the-deep-tours-with-ayana-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000242",
-    "Event_Num_Card": "Event_Num_Card_000000242",
+    "Event_Num_Perm": "Event_Num_Perm_000000241",
+    "Event_Num_Card": "Event_Num_Card_000000241",
     "event_archetype": "museum_gallery",
     "archetype": "museum_gallery",
     "title": "From the Deep Tours with Ayana V. Jackson",
@@ -258966,7 +257874,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000242",
+        "value": "Event_Num_Card_000000241",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -259874,8 +258782,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "stanley-park-siwash-rock",
     "event_id": "stanley-park-siwash-rock",
-    "Event_Num_Perm": "Event_Num_Perm_000000243",
-    "Event_Num_Card": "Event_Num_Card_000000243",
+    "Event_Num_Perm": "Event_Num_Perm_000000242",
+    "Event_Num_Card": "Event_Num_Card_000000242",
     "event_archetype": "civic_park",
     "archetype": "civic_park",
     "title": "Siwash Rock",
@@ -260025,7 +258933,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000243",
+        "value": "Event_Num_Card_000000242",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -260873,8 +259781,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vancouver-convention-fan-expo-vancouver-13-152027",
     "event_id": "vancouver-convention-fan-expo-vancouver-13-152027",
-    "Event_Num_Perm": "Event_Num_Perm_000000244",
-    "Event_Num_Card": "Event_Num_Card_000000244",
+    "Event_Num_Perm": "Event_Num_Perm_000000243",
+    "Event_Num_Card": "Event_Num_Card_000000243",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Fan Expo Vancouver",
@@ -260963,11 +259871,11 @@ const VANCOUVER_EVENTS = [
       "status": "upcoming",
       "ticket_url": "https://fanexpohq.com/fanexpovancouver/buy-tickets/"
     },
-    "category": "culture",
+    "category": "festivals",
     "categories": [
-      "culture"
+      "festivals"
     ],
-    "categoryLabel": "CULTURE",
+    "categoryLabel": "FESTIVALS",
     "tags": null,
     "subTags": null,
     "festival_affiliation": null,
@@ -261070,19 +259978,19 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Event_Num_Perm_000000244",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000244",
+        "value": "Event_Num_Card_000000243",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "culture",
+        "value": "festivals",
         "categories": [
-          "culture"
+          "festivals"
         ],
         "source_tool": "ai_semantic_enricher",
         "audited_at": "2026-11-09T15:04:00.010Z"
@@ -261098,25 +260006,25 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "festival",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages / Family Friendly",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "none_available",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "verified",
@@ -261134,26 +260042,26 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://www.vancouverconventioncentre.com/events",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.vancouverconventioncentre.com/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://fanexpohq.com/fanexpovancouver/buy-tickets/",
         "best_tier": "Tier 1: Checkout Cart",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
@@ -261166,19 +260074,19 @@ const VANCOUVER_EVENTS = [
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
@@ -261216,20 +260124,20 @@ const VANCOUVER_EVENTS = [
         "value": 37,
         "formula": "base($37) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 37,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "verified",
@@ -261266,13 +260174,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": 42,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "verified",
@@ -261315,13 +260223,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": 47,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "verified",
@@ -261333,20 +260241,20 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 6,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "standard",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 37,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
@@ -261364,7 +260272,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
@@ -261382,7 +260290,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2027-02-13",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -261417,7 +260325,7 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
@@ -261441,13 +260349,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2027-02-13 • 10:00 AM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
@@ -261459,19 +260367,19 @@ const VANCOUVER_EVENTS = [
         "status": "none_available",
         "value": null,
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Vancouver Convention Centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "1055 Canada Pl, Vancouver, BC V6C 0C3",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -261486,116 +260394,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Downtown Vancouver / Waterfront",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "ticketed_admission",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "hybrid",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Monday - Friday: 8:00 AM - 5:00 PM (Administration); Event & Exhibition hours vary by booking; Public plaza & seawall accessible 24/7",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "Waterfront Station (Expo Line, Millennium Line, Canada Line, SeaBus, West Coast Express) located within a 5-minute walk; TransLink buses #44, #50 terminate nearby on Cordova / Howe",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Fully accessible at street level via Canada Place and Thurlow Street entrances with automated sliding power doors and level thresholds",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Multiple public passenger elevators providing full vertical access across all exhibition, meeting room, and ballroom levels in East and West buildings",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible multi-stall and individual all-gender accessible washrooms available on every public level",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified guide dogs and service animals permitted throughout all public spaces and event halls; pets are restricted inside convention facilities",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "On-site food and beverage services including convention catering, retail cafes (LOT19, Bellaggio Cafe, Coal Harbour Bar, and nearby waterfront dining patios along Jack Poole Plaza)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$5.25 CAD (Standard drip/Americano at waterfront concession)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "verified",
         "value": "$9.50 CAD (Domestic/craft draft or 355ml can at event bar service)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$18.50 CAD (Concession hot lunch combo, wrap, or boxed meal)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside commercial food and beverages prohibited inside ticketed conference halls; personal water bottles permitted; outside food allowed on external public plazas",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Major credit cards (Visa, MasterCard, Amex), debit, and contactless mobile payments (Apple Pay, Google Pay); cashless venue for internal food & concession services",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -261811,37 +260719,37 @@ const VANCOUVER_EVENTS = [
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D792_festival_pass_type": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D793_rush_seating_rules": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D794_central_box_office": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D795_volunteer_ticket_exchange": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D801_srsa_compliance": {
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -261852,10 +260760,10 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "conflicts_detected": [
-          "category disagreement across layers (culture vs shows)"
+          "category disagreement across layers (festivals vs shows)"
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
@@ -261866,13 +260774,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 3,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -261880,20 +260788,20 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": "data/proof_keyframes/vancouver-convention-fan-expo-vancouver-13-152027_cart.png",
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
         "last_pulse_qc_at": "2026-11-09T14:31:36.803Z",
         "last_content_qc_at": "2026-11-07T06:05:08.717Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
         "last_qc_audited_at": "2026-11-09T14:31:36.803Z"
       },
       "D809_civic_provider_rules": {
@@ -261901,14 +260809,14 @@ const VANCOUVER_EVENTS = [
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
     "last_qc_audited_at": "2026-11-09T14:31:36.803Z",
     "last_pulse_qc_at": "2026-11-09T14:31:36.803Z",
     "last_content_qc_at": "2026-11-07T06:05:08.717Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "all_tiers": [
       {
         "name": "Single Day - Monday",
@@ -262061,8 +260969,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "bell-performing-arts-a-celtic-family-christmas",
     "event_id": "bell-performing-arts-a-celtic-family-christmas",
-    "Event_Num_Perm": "Event_Num_Perm_000000245",
-    "Event_Num_Card": "Event_Num_Card_000000245",
+    "Event_Num_Perm": "Event_Num_Perm_000000244",
+    "Event_Num_Card": "Event_Num_Card_000000244",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "A Celtic Family Christmas",
@@ -262242,7 +261150,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000245",
+        "value": "Event_Num_Card_000000244",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -263103,8 +262011,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "bell-performing-arts-royal-academy-afternoon-show-2",
     "event_id": "bell-performing-arts-royal-academy-afternoon-show-2",
-    "Event_Num_Perm": "Event_Num_Perm_000000246",
-    "Event_Num_Card": "Event_Num_Card_000000246",
+    "Event_Num_Perm": "Event_Num_Perm_000000245",
+    "Event_Num_Card": "Event_Num_Card_000000245",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Royal Academy: Colours of Punjab (Afternoon Show)",
@@ -263272,7 +262180,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000246",
+        "value": "Event_Num_Card_000000245",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -264121,8 +263029,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "bell-performing-arts-royal-academy-all-day-pass-202",
     "event_id": "bell-performing-arts-royal-academy-all-day-pass-202",
-    "Event_Num_Perm": "Event_Num_Perm_000000247",
-    "Event_Num_Card": "Event_Num_Card_000000247",
+    "Event_Num_Perm": "Event_Num_Perm_000000246",
+    "Event_Num_Card": "Event_Num_Card_000000246",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Royal Academy: Colours of Punjab (All Day Pass)",
@@ -264307,7 +263215,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000247",
+        "value": "Event_Num_Card_000000246",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -265165,8 +264073,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "bell-performing-arts-royal-academy-evening-show",
     "event_id": "bell-performing-arts-royal-academy-evening-show",
-    "Event_Num_Perm": "Event_Num_Perm_000000248",
-    "Event_Num_Card": "Event_Num_Card_000000248",
+    "Event_Num_Perm": "Event_Num_Perm_000000247",
+    "Event_Num_Card": "Event_Num_Card_000000247",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Royal Academy: Colours of Punjab (Evening Show)",
@@ -265334,7 +264242,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000248",
+        "value": "Event_Num_Card_000000247",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -266185,8 +265093,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "main-stage-at-surrey-the-cheesecake-burlesque-revue-2026-12-31",
     "event_id": "main-stage-at-surrey-the-cheesecake-burlesque-revue-2026-12-31",
-    "Event_Num_Perm": "Event_Num_Perm_000000249",
-    "Event_Num_Card": "Event_Num_Card_000000249",
+    "Event_Num_Perm": "Event_Num_Perm_000000248",
+    "Event_Num_Card": "Event_Num_Card_000000248",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "The Cheesecake Burlesque Revue",
@@ -266362,7 +265270,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000249",
+        "value": "Event_Num_Card_000000248",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -267218,8 +266126,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "studio-theatre-at-su-music-city-showcase-2027-02-06",
     "event_id": "studio-theatre-at-su-music-city-showcase-2027-02-06",
-    "Event_Num_Perm": "Event_Num_Perm_000000250",
-    "Event_Num_Card": "Event_Num_Card_000000250",
+    "Event_Num_Perm": "Event_Num_Perm_000000249",
+    "Event_Num_Card": "Event_Num_Card_000000249",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Music City Showcase",
@@ -267385,7 +266293,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000250",
+        "value": "Event_Num_Card_000000249",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -268234,8 +267142,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "surrey-arts-centre-missy-d",
     "event_id": "surrey-arts-centre-missy-d",
-    "Event_Num_Perm": "Event_Num_Perm_000000251",
-    "Event_Num_Card": "Event_Num_Card_000000251",
+    "Event_Num_Perm": "Event_Num_Perm_000000250",
+    "Event_Num_Card": "Event_Num_Card_000000250",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Missy D",
@@ -268404,7 +267312,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000251",
+        "value": "Event_Num_Card_000000250",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -269328,8 +268236,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "surrey-arts-centre-stuart-little",
     "event_id": "surrey-arts-centre-stuart-little",
-    "Event_Num_Perm": "Event_Num_Perm_000000252",
-    "Event_Num_Card": "Event_Num_Card_000000252",
+    "Event_Num_Perm": "Event_Num_Perm_000000251",
+    "Event_Num_Card": "Event_Num_Card_000000251",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Stuart Little",
@@ -269497,7 +268405,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000252",
+        "value": "Event_Num_Card_000000251",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -270348,8 +269256,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "surrey-arts-centre-canefire-2027-03-20",
     "event_id": "surrey-arts-centre-canefire-2027-03-20",
-    "Event_Num_Perm": "Event_Num_Perm_000000253",
-    "Event_Num_Card": "Event_Num_Card_000000253",
+    "Event_Num_Perm": "Event_Num_Perm_000000252",
+    "Event_Num_Card": "Event_Num_Card_000000252",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "CaneFire",
@@ -270515,7 +269423,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000253",
+        "value": "Event_Num_Card_000000252",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -271364,8 +270272,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "main-stage-surrey-ar-cabaret-of-legends-2027-04-10",
     "event_id": "main-stage-surrey-ar-cabaret-of-legends-2027-04-10",
-    "Event_Num_Perm": "Event_Num_Perm_000000254",
-    "Event_Num_Card": "Event_Num_Card_000000254",
+    "Event_Num_Perm": "Event_Num_Perm_000000253",
+    "Event_Num_Card": "Event_Num_Card_000000253",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Cabaret of Legends",
@@ -271531,7 +270439,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000254",
+        "value": "Event_Num_Card_000000253",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -272404,8 +271312,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "surrey-arts-centre-how-to-catch-a-star",
     "event_id": "surrey-arts-centre-how-to-catch-a-star",
-    "Event_Num_Perm": "Event_Num_Perm_000000255",
-    "Event_Num_Card": "Event_Num_Card_000000255",
+    "Event_Num_Perm": "Event_Num_Perm_000000254",
+    "Event_Num_Card": "Event_Num_Card_000000254",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "How to Catch a Star",
@@ -272573,7 +271481,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000255",
+        "value": "Event_Num_Card_000000254",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -273422,8 +272330,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "vandusen-botanical-g-vandusen-festival-of-lights-2026-11-27",
     "event_id": "vandusen-botanical-g-vandusen-festival-of-lights-2026-11-27",
-    "Event_Num_Perm": "Event_Num_Perm_000000256",
-    "Event_Num_Card": "Event_Num_Card_000000256",
+    "Event_Num_Perm": "Event_Num_Perm_000000255",
+    "Event_Num_Card": "Event_Num_Card_000000255",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "VanDusen Festival of Lights",
@@ -273653,7 +272561,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000256",
+        "value": "Event_Num_Card_000000255",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T03:12:05.267Z"
       },
@@ -274649,8 +273557,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "centennial-theatre-seymour-dance-the-nutcracker-2026-12-05",
     "event_id": "centennial-theatre-seymour-dance-the-nutcracker-2026-12-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000257",
-    "Event_Num_Card": "Event_Num_Card_000000257",
+    "Event_Num_Perm": "Event_Num_Perm_000000256",
+    "Event_Num_Card": "Event_Num_Card_000000256",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "The Nutcracker",
@@ -274880,7 +273788,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000257",
+        "value": "Event_Num_Card_000000256",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -275801,8 +274709,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "orpheum-theatre-handel-s-messiah-2026-12-12",
     "event_id": "orpheum-theatre-handel-s-messiah-2026-12-12",
-    "Event_Num_Perm": "Event_Num_Perm_000000258",
-    "Event_Num_Card": "Event_Num_Card_000000258",
+    "Event_Num_Perm": "Event_Num_Perm_000000257",
+    "Event_Num_Card": "Event_Num_Card_000000257",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Handel's Messiah",
@@ -275998,7 +274906,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000258",
+        "value": "Event_Num_Card_000000257",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -276877,8 +275785,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "queen-elizabeth-thea-vancouver-youth-choir-presents-2026-12-05",
     "event_id": "queen-elizabeth-thea-vancouver-youth-choir-presents-2026-12-05",
-    "Event_Num_Perm": "Event_Num_Perm_000000259",
-    "Event_Num_Card": "Event_Num_Card_000000259",
+    "Event_Num_Perm": "Event_Num_Perm_000000258",
+    "Event_Num_Card": "Event_Num_Card_000000258",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Vancouver Youth Choir: All is Bright",
@@ -277064,7 +275972,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000259",
+        "value": "Event_Num_Card_000000258",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -277933,8 +276841,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "central-city-zumba-at-central-city",
     "event_id": "central-city-zumba-at-central-city",
-    "Event_Num_Perm": "Event_Num_Perm_000000260",
-    "Event_Num_Card": "Event_Num_Card_000000260",
+    "Event_Num_Perm": "Event_Num_Perm_000000259",
+    "Event_Num_Card": "Event_Num_Card_000000259",
     "event_archetype": "active_rec",
     "archetype": "active_rec",
     "title": "Zumba at Central City",
@@ -278101,7 +277009,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000260",
+        "value": "Event_Num_Card_000000259",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -278950,8 +277858,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "central-city-meet-santa-at-central-city-2026-11-21",
     "event_id": "central-city-meet-santa-at-central-city-2026-11-21",
-    "Event_Num_Perm": "Event_Num_Perm_000000261",
-    "Event_Num_Card": "Event_Num_Card_000000261",
+    "Event_Num_Perm": "Event_Num_Perm_000000260",
+    "Event_Num_Card": "Event_Num_Card_000000260",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Meet Santa at Central City",
@@ -279025,11 +277933,11 @@ const VANCOUVER_EVENTS = [
       "ticket_url": "https://centralcity.ca/events/central-city-meet-santa-at-central-city"
     },
     "show_3": null,
-    "category": "culture",
+    "category": "social",
     "categories": [
-      "culture"
+      "social"
     ],
-    "categoryLabel": "CULTURE",
+    "categoryLabel": "SOCIAL",
     "tags": [
       "holiday",
       "christmas",
@@ -279143,19 +278051,19 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Event_Num_Perm_000000261",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000261",
+        "value": "Event_Num_Card_000000260",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "culture",
+        "value": "social",
         "categories": [
-          "culture"
+          "social"
         ],
         "source_tool": "ai_semantic_enricher",
         "audited_at": "2026-11-11T14:30:04.295Z"
@@ -279181,25 +278089,25 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "festival",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages / Family Friendly",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "verified",
         "value": "christmas",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
@@ -279217,26 +278125,26 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://centralcity.ca/events/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://centralcity.ca/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://centralcity.ca/events/central-city-meet-santa-at-central-city",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
@@ -279249,19 +278157,19 @@ const VANCOUVER_EVENTS = [
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
@@ -279299,20 +278207,20 @@ const VANCOUVER_EVENTS = [
         "value": 27.99,
         "formula": "base($27.99) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 27.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "none_available",
@@ -279349,13 +278257,13 @@ const VANCOUVER_EVENTS = [
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "none_available",
@@ -279398,13 +278306,13 @@ const VANCOUVER_EVENTS = [
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
@@ -279416,20 +278324,20 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 1,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "standard",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 27.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
@@ -279447,7 +278355,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "verified",
@@ -279467,7 +278375,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-21",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -279493,7 +278401,7 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "none_available",
@@ -279517,13 +278425,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-21 • 11:00 AM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
@@ -279535,19 +278443,19 @@ const VANCOUVER_EVENTS = [
         "status": "none_available",
         "value": null,
         "source_tool": "festival_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Central City Shopping Centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "10153 King George Blvd, Surrey, BC V3T 2W1",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -279562,116 +278470,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Surrey Central / Whalley",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "free_public_access",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "indoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Mon–Wed & Sat 10:00 AM – 6:00 PM, Thu–Fri 10:00 AM – 8:00 PM, Sun 11:00 AM – 6:00 PM",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "Directly adjacent to Surrey Central SkyTrain Station & Bus Loop (Expo Line)",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Level barrier-free automatic sliding doors at all street-level and SkyTrain concourse entrances",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Multiple passenger elevators serving mall concourses, parkade, and SFU campus levels",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible public and family washrooms near the Food Court and Guest Services",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "verified",
         "value": "Brightly lit indoor shopping concourse with moderate ambient crowd acoustics",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "verified",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Certified guide dogs and service animals welcome throughout the shopping centre",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Full 25+ vendor food court, T&T Supermarket, Tim Hortons, Starbucks, and Central City Brewers + Distillers nearby",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$2.50 – $5.50 CAD (Tim Hortons / Starbucks / Blenz)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$12.00 – $18.00 CAD (Food Court entrees)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside beverages and snacks permitted in public concourse areas",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "verified",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Free public concourse access; merchants accept Credit, Debit, Apple/Google Pay & Cash",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "verified",
         "value": "Bottle-filling water fountains located outside main concourse washrooms",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -279887,37 +278795,37 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://centralcity.ca/events/central-city-meet-santa-at-central-city",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D792_festival_pass_type": {
         "status": "verified",
         "value": "Single Event Tickets & Festival Passes ($27.99 CAD)",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D793_rush_seating_rules": {
         "status": "verified",
         "value": "Standby rush line opens 15–30 mins prior to showtime subject to capacity",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D794_central_box_office": {
         "status": "verified",
         "value": "11125 124 St, Surrey, BC V3V 4V2",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D795_volunteer_ticket_exchange": {
         "status": "verified",
         "value": "Official Meet Santa at Central City Volunteer & Community Access Program",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D801_srsa_compliance": {
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -279928,10 +278836,10 @@ const VANCOUVER_EVENTS = [
           "venue": "venue_master_registry"
         },
         "conflicts_detected": [
-          "category disagreement across layers (culture vs shows)"
+          "category disagreement across layers (social vs shows)"
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
@@ -279942,13 +278850,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -279956,20 +278864,20 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": "data/proof_keyframes/central-city-meet-santa-at-central-city-2026-11-21_cart.png",
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
         "last_pulse_qc_at": "2026-11-11T14:14:41.728Z",
         "last_content_qc_at": "2026-11-10T01:20:28.613Z",
-        "last_full_qc_at": "2026-11-15T02:47:06.329Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
         "last_qc_audited_at": "2026-11-11T14:14:41.728Z"
       },
       "D809_civic_provider_rules": {
@@ -279977,14 +278885,14 @@ const VANCOUVER_EVENTS = [
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T02:47:06.329Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
     "last_qc_audited_at": "2026-11-11T14:14:41.728Z",
     "last_pulse_qc_at": "2026-11-11T14:14:41.728Z",
     "last_content_qc_at": "2026-11-10T01:20:28.613Z",
-    "last_full_qc_at": "2026-11-15T02:47:06.329Z",
-    "last_compiled_batch_at": "2026-11-15T02:47:06.329Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "all_tiers": [
       {
         "name": "Reservation Fee / Santa Visit",
@@ -280017,8 +278925,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "jack-poole-plaza-vancouver-christmas-market-202-2026-11-16",
     "event_id": "jack-poole-plaza-vancouver-christmas-market-202-2026-11-16",
-    "Event_Num_Perm": "Event_Num_Perm_000000262",
-    "Event_Num_Card": "Event_Num_Card_000000262",
+    "Event_Num_Perm": "Event_Num_Perm_000000261",
+    "Event_Num_Card": "Event_Num_Card_000000261",
     "event_archetype": "festival",
     "archetype": "festival",
     "title": "Vancouver Christmas Market",
@@ -280090,11 +278998,12 @@ const VANCOUVER_EVENTS = [
       "ticket_url": "https://tickets.vancouverchristmasmarket.com/"
     },
     "show_3": null,
-    "category": "culture",
+    "category": "markets",
     "categories": [
-      "culture"
+      "markets",
+      "festivals"
     ],
-    "categoryLabel": "CULTURE",
+    "categoryLabel": "MARKETS",
     "tags": [
       "holiday",
       "christmas",
@@ -280209,19 +279118,20 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Event_Num_Perm_000000262",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000262",
+        "value": "Event_Num_Card_000000261",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D004_category": {
         "status": "verified",
-        "value": "culture",
+        "value": "markets",
         "categories": [
-          "culture"
+          "markets",
+          "festivals"
         ],
         "source_tool": "ai_semantic_enricher",
         "audited_at": "2026-11-11T15:25:00.000Z"
@@ -280249,25 +279159,25 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "time_bound_event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D007_event_archetype": {
         "status": "verified",
         "value": "festival",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D008_restrictions": {
         "status": "verified",
         "value": "All Ages / Family Friendly",
         "source_tool": "stagehand_box_office",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D009_holiday_affiliation": {
         "status": "verified",
         "value": "christmas",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D101_tier1_checkout": {
         "status": "none_available",
@@ -280285,26 +279195,26 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://www.vancouverchristmasmarket.com/entertainment-schedules/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D104_tier4_civic_destination": {
         "status": "not_applicable",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D105_tier5_venue_home": {
         "status": "verified",
         "value": "https://www.vancouverchristmasmarket.com/",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D106_best_available_link": {
         "status": "verified",
         "value": "https://www.vancouverchristmasmarket.com/",
         "best_tier": "Tier 2: Event Page",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D107_operational_status": {
         "status": "verified",
@@ -280317,19 +279227,19 @@ const VANCOUVER_EVENTS = [
         "value": "Metro Vancouver (British Columbia)",
         "in_market": true,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D109_currency_standard": {
         "status": "verified",
         "value": "CAD",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D110_iana_timezone": {
         "status": "verified",
         "value": "America/Vancouver",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D201_tier1_name": {
         "status": "verified",
@@ -280367,20 +279277,20 @@ const VANCOUVER_EVENTS = [
         "value": 7.99,
         "formula": "base($7.99) + fee($0) + tax($0) + other($0)",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "note": "Exact match",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D205_tier1_price_all_in": {
         "status": "verified",
         "value": 7.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D206_tier2_name": {
         "status": "verified",
@@ -280417,13 +279327,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": 29.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_discrepancy_delta": {
         "status": "verified_reconciled",
         "delta": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D210_tier2_price_all_in": {
         "status": "verified",
@@ -280466,13 +279376,13 @@ const VANCOUVER_EVENTS = [
         "status": "none_available",
         "value": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_discrepancy_delta": {
         "status": "none_available",
         "delta": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D215_tier3_price_all_in": {
         "status": "none_available",
@@ -280484,20 +279394,20 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D217_pricing_model": {
         "status": "verified",
         "value": "standard",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D218_budget_qualified_under_50": {
         "status": "verified",
         "qualified": true,
         "total": 7.99,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D219_other_cost_label": {
         "status": "none_available",
@@ -280515,7 +279425,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "online_reservation",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D301_lineup": {
         "status": "search_exhausted_null",
@@ -280533,7 +279443,7 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-16",
         "source_tool": "schedule_harvester",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D304_showings_slots": {
         "status": "verified",
@@ -280559,7 +279469,7 @@ const VANCOUVER_EVENTS = [
           }
         ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D305_doors_time": {
         "status": "verified",
@@ -280583,13 +279493,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "2026-11-16 • 11:30 AM",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D309_frequencyLabel": {
         "status": "verified",
         "value": "One-Time Event",
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D310_synopsis": {
         "status": "verified",
@@ -280601,19 +279511,19 @@ const VANCOUVER_EVENTS = [
         "status": "none_available",
         "value": null,
         "source_tool": "festival_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D401_venue_name": {
         "status": "verified",
         "value": "Jack Poole Plaza",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D402_full_address": {
         "status": "verified",
         "value": "1055 Canada Pl, Vancouver, BC V6C 3L5",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D403_coordinates": {
         "status": "verified",
@@ -280628,116 +279538,116 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "Coal Harbour / Downtown Vancouver",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D405_access_model": {
         "status": "verified",
         "value": "open_public_space",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D406_environment_type": {
         "status": "verified",
         "value": "outdoor",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D407_weekly_hours": {
         "status": "verified",
         "value": "Open daily 24 hours (public waterfront plaza; adjacent restaurant and convention centre hours vary)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D408_transit_waypoints": {
         "status": "verified",
         "transit": "Waterfront Station (Expo Line, Canada Line, SeaBus, West Coast Express) approx. 6-minute walk; Burrard Station (Expo Line) approx. 7-minute walk; TransLink buses along West Pender and Burrard Streets",
         "waypoints": [],
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D501_step_free_entrance": {
         "status": "verified",
         "value": "Seamless step-free, paved concrete pedestrian concourse accessible directly from Thurlow Street, Canada Place, and Burrard Street walkway; gradual ramps connect upper plaza deck to lower seawall pathway",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D502_elevator_lift": {
         "status": "verified",
         "value": "Public and convention centre elevator access connects underground parkade, Vancouver Convention Centre West concourses, and the plaza deck",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D503_accessible_washrooms": {
         "status": "verified",
         "value": "Wheelchair-accessible public washrooms available inside the adjacent Vancouver Convention Centre West building during operating hours",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D504_sensory_calibrations": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D505_hearing_loop": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D506_service_animals": {
         "status": "verified",
         "value": "Service animals welcome throughout the plaza; on-leash dogs permitted in open outdoor plaza areas",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D601_on_site_fnb": {
         "status": "verified",
         "value": "Direct access to Tap & Barrel Convention Centre (outdoor patio & craft beer bar/restaurant), adjacent waterfront cafes, and convention food vendors during major events",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D602_coffee_benchmark": {
         "status": "verified",
         "value": "$4.50 CAD (drip coffee at nearby waterfront cafes)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D603_beer_benchmark": {
         "status": "none_available",
         "value": "none_available",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D604_meal_benchmark": {
         "status": "verified",
         "value": "$22.00 CAD (handheld / burger / pizza entree at plaza restaurant)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D605_outside_food_policy": {
         "status": "verified",
         "value": "Outside food, drinks, and casual seating/picnicking fully permitted in open plaza public spaces; licensed alcohol restricted to designated restaurant patios and special event zones",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D606_coat_check": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D607_payment_methods": {
         "status": "verified",
         "value": "Free access to public plaza; contactless credit, debit, and mobile pay accepted at on-site restaurants and food vendors (predominantly cashless)",
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D608_water_refill_station": {
         "status": "search_exhausted_null",
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D711_film_runtime": {
         "status": "not_applicable",
@@ -280953,37 +279863,37 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "value": "https://tickets.vancouverchristmasmarket.com/",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D792_festival_pass_type": {
         "status": "verified",
         "value": "Single Event Tickets & Festival Passes ($7.99 CAD)",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D793_rush_seating_rules": {
         "status": "verified",
         "value": "Standby rush line opens 15–30 mins prior to showtime subject to capacity",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D794_central_box_office": {
         "status": "verified",
         "value": "1055 Canada Pl, Vancouver, BC V6C 3L5",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D795_volunteer_ticket_exchange": {
         "status": "verified",
         "value": "Official Vancouver Christmas Market Volunteer & Community Access Program",
         "source_tool": "ai_semantic_enricher",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D801_srsa_compliance": {
         "status": "verified",
         "compliant": true,
         "single_publisher": "ripper/compile_catalog.js",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D802_multi_layer_provenance": {
         "status": "verified",
@@ -280993,11 +279903,8 @@ const VANCOUVER_EVENTS = [
           "editorial": "ai_semantic_enricher",
           "venue": "venue_master_registry"
         },
-        "conflicts_detected": [
-          "category disagreement across layers (culture vs markets)"
-        ],
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D803_spa_hydration_provenance": {
         "status": "verified",
@@ -281008,13 +279915,13 @@ const VANCOUVER_EVENTS = [
         "status": "verified",
         "count": 2,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D805_archived_showings": {
         "status": "verified",
         "count": 0,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D806_curator_lock": {
         "status": "verified",
@@ -281022,20 +279929,20 @@ const VANCOUVER_EVENTS = [
         "ai_curator_appeal": false,
         "curator_note": null,
         "source_tool": "compiler_ai",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D807_proof_keyframes": {
         "status": "verified",
         "cart": "data/proof_keyframes/jack-poole-plaza-vancouver-christmas-market-202-2026-11-16_cart.png",
         "schedule": null,
         "venue": null,
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       },
       "D808_timestamp_lockstep": {
         "status": "verified",
         "last_pulse_qc_at": "2026-11-11T15:30:01.411Z",
         "last_content_qc_at": "2026-11-11T15:22:00.000Z",
-        "last_full_qc_at": "2026-11-15T03:12:05.267Z",
+        "last_full_qc_at": "2026-11-15T15:01:18.291Z",
         "last_qc_audited_at": "2026-11-11T15:30:01.411Z"
       },
       "D809_civic_provider_rules": {
@@ -281043,14 +279950,14 @@ const VANCOUVER_EVENTS = [
         "rules": null,
         "value": null,
         "source_tool": "venue_master_registry",
-        "audited_at": "2026-11-15T03:12:05.267Z"
+        "audited_at": "2026-11-15T15:01:18.291Z"
       }
     },
     "last_qc_audited_at": "2026-11-11T15:30:01.411Z",
     "last_pulse_qc_at": "2026-11-11T15:30:01.411Z",
     "last_content_qc_at": "2026-11-11T15:22:00.000Z",
-    "last_full_qc_at": "2026-11-15T03:12:05.267Z",
-    "last_compiled_batch_at": "2026-11-15T03:12:05.267Z",
+    "last_full_qc_at": "2026-11-15T15:01:18.291Z",
+    "last_compiled_batch_at": "2026-11-15T15:01:18.291Z",
     "all_tiers": [
       {
         "name": "Single-Day Ticket",
@@ -281107,8 +280014,8 @@ const VANCOUVER_EVENTS = [
   {
     "id": "comedy-after-dark-saturday-night-stand-up-comedy-2025-01-22",
     "event_id": "comedy-after-dark-saturday-night-stand-up-comedy-2025-01-22",
-    "Event_Num_Perm": "Event_Num_Perm_000000263",
-    "Event_Num_Card": "Event_Num_Card_000000263",
+    "Event_Num_Perm": "Event_Num_Perm_000000262",
+    "Event_Num_Card": "Event_Num_Card_000000262",
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "title": "Saturday Night Stand Up Comedy",
@@ -281322,7 +280229,7 @@ const VANCOUVER_EVENTS = [
       },
       "D003_event_num_card": {
         "status": "verified",
-        "value": "Event_Num_Card_000000263",
+        "value": "Event_Num_Card_000000262",
         "source_tool": "compiler_ai",
         "audited_at": "2026-11-15T02:47:06.329Z"
       },
@@ -282200,6 +281107,1086 @@ const VANCOUVER_EVENTS = [
         "price_calculated": 26.33,
         "price_delta": 0,
         "label": "$26.33 CAD",
+        "isAvailable": true
+      }
+    ]
+  },
+  {
+    "id": "landmark-cinemas-guildford-reel-deals",
+    "event_id": "landmark-cinemas-guildford-reel-deals",
+    "Event_Num_Perm": "Event_Num_Perm_000000263",
+    "Event_Num_Card": "Event_Num_Card_000000263",
+    "event_archetype": "cinema",
+    "archetype": "cinema",
+    "title": "Reel Deals & Indie Screenings",
+    "event_name": "Reel Deals & Indie Screenings",
+    "artist": null,
+    "lineup": null,
+    "venue": "Landmark Cinemas Guildford",
+    "venue_name": "Landmark Cinemas Guildford",
+    "venue_type": "standard",
+    "address": "15051 101 Ave, Surrey, BC V3R 7Z1",
+    "full_address": "15051 101 Ave, Surrey, BC V3R 7Z1",
+    "neighborhood": "Guildford",
+    "city": "Surrey",
+    "region": "Surrey",
+    "coordinates": [
+      49.1872,
+      -122.8038
+    ],
+    "lat": 49.1872,
+    "lng": -122.8038,
+    "day": "2026-11-17",
+    "recurrence": "One-Off",
+    "url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+    "date": "2026-11-17",
+    "time": "6:30 PM",
+    "start_time": "6:30 PM",
+    "doors_time": null,
+    "end_time": null,
+    "startIso": "2026-11-17T18:30:00-07:00",
+    "dateSchedule": "2026-11-17 • 6:30 PM",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-10",
+        "start_time": "6:30 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "concluded",
+        "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-13",
+        "start_time": "7:00 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "concluded",
+        "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+      },
+      {
+        "slot": 3,
+        "date": "2026-11-17",
+        "start_time": "6:30 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+      }
+    ],
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-10",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "concluded",
+      "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+    },
+    "show_2": {
+      "slot": 2,
+      "date": "2026-11-13",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "concluded",
+      "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+    },
+    "show_3": {
+      "slot": 3,
+      "date": "2026-11-17",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+    },
+    "category": "cinema",
+    "categories": [
+      "cinema"
+    ],
+    "categoryLabel": "CINEMA",
+    "tags": [
+      "movies"
+    ],
+    "subTags": [
+      "movies"
+    ],
+    "festival_affiliation": null,
+    "festivalAffiliation": null,
+    "holiday_affiliation": null,
+    "holidayAffiliation": null,
+    "is_religious": false,
+    "isReligious": false,
+    "price": 13,
+    "price_base": 13,
+    "price_fee": 0,
+    "price_tax": 0,
+    "price_read": 13,
+    "price_calculated": 13,
+    "price_delta": 0,
+    "price_all_in": 13,
+    "priceLabel": "$13.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "is_sold_out": false,
+    "isSoldOut": false,
+    "operational_status": "available",
+    "booking_protocol": "online_reservation",
+    "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+    "details_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+      "tier3_calendar": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+      "best_available": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+      "best_tier": "tier2"
+    },
+    "ticket_provider": "Venue Direct / Civic Portal",
+    "description": "Enjoy luxury heated power-recliner seating at Landmark Cinemas Guildford Town Centre with $13 Reel Deals Tuesdays, Monday Mystery Movies, and curated indie cinema screenings.",
+    "restrictions": "All Ages",
+    "transitInfo": "Adjacent to Guildford Town Centre Bus Exchange (R1 King George / Guildford RapidBus, #320, #326, #335, #337, #501)",
+    "transit_info": "Adjacent to Guildford Town Centre Bus Exchange (R1 King George / Guildford RapidBus, #320, #326, #335, #337, #501)",
+    "waypoints": [],
+    "coffee_benchmark": "$4.50 CAD (Fountain drink / hot beverage)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "meal_benchmark": "$14.50 CAD (Popcorn & drink movie combo)",
+    "concession_benchmark": "$8.50 CAD (Medium movie popcorn)",
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "coffee": "$4.50 CAD (Fountain drink / hot beverage)",
+      "meal": "$14.50 CAD (Popcorn & drink movie combo)",
+      "concession": "$8.50 CAD (Medium movie popcorn)"
+    },
+    "drink_benchmark": null,
+    "typical_item_spend": "Coffee/Drinks $4.50 • Concessions $8.50",
+    "access_model": "ticketed_admission",
+    "environment_type": "indoor",
+    "weekly_hours": "Daily: 11:30 AM - 11:30 PM (Box office opens 30 minutes prior to first matinee screening)",
+    "venue_grounding": {
+      "is_grounded": true,
+      "trust_weight": 1,
+      "source": "venue_detailer_ai",
+      "last_grounded_at": "2026-11-09T20:00:00.000Z"
+    },
+    "last_grounded_at": "2026-11-09T20:00:00.000Z",
+    "access_parking": null,
+    "access_seating": null,
+    "payment_methods": "Visa, MasterCard, Amex, Debit, Apple Pay, Google Pay, Landmark EXTRAS",
+    "water_refill_station": null,
+    "step_free_entrance": "Level street entrance with automatic doors and reserved wheelchair/companion recliner spaces in all 12 auditoriums",
+    "elevator_lift": "Escalators and full passenger elevator serving the upper theatre concourse",
+    "accessible_washrooms": "Wheelchair-accessible washrooms on the main theatre concourse",
+    "sensory_calibrations": null,
+    "hearing_loop": "Fidelio assistive listening devices and CaptiView closed-captioning displays available free at Guest Services",
+    "service_animals": "Certified guide and service animals welcome in all auditoriums",
+    "outside_food_policy": "No outside food or beverages permitted inside auditoriums",
+    "coat_check": null,
+    "on_site_fnb": "Full cinema Marketplace concession serving fresh buttered popcorn, freestyle fountain drinks, pretzel bites, and hot dogs",
+    "film_runtime_minutes": null,
+    "film_language_subtitles": null,
+    "projection_format": null,
+    "print_condition_notes": null,
+    "concession_alcohol": null,
+    "festival_pass_rules": null,
+    "seat_reservation_type": null,
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Verified-138D",
+    "budget_qualified_under_50": true,
+    "curator_notes": null,
+    "curator_instructions": null,
+    "proof_keyframes": {
+      "cart": null,
+      "schedule": null,
+      "venue": null
+    },
+    "dimension_audit": {
+      "D001_event_name": {
+        "status": "verified",
+        "value": "Reel Deals & Indie Screenings",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D002_event_num_perm": {
+        "status": "verified",
+        "value": "Event_Num_Perm_000001316",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D003_event_num_card": {
+        "status": "verified",
+        "value": "Event_Num_Card_000000263",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D004_category": {
+        "status": "verified",
+        "value": "cinema",
+        "categories": [
+          "cinema"
+        ],
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D005_tags": {
+        "status": "verified",
+        "value": [
+          "movies"
+        ],
+        "subTags": [
+          "movies"
+        ],
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D006_lifecycle_type": {
+        "status": "verified",
+        "value": "time_bound_event",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D007_event_archetype": {
+        "status": "verified",
+        "value": "cinema",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D008_restrictions": {
+        "status": "verified",
+        "value": "All Ages",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D009_holiday_affiliation": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D101_tier1_checkout": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D102_tier2_event_page": {
+        "status": "verified",
+        "value": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D103_tier3_calendar": {
+        "status": "verified",
+        "value": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D104_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D105_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D106_best_available_link": {
+        "status": "verified",
+        "value": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+        "best_tier": "Tier 2: Event Page",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D107_operational_status": {
+        "status": "verified",
+        "value": "available",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D108_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D109_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D110_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D201_tier1_name": {
+        "status": "verified",
+        "value": "General Admission",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D202_tier1_price_base": {
+        "status": "verified",
+        "value": 13,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D203_tier1_price_fee": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D204_tier1_price_tax": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D205_tier1_price_read": {
+        "status": "verified",
+        "value": 13,
+        "quote": "$13.00 CAD",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D205_tier1_price_calculated": {
+        "status": "verified",
+        "value": 13,
+        "formula": "base($13) + fee($0) + tax($0) + other($0)",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D205_tier1_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "note": "Exact match",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D205_tier1_price_all_in": {
+        "status": "verified",
+        "value": 13,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D206_tier2_name": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D207_tier2_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D208_tier2_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D209_tier2_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D210_tier2_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D210_tier2_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D210_tier2_discrepancy_delta": {
+        "status": "none_available",
+        "delta": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D210_tier2_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D211_tier3_name": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D212_tier3_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D213_tier3_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D214_tier3_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D215_tier3_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D215_tier3_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D215_tier3_discrepancy_delta": {
+        "status": "none_available",
+        "delta": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D215_tier3_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D216_tier_count_verified": {
+        "status": "verified",
+        "count": 1,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D217_pricing_model": {
+        "status": "verified",
+        "value": "flat_ticket",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D218_budget_qualified_under_50": {
+        "status": "verified",
+        "qualified": true,
+        "total": 13,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D219_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D221_ticket_provider": {
+        "status": "verified",
+        "value": "Venue Direct / Civic Portal",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D222_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D301_lineup": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D302_artist": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D303_date": {
+        "status": "verified",
+        "value": "2026-11-17",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D304_showings_slots": {
+        "status": "verified",
+        "slot_count": 3,
+        "showings": [
+          {
+            "slot": 1,
+            "date": "2026-11-10",
+            "start_time": "6:30 PM",
+            "doors_time": null,
+            "end_time": null,
+            "status": "concluded",
+            "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+          },
+          {
+            "slot": 2,
+            "date": "2026-11-13",
+            "start_time": "7:00 PM",
+            "doors_time": null,
+            "end_time": null,
+            "status": "concluded",
+            "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+          },
+          {
+            "slot": 3,
+            "date": "2026-11-17",
+            "start_time": "6:30 PM",
+            "doors_time": null,
+            "end_time": null,
+            "status": "upcoming",
+            "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+          }
+        ],
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D305_doors_time": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D306_start_time": {
+        "status": "verified",
+        "value": "6:30 PM",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D307_end_time": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "none_available",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D308_dateSchedule": {
+        "status": "verified",
+        "value": "2026-11-17 • 6:30 PM",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D309_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D310_synopsis": {
+        "status": "verified",
+        "value": "Enjoy luxury heated power-recliner seating at Landmark Cinemas Guildford Town Centre with $13 Reel Deals Tuesdays, Monday Mystery Movies, and curated indie cinema screenings.",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D311_festival_affiliation": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D401_venue_name": {
+        "status": "verified",
+        "value": "Landmark Cinemas Guildford",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D402_full_address": {
+        "status": "verified",
+        "value": "15051 101 Ave, Surrey, BC V3R 7Z1",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D403_coordinates": {
+        "status": "verified",
+        "value": [
+          49.1872,
+          -122.8038
+        ],
+        "source_tool": "venue_detailer_ai",
+        "audited_at": "2026-11-09T20:00:00.000Z"
+      },
+      "D404_neighborhood": {
+        "status": "verified",
+        "value": "Guildford",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D405_access_model": {
+        "status": "verified",
+        "value": "ticketed_admission",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D406_environment_type": {
+        "status": "verified",
+        "value": "indoor",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D407_weekly_hours": {
+        "status": "verified",
+        "value": "Daily: 11:30 AM - 11:30 PM (Box office opens 30 minutes prior to first matinee screening)",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D408_transit_waypoints": {
+        "status": "verified",
+        "transit": "Adjacent to Guildford Town Centre Bus Exchange (R1 King George / Guildford RapidBus, #320, #326, #335, #337, #501)",
+        "waypoints": [],
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D501_step_free_entrance": {
+        "status": "verified",
+        "value": "Level street entrance with automatic doors and reserved wheelchair/companion recliner spaces in all 12 auditoriums",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D502_elevator_lift": {
+        "status": "verified",
+        "value": "Escalators and full passenger elevator serving the upper theatre concourse",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D503_accessible_washrooms": {
+        "status": "verified",
+        "value": "Wheelchair-accessible washrooms on the main theatre concourse",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D504_sensory_calibrations": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D505_hearing_loop": {
+        "status": "verified",
+        "value": "Fidelio assistive listening devices and CaptiView closed-captioning displays available free at Guest Services",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D506_service_animals": {
+        "status": "verified",
+        "value": "Certified guide and service animals welcome in all auditoriums",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D601_on_site_fnb": {
+        "status": "verified",
+        "value": "Full cinema Marketplace concession serving fresh buttered popcorn, freestyle fountain drinks, pretzel bites, and hot dogs",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D602_coffee_benchmark": {
+        "status": "verified",
+        "value": "$4.50 CAD (Fountain drink / hot beverage)",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D603_beer_benchmark": {
+        "status": "none_available",
+        "value": "none_available",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D604_meal_benchmark": {
+        "status": "verified",
+        "value": "$14.50 CAD (Popcorn & drink movie combo)",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D605_outside_food_policy": {
+        "status": "verified",
+        "value": "No outside food or beverages permitted inside auditoriums",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D606_coat_check": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D607_payment_methods": {
+        "status": "verified",
+        "value": "Visa, MasterCard, Amex, Debit, Apple Pay, Google Pay, Landmark EXTRAS",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D608_water_refill_station": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D711_film_runtime": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D712_film_language_subtitles": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D713_projection_format": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D714_print_condition_notes": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D715_concession_alcohol": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D716_festival_pass_rules": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D717_seat_reservation_type": {
+        "status": "search_exhausted_null",
+        "value": null,
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D721_stage_seating_layout": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "live_stage"
+      },
+      "D722_intermission_details": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "live_stage"
+      },
+      "D723_sound_curfew_time": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "live_stage"
+      },
+      "D724_earplug_availability": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "live_stage"
+      },
+      "D725_stage_sightlines": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "live_stage"
+      },
+      "D731_materials_provided": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D732_take_home_outcome": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D733_workshop_capacity_cap": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D734_registration_cutoff": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D735_prerequisite_skill_level": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D736_instructor_credentials": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "workshop"
+      },
+      "D741_table_cover_fee": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D742_minimum_fnb_spend": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D743_table_time_limit": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D744_game_library_size": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D745_rules_teacher_present": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D746_tournament_prizes": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "social_gaming"
+      },
+      "D751_trail_terrain_surface": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D752_pet_leash_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D753_seasonal_washrooms": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D754_equipment_rentals": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D755_picnic_shelter_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "civic_park"
+      },
+      "D761_exhibition_run_dates": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D762_special_exhibit_surcharge": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D763_docent_tour_schedule": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D764_bag_check_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "museum_gallery"
+      },
+      "D771_digital_waiver_required": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D772_required_safety_gear": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D773_locker_availability": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D774_physical_intensity_level": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D775_rainout_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "active_rec"
+      },
+      "D781_location_reveal_protocol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D782_byo_seating_policy": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D783_open_mic_signup_protocol": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D784_organizer_channel": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "roving_series"
+      },
+      "D791_festival_hub_directory": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D792_festival_pass_type": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D793_rush_seating_rules": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D794_central_box_office": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D795_volunteer_ticket_exchange": {
+        "status": "not_applicable",
+        "value": null,
+        "archetype_required": "festival"
+      },
+      "D801_srsa_compliance": {
+        "status": "verified",
+        "compliant": true,
+        "single_publisher": "ripper/compile_catalog.js",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D802_multi_layer_provenance": {
+        "status": "verified",
+        "sources": {
+          "schedules": "layer_schedules",
+          "box_office": "stagehand_layer_box_office",
+          "editorial": "ai_semantic_enricher",
+          "venue": "venue_master_registry"
+        },
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D803_spa_hydration_provenance": {
+        "status": "verified",
+        "method": "stagehand_live_cart",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D804_active_showings": {
+        "status": "verified",
+        "count": 1,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D805_archived_showings": {
+        "status": "verified",
+        "count": 2,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D806_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "curator_note": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D807_proof_keyframes": {
+        "status": "verified",
+        "cart": null,
+        "schedule": null,
+        "venue": null,
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D808_timestamp_lockstep": {
+        "status": "verified",
+        "last_pulse_qc_at": "2026-11-15T15:05:55.239Z",
+        "last_content_qc_at": "2026-11-15T15:05:55.239Z",
+        "last_full_qc_at": "2026-11-15T15:05:55.239Z",
+        "last_qc_audited_at": "2026-11-15T15:05:55.239Z"
+      },
+      "D809_civic_provider_rules": {
+        "status": "search_exhausted_null",
+        "rules": null,
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-11-15T15:05:55.239Z"
+      }
+    },
+    "last_qc_audited_at": "2026-11-15T15:05:55.239Z",
+    "last_pulse_qc_at": "2026-11-15T15:05:55.239Z",
+    "last_content_qc_at": "2026-11-15T15:05:55.239Z",
+    "last_full_qc_at": "2026-11-15T15:05:55.239Z",
+    "last_compiled_batch_at": "2026-11-15T15:05:55.239Z",
+    "candidate_tier1_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+    "candidate_tier1_source": "verified_municipal_schedule",
+    "candidate_tier1_confidence": 1,
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 13,
+        "price_base": 13,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 13,
+        "price_calculated": 13,
+        "price_all_in": 13,
+        "is_available": true
+      }
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 13,
+        "price_base": 13,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 13,
+        "price_calculated": 13,
+        "price_delta": 0,
+        "label": "$13.00 CAD",
         "isAvailable": true
       }
     ]

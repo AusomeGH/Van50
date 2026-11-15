@@ -952,8 +952,8 @@ function parseWeeklyHoursTo7DayObject(rawWh, fallbackScheduleStr, isDropIn) {
   const withoutParens = cleaned.replace(/\(([^)]*)\)/g, (m, inner) => {
     const trimmedInner = inner.trim();
     if (/^closed\b/i.test(trimmedInner) ||
-        /^(?:mon|tue|wed|thu|fri|sat|sun)[a-z/&-]*\s+until\b/i.test(trimmedInner) ||
-        /^(?:open\s+)?until\s+\d{1,2}(?::\d{2})?\s*(?:AM|PM|Midnight)\s+on\s+(?:mon|tue|wed|thu|fri|sat|sun)/i.test(trimmedInner)) {
+      /^(?:mon|tue|wed|thu|fri|sat|sun)[a-z/&-]*\s+until\b/i.test(trimmedInner) ||
+      /^(?:open\s+)?until\s+\d{1,2}(?::\d{2})?\s*(?:AM|PM|Midnight)\s+on\s+(?:mon|tue|wed|thu|fri|sat|sun)/i.test(trimmedInner)) {
       return '; ' + trimmedInner;
     }
     return '';
@@ -1164,11 +1164,11 @@ function inferHolidaySubTags(event) {
     out.add('holiday-market');
   }
   if (!out.has('faith-based') && (holAff === 'christmas' || holAff === 'winter-holiday-season' || holAff === 'new-years' ||
-      /\b(santa|nutcracker|panto|pantomime|ugly\s+sweater|keithmas|krampus|gingerbread|winter\s+solstice|polar\s+bear\s+swim|holiday\s+comedy|holiday\s+trivia|yuletide)\b/i.test(titleDesc))) {
+    /\b(santa|nutcracker|panto|pantomime|ugly\s+sweater|keithmas|krampus|gingerbread|winter\s+solstice|polar\s+bear\s+swim|holiday\s+comedy|holiday\s+trivia|yuletide)\b/i.test(titleDesc))) {
     out.add('winter-festive');
   }
   if (holAff === 'diwali' || holAff === 'vaisakhi' || holAff === 'lunar-new-year' || holAff === 'dia-de-los-muertos' ||
-      /\b(diwali|vaisakhi|lunar\s+new\s+year|chinese\s+new\s+year|dia\s+de\s+los\s+muertos|day\s+of\s+the\s+dead|lion\s+dance)\b/i.test(titleDesc)) {
+    /\b(diwali|vaisakhi|lunar\s+new\s+year|chinese\s+new\s+year|dia\s+de\s+los\s+muertos|day\s+of\s+the\s+dead|lion\s+dance)\b/i.test(titleDesc)) {
     out.add('cultural-festival');
   }
 
@@ -2775,7 +2775,7 @@ function setupEventListeners() {
         ].filter(Boolean).join('\n');
         const mailtoHref = `mailto:Van50.Submit@gmail.com?subject=${encodeURIComponent(`[Van50 Price Update] ${venueName}`)}&body=${encodeURIComponent(summaryLines)}`;
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(summaryLines).catch(() => {});
+          navigator.clipboard.writeText(summaryLines).catch(() => { });
         }
         if (statusBox) {
           statusBox.style.display = 'block';
@@ -7102,9 +7102,9 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               <span class="category-badge-text">${catMeta.label}</span>
             </button>
             ${(Array.isArray(ev.themeBadges) && ev.themeBadges.length > 0) ? ev.themeBadges.map(tb => {
-      const isSelected = state.selectedThemeFilter === tb.key;
-      const showIcon = Boolean(tb.icon && !String(tb.label || '').startsWith(tb.icon));
-      return `
+    const isSelected = state.selectedThemeFilter === tb.key;
+    const showIcon = Boolean(tb.icon && !String(tb.label || '').startsWith(tb.icon));
+    return `
                 <div class="card-theme-badge-pill ${isSelected ? 'active' : ''}">
                   <button
                     type="button"
@@ -7124,7 +7124,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
                   >✕</button>
                 </div>
               `;
-    }).join('') : ''}
+  }).join('') : ''}
             ${expandedContextSubBadgeHtml}
           </div>
 
@@ -7755,7 +7755,7 @@ function initCommunityFeedbackModal() {
           : `[Van50 Show Suggestion / Feedback]`;
         const mailtoHref = `mailto:Van50.Submit@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(bodyLines)}`;
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(bodyLines).catch(() => {});
+          navigator.clipboard.writeText(bodyLines).catch(() => { });
         }
         if (alertBox) {
           alertBox.style.display = 'block';

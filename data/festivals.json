@@ -871,8 +871,8 @@
     "aliases": [
       "FAN EXPO Vancouver 2026"
     ],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "approved",
+    "approvalStatus": "approved",
     "discovered_from_event_id": "fan-expo-hq-fan-expo-vancouver-2026-11-27",
     "venue_name": "Vancouver Convention Centre",
     "location": "1055 Canada Pl, Vancouver, BC",
@@ -887,7 +887,8 @@
     "coordinates": [
       49.2889,
       -123.1115
-    ]
+    ],
+    "approvedAt": "2026-11-15"
   },
   {
     "id": "winter-trout-fest",
@@ -1128,7 +1129,9 @@
     "slug": "vandusen-festival-of-lights",
     "name": "VanDusen Festival of Lights",
     "festival_name": "VanDusen Festival of Lights",
-    "aliases": ["Festival of Lights at VanDusen"],
+    "aliases": [
+      "Festival of Lights at VanDusen"
+    ],
     "status": "merged_into_holiday",
     "approvalStatus": "merged",
     "merged_into_holiday": "christmas",
@@ -1141,14 +1144,16 @@
     "category": "outdoors",
     "website_url": "https://vandusengarden.org/explore/events/festival-of-lights/",
     "description": "Magical winter walk through 15 acres of VanDusen Botanical Garden illuminated with over one million twinkling lights and themed displays.",
-    "price": 29.10
+    "price": 29.1
   },
   {
     "id": "vancouver-christmas-market",
     "slug": "vancouver-christmas-market",
     "name": "Vancouver Christmas Market",
     "festival_name": "Vancouver Christmas Market",
-    "aliases": ["German Christmas Market Vancouver"],
+    "aliases": [
+      "German Christmas Market Vancouver"
+    ],
     "status": "merged_into_holiday",
     "approvalStatus": "merged",
     "merged_into_holiday": "christmas",
@@ -1168,7 +1173,11 @@
     "slug": "bright-nights",
     "name": "Bright Nights",
     "festival_name": "Bright Nights",
-    "aliases": ["Bright Nights in Stanley Park", "Bright Nights Surrey", "Bright Nights Noel Booth"],
+    "aliases": [
+      "Bright Nights in Stanley Park",
+      "Bright Nights Surrey",
+      "Bright Nights Noel Booth"
+    ],
     "status": "merged_into_holiday",
     "approvalStatus": "merged",
     "merged_into_holiday": "christmas",
