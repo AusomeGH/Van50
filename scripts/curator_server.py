@@ -1683,29 +1683,71 @@ const DISCOVERY_SOURCES = {json.dumps(discovery_sources, indent=2, ensure_ascii=
 
 
 def ensure_event_catalog_fields(ev: dict) -> dict:
-    """Ensures an event promoted to events.json meets all 7-dimension schema requirements."""
+    """Ensures an event promoted to events.json preserves canonical 0XX–8XX schema fields without fabricating dates."""
+    ev_id = ev.get("id") or ev.get("event_id")
+    if ev_id:
+        ev["id"] = ev_id
+        ev["event_id"] = ev_id
+    title = ev.get("title") or ev.get("event_name") or ""
+    ev["title"] = title
+    ev["event_name"] = title
+    venue = ev.get("venue") or ev.get("venue_name") or ""
+    ev["venue"] = venue
+    ev["venue_name"] = venue
+    addr = ev.get("full_address") or ev.get("address") or ""
+    ev["address"] = addr
+    ev["full_address"] = addr
+
     category = ev.get("category") or "shows"
     ev["category"] = category
     if not ev.get("categories"):
         ev["categories"] = [category]
-    if not ev.get("frequency") or ev.get("frequency") not in {'limited-run', 'annual', 'one-off', 'daily', 'weekly', 'monthly', 'seasonal'}:
-        ev["frequency"] = "one-off"
+    if not ev.get("categoryLabel"):
+        ev["categoryLabel"] = str(category).upper()
+    if not ev.get("frequency"):
+        lifecycle = ev.get("lifecycle_type") or "time_bound_event"
+        ev["frequency"] = "Perennial Drop-In" if lifecycle == "perennial_drop_in" else "One-off"
     if not ev.get("frequencyLabel"):
-        ev["frequencyLabel"] = "One-off Event"
-    if not ev.get("confirmedDates") and not ev.get("startIso"):
-        ev["confirmedDates"] = ["2026-09-25"]
-        ev["startIso"] = "2026-09-25T19:00:00-07:00"
+        ev["frequencyLabel"] = ev["frequency"]
+
+    # Remove any legacy fabricated 2026-09-25 placeholder date
+    if ev.get("confirmedDates") == ["2026-09-25"]:
+        ev.pop("confirmedDates", None)
+    if str(ev.get("startIso") or "").startswith("2026-09-25"):
+        ev["startIso"] = None
+    if ev.get("date") == "2026-09-25":
+        ev["date"] = None
+
+    real_date = ev.get("date") or ((ev.get("show_1") or {}).get("date") if isinstance(ev.get("show_1"), dict) else None)
+    if real_date and real_date != "Upcoming" and not ev.get("startIso"):
+        ev["startIso"] = f"{real_date}T19:00:00-07:00"
+
     if not ev.get("coordinates") or not isinstance(ev.get("coordinates"), list) or len(ev.get("coordinates")) != 2:
-        ev["coordinates"] = [49.2827, -123.1207]
+        if isinstance(ev.get("lat"), (int, float)) and isinstance(ev.get("lng"), (int, float)):
+            ev["coordinates"] = [float(ev["lat"]), float(ev["lng"])]
+        else:
+            ev["coordinates"] = [49.2827, -123.1207]
+    ev["lat"] = float(ev["coordinates"][0])
+    ev["lng"] = float(ev["coordinates"][1])
+
     if not ev.get("transitInfo") or len(str(ev.get("transitInfo")).strip()) < 5:
-        ev["transitInfo"] = "Transit accessible via TransLink SkyTrain / bus service"
+        ev["transitInfo"] = ev.get("transit_info") or "Transit accessible via TransLink SkyTrain / bus service"
+    ev["transit_info"] = ev["transitInfo"]
+
     desc = str(ev.get("description") or "").strip()
     if len(desc) < 50:
-        venue_str = ev.get("venue") or "Vancouver"
-        ev["description"] = f"Live {category} performance and cultural presentation hosted at {venue_str}. Curated and verified under $50 CAD in Vancouver."
-    price = float(ev.get("price", 0.0))
+        venue_str = venue or "Metro Vancouver"
+        ev["description"] = f"Live {category} presentation hosted at {venue_str}. Curated and verified under $50 CAD in Metro Vancouver."
+    price = float(ev.get("price", ev.get("price_all_in", 0.0)) or 0.0)
+    ev["price"] = price
+    ev["price_all_in"] = price
     ev["pricingType"] = "free" if price == 0 else "paid"
     ev["isFree"] = (price == 0)
+    ev["budget_qualified_under_50"] = (price <= 50.0)
+    sold_out = bool(ev.get("isSoldOut", ev.get("is_sold_out", False)))
+    ev["isSoldOut"] = sold_out
+    ev["is_sold_out"] = sold_out
+    ev["operational_status"] = "sold_out" if sold_out else "available"
     return ev
 
 
@@ -1992,13 +2034,23 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                             has_api_key = True
                 except Exception:
                     pass
+            import shutil as _shutil
+            agy_candidates = [
+                os.environ.get("AGY_BIN_PATH", ""),
+                os.path.join(os.path.expanduser("~"), ".gemini", "bin", "agy.exe" if os.name == "nt" else "agy"),
+                os.path.join(os.path.expanduser("~"), ".gemini", "antigravity", "bin", "agy.exe" if os.name == "nt" else "agy"),
+                _shutil.which("agy") or ""
+            ]
+            has_agy_cli = any(p and os.path.exists(p) for p in agy_candidates)
             return self._send_json(200, {
                 "running": is_running,
                 "pid": proc_pid,
-                "ready": has_ripper and has_api_key,
+                "ready": has_ripper and (has_agy_cli or has_api_key),
                 "hasRipper": has_ripper,
+                "hasAgyCli": has_agy_cli,
                 "hasApiKey": has_api_key,
-                "pipeline": f"Stagehand Hybrid {get_catalog_dimensions_count()}-Dimension Ripper"
+                "engine": "antigravity" if has_agy_cli else "stagehand",
+                "pipeline": f"Antigravity 1-Event Worker & Stagehand {get_catalog_dimensions_count()}-Dimension Pipeline"
             })
 
         # API: Stagehand Live Streaming SSE
@@ -2293,7 +2345,11 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except (ValueError, TypeError):
                     p = 0.0
                 r = str(ev.get("flagReason", "")).lower()
-                if p > 50.0 or any(k in r for k in ["strictly exceeds", "exceeds $50", "over-budget"]):
+                is_appeal = bool(
+                    ev.get("ai_curator_appeal")
+                    or ((ev.get("dimension_audit") or {}).get("D806_curator_lock") or {}).get("ai_curator_appeal")
+                )
+                if not is_appeal and (p > 50.0 or any(k in r for k in ["strictly exceeds", "exceeds $50", "over-budget"])):
                     continue
                 filtered_q.append(ev)
 
@@ -3269,10 +3325,91 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     "sourceUrl": source_url
                 }
             }
-            event_data["curatorNote"] = curator_note
-            event_data["category"] = category
-            event_data["isSoldOut"] = bool(event_data.get("isSoldOut", False))
-            event_data = ensure_event_catalog_fields(event_data)
+            # Load queued canonical 0XX–8XX record first so we never strip dimension_audit or venue fields
+            queued_record = {}
+            if os.path.exists(MANUAL_QUEUE_PATH):
+                try:
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as qf:
+                        q_raw = json.load(qf)
+                        for q_ev in q_raw.get("quarantinedEvents", []):
+                            if (q_ev.get("id") or q_ev.get("event_id")) == ev_id:
+                                queued_record = dict(q_ev)
+                                break
+                except Exception:
+                    pass
+
+            merged_card = dict(queued_record)
+            for k, v in event_data.items():
+                if v is not None and v != "":
+                    merged_card[k] = v
+
+            # Hydrate physical address & coordinates from venues.json if missing
+            venue_lookup_name = str(merged_card.get("venue_name") or merged_card.get("venue") or "").strip()
+            if (not merged_card.get("full_address") and not merged_card.get("address")) and venue_lookup_name and os.path.exists(VENUES_PATH):
+                try:
+                    with open(VENUES_PATH, "r", encoding="utf-8") as vf:
+                        v_list = json.load(vf)
+                        for v_obj in (v_list if isinstance(v_list, list) else []):
+                            vn = str(v_obj.get("venue_name") or v_obj.get("name") or "").strip()
+                            if vn and vn.lower() == venue_lookup_name.lower():
+                                v_addr = v_obj.get("full_address") or v_obj.get("address") or ""
+                                if v_addr:
+                                    merged_card["address"] = v_addr
+                                    merged_card["full_address"] = v_addr
+                                if v_obj.get("coordinates"):
+                                    merged_card["coordinates"] = v_obj["coordinates"]
+                                if v_obj.get("neighborhood") and not merged_card.get("neighborhood"):
+                                    merged_card["neighborhood"] = v_obj["neighborhood"]
+                                if v_obj.get("access_model") and not merged_card.get("access_model"):
+                                    merged_card["access_model"] = v_obj["access_model"]
+                                break
+                except Exception:
+                    pass
+
+            lifecycle = merged_card.get("lifecycle_type") or (
+                "perennial_drop_in" if str(merged_card.get("frequency") or "").lower() in ("perennial drop-in", "daily") else "time_bound_event"
+            )
+            merged_card["lifecycle_type"] = lifecycle
+
+            show_date = merged_card.get("date") or (merged_card.get("startIso") or "")[:10]
+            if not show_date and isinstance(merged_card.get("show_1"), dict):
+                show_date = merged_card["show_1"].get("date")
+            if show_date in ("2026-09-25", "Upcoming", "null", "None"):
+                show_date = None
+
+            if lifecycle != "perennial_drop_in" and not show_date:
+                return self._send_json(400, {
+                    "error": "Cannot manually approve a time-bound event without a verified YYYY-MM-DD date. Add a curator note with the date/link and click 'Re-Check with AI' first."
+                })
+            if not str(merged_card.get("full_address") or merged_card.get("address") or "").strip():
+                return self._send_json(400, {
+                    "error": f"Cannot manually approve '{merged_card.get('title')}' without a grounded physical civic street address for '{venue_lookup_name}'. Run Venue Detailer or Re-Check with AI first."
+                })
+
+            if show_date:
+                merged_card["date"] = show_date
+
+            merged_card["price"] = price
+            merged_card["price_all_in"] = price
+            merged_card["priceLabel"] = price_label
+            merged_card["checkoutVerification"] = event_data["checkoutVerification"]
+            merged_card["curatorNote"] = curator_note
+            merged_card["curator_notes"] = curator_note
+            merged_card["curator_instructions"] = curator_note
+            merged_card["category"] = category
+            merged_card["isSoldOut"] = bool(event_data.get("isSoldOut", False))
+            merged_card["is_sold_out"] = merged_card["isSoldOut"]
+            merged_card["approval_status"] = merged_card.get("approval_status") or "Curator-Approved"
+            if source_url:
+                merged_card["url"] = merged_card.get("url") or source_url
+                merged_card["ticket_url"] = merged_card.get("ticket_url") or source_url
+                merged_card["details_url"] = merged_card.get("details_url") or source_url
+
+            # Clean quarantine-only markers before promoting to active catalog
+            for q_key in ("quarantineReason", "quarantine_reason", "flagReason", "reviewStatus"):
+                merged_card.pop(q_key, None)
+
+            merged_card = ensure_event_catalog_fields(merged_card)
 
             # 1. Add/update in data/events.json (Master active list)
             active_list = []
@@ -3285,43 +3422,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     print(f"[WARN] Failed to read events.json: {ex}")
 
             active_list = [x for x in active_list if (x.get("event_id") or x.get("id")) != ev_id]
-
-            show_date = (event_data.get("startIso") or "")[:10]
-            if not show_date and event_data.get("dateSchedule"):
-                show_date = event_data.get("dateSchedule")
-
-            active_item = {
-                "event_id": ev_id,
-                "event_name": event_data.get("title", ""),
-                "category": event_data.get("category", "General"),
-                "venue_name": event_data.get("venue", ""),
-                "full_address": event_data.get("address", ""),
-                "neighborhood": event_data.get("neighborhood", ""),
-                "description": event_data.get("description", ""),
-                "pricing_all_in_cad": {
-                    "regular": price,
-                    "senior": None,
-                    "student": None,
-                    "member": None
-                },
-                "show_1": {
-                    "date": show_date or "Upcoming",
-                    "start_time": (event_data.get("startIso") or "")[11:16] or "10:30",
-                    "end_time": (event_data.get("endIso") or "")[11:16] or "16:30",
-                    "cost": price
-                },
-                "show_2": None,
-                "show_3": None,
-                "discovery_url": source_url,
-                "details_url": source_url,
-                "ticket_url": event_data.get("websiteUrl") or source_url,
-                "ticket_provider": event_data.get("ticketProvider", event_data.get("provider", "Direct")),
-                "tags": event_data.get("subTags", [category.lower(), "curator-verified"]),
-                "festival_affiliation": "None",
-                "approval_status": "Curator-Approved",
-                "curator_notes": curator_note
-            }
-            active_list.append(active_item)
+            active_list.append(merged_card)
             with open(EVENTS_PATH, "w", encoding="utf-8") as af:
                 json.dump(active_list, af, indent=2, ensure_ascii=False)
 
@@ -3440,15 +3541,20 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception as e:
                     print(f"[WARN] Failed to clean events_active.json: {e}")
 
-            # Remove from events.json if present
+            # Remove from events.json if present (supports both list and dict formats)
             if os.path.exists(EVENTS_PATH):
                 try:
                     with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
                         db = json.load(ef)
-                    db["events"] = [e for e in db.get("events", []) if e.get("id") != ev_id]
-                    db.setdefault("metadata", {})["totalEvents"] = len(db["events"])
-                    with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
-                        json.dump(db, ef, indent=2, ensure_ascii=False)
+                    if isinstance(db, list):
+                        cleaned = [e for e in db if (e.get("id") or e.get("event_id")) != ev_id]
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                            json.dump(cleaned, ef, indent=2, ensure_ascii=False)
+                    elif isinstance(db, dict):
+                        db["events"] = [e for e in db.get("events", []) if (e.get("id") or e.get("event_id")) != ev_id]
+                        db.setdefault("metadata", {})["totalEvents"] = len(db["events"])
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                            json.dump(db, ef, indent=2, ensure_ascii=False)
                 except Exception as e:
                     print(f"[WARN] Failed to clean events.json: {e}")
 
@@ -5372,10 +5478,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             auto_approve = bool(payload.get("auto_approve", False))
             max_events = int(payload.get("maxEvents", 5))
 
-            if mode != "catalog_batch" and (not target_url or not target_url.startswith("http")):
-                return self._send_json(400, {"error": "Missing or invalid HTTP/HTTPS target URL"})
+            if mode != "catalog_batch" and mode not in ("enrich", "compile") and (
+                not target_url or not (target_url.startswith("http") or target_url.startswith("agy://"))
+            ):
+                return self._send_json(400, {"error": "Missing or invalid HTTP/HTTPS or agy:// target URL"})
 
-            if mode == "catalog_batch":
+            if target_url.startswith("agy://"):
+                script_name = "hybrid_ripper.js"
+            elif mode == "catalog_batch":
                 script_name = "event_batch_qc.js"
             elif mode == "calendar" or mode == "harvester":
                 script_name = "calendar_harvester.js"
@@ -5480,10 +5590,17 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 if auto_approve:
                     cmd.append("--auto-approve")
 
+            child_env = dict(os.environ)
+            if payload.get("engine") == "antigravity" or target_url.startswith("agy://") or "VAN50_ENGINE" not in child_env:
+                child_env["VAN50_ENGINE"] = payload.get("engine") or "antigravity"
+            if payload.get("model"):
+                child_env["VAN50_AGY_MODEL"] = str(payload.get("model"))
+
             try:
                 proc = subprocess.run(
                     cmd,
                     cwd=os.path.join(BASE_DIR, "ripper"),
+                    env=child_env,
                     capture_output=True,
                     text=True,
                     encoding="utf-8",
@@ -5551,7 +5668,8 @@ def run_server(port=PORT):
     # Automated background python scheduler loop disabled
     with socketserver.ThreadingTCPServer(("127.0.0.1", port), CuratorRequestHandler) as httpd:
         print(f"[CURATOR SERVER] Listening on http://127.0.0.1:{port}/")
-        print(f"[CURATOR SERVER] Curator Studio: http://127.0.0.1:{port}/curator.html")
+        print(f"[CURATOR SERVER] Curator Studio (Antigravity): http://127.0.0.1:{port}/curator-agy.html")
+        print(f"[CURATOR SERVER] Curator Table View: http://127.0.0.1:{port}/curator-table.html")
         print(f"[CURATOR SERVER] Automated scheduler: DISABLED")
         httpd.serve_forever()
 

@@ -16313,7 +16313,7 @@ function initStagehandRipperUI() {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-    const totalEvents = events.length || 156;
+    const totalEvents = events.length || 263;
 
     let start = parseInt(startInput ? startInput.value : '1', 10);
     if (isNaN(start) || start < 1) start = 1;
@@ -16330,7 +16330,7 @@ function initStagehandRipperUI() {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-    const totalEvents = events.length || 156;
+    const totalEvents = events.length || 263;
 
     let start = parseInt(startInput ? startInput.value : '1', 10);
     if (isNaN(start) || start < 1) start = 1;
@@ -16351,8 +16351,12 @@ function initStagehandRipperUI() {
     const badge = document.getElementById('pipeline-range-count-badge');
     const hint = document.getElementById('pipeline-scope-hint');
     const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+    const allBtn = document.getElementById('btn-full-catalog-range');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-    const totalEvents = events.length || 156;
+    const totalEvents = events.length || 263;
+    if (startInput) startInput.max = String(totalEvents);
+    if (stopInput) stopInput.max = String(totalEvents);
+    if (allBtn) allBtn.textContent = `All (1–${totalEvents})`;
 
     let start = parseInt(startInput ? startInput.value : '1', 10) || 1;
     let stop = parseInt(stopInput ? stopInput.value : '1', 10) || 1;
@@ -16385,7 +16389,7 @@ function initStagehandRipperUI() {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-    const totalEvents = events.length || 156;
+    const totalEvents = events.length || 263;
 
     let start = parseInt(startInput ? startInput.value : '1', 10);
     if (isNaN(start) || start < 1) start = 1;
@@ -16400,10 +16404,16 @@ function initStagehandRipperUI() {
     const startInput = document.getElementById('pipeline-card-start');
     const stopInput = document.getElementById('pipeline-card-stop');
     const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
-    const totalEvents = events.length || 156;
+    const totalEvents = events.length || 263;
 
-    if (startInput) startInput.value = 1;
-    if (stopInput) stopInput.value = totalEvents;
+    if (startInput) {
+      startInput.max = String(totalEvents);
+      startInput.value = 1;
+    }
+    if (stopInput) {
+      stopInput.max = String(totalEvents);
+      stopInput.value = totalEvents;
+    }
     currentBatchSize = totalEvents;
 
     window.setPipelineScope('range');

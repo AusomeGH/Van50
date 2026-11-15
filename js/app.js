@@ -54,8 +54,7 @@ window.DAYS_OF_WEEK = window.DAYS_OF_WEEK || [
   { id: "thu", label: "Thu", full: "Thursday" },
   { id: "fri", label: "Fri", full: "Friday" },
   { id: "sat", label: "Sat", full: "Saturday" },
-  { id: "sun", label: "Sun", full: "Sunday" },
-  { id: "daily", label: "Daily Spots", icon: "☀️" }
+  { id: "sun", label: "Sun", full: "Sunday" }
 ];
 
 window.TIME_SLOTS = window.TIME_SLOTS || [
@@ -66,16 +65,17 @@ window.TIME_SLOTS = window.TIME_SLOTS || [
   { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
 ];
 
-window.CATEGORIES = window.CATEGORIES || [
-  { id: "all", label: "All", icon: "" },
-  { id: "free-public-access", label: "Free Public Access", icon: "" },
-  { id: "music", label: "Music", icon: "" },
-  { id: "shows", label: "Comedy & Stage", icon: "" },
-  { id: "festivals", label: "Festivals & Holidays", icon: "" },
-  { id: "markets", label: "Markets", icon: "" },
-  { id: "outdoors", label: "Outdoors", icon: "" },
-  { id: "cinema", label: "Cinema", icon: "" },
-  { id: "social", label: "Social & Arts", icon: "" }
+window.CATEGORIES = [
+  { id: "all", label: "All", shortLabel: "All", icon: "" },
+  { id: "music", label: "Music", shortLabel: "Music", icon: "" },
+  { id: "shows", label: "Comedy & Stage", shortLabel: "Comedy & Stage", icon: "" },
+  { id: "cinema", label: "Cinema", shortLabel: "Cinema", icon: "" },
+  { id: "outdoors", label: "Outdoors", shortLabel: "Outdoors", icon: "" },
+  { id: "arts", label: "Arts & Galleries", shortLabel: "Arts", icon: "" },
+  { id: "social", label: "Social & Games", shortLabel: "Social & Games", icon: "" },
+  { id: "markets", label: "Markets", shortLabel: "Markets", icon: "" },
+  { id: "festivals", label: "Festivals", shortLabel: "Festivals", icon: "" },
+  { id: "sports", label: "Sports & Rec", shortLabel: "Sports", icon: "" }
 ];
 
 window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
@@ -1185,11 +1185,11 @@ function getCardSemanticCategoryMeta(ev) {
   const arch = String(ev.event_archetype || ev.archetype || '').toLowerCase();
   const combined = `${titleStr} ${catLabel} ${subTagsStr}`;
 
-  if (cats.includes('trivia') || arch === 'social_gaming' || /\b(social\s*&\s*games|trivia\s*&\s*games|board\s*game|bingo|trivia|quiz)\b/i.test(combined)) {
+  if (cats.includes('trivia') || arch === 'social_gaming' || /\b(social\s*&\s*games|trivia\s*&\s*games|board\s*game|bingo|trivia|quiz|pinball|arcade)\b/i.test(combined)) {
     const isTrivia = /\b(trivia|quiz)\b/i.test(combined);
-    return { label: isTrivia ? 'Trivia' : 'Games', themeKey: 'games', filterId: 'trivia' };
+    return { label: isTrivia ? 'Trivia' : 'Games', themeKey: 'games', filterId: 'social' };
   }
-  if (cats.includes('cinema') || arch === 'cinema' || /\bindie\s*cinema\b/i.test(catLabel)) {
+  if (cats.includes('cinema') || cats.includes('movies') || arch === 'cinema' || /\bindie\s*cinema\b/i.test(catLabel)) {
     return { label: 'Cinema', themeKey: 'cinema', filterId: 'cinema' };
   }
   if (cats.includes('comedy') || /\b(comedy|stand-?up|improv)\b/i.test(`${titleStr} ${catLabel}`)) {
@@ -1207,14 +1207,20 @@ function getCardSemanticCategoryMeta(ev) {
   if (cats.includes('outdoors') || arch === 'civic_park' || (cats.includes('free-public-access') && /\b(park|beach|seawall|garden|trail|canyon|quay|pier|promenade|plaza|island|lights|walk)\b/i.test(`${ev.venue || ''} ${titleStr}`))) {
     return { label: 'Outdoors', themeKey: 'outdoors', filterId: 'outdoors' };
   }
-  if (/\b(theatre|theater|play|musical|panto|pantomime|ballet|opera|cabaret|drag|burlesque|fringe)\b/i.test(combined)) {
-    return { label: 'Theatre', themeKey: 'arts', filterId: 'arts' };
+  if (cats.includes('theatre') || /\b(theatre|theater|play|musical|panto|pantomime|ballet|opera|cabaret|drag|burlesque|fringe)\b/i.test(combined)) {
+    return { label: 'Theatre', themeKey: 'comedy', filterId: 'shows' };
   }
-  if (cats.includes('shows') || cats.includes('social') || cats.includes('arts') || cats.includes('free-public-access') || arch === 'museum_gallery' || arch === 'workshop') {
+  if (cats.includes('shows') || arch === 'live_stage') {
+    return { label: 'Stage', themeKey: 'comedy', filterId: 'shows' };
+  }
+  if (cats.includes('festivals') || arch === 'festival') {
+    return { label: 'Festival', themeKey: 'arts', filterId: 'festivals' };
+  }
+  if (cats.includes('arts') || cats.includes('culture') || arch === 'museum_gallery' || arch === 'workshop' || /\b(gallery|museum|exhibition|exhibit|workshop|art)\b/i.test(combined)) {
     return { label: 'Arts', themeKey: 'arts', filterId: 'arts' };
   }
-  if (cats.includes('festivals')) {
-    return { label: 'Festival', themeKey: 'arts', filterId: 'festivals' };
+  if (cats.includes('social') || cats.includes('activities')) {
+    return { label: 'Social', themeKey: 'games', filterId: 'social' };
   }
   return { label: 'Arts', themeKey: 'arts', filterId: 'arts' };
 }
@@ -2101,18 +2107,21 @@ async function loadCentralReference() {
   } catch (e) { }
 
 
-  // Also load quarantined manual review queue
-  try {
-    const rqRes = await fetch('data/manual_review_queue.json?v=5.2.2');
-    if (rqRes.ok) {
-      const rqData = await rqRes.json();
-      if (rqData.quarantinedEvents) {
-        window.MANUAL_REVIEW_QUEUE = rqData.quarantinedEvents;
-        updateReviewQueueBadge();
+  // Only fetch quarantined manual review queue when ?curator=1 is active (avoids 54KB public visitor payload)
+  const isCuratorParam = new URLSearchParams(window.location.search).get('curator') === '1';
+  if (isCuratorParam) {
+    try {
+      const rqRes = await fetch('data/manual_review_queue.json?v=5.2.2');
+      if (rqRes.ok) {
+        const rqData = await rqRes.json();
+        if (rqData.quarantinedEvents) {
+          window.MANUAL_REVIEW_QUEUE = rqData.quarantinedEvents;
+          updateReviewQueueBadge();
+        }
       }
+    } catch (err) {
+      console.log('Using offline embedded review queue.');
     }
-  } catch (err) {
-    console.log('Using offline embedded review queue.');
   }
 }
 
@@ -2372,6 +2381,10 @@ function setupEventListeners() {
   if (topToggleHideDaily) {
     topToggleHideDaily.addEventListener('click', () => {
       state.hideDaily = !state.hideDaily;
+      if (state.hideDaily && state.frequency === 'daily') {
+        state.frequency = 'all';
+        renderFrequencyPills();
+      }
       if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
       applyFiltersAndRender();
     });
@@ -2490,31 +2503,7 @@ function setupEventListeners() {
     });
   }
 
-  // Surprise Outing Roulette Handlers
-  const openRouletteBtn = document.getElementById('roulette-btn');
-  const closeRouletteBtn = document.getElementById('close-roulette-modal');
-  const modal = document.getElementById('roulette-modal');
-
-  if (openRouletteBtn && modal) {
-    openRouletteBtn.addEventListener('click', () => {
-      modal.classList.add('active');
-      if (typeof window.initRouletteMachine === 'function') {
-        window.initRouletteMachine();
-      }
-    });
-  }
-
-  if (closeRouletteBtn && modal) {
-    closeRouletteBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-  }
-
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
-    });
-  }
+  // Surprise Outing Roulette is wired via #btn-open-roulette in js/roulette.js
 
   // More Filters Collapsible Toggle
   const toggleMoreBtn = document.getElementById('btn-toggle-more-filters');
@@ -2572,9 +2561,8 @@ function setupEventListeners() {
 
   window.syncSecondaryFiltersA11y = function () {
     if (!mobileFiltersSheet) return;
-    const isMobile = mobileBreakpointMql ? mobileBreakpointMql.matches : (window.innerWidth <= 768);
     const isOpen = mobileFiltersSheet.classList.contains('is-open');
-    if (isMobile && !isOpen) {
+    if (!isOpen) {
       mobileFiltersSheet.setAttribute('aria-hidden', 'true');
       mobileFiltersSheet.setAttribute('inert', '');
       mobileFiltersSheet.inert = true;
@@ -2589,16 +2577,29 @@ function setupEventListeners() {
     if (mobileFiltersSheet) mobileFiltersSheet.classList.add('is-open');
     if (mobileSheetBackdrop) mobileSheetBackdrop.classList.add('is-open');
     if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'true');
+    if (morePanel) {
+      morePanel.style.display = 'flex';
+      morePanel.classList.add('active');
+      if (toggleMoreBtn) {
+        toggleMoreBtn.classList.add('active');
+        toggleMoreBtn.setAttribute('aria-expanded', 'true');
+      }
+    }
     window.syncSecondaryFiltersA11y();
   };
 
   window.closeMobileFiltersSheet = function () {
-    setTimeout(() => window.syncSecondaryFiltersA11y && window.syncSecondaryFiltersA11y(), 0);
     if (mobileFiltersSheet) mobileFiltersSheet.classList.remove('is-open');
     if (mobileSheetBackdrop) mobileSheetBackdrop.classList.remove('is-open');
     if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'false');
     window.syncSecondaryFiltersA11y();
   };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
+      window.closeMobileFiltersSheet();
+    }
+  });
 
   if (mobileBreakpointMql) {
     if (typeof mobileBreakpointMql.addEventListener === 'function') {
@@ -2610,18 +2611,7 @@ function setupEventListeners() {
   window.addEventListener('resize', window.syncSecondaryFiltersA11y);
   window.syncSecondaryFiltersA11y();
 
-  window._legacyOpenMobileFiltersSheet = function () {
-    if (mobileFiltersSheet) mobileFiltersSheet.classList.add('is-open');
-    if (mobileSheetBackdrop) mobileSheetBackdrop.classList.add('is-open');
-    if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'true');
-  };
-
-  window.closeMobileFiltersSheet = function () {
-    setTimeout(() => window.syncSecondaryFiltersA11y && window.syncSecondaryFiltersA11y(), 0);
-    if (mobileFiltersSheet) mobileFiltersSheet.classList.remove('is-open');
-    if (mobileSheetBackdrop) mobileSheetBackdrop.classList.remove('is-open');
-    if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'false');
-  };
+  window._legacyOpenMobileFiltersSheet = window.openMobileFiltersSheet;
 
   window.resetSecondaryFilters = function () {
     state.region = 'all';
@@ -2665,29 +2655,7 @@ function setupEventListeners() {
   if (mobileSheetApplyBtn) mobileSheetApplyBtn.addEventListener('click', window.closeMobileFiltersSheet);
   if (mobileSheetResetBtn) mobileSheetResetBtn.addEventListener('click', window.resetSecondaryFilters);
 
-  // Manual Review Queue Modal Handlers
-  const openReviewQueueBtn = document.getElementById('btn-open-review-queue');
-  const closeReviewQueueBtn = document.getElementById('close-review-queue-btn');
-  const reviewQueueModal = document.getElementById('review-queue-modal');
-
-  if (openReviewQueueBtn && reviewQueueModal) {
-    openReviewQueueBtn.addEventListener('click', () => {
-      reviewQueueModal.classList.add('active'); reviewQueueModal.setAttribute('aria-hidden', 'false'); reviewQueueModal.removeAttribute('inert');
-      renderReviewQueueModal();
-    });
-  }
-
-  if (closeReviewQueueBtn && reviewQueueModal) {
-    closeReviewQueueBtn.addEventListener('click', () => {
-      reviewQueueModal.classList.remove('active'); reviewQueueModal.setAttribute('aria-hidden', 'true'); reviewQueueModal.setAttribute('inert', '');
-    });
-  }
-
-  if (reviewQueueModal) {
-    reviewQueueModal.addEventListener('click', (e) => {
-      if (e.target === reviewQueueModal) { reviewQueueModal.classList.remove('active'); reviewQueueModal.setAttribute('aria-hidden', 'true'); reviewQueueModal.setAttribute('inert', ''); }
-    });
-  }
+  // Curator Studio link (#btn-open-review-queue) navigates directly to curator-agy.html
 
   // Price Feedback Modal Handlers (Crowdsourced Pricing Transparency)
   const priceModal = document.getElementById('price-feedback-modal');
@@ -2797,6 +2765,32 @@ function setupEventListeners() {
         submitBtn.textContent = 'Submitting...';
       }
 
+      const sendStaticPriceFallback = () => {
+        const summaryLines = [
+          `Venue: ${venueName}`,
+          pintVal !== null ? `Cheapest Pint: $${pintVal.toFixed(2)} CAD` : null,
+          cocktailVal !== null ? `Cheapest Cocktail/Highball: $${cocktailVal.toFixed(2)} CAD` : null,
+          `Tax Included: ${isAllIn ? 'Yes (All-In)' : 'No (+BC Liquor Tax)'}`,
+          note ? `Note / Source: ${note}` : null
+        ].filter(Boolean).join('\n');
+        const mailtoHref = `mailto:Van50.Submit@gmail.com?subject=${encodeURIComponent(`[Van50 Price Update] ${venueName}`)}&body=${encodeURIComponent(summaryLines)}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(summaryLines).catch(() => {});
+        }
+        if (statusBox) {
+          statusBox.style.display = 'block';
+          statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
+          statusBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+          statusBox.style.color = '#6ee7b7';
+          statusBox.innerHTML = `✓ Prepared for Van50 Curators (copied to clipboard). <a href="${mailtoHref}" style="color:#fff;font-weight:700;text-decoration:underline;margin-left:4px;">Click to send via Email ↗</a>`;
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '✓ Draft Ready';
+        }
+        window.location.href = mailtoHref;
+      };
+
       try {
         const res = await fetch('/api/suggest-price', {
           method: 'POST',
@@ -2810,6 +2804,11 @@ function setupEventListeners() {
             honeypot: hpInput ? hpInput.value : ''
           })
         });
+
+        if (res.status === 404 || res.status === 405) {
+          sendStaticPriceFallback();
+          return;
+        }
 
         const data = await res.json();
         if (res.ok && data.success) {
@@ -2840,17 +2839,7 @@ function setupEventListeners() {
           }
         }
       } catch (err) {
-        if (statusBox) {
-          statusBox.style.display = 'block';
-          statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
-          statusBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
-          statusBox.style.color = '#fca5a5';
-          statusBox.textContent = 'Network connection error. Please try again.';
-        }
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Price Update';
-        }
+        sendStaticPriceFallback();
       }
     });
   }
@@ -3504,12 +3493,14 @@ window.filterByCategory = filterByCategory;
 
 const QUICK_CATEGORY_ITEMS = [
   { id: 'all', label: 'All' },
-  { id: 'shows', label: 'Comedy' },
   { id: 'music', label: 'Music' },
+  { id: 'shows', label: 'Comedy & Stage' },
   { id: 'cinema', label: 'Cinema' },
   { id: 'outdoors', label: 'Outdoors' },
   { id: 'arts', label: 'Arts' },
-  { id: 'trivia', label: 'Games' },
+  { id: 'social', label: 'Social & Games' },
+  { id: 'markets', label: 'Markets' },
+  { id: 'festivals', label: 'Festivals' },
   { id: 'sports', label: 'Sports' }
 ];
 
@@ -3557,7 +3548,7 @@ function renderQuickCategoryStrip(poolOverride) {
       btn.textContent = item.label;
     }
     btn.addEventListener('click', () => {
-      state.category = item.id;
+      state.category = (item.id !== 'all' && state.category === item.id) ? 'all' : item.id;
       renderCategoryPills();
       applyFiltersAndRender();
     });
@@ -3805,7 +3796,13 @@ function renderFrequencyPills() {
     pill.className = `freq-filter-pill ${state.frequency === fq.id ? 'active' : ''}`;
     pill.innerHTML = `<span>${fq.icon}</span> <span>${fq.label}</span>`;
     pill.addEventListener('click', () => {
-      state.frequency = fq.id;
+      state.frequency = (fq.id !== 'all' && state.frequency === fq.id) ? 'all' : fq.id;
+      if (state.frequency === 'daily' && state.hideDaily) {
+        state.hideDaily = false;
+        const hideDailyToggle = document.getElementById('hide-daily-toggle');
+        if (hideDailyToggle) hideDailyToggle.checked = false;
+        if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
+      }
       renderFrequencyPills();
       applyFiltersAndRender();
     });
@@ -4454,7 +4451,8 @@ function doesEventMatchCategory(ev, catId, hasFreeTierHint) {
       /dj|dance party|dance night|techno|house music|disco|electronic|concert|band/i.test(ev.title || '')
     )) ||
     (catId === 'shows' && (
-      (evCats.includes('stage') || evCats.includes('comedy') || evCats.includes('shows')) &&
+      (evCats.includes('stage') || evCats.includes('theatre') || evCats.includes('comedy') || evCats.includes('shows') || ev.event_archetype === 'live_stage') &&
+      !evCats.includes('music') &&
       !/dance party|dance-party|dance night/i.test(ev.title + ' ' + (ev.subTags || []).join(' '))
     )) ||
     (catId === 'festivals' && (
@@ -4473,28 +4471,22 @@ function doesEventMatchCategory(ev, catId, hasFreeTierHint) {
       (ev.title && (ev.title.toLowerCase().includes('festival') || ev.title.toLowerCase().includes('fringe') || ev.title.toLowerCase().includes('viff') || ev.title.toLowerCase().includes('diwali'))) ||
       (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('holiday') || t.toLowerCase().includes('viff') || t.toLowerCase().includes('diwali')))
     )) ||
-    (catId === 'social' && (
-      evCats.includes('crafts') ||
-      evCats.includes('arts') ||
+    ((catId === 'social' || catId === 'trivia') && (
+      evCats.includes('social') ||
       evCats.includes('trivia') ||
       evCats.includes('activities') ||
-      evCats.includes('social') ||
-      evCats.includes('cinema')
-    )) ||
-    (catId === 'trivia' && (
-      evCats.includes('trivia') ||
       ev.event_archetype === 'social_gaming' ||
-      (ev.subTags && ev.subTags.some(t => /trivia|bingo|game|quiz|board/i.test(t))) ||
-      /trivia|bingo|quiz|board game/i.test((ev.title || '') + ' ' + (ev.categoryLabel || ''))
+      (ev.subTags && ev.subTags.some(t => /trivia|bingo|game|quiz|board|pinball|arcade|mixer/i.test(t))) ||
+      /trivia|bingo|quiz|board game|pinball/i.test((ev.title || '') + ' ' + (ev.categoryLabel || ''))
     )) ||
     (catId === 'arts' && (
       evCats.includes('arts') ||
+      evCats.includes('culture') ||
       evCats.includes('crafts') ||
-      evCats.includes('social') ||
       ev.event_archetype === 'museum_gallery' ||
       ev.event_archetype === 'workshop' ||
-      (ev.subTags && ev.subTags.some(t => /art|gallery|museum|exhibit|craft|theatre|dance|poetry|literary/i.test(t))) ||
-      /art|gallery|museum|exhibit|studio|craft/i.test((ev.title || '') + ' ' + (ev.venue || '') + ' ' + (ev.categoryLabel || ''))
+      (ev.subTags && ev.subTags.some(t => /art|gallery|museum|exhibit|craft|poetry|literary/i.test(t))) ||
+      /art\b|gallery|museum|exhibit|studio|craft/i.test((ev.title || '') + ' ' + (ev.venue || '') + ' ' + (ev.categoryLabel || ''))
     )) ||
     (catId === 'sports' && (
       evCats.includes('sports') ||
@@ -7752,12 +7744,45 @@ function initCommunityFeedbackModal() {
         submitBtn.textContent = 'Submitting...';
       }
 
+      const sendStaticFeedbackFallback = () => {
+        const bodyLines = [
+          payload.target_event_id ? `Event ID: ${payload.target_event_id}` : null,
+          `Feedback / Show Suggestion:`,
+          message
+        ].filter(Boolean).join('\n\n');
+        const subj = payload.target_event_id
+          ? `[Van50 Issue Report] ${payload.target_event_id}`
+          : `[Van50 Show Suggestion / Feedback]`;
+        const mailtoHref = `mailto:Van50.Submit@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(bodyLines)}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(bodyLines).catch(() => {});
+        }
+        if (alertBox) {
+          alertBox.style.display = 'block';
+          alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
+          alertBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+          alertBox.style.color = '#34d399';
+          alertBox.innerHTML = `✓ Copied &amp; prepared for Van50 Curators! <a href="${mailtoHref}" style="color:#fff;font-weight:700;text-decoration:underline;margin-left:4px;">Click to send via Email ↗</a>`;
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '✓ Draft Ready';
+        }
+        window.location.href = mailtoHref;
+      };
+
       try {
         const res = await fetch('/api/feedback', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
+
+        if (res.status === 404 || res.status === 405) {
+          sendStaticFeedbackFallback();
+          return;
+        }
+
         const data = await res.json();
 
         if (res.ok && data.success) {
@@ -7790,17 +7815,7 @@ function initCommunityFeedbackModal() {
           }
         }
       } catch (err) {
-        if (alertBox) {
-          alertBox.style.display = 'block';
-          alertBox.style.background = 'rgba(239, 68, 68, 0.15)';
-          alertBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
-          alertBox.style.color = '#f87171';
-          alertBox.textContent = 'Network error. Please try again.';
-        }
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Feedback';
-        }
+        sendStaticFeedbackFallback();
       }
     });
   }
@@ -8011,13 +8026,11 @@ window.dismissSecondaryFilterChip = function (chipKey) {
 };
 
 window.toggleMobileCardAccordion = function (eventId, evObj) {
-  if (typeof window !== 'undefined' && window.innerWidth > 768) return;
   if (evObj && evObj.target) {
     if (evObj.target.closest('.row2-category-pill')) {
       return;
     }
-    // Allow direct clicks on links/buttons inside expanded details without collapsing the card
-    const interactiveEl = evObj.target.closest('a, button, input, label, .card-expanded-tiers, .collapsible-hours, .collapsible-showings');
+    const interactiveEl = evObj.target.closest('a, button, input, label, .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive');
     const insideCompactHeader = evObj.target.closest('.mobile-card-compact-header');
     if (interactiveEl && !insideCompactHeader) {
       return;
@@ -8025,6 +8038,10 @@ window.toggleMobileCardAccordion = function (eventId, evObj) {
   }
   const cardEl = document.getElementById(`card-${eventId}`);
   if (!cardEl) return;
+  if (typeof window !== 'undefined' && window.innerWidth > 768) {
+    cardEl.classList.toggle('desktop-expanded');
+    return;
+  }
   cardEl.classList.toggle('mobile-expanded');
 };
 

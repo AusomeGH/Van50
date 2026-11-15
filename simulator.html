@@ -938,15 +938,44 @@
         }
         if (!doc || !doc.documentElement) return;
 
-        // 1. Sync Light / Dark Theme
+        // 1. Sync Light / Dark Theme (+ localStorage & bidirectional inner toggle observer)
         const isDark = simState.theme === 'dark';
-        doc.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        const targetTheme = isDark ? 'dark' : 'light';
+        simState._syncingTheme = true;
+        try {
+          if (iframeEl.contentWindow && iframeEl.contentWindow.localStorage) {
+            iframeEl.contentWindow.localStorage.setItem('van50-theme', targetTheme);
+          }
+        } catch (_) {}
+        doc.documentElement.setAttribute('data-theme', targetTheme);
         doc.documentElement.classList.toggle('dark-mode', isDark);
         doc.documentElement.classList.toggle('light-mode', !isDark);
         if (doc.body) {
-          doc.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+          doc.body.setAttribute('data-theme', targetTheme);
           doc.body.classList.toggle('dark-mode', isDark);
           doc.body.classList.toggle('light-mode', !isDark);
+        }
+        const innerThemeBtn = doc.getElementById('theme-toggle-btn');
+        if (innerThemeBtn) {
+          const iconEl = innerThemeBtn.querySelector('.theme-icon');
+          if (iconEl) iconEl.textContent = isDark ? '☀️' : '🌙';
+          innerThemeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+        simState._syncingTheme = false;
+
+        if (!doc._van50SimThemeObserver && typeof MutationObserver === 'function') {
+          doc._van50SimThemeObserver = new MutationObserver(() => {
+            if (simState._syncingTheme) return;
+            const observed = doc.documentElement.getAttribute('data-theme');
+            if ((observed === 'dark' || observed === 'light') && observed !== simState.theme) {
+              simState.theme = observed;
+              themeButtons.forEach((b) => b.classList.toggle('active', b.getAttribute('data-sim-theme') === observed));
+              if (simState.secondaryMounted && iframeSecondary && iframeSecondary !== iframeEl) {
+                syncFrameEnvironment(iframeSecondary, getSecondaryActiveSpec());
+              }
+            }
+          });
+          doc._van50SimThemeObserver.observe(doc.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
         }
 
         // 2. Sync OS Scrollbar Behaviour (Classic 15px Windows PC scrollbar vs overlay)

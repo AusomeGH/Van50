@@ -3966,3 +3966,19 @@ body.van50-accessible #curator-accessibility-btn.active {
   color: #ffffff;
   transform: translateY(-1px);
 }
+
+/* Collapsible 6-Step Pipeline Rail in Curator Antigravity Mode */
+.agy-pipeline-rail-panel.is-collapsed {
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.agy-pipeline-rail-panel.is-collapsed .agy-rail-top-header {
+  margin-bottom: 0;
+}
+
+.agy-pipeline-rail-panel.is-collapsed .agy-rail-subtitle,
+.agy-pipeline-rail-panel.is-collapsed .agy-rail-grid,
+.agy-pipeline-rail-panel.is-collapsed .agy-secondary-workflows-bar {
+  display: none;
+}

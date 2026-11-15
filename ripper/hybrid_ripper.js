@@ -1310,7 +1310,26 @@ export async function runHybridRipper(targetUrl, options = {}) {
         const bodyText = document.body ? document.body.innerText : "";
         return `PAGE TITLE: ${title}\n\nVISIBLE CART & PAGE TEXT:\n${bodyText}`;
       });
-      extractedData = await callAntigravityBoxOfficeExtractor(domSnapshot, targetUrl, {});
+      let matchedCard = options?.existingCard || {};
+      if (!matchedCard.id && targetUrl) {
+        const normTarget = targetUrl.trim().replace(/\/+$/, "").toLowerCase();
+        const matchByUrl = (arr) =>
+          (Array.isArray(arr) ? arr : []).find((c) => {
+            const urls = [c?.ticket_url, c?.details_url, c?.url, c?.websiteUrl, c?.links?.best_available].filter(Boolean);
+            return urls.some((u) => String(u).trim().replace(/\/+$/, "").toLowerCase() === normTarget);
+          });
+        try {
+          if (fs.existsSync(QUEUE_PATH)) {
+            const qRaw = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf-8"));
+            matchedCard = matchByUrl(qRaw?.quarantinedEvents) || matchedCard;
+          }
+          if (!matchedCard.id && fs.existsSync(EVENTS_PATH)) {
+            const eRaw = JSON.parse(fs.readFileSync(EVENTS_PATH, "utf-8"));
+            matchedCard = matchByUrl(Array.isArray(eRaw) ? eRaw : eRaw?.events) || matchedCard;
+          }
+        } catch (_) {}
+      }
+      extractedData = await callAntigravityBoxOfficeExtractor(domSnapshot, targetUrl, matchedCard);
     }
     if (!extractedData || Object.keys(extractedData).length === 0) {
       const extraction = await stagehand.extract(
@@ -1578,7 +1597,7 @@ if (process.argv[1] && process.argv[1].endsWith("hybrid_ripper.js")) {
         } else if (step === "qc" || step === "catalog_batch") {
           const { runEventBatchQC } = await import("./event_batch_qc.js");
           await runEventBatchQC(opts);
-        } else if (step === "enrich") {
+        } else if (step === "enrich" || step === "enricher") {
           const { runEnricher } = await import("./enricher.js");
           await runEnricher(opts);
         } else if (step === "venue" || step === "venue_detailer") {
@@ -1587,7 +1606,7 @@ if (process.argv[1] && process.argv[1].endsWith("hybrid_ripper.js")) {
         } else if (step === "consolidate" || step === "consolidate_events" || step === "dedup") {
           const { runConsolidationStage } = await import("./consolidate_events.js");
           await runConsolidationStage(opts);
-        } else if (step === "compile") {
+        } else if (step === "compile" || step === "compiler" || step === "publish") {
           const { compileCatalog } = await import("./compile_catalog.js");
           await compileCatalog(opts);
         } else if (step === "master") {

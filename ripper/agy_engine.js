@@ -3,8 +3,35 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 import { promisify } from "util";
+import { fileURLToPath } from "url";
+import { getCuratorInfo } from "./curator_display.js";
 
 const execFileAsync = promisify(execFile);
+const __agyFilename = fileURLToPath(import.meta.url);
+const __agyDirname = path.dirname(__agyFilename);
+const AGY_ROOT_DIR = path.resolve(__agyDirname, "..");
+
+function resolveCuratorScreenshots(curatorInfo, existingCard = null) {
+  const paths = new Set();
+  const addCandidate = (raw) => {
+    if (!raw || typeof raw !== "string") return;
+    const clean = raw.trim().replace(/^\/+/, "");
+    if (!clean) return;
+    const full = path.isAbsolute(clean) ? clean : path.join(AGY_ROOT_DIR, clean);
+    if (fs.existsSync(full)) paths.add(full);
+  };
+  if (existingCard?.screenshotPath) addCandidate(existingCard.screenshotPath);
+  if (Array.isArray(existingCard?.curatorScreenshots)) {
+    existingCard.curatorScreenshots.forEach(addCandidate);
+  }
+  if (Array.isArray(curatorInfo?.matchedInstructions)) {
+    for (const inst of curatorInfo.matchedInstructions) {
+      addCandidate(inst?.screenshotPath);
+      if (Array.isArray(inst?.screenshots)) inst.screenshots.forEach(addCandidate);
+    }
+  }
+  return Array.from(paths);
+}
 
 /**
  * Resolves the local Antigravity CLI binary (`agy.exe` on Windows or `agy` on POSIX).
@@ -250,12 +277,35 @@ export async function callAntigravityBoxOfficeExtractor(domSnapshotText, targetU
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
     .slice(0, 8500);
-  const curatorHint = existingCard?.curator_notes
-    ? `\nMANDATORY CURATOR NOTE: "${existingCard.curator_notes}"\n`
-    : "";
+  const curatorInfo = getCuratorInfo({
+    eventId: existingCard?.id || existingCard?.event_id || "",
+    title: existingCard?.title || existingCard?.seed_title || existingCard?.event_name || "",
+    venue: existingCard?.venue || existingCard?.venue_name || existingCard?.seed_venue || "",
+    existingCard,
+  });
+  const screenshotFiles = resolveCuratorScreenshots(curatorInfo, existingCard);
+  const combinedNote = existingCard?.curator_notes || curatorInfo?.effectiveNote || "";
+  const curatorHintLines = [];
+  if (combinedNote) {
+    curatorHintLines.push(`MANDATORY CURATOR NOTE (Tier 1 Authority on Identity/Links): "${combinedNote}"`);
+  }
+  if (curatorInfo?.instructedUrl) {
+    curatorHintLines.push(`CURATOR INSTRUCTED URL: "${curatorInfo.instructedUrl}"`);
+  }
+  if (screenshotFiles.length > 0) {
+    curatorHintLines.push(
+      `CURATOR PROOF SCREENSHOTS ON DISK (Read ONLY these file(s) if pricing/tier disambiguation is needed): ${screenshotFiles.join(", ")}`
+    );
+  }
+  const curatorHint = curatorHintLines.length > 0 ? `\n${curatorHintLines.join("\n")}\n` : "";
+
+  const toolRule =
+    screenshotFiles.length > 0
+      ? `CRITICAL RULE: You may read ONLY the attached Curator Proof Screenshot file(s) listed below if needed to verify door/flyer pricing; do NOT invoke any terminal commands or web searches.`
+      : `CRITICAL SINGLE-TURN RULE: Do NOT invoke any tools, terminal commands, web searches, or file reads. Respond IMMEDIATELY in a single turn using ONLY the Rendered Page & Cart Modal Text provided below.`;
 
   const prompt = `You are a fresh 1-Event Van50 Box Office Auditor inspecting a live rendered checkout page in Metro Vancouver (<= $50.00 CAD ceiling).
-CRITICAL SINGLE-TURN RULE: Do NOT invoke any tools, terminal commands, web searches, or file reads. Respond IMMEDIATELY in a single turn using ONLY the Rendered Page & Cart Modal Text provided below.
+${toolRule}
 Target URL: ${targetUrl}
 Seed Title Hint: "${existingCard?.title || existingCard?.seed_title || ""}"
 Seed Venue Hint: "${existingCard?.venue || existingCard?.venue_name || existingCard?.seed_venue || ""}"${curatorHint}
@@ -344,7 +394,7 @@ Return ONLY a valid JSON object matching this exact structure (no markdown comme
     eventTitle: evTitle,
     stage: "Stage 2: Box Office Cart Extractor",
     timeoutMs: 95000,
-    noTools: true,
+    noTools: screenshotFiles.length === 0,
   });
 }
 
@@ -353,8 +403,15 @@ Return ONLY a valid JSON object matching this exact structure (no markdown comme
  * Spawns a fresh 1-event Antigravity agent to clean title, extract lineup, and write a 2-sentence patron synopsis.
  */
 export async function callAntigravityEnricher(eventCard) {
-  const curatorPrompt = eventCard.curator_instruction
-    ? `\n- MANDATORY CURATOR GUIDANCE TO CONSIDER: "${eventCard.curator_instruction}" (You MUST honor this in title, artist, category, or description!)\n`
+  const curatorInfo = getCuratorInfo({
+    eventId: eventCard?.id || eventCard?.event_id || "",
+    title: eventCard?.title || eventCard?.event_name || "",
+    venue: eventCard?.venue || eventCard?.venue_name || "",
+    existingCard: eventCard,
+  });
+  const effectiveGuidance = eventCard.curator_instruction || eventCard.curator_notes || curatorInfo?.effectiveNote || "";
+  const curatorPrompt = effectiveGuidance
+    ? `\n- MANDATORY CURATOR GUIDANCE TO CONSIDER: "${effectiveGuidance}" (You MUST honor this in title, artist, category, or description!)\n`
     : "";
 
   const prompt = `You are a fresh 1-Event Van50 Cultural AI Enricher for Metro Vancouver cultural events under $50 CAD.
@@ -370,7 +427,7 @@ Requirements:
 1. "clean_title": Strip out all promotional artifacts, dates, times, buttons ("Tickets On Sale", "Apr 4", "MoreInfo->"), and ALL-CAPS shouting. CRITICAL: NEVER strip "Season Pass", "Annual Pass", "All Day Pass", "Afternoon Show", or "Evening Show" qualifiers from a title, so pass listings or separate matinee/evening programs never collide with single-visit shows.
 2. "artist": Extract the lead artist, band, performer, or speaker name (or null if general/recreation).
 3. "lineup": Array of performer names if present (or []).
-4. "category": Strictly one of ["shows", "comedy", "arts", "outdoors", "culture", "free-public-access"].
+4. "category": Strictly one of ["music", "cinema", "shows", "outdoors", "arts", "markets", "social", "festivals", "sports", "trivia", "free-public-access"]. Map live concerts/DJ sets/symphony/jazz/choirs to "music"; film screenings/repertory cinema to "cinema"; stand-up comedy/improv/theatre/magic/drag/live stage to "shows"; visual art galleries/museums/exhibitions to "arts"; night/farmers/artisan markets to "markets"; multi-day festivals/parades to "festivals"; trivia/bingo/board games/pinball/social mixers to "social" (or "trivia" for dedicated pub trivia); spectator or recreational sports to "sports"; parks/gardens/beaches/trails/pitch-and-putts to "outdoors" (or "free-public-access" when $0 civic open access).
 5. "event_archetype": Strictly one of ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"] based on true semantic comprehension of what the event actually is (e.g. a stand-up comedy show is "live_stage" even if its title has a joke word like "Class").
 6. "lifecycle_type": Strictly one of ["time_bound_event", "weekly_recurring_residency", "perennial_drop_in"]. Use "weekly_recurring_residency" ONLY if the event itself is an ongoing weekly residency/series (not just a one-off show whose description mentions a weekday in passing).
 7. "weekly_recurring_day": If lifecycle_type is "weekly_recurring_residency", return the day name ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", or "Sunday"); otherwise null.
@@ -440,7 +497,7 @@ Return ONLY a valid JSON object (no markdown commentary):
   "start_time": "8:00 PM or null",
   "doors_time": "7:00 PM or null",
   "is_sold_out": false,
-  "category": "shows | comedy | arts | outdoors | culture | free-public-access",
+  "category": "music | cinema | shows | outdoors | arts | markets | social | festivals | sports | trivia | free-public-access",
   "arbitration_reasoning": "1-sentence explanation of how the conflict was resolved"
 }`;
 
@@ -483,13 +540,38 @@ export async function callAntigravityLinkAuditor(eventCard, linkDiagnostics = {}
   const lifecycle = eventCard?.lifecycle_type || "time_bound_event";
   const priceLabel = eventCard?.priceLabel || (eventCard?.price === 0 ? "Free ($0)" : String(eventCard?.price || ""));
 
+  const curatorInfo = getCuratorInfo({
+    eventId: evId,
+    title: evTitle,
+    venue: evVenue,
+    existingCard: eventCard,
+  });
+  const screenshotFiles = resolveCuratorScreenshots(curatorInfo, eventCard);
+  const curatorGuidanceBlock = [];
+  if (curatorInfo?.effectiveNote) {
+    curatorGuidanceBlock.push(`- Mandatory Curator Guidance Note: "${curatorInfo.effectiveNote}"`);
+  }
+  if (curatorInfo?.instructedUrl) {
+    curatorGuidanceBlock.push(`- Curator Instructed Destination URL (Tier 1 Authority — Prioritize this URL!): "${curatorInfo.instructedUrl}"`);
+  }
+  if (curatorInfo?.learnedVenueUrl) {
+    curatorGuidanceBlock.push(`- Verified Venue Calendar Deep Link: "${curatorInfo.learnedVenueUrl}"`);
+  }
+  if (screenshotFiles.length > 0) {
+    curatorGuidanceBlock.push(`- Curator Attached Proof Screenshot(s): ${screenshotFiles.join(", ")}`);
+  }
+  const curatorSection =
+    curatorGuidanceBlock.length > 0
+      ? `\nCurator Guidance & Learned Rules (MUST HONOR FIRST):\n${curatorGuidanceBlock.join("\n")}\n`
+      : "";
+
   const prompt = `You are a fresh, isolated 1-Event Van50 Link Auditor (Step 1B) auditing the 5-Tier Link Hierarchy for a single Metro Vancouver event.
 Event ID: "${evId}"
 Title: "${evTitle}"
 Venue: "${evVenue}"
 Lifecycle: "${lifecycle}"
 Price: "${priceLabel}"
-
+${curatorSection}
 Current Event Links:
 ${JSON.stringify({
   ticket_url: eventCard?.ticket_url || null,

@@ -4112,13 +4112,13 @@
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 6px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 6px; padding: 3px 8px;">
             <label for="agy-model-select" style="font-size: 0.7rem; font-weight: 700; color: #c084fc; white-space: nowrap;">🧠 Worker Model:</label>
-            <select id="agy-model-select" style="background: rgba(2, 6, 23, 0.9); color: #f8fafc; border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 4px; padding: 2px 6px; font-size: 0.72rem; font-weight: 600; outline: none; cursor: pointer;" onchange="const m = document.getElementById('pipeline-modal-agy-model-select'); if (m) m.value = this.value;">
-              <option value="gemini-2.5-flash" selected>Gemini 2.5 Flash (Fast &amp; Grounded — Recommended)</option>
-              <option value="gemini-3-flash">Gemini 3 Flash (Next-Gen Fast)</option>
-              <option value="gemini-2.5-pro">Gemini 2.5 Pro (Deep Reasoning)</option>
-              <option value="gemini-3.1-pro-high">Gemini 3.1 Pro High (Max Reasoning)</option>
-              <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Anthropic)</option>
-              <option value="claude-opus-4-6-thinking">Claude Opus 4.6 Thinking (Anthropic Max)</option>
+            <select id="agy-model-select" style="background: rgba(2, 6, 23, 0.9); color: #f8fafc; border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 4px; padding: 2px 6px; font-size: 0.72rem; font-weight: 600; outline: none; cursor: pointer;" onchange="['pipeline-modal-agy-model-select','pipeline-inline-agy-model-select'].forEach(id => { const el = document.getElementById(id); if (el) el.value = this.value; });">
+              <option value="gemini-3.8-flash-low" selected>Gemini 3.8 Flash (Low — Fastest)</option>
+              <option value="gemini-3.8-flash-medium">Gemini 3.8 Flash (Medium)</option>
+              <option value="gemini-3.8-flash-high">Gemini 3.8 Flash (High)</option>
+              <option value="gemini-4-argon-low">Gemini 4 Argon (Low)</option>
+              <option value="gemini-4-argon-medium">Gemini 4 Argon (Medium)</option>
+              <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium)</option>
             </select>
           </div>
           <button type="button" class="btn-pipeline-test-header" id="btn-pipeline-test-header" onclick="openAutoPipelineOptionsModal(event)" title="Configure target scope & batch size to run entire pipeline">
@@ -4170,7 +4170,7 @@
           </div>
           <div class="scan-card-output">Layer: <code>layer_schedules.json</code></div>
           <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (10 Dims):</strong> D1–D5 (Link Hierarchy), D8–D10 (Metro Van / CAD / PST), D35 (Start ISO Date), D39–D40 (Schedule / Frequency), D43–D45 (Physical Venue &amp; GPS), D53–D54 (Active Showings).
+            <strong>Clusters Covered (1XX &amp; 3XX):</strong> D101–D105 (5-Tier Link Hierarchy), D108–D110 (Metro Van / CAD / America/Vancouver), D303–D309 (Dates, Showings, Doors, Curtain &amp; Recurrence), D804 (Active Showings).
           </div>
           <div class="scan-card-body">
             <strong>What It Scans &amp; Validates:</strong> Deterministic crawler scans physical venue calendars, ticket feeds, and client-side JS widgets (Tockify, Time.ly, DICE). Ingests event titles, physical venue names, recurrence rules, and upcoming individual dated showings.
@@ -4178,7 +4178,7 @@
           <div class="scan-card-stats-block">
             <div class="scan-stat-row">
               <span>Scanned Events:</span>
-              <span class="scan-stat-val" id="scan-sched-count">156 / 156 (100%)</span>
+              <span class="scan-stat-val" id="scan-sched-count">—</span>
             </div>
             <div class="scan-stat-row">
               <span>Last Scan:</span>
@@ -4208,7 +4208,7 @@
           </div>
           <div class="scan-card-output">Layer: <code>layer_box_office.json</code></div>
           <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (14 Volatile Dims):</strong> D1 (Live Checkout Cart), D6 (Best Available Link), D7 (Operational Status / Sold Out), D11–D15 (Tier 1 Base, Fees, 5% GST, All-In), D16–D25 (Tiers 2 &amp; 3 Breakdown), D26 (Tier Count), D28 (&le;$50 CAD Cap), D31 (Ticket Provider), D35 (Inventory Date).
+            <strong>Clusters Covered (1XX &amp; 2XX):</strong> D101 &amp; D106–D107 (Checkout Cart &amp; Operational Status), D201–D215 (Tiers 1–3 Base, Fees, 5% GST &amp; Dual-Entry All-In Ledger), D216–D222 (Tier Count, &le;$50 CAD Cap &amp; Provider), D807 (Cart Keyframe).
           </div>
           <div class="scan-card-body">
             <strong>What It Scans &amp; Validates:</strong> Autonomous Stagehand Chromium AI agent penetrates live checkout cart modals; clicks into ticket options, extracts hidden platform fees &amp; facility surcharges, calculates 5% GST, and enforces the strict &le; $50.00 CAD all-in ceiling. Captures visual screenshot keyframe proof.
@@ -4216,7 +4216,7 @@
           <div class="scan-card-stats-block">
             <div class="scan-stat-row">
               <span>Scanned Events:</span>
-              <span class="scan-stat-val" id="scan-qc-count">124 / 156 (79%)</span>
+              <span class="scan-stat-val" id="scan-qc-count">—</span>
             </div>
             <div class="scan-stat-row">
               <span>Last Scan:</span>
@@ -4246,7 +4246,7 @@
           </div>
           <div class="scan-card-output">Layer: <code>layer_editorial.json</code></div>
           <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (14 Dynamic Dims):</strong> D32 (Booking Protocol), D33 (Event Title &amp; Artist), D34 (Performer Lineup), D36 (Doors Time), D37 (Showtime Curtain), D38 (Curfew / Conclusion), D41 (Category Taxonomy), D42 (19+ Age Restriction &amp; ID), D51 (Editorial Summary), D52 (Festival Affiliation).
+            <strong>Clusters Covered (0XX, 3XX &amp; 7XX):</strong> D001–D008 (Clean Title, Cultural Archetype, Lifecycle, Category Taxonomy, Age Restrictions &amp; Holidays), D301–D302 (Lineup &amp; Artist), D310–D311 (2-Sentence Synopsis &amp; Festival), D711–D795 (Archetype Profile).
           </div>
           <div class="scan-card-body">
             <strong>What It Scans &amp; Validates:</strong> Deterministic Cognitive NLP Engine sanitizes messy scraped headlines, extracts performer lineups, generates concise 2-sentence visitor synopses, assigns category tags, and validates 19+ age restriction ID rules.
@@ -4254,7 +4254,7 @@
           <div class="scan-card-stats-block">
             <div class="scan-stat-row">
               <span>Scanned Events:</span>
-              <span class="scan-stat-val" id="scan-enrich-count">156 / 156 (100%)</span>
+              <span class="scan-stat-val" id="scan-enrich-count">—</span>
             </div>
             <div class="scan-stat-row">
               <span>Last Scan:</span>
@@ -4284,7 +4284,7 @@
           </div>
           <div class="scan-card-output">Layer: <code>venues.json</code> (Facility DB)</div>
           <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (8 Facility Dims):</strong> D8 (Metro Vancouver Boundary), D43 (Physical Venue Name), D44 (Civic Street Address), D45 (GPS Coordinates), D46 (Venue Access Model), D47 (Environment Type), D49 (Spend Benchmarks), D50 (Transit Waypoints).
+            <strong>Clusters Covered (4XX, 5XX &amp; 6XX):</strong> D401–D408 (Physical Venue Name, Civic Address, GPS Coordinates, Access Model, Weekly Hours &amp; Transit), D501–D506 (Accessibility Standards), D601–D608 (On-Site F&amp;B &amp; Spend Benchmarks).
           </div>
           <div class="scan-card-body">
             <strong>What It Scans &amp; Grounds:</strong> Grounds physical venue invariants against official physical address registries. Resolves civic street addresses, verifies GPS coordinates, access models, operating hours, neighborhood coffee/beer/meal spend benchmarks, and TransLink transit waypoints into <code>venues.json</code>.
@@ -4292,7 +4292,7 @@
           <div class="scan-card-stats-block">
             <div class="scan-stat-row">
               <span>Registered Venues:</span>
-              <span class="scan-stat-val" id="scan-venue-count">133 Master Facilities</span>
+              <span class="scan-stat-val" id="scan-venue-count">—</span>
             </div>
             <div class="scan-stat-row">
               <span>Last Audit:</span>
@@ -4322,10 +4322,10 @@
           </div>
           <div class="scan-card-output">Layer: <code>events.json</code> + <code>js/data.js</code></div>
           <div class="scan-card-dimensions">
-            <strong>Dimensions Covered (12 Governance Dims):</strong> D28 (Budget Math: base + fee + tax = all_in &le; $50), D35/D53 (Date Forward Roll), D46–D50 (Access, Venue Environment, Hours, Drink Benchmarks, Transit), D55–D58 (Option C Non-Blocking, Data Provenance, Curator Locks, Publish Stamp).
+            <strong>Clusters Covered (0XX–8XX Full Matrix):</strong> D205 &amp; D218 (Dual-Entry Budget Math &le; $50.00 CAD), D303/D804 (Date Forward Roll), D401–D608 (Venue Hydration), D801–D809 (Multi-Layer Provenance, Curator Locks &amp; Lockstep Publish).
           </div>
           <div class="scan-card-body">
-            <strong>What It Scans &amp; Arbitrates:</strong> AI Arbitrator reconciles specialist layers (Stagehand Box Office, Harvester Schedules, Semantic Enricher, and Venue Detailer) with Master Venues according to the <span class="dyn-dim-count">96</span>-Dimension Arbitration Matrix, validates financial invariants (base + fee + tax = all_in &le; $50), and publishes master cards live to <code>js/data.js</code>.
+            <strong>What It Scans &amp; Arbitrates:</strong> AI Arbitrator reconciles specialist layers (Stagehand Box Office, Harvester Schedules, Semantic Enricher, and Venue Detailer) with Master Venues according to the <span class="dyn-dim-count">107</span>-Dimension (0XX–8XX) Arbitration Matrix, validates financial invariants (base + fee + tax = all_in &le; $50), and publishes master cards live to <code>js/data.js</code>.
           </div>
           <div class="scan-card-stats-block">
             <div class="scan-stat-row">
@@ -4667,7 +4667,7 @@
             <div style="flex: 1;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
                 <span style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">⚡ Out-of-Date / Stale Catalog Events</span>
-                <span class="opt-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);" id="badge-count-stale">Recommended • 32 Cards</span>
+                <span class="opt-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);" id="badge-count-stale">Recommended</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Audits events whose live cart proof is expired (&gt;24h) or missing. Skips harvester and runs <strong>Stage 1B (Hunter) ➔ Stage 2 (Stagehand AI QC) ➔ Stage 3 (Enricher) ➔ Stage 4 (Compiler)</strong> directly on these items.
@@ -4681,7 +4681,7 @@
             <div style="flex: 1;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
                 <span style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">🛡️ Quarantined Items (Manual Review Queue)</span>
-                <span class="opt-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);" id="badge-count-quarantined">Review Queue • 117 Cards</span>
+                <span class="opt-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);" id="badge-count-quarantined">Review Queue</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Audits all items currently in <code>data/manual_review_queue.json</code>. Skips Harvester and starts directly at <strong>Stage 1B (Tier 1 Hunter) ➔ Stage 2 (Stagehand Box Office QC) ➔ Stage 3 (Enricher) ➔ Stage 4 (Compiler &amp; Publisher)</strong> to upgrade links, verify all-in fees &amp; 5% GST, enrich metadata, and graduate qualifying cards to live status.
@@ -4709,7 +4709,7 @@
             <div style="flex: 1;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
                 <span style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">📋 Full Catalog Re-Scan</span>
-                <span class="opt-badge" style="background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.4);" id="badge-count-all">159 Cards</span>
+                <span class="opt-badge" style="background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.4);" id="badge-count-all">Full Catalog</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Re-audits all active events in the database through Stages 1B ➔ 4 sequentially to refresh 100% of data dimensions.
@@ -4800,13 +4800,13 @@
         <div style="display: flex; gap: 6px; align-items: center;">
           <div style="display: flex; align-items: center; gap: 5px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 5px; padding: 2px 8px;">
             <label for="pipeline-modal-agy-model-select" style="font-size: 0.68rem; font-weight: 700; color: #c084fc; white-space: nowrap;">🧠 Worker Model:</label>
-            <select id="pipeline-modal-agy-model-select" style="background: rgba(2, 6, 23, 0.9); color: #f8fafc; border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 4px; padding: 2px 6px; font-size: 0.7rem; font-weight: 600; outline: none; cursor: pointer;" onchange="const topSel = document.getElementById('agy-model-select'); if (topSel) topSel.value = this.value;">
-              <option value="gemini-2.5-flash" selected>Gemini 2.5 Flash (Fast &amp; Grounded)</option>
-              <option value="gemini-3-flash">Gemini 3 Flash (Next-Gen Fast)</option>
-              <option value="gemini-2.5-pro">Gemini 2.5 Pro (Deep Reasoning)</option>
-              <option value="gemini-3.1-pro-high">Gemini 3.1 Pro High (Max Reasoning)</option>
-              <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Anthropic)</option>
-              <option value="claude-opus-4-6-thinking">Claude Opus 4.6 Thinking (Anthropic Max)</option>
+            <select id="pipeline-modal-agy-model-select" style="background: rgba(2, 6, 23, 0.9); color: #f8fafc; border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 4px; padding: 2px 6px; font-size: 0.7rem; font-weight: 600; outline: none; cursor: pointer;" onchange="['agy-model-select','pipeline-inline-agy-model-select'].forEach(id => { const el = document.getElementById(id); if (el) el.value = this.value; });">
+              <option value="gemini-3.8-flash-low" selected>Gemini 3.8 Flash (Low — 95s timeout)</option>
+              <option value="gemini-3.8-flash-medium">Gemini 3.8 Flash (Medium — 105s timeout)</option>
+              <option value="gemini-3.8-flash-high">Gemini 3.8 Flash (High — 125s timeout)</option>
+              <option value="gemini-4-argon-low">Gemini 4 Argon (Low — 95s timeout)</option>
+              <option value="gemini-4-argon-medium">Gemini 4 Argon (Medium — 120s timeout)</option>
+              <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium — 120s timeout)</option>
             </select>
           </div>
           <button type="button" id="btn-close-pipeline-modal" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.22); color: #f1f5f9; font-size: 0.74rem; font-weight: 700; cursor: pointer; padding: 4px 10px; border-radius: 5px; display: inline-flex; align-items: center; gap: 5px; transition: all 0.15s ease;" title="Return to Table View">
@@ -5192,11 +5192,11 @@
             <div id="pipeline-range-wrapper" style="background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 5px 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
               <div style="display: flex; align-items: center; gap: 5px;">
                 <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Start #:</label>
-                <input type="number" id="pipeline-card-start" class="search-input" style="width: 54px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" max="200" value="1" oninput="onStartNumberInput()">
+                <input type="number" id="pipeline-card-start" class="search-input" style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" value="1" oninput="onStartNumberInput()">
               </div>
               <div style="display: flex; align-items: center; gap: 5px;">
                 <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Stop #:</label>
-                <input type="number" id="pipeline-card-stop" class="search-input" style="width: 54px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" max="200" value="5" oninput="onStopNumberInput()">
+                <input type="number" id="pipeline-card-stop" class="search-input" style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" value="5" oninput="onStopNumberInput()">
               </div>
               <div id="pipeline-range-count-badge" style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">
                 (5 Cards Selected: #1 to #5)
@@ -5205,7 +5205,7 @@
                 <button type="button" class="btn-limit-chip" onclick="setQuickRangeIncrement(5)" title="Scan 5 cards from start">+5</button>
                 <button type="button" class="btn-limit-chip" onclick="setQuickRangeIncrement(10)" title="Scan 10 cards from start">+10</button>
                 <button type="button" class="btn-limit-chip" onclick="setQuickRangeIncrement(25)" title="Scan 25 cards from start">+25</button>
-                <button type="button" class="btn-limit-chip" onclick="setFullCatalogRange()" title="Scan entire catalog from #1 to end">All (1–156)</button>
+                <button type="button" class="btn-limit-chip" id="btn-full-catalog-range" onclick="setFullCatalogRange()" title="Scan entire catalog from #1 to end">All</button>
               </div>
             </div>
 
@@ -5265,13 +5265,13 @@
               <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <div style="display: flex; align-items: center; gap: 4px; background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 5px; padding: 2px 6px;" title="Select the Antigravity CLI AI Model for this scan">
                   <span style="font-size: 0.68rem; font-weight: 700; color: #c084fc;">🧠 Model:</span>
-                  <select id="pipeline-modal-agy-model-select" style="background: transparent; color: #f8fafc; border: none; font-size: 0.7rem; font-weight: 600; outline: none; cursor: pointer;" onchange="const topSel = document.getElementById('agy-model-select'); if (topSel) topSel.value = this.value;">
-                    <option value="gemini-2.5-flash" style="background: #0f172a; color: #f8fafc;">Gemini 2.5 Flash (Recommended)</option>
-                    <option value="gemini-3-flash" style="background: #0f172a; color: #f8fafc;">Gemini 3 Flash</option>
-                    <option value="gemini-2.5-pro" style="background: #0f172a; color: #f8fafc;">Gemini 2.5 Pro</option>
-                    <option value="gemini-3.1-pro-high" style="background: #0f172a; color: #f8fafc;">Gemini 3.1 Pro High</option>
-                    <option value="claude-sonnet-4-6" style="background: #0f172a; color: #f8fafc;">Claude Sonnet 4.6</option>
-                    <option value="claude-opus-4-6" style="background: #0f172a; color: #f8fafc;">Claude Opus 4.6</option>
+                  <select id="pipeline-inline-agy-model-select" style="background: transparent; color: #f8fafc; border: none; font-size: 0.7rem; font-weight: 600; outline: none; cursor: pointer;" onchange="['agy-model-select','pipeline-modal-agy-model-select'].forEach(id => { const el = document.getElementById(id); if (el) el.value = this.value; });">
+                    <option value="gemini-3.8-flash-low" selected style="background: #0f172a; color: #f8fafc;">Gemini 3.8 Flash (Low)</option>
+                    <option value="gemini-3.8-flash-medium" style="background: #0f172a; color: #f8fafc;">Gemini 3.8 Flash (Medium)</option>
+                    <option value="gemini-3.8-flash-high" style="background: #0f172a; color: #f8fafc;">Gemini 3.8 Flash (High)</option>
+                    <option value="gemini-4-argon-low" style="background: #0f172a; color: #f8fafc;">Gemini 4 Argon (Low)</option>
+                    <option value="gemini-4-argon-medium" style="background: #0f172a; color: #f8fafc;">Gemini 4 Argon (Medium)</option>
+                    <option value="claude-sonnet-5-5-medium" style="background: #0f172a; color: #f8fafc;">Claude Sonnet 5.5</option>
                   </select>
                 </div>
                 <span id="pipeline-timer" style="font-family: monospace; font-size: 0.76rem; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">Elapsed: 0s</span>
@@ -14092,19 +14092,22 @@
       let effectiveMode = mode;
       let effectiveUrl = url || '';
       const stepMap = {
+        harvest: 'harvester',
         harvester: 'harvester',
         calendar: 'harvester',
         hunter: 'hunter',
         qc: 'qc',
-        enricher: 'enricher',
+        enrich: 'enrich',
+        enricher: 'enrich',
         venue: 'venue',
         venue_detailer: 'venue',
-        compiler: 'compiler'
+        compile: 'compile',
+        compiler: 'compile'
       };
       if (stepMap[mode]) {
         effectiveMode = 'agy_pipeline';
-        const modelSel = document.getElementById('agy-model-select') || document.getElementById('pipeline-modal-agy-model-select');
-        const selectedModel = modelSel ? modelSel.value : 'gemini-2.5-flash';
+        const modelSel = document.getElementById('agy-model-select') || document.getElementById('pipeline-modal-agy-model-select') || document.getElementById('pipeline-inline-agy-model-select');
+        const selectedModel = modelSel ? modelSel.value : 'gemini-3.8-flash-low';
         const agyParams = new URLSearchParams();
         if (limit !== undefined && Number(limit) > 0) agyParams.set('limit', String(limit));
         if (isAllRun) agyParams.set('all', '1');
@@ -19009,7 +19012,11 @@
       const badge = document.getElementById('pipeline-range-count-badge');
       const hint = document.getElementById('pipeline-scope-hint');
       const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
-      const totalEvents = state.allEvents ? state.allEvents.length : 156;
+      const allBtn = document.getElementById('btn-full-catalog-range');
+      const totalEvents = (state.allEvents && state.allEvents.length > 0) ? state.allEvents.length : 263;
+      if (startInput) startInput.max = String(totalEvents);
+      if (stopInput) stopInput.max = String(totalEvents);
+      if (allBtn) allBtn.textContent = `All (1–${totalEvents})`;
 
       let start = parseInt(startInput ? startInput.value : '1', 10) || 1;
       let stop = parseInt(stopInput ? stopInput.value : '1', 10) || 1;
@@ -19054,11 +19061,17 @@
     window.setFullCatalogRange = function() {
       const startInput = document.getElementById('pipeline-card-start');
       const stopInput = document.getElementById('pipeline-card-stop');
-      const totalEvents = state.allEvents ? state.allEvents.length : 156;
+      const totalEvents = (state.allEvents && state.allEvents.length > 0) ? state.allEvents.length : 263;
 
       currentBatchSize = totalEvents;
-      if (startInput) startInput.value = 1;
-      if (stopInput) stopInput.value = totalEvents;
+      if (startInput) {
+        startInput.max = String(totalEvents);
+        startInput.value = 1;
+      }
+      if (stopInput) {
+        stopInput.max = String(totalEvents);
+        stopInput.value = totalEvents;
+      }
 
       window.setPipelineScope('range');
       window.updateRangeDetails();

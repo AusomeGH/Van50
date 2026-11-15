@@ -9123,3 +9123,168 @@ section[aria-label="Events List"] .row2-category-pill,
     font-size: 0.74rem;
   }
 }
+
+/* ==============================================================================
+   UNIFIED SINGLE CATEGORY STRIP, DESKTOP FILTER DRAWER & CARD DENSITY CLAMP
+   ============================================================================== */
+/* Hide duplicate category grid & accordion toggle inside filter sheet (keeps DOM intact for smoke tests) */
+#mobile-filters-sheet .filter-category-row,
+#mobile-filters-sheet .btn-reset-filters-top,
+#mobile-filters-sheet #btn-toggle-more-filters {
+  display: none !important;
+}
+
+#mobile-filters-sheet .more-filters-panel,
+#mobile-filters-sheet #more-filters-panel {
+  display: flex !important;
+  flex-direction: column;
+  gap: 14px;
+  border-top: none;
+}
+
+@media (min-width: 769px) {
+  #mobile-sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1190;
+    background: rgba(2, 6, 23, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: none;
+  }
+
+  #mobile-sheet-backdrop.is-open {
+    display: block;
+  }
+
+  #mobile-filters-sheet {
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(460px, 92vw);
+    max-height: 100vh;
+    overflow-y: auto;
+    z-index: 1200;
+    padding: 0 22px 20px;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border-subtle);
+    box-shadow: -12px 0 40px rgba(2, 6, 23, 0.35);
+    transform: translateX(105%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.24s;
+  }
+
+  #mobile-filters-sheet.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  #mobile-filters-sheet .mobile-sheet-handle {
+    display: none !important;
+  }
+
+  #mobile-filters-sheet .mobile-sheet-header {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg-card);
+    padding: 18px 0 12px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  #mobile-filters-sheet .mobile-sheet-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #mobile-filters-sheet .mobile-sheet-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-main);
+  }
+
+  #mobile-filters-sheet .mobile-sheet-close-btn {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  #mobile-filters-sheet .mobile-sheet-close-btn:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+  }
+
+  #mobile-filters-sheet .mobile-sheet-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    background: var(--bg-card);
+    padding: 14px 0 4px;
+    margin-top: auto;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  #mobile-filters-sheet .btn-mobile-sheet-reset {
+    flex: 0 0 auto;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 0.86rem;
+    cursor: pointer;
+  }
+
+  #mobile-filters-sheet .btn-mobile-sheet-apply {
+    flex: 1 1 auto;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: var(--radius-md);
+    background: var(--brand-primary);
+    border: none;
+    color: var(--brand-primary-fg);
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Desktop Progressive Card Clamp: uniform 3-line synopsis, click card to expand */
+  .event-card:not(.desktop-expanded) .card-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .event-card.desktop-expanded .card-desc {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+}

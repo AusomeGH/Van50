@@ -201,8 +201,8 @@
       </div>
     </section>
 
-    <!-- Always-Visible 6-Step Pipeline Rail (1A -> 1B -> 2 -> 3 -> 4 -> 5) -->
-    <section class="agy-pipeline-rail-panel" id="ai-scans-dropdown-panel">
+    <!-- Collapsible 6-Step Pipeline Rail (1A -> 1B -> 2 -> 3 -> 4 -> 5) -->
+    <section class="agy-pipeline-rail-panel is-collapsed" id="ai-scans-dropdown-panel">
       <div class="agy-rail-top-header">
         <div>
           <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -214,7 +214,7 @@
               1-Event Antigravity Workers
             </span>
           </div>
-          <div style="font-size: 0.76rem; color: #94a3b8; margin-top: 2px;">
+          <div class="agy-rail-subtitle" style="font-size: 0.76rem; color: #94a3b8; margin-top: 2px;">
             Click any step below to inspect or continue the exact events waiting at that stage — run just that step, or
             continue straight through to Publish.
           </div>
@@ -237,6 +237,11 @@
               <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium)</option>
             </select>
           </div>
+          <button type="button" class="btn-limit-chip" id="btn-toggle-agy-rail" onclick="toggleAgyPipelineRail()"
+            aria-expanded="false"
+            style="padding: 6px 11px; font-size: 0.75rem; font-weight: 700; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18); color: #e2e8f0; border-radius: 7px; cursor: pointer;">
+            ▼ Show 6-Step Rail
+          </button>
           <button type="button" class="btn-pipeline-test-header" id="btn-pipeline-test-header"
             onclick="openAutoPipelineOptionsModal(event)"
             title="Choose a target queue and batch size to run Steps 1A–5 end-to-end">
@@ -437,19 +442,9 @@
             style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(52, 211, 153, 0.45); color: #6ee7b7;">
             <span id="btn-header-process-1b-label">✨ Process Unfinished Harvested Events (1B ➔ 5)</span>
           </button>
-          <button type="button" class="btn-limit-chip" id="btn-header-run-quarantine"
-            onclick="autoRunQuarantinedStages1BTo4(event)"
-            style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(217, 119, 6, 0.16); border: 1px solid rgba(245, 158, 11, 0.5); color: #fde68a;">
-            <span id="btn-header-run-quarantine-label">🛡️ Re-Check Quarantined Queue</span>
-          </button>
           <button type="button" class="btn-limit-chip" onclick="autoRunOutOfDateStages1BTo4()"
             style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(14, 165, 233, 0.14); border: 1px solid rgba(56, 189, 248, 0.4); color: #7dd3fc;">
             <span>⏱️ Refresh Out-of-Date (&gt;24h)</span>
-          </button>
-          <button type="button" class="btn-limit-chip" id="btn-header-run-newest-passed"
-            onclick="autoRunNewestPassedBatchStages1BTo5(event)"
-            style="padding: 5px 11px; font-size: 0.73rem; font-weight: 700; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18); color: #cbd5e1;">
-            <span id="btn-header-run-newest-passed-label">🔄 Re-Audit Last Published Batch</span>
           </button>
         </div>
 
@@ -463,7 +458,8 @@
               (<code>layer_box_office.json</code> + <code>_cart.png</code>) → <strong>3 Verify Venue Info</strong>
               (<code>venues.json</code>) → <strong>4 Clean Titles &amp; Details</strong>
               (<code>layer_editorial.json</code>) → <strong>5 Merge &amp; Publish</strong> (<code>events.json</code> +
-              <code>js/data.js</code>).</div>
+              <code>js/data.js</code>).
+            </div>
             <div style="margin-top: 4px; color: #64748b;">Whenever you add Curator Guidance notes or screenshots to a
               quarantined event, workers read those notes first on the next check.</div>
           </div>
@@ -472,6 +468,9 @@
 
       <!-- Hidden legacy DOM mirrors so zero existing JS selectors break -->
       <div style="display: none;">
+        <button type="button" id="btn-header-run-quarantine"><span id="btn-header-run-quarantine-label"></span></button>
+        <button type="button" id="btn-header-run-newest-passed"><span
+            id="btn-header-run-newest-passed-label"></span></button>
         <button type="button" id="btn-header-continue-1a"><span id="btn-header-continue-1a-label"></span></button>
         <button type="button" id="btn-close-scans-guide"><span id="scans-guide-toggle-label"></span></button>
         <button type="button" id="btn-banner-continue-1a"><span id="btn-banner-continue-1a-label"></span></button>
@@ -503,7 +502,7 @@
     <!-- Controls Section -->
     <section class="curator-controls-section">
       <div class="curator-filters-row">
-        <!-- Grouped Filter Pills: Primary Queues vs Quarantine Sub-Filters -->
+        <!-- Quarantine Sub-Filters (Non-quarantine queues live in the Pending Approvals Inbox above) -->
         <div class="curator-pills-group" id="filter-pills-group" style="align-items: center;">
           <button type="button" class="curator-filter-pill active" data-filter="all">⚠️ All Quarantined (<span
               id="pill-count-all">0</span>)</button>
@@ -526,20 +525,17 @@
           <button type="button" class="curator-filter-pill" data-filter="course">Multi-Week Course (<span
               id="pill-count-course">0</span>)</button>
 
-          <span class="curator-filter-divider" aria-hidden="true"></span>
-
-          <button type="button" class="curator-filter-pill" data-filter="holidays"
-            style="border: 1px solid rgba(251, 146, 60, 0.5); color: #fed7aa;"
+          <!-- Hidden mirror pills (accessed directly via Pending Approvals Inbox cards above) -->
+          <span class="curator-filter-divider" aria-hidden="true" style="display: none;"></span>
+          <button type="button" class="curator-filter-pill" data-filter="holidays" style="display: none;"
             title="Festivals and holiday categories awaiting curator approval">🎉 Festivals &amp; Holidays (<span
               id="pill-count-holidays">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="discovered_venues">🏛️ Discovered Venues (<span
-              id="pill-count-discovered-venues">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="discovered_sources"
-            style="border: 1px solid rgba(56, 189, 248, 0.5); color: #7dd3fc;"
+          <button type="button" class="curator-filter-pill" data-filter="discovered_venues" style="display: none;">🏛️
+            Discovered Venues (<span id="pill-count-discovered-venues">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="discovered_sources" style="display: none;"
             title="Candidate event calendars and ticketing feeds discovered by AI">📡
             Discovered Sources (<span id="pill-count-discovered-sources">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="user_feedback"
-            style="border: 1px solid rgba(52, 211, 153, 0.5); color: #6ee7b7;"
+          <button type="button" class="curator-filter-pill" data-filter="user_feedback" style="display: none;"
             title="Community event submissions and corrections">💬 User Submissions (<span
               id="pill-count-user-feedback">0</span>)</button>
         </div>
@@ -1693,8 +1689,8 @@
     </div>
   </div>
 
-  <!-- Stagehand Hybrid Multi-Dimension Ripper Modal -->
-  <div class="curator-modal-overlay" id="stagehand-ripper-modal">
+  <!-- Legacy Stagehand Modal (Hidden in Antigravity Mode; mirrors kept inert for shared JS selectors) -->
+  <div class="curator-modal-overlay" id="stagehand-ripper-modal" style="display: none;" aria-hidden="true">
     <div class="curator-modal-card manager-modal-card" style="max-width: 920px;">
       <button type="button" class="curator-modal-close-btn" id="btn-close-stagehand-modal"
         aria-label="Close modal">✕</button>
@@ -1913,7 +1909,7 @@
                   Processing at Stage 1B ➔ 5)</span>
                 <span class="opt-badge"
                   style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.45);"
-                  id="badge-count-harvested">569 New Events Ready</span>
+                  id="badge-count-harvested">Harvested Queue</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Processes the newly harvested uncompiled events from Stage 1A
@@ -1934,7 +1930,7 @@
                   Events</span>
                 <span class="opt-badge"
                   style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);"
-                  id="badge-count-stale">Recommended • 32 Cards</span>
+                  id="badge-count-stale">Recommended</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Audits events whose live cart proof is expired (&gt;24h) or missing. Skips harvester and runs
@@ -1954,7 +1950,7 @@
                   Queue)</span>
                 <span class="opt-badge"
                   style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);"
-                  id="badge-count-quarantined">Review Queue • 117 Cards</span>
+                  id="badge-count-quarantined">Review Queue</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Audits all items currently in <code>data/manual_review_queue.json</code>. Skips Harvester and starts
@@ -1993,7 +1989,7 @@
                 <span style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">📋 Full Catalog Re-Scan</span>
                 <span class="opt-badge"
                   style="background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.4);"
-                  id="badge-count-all">159 Cards</span>
+                  id="badge-count-all">Full Catalog</span>
               </div>
               <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 3px;">
                 Re-audits all active events in the database through Stages 1B ➔ 5 sequentially to refresh 100% of data
@@ -2123,10 +2119,10 @@
             <select id="pipeline-modal-agy-model-select" class="curator-input"
               style="font-size: 0.72rem; padding: 2px 6px; background: #0f172a; border: 1px solid rgba(192, 132, 252, 0.4); color: #f3e8ff; border-radius: 4px; font-weight: 600; cursor: pointer;"
               onchange="const mainSel = document.getElementById('agy-model-select'); if (mainSel) mainSel.value = this.value;">
-              <option value="gemini-3.8-flash-low" selected>Gemini 3.8 Flash (Low — Fastest, 55s timeout)</option>
-              <option value="gemini-3.8-flash-medium">Gemini 3.8 Flash (Medium, 75s timeout)</option>
-              <option value="gemini-3.8-flash-high">Gemini 3.8 Flash (High, 105s timeout)</option>
-              <option value="gemini-4-argon-low">Gemini 4 Argon (Low, 85s timeout)</option>
+              <option value="gemini-3.8-flash-low" selected>Gemini 3.8 Flash (Low — Fastest, 95s timeout)</option>
+              <option value="gemini-3.8-flash-medium">Gemini 3.8 Flash (Medium, 105s timeout)</option>
+              <option value="gemini-3.8-flash-high">Gemini 3.8 Flash (High, 125s timeout)</option>
+              <option value="gemini-4-argon-low">Gemini 4 Argon (Low, 95s timeout)</option>
               <option value="gemini-4-argon-medium">Gemini 4 Argon (Medium, 120s timeout)</option>
               <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium, 120s timeout)</option>
             </select>
@@ -2782,14 +2778,14 @@
               <div style="display: flex; align-items: center; gap: 5px;">
                 <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Start #:</label>
                 <input type="number" id="pipeline-card-start" class="curator-input"
-                  style="width: 54px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" max="200"
-                  value="1" oninput="onStartNumberInput()">
+                  style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" value="1"
+                  oninput="onStartNumberInput()">
               </div>
               <div style="display: flex; align-items: center; gap: 5px;">
                 <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Stop #:</label>
                 <input type="number" id="pipeline-card-stop" class="curator-input"
-                  style="width: 54px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" max="200"
-                  value="5" oninput="onStopNumberInput()">
+                  style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" value="5"
+                  oninput="onStopNumberInput()">
               </div>
               <div id="pipeline-range-count-badge" style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">
                 (5 Cards Selected: #1 to #5)
@@ -2801,8 +2797,8 @@
                   title="Scan 10 cards from start">+10</button>
                 <button type="button" class="btn-limit-chip" onclick="setQuickRangeIncrement(25)"
                   title="Scan 25 cards from start">+25</button>
-                <button type="button" class="btn-limit-chip" onclick="setFullCatalogRange()"
-                  title="Scan entire catalog from #1 to end">All (1–156)</button>
+                <button type="button" class="btn-limit-chip" id="btn-full-catalog-range" onclick="setFullCatalogRange()"
+                  title="Scan entire catalog from #1 to end">All</button>
               </div>
             </div>
 
@@ -3327,6 +3323,25 @@
         openCuratorWindow(link.href);
       }
     });
+    window.toggleAgyPipelineRail = function (forceExpand) {
+      const rail = document.getElementById('ai-scans-dropdown-panel');
+      const btn = document.getElementById('btn-toggle-agy-rail');
+      if (!rail) return;
+      const shouldCollapse = typeof forceExpand === 'boolean' ? !forceExpand : !rail.classList.contains('is-collapsed');
+      rail.classList.toggle('is-collapsed', shouldCollapse);
+      if (btn) {
+        btn.setAttribute('aria-expanded', shouldCollapse ? 'false' : 'true');
+        btn.textContent = shouldCollapse ? '▼ Show 6-Step Rail' : '▲ Hide 6-Step Rail';
+      }
+      try {
+        sessionStorage.setItem('van50_agy_rail_expanded', shouldCollapse ? '0' : '1');
+      } catch (_) { }
+    };
+    try {
+      if (sessionStorage.getItem('van50_agy_rail_expanded') === '1') {
+        window.toggleAgyPipelineRail(true);
+      }
+    } catch (_) { }
     window.VAN50_ENGINE = 'antigravity';
   </script>
   <script src="js/curator.js?v=1.5.2"></script>

@@ -126,6 +126,10 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="10" y1="18" x2="14" y2="18"></line></svg>
           <span id="mobile-filter-trigger-label">Filters</span>
         </button>
+        <button type="button" id="btn-open-roulette" class="mobile-filter-trigger btn-surprise-me" aria-label="Surprise Outing Generator" title="Spin for a random Vancouver outing matching your active filters">
+          <span aria-hidden="true">🎲</span>
+          <span class="surprise-me-label">Surprise</span>
+        </button>
         <button type="button" id="mobile-top-map-btn" class="mobile-filter-trigger mobile-top-map-btn view-switcher-btn" data-view="toggle" aria-pressed="false" aria-label="Switch between Map and Card view">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
           <span>Map</span>
@@ -378,26 +382,6 @@
         <button class="btn-copy-plan" id="roulette-action-btn" data-goatcounter-click="roulette-spin" data-goatcounter-title="Outing Roulette Spin" data-goatcounter-no-session="1" style="width: 100%; border: none;">
           Spin for an Outing
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Manual Review Queue Quarantine Modal -->
-  <div class="modal-overlay" id="review-queue-modal" role="dialog" aria-modal="true" aria-label="Manual Review Quarantine Queue" aria-labelledby="review-queue-title" aria-hidden="true" inert>
-    <div class="modal-card" style="max-width: 660px;">
-      <button class="modal-close-btn" id="close-review-queue-btn" aria-label="Close Review Queue">✕</button>
-
-      <div class="modal-header">
-        <h2 class="modal-title" id="review-queue-title" style="color: var(--brand-accent);">
-          Manual Review Quarantine Queue
-        </h2>
-        <p class="modal-desc" style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px;">
-          Events where live check-out pricing could not be programmatically verified. These items are strictly quarantined and not displayed in the public catalog until reviewed and approved.
-        </p>
-      </div>
-
-      <div id="review-queue-items-list" class="review-queue-list" style="margin-top: 16px;">
-        <!-- Dynamically rendered from MANUAL_REVIEW_QUEUE -->
       </div>
     </div>
   </div>
