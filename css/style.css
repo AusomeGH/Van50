@@ -21,6 +21,29 @@
   --price-std-bg: #E6EAE3;
   --price-std-fg: #111C18;
 
+  /* Semantic Category Color Tokens (Light Mode) */
+  --cat-outdoors-accent: #15803D;
+  --cat-outdoors-bg: #DCFCE7;
+  --cat-outdoors-fg: #14532D;
+  --cat-comedy-accent: #B45309;
+  --cat-comedy-bg: #FEF3C7;
+  --cat-comedy-fg: #78350F;
+  --cat-music-accent: #4338CA;
+  --cat-music-bg: #E0E7FF;
+  --cat-music-fg: #312E81;
+  --cat-cinema-accent: #BE123C;
+  --cat-cinema-bg: #FFE4E6;
+  --cat-cinema-fg: #881337;
+  --cat-arts-accent: #C2410C;
+  --cat-arts-bg: #FFEDD5;
+  --cat-arts-fg: #7C2D12;
+  --cat-games-accent: #0F766E;
+  --cat-games-bg: #CCFBF1;
+  --cat-games-fg: #134E4A;
+  --cat-sports-accent: #1D4ED8;
+  --cat-sports-bg: #DBEAFE;
+  --cat-sports-fg: #1E3A8A;
+
   /* Semantic Aliases for Legacy Rules */
   --bg-base: var(--bg-app);
   --bg-surface: var(--bg-elevated);
@@ -93,6 +116,29 @@ html.dark-mode {
   --brand-accent: #F59E0B;
   --border-subtle: rgba(255, 255, 255, 0.09);
   --price-free-bg: rgba(16, 185, 129, 0.18);
+
+  /* Semantic Category Color Tokens (Dark Mode — High-Contrast Pastel on Translucent Tint) */
+  --cat-outdoors-accent: #22C55E;
+  --cat-outdoors-bg: rgba(34, 197, 94, 0.18);
+  --cat-outdoors-fg: #86EFAC;
+  --cat-comedy-accent: #F59E0B;
+  --cat-comedy-bg: rgba(245, 158, 11, 0.18);
+  --cat-comedy-fg: #FDE68A;
+  --cat-music-accent: #818CF8;
+  --cat-music-bg: rgba(129, 140, 248, 0.18);
+  --cat-music-fg: #C7D2FE;
+  --cat-cinema-accent: #FB7185;
+  --cat-cinema-bg: rgba(251, 113, 133, 0.18);
+  --cat-cinema-fg: #FECDD3;
+  --cat-arts-accent: #FB923C;
+  --cat-arts-bg: rgba(251, 146, 60, 0.18);
+  --cat-arts-fg: #FED7AA;
+  --cat-games-accent: #2DD4BF;
+  --cat-games-bg: rgba(45, 212, 191, 0.18);
+  --cat-games-fg: #99F6E4;
+  --cat-sports-accent: #60A5FA;
+  --cat-sports-bg: rgba(96, 165, 250, 0.18);
+  --cat-sports-fg: #BFDBFE;
   --price-free-fg: #34D399;
   --price-low-bg: rgba(56, 189, 248, 0.16);
   --price-low-fg: #7DD3FC;

@@ -35,8 +35,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="css/style.css?v=8.0.1">
-  <link rel="stylesheet" href="css/components.css?v=8.0.1">
+  <link rel="stylesheet" href="css/style.css?v=8.0.2">
+  <link rel="stylesheet" href="css/components.css?v=8.0.2">
   <script>window.VAN50_MAPS_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';</script>
 
 
@@ -55,7 +55,7 @@
       </a>
 
       <div class="nav-actions">
-        <a href="simulator.html" target="_blank" rel="noopener" id="header-curator-preview-btn" class="btn btn-curator-preview" title="Open Multi-Device User Preview in New Tab" style="display: none; align-items: center; gap: 5px; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 7px 12px; font-size: 0.8rem; font-weight: 700; text-decoration: none; white-space: nowrap;">Preview ↗</a>
+        <a href="simulator.html" target="_blank" rel="noopener" id="header-curator-preview-btn" class="header-curator-preview-link" title="Open Multi-Device User Preview in New Tab" hidden style="display: none;">Preview ↗</a>
         <button class="btn btn-accessibility" id="accessibility-btn" aria-label="Toggle Accessibility Mode" aria-pressed="false" title="Toggle Accessible Mode (High contrast, larger text, enhanced focus, 48px targets)">
           <span class="access-icon" aria-hidden="true">♿</span>
           <span class="access-label">Accessibility</span>
@@ -86,11 +86,23 @@
       </p>
     </section>
 
-    <!-- Top-Level 3-Way Region Filter (All Metro, Vancouver, Surrey) -->
-    <div class="region-filter-bar" id="region-filter-bar" role="group" aria-label="Region Filter">
-      <button type="button" class="region-pill active" data-region="all" id="region-pill-all" aria-pressed="true">🌲 All (Van + Surrey)</button>
-      <button type="button" class="region-pill" data-region="vancouver" id="region-pill-vancouver" aria-pressed="false">🏙️ Vancouver</button>
-      <button type="button" class="region-pill" data-region="surrey" id="region-pill-surrey" aria-pressed="false">🦌 Surrey</button>
+    <!-- Combined Single-Row Pre-Feed Controls: Region Filter + Quick Outing Toggles -->
+    <div class="pre-feed-controls-row" id="pre-feed-controls-row">
+      <div class="region-filter-bar" id="region-filter-bar" role="group" aria-label="Region Filter">
+        <button type="button" class="region-pill active" data-region="all" id="region-pill-all" aria-pressed="true">All</button>
+        <button type="button" class="region-pill" data-region="vancouver" id="region-pill-vancouver" aria-pressed="false">Vancouver</button>
+        <button type="button" class="region-pill" data-region="surrey" id="region-pill-surrey" aria-pressed="false">Surrey</button>
+      </div>
+      <div class="top-quick-toggles-bar" id="top-quick-toggles-bar" role="group" aria-label="Quick Outing Toggles">
+        <button type="button" class="top-quick-toggle-pill" id="top-toggle-paid" aria-pressed="false" title="Show only paid or ticketed outings ($1 – $50 CAD)">
+          <span class="toggle-pill-indicator" aria-hidden="true"></span>
+          <span>Paid</span>
+        </button>
+        <button type="button" class="top-quick-toggle-pill" id="top-toggle-hide-daily" aria-pressed="false" title="Hide everyday drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
+          <span class="toggle-pill-indicator" aria-hidden="true"></span>
+          <span>Hide Daily Drop-In</span>
+        </button>
+      </div>
     </div>
 
     <div class="mobile-search-filter-bar" id="mobile-search-filter-bar">
@@ -119,22 +131,6 @@
           <span>Map</span>
         </button>
       </div>
-      <!-- Live Scrolled Date Indicator (Visible when scrolling through events) -->
-      <div class="scroll-date-bar" id="scroll-date-bar" style="display: none;" aria-live="polite">
-        <span class="time-group-title" id="scroll-date-title">Today</span>
-        <span class="scroll-date-sep" id="scroll-date-sep" aria-hidden="true">|</span>
-        <span class="time-group-date-range" id="scroll-date-range"></span>
-      </div>
-    </div>
-    <div class="top-quick-toggles-bar" id="top-quick-toggles-bar" role="group" aria-label="Quick Outing Toggles">
-      <button type="button" class="top-quick-toggle-pill" id="top-toggle-paid" aria-pressed="false" title="Show only paid or ticketed outings ($1 – $50 CAD)">
-        <span class="toggle-pill-indicator" aria-hidden="true"></span>
-        <span>Paid</span>
-      </button>
-      <button type="button" class="top-quick-toggle-pill" id="top-toggle-hide-daily" aria-pressed="false" title="Hide everyday drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
-        <span class="toggle-pill-indicator" aria-hidden="true"></span>
-        <span>Hide Daily Drop-In</span>
-      </button>
     </div>
     <div class="quick-category-strip" id="quick-category-strip" role="group" aria-label="Quick Category Filters"></div>
     <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;" aria-label="Active Vancouver Festivals"></section>
@@ -600,7 +596,7 @@
   <script src="js/accessibility.js?v=8.0.1"></script>
   <script src="js/map.js?v=8.0.1"></script>
   <script src="js/roulette.js?v=8.0.1"></script>
-  <script src="js/app.js?v=8.0.1"></script>
+  <script src="js/app.js?v=8.0.2"></script>
   <script src="js/pwa-install.js?v=8.0.1"></script>
 
 </body>

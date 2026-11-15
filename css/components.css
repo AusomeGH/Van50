@@ -8858,28 +8858,81 @@ body.van50-accessible {
 }
 
 /* ==========================================================================
-   TOP QUICK-BAR TOGGLES ("Paid" & "Hide Daily Drop-In" Outside Filter Drawer)
+   COMBINED PRE-FEED CONTROLS ROW, SEMANTIC CATEGORY ACCENTS & LIVE COUNTS
    ========================================================================== */
-.top-quick-toggles-bar {
+#header-curator-preview-btn {
+  display: none !important;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#header-curator-preview-btn.is-curator-visible {
+  display: inline-flex !important;
+}
+
+.pre-feed-controls-row {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   gap: 8px;
   width: 100%;
   max-width: 100%;
-  padding: 2px 2px 4px 2px;
-  margin: 0 0 2px 0;
+  margin: 0 0 8px 0;
+  padding: 2px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
   box-sizing: border-box;
+}
+
+.pre-feed-controls-row::-webkit-scrollbar {
+  display: none;
+}
+
+.pre-feed-controls-row .region-filter-bar {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 2px !important;
+  gap: 2px !important;
+  flex-wrap: nowrap !important;
+}
+
+.pre-feed-controls-row .region-pill {
+  flex: 0 0 auto !important;
+  padding: 5px 10px !important;
+  font-size: 0.76rem !important;
+}
+
+.pre-feed-controls-row .top-quick-toggles-bar {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+  gap: 6px;
+  width: auto;
+  padding: 0;
+  margin: 0;
 }
 
 .top-quick-toggle-pill {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 13px;
+  gap: 5px;
+  padding: 5px 10px;
   border-radius: 9999px;
   font-family: var(--font-heading);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--text-main);
@@ -8902,8 +8955,8 @@ body.van50-accessible {
 }
 
 .top-quick-toggle-pill .toggle-pill-indicator {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   border: 1.75px solid var(--text-muted);
   background: transparent;
@@ -8929,15 +8982,144 @@ body.van50-accessible {
   border-color: currentColor;
 }
 
+/* Semantic Category Color Coding on Event Cards & Pills */
+.event-card,
+.event-card:hover,
+.event-card.card-happening-now {
+  border-left: 3.5px solid var(--cat-accent) !important;
+}
+
+.event-card {
+  --cat-accent: var(--cat-arts-accent);
+  --cat-pill-bg: var(--cat-arts-bg);
+  --cat-pill-fg: var(--cat-arts-fg);
+}
+
+.event-card[data-cat-theme="outdoors"] {
+  --cat-accent: var(--cat-outdoors-accent);
+  --cat-pill-bg: var(--cat-outdoors-bg);
+  --cat-pill-fg: var(--cat-outdoors-fg);
+}
+
+.event-card[data-cat-theme="comedy"] {
+  --cat-accent: var(--cat-comedy-accent);
+  --cat-pill-bg: var(--cat-comedy-bg);
+  --cat-pill-fg: var(--cat-comedy-fg);
+}
+
+.event-card[data-cat-theme="music"] {
+  --cat-accent: var(--cat-music-accent);
+  --cat-pill-bg: var(--cat-music-bg);
+  --cat-pill-fg: var(--cat-music-fg);
+}
+
+.event-card[data-cat-theme="cinema"] {
+  --cat-accent: var(--cat-cinema-accent);
+  --cat-pill-bg: var(--cat-cinema-bg);
+  --cat-pill-fg: var(--cat-cinema-fg);
+}
+
+.event-card[data-cat-theme="arts"] {
+  --cat-accent: var(--cat-arts-accent);
+  --cat-pill-bg: var(--cat-arts-bg);
+  --cat-pill-fg: var(--cat-arts-fg);
+}
+
+.event-card[data-cat-theme="games"] {
+  --cat-accent: var(--cat-games-accent);
+  --cat-pill-bg: var(--cat-games-bg);
+  --cat-pill-fg: var(--cat-games-fg);
+}
+
+.event-card[data-cat-theme="sports"] {
+  --cat-accent: var(--cat-sports-accent);
+  --cat-pill-bg: var(--cat-sports-bg);
+  --cat-pill-fg: var(--cat-sports-fg);
+}
+
+section[aria-label="Events List"] .row2-category-pill,
+.row2-category-pill,
+.event-card .card-category-badge {
+  flex-shrink: 0 !important;
+  background: var(--cat-pill-bg) !important;
+  color: var(--cat-pill-fg) !important;
+  border: none !important;
+  font-family: var(--font-body);
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.04em !important;
+  padding: 2px 7px !important;
+  border-radius: 5px !important;
+  line-height: 1.35 !important;
+  white-space: nowrap !important;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.12s ease;
+}
+
+.row2-category-pill:hover,
+.event-card .card-category-badge:hover {
+  filter: brightness(0.95);
+}
+
+/* Anytime & Scenic Drop-Ins Subtle Section Sub-Divider */
+.anytime-dropins-subdivider {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 8px 0 2px 0;
+  padding: 4px 2px;
+}
+
+.anytime-subdivider-label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.anytime-subdivider-line {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* Live Category Counts & Zero-Match Dimming in Quick Category Filters */
+.quick-cat-pill .quick-cat-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+
+.quick-cat-pill.active .quick-cat-count {
+  opacity: 0.92;
+}
+
+.quick-cat-pill.is-empty-cat:not(.active) {
+  opacity: 0.45;
+}
+
 @media (max-width: 768px) {
-  .top-quick-toggles-bar {
+  .pre-feed-controls-row {
     gap: 6px;
-    padding: 2px 0 4px 0;
+    margin: 0 0 6px 0;
+  }
+
+  .pre-feed-controls-row .region-pill {
+    padding: 4px 9px !important;
+    font-size: 0.74rem !important;
   }
 
   .top-quick-toggle-pill {
-    min-height: 34px;
-    padding: 5px 12px;
-    font-size: 0.78rem;
+    min-height: 30px;
+    padding: 4px 9px;
+    font-size: 0.74rem;
   }
 }
