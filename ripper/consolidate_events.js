@@ -267,9 +267,18 @@ function extractShowingsFromCard(card) {
   const cardUrl = card.ticket_url || card.candidate_tier1_url || card.websiteUrl || card.url || null;
   const isCardUrlAggregator = cardUrl && AGGREGATOR_DOMAINS.some((d) => cardUrl.toLowerCase().includes(d));
 
+  const isValidShowingDate = (d) => {
+    if (!d || typeof d !== "string") return false;
+    const s = d.trim();
+    if (!s || /^(?:none_available|search_exhausted_null|past_event|quarantine_fatal|TBD|perennial|Upcoming|Schedule Pending Verification)$/i.test(s)) {
+      return false;
+    }
+    return /^\d{4}-\d{2}-\d{2}$/.test(s);
+  };
+
   if (Array.isArray(card.showings) && card.showings.length > 0) {
     for (const s of card.showings) {
-      if (!s || !s.date || s.date === "none_available") continue;
+      if (!s || !isValidShowingDate(s.date)) continue;
       results.push({
         date: String(s.date).trim(),
         start_time: s.start_time || s.time || card.start_time || card.time || "7:00 PM",
@@ -283,7 +292,7 @@ function extractShowingsFromCard(card) {
 
   for (const key of ["show_1", "show_2", "show_3"]) {
     const s = card[key];
-    if (s && typeof s === "object" && s.date && s.date !== "none_available" && s.date !== "Upcoming") {
+    if (s && typeof s === "object" && isValidShowingDate(s.date)) {
       results.push({
         date: String(s.date).trim(),
         start_time: s.start_time || s.time || card.start_time || card.time || "7:00 PM",

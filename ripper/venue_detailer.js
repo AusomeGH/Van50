@@ -80,8 +80,16 @@ function matchVenue(venueQuery, venues) {
   let matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().trim() === rawQuery);
   if (matched) return matched;
 
+  const isSubFacilityMismatch = (vObj) => {
+    const vRaw = vObj?.venue_name || vObj?.name || "";
+    if (/\([^)]*\b(?:fitness\s+centre|gymnasium)\b[^)]*\)/i.test(vRaw) && !/\b(?:fitness|gym|gymnasium|zumba|workout)\b/i.test(rawQuery)) {
+      return true;
+    }
+    return false;
+  };
+
   // 2. Clean query match (without parenthetical info / punctuation)
-  matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
+  matched = candidateVenues.find(v => !isSubFacilityMismatch(v) && (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
   // 3. Clean query containment (word-boundary aligned; leftover tokens must only be benign articles or city qualifiers so "Central City" never hijacks "Central City Fun Park")
@@ -90,6 +98,7 @@ function matchVenue(venueQuery, venues) {
     "yvr", "bc", "canada", "downtown", "inc", "ltd"
   ]);
   const containmentCandidates = candidateVenues.filter(v => {
+    if (isSubFacilityMismatch(v)) return false;
     const vNoParens = (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     if (vNoParens.length <= 6 || cleanQuery.length <= 4) return false;
     const shorter = cleanQuery.length <= vNoParens.length ? cleanQuery : vNoParens;
@@ -109,7 +118,33 @@ function matchVenue(venueQuery, venues) {
     return containmentCandidates[0];
   }
 
-  // 4. Token Overlap Scoring with stopword suppression & distinctive-token precision gate
+  // 4. Token Overlap Scoring with stopword suppression, multi-branch isolation & distinctive-token precision gate
+  const extractFacilityQualifiers = (str) => {
+    const norm = String(str || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    const quals = new Set();
+    const branchPhrases = [
+      "city centre", "ocean park", "strawberry hill", "port kells", "south surrey",
+      "fleetwood", "guildford", "newton", "cloverdale", "clayton", "whalley", "semiahmoo",
+      "mount pleasant", "west point grey", "south hill", "terry salman", "joe fortes",
+      "kitsilano", "kerrisdale", "marpole", "renfrew", "britannia", "dunbar", "oakridge",
+      "champlain", "collingwood", "firehall", "bob prittie", "metrotown", "mcgill",
+      "tommy douglas", "cameron", "brighouse", "ironwood", "steveston", "poirier"
+    ];
+    for (const bp of branchPhrases) {
+      if (new RegExp(`(?:^|\\s)${bp}(?:\\s|$)`).test(norm)) quals.add(bp);
+    }
+    if (/\b(?:kpu|kwantlen|sfu|simon\s+fraser|ubc|douglas\s+college|bcit)\b/.test(norm)) {
+      for (const campus of ["surrey", "richmond", "langley", "burnaby", "coquitlam", "new westminster", "downtown", "cloverdale"]) {
+        if (new RegExp(`(?:^|\\s)${campus}(?:\\s|$)`).test(norm)) quals.add(`campus:${campus}`);
+      }
+    }
+    return quals;
+  };
+  const isLibraryChain = (str) => /\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|fraser\s+valley\s+regional\s+library)\b/i.test(String(str || ""));
+  const queryQuals = extractFacilityQualifiers(rawQuery);
+  const queryIsLibChain = isLibraryChain(rawQuery);
+  const queryMentionsGym = /\b(?:fitness|gym|gymnasium|recreation|zumba|workout)\b/i.test(rawQuery);
+
   const commonStopwords = new Set([
     "gallery", "theatre", "theater", "hall", "centre", "center", "room", "park", "cafe", "club",
     "place", "house", "space", "vancouver", "public", "market", "gardens", "garden", "promenade",
@@ -118,7 +153,8 @@ function matchVenue(venueQuery, venues) {
     "lounge", "bar", "pub", "inn", "hotel", "society", "association", "classical", "the", "and",
     "for", "with", "at", "by", "of", "central", "north", "south", "east", "west", "main", "downtown",
     "burnaby", "city", "metro", "village", "shop", "live", "venue", "pacific", "granville", "olympic",
-    "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family"
+    "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family",
+    "libraries", "library", "branch", "branches", "campus"
   ]);
 
   const queryTokens = cleanQuery.split(" ").filter(t => t.length >= 3 && !commonStopwords.has(t));
@@ -128,7 +164,20 @@ function matchVenue(venueQuery, venues) {
   let maxScore = 0;
 
   for (const v of candidateVenues) {
-    const vClean = (v.venue_name || v.name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    const vRawName = v.venue_name || v.name || "";
+    const vQuals = extractFacilityQualifiers(vRawName);
+    if (queryIsLibChain || isLibraryChain(vRawName)) {
+      if (queryQuals.size === 0 || vQuals.size === 0 || ![...queryQuals].some((q) => vQuals.has(q))) {
+        continue;
+      }
+    } else if (queryQuals.size > 0 && vQuals.size > 0 && ![...queryQuals].some((q) => vQuals.has(q))) {
+      continue;
+    }
+    if (/\b(?:fitness\s+centre|gymnasium)\b/i.test(vRawName) && !queryMentionsGym) {
+      continue;
+    }
+
+    const vClean = vRawName.toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter(t => t.length >= 3 && !commonStopwords.has(t)));
     if (vTokens.size === 0) continue;
 

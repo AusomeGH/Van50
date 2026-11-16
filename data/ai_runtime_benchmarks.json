@@ -140,15 +140,33 @@
       "label": "QC AI Full Catalog Audit",
       "averageDurationSeconds": 286.9,
       "averageDurationFormatted": "4m 47s",
-      "totalRuns": 165,
+      "totalRuns": 168,
       "lastRun": {
-        "timestamp": "2026-11-15T02:07:56.617Z",
-        "durationSeconds": 66,
-        "durationFormatted": "1m 6s",
-        "itemsProcessed": 1,
+        "timestamp": "2026-11-16T16:16:58.752Z",
+        "durationSeconds": 624,
+        "durationFormatted": "10m 24s",
+        "itemsProcessed": 40,
         "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
       },
       "history": [
+        {
+          "timestamp": "2026-11-16T16:16:58.752Z",
+          "durationSeconds": 624,
+          "durationFormatted": "10m 24s",
+          "itemsProcessed": 40
+        },
+        {
+          "timestamp": "2026-11-15T23:43:03.630Z",
+          "durationSeconds": 5075,
+          "durationFormatted": "84m 35s",
+          "itemsProcessed": 283
+        },
+        {
+          "timestamp": "2026-11-15T16:47:14.068Z",
+          "durationSeconds": 432,
+          "durationFormatted": "7m 12s",
+          "itemsProcessed": 25
+        },
         {
           "timestamp": "2026-11-15T02:07:56.617Z",
           "durationSeconds": 66,
@@ -430,43 +448,33 @@
           "durationSeconds": 803,
           "durationFormatted": "13m 23s",
           "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-11-03T00:03:45.463Z",
-          "durationSeconds": 450,
-          "durationFormatted": "7m 30s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-11-02T19:38:53.030Z",
-          "durationSeconds": 603,
-          "durationFormatted": "10m 3s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-11-02T03:34:58.150Z",
-          "durationSeconds": 91,
-          "durationFormatted": "1m 31s",
-          "itemsProcessed": 5
         }
       ],
       "last_run_timestamp": "2026-10-13T14:04:00-07:00"
     },
     "quarantine_ai": {
       "label": "Quarantine AI Healer & Resolution",
-      "averageDurationSeconds": 28.4,
-      "averageDurationFormatted": "28s",
-      "totalRuns": 52,
+      "averageDurationSeconds": 39.8,
+      "averageDurationFormatted": "40s",
+      "totalRuns": 53,
       "lastRun": {
-        "timestamp": "2026-10-28T10:53:00-07:00",
-        "durationSeconds": 1152,
-        "durationFormatted": "19m 12s",
-        "itemsProcessed": 27,
-        "itemsGraduated": 9,
-        "itemsArchived": 12,
-        "notes": "Processed 21 quarantined events (9 graduated to data/events.json, 12 archived to data/archived_events.json), 1 discovered venue candidate, and 5 curator instructions using 21 isolated fresh subagent instances."
+        "timestamp": "2026-11-16T10:12:00-07:00",
+        "durationSeconds": 652,
+        "durationFormatted": "10m 52s",
+        "itemsProcessed": 178,
+        "itemsGraduated": 55,
+        "itemsArchived": 114,
+        "notes": "Full Phase 1-3 batch audit & remediation: Stagehand live QC (627s on 40 targets) + Stage 3A enrichment (25s on 34 targets) + compiler reconciliation. Graduated 55 verified <= $50 CAD Metro Vancouver events to data/events.json (390 clean active cards), archived 114 disqualified/expired/over-$50/kids/B2B items, and retained 9 unverified-pricing items honestly in manual_review_queue.json."
       },
       "history": [
+        {
+          "timestamp": "2026-11-16T10:12:00-07:00",
+          "durationSeconds": 652,
+          "durationFormatted": "10m 52s",
+          "itemsProcessed": 178,
+          "itemsGraduated": 55,
+          "itemsArchived": 114
+        },
         {
           "timestamp": "2026-10-28T10:53:00-07:00",
           "durationSeconds": 1152,

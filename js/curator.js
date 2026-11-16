@@ -4761,9 +4761,14 @@ function renderHolidayCards() {
 
   const { pendingHolidays: pending, quarantinedFestivals, unapprovedFests, total } = getPendingFestivalsAndHolidays();
   const approved = state.approvedHolidays || [];
-  const approvedFestivals = (state.festivals || state.masterCatalogsData?.festivals || []).filter(
-    f => f && f.status !== 'pending' && f.approvalStatus !== 'pending' && f.status !== 'pending_curator_approval'
-  );
+  const approvedFestivals = (state.festivals || state.masterCatalogsData?.festivals || [])
+    .filter(f => f && f.status !== 'pending' && f.approvalStatus !== 'pending' && f.status !== 'pending_curator_approval')
+    .slice()
+    .sort((a, b) => {
+      const labelA = String(a.festival_name || a.name || a.slug || a.id || '').trim();
+      const labelB = String(b.festival_name || b.name || b.slug || b.id || '').trim();
+      return labelA.localeCompare(labelB, 'en', { sensitivity: 'base', numeric: true });
+    });
 
   if (countDisplay) {
     countDisplay.innerHTML = `Showing <strong>${total}</strong> festival(s) &amp; holiday(s) awaiting curator approval`;
@@ -7959,13 +7964,21 @@ function initStagehandRipperUI() {
 
     const uncompiledHarvested = typeof window.getUncompiledHarvestedEvents === 'function' ? window.getUncompiledHarvestedEvents() : [];
 
-    // If an active pipeline batch (e.g. 18 or 56 Pipeline Events) is loaded, track the full batch cohort across Stages 1A -> 5
-    // regardless of whether currentPipelineScope is 'harvested' or 'batch5', so events are NEVER swapped out with global backlog items.
+    // Only lock stage queue counts to pipelineTestDiscoveredIds while a batch run/chain is actively in flight
+    // (or during an explicit quarantined cohort run). When idle between partial runs, always show the true
+    // remaining queue across all uncompiled harvested events so partial batches never hide waiting events.
     let done1AList = uncompiledHarvested;
+    const isQuarantinedCohortActive = Boolean(
+      pipelineQuarantinedRunActive &&
+      currentPipelineScope === 'quarantined' &&
+      Array.isArray(pipelineTestDiscoveredIds) &&
+      pipelineTestDiscoveredIds.length > 0
+    );
     const hasActiveBatchCohort = Boolean(
       isPipelineTestMode &&
       Array.isArray(pipelineTestDiscoveredIds) &&
-      pipelineTestDiscoveredIds.length > 0
+      pipelineTestDiscoveredIds.length > 0 &&
+      (isExecuting || isPipelineAutoChaining || isQuarantinedCohortActive)
     );
     if (hasActiveBatchCohort) {
       const schedArr = Array.isArray(state.layerSchedules) ? state.layerSchedules : [];
@@ -8022,14 +8035,29 @@ function initStagehandRipperUI() {
     const pending1BList = done1AList.filter(e => !e.step1b_audited_at);
 
     const boxArr = state.layerBoxOffices || state.layerBoxOffice || [];
-    const boxSet = new Set(
+    const boxPassSet = new Set(
       boxArr
         .filter(b => b && b.status && b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR' && b.status !== 'UNVERIFIED_PRICING' && b.status !== 'SKIPPED_NO_URL' && b.status !== 'BUDGET_BREACH' && b.status !== 'ANTIBOT_CHALLENGE_BLOCKED' && !String(b.status).startsWith('FATAL_'))
         .map(b => String(b.id || b.event_id || '').toLowerCase())
     );
+    const terminalBoxFailSet = new Set(
+      boxArr
+        .filter(b => b && b.status && (b.status === 'BUDGET_BREACH' || b.status === 'ANTIBOT_CHALLENGE_BLOCKED' || String(b.status).startsWith('FATAL_')))
+        .map(b => String(b.id || b.event_id || '').toLowerCase())
+    );
     const stage2InputPool = hasActiveBatchCohort ? done1AList : done1BList;
-    const done2QCList = stage2InputPool.filter(e => e.isFreeOrOpen || boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
-    const pending2QCList = stage2InputPool.filter(e => !e.isFreeOrOpen && !boxSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const done2QCList = stage2InputPool.filter(e => {
+      const eid = String(e.id || e.event_id || '').toLowerCase();
+      return e.isFreeOrOpen || boxPassSet.has(eid) || terminalBoxFailSet.has(eid);
+    });
+    const pending2QCList = stage2InputPool.filter(e => {
+      const eid = String(e.id || e.event_id || '').toLowerCase();
+      return !e.isFreeOrOpen && !boxPassSet.has(eid) && !terminalBoxFailSet.has(eid);
+    });
+    const passed2QCList = stage2InputPool.filter(e => {
+      const eid = String(e.id || e.event_id || '').toLowerCase();
+      return e.isFreeOrOpen || boxPassSet.has(eid);
+    });
 
     const edArr = state.layerEditorials || state.layerEditorial || [];
     const edSet = new Set(
@@ -8057,7 +8085,7 @@ function initStagehandRipperUI() {
       return Boolean(vk && groundedVenueKeys.has(vk));
     };
     // Canonical Order: Stage 3 = Venue Detailer (grounds venues BEFORE Enricher), Stage 4 = AI Semantic Enricher
-    const stage3InputPool = hasActiveBatchCohort ? done1AList : done2QCList;
+    const stage3InputPool = hasActiveBatchCohort ? done1AList : passed2QCList;
     const done3VenueList = stage3InputPool.filter(e => isEventVenueGrounded(e));
     const pending3VenueList = stage3InputPool.filter(e => !isEventVenueGrounded(e));
 
@@ -8065,11 +8093,20 @@ function initStagehandRipperUI() {
     const done4EnrichList = stage4InputPool.filter(e => edSet.has(String(e.id || e.event_id || '').toLowerCase()));
     const pending4EnrichList = stage4InputPool.filter(e => !edSet.has(String(e.id || e.event_id || '').toLowerCase()));
 
+    const terminalReadyForCompile = hasActiveBatchCohort
+      ? []
+      : done1BList.filter(e => terminalBoxFailSet.has(String(e.id || e.event_id || '').toLowerCase()));
+    const seenCompileIds = new Set(done4EnrichList.map(e => String(e.id || e.event_id || '').toLowerCase()));
+    const combinedReadyForCompile = [
+      ...done4EnrichList,
+      ...terminalReadyForCompile.filter(e => !seenCompileIds.has(String(e.id || e.event_id || '').toLowerCase()))
+    ];
+
     // When a locked batch cohort is active, Stage 5 compiles the locked batch cohort end-to-end
     const pending5CompileList = hasActiveBatchCohort
       ? done1AList.filter(e => !e.isCompiled)
-      : done4EnrichList;
-    const prev4Count = hasActiveBatchCohort ? done1AList.length : done4EnrichList.length;
+      : combinedReadyForCompile;
+    const prev4Count = hasActiveBatchCohort ? done1AList.length : combinedReadyForCompile.length;
 
     if (key === 'harvest') {
       return {
@@ -8258,6 +8295,7 @@ function initStagehandRipperUI() {
     stageKey: 'hunter',
     items: [],
     selectedIds: new Set(),
+    activePreset: 10,
     searchQuery: '',
     scope: 'harvested',
     isQuarantine: false
@@ -8288,16 +8326,26 @@ function initStagehandRipperUI() {
         <div style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; background: rgba(15, 23, 42, 0.7);">
           <div style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
             <span style="font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Quick Select:</span>
-            <button type="button" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(5)">First 5</button>
-            <button type="button" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(10)">First 10</button>
-            <button type="button" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(25)">First 25</button>
-            <button type="button" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(50)">First 50</button>
-            <button type="button" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount('all')">All (<span id="sq-total-count">0</span>)</button>
-            <button type="button" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(0)">Clear</button>
+            <button type="button" id="sq-chip-5" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(5)">First 5</button>
+            <button type="button" id="sq-chip-10" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(10)">First 10</button>
+            <button type="button" id="sq-chip-25" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(25)">First 25</button>
+            <button type="button" id="sq-chip-50" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(50)">First 50</button>
+            <button type="button" id="sq-chip-all" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount('all')">All (<span id="sq-total-count">0</span>)</button>
+            <button type="button" id="sq-chip-0" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(0)">Clear</button>
+            <div id="sq-chip-custom-wrap" class="sq-other-number-wrap" onclick="document.getElementById('sq-custom-count-input')?.focus()">
+              <label for="sq-custom-count-input" style="cursor: pointer; white-space: nowrap;">Other Number:</label>
+              <input type="number" id="sq-custom-count-input" class="sq-other-number-input" min="0" step="1" value="0"
+                oninput="window.onStageQueueCustomCountInput(this.value)"
+                onblur="window.onStageQueueCustomCountBlur()"
+                onfocus="this.select()"
+                onkeydown="if (event.key === 'Enter') { event.preventDefault(); this.blur(); }"
+                onclick="event.stopPropagation()"
+                title="Enter any custom number of waiting events to select, or view the currently selected count">
+            </div>
           </div>
           <input type="text" id="sq-search-input" placeholder="🔍 Filter by title or venue..."
             oninput="window.onStageQueueSearchInput(this.value)"
-            style="padding: 5px 10px; font-size: 0.75rem; border-radius: 6px; background: #020617; border: 1px solid rgba(148,163,184,0.3); color: #f8fafc; min-width: 190px;">
+            style="padding: 5px 10px; font-size: 0.75rem; border-radius: 6px; background: #020617; border: 1px solid rgba(148,163,184,0.3); color: #f8fafc; min-width: 175px;">
         </div>
 
         <div class="stage-queue-list" id="sq-items-list"></div>
@@ -8328,7 +8376,7 @@ function initStagehandRipperUI() {
     return modal;
   }
 
-  function renderStageQueueModalItems() {
+  function renderStageQueueModalItems(opts = {}) {
     const st = window._stageQueueModalState;
     const listEl = document.getElementById('sq-items-list');
     const summaryEl = document.getElementById('sq-selected-summary');
@@ -8341,6 +8389,25 @@ function initStagehandRipperUI() {
     const selCount = st.selectedIds.size;
     if (totalEl) totalEl.textContent = String(total);
     if (summaryEl) summaryEl.textContent = `${selCount} of ${total} waiting event${total === 1 ? '' : 's'} selected`;
+
+    // Sync Quick Select chip highlights & Other Number display
+    [5, 10, 25, 50, 'all', 0].forEach(preset => {
+      const chipEl = document.getElementById(`sq-chip-${preset}`);
+      if (chipEl) {
+        chipEl.classList.toggle('active', st.activePreset === preset);
+      }
+    });
+    const customWrapEl = document.getElementById('sq-chip-custom-wrap');
+    if (customWrapEl) {
+      customWrapEl.classList.toggle('active', st.activePreset === 'custom');
+    }
+    const customInputEl = document.getElementById('sq-custom-count-input');
+    if (customInputEl) {
+      customInputEl.max = String(total);
+      if (!opts.skipCustomInputSync) {
+        customInputEl.value = String(selCount);
+      }
+    }
 
     const stepLabels = {
       hunter: 'Step 1B (Find Ticket Links)',
@@ -8380,7 +8447,7 @@ function initStagehandRipperUI() {
       return;
     }
 
-    listEl.innerHTML = visible.slice(0, 200).map((it, idx) => {
+    listEl.innerHTML = visible.slice(0, 1000).map((it, idx) => {
       const checked = st.selectedIds.has(it.id) ? 'checked' : '';
       const guidanceBadge = it.hasGuidance
         ? `<span style="font-size: 0.65rem; padding: 1px 6px; border-radius: 999px; background: rgba(192, 132, 252, 0.2); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.45);">📝 Has Notes</span>`
@@ -8400,18 +8467,26 @@ function initStagehandRipperUI() {
           <span style="font-size: 0.66rem; color: #64748b; font-family: monospace;">#${idx + 1}</span>
         </label>
       `;
-    }).join('') + (visible.length > 200 ? `<div style="padding: 8px; text-align: center; font-size: 0.72rem; color: #94a3b8;">Showing first 200 of ${visible.length} events (Quick Select buttons apply to all ${total} events).</div>` : '');
+    }).join('') + (visible.length > 1000 ? `<div style="padding: 8px; text-align: center; font-size: 0.72rem; color: #94a3b8;">Showing first 1,000 of ${visible.length} events (Quick Select buttons apply to all ${total} events).</div>` : '');
   }
 
   window.toggleStageQueueItem = function (id, checked) {
     if (!id) return;
-    if (checked) window._stageQueueModalState.selectedIds.add(id);
-    else window._stageQueueModalState.selectedIds.delete(id);
+    const st = window._stageQueueModalState;
+    if (checked) st.selectedIds.add(id);
+    else st.selectedIds.delete(id);
+
+    const selCount = st.selectedIds.size;
+    if (selCount === 0) st.activePreset = 0;
+    else if (selCount === st.items.length) st.activePreset = 'all';
+    else st.activePreset = 'custom';
+
     renderStageQueueModalItems();
   };
 
   window.selectStageQueuePresetCount = function (countOrAll) {
     const st = window._stageQueueModalState;
+    st.activePreset = countOrAll;
     st.selectedIds.clear();
     if (countOrAll === 'all') {
       st.items.forEach(it => st.selectedIds.add(it.id));
@@ -8420,6 +8495,29 @@ function initStagehandRipperUI() {
       st.items.slice(0, cap).forEach(it => st.selectedIds.add(it.id));
     }
     renderStageQueueModalItems();
+  };
+
+  window.onStageQueueCustomCountInput = function (rawVal) {
+    const st = window._stageQueueModalState;
+    st.activePreset = 'custom';
+    st.selectedIds.clear();
+    const trimmed = String(rawVal ?? '').trim();
+    if (trimmed !== '') {
+      const parsed = parseInt(trimmed, 10);
+      if (!Number.isNaN(parsed) && parsed > 0) {
+        const cap = Math.max(0, Math.min(parsed, st.items.length));
+        st.items.slice(0, cap).forEach(it => st.selectedIds.add(it.id));
+      }
+    }
+    renderStageQueueModalItems({ skipCustomInputSync: true });
+  };
+
+  window.onStageQueueCustomCountBlur = function () {
+    const st = window._stageQueueModalState;
+    const customInputEl = document.getElementById('sq-custom-count-input');
+    if (customInputEl) {
+      customInputEl.value = String(st.selectedIds.size);
+    }
   };
 
   window.onStageQueueSearchInput = function (val) {
@@ -8461,13 +8559,21 @@ function initStagehandRipperUI() {
       };
     }).filter(x => Boolean(x.id));
 
-    const defaultSelectCap = opts.defaultCount || Math.min(10, normalized.length);
+    const defaultSelectCap = opts.defaultCount != null
+      ? Math.max(0, Math.min(Number(opts.defaultCount) || 0, normalized.length))
+      : Math.min(10, normalized.length);
     const selectedSet = new Set(normalized.slice(0, defaultSelectCap).map(x => x.id));
+
+    let initialPreset = 'custom';
+    if (defaultSelectCap === 0) initialPreset = 0;
+    else if (defaultSelectCap >= normalized.length) initialPreset = 'all';
+    else if ([5, 10, 25, 50].includes(defaultSelectCap)) initialPreset = defaultSelectCap;
 
     window._stageQueueModalState = {
       stageKey,
       items: normalized,
       selectedIds: selectedSet,
+      activePreset: initialPreset,
       searchQuery: '',
       scope: opts.scope || 'harvested',
       isQuarantine: Boolean(opts.isQuarantine)
@@ -8506,7 +8612,7 @@ function initStagehandRipperUI() {
     }
     const info = window.getStageContinuationInfo(targetStage);
     const hasCompletedPrevCohort = info && Array.isArray(info.allInputItems) && info.allInputItems.length > 0;
-    const hasLockedBatch = isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0;
+    const hasLockedBatch = (isExecuting || isPipelineAutoChaining) && isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0;
     const sourcePool = (info && info.pendingCount > 0)
       ? info.pendingItems
       : ((hasLockedBatch && hasCompletedPrevCohort) ? info.allInputItems : (info?.allInputItems || []));
@@ -8518,10 +8624,14 @@ function initStagehandRipperUI() {
       return window.openScanModal(targetStage, evt);
     }
 
+    const defaultBatchCap = (pipelineBatchSize === 'all' || pipelineBatchSize === 0)
+      ? sourcePool.length
+      : Math.min(Number(pipelineBatchSize) || 25, sourcePool.length);
+
     window.openCustomQueueLauncherModal({
       stageKey: targetStage,
       items: sourcePool,
-      defaultCount: sourcePool.length <= 25 ? sourcePool.length : 10,
+      defaultCount: defaultBatchCap,
       scope: 'harvested',
       isQuarantine: false
     });
@@ -8651,9 +8761,16 @@ function initStagehandRipperUI() {
     if (badgeHarvested) {
       badgeHarvested.textContent = `${harvestedCount} New Event${harvestedCount === 1 ? '' : 's'} Ready`;
     }
-    const scopeCountHarvested = document.getElementById('scope-count-harvested');
-    if (scopeCountHarvested) {
-      scopeCountHarvested.textContent = String(harvestedCount);
+    const hPillLabel = document.getElementById('scope-pill-harvested-label');
+    const activeStageForPill = currentPipelineScanKey || pipelineTestStageKey || 'harvest';
+    if (hPillLabel && activeStageForPill !== 'harvest' && typeof window.getStageContinuationInfo === 'function') {
+      const stInfo = window.getStageContinuationInfo(activeStageForPill);
+      hPillLabel.innerHTML = `✨ Queued from ${stInfo.prevStageLabel} (<span id="scope-count-harvested">${stInfo.pendingCount}</span>)`;
+    } else {
+      const scopeCountHarvested = document.getElementById('scope-count-harvested');
+      if (scopeCountHarvested) {
+        scopeCountHarvested.textContent = String(harvestedCount);
+      }
     }
 
     const cpBannerTitle = document.getElementById('harvester-checkpoint-banner-title');
@@ -9414,14 +9531,17 @@ function initStagehandRipperUI() {
         ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
         : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
-        ${proofUrl ? `
-          <div style="position: relative; margin-top: 4px;">
-            <img src="${escapeHtml(proofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')" title="Click to open full-resolution proof">
-            <div style="font-size: 0.64rem; color: #38bdf8; margin-top: 2px; text-align: center; cursor: pointer;" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')">
-              🔍 Click image to enlarge full proof
-            </div>
-          </div>
-        ` : emptyScopeMsg(targets.proof, 'awaiting browser screenshot')}
+        ${proofUrl ? (() => {
+          const cleanProofUrl = proofUrl.startsWith('/') || proofUrl.startsWith('http') ? proofUrl : `/${proofUrl}`;
+          return `
+          <a href="${escapeHtml(cleanProofUrl)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
+             style="display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; text-decoration: none; padding: 4px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(56, 189, 248, 0.28);"
+             title="Click to open full-resolution screenshot in a new tab">
+            <img src="${escapeHtml(cleanProofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onerror="this.closest('a').style.display='none';">
+            <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8;">🔍 Open screenshot in new tab ↗</span>
+          </a>
+        `;
+        })() : emptyScopeMsg(targets.proof, 'awaiting browser screenshot')}
       </div>
     `;
   }
@@ -11020,13 +11140,14 @@ function initStagehandRipperUI() {
           ? (card?.proofKeyframeUrl || card?.proof_keyframe || card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.hasProof && card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.hasProof && card?.id ? `data/proofs/${card.id}_cart.webp` : null) || null)
           : (card?.proof_keyframe || card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.id ? `data/proofs/${card.id}_cart.webp` : null));
         if (!proofUrl) return null;
+        const cleanProofUrl = proofUrl.startsWith('/') || proofUrl.startsWith('http') ? proofUrl : `/${proofUrl}`;
         return `
-          <div style="position: relative; max-width: 180px;">
-            <img src="${escapeHtml(proofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')" title="Click to enlarge proof">
-            <div style="font-size: 0.62rem; color: #38bdf8; margin-top: 2px; cursor: pointer;" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')">
-              🔍 Click to enlarge
-            </div>
-          </div>
+          <a href="${escapeHtml(cleanProofUrl)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
+             style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; max-width: 100%;"
+             title="Click to open full-resolution screenshot in a new tab">
+            <img src="${escapeHtml(cleanProofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onerror="this.closest('a').style.display='none';">
+            <span style="font-size: 0.65rem; font-weight: 700; color: #38bdf8; white-space: nowrap;">🔍 Open in new tab ↗</span>
+          </a>
         `;
       },
       badge: '+ Live Proof'
@@ -11718,13 +11839,21 @@ function initStagehandRipperUI() {
         const evTitle = ctx?.afterTitle || ctx?.title || before?.title || 'Checkout Cart Proof';
         proofBox.style.display = 'flex';
         proofBox.innerHTML = `
-          <img src="${escapeHtml(cleanProofUrl)}" alt="Cart Proof" class="comp-pinned-proof-thumb"
-               onclick="if (typeof openScreenshotModal === 'function') openScreenshotModal('${escapeHtml(cleanProofUrl)}', '${escapeHtml(evTitle)}'); else window.open('${escapeHtml(cleanProofUrl)}', '_blank');"
-               onerror="this.parentElement.style.display='none';" />
-          <div style="flex: 1; min-width: 0;">
-            <div style="font-size: 0.72rem; font-weight: 800; color: #34d399; margin-bottom: 2px;">📸 Live Checkout Cart Screenshot Proof</div>
-            <div style="font-size: 0.78rem; font-weight: 700; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(evTitle)} — <span style="color: #38bdf8;">${escapeHtml(String(priceSummary))}</span></div>
-            <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 2px;">Click thumbnail to enlarge full cart breakdown (base + fees + tax).</div>
+          <a href="${escapeHtml(cleanProofUrl)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
+             title="Click to open full-resolution screenshot in a new browser tab"
+             style="display: inline-flex; align-items: center; flex-shrink: 0; text-decoration: none;">
+            <img src="${escapeHtml(cleanProofUrl)}" alt="Cart Proof" class="comp-pinned-proof-thumb"
+                 onerror="if (this.closest('#pipeline-pinned-proof-box')) this.closest('#pipeline-pinned-proof-box').style.display='none';" />
+          </a>
+          <div style="flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+            <div style="min-width: 0;">
+              <div style="font-size: 0.7rem; font-weight: 800; color: #34d399; margin-bottom: 1px;">📸 Evidence Screenshot Proof</div>
+              <div style="font-size: 0.76rem; font-weight: 700; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(evTitle)} — <span style="color: #38bdf8;">${escapeHtml(String(priceSummary))}</span></div>
+            </div>
+            <a href="${escapeHtml(cleanProofUrl)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
+               style="font-size: 0.68rem; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 9px; border-radius: 6px; text-decoration: none; white-space: nowrap; flex-shrink: 0;">
+              🔍 Open in New Tab ↗
+            </a>
           </div>
         `;
       } else {
@@ -13395,8 +13524,13 @@ function initStagehandRipperUI() {
           window.pipelineBatchSize = parsed.batchSize;
         }
         if (parsed.stageKey && PIPELINE_TEST_ORDER.includes(parsed.stageKey)) pipelineTestStageKey = parsed.stageKey;
-        if (Array.isArray(parsed.discoveredIds)) pipelineTestDiscoveredIds = parsed.discoveredIds;
-        if (Array.isArray(parsed.discoveredEvents)) pipelineTestDiscoveredEvents = parsed.discoveredEvents;
+        if (isExecuting || isPipelineAutoChaining) {
+          if (Array.isArray(parsed.discoveredIds)) pipelineTestDiscoveredIds = parsed.discoveredIds;
+          if (Array.isArray(parsed.discoveredEvents)) pipelineTestDiscoveredEvents = parsed.discoveredEvents;
+        } else {
+          pipelineTestDiscoveredIds = [];
+          pipelineTestDiscoveredEvents = [];
+        }
         if (parsed.stageStatuses && typeof parsed.stageStatuses === 'object') {
           const cleanedStatuses = {};
           Object.entries(parsed.stageStatuses).forEach(([k, v]) => {
@@ -13445,6 +13579,13 @@ function initStagehandRipperUI() {
     }
 
     const activeStage = currentPipelineScanKey || pipelineTestStageKey || 'harvest';
+    let targetPoolLength = 0;
+    const shouldLockExplicitCohort = (isExecuting || isPipelineAutoChaining) ||
+      pipelineQuarantinedRunActive ||
+      currentPipelineScope === 'quarantined' ||
+      currentPipelineScope === 'batch5' ||
+      (pipelineStaleFilterCategory && pipelineStaleFilterCategory !== 'all_stale');
+
     if (preserveExistingCohort && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0) {
       if (size !== 'all' && typeof size === 'number' && size > 0 && pipelineTestDiscoveredIds.length > size) {
         pipelineTestDiscoveredIds = pipelineTestDiscoveredIds.slice(0, size);
@@ -13452,23 +13593,11 @@ function initStagehandRipperUI() {
           pipelineTestDiscoveredEvents = pipelineTestDiscoveredEvents.slice(0, size);
         }
       }
-    } else {
-      // Re-populate pipelineTestDiscoveredIds according to current active filter/scope
+      targetPoolLength = pipelineTestDiscoveredIds.length;
+    } else if (shouldLockExplicitCohort) {
       let targetPool = events;
       if (pipelineQuarantinedRunActive || currentPipelineScope === 'quarantined') {
         targetPool = qEvents;
-      } else if (currentPipelineScope === 'harvested' && typeof window.getUncompiledHarvestedEvents === 'function') {
-        const stageInfo = typeof window.getStageContinuationInfo === 'function' ? window.getStageContinuationInfo(activeStage) : null;
-        const stagePending = (stageInfo && Array.isArray(stageInfo.pendingItems) && stageInfo.pendingItems.length > 0)
-          ? stageInfo.pendingItems
-          : null;
-        const harvestedPool = window.getUncompiledHarvestedEvents();
-        if (stagePending && stagePending.length > 0) {
-          targetPool = stagePending;
-        } else if (harvestedPool && harvestedPool.length > 0) {
-          const pending1B = activeStage === 'hunter' ? harvestedPool.filter(e => !e.step1b_audited_at) : [];
-          targetPool = pending1B.length > 0 ? pending1B : harvestedPool;
-        }
       } else if (pipelineStaleFilterCategory && pipelineStaleFilterCategory !== 'all_stale') {
         const matched = events.filter(e => classifyEventStaleness(e) === pipelineStaleFilterCategory);
         if (matched.length > 0) targetPool = matched;
@@ -13487,15 +13616,29 @@ function initStagehandRipperUI() {
         price: e.priceLabel || '',
         url: e.ticket_url || e.details_url || ''
       }));
+      targetPoolLength = pipelineTestDiscoveredIds.length;
+    } else {
+      // Idle queue mode (e.g. 'harvested' / 'unscanned'): do NOT lock pipelineTestDiscoveredIds to a partial slice,
+      // otherwise all 6 stage badges & waiting-event modals collapse to the batch chip size instead of true waiting counts!
+      pipelineTestDiscoveredIds = [];
+      pipelineTestDiscoveredEvents = [];
+      if (currentPipelineScope === 'harvested' && activeStage !== 'harvest' && typeof window.getStageContinuationInfo === 'function') {
+        const sInfo = window.getStageContinuationInfo(activeStage);
+        const avail = sInfo ? (sInfo.pendingCount > 0 ? sInfo.pendingCount : sInfo.prevCompletedCount) : 0;
+        targetPoolLength = (size !== 'all' && typeof size === 'number') ? Math.min(size, avail || size) : avail;
+      } else {
+        targetPoolLength = (size !== 'all' && typeof size === 'number') ? Math.min(size, totalEvents || size) : totalEvents;
+      }
     }
 
+    const effectiveCount = pipelineTestDiscoveredIds.length || targetPoolLength || (size === 'all' ? totalEvents : size);
     const batchPillLabel = document.getElementById('scope-pill-batch5-label');
     if (batchPillLabel) {
-      batchPillLabel.textContent = `🧪 ${size === 'all' ? pipelineTestDiscoveredIds.length : (pipelineTestDiscoveredIds.length || size)} Events`;
+      batchPillLabel.textContent = `🧪 ${effectiveCount} Events`;
     }
     const autoStaleLabel = document.getElementById('btn-stepper-auto-stale-label');
     if (autoStaleLabel && !isExecuting) {
-      autoStaleLabel.textContent = `⚡ Auto-Run Out-of-Date (${size === 'all' ? 'All' : (pipelineTestDiscoveredIds.length || size)})`;
+      autoStaleLabel.textContent = `⚡ Auto-Run Out-of-Date (${size === 'all' ? 'All' : effectiveCount})`;
     }
 
     savePipelineBatchState();
@@ -13505,7 +13648,7 @@ function initStagehandRipperUI() {
       window.updateAutoPipelineFlowPreview();
     }
 
-    const displayCount = (size === 'all') ? 'All' : (pipelineTestDiscoveredIds.length || size);
+    const displayCount = (size === 'all' && activeStage === 'harvest') ? 'All' : effectiveCount;
     const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
     const titleEl = document.getElementById('pipeline-modal-title');
     const descEl = document.getElementById('pipeline-scan-desc-short');
@@ -13545,7 +13688,7 @@ function initStagehandRipperUI() {
     }
 
     if (typeof showToast === 'function') {
-      showToast(`Batch size set to: ${size === 'all' ? 'All Events' : size + ' Events'} (${pipelineTestDiscoveredIds.length} targeted)`, 'info');
+      showToast(`Batch limit set to: ${size === 'all' ? 'All Waiting Events' : size + ' Events'}`, 'info');
     }
   };
 
@@ -14213,19 +14356,44 @@ function initStagehandRipperUI() {
       return;
     }
 
-    const boxArr = state.layerBoxOffices || state.layerBoxOffice || [];
-    const boxSet = new Set(boxArr.filter(b => b.status !== 'TIMEOUT_EXCEEDED' && b.status !== 'AI_TIMEOUT' && b.status !== 'EXECUTION_ERROR').map(b => String(b.id || b.event_id || '').toLowerCase()));
-    const prioritizedHarvested = [
-      ...harvestedAll.filter(e => !e.step1b_audited_at || !boxSet.has(String(e.id || e.event_id || '').toLowerCase())),
-      ...harvestedAll.filter(e => e.step1b_audited_at && boxSet.has(String(e.id || e.event_id || '').toLowerCase()))
-    ];
+    const stageOrder = ['hunter', 'qc', 'venue', 'enrich', 'compile'];
+    const stageLabels = {
+      hunter: 'Step 1B (Find Ticket Links)',
+      qc: 'Step 2 (Verify Prices & Fees)',
+      venue: 'Step 3 (Verify Venue Info)',
+      enrich: 'Step 4 (Clean Titles & Details)',
+      compile: 'Step 5 (Merge & Publish)'
+    };
+    let targetStage = 'hunter';
+    let targetItems = harvestedAll;
+    let breakdownParts = [];
+
+    if (typeof window.getStageContinuationInfo === 'function') {
+      let foundEarliest = false;
+      stageOrder.forEach(sk => {
+        const info = window.getStageContinuationInfo(sk);
+        if (info && info.pendingCount > 0) {
+          breakdownParts.push(`${info.pendingCount} at ${stageLabels[sk]}`);
+          if (!foundEarliest) {
+            foundEarliest = true;
+            targetStage = sk;
+            targetItems = Array.isArray(info.pendingItems) && info.pendingItems.length > 0 ? info.pendingItems : harvestedAll;
+          }
+        }
+      });
+    }
+
+    const bSize = window.pipelineBatchSize;
+    const defaultPick = (bSize === 'all' || !bSize)
+      ? targetItems.length
+      : Math.min(Number(bSize) || 25, targetItems.length);
 
     return window.openCustomQueueLauncherModal({
-      stageKey: 'hunter',
-      title: '✨ Process Unfinished Harvested Events (Step 1B ➔ Publish)',
-      subtitle: `${prioritizedHarvested.length} harvested event(s) are waiting to be ticket-checked, enriched, and published.`,
-      items: prioritizedHarvested,
-      defaultCount: Math.min(10, prioritizedHarvested.length),
+      stageKey: targetStage,
+      title: `✨ Process Unfinished Harvested Events (${stageLabels[targetStage]} ➔ Publish)`,
+      subtitle: `${targetItems.length} event(s) waiting at ${stageLabels[targetStage]}${breakdownParts.length > 1 ? ` (Pipeline queue: ${breakdownParts.join(' • ')})` : ''}.`,
+      items: targetItems,
+      defaultCount: defaultPick,
       scope: 'harvested',
       isQuarantine: false
     });
@@ -14901,24 +15069,10 @@ function initStagehandRipperUI() {
     if (!PIPELINE_TEST_ORDER.includes(stageKey)) return;
     if (isExecuting) {
       if (typeof showToast === 'function') showToast('Switching view while stage is running...', 'info');
-    } else if (!isPipelineAutoChaining && !pipelineQuarantinedRunActive && stageKey !== 'harvest' && (!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0)) {
+    } else if (!isPipelineAutoChaining && !pipelineQuarantinedRunActive && stageKey !== 'harvest') {
       const stageInfo = typeof window.getStageContinuationInfo === 'function' ? window.getStageContinuationInfo(stageKey) : null;
-      if (stageInfo && Array.isArray(stageInfo.pendingItems) && stageInfo.pendingItems.length > 0) {
-        const cap = (pipelineBatchSize === 'all' || pipelineBatchSize === 0)
-          ? stageInfo.pendingItems.length
-          : Math.min(Number(pipelineBatchSize) || stageInfo.pendingItems.length, stageInfo.pendingItems.length);
-        const picked = stageInfo.pendingItems.slice(0, cap);
-        pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
-        pipelineTestDiscoveredEvents = picked.map(e => ({
-          id: e.id || e.event_id,
-          title: e.title || e.event_name || 'Harvested Event',
-          date: e.date || e.dateSchedule || 'TBD',
-          venue: e.venue || e.venue_name || '',
-          price: e.priceLabel || 'Pending',
-          url: e.url || e.ticket_url || e.details_url || ''
-        }));
+      if (stageInfo && stageInfo.pendingCount > 0) {
         currentPipelineScope = 'harvested';
-        savePipelineBatchState();
       }
     }
     // Never cancel isPipelineAutoChaining when the user clicks a stage pill to inspect progress
@@ -14973,6 +15127,8 @@ function initStagehandRipperUI() {
         const hasLockedCohort = rawIds.length > 0;
         // Prevent Windows 32KB CreateProcessW & HTTP 64KB URL overflow when running large batches (> 250 IDs)
         const idsStr = (isHarvestedRun && rawIds.length > 250) ? '' : rawIds.join(',');
+        // When idsStr is empty on a >250 harvested run, pass force:false so backend rippers strictly target pending items!
+        const shouldForceStage = idsStr ? hasLockedCohort : !isHarvestedRun;
 
         if (stageKey === 'harvest') {
           const shouldResume = window.harvesterResumeMode !== false;
@@ -15000,7 +15156,7 @@ function initStagehandRipperUI() {
             scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
             limit: rawIds.length || batchCap,
             quarantine: pipelineQuarantinedRunActive,
-            force: hasLockedCohort ? true : !isHarvestedRun,
+            force: shouldForceStage,
             autoApprove: true
           });
         } else if (stageKey === 'qc') {
@@ -15011,7 +15167,7 @@ function initStagehandRipperUI() {
             ids: idsStr,
             scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
             limit: rawIds.length || batchCap,
-            force: hasLockedCohort ? true : !isHarvestedRun,
+            force: shouldForceStage,
             autoApprove: true
           });
         } else if (stageKey === 'venue') {
@@ -15026,7 +15182,7 @@ function initStagehandRipperUI() {
             venue: vParam,
             limit: rawIds.length || batchCap || 10,
             quarantine: pipelineQuarantinedRunActive,
-            force: hasLockedCohort ? true : !isHarvestedRun,
+            force: shouldForceStage,
             autoApprove: true
           });
         } else if (stageKey === 'enrich') {
@@ -15037,7 +15193,7 @@ function initStagehandRipperUI() {
             ids: idsStr,
             scope: isHarvestedRun ? 'harvested' : currentPipelineScope,
             limit: rawIds.length || batchCap,
-            force: hasLockedCohort ? true : !isHarvestedRun,
+            force: shouldForceStage,
             autoApprove: true
           });
         } else if (stageKey === 'compile') {
@@ -15862,7 +16018,18 @@ function initStagehandRipperUI() {
             </div>
           ` : ''}
 
-          <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px;">
+            ${c.proofImg ? (() => {
+              const cleanCardProof = String(c.proofImg).startsWith('/') || String(c.proofImg).startsWith('http') ? String(c.proofImg) : `/${c.proofImg}`;
+              return `
+                <a href="${escapeHtml(cleanCardProof)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
+                   style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); padding: 3px 8px; border-radius: 6px;"
+                   title="Click to open full-resolution evidence screenshot in a new tab">
+                  <img src="${escapeHtml(cleanCardProof)}" alt="Proof" style="width: 64px; height: 40px; object-fit: cover; object-position: top center; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.35); flex-shrink: 0;" onerror="this.closest('a').style.display='none';">
+                  <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8; white-space: nowrap;">📸 Open Screenshot ↗</span>
+                </a>
+              `;
+            })() : '<span></span>'}
             <button type="button" onclick="window.closeCompiledCardsPreviewModal(); window.showComparisonCardById('${escapeHtml(eid)}');" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.73rem; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer;">🔍 Inspect ${getCatalogDimensionsCount()}D Matrix</button>
           </div>
         </div>
@@ -19379,6 +19546,18 @@ function initStagehandRipperUI() {
                 return finalizeHarvesterRun(true);
               }
             })
+            .then(() => {
+              if (!isPipelineAutoChaining) {
+                if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
+                  window.syncHarvesterCheckpointAndEventsUI();
+                }
+                updatePipelineTestStepperUI();
+                renderPipelineTestEventsList();
+                if (currentPipelineScope && typeof window.setPipelineScope === 'function') {
+                  window.setPipelineScope(currentPipelineScope);
+                }
+              }
+            })
             .catch(() => { })
           : Promise.resolve();
 
@@ -19405,6 +19584,11 @@ function initStagehandRipperUI() {
           } else {
             isPipelineAutoChaining = false;
             window.activePipelineRunningStageKey = null;
+            if (!pipelineQuarantinedRunActive) {
+              pipelineTestDiscoveredIds = [];
+              pipelineTestDiscoveredEvents = [];
+              savePipelineBatchState();
+            }
             const autoBtn = document.getElementById('btn-stepper-auto-pipeline');
             if (autoBtn) {
               autoBtn.classList.remove('is-running');
@@ -19428,6 +19612,8 @@ function initStagehandRipperUI() {
             if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
               window.syncHarvesterCheckpointAndEventsUI();
             }
+            updatePipelineTestStepperUI();
+            renderPipelineTestEventsList();
             const autoHBtn = document.getElementById('btn-stepper-auto-harvested');
             if (autoHBtn) {
               autoHBtn.classList.remove('is-running');
@@ -19441,6 +19627,15 @@ function initStagehandRipperUI() {
             const closeTextDone = document.getElementById('btn-close-pipeline-modal-text');
             if (closeTextDone) closeTextDone.textContent = 'Return to Curator';
           }
+        } else {
+          // Single-step partial run finished: release temporary batch cohort so stage badges & modals reflect full waiting queues!
+          if (!pipelineQuarantinedRunActive) {
+            pipelineTestDiscoveredIds = [];
+            pipelineTestDiscoveredEvents = [];
+            savePipelineBatchState();
+          }
+          updatePipelineTestStepperUI();
+          renderPipelineTestEventsList();
         }
       } else {
         isPipelineAutoChaining = false;
@@ -19689,7 +19884,7 @@ function initStagehandRipperUI() {
         limitVal = hIds.length || batchCap;
         offsetVal = 0;
         allParam = false;
-        forceVal = true;
+        forceVal = preset.key === 'compile' ? true : Boolean(idsVal);
         uncompiledOnly = true;
       } else if (currentPipelineScope === 'batch5') {
         const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)

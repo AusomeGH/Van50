@@ -29,7 +29,7 @@
     rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/curator.css?v=1.2.0">
+  <link rel="stylesheet" href="css/curator.css?v=1.2.2">
   <style>
     @keyframes spin {
       0% {
@@ -3096,7 +3096,7 @@
           <div class="pipeline-audited-cards-strip" id="pipeline-audited-cards-strip" style="display: none;"></div>
 
           <!-- Pinned Live Checkout Screenshot Proof Box (Shown when event has _cart.png proof) -->
-          <div id="pipeline-pinned-proof-box" style="display: none;"></div>
+          <div id="pipeline-pinned-proof-box" class="comp-pinned-proof-card" style="display: none;"></div>
 
           <div id="pipeline-scope-highlight-banner" style="display: none;"><span id="pipeline-scope-accent-pill"></span>
           </div>
@@ -3175,9 +3175,9 @@
 
           <!-- 3-Column Comparative Dimension Table Container -->
           <div class="pipeline-comparison-cards-row" id="pipeline-comparison-cards-row"
-            style="display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; overflow-y: auto; overflow-x: auto;">
+            style="display: flex; flex-direction: column; flex: 1 1 auto; min-height: 300px; width: 100%; overflow-y: auto; overflow-x: auto;">
             <div id="pipeline-comp-table-container" class="pipeline-3col-table-container"
-              style="flex: 1 1 0; min-height: 0; overflow-y: auto; overflow-x: auto;">
+              style="flex: 1 1 auto; min-height: 260px; overflow-y: auto; overflow-x: auto;">
               <!-- Dynamically populated with 3-Column Comparative Table -->
             </div>
             <!-- Dedicated Harvester 3-Region Comparison Container -->
@@ -3317,7 +3317,8 @@
       const link = e.target.closest('a[target="_blank"], a[href^="http://"], a[href^="https://"], .curator-outbound-link');
       if (link && link.href) {
         const href = link.getAttribute('href') || '';
-        // Skip local links within Curator Studio
+        // Skip local links within Curator Studio & evidence screenshots meant to open in a new tab
+        if (link.classList.contains('curator-new-tab-link') || href.includes('/proof_keyframes/') || href.includes('/proofs/') || href.includes('/curator_screenshots/')) return;
         if (href === 'curator-agy.html' || href === 'curator-table.html' || href === 'simulator.html' || href === 'index.html') return;
         if (href.startsWith('http://127.0.0.1:8080/curator') || href.startsWith('http://localhost:8080/curator')) return;
         e.preventDefault();
@@ -3345,7 +3346,7 @@
     } catch (_) {}
     window.VAN50_ENGINE = 'antigravity';
   </script>
-  <script src="js/curator.js?v=1.5.2"></script>
+  <script src="js/curator.js?v=1.5.5"></script>
 </body>
 
 </html>

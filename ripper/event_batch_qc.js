@@ -1038,7 +1038,11 @@ export async function collectAllFramesText(page, extraContextText = "") {
           new Promise((resolve) => setTimeout(() => resolve(null), 8000)),
         ]);
         if (cdpSnap && cdpSnap.formattedTree && cdpSnap.formattedTree.trim().length > 20) {
-          sections.push(`\n--- MULTI-FRAME CDP ACCESSIBILITY TREE (INCLUDING CROSS-ORIGIN IFRAMES) ---\n${cdpSnap.formattedTree.trim().slice(0, 8000)}`);
+          const fullTree = cdpSnap.formattedTree.trim();
+          const clippedTree = fullTree.length <= 28000
+            ? fullTree
+            : `${fullTree.slice(0, 12000)}\n...[middle truncated]...\n${fullTree.slice(-16000)}`;
+          sections.push(`\n--- MULTI-FRAME CDP ACCESSIBILITY TREE (INCLUDING CROSS-ORIGIN IFRAMES) ---\n${clippedTree}`);
         }
       }
     } catch (_) { }
@@ -1850,6 +1854,23 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     }
   }
 
+  // Unwrap Impact / Do604 affiliate redirect trackers (ticketmaster.evyy.net, pxf.io, sjv.io, awin1.com) before browser navigation
+  const unwrapAffiliateUrl = (raw) => {
+    if (!raw || typeof raw !== "string" || !raw.startsWith("http")) return raw;
+    try {
+      const uObj = new URL(raw.trim());
+      if (/(?:^|\.)(?:evyy\.net|pxf\.io|sjv\.io|awin1\.com)$/i.test(uObj.hostname.toLowerCase())) {
+        const inner = uObj.searchParams.get("u") || uObj.searchParams.get("ued") || uObj.searchParams.get("url");
+        if (inner && inner.startsWith("http")) {
+          return inner.replace(/([?&])(?:REFERRAL_ID|wt\.mc_id|camefrom|SharedId)=[^&#]*(&|$)/gi, (_, p1, p2) => (p2 === "&" ? p1 : "")).replace(/[?&]$/, "");
+        }
+      }
+    } catch (_) { }
+    return raw;
+  };
+  targetUrl = unwrapAffiliateUrl(targetUrl);
+  candidateUrl = unwrapAffiliateUrl(candidateUrl);
+
   // Surrey Civic Theatres (`ticketing.purchase.surrey.ca/.../ChooseSeats.aspx` iframe) serves Cloudflare 403 `X-Frame-Options: SAMEORIGIN`
   // to headless browsers (rendering Chrome's grey blocked-frame icon), whereas `purchase.surrey.ca/EventAvailability?EventId=<ID>`
   // renders natively via React + Spektrix REST API v3! Navigate headless Chromium to `EventAvailability` for clean DOM & `_cart.png`
@@ -1968,6 +1989,24 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         }));
         await enrichPageInfoWithFrames(candidatePage, candInfo, candidateUrl);
 
+        const candAntiBot = /performing security verification|verify you are human|browsing activity has been paused|detected unusual behaviour|unusual activity from your network|datadome/i.test(String(candInfo.text || ""));
+        if (candAntiBot) {
+          console.warn(`🛑 [Stagehand Gate] Candidate Tier 1 URL (${candidateUrl}) hit anti-bot pause/challenge. Routing to antibot_challenge_blocked.`);
+          await candidatePage.close().catch(() => { });
+          return {
+            success: false,
+            eventId,
+            status: "ANTIBOT_CHALLENGE_BLOCKED",
+            error: "Candidate Tier 1 portal gated by anti-bot security verification challenge",
+            card: {
+              ...eventCard,
+              ticket_url: candidateUrl,
+              quarantineReason: "antibot_challenge_blocked",
+              quarantine_reason: "antibot_challenge_blocked",
+              last_qc_audited_at: new Date().toISOString(),
+            },
+          };
+        }
         const candDead = checkPageDeadOr404(candInfo);
         const candEntity = checkEntityMatchesPage(eventCard.title || eventCard.event_name, candInfo.title, candInfo.text, {
           venue: eventCard.venue || eventCard.venue_name,
@@ -2185,6 +2224,23 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           url: window.location.href,
         }));
         await enrichPageInfoWithFrames(page, portalInfo, checkoutUrl);
+        const portalAntiBot = /performing security verification|verify you are human|browsing activity has been paused|detected unusual behaviour|unusual activity from your network|datadome/i.test(String(portalInfo.text || ""));
+        if (portalAntiBot) {
+          console.warn(`🛑 [Portal Traversal Anti-Bot Gate] Traversed ticketing portal ${checkoutUrl} presented an anti-bot challenge. Aborting without falling back to promo sticker prices.`);
+          return {
+            success: false,
+            eventId,
+            status: "ANTIBOT_CHALLENGE_BLOCKED",
+            error: "Traversed ticketing portal gated by anti-bot security verification challenge",
+            card: {
+              ...eventCard,
+              ticket_url: unwrapAffiliateUrl(checkoutUrl),
+              quarantineReason: "antibot_challenge_blocked",
+              quarantine_reason: "antibot_challenge_blocked",
+              last_qc_audited_at: new Date().toISOString(),
+            },
+          };
+        }
         const portalDead = checkPageDeadOr404(portalInfo);
         const portalEntity = checkEntityMatchesPage(
           eventCard.title || eventCard.event_name,
@@ -2365,6 +2421,27 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           }
 
           await waitForDomReady(page, { maxWaitMs: 2000, minWaitMs: 350 });
+          // Eventbrite embedded checkout iframe (`checkout-external?eid=...`) loads asynchronously behind a teal spinner;
+          // wait up to 4.5s for the checkout iframe to finish rendering ticket tier prices before capturing DOM/screenshot.
+          if (/eventbrite\.(?:ca|com)\/e\//i.test(checkoutUrl || targetUrl || "")) {
+            const ebWaitStart = Date.now();
+            while (Date.now() - ebWaitStart < 4500) {
+              const ebHydrated = await page.evaluate(() => {
+                const iframes = Array.from(document.querySelectorAll('iframe[src*="checkout-external"], iframe[id*="eventbrite-widget-modal"]'));
+                if (iframes.length === 0) return false;
+                return iframes.some((f) => {
+                  try {
+                    const txt = f.contentDocument?.body?.innerText || "";
+                    return txt.length > 120 && /\$|\bfree\b|\bsold\s*out\b|\bsales\s*ended\b/i.test(txt);
+                  } catch (_) {
+                    return false;
+                  }
+                });
+              }).catch(() => false);
+              if (ebHydrated) break;
+              await new Promise((r) => setTimeout(r, 450));
+            }
+          }
         } else {
           console.log(`⚡ [Act 1 Bypass] Already on direct checkout cart or quantity controls visible — advancing directly to seat/quantity selection.`);
         }
@@ -2730,6 +2807,27 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         } else if (incrementedViaDom === "vso_zone_radio_selected") {
           console.log(`🎻 [Act 2 - VSO SSR Zone Selected] Selected lowest-priced Available Section radio button to reveal Adult/Senior/Student/Child base + fee breakdown.`);
           await waitForDomReady(page, { maxWaitMs: 2000, minWaitMs: 350 });
+          // Eventbrite embedded checkout iframe (`checkout-external?eid=...`) loads asynchronously behind a teal spinner;
+          // wait up to 4.5s for the checkout iframe to finish rendering ticket tier prices before capturing DOM/screenshot.
+          if (/eventbrite\.(?:ca|com)\/e\//i.test(checkoutUrl || targetUrl || "")) {
+            const ebWaitStart = Date.now();
+            while (Date.now() - ebWaitStart < 4500) {
+              const ebHydrated = await page.evaluate(() => {
+                const iframes = Array.from(document.querySelectorAll('iframe[src*="checkout-external"], iframe[id*="eventbrite-widget-modal"]'));
+                if (iframes.length === 0) return false;
+                return iframes.some((f) => {
+                  try {
+                    const txt = f.contentDocument?.body?.innerText || "";
+                    return txt.length > 120 && /\$|\bfree\b|\bsold\s*out\b|\bsales\s*ended\b/i.test(txt);
+                  } catch (_) {
+                    return false;
+                  }
+                });
+              }).catch(() => false);
+              if (ebHydrated) break;
+              await new Promise((r) => setTimeout(r, 450));
+            }
+          }
         } else if (incrementedViaDom === "vso_section_ranges_visible" || incrementedViaDom === "vso_section_drilled") {
           console.log(`🎻 [Act 2 - VSO Section Pricing] Preserving live Tessitura section prices without triggering SYOS error modal (${incrementedViaDom}).`);
           await waitForDomReady(page, { maxWaitMs: 1500, minWaitMs: 300 });

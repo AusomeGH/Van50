@@ -93,13 +93,13 @@ export function parseJsonFromText(rawText) {
   const trimmed = rawText.trim();
   try {
     return JSON.parse(trimmed);
-  } catch (_) {}
+  } catch (_) { }
 
   const fenceMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
   if (fenceMatch && fenceMatch[1]) {
     try {
       return JSON.parse(fenceMatch[1].trim());
-    } catch (_) {}
+    } catch (_) { }
   }
 
   const firstBrace = trimmed.indexOf("{");
@@ -107,7 +107,7 @@ export function parseJsonFromText(rawText) {
   if (firstBrace !== -1 && lastBrace > firstBrace) {
     try {
       return JSON.parse(trimmed.slice(firstBrace, lastBrace + 1));
-    } catch (_) {}
+    } catch (_) { }
   }
   return null;
 }
@@ -316,8 +316,9 @@ ${dedupedDom}
 """
 
 Instructions:
-1. Extract the exact show/event title (never a generic button like "Buy Tickets" or "General Admission" if a real title is present), venue_name, calendar date (YYYY-MM-DD if possible), start_time (12-hour AM/PM e.g. "8:00 PM"), doors_time (12-hour AM/PM e.g. "7:00 PM"), end_time, and age_restriction.
+1. Extract the exact show/event title (never a generic button like "Buy Tickets" or "General Admission" if a real title is present), specific physical venue_name (preserve exact library branch or university campus/building qualifier, e.g. "Surrey Libraries - Guildford Branch"), calendar date (YYYY-MM-DD strictly as written on the page — NEVER shift or invent a future date if the page shows a past date), start_time (12-hour AM/PM e.g. "8:00 PM"), doors_time (12-hour AM/PM e.g. "7:00 PM"), end_time, and age_restriction (e.g. "18+" if "ages 18 and up", "19+" only if 19+/liquor ID is stated, or "All Ages").
 2. Extract ticket pricing tiers in CAD strictly from the rendered page/cart text above (never guess or fabricate prices if none are present in the text):
+   - Free Public / Library / Civic Registration Rule: If a public library, civic, or community page states "Cost: Free" or free admission (including "Drop-in" or "Register in person, by phone, or by email" without an e-commerce cart), extract Tier 1 as $0.00 (pricing_model: "free_access", tier1_name: "Free Admission", tier1_price_base: 0, tier1_price_fee: 0, tier1_price_tax: 0, tier1_price_all_in: 0, tier1_price_read: 0, tier1_quote: "Free"). NEVER mark such an event is_sold_out: true simply because it uses phone/in-person registration instead of an online checkout button!
    - Tier 1 MUST be the primary unconditional single-visit Adult / General Admission / lowest-priced available reserved section tier <= $50.00 CAD (never an optional add-on like club rental, and never $0 Child/Member if a paid Adult tier exists).
    - Standalone Pass Disqualifier (Gate 4): NEVER extract Season Passes, Annual Passes, or Memberships as single-visit tiers. If the page ONLY sells a Season Pass or Annual Pass (e.g. "Season Pass - Vancouver Christmas Market"), return null for tier1_price_base / tier1_price_all_in and [] for all_tiers.
    - Outer Price-Range Banner Guard: NEVER extract the lower bound of an outer summary banner (e.g. "Price $33.77 - $49.62 CAD") when the live ticket list/modal shows that lower tier is sold out, ended, or absent! Extract ONLY actively available tiers shown in the live ticket list/modal.
@@ -328,7 +329,7 @@ Instructions:
    - Museum/Gallery Admission & Starting Floors: If an exhibition/tour states "included with Gallery admission" alongside an official General Admission rate (e.g. "General Admission – Adult (19+): $29.00"), or a theatre show page states "Tickets from $39", extract that Adult / Starting Floor rate as Tier 1.
    - Extract tier1_name, tier1_price_base, tier1_price_fee, tier1_price_tax, tier1_price_all_in, tier1_price_read, and verbatim tier1_quote. If no price is stated in the text, return null for the numeric price fields!
    - Also populate tier2_* and tier3_* if secondary/student/senior/early-bird/section tiers exist, and list all visible single-visit tiers in all_tiers.
-3. Gate 4 Sold-Out & Timezone Rule: Set is_sold_out to true ONLY if every eligible single-visit admission tier (<= $50 CAD) is sold out. If a promoter displays showtimes in MT (Mountain Time) for a Metro Vancouver venue, convert the time to America/Vancouver PT (-1 hour from MT).
+3. Gate 4 Sold-Out & Timezone Rule: Set is_sold_out to true ONLY if the page explicitly displays "Sold Out", "Full", "Registration Closed", or "Waitlist Only" across every eligible single-visit admission tier (<= $50 CAD). Never infer sold_out when no sold-out/full badge is present. If a promoter displays showtimes in MT (Mountain Time) for a Metro Vancouver venue, convert the time to America/Vancouver PT (-1 hour from MT).
 
 Return ONLY a valid JSON object matching this exact structure (no markdown commentary):
 {
@@ -428,11 +429,11 @@ Requirements:
 2. "artist": Extract the lead artist, band, performer, or speaker name (or null if general/recreation).
 3. "lineup": Array of performer names if present (or []).
 4. "category": Strictly one of ["music", "cinema", "shows", "outdoors", "arts", "markets", "social", "festivals", "sports", "trivia", "free-public-access"]. Map live concerts/DJ sets/symphony/jazz/choirs to "music"; film screenings/repertory cinema to "cinema"; stand-up comedy/improv/theatre/magic/drag/live stage to "shows"; visual art galleries/museums/exhibitions to "arts"; night/farmers/artisan markets to "markets"; multi-day festivals/parades to "festivals"; trivia/bingo/board games/pinball/social mixers to "social" (or "trivia" for dedicated pub trivia); spectator or recreational sports to "sports"; parks/gardens/beaches/trails/pitch-and-putts to "outdoors" (or "free-public-access" when $0 civic open access).
-5. "event_archetype": Strictly one of ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"] based on true semantic comprehension of what the event actually is (e.g. a stand-up comedy show is "live_stage" even if its title has a joke word like "Class").
-6. "lifecycle_type": Strictly one of ["time_bound_event", "weekly_recurring_residency", "perennial_drop_in"]. Use "weekly_recurring_residency" ONLY if the event itself is an ongoing weekly residency/series (not just a one-off show whose description mentions a weekday in passing).
+5. "event_archetype": Strictly one of ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"] based on true semantic comprehension of what the event actually is (e.g. a stand-up comedy show is "live_stage" even if its title has a joke word like "Class"; "social_gaming" is strictly for trivia, board games, bingo, tabletop RPGs, or arcade gaming — NEVER book clubs, language groups, or campus food pantries, which are "workshop").
+6. "lifecycle_type": Strictly one of ["time_bound_event", "weekly_recurring_residency", "perennial_drop_in"]. Use "weekly_recurring_residency" ONLY if the event itself is an ongoing weekly residency/series (not just a one-off show whose description mentions a weekday in passing). Use "perennial_drop_in" ONLY for permanent year-round physical parks, beaches, museums, or galleries — NEVER for web portals, calculators, directories, or online webinars.
 7. "weekly_recurring_day": If lifecycle_type is "weekly_recurring_residency", return the day name ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", or "Sunday"); otherwise null.
 8. "description": Exactly 2 evocative sentences written for patrons based strictly on the real facts provided. CRITICAL MANDATE: When the event is a specific show/event (comedy, concert, play, screening, performance, etc.), the description MUST be about the show itself (comedic style, music genre, plot, themes, performance) and NOT generic boilerplate about the venue or room. Only describe the venue/grounds when the event is an outdoor park, beach, garden, or perennial drop-in visit. If there are no real facts about the show, return null.
-9. "restrictions": "All Ages", "19+ w/ ID", "16+", or "All Ages / Family Friendly".
+9. "restrictions": "All Ages", "All Ages / Family Friendly", "16+", "18+", or "19+ w/ ID". Use "18+" when the page states "ages 18 and up" or "18+"; reserve "19+ w/ ID" strictly for licensed 19+ venues/events.
 10. "holiday_affiliation": Generously infer if the event fits the theme, genre, vibe, or celebration of an upcoming holiday within its seasonal window (e.g. horror/thriller/murder-mystery/costume in October -> "halloween"; festive/winter market/solstice/carol in Nov-Dec -> "christmas"). Strictly one of ["halloween", "dia-de-los-muertos", "diwali", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "canada-day", "pride"] or null.
 11. "is_religious": Boolean. Set true ONLY if the event's actual activity involves prayer, worship, liturgy, mass, devotional chanting, scripture, or a faith service. Never set true simply because a secular show is hosted in a church/temple hall or celebrates a secular holiday like Christmas or Diwali.
 
@@ -574,11 +575,11 @@ Price: "${priceLabel}"
 ${curatorSection}
 Current Event Links:
 ${JSON.stringify({
-  ticket_url: eventCard?.ticket_url || null,
-  details_url: eventCard?.details_url || null,
-  candidate_tier1_url: eventCard?.candidate_tier1_url || null,
-  links: eventCard?.links || null,
-}, null, 2)}
+    ticket_url: eventCard?.ticket_url || null,
+    details_url: eventCard?.details_url || null,
+    candidate_tier1_url: eventCard?.candidate_tier1_url || null,
+    links: eventCard?.links || null,
+  }, null, 2)}
 
 Live HTTP Probe & Candidate Link Diagnostics:
 ${JSON.stringify(linkDiagnostics, null, 2)}
@@ -634,7 +635,7 @@ export async function withFileLock(filePath, asyncFn) {
     key,
     prev.then(() => next, () => next)
   );
-  await prev.catch(() => {});
+  await prev.catch(() => { });
   try {
     return await asyncFn();
   } finally {
@@ -699,12 +700,12 @@ export function atomicWriteJsonSync(filePath, data) {
       fs.writeFileSync(filePath, serialized, "utf-8");
       try {
         if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
-      } catch (_) {}
+      } catch (_) { }
     }
   } catch (err) {
     try {
       if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
-    } catch (_) {}
+    } catch (_) { }
     throw err;
   }
 }

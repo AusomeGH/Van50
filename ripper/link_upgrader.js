@@ -67,8 +67,9 @@ export const TICKETING_PLATFORMS = [
   "tickets.surrey.ca",
   "tickets.bellperformingartscentre.com",
   "vbotickets.com",
-  "gatehopper.com",
-  "tickettailor.com"
+  "tickettailor.com",
+  "fareharbor.com",
+  "tixr.com"
 ];
 
 /**
@@ -121,6 +122,7 @@ export function isWhitelistedTicketingUrl(url) {
     const u = new URL(url);
     const host = u.hostname.toLowerCase();
     if (host.startsWith("help.") || host.startsWith("support.") || host.startsWith("blog.") || host.startsWith("status.")) return false;
+    if (/(?:^|\.)(?:evyy\.net|pxf\.io|sjv\.io|awin1\.com)$/i.test(host)) return false;
     if (host.includes("viff.org") && /\/whats-on\/[^/]+\/book\/[^/]+/i.test(u.pathname)) return true;
     if (host.includes("thecultch.com") && /EventInstanceId=|ChooseSeats\.aspx/i.test(u.search + u.pathname)) return true;
     const isPlatform = TICKETING_PLATFORMS.some((p) => host.includes(p));
@@ -154,8 +156,9 @@ export function isWhitelistedTicketingUrl(url) {
       return false;
     }
 
-    // Eventbrite specific check: must be a valid event path /e/... and have digits in the ID
+    // Eventbrite specific check: must be a valid event path /e/... with numeric ID or /checkout-external?eid=<digits>
     if (host.includes("eventbrite")) {
+      if (path === "/checkout-external" && /[?&]eid=\d{5,}/i.test(u.search)) return true;
       if (!path.startsWith("/e/")) return false;
       // Reject if it doesn't contain a numeric ID or ends in just '-tickets'
       if (!/\d{5,}/.test(path)) return false;

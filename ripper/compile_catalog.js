@@ -114,7 +114,7 @@ export function pruneOrphanedProofKeyframes({
           prunedCount++;
           freedBytes += stat.size;
         }
-      } catch (_) {}
+      } catch (_) { }
     }
   } catch (err) {
     console.warn(`⚠️ [Keyframe Cleanup] Warning scanning proof_keyframes: ${err.message}`);
@@ -150,7 +150,7 @@ function formatIsoTime(rawTime, defaultTime = "19:00:00") {
   return `${String(h).padStart(2, "0")}:${m}:00`;
 }
 
-export function parseHumanDateToIso(str, defaultYear = 2026) {
+export function parseHumanDateToIso(str, defaultYear = 2026, contextHint = "") {
   if (!str || typeof str !== "string") return null;
   const isoMatch = str.match(/\b(202\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])\b/);
   if (isoMatch) return isoMatch[0];
@@ -164,11 +164,35 @@ export function parseHumanDateToIso(str, defaultYear = 2026) {
     const day = String(parseInt(m[2], 10)).padStart(2, "0");
     let year = m[3] ? m[3] : String(defaultYear);
     if (!m[3]) {
-      const now = new Date();
-      const curMonth = now.getMonth() + 1;
-      const parsedMonth = parseInt(month, 10);
-      if (parsedMonth < curMonth - 1) {
-        year = String(Number(defaultYear) + 1);
+      const hintStr = String(contextHint || "");
+      const explicitYearAnchor =
+        hintStr.match(/\/films\/(202\d)\//i) ||
+        hintStr.match(/-(202\d)-\d{2}-\d{2}\b/) ||
+        hintStr.match(/-\d{2,4}(202\d)\b/);
+      if (explicitYearAnchor) {
+        year = explicitYearAnchor[1];
+      } else {
+        const wdayMap = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+        const wdayMatch = str.match(/\b(sun(?:day)?|mon(?:day)?|tue(?:s|sday)?|wed(?:nesday)?|thu(?:r|rs|rsday)?|fri(?:day)?|sat(?:urday)?)\b/i);
+        const candCur = new Date(`${defaultYear}-${month}-${day}T12:00:00Z`);
+        const candNext = new Date(`${Number(defaultYear) + 1}-${month}-${day}T12:00:00Z`);
+        if (wdayMatch && !isNaN(candCur.getTime()) && !isNaN(candNext.getTime())) {
+          const targetDow = wdayMap[wdayMatch[1].toLowerCase().slice(0, 3)];
+          if (candCur.getUTCDay() === targetDow && candNext.getUTCDay() !== targetDow) {
+            year = String(defaultYear);
+          } else if (candNext.getUTCDay() === targetDow && candCur.getUTCDay() !== targetDow) {
+            year = String(Number(defaultYear) + 1);
+          }
+        } else {
+          const now = new Date();
+          const curMonth = now.getMonth() + 1;
+          const parsedMonth = parseInt(month, 10);
+          const monthsAhead = (parsedMonth - curMonth + 12) % 12;
+          // Only roll yearless dates forward across New Year for near-horizon months (<= 5 months ahead)
+          if (parsedMonth < curMonth - 1 && monthsAhead <= 5) {
+            year = String(Number(defaultYear) + 1);
+          }
+        }
       }
     }
     return `${year}-${month}-${day}`;
@@ -180,12 +204,13 @@ export function parseHumanDateToIso(str, defaultYear = 2026) {
  * Extracts fallback date from seed, existing record, URL, or eventId
  */
 export function extractFallbackDate(eventId, url, seed = {}, existing = {}) {
-  const seedParsed = parseHumanDateToIso(seed?.date);
+  const hint = `${eventId || ""} ${url || ""}`;
+  const seedParsed = parseHumanDateToIso(seed?.date, 2026, hint);
   if (seedParsed) return seedParsed;
-  const existParsed = parseHumanDateToIso(existing?.date);
+  const existParsed = parseHumanDateToIso(existing?.date, 2026, hint);
   if (existParsed) return existParsed;
-  if (seed?.date && seed.date !== "none_available" && seed.date !== "search_exhausted_null" && seed.date !== "quarantine_fatal" && seed.date !== "Schedule Pending Verification") return seed.date;
-  if (existing?.date && existing.date !== "none_available" && existing.date !== "search_exhausted_null" && existing.date !== "quarantine_fatal" && existing.date !== "Schedule Pending Verification") return existing.date;
+  if (seed?.date && seed.date !== "none_available" && seed.date !== "search_exhausted_null" && seed.date !== "quarantine_fatal" && seed.date !== "past_event" && seed.date !== "Schedule Pending Verification") return seed.date;
+  if (existing?.date && existing.date !== "none_available" && existing.date !== "search_exhausted_null" && existing.date !== "quarantine_fatal" && existing.date !== "past_event" && existing.date !== "Schedule Pending Verification") return existing.date;
   if (seed?.startIso) {
     const m = String(seed.startIso).match(/^(\d{4}-\d{2}-\d{2})/);
     if (m) return m[1];
@@ -280,8 +305,16 @@ export function matchVenue(venueQuery, venues) {
   let matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().trim() === rawQuery);
   if (matched) return matched;
 
+  const isSubFacilityMismatch = (vObj) => {
+    const vRaw = vObj?.venue_name || "";
+    if (/\([^)]*\b(?:fitness\s+centre|gymnasium)\b[^)]*\)/i.test(vRaw) && !/\b(?:fitness|gym|gymnasium|zumba|workout)\b/i.test(rawQuery)) {
+      return true;
+    }
+    return false;
+  };
+
   // 2. Clean query match (without parenthetical info / punctuation)
-  matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
+  matched = candidateVenues.find((v) => !isSubFacilityMismatch(v) && (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() === cleanQuery);
   if (matched) return matched;
 
   // 3. Clean query containment (word-boundary aligned; leftover tokens must only be benign articles or city qualifiers so "Central City" never hijacks "Central City Fun Park")
@@ -290,6 +323,7 @@ export function matchVenue(venueQuery, venues) {
     "yvr", "bc", "canada", "downtown", "inc", "ltd"
   ]);
   const containmentCandidates = candidateVenues.filter((v) => {
+    if (isSubFacilityMismatch(v)) return false;
     const vNoParens = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     if (vNoParens.length <= 6 || cleanQuery.length <= 4) return false;
     const shorter = cleanQuery.length <= vNoParens.length ? cleanQuery : vNoParens;
@@ -309,7 +343,33 @@ export function matchVenue(venueQuery, venues) {
     return containmentCandidates[0];
   }
 
-  // 4. Token Overlap Scoring with stopword suppression & distinctive-token precision gate
+  // 4. Token Overlap Scoring with stopword suppression, multi-branch isolation & distinctive-token precision gate
+  const extractFacilityQualifiers = (str) => {
+    const norm = String(str || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    const quals = new Set();
+    const branchPhrases = [
+      "city centre", "ocean park", "strawberry hill", "port kells", "south surrey",
+      "fleetwood", "guildford", "newton", "cloverdale", "clayton", "whalley", "semiahmoo",
+      "mount pleasant", "west point grey", "south hill", "terry salman", "joe fortes",
+      "kitsilano", "kerrisdale", "marpole", "renfrew", "britannia", "dunbar", "oakridge",
+      "champlain", "collingwood", "firehall", "bob prittie", "metrotown", "mcgill",
+      "tommy douglas", "cameron", "brighouse", "ironwood", "steveston", "poirier"
+    ];
+    for (const bp of branchPhrases) {
+      if (new RegExp(`(?:^|\\s)${bp}(?:\\s|$)`).test(norm)) quals.add(bp);
+    }
+    if (/\b(?:kpu|kwantlen|sfu|simon\s+fraser|ubc|douglas\s+college|bcit)\b/.test(norm)) {
+      for (const campus of ["surrey", "richmond", "langley", "burnaby", "coquitlam", "new westminster", "downtown", "cloverdale"]) {
+        if (new RegExp(`(?:^|\\s)${campus}(?:\\s|$)`).test(norm)) quals.add(`campus:${campus}`);
+      }
+    }
+    return quals;
+  };
+  const isLibraryChain = (str) => /\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|fraser\s+valley\s+regional\s+library)\b/i.test(String(str || ""));
+  const queryQuals = extractFacilityQualifiers(rawQuery);
+  const queryIsLibChain = isLibraryChain(rawQuery);
+  const queryMentionsGym = /\b(?:fitness|gym|gymnasium|recreation|zumba|workout)\b/i.test(rawQuery);
+
   const commonStopwords = new Set([
     "gallery", "theatre", "theater", "hall", "centre", "center", "room", "park", "cafe", "club",
     "place", "house", "space", "vancouver", "public", "market", "gardens", "garden", "promenade",
@@ -318,7 +378,8 @@ export function matchVenue(venueQuery, venues) {
     "lounge", "bar", "pub", "inn", "hotel", "society", "association", "classical", "the", "and",
     "for", "with", "at", "by", "of", "central", "north", "south", "east", "west", "main", "downtown",
     "burnaby", "city", "metro", "village", "shop", "live", "venue", "pacific", "granville", "olympic",
-    "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family"
+    "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family",
+    "libraries", "library", "branch", "branches", "campus"
   ]);
 
   const queryTokens = cleanQuery.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t));
@@ -328,7 +389,18 @@ export function matchVenue(venueQuery, venues) {
   let maxScore = 0;
 
   for (const v of candidateVenues) {
-    const vClean = (v.venue_name || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+    const vRawName = v.venue_name || "";
+    const vQuals = extractFacilityQualifiers(vRawName);
+    if (queryIsLibChain || isLibraryChain(vRawName)) {
+      if (queryQuals.size === 0 || vQuals.size === 0 || ![...queryQuals].some((q) => vQuals.has(q))) {
+        continue;
+      }
+    } else if (queryQuals.size > 0 && vQuals.size > 0 && ![...queryQuals].some((q) => vQuals.has(q))) {
+      continue;
+    }
+    if (isSubFacilityMismatch(v)) continue;
+
+    const vClean = vRawName.toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t)));
     if (vTokens.size === 0) continue;
 
@@ -560,7 +632,8 @@ export async function compileCatalog(options = {}) {
     const u = String(rec.details_url || rec.ticket_url || rec.candidate_tier1_url || rec.source_url || "").trim();
     if (/^(?:choose\s+seats|select\s+seats|find\s+tickets|buy\s+tickets|get\s+tickets|book\s+tickets|503\s+service\s+unavailable|502\s+bad\s+gateway|504\s+gateway\s+timeout|403\s+forbidden|404\s+not\s+found)$/i.test(t)) return true;
     if (/^(?:discover\s+events\s+in\s+|things\s+to\s+do\s+in\s+|free\s+holiday\s+events\s+in\s+|toy\s+drives\s+around\s+|upcoming\s+holiday\s+events\s+at\s+|victoria\s+festivals\s+and\s+events|vancouver['’]s\s+best\s+|vancouver\s+history\s+and\s+culture|vancouver\s+rainy\s+day\s+activities|list\s+your\s+event\b)/i.test(t)) return true;
-    if (/\b(?:503\s+service\s+unavailable|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|all[- ]access\s+pass(?:es)?|subscription\s+packages?|exhibition\s+catalogue|school\s+boundaries)\b/i.test(t)) return true;
+    if (/\b(?:503\s+service\s+unavailable|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|all[- ]access\s+pass(?:es)?|subscription\s+packages?|exhibition\s+catalogue|school\s+boundaries|settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|sfu\s+livewhale\s+calendar|tuition\s+estimator|educationplannerbc|applying\s+to\s+kpu|why\s+choose\s+kpu|kpu\s+registration|find\s+your\s+classroom|managerial\s+accounting\s+exam\s+review|naloxone\s+training\s+session\s+for\s+students|registration\s+101\s+information\s+session|canadian\s+taxes\s+for\s+international\s+students)\b/i.test(t)) return true;
+    if (/\bwebinar\b/i.test(t) && !/\b(?:in[- ]person|hybrid)\b/i.test(t)) return true;
     if (/@\s*(?:abbotsford(?:\s+pilots)?|mission(?:\s+city(?:\s+outlaws)?)?|chilliwack(?:\s+jets)?|aldergrove(?:\s+ironmen)?)\b/i.test(t)) return true;
     if (u && (
       /allevents\.in\/pages\/|flohockey\.tv|flosports\.tv|showpass\.com\/(?:m|discover|cities|explore|o|s)(?:\/|[?#]|$)|eventbrite\.(?:ca|com)\/(?:b|d|ttd|cc|o|l)(?:\/|[?#]|$)|\/wp-content\/uploads\/|\.(?:jpg|jpeg|png|gif|webp|svg)(?:[?#]|$)/i.test(u) ||
@@ -573,8 +646,14 @@ export async function compileCatalog(options = {}) {
       /\/(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|coll(?:e|a)ge-grad|graduation-ceremony|convocation)(?:\/|[?#]|$)/i.test(u) ||
       /\/(?:city-government|city-departments|public-safety|gallery-publications|exhibition-catalogues)(?:\/|$)/i.test(u) ||
       /\/(?:who-we-are|be-a-sponsor|sponsor|sponsorship|trophies|scholarship|season-memberships)(?:\/|$)/i.test(u) ||
+      /events\.sfu\.ca\/livewhale(?:\/|[?#]|$)/i.test(u) ||
+      /kpu\.ca\/(?:tuitionestimator|apply|admission(?:\/|[?#]|$)|why-choose-kpu|registration(?:\/|[?#]|$)|current-students\/find-your-classroom|climatebookclub|learningcentres\/events\/workshops\/)/i.test(u) ||
+      /surreylibraries\.ca\/events\/settlement-services-newcomers/i.test(u) ||
       (/\.aspx(?:[?#]|$)/i.test(u) && !/chooseseats\.aspx|ticketsearchcriteria\.aspx\?evtinfo=/i.test(u))
     )) {
+      return true;
+    }
+    if (v && /^(?:online|virtual|zoom|livestream|stream|online\s*\([^)]+\)|microsoft\s+teams)$/i.test(v)) {
       return true;
     }
     if (!isActivePublished && v && (
@@ -670,7 +749,10 @@ export async function compileCatalog(options = {}) {
     const b = boxOffices[i];
     const bid = b && (b.id || b.event_id);
     if ((bid && pollutedLayerIds.has(bid)) || isPollutedHarvestRecord(b)) {
-      if (bid) pollutedLayerIds.add(bid);
+      if (bid) {
+        pollutedLayerIds.add(bid);
+        pollutedArchivedRecords.push(b);
+      }
       boxOffices.splice(i, 1);
       boxCleaned = true;
       continue;
@@ -696,12 +778,30 @@ export async function compileCatalog(options = {}) {
     const e = editorials[i];
     const eid = e && (e.id || e.event_id);
     if ((eid && pollutedLayerIds.has(eid)) || isPollutedHarvestRecord(e)) {
+      if (eid) {
+        pollutedLayerIds.add(eid);
+        pollutedArchivedRecords.push(e);
+      }
       editorials.splice(i, 1);
       edCleaned = true;
     }
   }
   if (edCleaned) {
     fs.writeFileSync(EDITORIAL_PATH, JSON.stringify(editorials, null, 2), "utf-8");
+  }
+  if (pollutedLayerIds.size > 0) {
+    let cascadeSchedulesCleaned = false;
+    for (let i = schedules.length - 1; i >= 0; i--) {
+      const sid = schedules[i] && (schedules[i].id || schedules[i].event_id);
+      if (sid && pollutedLayerIds.has(sid)) {
+        pollutedArchivedRecords.push(schedules[i]);
+        schedules.splice(i, 1);
+        cascadeSchedulesCleaned = true;
+      }
+    }
+    if (cascadeSchedulesCleaned) {
+      fs.writeFileSync(SCHEDULES_PATH, JSON.stringify(schedules, null, 2), "utf-8");
+    }
   }
 
   let quarantinedPoolCleaned = false;
@@ -716,6 +816,18 @@ export async function compileCatalog(options = {}) {
       quarantinedEventsPool.splice(i, 1);
       if (qid) quarantinedMap.delete(qid);
       quarantinedPoolCleaned = true;
+    }
+  }
+  for (let i = existingEvents.length - 1; i >= 0; i--) {
+    const ex = existingEvents[i];
+    const exId = ex && (ex.id || ex.event_id);
+    const exDateStr = String(ex?.date || "").trim().toLowerCase();
+    if ((exId && pollutedLayerIds.has(exId)) || isPollutedHarvestRecord(ex) || exDateStr === "past_event" || exDateStr === "quarantine_fatal") {
+      if (exId) {
+        pollutedLayerIds.add(exId);
+        pollutedArchivedRecords.push(ex);
+      }
+      existingEvents.splice(i, 1);
     }
   }
   if (pollutedArchivedRecords.length > 0) {
@@ -843,18 +955,18 @@ export async function compileCatalog(options = {}) {
       const srTiers = Array.isArray(sr.tiers) && sr.tiers.length > 0
         ? sr.tiers
         : [
-            {
-              name: priceVal === 0 ? "Free Public Access" : "General Admission",
-              price: priceVal,
-              price_base: Number(sr.price_base ?? priceVal),
-              price_fee: Number(sr.price_fee ?? 0),
-              price_tax: Number(sr.price_tax ?? 0),
-              price_read: priceVal,
-              price_calculated: priceVal,
-              price_all_in: priceVal,
-              is_available: !sr.is_sold_out,
-            },
-          ];
+          {
+            name: priceVal === 0 ? "Free Public Access" : "General Admission",
+            price: priceVal,
+            price_base: Number(sr.price_base ?? priceVal),
+            price_fee: Number(sr.price_fee ?? 0),
+            price_tax: Number(sr.price_tax ?? 0),
+            price_read: priceVal,
+            price_calculated: priceVal,
+            price_all_in: priceVal,
+            is_available: !sr.is_sold_out,
+          },
+        ];
       const boxPayload = {
         id: sid,
         event_id: sid,
@@ -879,23 +991,23 @@ export async function compileCatalog(options = {}) {
         tier1_quote: sr.priceLabel || (priceVal === 0 ? "Free" : `$${priceVal.toFixed(2)} CAD`),
         ...(srTiers[1]
           ? {
-              tier2_name: srTiers[1].name,
-              tier2_price_base: Number(srTiers[1].price_base ?? srTiers[1].price ?? 0),
-              tier2_price_fee: Number(srTiers[1].price_fee ?? 0),
-              tier2_price_tax: Number(srTiers[1].price_tax ?? 0),
-              tier2_price_read: Number(srTiers[1].price ?? 0),
-              tier2_price_all_in: Number(srTiers[1].price ?? 0),
-            }
+            tier2_name: srTiers[1].name,
+            tier2_price_base: Number(srTiers[1].price_base ?? srTiers[1].price ?? 0),
+            tier2_price_fee: Number(srTiers[1].price_fee ?? 0),
+            tier2_price_tax: Number(srTiers[1].price_tax ?? 0),
+            tier2_price_read: Number(srTiers[1].price ?? 0),
+            tier2_price_all_in: Number(srTiers[1].price ?? 0),
+          }
           : {}),
         ...(srTiers[2]
           ? {
-              tier3_name: srTiers[2].name,
-              tier3_price_base: Number(srTiers[2].price_base ?? srTiers[2].price ?? 0),
-              tier3_price_fee: Number(srTiers[2].price_fee ?? 0),
-              tier3_price_tax: Number(srTiers[2].price_tax ?? 0),
-              tier3_price_read: Number(srTiers[2].price ?? 0),
-              tier3_price_all_in: Number(srTiers[2].price ?? 0),
-            }
+            tier3_name: srTiers[2].name,
+            tier3_price_base: Number(srTiers[2].price_base ?? srTiers[2].price ?? 0),
+            tier3_price_fee: Number(srTiers[2].price_fee ?? 0),
+            tier3_price_tax: Number(srTiers[2].price_tax ?? 0),
+            tier3_price_read: Number(srTiers[2].price ?? 0),
+            tier3_price_all_in: Number(srTiers[2].price ?? 0),
+          }
           : {}),
         all_tiers: srTiers,
         tiers: srTiers,
@@ -1585,8 +1697,8 @@ export async function compileCatalog(options = {}) {
     // 3. AI ARBITRATION: Lifecycle & Showings (5 Slots)
     const explicitFallbackDate = extractFallbackDate(eventId, seedUrl || existing.ticket_url || box.ticket_url, seed, existing);
     const hasExplicitTimeBoundDate = Boolean(
-      (sched.date && sched.date !== "none_available" && sched.date !== "search_exhausted_null" && sched.date !== "quarantine_fatal" && sched.date !== "TBD" && sched.date !== "perennial") ||
-      (box.date && box.date !== "none_available" && box.date !== "search_exhausted_null" && box.date !== "quarantine_fatal" && box.date !== "TBD" && box.date !== "perennial") ||
+      (sched.date && sched.date !== "none_available" && sched.date !== "search_exhausted_null" && sched.date !== "quarantine_fatal" && sched.date !== "past_event" && sched.date !== "TBD" && sched.date !== "perennial") ||
+      (box.date && box.date !== "none_available" && box.date !== "search_exhausted_null" && box.date !== "quarantine_fatal" && box.date !== "past_event" && box.date !== "TBD" && box.date !== "perennial") ||
       explicitFallbackDate
     );
     const isExplicitTimeBound =
@@ -1676,33 +1788,58 @@ export async function compileCatalog(options = {}) {
       const fallbackDoors = formatTime12h(seed.doors_time || existing.doors_time || null);
       const fallbackEnd = formatTime12h(seed.end_time || existing.end_time || null);
 
-      const isRealDate = (d) => Boolean(d && d !== "none_available" && d !== "TBD" && d !== "perennial" && d !== "search_exhausted_null" && !String(d).includes("Pending"));
+      const isRealDate = (d) => Boolean(
+        d &&
+        d !== "none_available" &&
+        d !== "TBD" &&
+        d !== "perennial" &&
+        d !== "search_exhausted_null" &&
+        d !== "past_event" &&
+        d !== "quarantine_fatal" &&
+        !String(d).includes("Pending")
+      );
+      const dateContextHint = `${eventId || ""} ${seedUrl || ""} ${sched.details_url || ""} ${sched.ticket_url || ""} ${box.ticket_url || ""}`;
       const validSchedShowings = Array.isArray(sched.showings) ? sched.showings.filter((s) => s && isRealDate(s.date)) : [];
-      const schedDatesSet = new Set(validSchedShowings.map((s) => parseHumanDateToIso(s.date) || s.date).filter(Boolean));
-      if (isRealDate(sched.date)) schedDatesSet.add(parseHumanDateToIso(sched.date) || sched.date);
+      const schedDatesSet = new Set(validSchedShowings.map((s) => parseHumanDateToIso(s.date, 2026, dateContextHint) || s.date).filter(Boolean));
+      const normSchedIso = isRealDate(sched.date) ? (parseHumanDateToIso(sched.date, 2026, dateContextHint) || sched.date) : null;
+      if (normSchedIso) schedDatesSet.add(normSchedIso);
+
+      // Guard against Stage 2 date hallucination overriding an explicit past date confirmed in BOTH sched.date AND the eventId slug (e.g. -2026-11-10)
+      const slugDateMatch = String(eventId || "").match(/-(202\d-\d{2}-\d{2})$/);
+      const isSlugLockedPastSingleEvent = Boolean(
+        slugDateMatch &&
+        normSchedIso &&
+        slugDateMatch[1] === normSchedIso &&
+        normSchedIso < todayIso &&
+        validSchedShowings.length <= 1 &&
+        !isWeekly
+      );
 
       const isVirtualStreamTierLabel = (label) =>
         /\b(?:online\s*stream|pre[- ]?order\s*stream|single\s*stream|virtual\s*stream|stream\s*access|stream\s*pre[- ]?order|video\s*on\s*demand|vod\s*pass)\b/i.test(String(label || ""));
 
       // Filter out virtual streaming expiration slots (e.g. EUFF Nov 30 10:00 PM online stream cutoff) when physical schedule showings exist
-      const validBoxShowings = Array.isArray(box.showings)
-        ? box.showings.filter((s) => {
-          if (!s || !isRealDate(s.date)) return false;
-          const normBoxDate = parseHumanDateToIso(s.date) || s.date;
-          const normBoxStart = formatTime12h(s.start_time || "");
-          if (isVirtualStreamTierLabel(s.label || s.name || "")) return false;
-          if (
-            schedDatesSet.size > 0 &&
-            !schedDatesSet.has(normBoxDate) &&
-            ((normBoxDate === "2026-11-30" && normBoxStart === "10:00 PM") || isVirtualStreamTierLabel(box.tier1_name))
-          ) {
-            return false;
-          }
-          return true;
-        })
-        : [];
+      const validBoxShowings = isSlugLockedPastSingleEvent
+        ? []
+        : Array.isArray(box.showings)
+          ? box.showings.filter((s) => {
+            if (!s || !isRealDate(s.date)) return false;
+            const normBoxDate = parseHumanDateToIso(s.date) || s.date;
+            const normBoxStart = formatTime12h(s.start_time || "");
+            if (isVirtualStreamTierLabel(s.label || s.name || "")) return false;
+            if (
+              schedDatesSet.size > 0 &&
+              !schedDatesSet.has(normBoxDate) &&
+              ((normBoxDate === "2026-11-30" && normBoxStart === "10:00 PM") || isVirtualStreamTierLabel(box.tier1_name))
+            ) {
+              return false;
+            }
+            return true;
+          })
+          : [];
 
       const safeBoxDate = (
+        !isSlugLockedPastSingleEvent &&
         isRealDate(box.date) &&
         !(schedDatesSet.size > 0 && !schedDatesSet.has(parseHumanDateToIso(box.date) || box.date) && ((parseHumanDateToIso(box.date) || box.date) === "2026-11-30" || isVirtualStreamTierLabel(box.tier1_name)))
       ) ? box.date : null;
@@ -1735,10 +1872,10 @@ export async function compileCatalog(options = {}) {
       // Merge any additional schedule showings (e.g. > 5 slots on multi-day film runs) that Stage 2 box office truncated
       const mergedCandidateShowings = [...validCandidateShowings];
       const seenSlotKeys = new Set(
-        validCandidateShowings.map((s) => `${parseHumanDateToIso(s.date) || s.date}|${formatTime12h(cleanTimeField(s.start_time) || "") || ""}`)
+        validCandidateShowings.map((s) => `${parseHumanDateToIso(s.date, 2026, dateContextHint) || s.date}|${formatTime12h(cleanTimeField(s.start_time) || "") || ""}`)
       );
       for (const ss of validSchedShowings) {
-        const ssDate = parseHumanDateToIso(ss.date) || ss.date;
+        const ssDate = parseHumanDateToIso(ss.date, 2026, dateContextHint) || ss.date;
         const ssStart = formatTime12h(cleanTimeField(ss.start_time) || "") || "";
         const key = `${ssDate}|${ssStart}`;
         if (ssDate && !seenSlotKeys.has(key)) {
@@ -1749,14 +1886,14 @@ export async function compileCatalog(options = {}) {
 
       showings = mergedCandidateShowings.slice(0, 10).map((s, idx) => {
         const rawSlotDate = isRealDate(s.date) ? s.date : (fallbackDate || null);
-        const slotDate = parseHumanDateToIso(rawSlotDate) || rawSlotDate;
+        const slotDate = parseHumanDateToIso(rawSlotDate, 2026, dateContextHint) || rawSlotDate;
         const isPast = slotDate && /^\d{4}-\d{2}-\d{2}$/.test(slotDate) ? (slotDate < todayIso) : false;
         const normSlotStart = formatTime12h(cleanTimeField(s.start_time) || "");
-        const sameDaySchedMatches = validSchedShowings.filter((ss) => (parseHumanDateToIso(ss.date) || ss.date) === slotDate);
+        const sameDaySchedMatches = validSchedShowings.filter((ss) => (parseHumanDateToIso(ss.date, 2026, dateContextHint) || ss.date) === slotDate);
         const matchingSchedSlot =
           sameDaySchedMatches.find((ss) => normSlotStart && formatTime12h(cleanTimeField(ss.start_time) || "") === normSlotStart) ||
           (sameDaySchedMatches.length === 1 ? sameDaySchedMatches[0] : null) ||
-          (validSchedShowings[idx] && (parseHumanDateToIso(validSchedShowings[idx].date) || validSchedShowings[idx].date) === slotDate ? validSchedShowings[idx] : null);
+          (validSchedShowings[idx] && (parseHumanDateToIso(validSchedShowings[idx].date, 2026, dateContextHint) || validSchedShowings[idx].date) === slotDate ? validSchedShowings[idx] : null);
         const resolvedSlotStart = cleanTimeField(s.start_time) || cleanTimeField(matchingSchedSlot?.start_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.start_time) : null) || fallbackTime || null;
         const resolvedSlotDoors = cleanTimeField(s.doors_time) || cleanTimeField(matchingSchedSlot?.doors_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.doors_time) : null) || fallbackDoors || null;
         const resolvedSlotEnd = cleanTimeField(s.end_time) || cleanTimeField(matchingSchedSlot?.end_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.end_time) : null) || fallbackEnd || null;
@@ -1803,7 +1940,7 @@ export async function compileCatalog(options = {}) {
         dateSchedule = heroStartTime ? `${heroDate} • ${heroStartTime}` : heroDate;
       } else {
         const rawDate = (isRealDate(safeBoxDate) ? safeBoxDate : (isRealDate(sched.date) ? sched.date : fallbackDate)) || null;
-        heroDate = isRealDate(rawDate) ? (parseHumanDateToIso(rawDate) || rawDate) : null;
+        heroDate = isRealDate(rawDate) ? (parseHumanDateToIso(rawDate, 2026, dateContextHint) || rawDate) : null;
         const rawStartTime = (safeBoxDate ? box.start_time : null) || sched.start_time || fallbackTime || null;
         heroStartTime = (rawStartTime && rawStartTime !== "none_available" && rawStartTime !== "search_exhausted_null") ? formatTime12h(rawStartTime) : null;
         const rawDoors = (safeBoxDate ? box.doors_time : null) || sched.doors_time || fallbackDoors || null;
@@ -2200,10 +2337,19 @@ export async function compileCatalog(options = {}) {
       let u = rawUrl.trim();
       if (!u.startsWith("http")) return null;
       // Normalize raw cross-origin Surrey Spektrix ChooseSeats.aspx?EventInstanceId=<ID> URL into clean wrapper URL
+      // and unwrap Impact / Do604 affiliate redirect wrappers (evyy.net, pxf.io, sjv.io, awin1.com)
       try {
         const uObj = new URL(u);
-        if (uObj.hostname.toLowerCase().includes("ticketing.purchase.surrey.ca") && /chooseseats\.aspx/i.test(uObj.pathname)) {
-          const instParam = uObj.searchParams.get("EventInstanceId") || uObj.searchParams.get("eventinstanceid") || "";
+        const uHost = uObj.hostname.toLowerCase();
+        if (/(?:^|\.)(?:evyy\.net|pxf\.io|sjv\.io|awin1\.com)$/i.test(uHost)) {
+          const inner = uObj.searchParams.get("u") || uObj.searchParams.get("ued") || uObj.searchParams.get("url");
+          if (inner && inner.startsWith("http")) {
+            u = inner;
+          }
+        }
+        const uObj2 = new URL(u);
+        if (uObj2.hostname.toLowerCase().includes("ticketing.purchase.surrey.ca") && /chooseseats\.aspx/i.test(uObj2.pathname)) {
+          const instParam = uObj2.searchParams.get("EventInstanceId") || uObj2.searchParams.get("eventinstanceid") || "";
           const numMatch = String(instParam).match(/^(\d+)/);
           if (numMatch) {
             u = `https://purchase.surrey.ca/ChooseSeats/${numMatch[1]}`;
@@ -2215,8 +2361,8 @@ export async function compileCatalog(options = {}) {
       if (aeEbMatch) {
         u = `https://www.eventbrite.com/checkout-external?eid=${aeEbMatch[1]}`;
       }
-      // Reject blacklisted aggregators, city discovery hubs (/discover/*, /d/*), and online streaming broadcasts
-      if (/allevents\.in|do604\.com|facebook\.com\/events|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)|showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)|flohockey\.tv|flosports\.tv/i.test(u)) {
+      // Reject blacklisted aggregators, blog listicles, city discovery hubs (/discover/*, /d/*), author archives, and online streaming broadcasts
+      if (/allevents\.in|do604\.com|604now\.com|vancouversbestplaces\.com|miss604\.com|facebook\.com\/events|gatehopper\.com|thedrive\.ca\/author\/|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)|showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)|flohockey\.tv|flosports\.tv/i.test(u)) {
         return null;
       }
       // Enforce Gate 3 Civic .aspx WAF Evasion Policy (reject any .aspx URL unless verified Agile/Tessitura ticketing checkout)
@@ -2225,8 +2371,8 @@ export async function compileCatalog(options = {}) {
       }
       // Strip Ticket Tailor ephemeral CSRF/session hash (/chk/<hex>)
       u = u.replace(/\/chk\/[a-f0-9]{16,}\/?/gi, "/");
-      // Strip tracking click identifiers & ephemeral session params
-      u = u.replace(/([?&])(?:fbclid|gclid|_gl|session_id)=[^&#]*(&|$)/gi, (_, p1, p2) => (p2 === "&" ? p1 : "")).replace(/[?&]$/, "");
+      // Strip tracking click identifiers & affiliate params
+      u = u.replace(/([?&])(?:fbclid|gclid|_gl|session_id|REFERRAL_ID|wt\.mc_id|camefrom|SharedId)=[^&#]*(&|$)/gi, (_, p1, p2) => (p2 === "&" ? p1 : "")).replace(/[?&]$/, "");
       return u;
     };
 
@@ -2663,7 +2809,7 @@ export async function compileCatalog(options = {}) {
       // Tier 2: Sacred Music & Cultural Crossover ("sacred-music", "choral")
       if (!out.has("faith-based")) {
         if ((isMusicOrArts && /\b(messiah|choral|cantata|lessons\s*(?:and|&)\s*carols|choir|requiem|vespers)\b/i.test(titleDescText)) ||
-            existingTagSet.has("sacred-music") || existingTagSet.has("choral")) {
+          existingTagSet.has("sacred-music") || existingTagSet.has("choral")) {
           out.add("sacred-music");
           if (/\b(choral|choir|lessons\s*(?:and|&)\s*carols|cantata|messiah|requiem|vespers)\b/i.test(titleDescText) || existingTagSet.has("choral")) {
             out.add("choral");
@@ -2679,13 +2825,13 @@ export async function compileCatalog(options = {}) {
         out.add("holiday-market");
       }
       if (!out.has("faith-based") && (resolvedHolidayAffiliation === "christmas" || resolvedHolidayAffiliation === "new-years" ||
-          /\b(santa|nutcracker|panto|pantomime|ugly\s+sweater|keithmas|krampus|gingerbread|winter\s+solstice|polar\s+bear\s+swim|holiday\s+comedy|holiday\s+trivia|yuletide)\b/i.test(titleDescText) ||
-          existingTagSet.has("winter-festive"))) {
+        /\b(santa|nutcracker|panto|pantomime|ugly\s+sweater|keithmas|krampus|gingerbread|winter\s+solstice|polar\s+bear\s+swim|holiday\s+comedy|holiday\s+trivia|yuletide)\b/i.test(titleDescText) ||
+        existingTagSet.has("winter-festive"))) {
         out.add("winter-festive");
       }
       if (resolvedHolidayAffiliation === "diwali" || resolvedHolidayAffiliation === "vaisakhi" || resolvedHolidayAffiliation === "lunar-new-year" || resolvedHolidayAffiliation === "dia-de-los-muertos" ||
-          /\b(diwali|vaisakhi|lunar\s+new\s+year|chinese\s+new\s+year|dia\s+de\s+los\s+muertos|day\s+of\s+the\s+dead|lion\s+dance)\b/i.test(titleDescText) ||
-          existingTagSet.has("cultural-festival")) {
+        /\b(diwali|vaisakhi|lunar\s+new\s+year|chinese\s+new\s+year|dia\s+de\s+los\s+muertos|day\s+of\s+the\s+dead|lion\s+dance)\b/i.test(titleDescText) ||
+        existingTagSet.has("cultural-festival")) {
         out.add("cultural-festival");
       }
       return Array.from(out);
@@ -3092,11 +3238,11 @@ export async function compileCatalog(options = {}) {
       neighborhood: isLocationConfirmed ? venue.neighborhood : null,
       city: (() => {
         const raw = `${existing.city || ""} ${existing.region || ""} ${venue.city || ""} ${venue.neighborhood || ""} ${venue.full_address || venue.address || ""}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
       })(),
       region: (() => {
         const raw = `${existing.city || ""} ${existing.region || ""} ${venue.city || ""} ${venue.neighborhood || ""} ${venue.full_address || venue.address || ""}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
       })(),
       coordinates: isLocationConfirmed ? (normalizedCoordinates || venue.coordinates) : null,
       lat: isLocationConfirmed && Array.isArray(normalizedCoordinates || venue.coordinates) ? (normalizedCoordinates || venue.coordinates)[0] : (existing.lat ?? null),
@@ -3195,10 +3341,19 @@ export async function compileCatalog(options = {}) {
         if (con && parts.length < 2 && (!cf || shortRange(con) !== shortRange(cf))) parts.push(`Concessions ${shortRange(con)}`);
         if (m && parts.length < 2) parts.push(`Food ${shortRange(m)}`);
         if (parts.length > 0) return parts.join(' • ');
+        const hasVendingOnly = Boolean(
+          isConfirmedFacility &&
+          typeof onSiteFnb === "string" &&
+          /\bvending\s+machines?\b/i.test(onSiteFnb) &&
+          !/\b(?:cafe|café|coffee\s+shop|bar|restaurant|food\s+court|cafeteria|bistro)\b/i.test(onSiteFnb)
+        );
+        if (hasVendingOnly) return "Vending machines only (no cafe)";
         const hasConfirmedNoOnSiteConcessions = Boolean(
           isConfirmedFacility && (
             resolvedConcessionBenchmark === "none_available" ||
             onSiteFnb === "none_available" ||
+            venue.venue_type === "civic_library_community_centre" ||
+            venue.venue_type === "park_beach_outdoor" ||
             (typeof onSiteFnb === "string" && /\b(?:no\s+(?:on[- ]?site|permanent|regular|commercial(?:\s+public)?)\s+(?:cafe|bar|concession|food|restaurant)|none\s+inside|prohibited\s+inside)\b/i.test(onSiteFnb))
           )
         );
@@ -3373,16 +3528,33 @@ export async function compileCatalog(options = {}) {
     console.log(`💾 Committed updated event (${eventId})`);
 
     // Check if card meets criteria to be published to active catalog:
-    const hasActiveShowings = Array.isArray(compiledCard.showings) && compiledCard.showings.some((s) => s.status === "upcoming" || s.status === "active");
-    const allShowingsConcluded = !isPerennial && Array.isArray(compiledCard.showings) && compiledCard.showings.length > 0 && compiledCard.showings.every((s) => s.status === "concluded");
+    const hasActiveShowings = Array.isArray(compiledCard.showings) && compiledCard.showings.some((s) => (s.status === "upcoming" || s.status === "active") && s.date && /^\d{4}-\d{2}-\d{2}$/.test(String(s.date)) && String(s.date) >= todayIso);
+    const allShowingsConcluded = !isPerennial && (
+      (Array.isArray(compiledCard.showings) && compiledCard.showings.length > 0 && compiledCard.showings.every((s) => s.status === "concluded" || s.status === "cancelled")) ||
+      (!hasActiveShowings && Array.isArray(sched.showings) && sched.showings.length > 0 && sched.showings.every((s) => s.status === "concluded" || s.status === "cancelled"))
+    );
+    const hasExplicitPastSentinel = !isPerennial && !hasActiveShowings && (sched.date === "past_event" || box.date === "past_event" || compiledCard.date === "past_event");
     const isDatePast = !isPerennial && Boolean(compiledCard.date) && /^\d{4}-\d{2}-\d{2}$/.test(compiledCard.date) && compiledCard.date < todayIso;
-    const isPastDate = !isPerennial && (allShowingsConcluded || (isDatePast && !hasActiveShowings));
-    const hasValidDate = isPerennial || hasActiveShowings || (compiledCard.date && compiledCard.date !== "none_available" && compiledCard.date !== "Schedule Pending Verification" && compiledCard.dateSchedule !== "Schedule Pending Verification");
+    const isPastDate = !isPerennial && (allShowingsConcluded || hasExplicitPastSentinel || (isDatePast && !hasActiveShowings));
+    const hasValidDate = isPerennial || hasActiveShowings || Boolean(
+      compiledCard.date &&
+      /^\d{4}-\d{2}-\d{2}$/.test(String(compiledCard.date)) &&
+      compiledCard.date >= todayIso &&
+      compiledCard.dateSchedule !== "Schedule Pending Verification"
+    );
     const hasValidUrl = Boolean(compiledCard.ticket_url || compiledCard.details_url || (isPerennial && bestAvailableLink));
     const inMarket = compiledCard.dimension_audit?.D108_geo_jurisdiction?.in_market !== false && compiledCard.dimension_audit?.D8_geo_jurisdiction?.in_market !== false;
     const isPriceVerified = isFreePublicVenue || (hasAuditedBoxOffice && finalAllInPrice !== null && !isNaN(finalAllInPrice) && priceLabel !== "Pending Box Office QC");
     const hasCuratorAction = Boolean(curatorInfo.eventInstructionText || curatorInfo.eventCuratorNote || compiledCard.curator_notes || compiledCard.curator_instructions);
     const hasCuratorAppeal = Boolean(hasCuratorAction || curatorInfo.curatorAppeal || compiledCard.ai_curator_appeal || existing.ai_curator_appeal || seed.ai_curator_appeal);
+    const fullCardProse = `${compiledCard.title || ""} ${compiledCard.description || ""} ${sched.description || ""} ${edit.description || ""}`;
+    const isMandatoryMultiWeekCourse = /\b(?:you\s+must\s+attend\s+all\s+(?:six|four|five|seven|eight|\d+)\s+sessions|must\s+attend\s+all\s+(?:six|\d+)?\s*sessions|(?:4|5|6|7|8|10|12)[- ]week\s+(?:series|course|program)\b[\s\S]{0,120}\bmust\s+attend|(?:4|5|6|7|8|10|12|four|five|six|seven|eight)[- ](?:week|session)\s+(?:progressive\s+course|collaborative\s+series|instructional\s+course|curriculum))\b/i.test(fullCardProse);
+    const isOnlineOnlyEvent =
+      /^(?:online|virtual|online\s*\/\s*virtual|zoom|livestream|[eé]v[eè]nement\s+en\s+ligne|online\s*\([^)]+\)|microsoft\s+teams)$/i.test(String(sched.venue_name || sched.venue || box.venue_name || compiledCard.venue || "").trim()) ||
+      (/\b(?:campus\s*:\s*online|location\s*:\s*online|register\s+on\s+teams|zoom\s+webinar|[eé]v[eè]nement\s+en\s+ligne|-\s+en\s+ligne\b)\b/i.test(fullCardProse) && !/\b(?:in[- ]person|hybrid)\b/i.test(fullCardProse)) ||
+      (/\bwebinar\b/i.test(compiledCard.title || "") && !/\b(?:in[- ]person|hybrid)\b/i.test(fullCardProse));
+    const isInternalOrCaseworkService =
+      /\b(?:settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|for\s+students\s+across\s+simon\s+fraser\s+university\s+to\s+pitch\s+their\s+ideas\s+privately|international\s+focus\s+week\s+community\s+wall)\b/i.test(fullCardProse);
 
     // Helper to route card directly to historical archive registry
     const archiveCard = (reason, reviewStatus, errorMsg) => {
@@ -3414,11 +3586,20 @@ export async function compileCatalog(options = {}) {
     } else if (
       /^(?:ticket[- ]?info|pricing|rates|admission[- ]?rates|box[- ]?office[- ]?info|box\s*office\s*inquiry.*|search_exhausted_null|none_available|standard[- ]?pricing|concession[- ]?menu|event|events)$/i.test((compiledCard.title || '').trim()) ||
       /^discover\s+events\s+in\s+/i.test((compiledCard.title || '').trim()) ||
-      /\b(?:all[- ]access\s+pass(?:es)?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|subscription\s+packages?|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?)\b/i.test((compiledCard.title || '').trim()) ||
-      /\/(?:ticket-info|pricing|admission-rates|concession-menu|box-office|all-access-pass(?:es)?|season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|memberships?|subscriptions?|gift-certificates?|donate|stats\/(?:roster|standings|leaders|player|game-center|schedule)|(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|coll(?:e|a)ge-grad|graduation-ceremony|convocation))(?:\/|[?#]|$|\b)/i.test(`${compiledCard.ticket_url || ''} ${compiledCard.details_url || ''} ${compiledCard.source_url || ''}`)
+      /\b(?:all[- ]access\s+pass(?:es)?|season\s+pass(?:es)?|annual\s+pass(?:es)?|membership\s+pass(?:es)?|subscription\s+packages?|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|sfu\s+livewhale\s+calendar|tuition\s+estimator|educationplannerbc|applying\s+to\s+kpu|why\s+choose\s+kpu|kpu\s+registration|find\s+your\s+classroom|exam\s+review)\b/i.test((compiledCard.title || '').trim()) ||
+      /\/(?:ticket-info|pricing|admission-rates|concession-menu|box-office|all-access-pass(?:es)?|season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|memberships?|subscriptions?|gift-certificates?|donate|livewhale|tuitionestimator|apply|admission|why-choose-kpu|registration|find-your-classroom|stats\/(?:roster|standings|leaders|player|game-center|schedule)|(?:[a-z0-9-]*-)?(?:season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|coll(?:e|a)ge-grad|graduation-ceremony|convocation))(?:\/|[?#]|$|\b)/i.test(`${compiledCard.ticket_url || ''} ${compiledCard.details_url || ''} ${compiledCard.source_url || ''}`)
     ) {
       console.log(`🛡️ [Compiler Archive] Auto-archiving non-event pricing/policy, membership pass, or stub page: "${compiledCard.title}" [${eventId}]`);
-      archiveCard("non_event_pricing_policy", "archived_non_event", "Detected venue pricing, membership/discount pass program, admission policy, or empty placeholder stub page rather than a discrete cultural event");
+      archiveCard("non_event_pricing_policy", "archived_non_event", "Detected venue pricing, registrar/portal page, membership pass, or empty placeholder stub page rather than a discrete cultural event");
+    } else if (!hasCuratorAction && isInternalOrCaseworkService) {
+      console.log(`🛡️ [Compiler Archive] Auto-archiving excluded casework / internal campus utility: "${compiledCard.title}" [${eventId}]`);
+      archiveCard("excluded_casework_or_internal_utility", "archived_non_event", "Excluded caseworker service, internal student utility/food pantry, or closed student pitch session");
+    } else if (!hasCuratorAction && isMandatoryMultiWeekCourse) {
+      console.log(`📚 [Compiler Archive] Auto-archiving mandatory multi-week course (Gate 2d): "${compiledCard.title}" [${eventId}]`);
+      archiveCard("disqualified_multi_week_course", "archived_course", "Disqualified multi-week course requiring attendance across all sessions (Gate 2d)");
+    } else if (!hasCuratorAction && isOnlineOnlyEvent) {
+      console.log(`💻 [Compiler Archive] Auto-archiving online-only virtual session (Gate 3): "${compiledCard.title}" [${eventId}]`);
+      archiveCard("disqualified_online_virtual", "archived_non_event", "Disqualified virtual/online-only webinar with no physical venue (Gate 3)");
     } else if (
       (/burnaby-central-railway|bcsme\.org/i.test(`${eventId} ${compiledCard.title || ""} ${compiledCard.ticket_url || ""}`)) &&
       (() => {
@@ -3489,6 +3670,11 @@ export async function compileCatalog(options = {}) {
     } else if (!inMarket) {
       compiledCard.quarantineReason = "out_of_market_jurisdiction";
       compiledCard.reviewStatus = "quarantined_geo";
+      quarantinedEvents.push(compiledCard);
+    } else if (!isLocationConfirmed) {
+      compiledCard.quarantineReason = "unverified_venue_location";
+      compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_geo";
+      compiledCard.audit_error = "Venue lacks verified Metro Vancouver street address or GPS coordinates in data/venues.json";
       quarantinedEvents.push(compiledCard);
     } else if (!hasValidUrl) {
       compiledCard.quarantineReason = "missing_ticket_link";
