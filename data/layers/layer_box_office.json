@@ -1064,7 +1064,7 @@
     "doors_time": "none_available",
     "start_time": "none_available",
     "end_time": "none_available",
-    "tier1_name": "none_available",
+    "tier1_name": "General Admission",
     "tier1_price_base": null,
     "tier1_price_fee": null,
     "tier1_price_tax": null,
@@ -1093,7 +1093,7 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
+        "name": "General Admission",
         "price": null,
         "price_base": null,
         "price_fee": null,
@@ -1108,7 +1108,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Ticketweb",
+    "ticket_provider": "TicketWeb",
     "ticket_url": "https://www.ticketweb.ca/event/ruby-haunt-with-vhs-ghost-the-fox-cabaret-tickets/14965773",
     "failed_url": null,
     "dead_urls": [],
@@ -1123,8 +1123,8 @@
         "status": "upcoming"
       }
     ],
-    "restrictions": "19+ (Two pieces of government ID required)",
-    "audited_at": "2026-11-16T23:37:03.610Z",
+    "restrictions": "19+",
+    "audited_at": "2026-11-17T02:59:36.722Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -2147,31 +2147,31 @@
   },
   {
     "id": "van50-scout-roedde-house-sounds-of-sinatra-20261126",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Roedde House Museum",
     "title": "Jazz in the Parlour: Lesley Branton Duo",
-    "date": "Thursday, November 26",
+    "date": "2026-11-26",
     "doors_time": "6:30 PM",
-    "start_time": "7:00 PM",
-    "end_time": "9:00 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 25.94,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "start_time": "6:00 PM",
+    "end_time": "8:00 PM",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 25,
+    "tier1_price_fee": 3.07,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 28.07,
+    "tier1_price_calculated": 28.07,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 28.07,
+    "tier1_quote": "General Admission CA$28.07 incl. CA$3.07 Fee",
+    "tier2_name": "Members/Seniors/Students w/ID",
+    "tier2_price_base": 23,
+    "tier2_price_fee": 2.94,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 25.94,
+    "tier2_price_calculated": 25.94,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 25.94,
     "tier2_quote": null,
     "tier3_name": "none_available",
     "tier3_price_base": null,
@@ -2184,15 +2184,27 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 25.94,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 28.07,
+        "price_base": 25,
+        "price_fee": 3.07,
+        "price_tax": 0,
+        "price_read": 28.07,
+        "price_calculated": 28.07,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$28.07 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "Members/Seniors/Students w/ID",
+        "price": 25.94,
+        "price_base": 23,
+        "price_fee": 2.94,
+        "price_tax": 0,
+        "price_read": 25.94,
+        "price_calculated": 25.94,
+        "price_delta": 0,
+        "label": "$25.94 CAD",
         "isAvailable": true
       }
     ],
@@ -2207,17 +2219,17 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Thursday, November 26",
-        "start_time": "7:00 PM",
+        "date": "2026-11-26",
+        "start_time": "6:00 PM",
         "doors_time": "6:30 PM",
-        "end_time": "9:00 PM",
+        "end_time": "8:00 PM",
         "status": "upcoming"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:16:53.646Z",
+    "audited_at": "2026-11-17T02:56:22.362Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "van50-scout-fox-slice-up-your-life-halloween-20261031",
@@ -7203,18 +7215,18 @@
     "success": true,
     "venue_name": "The Cambrian Hall",
     "title": "Stand Up Comedy - Jokes Please! - Friday in Mount Pleasant | Comedy Show",
-    "date": "Multiple dates",
+    "date": "2026-11-20",
     "doors_time": "7:30 PM",
     "start_time": "8:00 PM",
     "end_time": "9:30 PM",
     "tier1_name": "Advance Tickets",
     "tier1_price_base": 16,
     "tier1_price_fee": 0,
-    "tier1_price_tax": 0.8,
+    "tier1_price_tax": 0,
     "tier1_price_read": 16,
-    "tier1_price_calculated": 16.8,
-    "tier1_discrepancy_delta": 0.8000000000000007,
-    "tier1_price_all_in": 16.8,
+    "tier1_price_calculated": 16,
+    "tier1_discrepancy_delta": 0,
+    "tier1_price_all_in": 16,
     "tier1_quote": "Advance Tickets: $16 + fees",
     "tier2_name": "Door Tickets",
     "tier2_price_base": 20,
@@ -7224,7 +7236,7 @@
     "tier2_price_calculated": 21,
     "tier2_discrepancy_delta": 1,
     "tier2_price_all_in": 20,
-    "tier2_quote": "Door Tickets: $20 + tax",
+    "tier2_quote": null,
     "tier3_name": "none_available",
     "tier3_price_base": null,
     "tier3_price_fee": null,
@@ -7237,14 +7249,14 @@
     "all_tiers": [
       {
         "name": "Advance Tickets",
-        "price": 16.8,
+        "price": 16,
         "price_base": 16,
         "price_fee": 0,
-        "price_tax": 0.8,
+        "price_tax": 0,
         "price_read": 16,
-        "price_calculated": 16.8,
-        "price_delta": 0.8000000000000007,
-        "label": "$16.80 CAD",
+        "price_calculated": 16,
+        "price_delta": 0,
+        "label": "$16.00 CAD",
         "isAvailable": true
       },
       {
@@ -7271,7 +7283,7 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Multiple dates",
+        "date": "2026-11-20",
         "start_time": "8:00 PM",
         "doors_time": "7:30 PM",
         "end_time": "9:30 PM",
@@ -7279,7 +7291,7 @@
       }
     ],
     "restrictions": "16+",
-    "audited_at": "2026-11-17T00:12:35.251Z",
+    "audited_at": "2026-11-17T02:56:53.809Z",
     "error": null,
     "quarantine_reason": null
   },
@@ -7903,7 +7915,7 @@
     "tier1_price_read": 36.75,
     "tier1_price_calculated": 36.75,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 36.75,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
@@ -7993,7 +8005,7 @@
       }
     ],
     "restrictions": "All Ages / Family Friendly",
-    "audited_at": "2026-11-16T23:37:39.512Z",
+    "audited_at": "2026-11-17T02:44:32.370Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
@@ -9690,23 +9702,23 @@
   },
   {
     "id": "van50-phyllis-hull-one-woman-show-20270122",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "The Show Cellar",
     "title": "Phyllis Hull’s One-Woman Show: Hullo! It's me you're looking for!",
     "date": "2027-01-22",
     "doors_time": "none_available",
-    "start_time": "8:00 PM",
-    "end_time": "9:30 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 17.31,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "start_time": "7:00 PM",
+    "end_time": "8:30 PM",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 15,
+    "tier1_price_fee": 2.31,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 17.31,
+    "tier1_price_calculated": 17.31,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 17.31,
+    "tier1_quote": "CA$17.31 incl. CA$2.31 Fee",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -9727,15 +9739,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 17.31,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 17.31,
+        "price_base": 15,
+        "price_fee": 2.31,
+        "price_tax": 0,
+        "price_read": 17.31,
+        "price_calculated": 17.31,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$17.31 CAD",
         "isAvailable": true
       }
     ],
@@ -9751,16 +9763,16 @@
       {
         "slot": 1,
         "date": "2027-01-22",
-        "start_time": "8:00 PM",
+        "start_time": "7:00 PM",
         "doors_time": "none_available",
-        "end_time": "9:30 PM",
+        "end_time": "8:30 PM",
         "status": "upcoming"
       }
     ],
     "restrictions": "All Ages / Family Friendly",
-    "audited_at": "2026-11-16T23:55:43.950Z",
+    "audited_at": "2026-11-17T02:57:24.574Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "van50-the-sunday-service-fox-20261011",
@@ -11630,94 +11642,69 @@
   },
   {
     "id": "qe-park-pitch-putt",
-    "status": "FATAL_MISMATCHED_ENTITY",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Queen Elizabeth Park Pitch & Putt",
     "title": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round",
     "date": null,
     "doors_time": null,
     "start_time": null,
     "end_time": null,
-    "tier1_name": "Adult (19-64) Drop-In Green Fee",
-    "tier1_price_base": 18.2,
+    "tier1_name": "Adult 18-Hole Green Fee (Ages 19–64)",
+    "tier1_price_base": 17.4,
     "tier1_price_fee": 0,
-    "tier1_price_tax": 0.91,
-    "tier1_price_read": 19.11,
-    "tier1_price_calculated": 19.11,
+    "tier1_price_tax": 0.87,
+    "tier1_price_read": 18.27,
+    "tier1_price_calculated": 18.27,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 19.11,
-    "tier1_quote": null,
-    "tier2_name": "Senior (65+) Drop-In Green Fee",
-    "tier2_price_base": 12.75,
-    "tier2_price_fee": 0,
-    "tier2_price_tax": 0.64,
-    "tier2_price_read": 13.39,
-    "tier2_price_calculated": 13.39,
+    "tier1_price_all_in": 18.27,
+    "tier1_quote": "18 Holes (Monday – Sunday): $18.27 (tax included)",
+    "tier2_name": null,
+    "tier2_price_base": null,
+    "tier2_price_fee": null,
+    "tier2_price_tax": null,
+    "tier2_price_read": null,
+    "tier2_price_calculated": null,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": 13.39,
+    "tier2_price_all_in": null,
     "tier2_quote": null,
-    "tier3_name": "Youth (under 19) Drop-In Green Fee",
-    "tier3_price_base": 12.2,
-    "tier3_price_fee": 0,
-    "tier3_price_tax": 0.61,
-    "tier3_price_read": 12.81,
-    "tier3_price_calculated": 12.809999999999999,
-    "tier3_discrepancy_delta": 1.7763568394002505e-15,
-    "tier3_price_all_in": 12.81,
+    "tier3_name": null,
+    "tier3_price_base": null,
+    "tier3_price_fee": null,
+    "tier3_price_tax": null,
+    "tier3_price_read": null,
+    "tier3_price_calculated": null,
+    "tier3_discrepancy_delta": 0,
+    "tier3_price_all_in": null,
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "Adult (19-64) Drop-In Green Fee",
-        "price": 19.11,
-        "price_base": 18.2,
+        "name": "Adult 18-Hole Green Fee (Ages 19–64)",
+        "price": 18.27,
+        "price_base": 17.4,
         "price_fee": 0,
-        "price_tax": 0.91,
-        "price_read": 19.11,
-        "price_calculated": 19.11,
+        "price_tax": 0.87,
+        "price_read": 18.27,
+        "price_calculated": 18.27,
+        "price_all_in": 18.27,
         "price_delta": 0,
-        "label": "$19.11 CAD",
-        "isAvailable": true
-      },
-      {
-        "name": "Senior (65+) Drop-In Green Fee",
-        "price": 13.39,
-        "price_base": 12.75,
-        "price_fee": 0,
-        "price_tax": 0.64,
-        "price_read": 13.39,
-        "price_calculated": 13.39,
-        "price_delta": 0,
-        "label": "$13.39 CAD",
-        "isAvailable": true
-      },
-      {
-        "name": "Youth (under 19) Drop-In Green Fee",
-        "price": 12.81,
-        "price_base": 12.2,
-        "price_fee": 0,
-        "price_tax": 0.61,
-        "price_read": 12.81,
-        "price_calculated": 12.809999999999999,
-        "price_delta": 1.7763568394002505e-15,
-        "label": "$12.81 CAD",
+        "label": "$18.27 CAD",
         "isAvailable": true
       }
     ],
-    "pricing_model": "standard",
+    "pricing_model": "door_cover",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Walk-Up Pro Shop (Drop-In Only)",
-    "ticket_url": null,
-    "failed_url": "https://www.destinationvancouver.com/inspirations/golf/vancouvers-pitch-putt-golf-courses",
-    "dead_urls": [
-      "https://www.destinationvancouver.com/inspirations/golf/vancouvers-pitch-putt-golf-courses"
-    ],
-    "proof_keyframe": "data/proof_keyframes/stanley-pitch-putt_cart.png",
+    "ticket_provider": "Direct Box Office",
+    "ticket_url": "https://www.destinationvancouver.com/inspirations/golf/vancouvers-pitch-putt-golf-courses",
+    "failed_url": null,
+    "dead_urls": [],
+    "proof_keyframe": "data/proof_keyframes/qe-park-pitch-putt_cart.png",
     "showings": [],
-    "restrictions": "All Ages Welcome (First-come, first-served walk-up play)",
-    "audited_at": "2026-11-16T23:55:21.894Z",
-    "error": "Failed match: title score 21% below threshold (none or insufficient tokens from [queen, elizabeth, park, pitch, putt, hole, round])",
-    "quarantine_reason": "fatal_mismatched_entity"
+    "restrictions": "All Ages",
+    "audited_at": "2026-11-17T03:03:00.000Z",
+    "error": null,
+    "quarantine_reason": null
   },
   {
     "id": "van50-the-american-pinball-arcade-social",
@@ -15878,7 +15865,7 @@
     "status": "UNVERIFIED_PRICING",
     "success": false,
     "venue_name": "Celebrities Nightclub",
-    "title": "Frank Walker",
+    "title": "Playhouse Pres: Frank Walker",
     "date": "none_available",
     "doors_time": "none_available",
     "start_time": "none_available",
@@ -15942,8 +15929,8 @@
         "status": "upcoming"
       }
     ],
-    "restrictions": "19+",
-    "audited_at": "2026-11-17T00:36:08.796Z",
+    "restrictions": "19+ with two pieces of valid ID",
+    "audited_at": "2026-11-17T02:56:33.672Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16001,7 +15988,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Ticketweb",
+    "ticket_provider": "TicketWeb",
     "ticket_url": "https://www.ticketweb.ca/event/for-real-fridays-the-weeknd-celebrities-nightclub-tickets/15036313",
     "failed_url": null,
     "dead_urls": [],
@@ -16017,7 +16004,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:38:13.414Z",
+    "audited_at": "2026-11-17T02:56:02.061Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16090,8 +16077,8 @@
         "status": "upcoming"
       }
     ],
-    "restrictions": "19+ with two pieces of valid ID",
-    "audited_at": "2026-11-17T00:40:17.519Z",
+    "restrictions": "19+",
+    "audited_at": "2026-11-17T02:55:28.440Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16100,7 +16087,7 @@
     "status": "UNVERIFIED_PRICING",
     "success": false,
     "venue_name": "Celebrities Nightclub",
-    "title": "Whipped Cream",
+    "title": "Playhouse Pres: Whipped Cream",
     "date": "none_available",
     "doors_time": "none_available",
     "start_time": "none_available",
@@ -16165,7 +16152,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:41:36.465Z",
+    "audited_at": "2026-11-17T02:54:59.076Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16223,7 +16210,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "TicketWeb",
+    "ticket_provider": "Ticketweb",
     "ticket_url": "https://www.ticketweb.ca/event/playhouse-pres-andrew-bayer-celebrities-nightclub-tickets/14314714",
     "failed_url": null,
     "dead_urls": [],
@@ -16239,7 +16226,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:42:42.129Z",
+    "audited_at": "2026-11-17T02:54:28.891Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16248,7 +16235,7 @@
     "status": "UNVERIFIED_PRICING",
     "success": false,
     "venue_name": "Celebrities Nightclub",
-    "title": "Playhouse: Sidequest",
+    "title": "Playhouse Pres: SIDEQUEST",
     "date": "none_available",
     "doors_time": "none_available",
     "start_time": "none_available",
@@ -16313,7 +16300,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:43:40.604Z",
+    "audited_at": "2026-11-17T02:53:54.105Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16322,7 +16309,7 @@
     "status": "UNVERIFIED_PRICING",
     "success": false,
     "venue_name": "Celebrities Nightclub",
-    "title": "Playhouse Pres. No Thanks: Boxing Day Bash",
+    "title": "No Thanks: Boxing Day Bash",
     "date": "none_available",
     "doors_time": "none_available",
     "start_time": "none_available",
@@ -16371,7 +16358,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "TicketWeb",
+    "ticket_provider": "Ticketweb",
     "ticket_url": "https://www.ticketweb.ca/event/playhouse-pres-no-thanks-boxing-celebrities-nightclub-tickets/14368964",
     "failed_url": null,
     "dead_urls": [],
@@ -16387,7 +16374,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:44:35.521Z",
+    "audited_at": "2026-11-17T02:53:25.731Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16469,7 +16456,7 @@
     "tier1_price_read": 35,
     "tier1_price_calculated": 35,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 35,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": "Section B",
     "tier2_price_base": 49,
@@ -16583,7 +16570,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:39:49.389Z",
+    "audited_at": "2026-11-17T02:51:58.944Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
@@ -16729,7 +16716,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:08:51.925Z",
+    "audited_at": "2026-11-17T02:51:43.408Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16803,7 +16790,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:13:24.277Z",
+    "audited_at": "2026-11-17T02:50:59.720Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -16987,7 +16974,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:23:48.936Z",
+    "audited_at": "2026-11-17T02:50:02.538Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -17061,7 +17048,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:26:36.518Z",
+    "audited_at": "2026-11-17T02:48:21.989Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -17135,7 +17122,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:29:14.267Z",
+    "audited_at": "2026-11-17T02:44:46.331Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -17605,7 +17592,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:40:34.470Z",
+    "audited_at": "2026-11-17T02:44:20.982Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -18959,7 +18946,7 @@
     "tier1_price_read": 47,
     "tier1_price_calculated": 47,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 47,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
@@ -19013,7 +19000,7 @@
       }
     ],
     "restrictions": "19+ (Two pieces of government ID required)",
-    "audited_at": "2026-11-16T23:39:59.450Z",
+    "audited_at": "2026-11-17T02:46:37.479Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
@@ -19563,7 +19550,7 @@
   },
   {
     "id": "fox-cabaret-90s-vs-00s-night-2026-11-21",
-    "status": "FATAL_DEAD_LINK",
+    "status": "SKIPPED_NO_URL",
     "success": false,
     "venue_name": "Fox Cabaret",
     "title": "90s vs 00s Night",
@@ -19617,11 +19604,8 @@
     "is_sold_out": false,
     "ticket_provider": "Eventbrite",
     "ticket_url": null,
-    "failed_url": "https://www.foxcabaret.com/monthly-calendar-list/hhzlygtjl8fyt9c-x6bgg-kcs2l-cldld-wgzyh-ssd5n-hm4zl-f2pbh",
-    "dead_urls": [
-      "https://www.eventbrite.com/checkout-external?eid=2003418597957&parent=https%3A%2F%2Fwww.foxcabaret.com%2Fmonthly-calendar-list%2Fhhzlygtjl8fyt9c-x6bgg-kcs2l-cldld-wgzyh-ssd5n-hm4zl-f2pbh",
-      "https://www.foxcabaret.com/monthly-calendar-list/hhzlygtjl8fyt9c-x6bgg-kcs2l-cldld-wgzyh-ssd5n-hm4zl-f2pbh"
-    ],
+    "failed_url": null,
+    "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/fox-cabaret-90s-vs-00s-night-2026-11-21_cart.png",
     "showings": [
       {
@@ -19631,12 +19615,12 @@
         "doors_time": "10:30 PM",
         "end_time": "2:00 AM",
         "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.com/checkout-external?eid=2003418597957&parent=https%3A%2F%2Fwww.foxcabaret.com%2Fmonthly-calendar-list%2Fhhzlygtjl8fyt9c-x6bgg-kcs2l-cldld-wgzyh-ssd5n-hm4zl-f2pbh"
+        "ticket_url": "https://www.foxcabaret.com/"
       }
     ],
     "restrictions": "19+ (Two pieces of government ID required)",
-    "audited_at": "2026-11-16T23:56:39.648Z",
-    "error": "Page content contains dead indicator: \"this event is no longer available\"",
+    "audited_at": "2026-11-17T02:43:21.691Z",
+    "error": "Missing resolvable HTTP/HTTPS destination URL",
     "quarantine_reason": "fatal_dead_link"
   },
   {
@@ -24373,7 +24357,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-16T23:40:38.479Z",
+    "audited_at": "2026-11-17T02:44:00.002Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -27506,7 +27490,7 @@
     "status": "UNVERIFIED_PRICING",
     "success": false,
     "venue_name": "Roundhouse Community Arts & Recreation Centre",
-    "title": "Songbird North",
+    "title": "SongBird North",
     "date": "none_available",
     "doors_time": "none_available",
     "start_time": "none_available",
@@ -27555,7 +27539,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Tickit",
+    "ticket_provider": "Direct Box Office",
     "ticket_url": "https://my.tickit.ca/checkout/songbirdnorth/new",
     "failed_url": null,
     "dead_urls": [],
@@ -27571,7 +27555,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:52:12.427Z",
+    "audited_at": "2026-11-17T02:41:41.304Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -28210,23 +28194,23 @@
   },
   {
     "id": "comedy-after-dark-saturday-night-stand-up-comedy-2025-01-22",
-    "status": "VERIFIED_PASS",
-    "success": true,
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
     "venue_name": "Comedy After Dark",
     "title": "SATURDAY NIGHT STAND UP COMEDY @ COMEDY AFTER DARK",
     "date": "Multiple dates",
     "doors_time": "none_available",
     "start_time": "none_available",
     "end_time": "none_available",
-    "tier1_name": "General Admission (Starting Floor)",
+    "tier1_name": "none_available",
     "tier1_price_base": 26.33,
-    "tier1_price_fee": 0,
-    "tier1_price_tax": 0,
-    "tier1_price_read": 26.33,
-    "tier1_price_calculated": 26.33,
+    "tier1_price_fee": null,
+    "tier1_price_tax": null,
+    "tier1_price_read": null,
+    "tier1_price_calculated": null,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 26.33,
-    "tier1_quote": "From CA$26.33",
+    "tier1_price_all_in": null,
+    "tier1_quote": "none_available",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -28247,15 +28231,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "General Admission (Starting Floor)",
-        "price": 26.33,
+        "name": "none_available",
+        "price": null,
         "price_base": 26.33,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 26.33,
-        "price_calculated": 26.33,
+        "price_fee": null,
+        "price_tax": null,
+        "price_read": null,
+        "price_calculated": null,
         "price_delta": 0,
-        "label": "$26.33 CAD",
+        "label": "Unpriced",
         "isAvailable": true
       }
     ],
@@ -28278,9 +28262,9 @@
       }
     ],
     "restrictions": "16+",
-    "audited_at": "2026-11-17T00:33:43.453Z",
+    "audited_at": "2026-11-17T02:54:17.967Z",
     "error": null,
-    "quarantine_reason": null
+    "quarantine_reason": "unverified_box_office_pricing"
   },
   {
     "id": "comedy-after-dark-thursday-night-stand-up-comedy-2025-09-16",
@@ -28600,7 +28584,7 @@
     "tier1_price_read": 25.5,
     "tier1_price_calculated": 25.5,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 25.5,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
@@ -28650,7 +28634,7 @@
         "doors_time": "6:30 PM",
         "end_time": null,
         "status": "concluded",
-        "ticket_url": "https://vancouvercivictheatres.com/events/vct-presents-silent-movie-mondays-2026/"
+        "ticket_url": "https://www.ticketmaster.ca/event/110064F0A03D65BD"
       },
       {
         "slot": 2,
@@ -28659,12 +28643,12 @@
         "doors_time": "6:30 PM",
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://vancouvercivictheatres.com/events/vct-presents-silent-movie-mondays-2026/"
+        "ticket_url": "https://www.ticketmaster.ca/event/110064F0A03D65BD"
       }
     ],
     "restrictions": "All Ages Welcome (Licensed lobby bars 19+ with 2 pieces of ID)",
-    "audited_at": "2026-11-16T23:52:11.475Z",
-    "error": "Traversed ticketing portal gated by anti-bot security verification challenge",
+    "audited_at": "2026-11-17T02:41:09.257Z",
+    "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
   {
@@ -30267,29 +30251,29 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:24:41.462Z",
+    "audited_at": "2026-11-17T02:44:05.156Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
   {
     "id": "st-andrew-s-wesley-u-invisible-rivers-annie-bloch-2026-11-21",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "St. Andrew's-Wesley United Church",
     "title": "Invisible Rivers: Annie Bloch",
-    "date": "Saturday, November 21",
+    "date": "2026-11-21",
     "doors_time": "7:30 PM",
-    "start_time": "7:00 PM",
-    "end_time": "8:30 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 22.63,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "start_time": "6:00 PM",
+    "end_time": "7:30 PM",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 20,
+    "tier1_price_fee": 2.63,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 22.63,
+    "tier1_price_calculated": 22.63,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 22.63,
+    "tier1_quote": "CA$22.63 incl. CA$2.63 Fee",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -30310,15 +30294,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 22.63,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 22.63,
+        "price_base": 20,
+        "price_fee": 2.63,
+        "price_tax": 0,
+        "price_read": 22.63,
+        "price_calculated": 22.63,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$22.63 CAD",
         "isAvailable": true
       }
     ],
@@ -30333,17 +30317,17 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Saturday, November 21",
-        "start_time": "7:00 PM",
+        "date": "2026-11-21",
+        "start_time": "6:00 PM",
         "doors_time": "7:30 PM",
-        "end_time": "8:30 PM",
+        "end_time": "7:30 PM",
         "status": "upcoming"
       }
     ],
-    "restrictions": "All ages",
-    "audited_at": "2026-11-17T00:25:52.113Z",
+    "restrictions": "All Ages",
+    "audited_at": "2026-11-17T02:55:52.136Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "st-andrew-s-wesley-u-break-the-silence-series-2026-11-22",
@@ -30791,23 +30775,23 @@
   },
   {
     "id": "st-andrew-s-wesley-u-last-christian-in-bethlehem-sc-2026-11-30",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "St. Andrew's-Wesley United Church",
     "title": "Last Christian in Bethlehem Screening and Palestinian Art Market",
-    "date": "Monday, November 30",
+    "date": "2026-11-30",
     "doors_time": "none_available",
-    "start_time": "6:00 PM",
-    "end_time": "8:00 PM",
-    "tier1_name": "none_available",
+    "start_time": "5:00 PM",
+    "end_time": "7:00 PM",
+    "tier1_name": "General Admission",
     "tier1_price_base": 0,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 0,
+    "tier1_price_calculated": 0,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 0,
+    "tier1_quote": "Free",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -30828,20 +30812,20 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
+        "name": "General Admission",
+        "price": 0,
         "price_base": 0,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "Free ($0)",
         "isAvailable": true
       }
     ],
-    "pricing_model": "standard",
-    "is_free": false,
+    "pricing_model": "free_access",
+    "is_free": true,
     "is_sold_out": false,
     "ticket_provider": "Eventbrite",
     "ticket_url": "https://www.eventbrite.ca/e/last-christian-in-bethlehem-screening-and-palestinian-art-market-tickets-2003631456623",
@@ -30851,17 +30835,17 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Monday, November 30",
-        "start_time": "6:00 PM",
+        "date": "2026-11-30",
+        "start_time": "5:00 PM",
         "doors_time": "none_available",
-        "end_time": "8:00 PM",
+        "end_time": "7:00 PM",
         "status": "upcoming"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:28:21.677Z",
+    "audited_at": "2026-11-17T02:55:19.931Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "meo-disco-affair-2026-11-06",
@@ -31872,7 +31856,7 @@
     "is_free": false,
     "is_sold_out": false,
     "ticket_provider": "Direct Box Office",
-    "ticket_url": "https://events.eventgroove.ca/event/Im-Going-Through-Some-Things-A-Solo-Show-By-Ben-677",
+    "ticket_url": "https://events.eventgroove.ca/event/Im-Going-Through-Some-Things-A-Solo-Show-By-Ben-677/purchase",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-nest-theatre-i-m-going-through-some-things-2026-11-19_cart.png",
@@ -31919,7 +31903,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:52:49.531Z",
+    "audited_at": "2026-11-17T02:41:21.325Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -32370,7 +32354,7 @@
     "tier1_price_read": 20,
     "tier1_price_calculated": 20,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 20,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
@@ -32424,37 +32408,37 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:52:22.524Z",
-    "error": "Target page gated by anti-bot security verification challenge",
+    "audited_at": "2026-11-17T02:50:19.755Z",
+    "error": "Traversed ticketing portal gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
   {
     "id": "roedde-house-museum-vico-concert-in-the-parlour-uz-2026-11-20",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Roedde House Museum",
     "title": "Concert in the Parlour: Uzbek Musical Heritage",
-    "date": "Friday, November 20",
+    "date": "2026-11-20",
     "doors_time": "none_available",
     "start_time": "7:00 PM",
     "end_time": "9:00 PM",
     "tier1_name": "General Admission",
-    "tier1_price_base": 25.94,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_price_base": 25,
+    "tier1_price_fee": 3.07,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 28.07,
+    "tier1_price_calculated": 28.07,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 28.07,
+    "tier1_quote": "CA$28.07 incl. CA$3.07 Fee",
+    "tier2_name": "RHM Members / Seniors / Students w/ID",
+    "tier2_price_base": 23,
+    "tier2_price_fee": 2.94,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 25.94,
+    "tier2_price_calculated": 25.94,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 25.94,
     "tier2_quote": null,
     "tier3_name": "none_available",
     "tier3_price_base": null,
@@ -32468,14 +32452,26 @@
     "all_tiers": [
       {
         "name": "General Admission",
-        "price": null,
-        "price_base": 25.94,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "price": 28.07,
+        "price_base": 25,
+        "price_fee": 3.07,
+        "price_tax": 0,
+        "price_read": 28.07,
+        "price_calculated": 28.07,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$28.07 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "RHM Members / Seniors / Students w/ID",
+        "price": 25.94,
+        "price_base": 23,
+        "price_fee": 2.94,
+        "price_tax": 0,
+        "price_read": 25.94,
+        "price_calculated": 25.94,
+        "price_delta": 0,
+        "label": "$25.94 CAD",
         "isAvailable": true
       }
     ],
@@ -32490,7 +32486,7 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Friday, November 20",
+        "date": "2026-11-20",
         "start_time": "7:00 PM",
         "doors_time": "none_available",
         "end_time": "9:00 PM",
@@ -32498,9 +32494,9 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:31:18.581Z",
+    "audited_at": "2026-11-17T02:54:47.531Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "orpheum-masterworks-diamond-series-2026-11-06",
@@ -33688,52 +33684,88 @@
   },
   {
     "id": "chan-centre-for-the-vso-vivaldi-s-the-four-seasons-2026-12-11",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Chan Centre for the Performing Arts",
     "title": "VSO: Vivaldi’s The Four Seasons",
     "date": "2026-12-11",
     "doors_time": "none_available",
     "start_time": "7:30 PM",
     "end_time": "none_available",
-    "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "STX-Adult",
+    "tier1_price_base": 45,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 45,
+    "tier1_price_calculated": 45,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 45,
+    "tier1_quote": "STX-Adult $45.00",
+    "tier2_name": "STX-Senior",
+    "tier2_price_base": 43,
+    "tier2_price_fee": 0,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 43,
+    "tier2_price_calculated": 43,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 43,
     "tier2_quote": null,
-    "tier3_name": "none_available",
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
+    "tier3_name": "STX-Student",
+    "tier3_price_base": 40.5,
+    "tier3_price_fee": 0,
+    "tier3_price_tax": 0,
+    "tier3_price_read": 40.5,
+    "tier3_price_calculated": 40.5,
     "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
+    "tier3_price_all_in": 40.5,
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "STX-Adult",
+        "price": 45,
+        "price_base": 45,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 45,
+        "price_calculated": 45,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$45.00 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "STX-Senior",
+        "price": 43,
+        "price_base": 43,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 43,
+        "price_calculated": 43,
+        "price_delta": 0,
+        "label": "$43.00 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "STX-Student",
+        "price": 40.5,
+        "price_base": 40.5,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 40.5,
+        "price_calculated": 40.5,
+        "price_delta": 0,
+        "label": "$40.50 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "STX-Child (12 and under)",
+        "price": 40.5,
+        "price_base": 40.5,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 40.5,
+        "price_calculated": 40.5,
+        "price_delta": 0,
+        "label": "$40.50 CAD",
         "isAvailable": true
       }
     ],
@@ -33764,9 +33796,9 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T16:09:02.184Z",
+    "audited_at": "2026-11-17T02:45:34.700Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "orpheum-the-muppet-christmas-carol-in-2026-12-19",
@@ -37636,7 +37668,7 @@
     "tier1_price_calculated": null,
     "tier1_discrepancy_delta": 0,
     "tier1_price_all_in": null,
-    "tier1_quote": "Applications for the 2026/27 Jean Coulthard Readings Mentorship Program are now closed.",
+    "tier1_quote": "none_available",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -37666,12 +37698,12 @@
         "price_calculated": null,
         "price_delta": 0,
         "label": "Unpriced",
-        "isAvailable": false
+        "isAvailable": true
       }
     ],
     "pricing_model": "standard",
     "is_free": false,
-    "is_sold_out": true,
+    "is_sold_out": false,
     "ticket_provider": "Direct Box Office",
     "ticket_url": "https://www.vancouversymphony.ca/education/jean-coulthard-readings/",
     "failed_url": null,
@@ -37684,11 +37716,11 @@
         "start_time": "none_available",
         "doors_time": "none_available",
         "end_time": "none_available",
-        "status": "sold_out"
+        "status": "upcoming"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:58:24.784Z",
+    "audited_at": "2026-11-17T02:43:32.741Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -37709,7 +37741,7 @@
     "tier1_price_read": 36.5,
     "tier1_price_calculated": 36.5,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 36.5,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": "Regular Adult",
     "tier2_price_base": 39.5,
@@ -37783,7 +37815,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 2,
@@ -37792,7 +37824,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 3,
@@ -37801,7 +37833,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 4,
@@ -37810,7 +37842,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 5,
@@ -37819,7 +37851,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 6,
@@ -37828,7 +37860,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 7,
@@ -37837,12 +37869,30 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-bonnes-bonnes/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
+      },
+      {
+        "slot": 8,
+        "date": "2027-01-13",
+        "start_time": "7:30 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
+      },
+      {
+        "slot": 9,
+        "date": "2027-01-14",
+        "start_time": "7:30 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:52:36.976Z",
-    "error": "Traversed ticketing portal gated by anti-bot security verification challenge",
+    "audited_at": "2026-11-17T02:49:18.828Z",
+    "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
   {
@@ -38619,7 +38669,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:44:26.984Z",
+    "audited_at": "2026-11-17T02:49:55.294Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -38770,7 +38820,7 @@
     "tier1_price_read": 35.25,
     "tier1_price_calculated": 35.25,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 35.25,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
@@ -38820,7 +38870,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-behind-the-moon/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 2,
@@ -38829,7 +38879,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-behind-the-moon/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 3,
@@ -38838,7 +38888,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-behind-the-moon/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       },
       {
         "slot": 4,
@@ -38847,12 +38897,21 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://touchstonetheatre.com/2026-2027-behind-the-moon/"
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
+      },
+      {
+        "slot": 5,
+        "date": "2027-02-25",
+        "start_time": "7:30 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://www.zeffy.com/en-CA/ticketing/touchstone-season-2627-passes"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:00:46.918Z",
-    "error": "Traversed ticketing portal gated by anti-bot security verification challenge",
+    "audited_at": "2026-11-17T02:46:22.865Z",
+    "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
   {
@@ -40201,12 +40260,12 @@
   },
   {
     "id": "pyatt-hall-june-chamber-players-2027-06-13",
-    "status": "UNVERIFIED_PRICING",
+    "status": "ANTIBOT_CHALLENGE_BLOCKED",
     "success": false,
     "venue_name": "Pyatt Hall",
     "title": "June Chamber Players",
     "date": "2027-06-13",
-    "doors_time": "none_available",
+    "doors_time": null,
     "start_time": "2:00 PM",
     "end_time": "3:35 PM",
     "tier1_name": "General Admission",
@@ -40217,7 +40276,7 @@
     "tier1_price_calculated": 0,
     "tier1_discrepancy_delta": 0,
     "tier1_price_all_in": null,
-    "tier1_quote": "General Admission Price Quantity 0 1 2 3 4 5 6 7 8 9 10",
+    "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -40227,7 +40286,7 @@
     "tier2_discrepancy_delta": 0,
     "tier2_price_all_in": null,
     "tier2_quote": null,
-    "tier3_name": "none_available",
+    "tier3_name": null,
     "tier3_price_base": null,
     "tier3_price_fee": null,
     "tier3_price_tax": null,
@@ -40263,23 +40322,25 @@
         "slot": 1,
         "date": "2027-06-13",
         "start_time": "2:00 PM",
-        "doors_time": "none_available",
+        "doors_time": null,
         "end_time": "3:35 PM",
-        "status": "upcoming"
+        "status": "upcoming",
+        "ticket_url": "https://secure.vancouversymphony.ca/7635/7636"
       },
       {
         "slot": 2,
         "date": "2027-06-16",
         "start_time": "7:00 PM",
-        "doors_time": "none_available",
+        "doors_time": null,
         "end_time": "8:35 PM",
-        "status": "upcoming"
+        "status": "upcoming",
+        "ticket_url": "https://secure.vancouversymphony.ca/7635/7636"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:55:10.878Z",
-    "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "audited_at": "2026-11-17T02:43:18.410Z",
+    "error": "Target page gated by anti-bot security verification challenge",
+    "quarantine_reason": "antibot_challenge_blocked"
   },
   {
     "id": "the-polygon-gallery-the-lind-biennial-opening-cele-2026-11-26",
@@ -41632,7 +41693,7 @@
         "isAvailable": true
       }
     ],
-    "pricing_model": "standard",
+    "pricing_model": "door_cover",
     "is_free": false,
     "is_sold_out": false,
     "ticket_provider": "Direct Box Office",
@@ -41651,7 +41712,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:10:53.377Z",
+    "audited_at": "2026-11-17T02:47:37.732Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -42056,7 +42117,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:15:26.642Z",
+    "audited_at": "2026-11-17T02:43:02.558Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -42204,7 +42265,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:45:52.486Z",
+    "audited_at": "2026-11-17T02:47:36.450Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -42226,7 +42287,7 @@
     "tier1_price_calculated": 0,
     "tier1_discrepancy_delta": 0,
     "tier1_price_all_in": null,
-    "tier1_quote": "MOA • Included with museum admission",
+    "tier1_quote": "Included with museum admission",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -42286,29 +42347,29 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:05:38.785Z",
+    "audited_at": "2026-11-17T02:42:42.017Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
   {
     "id": "the-revue-stage-infidels-jazz-presents-happies-2026-12-05",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Revue Stage Granville Island",
     "title": "Infidels Jazz Presents: Happiest Jazz Band Plays Disney FT Holidays! (2PM)",
     "date": "2026-12-05",
     "doors_time": "none_available",
     "start_time": "2:00 PM",
     "end_time": "4:00 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 33.28,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "General Admission",
+    "tier1_price_base": 30,
+    "tier1_price_fee": 3.28,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 33.28,
+    "tier1_price_calculated": 33.28,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 33.28,
+    "tier1_quote": "CA$33.28 incl. CA$3.28 Fee",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -42329,15 +42390,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 33.28,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 33.28,
+        "price_base": 30,
+        "price_fee": 3.28,
+        "price_tax": 0,
+        "price_read": 33.28,
+        "price_calculated": 33.28,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$33.28 CAD",
         "isAvailable": true
       }
     ],
@@ -42360,9 +42421,9 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:09:34.948Z",
+    "audited_at": "2026-11-17T02:48:15.305Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "evergreen-cultural-c-abba-blahblahblah-a-swedish-di-2026-12-09",
@@ -42755,7 +42816,7 @@
     "tier1_price_calculated": null,
     "tier1_discrepancy_delta": 0,
     "tier1_price_all_in": null,
-    "tier1_quote": "SOLD OUT",
+    "tier1_quote": "This event has sold out online",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -42807,7 +42868,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:14:12.337Z",
+    "audited_at": "2026-11-17T02:43:21.493Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -42924,7 +42985,7 @@
     "date": "2026-12-07",
     "doors_time": "none_available",
     "start_time": "7:00 PM",
-    "end_time": "none_available",
+    "end_time": "7:00 PM",
     "tier1_name": "none_available",
     "tier1_price_base": null,
     "tier1_price_fee": null,
@@ -42980,12 +43041,12 @@
         "date": "2026-12-07",
         "start_time": "7:00 PM",
         "doors_time": "none_available",
-        "end_time": "none_available",
+        "end_time": "7:00 PM",
         "status": "upcoming"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:59:00.543Z",
+    "audited_at": "2026-11-17T02:46:58.771Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -43059,7 +43120,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:05:13.424Z",
+    "audited_at": "2026-11-17T02:41:29.012Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -43118,10 +43179,8 @@
     "is_sold_out": false,
     "ticket_provider": "Venue Direct / Civic Portal",
     "ticket_url": "https://www.surreyeagles.ca/tickets",
-    "failed_url": "https://www.surreyeagles.ca/tickets",
-    "dead_urls": [
-      "https://www.surreyeagles.ca/tickets"
-    ],
+    "failed_url": null,
+    "dead_urls": [],
     "proof_keyframe": null,
     "showings": [
       {
@@ -43131,7 +43190,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "concluded",
-        "ticket_url": "https://www.surreyeagles.ca/tickets"
+        "ticket_url": "https://www.surreyeagles.ca/stats/schedule"
       },
       {
         "slot": 2,
@@ -43140,7 +43199,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "concluded",
-        "ticket_url": "https://www.surreyeagles.ca/tickets"
+        "ticket_url": "https://www.surreyeagles.ca/stats/schedule"
       },
       {
         "slot": 3,
@@ -43149,13 +43208,13 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://www.surreyeagles.ca/tickets"
+        "ticket_url": "https://www.surreyeagles.ca/stats/schedule"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T02:06:42.140Z",
-    "error": "Failed match: missing distinctive high-salience tokens [surrey, eagles, bchl, junior, hockey, home, game] (only matched low-salience [])",
-    "quarantine_reason": "fatal_mismatched_entity",
+    "audited_at": "2026-11-17T03:18:44.887Z",
+    "error": "Missing resolvable HTTP/HTTPS destination URL",
+    "quarantine_reason": "missing_ticket_link",
     "event_id": "surrey-eagles-bchl-hockey-south-surrey-arena",
     "operational_status": "available",
     "booking_protocol": "online_advance",
@@ -43231,10 +43290,8 @@
     "is_sold_out": false,
     "ticket_provider": "Venue Direct / Civic Portal",
     "ticket_url": "https://www.russellbeer.com/tap-room",
-    "failed_url": "https://www.russellbeer.com/tap-room",
-    "dead_urls": [
-      "https://www.russellbeer.com/tap-room"
-    ],
+    "failed_url": null,
+    "dead_urls": [],
     "proof_keyframe": null,
     "showings": [
       {
@@ -43257,9 +43314,9 @@
       }
     ],
     "restrictions": "19+ (Valid Government Photo ID Required)",
-    "audited_at": "2026-11-17T02:06:42.140Z",
-    "error": "Page content contains dead indicator: \"page doesn't exist\"",
-    "quarantine_reason": "fatal_dead_link",
+    "audited_at": "2026-11-17T03:18:44.887Z",
+    "error": "Missing resolvable HTTP/HTTPS destination URL",
+    "quarantine_reason": "missing_ticket_link",
     "event_id": "russell-brewing-taproom-standup-comedy",
     "operational_status": "available",
     "booking_protocol": "online_advance",
@@ -43340,7 +43397,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T03:18:44.887Z",
     "error": "Stagehand extension world not ready for frame D86D6AE4B46E7767A35D426F9B06E2DC; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null,
     "event_id": "clayton-public-house-standup-comedy",
@@ -43432,7 +43489,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T03:18:44.887Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing",
     "event_id": "newton-cultural-centre-coffeehouse-concert",
@@ -43505,7 +43562,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "museum-of-surrey-exhibitions-heritage-gallery",
@@ -43557,7 +43614,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -43609,7 +43666,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -43671,7 +43728,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "landmark-cinemas-guildford-reel-deals",
@@ -43761,7 +43818,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T03:18:44.887Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked",
     "event_id": "landmark-cinemas-guildford-reel-deals",
@@ -43839,10 +43896,8 @@
     "is_sold_out": false,
     "ticket_provider": "Venue Direct / Civic Portal",
     "ticket_url": "https://www.cravingforagame.ca/",
-    "failed_url": "https://www.cravingforagame.ca/",
-    "dead_urls": [
-      "https://www.cravingforagame.ca/"
-    ],
+    "failed_url": null,
+    "dead_urls": [],
     "proof_keyframe": null,
     "showings": [
       {
@@ -43852,7 +43907,7 @@
         "doors_time": null,
         "end_time": null,
         "status": "concluded",
-        "ticket_url": "https://www.cravingforagame.ca/"
+        "ticket_url": "https://www.cravingforagame.ca"
       },
       {
         "slot": 2,
@@ -43861,13 +43916,13 @@
         "doors_time": null,
         "end_time": null,
         "status": "upcoming",
-        "ticket_url": "https://www.cravingforagame.ca/"
+        "ticket_url": "https://www.cravingforagame.ca"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T02:06:42.140Z",
-    "error": "Failed match: title score 18% below threshold (none or insufficient tokens from [friday, night, magic, tabletop, board, game, drop])",
-    "quarantine_reason": "fatal_mismatched_entity",
+    "audited_at": "2026-11-17T03:18:44.887Z",
+    "error": "Missing resolvable HTTP/HTTPS destination URL",
+    "quarantine_reason": "missing_ticket_link",
     "event_id": "craving-for-a-game-friday-night-magic-board-games",
     "operational_status": "available",
     "booking_protocol": "online_advance",
@@ -43950,7 +44005,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T03:18:44.887Z",
     "error": "Failed match: title score 30% below threshold (none or insufficient tokens from [indoor, bouldering, evening, session])",
     "quarantine_reason": "fatal_mismatched_entity",
     "event_id": "project-climbing-centre-cloverdale-bouldering",
@@ -44023,7 +44078,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -44085,7 +44140,7 @@
     "proof_keyframe": "data/proof_keyframes/birdies-and-buckets-pitch-putt-heated-range_cart.png",
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T03:18:44.887Z",
     "error": null,
     "quarantine_reason": null,
     "event_id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -44168,7 +44223,7 @@
     "proof_keyframe": "data/proof_keyframes/grandview-heights-aquatic-centre-drop-in_cart.png",
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T03:18:44.887Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing",
     "event_id": "grandview-heights-aquatic-centre-drop-in",
@@ -44251,7 +44306,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T03:18:44.887Z",
     "error": "Stagehand extension world not ready for frame 80652CB74C0B47EC5B2A26C48D6E2951; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null,
     "event_id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -44334,7 +44389,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -44386,7 +44441,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -44438,7 +44493,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -44490,7 +44545,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "bell-performing-arts-take-it-to-the-limit-a-tribute",
@@ -46401,58 +46456,58 @@
   },
   {
     "id": "surrey-arts-centre-summer-1976-2027-01-13",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Surrey Arts Centre",
     "title": "SUMMER, 1976",
     "date": "2027-01-13",
     "doors_time": "none_available",
     "start_time": "7:30 PM",
     "end_time": "none_available",
-    "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "Zone C (Price Band C)",
+    "tier1_price_base": 31.5,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 31.5,
+    "tier1_price_calculated": 31.5,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 31.5,
+    "tier1_quote": "Zone C (Price Band C): $31.50 CAD (fees & taxes included, base=$31.50, fee=$0.00, tax=$0.00, all_in=$31.50)",
+    "tier2_name": "Zone B (Price Band B)",
+    "tier2_price_base": 52.5,
+    "tier2_price_fee": 0,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 52.5,
+    "tier2_price_calculated": 52.5,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 52.5,
     "tier2_quote": null,
-    "tier3_name": "none_available",
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
+    "tier3_name": "Zone A (Price Band A)",
+    "tier3_price_base": 62.5,
+    "tier3_price_fee": 0,
+    "tier3_price_tax": 0,
+    "tier3_price_read": 62.5,
+    "tier3_price_calculated": 62.5,
     "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
+    "tier3_price_all_in": 62.5,
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "Zone C (Price Band C)",
+        "price": 31.5,
+        "price_base": 31.5,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 31.5,
+        "price_calculated": 31.5,
         "price_delta": 0,
-        "label": "Unpriced",
-        "isAvailable": true
+        "label": "$31.50 CAD",
+        "isAvailable": false
       }
     ],
     "pricing_model": "standard",
     "is_free": false,
-    "is_sold_out": false,
+    "is_sold_out": true,
     "ticket_provider": "Spektrix",
     "ticket_url": "https://purchase.surrey.ca/ChooseSeats/13401",
     "failed_url": null,
@@ -46465,7 +46520,7 @@
         "start_time": "7:30 PM",
         "doors_time": "none_available",
         "end_time": "none_available",
-        "status": "upcoming"
+        "status": "sold_out"
       },
       {
         "slot": 2,
@@ -46501,9 +46556,9 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:32:58.448Z",
+    "audited_at": "2026-11-17T02:46:57.818Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "none-available-baby-spark-christine-mackenzie",
@@ -47009,58 +47064,58 @@
   },
   {
     "id": "main-stage-at-surrey-louisa-may-alcott-s-little-wom-2027-02-24",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Surrey Arts Centre",
     "title": "Louisa May Alcott's Little Women",
     "date": "2027-02-24",
     "doors_time": "none_available",
     "start_time": "7:30 PM",
     "end_time": "none_available",
-    "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "Zone C (Price Band C)",
+    "tier1_price_base": 31.5,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 31.5,
+    "tier1_price_calculated": 31.5,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 31.5,
+    "tier1_quote": "Zone C (Price Band C): $31.50 CAD (fees & taxes included, base=$31.50, fee=$0.00, tax=$0.00, all_in=$31.50)",
+    "tier2_name": "Zone B (Price Band B)",
+    "tier2_price_base": 52.5,
+    "tier2_price_fee": 0,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 52.5,
+    "tier2_price_calculated": 52.5,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 52.5,
     "tier2_quote": null,
-    "tier3_name": "none_available",
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
+    "tier3_name": "Zone A (Price Band A)",
+    "tier3_price_base": 62.5,
+    "tier3_price_fee": 0,
+    "tier3_price_tax": 0,
+    "tier3_price_read": 62.5,
+    "tier3_price_calculated": 62.5,
     "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
+    "tier3_price_all_in": 62.5,
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "Zone C (Price Band C)",
+        "price": 31.5,
+        "price_base": 31.5,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 31.5,
+        "price_calculated": 31.5,
         "price_delta": 0,
-        "label": "Unpriced",
-        "isAvailable": true
+        "label": "$31.50 CAD",
+        "isAvailable": false
       }
     ],
     "pricing_model": "standard",
     "is_free": false,
-    "is_sold_out": false,
+    "is_sold_out": true,
     "ticket_provider": "Spektrix",
     "ticket_url": "https://purchase.surrey.ca/ChooseSeats/13801",
     "failed_url": null,
@@ -47109,9 +47164,9 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:35:31.325Z",
+    "audited_at": "2026-11-17T02:40:56.634Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "studio-theatre-at-su-coffee-concert-a-songbook-thro-2027-03-04",
@@ -49533,7 +49588,7 @@
     "tier1_price_calculated": 0,
     "tier1_discrepancy_delta": 0,
     "tier1_price_all_in": 0,
-    "tier1_quote": "Free",
+    "tier1_quote": "Registration Details Registration required. Register in person or by phone.",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -49617,7 +49672,7 @@
       }
     ],
     "restrictions": "Adults",
-    "audited_at": "2026-11-17T00:16:02.157Z",
+    "audited_at": "2026-11-17T02:47:13.944Z",
     "error": null,
     "quarantine_reason": null
   },
@@ -49669,12 +49724,12 @@
         "price_calculated": 0,
         "price_delta": 0,
         "label": "Free ($0)",
-        "isAvailable": false
+        "isAvailable": true
       }
     ],
     "pricing_model": "free_access",
-    "is_free": false,
-    "is_sold_out": true,
+    "is_free": true,
+    "is_sold_out": false,
     "ticket_provider": "Direct Box Office",
     "ticket_url": "https://www.surreylibraries.ca/events/practice-speaking-english-54",
     "failed_url": null,
@@ -49687,11 +49742,11 @@
         "start_time": "2:00 PM",
         "doors_time": "none_available",
         "end_time": "3:00 PM",
-        "status": "sold_out"
+        "status": "upcoming"
       }
     ],
     "restrictions": "18+",
-    "audited_at": "2026-11-17T00:19:21.169Z",
+    "audited_at": "2026-11-17T02:42:26.634Z",
     "error": null,
     "quarantine_reason": null
   },
@@ -50599,23 +50654,23 @@
   },
   {
     "id": "royal-canadian-legio-a-shania-christmas-with-totall-2026-12-12",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "CLUB 240 @ Crescent Beach Legion",
     "title": "A Shania Christmas with Totally Twain",
-    "date": "Saturday, December 12",
+    "date": "2026-12-12",
     "doors_time": "none_available",
-    "start_time": "8:00 PM",
-    "end_time": "10:30 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 22.63,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "start_time": "7:00 PM",
+    "end_time": "9:30 PM",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 20,
+    "tier1_price_fee": 2.63,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 22.63,
+    "tier1_price_calculated": 22.63,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 22.63,
+    "tier1_quote": "CA$22.63 incl. CA$2.63 Fee",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -50636,15 +50691,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 22.63,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 22.63,
+        "price_base": 20,
+        "price_fee": 2.63,
+        "price_tax": 0,
+        "price_read": 22.63,
+        "price_calculated": 22.63,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$22.63 CAD",
         "isAvailable": true
       }
     ],
@@ -50659,17 +50714,17 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Saturday, December 12",
-        "start_time": "8:00 PM",
+        "date": "2026-12-12",
+        "start_time": "7:00 PM",
         "doors_time": "none_available",
-        "end_time": "10:30 PM",
+        "end_time": "9:30 PM",
         "status": "upcoming"
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:44:29.256Z",
+    "audited_at": "2026-11-17T02:53:46.787Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "clayton-hall-new-recruit-information-sessio-2026-11-19",
@@ -51873,7 +51928,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:52:59.840Z",
+    "audited_at": "2026-11-17T02:40:44.398Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -52242,7 +52297,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:00:20.683Z",
+    "audited_at": "2026-11-17T02:46:12.868Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -52263,7 +52318,7 @@
     "tier1_price_read": 44.05,
     "tier1_price_calculated": 44.05,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 44.05,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
@@ -52317,7 +52372,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-16T23:53:45.993Z",
+    "audited_at": "2026-11-17T02:38:32.239Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
@@ -52423,7 +52478,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:48:43.782Z",
+    "audited_at": "2026-11-17T02:42:24.071Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -52672,7 +52727,7 @@
     "tier1_price_read": 30,
     "tier1_price_calculated": 30,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 30,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": "Student / Senior",
     "tier2_price_base": 20,
@@ -52738,7 +52793,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:00:29.438Z",
+    "audited_at": "2026-11-17T02:40:09.576Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
@@ -53660,7 +53715,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:53:29.992Z",
+    "audited_at": "2026-11-17T02:40:41.702Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -54860,7 +54915,7 @@
     "success": false,
     "venue_name": "Burnaby Village Museum",
     "title": "Festive Village at Burnaby Village Museum",
-    "date": "2026-11-01",
+    "date": "none_available",
     "doors_time": "none_available",
     "start_time": "none_available",
     "end_time": "none_available",
@@ -54916,15 +54971,15 @@
     "showings": [
       {
         "slot": 1,
-        "date": "2026-11-01",
+        "date": "none_available",
         "start_time": "none_available",
         "doors_time": "none_available",
         "end_time": "none_available",
-        "status": "concluded"
+        "status": "upcoming"
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:52:15.284Z",
+    "audited_at": "2026-11-17T02:41:56.793Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -55503,23 +55558,23 @@
   },
   {
     "id": "club-240-crescent-be-crescent-beach-legion-240-pres-2027-01-29",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "CLUB 240 @ Crescent Beach Legion",
     "title": "Crescent Beach Legion 240 Presents - Metallica Tribute / Master of Justice",
     "date": "2027-01-29",
     "doors_time": "8:00 PM",
     "start_time": "9:00 PM",
     "end_time": "11:55 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 34.94,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "General Admission Legion 240 Master Of Justice",
+    "tier1_price_base": 30,
+    "tier1_price_fee": 3.28,
+    "tier1_price_tax": 1.66,
+    "tier1_price_read": 34.94,
+    "tier1_price_calculated": 34.94,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 34.94,
+    "tier1_quote": "CA$34.94 incl. CA$3.28 Fee / incl. CA$1.66 GST",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -55540,15 +55595,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 34.94,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission Legion 240 Master Of Justice",
+        "price": 34.94,
+        "price_base": 30,
+        "price_fee": 3.28,
+        "price_tax": 1.66,
+        "price_read": 34.94,
+        "price_calculated": 34.94,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$34.94 CAD",
         "isAvailable": true
       }
     ],
@@ -55571,9 +55626,9 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:45:22.810Z",
+    "audited_at": "2026-11-17T02:53:12.005Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "gjones-club-gjones-club-presents-wine-fash-2026-11-20",
@@ -56459,7 +56514,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-16T23:53:36.511Z",
+    "audited_at": "2026-11-17T02:52:45.429Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -56639,7 +56694,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:06:35.884Z",
+    "audited_at": "2026-11-17T02:40:07.427Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -56713,7 +56768,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:45:39.511Z",
+    "audited_at": "2026-11-17T02:52:00.963Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -58423,7 +58478,7 @@
     "tier1_price_read": 24,
     "tier1_price_calculated": 24,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 24,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": "Children (ages 6-12)",
     "tier2_price_base": 12,
@@ -58489,7 +58544,7 @@
       }
     ],
     "restrictions": "All Ages / Family Friendly",
-    "audited_at": "2026-11-16T23:50:22.358Z",
+    "audited_at": "2026-11-17T02:41:40.519Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
@@ -59631,50 +59686,87 @@
   },
   {
     "id": "hollywood-theatre-christmas-double-feature-tokyo-2026-12-22",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Hollywood Theatre",
     "title": "Christmas Double Feature: Tokyo Godfathers & Batman Returns",
     "date": "2026-12-22",
     "doors_time": "3:00 PM",
     "start_time": "4:00 PM",
     "end_time": "none_available",
-    "tier1_name": null,
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "Tokyo Godfathers Screening",
+    "tier1_price_base": 10,
+    "tier1_price_fee": 5.45,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 15.45,
+    "tier1_price_calculated": 15.45,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": null,
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 15.45,
+    "tier1_quote": "$15.45 ($10.00 + $5.45 fee)",
+    "tier2_name": "Batman Returns Screening",
+    "tier2_price_base": 10,
+    "tier2_price_fee": 5.45,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 15.45,
+    "tier2_price_calculated": 15.45,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 15.45,
     "tier2_quote": null,
-    "tier3_name": null,
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
+    "tier3_name": "Double Feature - Tokyo Godfathers & Batman Returns",
+    "tier3_price_base": 15,
+    "tier3_price_fee": 5.75,
+    "tier3_price_tax": 0,
+    "tier3_price_read": 20.75,
+    "tier3_price_calculated": 20.75,
     "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
+    "tier3_price_all_in": 20.75,
     "tier3_quote": null,
-    "all_tiers": [],
-    "pricing_model": null,
+    "all_tiers": [
+      {
+        "name": "Tokyo Godfathers Screening",
+        "price": 15.45,
+        "price_base": 10,
+        "price_fee": 5.45,
+        "price_tax": 0,
+        "price_read": 15.45,
+        "price_calculated": 15.45,
+        "price_delta": 0,
+        "label": "$15.45 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "Batman Returns Screening",
+        "price": 15.45,
+        "price_base": 10,
+        "price_fee": 5.45,
+        "price_tax": 0,
+        "price_read": 15.45,
+        "price_calculated": 15.45,
+        "price_delta": 0,
+        "label": "$15.45 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "Double Feature - Tokyo Godfathers & Batman Returns",
+        "price": 20.75,
+        "price_base": 15,
+        "price_fee": 5.75,
+        "price_tax": 0,
+        "price_read": 20.75,
+        "price_calculated": 20.75,
+        "price_delta": 0,
+        "label": "$20.75 CAD",
+        "isAvailable": true
+      }
+    ],
+    "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
     "ticket_provider": "Direct Box Office",
-    "ticket_url": "https://www.hollywoodtheatre.ca/events/christmas-double-feature-tokyo-godfathers-batman-returns",
+    "ticket_url": "https://app.opendate.io/e/christmas-double-feature-tokyo-godfathers-batman-returns-december-22-2026-753679",
     "failed_url": null,
     "dead_urls": [],
-    "proof_keyframe": null,
+    "proof_keyframe": "data/proof_keyframes/hollywood-theatre-christmas-double-feature-tokyo-2026-12-22_cart.png",
     "showings": [
       {
         "slot": 1,
@@ -59683,20 +59775,12 @@
         "doors_time": "3:00 PM",
         "end_time": "none_available",
         "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-12-22",
-        "start_time": "7:00 PM",
-        "doors_time": "6:15 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
       }
     ],
-    "restrictions": "PG-13",
-    "audited_at": "2026-11-16T16:48:00.000Z",
+    "restrictions": "All Ages",
+    "audited_at": "2026-11-17T02:48:23.952Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "the-rio-theatre-the-bicycle-film-festival-2026-2026-12-03",
@@ -61170,23 +61254,23 @@
   },
   {
     "id": "hollywood-theatre-best-of-1990-s-2000-s-music-vi-2027-01-08",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Hollywood Theatre",
-    "title": "Best of 1990’s & 2000’s Music Video Pop Party",
+    "title": "Best of 1990’s & 2000’s Music Video Pop Party - Backstreet Boys vs Spice Girls Edition with DJ Flip Out",
     "date": "2027-01-08",
     "doors_time": "10:00 PM",
     "start_time": "10:00 PM",
     "end_time": "none_available",
-    "tier1_name": null,
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "General Admission",
+    "tier1_price_base": 15,
+    "tier1_price_fee": 5.75,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 20.75,
+    "tier1_price_calculated": 20.75,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": null,
+    "tier1_price_all_in": 20.75,
+    "tier1_quote": "$20.75 ($15.00 + $5.75 fee)",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -61196,7 +61280,7 @@
     "tier2_discrepancy_delta": 0,
     "tier2_price_all_in": null,
     "tier2_quote": null,
-    "tier3_name": null,
+    "tier3_name": "none_available",
     "tier3_price_base": null,
     "tier3_price_fee": null,
     "tier3_price_tax": null,
@@ -61205,15 +61289,28 @@
     "tier3_discrepancy_delta": 0,
     "tier3_price_all_in": null,
     "tier3_quote": null,
-    "all_tiers": [],
-    "pricing_model": null,
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.75,
+        "price_base": 15,
+        "price_fee": 5.75,
+        "price_tax": 0,
+        "price_read": 20.75,
+        "price_calculated": 20.75,
+        "price_delta": 0,
+        "label": "$20.75 CAD",
+        "isAvailable": true
+      }
+    ],
+    "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
     "ticket_provider": "Direct Box Office",
-    "ticket_url": "https://www.hollywoodtheatre.ca/events",
+    "ticket_url": "https://app.opendate.io/e/best-of-1990-s-2000-s-music-video-pop-party-backstreet-boys-vs-spice-girls-edition-with-dj-flip-out-january-08-2027-779107",
     "failed_url": null,
     "dead_urls": [],
-    "proof_keyframe": null,
+    "proof_keyframe": "data/proof_keyframes/hollywood-theatre-best-of-1990-s-2000-s-music-vi-2027-01-08_cart.png",
     "showings": [
       {
         "slot": 1,
@@ -61224,10 +61321,10 @@
         "status": "upcoming"
       }
     ],
-    "restrictions": "All Ages Welcome (Family Friendly)",
-    "audited_at": "2026-11-16T16:48:00.000Z",
+    "restrictions": "19+",
+    "audited_at": "2026-11-17T02:45:26.683Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "the-pearl-missio-with-special-guests-2026-12-12",
@@ -61283,7 +61380,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "TicketWeb",
+    "ticket_provider": "Ticketweb",
     "ticket_url": "https://www.ticketweb.ca/event/missio-with-special-guests-the-pearl-tickets/14212334?pl=MODO-LIVE",
     "failed_url": null,
     "dead_urls": [],
@@ -61299,7 +61396,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:46:39.361Z",
+    "audited_at": "2026-11-17T02:51:18.731Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -61308,12 +61405,12 @@
     "status": "UNVERIFIED_PRICING",
     "success": false,
     "venue_name": "The Roxy Cabaret",
-    "title": "The Roxy",
+    "title": "Saturday at the Roxy",
     "date": "none_available",
     "doors_time": "none_available",
     "start_time": "none_available",
     "end_time": "none_available",
-    "tier1_name": "General Admission",
+    "tier1_name": "none_available",
     "tier1_price_base": null,
     "tier1_price_fee": null,
     "tier1_price_tax": null,
@@ -61342,7 +61439,7 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "General Admission",
+        "name": "none_available",
         "price": null,
         "price_base": null,
         "price_fee": null,
@@ -61373,7 +61470,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:01:24.498Z",
+    "audited_at": "2026-11-17T02:39:59.983Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -62575,7 +62672,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Direct Box Office",
+    "ticket_provider": "TicketWeb",
     "ticket_url": "https://www.ticketweb.ca/event/whitmer-thomas-the-american-tickets/14193214",
     "failed_url": null,
     "dead_urls": [],
@@ -62591,7 +62688,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:47:32.655Z",
+    "audited_at": "2026-11-17T02:50:37.155Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -63461,8 +63558,8 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "TicketWeb",
-    "ticket_url": "https://www.ticketweb.ca/event/surf-hat-with-trestles-the-pearl-tickets/14889633?wt.mc_id=aff_BUYAT_234705",
+    "ticket_provider": "Ticketweb",
+    "ticket_url": "https://www.ticketweb.ca/event/surf-hat-with-trestles-the-pearl-tickets/14889633",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-pearl-surf-hat-with-trestles-2026-11-21_cart.png",
@@ -63477,7 +63574,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-16T23:55:44.242Z",
+    "audited_at": "2026-11-17T02:59:30.140Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -63649,7 +63746,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:48:30.248Z",
+    "audited_at": "2026-11-17T02:49:05.870Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -64461,7 +64558,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-16T23:48:23.347Z",
+    "audited_at": "2026-11-17T02:49:07.984Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -64580,7 +64677,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Ticketweb",
+    "ticket_provider": "TicketWeb",
     "ticket_url": "https://www.ticketweb.ca/event/eivr-w-midori-jaeger-the-pearl-tickets/14772943",
     "failed_url": null,
     "dead_urls": [],
@@ -64596,7 +64693,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:49:21.409Z",
+    "audited_at": "2026-11-17T02:46:09.625Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -65354,7 +65451,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:02:41.550Z",
+    "audited_at": "2026-11-17T02:59:22.100Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -65498,7 +65595,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:50:30.436Z",
+    "audited_at": "2026-11-17T02:40:00.310Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -66693,7 +66790,7 @@
     "doors_time": "7:00 PM",
     "start_time": "8:00 PM",
     "end_time": "none_available",
-    "tier1_name": "none_available",
+    "tier1_name": "General Admission",
     "tier1_price_base": null,
     "tier1_price_fee": null,
     "tier1_price_tax": null,
@@ -66722,7 +66819,7 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
+        "name": "General Admission",
         "price": null,
         "price_base": null,
         "price_fee": null,
@@ -66753,7 +66850,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:03:51.690Z",
+    "audited_at": "2026-11-17T02:39:17.719Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -66894,23 +66991,23 @@
   },
   {
     "id": "fortune-sound-club-why-2026-12-05",
-    "status": "UNVERIFIED_PRICING",
+    "status": "FATAL_MISMATCHED_ENTITY",
     "success": false,
     "venue_name": "Fortune Sound Club",
-    "title": "WHY?",
-    "date": "none_available",
-    "doors_time": "none_available",
-    "start_time": "none_available",
-    "end_time": "none_available",
+    "title": "WHY? with Kitty Ray",
+    "date": "2026-12-05",
+    "doors_time": "6:00 PM",
+    "start_time": "7:00 PM",
+    "end_time": "9:30 PM",
     "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_price_base": 0,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 0,
+    "tier1_price_calculated": 0,
     "tier1_discrepancy_delta": 0,
     "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -66920,7 +67017,7 @@
     "tier2_discrepancy_delta": 0,
     "tier2_price_all_in": null,
     "tier2_quote": null,
-    "tier3_name": "none_available",
+    "tier3_name": null,
     "tier3_price_base": null,
     "tier3_price_fee": null,
     "tier3_price_tax": null,
@@ -66932,38 +67029,41 @@
     "all_tiers": [
       {
         "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "Free ($0)",
         "isAvailable": true
       }
     ],
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Direct Box Office",
-    "ticket_url": "https://www.ticketweb.ca/event/why-with-special-guests-fortune-sound-club-tickets/15007743?theme=Blueprint_",
-    "failed_url": null,
-    "dead_urls": [],
+    "ticket_provider": "TicketWeb",
+    "ticket_url": null,
+    "failed_url": "https://www.ticketweb.ca/event/why-with-special-guests-fortune-sound-club-tickets/15007743?theme=Blueprint_",
+    "dead_urls": [
+      "https://www.ticketweb.ca/event/why-with-special-guests-fortune-sound-club-tickets/15007743?theme=Blueprint_"
+    ],
     "proof_keyframe": "data/proof_keyframes/fortune-sound-club-why-2026-12-05_cart.png",
     "showings": [
       {
         "slot": 1,
-        "date": "none_available",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
+        "date": "2026-12-05",
+        "start_time": "7:00 PM",
+        "doors_time": "6:00 PM",
+        "end_time": "9:30 PM",
+        "status": "upcoming",
+        "ticket_url": "https://www.ticketweb.ca/event/why-with-special-guests-fortune-sound-club-tickets/15007743?theme=Blueprint_"
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:08:05.528Z",
-    "error": null,
+    "audited_at": "2026-11-17T02:58:58.065Z",
+    "error": "Failed match: title score 33% below threshold (none or insufficient tokens from [why, kitty, ray])",
     "quarantine_reason": "unverified_box_office_pricing"
   },
   {
@@ -67580,7 +67680,7 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Ticketweb",
+    "ticket_provider": "TicketWeb",
     "ticket_url": "https://www.ticketweb.ca/event/babe-haven-with-special-guests-the-fox-cabaret-tickets/14940993?pl=MODO-LIVE",
     "failed_url": null,
     "dead_urls": [],
@@ -67596,7 +67696,7 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:12:40.100Z",
+    "audited_at": "2026-11-17T02:58:52.450Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -68777,23 +68877,23 @@
   },
   {
     "id": "the-china-cloud-ohana-comedy-show-yumi-s-birth-2026-11-20",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "The China Cloud Studios",
     "title": "OHANA COMEDY SHOW: Yumi's Birthday Special - All Headliners",
     "date": "2026-11-20",
     "doors_time": "7:00 PM",
-    "start_time": "7:30 PM",
-    "end_time": "9:00 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 33.28,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "start_time": "6:30 PM",
+    "end_time": "8:00 PM",
+    "tier1_name": "Yumi's Birthday Special – General Admission",
+    "tier1_price_base": 30,
+    "tier1_price_fee": 3.28,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 33.28,
+    "tier1_price_calculated": 33.28,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 33.28,
+    "tier1_quote": "CA$33.28 incl. CA$3.28 Fee",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -68814,15 +68914,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 33.28,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "Yumi's Birthday Special – General Admission",
+        "price": 33.28,
+        "price_base": 30,
+        "price_fee": 3.28,
+        "price_tax": 0,
+        "price_read": 33.28,
+        "price_calculated": 33.28,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$33.28 CAD",
         "isAvailable": true
       }
     ],
@@ -68838,16 +68938,16 @@
       {
         "slot": 1,
         "date": "2026-11-20",
-        "start_time": "7:30 PM",
+        "start_time": "6:30 PM",
         "doors_time": "7:00 PM",
-        "end_time": "9:00 PM",
+        "end_time": "8:00 PM",
         "status": "upcoming"
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:46:28.665Z",
+    "audited_at": "2026-11-17T02:52:54.207Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "vogue-theatre-mor-ve-tesi-2026-11-19",
@@ -69142,7 +69242,7 @@
     "doors_time": "none_available",
     "start_time": "none_available",
     "end_time": "none_available",
-    "tier1_name": "none_available",
+    "tier1_name": "General Admission",
     "tier1_price_base": null,
     "tier1_price_fee": null,
     "tier1_price_tax": null,
@@ -69171,7 +69271,7 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
+        "name": "General Admission",
         "price": null,
         "price_base": null,
         "price_fee": null,
@@ -69186,8 +69286,8 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "TicketWeb",
-    "ticket_url": "https://www.ticketweb.ca/event/rayland-baxter-the-true-violet-the-pearl-tickets/14889553?wt.mc_id=aff_BUYAT_234705",
+    "ticket_provider": "Ticketweb",
+    "ticket_url": "https://www.ticketweb.ca/event/rayland-baxter-the-true-violet-the-pearl-tickets/14889553",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-pearl-rayland-baxter-the-true-violet-2027-03-09_cart.png",
@@ -69202,7 +69302,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:16:55.992Z",
+    "audited_at": "2026-11-17T02:58:43.286Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -69576,53 +69676,77 @@
   },
   {
     "id": "the-cobalt-cabaret-coffin-club-alternative-classi-2026-11-28",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "The Cobalt Cabaret",
     "title": "COFFIN CLUB ~ Alternative Classix Dance Party ~ GET TICKETS",
-    "date": "Saturday, November 28",
+    "date": "2026-11-28",
     "doors_time": "9:00 PM",
     "start_time": "9:00 PM",
     "end_time": "2:00 AM",
-    "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "GENERAL ADMISSION TICKET",
+    "tier1_price_base": 13,
+    "tier1_price_fee": 2.18,
+    "tier1_price_tax": 0.76,
+    "tier1_price_read": 15.94,
+    "tier1_price_calculated": 15.94,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 15.94,
+    "tier1_quote": "CA$15.94 incl. CA$2.18 Fee / incl. CA$0.76 GST",
+    "tier2_name": "LAST MINUTE TICKET",
+    "tier2_price_base": 15,
+    "tier2_price_fee": 2.31,
+    "tier2_price_tax": 0.87,
+    "tier2_price_read": 18.18,
+    "tier2_price_calculated": 18.18,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 18.18,
     "tier2_quote": null,
-    "tier3_name": "none_available",
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
+    "tier3_name": "EARLY BIRD DISCOUNT TICKET",
+    "tier3_price_base": 10,
+    "tier3_price_fee": 1.98,
+    "tier3_price_tax": 0.6,
+    "tier3_price_read": 12.58,
+    "tier3_price_calculated": 12.58,
     "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
+    "tier3_price_all_in": 12.58,
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "GENERAL ADMISSION TICKET",
+        "price": 15.94,
+        "price_base": 13,
+        "price_fee": 2.18,
+        "price_tax": 0.76,
+        "price_read": 15.94,
+        "price_calculated": 15.94,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$15.94 CAD",
         "isAvailable": true
+      },
+      {
+        "name": "LAST MINUTE TICKET",
+        "price": 18.18,
+        "price_base": 15,
+        "price_fee": 2.31,
+        "price_tax": 0.87,
+        "price_read": 18.18,
+        "price_calculated": 18.18,
+        "price_delta": 0,
+        "label": "$18.18 CAD",
+        "isAvailable": false
+      },
+      {
+        "name": "EARLY BIRD DISCOUNT TICKET",
+        "price": 12.58,
+        "price_base": 10,
+        "price_fee": 1.98,
+        "price_tax": 0.6,
+        "price_read": 12.58,
+        "price_calculated": 12.58,
+        "price_delta": 0,
+        "label": "$12.58 CAD",
+        "isAvailable": false
       }
     ],
     "pricing_model": "standard",
@@ -69636,7 +69760,7 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Saturday, November 28",
+        "date": "2026-11-28",
         "start_time": "9:00 PM",
         "doors_time": "9:00 PM",
         "end_time": "2:00 AM",
@@ -69644,9 +69768,9 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:47:29.374Z",
+    "audited_at": "2026-11-17T02:52:18.151Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "museum-of-surrey-sensory-santa-2026-11-29",
@@ -69776,8 +69900,8 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Ticketweb",
-    "ticket_url": "https://www.ticketweb.ca/event/the-limianas-with-native-sun-the-pearl-tickets/14777703?wt.mc_id=aff_BUYAT_234705",
+    "ticket_provider": "TicketWeb",
+    "ticket_url": "https://www.ticketweb.ca/event/the-limianas-with-native-sun-the-pearl-tickets/14777703",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-pearl-the-limi-anas-with-native-sun-2027-05-19_cart.png",
@@ -69792,7 +69916,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:19:58.200Z",
+    "audited_at": "2026-11-17T02:58:22.411Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -70459,8 +70583,8 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Ticketweb",
-    "ticket_url": "https://www.ticketweb.ca/event/frost-children-with-special-guests-the-pearl-tickets/14187544?wt.mc_id=aff_BUYAT_234705",
+    "ticket_provider": "TicketWeb",
+    "ticket_url": "https://www.ticketweb.ca/event/frost-children-with-special-guests-the-pearl-tickets/14187544",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-pearl-frost-children-with-special-gu-2026-12-05_cart.png",
@@ -70475,7 +70599,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:22:59.696Z",
+    "audited_at": "2026-11-17T02:58:12.696Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -72359,23 +72483,23 @@
   },
   {
     "id": "rickshaw-theatre-rock-the-halls-the-who-and-all-2026-12-18",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Rickshaw Theatre",
     "title": "Rock The Halls: The Who and Allman Brothers Tribute Bash",
     "date": "2026-12-18",
     "doors_time": "7:00 PM",
     "start_time": "7:00 PM",
     "end_time": "none_available",
-    "tier1_name": "none_available",
-    "tier1_price_base": 30.31,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "General Admission",
+    "tier1_price_base": 25,
+    "tier1_price_fee": 5.31,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 30.31,
+    "tier1_price_calculated": 30.31,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
+    "tier1_price_all_in": 30.31,
+    "tier1_quote": "CA$30.31 incl. CA$5.31 Fee",
     "tier2_name": null,
     "tier2_price_base": null,
     "tier2_price_fee": null,
@@ -72396,15 +72520,15 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 30.31,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 30.31,
+        "price_base": 25,
+        "price_fee": 5.31,
+        "price_tax": 0,
+        "price_read": 30.31,
+        "price_calculated": 30.31,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$30.31 CAD",
         "isAvailable": true
       }
     ],
@@ -72427,9 +72551,9 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:49:18.330Z",
+    "audited_at": "2026-11-17T02:50:14.172Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "historic-stewart-far-homemade-holidays-2026-12-12",
@@ -73075,7 +73199,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:25:50.152Z",
+    "audited_at": "2026-11-17T02:58:03.646Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -73757,22 +73881,22 @@
   },
   {
     "id": "steel-oak-brewing-puzzle-mondays-2027-02-01",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Steel & Oak Brewing",
     "title": "Puzzle Mondays",
-    "date": "none_available",
+    "date": "23",
     "doors_time": "none_available",
-    "start_time": "none_available",
-    "end_time": "none_available",
+    "start_time": "5:00 PM",
+    "end_time": "9:00 PM",
     "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
+    "tier1_price_base": 0,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
     "tier1_price_read": null,
     "tier1_price_calculated": null,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
+    "tier1_price_all_in": 0,
     "tier1_quote": "none_available",
     "tier2_name": null,
     "tier2_price_base": null,
@@ -73795,19 +73919,19 @@
     "all_tiers": [
       {
         "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
         "price_read": null,
         "price_calculated": null,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "Free ($0)",
         "isAvailable": true
       }
     ],
-    "pricing_model": "standard",
-    "is_free": false,
+    "pricing_model": "free_access",
+    "is_free": true,
     "is_sold_out": false,
     "ticket_provider": "Direct Box Office",
     "ticket_url": "https://www.steelandoak.ca/",
@@ -73817,17 +73941,25 @@
     "showings": [
       {
         "slot": 1,
-        "date": "none_available",
-        "start_time": "none_available",
+        "date": "23",
+        "start_time": "5:00 PM",
         "doors_time": "none_available",
-        "end_time": "none_available",
+        "end_time": "9:00 PM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 2,
+        "date": "30",
+        "start_time": "5:00 PM",
+        "doors_time": "none_available",
+        "end_time": "9:00 PM",
         "status": "upcoming"
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-16T23:54:08.712Z",
+    "audited_at": "2026-11-17T02:39:16.350Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "the-cinematheque-under-the-sun-of-satan-29",
@@ -74117,53 +74249,101 @@
   },
   {
     "id": "the-birdhouse-public-disco-after-dark-2026-11-21",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "The Birdhouse",
     "title": "Public Disco After Dark",
     "date": "2026-11-21",
     "doors_time": "10:00 PM",
     "start_time": "10:00 PM",
     "end_time": "3:00 AM",
-    "tier1_name": "General Admission",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "GA- Tier 3",
+    "tier1_price_base": 24.5,
+    "tier1_price_fee": 3.72,
+    "tier1_price_tax": 1.41,
+    "tier1_price_read": 29.63,
+    "tier1_price_calculated": 29.63,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "FEW TICKETS LEFT",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 29.63,
+    "tier1_quote": "GA- Tier 3 CA$29.63 incl. CA$3.72 Fee / incl. CA$1.41 GST",
+    "tier2_name": "Late Night Entry (after 12am)",
+    "tier2_price_base": 20,
+    "tier2_price_fee": 3.47,
+    "tier2_price_tax": 1.17,
+    "tier2_price_read": 24.64,
+    "tier2_price_calculated": 24.64,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
-    "tier2_quote": null,
-    "tier3_name": "none_available",
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
+    "tier2_price_all_in": 24.64,
+    "tier2_quote": "Late Night Entry (after 12am) CA$24.64 incl. CA$3.47 Fee / incl. CA$1.17 GST",
+    "tier3_name": "GA- Tier 2",
+    "tier3_price_base": 22,
+    "tier3_price_fee": 3.59,
+    "tier3_price_tax": 1.28,
+    "tier3_price_read": 26.87,
+    "tier3_price_calculated": 26.87,
     "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
-    "tier3_quote": null,
+    "tier3_price_all_in": 26.87,
+    "tier3_quote": "GA- Tier 2 CA$26.87 incl. CA$3.59 Fee / incl. CA$1.28 GST Sold out",
     "all_tiers": [
       {
-        "name": "General Admission",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "GA- Tier 3",
+        "price": 29.63,
+        "price_base": 24.5,
+        "price_fee": 3.72,
+        "price_tax": 1.41,
+        "price_read": 29.63,
+        "price_calculated": 29.63,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$29.63 CAD",
         "isAvailable": true
+      },
+      {
+        "name": "Late Night Entry (after 12am)",
+        "price": 24.64,
+        "price_base": 20,
+        "price_fee": 3.47,
+        "price_tax": 1.17,
+        "price_read": 24.64,
+        "price_calculated": 24.64,
+        "price_delta": 0,
+        "label": "$24.64 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "Early Bird",
+        "price": 22.44,
+        "price_base": 18,
+        "price_fee": 3.37,
+        "price_tax": 1.07,
+        "price_read": 22.44,
+        "price_calculated": 22.44,
+        "price_delta": 0,
+        "label": "$22.44 CAD",
+        "isAvailable": false
+      },
+      {
+        "name": "GA - Tier 1",
+        "price": 24.64,
+        "price_base": 20,
+        "price_fee": 3.47,
+        "price_tax": 1.17,
+        "price_read": 24.64,
+        "price_calculated": 24.64,
+        "price_delta": 0,
+        "label": "$24.64 CAD",
+        "isAvailable": false
+      },
+      {
+        "name": "GA- Tier 2",
+        "price": 26.87,
+        "price_base": 22,
+        "price_fee": 3.59,
+        "price_tax": 1.28,
+        "price_read": 26.87,
+        "price_calculated": 26.87,
+        "price_delta": 0,
+        "label": "$26.87 CAD",
+        "isAvailable": false
       }
     ],
     "pricing_model": "standard",
@@ -74185,9 +74365,9 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:50:09.299Z",
+    "audited_at": "2026-11-17T02:49:14.326Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "mansion-nightclub-cityvibez-saturdays-2026-11-21",
@@ -74579,31 +74759,31 @@
   },
   {
     "id": "hycroft-heritage-pre-hycroft-for-the-holidays-2026-11-26",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Hycroft Manor",
     "title": "Hycroft for the Holidays",
-    "date": "Thursday, November 26",
+    "date": "2026-11-26",
     "doors_time": "none_available",
     "start_time": "6:00 PM",
     "end_time": "9:00 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "General Admission",
+    "tier1_price_base": 25,
+    "tier1_price_fee": 3.07,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 28.07,
+    "tier1_price_calculated": 28.07,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 28.07,
+    "tier1_quote": "Total CA$28.07 Price includes tax",
+    "tier2_name": "Early Bird",
+    "tier2_price_base": 20,
+    "tier2_price_fee": 2.73,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 22.73,
+    "tier2_price_calculated": 22.73,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 22.73,
     "tier2_quote": null,
     "tier3_name": "none_available",
     "tier3_price_base": null,
@@ -74616,16 +74796,28 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 28.07,
+        "price_base": 25,
+        "price_fee": 3.07,
+        "price_tax": 0,
+        "price_read": 28.07,
+        "price_calculated": 28.07,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$28.07 CAD",
         "isAvailable": true
+      },
+      {
+        "name": "Early Bird",
+        "price": 22.73,
+        "price_base": 20,
+        "price_fee": 2.73,
+        "price_tax": 0,
+        "price_read": 22.73,
+        "price_calculated": 22.73,
+        "price_delta": 0,
+        "label": "$22.73 CAD",
+        "isAvailable": false
       }
     ],
     "pricing_model": "standard",
@@ -74639,7 +74831,7 @@
     "showings": [
       {
         "slot": 1,
-        "date": "Thursday, November 26",
+        "date": "2026-11-26",
         "start_time": "6:00 PM",
         "doors_time": "none_available",
         "end_time": "9:00 PM",
@@ -74647,7 +74839,7 @@
       },
       {
         "slot": 2,
-        "date": "Friday, November 27",
+        "date": "2026-11-27",
         "start_time": "11:00 AM",
         "doors_time": "none_available",
         "end_time": "7:00 PM",
@@ -74655,7 +74847,7 @@
       },
       {
         "slot": 3,
-        "date": "Saturday, November 28",
+        "date": "2026-11-28",
         "start_time": "11:00 AM",
         "doors_time": "none_available",
         "end_time": "7:00 PM",
@@ -74663,7 +74855,7 @@
       },
       {
         "slot": 4,
-        "date": "Sunday, November 29",
+        "date": "2026-11-29",
         "start_time": "11:00 AM",
         "doors_time": "none_available",
         "end_time": "6:00 PM",
@@ -74671,9 +74863,9 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-17T00:51:18.551Z",
+    "audited_at": "2026-11-17T02:46:19.724Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "bc-house-of-comedy-john-beuhler-2026-11-27",
@@ -74691,8 +74883,8 @@
     "tier1_price_tax": 1,
     "tier1_price_read": 20,
     "tier1_price_calculated": 21,
-    "tier1_discrepancy_delta": 1,
-    "tier1_price_all_in": 21,
+    "tier1_discrepancy_delta": 0,
+    "tier1_price_all_in": null,
     "tier1_quote": null,
     "tier2_name": null,
     "tier2_price_base": null,
@@ -74746,7 +74938,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-16T23:48:10.344Z",
+    "audited_at": "2026-11-17T02:41:49.402Z",
     "error": "Target page gated by anti-bot security verification challenge",
     "quarantine_reason": "antibot_challenge_blocked"
   },
@@ -74984,8 +75176,8 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "TicketWeb",
-    "ticket_url": "https://www.ticketweb.ca/event/lilyisthatyou-with-special-guests-the-pearl-tickets/14740533?wt.mc_id=aff_BUYAT_234705",
+    "ticket_provider": "Ticketweb",
+    "ticket_url": "https://www.ticketweb.ca/event/lilyisthatyou-with-special-guests-the-pearl-tickets/14740533",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-pearl-lilyisthatyou-with-special-gue-2026-11-18_cart.png",
@@ -75000,7 +75192,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:28:26.881Z",
+    "audited_at": "2026-11-17T02:57:43.308Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -75210,7 +75402,7 @@
     "doors_time": "none_available",
     "start_time": "none_available",
     "end_time": "none_available",
-    "tier1_name": "General Admission",
+    "tier1_name": "none_available",
     "tier1_price_base": null,
     "tier1_price_fee": null,
     "tier1_price_tax": null,
@@ -75239,7 +75431,7 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "General Admission",
+        "name": "none_available",
         "price": null,
         "price_base": null,
         "price_fee": null,
@@ -75254,8 +75446,8 @@
     "pricing_model": "standard",
     "is_free": false,
     "is_sold_out": false,
-    "ticket_provider": "Ticketweb",
-    "ticket_url": "https://www.ticketweb.ca/event/saliah-in-vancouver-the-pearl-tickets/14355744?wt.mc_id=aff_BUYAT_234705",
+    "ticket_provider": "TicketWeb",
+    "ticket_url": "https://www.ticketweb.ca/event/saliah-in-vancouver-the-pearl-tickets/14355744",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-pearl-saliah-in-2026-11-20_cart.png",
@@ -75270,7 +75462,7 @@
       }
     ],
     "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:31:19.140Z",
+    "audited_at": "2026-11-17T02:57:32.472Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -75509,7 +75701,7 @@
     "is_free": false,
     "is_sold_out": false,
     "ticket_provider": "TicketWeb",
-    "ticket_url": "https://www.ticketweb.ca/event/11th-year-anniversary-the-pearl-tickets/14410344?wt.mc_id=aff_BUYAT_234705",
+    "ticket_url": "https://www.ticketweb.ca/event/11th-year-anniversary-the-pearl-tickets/14410344",
     "failed_url": null,
     "dead_urls": [],
     "proof_keyframe": "data/proof_keyframes/the-pearl-babes-on-babes-presents-11th-y-2026-11-27_cart.png",
@@ -75523,8 +75715,8 @@
         "status": "upcoming"
       }
     ],
-    "restrictions": "19+ w/ ID",
-    "audited_at": "2026-11-17T00:33:39.674Z",
+    "restrictions": "19+",
+    "audited_at": "2026-11-17T02:57:03.524Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -76556,31 +76748,31 @@
   },
   {
     "id": "revue-stage-dirty-little-secrets-improv-sh-2026-11-21",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Revue Stage Granville Island",
     "title": "Dirty Little Secrets Improv Show®️ VANCOUVER - Revue Stage, Nov 21 2026",
     "date": "2026-11-21",
     "doors_time": "6:30 PM",
     "start_time": "7:00 PM",
     "end_time": "8:30 PM",
-    "tier1_name": "none_available",
-    "tier1_price_base": 20,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "General Admission",
+    "tier1_price_base": 25,
+    "tier1_price_fee": 2.96,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 27.96,
+    "tier1_price_calculated": 27.96,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 27.96,
+    "tier1_quote": "General Admission CA$27.96 incl. CA$2.96 Fee (Subtotal CA$25.00, Fees CA$2.96, Total CA$27.96)",
+    "tier2_name": "Early Bird",
+    "tier2_price_base": 20,
+    "tier2_price_fee": 0,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 20,
+    "tier2_price_calculated": 20,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 20,
     "tier2_quote": null,
     "tier3_name": "none_available",
     "tier3_price_base": null,
@@ -76593,16 +76785,28 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": 20,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "General Admission",
+        "price": 27.96,
+        "price_base": 25,
+        "price_fee": 2.96,
+        "price_tax": 0,
+        "price_read": 27.96,
+        "price_calculated": 27.96,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$27.96 CAD",
         "isAvailable": true
+      },
+      {
+        "name": "Early Bird",
+        "price": 20,
+        "price_base": 20,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 20,
+        "price_calculated": 20,
+        "price_delta": 0,
+        "label": "$20.00 CAD",
+        "isAvailable": false
       }
     ],
     "pricing_model": "standard",
@@ -76624,9 +76828,9 @@
       }
     ],
     "restrictions": "Under 18 with parent or legal guardian",
-    "audited_at": "2026-11-17T00:52:06.531Z",
+    "audited_at": "2026-11-17T02:39:24.262Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "fest-surrey-tree-lighting-festival-holiday-market",
@@ -76678,7 +76882,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "surrey-civic-plaza-surrey-tree-lighting-festival-2026-11-21",
@@ -76764,52 +76968,76 @@
   },
   {
     "id": "numbers-cabaret-drag-show-xxx-friday-2027-01-01",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
+    "status": "VERIFIED_PASS",
+    "success": true,
     "venue_name": "Numbers Cabaret",
     "title": "Drag Show XXX FRIDAY",
     "date": "2027-01-01",
     "doors_time": "9:00 PM",
     "start_time": "10:00 PM",
     "end_time": "12:00 AM",
-    "tier1_name": "none_available",
-    "tier1_price_base": null,
-    "tier1_price_fee": null,
-    "tier1_price_tax": null,
-    "tier1_price_read": null,
-    "tier1_price_calculated": null,
+    "tier1_name": "Early Bird tickets",
+    "tier1_price_base": 10,
+    "tier1_price_fee": 1.98,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 11.98,
+    "tier1_price_calculated": 11.98,
     "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": null,
-    "tier1_quote": "none_available",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
+    "tier1_price_all_in": 11.98,
+    "tier1_quote": "CA$11.98 incl. CA$1.98 Fee",
+    "tier2_name": "General Admission",
+    "tier2_price_base": 15,
+    "tier2_price_fee": 2.31,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 17.31,
+    "tier2_price_calculated": 17.31,
     "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
+    "tier2_price_all_in": 17.31,
     "tier2_quote": null,
-    "tier3_name": "none_available",
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
+    "tier3_name": "Table for 2",
+    "tier3_price_base": 40,
+    "tier3_price_fee": 3.93,
+    "tier3_price_tax": 0,
+    "tier3_price_read": 43.93,
+    "tier3_price_calculated": 43.93,
     "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
+    "tier3_price_all_in": 43.93,
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
-        "price": null,
-        "price_base": null,
-        "price_fee": null,
-        "price_tax": null,
-        "price_read": null,
-        "price_calculated": null,
+        "name": "Early Bird tickets",
+        "price": 11.98,
+        "price_base": 10,
+        "price_fee": 1.98,
+        "price_tax": 0,
+        "price_read": 11.98,
+        "price_calculated": 11.98,
         "price_delta": 0,
-        "label": "Unpriced",
+        "label": "$11.98 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "General Admission",
+        "price": 17.31,
+        "price_base": 15,
+        "price_fee": 2.31,
+        "price_tax": 0,
+        "price_read": 17.31,
+        "price_calculated": 17.31,
+        "price_delta": 0,
+        "label": "$17.31 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "Table for 2",
+        "price": 43.93,
+        "price_base": 40,
+        "price_fee": 3.93,
+        "price_tax": 0,
+        "price_read": 43.93,
+        "price_calculated": 43.93,
+        "price_delta": 0,
+        "label": "$43.93 CAD",
         "isAvailable": true
       }
     ],
@@ -76832,9 +77060,9 @@
       }
     ],
     "restrictions": "19+",
-    "audited_at": "2026-11-17T00:48:21.520Z",
+    "audited_at": "2026-11-17T02:51:19.685Z",
     "error": null,
-    "quarantine_reason": "unverified_box_office_pricing"
+    "quarantine_reason": null
   },
   {
     "id": "dublin-crossing-celtic-rock-weekend-session",
@@ -76886,7 +77114,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "surrey-arts-centre-studio-theatre-drama-improv",
@@ -76938,7 +77166,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   },
   {
     "id": "surrey-knights-pjhl-hockey-north-surrey",
@@ -76990,6 +77218,6 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-17T02:06:42.140Z"
+    "audited_at": "2026-11-17T03:18:44.887Z"
   }
 ]

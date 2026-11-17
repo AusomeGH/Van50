@@ -184,7 +184,7 @@ export function isWhitelistedTicketingUrl(url) {
       if (/^\/(?:discover|cities|explore|o|s|m|venues|organizations|search)(?:\/|$)/i.test(path)) return false;
     }
 
-    // Reject empty shopping basket / account / login / donation utility endpoints (e.g. Agile ViewBasket.aspx, Spektrix /MyAccount)
+    // Reject empty shopping basket / account / login / donation / optional add-on rental utility endpoints
     if (
       path.includes("viewbasket.aspx") ||
       path.endsWith("/myaccount") ||
@@ -192,7 +192,8 @@ export function isWhitelistedTicketingUrl(url) {
       path.endsWith("/basket") ||
       path.endsWith("/cart") ||
       path.includes("/donate") ||
-      path.includes("/membership")
+      path.includes("/membership") ||
+      /\/(?:[a-z0-9-]*-)?(?:foodie-tour|lane-rental|rink-rental|igloo-rental|cabana-rental|vip-upgrade|parking-pass)(?:[-/]|$)/i.test(path)
     ) {
       return false;
     }

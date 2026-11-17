@@ -99,11 +99,11 @@ async function fetchSurreySpektrixLiveCartContext(rawUrl) {
     }
     const matchedInst = Array.isArray(_surreySpektrixInstancesRuntimeCache)
       ? _surreySpektrixInstancesRuntimeCache.find((inst) => {
-          if (!inst) return false;
-          if (targetNumericInstId) return String(parseInt(inst.id, 10)) === targetNumericInstId;
-          if (targetNumericEventId && inst.event?.id) return String(parseInt(inst.event.id, 10)) === targetNumericEventId;
-          return false;
-        })
+        if (!inst) return false;
+        if (targetNumericInstId) return String(parseInt(inst.id, 10)) === targetNumericInstId;
+        if (targetNumericEventId && inst.event?.id) return String(parseInt(inst.event.id, 10)) === targetNumericEventId;
+        return false;
+      })
       : null;
     if (!matchedInst) return "";
 
@@ -986,6 +986,7 @@ export async function expandAccordionsAndExtractHiddenContext(page) {
  */
 export async function collectAllFramesText(page, extraContextText = "") {
   const sections = [];
+  const bodyTailSections = [];
   const accordionText = await expandAccordionsAndExtractHiddenContext(page);
   try {
     const mainSnap = await page.evaluate(() => {
@@ -1021,14 +1022,31 @@ export async function collectAllFramesText(page, extraContextText = "") {
     if (extraContextText && extraContextText.trim().length > 0 && extraContextText.trim() !== accordionText.trim()) {
       sections.push(`\n--- PARENT EVENT PAGE ACCORDION & PRICING CONTEXT ---\n${extraContextText.trim()}`);
     }
-    sections.push(`\nVISIBLE CART & PAGE TEXT:\n${mainSnap.text}`);
+    // Defer outer page prose below cross-origin checkout iframes so Eventbrite / Spektrix / Showpass modals are never truncated!
+    bodyTailSections.push(`\nVISIBLE CART & PAGE TEXT:\n${mainSnap.text}`);
   } catch (_) {
     if (accordionText && accordionText.trim().length > 0) {
       sections.push(`\n--- EXPANDED ACCORDION & SHOWTIME DRAWER TEXT ---\n${accordionText.trim()}`);
     }
   }
 
-  // Stagehand 4.2.1 CDP Multi-Frame Accessibility Snapshot (captures cross-origin iframes like <iframe id="SpektrixIFrame">)
+  // Cross-origin & child iframes FIRST (before outer page description prose) so embedded checkout carts are guaranteed in the prompt window
+  if (typeof page.frames === "function") {
+    const mainFrame = typeof page.mainFrame === "function" ? page.mainFrame() : null;
+    for (const frame of page.frames()) {
+      if (mainFrame && frame === mainFrame) continue;
+      try {
+        const fUrl = frame.url() || "";
+        if (!fUrl || fUrl === "about:blank") continue;
+        const fText = await frame.evaluate(() => (document.body ? document.body.innerText : ""));
+        if (fText && fText.trim().length > 20) {
+          sections.push(`\n--- EMBEDDED IFRAME [${fUrl}] (HIGHEST PRIORITY CHECKOUT WIDGET) ---\n${fText.trim()}`);
+        }
+      } catch (_) { }
+    }
+  }
+
+  // Stagehand 4.2.1 CDP Multi-Frame Accessibility Snapshot (captures cross-origin iframes like Eventbrite checkout-external & SpektrixIFrame)
   if (typeof page.snapshot === "function") {
     try {
       const hasIframe = await page.evaluate(() => document.querySelectorAll("iframe").length > 0).catch(() => false);
@@ -1039,29 +1057,16 @@ export async function collectAllFramesText(page, extraContextText = "") {
         ]);
         if (cdpSnap && cdpSnap.formattedTree && cdpSnap.formattedTree.trim().length > 20) {
           const fullTree = cdpSnap.formattedTree.trim();
-          const clippedTree = fullTree.length <= 28000
+          const clippedTree = fullTree.length <= 16000
             ? fullTree
-            : `${fullTree.slice(0, 12000)}\n...[middle truncated]...\n${fullTree.slice(-16000)}`;
+            : `${fullTree.slice(0, 8000)}\n...[middle truncated]...\n${fullTree.slice(-8000)}`;
           sections.push(`\n--- MULTI-FRAME CDP ACCESSIBILITY TREE (INCLUDING CROSS-ORIGIN IFRAMES) ---\n${clippedTree}`);
         }
       }
     } catch (_) { }
   }
 
-  if (typeof page.frames === "function") {
-    const mainFrame = typeof page.mainFrame === "function" ? page.mainFrame() : null;
-    for (const frame of page.frames()) {
-      if (mainFrame && frame === mainFrame) continue;
-      try {
-        const fUrl = frame.url() || "";
-        if (!fUrl || fUrl === "about:blank") continue;
-        const fText = await frame.evaluate(() => (document.body ? document.body.innerText : ""));
-        if (fText && fText.trim().length > 20) {
-          sections.push(`\n--- EMBEDDED IFRAME [${fUrl}] ---\n${fText.trim()}`);
-        }
-      } catch (_) { }
-    }
-  }
+  sections.push(...bodyTailSections);
   try {
     const liveUrl = (typeof page.url === "function" ? await page.url() : "") || "";
     if (/purchase\.surrey\.ca\/(?:ChooseSeats\/\d+|EventAvailability)|EventInstanceId=\d+/i.test(liveUrl)) {
@@ -1702,6 +1707,32 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       }
     }
 
+    // Auto-detect expired monthly admission slugs (e.g. showpass.com/bloedel-conservatory-admission-october-2026/)
+    const isExpiredMonthlySlug = (rawU) => {
+      if (!rawU || typeof rawU !== "string") return false;
+      const m = rawU.toLowerCase().match(/-(january|february|march|april|may|june|july|august|september|october|november|december)-(202\d)(?:\/|[?#]|$)/i);
+      if (!m) return false;
+      const monthIdx = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"].indexOf(m[1].toLowerCase()) + 1;
+      const yr = parseInt(m[2], 10);
+      const nowD = new Date();
+      const curYr = nowD.getFullYear();
+      const curMo = nowD.getMonth() + 1;
+      return yr < curYr || (yr === curYr && monthIdx < curMo);
+    };
+    const initialProbeUrl = eventCard.candidate_tier1_url || eventCard.ticket_url || eventCard.details_url;
+    if (isExpiredMonthlySlug(initialProbeUrl)) {
+      const fallbackHub = eventCard.details_url && !isExpiredMonthlySlug(eventCard.details_url)
+        ? eventCard.details_url
+        : (curatorInfo.venueCalendarUrl || null);
+      console.log(`🔄 [Expired Monthly Slug Guard] Detected past monthly slug in ${initialProbeUrl} — resetting to ${fallbackHub || "venue hub"} for fresh Tier 1 hunt.`);
+      eventCard.candidate_tier1_url = null;
+      if (fallbackHub) {
+        eventCard.ticket_url = fallbackHub;
+        eventCard.details_url = fallbackHub;
+      }
+      eventCard.step1b_audited_at = null;
+    }
+
     const probeUrl = eventCard.candidate_tier1_url || eventCard.ticket_url || eventCard.details_url;
     const health = await Promise.race([
       scanSingleLinkHealth(probeUrl, eventCard),
@@ -2034,6 +2065,12 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       console.log(`🌐 [1/4] Navigating to destination page: ${targetUrl}...`);
       page = await stagehand.browser.context.newPage(targetUrl);
       await waitForDomReady(page, { maxWaitMs: 3500, minWaitMs: 450 });
+      if (/ticketweb\.ca|ticketmaster\.(?:ca|com)|zeffy\.com/i.test(targetUrl)) {
+        const earlyLen = await page.evaluate(() => (document.body ? document.body.innerText.trim().length : 0)).catch(() => 0);
+        if (earlyLen < 220) {
+          await new Promise((r) => setTimeout(r, 1500));
+        }
+      }
     }
 
     // Dealbreaker Gate 4 & Gate 5 Initial Evaluation
@@ -2056,7 +2093,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       const bodyTextLen = (document.body ? document.body.innerText : "").trim().length;
       const hasHardInterstitial = Boolean(
         document.querySelector(
-          'iframe[src*="captcha-delivery.com"], iframe[src*="datadome"], script[src*="captcha-delivery.com"], script[src*="datadome"], #cf-challenge-running, #challenge-running, #px-captcha'
+          'iframe[src*="captcha-delivery.com"], iframe[src*="datadome"], iframe[src*="_Incapsula_Resource"], script[src*="captcha-delivery.com"], script[src*="datadome"], script[src*="_Incapsula_Resource"], #cf-challenge-running, #challenge-running, #px-captcha'
         )
       );
       const hasPassiveTurnstileOrRecaptcha = Boolean(
@@ -2081,23 +2118,50 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     const isAntiBotBlocked =
       Boolean(pageInfo.hasAntiBotChallenge) ||
       /^(?:just a moment|attention required|access denied|access blocked|pardon our interruption|ra\.co|security check|fastly)/i.test(trimmedTitle) ||
-      /performing security verification|verify you are human|enable js and disable any ad blocker|please verify you are a human|unusual activity from your network|browsing activity has been paused|detected unusual behaviour|enter the characters seen in the image below|datadome/i.test(trimmedBodyText) ||
+      /performing security verification|verify you are human|enable js and disable any ad blocker|please verify you are a human|unusual activity from your network|your browsing activity has been paused|browsing activity has been paused|detected unusual behaviour|incapsula incident id|enter the characters seen in the image below|datadome/i.test(trimmedBodyText) ||
       (/ra\.co\/events\/\d+/i.test(targetUrl) && trimmedBodyText.length < 80);
 
     if (isAntiBotBlocked) {
-      console.warn(`🛑 [Anti-Bot Gate] Target URL ${targetUrl} presented a security verification challenge ("${pageInfo.title}"). Stopping without bypassing or poisoning URL.`);
-      return {
-        success: false,
-        eventId,
-        status: "ANTIBOT_CHALLENGE_BLOCKED",
-        error: "Target page gated by anti-bot security verification challenge",
-        card: {
-          ...eventCard,
-          quarantineReason: "antibot_challenge_blocked",
-          quarantine_reason: "antibot_challenge_blocked",
-          last_qc_audited_at: new Date().toISOString(),
-        },
-      };
+      // First-party non-blocked venue show-page fallback (strictly no anti-bot bypass: reads official venue page if distinct from blocked portal)
+      const firstPartyFallbackUrl = [eventCard.details_url, eventCard.links?.tier2_event_page, eventCard.source_url]
+        .find((u) => u && typeof u === "string" && u.startsWith("http") && u !== targetUrl && !isGenericIndexTargetUrl(u) && !/ticketweb\.|ticketmaster\.|zeffy\.|ra\.co|axs\.com|tixr\.com/i.test(u));
+      let fallbackSucceeded = false;
+      if (firstPartyFallbackUrl) {
+        console.log(`🏛️ [First-Party Venue Fallback] Portal ${targetUrl} paused headless session; inspecting official venue event page ${firstPartyFallbackUrl} while preserving checkout link...`);
+        try {
+          await page.goto(firstPartyFallbackUrl, { waitUntil: "domcontentloaded", timeout: 20000 });
+          await waitForDomReady(page, { maxWaitMs: 3000, minWaitMs: 450 });
+          const fbInfo = await page.evaluate(() => ({
+            title: document.title || "",
+            text: document.body ? document.body.innerText : "",
+            url: window.location.href,
+          }));
+          await enrichPageInfoWithFrames(page, fbInfo, firstPartyFallbackUrl);
+          const fbHasPrice = /\$\s*\d+|\bfree\b|\bno\s+cover\b/i.test(fbInfo.text || "");
+          if (fbHasPrice && !checkPageDeadOr404(fbInfo).isDead) {
+            preservedViffBookUrl = preservedViffBookUrl || targetUrl;
+            targetUrl = firstPartyFallbackUrl;
+            pageInfo = fbInfo;
+            deadCheck = { isDead: false };
+            fallbackSucceeded = true;
+          }
+        } catch (_) { }
+      }
+      if (!fallbackSucceeded) {
+        console.warn(`🛑 [Anti-Bot Gate] Target URL ${targetUrl} presented a security verification challenge ("${pageInfo.title}"). Stopping without bypassing or poisoning URL.`);
+        return {
+          success: false,
+          eventId,
+          status: "ANTIBOT_CHALLENGE_BLOCKED",
+          error: "Target page gated by anti-bot security verification challenge",
+          card: {
+            ...eventCard,
+            quarantineReason: "antibot_challenge_blocked",
+            quarantine_reason: "antibot_challenge_blocked",
+            last_qc_audited_at: new Date().toISOString(),
+          },
+        };
+      }
     }
     let entityCheck = checkEntityMatchesPage(eventCard.title || eventCard.event_name, pageInfo.title, pageInfo.text, {
       venue: eventCard.venue || eventCard.venue_name,
@@ -2390,7 +2454,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
             });
             for (const b of btns) {
               const t = (b.innerText || b.getAttribute("aria-label") || "").trim().toLowerCase();
-              if (/^(buy\s*now|find\s*tickets?|buy\s*tickets?|get\s*tickets?|book\s*tickets?|choose\s*seats)$/i.test(t)) {
+              if (/^(buy\s*now|find\s*tickets?|buy\s*tickets?|get\s*tickets?|book\s*tickets?|choose\s*seats|check\s*availability|select\s*tickets?|reserve\s*a\s*spot)$/i.test(t) || b.getAttribute("data-testid") === "checkout-link") {
                 b.click();
                 return true;
               }
@@ -2422,24 +2486,37 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
 
           await waitForDomReady(page, { maxWaitMs: 2000, minWaitMs: 350 });
           // Eventbrite embedded checkout iframe (`checkout-external?eid=...`) loads asynchronously behind a teal spinner;
-          // wait up to 4.5s for the checkout iframe to finish rendering ticket tier prices before capturing DOM/screenshot.
+          // wait up to 4.5s for child frames to render ticket tier prices, or navigate directly to checkout-external?eid=<id> if still unhydrated.
           if (/eventbrite\.(?:ca|com)\/e\//i.test(checkoutUrl || targetUrl || "")) {
             const ebWaitStart = Date.now();
+            let ebFrameHydrated = false;
             while (Date.now() - ebWaitStart < 4500) {
-              const ebHydrated = await page.evaluate(() => {
-                const iframes = Array.from(document.querySelectorAll('iframe[src*="checkout-external"], iframe[id*="eventbrite-widget-modal"]'));
-                if (iframes.length === 0) return false;
-                return iframes.some((f) => {
+              if (typeof page.frames === "function") {
+                for (const fr of page.frames()) {
                   try {
-                    const txt = f.contentDocument?.body?.innerText || "";
-                    return txt.length > 120 && /\$|\bfree\b|\bsold\s*out\b|\bsales\s*ended\b/i.test(txt);
-                  } catch (_) {
-                    return false;
-                  }
-                });
-              }).catch(() => false);
-              if (ebHydrated) break;
+                    const fu = fr.url() || "";
+                    if (fu.includes("checkout-external")) {
+                      const ft = await fr.evaluate(() => (document.body ? document.body.innerText : "")).catch(() => "");
+                      if (ft.length > 80 && /\$|\bfree\b|\bsold\s*out\b|\bsales\s*ended\b/i.test(ft)) {
+                        ebFrameHydrated = true;
+                        break;
+                      }
+                    }
+                  } catch (_) { }
+                }
+              }
+              if (ebFrameHydrated) break;
               await new Promise((r) => setTimeout(r, 450));
+            }
+            if (!ebFrameHydrated) {
+              const eidMatch = String(checkoutUrl || targetUrl || "").match(/\/e\/(?:[^/?#]*-)?(\d{8,})(?:[/?#]|$)/i);
+              if (eidMatch && eidMatch[1]) {
+                const directEbWidgetUrl = `https://www.eventbrite.ca/checkout-external?eid=${eidMatch[1]}`;
+                console.log(`🎟️ [Eventbrite Direct Widget] Navigating directly to standalone widget ${directEbWidgetUrl} while preserving /e/ link...`);
+                preservedViffBookUrl = preservedViffBookUrl || checkoutUrl || targetUrl;
+                await page.goto(directEbWidgetUrl, { waitUntil: "domcontentloaded", timeout: 15000 }).catch(() => { });
+                await waitForDomReady(page, { maxWaitMs: 3000, minWaitMs: 600 });
+              }
             }
           }
         } else {
@@ -2456,23 +2533,23 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           const dateModalVisible = skipSurreyChooseSeatsClick
             ? false
             : await page.evaluate(() => {
-                const hrefLower = (window.location.href || "").toLowerCase();
-                if (/purchase\.surrey\.ca\/chooseseats\/\d+|chooseseats\.aspx/i.test(hrefLower)) return false;
-            const bodyText = (document.body ? document.body.innerText : "").toLowerCase();
-            return (
-              hrefLower.includes("eventavailability") ||
-              bodyText.includes("dates and times") ||
-              bodyText.includes("select a date") ||
-              bodyText.includes("choose a date") ||
-              bodyText.includes("select date") ||
-              bodyText.includes("select time") ||
-              bodyText.includes("choose a time") ||
-              bodyText.includes("tickets & showtimes") ||
-              bodyText.includes("choose seats") ||
-              bodyText.includes("select seats") ||
-              (Boolean(document.querySelector("#DatesAndTimes, .EventDates")) && bodyText.includes("book now"))
-            );
-          });
+              const hrefLower = (window.location.href || "").toLowerCase();
+              if (/purchase\.surrey\.ca\/chooseseats\/\d+|chooseseats\.aspx/i.test(hrefLower)) return false;
+              const bodyText = (document.body ? document.body.innerText : "").toLowerCase();
+              return (
+                hrefLower.includes("eventavailability") ||
+                bodyText.includes("dates and times") ||
+                bodyText.includes("select a date") ||
+                bodyText.includes("choose a date") ||
+                bodyText.includes("select date") ||
+                bodyText.includes("select time") ||
+                bodyText.includes("choose a time") ||
+                bodyText.includes("tickets & showtimes") ||
+                bodyText.includes("choose seats") ||
+                bodyText.includes("select seats") ||
+                (Boolean(document.querySelector("#DatesAndTimes, .EventDates")) && bodyText.includes("book now"))
+              );
+            });
 
           if (dateModalVisible) {
             console.log(`📅 [Act 1.5 - Date / Seat Picker] Intermediate date or seat selection list detected. Selecting slot...`);
@@ -2510,7 +2587,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
                   const rgb = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/i);
                   const hasTintedBg = rgb
                     ? (rgb[4] === undefined || parseFloat(rgb[4]) > 0.15) &&
-                      (parseInt(rgb[2], 10) > parseInt(rgb[1], 10) + 4 || parseInt(rgb[1], 10) < 246 || parseInt(rgb[3], 10) < 246)
+                    (parseInt(rgb[2], 10) > parseInt(rgb[1], 10) + 4 || parseInt(rgb[1], 10) < 246 || parseInt(rgb[3], 10) < 246)
                     : false;
                   return st.cursor === "pointer" || hasTintedBg || el.tagName === "BUTTON" || cls.includes("day") || cls.includes("avail");
                 });
@@ -2548,7 +2625,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
                   return el.tagName === "BUTTON" || st.cursor === "pointer" || el.getAttribute("role") === "button";
                 });
                 if (slotBtns.length > 0) slotBtns[0].click();
-              }).catch(() => {});
+              }).catch(() => { });
               await new Promise((r) => setTimeout(r, 800));
               await page.evaluate(() => {
                 const modalRoot = document.querySelector('[role="dialog"], .chakra-modal__body, [class*="modal" i], [class*="drawer" i]') || document;
@@ -2558,7 +2635,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
                   return /\b(?:continue|next|select\s+tickets?|view\s+tickets?|confirm|proceed)\b/i.test(t) && t.length <= 28;
                 });
                 if (contBtn) contBtn.click();
-              }).catch(() => {});
+              }).catch(() => { });
               await waitForDomReady(page, { maxWaitMs: 2200, minWaitMs: 750 });
             }
 
@@ -2808,24 +2885,37 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           console.log(`🎻 [Act 2 - VSO SSR Zone Selected] Selected lowest-priced Available Section radio button to reveal Adult/Senior/Student/Child base + fee breakdown.`);
           await waitForDomReady(page, { maxWaitMs: 2000, minWaitMs: 350 });
           // Eventbrite embedded checkout iframe (`checkout-external?eid=...`) loads asynchronously behind a teal spinner;
-          // wait up to 4.5s for the checkout iframe to finish rendering ticket tier prices before capturing DOM/screenshot.
+          // wait up to 4.5s for child frames to render ticket tier prices, or navigate directly to checkout-external?eid=<id> if still unhydrated.
           if (/eventbrite\.(?:ca|com)\/e\//i.test(checkoutUrl || targetUrl || "")) {
             const ebWaitStart = Date.now();
+            let ebFrameHydrated = false;
             while (Date.now() - ebWaitStart < 4500) {
-              const ebHydrated = await page.evaluate(() => {
-                const iframes = Array.from(document.querySelectorAll('iframe[src*="checkout-external"], iframe[id*="eventbrite-widget-modal"]'));
-                if (iframes.length === 0) return false;
-                return iframes.some((f) => {
+              if (typeof page.frames === "function") {
+                for (const fr of page.frames()) {
                   try {
-                    const txt = f.contentDocument?.body?.innerText || "";
-                    return txt.length > 120 && /\$|\bfree\b|\bsold\s*out\b|\bsales\s*ended\b/i.test(txt);
-                  } catch (_) {
-                    return false;
-                  }
-                });
-              }).catch(() => false);
-              if (ebHydrated) break;
+                    const fu = fr.url() || "";
+                    if (fu.includes("checkout-external")) {
+                      const ft = await fr.evaluate(() => (document.body ? document.body.innerText : "")).catch(() => "");
+                      if (ft.length > 80 && /\$|\bfree\b|\bsold\s*out\b|\bsales\s*ended\b/i.test(ft)) {
+                        ebFrameHydrated = true;
+                        break;
+                      }
+                    }
+                  } catch (_) { }
+                }
+              }
+              if (ebFrameHydrated) break;
               await new Promise((r) => setTimeout(r, 450));
+            }
+            if (!ebFrameHydrated) {
+              const eidMatch = String(checkoutUrl || targetUrl || "").match(/\/e\/(?:[^/?#]*-)?(\d{8,})(?:[/?#]|$)/i);
+              if (eidMatch && eidMatch[1]) {
+                const directEbWidgetUrl = `https://www.eventbrite.ca/checkout-external?eid=${eidMatch[1]}`;
+                console.log(`🎟️ [Eventbrite Direct Widget] Navigating directly to standalone widget ${directEbWidgetUrl} while preserving /e/ link...`);
+                preservedViffBookUrl = preservedViffBookUrl || checkoutUrl || targetUrl;
+                await page.goto(directEbWidgetUrl, { waitUntil: "domcontentloaded", timeout: 15000 }).catch(() => { });
+                await waitForDomReady(page, { maxWaitMs: 3000, minWaitMs: 600 });
+              }
             }
           }
         } else if (incrementedViaDom === "vso_section_ranges_visible" || incrementedViaDom === "vso_section_drilled") {
@@ -3025,10 +3115,10 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
 
         for (const pt of candidateSeatCoords.slice(0, 4)) {
           if (typeof page.hover === "function") {
-            await page.hover(pt.x, pt.y).catch(() => {});
+            await page.hover(pt.x, pt.y).catch(() => { });
             await new Promise((r) => setTimeout(r, 150));
           }
-          await page.click(pt.x, pt.y).catch(() => {});
+          await page.click(pt.x, pt.y).catch(() => { });
           await new Promise((r) => setTimeout(r, 950));
 
           let cartHasNonZero = await page.evaluate(() => {
@@ -3081,7 +3171,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
                   // Try Stagehand deep cross-iframe locator on Adult / General tariff row first, then proportional PNG-diff coordinates
                   if (typeof page.locator === "function") {
                     for (const deepSel of ["iframe >> text=Adult", "iframe >> button:has-text('Select')", "iframe >> [role='button']:has-text('$')"]) {
-                      await page.locator(deepSel).click().catch(() => {});
+                      await page.locator(deepSel).click().catch(() => { });
                       await new Promise((r) => setTimeout(r, 700));
                       cartHasNonZero = await page.evaluate(() => {
                         const txt = document.body ? document.body.innerText : "";
@@ -3105,7 +3195,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
                       { x: cx, y: row2Y },
                     ];
                     for (const tPt of popoverTargets) {
-                      await page.click(tPt.x, tPt.y).catch(() => {});
+                      await page.click(tPt.x, tPt.y).catch(() => { });
                       await new Promise((r) => setTimeout(r, 950));
                       cartHasNonZero = await page.evaluate(() => {
                         const txt = document.body ? document.body.innerText : "";
@@ -3160,6 +3250,24 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       .join("\n\n");
 
     const fullMultiFrameSnap = await collectAllFramesText(page, combinedAccordionContext);
+
+    // Late-mounting Anti-Bot Pause Guard (catches TicketWeb / Ticketmaster "Your Browsing Activity Has Been Paused" that renders after t=450ms)
+    if (/your browsing activity has been paused|we've detected unusual behaviour on either your network or your browser|incapsula incident id|performing security verification/i.test(fullMultiFrameSnap || "")) {
+      console.warn(`🛑 [Post-Load Anti-Bot Gate] Late-mounted security pause detected on ${checkoutUrl || targetUrl}. Routing to antibot_challenge_blocked.`);
+      return {
+        success: false,
+        eventId,
+        status: "ANTIBOT_CHALLENGE_BLOCKED",
+        error: "Target page gated by late-mounted anti-bot security pause",
+        card: {
+          ...eventCard,
+          ticket_url: unwrapAffiliateUrl(preservedViffBookUrl || checkoutUrl || targetUrl),
+          quarantineReason: "antibot_challenge_blocked",
+          quarantine_reason: "antibot_challenge_blocked",
+          last_qc_audited_at: new Date().toISOString(),
+        },
+      };
+    }
 
     // Inject parent/expanded accordion & cross-origin iframe context (e.g. Eventbrite checkout iframe) into top-level DOM before stagehand.extract
     const injectedContextText = [combinedAccordionContext, fullMultiFrameSnap].filter(Boolean).join("\n\n").slice(0, 12000);
@@ -4094,32 +4202,46 @@ export async function runEventBatchQC(options = {}) {
       });
       console.log(`────────────────────────────────────────────────────────────────`);
 
-      // Watchdog: Max 150s per event card (accommodates 80s Antigravity CLI worker + Chromium navigation/iframe hydration) with guaranteed browser teardown
+      // Watchdog: Max 150s per event card (with automatic 1-retry backoff on transient Stagehand Chrome frame-init races)
       let result;
-      const timeoutMs = 150000;
-      let timeoutHandle;
-      const sessionRef = { stagehand: null, browser: null };
-      const timeoutPromise = new Promise((_, reject) => {
-        timeoutHandle = setTimeout(() => reject(new Error(`Event audit timed out after ${timeoutMs / 1000}s`)), timeoutMs);
-      });
+      for (let attempt = 1; attempt <= 2; attempt++) {
+        const timeoutMs = 150000;
+        let timeoutHandle;
+        const sessionRef = { stagehand: null, browser: null };
+        const timeoutPromise = new Promise((_, reject) => {
+          timeoutHandle = setTimeout(() => reject(new Error(`Event audit timed out after ${timeoutMs / 1000}s`)), timeoutMs);
+        });
 
-      try {
-        result = await Promise.race([
-          auditSingleEventCard(target, venuesDb, apiKey, sessionRef),
-          timeoutPromise,
-        ]);
-      } catch (raceErr) {
-        console.warn(`⏰ Watchdog timeout on event (${target.id || target.event_id}): ${raceErr.message}`);
-        result = {
-          success: false,
-          eventId: target.id || target.event_id,
-          status: "TIMEOUT_EXCEEDED",
-          error: raceErr.message,
-          card: target,
-        };
-      } finally {
-        clearTimeout(timeoutHandle);
-        await safeCloseBrowserSession(sessionRef);
+        try {
+          result = await Promise.race([
+            auditSingleEventCard(target, venuesDb, apiKey, sessionRef),
+            timeoutPromise,
+          ]);
+        } catch (raceErr) {
+          console.warn(`⏰ Watchdog timeout on event (${target.id || target.event_id}): ${raceErr.message}`);
+          result = {
+            success: false,
+            eventId: target.id || target.event_id,
+            status: "TIMEOUT_EXCEEDED",
+            error: raceErr.message,
+            card: target,
+          };
+        } finally {
+          clearTimeout(timeoutHandle);
+          await safeCloseBrowserSession(sessionRef);
+        }
+
+        const isTransientFrameRace =
+          attempt === 1 &&
+          result &&
+          result.status === "EXECUTION_ERROR" &&
+          /extension world not ready for frame|execution context was destroyed|session closed|target closed/i.test(String(result.error || ""));
+        if (isTransientFrameRace) {
+          console.warn(`🔄 [Stagehand Frame-Init Retry] Transient Chrome extension frame race on "${target.id || target.event_id}" — cooling down 1.8s and retrying once in a fresh browser...`);
+          await new Promise((r) => setTimeout(r, 1800));
+          continue;
+        }
+        break;
       }
 
       // Persist to Layer Store (layer_box_office.json) atomically with mutex lock

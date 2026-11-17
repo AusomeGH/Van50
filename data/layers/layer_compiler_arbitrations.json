@@ -1,0 +1,342 @@
+{
+  "revue-stage-dirty-little-secrets-improv-sh-2026-11-21": {
+    "sig": "title mismatch between schedule (\"Dirty Little Secrets Improv Show\") and box office (\"Dirty Little Secrets Improv Show®️ VANCOUVER - Revue Stage, Nov 21 2026\")::",
+    "decision": {
+      "clean_title": "Dirty Little Secrets Improv Show",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-21",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the concise title from the Schedule and Editorial layers, stripping boilerplate venue and date tokens present in the Box Office listing."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "orpheum-silent-movie-mondays-2026-2026-10-26": {
+    "sig": "title mismatch between schedule (\"Silent Movie Mondays: 2026\") and box office (\"Silent Movie Mondays\")::",
+    "decision": {
+      "clean_title": "Silent Movie Mondays",
+      "artist": "Gatsby Strutters Jazz Band",
+      "lineup": [
+        "Gatsby Strutters Jazz Band"
+      ],
+      "date": "2026-12-07",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the canonical title 'Silent Movie Mondays' supported by Seed, Box Office, and Editorial layers over the schedule layer's redundant series year suffix, classified under cinema."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "landmark-cinemas-guildford-reel-deals": {
+    "sig": "date mismatch between schedule (2026-11-10) and box office (2026-11-17)::",
+    "decision": {
+      "clean_title": "Reel Deals & Indie Screenings",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-17",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-11-17 as verified by both the live box office checkout layer and seed source, matching the upcoming weekly Tuesday Reel Deals showing."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "surrey-libraries-gui-practice-speaking-english-2026-11-16": {
+    "sig": "date mismatch between schedule (2026-11-16) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Practice Speaking English",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Arbitrated date to 2026-11-23 based on corroboration between the seed URL target and box office registration layer, with free admission confirmed available."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "craving-for-a-game-friday-night-magic-board-games": {
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
+    "decision": {
+      "clean_title": "Friday Night Magic & Tabletop Board Game Drop-In",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-20",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "trivia",
+      "arbitration_reasoning": "Resolved date to 2026-11-20 matching the active live box office inventory and seed, as the 2026-11-13 schedule entry is in the past relative to the current local time."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "the-revue-stage-infidels-jazz-presents-dean-th-2026-12-13": {
+    "sig": "title mismatch between schedule (\"Infidels Jazz Presents: Dean Thiessen Plays Charlie Brown\") and box office (\"Infidels Jazz Presents: Dean Thiessen Plays Charlie Brown (2PM)\")::",
+    "decision": {
+      "clean_title": "Dean Thiessen Plays Charlie Brown",
+      "artist": "Dean Thiessen",
+      "lineup": [
+        "Dean Thiessen"
+      ],
+      "date": "2026-12-13",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the canonical editorial clean title stripping the presenter prefix and time suffix, populated lead performer Dean Thiessen, extracted 2:00 PM start time from the box office layer, and upheld the sold-out status as all ticket tiers are marked unavailable."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "russell-brewing-taproom-standup-comedy": {
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
+    "decision": {
+      "clean_title": "Taproom Stand-Up Comedy & Craft Beer Night",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-20",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-11-20 matching both the Seed and the live Box Office checkout layer, which represents the active upcoming ticketed showing over the past schedule entry."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "the-improv-centre-heart-felt-holiday-2026-11-19": {
+    "sig": "title mismatch between schedule (\"Heart Felt Holiday\") and box office (\"Heart Felt Holiday: An Improvised Puppet Rom-Com\")::",
+    "decision": {
+      "clean_title": "Heart Felt Holiday: An Improvised Puppet Rom-Com",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-19",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the specific, full production title from the Seed and Box Office layers over the truncated calendar schedule label, retaining the verified 7:00 PM showtime."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "surrey-eagles-bchl-hockey-south-surrey-arena": {
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
+    "decision": {
+      "clean_title": "Surrey Eagles BCHL Junior Hockey Home Game",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-20",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Selected 2026-11-20 because it represents an active upcoming showing confirmed by live Box Office inventory and the Seed layer, whereas 2026-11-13 is a past date relative to current time."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "van50-tightrope-theatre-murder-she-improvised-20261113": {
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
+    "decision": {
+      "clean_title": "Murder She Improvised",
+      "artist": null,
+      "lineup": [
+        "Tightrope Theatre",
+        "Dad's Garage Theatre"
+      ],
+      "date": "2026-11-20",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-11-20 by aligning with verified Box Office live cart and Seed checkout URL, which supersedes the harvester date mismatch."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "lindsay-family-stage-the-gingerbread-men-2026-12-07": {
+    "sig": "title mismatch between schedule (\"The Gingerbread Men\") and box office (\"The Gingerbread Men: And Yet Another Holiday Cabaret\")::",
+    "decision": {
+      "clean_title": "The Gingerbread Men: And Yet Another Holiday Cabaret",
+      "artist": "The Gingerbread Men",
+      "lineup": [
+        "The Gingerbread Men"
+      ],
+      "date": "2026-12-07",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the complete official production title 'The Gingerbread Men: And Yet Another Holiday Cabaret' corroborated by the Box Office and Seed layers, while identifying the titular group as lead artist."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "the-revue-stage-infidels-jazz-presents-happies-2026-12-05": {
+    "sig": "title mismatch between schedule (\"Infidels Jazz Presents: Happiest Jazz Band Plays Disney for the Holidays\") and box office (\"Infidels Jazz Presents: Happiest Jazz Band Plays Disney FT Holidays! (2PM)\")::",
+    "decision": {
+      "clean_title": "Infidels Jazz Presents: Happiest Jazz Band Plays Disney for the Holidays",
+      "artist": "Happiest Jazz Band",
+      "lineup": [
+        "Happiest Jazz Band"
+      ],
+      "date": "2026-12-05",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the canonical presenter and show title from the schedule layer while stripping box-office time artifacts ('(2PM)') and typo abbreviations ('FT'), grounding the artist from the editorial context and 2:00 PM start time from the box office ledger."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "the-cobalt-cabaret-coffin-club-alternative-classi-2026-11-28": {
+    "sig": "title mismatch between schedule (\"COFFIN CLUB ~ Alternative Classix Dance Party\") and box office (\"COFFIN CLUB ~ Alternative Classix Dance Party ~ GET TICKETS\")::",
+    "decision": {
+      "clean_title": "COFFIN CLUB ~ Alternative Classix Dance Party",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-28",
+      "start_time": "9:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped the ticketing call-to-action '~ GET TICKETS' from the box office title in favor of the clean editorial and schedule title, selected the 'music' category, and confirmed available General Admission tickets at $15.94 CAD."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "the-china-cloud-ohana-comedy-show-yumi-s-birth-2026-11-20": {
+    "sig": "title mismatch between schedule (\"Ohana Comedy Show: Yumi's Birthday Special!\") and box office (\"OHANA COMEDY SHOW: Yumi's Birthday Special - All Headliners\")::",
+    "decision": {
+      "clean_title": "Ohana Comedy Show: Yumi's Birthday Special!",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-20",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the canonical mixed-case title validated across Seed, Schedule, and Editorial layers over the uppercase box office cart label."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "celebrities-nightclu-playhouse-pres-no-thanks-boxin-2026-12-26": {
+    "sig": "title mismatch between schedule (\"Playhouse Pres: No Thanks (Boxing Day Bash)\") and box office (\"No Thanks: Boxing Day Bash\")::",
+    "decision": {
+      "clean_title": "Playhouse Pres: No Thanks (Boxing Day Bash)",
+      "artist": "No Thanks",
+      "lineup": [
+        "No Thanks"
+      ],
+      "date": "2026-12-26",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the fuller authoritative schedule and TicketWeb event title ('Playhouse Pres: No Thanks (Boxing Day Bash)') while extracting lead performer 'No Thanks' into the artist/lineup dimensions and classifying under music."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "hollywood-theatre-best-of-1990-s-2000-s-music-vi-2027-01-08": {
+    "sig": "title mismatch between schedule (\"Best of 1990’s & 2000’s Music Video Pop Party\") and box office (\"Best of 1990’s & 2000’s Music Video Pop Party - Backstreet Boys vs Spice Girls Edition with DJ Flip Out\")::",
+    "decision": {
+      "clean_title": "Best of 1990’s & 2000’s Music Video Pop Party",
+      "artist": "DJ Flip Out",
+      "lineup": [
+        "DJ Flip Out"
+      ],
+      "date": "2027-01-08",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the core series title from Seed, Schedule, and Editorial layers while parsing DJ Flip Out from the box office subtitle into the artist and lineup dimensions."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "comedy-after-dark-saturday-night-stand-up-comedy-2025-01-22": {
+    "sig": "title mismatch between schedule (\"Saturday Night Stand Up Comedy\") and box office (\"SATURDAY NIGHT STAND UP COMEDY @ COMEDY AFTER DARK\")::",
+    "decision": {
+      "clean_title": "Saturday Night Stand Up Comedy",
+      "artist": null,
+      "lineup": [
+        "Michael Rowland",
+        "Cass Furman",
+        "Michael Balazo"
+      ],
+      "date": "2026-11-07",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the canonical title 'Saturday Night Stand Up Comedy' by stripping the redundant venue suffix and all-caps formatting from the box office layer to match the schedule, seed, and editorial layers."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "celebrities-nightclu-playhouse-pres-andrew-bayer-2026-12-05": {
+    "sig": "title mismatch between schedule (\"Playhouse Pres: Andrew Bayer\") and box office (\"Playhouse Pres. Andrew Bayer\")::",
+    "decision": {
+      "clean_title": "Andrew Bayer",
+      "artist": "Andrew Bayer",
+      "lineup": [
+        "Andrew Bayer"
+      ],
+      "date": "2026-12-05",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Resolved the title conflict by stripping the promotional club series prefix ('Playhouse Pres') in favour of clean artist identity 'Andrew Bayer', adopting the verified 2026-12-05 schedule date and music category."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "roedde-house-museum-vico-concert-in-the-parlour-uz-2026-11-20": {
+    "sig": "title mismatch between schedule (\"VICO Concert in the Parlour: Uzbek Musical Heritage\") and box office (\"Concert in the Parlour: Uzbek Musical Heritage\")::",
+    "decision": {
+      "clean_title": "VICO Concert in the Parlour: Uzbek Musical Heritage",
+      "artist": "Ravshan Tukhtamishev",
+      "lineup": [
+        "Ravshan Tukhtamishev"
+      ],
+      "date": "2026-11-20",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the complete editorial and schedule title preserving the VICO presentation context, while integrating the verified 7:00 PM start time and confirming available single-visit GA tickets under $50 CAD."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "the-pearl-saliah-in-2026-11-20": {
+    "sig": "title mismatch between schedule (\"Saliah In\") and box office (\"Saliah In Vancouver\")::",
+    "decision": {
+      "clean_title": "Saliah In Vancouver",
+      "artist": "Saliah",
+      "lineup": [
+        "Saliah"
+      ],
+      "date": "2026-11-20",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Resolved title to 'Saliah In Vancouver' as verified by Seed and Box Office layers, isolating British-Lebanese DJ Saliah as the lead performer."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "van50-the-cambrian-hall-jokes-please-stand-up-comedy": {
+    "sig": "title mismatch between schedule (\"Stand Up Comedy: Jokes Please!\") and box office (\"Stand Up Comedy - Jokes Please! - Friday in Mount Pleasant | Comedy Show\")::",
+    "decision": {
+      "clean_title": "Jokes Please!",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-20",
+      "start_time": "9:00 PM",
+      "doors_time": "8:30 PM",
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the concise editorial and seed title 'Jokes Please!' stripping SEO clutter from the box office layer while retaining verified schedule times and active inventory."
+    },
+    "updatedAt": "2026-11-17T02:59:36.800Z"
+  }
+}

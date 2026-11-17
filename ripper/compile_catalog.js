@@ -484,10 +484,29 @@ export function detectLayerConflicts({ seed = {}, sched = {}, box = {}, edit = {
     conflicts.push(`date mismatch between schedule (${sDate}) and box office (${bDate})`);
   }
 
-  // 4. Category conflict
-  const cats = new Set([edit.category, sched.category, box.category].filter(Boolean));
-  if (cats.size > 1) {
-    conflicts.push(`category disagreement across layers (${Array.from(cats).join(" vs ")})`);
+  // 4. Category conflict (after normalizing canonical synonyms; Stage 3A Enricher rules over raw schedule guesses when Box Office has no category)
+  const normalizeConflictCategory = (rawCat) => {
+    if (!rawCat || typeof rawCat !== "string") return "";
+    const c = rawCat.trim().toLowerCase();
+    if (["cinema", "movie", "movies", "film", "films", "screening", "screenings"].includes(c)) return "cinema";
+    if (["music", "concert", "concerts", "live-music", "live music", "gig", "dj"].includes(c)) return "music";
+    if (["shows", "show", "comedy", "stand-up", "improv", "theatre", "theater", "drag", "burlesque", "cabaret", "performing-arts", "stage"].includes(c)) return "shows";
+    if (["arts", "art", "gallery", "galleries", "museum", "exhibition", "visual-arts", "culture"].includes(c)) return "arts";
+    if (["parks-nature", "parks", "park", "outdoors", "nature", "garden", "gardens"].includes(c)) return "parks-nature";
+    if (["workshops", "workshop", "classes", "class", "craft"].includes(c)) return "workshops";
+    if (["sports-rec", "sports", "recreation", "active-rec", "fitness", "skating"].includes(c)) return "sports-rec";
+    if (["festivals", "festival", "holiday-market", "market"].includes(c)) return "festivals";
+    return c;
+  };
+  const normEditCat = normalizeConflictCategory(edit.category);
+  const normSchedCat = normalizeConflictCategory(sched.category);
+  const normBoxCat = normalizeConflictCategory(box.category);
+  // Only flag a category conflict when Box Office explicitly disagrees with Enricher, or Enricher is absent and Schedule disagrees with Box Office
+  const authoritativeCats = normEditCat
+    ? new Set([normEditCat, normBoxCat].filter(Boolean))
+    : new Set([normSchedCat, normBoxCat].filter(Boolean));
+  if (authoritativeCats.size > 1) {
+    conflicts.push(`category disagreement across layers (${Array.from(authoritativeCats).join(" vs ")})`);
   }
 
   return conflicts;
@@ -1523,12 +1542,20 @@ export async function compileCatalog(options = {}) {
   // Track count of events where Venue Detailer ground truth (weight: 1.0) was applied
   let venueDetailerWeightedCount = 0;
 
-  // Pre-arbitrate cross-layer conflicts concurrently (default 6 workers) so large catalog compiles don't bottleneck serially
+  // Pre-arbitrate cross-layer conflicts concurrently (default 6 workers) with persistent signature cache
   const preArbitratedMap = new Map();
+  const arbCachePath = path.join(LAYERS_DIR, "layer_compiler_arbitrations.json");
+  let arbCache = {};
+  try {
+    if (fs.existsSync(arbCachePath)) {
+      arbCache = JSON.parse(fs.readFileSync(arbCachePath, "utf-8")) || {};
+    }
+  } catch (_) { arbCache = {}; }
+  let arbCacheDirty = false;
   const rawPreApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "";
   const preCompilerApiKey = rawPreApiKey.startsWith("AIzaSy") ? rawPreApiKey : "";
   const preUseAgy = options.engine === "antigravity" || isAntigravityEngine();
-  if ((preUseAgy || preCompilerApiKey) && targetSeeds.length > 1) {
+  if ((preUseAgy || preCompilerApiKey) && targetSeeds.length > 0) {
     const arbQueue = [];
     for (const seed of targetSeeds) {
       const eventId = seed.id || seed.event_id;
@@ -1576,11 +1603,17 @@ export async function compileCatalog(options = {}) {
       const detectedConflicts = detectLayerConflicts({ seed, sched, box, edit, existing, venue });
       if (detectedConflicts.length > 0 || options.ai) {
         const earlyCurator = getCuratorInfo({ eventId, title: seedTitle, venue: venue.venue_name, existingCard: existing });
-        arbQueue.push({
-          eventId,
-          detectedConflicts,
-          arbContext: { seed, sched, box, edit, existing, venue, curatorNote: earlyCurator.effectiveNote, conflicts: detectedConflicts },
-        });
+        const sig = `${detectedConflicts.join("|")}::${earlyCurator.effectiveNote || ""}`;
+        if (!force && arbCache[eventId] && arbCache[eventId].sig === sig && arbCache[eventId].decision) {
+          preArbitratedMap.set(eventId, arbCache[eventId].decision);
+        } else {
+          arbQueue.push({
+            eventId,
+            sig,
+            detectedConflicts,
+            arbContext: { seed, sched, box, edit, existing, venue, curatorNote: earlyCurator.effectiveNote, conflicts: detectedConflicts },
+          });
+        }
       }
     }
     if (arbQueue.length > 0) {
@@ -1595,9 +1628,18 @@ export async function compileCatalog(options = {}) {
             ? await callAntigravityCompilerArbitrator(item.eventId, item.arbContext)
             : await callGeminiCompilerArbitrator(item.eventId, item.arbContext, preCompilerApiKey);
           preArbitratedMap.set(item.eventId, res || null);
+          if (res) {
+            arbCache[item.eventId] = { sig: item.sig, decision: res, updatedAt: nowIso };
+            arbCacheDirty = true;
+          }
         },
         { staggerMs: 250 }
       );
+      if (arbCacheDirty) {
+        try {
+          fs.writeFileSync(arbCachePath, JSON.stringify(arbCache, null, 2), "utf-8");
+        } catch (_) { }
+      }
     }
   }
 

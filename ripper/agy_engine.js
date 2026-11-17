@@ -287,7 +287,7 @@ export async function callAntigravityBoxOfficeExtractor(domSnapshotText, targetU
     })
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
-    .slice(0, 8500);
+    .slice(0, 16000);
   const curatorInfo = getCuratorInfo({
     eventId: existingCard?.id || existingCard?.event_id || "",
     title: existingCard?.title || existingCard?.seed_title || existingCard?.event_name || "",
