@@ -57,14 +57,21 @@
         "vancouver-christmas-market",
         "vandusen-festival-of-lights",
         "bright-nights",
-        "surrey-tree-lighting-festival-holiday-market"
+        "surrey-tree-lighting-festival-holiday-market",
+        "lights-at-lafarge",
+        "festive-village-at-burnaby-village-museum",
+        "winter-in-the-village-steveston-s-holiday-celebration",
+        "merry-bright-at-martini-town",
+        "noel-festival-surrey",
+        "winterfest-at-mos",
+        "canyon-lights"
       ],
       "label": "❄️ Winter & Holiday Season",
       "icon": "❄️",
       "window_start": "11-13",
       "window_end": "01-03",
       "dates_label": "Nov 13 – Jan 3",
-      "short_description": "Vancouver Christmas Market, VanDusen Lights, Bright Nights, Surrey Tree Lighting, choral concerts & festive outings.",
+      "short_description": "Vancouver Christmas Market, VanDusen Lights, Lights at Lafarge, Bright Nights, Festive Village & holiday outings.",
       "long_description": "Explore Metro Vancouver's combined winter and holiday season (Nov 13 – Jan 3)—including the Vancouver Christmas Market, VanDusen Festival of Lights, Bright Nights, Surrey Tree Lighting, indie artisan markets, classical choral concerts, winter solstice celebrations, festive comedy, and seasonal theatre—all verified under $50 CAD.",
       "approvedAt": "2026-10-03"
     },

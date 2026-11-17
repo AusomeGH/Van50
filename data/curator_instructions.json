@@ -1,7 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-10T23:49:00.000Z",
+    "updatedAt": "2026-11-16T20:19:03.753180+00:00",
+    "pendingCount": 4,
+    "updatedAt": "2026-11-16T20:35:00.000Z",
     "pendingCount": 0,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements.",
     "totalInstructions": 78
@@ -3596,6 +3598,179 @@
         "distilledAt": "2026-11-10T23:49:00.000Z"
       },
       "aiLearnedSummary": "Grounded Historic Theatre (The Cultch) at 1895 Venables St, Vancouver, BC V5L 2H6 with canonical calendar https://thecultch.com/whats-on/."
+    },
+    {
+      "id": "inst_1794860086889",
+      "createdAt": "2026-11-16T20:14:46.894827+00:00",
+      "status": "pending",
+      "status": "resolved",
+      "applied": true,
+      "resolvedAt": "2026-11-16T20:35:00.000Z",
+      "eventId": "celebrities-jerro-2027-03-13",
+      "eventTitle": "Jerro",
+      "venueName": "Celebrities Nightclub",
+      "sourceUrl": "https://on.celebritiesnightclub.com/trk/RTGwc",
+      "instructionText": "Verified via screenshot proof: Jerro ($0.00 CAD). 13-dimension alignment verified by curator.",
+      "instructionText": "Verified via screenshot proof: Jerro ($35.36 CAD all-in: $25.00 ADV + $9.11 fees + $1.25 tax).",
+      "screenshotPath": "data/curator_screenshots/screenshot_1794860086889_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1794860086889_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "promoted_to_catalog",
+      "curatorNote": "Verified via screenshot proof: ADV $35.36 CAD all-in ($25.00 + $9.11 fees + $1.25 tax).",
+      "targetScraperOrEngine": "Celebrities Nightclub",
+      "aiLearnedSummary": "Instruction recorded: Verified via screenshot proof: Jerro ($0.00 CAD). 13-dimension alignment verified by curator.",
+      "extractedTiers": [],
+      "aiLearnedSummary": "Resolved from screenshot_1794860086889_0.png: ADV $35.36 CAD all-in ($25.00 base + $9.11 fees + $1.25 tax). Promoted to active catalog.",
+      "extractedTiers": [
+        {
+          "name": "General Admission - ADV",
+          "base": 25.0,
+          "fee": 9.11,
+          "tax": 1.25,
+          "total": 35.36
+        }
+      ],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
+    },
+    {
+      "id": "inst_1794860153893",
+      "createdAt": "2026-11-16T20:15:53.898463+00:00",
+      "status": "pending",
+      "status": "resolved",
+      "applied": true,
+      "resolvedAt": "2026-11-16T20:35:00.000Z",
+      "eventId": "vogue-theatre-mor-ve-tesi-2026-11-19",
+      "eventTitle": "mor ve ötesi",
+      "venueName": "Vogue Theatre",
+      "sourceUrl": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/artist/mor-ve-otesi/6aaae76aba47d104e53a6959",
+      "instructionText": "Verified via screenshot proof: mor ve ötesi ($0.00 CAD). 13-dimension alignment verified by curator.",
+      "instructionText": "Verified via screenshot proof: mor ve ötesi ($117.43 CAD all-in: $94.50 + $22.93 fees; exceeds $50.00 CAD ceiling).",
+      "screenshotPath": "data/curator_screenshots/screenshot_1794860153893_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1794860153893_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "archived_overbudget",
+      "curatorNote": "Disqualified (budget_breach_over_50): Adult GA is CA$117.43 ($94.50 + $22.93 fees); 12 & Under Free tier requires a paid adult ticket.",
+      "targetScraperOrEngine": "Vogue Theatre",
+      "aiLearnedSummary": "Instruction recorded: Verified via screenshot proof: mor ve ötesi ($0.00 CAD). 13-dimension alignment verified by curator.",
+      "extractedTiers": [],
+      "aiLearnedSummary": "Resolved from screenshot_1794860153893_0.png: Adult GA is $117.43 CAD (> $50 ceiling). Evicted from quarantine and archived.",
+      "extractedTiers": [
+        {
+          "name": "General Admission",
+          "base": 94.5,
+          "fee": 22.93,
+          "tax": 0.0,
+          "total": 117.43
+        }
+      ],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
+    },
+    {
+      "id": "inst_1794860187632",
+      "createdAt": "2026-11-16T20:16:27.635701+00:00",
+      "status": "pending",
+      "status": "resolved",
+      "applied": true,
+      "resolvedAt": "2026-11-16T20:35:00.000Z",
+      "eventId": "biltmore-cabaret-sickboy-a-live-podcast-experie-2026-11-17",
+      "eventTitle": "Sickboy: A Live Podcast Experience",
+      "venueName": "The Biltmore Cabaret",
+      "sourceUrl": "https://admitone.com/events/vancouver/pro/other/biltmore-cabaret/artist/sickboy-a-live-podcast-experience/6ad8efc38a576a0d17e3b3b8",
+      "instructionText": "Verified via screenshot proof: Sickboy: A Live Podcast Experience ($0.00 CAD). 13-dimension alignment verified by curator.",
+      "instructionText": "Verified via screenshot proof: Sickboy: A Live Podcast Experience ($29.11 CAD: $20.00 + $9.11 fees).",
+      "screenshotPath": "data/curator_screenshots/screenshot_1794860187632_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1794860187632_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "promoted_to_catalog",
+      "curatorNote": "Verified via screenshot proof: General Admission CA$29.11 ($20.00 + $9.11 fees).",
+      "targetScraperOrEngine": "The Biltmore Cabaret",
+      "aiLearnedSummary": "Instruction recorded: Verified via screenshot proof: Sickboy: A Live Podcast Experience ($0.00 CAD). 13-dimension alignmen",
+      "extractedTiers": [],
+      "aiLearnedSummary": "Resolved from screenshot_1794860187632_0.png: GA $29.11 CAD ($20.00 base + $9.11 fees). Promoted to active catalog.",
+      "extractedTiers": [
+        {
+          "name": "General Admission",
+          "base": 20.0,
+          "fee": 9.11,
+          "tax": 0.0,
+          "total": 29.11
+        }
+      ],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
+    },
+    {
+      "id": "inst_1794860343740",
+      "createdAt": "2026-11-16T20:19:03.748029+00:00",
+      "status": "pending",
+      "status": "resolved",
+      "applied": true,
+      "resolvedAt": "2026-11-16T20:35:00.000Z",
+      "eventId": "hollywood-theatre-wes-anderson-double-feature-2026-12-16",
+      "eventTitle": "Wes Anderson Double Feature",
+      "venueName": "Hollywood Theatre",
+      "sourceUrl": "https://www.hollywoodtheatre.ca/events/wes-anderson-double-feature",
+      "instructionText": "https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365",
+      "screenshotPath": "data/curator_screenshots/screenshot_1794860343740_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1794860343740_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "promoted_to_catalog",
+      "curatorNote": "Verified via OpenDate link & screenshot proof: Double Feature GA $20.75 ($15.00 + $5.75 fee); single-screening GA $15.45 ($10.00 + $5.45 fee). Whitelisted opendate.io in link_upgrader.js.",
+      "targetScraperOrEngine": "Hollywood Theatre",
+      "aiLearnedSummary": "Instruction recorded: https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365",
+      "extractedTiers": [],
+      "aiLearnedSummary": "Upgraded Tier 1 checkout to OpenDate (app.opendate.io), whitelisted opendate.io for future Hollywood Theatre crawls, and verified $20.75 Double Feature GA / $15.45 single screening.",
+      "extractedTiers": [
+        {
+          "name": "Wes Anderson Double Feature GA",
+          "base": 15.0,
+          "fee": 5.75,
+          "tax": 0.0,
+          "total": 20.75
+        },
+        {
+          "name": "(6:30pm) - The Life Aquatic with Steve Zissou GA",
+          "base": 10.0,
+          "fee": 5.45,
+          "tax": 0.0,
+          "total": 15.45
+        },
+        {
+          "name": "(9:00pm) - The Royal Tenenbaums GA",
+          "base": 10.0,
+          "fee": 5.45,
+          "tax": 0.0,
+          "total": 15.45
+        }
+      ],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
     }
   ],
   "lastLearnedAt": "2026-09-26T11:01:14.885134+00:00"

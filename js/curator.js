@@ -3434,7 +3434,7 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
       const noteApproveField = document.getElementById('ai-approve-note');
 
       if (titleApproveField && data.extractedTitle) titleApproveField.value = data.extractedTitle;
-      if (priceApproveField && data.extractedPrice !== undefined && data.extractedPrice !== null) {
+      if (priceApproveField && data.extractedPrice !== undefined && data.extractedPrice !== null && !isNaN(parseFloat(data.extractedPrice))) {
         priceApproveField.value = parseFloat(data.extractedPrice).toFixed(2);
       }
       if (catApproveField && data.extractedCategory) {
@@ -3442,7 +3442,9 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
       }
       if (dateApproveField && data.extractedDate) dateApproveField.value = data.extractedDate;
       if (venueApproveField && data.extractedVenue) venueApproveField.value = data.extractedVenue;
-      if (noteApproveField && data.auditNote) noteApproveField.value = data.auditNote;
+      if (noteApproveField && data.auditNote && data.extractedPrice !== null && data.extractedPrice !== undefined) {
+        noteApproveField.value = data.auditNote;
+      }
 
       // Update AI Learned Synthesis Box (brief couple sentences just under screenshot area)
       const modalLearnedBox = document.getElementById('ai-modal-learned-box');
@@ -3478,8 +3480,12 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
           renderInteractiveMultiEventPreview(state.currentSplitEvents);
         } else {
           state.currentSplitEvents = [];
+          const p = data.cardPreview || {};
+          const hasExplicitPreviewPrice = p.price !== null && p.price !== undefined && p.price !== '' && !isNaN(parseFloat(p.price));
           if (statusPill) {
-            statusPill.textContent = '✅ Valid (Under $50)';
+            statusPill.textContent = hasExplicitPreviewPrice
+              ? '✅ Valid (Under $50)'
+              : (data.hasScreenshot ? '📸 Staged for AI Vision' : '⏳ Pending AI Review');
             statusPill.className = 'dim-pill pill-confirmed';
           }
           const btnOnly = document.getElementById('btn-submit-ai-inst-only');
@@ -3497,9 +3503,10 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
           if (dismissWrapper) dismissWrapper.style.display = 'none';
           if (cardWrapper) cardWrapper.style.display = 'block';
 
-          const p = data.cardPreview || {};
-          const priceNum = parseFloat(p.price || 0);
-          const priceDisplay = priceNum === 0 ? 'FREE' : `$${priceNum.toFixed(2)}`;
+          const priceNum = hasExplicitPreviewPrice ? parseFloat(p.price) : null;
+          const priceDisplay = priceNum === null
+            ? (data.hasScreenshot ? '📸 AI Vision' : 'Pending QC')
+            : (priceNum === 0 ? 'FREE' : `$${priceNum.toFixed(2)}`);
           const dateText = p.dateSchedule || p.date || 'Upcoming';
           const venueText = p.venue || 'Vancouver';
           const neighborhoodText = p.neighborhood ? ` • ${p.neighborhood}` : '';
@@ -3578,17 +3585,17 @@ async function submitAIInstruction(action = 'queue_only') {
   const sourceUrl = document.getElementById('ai-inst-url')?.value || '';
   const approvedTitle = document.getElementById('ai-approve-title')?.value.trim() || eventTitle;
 
-  let approvedPrice = parseFloat(document.getElementById('ai-approve-price')?.value);
-  if ((isNaN(approvedPrice) || approvedPrice <= 0) && state.currentOcrVerification?.price?.screenshotPrice) {
-    approvedPrice = state.currentOcrVerification.price.screenshotPrice;
+  const rawPriceVal = document.getElementById('ai-approve-price')?.value?.trim() || '';
+  let approvedPrice = rawPriceVal !== '' ? parseFloat(rawPriceVal) : NaN;
+  if ((isNaN(approvedPrice) || approvedPrice < 0) && state.currentOcrVerification?.price?.screenshotPrice !== undefined && state.currentOcrVerification?.price?.screenshotPrice !== null) {
+    approvedPrice = parseFloat(state.currentOcrVerification.price.screenshotPrice);
   }
-  if (isNaN(approvedPrice)) {
-    approvedPrice = 0.0;
-  }
+  const hasExplicitApprovedPrice = !isNaN(approvedPrice) && approvedPrice >= 0;
   const approvedCategory = document.getElementById('ai-approve-category')?.value || 'shows';
   const approvedDate = document.getElementById('ai-approve-date')?.value || '';
   const approvedVenue = document.getElementById('ai-approve-venue')?.value || '';
-  const curatorNote = document.getElementById('ai-approve-note')?.value || (state.currentOcrVerification?.price?.feeBreakdown || instructionText);
+  const rawNoteVal = document.getElementById('ai-approve-note')?.value?.trim() || '';
+  const cleanedRawNote = rawNoteVal === 'Verified rate: Free ($0)' && !hasExplicitApprovedPrice ? '' : rawNoteVal;
 
   // If multi-event split is active, validate each discrete card
   const isSplitActive = Boolean(state.currentSplitEvents && state.currentSplitEvents.length > 0);
@@ -3625,8 +3632,10 @@ async function submitAIInstruction(action = 'queue_only') {
       instructionText = state.lastInterpretation?.dismissReason || `Dismissed by curator: ${approvedTitle || eventTitle}`;
       if (textField) textField.value = instructionText;
     } else if (hasScreenshots) {
-      const pStr = (!isNaN(approvedPrice) && approvedPrice >= 0) ? `$${approvedPrice.toFixed(2)} CAD` : 'verified rate';
-      instructionText = `Verified via screenshot proof: ${approvedTitle || eventTitle} (${pStr}). 13-dimension alignment verified by curator.`;
+      const pStr = hasExplicitApprovedPrice
+        ? `$${approvedPrice.toFixed(2)} CAD`
+        : 'screenshot staged for AI visual price extraction';
+      instructionText = `Screenshot proof attached: ${approvedTitle || eventTitle} (${pStr}).`;
       if (textField) textField.value = instructionText;
     } else if (action === 'queue_and_approve') {
       instructionText = `Approved into live catalog: ${approvedTitle || eventTitle}`;
@@ -3638,8 +3647,10 @@ async function submitAIInstruction(action = 'queue_only') {
     }
   }
 
-  if (action === 'queue_and_approve' && (isNaN(approvedPrice) || approvedPrice < 0 || approvedPrice > 50.0)) {
-    showToast('Price must be a valid number between $0.00 and $50.00 CAD to approve!', 'error');
+  const curatorNote = cleanedRawNote || (state.currentOcrVerification?.price?.feeBreakdown || instructionText);
+
+  if (action === 'queue_and_approve' && (!hasExplicitApprovedPrice || approvedPrice > 50.0)) {
+    showToast('Please enter a verified price ($0.00–$50.00 CAD) to approve immediately, or click Save Guidance so AI can extract the screenshot price!', 'error');
     return;
   }
 
@@ -3654,7 +3665,7 @@ async function submitAIInstruction(action = 'queue_only') {
     screenshotBase64: activeShot,
     screenshotsBase64: state.currentScreenshots || [],
     action: action,
-    approvedPrice: approvedPrice,
+    approvedPrice: hasExplicitApprovedPrice ? approvedPrice : null,
     approvedCategory: approvedCategory,
     approvedDate: approvedDate,
     approvedVenue: approvedVenue,
@@ -4762,7 +4773,7 @@ function renderHolidayCards() {
   const { pendingHolidays: pending, quarantinedFestivals, unapprovedFests, total } = getPendingFestivalsAndHolidays();
   const approved = state.approvedHolidays || [];
   const approvedFestivals = (state.festivals || state.masterCatalogsData?.festivals || [])
-    .filter(f => f && f.status !== 'pending' && f.approvalStatus !== 'pending' && f.status !== 'pending_curator_approval')
+    .filter(f => f && (f.status === 'approved' || f.approvalStatus === 'approved') && f.status !== 'rejected' && f.status !== 'merged_into_holiday' && !f.merged_into_holiday)
     .slice()
     .sort((a, b) => {
       const labelA = String(a.festival_name || a.name || a.slug || a.id || '').trim();

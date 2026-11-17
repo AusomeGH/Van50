@@ -168,9 +168,14 @@ export function getCuratorInfo({ eventId = "", title = "", venue = "", existingC
   const venueInstructions = matchedVenue?.curatorInstructions || matchedVenue?.curatorNote || matchedVenue?.curatorGuidance || null;
   const venueLearnedRules = matchedVenue?.curatorLearnedRules || null;
 
+  const cleanAutoZeroPlaceholder = (s) => {
+    if (!s || typeof s !== "string") return s || null;
+    return s.replace(/\(\$0\.00\s*CAD\)\.\s*13-dimension alignment verified by curator\.?/gi, "(screenshot staged for AI visual price extraction).").trim() || null;
+  };
+
   const eventInstruction = matchedInstructions.length > 0 ? matchedInstructions[0] : null;
-  const eventInstructionText = eventInstruction?.instructionText || null;
-  const eventCuratorNote = eventInstruction?.curatorNote || null;
+  const eventInstructionText = cleanAutoZeroPlaceholder(eventInstruction?.instructionText || null);
+  const eventCuratorNote = cleanAutoZeroPlaceholder(eventInstruction?.curatorNote || null);
   const eventGuidance = eventInstruction?.distilledRules?.curatorGuidance || null;
   const priceCeiling = eventInstruction?.distilledRules?.priceCeiling || null;
   const curatorStatus = eventInstruction?.status || (existingCard?.reviewStatus ? existingCard.reviewStatus : null);

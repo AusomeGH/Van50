@@ -140,15 +140,33 @@
       "label": "QC AI Full Catalog Audit",
       "averageDurationSeconds": 286.9,
       "averageDurationFormatted": "4m 47s",
-      "totalRuns": 168,
+      "totalRuns": 171,
       "lastRun": {
-        "timestamp": "2026-11-16T16:16:58.752Z",
-        "durationSeconds": 624,
-        "durationFormatted": "10m 24s",
-        "itemsProcessed": 40,
-        "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
+        "timestamp": "2026-11-17T02:19:58.000Z",
+        "durationSeconds": 5987,
+        "durationFormatted": "99m 47s",
+        "itemsProcessed": 376,
+        "notes": "Full Active-Catalog QC Run: Stagehand Live Cart QC (376 events in 84m 58s + 3 retries in 1m 4s) + 8-worker Parallel Compiler & Deduplicator (388 cards in 13m 45s)"
       },
       "history": [
+        {
+          "timestamp": "2026-11-17T02:06:13.150Z",
+          "durationSeconds": 64,
+          "durationFormatted": "1m 4s",
+          "itemsProcessed": 3
+        },
+        {
+          "timestamp": "2026-11-17T01:00:27.039Z",
+          "durationSeconds": 5098,
+          "durationFormatted": "84m 58s",
+          "itemsProcessed": 376
+        },
+        {
+          "timestamp": "2026-11-16T23:33:33.109Z",
+          "durationSeconds": 41,
+          "durationFormatted": "0m 41s",
+          "itemsProcessed": 1
+        },
         {
           "timestamp": "2026-11-16T16:16:58.752Z",
           "durationSeconds": 624,
@@ -429,24 +447,6 @@
           "timestamp": "2026-11-03T20:08:06.061Z",
           "durationSeconds": 411,
           "durationFormatted": "6m 51s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-11-03T18:37:18.951Z",
-          "durationSeconds": 740,
-          "durationFormatted": "12m 20s",
-          "itemsProcessed": 10
-        },
-        {
-          "timestamp": "2026-11-03T16:52:41.393Z",
-          "durationSeconds": 1315,
-          "durationFormatted": "21m 55s",
-          "itemsProcessed": 20
-        },
-        {
-          "timestamp": "2026-11-03T15:44:12.454Z",
-          "durationSeconds": 803,
-          "durationFormatted": "13m 23s",
           "itemsProcessed": 10
         }
       ],

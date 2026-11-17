@@ -3956,6 +3956,9 @@ export async function runEventBatchQC(options = {}) {
       } else {
         targets = allHarvested;
       }
+    } else if (options.activeOnly) {
+      // Strictly audit active published events in data/events.json (excluding quarantined & uncompiled schedule leads)
+      targets = events.filter((e) => !archivedIds.has(String(e.id || e.event_id).toLowerCase()));
     } else if (options.all || options.force) {
       // User explicitly requested to scan through ALL events (even those already run through)
       targets = [...combinedPool];
@@ -4327,6 +4330,11 @@ if (process.argv[1] && process.argv[1].endsWith("event_batch_qc.js")) {
     else if (args[i] === "--harvested" || args[i] === "--harvested-only") {
       options.harvestedOnly = true;
       options.unverifiedOnly = false;
+    }
+    else if (args[i] === "--active-only" || args[i] === "--active") {
+      options.activeOnly = true;
+      options.unverifiedOnly = false;
+      if (options.limit === undefined) options.limit = 0;
     }
     else if (args[i] === "--concurrency" && args[i + 1]) {
       options.concurrency = parseInt(args[++i], 10);

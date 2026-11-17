@@ -18,7 +18,7 @@ import {
 } from "./enricher.js";
 import { parseDurationMs, isEventStale, isScanIncomplete, checkEntityMatchesPage } from "./event_batch_qc.js";
 import { logCuratorInfo, getCuratorInfo } from "./curator_display.js";
-import { isAntigravityEngine, callAntigravityCompilerArbitrator, getAntigravityModel, formatLogTime, printAntigravityTimeoutSummary } from "./agy_engine.js";
+import { isAntigravityEngine, callAntigravityCompilerArbitrator, getAntigravityModel, formatLogTime, printAntigravityTimeoutSummary, runWithConcurrency } from "./agy_engine.js";
 import {
   consolidateCatalogCards,
   archiveRetiredDuplicates,
@@ -1329,7 +1329,17 @@ export async function compileCatalog(options = {}) {
   });
 
   let targetSeeds = [];
-  if (targetId) {
+  if (options.activeOnly) {
+    existingEvents.forEach((ex) => {
+      const id = ex.id || ex.event_id;
+      if (id && !archivedIds.has(id)) {
+        const s = resolveSeed(id) || ex;
+        if (s && !targetSeeds.some((x) => (x.id || x.event_id) === id)) {
+          targetSeeds.push(s);
+        }
+      }
+    });
+  } else if (targetId) {
     const s = resolveSeed(targetId);
     if (s) targetSeeds.push(s);
   } else if (targetIds && targetIds.length > 0) {
@@ -1513,6 +1523,84 @@ export async function compileCatalog(options = {}) {
   // Track count of events where Venue Detailer ground truth (weight: 1.0) was applied
   let venueDetailerWeightedCount = 0;
 
+  // Pre-arbitrate cross-layer conflicts concurrently (default 6 workers) so large catalog compiles don't bottleneck serially
+  const preArbitratedMap = new Map();
+  const rawPreApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "";
+  const preCompilerApiKey = rawPreApiKey.startsWith("AIzaSy") ? rawPreApiKey : "";
+  const preUseAgy = options.engine === "antigravity" || isAntigravityEngine();
+  if ((preUseAgy || preCompilerApiKey) && targetSeeds.length > 1) {
+    const arbQueue = [];
+    for (const seed of targetSeeds) {
+      const eventId = seed.id || seed.event_id;
+      const seedTitle = seed.seed_title || seed.title || "Vancouver Cultural Event";
+      const seedVenue = seed.seed_venue || seed.venue || null;
+      const seedUrl = seed.seed_url || seed.ticket_url || seed.details_url || seed.url || "";
+      const seedLifecycle = (seed.lifecycle_type && seed.lifecycle_type !== "unknown") ? seed.lifecycle_type : null;
+      const sched =
+        schedules.find((s) => (s.id || s.event_id) === eventId) ||
+        schedules.find((s) => !(s.id || s.event_id) && seedUrl && (s.details_url === seedUrl || s.ticket_url === seedUrl || s.source_url === seedUrl)) ||
+        {};
+      const rawBox =
+        boxOffices.find((b) => (b.id || b.event_id) === eventId) ||
+        boxOffices.find((b) => !(b.id || b.event_id) && seedUrl && (b.details_url === seedUrl || b.ticket_url === seedUrl || b.source_url === seedUrl)) ||
+        {};
+      const boxEntityMismatch = Boolean(
+        rawBox.title &&
+        !isButtonOrPassLabelTitle(rawBox.title) &&
+        seedTitle &&
+        seedTitle !== "Vancouver Cultural Event" &&
+        !checkEntityMatchesPage(seedTitle, rawBox.title, `${rawBox.title} ${rawBox.description || ""} ${rawBox.artist || ""}`, {
+          venue: rawBox.venue_name || seedVenue,
+          date: rawBox.date || seed.date,
+          card: seed,
+        }).matches
+      );
+      const box = boxEntityMismatch ? {} : rawBox;
+      const edit =
+        editorials.find((e) => (e.id || e.event_id) === eventId) ||
+        editorials.find((e) => !(e.id || e.event_id) && seedUrl && (e.details_url === seedUrl || e.ticket_url === seedUrl || e.source_url === seedUrl)) ||
+        {};
+      const existing = existingMap.get(eventId) || {};
+      const isSeedPerennial = seedLifecycle === "perennial_drop_in" || existing.lifecycle_type === "perennial_drop_in";
+      const candidateVenueQueries = isSeedPerennial
+        ? [seedVenue, existing.venue_name, existing.venue, box.venue_name, sched.venue_name, sched.venue]
+        : [box.venue_name, sched.venue_name, sched.venue, seedVenue, existing.venue_name, existing.venue];
+      let matchedVenue = null;
+      for (const vq of candidateVenueQueries) {
+        if (vq) {
+          matchedVenue = matchVenue(vq, venues);
+          if (matchedVenue) break;
+        }
+      }
+      const venue = matchedVenue || { venue_name: seedVenue || null };
+      const detectedConflicts = detectLayerConflicts({ seed, sched, box, edit, existing, venue });
+      if (detectedConflicts.length > 0 || options.ai) {
+        const earlyCurator = getCuratorInfo({ eventId, title: seedTitle, venue: venue.venue_name, existingCard: existing });
+        arbQueue.push({
+          eventId,
+          detectedConflicts,
+          arbContext: { seed, sched, box, edit, existing, venue, curatorNote: earlyCurator.effectiveNote, conflicts: detectedConflicts },
+        });
+      }
+    }
+    if (arbQueue.length > 0) {
+      const arbConcurrency = Math.max(1, Math.min(Number(process.env.VAN50_COMPILER_CONCURRENCY || 6), arbQueue.length, 8));
+      console.log(`⚡ [Compiler Parallel Arbitrator] Resolving cross-layer conflicts across ${arbQueue.length} card(s) with concurrency=${arbConcurrency}...`);
+      await runWithConcurrency(
+        arbQueue,
+        arbConcurrency,
+        async (item, i) => {
+          console.log(`🤖 [Compiler AI Arbitrator • ${i + 1}/${arbQueue.length}] Resolving ${item.detectedConflicts.length} conflict(s) for "${item.eventId}": ${item.detectedConflicts.join("; ")}`);
+          const res = preUseAgy
+            ? await callAntigravityCompilerArbitrator(item.eventId, item.arbContext)
+            : await callGeminiCompilerArbitrator(item.eventId, item.arbContext, preCompilerApiKey);
+          preArbitratedMap.set(item.eventId, res || null);
+        },
+        { staggerMs: 250 }
+      );
+    }
+  }
+
   for (let idx = 0; idx < targetSeeds.length; idx++) {
     const seed = targetSeeds[idx];
     const eventId = seed.id || seed.event_id;
@@ -1675,12 +1763,16 @@ export async function compileCatalog(options = {}) {
     const detectedConflicts = detectLayerConflicts({ seed, sched, box, edit, existing, venue });
     let aiArbitration = null;
     if ((useAgy || compilerApiKey) && (detectedConflicts.length > 0 || options.ai)) {
-      console.log(`🤖 [Compiler AI Arbitrator${useAgy ? ` • Antigravity (${getAntigravityModel()})` : ""}] Resolving ${detectedConflicts.length} cross-layer conflict(s) for "${eventId}": ${detectedConflicts.join("; ")}`);
-      const earlyCurator = getCuratorInfo({ eventId, title: seedTitle, venue: venue.venue_name, existingCard: existing });
-      const arbContext = { seed, sched, box, edit, existing, venue, curatorNote: earlyCurator.effectiveNote, conflicts: detectedConflicts };
-      aiArbitration = useAgy
-        ? await callAntigravityCompilerArbitrator(eventId, arbContext)
-        : await callGeminiCompilerArbitrator(eventId, arbContext, compilerApiKey);
+      if (preArbitratedMap.has(eventId)) {
+        aiArbitration = preArbitratedMap.get(eventId);
+      } else {
+        console.log(`🤖 [Compiler AI Arbitrator${useAgy ? ` • Antigravity (${getAntigravityModel()})` : ""}] Resolving ${detectedConflicts.length} cross-layer conflict(s) for "${eventId}": ${detectedConflicts.join("; ")}`);
+        const earlyCurator = getCuratorInfo({ eventId, title: seedTitle, venue: venue.venue_name, existingCard: existing });
+        const arbContext = { seed, sched, box, edit, existing, venue, curatorNote: earlyCurator.effectiveNote, conflicts: detectedConflicts };
+        aiArbitration = useAgy
+          ? await callAntigravityCompilerArbitrator(eventId, arbContext)
+          : await callGeminiCompilerArbitrator(eventId, arbContext, compilerApiKey);
+      }
       if (aiArbitration) {
         console.log(`   ✨ [Compiler AI Decision]: "${aiArbitration.clean_title}" | SoldOut=${aiArbitration.is_sold_out} | Reason: ${aiArbitration.arbitration_reasoning || (useAgy ? "Resolved via Antigravity 1-Event Worker" : "Resolved via Gemini")}`);
         if (aiArbitration.clean_title && !isButtonOrPassLabelTitle(aiArbitration.clean_title)) edit.clean_title = aiArbitration.clean_title;
@@ -2630,7 +2722,7 @@ export async function compileCatalog(options = {}) {
 
     // Auto-stage newly discovered unapproved festivals into data/festivals.json with status: "pending_curator_approval"
     // so the Antigravity Curator prompts the user to approve, merge into an existing festival, or reject it!
-    const isWinterHolidaySubAttraction = /\b(?:christmas|santa|holiday\s*market|winter\s*market|winter\s*solstice|lights\s*of\s*hope|vandusen\s*festival\s*of\s*lights|bright\s*nights|surrey\s*tree\s*lighting|winter\s*trout\s*fest|merry,\s*gay)\b/i.test(rawCandidateFestName || "");
+    const isWinterHolidaySubAttraction = /\b(?:christmas|santa|noel|holiday\s*market|holiday\s*celebration|winter\s*market|winter\s*solstice|winterfest|winter\s*in\s*the\s*village|festive\s*village|lights\s*of\s*hope|lights\s*at\s*lafarge|canyon\s*lights|festival\s*of\s*lights|bright\s*nights|surrey\s*tree\s*lighting|winter\s*trout\s*fest|merry\s*(?:,|&|and)?\s*(?:gay\s*(?:,|&|and)?)?\s*bright)\b/i.test(rawCandidateFestName || "");
     if (!matchedFestival && rawCandidateFestName && !isWinterHolidaySubAttraction && Array.isArray(festivalsRegistry)) {
       const candSlug = String(rawCandidateFestName).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
       const alreadyInRegistry = festivalsRegistry.some((f) => {
@@ -3546,7 +3638,8 @@ export async function compileCatalog(options = {}) {
     const inMarket = compiledCard.dimension_audit?.D108_geo_jurisdiction?.in_market !== false && compiledCard.dimension_audit?.D8_geo_jurisdiction?.in_market !== false;
     const isPriceVerified = isFreePublicVenue || (hasAuditedBoxOffice && finalAllInPrice !== null && !isNaN(finalAllInPrice) && priceLabel !== "Pending Box Office QC");
     const hasCuratorAction = Boolean(curatorInfo.eventInstructionText || curatorInfo.eventCuratorNote || compiledCard.curator_notes || compiledCard.curator_instructions);
-    const hasCuratorAppeal = Boolean(hasCuratorAction || curatorInfo.curatorAppeal || compiledCard.ai_curator_appeal || existing.ai_curator_appeal || seed.ai_curator_appeal);
+    const isResolvedOverbudget = box.status === "BUDGET_BREACH" && curatorInfo.curatorStatus === "resolved";
+    const hasCuratorAppeal = !isResolvedOverbudget && Boolean(curatorInfo.curatorAppeal || compiledCard.ai_curator_appeal || existing.ai_curator_appeal || seed.ai_curator_appeal);
     const fullCardProse = `${compiledCard.title || ""} ${compiledCard.description || ""} ${sched.description || ""} ${edit.description || ""}`;
     const isMandatoryMultiWeekCourse = /\b(?:you\s+must\s+attend\s+all\s+(?:six|four|five|seven|eight|\d+)\s+sessions|must\s+attend\s+all\s+(?:six|\d+)?\s*sessions|(?:4|5|6|7|8|10|12)[- ]week\s+(?:series|course|program)\b[\s\S]{0,120}\bmust\s+attend|(?:4|5|6|7|8|10|12|four|five|six|seven|eight)[- ](?:week|session)\s+(?:progressive\s+course|collaborative\s+series|instructional\s+course|curriculum))\b/i.test(fullCardProse);
     const isOnlineOnlyEvent =
@@ -3768,7 +3861,7 @@ export async function compileCatalog(options = {}) {
   }
 
   // Persist compiled catalog
-  const isSubset = !isAll && (targetId || (targetIds && targetIds.length > 0) || limit > 0 || offset > 0 || uncompiledOnly);
+  const isSubset = !isAll && (Boolean(options.activeOnly) || targetId || (targetIds && targetIds.length > 0) || limit > 0 || offset > 0 || uncompiledOnly);
   let finalCatalog = [];
 
   if (isSubset) {
@@ -4023,6 +4116,7 @@ if (process.argv[1] && process.argv[1].endsWith("compile_catalog.js")) {
   let stale = null;
   let isQuarantine = false;
   let isHarvestedOnly = false;
+  let activeOnly = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--all") {
@@ -4064,8 +4158,10 @@ if (process.argv[1] && process.argv[1].endsWith("compile_catalog.js")) {
       isQuarantine = true;
     } else if (args[i] === "--harvested" || args[i] === "--harvested-only") {
       isHarvestedOnly = true;
+    } else if (args[i] === "--active-only" || args[i] === "--active") {
+      activeOnly = true;
     }
   }
 
-  compileCatalog({ limit, offset, id: targetId, ids: targetIds, all: isAll, force, uncompiledOnly, incompleteOnly, stale, quarantine: isQuarantine, harvestedOnly: isHarvestedOnly });
+  compileCatalog({ limit, offset, id: targetId, ids: targetIds, all: isAll, force, uncompiledOnly, incompleteOnly, stale, quarantine: isQuarantine, harvestedOnly: isHarvestedOnly, activeOnly });
 }

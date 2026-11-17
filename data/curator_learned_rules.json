@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.2.0",
-    "updatedAt": "2026-11-16T08:18:00-07:00",
+    "updatedAt": "2026-11-16T13:39:30-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {},
@@ -26,7 +26,7 @@
     "Guilt & Co.": "https://www.guiltandcompany.com",
     "Tightrope Impro Theatre": "https://www.tightropetheatre.com/weekly-live-shows",
     "The Improv Centre": "https://theimprovcentre.ca/shows/",
-    "The Roxy Cabaret": "https://roxyvan.com/",
+    "The Roxy Cabaret": "https://www.roxyvancouver.com/calendar",
     "The WISE Hall & Lounge": "https://www.wisehall.ca",
     "Little Mountain Gallery": "https://www.showpass.com/o/little-mountain-gallery/",
     "The Waldorf": "https://atthewaldorf.com/events",
@@ -140,6 +140,7 @@
   ],
   "price_override_heuristics": [],
   "archived_event_ids": [
+    "vogue-theatre-mor-ve-tesi-2026-11-19",
     "surrey-libraries-cit-settlement-services-for-newcom-2026-11-16",
     "fleetwood-branch-sur-preteen-intro-to-cursive-writi-2026-11-16",
     "surrey-libraries-new-reading-buddies-2026-11-16",
@@ -418,10 +419,6 @@
     "city-of-surrey-activities-registration",
     "city-of-surrey-recre-recreation-passcard",
     "city-of-surrey-recre-drop-in-recreation-admissions",
-    "vandusen-botanical-g-festival-of-lights-2026-11-27",
-    "the-cinematheque-wheel-of-fortune-the-films-of-2026-12-12",
-    "bell-performing-arts-royal-academy-all-day-pass-202",
-    "bell-performing-arts-royal-academy-evening-show",
     "city-of-surrey-recre-activities-registration-drop-i",
     "city-of-surrey-recre-activities-registration",
     "downtown-surrey-surrey-fest-downtown",
@@ -506,14 +503,7 @@
     "the-pearl-garaj-mahal-2026-11-22",
     "the-pearl-mobb-deep-with-havoc-big-noyd-2026-12-16",
     "the-locavore-bar-gri-film-screening-winter-kick-off-2026-11-19",
-    "gjones-club-gjones-club-presents-wine-fash-2026-11-20",
-    "commodore-ballroom-felix-cartal-2026-12-26",
-    "broadway-church-the-crown-and-the-king-singing",
-    "performance-works-equus-by-peter-shaffer-2026-11-18",
-    "biltmore-cabaret-graham-barham-club-country-tou-2026-11-18",
-    "wings-restaurants-pu-vancouver-speed-dating-ages-40-2026-12-05",
-    "numbers-cabaret-drag-show-xxx-friday-vancouver-2027-01-15",
-    "arts-club-theatre-co-summer-1976-2027-01-07"
+    "gjones-club-gjones-club-presents-wine-fash-2026-11-20"
   ],
   "venue_policy_rules": {
     "Pizzeria Ludica": {

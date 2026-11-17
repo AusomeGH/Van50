@@ -1568,48 +1568,6 @@
     "rainout_policy": null
   },
   {
-    "id": "stanley-pitch-putt",
-    "event_id": "stanley-pitch-putt",
-    "clean_title": "Stanley Park Pitch & Putt: 18-Hole Round",
-    "artist": null,
-    "lineup": [
-      "Vancouver Board of Parks and Recreation"
-    ],
-    "category": "outdoors",
-    "categories": [
-      "outdoors",
-      "sports"
-    ],
-    "event_archetype": "active_rec",
-    "archetype": "active_rec",
-    "lifecycle_type": "perennial_drop_in",
-    "description": "Sculpted among mature coastal cedars and rhododendron gardens near Second Beach, this classic pitch-and-putt offers 18 scenic par-3 holes open daily for walk-up green fee play. Bring your short irons and putter to enjoy ocean breezes across rolling fairways welcoming golfers of every skill level.",
-    "restrictions": "All Ages / Family Friendly",
-    "frequencyLabel": "Weekly Drop-in",
-    "dateSchedule": "Daily • 8:00 AM – 6:30 PM (Weather Permitting)",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": "Resolved missing_ticket_link, replaced unofficial stanleyparkvan.com URL with official City of Vancouver Park Board pages, and replaced false $0 Free stamp with verified 2026 green fees ($19.11 CAD Adult / $13.39 CAD Senior / $12.81 CAD Youth, tax-inclusive).",
-    "source_engine": "antigravity_1event_worker",
-    "enriched_at": "2026-10-31T20:12:19.520Z",
-    "audited_at": "2026-10-31T20:12:19.520Z",
-    "step_free_entrance": "Ground-level pro shop complex and grassy course walkways",
-    "elevator_lift": "not_applicable",
-    "accessible_washrooms": "Public park washrooms adjacent to pro shop and Second Beach",
-    "sensory_calibrations": "Tranquil outdoor park course with natural shade",
-    "hearing_loop": "not_applicable",
-    "service_animals": "Service animals permitted on paths",
-    "payment_methods": "Credit, Debit & Contactless Tap at Pro Shop",
-    "water_refill_station": "Public drinking water fountains near clubhouse",
-    "outside_food_policy": "Water bottles and personal trail snacks permitted",
-    "coat_check": "not_applicable",
-    "digital_waiver_required": null,
-    "required_safety_gear": null,
-    "locker_availability": null,
-    "physical_intensity_level": null,
-    "rainout_policy": null
-  },
-  {
     "id": "rupert-park-pitch-putt",
     "event_id": "rupert-park-pitch-putt",
     "clean_title": "Rupert Park Pitch & Putt: 18-Hole Round",
@@ -7163,86 +7121,6 @@
     "step4_grounded_at": "2026-11-03T20:15:32.013Z"
   },
   {
-    "id": "the-cultch-cuff-live",
-    "event_id": "the-cultch-cuff-live",
-    "clean_title": "Cuff Live",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "categories": [
-      "shows"
-    ],
-    "event_archetype": "live_stage",
-    "archetype": "live_stage",
-    "description": "Expect live entertainment with crowd participation at CUFF LIVE, East Vancouver’s live dating game show where real singles compete on stage based on personality alone, November 19, 2026 at the Historic Theatre.",
-    "restrictions": "All Ages",
-    "frequencyLabel": "One-off",
-    "dateSchedule": "search_exhausted_null • none_available",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
-    "source_engine": "deterministic_cognitive_nlp",
-    "enriched_at": "2026-11-03T20:15:25.916Z",
-    "audited_at": "2026-11-03T20:15:25.916Z",
-    "step_free_entrance": null,
-    "elevator_lift": null,
-    "accessible_washrooms": null,
-    "sensory_calibrations": null,
-    "hearing_loop": null,
-    "service_animals": null,
-    "payment_methods": null,
-    "water_refill_station": null,
-    "outside_food_policy": null,
-    "coat_check": null,
-    "stage_seating_layout": null,
-    "intermission_details": null,
-    "sound_curfew_time": null,
-    "earplug_availability": null,
-    "stage_sightlines": null,
-    "step4_grounded_at": "2026-11-03T20:15:32.013Z"
-  },
-  {
-    "id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "event_id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "clean_title": "Snowed In Comedy Tour",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "categories": [
-      "shows",
-      "comedy"
-    ],
-    "event_archetype": "live_stage",
-    "archetype": "live_stage",
-    "lifecycle_type": "time_bound_event",
-    "description": "The Snowed In Comedy Tour brings acclaimed stand-up comedians to The Cultch for an evening of winter comedy. Performance dates and ticketing tiers are unstated in the rendered cart shell.",
-    "restrictions": "All Ages",
-    "frequencyLabel": "One-Time Event",
-    "dateSchedule": "2027-02-13 • 7:00 PM",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
-    "source_engine": "deterministic_cognitive_nlp",
-    "enriched_at": "2026-11-03T20:15:26.733Z",
-    "audited_at": "2026-11-03T20:15:26.733Z",
-    "step_free_entrance": "Level, step-free street-level entrance with automatic sliding doors into the main glass lobby",
-    "elevator_lift": "Elevator and lift access serving lobby, lower levels, and wheelchair-accessible auditorium seating rows",
-    "accessible_washrooms": "Wheelchair-accessible gender-neutral washrooms with grab bars located on the main lobby floor",
-    "sensory_calibrations": null,
-    "hearing_loop": null,
-    "service_animals": "Certified guide and service animals welcome with advance notification for accessible seat pairing",
-    "payment_methods": "Credit card (Visa, Mastercard, Amex), Debit, Apple Pay, Google Pay; cashless preferred",
-    "water_refill_station": null,
-    "outside_food_policy": "Outside food and alcoholic beverages are strictly prohibited inside the auditorium; sealed personal water bottles permitted",
-    "coat_check": null,
-    "stage_seating_layout": null,
-    "intermission_details": null,
-    "sound_curfew_time": null,
-    "earplug_availability": null,
-    "stage_sightlines": null,
-    "step4_grounded_at": "2026-11-03T20:15:32.013Z"
-  },
-  {
     "id": "the-cultch-frank-cos-live-in-your-neighbo",
     "event_id": "the-cultch-frank-cos-live-in-your-neighbo",
     "clean_title": "Frank & Cos Live in Your Neighbourhood",
@@ -7360,46 +7238,6 @@
     "payment_methods": null,
     "water_refill_station": null,
     "outside_food_policy": null,
-    "coat_check": null,
-    "stage_seating_layout": null,
-    "intermission_details": null,
-    "sound_curfew_time": null,
-    "earplug_availability": null,
-    "stage_sightlines": null,
-    "step4_grounded_at": "2026-11-03T21:08:19.838Z"
-  },
-  {
-    "id": "york-theatre-steve-dawson-with-fats-kaplin-2027-03-19",
-    "event_id": "york-theatre-steve-dawson-with-fats-kaplin-2027-03-19",
-    "clean_title": "Steve Dawson with Fats Kaplin",
-    "artist": null,
-    "lineup": [],
-    "category": "music",
-    "categories": [
-      "music"
-    ],
-    "event_archetype": "live_stage",
-    "archetype": "live_stage",
-    "lifecycle_type": "time_bound_event",
-    "description": "Multi-instrumentalist Steve Dawson teams up with seasoned Americana virtuoso Fats Kaplin for a collaborative live concert performance. Expect an evening of masterclass roots musicianship and rich acoustic arrangements live on stage.",
-    "restrictions": "All Ages",
-    "frequencyLabel": "One-off",
-    "dateSchedule": "2027-03-19 • none_available",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
-    "source_engine": "antigravity_1event_worker",
-    "enriched_at": "2026-11-03T21:03:34.370Z",
-    "audited_at": "2026-11-03T21:03:34.370Z",
-    "step_free_entrance": "Level, step-free street-level entrance with automatic sliding doors into the main glass lobby",
-    "elevator_lift": "Elevator and lift access serving lobby, lower levels, and wheelchair-accessible auditorium seating rows",
-    "accessible_washrooms": "Wheelchair-accessible gender-neutral washrooms with grab bars located on the main lobby floor",
-    "sensory_calibrations": null,
-    "hearing_loop": null,
-    "service_animals": "Certified guide and service animals welcome with advance notification for accessible seat pairing",
-    "payment_methods": "Credit card (Visa, Mastercard, Amex), Debit, Apple Pay, Google Pay; cashless preferred",
-    "water_refill_station": null,
-    "outside_food_policy": "Outside food and alcoholic beverages are strictly prohibited inside the auditorium; sealed personal water bottles permitted",
     "coat_check": null,
     "stage_seating_layout": null,
     "intermission_details": null,
@@ -19664,49 +19502,6 @@
     "step4_grounded_at": "2026-11-08T01:36:24.097Z"
   },
   {
-    "id": "science-world-after-dark-press-start-for-sci-2026-12-09",
-    "event_id": "science-world-after-dark-press-start-for-sci-2026-12-09",
-    "clean_title": "After Dark: Press Start for Science – Video Games Edition",
-    "artist": null,
-    "lineup": [],
-    "category": "social",
-    "categories": [
-      "social",
-      "trivia"
-    ],
-    "event_archetype": "social_gaming",
-    "archetype": "social_gaming",
-    "lifecycle_type": "time_bound_event",
-    "description": "Explore the evolution and innovation of the video game industry through an evening of hands-on interactive challenges, themed side quests, and guest speakers. Patrons can level up their science knowledge while roaming the dome after hours with games, drinks, and immersive exhibits.",
-    "restrictions": "19+ w/ ID",
-    "frequencyLabel": "One-Time Event",
-    "dateSchedule": "2026-11-08 • 11:00 AM",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
-    "input_fingerprint": "9dcfc4d9a75f40af3f366c4c74f7575d3dea97d3",
-    "source_engine": "antigravity_1event_worker",
-    "enriched_at": "2026-11-08T01:34:41.628Z",
-    "audited_at": "2026-11-08T01:34:41.628Z",
-    "step_free_entrance": null,
-    "elevator_lift": null,
-    "accessible_washrooms": null,
-    "sensory_calibrations": null,
-    "hearing_loop": null,
-    "service_animals": null,
-    "payment_methods": null,
-    "water_refill_station": null,
-    "outside_food_policy": null,
-    "coat_check": null,
-    "table_cover_fee": null,
-    "minimum_fnb_spend": null,
-    "table_time_limit": null,
-    "game_library_size": null,
-    "rules_teacher_present": null,
-    "tournament_prizes": null,
-    "step4_grounded_at": "2026-11-08T01:36:24.097Z"
-  },
-  {
     "id": "the-american-iq-2000-trivia-2026-11-09",
     "event_id": "the-american-iq-2000-trivia-2026-11-09",
     "clean_title": "IQ 2000 Trivia",
@@ -20753,9 +20548,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "russell-brewing-taproom-standup-comedy",
@@ -20781,9 +20576,9 @@
     "restrictions": "19+ (Valid Government Photo ID Required)",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "clayton-public-house-standup-comedy",
@@ -20809,38 +20604,9 @@
     "restrictions": "19+ (Valid Government Photo ID Required)",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
-  },
-  {
-    "id": "dublin-crossing-celtic-rock-weekend-session",
-    "event_id": "dublin-crossing-celtic-rock-weekend-session",
-    "clean_title": "Live Celtic & Rock Weekend Session",
-    "title": "Live Celtic & Rock Weekend Session",
-    "artist": null,
-    "lineup": [],
-    "description": "High-energy live Celtic folk, classic rock, and East Coast party bands every Friday and Saturday night starting at 9:00 PM inside Dublin Crossing's authentic two-level Irish pub on Fraser Highway in Surrey—no cover charge on regular weekend live music nights.",
-    "synopsis": "High-energy live Celtic folk, classic rock, and East Coast party bands every Friday and Saturday night starting at 9:00 PM inside Dublin Crossing's authentic two-level Irish pub on Fraser Highway in Surrey—no cover charge on regular weekend live music nights.",
-    "event_archetype": "live_stage",
-    "archetype": "live_stage",
-    "lifecycle_type": "time_bound_event",
-    "category": "music",
-    "categories": [
-      "music",
-      "social",
-      "free-public-access"
-    ],
-    "tags": [
-      "music"
-    ],
-    "sub_tags": [],
-    "restrictions": "19+ after 9:00 PM",
-    "festival_affiliation": null,
-    "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "newton-cultural-centre-coffeehouse-concert",
@@ -20867,9 +20633,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "bell-performing-arts-centre-touring-series",
@@ -20896,38 +20662,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
-  },
-  {
-    "id": "surrey-arts-centre-studio-theatre-drama-improv",
-    "event_id": "surrey-arts-centre-studio-theatre-drama-improv",
-    "clean_title": "Studio Theatre Indie Drama & Improv",
-    "title": "Studio Theatre Indie Drama & Improv",
-    "artist": null,
-    "lineup": [],
-    "description": "Contemporary indie drama, Fringe-style theatre, and live improv comedy presented inside the intimate Studio Theatre at Surrey Arts Centre in Bear Creek Park.",
-    "synopsis": "Contemporary indie drama, Fringe-style theatre, and live improv comedy presented inside the intimate Studio Theatre at Surrey Arts Centre in Bear Creek Park.",
-    "event_archetype": "live_stage",
-    "archetype": "live_stage",
-    "lifecycle_type": "time_bound_event",
-    "category": "theatre",
-    "categories": [
-      "theatre",
-      "comedy",
-      "arts"
-    ],
-    "tags": [
-      "theatre"
-    ],
-    "sub_tags": [],
-    "restrictions": "All Ages",
-    "festival_affiliation": null,
-    "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "museum-of-surrey-exhibitions-heritage-gallery",
@@ -20954,9 +20691,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -20983,9 +20720,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -21013,9 +20750,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "landmark-cinemas-guildford-reel-deals",
@@ -21040,9 +20777,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "craving-for-a-game-friday-night-magic-board-games",
@@ -21069,9 +20806,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "project-climbing-centre-cloverdale-bouldering",
@@ -21098,9 +20835,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "central-city-fun-park-roller-skating-arcade",
@@ -21127,9 +20864,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -21156,9 +20893,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "grandview-heights-aquatic-centre-drop-in",
@@ -21185,9 +20922,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -21214,9 +20951,9 @@
     "restrictions": "19+ for wine tasting flights (scenic vineyard patio open to accompanied guests)",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "bear-creek-park-gardens-trails-mini-train",
@@ -21242,9 +20979,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": "Bear Creek Lights",
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -21270,9 +21007,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -21298,9 +21035,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -21326,9 +21063,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "bell-performing-arts-bhajan-clubbing-2-0",
@@ -32843,9 +32580,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": "Surrey Tree Lighting Festival & Holiday Market",
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "revue-stage-dirty-little-secrets-improv-sh-2026-11-21",
@@ -33826,26 +33563,30 @@
     "id": "hollywood-theatre-wes-anderson-double-feature-2026-12-16",
     "event_id": "hollywood-theatre-wes-anderson-double-feature-2026-12-16",
     "clean_title": "Wes Anderson Double Feature",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
+    "artist": "Gustavo Teodoro",
+    "lineup": [
+      "Gustavo Teodoro",
+      "MY!GAY!HUSBAND!"
+    ],
+    "category": "cinema",
     "categories": [
+      "cinema",
       "shows"
     ],
-    "event_archetype": "live_stage",
-    "archetype": "live_stage",
+    "event_archetype": "cinema",
+    "archetype": "cinema",
     "lifecycle_type": "time_bound_event",
-    "description": null,
+    "description": "The Wes Anderson Social Club takes over the Hollywood Theatre for a 25th-anniversary celebration of The Royal Tenenbaums paired with a screening of The Life Aquatic with Steve Zissou. The evening kicks off with Gustavo Teodoro performing live acoustic Seu Jorge David Bowie covers, soundtrack DJ sets from MY!GAY!HUSBAND!, and an intermission Wes Anderson character costume contest.",
     "restrictions": "All Ages (19+ bar with ID)",
     "frequencyLabel": "One-Time Event",
     "dateSchedule": "2026-12-16 • 6:00 PM",
     "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
+    "curator_instructions": "https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365",
+    "curator_notes": "Verified via OpenDate link & screenshot proof: Double Feature GA $20.75 ($15.00 + $5.75 fee); single-screening GA $15.45 ($10.00 + $5.45 fee).",
     "input_fingerprint": "34fd082e437c89b1f45571a9b760e3003d0d0f01",
-    "source_engine": "deterministic_cognitive_nlp",
-    "enriched_at": "2026-11-16T16:32:30.196Z",
-    "audited_at": "2026-11-16T16:32:30.196Z",
+    "source_engine": "antigravity_ai_enricher",
+    "enriched_at": "2026-11-16T20:35:00.000Z",
+    "audited_at": "2026-11-16T20:35:00.000Z",
     "step_free_entrance": "Step-free street-level main entrance directly off West Broadway into the main hall and lobby",
     "elevator_lift": "Main floor and general viewing area are at grade level; upper balcony accessible primarily via stairs (contact info@hollywoodtheatre.ca for advance accessible seating accommodations)",
     "accessible_washrooms": "Dedicated accessible washroom located on the street-level main floor",
@@ -34027,26 +33768,30 @@
     "id": "biltmore-cabaret-sickboy-a-live-podcast-experie-2026-11-17",
     "event_id": "biltmore-cabaret-sickboy-a-live-podcast-experie-2026-11-17",
     "clean_title": "Sickboy: A Live Podcast Experience",
-    "artist": null,
-    "lineup": [],
-    "category": "music",
+    "artist": "Sickboy Podcast",
+    "lineup": [
+      "Jeremie Saunders",
+      "Brian Stever",
+      "Taylor MacGillivary"
+    ],
+    "category": "shows",
     "categories": [
-      "music"
+      "shows"
     ],
     "event_archetype": "live_stage",
     "archetype": "live_stage",
     "lifecycle_type": "time_bound_event",
-    "description": "Get tickets for Sickboy: A Live Podcast Experience at Biltmore Cabaret in Vancouver. The deeply questionable experience of having a human body.",
-    "restrictions": "19+ (Two pieces of government ID required)",
+    "description": "Co-hosts Jeremie, Brian, and Taylor bring their long-running comedy podcast Sickboy to the Biltmore Cabaret stage for an unfiltered live taping. Blending sharp, irreverent humour with candid warmth, the trio breaks down stigma around health, illness, mortality, and the questionable experience of having a human body.",
+    "restrictions": "19+",
     "frequencyLabel": "One-Time Event",
     "dateSchedule": "2026-11-17 • 8:00 PM",
     "is_religious": false,
     "curator_instructions": null,
-    "curator_notes": null,
+    "curator_notes": "Verified via screenshot proof: General Admission CA$29.11 ($20.00 + $9.11 fees).",
     "input_fingerprint": "e9a5efb51f893427734bec33ad133169807ffe84",
-    "source_engine": "deterministic_cognitive_nlp",
-    "enriched_at": "2026-11-16T16:32:31.057Z",
-    "audited_at": "2026-11-16T16:32:31.057Z",
+    "source_engine": "antigravity_ai_enricher",
+    "enriched_at": "2026-11-16T20:35:00.000Z",
+    "audited_at": "2026-11-16T20:35:00.000Z",
     "step_free_entrance": "Not step-free; historic building with stairs at the entrance down into the basement venue space (patrons requiring accommodations are advised to contact accessibility@themrggroup.com in advance)",
     "elevator_lift": "not_applicable",
     "accessible_washrooms": "No fully accessible or ADA-compliant washroom facilities available due to heritage building layout",
@@ -34067,26 +33812,28 @@
     "id": "celebrities-jerro-2027-03-13",
     "event_id": "celebrities-jerro-2027-03-13",
     "clean_title": "Jerro",
-    "artist": null,
-    "lineup": [],
-    "category": "social",
-    "categories": [
-      "social"
+    "artist": "Jerro",
+    "lineup": [
+      "Jerro"
     ],
-    "event_archetype": null,
-    "archetype": null,
+    "category": "music",
+    "categories": [
+      "music"
+    ],
+    "event_archetype": "live_stage",
+    "archetype": "live_stage",
     "lifecycle_type": "time_bound_event",
-    "description": null,
-    "restrictions": "19+ with two pieces of valid ID",
+    "description": "Belgian melodic house and progressive electronic producer Jerro brings his atmospheric Are You Listening? Tour to Celebrities Nightclub for a late-night Playhouse club set. Expect emotive, shimmering synth melodies and driving deep-house grooves tailored for the Davie Village dance floor.",
+    "restrictions": "19+",
     "frequencyLabel": "One-Time Event",
-    "dateSchedule": "2027-03-13 • 7:00 PM",
+    "dateSchedule": "2027-03-13 • 10:00 PM",
     "is_religious": false,
     "curator_instructions": null,
-    "curator_notes": null,
+    "curator_notes": "Verified via screenshot proof: ADV $35.36 CAD all-in ($25.00 + $9.11 fees + $1.25 tax).",
     "input_fingerprint": "2c300d4cae99f0346ed9121971e479661643f82d",
-    "source_engine": "deterministic_cognitive_nlp",
-    "enriched_at": "2026-11-16T16:32:31.440Z",
-    "audited_at": "2026-11-16T16:32:31.440Z",
+    "source_engine": "antigravity_ai_enricher",
+    "enriched_at": "2026-11-16T20:35:00.000Z",
+    "audited_at": "2026-11-16T20:35:00.000Z",
     "step_free_entrance": "Main street entrance on Davie St has street-level access; multi-level interior has small flights of stairs between sections, patrons with mobility needs are advised to contact management in advance for staff assistance",
     "elevator_lift": "not_applicable",
     "accessible_washrooms": "Wheelchair-accessible gender-neutral single-stall washroom available",
@@ -34139,6 +33886,64 @@
     "stage_sightlines": null
   },
   {
+    "id": "dublin-crossing-celtic-rock-weekend-session",
+    "event_id": "dublin-crossing-celtic-rock-weekend-session",
+    "clean_title": "Live Celtic & Rock Weekend Session",
+    "title": "Live Celtic & Rock Weekend Session",
+    "artist": null,
+    "lineup": [],
+    "description": "High-energy live Celtic folk, classic rock, and East Coast party bands every Friday and Saturday night starting at 9:00 PM inside Dublin Crossing's authentic two-level Irish pub on Fraser Highway in Surrey—no cover charge on regular weekend live music nights.",
+    "synopsis": "High-energy live Celtic folk, classic rock, and East Coast party bands every Friday and Saturday night starting at 9:00 PM inside Dublin Crossing's authentic two-level Irish pub on Fraser Highway in Surrey—no cover charge on regular weekend live music nights.",
+    "event_archetype": "live_stage",
+    "archetype": "live_stage",
+    "lifecycle_type": "time_bound_event",
+    "category": "music",
+    "categories": [
+      "music",
+      "social",
+      "free-public-access"
+    ],
+    "tags": [
+      "music"
+    ],
+    "sub_tags": [],
+    "restrictions": "19+ after 9:00 PM",
+    "festival_affiliation": null,
+    "source_engine": "enricher_ai_v2",
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
+  },
+  {
+    "id": "surrey-arts-centre-studio-theatre-drama-improv",
+    "event_id": "surrey-arts-centre-studio-theatre-drama-improv",
+    "clean_title": "Studio Theatre Indie Drama & Improv",
+    "title": "Studio Theatre Indie Drama & Improv",
+    "artist": null,
+    "lineup": [],
+    "description": "Contemporary indie drama, Fringe-style theatre, and live improv comedy presented inside the intimate Studio Theatre at Surrey Arts Centre in Bear Creek Park.",
+    "synopsis": "Contemporary indie drama, Fringe-style theatre, and live improv comedy presented inside the intimate Studio Theatre at Surrey Arts Centre in Bear Creek Park.",
+    "event_archetype": "live_stage",
+    "archetype": "live_stage",
+    "lifecycle_type": "time_bound_event",
+    "category": "theatre",
+    "categories": [
+      "theatre",
+      "comedy",
+      "arts"
+    ],
+    "tags": [
+      "theatre"
+    ],
+    "sub_tags": [],
+    "restrictions": "All Ages",
+    "festival_affiliation": null,
+    "source_engine": "enricher_ai_v2",
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
+  },
+  {
     "id": "surrey-knights-pjhl-hockey-north-surrey",
     "event_id": "surrey-knights-pjhl-hockey-north-surrey",
     "clean_title": "Surrey Knights PJHL Hockey Night",
@@ -34163,8 +33968,8 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-16T17:17:23.411Z",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "enriched_at": "2026-11-17T02:06:42.140Z",
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   }
 ]

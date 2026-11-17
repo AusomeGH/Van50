@@ -4019,10 +4019,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     final_price = None
             
             if final_price is None:
-                try:
-                    final_price = float(card_data.get("attemptedPrice") or card_data.get("price") or 0.0)
-                except Exception:
-                    final_price = 0.0
+                raw_existing_price = card_data.get("attemptedPrice")
+                if raw_existing_price is None:
+                    raw_existing_price = card_data.get("price")
+                if raw_existing_price is not None and raw_existing_price != "":
+                    try:
+                        final_price = float(raw_existing_price)
+                    except Exception:
+                        final_price = None
 
             # URL priority
             final_url = synth_res.get("primaryLink") or (parsed_links[0]["url"] if parsed_links else None) or card_data.get("websiteUrl") or card_data.get("url") or "#"
@@ -4062,8 +4066,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "social": "🤝 Social & Meetups"
             }
 
-            price_label = "Free ($0)" if final_price == 0.0 else f"${final_price:.2f} all-in"
-            fee_breakdown = synth_res.get("cardPreview", {}).get("feeBreakdown") or (ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("details", {}).get("breakdown")) or f"Verified rate: {price_label}"
+            has_any_screenshot = bool(source_img) or bool(screenshot_paths)
+            if final_price is None:
+                price_label = "Screenshot staged for AI Vision" if has_any_screenshot else "Pending Box Office QC"
+                default_breakdown = "Screenshot attached — price will be extracted visually by Antigravity AI" if has_any_screenshot else None
+            else:
+                price_label = "Free ($0)" if final_price == 0.0 else f"${final_price:.2f} all-in"
+                default_breakdown = f"Verified rate: {price_label}"
+            fee_breakdown = synth_res.get("cardPreview", {}).get("feeBreakdown") or (ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("details", {}).get("breakdown")) or default_breakdown
 
             card_preview = {
                 "id": card_data.get("id", "preview-card"),
@@ -4086,7 +4096,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             signal_chips = {
                 "notes": ("Dismissal intent" if text_signals["isDismissalIntent"] else (f"${final_price:.2f} CAD" if text_signals["detectedPrice"] is not None else "Analyzing")) if instruction_text else "None",
                 "links": f"{final_provider} ({parsed_links[0]['domain']})" if parsed_links else "None",
-                "proof": (f"✓ {synth_res.get('screenshotCount', 1)} Screenshots Extracted" if synth_res.get("screenshotCount", 0) > 0 else ("✓ 7 Dimensions Extracted" if ocr_result else "Attached")) if (bool(source_img) or bool(screenshot_paths)) else "None"
+                "proof": ("📸 Staged for AI Vision" if final_price is None else (f"✓ {synth_res.get('screenshotCount', 1)} Screenshots Extracted" if synth_res.get("screenshotCount", 0) > 0 else ("✓ 7 Dimensions Extracted" if ocr_result else "Attached"))) if has_any_screenshot else "None"
             }
 
             return self._send_json(200, {
@@ -4098,14 +4108,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "cardPreview": card_preview,
                 "parsedLinks": parsed_links,
                 "textSignals": text_signals,
-                "hasScreenshot": bool(source_img) or bool(screenshot_paths),
+                "hasScreenshot": has_any_screenshot,
                 "ocrResult": ocr_result,
                 "extractedTitle": final_title,
                 "extractedPrice": final_price,
                 "extractedCategory": final_category,
                 "extractedDate": final_date,
                 "extractedVenue": final_venue,
-                "auditNote": fee_breakdown,
+                "auditNote": fee_breakdown if final_price is not None else None,
                 "signalChips": signal_chips,
                 "aiLearnedSummary": synth_res.get("aiLearnedSummary", ""),
                 "extractedTiers": synth_res.get("extractedTiers", []),

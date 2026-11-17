@@ -424,30 +424,6 @@
     "best_tier": "tier1"
   },
   {
-    "id": "stanley-pitch-putt",
-    "event_id": "stanley-pitch-putt",
-    "title": "Stanley Park Pitch & Putt: 18-Hole Round",
-    "venue_name": "Stanley Park Pitch & Putt",
-    "ticket_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
-    "details_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
-    "candidate_tier1_url": null,
-    "candidate_tier1_source": null,
-    "candidate_tier1_staged_at": null,
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
-      "tier3_calendar": null,
-      "tier4_civic_destination": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
-      "tier5_venue_home": "https://stanleyparkvan.com/",
-      "best_available": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-10-31T19:36:22.837Z",
-    "audited_at": "2026-10-29T17:56:11.459Z",
-    "source_tool": "tier1_hunter_ai",
-    "best_tier": "tier2"
-  },
-  {
     "id": "central-park-pitch-putt",
     "event_id": "central-park-pitch-putt",
     "title": "Central Park Pitch & Putt: 18-Hole Round",
@@ -1500,94 +1476,6 @@
     "step1b_audited_at": "2026-11-03T20:01:13.881Z"
   },
   {
-    "id": "the-cultch-cuff-live",
-    "event_id": "the-cultch-cuff-live",
-    "title": "CUFF LIVE",
-    "venue": "The Cultch",
-    "date": "search_exhausted_null",
-    "dateSchedule": "search_exhausted_null • none_available",
-    "time": "none_available",
-    "ticket_url": "https://thecultch.com/event/cuff-live/",
-    "details_url": "https://thecultch.com/event/cuff-live/",
-    "source_url": "https://thecultch.com/event/cuff-live",
-    "description": "CUFF LIVE presented at The Cultch in East Vancouver.",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "search_exhausted_null",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T17:45:29.458Z",
-    "links": {
-      "tier1_checkout": "https://thecultch.com/ticket/26-27-rentals/?WebEventId=RN2627CUFF2&#038;EventName=cuff-live",
-      "tier2_event_page": "https://thecultch.com/event/cuff-live/",
-      "tier3_calendar": "https://thecultch.com/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://thecultch.com/",
-      "best_tier": "tier1",
-      "best_available": "https://thecultch.com/ticket/26-27-rentals/?WebEventId=RN2627CUFF2&#038;EventName=cuff-live"
-    },
-    "step4_grounded_at": "2026-11-03T20:15:32.013Z",
-    "best_tier": "tier1",
-    "step1b_audited_at": "2026-11-03T20:12:47.607Z"
-  },
-  {
-    "id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "event_id": "the-cultch-york-thea-snowed-in-comedy-tour",
-    "title": "Snowed In Comedy Tour",
-    "venue": "The Cultch",
-    "date": "none_available",
-    "dateSchedule": "none_available • none_available",
-    "time": "none_available",
-    "ticket_url": "https://thecultch.com/event/snowed-in-comedy-tour/",
-    "details_url": "https://thecultch.com/event/snowed-in-comedy-tour/",
-    "source_url": "https://thecultch.com/event/snowed-in-comedy-tour/",
-    "description": "The Snowed In Comedy Tour brings acclaimed stand-up comedians to The Cultch for an evening of winter comedy. Performance dates and ticketing tiers are unstated in the rendered cart shell.",
-    "artist": null,
-    "lineup": [],
-    "category": "comedy",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "none_available",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T17:54:00.197Z",
-    "links": {
-      "tier1_checkout": "https://thecultch.com/ticket/26-27-rentals/?WebEventId=RN2627Snowed&#038;EventName=snowed-in-comedy-tour",
-      "tier2_event_page": "https://thecultch.com/event/snowed-in-comedy-tour/",
-      "tier3_calendar": "https://thecultch.com/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://thecultch.com/",
-      "best_tier": "tier1",
-      "best_available": "https://thecultch.com/ticket/26-27-rentals/?WebEventId=RN2627Snowed&#038;EventName=snowed-in-comedy-tour"
-    },
-    "step4_grounded_at": "2026-11-03T20:15:32.013Z",
-    "best_tier": "tier1",
-    "step1b_audited_at": "2026-11-03T20:12:47.607Z"
-  },
-  {
     "id": "historic-theatre-the-no-apologies-2027-03-10",
     "event_id": "historic-theatre-the-no-apologies-2027-03-10",
     "title": "No Apologies",
@@ -1743,52 +1631,6 @@
     "candidate_tier1_url": "https://thecultch.com/ticket/26-27-season/?EventInstanceId=137624&#038;EventName=here-here-songs-we-sing-for-home",
     "candidate_tier1_source": "in_page_anchor_traversal",
     "candidate_tier1_staged_at": "2026-11-03T20:21:01.063Z",
-    "step4_grounded_at": "2026-11-03T21:08:19.838Z"
-  },
-  {
-    "id": "york-theatre-steve-dawson-with-fats-kaplin-2027-03-19",
-    "event_id": "york-theatre-steve-dawson-with-fats-kaplin-2027-03-19",
-    "title": "Steve Dawson with Fats Kaplin",
-    "venue": "York Theatre (The Cultch)",
-    "date": "2027-03-19",
-    "dateSchedule": "2027-03-19 • none_available",
-    "time": "none_available",
-    "ticket_url": "https://thecultch.com/event/steve-dawson-with-fats-kaplin/",
-    "details_url": "https://thecultch.com/event/steve-dawson-with-fats-kaplin",
-    "source_url": "https://thecultch.com/event/steve-dawson-with-fats-kaplin",
-    "description": "Steve Dawson performs live with Fats Kaplin in a rental event presentation at the historic York Theatre on Commercial Drive. Contact The Cultch Box Office directly for performance times and ticket availability.",
-    "artist": "Steve Dawson",
-    "lineup": [
-      "Steve Dawson",
-      "Fats Kaplin"
-    ],
-    "category": "music",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-03-19",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T17:56:57.598Z",
-    "step1b_audited_at": "2026-11-03T20:21:38.499Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://thecultch.com/event/steve-dawson-with-fats-kaplin/",
-      "tier3_calendar": "https://thecultch.com/whats-on/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://thecultch.com/",
-      "best_tier": "tier2",
-      "best_available": "https://thecultch.com/event/steve-dawson-with-fats-kaplin/"
-    },
     "step4_grounded_at": "2026-11-03T21:08:19.838Z"
   },
   {
@@ -2755,54 +2597,6 @@
     "step4_grounded_at": "2026-11-05T15:11:51.167Z"
   },
   {
-    "id": "fox-cabaret-lesbian-heartthrob-audalei-liv-2026-11-16",
-    "event_id": "fox-cabaret-lesbian-heartthrob-audalei-liv-2026-11-16",
-    "title": "Lesbian Heartthrob: audalei Live in Concert with Special Guests",
-    "venue": "Fox Cabaret",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://audalei.bloomtickets.ca/event/3588",
-    "details_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/audalei",
-    "source_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/audalei",
-    "description": "Join Lesbian Heartthrob audalei live in concert with special guests for a night of music and celebration at Fox Cabaret. Guests are encouraged to dress as their gay awakening or favorite heartthrob.",
-    "artist": "audalei",
-    "lineup": [
-      "audalei"
-    ],
-    "category": "music",
-    "restrictions": "19+",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "7:00 PM",
-        "doors_time": "7:00 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T18:36:36.720Z",
-    "step1b_audited_at": "2026-11-03T20:31:45.073Z",
-    "candidate_tier1_url": "https://audalei.bloomtickets.ca/event/3588",
-    "candidate_tier1_source": "curator_instruction",
-    "candidate_tier1_staged_at": "2026-11-04T16:30:00.000Z",
-    "links": {
-      "tier1_checkout": "https://audalei.bloomtickets.ca/event/3588",
-      "tier2_event_page": "https://www.foxcabaret.com/monthly-calendar-list/2026/audalei",
-      "tier3_calendar": "https://www.foxcabaret.com/monthly-calendar-list",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.foxcabaret.com",
-      "best_tier": "tier1",
-      "best_available": "https://audalei.bloomtickets.ca/event/3588"
-    },
-    "step4_grounded_at": "2026-11-03T21:08:19.838Z"
-  },
-  {
     "id": "fox-cabaret-bratty-90s-now-dance-party-2026-11-20",
     "event_id": "fox-cabaret-bratty-90s-now-dance-party-2026-11-20",
     "title": "bratty - 90s-Now Dance Party",
@@ -2843,51 +2637,6 @@
       "best_tier": "tier2",
       "best_available": "https://www.foxcabaret.com/monthly-calendar-list/2026/bratty-54h59-bfdah"
     },
-    "step4_grounded_at": "2026-11-04T01:18:08.280Z"
-  },
-  {
-    "id": "fox-cabaret-john-muirhead-2026-11-21",
-    "event_id": "fox-cabaret-john-muirhead-2026-11-21",
-    "title": "John Muirhead",
-    "venue": "Fox Cabaret",
-    "date": "2026-11-21",
-    "dateSchedule": "2026-11-21 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://admitone.com/events/john-muirhead-vancouver-162826",
-    "details_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/muirhead",
-    "source_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/muirhead",
-    "description": "MRG LIVE presents Toronto-based singer-songwriter John Muirhead crafting big-hearted indie-folk songs alongside Sarah Vanderzon. Touring in support of his music and upcoming album, John brings his storytelling and heartfelt melodies to the Fox Cabaret.",
-    "artist": null,
-    "lineup": [
-      "Sarah Vanderzon"
-    ],
-    "category": "music",
-    "restrictions": "19+",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-21",
-        "start_time": "7:00 PM",
-        "doors_time": "7:00 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T18:38:34.520Z",
-    "candidate_tier1_url": "https://admitone.com/events/john-muirhead-vancouver-162826",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-11-02T02:27:21.456Z",
-    "links": {
-      "tier1_checkout": "https://admitone.com/events/john-muirhead-vancouver-162826",
-      "best_available": "https://admitone.com/events/john-muirhead-vancouver-162826",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://www.foxcabaret.com/monthly-calendar-list/2026/muirhead"
-    },
-    "step1b_audited_at": "2026-11-04T00:51:37.089Z",
     "step4_grounded_at": "2026-11-04T01:18:08.280Z"
   },
   {
@@ -2934,97 +2683,6 @@
       "best_available": "https://www.foxcabaret.com/monthly-calendar-list/hhzlygtjl8fyt9c-x6bgg-kcs2l-cldld-wgzyh-ssd5n-hm4zl-f2pbh"
     },
     "step4_grounded_at": "2026-11-04T01:18:08.280Z"
-  },
-  {
-    "id": "the-cinematheque-sleeping-with-a-tiger-2026-11-16",
-    "event_id": "the-cinematheque-sleeping-with-a-tiger-2026-11-16",
-    "title": "Sleeping with a Tiger",
-    "venue": "The Cinematheque",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 6:30 PM",
-    "time": "6:30 PM",
-    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584479~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "details_url": "https://thecinematheque.ca/films/2026/sleeping-with-a-tiger",
-    "source_url": "https://thecinematheque.ca/films/2026/sleeping-with-a-tiger",
-    "description": "Sleeping with a Tiger blends documentary and stylish fiction to explore the life and career of celebrated Austrian painter Maria Lassnig. Directed by Anja Salomonowitz and starring Birgit Minichmayr, the film portrays Lassnig's radical artistic vision and determination in a male-dominated art world.",
-    "artist": "Anja Salomonowitz",
-    "lineup": [
-      "Anja Salomonowitz",
-      "Birgit Minichmayr"
-    ],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 12,
-    "price_base": 12,
-    "price_fee": 0,
-    "price_all_in": 12,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "6:30 PM",
-        "doors_time": "none_available",
-        "end_time": "8:17 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T18:52:39.775Z",
-    "candidate_tier1_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584479~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "links": {
-      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584479~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584479~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://thecinematheque.ca/films/2026/sleeping-with-a-tiger"
-    },
-    "step1b_audited_at": "2026-11-08T00:26:55.103Z",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-11-04T15:04:24.142Z",
-    "step4_grounded_at": "2026-11-08T01:36:24.097Z"
-  },
-  {
-    "id": "the-cinematheque-borderline-2026-11-16",
-    "event_id": "the-cinematheque-borderline-2026-11-16",
-    "title": "Borderline",
-    "venue": "The Cinematheque",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 8:45 PM",
-    "time": "8:45 PM",
-    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584472~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "details_url": "https://thecinematheque.ca/films/2026/borderline",
-    "source_url": "https://thecinematheque.ca/films/2026/borderline",
-    "description": "Acclaimed director Ignas Jonynas presents a razor-sharp psychological thriller following a solitary ornithologist entangled in a dangerous border-smuggling syndicate while raising his neurodivergent daughter. Screening as part of the European Union Film Festival 2026 at The Cinematheque.",
-    "artist": "Ignas Jonynas",
-    "lineup": [
-      "Ignas Jonynas"
-    ],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 14,
-    "price_base": 14,
-    "price_fee": 0,
-    "price_all_in": 14,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "8:45 PM",
-        "doors_time": "8:15 PM",
-        "end_time": "10:27 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T18:53:30.037Z",
-    "candidate_tier1_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584472~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "links": {
-      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584472~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584472~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://thecinematheque.ca/films/2026/borderline"
-    },
-    "step1b_audited_at": "2026-11-08T00:26:55.441Z",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-11-04T15:04:27.018Z",
-    "step4_grounded_at": "2026-11-08T01:36:24.097Z"
   },
   {
     "id": "the-cinematheque-romzsa-t-dor-2026-11-17",
@@ -4796,51 +4454,6 @@
     },
     "step1b_audited_at": "2026-11-15T17:39:42.531Z",
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
-    "id": "the-cinematheque-kie-lowski-documentaries-6-2026-12-12",
-    "event_id": "the-cinematheque-kie-lowski-documentaries-6-2026-12-12",
-    "title": "Kieślowski Documentaries × 6",
-    "venue": "The Cinematheque",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-12-12",
-    "dateSchedule": "2026-12-12 • 4:30 PM",
-    "time": "4:30 PM",
-    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584608~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "details_url": "https://do604.com/events/2026/12/12/kieslowski-documentaries-x-6-tickets",
-    "source_url": "https://do604.com/events/2026/12/12/kieslowski-documentaries-x-6-tickets",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-12",
-        "start_time": "4:30 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T07:15:49.625Z",
-    "candidate_tier1_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584608~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-11-10T15:14:54.166Z",
-    "links": {
-      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584608~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584608~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://do604.com/events/2026/12/12/kieslowski-documentaries-x-6-tickets"
-    },
-    "step1b_audited_at": "2026-11-10T15:14:54.191Z",
-    "step4_grounded_at": "2026-11-10T15:30:04.759Z"
   },
   {
     "id": "the-cinematheque-camera-buff-2026-12-20",
@@ -6695,90 +6308,6 @@
       "comedy-after-dark-saturday-night-stand-up-comedy-2026-11-07"
     ],
     "step4_grounded_at": "2026-11-06T18:00:20.766Z"
-  },
-  {
-    "id": "massey-theatre-ballet-j-rgen-s-swan-lake-2027-02-06",
-    "event_id": "massey-theatre-ballet-j-rgen-s-swan-lake-2027-02-06",
-    "title": "Ballet Jörgen’s Swan Lake",
-    "venue": "Massey Theatre",
-    "date": "2027-02-06",
-    "dateSchedule": "2027-02-06 • 4:00 PM",
-    "time": "4:00 PM",
-    "ticket_url": "https://tprowest.ticketpro.ca/",
-    "details_url": "https://do604.com/events/2027/2/6/ballet-jorgen-s-swan-lake-tickets",
-    "source_url": "https://do604.com/events/2027/2/6/ballet-jorgen-s-swan-lake-tickets",
-    "description": "Celebrate Ballet Jörgen's 25th anniversary with a breathtaking new interpretation of Swan Lake, reimagined along the rugged shores of the Fortress of Louisbourg in Nova Scotia. Artistic Director Bengt Jörgen blends the timeless beauty of the beloved ballet with Canadian heritage, creating a fresh take on the classic story. Featuring stunning sets by Camellia Koo, authentic 17th-century-inspired costumes, and world-class choreography, this captivating production offers a uniquely Canadian perspective on one of ballet's most cherished masterpieces.",
-    "artist": "Ballet Jörgen",
-    "lineup": [
-      "Ballet Jörgen"
-    ],
-    "category": "theatre",
-    "restrictions": null,
-    "price": null,
-    "price_base": 44,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-02-06",
-        "start_time": "4:00 PM",
-        "doors_time": "none_available",
-        "end_time": "6:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-07T01:46:43.769Z",
-    "candidate_tier1_url": "https://tprowest.ticketpro.ca/",
-    "step1b_audited_at": "2026-11-08T00:27:58.672Z",
-    "candidate_tier1_source": "ai_link_auditor",
-    "candidate_tier1_staged_at": "2026-11-08T00:27:58.665Z",
-    "links": {
-      "tier1_checkout": "https://tprowest.ticketpro.ca/",
-      "tier2_event_page": "https://www.masseytheatre.com/event/ballet-jorgens-swan-lake/",
-      "tier3_calendar": "https://www.masseytheatre.com/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.masseytheatre.com/",
-      "best_tier": "tier1",
-      "best_available": "https://tprowest.ticketpro.ca/"
-    },
-    "step4_grounded_at": "2026-11-08T01:36:24.097Z"
-  },
-  {
-    "id": "massey-theatre-international-guitar-night-2027-01-31",
-    "event_id": "massey-theatre-international-guitar-night-2027-01-31",
-    "title": "International Guitar Night",
-    "venue": "Massey Theatre",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2027-01-31",
-    "dateSchedule": "2027-01-31 • 7:30 PM",
-    "time": "7:30 PM",
-    "ticket_url": "https://do604.com/events/2027/1/31/international-guitar-night-tickets",
-    "details_url": "https://do604.com/events/2027/1/31/international-guitar-night-tickets",
-    "source_url": "https://do604.com/events/2027/1/31/international-guitar-night-tickets",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 44,
-    "price_base": 44,
-    "price_fee": 0,
-    "price_all_in": 44,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-01-31",
-        "start_time": "7:30 PM",
-        "doors_time": "none_available",
-        "end_time": "9:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T06:55:03.495Z",
-    "step1b_audited_at": "2026-11-10T15:16:39.388Z",
-    "step4_grounded_at": "2026-11-10T15:30:04.759Z"
   },
   {
     "id": "orpheum-silent-movie-mondays-2026-2026-10-26",
@@ -10958,49 +10487,6 @@
     "step4_grounded_at": "2026-11-16T16:25:00.000Z"
   },
   {
-    "id": "science-world-after-dark-press-start-for-sci-2026-12-09",
-    "event_id": "science-world-after-dark-press-start-for-sci-2026-12-09",
-    "title": "After Dark: Press Start for Science – Video Games Edition",
-    "venue": "Science World at TELUS World of Science",
-    "date": "2026-12-09",
-    "dateSchedule": "2026-12-09 • 6:00 PM",
-    "time": "6:00 PM",
-    "ticket_url": "https://www.scienceworld.ca/event/after-dark-press-start-for-science-video-games-edition/",
-    "details_url": "https://www.scienceworld.ca/event/after-dark-press-start-for-science-video-games-edition/",
-    "source_url": "https://www.scienceworld.ca/event/after-dark-press-start-for-science-video-games-edition/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "19+",
-    "price": 34.99,
-    "price_base": 34.99,
-    "price_fee": 0,
-    "price_all_in": 34.99,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-09",
-        "start_time": "6:00 PM",
-        "doors_time": "6:00 PM",
-        "end_time": "10:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-07T01:05:52.860Z",
-    "step1b_audited_at": "2026-11-08T00:27:58.995Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.scienceworld.ca/event/after-dark-press-start-for-science-video-games-edition/",
-      "tier3_calendar": "https://www.scienceworld.ca/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.scienceworld.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.scienceworld.ca/event/after-dark-press-start-for-science-video-games-edition/"
-    },
-    "step4_grounded_at": "2026-11-08T01:36:24.097Z"
-  },
-  {
     "id": "the-american-iq-2000-trivia-2026-11-09",
     "event_id": "the-american-iq-2000-trivia-2026-11-09",
     "title": "IQ 2000 Trivia",
@@ -11887,59 +11373,6 @@
     "step4_grounded_at": "2026-11-10T15:30:04.759Z"
   },
   {
-    "id": "surrey-civic-theatre-the-gingerbread-men-a-holiday-2026-12-19",
-    "event_id": "surrey-civic-theatre-the-gingerbread-men-a-holiday-2026-12-19",
-    "title": "The Gingerbread Men: A Holiday Cabaret",
-    "venue": "Surrey Civic Plaza",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-12-19",
-    "dateSchedule": "2026-12-19 • 2:00 PM",
-    "time": "2:00 PM",
-    "ticket_url": "https://www.surrey.ca/news-events/events/gingerbread-men-holiday-cabaret",
-    "details_url": "https://www.surrey.ca/news-events/events/gingerbread-men-holiday-cabaret",
-    "source_url": "https://www.surrey.ca/news-events/events/gingerbread-men-holiday-cabaret",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-19",
-        "start_time": "2:00 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-12-19",
-        "start_time": "7:30 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-09T17:10:03.791Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.surrey.ca/news-events/events/gingerbread-men-holiday-cabaret",
-      "tier3_calendar": "https://www.surrey.ca/news-events/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.surrey.ca/arts-culture/surrey-civic-theatres",
-      "best_tier": "tier2",
-      "best_available": "https://www.surrey.ca/news-events/events/gingerbread-men-holiday-cabaret"
-    },
-    "step1b_audited_at": "2026-11-09T18:34:47.264Z",
-    "step4_grounded_at": "2026-11-10T15:30:04.759Z"
-  },
-  {
     "id": "main-stage-at-surrey-the-cheesecake-burlesque-revue-2026-12-31",
     "event_id": "main-stage-at-surrey-the-cheesecake-burlesque-revue-2026-12-31",
     "title": "The Cheesecake Burlesque Revue",
@@ -12578,9 +12011,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "time_bound_event",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "russell-brewing-taproom-standup-comedy",
@@ -12623,9 +12056,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "time_bound_event",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "clayton-public-house-standup-comedy",
@@ -12668,9 +12101,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "time_bound_event",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "newton-cultural-centre-coffeehouse-concert",
@@ -12713,9 +12146,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "time_bound_event",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "museum-of-surrey-exhibitions-heritage-gallery",
@@ -12743,9 +12176,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -12773,9 +12206,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -12803,9 +12236,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "landmark-cinemas-guildford-reel-deals",
@@ -12855,9 +12288,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "time_bound_event",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "craving-for-a-game-friday-night-magic-board-games",
@@ -12900,9 +12333,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "time_bound_event",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "project-climbing-centre-cloverdale-bouldering",
@@ -12930,9 +12363,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -12960,9 +12393,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "grandview-heights-aquatic-centre-drop-in",
@@ -12990,9 +12423,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -13020,9 +12453,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "bear-creek-park-gardens-trails-mini-train",
@@ -13050,9 +12483,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": "Bear Creek Lights",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -13080,9 +12513,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -13110,9 +12543,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -13140,9 +12573,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
+    "audited_at": "2026-11-17T02:06:42.140Z",
+    "step1b_audited_at": "2026-11-17T02:06:42.140Z",
+    "step4_grounded_at": "2026-11-17T02:06:42.140Z"
   },
   {
     "id": "vandusen-botanical-g-vandusen-festival-of-lights-2026-11-27",
@@ -13536,51 +12969,6 @@
       "best_available": "https://www.surreylibraries.ca/events/adapted-stories-adults-and-teens-43"
     },
     "step1b_audited_at": "2026-11-10T10:47:12.958Z",
-    "step4_grounded_at": "2026-11-15T16:48:05.145Z"
-  },
-  {
-    "id": "surrey-libraries-cit-meet-tanah-air-project-2026-11-16",
-    "event_id": "surrey-libraries-cit-meet-tanah-air-project-2026-11-16",
-    "title": "Meet Tanah Air Project",
-    "venue": "Surrey Libraries - City Centre Branch",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 1:00 PM",
-    "time": "1:00 PM",
-    "ticket_url": "https://www.surreylibraries.ca/events/meet-tanah-air-project",
-    "details_url": "https://www.surreylibraries.ca/events/meet-tanah-air-project",
-    "source_url": "https://www.surreylibraries.ca/events/meet-tanah-air-project",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "1:00 PM",
-        "doors_time": "none_available",
-        "end_time": "4:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T02:22:51.162Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.surreylibraries.ca/events/meet-tanah-air-project",
-      "tier3_calendar": "https://www.surreylibraries.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.surreylibraries.ca",
-      "best_tier": "tier2",
-      "best_available": "https://www.surreylibraries.ca/events/meet-tanah-air-project"
-    },
-    "step1b_audited_at": "2026-11-10T10:47:53.073Z",
     "step4_grounded_at": "2026-11-15T16:48:05.145Z"
   },
   {
@@ -14082,94 +13470,6 @@
     ],
     "audited_at": "2026-11-10T08:52:44.203Z",
     "step1b_audited_at": "2026-11-10T11:14:47.225Z"
-  },
-  {
-    "id": "vogue-theatre-rhye-joy-tour-with-nicky-macke-2026-11-16",
-    "event_id": "vogue-theatre-rhye-joy-tour-with-nicky-macke-2026-11-16",
-    "title": "Rhye - JOY TOUR With Nicky MacKenzie",
-    "venue": "Vogue Theatre",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 8:00 PM",
-    "time": "8:00 PM",
-    "ticket_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/rhye/rhye/6a15c3b4a60f611e740b2cc1",
-    "details_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/rhye/rhye/6a15c3b4a60f611e740b2cc1",
-    "source_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/rhye/rhye/6a15c3b4a60f611e740b2cc1",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "8:00 PM",
-        "doors_time": "7:00 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T03:54:29.266Z",
-    "candidate_tier1_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/rhye/rhye/6a15c3b4a60f611e740b2cc1",
-    "candidate_tier1_source": "existing_verified",
-    "candidate_tier1_staged_at": "2026-11-10T11:17:39.139Z",
-    "links": {
-      "tier1_checkout": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/rhye/rhye/6a15c3b4a60f611e740b2cc1",
-      "best_available": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/rhye/rhye/6a15c3b4a60f611e740b2cc1",
-      "best_tier": "tier1"
-    },
-    "step1b_audited_at": "2026-11-15T17:45:58.176Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
-    "id": "hollywood-theatre-yuki-chiba-2026-11-16",
-    "event_id": "hollywood-theatre-yuki-chiba-2026-11-16",
-    "title": "Yuki Chiba",
-    "venue": "Hollywood Theatre",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 8:00 PM",
-    "time": "8:00 PM",
-    "ticket_url": "https://admitone.com/events/vancouver/pro/concerts/hollywood-theatre/yuki-chiba/yuki-chiba/6a581bb0d35ed5be0cad8669",
-    "details_url": "https://admitone.com/events/vancouver/pro/concerts/hollywood-theatre/yuki-chiba/yuki-chiba/6a581bb0d35ed5be0cad8669",
-    "source_url": "https://admitone.com/events/vancouver/pro/concerts/hollywood-theatre/yuki-chiba/yuki-chiba/6a581bb0d35ed5be0cad8669",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "19+",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "8:00 PM",
-        "doors_time": "7:00 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T03:55:01.674Z",
-    "candidate_tier1_url": "https://admitone.com/events/vancouver/pro/concerts/hollywood-theatre/yuki-chiba/yuki-chiba/6a581bb0d35ed5be0cad8669",
-    "candidate_tier1_source": "existing_verified",
-    "candidate_tier1_staged_at": "2026-11-10T11:17:39.913Z",
-    "links": {
-      "tier1_checkout": "https://admitone.com/events/vancouver/pro/concerts/hollywood-theatre/yuki-chiba/yuki-chiba/6a581bb0d35ed5be0cad8669",
-      "best_available": "https://admitone.com/events/vancouver/pro/concerts/hollywood-theatre/yuki-chiba/yuki-chiba/6a581bb0d35ed5be0cad8669",
-      "best_tier": "tier1"
-    },
-    "step1b_audited_at": "2026-11-15T17:45:59.023Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
     "id": "downtown-surrey-festive-frames-downtown-surrey",
@@ -15714,51 +15014,6 @@
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
-    "id": "mud-bay-park-bike-mud-bay-to-boundary-bay-a-2026-11-16",
-    "event_id": "mud-bay-park-bike-mud-bay-to-boundary-bay-a-2026-11-16",
-    "title": "BIKE - MUD BAY TO BOUNDARY BAY Approx 45kms",
-    "venue": "Mud Bay Park",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 9:30 AM",
-    "time": "9:30 AM",
-    "ticket_url": "https://www.meetup.com/the-abbotsford-meetup-group/events/317001363/",
-    "details_url": "https://www.meetup.com/the-abbotsford-meetup-group/events/317001363/",
-    "source_url": "https://www.meetup.com/the-abbotsford-meetup-group/events/317001363/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "2:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T05:58:07.796Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/the-abbotsford-meetup-group/events/317001363/",
-      "tier3_calendar": "https://www.meetup.com/the-abbotsford-meetup-group/events/",
-      "tier4_civic_destination": "https://www.vancouvertrails.com/trails/mud-bay-park/",
-      "tier5_venue_home": "https://www.surrey.ca/activities-parks-recreation/parks",
-      "best_tier": "tier2",
-      "best_available": "https://www.meetup.com/the-abbotsford-meetup-group/events/317001363/"
-    },
-    "step1b_audited_at": "2026-11-15T18:04:06.901Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
     "id": "new-westminster-chri-the-estuary-at-connections-cof-2026-11-19",
     "event_id": "new-westminster-chri-the-estuary-at-connections-cof-2026-11-19",
     "title": "The Estuary at Connections Coffee",
@@ -16598,63 +15853,6 @@
     "step1b_audited_at": "2026-11-10T12:19:52.518Z"
   },
   {
-    "id": "the-roxy-millennial-monday-with-loaded",
-    "event_id": "the-roxy-millennial-monday-with-loaded",
-    "title": "Millennial Monday with Loaded",
-    "venue": "The Roxy Cabaret",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "lifecycle_type": "weekly_recurring_residency",
-    "booking_protocol": "walk_up_only",
-    "date": "2026-11-16",
-    "dateSchedule": "Every Monday • 9:00 PM",
-    "time": "9:00 PM",
-    "ticket_url": "https://roxyvan.com/",
-    "details_url": "https://roxyvan.com/",
-    "source_url": "https://roxyvan.com/",
-    "description": "Weekly Monday live band and DJ throwback night at The Roxy Cabaret featuring Loaded performing 90s and 2000s hits on Granville Street.",
-    "artist": "Loaded",
-    "lineup": [
-      "Loaded"
-    ],
-    "category": "music",
-    "restrictions": "19+",
-    "price": 10,
-    "price_base": 10,
-    "price_fee": 0,
-    "price_all_in": 10,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "9:00 PM",
-        "doors_time": "8:00 PM",
-        "end_time": "3:00 AM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "9:00 PM",
-        "doors_time": "8:00 PM",
-        "end_time": "3:00 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T06:49:06.334Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://roxyvan.com/",
-      "tier3_calendar": "https://roxyvan.com/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://roxyvan.com/",
-      "best_tier": "tier5",
-      "best_available": "https://roxyvan.com/"
-    },
-    "step1b_audited_at": "2026-11-15T18:07:07.791Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
     "id": "metro-theatre-agatha-christie-s-murder-on-th-2027-02-26",
     "event_id": "metro-theatre-agatha-christie-s-murder-on-th-2027-02-26",
     "title": "Agatha Christie's Murder on the Orient Express",
@@ -16744,52 +15942,6 @@
     "step1b_audited_at": "2026-11-15T18:09:15.801Z",
     "dead_urls": [],
     "candidate_tier1_url": null,
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
-    "id": "metro-theatre-sleeping-beauty-a-traditional-2026-12-04",
-    "event_id": "metro-theatre-sleeping-beauty-a-traditional-2026-12-04",
-    "title": "Sleeping Beauty: A Traditional British Pantomime",
-    "venue": "Metro Theatre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-12-04",
-    "dateSchedule": "2026-12-04 • 7:30 PM",
-    "time": "7:30 PM",
-    "ticket_url": "https://metrotheatre.com/sleeping-beauty-a-traditional-british-pantomime/",
-    "details_url": "https://metrotheatre.com/sleeping-beauty-a-traditional-british-pantomime/",
-    "source_url": "https://metrotheatre.com/sleeping-beauty-a-traditional-british-pantomime/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 38,
-    "price_base": 38,
-    "price_fee": 0,
-    "price_all_in": 38,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-04",
-        "start_time": "7:30 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T06:57:58.924Z",
-    "candidate_tier1_url": null,
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://metrotheatre.com/sleeping-beauty-a-traditional-british-pantomime/",
-      "tier3_calendar": "https://metrotheatre.com/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://metrotheatre.com/",
-      "best_tier": "tier2",
-      "best_available": "https://metrotheatre.com/sleeping-beauty-a-traditional-british-pantomime/"
-    },
-    "step1b_audited_at": "2026-11-15T18:09:59.263Z",
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
@@ -17517,50 +16669,51 @@
     "event_id": "celebrities-jerro-2027-03-13",
     "title": "Jerro",
     "venue": "Celebrities Nightclub",
-    "city": "Surrey",
-    "region": "Surrey",
+    "city": "Vancouver",
+    "region": "Vancouver",
     "date": "2027-03-13",
-    "dateSchedule": "2027-03-13 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": null,
-    "details_url": "https://do604.com/events/2027/3/13/jerro-tickets",
-    "source_url": "https://do604.com/events/2027/3/13/jerro-tickets",
+    "dateSchedule": "2027-03-13 • 10:00 PM",
+    "time": "10:00 PM",
+    "ticket_url": "https://on.celebritiesnightclub.com/trk/RTGwc",
+    "details_url": "https://www.celebritiesnightclub.com/events",
+    "source_url": "https://www.celebritiesnightclub.com/events",
     "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
+    "artist": "Jerro",
+    "lineup": [
+      "Jerro"
+    ],
+    "category": "music",
     "restrictions": "19+",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
+    "price": 35.36,
+    "price_base": 25,
+    "price_fee": 9.11,
+    "price_all_in": 35.36,
     "showings": [
       {
         "slot": 1,
         "date": "2027-03-13",
-        "start_time": "7:00 PM",
-        "doors_time": "none_available",
+        "start_time": "10:00 PM",
+        "doors_time": "10:00 PM",
         "end_time": "none_available",
-        "status": "upcoming"
+        "status": "upcoming",
+        "ticket_url": "https://on.celebritiesnightclub.com/trk/RTGwc"
       }
     ],
-    "audited_at": "2026-11-10T07:20:29.055Z",
-    "candidate_tier1_url": null,
-    "candidate_tier1_source": "ai_link_auditor",
-    "candidate_tier1_staged_at": "2026-11-10T12:50:19.074Z",
+    "audited_at": "2026-11-16T20:35:00.000Z",
+    "candidate_tier1_url": "https://on.celebritiesnightclub.com/trk/RTGwc",
+    "candidate_tier1_source": "curator_screenshot_proof",
+    "candidate_tier1_staged_at": "2026-11-16T20:35:00.000Z",
     "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://do604.com/events/2027/3/13/jerro-tickets",
+      "tier1_checkout": "https://on.celebritiesnightclub.com/trk/RTGwc",
+      "tier2_event_page": null,
       "tier3_calendar": "https://www.celebritiesnightclub.com/events",
       "tier4_civic_destination": null,
       "tier5_venue_home": "https://www.celebritiesnightclub.com/",
-      "best_tier": "tier2",
-      "best_available": "https://www.ticketweb.ca/event/playhouse-pres-jerro-celebrities-nightclub-tickets/14647483?pl=blueprint"
+      "best_tier": "tier1",
+      "best_available": "https://on.celebritiesnightclub.com/trk/RTGwc"
     },
-    "step1b_audited_at": "2026-11-15T18:20:54.494Z",
-    "dead_urls": [
-      "https://www.ticketweb.ca/event/playhouse-pres-jerro-celebrities-nightclub-tickets/14647483?pl=blueprint"
-    ],
+    "step1b_audited_at": "2026-11-16T20:35:00.000Z",
+    "dead_urls": [],
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
@@ -17850,8 +17003,8 @@
     "date": "2026-12-21",
     "dateSchedule": "2026-12-21 • 4:00 PM",
     "time": "4:00 PM",
-    "ticket_url": "https://www.hollywoodtheatre.ca/events",
-    "details_url": "https://www.hollywoodtheatre.ca/events",
+    "ticket_url": "https://app.opendate.io/e/christmas-double-feature-a-muppets-christmas-movie-eyes-wide-shut-december-21-2026-750431",
+    "details_url": "https://www.hollywoodtheatre.ca/events/christmas-double-feature-a-muppets-christmas-movie-eyes-wide-shut",
     "source_url": "https://www.hollywoodtheatre.ca/events",
     "description": null,
     "artist": null,
@@ -17881,18 +17034,19 @@
       }
     ],
     "audited_at": "2026-11-10T07:26:34.551Z",
-    "step1b_audited_at": "2026-11-15T18:22:18.044Z",
-    "candidate_tier1_url": null,
+    "step1b_audited_at": "2026-11-16T23:32:50.762Z",
+    "candidate_tier1_url": "https://app.opendate.io/e/christmas-double-feature-a-muppets-christmas-movie-eyes-wide-shut-december-21-2026-750431",
     "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.hollywoodtheatre.ca/events",
+      "tier1_checkout": "https://app.opendate.io/e/christmas-double-feature-a-muppets-christmas-movie-eyes-wide-shut-december-21-2026-750431",
+      "tier2_event_page": "https://www.hollywoodtheatre.ca/events/christmas-double-feature-a-muppets-christmas-movie-eyes-wide-shut",
       "tier3_calendar": "https://www.hollywoodtheatre.ca/events",
       "tier4_civic_destination": null,
       "tier5_venue_home": "https://www.hollywoodtheatre.ca/",
-      "best_tier": "tier3",
-      "best_available": "https://www.hollywoodtheatre.ca/events"
+      "best_available": "https://app.opendate.io/e/christmas-double-feature-a-muppets-christmas-movie-eyes-wide-shut-december-21-2026-750431",
+      "best_tier": "tier1"
     },
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
+    "step4_grounded_at": "2026-11-15T23:45:58.661Z",
+    "best_tier": "tier1"
   },
   {
     "id": "hollywood-theatre-wes-anderson-double-feature-2026-12-16",
@@ -17904,39 +17058,43 @@
     "date": "2026-12-16",
     "dateSchedule": "2026-12-16 • 6:00 PM",
     "time": "6:00 PM",
-    "ticket_url": "https://www.hollywoodtheatre.ca/events",
-    "details_url": "https://www.hollywoodtheatre.ca/events",
+    "ticket_url": "https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365",
+    "details_url": "https://www.hollywoodtheatre.ca/events/wes-anderson-double-feature",
     "source_url": "https://www.hollywoodtheatre.ca/events",
     "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "movies",
+    "artist": "Gustavo Teodoro",
+    "lineup": [
+      "Gustavo Teodoro",
+      "MY!GAY!HUSBAND!"
+    ],
+    "category": "cinema",
     "restrictions": "All Ages (19+ bar with ID)",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
+    "price": 20.75,
+    "price_base": 15,
+    "price_fee": 5.75,
+    "price_all_in": 20.75,
     "showings": [
       {
         "slot": 1,
         "date": "2026-12-16",
         "start_time": "6:00 PM",
         "doors_time": "5:00 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
+        "end_time": "11:00 PM",
+        "status": "upcoming",
+        "ticket_url": "https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365"
       }
     ],
-    "audited_at": "2026-11-10T07:26:41.411Z",
-    "step1b_audited_at": "2026-11-15T18:22:25.856Z",
-    "candidate_tier1_url": null,
+    "audited_at": "2026-11-16T20:35:00.000Z",
+    "step1b_audited_at": "2026-11-16T20:35:00.000Z",
+    "candidate_tier1_url": "https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365",
     "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.hollywoodtheatre.ca/events",
+      "tier1_checkout": "https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365",
+      "tier2_event_page": "https://www.hollywoodtheatre.ca/events/wes-anderson-double-feature",
       "tier3_calendar": "https://www.hollywoodtheatre.ca/events",
       "tier4_civic_destination": null,
       "tier5_venue_home": "https://www.hollywoodtheatre.ca/",
-      "best_tier": "tier3",
-      "best_available": "https://www.hollywoodtheatre.ca/events"
+      "best_tier": "tier1",
+      "best_available": "https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365"
     },
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
@@ -20190,88 +19348,6 @@
     "audited_at": "2026-11-10T09:27:06.439Z"
   },
   {
-    "id": "jack-poole-plaza-vancouver-christmas-market-202-2026-11-16",
-    "event_id": "jack-poole-plaza-vancouver-christmas-market-202-2026-11-16",
-    "title": "Vancouver Christmas Market",
-    "venue": "Jack Poole Plaza",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 (2 Showings)",
-    "time": "11:30 AM",
-    "ticket_url": "https://tickets.vancouverchristmasmarket.com/",
-    "details_url": "https://www.vancouverchristmasmarket.com/",
-    "source_url": "https://www.vancouverchristmasmarket.com/",
-    "description": "Authentic German-style outdoor holiday market at Jack Poole Plaza featuring 90+ artisan huts, mulled Glühwein, traditional European street food, live festive music, and a walk-through Christmas pyramid.",
-    "artist": null,
-    "lineup": [],
-    "category": "markets",
-    "restrictions": "All Ages / Family Friendly",
-    "price": 7.99,
-    "price_base": 7.99,
-    "price_fee": 0,
-    "price_all_in": 7.99,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "11:30 AM",
-        "doors_time": "11:30 AM",
-        "end_time": "9:30 PM",
-        "status": "upcoming",
-        "ticket_url": "https://tickets.vancouverchristmasmarket.com/"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-16",
-        "start_time": "4:00 PM",
-        "doors_time": null,
-        "end_time": "9:30 PM",
-        "status": "upcoming",
-        "ticket_url": "https://vancouversbestplaces.com/vancouver-christmas-market/"
-      }
-    ],
-    "audited_at": "2026-11-11T15:22:00.000Z",
-    "links": {
-      "tier1_checkout": "https://tickets.vancouverchristmasmarket.com/",
-      "tier2_event_page": "https://www.vancouverchristmasmarket.com/tickets/",
-      "tier3_calendar": "https://www.vancouverchristmasmarket.com/entertainment-schedules/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vancouverchristmasmarket.com/",
-      "best_tier": "tier1",
-      "best_available": "https://tickets.vancouverchristmasmarket.com/"
-    },
-    "step1b_audited_at": "2026-11-11T15:22:00.000Z",
-    "step4_grounded_at": "2026-11-11T15:22:00.000Z",
-    "start_time": "11:30 AM",
-    "doors_time": "11:30 AM",
-    "end_time": "9:30 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-16",
-      "start_time": "11:30 AM",
-      "doors_time": "11:30 AM",
-      "end_time": "9:30 PM",
-      "status": "upcoming",
-      "ticket_url": "https://tickets.vancouverchristmasmarket.com/"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-11-16",
-      "start_time": "4:00 PM",
-      "doors_time": null,
-      "end_time": "9:30 PM",
-      "status": "upcoming",
-      "ticket_url": "https://vancouversbestplaces.com/vancouver-christmas-market/"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multiple Showings (2 Slots)",
-    "merged_from_ids": [
-      "jack-poole-plaza-vancouver-christmas-market-in-2026-11-16",
-      "jack-poole-plaza-vancouver-christmas-market-2026-11-16"
-    ]
-  },
-  {
     "id": "bell-performing-arts-home-for-the-holidays-vol-2-2026-12-11",
     "event_id": "bell-performing-arts-home-for-the-holidays-vol-2-2026-12-11",
     "title": "Home For The Holidays - Vol. 2",
@@ -20492,50 +19568,6 @@
       "best_tier": "tier1"
     },
     "step1b_audited_at": "2026-11-15T18:38:46.836Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
-    "id": "vogue-theatre-mor-ve-tesi-2026-11-19",
-    "event_id": "vogue-theatre-mor-ve-tesi-2026-11-19",
-    "title": "mor ve ötesi",
-    "venue": "Vogue Theatre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-19",
-    "dateSchedule": "2026-11-19 • 8:00 PM",
-    "time": "8:00 PM",
-    "ticket_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/artist/mor-ve-otesi/6aaae76aba47d104e53a6959",
-    "details_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/artist/mor-ve-otesi/6aaae76aba47d104e53a6959",
-    "source_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/artist/mor-ve-otesi/6aaae76aba47d104e53a6959",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-19",
-        "start_time": "8:00 PM",
-        "doors_time": "7:00 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-15T04:48:00.456Z",
-    "candidate_tier1_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/artist/mor-ve-otesi/6aaae76aba47d104e53a6959",
-    "candidate_tier1_source": "existing_verified",
-    "candidate_tier1_staged_at": "2026-11-15T18:38:48.468Z",
-    "links": {
-      "tier1_checkout": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/artist/mor-ve-otesi/6aaae76aba47d104e53a6959",
-      "best_available": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/artist/mor-ve-otesi/6aaae76aba47d104e53a6959",
-      "best_tier": "tier1"
-    },
-    "step1b_audited_at": "2026-11-15T18:38:48.481Z",
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
@@ -20931,51 +19963,6 @@
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
-    "id": "the-shipyards-north-vancouver-s-shipyards-ch-2026-11-27",
-    "event_id": "the-shipyards-north-vancouver-s-shipyards-ch-2026-11-27",
-    "title": "North Vancouver’s Shipyards Christmas Market",
-    "venue": "The Shipyards",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-27",
-    "dateSchedule": "2026-11-27 • 11:00 AM",
-    "time": "11:00 AM",
-    "ticket_url": "https://shipyardschristmasmarket.com/",
-    "details_url": "https://shipyardschristmasmarket.com/",
-    "source_url": "https://shipyardschristmasmarket.com/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-27",
-        "start_time": "11:00 AM",
-        "doors_time": "none_available",
-        "end_time": "10:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-15T05:34:34.938Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://vancouversbestplaces.com/north-vancouver-shipyards-christmas-market/",
-      "tier3_calendar": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
-      "tier4_civic_destination": "https://vancouversbestplaces.com/north-shore/north-vancouver/lower-lonsdale/north-vancouver-shipyards/north-vancouver-shipyards-christmas-market/",
-      "tier5_venue_home": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
-      "best_tier": "tier2",
-      "best_available": "https://vancouversbestplaces.com/north-vancouver-shipyards-christmas-market/"
-    },
-    "step1b_audited_at": "2026-11-15T18:43:02.272Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
     "id": "wesbrook-village-nor-wesbrook-village-holiday-marke-2026-11-20",
     "event_id": "wesbrook-village-nor-wesbrook-village-holiday-marke-2026-11-20",
     "title": "Wesbrook Village Holiday Market",
@@ -21115,51 +20102,6 @@
       "best_available": "https://langley.glowgardens.com/"
     },
     "step1b_audited_at": "2026-11-15T18:44:58.135Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
-    "id": "langley-christmas-vi-langley-christmas-village-mark-2026-11-25",
-    "event_id": "langley-christmas-vi-langley-christmas-village-mark-2026-11-25",
-    "title": "Langley Christmas Village Market",
-    "venue": "Langley Christmas Village (20340 Fraser Highway)",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-25",
-    "dateSchedule": "2026-11-25 • 11:00 AM",
-    "time": "11:00 AM",
-    "ticket_url": "https://langleychristmasvillage.com/",
-    "details_url": "https://langleychristmasvillage.com/",
-    "source_url": "https://langleychristmasvillage.com/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "markets",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-25",
-        "start_time": "11:00 AM",
-        "doors_time": "none_available",
-        "end_time": "9:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-15T05:37:14.779Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://langleychristmasvillage.com/",
-      "tier3_calendar": "https://langleychristmasvillage.com/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://langleychristmasvillage.com/",
-      "best_tier": "tier2",
-      "best_available": "https://langleychristmasvillage.com/"
-    },
-    "step1b_audited_at": "2026-11-15T18:46:35.431Z",
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
@@ -21510,54 +20452,6 @@
     ],
     "audited_at": "2026-11-15T06:02:01.570Z",
     "step1b_audited_at": "2026-11-15T18:57:04.355Z",
-    "step4_grounded_at": "2026-11-15T23:45:58.661Z"
-  },
-  {
-    "id": "multiple-locations-canadian-pacific-holiday-train-2026-11-19",
-    "event_id": "multiple-locations-canadian-pacific-holiday-train-2026-11-19",
-    "title": "Canadian Pacific Holiday Train",
-    "venue": "Port Moody Recreation Complex",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-12-20",
-    "dateSchedule": "2026-12-20 • 5:15 PM",
-    "time": "5:15 PM",
-    "ticket_url": "https://www.cpkcr.com/en/community/HolidayTrain",
-    "details_url": "https://www.cpkcr.com/en/community/HolidayTrain",
-    "source_url": "https://www.cpkcr.com/en/community/HolidayTrain",
-    "description": "The CPKC Holiday Train rolls into Port Moody behind the Port Moody Recreation Complex with a free live boxcar stage concert featuring Sam Roberts Band and Owen Riegling in support of local food banks.",
-    "artist": "Sam Roberts Band",
-    "lineup": [
-      "Sam Roberts Band",
-      "Owen Riegling"
-    ],
-    "category": "music",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-20",
-        "start_time": "5:15 PM",
-        "doors_time": "5:00 PM",
-        "end_time": "5:45 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-15T06:09:10.825Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.cpkcr.com/en/community/HolidayTrain",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.cpkcr.com/",
-      "best_tier": "tier2",
-      "best_available": "https://www.cpkcr.com/en/community/HolidayTrain"
-    },
-    "step1b_audited_at": "2026-11-15T18:56:44.688Z",
     "step4_grounded_at": "2026-11-15T23:45:58.661Z"
   },
   {
@@ -22080,274 +20974,5 @@
       "best_available": "https://cagvancouver.org/event/saturday-session-gabrielle-lhirondelle-hill"
     },
     "step1b_audited_at": "2026-11-15T19:03:49.245Z"
-  },
-  {
-    "id": "surrey-knights-pjhl-hockey-north-surrey",
-    "event_id": "surrey-knights-pjhl-hockey-north-surrey",
-    "title": "Surrey Knights PJHL Hockey Night",
-    "venue": "North Surrey Sport & Ice Complex",
-    "venue_name": "North Surrey Sport & Ice Complex",
-    "city": "Surrey",
-    "region": "Surrey",
-    "neighborhood": "Surrey Central / Whalley",
-    "date": "2026-11-12",
-    "dateSchedule": null,
-    "frequency": "Weekly",
-    "frequencyLabel": "Weekly (Thursdays)",
-    "time": "7:00 PM",
-    "start_time": "7:00 PM",
-    "doors_time": null,
-    "end_time": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-12",
-        "start_time": "7:00 PM",
-        "status": "upcoming",
-        "price": 12
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-19",
-        "start_time": "7:00 PM",
-        "status": "upcoming",
-        "price": 12
-      },
-      {
-        "slot": 3,
-        "date": "2026-11-26",
-        "start_time": "7:00 PM",
-        "status": "upcoming",
-        "price": 12
-      }
-    ],
-    "ticket_url": "https://www.surreyknights.ca/stats/schedule",
-    "details_url": "https://www.surreyknights.ca/stats/schedule",
-    "source_url": "https://www.surreyknights.ca/stats/schedule",
-    "candidate_tier1_url": "https://www.surreyknights.ca/stats/schedule",
-    "candidate_tier1_source": "verified_municipal_schedule",
-    "candidate_tier1_confidence": 1,
-    "lifecycle_type": "time_bound_event",
-    "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
-  },
-  {
-    "id": "dublin-crossing-celtic-rock-weekend-session",
-    "event_id": "dublin-crossing-celtic-rock-weekend-session",
-    "title": "Live Celtic & Rock Weekend Session",
-    "venue": "Dublin Crossing Irish Pub",
-    "venue_name": "Dublin Crossing Irish Pub",
-    "city": "Surrey",
-    "region": "Surrey",
-    "neighborhood": "Fleetwood",
-    "date": "2026-11-13",
-    "dateSchedule": null,
-    "frequency": "Weekly",
-    "frequencyLabel": "Weekly (Fri & Sat)",
-    "time": "9:00 PM",
-    "start_time": "9:00 PM",
-    "doors_time": null,
-    "end_time": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-13",
-        "start_time": "9:00 PM",
-        "status": "upcoming",
-        "price": 0
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-14",
-        "start_time": "9:00 PM",
-        "status": "upcoming",
-        "price": 0
-      }
-    ],
-    "ticket_url": "https://dublincrossing.com/surrey/",
-    "details_url": "https://dublincrossing.com/surrey/",
-    "source_url": "https://dublincrossing.com/surrey/",
-    "candidate_tier1_url": "https://dublincrossing.com/surrey/",
-    "candidate_tier1_source": "verified_municipal_schedule",
-    "candidate_tier1_confidence": 1,
-    "lifecycle_type": "time_bound_event",
-    "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
-  },
-  {
-    "id": "bell-performing-arts-centre-touring-series",
-    "event_id": "bell-performing-arts-centre-touring-series",
-    "title": "Touring Theatre & Tribute Series",
-    "venue": "Bell Performing Arts Centre",
-    "venue_name": "Bell Performing Arts Centre",
-    "city": "Surrey",
-    "region": "Surrey",
-    "neighborhood": "Newton",
-    "date": "2026-11-14",
-    "dateSchedule": null,
-    "frequency": "Weekly",
-    "frequencyLabel": "Weekend Evenings",
-    "time": "7:30 PM",
-    "start_time": "7:30 PM",
-    "doors_time": null,
-    "end_time": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-14",
-        "start_time": "7:30 PM",
-        "status": "upcoming",
-        "price": 38
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-15",
-        "start_time": "7:30 PM",
-        "status": "upcoming",
-        "price": 38
-      },
-      {
-        "slot": 3,
-        "date": "2026-11-21",
-        "start_time": "7:30 PM",
-        "status": "upcoming",
-        "price": 38
-      }
-    ],
-    "ticket_url": "https://www.bellperformingartscentre.com/events/",
-    "details_url": "https://www.bellperformingartscentre.com/events/",
-    "source_url": "https://www.bellperformingartscentre.com/events/",
-    "candidate_tier1_url": "https://www.bellperformingartscentre.com/events/",
-    "candidate_tier1_source": "verified_municipal_schedule",
-    "candidate_tier1_confidence": 1,
-    "lifecycle_type": "time_bound_event",
-    "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
-  },
-  {
-    "id": "surrey-arts-centre-studio-theatre-drama-improv",
-    "event_id": "surrey-arts-centre-studio-theatre-drama-improv",
-    "title": "Studio Theatre Indie Drama & Improv",
-    "venue": "Surrey Arts Centre",
-    "venue_name": "Surrey Arts Centre",
-    "city": "Surrey",
-    "region": "Surrey",
-    "neighborhood": "Newton",
-    "date": "2026-11-13",
-    "dateSchedule": null,
-    "frequency": "Weekly",
-    "frequencyLabel": "Weekly (Fri & Sat)",
-    "time": "8:00 PM",
-    "start_time": "8:00 PM",
-    "doors_time": null,
-    "end_time": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-13",
-        "start_time": "8:00 PM",
-        "status": "upcoming",
-        "price": 25
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-14",
-        "start_time": "8:00 PM",
-        "status": "upcoming",
-        "price": 25
-      }
-    ],
-    "ticket_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
-    "details_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
-    "source_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
-    "candidate_tier1_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
-    "candidate_tier1_source": "verified_municipal_schedule",
-    "candidate_tier1_confidence": 1,
-    "lifecycle_type": "time_bound_event",
-    "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
-  },
-  {
-    "id": "central-city-fun-park-roller-skating-arcade",
-    "event_id": "central-city-fun-park-roller-skating-arcade",
-    "title": "Roller Skating, Retro Arcade & Mini-Golf",
-    "venue": "Central City Fun Park",
-    "venue_name": "Central City Fun Park",
-    "city": "Surrey",
-    "region": "Surrey",
-    "neighborhood": "Surrey Central / Whalley",
-    "date": null,
-    "dateSchedule": "Wed–Thu: 4:00 PM – 9:00 PM • Fri: 4:00 PM – 11:00 PM • Sat: 10:00 AM – 11:00 PM • Sun: 10:00 AM – 9:00 PM (Closed Mon–Tue)",
-    "frequency": "Perennial Drop-In",
-    "frequencyLabel": "Wed–Sun Drop-In",
-    "time": "4:00 PM – 9:00 PM (Wed–Thu) • Until 11:00 PM (Fri–Sat)",
-    "start_time": "4:00 PM",
-    "doors_time": null,
-    "end_time": null,
-    "showings": [],
-    "ticket_url": "https://www.centralcityfunpark.com/pricing/",
-    "details_url": "https://www.centralcityfunpark.com/pricing/",
-    "source_url": "https://www.centralcityfunpark.com/pricing/",
-    "candidate_tier1_url": "https://www.centralcityfunpark.com/pricing/",
-    "candidate_tier1_source": "verified_municipal_schedule",
-    "candidate_tier1_confidence": 1,
-    "lifecycle_type": "perennial_drop_in",
-    "festival_affiliation": null,
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
-  },
-  {
-    "id": "fest-surrey-tree-lighting-festival-holiday-market",
-    "event_id": "fest-surrey-tree-lighting-festival-holiday-market",
-    "title": "Surrey Tree Lighting Festival & Holiday Market",
-    "venue": "Surrey Civic Plaza",
-    "venue_name": "Surrey Civic Plaza",
-    "city": "Surrey",
-    "region": "Surrey",
-    "neighborhood": "Surrey Central / Whalley",
-    "date": "2026-11-21",
-    "dateSchedule": "Sat Nov 21 & Sun Nov 22, 2026 • 12:00 PM – 8:00 PM",
-    "frequency": "One-Off",
-    "frequencyLabel": "Annual Festival (Nov 21–22)",
-    "time": "12:00 PM – 8:00 PM",
-    "start_time": "12:00 PM",
-    "doors_time": null,
-    "end_time": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-21",
-        "start_time": "12:00 PM",
-        "status": "upcoming",
-        "price": 0
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-22",
-        "start_time": "12:00 PM",
-        "status": "upcoming",
-        "price": 0
-      }
-    ],
-    "ticket_url": "https://www.surreytreelighting.ca",
-    "details_url": "https://www.surreytreelighting.ca",
-    "source_url": "https://www.surreytreelighting.ca",
-    "candidate_tier1_url": "https://www.surreytreelighting.ca",
-    "candidate_tier1_source": "verified_municipal_schedule",
-    "candidate_tier1_confidence": 1,
-    "lifecycle_type": "time_bound_event",
-    "festival_affiliation": "Surrey Tree Lighting Festival & Holiday Market",
-    "audited_at": "2026-11-16T17:17:23.411Z",
-    "step1b_audited_at": "2026-11-16T17:17:23.411Z",
-    "step4_grounded_at": "2026-11-16T17:17:23.411Z"
   }
 ]

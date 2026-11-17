@@ -1422,18 +1422,22 @@ export async function runHybridRipper(targetUrl, options = {}) {
 // Stage candidate venue into data/discovered_venues.json (Mutex + Atomic Write Safe)
 async function stageDiscoveredVenue(venueName, sourceUrl) {
   const cleanV = String(venueName || "").trim();
-  if (!cleanV || cleanV === "none_available" || cleanV === "Vancouver Venue" || cleanV === "Vancouver Cultural Venue") {
+  if (!cleanV || cleanV === "none_available" || cleanV === "search_exhausted_null" || cleanV === "quarantine_fatal" || cleanV === "Vancouver Venue" || cleanV === "Vancouver Cultural Venue") {
     return;
   }
   if (
     /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(cleanV) ||
-    /^(?:vancouver|metro\s+vancouver|surrey|burnaby|richmond|victoria|tba|tbd|online|virtual|zoom|[eé]v[eè]nement\s+en\s+ligne|vancouver['’]s\s+best\s+places|vancouver\s+rainy\s+day\s+activities|604\s*now|miss604|503\s+service\s+unavailable)$/i.test(cleanV) ||
+    /^(?:vancouver|metro\s+vancouver|downtown\s+vancouver|gastown|cloverdale|downtown\s+cloverdale|granville\s+island|eastside\s+arts\s+district|streets\s+of\s+surrey|surrey|burnaby|richmond|victoria|tba|tbd|online|virtual|zoom|[eé]v[eè]nement\s+en\s+ligne|vancouver['’]s\s+best\s+places|vancouver\s+rainy\s+day\s+activities|604\s*now|miss604|resident\s+advisor|503\s+service\s+unavailable)$/i.test(cleanV) ||
+    /\b(?:online|virtual|zoom|livestream|webinar|flohockey|flosports|online\s+broadcast|online\s+stream)\b/i.test(cleanV) ||
+    /^tba\s*\(/i.test(cleanV) ||
     /^(?:various\s+venues|multiple\s+venues)\b/i.test(cleanV) ||
-    /\b(?:cobble\s+hill|cobblestone\s+pub|sea\s+to\s+sky\s+gondola|brackendale|squamish|whistler|chilliwack|abbotsford|nanaimo|kelowna|victoria)\b/i.test(`${cleanV} ${sourceUrl || ""}`)
+    /\b(?:cobble\s+hill|cobblestone\s+pub|sea\s+to\s+sky\s+gondola|brackendale|squamish|whistler|chilliwack|abbotsford|mission\s+city|nanaimo|kelowna|victoria|calgary|toronto|edmonton|ottawa|montreal|virginia|new\s+jersey|tokyo|japan|europeantour)\b/i.test(`${cleanV} ${sourceUrl || ""}`) ||
+    /\.(?:jpg|jpeg|png|gif|webp|pdf)(?:\?|$)/i.test(String(sourceUrl || "")) ||
+    /wp-login\.php/i.test(String(sourceUrl || ""))
   ) {
     return;
   }
-  const aggregatorTokens = ["destinationvancouver.com", "vancouversbestplaces.com", "victoriasbestplaces.com", "vancouverisawesome.com", "straight.com", "do604.com", "miss604.com", "604now.com", "dailyhive.com", "eventbrite", "showpass", "ticketmaster", "admitone", "universe.com", "songkick", "orangetickets", "vtix"];
+  const aggregatorTokens = ["destinationvancouver.com", "vancouversbestplaces.com", "victoriasbestplaces.com", "vancouverisawesome.com", "straight.com", "do604.com", "miss604.com", "604now.com", "dailyhive.com", "eventbrite", "showpass", "ticketmaster", "admitone", "universe.com", "songkick", "orangetickets", "vtix", "flohockey.tv", "open.spotify.com"];
   if (sourceUrl && aggregatorTokens.some(tok => sourceUrl.toLowerCase().includes(tok))) {
     return;
   }
@@ -1445,18 +1449,22 @@ async function stageDiscoveredVenue(venueName, sourceUrl) {
     await safeUpdateJsonFile(DISCOVERED_VENUES_PATH, { metadata: {}, discoveredVenues: [] }, (disc) => {
       disc.discoveredVenues = disc.discoveredVenues || [];
       const exists = disc.discoveredVenues.some(
-        (v) => (v.name || "").toLowerCase() === venueName.toLowerCase()
+        (v) => (v.name || "").toLowerCase().trim() === cleanV.toLowerCase()
       );
       if (!exists) {
         disc.discoveredVenues.push({
           id: `venue-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-          name: venueName,
+          name: cleanV,
           websiteUrl: sourceUrl,
           source: "Stagehand Hybrid Ripper",
           status: "pending",
           discoveredAt: new Date().toISOString(),
         });
-        console.log(`🏛️ Staged newly discovered venue '${venueName}' to discovered_venues.json`);
+        disc.metadata = disc.metadata || {};
+        disc.metadata.totalDiscovered = disc.discoveredVenues.length;
+        disc.metadata.pendingCount = disc.discoveredVenues.filter((v) => v.status === "pending").length;
+        disc.metadata.updatedAt = new Date().toISOString();
+        console.log(`🏛️ Staged newly discovered venue '${cleanV}' to discovered_venues.json`);
       }
       return disc;
     });

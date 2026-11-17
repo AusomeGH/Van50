@@ -69,7 +69,9 @@ export const TICKETING_PLATFORMS = [
   "vbotickets.com",
   "tickettailor.com",
   "fareharbor.com",
-  "tixr.com"
+  "tixr.com",
+  "opendate.io",
+  "app.opendate.io"
 ];
 
 /**
@@ -162,6 +164,11 @@ export function isWhitelistedTicketingUrl(url) {
       if (!path.startsWith("/e/")) return false;
       // Reject if it doesn't contain a numeric ID or ends in just '-tickets'
       if (!/\d{5,}/.test(path)) return false;
+    }
+
+    // OpenDate specific check (e.g. Hollywood Theatre app.opendate.io/e/<slug>-<id>): must be an event path /e/...
+    if (host.includes("opendate.io")) {
+      if (!path.startsWith("/e/") || path.length <= 4) return false;
     }
 
     // Ticketweb specific check: must be an event path /event/... and contain a numeric ID
@@ -505,7 +512,7 @@ export function validateTriadMatch(candidateUrl, eventDate, eventTitle, eventVen
     // NEVER allow generic multi-tenant ticketing portals (Eventbrite, Showpass, TicketWeb, Universe, Dice) to bypass slug title matching via inContext!
     if (!passesTitle && contextInfo?.inContext) {
       const host = u.hostname.toLowerCase();
-      const isMultiTenantPortal = /(?:eventbrite\.|showpass\.com|ticketweb\.|universe\.com|dice\.fm|admitone\.com|ticketmaster\.|humanitix\.com|bloomtickets\.ca|riotheatretickets\.ca|vtixonline\.com|zaui\.net|ovationtix\.com|spektrix\.com|tickettailor\.com)/i.test(host);
+      const isMultiTenantPortal = /(?:eventbrite\.|showpass\.com|ticketweb\.|universe\.com|dice\.fm|admitone\.com|ticketmaster\.|humanitix\.com|bloomtickets\.ca|riotheatretickets\.ca|vtixonline\.com|zaui\.net|ovationtix\.com|spektrix\.com|tickettailor\.com|opendate\.io)/i.test(host);
       if (!isMultiTenantPortal) {
         const venueTokens = tokenizeText(eventVenue);
         const isVenueSubdomain = venueTokens.some((vt) => host.includes(vt));

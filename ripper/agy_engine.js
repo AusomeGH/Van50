@@ -24,13 +24,24 @@ function resolveCuratorScreenshots(curatorInfo, existingCard = null) {
   if (Array.isArray(existingCard?.curatorScreenshots)) {
     existingCard.curatorScreenshots.forEach(addCandidate);
   }
+  if (Array.isArray(existingCard?.screenshotPaths)) {
+    existingCard.screenshotPaths.forEach(addCandidate);
+  }
   if (Array.isArray(curatorInfo?.matchedInstructions)) {
     for (const inst of curatorInfo.matchedInstructions) {
       addCandidate(inst?.screenshotPath);
+      if (Array.isArray(inst?.screenshotPaths)) inst.screenshotPaths.forEach(addCandidate);
       if (Array.isArray(inst?.screenshots)) inst.screenshots.forEach(addCandidate);
     }
   }
   return Array.from(paths);
+}
+
+function sanitizeAutoScreenshotNote(note) {
+  if (!note || typeof note !== "string") return "";
+  return note
+    .replace(/\(\$0\.00\s*CAD\)\.\s*13-dimension alignment verified by curator\.?/gi, "(screenshot staged for AI visual price extraction).")
+    .trim();
 }
 
 /**
@@ -284,7 +295,7 @@ export async function callAntigravityBoxOfficeExtractor(domSnapshotText, targetU
     existingCard,
   });
   const screenshotFiles = resolveCuratorScreenshots(curatorInfo, existingCard);
-  const combinedNote = existingCard?.curator_notes || curatorInfo?.effectiveNote || "";
+  const combinedNote = sanitizeAutoScreenshotNote(existingCard?.curator_notes || curatorInfo?.effectiveNote || "");
   const curatorHintLines = [];
   if (combinedNote) {
     curatorHintLines.push(`MANDATORY CURATOR NOTE (Tier 1 Authority on Identity/Links): "${combinedNote}"`);
@@ -410,7 +421,9 @@ export async function callAntigravityEnricher(eventCard) {
     venue: eventCard?.venue || eventCard?.venue_name || "",
     existingCard: eventCard,
   });
-  const effectiveGuidance = eventCard.curator_instruction || eventCard.curator_notes || curatorInfo?.effectiveNote || "";
+  const effectiveGuidance = sanitizeAutoScreenshotNote(
+    eventCard.curator_instruction || eventCard.curator_notes || curatorInfo?.effectiveNote || ""
+  );
   const curatorPrompt = effectiveGuidance
     ? `\n- MANDATORY CURATOR GUIDANCE TO CONSIDER: "${effectiveGuidance}" (You MUST honor this in title, artist, category, or description!)\n`
     : "";
