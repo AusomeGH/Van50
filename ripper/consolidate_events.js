@@ -27,6 +27,8 @@ const AGGREGATOR_DOMAINS = [
   "straight.com",
   "dailyhive.com",
   "vancouverisawesome.com",
+  "vancitydigest.ca",
+  "chatterblock.com",
 ];
 
 const TIER1_CHECKOUT_DOMAINS = [
@@ -565,7 +567,9 @@ export function consolidateCatalogCards(cards, options = {}) {
     const rawUrl = c.ticket_url || c.candidate_tier1_url || c.details_url || c.websiteUrl || c.url || "";
     const venueKey = canonicalizeVenueKey(venueRaw);
     const titleKey = canonicalizeTitleKey(titleRaw, venueRaw);
-    const urlKey = normalizeSpecificTicketUrl(c.ticket_url || c.candidate_tier1_url || c.websiteUrl || c.url);
+    const urlKey = normalizeSpecificTicketUrl(
+      c.links?.tier1_checkout || c.ticket_url || c.candidate_tier1_url || c.websiteUrl || c.url
+    );
     const dates = new Set(extractShowingsFromCard(c).map((s) => s.date));
     if (c.date && /^\d{4}-\d{2}-\d{2}$/.test(c.date)) dates.add(c.date);
     const isStandalonePass = STANDALONE_PASS_RE.test(titleRaw) || STANDALONE_PASS_URL_RE.test(rawUrl);
@@ -594,14 +598,25 @@ export function consolidateCatalogCards(cards, options = {}) {
     }
     if (m.urlKey) {
       if (urlMap.has(m.urlKey)) {
-        // Only merge by URL if canonicalTitle is also similar or same venue (prevents merging two distinct shows sharing a generic box-office page)
+        // Merge by specific event checkout URL if canonicalTitle is similar OR same venue + overlapping date
+        // (excluding shared general-admission museum ticket portals like tickets.vanartgallery.bc.ca)
         const otherIdx = urlMap.get(m.urlKey);
         const otherMeta = meta[otherIdx];
+        const isSharedMuseumGaPortal = /tickets\.vanartgallery\.bc\.ca/i.test(m.urlKey);
+        let sharesDateWithOther = false;
+        for (const d of m.dates) {
+          if (otherMeta.dates.has(d)) {
+            sharesDateWithOther = true;
+            break;
+          }
+        }
         if (
+          !isSharedMuseumGaPortal &&
           otherMeta.isStandalonePass === m.isStandalonePass &&
           (otherMeta.titleKey === m.titleKey ||
             otherMeta.titleKey.includes(m.titleKey) ||
-            m.titleKey.includes(otherMeta.titleKey))
+            m.titleKey.includes(otherMeta.titleKey) ||
+            (m.venueKey && otherMeta.venueKey === m.venueKey && sharesDateWithOther))
         ) {
           safeUnion(otherIdx, i);
         }

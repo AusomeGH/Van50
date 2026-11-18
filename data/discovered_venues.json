@@ -2,9 +2,9 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Candidate venues detected via discovery feeds and festival programs.",
-    "updatedAt": "2026-11-16T20:18:00.000Z",
+    "updatedAt": "2026-11-18T15:05:21.318Z",
     "totalDiscovered": 330,
-    "pendingCount": 83
+    "pendingCount": 0
   },
   "discoveredVenues": [
     {
@@ -936,8 +936,10 @@
       "calendarUrl": "https://www.normanrothsteintheatre.com/events",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced theater.guide listing with official normanrothsteintheatre.com/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-02T01:33:49.399Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-02T01:33:49.399Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Active 318-seat community performing arts theatre inside the JCC of Greater Vancouver; already present in data/venues.json as 'Norman & Annette Rothstein Theatre'. Merge alias and upgrade calendar_url to standalone /events feed."
     },
     {
       "id": "venue-1793583312677-2i4j",
@@ -993,14 +995,16 @@
       "id": "venue-1794014624821-hidn",
       "name": "North Vancouver City Library",
       "address": "120 W 14th St, North Vancouver, BC V7M 1N9",
-      "neighborhood": "Central Lonsdale, North Vancouver",
+      "neighborhood": "Central Lonsdale",
       "category": "activities",
       "websiteUrl": "https://www.nvcl.ca/",
       "calendarUrl": "https://www.nvcl.ca/events",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced unrelated Film Bursary URL with official nvcl.ca/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-07T01:23:44.821Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-07T01:23:44.821Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open municipal public library in Central Lonsdale hosting free public workshops, author readings, film screenings, language circles, and Civic Plaza community events."
     },
     {
       "id": "venue-1794022025841-yljd",
@@ -1045,15 +1049,17 @@
     {
       "id": "venue-1794028140943-67yo",
       "name": "Swangard Stadium",
-      "address": "6100 Boundary Rd, Burnaby, BC V5S 3R1",
-      "neighborhood": "Central Park, Burnaby",
+      "address": "6100 Boundary Rd, Burnaby, BC V5S 3R2",
+      "neighborhood": "Central Park / Metrotown",
       "category": "activities",
       "websiteUrl": "https://www.burnaby.ca/recreation-and-arts/recreation-facilities/swangard-stadium",
       "calendarUrl": "https://www.burnaby.ca/recreation-and-arts/recreation-facilities/swangard-stadium",
       "sampleEvent": "ℹ️ Municipal Stadium Facility — Replaced runvan.org race link with official City of Burnaby facility page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-07T05:09:00.943Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-07T05:09:00.943Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open 5,288-seat municipal outdoor stadium in Burnaby's Central Park hosting Vancouver Rise FC, Whitecaps FC 2, TSS Rovers, track meets, concerts, and festivals <= $50 CAD, plus free public running track access when unbooked."
     },
     {
       "id": "venue-1794028279547-v6ra",
@@ -1065,8 +1071,10 @@
       "calendarUrl": "https://www.ams.ubc.ca/student-life/events/",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced runvan.org race link with official UBC AMS /student-life/events/",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-07T05:11:19.547Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-07T05:11:19.547Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open UBC student union hub hosting public concerts, club fairs, markets, and Gallery Patio & Lounge events; already in data/venues.json as 'University of British Columbia - AMS Student Nest'. Merge alias and upgrade calendar_url."
     },
     {
       "id": "venue-1794029420579-st4h",
@@ -1108,21 +1116,25 @@
       "calendarUrl": "https://lfas.sd35.bc.ca/",
       "sampleEvent": "ℹ️ Fine Arts School Rental Auditorium (No standalone public box-office calendar) — Grounded to host campus site",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-07T05:36:32.812Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-07T05:36:32.812Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open 300-seat theatre inside Langley Fine Arts School in Fort Langley (Township of Langley, Metro Vancouver) hosting public community musicals, theatre productions, concerts, and dance showcases <= $50 CAD."
     },
     {
       "id": "venue-1794030919590-0fhw",
       "name": "Ecology Centre",
       "address": "3663 Park Rd, North Vancouver, BC V7J 3G3",
-      "neighborhood": "Lynn Valley, North Vancouver",
+      "neighborhood": "Lynn Valley",
       "category": "outdoors",
       "websiteUrl": "https://ecologycentre.ca/",
-      "calendarUrl": "https://ecologycentre.ca/adult-teen-programs/",
+      "calendarUrl": "https://ecologycentre.ca/programs/",
       "sampleEvent": "✅ Standalone Programs Calendar — Replaced static PDF upload with official Lynn Canyon Ecology Centre programs page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-07T05:55:19.590Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-07T05:55:19.590Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open nature museum and environmental education centre in Lynn Canyon Park (entry by $2–$5 donation + public workshops <= $50 CAD); already in data/venues.json as 'Lynn Canyon Ecology Centre'. Merge alias and maintain /programs/ feed."
     },
     {
       "id": "venue-1794273756613-jnha",
@@ -1478,27 +1490,31 @@
       "id": "venue-1794278183029-1ola",
       "name": "Djavad Mowafaghian Cinema, SFU School for the Contemporary Arts",
       "address": "149 W Hastings St, Vancouver, BC V6B 1H4",
-      "neighborhood": "Gastown",
+      "neighborhood": "Gastown / Victory Square",
       "category": "cinema",
       "websiteUrl": "https://www.sfu.ca/sfulive/venues/djavad-mowafaghian-cinema.html",
       "calendarUrl": "https://www.sfu.ca/sca/events---news/events.html",
       "sampleEvent": "✅ Standalone Events Calendar — Grounded to official SFU Cinema venue page & SCA events calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T02:36:23.029Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T02:36:23.029Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open 350-seat cinema on the 3rd floor of SFU Goldcorp Centre for the Arts hosting VIFF, DOXA, VLAFF, and SFU SCA screenings <= $50 CAD; already in data/venues.json as 'Djavad Mowafaghian Cinema'. Merge alias and upgrade SCA events URL."
     },
     {
       "id": "venue-1794278245397-0w7o",
       "name": "West Gym (SFU Burnaby)",
       "address": "8888 University Dr W, Burnaby, BC V5A 1S6",
-      "neighborhood": "Burnaby Mountain, Burnaby",
+      "neighborhood": "Burnaby Mountain",
       "category": "activities",
       "websiteUrl": "https://athletics.sfu.ca/",
       "calendarUrl": "https://athletics.sfu.ca/",
       "sampleEvent": "✅ Varsity Athletics Arena — Grounded to official SFU Red Leafs Athletics homepage & game schedule",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T02:37:25.397Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T02:37:25.397Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open NCAA Division II varsity indoor arena inside SFU's Lorne Davies Complex on Burnaby Mountain hosting SFU Red Leafs basketball, volleyball, and wrestling games (~$14–$16 CAD GA). Distinct facility from Bennett Library and Gathering House."
     },
     {
       "id": "venue-1794278254964-5fh4",
@@ -1510,8 +1526,10 @@
       "calendarUrl": "https://events.sfu.ca/",
       "sampleEvent": "✅ Public Lectures & Workshops Hub — Grounded to official SFU Vancouver Harbour Centre & events.sfu.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T02:37:34.964Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T02:37:34.964Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open downtown university campus in the historic Spencer Building hosting frequent free and low-cost public lectures, dialogues, book launches, Lunch Poems, and community forums <= $50 CAD."
     },
     {
       "id": "venue-1794278332012-c6hl",
@@ -1723,8 +1741,10 @@
       "calendarUrl": "https://www.kpu.ca/science/brew/news",
       "sampleEvent": "✅ Teaching Brewery & Friday Tasting Room — Grounded to official kpu.ca/brew & news/events page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:00:06.759Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T03:00:06.759Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open teaching brewery at Kwantlen Polytechnic University Langley campus running weekly Friday public beer releases/tasting sales ($7–$16 CAD) and occasional public brewery open houses."
     },
     {
       "id": "venue-1794279697793-p6k2",
@@ -1740,14 +1760,16 @@
       "id": "venue-1794280287424-nqna",
       "name": "CAMP Beer Co.",
       "address": "110-19664 64 Ave, Langley, BC V2Y 3J6",
-      "neighborhood": "Langley",
+      "neighborhood": "Willowbrook",
       "category": "social",
       "websiteUrl": "https://www.campbeer.ca/",
       "calendarUrl": "https://www.campbeer.ca/events",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced KPU partner link with official campbeer.ca/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:11:27.424Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T03:11:27.424Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open craft brewery, taproom, coffee bar, and patio in Langley hosting regular live music nights, cask releases, and community gatherings <= $50 CAD with a standalone /events calendar."
     },
     {
       "id": "venue-1794280405544-jqhx",
@@ -1899,8 +1921,10 @@
       "calendarUrl": "https://hawksworthrestaurant.com/",
       "sampleEvent": "ℹ️ Fine Dining Restaurant & Bar (No standalone public calendar) — Replaced Scout stub with official hawksworthrestaurant.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:48:36.375Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T03:48:36.375Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Dismissed: Upscale fine-dining restaurant ($$$$) inside Rosewood Hotel Georgia with no public cultural events calendar (only standard dining service, private corporate dining rooms, and ~$198+ multi-course tasting menus)."
     },
     {
       "id": "venue-1794282516429-03c5",
@@ -1916,14 +1940,16 @@
       "id": "venue-1794282949190-syab",
       "name": "Par-Tee Putt",
       "address": "670 Smithe St, Vancouver, BC V6B 1E3",
-      "neighborhood": "Downtown",
+      "neighborhood": "Downtown / Granville Entertainment District",
       "category": "activities",
       "websiteUrl": "https://www.parteeputt.com/vancouver",
       "calendarUrl": "https://www.parteeputt.com/vancouver",
       "sampleEvent": "✅ Drop-In Mini Golf Bar — Replaced AdmitOne ticket link with official parteeputt.com/vancouver",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:55:49.190Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T03:55:49.190Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open indoor 18-hole themed mini-golf bar and social activity venue at 670 Smithe St in Downtown Vancouver with rounds priced ~$15–$25 CAD (<= $50 CAD)."
     },
     {
       "id": "venue-1794282972392-cz85",
@@ -1935,8 +1961,10 @@
       "calendarUrl": "https://lavenderland.ca/pages/events",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced AdmitOne link with official lavenderland.ca/pages/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:56:12.392Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T03:56:12.392Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Richmond agri-tourism farm & boutique offering seasonal summer lavender field admission (~$13–$15 + GST, mid-June to mid-September) and year-round public candle/wax crafting workshops starting at $14.99–$19.99 CAD (<= $50 CAD)."
     },
     {
       "id": "venue-1794283049221-rp09",
@@ -1948,8 +1976,10 @@
       "calendarUrl": "https://www.dublincalling.com/events",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced AdmitOne link with official dublincalling.com/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:57:29.221Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T03:57:29.221Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN at 900 Granville St (operated by MRG Group; neighboring Gibbons Irish Pub opened next door at 906 Granville St without closing Dublin Calling). Hosts trivia nights, DJ party nights, darts/games, and major sports watch parties <= $50 CAD."
     },
     {
       "id": "venue-1794283065505-j4nn",
@@ -1981,8 +2011,10 @@
       "calendarUrl": "https://www.highscorelounge.ca/event-calendar",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced AdmitOne Surrey link with official highscorelounge.ca/event-calendar (Vancouver)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:59:23.609Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T03:59:23.609Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN 19+ retro arcade and cannabis consumption lounge on the 2nd floor of 303 W Hastings St hosting gaming tournaments, hip-hop/comedy showcases, and community nights (~$5–$7 CAD cover) with standalone /event-calendar."
     },
     {
       "id": "venue-1794283187826-ahyw",
@@ -1994,21 +2026,25 @@
       "calendarUrl": "https://www.parqcasino.com/d-6-lounge",
       "sampleEvent": "ℹ️ Rooftop Lounge at Parq Vancouver — Replaced AdmitOne Surrey link with official parqcasino.com/d-6-lounge",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T03:59:47.826Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T03:59:47.826Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open 6th-floor indoor/outdoor rooftop lounge at Parq Vancouver / THE DOUGLAS hosting weekend DJ sets, sunset sessions, pool/library lounge socials, and themed ticketed nights <= $50 CAD."
     },
     {
       "id": "venue-1794283227969-nn0n",
       "name": "Honeybee Centre",
       "address": "7480 176 St, Surrey, BC V3S 7B1",
-      "neighborhood": "Cloverdale, Surrey",
+      "neighborhood": "Cloverdale",
       "category": "activities",
       "websiteUrl": "https://www.honeybeecentre.com/",
       "calendarUrl": "https://www.honeybeecentre.com/courses-and-workshops/",
       "sampleEvent": "✅ Standalone Workshops Calendar — Replaced AdmitOne link with official honeybeecentre.com/courses-and-workshops/",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T04:00:27.969Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T04:00:27.969Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Surrey agri-education centre, country store, and bistro offering free public visits, $24.70 CAD beekeeping seminars, and community drop-in events <= $50 CAD (compiler filters out >$50 specialty courses)."
     },
     {
       "id": "venue-1794283243226-y4cf",
@@ -2020,8 +2056,10 @@
       "calendarUrl": "https://imagineonestudios.com/",
       "sampleEvent": "ℹ️ Dance Studio (Drop-in classes via app/homepage) — Replaced AdmitOne Surrey link with official imagineonestudios.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T04:00:43.226Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T04:00:43.226Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN street and club dance studio at 3685 E Hastings St offering public drop-in classes and choreographer pop-up workshops (~$20–$30 CAD single drop-in)."
     },
     {
       "id": "venue-1794283289633-szr0",
@@ -2047,14 +2085,16 @@
       "id": "venue-1794283444919-4izm",
       "name": "Utopia Wellness & Gifts",
       "address": "1826 Lonsdale Ave, North Vancouver, BC V7M 2J9",
-      "neighborhood": "Central Lonsdale, North Vancouver",
+      "neighborhood": "Central Lonsdale",
       "category": "activities",
       "websiteUrl": "https://utopiastore.ca/",
       "calendarUrl": "https://utopiastore.ca/",
       "sampleEvent": "ℹ️ Retail & Workshop Space — Replaced AdmitOne Surrey link with official utopiastore.ca (North Vancouver)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T04:04:04.919Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T04:04:04.919Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN Central Lonsdale wellness shop and sacred studio space hosting public sound baths (~$30 CAD), moon circles, meditation, and intuitive workshops (~$30–$50 CAD). No standalone calendar index URL so enroll_calendar_feed is false."
     },
     {
       "id": "venue-1794283501704-j2o4",
@@ -2079,41 +2119,47 @@
     {
       "id": "venue-1794283562041-obme",
       "name": "The Rec Room Brentwood",
-      "address": "1920 Willingdon Ave, Unit 21-06, Burnaby, BC V5C 0K3",
-      "neighborhood": "Brentwood, Burnaby",
+      "address": "1920 Willingdon Ave, Unit 21-06, Burnaby, BC V5C 0K6",
+      "neighborhood": "Brentwood",
       "category": "social",
       "websiteUrl": "https://www.therecroom.com/burnaby-brentwood",
-      "calendarUrl": "https://www.therecroom.com/burnaby-brentwood",
+      "calendarUrl": "https://www.therecroom.com/burnaby-brentwood/events",
       "sampleEvent": "✅ Live Entertainment & Arcade Hub — Replaced AdmitOne Surrey link with official therecroom.com/burnaby-brentwood",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T04:06:02.041Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T04:06:02.041Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open 43,000-sq-ft arcade, restaurant, and live performance hub at The Amazing Brentwood hosting free Fandom Trivia nights, karaoke, drag shows, comedy, and live music <= $50 CAD; upgraded calendar_url to standalone /burnaby-brentwood/events."
     },
     {
       "id": "venue-1794283563142-wewv",
       "name": "Karma Lounge",
-      "address": "1161 W Georgia St, Vancouver, BC V6E 0B3",
+      "address": "1161 W Georgia St, Vancouver, BC V6E 0C6",
       "neighborhood": "Downtown Vancouver",
       "category": "social",
       "websiteUrl": "https://karmalounge.ca/",
       "calendarUrl": "https://karmalounge.ca/",
       "sampleEvent": "ℹ️ Paradox Hotel Lounge — Replaced AdmitOne Surrey link with official karmalounge.ca (Downtown Vancouver)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T04:06:03.142Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T04:06:03.142Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open upscale cocktail lounge and restaurant inside Paradox Hotel Vancouver (1161 W Georgia St) hosting weekly DJ nights and social events; already present in data/venues.json as 'Karma Lounge' (distinct from 3rd-floor 'Mansion Nightclub' in the same hotel tower). Merge postal code variant V6E 0B3 / Paradox Hotel alias."
     },
     {
       "id": "venue-1794283619001-5z5e",
       "name": "slate. Event Space",
       "address": "670 Smithe St, 3rd Floor, Vancouver, BC V6B 5G1",
-      "neighborhood": "Downtown Vancouver",
+      "neighborhood": "Downtown / Granville Entertainment District",
       "category": "shows",
       "websiteUrl": "https://slatevancouver.com/",
       "calendarUrl": "https://slatevancouver.com/",
       "sampleEvent": "ℹ️ MRG Group Event Venue — Replaced AdmitOne Surrey link with official slatevancouver.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T04:06:59.001Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T04:06:59.001Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open 3rd-floor boutique event venue operated by The MRG Group at 670 Smithe St (above Dublin Calling and Par-Tee Putt) that regularly hosts public ticketed DJ nights, house music showcases, comedy, and watch parties <= $50 CAD via AdmitOne and Eventbrite."
     },
     {
       "id": "venue-1794283962811-co9i",
@@ -2255,8 +2301,10 @@
       "calendarUrl": "https://cougarcreekhouseofhorrors.com/",
       "sampleEvent": "ℹ️ Seasonal October Haunted Attraction — Replaced Discover Surrey listing with official cougarcreekhouseofhorrors.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:21:35.043Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:21:35.043Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Active annual October haunted house attraction in Newton, Surrey (12530 72 Ave) offering General Admission nights starting at ~$29.99–$39.99 CAD (<= $50.00 CAD) plus family-friendly Horrors Jr. matinees."
     },
     {
       "id": "venue-1794288413070-7whs",
@@ -2298,8 +2346,10 @@
       "calendarUrl": "https://www.northviewgolf.com/",
       "sampleEvent": "ℹ️ Golf & Banquet Club (No public event calendar; 18-hole rates >$50) — Replaced Chamber post with official northviewgolf.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:38:09.913Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T05:38:09.913Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Dismissed: 18-hole championship golf club where green fees exceed the $50.00 CAD ceiling ($55 sunset to $75–$110 CAD regular across Canal and Ridge courses) and banquet halls (Stewart Room, Palmer Room) operate solely for private weddings, galas, and corporate rentals with no public <= $50 CAD cultural event calendar."
     },
     {
       "id": "venue-1794289119867-m3ck",
@@ -2331,8 +2381,10 @@
       "calendarUrl": "https://bombaybanquethall.com/",
       "sampleEvent": "ℹ️ Banquet & Convention Hall (No standalone public calendar) — Replaced Newton BIA listing with official bombaybanquethall.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:40:07.698Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T05:40:07.698Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Dismissed: Private wedding, corporate convention, and banquet rental hall (7475 135 St, Surrey) with no standalone public event calendar and no regular public ticketed cultural shows <= $50.00 CAD."
     },
     {
       "id": "venue-1794289257120-ab2o",
@@ -2384,8 +2436,10 @@
       "calendarUrl": "https://www.surrey.ca/parks-recreation/parks/francis-park",
       "sampleEvent": "✅ Municipal Public Park — Replaced Fleetwood BIA link with official City of Surrey Francis Park page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:43:47.888Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:43:47.888Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open City of Surrey municipal public park in Fleetwood (15951 83 Ave, adjacent to Fleetwood Community Centre) featuring a 300m accessible wellness walking loop, gardens, picnic lawns, and community outdoor festival/gathering space."
     },
     {
       "id": "venue-1794289545341-zbto",
@@ -2401,14 +2455,16 @@
       "id": "venue-1794289731403-c8tm",
       "name": "Champlain Heights Community Centre",
       "address": "3350 Maquinna Dr, Vancouver, BC V5S 4C6",
-      "neighborhood": "Champlain Heights, Vancouver",
+      "neighborhood": "Champlain Heights",
       "category": "activities",
       "websiteUrl": "https://champlainheightscc.ca/",
       "calendarUrl": "https://champlainheightscc.ca/calendar/",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Meetup link with official champlainheightscc.ca/calendar/ (WAF-safe)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:48:51.403Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:48:51.403Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Vancouver public community centre in Champlain Heights (3350 Maquinna Dr) with a WAF-safe non-.aspx association website and standalone public events calendar (champlainheightscc.ca/calendar/) offering drop-in sports, workshops, and community events <= $50 CAD."
     },
     {
       "id": "venue-1794289788252-3747",
@@ -2454,14 +2510,16 @@
       "id": "venue-1794289918520-akjn",
       "name": "Delta Heritage Airpark",
       "address": "4103 104 St, Delta, BC V4K 3N3",
-      "neighborhood": "East Ladner / Boundary Bay, Delta",
+      "neighborhood": "East Ladner / Boundary Bay",
       "category": "outdoors",
       "websiteUrl": "https://www.deltaheritageairpark.org/",
       "calendarUrl": "https://www.deltaheritageairpark.org/",
       "sampleEvent": "✅ Heritage Aviation Park (Monthly pancake breakfasts & annual fly-ins) — Replaced Meetup link with deltaheritageairpark.org",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:51:58.520Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:51:58.520Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open historic grass-strip community airfield in East Ladner / Boundary Bay, Delta (4103 104 St) open free to ground visitors for aircraft viewing, annual fly-ins, and monthly 2nd-Sunday RAA Chapter 85 pancake breakfasts (~$7 CAD)."
     },
     {
       "id": "venue-1794289926938-bgcp",
@@ -2497,14 +2555,16 @@
       "id": "venue-1794290039924-ekii",
       "name": "New Westminster Public Library",
       "address": "716 6th Ave, New Westminster, BC V3M 2B3",
-      "neighborhood": "Uptown, New Westminster",
+      "neighborhood": "Uptown New Westminster",
       "category": "activities",
       "websiteUrl": "https://www.nwpl.ca/",
       "calendarUrl": "https://www.nwpl.ca/events-calendar",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Meetup link with official nwpl.ca/events-calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:53:59.924Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:53:59.924Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Main Branch municipal public library in Uptown New Westminster (716 6th Ave) with a rich standalone public events calendar (nwpl.ca/events-calendar) offering free author talks, film screenings, craft circles, book clubs, and workshops."
     },
     {
       "id": "venue-1794290047691-bbbq",
@@ -2523,11 +2583,13 @@
       "neighborhood": "Downtown Port Coquitlam",
       "category": "social",
       "websiteUrl": "https://pocolegion.ca/",
-      "calendarUrl": "https://pocolegion.ca/",
+      "calendarUrl": "https://pocolegion.ca/calendar-of-events/",
       "sampleEvent": "✅ Active Legion Hall (Live bands, music bingo & salsa nights) — Replaced Meetup link with official pocolegion.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:54:58.874Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:54:58.874Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Royal Canadian Legion hall & lounge in Downtown Port Coquitlam (2675 Shaughnessy St) with an active standalone calendar (pocolegion.ca/calendar-of-events/) featuring live bands, music bingo, karaoke, dances, paint nights, and meat draws <= $50 CAD."
     },
     {
       "id": "venue-1794290106830-h9ol",
@@ -2539,8 +2601,10 @@
       "calendarUrl": "https://www.surrey.ca/parks-recreation/parks/elgin-heritage-park",
       "sampleEvent": "✅ Municipal Riverfront Park — Replaced Meetup walking-club link with official City of Surrey park page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:55:06.830Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:55:06.830Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open 90-acre City of Surrey riverfront nature park along the Nicomekl River (13723 Crescent Rd) with 3 km of flat wetland/forest walking trails and birdwatching loops; approved as a distinct outdoor park entity from 'Historic Stewart Farm' (the indoor heritage farmhouse museum located inside the park)."
     },
     {
       "id": "venue-1794290159183-pm0m",
@@ -2612,8 +2676,10 @@
       "calendarUrl": "https://barnsidebrewing.ca/",
       "sampleEvent": "✅ Farm Craft Brewery & Taproom (Live music & workshops) — Replaced Meetup link with official barnsidebrewing.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T05:59:01.844Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T05:59:01.844Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open farm-based craft brewery and taproom in Ladner, Delta (6655 60 Ave) hosting live acoustic music, taproom socials, and seasonal craft workshops <= $50 CAD."
     },
     {
       "id": "venue-1794290388811-jalk",
@@ -2655,8 +2721,10 @@
       "calendarUrl": "https://www.newwestcity.ca/calendar-of-events",
       "sampleEvent": "✅ Civic Arena & Events Calendar — Replaced Meetup link with official City of New Westminster facility & calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:00:57.238Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:00:57.238Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open historic 3,500-seat civic arena in New Westminster (51 Third Ave) hosting WLA New Westminster Salmonbellies box lacrosse games (~$15–$25 CAD), junior lacrosse, seasonal public ice skating (~$3.75–$7.50 CAD), and community events via City of New Westminster's standalone calendar."
     },
     {
       "id": "venue-1794290504870-5axv",
@@ -2668,8 +2736,10 @@
       "calendarUrl": "https://thebeershackwr.com/",
       "sampleEvent": "✅ Craft Beer Pub (Weekend live bands & Thursday blues jams) — Replaced Meetup link with official thebeershackwr.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:01:44.870Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:01:44.870Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open craft beer taphouse and live music lounge in Uptown White Rock (1515 Johnston Rd) hosting live bands 5 nights a week, Thursday blues jams, and Whiskey Wednesdays <= $50 CAD."
     },
     {
       "id": "venue-1794290516826-kl92",
@@ -2681,8 +2751,10 @@
       "calendarUrl": "https://3dogsbrewing.ca/",
       "sampleEvent": "✅ Craft Brewery Taproom (Trivia, open mics & acoustic music) — Replaced Meetup link with official 3dogsbrewing.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:01:56.826Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:01:56.826Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open family-owned craft brewery and taproom in Uptown White Rock's Miramar Village (15181 Thrift Ave #107) hosting weekly trivia nights, open mics, and live acoustic music <= $50 CAD."
     },
     {
       "id": "venue-1794290578098-g7gv",
@@ -2694,8 +2766,10 @@
       "calendarUrl": "https://www.sawbuckspub.com/",
       "sampleEvent": "✅ Neighbourhood Pub (Karaoke Thursdays & weekend live bands) — Replaced Meetup link with official sawbuckspub.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:02:58.098Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:02:58.098Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open neighbourhood pub in South Surrey (1626 152 St — restored to its classic 'Sawbucks Pub' name following renovations after briefly operating as Highwayman Pub) hosting Thursday karaoke and Friday/Saturday live rock/cover bands <= $50 CAD."
     },
     {
       "id": "venue-1794290622338-1dgm",
@@ -2720,28 +2794,32 @@
     {
       "id": "venue-1794290707816-w796",
       "name": "Mountain View Park",
-      "address": "751 Smith Ave, Coquitlam, BC V3J 2X1",
-      "neighborhood": "Burquitlam / Oakdale, Coquitlam",
+      "address": "751 Smith Ave, Coquitlam, BC V3J 4M5",
+      "neighborhood": "Burquitlam / Oakdale",
       "category": "outdoors",
       "websiteUrl": "https://www.coquitlam.ca/facilities/facility/details/mountain-view-park-27",
       "calendarUrl": "https://www.coquitlam.ca/facilities/facility/details/mountain-view-park-27",
       "sampleEvent": "✅ Municipal Park — Replaced Meetup link with official City of Coquitlam facility page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:05:07.816Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:05:07.816Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open City of Coquitlam municipal public park in Burquitlam / Oakdale (751 Smith Ave) featuring 4 pickleball courts, lacrosse box, sports fields, adult outdoor fitness circuit, playground, and public washrooms."
     },
     {
       "id": "venue-1794290712786-upr9",
       "name": "Edmonds Park",
-      "address": "7433 Humphries Ave, Burnaby, BC V5E 3J6",
+      "address": "7433 Edmonds St, Burnaby, BC V3N 1B1",
       "neighborhood": "Edmonds, Burnaby",
       "category": "outdoors",
       "websiteUrl": "https://www.burnaby.ca/recreation-and-arts/venues/edmonds-community-centre",
       "calendarUrl": "https://www.burnaby.ca/recreation-and-arts/venues/edmonds-community-centre",
       "sampleEvent": "✅ Municipal Park & Community Centre — Replaced Meetup link with official City of Burnaby Edmonds venue page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:05:12.786Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:05:12.786Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open City of Burnaby municipal park adjacent to Edmonds Community Centre; already present in data/venues.json as 'Edmonds Park' (7433 Edmonds St, Burnaby, BC V3N 1B1 — 7433 Humphries Ave is the rear street frontage of the exact same park). Merge Humphries Ave address alias and official Burnaby venue URL."
     },
     {
       "id": "venue-1794290767523-p0d4",
@@ -2797,92 +2875,106 @@
       "id": "venue-1794291218528-f372",
       "name": "Browns Socialhouse Brewery District",
       "address": "296 E Columbia St, New Westminster, BC V3L 0E3",
-      "neighborhood": "Sapperton / Brewery District, New Westminster",
+      "neighborhood": "Sapperton / Brewery District",
       "category": "social",
       "websiteUrl": "https://www.brownssocialhouse.com/brewery-district",
       "calendarUrl": "https://www.brownssocialhouse.com/brewery-district",
       "sampleEvent": "ℹ️ Restaurant & Bar (Paint Nite host, no standalone public calendar) — Replaced Paint Nite URL with official location page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:13:38.528Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:13:38.528Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open restaurant and lounge in Sapperton's Brewery District, New Westminster (296 E Columbia St) that regularly hosts public Paint Nite / Paint & Sip creative workshops via PaintNite and Eventbrite (enroll_calendar_feed: false since venue URL has no standalone calendar; individual Paint Nite dates remain gated at <= $50 CAD by Stagehand QC)."
     },
     {
       "id": "venue-1794291222236-s1vr",
       "name": "Smugglers Trail",
-      "address": "9339 200A St #140, Langley Twp, BC V1M 0B3",
-      "neighborhood": "Langley",
+      "address": "9339 200A St #140, Langley, BC V1M 0B3",
+      "neighborhood": "Walnut Grove / Port Kells",
       "category": "social",
       "websiteUrl": "https://www.smugglerstrailcask.com/",
       "calendarUrl": "https://www.smugglerstrailcask.com/events",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Paint Nite link with official smugglerstrailcask.com/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:13:42.236Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:13:42.236Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open craft brewery & kitchen ('The Trail Head' flagship) in Walnut Grove / Port Kells, Township of Langley (9339 200A St #140) with an active standalone events calendar (smugglerstrailcask.com/events) hosting weekly trivia, live music, Paint Nite, and seasonal festivals <= $50 CAD."
     },
     {
       "id": "venue-1794291394096-z2aw",
       "name": "The One Sixty Wine Bar & Cafe",
       "address": "3141 Murray St, Port Moody, BC V3H 2R8",
-      "neighborhood": "Port Moody",
+      "neighborhood": "Moody Centre / Brewers Row",
       "category": "social",
       "websiteUrl": "https://www.theonesixty.com/",
       "calendarUrl": "https://www.theonesixty.com/",
       "sampleEvent": "✅ Wine Bar & Cafe (Thursday live music & Paint Nite) — Replaced Paint Nite link with official theonesixty.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:16:34.096Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:16:34.096Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open award-winning wine bar and cafe on Murray St in Port Moody (3141 Murray St, steps from Moody Centre SkyTrain & Brewers Row) hosting free-admission Thursday evening live music (6–9 PM) and Paint Nite events <= $50 CAD."
     },
     {
       "id": "venue-1794291411999-1rti",
       "name": "Night Owl Kitchen + Bar",
       "address": "19640 64 Ave, Langley, BC V2Y 1H3",
-      "neighborhood": "Langley",
+      "neighborhood": "Willowbrook, Langley",
       "category": "social",
       "websiteUrl": "https://nightowlbars.ca/langley/",
       "calendarUrl": "https://nightowlbars.ca/events/",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Paint Nite link with official nightowlbars.ca/events/ (Karaoke, Poker & Paint Nite)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:16:51.999Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:16:51.999Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN in Willowbrook, Langley. Gastropub hosting weekly Tuesday Karaoke Night (7:30 PM), Wednesday Poker Night (6:30 PM), Paint Nite workshops, and DJ social evenings <= $50 CAD. Shares standalone multi-location calendar https://nightowlbars.ca/events/ with Delta branch."
     },
     {
       "id": "venue-1794291470067-6rge",
       "name": "LuLu Island Winery",
       "address": "16880 Westminster Hwy, Richmond, BC V6V 1A8",
-      "neighborhood": "Richmond",
+      "neighborhood": "East Richmond",
       "category": "social",
       "websiteUrl": "https://luluislandwinery.com/",
       "calendarUrl": "https://luluislandwinery.com/events/",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Paint Nite link with official luluislandwinery.com/events/ (Vibes & Vino live music)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:17:50.067Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:17:50.067Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in East Richmond. Metro Vancouver's largest estate winery hosting Friday Vibes & Vino live music happy hours, PaintNite, Rock n' Roll Bingo, seasonal markets, and $25-$30 seated wine tastings & vineyard tours (all <= $50 CAD) on standalone /events/ calendar."
     },
     {
       "id": "venue-1794291481078-sjhc",
       "name": "Canlan Sports- Langley Twin Rinks",
       "address": "5700 Langley Bypass, Langley, BC V3A 8L7",
-      "neighborhood": "Langley",
+      "neighborhood": "Langley City",
       "category": "activities",
       "websiteUrl": "https://www.canlansports.com/locations/ca/bc/langley-twin-rinks",
       "calendarUrl": "https://www.canlansports.com/locations/ca/bc/langley-twin-rinks",
       "sampleEvent": "ℹ️ Ice Rink & Grillhouse (Public skating & drop-in sports) — Replaced Paint Nite link with official Canlan location page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:18:01.078Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:18:01.078Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in Langley. Multi-rink ice complex with Wild Wing / Sports Grillhouse hosting public skating, drop-in adult shinny (~$15 CAD), tournaments, and occasional Paint Nite events <= $50 CAD. No standalone cultural calendar subpage (enroll_calendar_feed: false)."
     },
     {
       "id": "venue-1794291537776-w61m",
       "name": "Guildford Golf & Country Club",
       "address": "7929 152 St, Surrey, BC V3S 3M5",
-      "neighborhood": "Guildford, Surrey",
+      "neighborhood": "Guildford / Fleetwood, Surrey",
       "category": "activities",
       "websiteUrl": "https://www.guildfordgolf.com/",
-      "calendarUrl": "https://www.guildfordgolf.com/calendar-of-events/",
+      "calendarUrl": "https://www.guildfordgolf.com/",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Paint Nite link with official guildfordgolf.com/calendar-of-events/",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:18:57.776Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:18:57.776Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN public golf course and Bunker's Bar & Grill in Surrey. Promotional/twilight/winter tee times run ~$38-$50 CAD and Bunker's Bar & Grill hosts occasional third-party Paint Nite social events <= $50 CAD. Note: guildfordgolf.com/calendar-of-events/ only posts course frost/holiday operational closures rather than cultural events, so enroll_calendar_feed is set to false."
     },
     {
       "id": "venue-1794291764510-huml",
@@ -2898,27 +2990,31 @@
       "id": "venue-1794291824809-w7m2",
       "name": "Crave Bistro & Bar",
       "address": "2430 Mary Hill Rd #101, Port Coquitlam, BC V3C 0T6",
-      "neighborhood": "Port Coquitlam",
+      "neighborhood": "Central Port Coquitlam",
       "category": "social",
       "websiteUrl": "https://cravebistro.ca/",
       "calendarUrl": "https://cravebistro.ca/news/",
       "sampleEvent": "✅ Standalone Events Section — Replaced Paint Nite link with official cravebistro.ca/news/ (Live music & comedy)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:23:44.809Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:23:44.809Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in Port Coquitlam. Locally owned brunch house and evening cocktail bistro hosting live music, comedy nights, Paint Nite, Saturday socials, and major sports watch parties <= $50 CAD, posted on its standalone /news/ events section."
     },
     {
       "id": "venue-1794291830501-6bkw",
       "name": "Samz Pub Port Coquitlam",
       "address": "2342 Elgin Ave, Port Coquitlam, BC V3C 2B5",
-      "neighborhood": "Port Coquitlam",
+      "neighborhood": "Downtown Port Coquitlam",
       "category": "social",
       "websiteUrl": "https://www.samz.ca/",
       "calendarUrl": "https://www.samz.ca/",
       "sampleEvent": "ℹ️ Neighbourhood Pub (No standalone calendar subpage) — Replaced Paint Nite link with official samz.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:23:50.501Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:23:50.501Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in Downtown Port Coquitlam. Note: existing_venues_json_matches only matched a generic 'Port Coquitlam' placeholder, NOT Samz Pub, so approved as its own physical venue. Hosts Paint Nite, sports watch parties, and casual pub nights <= $50 CAD; no standalone calendar subpage (enroll_calendar_feed: false)."
     },
     {
       "id": "venue-1794291980088-8p4i",
@@ -2930,8 +3026,10 @@
       "calendarUrl": "https://dinekanadiyan.ca/live-entertainment",
       "sampleEvent": "✅ Live Entertainment Page — Replaced Paint Nite link with official dinekanadiyan.ca/live-entertainment",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:26:20.088Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:26:20.088Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN (Closed Tuesdays) in Uptown New Westminster. Vibrant Filipino restaurant & entertainment lounge hosting regular Saturday live band performances, Paint Nite workshops, and cultural music evenings <= $50 CAD on standalone /live-entertainment page."
     },
     {
       "id": "venue-1794291996890-vr4h",
@@ -2943,8 +3041,10 @@
       "calendarUrl": "https://www.poco-inn-and-suites.com/events/",
       "sampleEvent": "ℹ️ Hotel Function Space (No standalone public calendar) — Replaced Paint Nite link with official poco-inn-and-suites.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:26:36.890Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T06:26:36.890Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Dismissed per eligibility rules: Open suburban hotel and private conference/banquet rental facility (1545 Lougheed Hwy, Port Coquitlam) with no ongoing public cultural events calendar or regular secular public programming (originally surfaced only from an isolated third-party Paint Nite room rental)."
     },
     {
       "id": "venue-1794292211920-ioap",
@@ -2956,8 +3056,10 @@
       "calendarUrl": "https://nightowlbars.ca/events/",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Paint Nite link with official nightowlbars.ca/events/ (Trivia, Music Bingo & Karaoke)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T06:30:11.920Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T06:30:11.920Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN in North Delta (opened May 2026 in fully renovated former Delta Lion Pub space at Nordel Centre). Actively hosts Thursday Karaoke Night (8 PM - 12 AM), alternating Wednesday Trivia & Music Bingo (7 PM), and Paint Nite <= $50 CAD. Shares standalone https://nightowlbars.ca/events/ calendar."
     },
     {
       "id": "venue-1794297651921-abta",
@@ -2999,8 +3101,10 @@
       "calendarUrl": "https://softballcity.bc.ca/tournaments/",
       "sampleEvent": "✅ Standalone Tournament Schedule — Replaced single-event canadacup.com URL with official softballcity.bc.ca/tournaments/",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:12:46.893Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:12:46.893Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN premier 4-diamond sports complex and Diamond 5 Clubhouse in South Surrey Athletic Park. Hosts Canada Cup International Softball Championship (single-day tickets <= $50 CAD), free-spectator regional slo-pitch/fastpitch tournaments, Halloween Howl, and Field of Screams on standalone /tournaments/ schedule."
     },
     {
       "id": "venue-1794298455606-l9a2",
@@ -3052,21 +3156,25 @@
       "calendarUrl": "https://dloungebar.com/",
       "sampleEvent": "ℹ️ Sports Bar & Lounge (Menu-only homepage; tickets events via Eventbrite) — Replaced allevents.in with official dloungebar.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:19:59.915Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:19:59.915Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in Newton Village, Surrey. Exact match to existing 'D Lounge Kitchen & Bar' in data/venues.json. Hosts Eventbrite DJ nights (e.g., Y2K Saturdays), live sports broadcasts, and late-night lounge events <= $50 CAD. Menu-only homepage (enroll_calendar_feed: false)."
     },
     {
       "id": "venue-1794298823536-wb0e",
       "name": "Gupshup Social Lounge",
       "address": "5570 152 St #105, Surrey, BC V3S 5J9",
-      "neighborhood": "Panorama, Surrey",
+      "neighborhood": "Panorama / Sullivan, Surrey",
       "category": "social",
       "websiteUrl": "https://gupshupsocial.ca/",
       "calendarUrl": "https://gupshupsocial.ca/",
       "sampleEvent": "ℹ️ Social Lounge & Restaurant (No standalone calendar subpage) — Replaced allevents.in with official gupshupsocial.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:20:23.536Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:20:23.536Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily 11:00 AM - 12:00 AM at Panorama Village, Surrey (49.1034, -122.8006). Neon-lit modern Indian street-food & cocktail social lounge hosting Punjabi/Bollywood DJ nights, social mixers, and community party events <= $50 CAD. No standalone calendar subpage (enroll_calendar_feed: false)."
     },
     {
       "id": "venue-1794298885052-mfcc",
@@ -3088,21 +3196,25 @@
       "calendarUrl": "https://www.facebook.com/grandtajbanquet/",
       "sampleEvent": "ℹ️ Banquet & Concert Hall (Legacy grandtaj.com domain offline; active Facebook page grounded) — Replaced allevents.in URL",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:21:45.272Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:21:45.272Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN in Newton, Surrey. Exact match to existing 'Grand Taj Banquet Hall' in data/venues.json. Hosts ticketed South Asian cultural concerts, community expos, and fundraisers alongside banquets. Legacy grandtaj.com is offline; Facebook URL kept as informational website_url only, with calendar_url: null and enroll_calendar_feed: false per strict no-Facebook-scraper rule."
     },
     {
       "id": "venue-1794298947341-fz7x",
       "name": "Taj Park Convention Centre",
       "address": "8580 132 St, Surrey, BC V3W 4N7",
-      "neighborhood": "Newton, Surrey",
+      "neighborhood": "Newton / Bear Creek, Surrey",
       "category": "shows",
       "websiteUrl": "https://tajpark.ca/",
       "calendarUrl": "https://tajpark.ca/",
       "sampleEvent": "ℹ️ Convention & Concert Hall (No standalone public calendar) — Replaced allevents.in with official tajpark.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:22:27.341Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:22:27.341Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN in Surrey (8580 132 St). Major South Asian convention and cultural hall actively hosting public ticketed music tributes, poetry/storytelling nights, and cultural concerts (e.g., KVP Entertainers, Vivek Canada) <= $50 CAD. Approved with enroll_calendar_feed: false as it has no standalone public events calendar."
     },
     {
       "id": "venue-1794298965613-mwei",
@@ -3144,8 +3256,10 @@
       "calendarUrl": "https://rustyspub.ca/",
       "sampleEvent": "ℹ️ Neighbourhood Pub (No standalone calendar subpage) — Replaced allevents.in with official rustyspub.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:26:57.257Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:26:57.257Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in Cloverdale, Surrey. Active neighbourhood pub hosting weekly Tuesday Pub Trivia (7:00-9:00 PM), Thursday Almost Famous Karaoke (8:00 PM - 12:00 AM), and Fri/Sat Country Weekend Nightclub nights <= $50 CAD. No standalone calendar subpage (enroll_calendar_feed: false)."
     },
     {
       "id": "venue-1794299365362-94v8",
@@ -3157,8 +3271,10 @@
       "calendarUrl": "https://www.westcoastgardens.ca/pages/events",
       "sampleEvent": "✅ Standalone Events & Workshops Calendar — Replaced allevents.in with official westcoastgardens.ca/pages/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:29:25.362Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:29:25.362Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in South Surrey. Destination garden centre hosting free seasonal artisan markets, spring/holiday festival weekends, food truck pop-ups, $29.99 Santa sessions, and planting workshops on standalone /pages/events calendar (note: compiler's <= $50 gate will filter $65+ premium wreath classes while surfacing free markets & under-$50 events)."
     },
     {
       "id": "venue-1794299410349-vh41",
@@ -3190,34 +3306,40 @@
       "calendarUrl": "https://www.citycentrechurch.org/events",
       "sampleEvent": "ℹ️ Church Auditorium (Hosts occasional touring concerts; mostly religious events) — Grounded to citycentrechurch.org/events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:32:07.370Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T08:32:07.370Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Dismissed per eligibility rules: Active Presbyterian congregation (13062 104 Ave, Surrey) whose /events schedule consists predominantly of religious Sunday worship services, Monday prayer hours, Bible study groups, and gospel ministry outreach rather than secular public cultural programming."
     },
     {
       "id": "venue-1794299657610-xn01",
       "name": "Royal King Palace",
       "address": "8158 128 St #365, Surrey, BC V3W 1R1",
-      "neighborhood": "Newton, Surrey",
+      "neighborhood": "Newton (Payal Business Centre), Surrey",
       "category": "shows",
       "websiteUrl": "https://royalkingpalace.com/",
       "calendarUrl": "https://royalkingpalace.com/",
       "sampleEvent": "ℹ️ Banquet & Concert Hall (No standalone public calendar) — Replaced allevents.in with official royalkingpalace.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:34:17.610Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:34:17.610Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN in Newton, Surrey (#365 - 8158 128 St). Major South Asian banquet & convention hall that actively hosts public ticketed Eventbrite concerts (e.g., Sur-E-Qawali live qawwali nights), cultural showcases, and community expos <= $50 CAD. Approved with enroll_calendar_feed: false."
     },
     {
       "id": "venue-1794299730226-3e46",
       "name": "Grand Empire Banquet Hall",
       "address": "12888 80 Ave #207, Surrey, BC V3W 3A8",
-      "neighborhood": "Newton, Surrey",
+      "neighborhood": "Newton (York Business Centre), Surrey",
       "category": "shows",
       "websiteUrl": "https://www.grandempirehall.com/",
       "calendarUrl": "https://www.grandempirehall.com/",
       "sampleEvent": "ℹ️ Banquet & Cultural Hall (No standalone public calendar) — Replaced allevents.in with official grandempirehall.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:35:30.226Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:35:30.226Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN in Newton, Surrey (12888 80 Ave #207). Actively hosts public ticketed Eventbrite concerts and cultural nights (e.g., Jamming Bethak, Deng u Reng Kurdish Culture Night, Vasant Utsav spring festival, fashion showcases, and expos with tickets <= $45-$50 CAD). Approved with enroll_calendar_feed: false."
     },
     {
       "id": "venue-1794299806103-wm12",
@@ -3243,14 +3365,16 @@
       "id": "venue-1794300023424-8ewk",
       "name": "RCL - Whalley Legion Br 229",
       "address": "10626 City Pkwy #102, Surrey, BC V3T 0S3",
-      "neighborhood": "Whalley, Surrey",
+      "neighborhood": "Whalley / City Centre, Surrey",
       "category": "social",
       "websiteUrl": "https://whalleylegion.org/",
       "calendarUrl": "https://whalleylegion.org/news-%26-calendar",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced allevents.in with official whalleylegion.org/news-%26-calendar (Trivia & live bands)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:40:23.424Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:40:23.424Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN daily in the modern ground-floor Vimy Lounge of Legion Veterans Village near Gateway SkyTrain. Explicitly welcomes non-members ('Everyone is Welcome') for live bands 3x/week (Fri, Sat, Sun), Tuesday Karaoke, Crib, Pool League, and meat draws <= $50 CAD on standalone /news-%26-calendar page."
     },
     {
       "id": "venue-1794300024094-hh3j",
@@ -3282,8 +3406,10 @@
       "calendarUrl": "https://ariaconvention.com/",
       "sampleEvent": "ℹ️ Banquet & Convention Hall (No standalone public calendar) — Official website grounded",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:43:53.684Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:43:53.684Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Verified OPEN in Bridgeview, Surrey (12350 Pattullo Pl). Major convention & cultural hall hosting public ticketed festivals (e.g., Rangotsav), free-GA hobby/card & community markets (e.g., Mega Miraj), and cultural concerts via Eventbrite/Ticket Tailor alongside higher-priced galas (compiler enforces <= $50 ceiling per event). Approved with enroll_calendar_feed: false."
     },
     {
       "id": "venue-1794300414008-fvyw",
@@ -3292,11 +3418,13 @@
       "neighborhood": "Cloverdale, Surrey",
       "category": "social",
       "websiteUrl": "https://cloverdalelegion.ca/",
-      "calendarUrl": "https://cloverdalelegion.ca/",
+      "calendarUrl": "https://cloverdalelegion.ca/music-entertainment/",
       "sampleEvent": "✅ Active Live Music & Weekly Events — Official Cloverdale Legion site grounded (Fri/Sat live bands, Sun line dancing)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:46:54.008Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T08:46:54.008Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open and active Royal Canadian Legion Branch #6 in Cloverdale, Surrey hosting public Friday & Saturday live bands (7:00 PM), Sunday drop-in line dancing (10:00 AM) and afternoon DJ sets, meat draws, and weekly cribbage/darts/euchre nights well under $50 CAD."
     },
     {
       "id": "venue-1794300419548-i729",
@@ -3318,8 +3446,10 @@
       "calendarUrl": "https://www.surrey.ca/parks-recreation/community-centres",
       "sampleEvent": "ℹ️ Municipal Community Hall (No standalone venue calendar) — Grounded to City of Surrey facility page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:48:05.650Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T08:48:05.650Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Small 85-capacity private rental community hall (18918 88 Ave, Surrey) used for private weddings, family receptions, and association meetings; has no standalone public events calendar or regular public cultural programming."
     },
     {
       "id": "venue-1794300554519-b0sq",
@@ -3331,8 +3461,10 @@
       "calendarUrl": "https://www.surrey.ca/parks-recreation/community-centres",
       "sampleEvent": "ℹ️ Municipal Community Centre (No standalone venue calendar) — Grounded to City of Surrey facility page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:49:14.519Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T08:49:14.519Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Historic former schoolhouse site (16824 32 Ave, South Surrey) operating primarily as a licensed $10/day infant/toddler/preschool childcare centre (via Alex House) and early-childhood 0-6 yr playgroup site, with no general public cultural events calendar."
     },
     {
       "id": "venue-1794300615413-pbaa",
@@ -3354,8 +3486,10 @@
       "calendarUrl": "https://hazelmereevents.com/",
       "sampleEvent": "ℹ️ Country Club / Private Events Facility — Grounded to official Hazelmere website & events portal",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T08:51:19.881Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T08:51:19.881Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "18-hole championship golf & country club and private wedding/corporate banquet facility (18150 8 Ave, South Surrey; hazelmereevents.com) with green fees and holiday banquet buffets exceeding $50 CAD and no regular <= $50 public cultural programming."
     },
     {
       "id": "venue-1794300737000-wi7s",
@@ -3457,8 +3591,10 @@
       "calendarUrl": "https://www.langleyeventscentre.com/events",
       "sampleEvent": "✅ Standalone Events Calendar — Grounded to official Langley Events Centre /events calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T09:01:41.905Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T09:01:41.905Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open premier Township of Langley sports and entertainment campus (7888 200 St) hosting Vancouver FC (CPL pro soccer outdoors at Willoughby Stadium / The Stadium at LEC, ~$20-$30 CAD), Vancouver Giants (WHL hockey, ~$20-$45 CAD), Vancouver Bandits (CEBL pro basketball, ~$20-$35 CAD), Langley Thunder lacrosse, and concerts with single-game tiers well under $50 CAD."
     },
     {
       "id": "venue-1794301396897-e1h7",
@@ -3510,8 +3646,10 @@
       "calendarUrl": "https://dasmeshdarbar.ca/",
       "sampleEvent": "ℹ️ Cultural Hub & Vaisakhi Parade Anchor (No standalone events calendar) — Grounded to official dasmeshdarbar.ca",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T09:08:32.102Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T09:08:32.102Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Active Sikh Gurdwara (12885 85 Ave, Surrey) whose daily 3:30 AM - 9:00 PM schedule consists of religious prayer, Kirtan, and Katha worship services; its annual public Surrey Khalsa Day / Vaisakhi Parade is tracked at the festival level rather than as a routine commercial/cultural event venue."
     },
     {
       "id": "venue-1794301974087-wlii",
@@ -3523,8 +3661,10 @@
       "calendarUrl": "https://e-clubhouse.org/sites/langleybc/calendar.php",
       "sampleEvent": "ℹ️ Langley Lions Club Community Hall — Grounded to official Lions Club hall website & calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T09:12:54.087Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T09:12:54.087Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Langley Lions Club rental hall (9402 208 St, Walnut Grove) whose calendar lists only bi-weekly Lions Club general/board meetings and private wedding, banquet, and film-shoot rentals rather than public cultural events."
     },
     {
       "id": "venue-1794302064549-46t8",
@@ -3546,8 +3686,10 @@
       "calendarUrl": "https://skyeavenue.com/",
       "sampleEvent": "ℹ️ Cocktail Lounge & Restaurant — Replaced film festival pass URL with official skyeavenue.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T09:17:54.591Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-11-10T09:17:54.591Z",
+      "dismissedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Upscale restaurant and whiskey lounge at Central City (13450 102 Ave #190, Surrey; entrees $29-$45 CAD) with no public events calendar on skyeavenue.com; its companion back space (theloungebar.ca) operates as a Fri/Sat VIP table-reservation and guestlist lounge rather than a public cultural/live-music venue."
     },
     {
       "id": "venue-1794302346037-icxc",
@@ -3576,11 +3718,13 @@
       "neighborhood": "Tsawwassen",
       "category": "activities",
       "websiteUrl": "https://www.tsawwassenmills.com/",
-      "calendarUrl": "https://www.tsawwassenmills.com/events-and-entertainment/",
+      "calendarUrl": "https://www.tsawwassenmills.com/events-entertainment/",
       "sampleEvent": "✅ Standalone Events Calendar — Grounded to official Tsawwassen Mills /events-and-entertainment/",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T09:22:01.034Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T09:22:01.034Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open single-level regional shopping and entertainment complex on Tsawwassen First Nation treaty land (5000 Canoe Pass Way) featuring an indoor West 49 skatepark, seasonal cultural festivals (Lunar New Year, Holi, artisan markets, car shows), and a verified standalone /events-entertainment/ calendar."
     },
     {
       "id": "venue-1794302522256-vqhz",
@@ -3592,8 +3736,10 @@
       "calendarUrl": "https://marinegateway.com/",
       "sampleEvent": "ℹ️ Outdoor Transit Plaza & Community Hub — Replaced single Diwali event link with official marinegateway.com",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T09:22:02.256Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T09:22:02.256Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open transit-oriented outdoor pedestrian plaza and entertainment hub at Cambie St & SW Marine Dr (450 SW Marine Dr, Vancouver) hosting free community festivals (Diwali Fest, Lunar New Year, Saturday Holiday Art Markets, summer plaza music) alongside Cineplex Cinemas Marine Gateway."
     },
     {
       "id": "venue-1794302822798-s6ob",
@@ -3605,8 +3751,10 @@
       "calendarUrl": "https://www.alexhouse.net/events-calendar",
       "sampleEvent": "✅ Standalone Events Calendar — Verified official Alexandra Neighbourhood House /events-calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-10T09:27:02.798Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-10T09:27:02.798Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open historic oceanfront community hub (Alexandra Neighbourhood House / Camp Alexandra, 2916 McBride Ave, Crescent Beach, Surrey) hosting free and low-cost public community festivals (Alex Fest, Holiday Craft Fair), social drop-ins, art/knitting circles, and workshops with a standalone /events-calendar."
     },
     {
       "id": "venue-1794717925171-9f2a",
@@ -3662,14 +3810,16 @@
       "id": "venue-1794721730275-9cin",
       "name": "Pitt Meadows Art Gallery",
       "address": "10932 Barnston View Rd, Pitt Meadows, BC V3Y 0B9",
-      "neighborhood": "Pitt Meadows",
+      "neighborhood": "Osprey Village, Pitt Meadows",
       "category": "shows",
       "websiteUrl": "https://www.pittmeadows.ca/pmag",
       "calendarUrl": "https://www.pittmeadows.ca/pmag",
       "sampleEvent": "✅ Municipal Art Gallery — Replaced Culture Days UUID with official Pitt Meadows Art Gallery (PMAG) page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T05:48:50.275Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T05:48:50.275Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open municipal public art gallery (PMAG) on the ground floor of South Bonson Community Centre in Osprey Village (10932 Barnston View Rd, Pitt Meadows) offering free admission, 6 rotating annual exhibitions, artist talks, opening receptions, and Culture Days workshops."
     },
     {
       "id": "venue-1794721733692-tnaa",
@@ -3711,8 +3861,10 @@
       "calendarUrl": "https://www.fvrl.bc.ca/events",
       "sampleEvent": "✅ FVRL Library Branch — Replaced Culture Days UUID with official FVRL Pitt Meadows page & /events calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T05:49:58.592Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T05:49:58.592Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Fraser Valley Regional Library (FVRL) branch in Pitt Meadows Civic Centre (#200 - 12099 Harris Rd) hosting free public workshops, author talks, book clubs, and Culture Days events. Enrolled as the single canonical feed holder for https://www.fvrl.bc.ca/events (shared across FVRL branches in indices 76, 79, 81)."
     },
     {
       "id": "venue-1794721832702-gmg3",
@@ -3724,8 +3876,10 @@
       "calendarUrl": "https://www.surrey.ca/parks-recreation/surrey-parks/surrey-nature-centre",
       "sampleEvent": "✅ Civic Nature Centre — Replaced Culture Days UUID with official City of Surrey facility & drop-in page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T05:50:32.702Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T05:50:32.702Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Same physical entrance address (14225 Green Timbers Way, Surrey) as existing 'Green Timbers Urban Forest' in data/venues.json, whose calendar_url already pointed to the legacy Surrey Nature Centre path. Merge 'Surrey Nature Centre' as an alias of 'Green Timbers Urban Forest' and upgrade calendar_url to the live https://www.surrey.ca/parks-recreation/surrey-parks/surrey-nature-centre URL."
     },
     {
       "id": "venue-1794721834625-x9pp",
@@ -3737,21 +3891,25 @@
       "calendarUrl": "https://www.pittmeadowsmuseum.com/events.html",
       "sampleEvent": "✅ Standalone Events Calendar — Replaced Culture Days UUID with official Pitt Meadows Museum /events.html",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T05:50:34.625Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T05:50:34.625Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open community heritage museum in Pitt Meadows (12294 Harris Rd, spanning the 1908 General Store and Hoffmann & Son Machine Shop across the street) offering admission by donation, Museum Sundays, Museum After Dark, heritage walks, and a standalone /events.html calendar."
     },
     {
       "id": "venue-1794721868459-qnsz",
       "name": "Muriel Arnason Library - Willowbrook",
       "address": "20338 65 Ave #130, Langley, BC V2Y 2X3",
-      "neighborhood": "Willowbrook, Langley",
+      "neighborhood": "Willoughby / Willowbrook, Langley",
       "category": "activities",
       "websiteUrl": "https://www.fvrl.bc.ca/locations/muriel-arnason-library",
       "calendarUrl": "https://www.fvrl.bc.ca/events",
       "sampleEvent": "✅ FVRL Library Branch — Replaced Culture Days UUID with official FVRL Muriel Arnason branch & /events calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T05:51:08.459Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T05:51:08.459Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Fraser Valley Regional Library (FVRL) branch inside the Township of Langley Civic Facility (20338 65 Ave #130, Langley) hosting free public workshops, author talks, and Culture Days programs. Shared FVRL feed https://www.fvrl.bc.ca/events is enrolled once on Index 76, so enroll_calendar_feed is set to false here to prevent duplicate harvesting."
     },
     {
       "id": "venue-1794722005847-agx5",
@@ -3780,11 +3938,13 @@
       "neighborhood": "Langley City",
       "category": "activities",
       "websiteUrl": "https://www.langleycity.ca/recreation/recreation-facilities/timms-community-centre",
-      "calendarUrl": "https://www.langleycity.ca/recreation/activities-registration",
+      "calendarUrl": "https://www.langleycity.ca/community-culture/events",
       "sampleEvent": "✅ Municipal Community Centre — Replaced Culture Days UUID with official City of Langley Timms Community Centre page",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T05:53:59.403Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T05:53:59.403Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open flagship municipal recreation and cultural hub in downtown Langley City (20399 Douglas Crescent) featuring low-cost drop-in sports (pickleball, badminton, basketball, indoor walking track <= $10 CAD), art showcases, Culture Days, and seasonal civic festivals via https://www.langleycity.ca/community-culture/events."
     },
     {
       "id": "venue-1794722071234-84r3",
@@ -3816,8 +3976,10 @@
       "calendarUrl": "https://www.fvrl.bc.ca/events",
       "sampleEvent": "✅ FVRL Library Branch — Replaced Culture Days UUID with official FVRL City of Langley Library page & /events",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T05:55:39.742Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T05:55:39.742Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Fraser Valley Regional Library (FVRL) branch in the Langley City Hall / Timms civic complex (20399 Douglas Crescent, Langley) hosting free author readings, workshops, games clubs, and Culture Days programs. Shared FVRL feed https://www.fvrl.bc.ca/events is already enrolled via Index 76, so enroll_calendar_feed is false here."
     },
     {
       "id": "venue-1794723363924-we7m",
@@ -3849,8 +4011,10 @@
       "calendarUrl": "https://www.latincouver.ca/events/",
       "sampleEvent": "✅ Standalone Events Calendar — Verified Latin Plaza Hub studio in Gastown & upgraded to master /events/ calendar",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T06:17:17.594Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T06:17:17.594Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Open Latin American cultural centre and community studio (Latin Plaza Hub, 68 Water St #301, Gastown, Vancouver) hosting Latin art workshops, dance/language sessions, storytelling circles, acoustic showcases, and Carnaval del Sol / Dia de los Muertos satellite events <= $50 CAD with a standalone /events/ calendar."
     },
     {
       "id": "venue-1794723440264-i0n0",
@@ -3885,15 +4049,17 @@
     {
       "id": "venue-1794723597901-2srw",
       "name": "Grandview Park",
-      "address": "1657 Charles St, Vancouver, BC V5L 2T4",
+      "address": "1657 Charles St (1255 Commercial Dr), Vancouver, BC V5L 2T4",
       "neighborhood": "Commercial Drive, Vancouver",
       "category": "outdoors",
       "websiteUrl": "https://thedrive.ca/",
       "calendarUrl": "https://thedrive.ca/events/",
       "sampleEvent": "✅ Civic Park & Commercial Drive Events Hub — Upgraded seasonal URL to permanent thedrive.ca/events/ (WAF-safe)",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-11-15T06:19:57.901Z"
+      "status": "approved",
+      "discoveredAt": "2026-11-15T06:19:57.901Z",
+      "approvedAt": "2026-11-18T15:05:21.318Z",
+      "curatorNote": "Exact same physical East Vancouver civic park on Commercial Drive already tracked in data/venues.json as 'Grandview Park' (1255 Commercial Dr is the park fieldhouse/washroom address; 1657 Charles St is the north boundary of the same park block). Merge alias/address and upgrade website_url & calendar_url to WAF-safe https://thedrive.ca/events/."
     },
     {
       "id": "venue-1794723646811-jyr4",

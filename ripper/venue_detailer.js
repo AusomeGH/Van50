@@ -52,11 +52,11 @@ function isOutOfMarketVenueRecord(venueObj) {
   if (/\b(?:Abbotsford|Chilliwack|Mission|Squamish|Whistler|Pemberton|Victoria|Nanaimo|Salt\s+Spring\s+Island|Ganges|Kelowna|Kamloops|Penticton|Vernon|Calgary|Edmonton|Toronto|Montreal|Montréal|Ottawa|Winnipeg|Halifax|Seattle|Portland)\s*,\s*(?:BC|AB|ON|QC|MB|NS|WA|OR|Canada|USA)\b/i.test(combinedText)) {
     return true;
   }
-  // Non-BC Canadian postal codes (Metro Vancouver postal codes strictly begin with V3, V4, V5, V6, V7)
+  // Non-Metro-Vancouver postal codes (Metro Vancouver FSAs begin with V3, V4, V5, V6, V7, plus Township of Langley V1M/V2Y/V2Z and Maple Ridge V2W/V2X)
   const postalMatch = combinedText.match(/\b([A-Z]\d[A-Z])\s*\d[A-Z]\d\b/i);
   if (postalMatch) {
     const fsa = postalMatch[1].toUpperCase();
-    if (!/^V[34567]/.test(fsa)) {
+    if (!/^(?:V[34567][A-Z]|V1M|V2[WXYZ])$/.test(fsa)) {
       return true;
     }
   }
@@ -76,8 +76,10 @@ function matchVenue(venueQuery, venues) {
     ? venues
     : venues.filter(v => !v?.is_test_canary && !/^testvenue\b/i.test(v?.venue_name || v?.name || "") && (v?.venue_name || v?.name || "") !== "none_available");
 
-  // 1. Exact match
+  // 1. Exact match (canonical name or registered alias)
   let matched = candidateVenues.find(v => (v.venue_name || v.name || "").toLowerCase().trim() === rawQuery);
+  if (matched) return matched;
+  matched = candidateVenues.find(v => Array.isArray(v.aliases) && v.aliases.some(a => String(a || "").toLowerCase().trim() === rawQuery));
   if (matched) return matched;
 
   const isSubFacilityMismatch = (vObj) => {
@@ -138,6 +140,14 @@ function matchVenue(venueQuery, venues) {
         if (new RegExp(`(?:^|\\s)${campus}(?:\\s|$)`).test(norm)) quals.add(`campus:${campus}`);
       }
     }
+    if (/\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|north\s+vancouver\s+(?:city|district)\s+public\s+library)\b/.test(norm)) {
+      if (/\b(?:vancouver\s+public\s+library|vpl)\b/.test(norm)) quals.add("libsys:vancouver");
+      if (/\bsurrey\s+libraries\b/.test(norm)) quals.add("libsys:surrey");
+      if (/\bburnaby\s+public\s+library\b/.test(norm)) quals.add("libsys:burnaby");
+      if (/\bcoquitlam\s+public\s+library\b/.test(norm)) quals.add("libsys:coquitlam");
+      if (/\brichmond\s+public\s+library\b/.test(norm)) quals.add("libsys:richmond");
+      if (/\bnorth\s+vancouver\s+(?:city|district)\s+public\s+library\b/.test(norm)) quals.add("libsys:northvan");
+    }
     return quals;
   };
   const isLibraryChain = (str) => /\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|fraser\s+valley\s+regional\s+library)\b/i.test(String(str || ""));
@@ -167,7 +177,14 @@ function matchVenue(venueQuery, venues) {
     const vRawName = v.venue_name || v.name || "";
     const vQuals = extractFacilityQualifiers(vRawName);
     if (queryIsLibChain || isLibraryChain(vRawName)) {
-      if (queryQuals.size === 0 || vQuals.size === 0 || ![...queryQuals].some((q) => vQuals.has(q))) {
+      const qLibSys = [...queryQuals].filter((q) => q.startsWith("libsys:"));
+      const vLibSys = [...vQuals].filter((q) => q.startsWith("libsys:"));
+      if (qLibSys.length > 0 && vLibSys.length > 0 && !qLibSys.some((q) => vLibSys.includes(q))) {
+        continue;
+      }
+      const qBranches = [...queryQuals].filter((q) => !q.startsWith("libsys:"));
+      const vBranches = [...vQuals].filter((q) => !q.startsWith("libsys:"));
+      if (qBranches.length === 0 || vBranches.length === 0 || !qBranches.some((q) => vBranches.includes(q))) {
         continue;
       }
     } else if (queryQuals.size > 0 && vQuals.size > 0 && ![...queryQuals].some((q) => vQuals.has(q))) {

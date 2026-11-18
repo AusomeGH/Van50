@@ -1817,13 +1817,17 @@ function normalizeActiveEvent(item) {
 
   const rawHood = String(item.neighborhood || "").trim();
   const rawAddr = String(item.full_address || item.address || "").trim();
+  const explicitMuniMatch = rawAddr.match(/,\s*(North Vancouver|West Vancouver|Burnaby|Richmond|Coquitlam|Port Coquitlam|Port Moody|New Westminster|Surrey|White Rock|Delta|Langley|Maple Ridge|Pitt Meadows|Vancouver)\s*,\s*BC\b/i);
+  const explicitAddrCity = explicitMuniMatch ? explicitMuniMatch[1].replace(/\s+/g, " ").trim() : null;
+  const isNonSurreyMetroMuni = Boolean(explicitAddrCity && !/^(?:surrey|white rock)$/i.test(explicitAddrCity));
   const isEastVanGrandview = /grandview[- ]woodland/i.test(rawHood) || /\bvancouver\b/i.test(rawAddr);
-  const isSurreyEvent = !isEastVanGrandview && (
-    String(item.city || "").toLowerCase() === "surrey" ||
+  const isSurreyEvent = !isNonSurreyMetroMuni && !isEastVanGrandview && (
+    /^(?:surrey|white rock)$/i.test(String(explicitAddrCity || item.city || "").trim()) ||
     String(item.region || "").toLowerCase() === "surrey" ||
-    /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview)\b/i.test(`${rawHood} ${rawAddr}`)
+    /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview|white rock)\b/i.test(`${rawHood} ${rawAddr}`)
   );
-  const resolvedCity = isSurreyEvent ? "Surrey" : "Vancouver";
+  const resolvedCity = explicitAddrCity || (item.city && String(item.city).trim()) || (isSurreyEvent ? "Surrey" : "Vancouver");
+  const resolvedRegion = isSurreyEvent ? "Surrey" : "Vancouver";
 
   const customPriceLabel = (item.priceLabel && typeof item.priceLabel === "string" && (
     (finalPrice === 0 && /free/i.test(item.priceLabel)) ||
@@ -1838,7 +1842,7 @@ function normalizeActiveEvent(item) {
     address: item.full_address || item.address || "Vancouver, BC",
     neighborhood: item.neighborhood || "Vancouver",
     city: resolvedCity,
-    region: resolvedCity,
+    region: resolvedRegion,
     day: item.day || item.days_open || "Daily",
     time: item.time || item.start_time || null,
     recurrence: item.recurrence || item.frequency || item.frequencyLabel || "Recurring",
@@ -3598,15 +3602,22 @@ function renderTimePills() {
 
 function resolveCanonicalNeighborhoodCluster(nhStr, evCity) {
   const s = String(nhStr || "").trim().toLowerCase();
-  if (!s) return evCity === "Surrey" ? "Surrey Central / Whalley" : "Downtown, Gastown & Yaletown";
+  const c = String(evCity || "").trim().toLowerCase();
+  const isSurreyCity = c === "surrey" || c === "white rock";
+  if (/^(?:north vancouver|west vancouver|burnaby|richmond|new westminster|coquitlam|port coquitlam|port moody|delta|langley|maple ridge|pitt meadows)$/i.test(c)) {
+    return "North Shore, Burnaby & Metro";
+  }
+  if (!s) return isSurreyCity ? "Surrey Central / Whalley" : "Downtown, Gastown & Yaletown";
 
-  // Surrey 6 Town Centres
-  if (/surrey central|whalley|city centre|bridgeview/i.test(s)) return "Surrey Central / Whalley";
-  if (/guildford|fraser heights/i.test(s)) return "Guildford";
-  if (/fleetwood/i.test(s)) return "Fleetwood";
-  if (/newton|bear creek|panorama|sullivan heights/i.test(s)) return "Newton";
-  if (/cloverdale|clayton/i.test(s)) return "Cloverdale";
-  if (/south surrey|grandview|crescent beach|white rock/i.test(s)) return "South Surrey";
+  // Surrey 6 Town Centres (gated so Coquitlam "City Centre" or Deep Cove "Panorama" never map to Surrey)
+  if (isSurreyCity || /surrey central|whalley|guildford|fleetwood|cloverdale|south surrey/i.test(s)) {
+    if (/surrey central|whalley|city centre|bridgeview/i.test(s)) return "Surrey Central / Whalley";
+    if (/guildford|fraser heights/i.test(s)) return "Guildford";
+    if (/fleetwood/i.test(s)) return "Fleetwood";
+    if (/newton|bear creek|panorama|sullivan heights/i.test(s)) return "Newton";
+    if (/cloverdale|clayton/i.test(s)) return "Cloverdale";
+    if (/south surrey|grandview|crescent beach|white rock/i.test(s)) return "South Surrey";
+  }
 
   // Vancouver 6 Neighborhood Clusters
   if (/downtown|gastown|yaletown|chinatown|west end|coal harbour|crosstown|stanley park|davie|robson/i.test(s)) {
@@ -4537,9 +4548,10 @@ function applyFiltersAndRender() {
 
     // 0. Top-Level Region Filter (all | vancouver | surrey)
     if (state.region && state.region !== 'all') {
-      const evCity = String(ev.city || ev.region || 'Vancouver').trim().toLowerCase();
-      if (state.region === 'surrey' && evCity !== 'surrey') return false;
-      if (state.region === 'vancouver' && evCity !== 'vancouver') return false;
+      const evCityLower = String(ev.city || '').trim().toLowerCase();
+      const evRegionLower = String(ev.region || (evCityLower === 'surrey' || evCityLower === 'white rock' ? 'surrey' : 'vancouver')).trim().toLowerCase();
+      if (state.region === 'surrey' && evRegionLower !== 'surrey') return false;
+      if (state.region === 'vancouver' && evRegionLower !== 'vancouver') return false;
     }
 
     // Venue Isolation Filter (Requirement 3: When clicking events at a venue, show all events at the venue)

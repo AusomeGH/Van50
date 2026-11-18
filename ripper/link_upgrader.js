@@ -83,7 +83,10 @@ export const BLACKLISTED_GEO_TOKENS = [
   "new-york", "los-angeles", "chicago", "winnipeg", "halifax", "hamilton",
   "oshawa", "nanaimo", "penticton", "vernon", "campbell-river", "squamish",
   "abbotsford", "chilliwack", "mission", "pemberton", "gulf-islands",
-  "salt-spring", "duncan", "courtenay", "comox", "tofino", "ukee"
+  "salt-spring", "duncan", "courtenay", "comox", "tofino", "ukee",
+  "mississauga", "burlington", "niagara", "niagarafalls", "brampton",
+  "markham", "vaughan", "oakville", "kitchener", "waterloo", "guelph",
+  "kingston", "barrie", "st-catharines", "windsor", "saskatoon", "regina"
 ];
 
 /**
@@ -169,6 +172,18 @@ export function isWhitelistedTicketingUrl(url) {
     // OpenDate specific check (e.g. Hollywood Theatre app.opendate.io/e/<slug>-<id>): must be an event path /e/...
     if (host.includes("opendate.io")) {
       if (!path.startsWith("/e/") || path.length <= 4) return false;
+    }
+
+    // Humanitix specific check: real event pages live on events.humanitix.com/<slug>;
+    // reject humanitix.com/ca, regional/category directories (/ca/events/...), and organizer/host pages
+    if (host.includes("humanitix.com")) {
+      if (host !== "events.humanitix.com") return false;
+      if (/^\/(?:ca|us|au|nz|uk|gb|ie|events|host|pricing|explore|search|c|o)(?:\/|$)/i.test(path)) return false;
+    }
+
+    // Reject explicit non-BC province/country directory slugs on any multi-tenant portal
+    if (/\/(?:ca--(?:on|ab|qc|mb|sk|ns|nb|nl|pe)--|us--)/i.test(path)) {
+      return false;
     }
 
     // Ticketweb specific check: must be an event path /event/... and contain a numeric ID

@@ -112,10 +112,17 @@ export function getExistingCatalogLookup() {
   }
 
   // 4. Curator Learned Rules & Blacklist Patterns (curator_learned_rules.json)
+  const recurringBlacklistStems = new Set();
+  const stripTrailingDateSuffix = (rawId) =>
+    String(rawId || "").toLowerCase().trim().replace(/-(?:202\d-\d{2}-\d{2}|202\d\d{4}|\d{1,2})$/, "");
   try {
     if (fs.existsSync(RULES_PATH)) {
       const rData = JSON.parse(fs.readFileSync(RULES_PATH, "utf-8"));
       (rData.archived_event_ids || []).forEach((id) => archivedIds.add(String(id).toLowerCase()));
+      (rData.recurring_blacklist_stems || []).forEach((stem) => {
+        const cleanStem = stripTrailingDateSuffix(stem);
+        if (cleanStem.length >= 8) recurringBlacklistStems.add(cleanStem);
+      });
       (rData.course_blacklist_patterns || []).forEach((p) => {
         if (p) blacklistPatterns.push(String(p).toLowerCase().trim());
       });
@@ -229,6 +236,7 @@ export function getExistingCatalogLookup() {
     quarantinedUrls,
     archivedIds,
     archivedUrls,
+    recurringBlacklistStems,
     scheduledIds,
     scheduledUrls,
     blacklistPatterns,
@@ -627,8 +635,9 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
           return;
         }
 
-        // Check if card is already archived or quarantined
-        if (lookup.archivedIds.has(cardIdNorm)) {
+        // Check if card is already archived or matches a recurring blacklisted stem
+        const cardStemNorm = cardIdNorm.replace(/-(?:202\d-\d{2}-\d{2}|202\d\d{4}|\d{1,2})$/, "");
+        if (lookup.archivedIds.has(cardIdNorm) || (lookup.recurringBlacklistStems && lookup.recurringBlacklistStems.has(cardStemNorm))) {
           console.log(`🛡️ [Archived Event Suppressed] "${card.title}" [${card.id}] is permanently archived/disqualified. Suppressing from layer_schedules.json.`);
           results.push({
             url: targetUrl,
@@ -817,6 +826,12 @@ function normalizeCrawlerFeedUrl(u = "") {
     .replace(/\/+$/, "");
 }
 
+function isExcludedCrawlerFeedUrl(u = "") {
+  const s = String(u || "").trim();
+  if (!s || !s.startsWith("http")) return true;
+  return /127\.0\.0\.1|localhost|example\.com|testcellar/i.test(s);
+}
+
 /**
  * All Venue Feeds Harvester: Iterates through registered venue feeds from venues.json
  * and discovery/reference sources, supporting single-city scanning (Vancouver or Surrey) or All Metro.
@@ -840,13 +855,17 @@ export async function runAllVenueFeedsBatch(options = {}) {
   const seenUrls = new Set();
   const allFeeds = [];
   for (const v of venues) {
-    const curatorInfo = getCuratorInfo({ venue: v.venue_name });
-    const url = (curatorInfo.learnedVenueUrl || curatorInfo.instructedUrl || v.calendar_url || v.website_url || "").trim();
+    if (v.is_test_canary) continue;
+    const vName = (v.venue_name || v.name || "").trim();
+    if (!vName) continue;
+    const curatorInfo = getCuratorInfo({ venue: vName });
+    // Use venue-level learned calendar link or venue calendar/website URL (never single-event instructedUrl)
+    const url = (curatorInfo.learnedVenueUrl || v.calendar_url || v.calendarUrl || v.website_url || v.websiteUrl || "").trim();
     const norm = normalizeCrawlerFeedUrl(url);
-    if (url && url.startsWith("http") && norm && !seenUrls.has(norm)) {
+    if (!isExcludedCrawlerFeedUrl(url) && norm && !seenUrls.has(norm)) {
       seenUrls.add(norm);
       allFeeds.push({
-        name: v.venue_name || "Venue",
+        name: vName,
         url,
         city: inferFeedCity({ ...v, url })
       });
@@ -867,7 +886,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
   ];
   for (const s of seedFeeds) {
     const norm = normalizeCrawlerFeedUrl(s.url);
-    if (norm && !seenUrls.has(norm)) {
+    if (!isExcludedCrawlerFeedUrl(s.url) && norm && !seenUrls.has(norm)) {
       seenUrls.add(norm);
       allFeeds.push(s);
     }
@@ -879,13 +898,14 @@ export async function runAllVenueFeedsBatch(options = {}) {
       const discRaw = JSON.parse(fs.readFileSync(DISCOVERY_SOURCES_PATH, "utf-8"));
       const discSources = Array.isArray(discRaw) ? discRaw : (discRaw.sources || []);
       for (const s of discSources) {
-        if (s.id === "testy-canary-feed" || s.type === "canary_test_feed") continue;
+        if (s.id === "testy-canary-feed" || s.type === "canary_test_feed" || s.is_test_canary) continue;
+        const sName = (s.name || s.id || "").trim();
         const u = (s.eventsUrl || s.calendarUrl || s.url || "").trim();
         const norm = normalizeCrawlerFeedUrl(u);
-        if (u && u.startsWith("http") && !u.includes("127.0.0.1") && norm && !seenUrls.has(norm)) {
+        if (sName && !isExcludedCrawlerFeedUrl(u) && norm && !seenUrls.has(norm)) {
           seenUrls.add(norm);
           allFeeds.push({
-            name: s.name || s.id || "Discovery Source",
+            name: sName,
             url: u,
             city: inferFeedCity({ ...s, url: u })
           });
@@ -902,12 +922,14 @@ export async function runAllVenueFeedsBatch(options = {}) {
       const surreyRef = JSON.parse(fs.readFileSync(SURREY_SOURCES_PATH, "utf-8"));
       const surreySources = Array.isArray(surreyRef) ? surreyRef : (surreyRef.sources || []);
       for (const s of surreySources) {
+        if (s.is_test_canary) continue;
+        const sName = (s.name || s.id || "").trim();
         const u = (s.url || "").trim();
         const norm = normalizeCrawlerFeedUrl(u);
-        if (u && u.startsWith("http") && norm && !seenUrls.has(norm)) {
+        if (sName && !isExcludedCrawlerFeedUrl(u) && norm && !seenUrls.has(norm)) {
           seenUrls.add(norm);
           allFeeds.push({
-            name: s.name || "Surrey Source",
+            name: sName,
             url: u,
             city: "Surrey"
           });

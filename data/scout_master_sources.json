@@ -1,5 +1,5 @@
 {
-  "total_sources": 180,
+  "total_sources": 201,
   "sources": [
     {
       "id": "venue:stanley-park-seawall",
@@ -85,7 +85,7 @@
       "id": "venue:war-memorial-gym-thunderbird-stadium",
       "name": "War Memorial Gym & Thunderbird Stadium",
       "type": "venue",
-      "url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+      "url": "https://www.universe.com/users/ubc-thunderbirds-9PGJNS",
       "neighborhood": "Kitsilano, Point Grey & UBC",
       "last_scouted_at": null
     },
@@ -517,7 +517,7 @@
       "id": "venue:queen-elizabeth-park-pitch-putt",
       "name": "Queen Elizabeth Park Pitch & Putt",
       "type": "venue",
-      "url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
+      "url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
       "neighborhood": "Mount Pleasant & South Vancouver",
       "last_scouted_at": null
     },
@@ -525,7 +525,7 @@
       "id": "venue:rupert-park-pitch-putt",
       "name": "Rupert Park Pitch & Putt",
       "type": "venue",
-      "url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
+      "url": "https://www.destinationvancouver.com/things-to-do/outdoor-activities/golf",
       "neighborhood": "Commercial Drive & East Vancouver",
       "last_scouted_at": null
     },
@@ -1327,6 +1327,278 @@
       "name": "Small File Media Festival (7th Annual)",
       "type": "festival",
       "url": "https://smallfile.ca",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:norman-annette-rothstein-theatre",
+      "name": "Norman & Annette Rothstein Theatre",
+      "type": "venue",
+      "url": "https://www.normanrothsteintheatre.com/events",
+      "neighborhood": "Oakridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:north-vancouver-city-library",
+      "name": "North Vancouver City Library",
+      "type": "venue",
+      "url": "https://www.nvcl.ca/events",
+      "neighborhood": "Central Lonsdale",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:university-of-british-columbia-ams-student-nest",
+      "name": "University of British Columbia - AMS Student Nest",
+      "type": "venue",
+      "url": "https://www.ams.ubc.ca/student-life/events/",
+      "neighborhood": "UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:lynn-canyon-ecology-centre",
+      "name": "Lynn Canyon Ecology Centre",
+      "type": "venue",
+      "url": "https://ecologycentre.ca/programs/",
+      "neighborhood": "Lynn Valley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:djavad-mowafaghian-cinema",
+      "name": "Djavad Mowafaghian Cinema",
+      "type": "venue",
+      "url": "https://www.sfu.ca/sca/events---news/events.html",
+      "neighborhood": "Gastown / Victory Square",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:sfu-harbour-centre",
+      "name": "SFU Harbour Centre",
+      "type": "venue",
+      "url": "https://events.sfu.ca/",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:camp-beer-co",
+      "name": "CAMP Beer Co.",
+      "type": "venue",
+      "url": "https://www.campbeer.ca/events",
+      "neighborhood": "Willowbrook",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:lavenderland",
+      "name": "Lavenderland",
+      "type": "venue",
+      "url": "https://lavenderland.ca/pages/events",
+      "neighborhood": "South Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:dublin-calling",
+      "name": "Dublin Calling",
+      "type": "venue",
+      "url": "https://www.dublincalling.com/events",
+      "neighborhood": "Granville Entertainment District",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:high-score-lounge",
+      "name": "High Score Lounge",
+      "type": "venue",
+      "url": "https://www.highscorelounge.ca/event-calendar",
+      "neighborhood": "Gastown / Victory Square",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:honeybee-centre",
+      "name": "Honeybee Centre",
+      "type": "venue",
+      "url": "https://www.honeybeecentre.com/courses-and-workshops/",
+      "neighborhood": "Cloverdale",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-rec-room-brentwood",
+      "name": "The Rec Room Brentwood",
+      "type": "venue",
+      "url": "https://www.therecroom.com/burnaby-brentwood/events",
+      "neighborhood": "Brentwood",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:champlain-heights-community-centre",
+      "name": "Champlain Heights Community Centre",
+      "type": "venue",
+      "url": "https://champlainheightscc.ca/calendar/",
+      "neighborhood": "Champlain Heights",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:new-westminster-public-library",
+      "name": "New Westminster Public Library",
+      "type": "venue",
+      "url": "https://www.nwpl.ca/events-calendar",
+      "neighborhood": "Uptown New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:royal-canadian-legion-branch-133",
+      "name": "Royal Canadian Legion Branch 133",
+      "type": "venue",
+      "url": "https://pocolegion.ca/calendar-of-events/",
+      "neighborhood": "Downtown Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:queen-s-park-arena",
+      "name": "Queen's Park Arena",
+      "type": "venue",
+      "url": "https://www.newwestcity.ca/calendar-of-events",
+      "neighborhood": "Queen's Park, New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:smugglers-trail-caskworks",
+      "name": "Smugglers Trail Caskworks",
+      "type": "venue",
+      "url": "https://www.smugglerstrailcask.com/events",
+      "neighborhood": "Walnut Grove / Port Kells",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:night-owl-kitchen-bar-langley",
+      "name": "Night Owl Kitchen + Bar (Langley)",
+      "type": "venue",
+      "url": "https://nightowlbars.ca/events/",
+      "neighborhood": "Willowbrook, Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:lulu-island-winery",
+      "name": "LuLu Island Winery",
+      "type": "venue",
+      "url": "https://luluislandwinery.com/events/",
+      "neighborhood": "East Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:crave-bistro-bar",
+      "name": "Crave Bistro & Bar",
+      "type": "venue",
+      "url": "https://cravebistro.ca/news/",
+      "neighborhood": "Central Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:dine-kanadiyan",
+      "name": "Dine Kanadiyan",
+      "type": "venue",
+      "url": "https://dinekanadiyan.ca/live-entertainment",
+      "neighborhood": "Uptown, New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:softball-city",
+      "name": "Softball City",
+      "type": "venue",
+      "url": "https://softballcity.bc.ca/tournaments/",
+      "neighborhood": "South Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:west-coast-gardens",
+      "name": "West Coast Gardens",
+      "type": "venue",
+      "url": "https://www.westcoastgardens.ca/pages/events",
+      "neighborhood": "South Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:whalley-legion-rcl-branch-229",
+      "name": "Whalley Legion (RCL Branch 229)",
+      "type": "venue",
+      "url": "https://whalleylegion.org/news-%26-calendar",
+      "neighborhood": "Whalley / City Centre, Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:cloverdale-legion-branch-6",
+      "name": "Cloverdale Legion Branch 6",
+      "type": "venue",
+      "url": "https://cloverdalelegion.ca/music-entertainment/",
+      "neighborhood": "Cloverdale, Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:langley-events-centre",
+      "name": "Langley Events Centre",
+      "type": "venue",
+      "url": "https://www.langleyeventscentre.com/events",
+      "neighborhood": "Willoughby, Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:tsawwassen-mills",
+      "name": "Tsawwassen Mills",
+      "type": "venue",
+      "url": "https://www.tsawwassenmills.com/events-entertainment/",
+      "neighborhood": "Tsawwassen",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:alexandra-neighbourhood-house",
+      "name": "Alexandra Neighbourhood House",
+      "type": "venue",
+      "url": "https://www.alexhouse.net/events-calendar",
+      "neighborhood": "Crescent Beach, Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:pitt-meadows-art-gallery",
+      "name": "Pitt Meadows Art Gallery",
+      "type": "venue",
+      "url": "https://www.pittmeadows.ca/pmag",
+      "neighborhood": "Osprey Village, Pitt Meadows",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:pitt-meadows-public-library",
+      "name": "Pitt Meadows Public Library",
+      "type": "venue",
+      "url": "https://www.fvrl.bc.ca/events",
+      "neighborhood": "Pitt Meadows",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:pitt-meadows-museum",
+      "name": "Pitt Meadows Museum",
+      "type": "venue",
+      "url": "https://www.pittmeadowsmuseum.com/events.html",
+      "neighborhood": "Pitt Meadows",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:timms-community-centre",
+      "name": "Timms Community Centre",
+      "type": "venue",
+      "url": "https://www.langleycity.ca/community-culture/events",
+      "neighborhood": "Langley City",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:latin-plaza-hub-latincouver",
+      "name": "Latin Plaza Hub (Latincouver)",
+      "type": "venue",
+      "url": "https://www.latincouver.ca/events/",
+      "neighborhood": "Gastown, Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:grandview-park",
+      "name": "Grandview Park",
+      "type": "venue",
+      "url": "https://thedrive.ca/events/",
+      "neighborhood": "Commercial Drive, Vancouver",
       "last_scouted_at": null
     }
   ],

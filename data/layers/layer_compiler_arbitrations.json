@@ -338,5 +338,585 @@
       "arbitration_reasoning": "Adopted the concise editorial and seed title 'Jokes Please!' stripping SEO clutter from the box office layer while retaining verified schedule times and active inventory."
     },
     "updatedAt": "2026-11-17T02:59:36.800Z"
+  },
+  "martini-town-merry-bright-2026-11-20": {
+    "sig": "title mismatch between schedule (\"Merry & Bright\") and box office (\"Merry & Bright Festival\")::",
+    "decision": {
+      "clean_title": "Merry & Bright",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-20",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved title conflict in favor of the canonical 'Merry & Bright' title corroborated by both the Seed and Schedule layers over the generic festival suffix in the Box Office layer."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "hollywood-theatre-daniel-wesley-2026-11-20": {
+    "sig": "title mismatch between schedule (\"Daniel Wesley\") and box office (\"Daniel Wesley (all night)\")::",
+    "decision": {
+      "clean_title": "Daniel Wesley",
+      "artist": "Daniel Wesley",
+      "lineup": [
+        "Daniel Wesley"
+      ],
+      "date": "2026-11-20",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the canonical title 'Daniel Wesley' from Seed and Schedule layers, stripping the box office run-time suffix, and flagged as sold out because the only tier under $50 (Early Bird at $48) is unavailable while General Admission ($54) exceeds the $50 ceiling."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "the-cinematheque-european-union-film-festival-2026-11-12": {
+    "sig": "date mismatch between schedule (2026-11-26) and box office (2026-11-12)::",
+    "decision": {
+      "clean_title": "European Union Film Festival",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-11-26 matching the specific festival closing screening date harvested by the schedule and seed layers within the November 12 to 26 festival window, categorized under cinema for The Cinematheque."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "daily-hive-listed-i-m-going-through-some-things-2026-11-19": {
+    "sig": "title mismatch between schedule (\"I'm Going Through Some Things\") and box office (\"I'm Going Through Some Things: A Solo Show by Ben Immanuel\")::",
+    "decision": {
+      "clean_title": "I'm Going Through Some Things: A Solo Show by Ben Immanuel",
+      "artist": "Ben Immanuel",
+      "lineup": [
+        "Ben Immanuel"
+      ],
+      "date": "2026-11-19",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the complete descriptive title from the official box office and checkout URL, parsing Ben Immanuel as the lead artist while preserving the active 7:00 PM showtime and 'shows' category."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "vancouver-playhouse-terra-string-quartet-17": {
+    "sig": "title mismatch between schedule (\"Terra String Quartet\") and box office (\"Friends Of Chamber Music Presents - Terra String Quartet (USA)\")::",
+    "decision": {
+      "clean_title": "Terra String Quartet",
+      "artist": "Terra String Quartet",
+      "lineup": [
+        "Terra String Quartet"
+      ],
+      "date": "2026-11-17",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Stripped the presenter prefix and origin country suffix from the box office title in favor of the canonical core performance title confirmed by the Seed and Schedule layers."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "vancouver-poetry-hou-vancouver-poetry-slam-ft-nate-2026-11-02": {
+    "sig": "date mismatch between schedule (2026-12-01) and box office (2026-11-02)::",
+    "decision": {
+      "clean_title": "Vancouver Poetry Slam ft. Nate Nate Nainers",
+      "artist": "Nate Nate Nainers",
+      "lineup": [
+        "Nate Nate Nainers"
+      ],
+      "date": "2026-12-01",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-12-01 as both Seed and Schedule layers confirm the upcoming December date over the past November 2nd box office timestamp."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "the-cultch-historic-un-gala-gala-6": {
+    "sig": "title mismatch between schedule (\"Un-Gala (Gala)\") and box office (\"Ungala - The Cultch\")::",
+    "decision": {
+      "clean_title": "Un-Gala (Gala)",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-06",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the canonical event title 'Un-Gala (Gala)' from the Seed and Schedule layers over the venue-suffixed checkout label, while preserving verified box office timing and date."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "metro-vancouver-mult-vancouver-christmas-concerts-2026-11-29": {
+    "sig": "date mismatch between schedule (2026-11-29) and box office (2026-12-04)::",
+    "decision": {
+      "clean_title": "Vancouver Christmas Concerts",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-29",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Preserved the confirmed schedule harvester kickoff date (2026-11-29) while adopting the stagehand live box office start time (7:30 PM) for this series."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "concord-pacific-plac-win-tickets-to-cirque-du-solei-2027-01-02": {
+    "sig": "date mismatch between schedule (2027-01-02) and box office (2026-11-14)::",
+    "decision": {
+      "clean_title": "Win Tickets to Cirque du Soleil Circus Giveaway Contest!",
+      "artist": "Cirque du Soleil",
+      "lineup": [
+        "Cirque du Soleil"
+      ],
+      "date": "2027-01-02",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the forward schedule date 2027-01-02 to prevent selecting a past date relative to current time while retaining verified box office time and sold-out status."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "the-rio-theatre-kevin-smith-s-sunday-cinema-si-2026-11-15": {
+    "sig": "title mismatch between schedule (\"Kevin Smith’s Sunday Cinema Side Hustle\") and box office (\"Kevin Smith's Sunday Cinema Side Hustle: Series Pass\")|date mismatch between schedule (2026-11-22) and box office (2026-11-15)::",
+    "decision": {
+      "clean_title": "Kevin Smith’s Sunday Cinema Side Hustle",
+      "artist": "Kevin Smith",
+      "lineup": [
+        "Kevin Smith"
+      ],
+      "date": "2026-11-22",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Selected the authoritative specific show title and upcoming schedule date (2026-11-22) over the generic multi-week series pass label and past date (2026-11-15), while preserving the verified start time and sold-out status from the live box office layer."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "mcdougall-auditorium-ash-grunwald-australia-live-at-2027-01-24": {
+    "sig": "date mismatch between schedule (2027-01-24) and box office (2026-12-10)::",
+    "decision": {
+      "clean_title": "Ash Grunwald (Australia) LIVE at McDougall Auditorium",
+      "artist": "Ash Grunwald",
+      "lineup": [
+        "Ash Grunwald"
+      ],
+      "date": "2027-01-24",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Resolved date to 2027-01-24 from seed and schedule as the box office crawler mistakenly scraped a generic conference/course checkout page on Humanitix."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "fox-cabaret-sami-landri-s-sami-party-2026-11-20": {
+    "sig": "date mismatch between schedule (2026-11-20) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "Sami Landri's Sami Party",
+      "artist": "Sami Landri",
+      "lineup": [
+        "Sami Landri"
+      ],
+      "date": "2026-11-20",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Arbitrated date to 2026-11-20 in lockstep with the primary Seed and Schedule Harvester records, while adopting the verified 8:00 PM start time and active availability from the Box Office layer."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "surrey-surrey-community-dinner-2026-11-27": {
+    "sig": "is_sold_out flag is true while live all_tiers contains available tickets|date mismatch between schedule (2026-11-27) and box office (2026-11-18)::",
+    "decision": {
+      "clean_title": "Surrey Community Dinner",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-18",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the verified box office date (2026-11-18) and maintained is_sold_out as true because the single admission tier is unavailable and both tiers ($175 and $109.52) exceed the $50 CAD single-visit budget ceiling."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "vancouver-playhouse-shift-sessions-2026-11-18": {
+    "sig": "title mismatch between schedule (\"SHIFT Sessions\") and box office (\"SHIFT Sessions Vancouver 2026\")::",
+    "decision": {
+      "clean_title": "SHIFT Sessions Vancouver 2026",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-18",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the more specific official box office title 'SHIFT Sessions Vancouver 2026' and reconciled schedule timing, noting the event carries a single advanced ticket tier."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "viff-centre-everything-for-sale-2026-11-28": {
+    "sig": "date mismatch between schedule (2026-11-28) and box office (2026-11-29)::",
+    "decision": {
+      "clean_title": "Everything For Sale",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-29",
+      "start_time": "1:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-11-29 following live Stagehand Box Office checkout cart ground truth over static schedule data, maintaining clean title and cinema category for VIFF Centre."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "queen-elizabeth-thea-vancouver-indigenous-fashion-w-2026-11-20": {
+    "sig": "title mismatch between schedule (\"Vancouver Indigenous Fashion Week presents Indigenous Futures - Hip Hop & Streetwear\") and box office (\"Indigenous Futures - Hip Hop & Streetwear\")::",
+    "decision": {
+      "clean_title": "Vancouver Indigenous Fashion Week: Indigenous Futures - Hip Hop & Streetwear",
+      "artist": "Vancouver Indigenous Fashion Week",
+      "lineup": [
+        "Vancouver Indigenous Fashion Week"
+      ],
+      "date": "2026-11-20",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Reconciled schedule and box office titles into the authoritative presentation format, preserving the full festival context and specific program name."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "viff-centre-nuisance-bear-2026-12-04": {
+    "sig": "date mismatch between schedule (2026-12-04) and box office (2026-12-05)::",
+    "decision": {
+      "clean_title": "Nuisance Bear",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-05",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-12-05 matching the live box office checkout inspection and paired with its verified 8:00 PM showing, categorized as cinema for VIFF Centre."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "detroit-public-speaking-masterclass-de-2026-12-08": {
+    "sig": "date mismatch between schedule (2026-12-08) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Public Speaking Masterclass Detroit",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "10:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-11-23 per live box office checkout inspection over the initial seed/schedule calendar estimate."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "viff-centre-dean-thiessen-plays-vince-guar-2026-12-19": {
+    "sig": "date mismatch between schedule (2026-12-19) and box office (2026-12-20)::",
+    "decision": {
+      "clean_title": "Dean Thiessen Plays Vince Guaraldi + The Peanuts Movie",
+      "artist": "Dean Thiessen",
+      "lineup": [
+        "Dean Thiessen"
+      ],
+      "date": "2026-12-20",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Live Stagehand box office cart inspection takes epistemic precedence over harvester schedule seeds for volatile performance dates, resolving the date to 2026-12-20 at 4:00 PM."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "the-stretch-space-experience-tantra-connecting-s-2026-11-22": {
+    "sig": "is_sold_out flag is true while live all_tiers contains available tickets::",
+    "decision": {
+      "clean_title": "Experience Tantra: Connecting S*xuality with Spirit",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-22",
+      "start_time": "1:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved is_sold_out to false because live all_tiers contains available regular price tickets, and reconciled the title, date, and start time across seed, schedule, and box office layers."
+    },
+    "updatedAt": "2026-11-18T08:27:43.529Z"
+  },
+  "hollywood-theatre-the-divas-of-studio-54-2026-11-27": {
+    "sig": "title mismatch between schedule (\"The Divas of Studio 54\") and box office (\"Infidels Jazz Presents: The Divas of Studio 54 at the Hollywood Theatre\")::",
+    "decision": {
+      "clean_title": "The Divas of Studio 54",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": "7:00 PM",
+      "doors_time": "6:30 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise clean title from the Seed, Schedule, and Editorial layers by stripping the promoter and venue boilerplate from the raw box office ticket label."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "hollywood-theatre-pitbull-rave-2026-12-05": {
+    "sig": "title mismatch between schedule (\"PITBULL RAVE\") and box office (\"Pitbull Rave - Hollywood Theatre | Vancouver\")::",
+    "decision": {
+      "clean_title": "Pitbull Rave",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-05",
+      "start_time": "10:00 PM",
+      "doors_time": "10:00 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the Editorial layer's cleaned title 'Pitbull Rave' by stripping the venue/city suffix found on the Eventbrite Box Office title, confirmed active single-visit inventory via the Final Release tier ($40.00 CAD), and normalized showtime to 10:00 PM."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "old-toronto-meet-the-presses-2026-indie-li-2026-11-21": {
+    "sig": "date mismatch between schedule (2026-11-21) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "Meet the Presses Indie Lit Market",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-19",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Resolved date conflict in favor of the live box office layer (2026-11-19) which directly inspected and verified the active ticketing checkout page."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "joker-resto-ludique-speed-dating-2026-11-21": {
+    "sig": "date mismatch between schedule (2026-11-21) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "Speed Dating",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "The live box office checkout session confirmed the showing date as 2026-11-24 at 2:00 PM, taking precedence over the earlier preliminary harvest date."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "vivo-media-arts-cent-hedwig-and-the-angry-inch-29": {
+    "sig": "title mismatch between schedule (\"Hedwig and the Angry Inch\") and box office (\"Hedwig & The Angry Inch - Zee Zee Theatre\")|date mismatch between schedule (2026-11-29) and box office (2026-11-13)::",
+    "decision": {
+      "clean_title": "Hedwig and the Angry Inch",
+      "artist": "Zee Zee Theatre",
+      "lineup": [
+        "Zee Zee Theatre"
+      ],
+      "date": "2026-11-19",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the clean production title without the presenter affix, resolved the date to 2026-11-29 as the schedule layer indicates the run continues through that date while the 2026-11-13 box office date is in the past, and marked sold out as all verified tiers in the live cart are unavailable."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "chan-centre-for-the-ubc-symphony-orchestra-choirs-2026-12-05": {
+    "sig": "title mismatch between schedule (\"UBC Symphony Orchestra & Choirs\") and box office (\"UBC Symphony Orchestra and Choir\")::",
+    "decision": {
+      "clean_title": "UBC Symphony Orchestra & Choirs",
+      "artist": "Jonathan Girard",
+      "lineup": [
+        "Jonathan Girard",
+        "UBC Choral Union",
+        "Hyejung Jun",
+        "UBC University Singers"
+      ],
+      "date": "2026-12-05",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted 'UBC Symphony Orchestra & Choirs' as verified across the Seed, Schedule, and Editorial layers to accurately represent the multiple collaborating ensembles, while incorporating the box office start time and confirming inventory availability under $50 CAD."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "rickshaw-theatre-korpiklaani-with-crimson-shado-2026-11-18": {
+    "sig": "title mismatch between schedule (\"Korpiklaani With Crimson Shadows And Kayas\") and box office (\"Korpiklaani // Crimson Shadows // Kayas Live in Vancouver\")::",
+    "decision": {
+      "clean_title": "Korpiklaani With Crimson Shadows And Kayas",
+      "artist": "Korpiklaani",
+      "lineup": [
+        "Korpiklaani",
+        "Crimson Shadows",
+        "Kayas"
+      ],
+      "date": "2026-11-18",
+      "start_time": "7:00 PM",
+      "doors_time": "6:30 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the canonical title and music category from schedule and editorial layers while extracting the billing lineup and accepting the verified $39.10 CAD live box office checkout tier."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "fox-cabaret-autograft-2026-11-26": {
+    "sig": "title mismatch between schedule (\"autOgraft\") and box office (\"autOgraft in concert! With Felisha and the Jazz Rejects + Trip Switch\")::",
+    "decision": {
+      "clean_title": "autOgraft",
+      "artist": "autOgraft",
+      "lineup": [
+        "Felisha and the Jazz Rejects",
+        "Trip Switch"
+      ],
+      "date": "2026-11-26",
+      "start_time": "7:30 PM",
+      "doors_time": "7:00 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the clean headline title 'autOgraft' from the schedule and editorial layers while extracting the billing noise into artist and lineup fields, with verified live GA box office inventory at $17.40 CAD."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "rio-theatre-vimff-2026-ski-snow-show-2026-11-18": {
+    "sig": "title mismatch between schedule (\"VIMFF 2026: Ski & Snow Show\") and box office (\"Ski & Snow Show\")::",
+    "decision": {
+      "clean_title": "VIMFF: Ski & Snow Show",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-18",
+      "start_time": "7:00 PM",
+      "doors_time": "6:00 PM",
+      "is_sold_out": true,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the editorial layer's cleaned title preserving the VIMFF festival brand over the truncated box office modal title, while confirming sold-out status from all unavailable checkout tiers."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "chan-centre-for-the-an-evening-with-gabor-mat-2026-11-19": {
+    "sig": "title mismatch between schedule (\"An Evening with Gabor Maté\") and box office (\"Chan Centre Insights: An Evening with Gabor Maté\")::",
+    "decision": {
+      "clean_title": "Chan Centre Insights: An Evening with Gabor Maté",
+      "artist": "Gabor Maté",
+      "lineup": [
+        "Gabor Maté"
+      ],
+      "date": "2026-11-19",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the complete official series and event title from the box office layer while extracting Gabor Maté as lead artist, retaining the verified $30.00 CAD active seating tier and 7:30 PM showtime."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "the-shipyards-shipyards-christmas-market-24": {
+    "sig": "date mismatch between schedule (2026-11-27) and box office (2026-12-24)::",
+    "decision": {
+      "clean_title": "Shipyards Christmas Market",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": "11:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Resolved date to opening day 2026-11-27 from the schedule layer over the end date in the ongoing range, adopted editorial category 'markets', and confirmed free public access admission."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "sfu-burnaby-bennett-join-us-for-gis-day-2026-2026-11-18": {
+    "sig": "title mismatch between schedule (\"Join us for GIS Day 2026\") and box office (\"Join us for GIS Day 2026: Indigenous and Decolonizing Approaches to Spatial Thinking and Research\")::",
+    "decision": {
+      "clean_title": "GIS Day 2026: Indigenous and Decolonizing Approaches to Spatial Thinking and Research",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-18",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the specific full subtitle from the Box Office and Editorial layers while trimming the conversational call-to-action prefix 'Join us for'."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "burnaby-art-gallery-jiangang-su-a-thousand-years-i-2026-11-27": {
+    "sig": "date mismatch between schedule (2026-11-27) and box office (2026-11-26)::",
+    "decision": {
+      "clean_title": "Jiangang Su: A Thousand Years in One Stream (Opening Reception)",
+      "artist": "Jiangang Su",
+      "lineup": [
+        "Jiangang Su"
+      ],
+      "date": "2026-11-26",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2026-11-26 matching the box office layer's specific 7:00 PM timed session, extracted lead artist Jiangang Su from the exhibition title, and retained the editorial category 'arts'."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "rio-theatre-vimff-extreme-antarctica-17": {
+    "sig": "title mismatch between schedule (\"VIMFF Extreme Antarctica\") and box office (\"VIMFF 2026: Extreme Antarctica\")::",
+    "decision": {
+      "clean_title": "VIMFF: Extreme Antarctica",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-17",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the Editorial clean title 'VIMFF: Extreme Antarctica' to eliminate year noise while preserving the full festival series name, grounded date and time from the verified box office checkout, and confirmed category as cinema."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "main-street-brewing-verdant-collective-at-main-str-2026-11-18": {
+    "sig": "title mismatch between schedule (\"Verdant Collective at Main Street Brewing\") and box office (\"Main Street Brewing x Verdant (Neighbourhood Concert)\")::",
+    "decision": {
+      "clean_title": "Verdant Collective at Main Street Brewing",
+      "artist": "Verdant Collective",
+      "lineup": [
+        "Verdant Collective"
+      ],
+      "date": "2026-11-18",
+      "start_time": "5:30 PM",
+      "doors_time": "5:30 PM",
+      "is_sold_out": true,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise performance title from the Seed, Schedule, and Editorial layers over the box office listing title, categorized as music based on editorial chamber performance context, and confirmed sold out as the sole single-visit General Admission tier is marked unavailable."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "lynn-canyon-ecology-spectacular-seasons-1": {
+    "sig": "title mismatch between schedule (\"Spectacular Seasons\") and box office (\"Forest Explorers: Spectacular Seasons\")::",
+    "decision": {
+      "clean_title": "Forest Explorers: Spectacular Seasons",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-01",
+      "start_time": "9:30 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "family",
+      "arbitration_reasoning": "Adopted the specific box office title 'Forest Explorers: Spectacular Seasons' to preserve the full program identity while grounding the category in the outdoors editorial layer and keeping is_sold_out false due to active $16 admission."
+    },
+    "updatedAt": "2026-11-18T10:58:15.790Z"
   }
 }

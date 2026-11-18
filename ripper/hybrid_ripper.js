@@ -460,14 +460,40 @@ export function buildFullDimensions(extracted, venueData, targetUrl, cartScreens
   const t3Read = extracted.tier3_price_read ?? extracted.tier3_price_all_in ?? t3Calculated;
   const t3Delta = (t3Read != null && t3Calculated != null) ? Math.abs(t3Read - t3Calculated) : 0;
 
-  // If all_tiers array is provided, filter out annual memberships & >$50 secondary tiers and hydrate tier1/tier2/tier3 if unpopulated
-  const allTiersList = Array.isArray(extracted.all_tiers) && extracted.all_tiers.length > 0
-    ? extracted.all_tiers.filter((t) => {
-      if (!t) return false;
-      const tName = String(t.name || "");
-      if (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(tName)) return false;
+  // Guard against Concession-Tier Bypass (Bug 1): If unconditional Adult/Regular/GA tiers exist and ALL available unconditional tiers exceed $50.00 CAD,
+  // NEVER drop them in favor of restricted Student/Youth/Senior/Arts Worker/Member concession tiers <= $50.00 CAD!
+  const isRestrictedConcessionName = (nameStr) =>
+    /\b(?:student|youth|child|children|kid|kids|toddler|infant|senior|elders?|65\+|arts\s*worker|industry|member|alumni|under\s*(?:18|19|25|30)|indigenous|caregiver|helper|volunteer)\b/i.test(String(nameStr || ""));
+  const rawNonPassTiers = Array.isArray(extracted.all_tiers)
+    ? extracted.all_tiers.filter((t) => t && !/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(String(t.name || "")))
+    : [];
+  const availUnconditionalTiers = rawNonPassTiers.filter((t) => {
+    if (isRestrictedConcessionName(t.name || t.label || "")) return false;
+    return t.is_available !== false && t.isAvailable !== false && !/\bsold\s*out\b/i.test(String(t.label || ""));
+  });
+  const minAvailUnconditionalPrice = availUnconditionalTiers.length > 0
+    ? Math.min(...availUnconditionalTiers.map((t) => Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 999)).filter((n) => !isNaN(n) && n > 0))
+    : null;
+  const hasAdultBreachOver50 = minAvailUnconditionalPrice != null && isFinite(minAvailUnconditionalPrice) && minAvailUnconditionalPrice > 50.0;
+  if (hasAdultBreachOver50 && (isRestrictedConcessionName(extracted.tier1_name) || Number(extracted.tier1_price_all_in ?? priceBase ?? 0) <= 50.0)) {
+    const lowestAdult = [...availUnconditionalTiers].sort(
+      (a, b) => Number(a.price_all_in ?? a.price ?? a.price_base ?? 999) - Number(b.price_all_in ?? b.price ?? b.price_base ?? 999)
+    )[0];
+    if (lowestAdult) {
+      extracted.tier1_name = lowestAdult.name || lowestAdult.label || "General Admission (Adult)";
+      priceBase = lowestAdult.price_base ?? lowestAdult.price_all_in ?? lowestAdult.price ?? priceBase;
+      priceFee = lowestAdult.price_fee ?? 0;
+      priceTax = lowestAdult.price_tax ?? 0;
+      extracted.tier1_price_read = lowestAdult.price_read ?? lowestAdult.price_all_in ?? lowestAdult.price ?? priceBase;
+      extracted.tier1_price_all_in = lowestAdult.price_all_in ?? lowestAdult.price ?? priceBase;
+    }
+  }
+
+  // If all_tiers array is provided, filter out annual memberships & >$50 secondary tiers (unless Adult GA itself breached >$50) and hydrate tier1/tier2/tier3 if unpopulated
+  const allTiersList = rawNonPassTiers.length > 0
+    ? rawNonPassTiers.filter((t) => {
       const tPrice = Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 0);
-      if (!isNaN(tPrice) && tPrice > 50.0) return false;
+      if (!hasAdultBreachOver50 && !isNaN(tPrice) && tPrice > 50.0) return false;
       return true;
     })
     : [];
@@ -1278,15 +1304,17 @@ export async function runHybridRipper(targetUrl, options = {}) {
     const page = await stagehand.browser.context.newPage(targetUrl);
     await new Promise((r) => setTimeout(r, 3000));
 
-    // Interact with checkout/ticket buttons if visible
-    console.log(`🎟️ [2/4] Testing interactive box office & cart drawer...`);
-    try {
-      await stagehand.act("If there is a 'Tickets', 'Buy Tickets', 'Get Tickets', or 'Register' button or link, click it to open the cart modal. Dismiss any cookie or newsletter banner first if present.");
-      await new Promise((r) => setTimeout(r, 2000));
-      await stagehand.act("If a ticket quantity selector is visible, click '+' or set quantity to 1 for General Admission to display base price, platform service fees, and taxes.");
-      await new Promise((r) => setTimeout(r, 1500));
-    } catch (actErr) {
-      console.log(`ℹ️ Note on interactive cart action: ${actErr.message || "Proceeded directly to extraction"}`);
+    // Interact with checkout/ticket buttons if visible (skip during Step 1A schedule harvest under Antigravity Engine)
+    if (!(options?.fromHarvester && isAntigravityEngine())) {
+      console.log(`🎟️ [2/4] Testing interactive box office & cart drawer...`);
+      try {
+        await stagehand.act("If there is a 'Tickets', 'Buy Tickets', 'Get Tickets', or 'Register' button or link, click it to open the cart modal. Dismiss any cookie or newsletter banner first if present.");
+        await new Promise((r) => setTimeout(r, 2000));
+        await stagehand.act("If a ticket quantity selector is visible, click '+' or set quantity to 1 for General Admission to display base price, platform service fees, and taxes.");
+        await new Promise((r) => setTimeout(r, 1500));
+      } catch (actErr) {
+        console.log(`ℹ️ Note on interactive cart action: ${actErr.message || "Proceeded directly to extraction"}`);
+      }
     }
 
     // Capture visual keyframe screenshot proof ONLY outside Step 1A Harvester (Step 2 captures verified paid cart keyframes)
@@ -1332,6 +1360,9 @@ export async function runHybridRipper(targetUrl, options = {}) {
         } catch (_) {}
       }
       extractedData = await callAntigravityBoxOfficeExtractor(domSnapshot, targetUrl, matchedCard);
+      if (!extractedData || Object.keys(extractedData).length === 0) {
+        throw new Error("Antigravity CLI worker returned empty extraction (skipping fallback to avoid AI Studio credit cascade)");
+      }
     }
     if (!extractedData || Object.keys(extractedData).length === 0) {
       const extraction = await stagehand.extract(

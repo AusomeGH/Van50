@@ -7360,6 +7360,16 @@ function initStagehandRipperUI() {
 
   const setExecutionState = (running, initialStatus = '') => {
     isExecuting = running;
+    if (!running) {
+      harvesterControlsExpandedDuringRun = false;
+      harvesterActiveLinkProgressText = '';
+      if (!isPipelineAutoChaining) {
+        window.activePipelineRunningStageKey = null;
+      }
+    }
+    if (typeof window.syncHarvesterCompressedControlsUI === 'function') {
+      window.syncHarvesterCompressedControlsUI();
+    }
     if (typeof updateMainStopButtonState === 'function') {
       updateMainStopButtonState(running);
     }
@@ -7933,7 +7943,16 @@ function initStagehandRipperUI() {
     let nextUnscannedFeed = null;
     let firstFeedName = scopedFeeds[0]?.name || cp.last_feed_name || 'Source #1';
 
-    if (scopedFeeds.length > 0) {
+    const cpScope = String(cp.city_scope || 'all').toLowerCase();
+    const cpMarkedCompleted = cp.status === 'completed' &&
+      (cpScope === 'all' || cpScope === activeCity) &&
+      Number(cp.completed_feeds_count || 0) >= Math.max(1, Number(cp.total_feeds || 1));
+
+    if (cpMarkedCompleted && totalFeeds > 0) {
+      completedFeeds = totalFeeds;
+      nextUnscannedFeed = null;
+      resumeFeedNum = 1;
+    } else if (scopedFeeds.length > 0) {
       completedFeeds = scopedFeeds.filter(f => {
         const nf = normalizeCuratorFeedUrl(f.url);
         return nf && completedNormSet.has(nf);
@@ -8784,13 +8803,17 @@ function initStagehandRipperUI() {
       }
     }
 
+    const cpBannerIcon = document.getElementById('harvester-checkpoint-banner-icon');
     const cpBannerTitle = document.getElementById('harvester-checkpoint-banner-title');
     if (cpBannerTitle) {
       if (isComplete) {
+        if (cpBannerIcon) cpBannerIcon.textContent = '✅';
         cpBannerTitle.textContent = `All ${totalFeeds}/${totalFeeds} Sources Scanned`;
       } else if (completedFeeds === 0) {
+        if (cpBannerIcon) cpBannerIcon.textContent = '🧭';
         cpBannerTitle.textContent = `Ready at Source #1/${totalFeeds}: ${firstFeedName}`;
       } else {
+        if (cpBannerIcon) cpBannerIcon.textContent = '⏸️';
         cpBannerTitle.textContent = `Paused after ${completedFeeds}/${totalFeeds} Scanned • Next (#${resumeFeedNum}): ${lastFeedName}`;
       }
     }
@@ -12207,23 +12230,72 @@ function initStagehandRipperUI() {
   let harvesterDiscoveredEvents = [];
   let harvesterPreRunSourcesMap = new Map();
   let harvesterSourcesScanned = 0;
-  let harvesterTotalSources = 298;
+  let harvesterTotalSources = 297;
   let harvesterCurrentSourceName = '';
+  let harvesterControlsExpandedDuringRun = false;
+  let harvesterActiveLinkProgressText = '';
+  window.harvesterRunSelectionSummary = '';
+
+  window.syncHarvesterCompressedControlsUI = function () {
+    const compressedEl = document.getElementById('pipeline-harvester-compressed-summary');
+    const fullWrapper = document.getElementById('pipeline-harvester-venue-feed-wrapper');
+    const toggleBtn = document.getElementById('btn-toggle-harvester-controls');
+    const selectedTextEl = document.getElementById('harvester-compressed-selected-text');
+    if (!compressedEl || !fullWrapper) return;
+
+    const isViewingHarvest = currentPipelineScanKey === 'harvest';
+    const isHarvestActivelyRunning = Boolean(isExecuting && window.activePipelineRunningStageKey === 'harvest');
+
+    if (!isViewingHarvest) {
+      compressedEl.style.display = 'none';
+      fullWrapper.style.display = 'none';
+      return;
+    }
+
+    if (isHarvestActivelyRunning) {
+      compressedEl.style.display = 'flex';
+      if (selectedTextEl && window.harvesterRunSelectionSummary) {
+        selectedTextEl.textContent = window.harvesterRunSelectionSummary;
+      }
+      fullWrapper.style.display = harvesterControlsExpandedDuringRun ? 'flex' : 'none';
+      if (toggleBtn) {
+        toggleBtn.textContent = harvesterControlsExpandedDuringRun ? '▴ Compress Controls' : '▾ Show Controls';
+      }
+    } else {
+      compressedEl.style.display = 'none';
+      fullWrapper.style.display = 'flex';
+    }
+  };
+
+  window.toggleHarvesterCompressedControls = function () {
+    harvesterControlsExpandedDuringRun = !harvesterControlsExpandedDuringRun;
+    window.syncHarvesterCompressedControlsUI();
+  };
 
   function updateHarvesterSourcesProgressUI() {
-    const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 298 };
-    const isHarvestRunning = window.activePipelineRunningStageKey === 'harvest';
+    const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 297 };
+    const isHarvestRunning = Boolean(isExecuting && window.activePipelineRunningStageKey === 'harvest');
     const scanned = isHarvestRunning ? (harvesterSourcesScanned ?? 0) : (feedStats.completedFeeds ?? harvesterSourcesScanned ?? 0);
-    const total = (isHarvestRunning && harvesterTotalSources > 0) ? harvesterTotalSources : (feedStats.totalFeeds || harvesterTotalSources || 298);
-    const batchCount = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
+    const total = (isHarvestRunning && harvesterTotalSources > 0) ? harvesterTotalSources : (feedStats.totalFeeds || harvesterTotalSources || 297);
+    const rem = Math.max(0, total - scanned);
+    const batchCount = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0 && !isHarvestRunning)
       ? pipelineTestDiscoveredIds.length
       : ((harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0);
 
     if (currentPipelineScanKey === 'harvest') {
       const trackerStatus = document.getElementById('pipeline-last-scanned-text');
       if (trackerStatus) {
-        trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned</span> • <span style="color: #4ade80; font-weight: 700;">+${batchCount} events</span>`;
+        trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned (${rem} remaining)</span> • <span style="color: #4ade80; font-weight: 700;">+${batchCount} events</span>`;
       }
+    }
+
+    const compressedStatusEl = document.getElementById('harvester-compressed-status-text');
+    if (compressedStatusEl && isHarvestRunning) {
+      const activeOrd = window.harvesterActiveSourceOrdinal || Math.min(total, scanned + 1);
+      const activeSrcText = harvesterCurrentSourceName
+        ? `Scanning #${activeOrd}/${total}: ${harvesterCurrentSourceName}${harvesterActiveLinkProgressText ? ` (${harvesterActiveLinkProgressText})` : ''}`
+        : `Preparing Source #${activeOrd}/${total}…`;
+      compressedStatusEl.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${escapeHtml(activeSrcText)}</span> • <span style="color: #c084fc; font-weight: 700;">${scanned}/${total} completed (${rem} left)</span> • <span style="color: #4ade80; font-weight: 700;">+${batchCount} new events</span>`;
     }
 
     const stepSub = document.getElementById('test-step-sub-harvest');
@@ -14146,12 +14218,15 @@ function initStagehandRipperUI() {
         </div>
 
         <!-- Footer -->
-        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
-          <button type="button" onclick="window.closeContinue1ACityModal()" style="padding: 8px 14px; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 7px; cursor: pointer;">
+        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
+          <button type="button" onclick="window.closeContinue1ACityModal()" style="padding: 8px 13px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 7px; cursor: pointer;">
             Cancel
           </button>
-          <button type="button" id="c1a-btn-confirm" onclick="window.confirmContinue1ACityModal()" style="padding: 8px 16px; font-size: 0.8rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #0284c7 100%); border: 1px solid #c084fc; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 14px rgba(147, 51, 234, 0.45);">
-            ▶️ Start 1A Scan (All Metro • All Events)
+          <button type="button" id="c1a-btn-confirm" onclick="window.confirmContinue1ACityModal(false)" title="Run Stage 1A schedule harvest only (stops after Stage 1A)" style="padding: 8px 14px; font-size: 0.77rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border: 1px solid #c084fc; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 12px rgba(147, 51, 234, 0.38);">
+            ▶️ Run 1A Only
+          </button>
+          <button type="button" id="c1a-btn-confirm-chain" onclick="window.confirmContinue1ACityModal(true)" title="Run Stage 1A and automatically continue through Stages 1B, 2, 3, 4 &amp; 5" style="padding: 8px 14px; font-size: 0.77rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border: 1px solid #34d399; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.38);">
+            🚀 Run 1A ➔ Publish (1A–5)
           </button>
         </div>
       </div>
@@ -14191,11 +14266,15 @@ function initStagehandRipperUI() {
     });
 
     const btnConfirm = document.getElementById('c1a-btn-confirm');
+    const btnChain = document.getElementById('c1a-btn-confirm-chain');
+    const cityLabel = scope === 'vancouver' ? '🏙️ Vancouver Only' : (scope === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro');
+    const countLabel = (count === 'all' || count === 0) ? 'All Events' : `${count} Events`;
+    const modeLabel = resume ? 'Continue' : 'Fresh';
     if (btnConfirm) {
-      const cityLabel = scope === 'vancouver' ? '🏙️ Vancouver Only' : (scope === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro');
-      const countLabel = (count === 'all' || count === 0) ? 'All Events' : `${count} Events`;
-      const modeLabel = resume ? 'Continue' : 'Fresh';
-      btnConfirm.textContent = `▶️ ${modeLabel} 1A Scan — ${cityLabel} (${countLabel})`;
+      btnConfirm.textContent = `▶️ ${modeLabel} 1A Only — ${cityLabel} (${countLabel})`;
+    }
+    if (btnChain) {
+      btnChain.textContent = `🚀 ${modeLabel} 1A ➔ Publish (1A–5)`;
     }
   }
 
@@ -14255,10 +14334,11 @@ function initStagehandRipperUI() {
     if (modal) modal.style.display = 'none';
   };
 
-  window.confirmContinue1ACityModal = async function () {
+  window.confirmContinue1ACityModal = async function (autoChainToPublish = false) {
     const chosenCity = window.c1aModalState.cityScope || 'all';
     const chosenResume = window.c1aModalState.resumeMode !== false;
     const chosenCount = window.c1aModalState.batchCount || 'all';
+    const shouldAutoChain = Boolean(autoChainToPublish);
     window.closeContinue1ACityModal();
 
     if (typeof window.setHarvesterCityScope === 'function') {
@@ -14271,17 +14351,22 @@ function initStagehandRipperUI() {
     await loadVenueFeedsList();
     const cityStats = window.getHarvesterFeedStats(chosenCity);
     const totalFeeds = cityStats.totalFeeds;
-    const resumeFeedNum = (chosenResume && !cityStats.isComplete) ? cityStats.resumeFeedNum : 1;
-    const nextFeedName = (chosenResume && !cityStats.isComplete)
+    const effectiveResume = Boolean(chosenResume && !cityStats.isComplete);
+    const resumeFeedNum = effectiveResume ? cityStats.resumeFeedNum : 1;
+    const nextFeedName = effectiveResume
       ? cityStats.lastFeedName
       : cityStats.firstFeedName;
 
     const cityTag = chosenCity === 'vancouver' ? '🏙️ Vancouver Only' : (chosenCity === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro (Van + Surrey)');
     const baseTarget = chosenCity === 'vancouver' ? 'all:vancouver' : (chosenCity === 'surrey' ? 'all:surrey' : 'all');
-    const targetUrl = chosenResume ? `${baseTarget}:resume` : baseTarget;
+    const targetUrl = effectiveResume ? `${baseTarget}:resume` : baseTarget;
 
     isPipelineTestMode = true;
-    isPipelineAutoChaining = false;
+    isPipelineAutoChaining = shouldAutoChain;
+    if (shouldAutoChain) {
+      window.pipelineAutoChainingStages = ['harvest', 'hunter', 'qc', 'venue', 'enrich', 'compile'];
+      currentPipelineScope = 'harvested';
+    }
     pipelineQuarantinedRunActive = false;
     pipelineTestStageKey = 'harvest';
     currentPipelineScanKey = 'harvest';
@@ -14293,19 +14378,19 @@ function initStagehandRipperUI() {
     updateStageNavButtons();
 
     if (typeof showToast === 'function') {
-      showToast(`▶️ Stage 1A [${cityTag}]: ${chosenResume && !cityStats.isComplete ? `Continuing at Source #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Starting Fresh at Source #1/${totalFeeds}`} • Target: ${chosenLimit > 0 ? chosenLimit + ' events' : 'All events'}...`, 'info');
+      showToast(`${shouldAutoChain ? '🚀 Pipeline 1A ➔ 5' : '▶️ Stage 1A Only'} [${cityTag}]: ${effectiveResume ? `Continuing at Source #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Starting Fresh at Source #1/${totalFeeds}`} • Target: ${chosenLimit > 0 ? chosenLimit + ' events' : 'All events'}...`, 'info');
     }
 
     setTimeout(() => {
       runPipelineAction({
         mode: 'calendar',
-        title: `▶️ Stage 1A [${cityTag}]: ${chosenResume && !cityStats.isComplete ? `Continuing from #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Fresh Scan (#1/${totalFeeds})`} • ${chosenLimit > 0 ? chosenLimit + ' Events' : 'All Events'}`,
-        initialStatus: `${chosenResume && !cityStats.isComplete ? 'Resuming' : 'Starting'} Stage 1A [${cityTag}] at Source #${resumeFeedNum}/${totalFeeds}: ${nextFeedName} (${chosenLimit > 0 ? chosenLimit + ' events' : 'all events'})...`,
+        title: `${shouldAutoChain ? '🚀 Stage 1A ➔ 5' : '▶️ Stage 1A'} [${cityTag}]: ${effectiveResume ? `Continuing from #${resumeFeedNum}/${totalFeeds} (${nextFeedName})` : `Fresh Scan (#1/${totalFeeds})`} • ${chosenLimit > 0 ? chosenLimit + ' Events' : 'All Events'}`,
+        initialStatus: `${effectiveResume ? 'Resuming' : 'Starting'} Stage 1A [${cityTag}] at Source #${resumeFeedNum}/${totalFeeds}: ${nextFeedName} (${chosenLimit > 0 ? chosenLimit + ' events' : 'all events'}${shouldAutoChain ? ' • Auto-chaining 1A➔5' : ''})...`,
         limit: chosenLimit,
         url: targetUrl,
         city: chosenCity,
         all: true,
-        resume: chosenResume,
+        resume: effectiveResume,
         autoApprove: true
       });
     }, 200);
@@ -16118,6 +16203,27 @@ function initStagehandRipperUI() {
       .replace(/\/+$/, '');
   }
 
+  function isExcludedCuratorFeedUrl(u = '') {
+    const s = String(u || '').trim();
+    if (!s || !s.startsWith('http')) return true;
+    return /127\.0\.0\.1|localhost|example\.com|testcellar/i.test(s);
+  }
+
+  function resolveCuratorLearnedVenueUrl(venueName = '', deepLinks = {}) {
+    const raw = String(venueName || '').trim();
+    if (!raw || !deepLinks) return '';
+    if (deepLinks[raw]) return deepLinks[raw];
+    const cleanVenue = raw.toLowerCase();
+    const keys = Object.keys(deepLinks);
+    const exactKey = keys.find(k => k.toLowerCase().trim() === cleanVenue);
+    if (exactKey) return deepLinks[exactKey];
+    if (cleanVenue.length >= 6) {
+      const subKey = keys.find(k => k.toLowerCase().includes(cleanVenue));
+      if (subKey) return deepLinks[subKey];
+    }
+    return '';
+  }
+
   function scoreCuratorFeedPriority(feed) {
     let score = 0;
     const u = String(feed.url || '').toLowerCase();
@@ -16174,11 +16280,12 @@ function initStagehandRipperUI() {
 
     if (Array.isArray(rawVenues)) {
       rawVenues.forEach(v => {
+        if (v.is_test_canary) return;
         const name = (v.venue_name || v.name || '').trim();
-        const learnedUrl = name ? (learnedVenueLinks[name] || learnedVenueLinks[name.toLowerCase()] || '') : '';
+        const learnedUrl = name ? resolveCuratorLearnedVenueUrl(name, learnedVenueLinks) : '';
         const url = (learnedUrl || v.calendar_url || v.calendarUrl || v.website_url || v.websiteUrl || '').trim();
         const norm = normalizeCuratorFeedUrl(url);
-        if (name && url && url.startsWith('http') && !url.includes('127.0.0.1') && norm && !seenUrls.has(norm)) {
+        if (name && !isExcludedCuratorFeedUrl(url) && norm && !seenUrls.has(norm)) {
           seenUrls.add(norm);
           let domain = '';
           try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
@@ -16208,7 +16315,7 @@ function initStagehandRipperUI() {
     ];
     seedFeeds.forEach(sf => {
       const norm = normalizeCuratorFeedUrl(sf.url);
-      if (norm && !seenUrls.has(norm)) {
+      if (!isExcludedCuratorFeedUrl(sf.url) && norm && !seenUrls.has(norm)) {
         seenUrls.add(norm);
         let domain = '';
         try { domain = new URL(sf.url).hostname.replace(/^www\./i, ''); } catch (_) { }
@@ -16231,11 +16338,11 @@ function initStagehandRipperUI() {
 
     if (Array.isArray(rawSources)) {
       rawSources.forEach(s => {
-        if (s.id === 'testy-canary-feed' || s.type === 'canary_test_feed') return;
+        if (s.id === 'testy-canary-feed' || s.type === 'canary_test_feed' || s.is_test_canary) return;
         const name = (s.name || s.id || '').trim();
         const url = (s.eventsUrl || s.calendarUrl || s.url || '').trim();
         const norm = normalizeCuratorFeedUrl(url);
-        if (name && url && url.startsWith('http') && !url.includes('127.0.0.1') && norm && !seenUrls.has(norm)) {
+        if (name && !isExcludedCuratorFeedUrl(url) && norm && !seenUrls.has(norm)) {
           seenUrls.add(norm);
           let domain = '';
           try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
@@ -16257,10 +16364,11 @@ function initStagehandRipperUI() {
         const sRef = await sRes.json();
         const surreyList = Array.isArray(sRef) ? sRef : (sRef.sources || []);
         surreyList.forEach(s => {
+          if (s.is_test_canary) return;
           const name = (s.name || s.id || '').trim();
           const url = (s.url || '').trim();
           const norm = normalizeCuratorFeedUrl(url);
-          if (name && url && url.startsWith('http') && !url.includes('127.0.0.1') && norm && !seenUrls.has(norm)) {
+          if (name && !isExcludedCuratorFeedUrl(url) && norm && !seenUrls.has(norm)) {
             seenUrls.add(norm);
             let domain = '';
             try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) { }
@@ -17527,16 +17635,20 @@ function initStagehandRipperUI() {
     const isHarvestedTarget = (sc === 'harvested') || (sc === 'batch5' && isPipelineTestMode);
 
     if (key === 'harvest') {
-      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 298, remainingFeeds: 298 };
-      const totalFeeds = feedStats.totalFeeds;
-      harvesterTotalSources = totalFeeds;
-      const isHarvestRunning = window.activePipelineRunningStageKey === 'harvest';
+      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 0, totalFeeds: 297, remainingFeeds: 297 };
+      const isHarvestRunning = Boolean(isExecuting && window.activePipelineRunningStageKey === 'harvest');
+      const totalFeeds = (isHarvestRunning && harvesterTotalSources > 0) ? harvesterTotalSources : feedStats.totalFeeds;
+      if (!isHarvestRunning) {
+        harvesterTotalSources = totalFeeds;
+      }
       const scannedCount = isHarvestRunning ? (harvesterSourcesScanned ?? 0) : (feedStats.completedFeeds ?? harvesterSourcesScanned ?? 0);
       const remFeeds = Math.max(0, totalFeeds - scannedCount);
-      const foundEventsCount = (isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
-        ? pipelineTestDiscoveredIds.length
-        : harvestedList.length;
-      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scannedCount}/${totalFeeds} sources scanned (${remFeeds} Queued)</span> • <span style="color: #4ade80; font-weight: 700;">${foundEventsCount} harvested events in Stage 1A</span>`;
+      const foundEventsCount = isHarvestRunning
+        ? ((harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0)
+        : ((isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
+          ? pipelineTestDiscoveredIds.length
+          : harvestedList.length);
+      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scannedCount}/${totalFeeds} sources scanned (${remFeeds} remaining)</span> • <span style="color: #4ade80; font-weight: 700;">+${foundEventsCount} harvested events in Stage 1A</span>`;
     } else if (key === 'hunter') {
       if (isHarvestedTarget && stageInfo) {
         const totH = stageInfo.prevCompletedCount;
@@ -17717,11 +17829,16 @@ function initStagehandRipperUI() {
     if (typeof updateComparisonTargetDimensionsBanner === 'function') {
       updateComparisonTargetDimensionsBanner(preset.key);
     }
+    const harvesterCompressedEl = document.getElementById('pipeline-harvester-compressed-summary');
     if (preset.key === 'harvest') {
-      // SCHEDULE HARVESTER: Venue feeds selection (default: all venue feeds).
+      // SCHEDULE HARVESTER: Venue feeds selection (compressed once scan starts).
       if (trackerEl) trackerEl.style.display = 'flex';
       if (harvesterInfoEl) harvesterInfoEl.style.display = 'none';
-      if (harvesterFeedWrapper) harvesterFeedWrapper.style.display = 'flex';
+      if (typeof window.syncHarvesterCompressedControlsUI === 'function') {
+        window.syncHarvesterCompressedControlsUI();
+      } else if (harvesterFeedWrapper) {
+        harvesterFeedWrapper.style.display = 'flex';
+      }
       if (venueDetailerWrapper) venueDetailerWrapper.style.display = 'none';
       if (targetWrapper) targetWrapper.style.display = 'none';
       if (scopeSection) scopeSection.style.display = 'none';
@@ -17733,13 +17850,16 @@ function initStagehandRipperUI() {
           ? 'all:vancouver'
           : (window.harvesterCityScope === 'surrey' ? 'all:surrey' : 'all');
         window.populateVenueFeedsDropdown().then(() => {
-          window.onVenueFeedSelected(initTarget);
+          if (!(isExecuting && window.activePipelineRunningStageKey === 'harvest')) {
+            window.onVenueFeedSelected(initTarget);
+          }
         });
       }
     } else if (preset.key === 'venue') {
       // VENUE DETAILER: Physical venue selector
       if (trackerEl) trackerEl.style.display = 'flex';
       if (harvesterInfoEl) harvesterInfoEl.style.display = 'none';
+      if (harvesterCompressedEl) harvesterCompressedEl.style.display = 'none';
       if (harvesterFeedWrapper) harvesterFeedWrapper.style.display = 'none';
       if (venueDetailerWrapper) venueDetailerWrapper.style.display = 'flex';
       if (targetWrapper) targetWrapper.style.display = 'none';
@@ -17764,6 +17884,7 @@ function initStagehandRipperUI() {
       }
     } else {
       // CARD AUDIT SCANS (Hunter, QC, Enricher, Compiler): Show card ranges & card selection
+      if (harvesterCompressedEl) harvesterCompressedEl.style.display = 'none';
       if (harvesterFeedWrapper) harvesterFeedWrapper.style.display = 'none';
       if (venueDetailerWrapper) venueDetailerWrapper.style.display = 'none';
       if (harvesterInfoEl) harvesterInfoEl.style.display = 'none';
@@ -18053,17 +18174,54 @@ function initStagehandRipperUI() {
 
     if (mode === 'calendar' || mode === 'harvester') {
       captureHarvesterPreRunBaseline();
-      const feedStats = typeof window.getHarvesterFeedStats === 'function' ? window.getHarvesterFeedStats() : { completedFeeds: 122, totalFeeds: 227, lastFeedName: 'The Orpheum Theatre' };
-      const isResumeHarvest = Boolean(resume || String(url || '').endsWith(':resume'));
-      if (!isResumeHarvest) {
+      const rawUrlStr = String(url || '').trim();
+      const inferredCity = rawUrlStr.includes('all:vancouver')
+        ? 'vancouver'
+        : (rawUrlStr.includes('all:surrey') ? 'surrey' : (params.city || window.harvesterCityScope || 'all'));
+      const feedStats = typeof window.getHarvesterFeedStats === 'function'
+        ? window.getHarvesterFeedStats(inferredCity)
+        : { completedFeeds: 0, totalFeeds: 297, resumeFeedNum: 1, lastFeedName: 'Source #1', firstFeedName: 'Source #1', isComplete: false };
+      const isResumeHarvest = Boolean((resume || rawUrlStr.endsWith(':resume')) && !feedStats.isComplete);
+      const isMultiFeedCrawl = Boolean(all || !rawUrlStr || rawUrlStr.startsWith('all'));
+      harvesterControlsExpandedDuringRun = false;
+      harvesterActiveLinkProgressText = '';
+      if (!isResumeHarvest || !isMultiFeedCrawl) {
         harvesterDiscoveredEvents = [];
         harvesterSourcesScanned = 0;
         harvesterCurrentSourceName = '';
+        window.harvesterActiveSourceOrdinal = 1;
       } else {
         harvesterSourcesScanned = feedStats.completedFeeds;
         harvesterCurrentSourceName = feedStats.lastFeedName;
+        window.harvesterActiveSourceOrdinal = feedStats.resumeFeedNum || (feedStats.completedFeeds + 1);
       }
-      harvesterTotalSources = (all || !url || String(url).startsWith('all')) ? feedStats.totalFeeds : 1;
+      harvesterTotalSources = isMultiFeedCrawl ? feedStats.totalFeeds : 1;
+
+      // Build concise summary of what was selected for the compressed left-column header
+      let targetLabel = '';
+      if (/127\.0\.0\.1.*test-canary|canary/i.test(rawUrlStr)) {
+        targetLabel = '🧪 Canary Test Harness (10 test events)';
+      } else if (isMultiFeedCrawl) {
+        const cityLabel = inferredCity === 'vancouver'
+          ? '🏙️ Vancouver Only'
+          : (inferredCity === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro (Van + Surrey)');
+        const startText = isResumeHarvest && feedStats.completedFeeds > 0
+          ? `Resuming at #${feedStats.resumeFeedNum}/${feedStats.totalFeeds} (${feedStats.lastFeedName})`
+          : `Fresh Scan (#1/${feedStats.totalFeeds})`;
+        targetLabel = `${cityLabel} (${feedStats.totalFeeds} Sources) • ${startText}`;
+      } else {
+        const matchedFeed = Array.isArray(cachedVenueFeeds)
+          ? cachedVenueFeeds.find(f => normalizeCuratorFeedUrl(f.url) === normalizeCuratorFeedUrl(rawUrlStr))
+          : null;
+        targetLabel = matchedFeed
+          ? `🏛️ Single Feed: ${matchedFeed.name}`
+          : `🔗 Custom Feed: ${rawUrlStr.replace(/^https?:\/\/(www\.)?/i, '').slice(0, 42)}`;
+      }
+      const capLabel = (limit && Number(limit) > 0) ? `Cap: ${Number(limit)} events` : 'Cap: All events';
+      const chainLabel = isPipelineAutoChaining ? 'Auto-Chain 1A ➔ 5' : 'Stage 1A Only';
+      const commitLabel = (autoApprove === false || autoApprove === '0') ? 'Dry-run' : 'Auto-commit ON';
+      window.harvesterRunSelectionSummary = `${targetLabel} • ${capLabel} • ${chainLabel} • ${commitLabel}`;
+
       updateHarvesterSourcesProgressUI();
       renderHarvesterComparisonView(false, harvesterDiscoveredEvents, true);
     }
@@ -18446,6 +18604,11 @@ function initStagehandRipperUI() {
           if (sourceCompletedMatch && activeStageKey === 'harvest') {
             harvesterSourcesScanned = parseInt(sourceCompletedMatch[1], 10);
             harvesterTotalSources = parseInt(sourceCompletedMatch[2], 10);
+            harvesterActiveLinkProgressText = '';
+            if (pipelineProgressBar && harvesterTotalSources > 0) {
+              const srcPct = Math.min(99, Math.max(4, Math.round((harvesterSourcesScanned / harvesterTotalSources) * 100)));
+              pipelineProgressBar.style.width = `${srcPct}%`;
+            }
             updateHarvesterSourcesProgressUI();
           }
 
@@ -18459,7 +18622,12 @@ function initStagehandRipperUI() {
             harvesterSourcesScanned = completedBefore;
             harvesterTotalSources = totalVenues;
             harvesterCurrentSourceName = venueName;
+            harvesterActiveLinkProgressText = '';
             window.harvesterActiveSourceOrdinal = currentVenueIdx;
+            if (pipelineProgressBar && activeStageKey === 'harvest' && totalVenues > 0) {
+              const srcPct = Math.min(98, Math.max(4, Math.round(((completedBefore + 0.15) / totalVenues) * 100)));
+              pipelineProgressBar.style.width = `${srcPct}%`;
+            }
             updateHarvesterSourcesProgressUI();
             if (pipelineStatusText && activeStageKey === 'harvest') {
               pipelineStatusText.textContent = `Scanning Source #${currentVenueIdx}/${totalVenues}: ${venueName}`;
@@ -18484,42 +18652,21 @@ function initStagehandRipperUI() {
             if (progressMatch) {
               const current = parseInt(progressMatch[1], 10);
               const total = parseInt(progressMatch[2], 10);
-              if (pipelineTotalTargets !== total) {
-                pipelineCurrentTargetIndex = 0;
-              }
-              pipelineTotalTargets = total;
-              syncActiveBatchLabels(total);
-              pipelineCurrentTargetIndex = Math.min(total, Math.max(pipelineCurrentTargetIndex || 0, current));
-              const displayIdx = pipelineCurrentTargetIndex;
-              pipelineProcessedCount = Math.min(total, pipelineAuditedCardsHistory.length);
-              const barPct = Math.min(96, Math.max(4, Math.round(((pipelineProcessedCount + 0.35) / total) * 100)));
-              const labelPct = Math.min(99, Math.max(0, Math.round((pipelineProcessedCount / total) * 100)));
-              if (pipelineProgressBar) pipelineProgressBar.style.width = `${barPct}%`;
-              const itemsRunInSession = Math.max(1, pipelineProcessedCount + 1);
-              const unitTime = (pipelineProcessedCount >= 1 && elapsed > 3)
-                ? Math.max(2, Math.round(elapsed / pipelineProcessedCount))
-                : (BENCHMARKS[mode] || 18);
-              if (pipelineItemProgress) {
-                if (activeStageKey === 'harvest') {
-                  const activeOrd = window.harvesterActiveSourceOrdinal || ((harvesterSourcesScanned || 0) + 1);
-                  const totSrc = harvesterTotalSources || 298;
-                  pipelineItemProgress.textContent = `Source #${activeOrd}/${totSrc} (${harvesterSourcesScanned || 0} completed) • Link ${displayIdx}/${total} (${labelPct}%)`;
-                } else {
-                  pipelineItemProgress.textContent = `Event ${displayIdx} of ${total} (${labelPct}% done) • ~${Math.round(unitTime)}s / event`;
-                }
-              }
               const counterBadge = document.getElementById('pipeline-diff-counter-badge');
-              if (counterBadge && activeStageKey !== 'harvest') {
-                counterBadge.textContent = `${pipelineProcessedCount} of ${total} Completed (Event ${displayIdx} active)`;
-              }
-              const remainingItems = Math.max(1, total - pipelineProcessedCount);
-              const recalibratedSec = Math.round(remainingItems * unitTime);
-              estimatedTotal = elapsed + recalibratedSec;
-              if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(recalibratedSec)}`;
 
               if (activeStageKey === 'harvest') {
+                const displayIdx = Math.min(total, Math.max(1, current));
                 const activeOrd = window.harvesterActiveSourceOrdinal || ((harvesterSourcesScanned || 0) + 1);
-                const sTot = harvesterTotalSources || 298;
+                const sTot = harvesterTotalSources || 297;
+                const linkFrac = total > 0 ? Math.min(0.95, displayIdx / total) : 0.25;
+                const srcBarPct = sTot > 1
+                  ? Math.min(98, Math.max(4, Math.round((((harvesterSourcesScanned || 0) + linkFrac) / sTot) * 100)))
+                  : Math.min(96, Math.max(4, Math.round((displayIdx / Math.max(1, total)) * 100)));
+                if (pipelineProgressBar) pipelineProgressBar.style.width = `${srcBarPct}%`;
+                harvesterActiveLinkProgressText = `Link ${displayIdx}/${total}`;
+                if (pipelineItemProgress) {
+                  pipelineItemProgress.textContent = `Source #${activeOrd}/${sTot} (${harvesterSourcesScanned || 0} completed) • Link ${displayIdx}/${total} • +${harvesterDiscoveredEvents.length} new events`;
+                }
                 if (pipelineStatusText) {
                   pipelineStatusText.textContent = `Harvesting Link ${displayIdx}/${total} on Source #${activeOrd}/${sTot}${harvesterCurrentSourceName ? `: ${harvesterCurrentSourceName}` : ''}...`;
                   pipelineStatusText.style.color = '#38bdf8';
@@ -18532,6 +18679,31 @@ function initStagehandRipperUI() {
                   counterBadge.textContent = `Source #${activeOrd}/${sTot} • ${harvesterDiscoveredEvents.length} Discovered • [Link ${displayIdx}/${total}]`;
                 }
                 updateHarvesterSourcesProgressUI();
+              } else {
+                if (pipelineTotalTargets !== total) {
+                  pipelineCurrentTargetIndex = 0;
+                }
+                pipelineTotalTargets = total;
+                syncActiveBatchLabels(total);
+                pipelineCurrentTargetIndex = Math.min(total, Math.max(pipelineCurrentTargetIndex || 0, current));
+                const displayIdx = pipelineCurrentTargetIndex;
+                pipelineProcessedCount = Math.min(total, pipelineAuditedCardsHistory.length);
+                const barPct = Math.min(96, Math.max(4, Math.round(((pipelineProcessedCount + 0.35) / total) * 100)));
+                const labelPct = Math.min(99, Math.max(0, Math.round((pipelineProcessedCount / total) * 100)));
+                if (pipelineProgressBar) pipelineProgressBar.style.width = `${barPct}%`;
+                const unitTime = (pipelineProcessedCount >= 1 && elapsed > 3)
+                  ? Math.max(2, Math.round(elapsed / pipelineProcessedCount))
+                  : (BENCHMARKS[mode] || 18);
+                if (pipelineItemProgress) {
+                  pipelineItemProgress.textContent = `Event ${displayIdx} of ${total} (${labelPct}% done) • ~${Math.round(unitTime)}s / event`;
+                }
+                if (counterBadge) {
+                  counterBadge.textContent = `${pipelineProcessedCount} of ${total} Completed (Event ${displayIdx} active)`;
+                }
+                const remainingItems = Math.max(1, total - pipelineProcessedCount);
+                const recalibratedSec = Math.round(remainingItems * unitTime);
+                estimatedTotal = elapsed + recalibratedSec;
+                if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(recalibratedSec)}`;
               }
             }
           }
@@ -19411,7 +19583,12 @@ function initStagehandRipperUI() {
         }
 
         if (PIPELINE_TEST_ORDER.includes(finishedStageKey)) {
-          pipelineTestStageStatuses[finishedStageKey] = `✅ Complete (${pipelineProcessedCount || pipelineTotalTargets || 'Done'})`;
+          if (finishedStageKey === 'harvest') {
+            const hFound = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
+            pipelineTestStageStatuses.harvest = `✅ Complete (${harvesterSourcesScanned || harvesterTotalSources || 0}/${harvesterTotalSources || 0} Sources • +${hFound} Events)`;
+          } else {
+            pipelineTestStageStatuses[finishedStageKey] = `✅ Complete (${pipelineProcessedCount || pipelineTotalTargets || 'Done'})`;
+          }
           savePipelineBatchState();
           updatePipelineTestStepperUI();
           updateStageNavButtons();
@@ -19488,14 +19665,28 @@ function initStagehandRipperUI() {
             ? 'Hunted'
             : finishedStageKey === 'compile'
               ? 'Compiled'
-              : 'Audited';
+              : finishedStageKey === 'harvest'
+                ? 'Harvested'
+                : 'Audited';
+        const isHarvestDone = finishedStageKey === 'harvest';
+        const hScannedDone = harvesterSourcesScanned || harvesterTotalSources || 0;
+        const hTotalDone = Math.max(hScannedDone, harvesterTotalSources || 1);
+        const hFoundDone = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
+        const completionMetricShort = isHarvestDone
+          ? `${hScannedDone}/${hTotalDone} Sources Scanned • +${hFoundDone} New Events`
+          : `${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Events ${stagePastVerb}`;
+
         if (pipelineSpinner) pipelineSpinner.textContent = '✅';
         if (pipelineStatusText) {
-          pipelineStatusText.textContent = `✅ Pipeline Execution Complete! (${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Events ${stagePastVerb})`;
+          pipelineStatusText.textContent = isHarvestDone
+            ? `✅ Stage 1A Complete! (${completionMetricShort})${!isPipelineAutoChaining && hFoundDone > 0 ? ' — Ready for Stage 1B' : ''}`
+            : `✅ Pipeline Execution Complete! (${completionMetricShort})`;
           pipelineStatusText.style.color = '#34d399';
         }
         if (pipelineStatusSubtext) {
-          pipelineStatusSubtext.textContent = `All ${pipelineProcessedCount} targeted event operations finished cleanly.`;
+          pipelineStatusSubtext.textContent = isHarvestDone
+            ? `Finished scanning ${hScannedDone}/${hTotalDone} calendar feeds (+${hFoundDone} new events harvested into layer_schedules.json).${!isPipelineAutoChaining ? ' Stage 1A standalone mode stopped here as requested — click "Process Unfinished Harvested Events" to continue at Stage 1B.' : ''}`
+            : `All ${pipelineProcessedCount} targeted event operations finished cleanly.`;
         }
         if (pipelineProgressBar) {
           pipelineProgressBar.style.width = '100%';
@@ -19505,11 +19696,15 @@ function initStagehandRipperUI() {
           pipelineEtaValue.textContent = '0s (Finished)';
         }
         if (pipelineItemProgress) {
-          pipelineItemProgress.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} events processed (100%) in ${elapsed}s`;
+          pipelineItemProgress.textContent = isHarvestDone
+            ? `${hScannedDone} of ${hTotalDone} sources scanned (100%) • +${hFoundDone} new events in ${elapsed}s`
+            : `${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} events processed (100%) in ${elapsed}s`;
         }
         const counterBadge = document.getElementById('pipeline-diff-counter-badge');
         if (counterBadge) {
-          counterBadge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Processed`;
+          counterBadge.textContent = isHarvestDone
+            ? `${hScannedDone}/${hTotalDone} Sources • +${hFoundDone} Discovered`
+            : `${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Processed`;
         }
         if (pipelineConsoleOutput) {
           pipelineConsoleOutput.textContent += '\n[SUCCESS] Pipeline execution completed.\n';
@@ -19518,7 +19713,9 @@ function initStagehandRipperUI() {
         if (pipelineTimeoutEvents.length > 0) {
           const names = pipelineTimeoutEvents.map(t => `"${t.eventTitle}" (${t.cause})`).slice(0, 3).join('; ');
           if (pipelineStatusText) {
-            pipelineStatusText.textContent = `⚠️ Pipeline Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${pipelineProcessedCount} ${stagePastVerb})`;
+            pipelineStatusText.textContent = isHarvestDone
+              ? `⚠️ Stage 1A Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${completionMetricShort})`
+              : `⚠️ Pipeline Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${pipelineProcessedCount} ${stagePastVerb})`;
             pipelineStatusText.style.color = '#fbbf24';
           }
           if (pipelineStatusSubtext) {

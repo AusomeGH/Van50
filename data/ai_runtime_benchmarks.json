@@ -138,17 +138,28 @@
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 286.9,
-      "averageDurationFormatted": "4m 47s",
-      "totalRuns": 172,
+      "averageDurationSeconds": 290.5,
+      "averageDurationFormatted": "4m 51s",
+      "totalRuns": 174,
       "lastRun": {
-        "timestamp": "2026-11-17T02:59:36.772Z",
-        "durationSeconds": 1276,
-        "durationFormatted": "21m 16s",
-        "itemsProcessed": 98,
-        "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
+        "durationSeconds": 914,
+        "durationFormatted": "15m 14s",
+        "itemsProcessed": 185,
+        "notes": "8-shard 1-by-1 visual _cart.png keyframe inspection (183/183 PNGs) + live search_web grounding (172/185) across all 185 newly promoted batch events."
       },
       "history": [
+        {
+          "timestamp": "2026-11-18T07:09:38-07:00",
+          "durationSeconds": 914,
+          "durationFormatted": "15m 14s",
+          "itemsProcessed": 185
+        },
+        {
+          "timestamp": "2026-11-18T08:27:43.467Z",
+          "durationSeconds": 10190,
+          "durationFormatted": "169m 50s",
+          "itemsProcessed": 525
+        },
         {
           "timestamp": "2026-11-17T02:59:36.773Z",
           "durationSeconds": 1276,
@@ -442,12 +453,6 @@
           "durationSeconds": 1872,
           "durationFormatted": "31m 12s",
           "itemsProcessed": 50
-        },
-        {
-          "timestamp": "2026-11-03T20:15:13.600Z",
-          "durationSeconds": 145,
-          "durationFormatted": "2m 25s",
-          "itemsProcessed": 3
         }
       ],
       "last_run_timestamp": "2026-10-13T14:04:00-07:00"
@@ -900,6 +905,20 @@
       "itemsProcessed": 1,
       "durationSeconds": 26,
       "timestamp": "2026-10-17T17:17:21.370Z"
+    }
+  ],
+  "recentRuns": [
+    {
+      "timestamp": "2026-11-18T15:06:36.835Z",
+      "pipelineStage": "pending_venues_cognitive_grounding_audit",
+      "itemsEvaluated": 83,
+      "approvedNewVenues": 62,
+      "mergedVenueAliases": 10,
+      "dismissedVenues": 11,
+      "enrolledScoutCalendarFeeds": 34,
+      "elapsedSeconds": 847,
+      "secondsPerItem": 10.2,
+      "notes": "4-shard 1-by-1 live web grounding of all 83 pending discovered_venues.json candidates across Clusters 4XX/5XX/6XX, plus 12 recent venue enrichments and 8 out-of-market/virtual queue evictions."
     }
   ]
 }

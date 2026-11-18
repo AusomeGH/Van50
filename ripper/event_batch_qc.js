@@ -2005,12 +2005,25 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     if (sessionRef) sessionRef.stagehand = stagehand;
 
     let page = null;
+    const enforceVancouverTimezone = async (targetPage) => {
+      if (!targetPage) return;
+      try {
+        if (typeof targetPage.context === "function") {
+          const ctx = targetPage.context();
+          if (ctx && typeof ctx.newCDPSession === "function") {
+            const cdp = await ctx.newCDPSession(targetPage);
+            await cdp.send("Emulation.setTimezoneOverride", { timezoneId: "America/Vancouver" });
+          }
+        }
+      } catch (_) { }
+    };
 
     // Stagehand Verification Gate: Probe candidate Tier 1 checkout URL if staged
     if (candidateUrl && candidateUrl.startsWith("http") && candidateUrl !== targetUrl) {
       console.log(`🎯 [Stagehand Gate] Probing staged candidate Tier 1 checkout lead first: ${candidateUrl}`);
       try {
         const candidatePage = await stagehand.browser.context.newPage(candidateUrl);
+        await enforceVancouverTimezone(candidatePage);
         await waitForDomReady(candidatePage, { maxWaitMs: 3500, minWaitMs: 450 });
 
         const candInfo = await candidatePage.evaluate(() => ({
@@ -2064,6 +2077,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     if (!page) {
       console.log(`🌐 [1/4] Navigating to destination page: ${targetUrl}...`);
       page = await stagehand.browser.context.newPage(targetUrl);
+      await enforceVancouverTimezone(page);
       await waitForDomReady(page, { maxWaitMs: 3500, minWaitMs: 450 });
       if (/ticketweb\.ca|ticketmaster\.(?:ca|com)|zeffy\.com/i.test(targetUrl)) {
         const earlyLen = await page.evaluate(() => (document.body ? document.body.innerText.trim().length : 0)).catch(() => 0);
@@ -2122,9 +2136,13 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       (/ra\.co\/events\/\d+/i.test(targetUrl) && trimmedBodyText.length < 80);
 
     if (isAntiBotBlocked) {
-      // First-party non-blocked venue show-page fallback (strictly no anti-bot bypass: reads official venue page if distinct from blocked portal)
-      const firstPartyFallbackUrl = [eventCard.details_url, eventCard.links?.tier2_event_page, eventCard.source_url]
-        .find((u) => u && typeof u === "string" && u.startsWith("http") && u !== targetUrl && !isGenericIndexTargetUrl(u) && !/ticketweb\.|ticketmaster\.|zeffy\.|ra\.co|axs\.com|tixr\.com/i.test(u));
+      // First-party non-blocked venue show-page fallback: ONLY allowed when the blocked target is NOT a mandatory fee-bearing checkout portal
+      // (TicketWeb, Ticketmaster, Tixr, AXS omit $5-$12 service fees on venue overview pages, and clicking Buy Tickets re-triggers the pause screen)
+      const isFeeBearingBlockedPortal = /ticketweb\.|ticketmaster\.|tixr\.com|axs\.com/i.test(targetUrl);
+      const firstPartyFallbackUrl = isFeeBearingBlockedPortal
+        ? null
+        : [eventCard.details_url, eventCard.links?.tier2_event_page, eventCard.source_url]
+          .find((u) => u && typeof u === "string" && u.startsWith("http") && u !== targetUrl && !isGenericIndexTargetUrl(u) && !/ticketweb\.|ticketmaster\.|zeffy\.|ra\.co|axs\.com|tixr\.com/i.test(u));
       let fallbackSucceeded = false;
       if (firstPartyFallbackUrl) {
         console.log(`🏛️ [First-Party Venue Fallback] Portal ${targetUrl} paused headless session; inspecting official venue event page ${firstPartyFallbackUrl} while preserving checkout link...`);
@@ -3463,8 +3481,14 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       }
       if (recoveredTiers.length > 0) {
         recoveredTiers.sort((a, b) => a.price_all_in - b.price_all_in);
+        const isConcessionRec = (n) => /\b(?:student|youth|child|children|kid|kids|toddler|infant|senior|elders?|65\+|arts\s*worker|industry|member|alumni|under\s*(?:18|19|25|30)|indigenous|caregiver|helper|volunteer)\b/i.test(String(n || ""));
+        const unconditionalRecovered = recoveredTiers.filter((t) => !isConcessionRec(t.name));
+        const unconditionalUnder50 = unconditionalRecovered.filter((t) => t.price_all_in <= 50.0);
         const under50 = recoveredTiers.filter((t) => t.price_all_in <= 50.0);
-        const primaryTiers = under50.length > 0 ? under50 : recoveredTiers;
+        // Never hide >$50 unconditional Adult/GA behind a <=$50 Student/Youth/Arts Worker concession tier
+        const primaryTiers = unconditionalRecovered.length > 0
+          ? (unconditionalUnder50.length > 0 ? under50 : unconditionalRecovered)
+          : (under50.length > 0 ? under50 : recoveredTiers);
         console.log(`🪗 [Accordion Price Recovery] Recovered ${recoveredTiers.length} ticket tier(s) from expanded accordion: ${primaryTiers.map((t) => `${t.name} ($${t.price_all_in.toFixed(2)})`).join(", ")}`);
         extracted.tier1_name = primaryTiers[0].name;
         extracted.tier1_price_base = primaryTiers[0].price_base;

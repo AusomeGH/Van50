@@ -301,8 +301,10 @@ export function matchVenue(venueQuery, venues) {
     ? venues
     : venues.filter((v) => !v?.is_test_canary && !/^testvenue\b/i.test(v?.venue_name || "") && (v?.venue_name || "") !== "none_available");
 
-  // 1. Exact match
+  // 1. Exact match (canonical name or registered alias)
   let matched = candidateVenues.find((v) => (v.venue_name || "").toLowerCase().trim() === rawQuery);
+  if (matched) return matched;
+  matched = candidateVenues.find((v) => Array.isArray(v.aliases) && v.aliases.some((a) => String(a || "").toLowerCase().trim() === rawQuery));
   if (matched) return matched;
 
   const isSubFacilityMismatch = (vObj) => {
@@ -363,6 +365,14 @@ export function matchVenue(venueQuery, venues) {
         if (new RegExp(`(?:^|\\s)${campus}(?:\\s|$)`).test(norm)) quals.add(`campus:${campus}`);
       }
     }
+    if (/\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|north\s+vancouver\s+(?:city|district)\s+public\s+library)\b/.test(norm)) {
+      if (/\b(?:vancouver\s+public\s+library|vpl)\b/.test(norm)) quals.add("libsys:vancouver");
+      if (/\bsurrey\s+libraries\b/.test(norm)) quals.add("libsys:surrey");
+      if (/\bburnaby\s+public\s+library\b/.test(norm)) quals.add("libsys:burnaby");
+      if (/\bcoquitlam\s+public\s+library\b/.test(norm)) quals.add("libsys:coquitlam");
+      if (/\brichmond\s+public\s+library\b/.test(norm)) quals.add("libsys:richmond");
+      if (/\bnorth\s+vancouver\s+(?:city|district)\s+public\s+library\b/.test(norm)) quals.add("libsys:northvan");
+    }
     return quals;
   };
   const isLibraryChain = (str) => /\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|fraser\s+valley\s+regional\s+library)\b/i.test(String(str || ""));
@@ -392,7 +402,14 @@ export function matchVenue(venueQuery, venues) {
     const vRawName = v.venue_name || "";
     const vQuals = extractFacilityQualifiers(vRawName);
     if (queryIsLibChain || isLibraryChain(vRawName)) {
-      if (queryQuals.size === 0 || vQuals.size === 0 || ![...queryQuals].some((q) => vQuals.has(q))) {
+      const qLibSys = [...queryQuals].filter((q) => q.startsWith("libsys:"));
+      const vLibSys = [...vQuals].filter((q) => q.startsWith("libsys:"));
+      if (qLibSys.length > 0 && vLibSys.length > 0 && !qLibSys.some((q) => vLibSys.includes(q))) {
+        continue;
+      }
+      const qBranches = [...queryQuals].filter((q) => !q.startsWith("libsys:"));
+      const vBranches = [...vQuals].filter((q) => !q.startsWith("libsys:"));
+      if (qBranches.length === 0 || vBranches.length === 0 || !qBranches.some((q) => vBranches.includes(q))) {
         continue;
       }
     } else if (queryQuals.size > 0 && vQuals.size > 0 && ![...queryQuals].some((q) => vQuals.has(q))) {
@@ -2028,9 +2045,36 @@ export async function compileCatalog(options = {}) {
           sameDaySchedMatches.find((ss) => normSlotStart && formatTime12h(cleanTimeField(ss.start_time) || "") === normSlotStart) ||
           (sameDaySchedMatches.length === 1 ? sameDaySchedMatches[0] : null) ||
           (validSchedShowings[idx] && (parseHumanDateToIso(validSchedShowings[idx].date, 2026, dateContextHint) || validSchedShowings[idx].date) === slotDate ? validSchedShowings[idx] : null);
-        const resolvedSlotStart = cleanTimeField(s.start_time) || cleanTimeField(matchingSchedSlot?.start_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.start_time) : null) || fallbackTime || null;
+        let resolvedSlotStart = cleanTimeField(s.start_time) || cleanTimeField(matchingSchedSlot?.start_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.start_time) : null) || fallbackTime || null;
         const resolvedSlotDoors = cleanTimeField(s.doors_time) || cleanTimeField(matchingSchedSlot?.doors_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.doors_time) : null) || fallbackDoors || null;
         const resolvedSlotEnd = cleanTimeField(s.end_time) || cleanTimeField(matchingSchedSlot?.end_time) || (sameDaySchedMatches.length <= 1 ? cleanTimeField(sched.end_time) : null) || fallbackEnd || null;
+        // Guard against -1h MST->PST subtraction bug where start_time lands 15–90 mins BEFORE doors_time on the same evening
+        if (resolvedSlotStart && resolvedSlotDoors) {
+          const toMin = (ts) => {
+            const m = String(ts || "").trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+            if (!m) return null;
+            let hh = parseInt(m[1], 10);
+            const mm = parseInt(m[2], 10);
+            const ap = m[3].toUpperCase();
+            if (ap === "PM" && hh < 12) hh += 12;
+            if (ap === "AM" && hh === 12) hh = 0;
+            return hh * 60 + mm;
+          };
+          const sM = toMin(formatTime12h(resolvedSlotStart));
+          const dM = toMin(formatTime12h(resolvedSlotDoors));
+          if (sM != null && dM != null && dM > sM && (dM - sM) <= 90) {
+            const schedStartCandidate = cleanTimeField(matchingSchedSlot?.start_time) || cleanTimeField(sched.start_time);
+            const scM = schedStartCandidate ? toMin(formatTime12h(schedStartCandidate)) : null;
+            if (scM != null && scM >= dM) {
+              resolvedSlotStart = schedStartCandidate;
+            } else {
+              const plus60 = (sM + 60) % 1440;
+              const p12 = plus60 >= 720 ? "PM" : "AM";
+              const h12 = Math.floor(plus60 / 60) % 12 === 0 ? 12 : Math.floor(plus60 / 60) % 12;
+              resolvedSlotStart = `${h12}:${String(plus60 % 60).padStart(2, "0")} ${p12}`;
+            }
+          }
+        }
         return {
           slot: idx + 1,
           date: slotDate,
@@ -2112,18 +2156,49 @@ export async function compileCatalog(options = {}) {
     const isVirtualStreamTier = (name) =>
       /\b(?:online\s*stream|pre[- ]?order\s*stream|single\s*stream|virtual\s*stream|stream\s*access|stream\s*pre[- ]?order|video\s*on\s*demand|vod\s*pass)\b/i.test(String(name || ""));
 
-    // Filter out multi-month memberships / annual passes, virtual online streams, and any tier exceeding the $50.00 CAD ceiling
-    let eligibleAllTiers = Array.isArray(box.all_tiers)
+    // Guard against Concession-Tier Bypass (Bug 1): Never allow restricted Student/Youth/Senior/Arts Worker/Member tiers <= $50
+    // to mask an unconditional Adult / Regular / General Admission tier that exceeds $50.00 CAD!
+    const isRestrictedConcessionTierName = (nameStr) =>
+      /\b(?:student|youth|child|children|kid|kids|toddler|infant|senior|elders?|65\+|arts\s*worker|industry|member|alumni|under\s*(?:18|19|25|30)|indigenous|caregiver|helper|volunteer)\b/i.test(String(nameStr || ""));
+    const rawNonPassBoxTiers = Array.isArray(box.all_tiers)
       ? box.all_tiers.filter((t) => {
         if (!t) return false;
         const tName = String(t.name || "");
         if (/\b(?:annual|membership|season\s*pass|12[- ]month|unlimited\s*access)\b/i.test(tName)) return false;
         if (isVirtualStreamTier(tName)) return false;
-        const tPrice = Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 0);
-        if (!isNaN(tPrice) && tPrice > 50.0) return false;
         return true;
       })
       : [];
+    const availUnconditionalBoxTiers = rawNonPassBoxTiers.filter((t) => {
+      if (isRestrictedConcessionTierName(t.name || t.label || "")) return false;
+      return t.is_available !== false && t.isAvailable !== false && !/\bsold\s*out\b/i.test(String(t.label || ""));
+    });
+    const minAvailUncondBoxPrice = availUnconditionalBoxTiers.length > 0
+      ? Math.min(...availUnconditionalBoxTiers.map((t) => Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 999)).filter((n) => !isNaN(n) && n > 0))
+      : null;
+    const hasUnconditionalAdultBreach = minAvailUncondBoxPrice != null && isFinite(minAvailUncondBoxPrice) && minAvailUncondBoxPrice > 50.0;
+    if (hasUnconditionalAdultBreach && (isRestrictedConcessionTierName(box.tier1_name) || Number(box.tier1_price_all_in ?? box.tier1_price_read ?? 0) <= 50.0)) {
+      const lowestAdultBox = [...availUnconditionalBoxTiers].sort(
+        (a, b) => Number(a.price_all_in ?? a.price ?? a.price_base ?? 999) - Number(b.price_all_in ?? b.price ?? b.price_base ?? 999)
+      )[0];
+      if (lowestAdultBox) {
+        const adultP = Number(lowestAdultBox.price_all_in ?? lowestAdultBox.price ?? lowestAdultBox.price_read ?? lowestAdultBox.price_base);
+        box.tier1_name = lowestAdultBox.name || lowestAdultBox.label || "General Admission (Adult)";
+        box.tier1_price_base = lowestAdultBox.price_base ?? adultP;
+        box.tier1_price_fee = lowestAdultBox.price_fee ?? 0;
+        box.tier1_price_tax = lowestAdultBox.price_tax ?? 0;
+        box.tier1_price_read = lowestAdultBox.price_read ?? adultP;
+        box.tier1_price_all_in = adultP;
+        box.status = "BUDGET_BREACH";
+      }
+    }
+
+    // Filter out multi-month memberships / annual passes, virtual online streams, and any tier exceeding the $50.00 CAD ceiling
+    let eligibleAllTiers = rawNonPassBoxTiers.filter((t) => {
+      const tPrice = Number(t.price_all_in ?? t.price ?? t.price_read ?? t.price_base ?? 0);
+      if (!hasUnconditionalAdultBreach && !isNaN(tPrice) && tPrice > 50.0) return false;
+      return true;
+    });
 
     // If Stage 2 captured only an Online Stream tier for a physical Cinematheque screening, ground to official Cinematheque in-person box office rates
     if (isVirtualStreamTier(box.tier1_name)) {
@@ -2496,7 +2571,7 @@ export async function compileCatalog(options = {}) {
         u = `https://www.eventbrite.com/checkout-external?eid=${aeEbMatch[1]}`;
       }
       // Reject blacklisted aggregators, blog listicles, city discovery hubs (/discover/*, /d/*), author archives, and online streaming broadcasts
-      if (/allevents\.in|do604\.com|604now\.com|vancouversbestplaces\.com|miss604\.com|facebook\.com\/events|gatehopper\.com|thedrive\.ca\/author\/|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)|showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)|flohockey\.tv|flosports\.tv/i.test(u)) {
+      if (/allevents\.in|do604\.com|604now\.com|vancouversbestplaces\.com|miss604\.com|facebook\.com\/events|gatehopper\.com|thedrive\.ca\/author\/|chatterblock\.com\/events\/|humanitix\.com\/ca(?:\/|$)|eventbrite\.(?:ca|com)\/(?:d|ttd|cc|o|l)(?:\/|[?#]|$)|showpass\.com\/(?:discover|cities|explore|m|o|s)(?:\/|[?#]|$)|flohockey\.tv|flosports\.tv/i.test(u)) {
         return null;
       }
       // Enforce Gate 3 Civic .aspx WAF Evasion Policy (reject any .aspx URL unless verified Agile/Tessitura ticketing checkout)
@@ -3123,17 +3198,37 @@ export async function compileCatalog(options = {}) {
     const coatCheck = isConfirmedFacility ? (venue.coat_check || edit.coat_check || archetypeProfile.coat_check || null) : null;
     const onSiteFnb = isConfirmedFacility ? (venue.on_site_fnb || edit.on_site_fnb || archetypeProfile.on_site_fnb || null) : null;
 
-    const verifiedAccessModel = isConfirmedFacility ? (venue.access_model || null) : null;
+    const verifiedBookingProtocol = box.booking_protocol || sched.booking_protocol || existing.booking_protocol || (
+      (isPerennial && (venue.weekly_hours || venue.access_model === "free_public_access"))
+        ? "drop_in"
+        : (box.audited_at && isValidDeepLink(ticketUrl) && (isWhitelistedTicketingUrl(ticketUrl) || !isFree))
+          ? "online_reservation"
+          : (isFree ? "drop_in" : null)
+    );
+
+    // Bug 3 Guard: Never bleed venue-level free_public_access / open_public_space onto paid events,
+    // and never stamp drop_in_paid onto $0 free events!
+    const verifiedAccessModel = (() => {
+      if (!isConfirmedFacility) return null;
+      const explicitCardAccess = box.access_model || sched.access_model || existing.access_model || null;
+      if (finalAllInPrice != null && finalAllInPrice > 0 && !isFree) {
+        if (verifiedBookingProtocol === "walk_up_only" || verifiedBookingProtocol === "walk_in_only" || verifiedBookingProtocol === "drop_in") {
+          return "drop_in_paid";
+        }
+        return "ticketed_admission";
+      }
+      if (isFree) {
+        if (explicitCardAccess && explicitCardAccess !== "drop_in_paid") return explicitCardAccess;
+        if (verifiedBookingProtocol === "online_reservation" && isWhitelistedTicketingUrl(ticketUrl)) return "ticketed_admission";
+        if (venue.access_model === "drop_in_paid") return "free_public_access";
+        return venue.access_model || "free_public_access";
+      }
+      return venue.access_model || null;
+    })();
     const verifiedEnvironmentType = isConfirmedFacility ? (venue.environment_type || null) : null;
 
     const hasAuditedOperationalStatus = isSoldOut || (box.audited_at && (finalAllInPrice != null || box.tier1_name || isFree)) || (isPerennial && venue.weekly_hours);
     const operationalStatusValue = hasAuditedOperationalStatus ? (isSoldOut ? "sold_out" : "available") : null;
-
-    const verifiedBookingProtocol = (isPerennial && (venue.weekly_hours || venue.access_model === "free_public_access"))
-      ? "drop_in"
-      : (box.audited_at && isValidDeepLink(ticketUrl))
-        ? "online_reservation"
-        : null;
 
     const resolvedTicketProvider = (() => {
       const u = String(ticketUrl || "").toLowerCase();
@@ -3371,12 +3466,23 @@ export async function compileCatalog(options = {}) {
       full_address: isLocationConfirmed ? (venue.full_address || venue.address) : null,
       neighborhood: isLocationConfirmed ? venue.neighborhood : null,
       city: (() => {
-        const raw = `${existing.city || ""} ${existing.region || ""} ${venue.city || ""} ${venue.neighborhood || ""} ${venue.full_address || venue.address || ""}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        const addrOnly = `${venue.full_address || venue.address || ""}`;
+        const muniMatch = addrOnly.match(/,\s*(North Vancouver|West Vancouver|Burnaby|Richmond|Coquitlam|Port Coquitlam|Port Moody|New Westminster|Surrey|White Rock|Delta|Langley|Maple Ridge|Pitt Meadows|Vancouver)\s*,\s*BC\b/i);
+        if (muniMatch) return muniMatch[1].replace(/\s+/g, " ").trim();
+        if (venue.city && /^(?:North Vancouver|West Vancouver|Burnaby|Richmond|Coquitlam|Port Coquitlam|Port Moody|New Westminster|Surrey|White Rock|Delta|Langley|Maple Ridge|Pitt Meadows|Vancouver)$/i.test(String(venue.city).trim())) {
+          return String(venue.city).trim();
+        }
+        const raw = `${venue.neighborhood || ""} ${addrOnly} ${existing.city || ""}`;
+        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
       })(),
       region: (() => {
-        const raw = `${existing.city || ""} ${existing.region || ""} ${venue.city || ""} ${venue.neighborhood || ""} ${venue.full_address || venue.address || ""}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        const addrOnly = `${venue.full_address || venue.address || ""}`;
+        const muniMatch = addrOnly.match(/,\s*(North Vancouver|West Vancouver|Burnaby|Richmond|Coquitlam|Port Coquitlam|Port Moody|New Westminster|Surrey|White Rock|Delta|Langley|Maple Ridge|Pitt Meadows|Vancouver)\s*,\s*BC\b/i);
+        if (muniMatch) {
+          return /^(?:surrey|white rock)$/i.test(muniMatch[1].trim()) ? "Surrey" : "Vancouver";
+        }
+        const raw = `${venue.city || ""} ${venue.neighborhood || ""} ${addrOnly}`;
+        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
       })(),
       coordinates: isLocationConfirmed ? (normalizedCoordinates || venue.coordinates) : null,
       lat: isLocationConfirmed && Array.isArray(normalizedCoordinates || venue.coordinates) ? (normalizedCoordinates || venue.coordinates)[0] : (existing.lat ?? null),
@@ -3688,8 +3794,15 @@ export async function compileCatalog(options = {}) {
       /^(?:online|virtual|online\s*\/\s*virtual|zoom|livestream|[eé]v[eè]nement\s+en\s+ligne|online\s*\([^)]+\)|microsoft\s+teams)$/i.test(String(sched.venue_name || sched.venue || box.venue_name || compiledCard.venue || "").trim()) ||
       (/\b(?:campus\s*:\s*online|location\s*:\s*online|register\s+on\s+teams|zoom\s+webinar|[eé]v[eè]nement\s+en\s+ligne|-\s+en\s+ligne\b)\b/i.test(fullCardProse) && !/\b(?:in[- ]person|hybrid)\b/i.test(fullCardProse)) ||
       (/\bwebinar\b/i.test(compiledCard.title || "") && !/\b(?:in[- ]person|hybrid)\b/i.test(fullCardProse));
+    const eventIdStem = String(eventId || "").toLowerCase().trim().replace(/-(?:202\d-\d{2}-\d{2}|202\d\d{4}|\d{1,2})$/, "");
+    const recurringStemBlacklist = new Set(
+      (Array.isArray(learnedRules.recurring_blacklist_stems) ? learnedRules.recurring_blacklist_stems : [])
+        .map((s) => String(s || "").toLowerCase().trim().replace(/-(?:202\d-\d{2}-\d{2}|202\d\d{4}|\d{1,2})$/, ""))
+        .filter((s) => s.length >= 8)
+    );
     const isInternalOrCaseworkService =
-      /\b(?:settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|for\s+students\s+across\s+simon\s+fraser\s+university\s+to\s+pitch\s+their\s+ideas\s+privately|international\s+focus\s+week\s+community\s+wall)\b/i.test(fullCardProse);
+      recurringStemBlacklist.has(eventIdStem) ||
+      /\b(?:settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|for\s+students\s+across\s+simon\s+fraser\s+university\s+to\s+pitch\s+their\s+ideas\s+privately|international\s+focus\s+week\s+community\s+wall|one\s+on\s+one\s+technology\s+help|explore\s+healthcare\s+job\s+opportunities|undergrad\s+research\s+drop[- ]in\s+chats|practice\s+3[- ]minute\s+thesis|congregational\s+choir\s+rehearsal|sunday\s+morning\s+service|candlelit\s+contemplative|west\s+end\s+children['’]?s\s+choir)\b/i.test(fullCardProse);
 
     // Helper to route card directly to historical archive registry
     const archiveCard = (reason, reviewStatus, errorMsg) => {
