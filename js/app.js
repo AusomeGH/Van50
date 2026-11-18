@@ -404,6 +404,9 @@ const state = {
   selectedVenue: null,
   searchQuery: '',
   savedEvents: new Set(),
+  expandedSavedEvents: new Set(),
+  expandedCardIds: new Set(),
+  sharedPlanIds: null,
   collapsedTimeGroups: new Set(),
   expiredCount: 0,
   sortBy: 'date'
@@ -520,6 +523,17 @@ function restoreFiltersFromUrlParams() {
       state.eventFocus = focusVal;
     }
   }
+
+  if (params.has('plan')) {
+    const rawPlan = (params.get('plan') || '').trim();
+    const parsedIds = rawPlan
+      .split(',')
+      .map(s => {
+        try { return decodeURIComponent(s.trim()); } catch (_) { return s.trim(); }
+      })
+      .filter(Boolean);
+    state.sharedPlanIds = parsedIds.length > 0 ? parsedIds : null;
+  }
 }
 
 function syncFiltersToUrlParams() {
@@ -527,7 +541,11 @@ function syncFiltersToUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const hadRegionParam = params.has('region');
 
-  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort', 'focus'].forEach(k => params.delete(k));
+  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort', 'focus', 'plan'].forEach(k => params.delete(k));
+
+  if (Array.isArray(state.sharedPlanIds) && state.sharedPlanIds.length > 0) {
+    params.set('plan', state.sharedPlanIds.map(id => encodeURIComponent(id)).join(','));
+  }
 
   if (state.region && (state.region !== 'all' || hadRegionParam || window._userChangedRegion)) {
     params.set('region', state.region);
@@ -674,6 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderEventFocusPills();
   updateSliderVisuals();
   applyFiltersAndRender();
+  hydrateDeepLinksFromUrl();
   updateReviewQueueBadge();
   loadCentralReference();
 
@@ -2085,6 +2104,7 @@ async function loadCentralReference() {
     }
     renderFestivalSpotlight();
     applyFiltersAndRender();
+    hydrateDeepLinksFromUrl();
   }
 
   // Also load venues.json to enrich venue calendar & details
@@ -3112,13 +3132,13 @@ function getSortedActiveFestivals(catalog, now = new Date()) {
     if (today >= startMidnight && today <= parsedWindow.end) {
       tier = 1;
       if (daysUntilEnd === 0) {
-        urgencyBadge = '🔥 Last Day!';
+        urgencyBadge = 'Last Day';
         urgencyClass = 'tier-1-last-day';
       } else if (daysUntilEnd <= 2) {
-        urgencyBadge = `⏳ Ends in ${daysUntilEnd}d`;
+        urgencyBadge = `Ends in ${daysUntilEnd}d`;
         urgencyClass = 'tier-1-ending-soon';
       } else {
-        urgencyBadge = '🟢 Live Now';
+        urgencyBadge = '';
         urgencyClass = 'tier-1-live';
       }
     } else if (daysUntilStart > 0 && daysUntilStart <= 21) {
@@ -3237,48 +3257,40 @@ function renderFestivalSpotlight() {
   }
 
   const activeItemsListHtml = themeGroups.length > 0 ? `
-    <div class="festival-active-items-list" role="region" aria-label="Active festivals and holidays">
+    <div class="festival-active-items-list" role="group" aria-label="Active festivals and holidays">
       ${themeGroups.map(g => {
     const meta = getThemeMetadata(g);
     const isSelected = state.selectedThemeFilter === g.key;
-    const isExcluded = state.excludedThemes && state.excludedThemes.has(g.key);
-    const isItemExpanded = state.expandedThemes && state.expandedThemes.has(g.key);
+    const isExcluded = Boolean(state.excludedThemes && state.excludedThemes.has(g.key));
+    const stateAttr = isSelected ? 'only' : (isExcluded ? 'excluded' : 'default');
+    const stateBadgeHtml = isSelected
+      ? `<span class="theme-state-pill state-only">Showing Only</span>`
+      : (isExcluded ? `<span class="theme-state-pill state-hidden">Hidden</span>` : '');
+    const boxTitle = isSelected
+      ? `Showing only ${meta.label} (${g.count}). Click again to hide from feed.`
+      : (isExcluded
+        ? `${meta.label} hidden from feed. Click again to reset and include with all outings.`
+        : `Click to show only ${meta.label} (${g.count} outings)`);
     return `
-          <div class="festival-theme-item-row ${isSelected ? 'item-row-selected' : ''} ${isExcluded ? 'item-row-excluded' : ''}">
-            <button
-              type="button"
-              class="theme-item-name-toggle ${isItemExpanded ? 'expanded' : ''}"
-              onclick="toggleThemeItemExpand('${g.key}', event)"
-              aria-expanded="${isItemExpanded}"
-              title="${isItemExpanded ? 'Hide description' : 'Click to expand description'}"
-            >
+          <button
+            type="button"
+            class="festival-theme-item-row festival-theme-box-btn ${isSelected ? 'item-row-selected' : ''} ${isExcluded ? 'item-row-excluded' : ''}"
+            data-theme-state="${stateAttr}"
+            aria-pressed="${isSelected ? 'true' : (isExcluded ? 'mixed' : 'false')}"
+            onclick="cycleThemeBoxState('${g.key}', event)"
+            title="${boxTitle.replace(/"/g, '&quot;')}"
+          >
+            <div class="theme-box-top-row">
               <strong class="theme-item-name">${meta.label}</strong>
-              <span class="theme-item-chevron">${isItemExpanded ? '▴' : '▾'}</span>
-            </button>
-            <div class="theme-item-subrow">
-              ${g.urgencyBadge ? `<span class="festival-urgency-badge ${g.urgencyClass || ''}">${g.urgencyBadge}</span>` : ''}
-              ${meta.datesLabel ? `<span class="theme-item-dates-pill">${meta.datesLabel}</span>` : ''}
-              <div class="festival-theme-item-actions">
-                <button
-                  type="button"
-                  class="btn-theme-item-include ${isSelected ? 'active' : ''}"
-                  onclick="toggleThemeFilter('${g.key}', event)"
-                  title="${isSelected ? `Showing only ${meta.label} events. Click to show all outings` : `Filter catalog to show only ${meta.label} events (${g.count})`}"
-                >${isSelected ? `✓ Included (${g.count})` : `Include (${g.count})`}</button>
-                <button
-                  type="button"
-                  class="btn-theme-item-exclude ${isExcluded ? 'active' : ''}"
-                  onclick="toggleExcludeTheme('${g.key}', event)"
-                  title="${isExcluded ? `Currently excluded. Click to restore ${meta.label} events` : `Exclude (hide) ${meta.label} events from listings & map`}"
-                >${isExcluded ? '👁️ Excluded' : '✕ Exclude'}</button>
-              </div>
+              <span class="theme-item-count">(${g.count})</span>
             </div>
-            ${isItemExpanded ? `
-              <div class="festival-theme-item-drawer">
-                <p class="theme-item-short-desc">${meta.shortDesc}</p>
-              </div>
-            ` : ''}
-          </div>
+            <div class="theme-item-subrow">
+              ${(g.urgencyBadge && !/live\s*now/i.test(g.urgencyBadge)) ? `<span class="festival-urgency-badge ${g.urgencyClass || ''}">${g.urgencyBadge}</span>` : ''}
+              ${meta.datesLabel ? `<span class="theme-item-dates-pill">${meta.datesLabel}</span>` : ''}
+              ${stateBadgeHtml}
+            </div>
+            ${meta.shortDesc ? `<span class="theme-item-short-desc">${meta.shortDesc}</span>` : ''}
+          </button>
         `;
   }).join('')}
     </div>
@@ -3315,6 +3327,37 @@ function toggleFestivalDetailsDrawer() {
   state.festivalDetailsExpanded = !state.festivalDetailsExpanded;
   renderFestivalSpotlight();
 }
+
+function cycleThemeBoxState(themeKey, evObj) {
+  if (evObj) {
+    evObj.preventDefault();
+    evObj.stopPropagation();
+  }
+  if (!themeKey) return;
+  if (!state.excludedThemes) state.excludedThemes = new Set();
+  const isSelected = state.selectedThemeFilter === themeKey;
+  const isExcluded = state.excludedThemes.has(themeKey);
+
+  if (!isSelected && !isExcluded) {
+    // 1st click: Show ONLY events under this festival/holiday
+    state.selectedThemeFilter = themeKey;
+    state.excludedThemes.delete(themeKey);
+    state.hideFestivalEvents = false;
+  } else if (isSelected) {
+    // 2nd click: Remove (exclude) this festival/holiday's events from the feed
+    state.selectedThemeFilter = null;
+    state.excludedThemes.add(themeKey);
+  } else {
+    // 3rd click: Reset so they are included with everything else
+    state.excludedThemes.delete(themeKey);
+    if (state.selectedThemeFilter === themeKey) {
+      state.selectedThemeFilter = null;
+    }
+  }
+  renderFestivalSpotlight();
+  applyFiltersAndRender();
+}
+window.cycleThemeBoxState = cycleThemeBoxState;
 
 function toggleThemeFilter(themeKey, evObj) {
   if (evObj) {
@@ -3477,7 +3520,18 @@ function renderCategoryPills() {
   }
 }
 
+function closeItineraryDrawerIfOpen() {
+  const drawer = document.getElementById('itinerary-drawer');
+  if (drawer && drawer.classList.contains('active')) {
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('inert', '');
+  }
+}
+
 function filterByCategory(catId) {
+  state.sharedPlanIds = null;
+  closeItineraryDrawerIfOpen();
   if (!catId || catId === 'all') {
     state.category = 'all';
   } else {
@@ -4540,11 +4594,22 @@ function applyFiltersAndRender() {
 
   const parsedSearch = state.searchQuery ? parseGoogleQuery(state.searchQuery) : null;
   const categoryCountPool = [];
+  const hasSharedPlanFilter = Array.isArray(state.sharedPlanIds) && state.sharedPlanIds.length > 0;
+  const sharedPlanOrderMap = hasSharedPlanFilter
+    ? new Map(state.sharedPlanIds.map((id, idx) => [id, idx]))
+    : null;
 
   const filtered = activeCatalog.filter(ev => {
     // Strict Budget Cap Guard (never display > $50.00 CAD to user under any circumstances)
     const p = parseFloat(ev.price || 0.0);
     if (p > 50.00) return false;
+
+    // Shared Outing Plan Deep-Link Isolation (?plan=id1,id2,...)
+    if (hasSharedPlanFilter) {
+      const inPlan = sharedPlanOrderMap.has(ev.id);
+      if (inPlan) categoryCountPool.push(ev);
+      return inPlan;
+    }
 
     // 0. Top-Level Region Filter (all | vancouver | surrey)
     if (state.region && state.region !== 'all') {
@@ -4766,9 +4831,14 @@ function applyFiltersAndRender() {
     filtered.sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')));
   }
 
+  if (hasSharedPlanFilter && sharedPlanOrderMap) {
+    filtered.sort((a, b) => (sharedPlanOrderMap.get(a.id) ?? 9999) - (sharedPlanOrderMap.get(b.id) ?? 9999));
+  }
+
   window.currentFilteredEvents = filtered;
   syncFiltersToUrlParams();
   renderActiveFilterChips(filtered.length);
+  renderSharedPlanBanner(hasSharedPlanFilter ? filtered : null);
 
   // Update More Filters active counter badge
   let secondaryFilterCount = 0;
@@ -5228,6 +5298,8 @@ function matchesSmartSearch(ev, query) {
 
 // 1-Click Venue Isolation Action (Requirement: Unselect all other filters so all events at venue are shown)
 function filterByVenue(venueName) {
+  state.sharedPlanIds = null;
+  closeItineraryDrawerIfOpen();
   if (state.selectedVenue === venueName) {
     state.selectedVenue = null;
   } else {
@@ -5806,8 +5878,11 @@ window.toggleWeeklyHours = function (eventId, event) {
     event.preventDefault();
     event.stopPropagation();
   }
-  const table = document.getElementById(`hours-table-${eventId}`);
-  const btn = document.getElementById(`btn-toggle-hours-${eventId}`);
+  const scopedRoot = (event && event.currentTarget && event.currentTarget.closest)
+    ? event.currentTarget.closest('.card-weekly-hours-block')
+    : null;
+  const table = (scopedRoot && scopedRoot.querySelector('.weekly-hours-table')) || document.getElementById(`hours-table-${eventId}`);
+  const btn = (scopedRoot && scopedRoot.querySelector('.btn-toggle-hours')) || document.getElementById(`btn-toggle-hours-${eventId}`);
   if (!table) return;
   const isHidden = (table.style.display === 'none' || table.style.display === '');
   if (isHidden) {
@@ -5838,8 +5913,13 @@ window.toggleShowings = function (eventId, event) {
     event.preventDefault();
     event.stopPropagation();
   }
-  const el = document.getElementById(`showings-table-${eventId}`) || document.getElementById(`showings-more-${eventId}`);
-  const btn = document.getElementById(`btn-toggle-showings-${eventId}`);
+  const scopedRoot = (event && event.currentTarget && event.currentTarget.closest)
+    ? event.currentTarget.closest('.card-showings-block')
+    : null;
+  const el = (scopedRoot && (scopedRoot.querySelector('.collapsible-showings') || scopedRoot.querySelector('[id^="showings-table-"]') || scopedRoot.querySelector('[id^="showings-more-"]')))
+    || document.getElementById(`showings-table-${eventId}`)
+    || document.getElementById(`showings-more-${eventId}`);
+  const btn = (scopedRoot && scopedRoot.querySelector('[id^="btn-toggle-showings-"]')) || document.getElementById(`btn-toggle-showings-${eventId}`);
   if (!el) return;
   const isHidden = (el.style.display === 'none' || el.style.display === '');
   if (isHidden) {
@@ -7073,9 +7153,17 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   const row2TimeDisplay = getEventRow2TimeDisplay(ev, topDate, bucketKey);
   const catMeta = getCardSemanticCategoryMeta(ev);
   const row2VenueMetaText = formatSmartRow2VenueMeta(ev, shortNeighborhood, row2TimeDisplay);
+  const isSavedDrawerCard = bucketKey === 'saved-drawer';
+  const cardDomId = isSavedDrawerCard ? `saved-card-${ev.id}` : `card-${ev.id}`;
+  const shareBtnDomId = isSavedDrawerCard ? `btn-share-saved-${ev.id}` : `btn-share-${ev.id}`;
+  const copyLinkBtnDomId = isSavedDrawerCard ? `btn-copy-link-saved-${ev.id}` : `btn-copy-link-${ev.id}`;
+  const isPersistedExpanded = !isSavedDrawerCard && state.expandedCardIds && state.expandedCardIds.has(ev.id);
+  const extraCardClasses = isSavedDrawerCard
+    ? 'saved-drawer-functional-card mobile-expanded desktop-expanded'
+    : (isPersistedExpanded ? 'mobile-expanded desktop-expanded' : '');
 
   return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}" data-cat-theme="${catMeta.themeKey}" data-scroll-date="${topDate.badgeText}" data-scroll-day="${scrollDayFull}" data-bucket-key="${bucketKey}" onclick="toggleMobileCardAccordion('${ev.id}', event)">
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${catMeta.themeKey}" data-scroll-date="${topDate.badgeText}" data-scroll-day="${scrollDayFull}" data-bucket-key="${bucketKey}" ${isSavedDrawerCard ? '' : `onclick="toggleMobileCardAccordion('${ev.id}', event)"`}>
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
@@ -7157,12 +7245,24 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <button 
               type="button" 
               class="btn-card-action btn-card-share" 
-              id="btn-share-${ev.id}"
-              onclick="shareEvent('${ev.id}')" 
-              title="Share event details & link"
+              id="${shareBtnDomId}"
+              onclick="shareEvent('${ev.id}', this, event)" 
+              title="Share concise event summary & link"
               aria-label="Share ${escapedTitle}"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            </button>
+
+            <!-- Copy Link Only Button -->
+            <button 
+              type="button" 
+              class="btn-card-action btn-card-copy-link" 
+              id="${copyLinkBtnDomId}"
+              onclick="copyEventLinkOnly('${ev.id}', this, event)" 
+              title="Copy Link Only"
+              aria-label="Copy Link Only for ${escapedTitle}"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             </button>
 
             <!-- Save Outing Button -->
@@ -7295,6 +7395,7 @@ function resetAllFilters() {
   state.selectedVenue = null;
   state.searchQuery = '';
   state.eventFocus = 'all';
+  state.sharedPlanIds = null;
 
   const searchInput = document.getElementById('search-input');
   if (searchInput) searchInput.value = '';
@@ -7384,36 +7485,53 @@ function renderItinerary() {
   const totalEl = document.getElementById('itinerary-total-cost');
   const statusEl = document.getElementById('itinerary-budget-status');
   const sharePlanBtn = document.getElementById('share-plan-btn');
+  const copyPlanLinkBtn = document.getElementById('copy-plan-link-btn');
   const clearPlanBtn = document.getElementById('clear-plan-btn');
-  const currentSavedCount = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id)).length;
+  const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
+  const currentSavedCount = savedList.length;
   if (sharePlanBtn) sharePlanBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
+  if (copyPlanLinkBtn) copyPlanLinkBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
   if (clearPlanBtn) clearPlanBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
   if (!list || !totalEl) return;
-
-  const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
 
   if (savedList.length === 0) {
     list.innerHTML = `
       <div style="text-align: center; padding: 40px 10px; color: var(--text-muted); font-size: 0.86rem;">
-        No saved events yet.<br>Click 🤍 on any card to save an event.
+        No saved events yet.<br>Click the heart icon on any card to save an outing.
       </div>
     `;
     totalEl.textContent = '$0.00 CAD';
-    if (statusEl) statusEl.textContent = 'Add events to calculate'; const emptyFill = document.getElementById('itinerary-budget-meter-fill'); if (emptyFill) { emptyFill.style.width = '0%'; emptyFill.style.background = '#10b981'; }
+    if (statusEl) statusEl.textContent = 'Add events to calculate';
+    const emptyFill = document.getElementById('itinerary-budget-meter-fill');
+    if (emptyFill) {
+      emptyFill.style.width = '0%';
+      emptyFill.style.background = '#10b981';
+    }
     return;
   }
 
+  if (!state.expandedSavedEvents) state.expandedSavedEvents = new Set();
   let totalCost = 0;
   list.innerHTML = savedList.map(ev => {
-    totalCost += ev.price;
+    totalCost += Number(ev.price) || 0;
+    const isExpanded = state.expandedSavedEvents.has(ev.id);
+    const expandedCardHtml = isExpanded
+      ? `<div class="itinerary-expanded-card-wrap">${renderSingleEventCardHtml(ev, 'saved-drawer')}</div>`
+      : '';
     return `
-      <div class="itinerary-item-card">
-        <div style="flex: 1;">
-          <div class="itinerary-item-title">${ev.title}</div>
-          <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 4px;">${ev.venue}</div>
-          <div class="itinerary-item-price">${formatStandardPrice(ev)}</div>
+      <div class="itinerary-item-card ${isExpanded ? 'is-expanded' : ''}" data-saved-event-id="${ev.id}">
+        <div class="itinerary-item-summary-row" role="button" tabindex="0" aria-expanded="${isExpanded}" onclick="toggleSavedCardExpand('${ev.id}', event)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSavedCardExpand('${ev.id}', event);}" title="${isExpanded ? 'Collapse card details' : 'Click to expand full event card'}">
+          <div style="flex: 1; min-width: 0;">
+            <div class="itinerary-item-title">${ev.title}</div>
+            <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 4px;">${ev.venue}</div>
+            <div class="itinerary-item-price">${formatStandardPrice(ev)}</div>
+          </div>
+          <div class="itinerary-item-controls">
+            <span class="itinerary-expand-chevron" aria-hidden="true">${isExpanded ? '▴' : '▾'}</span>
+            <button type="button" class="btn-remove-item" onclick="event.stopPropagation(); toggleSaveEvent('${ev.id}')" title="Remove from Saved Events" aria-label="Remove ${ev.title.replace(/"/g, '&quot;')} from Saved Events">✕</button>
+          </div>
         </div>
-        <button class="btn-remove-item" onclick="toggleSaveEvent('${ev.id}')" title="Remove from Saved Events">✕</button>
+        ${expandedCardHtml}
       </div>
     `;
   }).join('');
@@ -7421,55 +7539,170 @@ function renderItinerary() {
   totalEl.textContent = `$${totalCost.toFixed(2)} CAD`;
   if (statusEl) {
     statusEl.innerHTML = totalCost <= 50.00
-      ? `<span style="color: #0f766e; font-weight: 700;">🟢 $${(50 - totalCost).toFixed(2)} CAD remaining under $50 target</span>`
-      : `<span style="color: #e11d48; font-weight: 700;">⚠️ $${(totalCost - 50).toFixed(2)} CAD over $50 outing target</span>`; const meterFill = document.getElementById('itinerary-budget-meter-fill'); if (meterFill) { const pct = Math.min(100, Math.max(0, (totalCost / 50) * 100)); meterFill.style.width = `${pct}%`; meterFill.style.background = totalCost <= 50 ? '#10b981' : '#e11d48'; }
+      ? `<span style="color: #0f766e; font-weight: 700;">$${(50 - totalCost).toFixed(2)} CAD remaining under $50 target</span>`
+      : `<span style="color: #e11d48; font-weight: 700;">$${(totalCost - 50).toFixed(2)} CAD over $50 outing target</span>`;
+    const meterFill = document.getElementById('itinerary-budget-meter-fill');
+    if (meterFill) {
+      const pct = Math.min(100, Math.max(0, (totalCost / 50) * 100));
+      meterFill.style.width = `${pct}%`;
+      meterFill.style.background = totalCost <= 50 ? '#10b981' : '#e11d48';
+    }
   }
 }
 
+window.toggleSavedCardExpand = function (eventId, domEv) {
+  if (domEv) {
+    if (domEv.target && domEv.target.closest('.btn-remove-item')) return;
+    domEv.preventDefault();
+    domEv.stopPropagation();
+  }
+  if (!eventId) return;
+  if (!state.expandedSavedEvents) state.expandedSavedEvents = new Set();
+  if (state.expandedSavedEvents.has(eventId)) {
+    state.expandedSavedEvents.delete(eventId);
+  } else {
+    state.expandedSavedEvents.add(eventId);
+  }
+  renderItinerary();
+};
+
 window.clearSavedEvents = function () {
   state.savedEvents.clear();
+  if (state.expandedSavedEvents) state.expandedSavedEvents.clear();
   persistSavedState();
   updateItineraryBadge();
   renderItinerary();
   applyFiltersAndRender();
-  if (typeof window.showFloatingToast === 'function') {
-    window.showFloatingToast('Cleared saved outings.');
-  }
 };
 
-window.shareOutingPlan = async function () {
-  const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
-  if (savedList.length === 0) {
-    if (typeof window.showFloatingToast === 'function') {
-      window.showFloatingToast('Save at least 1 event first to share your plan!');
-    }
-    return;
+// ==============================================================================
+// CONCISE EMOJI-FREE SHARING & URL DEEP-LINK ENGINE (?event= & ?plan=)
+// ==============================================================================
+
+function stripEmojisAndExtraSpaces(str) {
+  return String(str || '')
+    .replace(/[\p{Extended_Pictographic}\uFE0F\u200D]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getCanonicalShareBaseUrl() {
+  if (typeof window !== 'undefined' && window.location && /^https?:$/i.test(window.location.protocol)) {
+    return `${window.location.origin}${window.location.pathname}`;
   }
+  return 'https://ausomegh.github.io/Van50/';
+}
 
-  let totalCost = 0;
-  const lines = ['My Van50 Outing Plan (Under $50 CAD):', ''];
-  savedList.forEach((ev, i) => {
-    const priceNum = Number(ev.price) || 0;
-    totalCost += priceNum;
-    const hood = ev.neighborhood ? ` — ${ev.neighborhood}` : '';
-    const priceLabel = formatStandardPrice(ev);
-    lines.push(`${i + 1}. ${ev.title}${hood} (${priceLabel})`);
-  });
-  lines.push('');
-  lines.push(`Total Estimated Cost: $${totalCost.toFixed(2)} CAD`);
-  const shareUrl = (typeof window !== 'undefined' && window.location && window.location.href)
-    ? window.location.href
-    : 'https://ausomegh.github.io/Van50/';
-  const text = lines.join('\n');
-  const fullClipboardText = `${text}\n${shareUrl}`;
+function getShortShareNeighborhood(ev) {
+  return stripEmojisAndExtraSpaces(
+    String((ev && (ev.neighborhood || ev.city || ev.venue)) || 'Vancouver')
+      .split(' / ')[0]
+      .split('/')[0]
+      .split(',')[0]
+      .split(' & ')[0]
+  ) || 'Vancouver';
+}
 
-  if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+function getConciseSharePriceLabel(ev) {
+  if (!ev) return '$0 CAD';
+  if (ev.isFree || Number(ev.price) === 0) return 'Free';
+  const raw = stripEmojisAndExtraSpaces(formatStandardPrice(ev));
+  return raw || `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)} CAD`;
+}
+
+function getConciseShareTimeDisplay(ev) {
+  if (!ev) return 'Upcoming';
+  const topDate = formatCardTopDate(ev);
+  const row2Time = stripEmojisAndExtraSpaces(getEventRow2TimeDisplay(ev, topDate));
+  const dateBadge = topDate && topDate.badgeText ? stripEmojisAndExtraSpaces(topDate.badgeText) : '';
+  if (dateBadge && !/^(daily|open daily|anytime)$/i.test(dateBadge)) {
+    if (row2Time && row2Time !== 'All Day' && !dateBadge.toLowerCase().includes(row2Time.toLowerCase())) {
+      return `${dateBadge}, ${row2Time}`;
+    }
+    return dateBadge;
+  }
+  return row2Time || dateBadge || 'Daily';
+}
+
+async function copyTextSilently(text) {
+  if (typeof navigator !== 'undefined' && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  textarea.style.pointerEvents = 'none';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const ok = document.execCommand('copy');
+  document.body.removeChild(textarea);
+  return ok;
+}
+
+function flashButtonCopied(btnEl, label = 'Copied ✓', durationMs = 1800) {
+  if (!btnEl) return;
+  if (!btnEl.dataset.origHtml) {
+    btnEl.dataset.origHtml = btnEl.innerHTML;
+  }
+  if (btnEl._copiedResetTimer) {
+    clearTimeout(btnEl._copiedResetTimer);
+  }
+  btnEl.classList.add('is-copied-inline');
+  btnEl.textContent = label;
+  btnEl._copiedResetTimer = setTimeout(() => {
+    if (btnEl.dataset.origHtml) {
+      btnEl.innerHTML = btnEl.dataset.origHtml;
+      delete btnEl.dataset.origHtml;
+    }
+    btnEl.classList.remove('is-copied-inline');
+    btnEl._copiedResetTimer = null;
+  }, durationMs);
+}
+
+function canInvokeMobileShareSheet(sharePayload) {
+  if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return false;
+  const isMobileDevice = (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
+    || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
+  if (!isMobileDevice) return false;
+  if (typeof navigator.canShare === 'function') {
     try {
-      await navigator.share({
-        title: 'My Van50 Outing Plan',
-        text: text,
-        url: shareUrl
-      });
+      return navigator.canShare(sharePayload);
+    } catch (_) {
+      return false;
+    }
+  }
+  return true;
+}
+
+window.shareSingleEventConcise = async function (eventId, btnEl, domEv) {
+  if (domEv) {
+    domEv.preventDefault();
+    domEv.stopPropagation();
+  }
+  const catalog = window.currentActiveCatalog || ALL_EVENTS || [];
+  const ev = catalog.find(e => e.id === eventId) || ALL_EVENTS.find(e => e.id === eventId);
+  if (!ev) return;
+
+  const targetBtn = btnEl || document.getElementById(`btn-share-${eventId}`);
+  const cleanTitle = stripEmojisAndExtraSpaces(ev.title);
+  const priceLabel = getConciseSharePriceLabel(ev);
+  const shortNeighborhood = getShortShareNeighborhood(ev);
+  const timeDisplay = getConciseShareTimeDisplay(ev);
+  const shareUrl = `${getCanonicalShareBaseUrl()}?event=${encodeURIComponent(ev.id)}`;
+  const conciseLine = `${cleanTitle} — ${priceLabel} (${shortNeighborhood} • ${timeDisplay})`;
+  const clipboardPayload = `${conciseLine}\n${shareUrl}`;
+
+  const nativePayload = {
+    title: cleanTitle,
+    text: conciseLine,
+    url: shareUrl
+  };
+
+  if (canInvokeMobileShareSheet(nativePayload)) {
+    try {
+      await navigator.share(nativePayload);
       return;
     } catch (err) {
       if (err && err.name === 'AbortError') return;
@@ -7477,57 +7710,224 @@ window.shareOutingPlan = async function () {
   }
 
   try {
-    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
-      await navigator.clipboard.writeText(fullClipboardText);
-    }
-    if (typeof window.showFloatingToast === 'function') {
-      window.showFloatingToast('Copied to clipboard!');
-    }
-    const shareBtn = document.getElementById('share-plan-btn');
-    if (shareBtn) {
-      const orig = shareBtn.innerHTML;
-      shareBtn.innerHTML = '✓ Copied to clipboard!';
-      setTimeout(() => { shareBtn.innerHTML = orig; }, 2200);
-    }
-  } catch (e) {
-    if (typeof window.showFloatingToast === 'function') {
-      window.showFloatingToast('Copied to clipboard!');
+    await copyTextSilently(clipboardPayload);
+    flashButtonCopied(targetBtn, 'Copied ✓', 1800);
+  } catch (_) { }
+};
+window.shareEvent = window.shareSingleEventConcise;
+
+window.copyEventLinkOnly = async function (eventId, btnEl, domEv) {
+  if (domEv) {
+    domEv.preventDefault();
+    domEv.stopPropagation();
+  }
+  const ev = (window.currentActiveCatalog || ALL_EVENTS || []).find(e => e.id === eventId) || ALL_EVENTS.find(e => e.id === eventId);
+  if (!ev) return;
+  const targetBtn = btnEl || document.getElementById(`btn-copy-link-${eventId}`);
+  const shareUrl = `${getCanonicalShareBaseUrl()}?event=${encodeURIComponent(ev.id)}`;
+  try {
+    await copyTextSilently(shareUrl);
+    flashButtonCopied(targetBtn, 'Copied ✓', 1800);
+  } catch (_) { }
+};
+
+function buildSavedPlanShareData() {
+  const savedEvents = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
+  if (savedEvents.length === 0) return null;
+  const totalCost = savedEvents.reduce((sum, ev) => sum + (Number(ev.price) || 0), 0);
+  const savedIds = savedEvents.map(ev => encodeURIComponent(ev.id));
+  const planUrl = `${getCanonicalShareBaseUrl()}?plan=${savedIds.join(',')}`;
+
+  const shownEvents = savedEvents.slice(0, 5);
+  const bullets = shownEvents.map(ev => {
+    const cleanTitle = stripEmojisAndExtraSpaces(ev.title);
+    const priceLabel = getConciseSharePriceLabel(ev);
+    const shortNeighborhood = getShortShareNeighborhood(ev);
+    return `• ${cleanTitle} — ${priceLabel} (${shortNeighborhood})`;
+  });
+  if (savedEvents.length > 5) {
+    bullets.push(`• +${savedEvents.length - 5} more`);
+  }
+
+  const headerLine = `Outing Plan ($${totalCost.toFixed(0)} CAD total):`;
+  const conciseText = `${headerLine}\n${bullets.join('\n')}`;
+  return {
+    title: `Outing Plan ($${totalCost.toFixed(0)} CAD total)`,
+    conciseText,
+    clipboardText: `${conciseText}\n${planUrl}`,
+    planUrl
+  };
+}
+
+window.shareOutingPlan = async function (btnEl) {
+  const planData = buildSavedPlanShareData();
+  if (!planData) return;
+  const targetBtn = btnEl || document.getElementById('share-plan-btn');
+
+  const nativePayload = {
+    title: planData.title,
+    text: planData.conciseText,
+    url: planData.planUrl
+  };
+
+  if (canInvokeMobileShareSheet(nativePayload)) {
+    try {
+      await navigator.share(nativePayload);
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
     }
   }
+
+  try {
+    await copyTextSilently(planData.clipboardText);
+    flashButtonCopied(targetBtn, 'Copied ✓', 1800);
+  } catch (_) { }
+};
+
+window.copyOutingPlanLinkOnly = async function (btnEl) {
+  const planData = buildSavedPlanShareData();
+  if (!planData) return;
+  const targetBtn = btnEl || document.getElementById('copy-plan-link-btn');
+  try {
+    await copyTextSilently(planData.planUrl);
+    flashButtonCopied(targetBtn, 'Copied ✓', 1800);
+  } catch (_) { }
 };
 
 function copyItineraryToClipboard() {
-  const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
-  if (savedList.length === 0) {
-    alert('Your saved events list is currently empty. Bookmark some outings first using the heart icon on any card!');
+  window.copyOutingPlanLinkOnly(document.getElementById('copy-plan-link-btn') || document.getElementById('copy-plan-btn'));
+}
+
+function renderSharedPlanBanner(sharedEvents) {
+  const banner = document.getElementById('shared-plan-banner');
+  if (!banner) return;
+  if (!Array.isArray(state.sharedPlanIds) || state.sharedPlanIds.length === 0) {
+    banner.style.display = 'none';
+    banner.innerHTML = '';
     return;
   }
-
-  let totalCost = 0;
-  let text = `Van50 — My Saved Vancouver Outings (Under $50 CAD)\n\n`;
-  savedList.forEach((ev, i) => {
-    totalCost += ev.price;
-    text += `${i + 1}. ${ev.title}\n`;
-    text += `   Venue: ${ev.venue} (${ev.neighborhood})\n`;
-    text += `   When: ${ev.dateSchedule}\n`;
-    text += `   Cost: ${formatStandardPrice(ev)}\n`;
-    text += `   Direct Tickets / Details: ${ev.websiteUrl}\n\n`;
-  });
-  text += `--------------------------------------------------\n`;
-  text += `TOTAL ESTIMATED OUT-OF-POCKET: $${totalCost.toFixed(2)} CAD\n`;
-  text += `Generated with Van50 (https://ausomegh.github.io/Van50/)\n`;
-
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copy-plan-btn');
-    if (btn) {
-      const original = btn.textContent;
-      btn.textContent = '✅ Copied Saved Events to Clipboard!';
-      setTimeout(() => { btn.textContent = original; }, 2200);
-    }
-  }).catch(() => {
-    alert('Unable to copy automatically. Please select text manually.');
-  });
+  const list = Array.isArray(sharedEvents) ? sharedEvents : [];
+  const totalCost = list.reduce((sum, ev) => sum + (Number(ev.price) || 0), 0);
+  const allAlreadySaved = list.length > 0 && list.every(ev => state.savedEvents.has(ev.id));
+  banner.style.display = 'flex';
+  banner.innerHTML = `
+    <div class="shared-plan-banner-info">
+      <strong class="shared-plan-banner-title">Shared Outing Plan</strong>
+      <span class="shared-plan-banner-meta">${list.length} ${list.length === 1 ? 'outing' : 'outings'} • <strong>$${totalCost.toFixed(2)} CAD</strong> combined total</span>
+    </div>
+    <div class="shared-plan-banner-actions">
+      <button type="button" class="btn-shared-plan-save" onclick="saveSharedPlanToMyList(this)">${allAlreadySaved ? 'Saved in My List ✓' : 'Save Plan to My List'}</button>
+      <button type="button" class="btn-shared-plan-clear" onclick="clearSharedPlanView()">Show All Outings</button>
+    </div>
+  `;
 }
+
+window.saveSharedPlanToMyList = function (btnEl) {
+  if (!Array.isArray(state.sharedPlanIds) || state.sharedPlanIds.length === 0) return;
+  const validIds = new Set(ALL_EVENTS.map(e => e.id));
+  state.sharedPlanIds.forEach(id => {
+    if (validIds.has(id)) state.savedEvents.add(id);
+  });
+  persistSavedState();
+  updateItineraryBadge();
+  renderItinerary();
+  applyFiltersAndRender();
+  if (btnEl) {
+    btnEl.textContent = 'Saved in My List ✓';
+  }
+};
+
+window.clearSharedPlanView = function () {
+  state.sharedPlanIds = null;
+  syncFiltersToUrlParams();
+  applyFiltersAndRender();
+};
+
+function hydrateDeepLinksFromUrl() {
+  if (typeof window === 'undefined' || !window.location || !window.location.search) return;
+  const params = new URLSearchParams(window.location.search);
+
+  // Hydrate ?event=<id> on initial load AND across async loadCentralReference() re-render
+  if (params.has('event')) {
+    const rawId = (params.get('event') || '').trim();
+    if (!rawId) return;
+    const nowMs = Date.now();
+    const isInitialHydration = window._hydratedDeepLinkEventId !== rawId;
+    const withinHighlightWindow = Boolean(
+      window._hydratedDeepLinkEventId === rawId &&
+      window._hydratedDeepLinkAt &&
+      (nowMs - window._hydratedDeepLinkAt) < 2000
+    );
+    if (!isInitialHydration && !withinHighlightWindow) return;
+
+    const targetEv = (window.currentActiveCatalog || ALL_EVENTS || []).find(e => e.id === rawId)
+      || (ALL_EVENTS || []).find(e => e.id === rawId);
+    if (!targetEv) return;
+
+    if (!state.expandedCardIds) state.expandedCardIds = new Set();
+    state.expandedCardIds.add(targetEv.id);
+
+    let cardEl = document.getElementById(`card-${targetEv.id}`);
+    if (!cardEl && isInitialHydration) {
+      // Clear conflicting filters so the target event is guaranteed visible
+      state.sharedPlanIds = null;
+      state.region = 'all';
+      window.van50SelectedRegion = 'all';
+      state.minBudget = 0;
+      state.maxBudget = 50;
+      state.category = 'all';
+      state.selectedThemeFilter = null;
+      if (state.excludedThemes) state.excludedThemes.clear();
+      state.hideFestivalEvents = false;
+      state.hideDaily = false;
+      state.accessibleOnly = false;
+      state.eventFocus = 'all';
+      state.dayOfWeek = 'all';
+      state.timeSlot = 'all';
+      state.frequency = 'all';
+      state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
+      state.selectedTag = null;
+      state.selectedVenue = null;
+      state.searchQuery = '';
+      if (state.collapsedTimeGroups) state.collapsedTimeGroups.clear();
+      renderRegionPills();
+      renderFestivalSpotlight();
+      renderCategoryPills();
+      renderDayPills();
+      renderTimePills();
+      renderNeighborhoodPills();
+      renderFrequencyPills();
+      renderEventFocusPills();
+      updateSliderVisuals();
+      applyFiltersAndRender();
+      cardEl = document.getElementById(`card-${targetEv.id}`);
+    }
+
+    if (cardEl) {
+      if (isInitialHydration) {
+        window._hydratedDeepLinkEventId = targetEv.id;
+        window._hydratedDeepLinkAt = nowMs;
+      }
+      const remainingMs = Math.max(300, 2000 - (nowMs - (window._hydratedDeepLinkAt || nowMs)));
+      cardEl.classList.add('mobile-expanded', 'desktop-expanded', 'deep-link-highlight');
+      cardEl.style.boxShadow = '0 0 0 2px var(--brand-primary)';
+      setTimeout(() => {
+        const freshCard = document.getElementById(`card-${targetEv.id}`);
+        if (freshCard) freshCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 60);
+      if (window._deepLinkHighlightClearTimer) clearTimeout(window._deepLinkHighlightClearTimer);
+      window._deepLinkHighlightClearTimer = setTimeout(() => {
+        const freshCard = document.getElementById(`card-${targetEv.id}`);
+        if (freshCard) {
+          freshCard.classList.remove('deep-link-highlight');
+          freshCard.style.boxShadow = '';
+        }
+      }, remainingMs);
+    }
+  }
+}
+window.hydrateDeepLinksFromUrl = hydrateDeepLinksFromUrl;
 
 // ==============================================================================
 // 7. MANUAL REVIEW QUARANTINE QUEUE LOGIC
@@ -8050,11 +8450,16 @@ window.toggleMobileCardAccordion = function (eventId, evObj) {
   }
   const cardEl = document.getElementById(`card-${eventId}`);
   if (!cardEl) return;
+  if (!state.expandedCardIds) state.expandedCardIds = new Set();
   if (typeof window !== 'undefined' && window.innerWidth > 768) {
-    cardEl.classList.toggle('desktop-expanded');
+    const nowExpanded = cardEl.classList.toggle('desktop-expanded');
+    if (nowExpanded) state.expandedCardIds.add(eventId);
+    else state.expandedCardIds.delete(eventId);
     return;
   }
-  cardEl.classList.toggle('mobile-expanded');
+  const nowExpanded = cardEl.classList.toggle('mobile-expanded');
+  if (nowExpanded) state.expandedCardIds.add(eventId);
+  else state.expandedCardIds.delete(eventId);
 };
 
 

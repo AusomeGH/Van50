@@ -834,75 +834,10 @@ window.showFloatingToast = function(message) {
   }, 2600);
 };
 
-// Share Event Functionality (Web Share API + Clipboard Copy Fallback + Deep Link + Attribution)
-window.shareEvent = async function(eventId) {
-  const catalog = window.currentActiveCatalog || (typeof ALL_EVENTS !== 'undefined' ? ALL_EVENTS : []);
-  const ev = catalog.find(e => e.id === eventId);
-  if (!ev) return;
-
-  const btn = document.getElementById(`btn-share-${eventId}`);
-  const topDate = typeof formatCardTopDate === 'function' ? formatCardTopDate(ev) : null;
-  const dateStr = topDate ? topDate.badgeText : (ev.dateSchedule || 'Check schedule');
-  const priceStr = typeof formatStandardPrice === 'function' ? formatStandardPrice(ev) : (ev.priceLabel || `$${ev.price || 0}`);
-  const venueStr = ev.venue || 'Vancouver';
-  const addrStr = ev.address ? ` (${ev.address})` : '';
-  const access = window.getVenueAccessibility(ev.venue);
-  const accessStr = access ? `\n♿ Accessibility: ${access.label} - ${access.summary}` : '';
-
-  // Always use the public online production URL for sharing so recipients anywhere can open it directly
-  const ONLINE_PRODUCTION_BASE = 'https://ausomegh.github.io/Van50/';
-  const isOnlineHosted = window.location.hostname && !['localhost', '127.0.0.1', '0.0.0.0', ''].includes(window.location.hostname);
-  const baseUrl = isOnlineHosted 
-    ? `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, '/')}` 
-    : ONLINE_PRODUCTION_BASE;
-  const shareUrl = `${baseUrl.replace(/\/+$/, '')}/index.html#card-${ev.id}`;
-
-  const shareText = `🎟️ ${ev.title}\n📅 ${dateStr}\n📍 ${venueStr}${addrStr}\n💵 ${priceStr}${accessStr}\n\n🔗 Details & Tickets: ${ev.websiteUrl}\n🗺️ Google Maps: https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueStr + ' ' + (ev.address || 'Vancouver BC'))}\n\n✨ Found on Van50 — Vancouver Outings $50 or Less\n👉 ${shareUrl}`;
-
-  // Try Native Web Share API first if supported and mobile/touch
-  if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
-    try {
-      await navigator.share({
-        title: `${ev.title} — Van50`,
-        text: shareText,
-        url: shareUrl
-      });
-      if (btn) {
-        btn.classList.add('copied');
-        setTimeout(() => btn.classList.remove('copied'), 2000);
-      }
-      return;
-    } catch (err) {
-      if (err.name === 'AbortError') return; // User cancelled share dialog
-    }
-  }
-
-  // Fallback to Clipboard Copy
-  try {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(shareText);
-    } else {
-      const textarea = document.createElement('textarea');
-      textarea.value = shareText;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-    }
-    if (btn) {
-      btn.classList.add('copied');
-      const originalSvg = btn.innerHTML;
-      btn.innerHTML = `<span style="font-size: 0.72rem; font-weight: 800; color: #10b981;">✓</span>`;
-      setTimeout(() => {
-        btn.innerHTML = originalSvg;
-        btn.classList.remove('copied');
-      }, 2000);
-    }
-    window.showFloatingToast('✓ Event details & link copied to clipboard!');
-  } catch (err) {
-    window.showFloatingToast('Unable to copy to clipboard');
+// Share Event Functionality (delegated to concise deep-link share engine in js/app.js)
+window.shareEvent = async function(eventId, btnEl, domEv) {
+  if (typeof window.shareSingleEventConcise === 'function') {
+    return window.shareSingleEventConcise(eventId, btnEl, domEv);
   }
 };
 

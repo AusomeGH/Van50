@@ -40,8 +40,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="css/style.css?v=8.0.4">
-  <link rel="stylesheet" href="css/components.css?v=8.0.4">
+  <link rel="stylesheet" href="css/style.css?v=8.1.0">
+  <link rel="stylesheet" href="css/components.css?v=8.1.0">
   <script>window.VAN50_MAPS_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';</script>
 
 
@@ -362,6 +362,9 @@
 
     </section>
 
+    <!-- Shared Outing Plan Deep-Link Banner (?plan=...) -->
+    <div class="shared-plan-banner" id="shared-plan-banner" style="display: none;" role="region" aria-label="Shared Outing Plan"></div>
+
     <!-- Results Count Bar -->
     <div class="results-count-bar dynamic-date-count-bar" id="results-count" aria-live="polite">
       <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">📅
@@ -603,13 +606,22 @@
 
       <div class="itinerary-actions-row" id="itinerary-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button type="button" class="btn-share-plan" id="share-plan-btn"
-          onclick="window.shareOutingPlan && window.shareOutingPlan()" style="flex: 1 1 auto; display: none;">📤 Share
+          onclick="window.shareOutingPlan && window.shareOutingPlan(this)" style="flex: 1 1 auto; display: none;">Share
           Plan</button>
-        <button type="button" class="btn-copy-plan" id="copy-plan-btn" style="flex: 1 1 auto; border: none;">📋 Copy
-          Plan</button>
+        <button type="button" class="btn-copy-plan btn-copy-link-only" id="copy-plan-link-btn"
+          onclick="window.copyOutingPlanLinkOnly && window.copyOutingPlanLinkOnly(this)"
+          title="Copy raw plan link with zero text"
+          style="flex: 0 1 auto; display: none; align-items: center; gap: 5px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <span>Copy Link Only</span>
+        </button>
         <button type="button" class="btn-clear-plan" id="clear-plan-btn"
           onclick="window.clearSavedEvents && window.clearSavedEvents()" style="display: none;"
-          aria-label="Clear all saved events">🗑️ Clear</button>
+          aria-label="Clear all saved events">Clear</button>
       </div>
       <span style="display: none;"></span>
     </div>
@@ -692,12 +704,12 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=8.0.3"></script>
-  <script src="js/accessibility.js?v=8.0.3"></script>
-  <script src="js/map.js?v=8.0.3"></script>
-  <script src="js/roulette.js?v=8.0.3"></script>
-  <script src="js/app.js?v=8.0.3"></script>
-  <script src="js/pwa-install.js?v=8.0.3"></script>
+  <script src="js/data.js?v=8.1.0"></script>
+  <script src="js/accessibility.js?v=8.1.0"></script>
+  <script src="js/map.js?v=8.1.0"></script>
+  <script src="js/roulette.js?v=8.1.0"></script>
+  <script src="js/app.js?v=8.1.0"></script>
+  <script src="js/pwa-install.js?v=8.1.0"></script>
 
 </body>
 

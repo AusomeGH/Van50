@@ -9302,3 +9302,272 @@ section[aria-label="Events List"] .row2-category-pill,
     overflow: visible;
   }
 }
+
+/* ==============================================================================
+   10. 3-STATE FESTIVAL BOXES, EXPANDABLE SAVED CARDS & DEEP-LINK SHARE POLISH
+   ============================================================================== */
+
+/* 1. 3-State Festival / Holiday Full-Box Button */
+button.festival-theme-item-row.festival-theme-box-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  font-family: var(--font-body);
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+button.festival-theme-item-row.festival-theme-box-btn:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.theme-box-top-row {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.theme-item-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.festival-theme-item-row.item-row-selected .theme-item-count {
+  color: var(--brand-primary);
+}
+
+.festival-theme-item-row.item-row-excluded .theme-item-count {
+  color: #e11d48;
+  text-decoration: line-through;
+}
+
+.theme-state-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.theme-state-pill.state-only {
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
+}
+
+.theme-state-pill.state-hidden {
+  background: rgba(225, 29, 72, 0.14);
+  color: #e11d48;
+  border: 1px solid rgba(225, 29, 72, 0.35);
+}
+
+/* 2. Expandable Functional Event Cards inside Saved Events Drawer */
+@media (min-width: 769px) {
+  #itinerary-drawer.itinerary-drawer {
+    width: min(440px, 94vw) !important;
+  }
+}
+
+.itinerary-item-card {
+  display: flex;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.itinerary-item-card:hover {
+  border-color: var(--brand-primary) !important;
+}
+
+.itinerary-item-card.is-expanded {
+  border-color: var(--brand-primary) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.itinerary-item-summary-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.itinerary-item-summary-row:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: -2px;
+}
+
+.itinerary-item-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.itinerary-expand-chevron {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 2px 4px;
+  transition: color 0.15s ease;
+}
+
+.itinerary-item-summary-row:hover .itinerary-expand-chevron,
+.itinerary-item-card.is-expanded .itinerary-expand-chevron {
+  color: var(--brand-primary);
+}
+
+.itinerary-expanded-card-wrap {
+  border-top: 1px solid var(--border-subtle);
+  padding: 10px;
+  background: var(--bg-card);
+}
+
+.itinerary-expanded-card-wrap .event-card.saved-drawer-functional-card {
+  margin: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-left: 3.5px solid var(--cat-accent) !important;
+  padding: 12px !important;
+}
+
+.itinerary-expanded-card-wrap .mobile-card-compact-header {
+  display: none !important;
+}
+
+.itinerary-expanded-card-wrap .card-expandable-details {
+  display: flex !important;
+  flex-direction: column;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* 3. Inline "Copied ✓" Feedback, Copy Link Only & Deep-Link Highlight */
+.btn-card-action.is-copied-inline {
+  width: auto !important;
+  min-width: 68px;
+  padding: 0 8px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  color: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+  background: var(--price-free-bg) !important;
+  white-space: nowrap !important;
+}
+
+.btn-copy-link-only {
+  background: var(--bg-elevated) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-copy-link-only:hover,
+.btn-copy-link-only.is-copied-inline {
+  border-color: var(--brand-primary) !important;
+  color: var(--brand-primary) !important;
+}
+
+.event-card.deep-link-highlight {
+  box-shadow: 0 0 0 2px var(--brand-primary) !important;
+  transition: box-shadow 0.25s ease;
+}
+
+/* 4. Shared Outing Plan Deep-Link Banner (?plan=...) */
+.shared-plan-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--brand-primary);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 6px 0 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.shared-plan-banner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.shared-plan-banner-title {
+  font-family: var(--font-heading);
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.shared-plan-banner-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.shared-plan-banner-meta strong {
+  color: var(--brand-primary);
+}
+
+.shared-plan-banner-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-shared-plan-save {
+  background: var(--brand-primary);
+  color: var(--brand-primary-fg);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.btn-shared-plan-save:hover {
+  filter: brightness(0.95);
+}
+
+.btn-shared-plan-clear {
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 7px 13px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-shared-plan-clear:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}

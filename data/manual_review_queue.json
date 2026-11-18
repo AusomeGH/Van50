@@ -3055,8 +3055,21 @@
         }
       ],
       "quarantineReason": "antibot_challenge_blocked",
-      "reviewStatus": "pending_curator_review",
-      "audit_error": "Anti-Bot Block Screenshot: _cart.png is a TicketWeb 'Your Browsing Activity Has Been Paused' security block page; Stagehand never penetrated the live checkout cart."
+      "reviewStatus": "pending_antigravity_review",
+      "audit_error": "Anti-Bot Block Screenshot: _cart.png is a TicketWeb 'Your Browsing Activity Has Been Paused' security block page; Stagehand never penetrated the live checkout cart.",
+      "attemptedPrice": 30.0,
+      "curatorAnnotation": {
+        "instructionId": "inst_1795018309555",
+        "note": "Screenshot proof attached: Games We Play: \"I Wish I Never Quit\" Tour ($30.00 CAD).",
+        "proposedAction": "review",
+        "userSuppliedPrice": 30.0,
+        "screenshotPaths": [
+          "data/curator_screenshots/screenshot_1795018309555_0.png"
+        ],
+        "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Games We Play: \"I Wish I Never Quit\" Tour ($30.00 CAD).",
+        "extractedTiers": [],
+        "annotatedAt": "2026-11-18T16:11:49.714504+00:00"
+      }
     },
     {
       "id": "hollywood-theatre-the-bad-plus-farewell-tour-2026-12-06",
@@ -4076,8 +4089,21 @@
         }
       ],
       "quarantineReason": "unverified_box_office_pricing",
-      "reviewStatus": "pending_curator_review",
-      "audit_error": "Gate 3 Unverified Checkout Price on $45.00 Base (Probable > $50.00 CAD Breach): coastaljazz.ca states tickets are $45.00 CAD PLUS service fees, facility fees, and 5% GST via Showpass. Card stores unverified base-only price_all_in: 45 (price_fee: 0, price_tax: 0) with links.tier1_checkout: null; adding $2.25 GST + Showpass service/facility fees almost certainly pushes all-in price above $50.00 CAD."
+      "reviewStatus": "pending_antigravity_review",
+      "audit_error": "Gate 3 Unverified Checkout Price on $45.00 Base (Probable > $50.00 CAD Breach): coastaljazz.ca states tickets are $45.00 CAD PLUS service fees, facility fees, and 5% GST via Showpass. Card stores unverified base-only price_all_in: 45 (price_fee: 0, price_tax: 0) with links.tier1_checkout: null; adding $2.25 GST + Showpass service/facility fees almost certainly pushes all-in price above $50.00 CAD.",
+      "attemptedPrice": 45.0,
+      "curatorAnnotation": {
+        "instructionId": "inst_1795018344040",
+        "note": "Screenshot proof attached: The Bad Plus: Farewell Tour ($45.00 CAD).",
+        "proposedAction": "review",
+        "userSuppliedPrice": 45.0,
+        "screenshotPaths": [
+          "data/curator_screenshots/screenshot_1795018344040_0.png"
+        ],
+        "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: The Bad Plus: Farewell Tour ($45.00 CAD).",
+        "extractedTiers": [],
+        "annotatedAt": "2026-11-18T16:12:24.201933+00:00"
+      }
     },
     {
       "id": "gateway-theatre-42nd-street-2",
