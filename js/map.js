@@ -391,11 +391,11 @@ function buildVenueGroupInfoWindowHtml(group) {
   const itemsHtml = group.events.map((ev) => {
     const emoji = getCategoryEmoji(ev);
     const title = ev.title || ev.event_name || 'Event';
+    const evId = ev.id || ev.event_id || '';
     const dayTime = ev.dateSchedule || ev.date_schedule || ev.date || 'Upcoming';
     const priceStr = formatEventPriceBadge(ev);
     const evPrice = getEventNumericPrice(ev);
     const tierColors = getPriceTierColors(evPrice);
-    const ticketUrl = safeExternalUrl(ev.websiteUrl || ev.ticket_url || ev.details_url || '#');
     const inferredTags = (typeof window !== 'undefined' && typeof window.inferHolidaySubTags === 'function')
       ? window.inferHolidaySubTags(ev)
       : (Array.isArray(ev.tags) ? ev.tags : (Array.isArray(ev.subTags) ? ev.subTags : []));
@@ -412,25 +412,26 @@ function buildVenueGroupInfoWindowHtml(group) {
     }
 
     return `
-      <div class="gmap-venue-iw-item">
-        <div class="gmap-venue-iw-item-top">
-          <div class="gmap-venue-iw-item-title">
-            <span>${escapeHtml(emoji)}</span>
-            <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
+      <div class="gmap-venue-iw-item" data-action="toggle-map-card" data-event-id="${escapeHtml(evId)}" role="button" tabindex="0" aria-expanded="false">
+        <div class="gmap-venue-iw-item-header">
+          <div class="gmap-venue-iw-item-top">
+            <div class="gmap-venue-iw-item-title">
+              <span>${escapeHtml(emoji)}</span>
+              <span>${escapeHtml(title)}</span>
+            </div>
+            <span class="gmap-iw-badge" style="background:${tierColors.bg};color:#ffffff;border:none;flex-shrink:0;">
+              ${escapeHtml(priceStr)}
+            </span>
           </div>
-          <span class="gmap-iw-badge" style="background:${tierColors.bg};color:#ffffff;border:none;flex-shrink:0;">
-            ${escapeHtml(priceStr)}
-          </span>
+          <div class="gmap-venue-iw-item-meta" style="flex-wrap:wrap;">
+            <span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;">
+              <span>🗓️ ${escapeHtml(dayTime)}</span>
+              ${contextSubBadgeHtml}
+            </span>
+            <span class="gmap-iw-expand-hint" aria-hidden="true">Details ▾</span>
+          </div>
         </div>
-        <div class="gmap-venue-iw-item-meta" style="flex-wrap:wrap;">
-          <span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;">
-            <span>🗓️ ${escapeHtml(dayTime)}</span>
-            ${contextSubBadgeHtml}
-          </span>
-          <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer" class="gmap-venue-iw-ticket-link">
-            Tickets / Details ↗
-          </a>
-        </div>
+        <div class="gmap-iw-expanded-card-mount" data-map-card-mount="${escapeHtml(evId)}" style="display:none;"></div>
       </div>
     `;
   }).join('');

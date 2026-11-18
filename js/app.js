@@ -2356,6 +2356,11 @@ function setupEventListeners() {
       case 'toggle-saved-expand':
         window.toggleSavedCardExpand(actionEl.getAttribute('data-event-id') || '', e);
         return true;
+      case 'toggle-map-card':
+        if (typeof window.toggleMapInfoWindowCard === 'function') {
+          window.toggleMapInfoWindowCard(actionEl, e);
+        }
+        return true;
       case 'save-shared-plan':
         window.saveSharedPlanToMyList(actionEl);
         return true;
@@ -2490,12 +2495,21 @@ function setupEventListeners() {
 
     let _searchDebounceTimer = null;
     searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value.trim();
+      const nextQ = e.target.value.trim();
+      state.searchQuery = nextQ;
       updateClearBtnVisibility();
       clearTimeout(_searchDebounceTimer);
+      // Clearing search renders immediately; 1-char typing waits for 2nd char (or Enter) to avoid wasted full-catalog rebuilds
+      if (nextQ.length === 0) {
+        applyFiltersAndRender();
+        return;
+      }
+      if (nextQ.length === 1 && !nextQ.startsWith('#') && !nextQ.startsWith('"')) {
+        return;
+      }
       _searchDebounceTimer = setTimeout(() => {
         applyFiltersAndRender();
-      }, 160);
+      }, 220);
     });
   }
 
@@ -4885,6 +4899,17 @@ function applyFiltersAndRender() {
       activeCatalog,
       expiredCount
     };
+    // Precompute O(1) venue counts map and reset compact card HTML cache when catalog/time bucket refreshes
+    const venueMap = new Map();
+    for (let i = 0; i < activeCatalog.length; i++) {
+      const vName = activeCatalog[i].venue;
+      if (vName) venueMap.set(vName, (venueMap.get(vName) || 0) + 1);
+    }
+    window._venueEventCountsMap = venueMap;
+    window._compactCardHtmlCache = new Map();
+    if (typeof window.scheduleIdleSearchIndexPrewarm === 'function') {
+      window.scheduleIdleSearchIndexPrewarm(activeCatalog);
+    }
   }
 
   state.expiredCount = expiredCount;
@@ -5480,6 +5505,41 @@ function getOrBuildEventSearchIndex(ev) {
   };
   return ev._searchIndex;
 }
+
+// Pre-warm search indexes in small idle chunks so the first keystroke pays 0ms indexing cost
+window.scheduleIdleSearchIndexPrewarm = function (catalog) {
+  if (!Array.isArray(catalog) || catalog.length === 0) return;
+  if (window._searchIndexPrewarmSource === catalog) return;
+  window._searchIndexPrewarmSource = catalog;
+  let cursor = 0;
+  const CHUNK_SIZE = 35;
+  const runChunk = (deadline) => {
+    if (window._searchIndexPrewarmSource !== catalog) return;
+    let processed = 0;
+    while (cursor < catalog.length && processed < CHUNK_SIZE) {
+      if (deadline && typeof deadline.timeRemaining === 'function' && deadline.timeRemaining() < 4 && processed > 0) {
+        break;
+      }
+      if (!catalog[cursor]._searchIndex) {
+        getOrBuildEventSearchIndex(catalog[cursor]);
+      }
+      cursor++;
+      processed++;
+    }
+    if (cursor < catalog.length) {
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(runChunk, { timeout: 1200 });
+      } else {
+        setTimeout(() => runChunk(null), 50);
+      }
+    }
+  };
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(runChunk, { timeout: 800 });
+  } else {
+    setTimeout(() => runChunk(null), 120);
+  }
+};
 
 function matchesGoogleSearch(ev, parsed) {
   const {
@@ -6519,9 +6579,10 @@ function renderEventCards(events) {
     `;
   }
 
-  // Incremental rendering queues per expanded time bucket (prevents 500+ synchronous DOM card mounts)
-  const INITIAL_BUCKET_BATCH = 24;
+  // Incremental rendering queues with a global initial card budget (keeps initial DOM & search re-renders fast)
+  const GLOBAL_INITIAL_CARD_BUDGET = 28;
   const SCROLL_BUCKET_BATCH = 24;
+  let remainingInitialBudget = GLOBAL_INITIAL_CARD_BUDGET;
   window._pendingBucketQueues = {};
   if (window._van50BucketObserver) {
     try { window._van50BucketObserver.disconnect(); } catch (e) { }
@@ -6592,8 +6653,11 @@ function renderEventCards(events) {
         b.list.forEach(ev => orderedItems.push({ type: 'card', ev }));
       }
 
-      const initialSlice = orderedItems.slice(0, INITIAL_BUCKET_BATCH);
-      const remainingSlice = orderedItems.slice(INITIAL_BUCKET_BATCH);
+      const bucketTake = Math.min(orderedItems.length, Math.max(0, remainingInitialBudget));
+      const initialSlice = orderedItems.slice(0, bucketTake);
+      const remainingSlice = orderedItems.slice(bucketTake);
+      const renderedCardsInSlice = initialSlice.filter(entry => entry.type === 'card').length;
+      remainingInitialBudget = Math.max(0, remainingInitialBudget - renderedCardsInSlice);
       cardsHtml = initialSlice.map(entry => renderBucketQueueItem(entry, b.key)).join('');
 
       if (remainingSlice.length > 0) {
@@ -7051,7 +7115,73 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
   };
 }
 
-function renderSingleEventCardHtml(ev, bucketKey) {
+function renderSingleEventCardHtml(ev, bucketKey, options) {
+  const forceFullBody = Boolean(options && options.forceFullBody);
+  const isSavedDrawerCardEarly = bucketKey === 'saved-drawer';
+  const isMapIwCardEarly = bucketKey === 'map-iw';
+  const isPersistedExpandedEarly = !isSavedDrawerCardEarly && !isMapIwCardEarly && state.expandedCardIds && state.expandedCardIds.has(ev.id);
+
+  // Fast compact card path (lazy-mounts .card-expandable-details on click; memoized per event+bucket for instant search)
+  if (!forceFullBody && !isSavedDrawerCardEarly && !isMapIwCardEarly && !isPersistedExpandedEarly) {
+    const cacheKey = `${ev.id || ''}|${bucketKey || 'list'}|${ev.isSoldOut ? 1 : 0}`;
+    if (window._compactCardHtmlCache && window._compactCardHtmlCache.has(cacheKey)) {
+      return window._compactCardHtmlCache.get(cacheKey);
+    }
+    const isSoldOutC = Boolean(ev.isSoldOut);
+    const topDateC = formatCardTopDate(ev, bucketKey);
+    const isHappeningNowC = isEventHappeningNow(ev, new Date());
+    const getOrdSuffixC = (n) => {
+      const s = ['th', 'st', 'nd', 'rd'];
+      const v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    };
+    const scrollDayFullC = (topDateC && topDateC.dateObj instanceof Date && !isNaN(topDateC.dateObj.getTime()))
+      ? `${topDateC.dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short' })} ${getOrdSuffixC(topDateC.dateObj.getDate())}`
+      : (topDateC.badgeText || '');
+    const cardTagSetC = new Set([
+      ...(Array.isArray(ev.tags) ? ev.tags : []),
+      ...(Array.isArray(ev.subTags) ? ev.subTags : []),
+      ...inferHolidaySubTags(ev)
+    ].map(t => String(t || '').toLowerCase().trim()));
+    const isFaithCardC = cardTagSetC.has('faith-based') || cardTagSetC.has('religious-service');
+    const isChoralCardC = !isFaithCardC && (cardTagSetC.has('sacred-music') || cardTagSetC.has('choral'));
+    const row2ContextPillHtmlC = isFaithCardC
+      ? '<span class="row2-context-pill">Faith-Based</span>'
+      : (isChoralCardC ? '<span class="row2-context-pill">Choral</span>' : '');
+    const shortNeighborhoodC = String(ev.neighborhood || ev.venue || 'Vancouver')
+      .split(' / ')[0].split('/')[0].split(',')[0].split(' & ')[0].trim();
+    const row2TimeDisplayC = getEventRow2TimeDisplay(ev, topDateC, bucketKey);
+    const catMetaC = getCardSemanticCategoryMeta(ev);
+    const row2VenueMetaTextC = formatSmartRow2VenueMeta(ev, shortNeighborhoodC, row2TimeDisplayC);
+    const safeEventIdC = escapeHtml(ev.id || '');
+    const safeDisplayTitleC = escapeHtml(formatCardDisplayTitle(ev.title, ev));
+    const safeBucketAttrC = escapeHtml(bucketKey || 'list');
+    const safeCatFilterIdC = escapeHtml(catMetaC.filterId || 'all');
+    const safeCatLabelC = escapeHtml(catMetaC.label || '');
+    const safeCatThemeKeyC = escapeHtml(catMetaC.themeKey || '');
+    const compactHtml = `
+      <article class="event-card ${isSoldOutC ? 'card-sold-out' : ''} ${isHappeningNowC ? 'card-happening-now' : ''}" id="card-${safeEventIdC}" data-cat-theme="${safeCatThemeKeyC}" data-scroll-date="${escapeHtml(topDateC.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFullC)}" data-bucket-key="${safeBucketAttrC}" data-action="card-accordion" data-event-id="${safeEventIdC}">
+        <div class="mobile-card-compact-header">
+          <div class="mobile-card-row-1">
+            <span class="mobile-card-title">${safeDisplayTitleC}</span>
+            <span class="mobile-card-price-pill ${isSoldOutC ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std'))}">${isSoldOutC ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
+          </div>
+          <div class="mobile-card-row-2">
+            <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterIdC}" title="Click to filter by ${safeCatLabelC}">${safeCatLabelC}</button>
+            ${row2ContextPillHtmlC}
+            <span class="mobile-card-meta-text">${escapeHtml(row2VenueMetaTextC)}</span>
+            <span class="mobile-card-chevron" aria-hidden="true">▾</span>
+          </div>
+        </div>
+        <div class="card-expandable-details" data-lazy-body="1"></div>
+      </article>
+    `;
+    if (window._compactCardHtmlCache) {
+      window._compactCardHtmlCache.set(cacheKey, compactHtml);
+    }
+    return compactHtml;
+  }
+
   const isSaved = state.savedEvents.has(ev.id);
   const freqClass = (ev.frequency || 'one-off').toLowerCase();
   const isSoldOut = Boolean(ev.isSoldOut);
@@ -7083,7 +7213,9 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   // Venue Event Count & Filter Button (Requirement 7)
   const safeEventId = escapeHtml(ev.id || '');
   const safeVenueText = escapeHtml(ev.venue || '');
-  const venueTotalCount = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e.venue === ev.venue).length;
+  const venueTotalCount = (window._venueEventCountsMap && window._venueEventCountsMap.has(ev.venue))
+    ? window._venueEventCountsMap.get(ev.venue)
+    : (window.currentActiveCatalog || ALL_EVENTS).filter(e => e.venue === ev.venue).length;
   const isThisVenueSelected = state.selectedVenue === ev.venue;
   const venueOtherEventsBtnHtml = venueTotalCount > 1 ? `
       <button 
@@ -7609,13 +7741,22 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   const catMeta = getCardSemanticCategoryMeta(ev);
   const row2VenueMetaText = formatSmartRow2VenueMeta(ev, shortNeighborhood, row2TimeDisplay);
   const isSavedDrawerCard = bucketKey === 'saved-drawer';
-  const cardDomId = isSavedDrawerCard ? `saved-card-${safeEventId}` : `card-${safeEventId}`;
-  const shareBtnDomId = isSavedDrawerCard ? `btn-share-saved-${safeEventId}` : `btn-share-${safeEventId}`;
-  const copyLinkBtnDomId = isSavedDrawerCard ? `btn-copy-link-saved-${safeEventId}` : `btn-copy-link-${safeEventId}`;
-  const isPersistedExpanded = !isSavedDrawerCard && state.expandedCardIds && state.expandedCardIds.has(ev.id);
+  const isMapIwCard = bucketKey === 'map-iw';
+  const cardDomId = isSavedDrawerCard
+    ? `saved-card-${safeEventId}`
+    : (isMapIwCard ? `map-card-${safeEventId}` : `card-${safeEventId}`);
+  const shareBtnDomId = isSavedDrawerCard
+    ? `btn-share-saved-${safeEventId}`
+    : (isMapIwCard ? `btn-share-map-${safeEventId}` : `btn-share-${safeEventId}`);
+  const copyLinkBtnDomId = isSavedDrawerCard
+    ? `btn-copy-link-saved-${safeEventId}`
+    : (isMapIwCard ? `btn-copy-link-map-${safeEventId}` : `btn-copy-link-${safeEventId}`);
+  const isPersistedExpanded = !isSavedDrawerCard && !isMapIwCard && state.expandedCardIds && state.expandedCardIds.has(ev.id);
   const extraCardClasses = isSavedDrawerCard
     ? 'saved-drawer-functional-card mobile-expanded desktop-expanded'
-    : (isPersistedExpanded ? 'mobile-expanded desktop-expanded' : '');
+    : (isMapIwCard
+      ? 'map-iw-functional-card mobile-expanded desktop-expanded'
+      : (isPersistedExpanded ? 'mobile-expanded desktop-expanded' : ''));
 
   const safeDisplayTitle = escapeHtml(formatCardDisplayTitle(ev.title, ev));
   const safeBucketAttr = escapeHtml(bucketKey || 'list');
@@ -7629,7 +7770,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     : escapeHtml(accessInfo.badgeIcon || '♿');
 
   return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${safeCatThemeKey}" data-scroll-date="${escapeHtml(topDate.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFull)}" data-bucket-key="${safeBucketAttr}" ${isSavedDrawerCard ? '' : `data-action="card-accordion" data-event-id="${safeEventId}"`}>
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${safeCatThemeKey}" data-scroll-date="${escapeHtml(topDate.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFull)}" data-bucket-key="${safeBucketAttr}" ${(isSavedDrawerCard || isMapIwCard) ? '' : `data-action="card-accordion" data-event-id="${safeEventId}"`}>
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
@@ -7932,7 +8073,8 @@ function persistSavedState() {
 }
 
 window.toggleSaveEvent = function (eventId) {
-  if (state.savedEvents.has(eventId)) {
+  const willBeSaved = !state.savedEvents.has(eventId);
+  if (!willBeSaved) {
     state.savedEvents.delete(eventId);
   } else {
     state.savedEvents.add(eventId);
@@ -7945,7 +8087,19 @@ window.toggleSaveEvent = function (eventId) {
   persistSavedState();
   updateItineraryBadge();
   renderItinerary();
-  applyFiltersAndRender();
+
+  // Sync save button visuals in-place across Card View, Saved Drawer, and Map InfoWindows without closing open Map popups
+  document.querySelectorAll(`[data-action="toggle-save-event"][data-event-id="${CSS.escape(String(eventId))}"]`).forEach((btn) => {
+    btn.classList.toggle('saved', willBeSaved);
+    btn.setAttribute('aria-pressed', willBeSaved ? 'true' : 'false');
+    btn.title = willBeSaved ? 'Remove from Saved Events' : 'Save to Saved Events';
+  });
+
+  const mapWrapperEl = document.getElementById('map-view-wrapper');
+  const isMapActive = Boolean(mapWrapperEl && (mapWrapperEl.classList.contains('active') || mapWrapperEl.style.display === 'block'));
+  if (!isMapActive) {
+    applyFiltersAndRender();
+  }
 };
 
 function updateItineraryBadge() {
@@ -8940,12 +9094,30 @@ window.dismissSecondaryFilterChip = function (chipKey) {
   applyFiltersAndRender();
 };
 
+window.hydrateLazyEventCardBody = function (cardEl, eventId) {
+  if (!cardEl) return;
+  const detailsEl = cardEl.querySelector('.card-expandable-details[data-lazy-body="1"]');
+  if (!detailsEl) return;
+  const ev = (window.currentActiveCatalog || ALL_EVENTS).find(e => e.id === eventId)
+    || (ALL_EVENTS || []).find(e => e.id === eventId);
+  if (!ev) return;
+  const bucketKey = cardEl.getAttribute('data-bucket-key') || 'list';
+  const fullHtml = renderSingleEventCardHtml(ev, bucketKey, { forceFullBody: true });
+  const tpl = document.createElement('template');
+  tpl.innerHTML = fullHtml.trim();
+  const renderedDetails = tpl.content.querySelector('.card-expandable-details');
+  if (renderedDetails) {
+    detailsEl.innerHTML = renderedDetails.innerHTML;
+  }
+  detailsEl.removeAttribute('data-lazy-body');
+};
+
 window.toggleMobileCardAccordion = function (eventId, evObj) {
   if (evObj && evObj.target) {
     if (evObj.target.closest('.row2-category-pill')) {
       return;
     }
-    const interactiveEl = evObj.target.closest('a, button, input, label, .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive');
+    const interactiveEl = evObj.target.closest('a, button, input, label, .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive, .weekly-hours-summary-row, .showings-summary-row');
     const insideCompactHeader = evObj.target.closest('.mobile-card-compact-header');
     if (interactiveEl && !insideCompactHeader) {
       return;
@@ -8954,15 +9126,55 @@ window.toggleMobileCardAccordion = function (eventId, evObj) {
   const cardEl = document.getElementById(`card-${eventId}`);
   if (!cardEl) return;
   if (!state.expandedCardIds) state.expandedCardIds = new Set();
-  if (typeof window !== 'undefined' && window.innerWidth > 768) {
-    const nowExpanded = cardEl.classList.toggle('desktop-expanded');
-    if (nowExpanded) state.expandedCardIds.add(eventId);
-    else state.expandedCardIds.delete(eventId);
-    return;
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
+  const expandClass = isDesktop ? 'desktop-expanded' : 'mobile-expanded';
+  const willExpand = !cardEl.classList.contains(expandClass);
+  if (willExpand) {
+    window.hydrateLazyEventCardBody(cardEl, eventId);
   }
-  const nowExpanded = cardEl.classList.toggle('mobile-expanded');
+  const nowExpanded = cardEl.classList.toggle(expandClass);
   if (nowExpanded) state.expandedCardIds.add(eventId);
   else state.expandedCardIds.delete(eventId);
+};
+
+window.toggleMapInfoWindowCard = function (itemEl, evObj) {
+  if (!itemEl) return;
+  const isCurrentlyExpanded = itemEl.classList.contains('is-expanded');
+  if (evObj && evObj.target) {
+    const insideHeader = evObj.target.closest('.gmap-venue-iw-item-header');
+    const interactiveEl = evObj.target.closest('a, button, input, label, .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive, .weekly-hours-summary-row, .showings-summary-row');
+    if (interactiveEl && !insideHeader) {
+      return;
+    }
+    if (isCurrentlyExpanded && !insideHeader && evObj.target.closest('.gmap-iw-expanded-card-mount')) {
+      return;
+    }
+  }
+  const eventId = itemEl.getAttribute('data-event-id') || '';
+  const mountEl = itemEl.querySelector('.gmap-iw-expanded-card-mount');
+  const hintEl = itemEl.querySelector('.gmap-iw-expand-hint');
+  if (!mountEl) return;
+
+  if (isCurrentlyExpanded) {
+    itemEl.classList.remove('is-expanded');
+    itemEl.setAttribute('aria-expanded', 'false');
+    mountEl.style.display = 'none';
+    if (hintEl) hintEl.textContent = 'Details ▾';
+    return;
+  }
+
+  if (!mountEl.dataset.hydrated) {
+    const ev = (window.currentActiveCatalog || ALL_EVENTS).find(e => e.id === eventId)
+      || (ALL_EVENTS || []).find(e => e.id === eventId);
+    if (ev) {
+      mountEl.innerHTML = renderSingleEventCardHtml(ev, 'map-iw', { forceFullBody: true });
+      mountEl.dataset.hydrated = '1';
+    }
+  }
+  itemEl.classList.add('is-expanded');
+  itemEl.setAttribute('aria-expanded', 'true');
+  mountEl.style.display = 'block';
+  if (hintEl) hintEl.textContent = 'Shrink ▴';
 };
 
 

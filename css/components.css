@@ -8373,8 +8373,8 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
 .gmap-venue-iw {
   font-family: var(--font-body);
   color: var(--text-main);
-  min-width: 240px;
-  max-width: 310px;
+  min-width: 260px;
+  max-width: min(410px, 84vw);
   padding: 2px;
 }
 
@@ -8407,7 +8407,7 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 220px;
+  max-height: min(440px, 58vh);
   overflow-y: auto;
   padding-right: 4px;
   margin-bottom: 10px;
@@ -8421,6 +8421,59 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   display: flex;
   flex-direction: column;
   gap: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gmap-venue-iw-item:hover {
+  border-color: var(--brand-primary);
+}
+
+.gmap-venue-iw-item.is-expanded {
+  background: var(--bg-card);
+  border-color: var(--brand-primary);
+  box-shadow: var(--shadow-sm);
+  cursor: default;
+}
+
+.gmap-venue-iw-item-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.gmap-iw-expand-hint {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  white-space: nowrap;
+}
+
+.gmap-iw-expanded-card-mount {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.gmap-iw-expanded-card-mount .event-card.map-iw-functional-card {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none !important;
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
+}
+
+.gmap-iw-expanded-card-mount .event-card.map-iw-functional-card .mobile-card-compact-header {
+  display: none !important;
+}
+
+.gmap-iw-expanded-card-mount .event-card.map-iw-functional-card .card-expandable-details {
+  display: flex !important;
+  flex-direction: column;
 }
 
 .gmap-venue-iw-item-top {
