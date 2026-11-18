@@ -148,12 +148,40 @@ try:
 except Exception:
     pass
 
+PUBLIC_STRIP_KEYS = {
+    "dimension_audit",
+    "proof_keyframes",
+    "venue_grounding",
+    "arbitration_log",
+    "qc_raw_payload",
+    "stagehand_trace",
+}
+
+
+def build_slim_public_event(ev: dict) -> dict:
+    """Return a lightweight public event object for js/data.js without 10MB+ audit metadata."""
+    da = ev.get("dimension_audit") if isinstance(ev.get("dimension_audit"), dict) else None
+    out = {k: v for k, v in ev.items() if k not in PUBLIC_STRIP_KEYS}
+    if da:
+        if not out.get("holiday_affiliation") and not out.get("holidayAffiliation"):
+            hol = (da.get("D008_holiday_affiliation") or da.get("D009_holiday_affiliation") or {})
+            if isinstance(hol, dict) and hol.get("value") and hol.get("value") not in ("not_applicable", "none_available", "search_exhausted_null"):
+                out["holiday_affiliation"] = hol["value"]
+        if not out.get("transit_info") and not out.get("transitInfo"):
+            tr = da.get("D408_transit_waypoints") or {}
+            if isinstance(tr, dict) and tr.get("value") and tr.get("value") not in ("not_applicable", "none_available", "search_exhausted_null"):
+                out["transit_info"] = tr["value"]
+    return out
+
+
+public_events = [build_slim_public_event(ev) for ev in events]
+
 with open("js/data.js", "w", encoding="utf-8") as f:
     f.write("// Van50 — Vancouver & Surrey Events & Outings (Strictly <= $50 CAD)\n")
-    f.write("// AUTO-GENERATED from central data/events.json\n\n")
-    f.write("const VANCOUVER_EVENTS = " + json.dumps(events, indent=2, ensure_ascii=False) + ";\n\n")
-    f.write("const MANUAL_REVIEW_QUEUE = " + json.dumps(quarantined, indent=2, ensure_ascii=False) + ";\n\n")
-    f.write("const SURREY_REFERENCE_SOURCES = " + json.dumps(surrey_sources, indent=2, ensure_ascii=False) + ";\n\n")
+    f.write("// AUTO-GENERATED slim public catalog from data/events.json\n\n")
+    f.write("const VANCOUVER_EVENTS = " + json.dumps(public_events, separators=(",", ":"), ensure_ascii=False) + ";\n\n")
+    f.write("const MANUAL_REVIEW_QUEUE = [];\n\n")
+    f.write("const SURREY_REFERENCE_SOURCES = " + json.dumps(surrey_sources, separators=(",", ":"), ensure_ascii=False) + ";\n\n")
     f.write("""window.VAN50_EVENTS = VANCOUVER_EVENTS;
 window.VANCOUVER_EVENTS = VANCOUVER_EVENTS;
 window.SURREY_REFERENCE_SOURCES = SURREY_REFERENCE_SOURCES;

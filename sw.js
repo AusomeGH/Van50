@@ -3,20 +3,20 @@
  * Fast, offline-first caching for Vancouver Events & Outings (<= $50 CAD)
  */
 
-const CACHE_NAME = 'van50-cache-v8.1.1';
+const CACHE_NAME = 'van50-cache-v8.1.2';
 
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './css/style.css?v=8.1.1',
-  './css/components.css?v=8.1.1',
-  './js/app.js?v=8.1.1',
-  './js/accessibility.js?v=8.1.1',
-  './js/map.js?v=8.1.1',
-  './js/data.js?v=8.1.1',
-  './js/roulette.js?v=8.1.1',
-  './js/pwa-install.js?v=8.1.1',
+  './css/style.css?v=8.1.2',
+  './css/components.css?v=8.1.2',
+  './js/app.js?v=8.1.2',
+  './js/accessibility.js?v=8.1.2',
+  './js/map.js?v=8.1.2',
+  './js/data.js?v=8.1.2',
+  './js/roulette.js?v=8.1.2',
+  './js/pwa-install.js?v=8.1.2',
   './icons/icon.svg',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -68,14 +68,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 1. DATA, CODE & NAVIGATION STRATEGY: Network-First with Cache Fallback
-  // Ensures fresh HTML shell, daily sync data, and latest scripts are delivered immediately when online,
-  // while falling back seamlessly to offline cache when disconnected.
+  // 1. HTML NAVIGATION STRATEGY: Network-First with Cache Fallback
+  // Ensures fresh index.html (with updated ?v= asset hashes) is delivered when online,
+  // while versioned JS/CSS/data.js below use Stale-While-Revalidate for instant startup.
   const isNavigation = request.mode === 'navigate' || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/');
-  const isDataFeed = url.pathname.includes('/data/events.json') || url.pathname.endsWith('data.js');
-  const isCode = url.pathname.endsWith('.js') || url.pathname.endsWith('.css');
 
-  if (isNavigation || isDataFeed || isCode) {
+  if (isNavigation) {
     event.respondWith(
       fetch(request, { cache: 'no-cache' })
         .then((networkResponse) => {

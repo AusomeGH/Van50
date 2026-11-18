@@ -241,9 +241,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 90;
-  background: var(--bg-glass);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--bg-app);
   border-bottom: 1px solid var(--border-subtle);
   height: 64px;
   display: flex;
@@ -311,7 +309,7 @@ button {
   border-radius: var(--radius-md);
   font-size: 0.88rem;
   font-weight: 600;
-  transition: all var(--transition-fast);
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
 }
 
 .btn-accessibility,
@@ -430,7 +428,7 @@ button {
   color: var(--text-main);
   font-size: 0.95rem;
   font-family: inherit;
-  transition: all var(--transition-fast);
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
   outline: none;
   box-shadow: var(--shadow-sm);
 }
@@ -455,9 +453,7 @@ button {
   position: sticky;
   top: 64px;
   z-index: 85;
-  background: var(--bg-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--bg-app);
   padding: 10px 0;
   transition: box-shadow 0.2s ease;
 }
@@ -493,7 +489,7 @@ button {
   white-space: nowrap;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
 }
 
 .mobile-filter-trigger:hover {
@@ -659,7 +655,7 @@ button {
     white-space: nowrap;
     cursor: pointer;
     box-shadow: var(--shadow-sm);
-    transition: all var(--transition-fast);
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
   }
   .mobile-filter-trigger.has-active-filters {
     background: var(--price-free-bg);

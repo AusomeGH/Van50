@@ -2159,82 +2159,90 @@ function normalizeActiveEvent(item) {
   return res;
 }
 
-// Asynchronously load central reference data feed (data/events.json)
+// Asynchronously load central reference data feed (uses slim js/data.js by default to avoid redundant 14MB+ fetches)
 async function loadCentralReference() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const isCuratorParam = urlParams.get('curator') === '1';
+  const forceFresh = urlParams.get('fresh') === '1';
+
   let loadedEvents = null;
   let updatedAt = null;
 
-  // 1. Load clean events.json
-  try {
-    const res = await fetch(`data/events.json?v=7.0.0&t=${Date.now()}`, { cache: 'no-store' });
-    if (res.ok) {
-      const text = await res.text();
-      const cleanText = text.replace(/^\uFEFF/, '');
-      const data = JSON.parse(cleanText);
-      const rawList = Array.isArray(data) ? data : (data.events || []);
-      if (rawList.length > 0) {
-        loadedEvents = rawList.map(normalizeActiveEvent);
+  // 1. Only fetch full data/events.json when js/data.js is unavailable or curator/fresh override is requested
+  const needsEventsFetch = isCuratorParam || forceFresh || !Array.isArray(ALL_EVENTS) || ALL_EVENTS.length === 0;
+  if (needsEventsFetch) {
+    try {
+      const res = await fetch(`data/events.json?v=8.1.2${forceFresh ? `&t=${Date.now()}` : ''}`, forceFresh ? { cache: 'no-store' } : {});
+      if (res.ok) {
+        const text = await res.text();
+        const cleanText = text.replace(/^\uFEFF/, '');
+        const data = JSON.parse(cleanText);
+        const rawList = Array.isArray(data) ? data : (data.events || []);
+        if (rawList.length > 0) {
+          loadedEvents = rawList.map(normalizeActiveEvent);
+        }
+        if (data.metadata && data.metadata.updatedAt) {
+          updatedAt = data.metadata.updatedAt;
+        }
       }
-      if (data.metadata && data.metadata.updatedAt) {
-        updatedAt = data.metadata.updatedAt;
-      }
+    } catch (err) {
+      console.warn('Failed to parse data/events.json:', err);
     }
-  } catch (err) {
-    console.warn('Failed to parse data/events.json:', err);
-  }
 
-  // Robust fallback to offline embedded data.js (window.VAN50_EVENTS)
-  if (!loadedEvents || loadedEvents.length === 0) {
-    const fallbackList = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS))
-      || (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS : null);
-    if (Array.isArray(fallbackList) && fallbackList.length > 0) {
-      loadedEvents = fallbackList.map(normalizeActiveEvent);
-      console.log(`Using offline reference sheet (${loadedEvents.length} events).`);
-    }
-  }
-
-  if (loadedEvents && loadedEvents.length > 0) {
-    ALL_EVENTS = loadedEvents;
-    window.VANCOUVER_EVENTS = loadedEvents;
-    window.VAN50_EVENTS = loadedEvents;
-    if (updatedAt) {
-      state.updatedAt = updatedAt;
-      showSyncTimestamp(updatedAt, loadedEvents.length);
-    }
-    renderFestivalSpotlight();
-    applyFiltersAndRender();
-    hydrateDeepLinksFromUrl();
-  }
-
-  // Also load venues.json to enrich venue calendar & details
-  try {
-    const vRes = await fetch(`data/venues.json?v=2.0.0&t=${Date.now()}`, { cache: 'no-store' });
-    if (vRes.ok) {
-      const vList = await vRes.json();
-      if (Array.isArray(vList)) {
-        window.VENUES = vList;
-        window.VENUES_MASTER = vList;
+    // Robust fallback to offline embedded data.js (window.VAN50_EVENTS)
+    if (!loadedEvents || loadedEvents.length === 0) {
+      const fallbackList = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS))
+        || (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS : null);
+      if (Array.isArray(fallbackList) && fallbackList.length > 0) {
+        loadedEvents = fallbackList.map(normalizeActiveEvent);
+        console.log(`Using offline reference sheet (${loadedEvents.length} events).`);
       }
     }
-  } catch (e) { }
 
-  // Also load festivals.json
+    if (loadedEvents && loadedEvents.length > 0) {
+      ALL_EVENTS = loadedEvents;
+      window.VANCOUVER_EVENTS = loadedEvents;
+      window.VAN50_EVENTS = loadedEvents;
+      window._activeCatalogCache = null;
+      if (updatedAt) {
+        state.updatedAt = updatedAt;
+        showSyncTimestamp(updatedAt, loadedEvents.length);
+      }
+      window._festivalSpotlightSig = null;
+      renderFestivalSpotlight();
+      applyFiltersAndRender();
+      hydrateDeepLinksFromUrl();
+    }
+  }
+
+  // 2. Load lightweight festivals.json (re-renders spotlight only if pending/rejected status changes)
   try {
-    const fRes = await fetch(`data/festivals.json?v=2.0.0&t=${Date.now()}`, { cache: 'no-store' });
+    const fRes = await fetch('data/festivals.json?v=8.1.2');
     if (fRes.ok) {
       const fList = await fRes.json();
       if (Array.isArray(fList)) {
         window.FESTIVALS = fList;
+        window._festivalSpotlightSig = null;
+        renderFestivalSpotlight();
       }
     }
   } catch (e) { }
 
-
-  // Only fetch quarantined manual review queue when ?curator=1 is active (avoids 54KB public visitor payload)
-  const isCuratorParam = new URLSearchParams(window.location.search).get('curator') === '1';
+  // 3. Curator-only payloads: only fetch venues.json (1MB+) and manual_review_queue.json when ?curator=1 is active
   if (isCuratorParam) {
     try {
-      const rqRes = await fetch('data/manual_review_queue.json?v=5.2.2');
+      const vRes = await fetch(`data/venues.json?v=8.1.2&t=${Date.now()}`, { cache: 'no-store' });
+      if (vRes.ok) {
+        const vList = await vRes.json();
+        if (Array.isArray(vList)) {
+          window.VENUES = vList;
+          window.VENUES_MASTER = vList;
+        }
+      }
+    } catch (e) { }
+
+    try {
+      const rqRes = await fetch('data/manual_review_queue.json?v=8.1.2');
       if (rqRes.ok) {
         const rqData = await rqRes.json();
         if (rqData.quarantinedEvents) {
@@ -2480,10 +2488,14 @@ function setupEventListeners() {
       applyFiltersAndRender();
     });
 
+    let _searchDebounceTimer = null;
     searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value.trim();
       updateClearBtnVisibility();
-      applyFiltersAndRender();
+      clearTimeout(_searchDebounceTimer);
+      _searchDebounceTimer = setTimeout(() => {
+        applyFiltersAndRender();
+      }, 160);
     });
   }
 
@@ -2558,6 +2570,18 @@ function setupEventListeners() {
   const maxSlider = document.getElementById('max-spend-slider');
 
   if (minSlider && maxSlider) {
+    let _sliderDebounceTimer = null;
+    const scheduleSliderFilterRender = () => {
+      clearTimeout(_sliderDebounceTimer);
+      _sliderDebounceTimer = setTimeout(() => {
+        applyFiltersAndRender();
+      }, 100);
+    };
+    const flushSliderFilterRender = () => {
+      clearTimeout(_sliderDebounceTimer);
+      applyFiltersAndRender();
+    };
+
     minSlider.addEventListener('input', () => {
       let minVal = parseInt(minSlider.value);
       let maxVal = parseInt(maxSlider.value);
@@ -2568,8 +2592,9 @@ function setupEventListeners() {
       state.minBudget = minVal;
       updateSliderVisuals();
       clearActiveQuickButtons();
-      applyFiltersAndRender();
+      scheduleSliderFilterRender();
     });
+    minSlider.addEventListener('change', flushSliderFilterRender);
 
     maxSlider.addEventListener('input', () => {
       let minVal = parseInt(minSlider.value);
@@ -2581,8 +2606,9 @@ function setupEventListeners() {
       state.maxBudget = maxVal;
       updateSliderVisuals();
       clearActiveQuickButtons();
-      applyFiltersAndRender();
+      scheduleSliderFilterRender();
     });
+    maxSlider.addEventListener('change', flushSliderFilterRender);
   }
 
   // Quick Cost Presets (Free, Paid, All)
@@ -2719,6 +2745,10 @@ function setupEventListeners() {
 
       if (typeof initVancouverMap === 'function') {
         initVancouverMap();
+      }
+      if (window._mapMarkersDirty && typeof updateMapMarkers === 'function' && Array.isArray(window._pendingMapFilteredEvents)) {
+        window._mapMarkersDirty = false;
+        updateMapMarkers(window._pendingMapFilteredEvents);
       }
       if (typeof invalidateVancouverMap === 'function') {
         invalidateVancouverMap();
@@ -4825,21 +4855,53 @@ function applyFiltersAndRender() {
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const day = String(now.getDate()).padStart(2, '0');
   const todayStr = `${year}-${month}-${day}`;
-  let activeCatalog = [];
-  let expiredCount = 0;
+  const cacheBucketKey = `${todayStr}:${now.getHours()}:${Math.floor(now.getMinutes() / 5)}`;
+  let activeCatalog;
+  let expiredCount;
 
-  // Requirement: Strictly exclude past events, awaiting-schedule items, and over-budget (> $50) from user display
-  ALL_EVENTS.forEach(ev => {
-    const p = parseFloat(ev.price || 0.0);
-    if (isAwaitingSchedule(ev) || isEventInPast(ev, now) || p > 50.00) {
-      expiredCount++;
-    } else {
-      activeCatalog.push(ev);
-    }
-  });
+  // Cache activeCatalog per 5-minute window and ALL_EVENTS identity to avoid re-scanning 550+ dates on every keystroke/slider tick
+  if (
+    window._activeCatalogCache &&
+    window._activeCatalogCache.source === ALL_EVENTS &&
+    window._activeCatalogCache.bucketKey === cacheBucketKey
+  ) {
+    activeCatalog = window._activeCatalogCache.activeCatalog;
+    expiredCount = window._activeCatalogCache.expiredCount;
+  } else {
+    activeCatalog = [];
+    expiredCount = 0;
+    // Requirement: Strictly exclude past events, awaiting-schedule items, and over-budget (> $50) from user display
+    ALL_EVENTS.forEach(ev => {
+      const p = parseFloat(ev.price || 0.0);
+      if (isAwaitingSchedule(ev) || isEventInPast(ev, now) || p > 50.00) {
+        expiredCount++;
+      } else {
+        activeCatalog.push(ev);
+      }
+    });
+    window._activeCatalogCache = {
+      source: ALL_EVENTS,
+      bucketKey: cacheBucketKey,
+      activeCatalog,
+      expiredCount
+    };
+  }
 
   state.expiredCount = expiredCount;
-  window.currentActiveCatalog = activeCatalog; renderFestivalSpotlight();
+  window.currentActiveCatalog = activeCatalog;
+
+  const spotlightSig = [
+    activeCatalog.length,
+    state.region || 'all',
+    state.selectedThemeFilter || '',
+    state.hideFestivalEvents ? '1' : '0',
+    state.excludedThemes ? Array.from(state.excludedThemes).sort().join(',') : '',
+    Array.isArray(window.FESTIVALS) ? window.FESTIVALS.length : 0
+  ].join('|');
+  if (window._festivalSpotlightSig !== spotlightSig) {
+    window._festivalSpotlightSig = spotlightSig;
+    renderFestivalSpotlight();
+  }
 
   // Keep live sync counter in header aligned with active catalog
   const syncBadgeText = document.getElementById('sync-status-text');
@@ -5200,9 +5262,15 @@ function applyFiltersAndRender() {
 
   renderEventCards(filtered);
 
-  // Update Map Markers if map exists
-  if (typeof updateMapMarkers === 'function') {
+  // Defer Map Marker rebuilds while Map View is hidden; sync immediately when Map View is active
+  window._pendingMapFilteredEvents = filtered;
+  const mapWrapCheck = document.getElementById('map-view-wrapper');
+  const isMapVisible = Boolean(mapWrapCheck && (mapWrapCheck.classList.contains('active') || mapWrapCheck.style.display === 'block'));
+  if (isMapVisible && typeof updateMapMarkers === 'function') {
+    window._mapMarkersDirty = false;
     updateMapMarkers(filtered);
+  } else {
+    window._mapMarkersDirty = true;
   }
 }
 
@@ -5334,7 +5402,9 @@ function parseGoogleQuery(queryStr) {
 }
 
 // Classic Google-Style Matcher with Stemming, Fuzzy Typo Tolerance, Field Filters & BM25 Relevance Scoring
-function matchesGoogleSearch(ev, parsed) {
+function getOrBuildEventSearchIndex(ev) {
+  if (ev._searchIndex) return ev._searchIndex;
+
   const titleNorm = normalizeSearchText(ev.title || '');
   const venueNorm = normalizeSearchText(ev.venue || '');
   const descNorm = normalizeSearchText(ev.description || '');
@@ -5401,6 +5471,23 @@ function matchesGoogleSearch(ev, parsed) {
   const allContent = `${titleNorm} ${venueNorm} ${descNorm} ${artistNorm} ${orgNorm} ${tagsNorm} ${catNorm} ${catLabelNorm} ${addrNorm} ${neighNorm} ${venueAliasesNorm} ${performersNorm} ${daysNorm} ${customTiersNorm} ${tiersListNorm} ${extraAliases} ${accessNorm} ${festivalNorm} ${holidayNorm}`;
   const docTokens = allContent.split(' ').filter(tok => tok.length > 0);
   const docStems = docTokens.map(stemWord);
+
+  ev._searchIndex = {
+    titleNorm, venueNorm, descNorm, artistNorm, orgNorm,
+    catNorm, catLabelNorm, addrNorm, neighNorm, tagsNorm,
+    venueAliasesNorm, daysList, festivalNorm, holidayNorm,
+    allContent, docTokens, docStems
+  };
+  return ev._searchIndex;
+}
+
+function matchesGoogleSearch(ev, parsed) {
+  const {
+    titleNorm, venueNorm, descNorm, artistNorm, orgNorm,
+    catNorm, catLabelNorm, addrNorm, neighNorm, tagsNorm,
+    venueAliasesNorm, daysList, festivalNorm, holidayNorm,
+    allContent, docTokens, docStems
+  } = getOrBuildEventSearchIndex(ev);
 
   // 1. Negative Exclusions (-term)
   for (const neg of parsed.negativeTerms) {
@@ -6432,22 +6519,91 @@ function renderEventCards(events) {
     `;
   }
 
+  // Incremental rendering queues per expanded time bucket (prevents 500+ synchronous DOM card mounts)
+  const INITIAL_BUCKET_BATCH = 24;
+  const SCROLL_BUCKET_BATCH = 24;
+  window._pendingBucketQueues = {};
+  if (window._van50BucketObserver) {
+    try { window._van50BucketObserver.disconnect(); } catch (e) { }
+    window._van50BucketObserver = null;
+  }
+
+  const renderBucketQueueItem = (entry, bucketKey) => {
+    if (entry.type === 'subdivider') {
+      return `<div class="anytime-dropins-subdivider" role="separator" aria-label="Anytime and Scenic Drop-Ins">
+        <span class="anytime-subdivider-label">Anytime &amp; Scenic Drop-Ins (${Number(entry.count)})</span>
+        <span class="anytime-subdivider-line" aria-hidden="true"></span>
+      </div>`;
+    }
+    return renderSingleEventCardHtml(entry.ev, bucketKey);
+  };
+
+  window.appendNextBucketBatch = function (bucketKey, flushAll) {
+    const queue = window._pendingBucketQueues && window._pendingBucketQueues[bucketKey];
+    const gridEl = document.getElementById(`cards-grid-${bucketKey}`);
+    if (!queue || !queue.length || !gridEl) return false;
+    const sentinel = gridEl.querySelector(`.load-more-cards-sentinel[data-bucket-key="${bucketKey}"]`);
+    const count = flushAll ? queue.length : SCROLL_BUCKET_BATCH;
+    const slice = queue.splice(0, count);
+    const html = slice.map(entry => renderBucketQueueItem(entry, bucketKey)).join('');
+    if (sentinel) {
+      sentinel.insertAdjacentHTML('beforebegin', html);
+      const remainingCards = queue.filter(entry => entry.type === 'card').length;
+      if (remainingCards === 0) {
+        if (window._van50BucketObserver) window._van50BucketObserver.unobserve(sentinel);
+        sentinel.remove();
+        delete window._pendingBucketQueues[bucketKey];
+      } else {
+        const btn = sentinel.querySelector('.btn-load-more-cards');
+        if (btn) btn.textContent = `Show more outings (${remainingCards} remaining)`;
+      }
+    } else {
+      gridEl.insertAdjacentHTML('beforeend', html);
+      if (queue.length === 0) delete window._pendingBucketQueues[bucketKey];
+    }
+    return true;
+  };
+
+  window.ensureEventCardRendered = function (eventId) {
+    if (!eventId || document.getElementById(`card-${eventId}`)) return true;
+    const queues = window._pendingBucketQueues || {};
+    for (const [bKey, queue] of Object.entries(queues)) {
+      if (queue.some(entry => entry.type === 'card' && entry.ev && entry.ev.id === eventId)) {
+        window.appendNextBucketBatch(bKey, true);
+        return Boolean(document.getElementById(`card-${eventId}`));
+      }
+    }
+    return false;
+  };
+
   // Render sections with subtle "Anytime & Scenic Drop-Ins" sub-divider when both scheduled & drop-in items exist
   const sectionsHtml = activeBuckets.map(b => {
     const isCollapsed = Boolean(state.collapsedTimeGroups && state.collapsedTimeGroups.has(b.key));
     const scheduledItems = b.list.filter(ev => !isAnytimeDropInEvent(ev));
     const dropInItems = b.list.filter(ev => isAnytimeDropInEvent(ev));
     let cardsHtml = '';
-    if (scheduledItems.length > 0 && dropInItems.length > 0) {
-      cardsHtml =
-        scheduledItems.map(ev => renderSingleEventCardHtml(ev, b.key)).join('') +
-        `<div class="anytime-dropins-subdivider" role="separator" aria-label="Anytime and Scenic Drop-Ins">
-          <span class="anytime-subdivider-label">Anytime &amp; Scenic Drop-Ins (${Number(dropInItems.length)})</span>
-          <span class="anytime-subdivider-line" aria-hidden="true"></span>
-        </div>` +
-        dropInItems.map(ev => renderSingleEventCardHtml(ev, b.key)).join('');
-    } else {
-      cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev, b.key)).join('');
+    if (!isCollapsed) {
+      const orderedItems = [];
+      if (scheduledItems.length > 0 && dropInItems.length > 0) {
+        scheduledItems.forEach(ev => orderedItems.push({ type: 'card', ev }));
+        orderedItems.push({ type: 'subdivider', count: dropInItems.length });
+        dropInItems.forEach(ev => orderedItems.push({ type: 'card', ev }));
+      } else {
+        b.list.forEach(ev => orderedItems.push({ type: 'card', ev }));
+      }
+
+      const initialSlice = orderedItems.slice(0, INITIAL_BUCKET_BATCH);
+      const remainingSlice = orderedItems.slice(INITIAL_BUCKET_BATCH);
+      cardsHtml = initialSlice.map(entry => renderBucketQueueItem(entry, b.key)).join('');
+
+      if (remainingSlice.length > 0) {
+        window._pendingBucketQueues[b.key] = remainingSlice;
+        const remainingCards = remainingSlice.filter(entry => entry.type === 'card').length;
+        const safeKeyAttr = escapeHtml(b.key);
+        cardsHtml += `<div class="load-more-cards-sentinel" data-bucket-key="${safeKeyAttr}" style="grid-column: 1 / -1; display: flex; justify-content: center; padding: 14px 0;">
+          <button type="button" class="btn-load-more-cards" data-action="load-more-bucket" data-bucket-key="${safeKeyAttr}" style="padding: 9px 18px; border-radius: 999px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); color: var(--text-primary); font-weight: 600; font-size: 0.85rem; cursor: pointer;">Show more outings (${Number(remainingCards)} remaining)</button>
+        </div>`;
+      }
     }
     const safeKey = escapeHtml(b.key);
     const safeTitle = escapeHtml(b.title);
@@ -6483,7 +6639,38 @@ function renderEventCards(events) {
     `;
   }).join('');
 
-  grid.innerHTML = venueBannerHtml + navBarHtml + sectionsHtml; if (typeof window.updateScrollDateIndicator === 'function') window.updateScrollDateIndicator();
+  grid.innerHTML = venueBannerHtml + navBarHtml + sectionsHtml;
+
+  // Bind click + IntersectionObserver auto-loading for incremental bucket sentinels
+  const sentinels = grid.querySelectorAll('.load-more-cards-sentinel');
+  if (sentinels.length > 0) {
+    sentinels.forEach((sentinelEl) => {
+      const btn = sentinelEl.querySelector('.btn-load-more-cards');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const bk = btn.getAttribute('data-bucket-key');
+          if (bk && typeof window.appendNextBucketBatch === 'function') {
+            window.appendNextBucketBatch(bk, false);
+          }
+        });
+      }
+    });
+    if (typeof IntersectionObserver !== 'undefined') {
+      window._van50BucketObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const bk = entry.target.getAttribute('data-bucket-key');
+            if (bk && typeof window.appendNextBucketBatch === 'function') {
+              window.appendNextBucketBatch(bk, false);
+            }
+          }
+        });
+      }, { rootMargin: '650px 0px' });
+      sentinels.forEach((s) => window._van50BucketObserver.observe(s));
+    }
+  }
+
+  if (typeof window.updateScrollDateIndicator === 'function') window.updateScrollDateIndicator();
 }
 
 function formatCardTopDate(ev, bucketKey) {
@@ -8160,6 +8347,9 @@ function hydrateDeepLinksFromUrl() {
     if (!state.expandedCardIds) state.expandedCardIds = new Set();
     state.expandedCardIds.add(targetEv.id);
 
+    if (typeof window.ensureEventCardRendered === 'function') {
+      window.ensureEventCardRendered(targetEv.id);
+    }
     let cardEl = document.getElementById(`card-${targetEv.id}`);
     if (!cardEl && isInitialHydration) {
       // Clear conflicting filters so the target event is guaranteed visible
