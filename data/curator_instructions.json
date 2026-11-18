@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-18T16:12:24.050291+00:00",
-    "pendingCount": 2,
+    "updatedAt": "2026-11-18T16:18:28.491566+00:00",
+    "pendingCount": 1,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements.",
     "totalInstructions": 78
   },
@@ -3750,7 +3750,7 @@
     {
       "id": "inst_1795018309555",
       "createdAt": "2026-11-18T16:11:49.565874+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "the-pearl-games-we-play-i-wish-i-never-q-2027-03-27",
       "eventTitle": "Games We Play: \"I Wish I Never Quit\" Tour",
       "venueName": "The Pearl",
@@ -3762,19 +3762,28 @@
       ],
       "hasScreenshot": true,
       "screenshotCount": 1,
-      "actionTaken": "queue_only",
-      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "promoted_to_catalog",
+      "curatorNote": "Verified via TicketWeb checkout screenshot: ADV GA $30.00 base + $10.23 fees = $40.23 CAD all-in (<= $50 CAD). Promoted to data/events.json.",
       "targetScraperOrEngine": "The Pearl",
-      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Games We Play: \"I Wish I Never Quit\" Tour ($30.00 CAD).",
-      "extractedTiers": [],
+      "aiLearnedSummary": "Promoted Games We Play at The Pearl ($40.23 CAD all-in) to active catalog with verified TicketWeb checkout screenshot.",
+      "extractedTiers": [
+        {
+          "name": "General Admission (ADV)",
+          "base": 30,
+          "fee": 10.23,
+          "tax": 0,
+          "total": 40.23
+        }
+      ],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "resolvedAt": "2026-11-18T16:18:00.101Z"
     },
     {
       "id": "inst_1795018344040",
       "createdAt": "2026-11-18T16:12:24.044853+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "hollywood-theatre-the-bad-plus-farewell-tour-2026-12-06",
       "eventTitle": "The Bad Plus: Farewell Tour",
       "venueName": "Hollywood Theatre",
@@ -3786,10 +3795,41 @@
       ],
       "hasScreenshot": true,
       "screenshotCount": 1,
+      "actionTaken": "archived_over_budget",
+      "curatorNote": "Verified via AdmitOne checkout screenshot: GA 19+ is $45.00 CAD + $7.19 fees = $52.19 CAD before taxes (> $50.00 CAD ceiling). Evicted from quarantine to archived_events.json.",
+      "targetScraperOrEngine": "Hollywood Theatre",
+      "aiLearnedSummary": "Archived The Bad Plus: Farewell Tour at Hollywood Theatre ($52.19 CAD > $50.00 CAD budget ceiling).",
+      "extractedTiers": [
+        {
+          "name": "General Admission 19+",
+          "base": 45,
+          "fee": 7.19,
+          "tax": 0,
+          "total": 52.19
+        }
+      ],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0,
+      "resolvedAt": "2026-11-18T16:18:00.101Z"
+    },
+    {
+      "id": "inst_1795018708474",
+      "createdAt": "2026-11-18T16:18:28.475330+00:00",
+      "status": "pending",
+      "eventId": "kwantlen-polytechnic-zumba-dance-fitness-class-2026-11-18",
+      "eventTitle": "Zumba - Dance Fitness Class",
+      "venueName": "Kwantlen Polytechnic University (Surrey Campus)",
+      "sourceUrl": "https://www.kpu.ca/events/zumba-f26-cycle-2",
+      "instructionText": "This is specific for KPU students.  Please dismiss",
+      "screenshotPath": null,
+      "screenshotPaths": [],
+      "hasScreenshot": false,
+      "screenshotCount": 0,
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Direct)",
-      "targetScraperOrEngine": "Hollywood Theatre",
-      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: The Bad Plus: Farewell Tour ($45.00 CAD).",
+      "targetScraperOrEngine": "Kwantlen Polytechnic University (Surrey Campus)",
+      "aiLearnedSummary": "Instruction recorded: This is specific for KPU students.  Please dismiss",
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
