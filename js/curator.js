@@ -771,8 +771,21 @@ function updatePendingActionsInboxUI(counts = {}) {
 window.selectPendingInboxFilter = function (filterKey) {
   const targetFilter = filterKey || 'all';
   state.activeFilter = targetFilter;
+  const masterModal = document.getElementById('master-catalogs-modal');
+  if (masterModal && masterModal.classList.contains('active')) {
+    masterModal.classList.remove('active');
+  }
   document.querySelectorAll('.curator-filter-pill').forEach(p => {
     p.classList.toggle('active', p.dataset.filter === targetFilter);
+  });
+  document.querySelectorAll('#curator-pending-actions-inbox .inbox-action-pill').forEach(btn => {
+    btn.classList.toggle('is-selected-inbox', btn.id === (
+      targetFilter === 'holidays' ? 'inbox-pill-holidays' :
+      targetFilter === 'discovered_venues' ? 'inbox-pill-venues' :
+      targetFilter === 'discovered_sources' ? 'inbox-pill-sources' :
+      targetFilter === 'user_feedback' ? 'inbox-pill-submissions' :
+      targetFilter === 'all' ? 'inbox-pill-quarantined' : ''
+    ));
   });
   updateFilterCounts();
   applyFiltersAndRender();
@@ -1353,21 +1366,21 @@ function renderCards(items) {
     return;
   }
 
-  container.innerHTML = items.map((ev, index) => {
-    const cardNum = getEventCardNumber(ev, index);
-    const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
-    const isBudgetExceeded = attemptedPrice > 50.0;
-    const isAutoDenied = ev.reviewStatus === 'denied_auto_budget';
-    const hasDrift = isDrift(ev);
-    const flagDateStr = ev.flaggedAt ? new Date(ev.flaggedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) : 'Recently';
-    const isHandled = Boolean(ev.dealtWith || ev.queuedInstruction);
-    const curatorDateStr = formatCuratorDate(ev);
-    const diagnosticsHtml = generateCuratorDiagnostics(ev);
-    const vName = (ev.venue || '').trim();
-    const isDiscoveredVenue = Boolean(vName && state.knownVenues && state.knownVenues.size > 0 && !state.knownVenues.has(vName.toLowerCase()));
-    const targetUrl = getEventExternalUrl(ev);
+function renderEventCard(ev, index) {
+  const cardNum = getEventCardNumber(ev, index);
+  const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
+  const isBudgetExceeded = attemptedPrice > 50.0;
+  const isAutoDenied = ev.reviewStatus === 'denied_auto_budget';
+  const hasDrift = isDrift(ev);
+  const flagDateStr = ev.flaggedAt ? new Date(ev.flaggedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) : 'Recently';
+  const isHandled = Boolean(ev.dealtWith || ev.queuedInstruction);
+  const curatorDateStr = formatCuratorDate(ev);
+  const diagnosticsHtml = generateCuratorDiagnostics(ev);
+  const vName = (ev.venue || '').trim();
+  const isDiscoveredVenue = Boolean(vName && state.knownVenues && state.knownVenues.size > 0 && !state.knownVenues.has(vName.toLowerCase()));
+  const targetUrl = getEventExternalUrl(ev);
 
-    return `
+  return `
       <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-${ev.id}" data-event-id="${ev.id}">
         <!-- Top Title & Metadata with Card Number (Request 1) -->
         <div class="curator-card-top">
@@ -1652,7 +1665,9 @@ function renderCards(items) {
         </div>
       </div>
     `;
-  }).join('');
+}
+
+  container.innerHTML = items.map((ev, index) => renderEventCard(ev, index)).join('');
 
   // Attach card-level Drag & Drop for instant screenshot verification
   container.querySelectorAll('.curator-card').forEach(card => {
@@ -4781,23 +4796,14 @@ function renderHolidayCards() {
       return labelA.localeCompare(labelB, 'en', { sensitivity: 'base', numeric: true });
     });
 
+  const pendingTaxonomyCount = unapprovedFests.length + pending.length;
   if (countDisplay) {
-    countDisplay.innerHTML = `Showing <strong>${total}</strong> festival(s) &amp; holiday(s) awaiting curator approval`;
+    countDisplay.innerHTML = `Showing <strong>${pendingTaxonomyCount}</strong> festival(s) &amp; holiday(s) needing approval${quarantinedFestivals.length > 0 ? ` (+ <strong>${quarantinedFestivals.length}</strong> quarantined festival-related event(s) below)` : ''}`;
   }
 
   let html = '';
 
-  if (quarantinedFestivals.length > 0) {
-    html += `
-      <div style="margin-bottom: 20px;">
-        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #fdba74; margin: 0 0 12px 0;">
-          🎪 Quarantined Festival Events Awaiting Review (${quarantinedFestivals.length})
-        </h4>
-        ${quarantinedFestivals.map((ev, idx) => renderEventCard(ev, idx)).join('')}
-      </div>
-    `;
-  }
-
+  // 1. Pending Festivals Awaiting Curator Approval (Top Priority)
   if (unapprovedFests.length > 0) {
     html += `
       <div style="margin-bottom: 22px;">
@@ -4874,71 +4880,95 @@ function renderHolidayCards() {
     `;
   }
 
-  if (total === 0) {
+  // 2. Pending Holidays Awaiting Curator Sign-Off
+  if (pending.length > 0) {
     html += `
-      <div style="text-align: center; padding: 48px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px; margin-bottom: 24px;">
-        <div style="font-size: 2.5rem; margin-bottom: 12px;">🎉</div>
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
+      <div style="margin-bottom: 22px;">
+        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #fdba74; margin: 0 0 12px 0;">
+          🎉 Pending Holidays Awaiting Curator Sign-Off (${pending.length})
+        </h4>
+        ${pending.map(h => {
+          const defaultLabel = h.label || h.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          const defaultIcon = h.icon || '🎉';
+          return `
+            <div class="curator-card" id="card-holiday-${escapeHtml(h.id)}" style="border-left: 4px solid #f97316; margin-bottom: 16px;">
+              <div class="curator-card-top">
+                <div>
+                  <h3 class="curator-card-title" style="color: #fdba74; display: flex; align-items: center; gap: 8px;">
+                    <span>${escapeHtml(defaultIcon)}</span>
+                    <span>${escapeHtml(defaultLabel)}</span>
+                    <span style="font-size: 0.8rem; font-weight: normal; color: #94a3b8;">(#${escapeHtml(h.id)})</span>
+                  </h3>
+                  <div class="curator-card-meta">
+                    <span>🔍 <strong>Detected In:</strong> ${escapeHtml(h.eventTitle || h.detectedInEvent || 'AI Event Scout')}</span>
+                    <span>📅 <strong>Detected Date:</strong> ${escapeHtml(h.detectedAt || 'Today')}</span>
+                    <span>🏷️ <strong>Status:</strong> <span style="color: #fed7aa; font-weight: 600;">Pending Curator Sign-off</span></span>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 6px; align-items: flex-start;">
+                  <span class="curator-badge-pill" style="background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4);">
+                    🎉 New Holiday Discovery
+                  </span>
+                </div>
+              </div>
+
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 14px; margin: 12px 0;">
+                <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 10px; font-weight: 600;">
+                  Curator Taxonomy Settings:
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: center;">
+                  <div>
+                    <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Icon / Emoji</label>
+                    <input type="text" id="holiday-icon-${escapeHtml(h.id)}" value="${escapeHtml(defaultIcon)}" style="width: 100%; text-align: center; font-size: 1.25rem; padding: 6px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Display Label</label>
+                    <input type="text" id="holiday-label-${escapeHtml(h.id)}" value="${escapeHtml(defaultLabel)}" style="width: 100%; font-size: 0.95rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                  </div>
+                </div>
+              </div>
+
+              <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px;">
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectHoliday('${escapeHtml(h.id)}')" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                  ✕ Reject / Dismiss
+                </button>
+                <button type="button" class="btn-curator btn-curator-primary" onclick="approveHoliday('${escapeHtml(h.id)}')" style="background: #ea580c; border-color: #f97316;">
+                  ✓ Approve &amp; Register Holiday
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  if (pendingTaxonomyCount === 0) {
+    html += `
+      <div style="text-align: center; padding: 36px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px; margin-bottom: 24px;">
+        <div style="font-size: 2.2rem; margin-bottom: 10px;">🎉</div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: #fff; margin-bottom: 6px;">
           No Pending Festivals or Holidays Awaiting Approval
         </h3>
-        <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
-          All festivals and holidays discovered by the AI scouts are verified and registered in the system.
+        <p style="font-size: 0.86rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
+          All discovered festival and holiday categories are currently verified and registered.
         </p>
       </div>
     `;
-  } else if (pending.length > 0) {
-    html += pending.map(h => {
-      const defaultLabel = h.label || h.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-      const defaultIcon = h.icon || '🎉';
-      return `
-        <div class="curator-card" id="card-holiday-${escapeHtml(h.id)}" style="border-left: 4px solid #f97316; margin-bottom: 16px;">
-          <div class="curator-card-top">
-            <div>
-              <h3 class="curator-card-title" style="color: #fdba74; display: flex; align-items: center; gap: 8px;">
-                <span>${escapeHtml(defaultIcon)}</span>
-                <span>${escapeHtml(defaultLabel)}</span>
-                <span style="font-size: 0.8rem; font-weight: normal; color: #94a3b8;">(#${escapeHtml(h.id)})</span>
-              </h3>
-              <div class="curator-card-meta">
-                <span>🔍 <strong>Detected In:</strong> ${escapeHtml(h.eventTitle || h.detectedInEvent || 'AI Event Scout')}</span>
-                <span>📅 <strong>Detected Date:</strong> ${escapeHtml(h.detectedAt || 'Today')}</span>
-                <span>🏷️ <strong>Status:</strong> <span style="color: #fed7aa; font-weight: 600;">Pending Curator Sign-off</span></span>
-              </div>
-            </div>
-            <div style="display: flex; gap: 6px; align-items: flex-start;">
-              <span class="curator-badge-pill" style="background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4);">
-                🎉 New Holiday Discovery
-              </span>
-            </div>
-          </div>
+  }
 
-          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 14px; margin: 12px 0;">
-            <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 10px; font-weight: 600;">
-              Curator Taxonomy Settings:
-            </div>
-            <div style="display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: center;">
-              <div>
-                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Icon / Emoji</label>
-                <input type="text" id="holiday-icon-${escapeHtml(h.id)}" value="${escapeHtml(defaultIcon)}" style="width: 100%; text-align: center; font-size: 1.25rem; padding: 6px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
-              </div>
-              <div>
-                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Display Label</label>
-                <input type="text" id="holiday-label-${escapeHtml(h.id)}" value="${escapeHtml(defaultLabel)}" style="width: 100%; font-size: 0.95rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
-              </div>
-            </div>
-          </div>
-
-          <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px;">
-            <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectHoliday('${escapeHtml(h.id)}')" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
-              ✕ Reject / Dismiss
-            </button>
-            <button type="button" class="btn-curator btn-curator-primary" onclick="approveHoliday('${escapeHtml(h.id)}')" style="background: #ea580c; border-color: #f97316;">
-              ✓ Approve &amp; Register Holiday
-            </button>
-          </div>
+  // 3. Quarantined Festival-Related Individual Events (Collapsible secondary section below approvals)
+  if (quarantinedFestivals.length > 0) {
+    html += `
+      <details style="margin-bottom: 24px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 16px;" ${pendingTaxonomyCount === 0 ? 'open' : ''}>
+        <summary style="cursor: pointer; font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: #fdba74; user-select: none;">
+          🎪 Quarantined Festival-Related Events (${quarantinedFestivals.length}) — Click to expand/collapse
+        </summary>
+        <div style="margin-top: 14px;">
+          ${quarantinedFestivals.map((ev, idx) => renderEventCard(ev, idx)).join('')}
         </div>
-      `;
-    }).join('');
+      </details>
+    `;
   }
 
   // Also append approved holidays overview section
@@ -6484,19 +6514,41 @@ function renderMasterCatalogList() {
       `;
     }).join('');
   } else if (currentTab === 'festivals_master') {
-    container.innerHTML = list.map(fm => {
+    const sortedFestList = list.slice().sort((a, b) => {
+      const aPending = (a.status === 'pending_curator_approval' || a.status === 'pending' || a.approvalStatus === 'pending') ? 0 : 1;
+      const bPending = (b.status === 'pending_curator_approval' || b.status === 'pending' || b.approvalStatus === 'pending') ? 0 : 1;
+      return aPending - bPending;
+    });
+    container.innerHTML = sortedFestList.map(fm => {
       const fname = fm.festival_name || fm.name || 'Festival';
+      const fslug = fm.slug || fm.id || fname;
+      const fStatus = fm.status || fm.approvalStatus || 'approved';
+      const isPending = fStatus === 'pending_curator_approval' || fStatus === 'pending';
+      const statusPill = isPending
+        ? `<span style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.45); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">⏳ Needs Approval</span>`
+        : (fStatus === 'approved'
+          ? `<span style="background: rgba(16, 185, 129, 0.16); color: #4ade80; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">✓ Approved</span>`
+          : `<span style="background: rgba(148, 163, 184, 0.14); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem;">${escapeHtml(fStatus)}</span>`);
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong style="color: #f8fafc; font-size: 0.95rem;">🎪 ${escapeHtml(fname)}</strong>
-            <span style="color: #c084fc; font-size: 0.8rem; font-weight: 600;">${escapeHtml(fm.start_date || '')} to ${escapeHtml(fm.end_date || '')}</span>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid ${isPending ? 'rgba(236, 72, 153, 0.45)' : 'rgba(255,255,255,0.08)'}; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <strong style="color: #f8fafc; font-size: 0.95rem;">🎪 ${escapeHtml(fname)}</strong>
+              ${statusPill}
+            </div>
+            <span style="color: #c084fc; font-size: 0.8rem; font-weight: 600;">${escapeHtml(fm.start_date || 'TBD')} to ${escapeHtml(fm.end_date || 'TBD')}</span>
           </div>
-          <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(fm.location || 'Vancouver, BC')} • Genre: <strong style="color: #cbd5e1;">${escapeHtml(fm.description || 'General')}</strong></div>
-          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem; align-items: center;">
+          <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(fm.location || fm.discovered_from_title || 'Vancouver, BC')} • <strong style="color: #cbd5e1;">${escapeHtml(fm.description || 'Festival / Seasonal Series')}</strong></div>
+          <div style="display: flex; gap: 10px; margin-top: 4px; font-size: 0.78rem; align-items: center; flex-wrap: wrap;">
             ${fm.schedule_url ? `<a href="${escapeHtml(fm.schedule_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
             ${fm.website_url ? `<a href="${escapeHtml(fm.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
-            <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(fm.festival_name || fm.name || fm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
+            <div style="margin-left: auto; display: flex; gap: 6px; align-items: center;">
+              ${isPending ? `
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${escapeHtml(fslug)}', '${escapeHtml(fname.replace(/'/g, "\\'"))}'); setTimeout(() => fetchMasterCatalog('festivals_master', true), 400);" style="padding: 3px 9px; font-size: 0.72rem; color: #f87171; border-color: rgba(239, 68, 68, 0.4);">✕ Dismiss</button>
+                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${escapeHtml(fslug)}', '${escapeHtml(fname.replace(/'/g, "\\'"))}'); setTimeout(() => fetchMasterCatalog('festivals_master', true), 400);" style="padding: 3px 10px; font-size: 0.72rem; background: #db2777; border-color: #f472b6;">✓ Approve Festival</button>
+              ` : ''}
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(fname)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI">📝 Guidance</button>
+            </div>
           </div>
         </div>
       `;

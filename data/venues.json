@@ -20110,5 +20110,47 @@
     "_gps_inferred": false,
     "last_grounded_at": "2026-11-18T15:05:21.318Z",
     "grounding_source": "pending_venues_cognitive_audit_2026_11_18"
+  },
+  {
+    "venue_id": "eastside-arts-society",
+    "venue_name": "Eastside Arts Society",
+    "aliases": [
+      "Eastside Arts Society Headquarters",
+      "Eastside Arts District (Culture Crawl HQ)",
+      "Vancouver's Eastside Arts District",
+      "Vancouver’s Eastside Arts District"
+    ],
+    "address": "716 E Hastings St, Vancouver, BC V6A 1R5",
+    "full_address": "716 E Hastings St, Vancouver, BC V6A 1R5",
+    "city": "Vancouver",
+    "neighborhood": "Strathcona / Eastside Arts District",
+    "coordinates": [
+      49.2809,
+      -123.0892
+    ],
+    "transit_info": "TransLink R5 Hastings St RapidBus, #14, #16, and #20 buses stop directly along E Hastings St near Heatley/Hawks Ave",
+    "venue_type": "gallery_museum_exhibition",
+    "access_model": "free_public_access",
+    "environment_type": "hybrid",
+    "website_url": "https://culturecrawl.ca/",
+    "calendar_url": "https://culturecrawl.ca/events/",
+    "step_free_entrance": true,
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": true,
+    "service_animals": true,
+    "coffee_benchmark": "$4.25 – $5.50 CAD (Strathcona & Commercial Drive cafés)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "meal_benchmark": "$14.00 – $20.00 CAD (local neighbourhood eateries & food trucks)",
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "coffee": "$4.25 – $5.50 CAD (Strathcona & Commercial Drive cafés)",
+      "meal": "$14.00 – $20.00 CAD (local neighbourhood eateries & food trucks)"
+    },
+    "description": "Permanent gallery headquarters and central exhibition hub for the Eastside Arts Society and the annual Eastside Culture Crawl in Strathcona.",
+    "_gps_inferred": false,
+    "last_grounded_at": "2026-11-18T17:13:40.316Z",
+    "grounding_source": "quarantine_243_cognitive_audit_2026_11_18"
   }
 ]

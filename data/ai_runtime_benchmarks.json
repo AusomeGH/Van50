@@ -919,6 +919,17 @@
       "elapsedSeconds": 847,
       "secondsPerItem": 10.2,
       "notes": "4-shard 1-by-1 live web grounding of all 83 pending discovered_venues.json candidates across Clusters 4XX/5XX/6XX, plus 12 recent venue enrichments and 8 out-of-market/virtual queue evictions."
+    },
+    {
+      "timestamp": "2026-11-18T17:13:40.316Z",
+      "pipelineStage": "quarantine_queue_full_cognitive_audit",
+      "itemsEvaluated": 243,
+      "promotedToCatalog": 105,
+      "archivedDisqualified": 102,
+      "keptQuarantined": 36,
+      "elapsedSeconds": 1828,
+      "secondsPerItem": 7.5,
+      "notes": "8-shard 1-by-1 cognitive visual (_cart.png) + search_web audit across all 243 quarantined items in manual_review_queue.json."
     }
   ]
 }
