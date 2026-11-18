@@ -140,14 +140,21 @@
       "label": "QC AI Full Catalog Audit",
       "averageDurationSeconds": 290.5,
       "averageDurationFormatted": "4m 51s",
-      "totalRuns": 174,
+      "totalRuns": 175,
       "lastRun": {
-        "durationSeconds": 914,
-        "durationFormatted": "15m 14s",
-        "itemsProcessed": 185,
-        "notes": "8-shard 1-by-1 visual _cart.png keyframe inspection (183/183 PNGs) + live search_web grounding (172/185) across all 185 newly promoted batch events."
+        "timestamp": "2026-11-18T19:09:36.824Z",
+        "durationSeconds": 547,
+        "durationFormatted": "9m 7s",
+        "itemsProcessed": 34,
+        "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
       },
       "history": [
+        {
+          "timestamp": "2026-11-18T19:09:36.824Z",
+          "durationSeconds": 547,
+          "durationFormatted": "9m 7s",
+          "itemsProcessed": 34
+        },
         {
           "timestamp": "2026-11-18T07:09:38-07:00",
           "durationSeconds": 914,
@@ -441,18 +448,6 @@
           "durationSeconds": 44,
           "durationFormatted": "0m 44s",
           "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-11-04T01:09:04.677Z",
-          "durationSeconds": 981,
-          "durationFormatted": "16m 21s",
-          "itemsProcessed": 20
-        },
-        {
-          "timestamp": "2026-11-03T21:03:00.410Z",
-          "durationSeconds": 1872,
-          "durationFormatted": "31m 12s",
-          "itemsProcessed": 50
         }
       ],
       "last_run_timestamp": "2026-10-13T14:04:00-07:00"

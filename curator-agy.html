@@ -8,6 +8,8 @@
   <meta name="robots" content="noindex, nofollow">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self'; object-src 'none'; base-uri 'self';">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -108,9 +110,9 @@
           title="Open high-density compressed table view">
           <span>📊 Table View ↗</span>
         </a>
-        <a href="simulator.html" target="_blank" rel="noopener" class="curator-preview-btn"
+        <a href="simulator.html" target="_blank" rel="noopener noreferrer" class="curator-preview-btn"
           title="Open Multi-Device User Preview in New Tab">User Preview ↗</a>
-        <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank"
+        <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank" rel="noopener noreferrer"
           title="View live public Van50 catalog">
           <span>🌲 Public Site ↗</span>
         </a>
@@ -666,7 +668,7 @@
             style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; line-height: 1.35;">
             <div style="font-weight: 600; color: #f8fafc;" id="ai-inst-summary-title">Event Title</div>
             <div style="color: #94a3b8; margin-top: 2px;" id="ai-inst-summary-venue">Venue • Platform</div>
-            <a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
+            <a href="#" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
               id="ai-inst-summary-link"
               style="color: #38bdf8; word-break: break-all; text-decoration: underline; font-size: 0.78rem; display: inline-block; margin-top: 3px;">Source
               Page ↗</a>
@@ -3318,19 +3320,32 @@
       });
     }
 
-    // Open external links in a discrete companion window instead of new tabs
+    // Open external links in a discrete companion window instead of new tabs (strictly http/https allowlisted + noopener)
     window.openCuratorWindow = function (url, title = 'Van50CuratorWindow') {
-      if (!url || url === '#' || url.startsWith('javascript:')) return false;
+      const safeHref = (typeof window.safeExternalUrl === 'function')
+        ? window.safeExternalUrl(url)
+        : (() => {
+            try {
+              const p = new URL(String(url || '').trim(), window.location.origin);
+              return (p.protocol === 'https:' || p.protocol === 'http:') ? p.href : '#';
+            } catch (_) {
+              return '#';
+            }
+          })();
+      if (!safeHref || safeHref === '#') return false;
       const width = Math.min(1200, window.screen.availWidth - 100);
       const height = Math.min(900, window.screen.availHeight - 80);
       const left = Math.max(50, Math.floor((window.screen.availWidth - width) / 2));
       const top = Math.max(40, Math.floor((window.screen.availHeight - height) / 2));
       const win = window.open(
-        url,
+        safeHref,
         title,
-        `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=yes,resizable=yes,scrollbars=yes`
+        `noopener,noreferrer,width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=yes,resizable=yes,scrollbars=yes`
       );
-      if (win) win.focus();
+      if (win) {
+        try { win.opener = null; } catch (_) {}
+        win.focus();
+      }
       return false;
     };
 

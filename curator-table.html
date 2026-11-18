@@ -4085,7 +4085,7 @@
         <a href="curator-agy.html" class="btn-nav" title="Switch back to Curator Studio (Antigravity Engine)">
           <span>Cards View</span>
         </a>
-        <a href="simulator.html" target="_blank" rel="noopener" class="btn-nav curator-preview-btn" style="border: 1px solid rgba(56, 189, 248, 0.5); background: rgba(14, 165, 233, 0.16); color: #e0f2fe; font-weight: 700;" title="Open Multi-Device User Preview in New Tab">User Preview ↗</a>
+        <a href="simulator.html" target="_blank" rel="noopener noreferrer" class="btn-nav curator-preview-btn" style="border: 1px solid rgba(56, 189, 248, 0.5); background: rgba(14, 165, 233, 0.16); color: #e0f2fe; font-weight: 700;" title="Open Multi-Device User Preview in New Tab">User Preview ↗</a>
         <a href="index.html" class="btn-nav" title="View live public web app" onclick="openCuratorWindow('index.html'); return false;">
           <span>Public App ↗</span>
         </a>
@@ -5862,19 +5862,41 @@
     const disapproveTextarea = document.getElementById('disapprove-textarea');
     const toast = document.getElementById('toast-msg');
 
-    // Discrete Companion Window Opener
+    function safeExternalUrl(rawUrl) {
+      if (typeof rawUrl !== 'string') return '#';
+      const trimmed = rawUrl.trim();
+      if (!trimmed || trimmed === '#') return '#';
+      try {
+        const baseOrigin = (window.location && /^https?:$/i.test(window.location.protocol))
+          ? window.location.origin
+          : 'https://van50.local';
+        const parsed = new URL(trimmed, baseOrigin);
+        return (parsed.protocol === 'https:' || parsed.protocol === 'http:') ? parsed.href : '#';
+      } catch (_) {
+        return '#';
+      }
+    }
+    window.safeExternalUrl = safeExternalUrl;
+
+    // Discrete Companion Window Opener (strictly http/https allowlisted + noopener)
     window.openCuratorWindow = function(url, title = 'Van50CuratorWindow') {
-      if (!url || url === '#' || url.startsWith('javascript:')) return false;
+      const safeHref = safeExternalUrl(url);
+      if (!safeHref || safeHref === '#') return false;
       const width = Math.min(1200, window.screen.availWidth - 100);
       const height = Math.min(900, window.screen.availHeight - 80);
       const left = Math.max(50, Math.floor((window.screen.availWidth - width) / 2));
       const top = Math.max(40, Math.floor((window.screen.availHeight - height) / 2));
       const win = window.open(
-        url,
+        safeHref,
         title,
-        `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=yes,resizable=yes,scrollbars=yes`
+        `noopener,noreferrer,width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=yes,resizable=yes,scrollbars=yes`
       );
-      if (win) { win.focus(); } else { window.open(url, '_blank'); }
+      if (win) {
+        try { win.opener = null; } catch (_) {}
+        win.focus();
+      } else {
+        window.open(safeHref, '_blank', 'noopener,noreferrer');
+      }
       return false;
     };
 
@@ -7277,7 +7299,8 @@
       }
 
       tbody.innerHTML = venues.map(v => {
-        const vUrl = v.calendarUrl || v.websiteUrl || v.url || '';
+        const rawVUrl = v.calendarUrl || v.websiteUrl || v.url || '';
+        const vUrl = rawVUrl ? safeExternalUrl(rawVUrl) : '';
         return `
           <tr class="table-row">
             <td style="font-weight: 700; color: #6ee7b7;">${escapeHtml(v.name || 'Unnamed Venue')}</td>
@@ -7285,7 +7308,7 @@
             <td><span class="badge-cat" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">${escapeHtml(v.category || 'shows')}</span></td>
             <td style="font-size: 0.78rem; color: #94a3b8;">${escapeHtml(v.sampleEvent || v.discoveredVia || 'Festival / Discovery feed')}</td>
             <td>
-              ${vUrl ? `<a href="${escapeHtml(vUrl)}" onclick="openCuratorWindow('${escapeHtml(vUrl)}'); return false;" class="ticket-deep-link" style="color: #38bdf8;">Calendar Page ↗</a>` : '<span style="color: var(--text-faint);">None listed</span>'}
+              ${(vUrl && vUrl !== '#') ? `<a href="${escapeHtml(vUrl)}" target="_blank" rel="noopener noreferrer" onclick="openCuratorWindow(this.href); return false;" class="ticket-deep-link" style="color: #38bdf8;">Calendar Page ↗</a>` : '<span style="color: var(--text-faint);">None listed</span>'}
             </td>
             <td style="text-align: center;">
               <div style="display: inline-flex; gap: 6px;">
@@ -7344,7 +7367,7 @@
       }
 
       tbody.innerHTML = sources.map(s => {
-        const sUrl = s.eventsUrl || (s.domain ? `https://${s.domain}` : '#');
+        const sUrl = safeExternalUrl(s.eventsUrl || (s.domain ? `https://${s.domain}` : '#'));
         return `
           <tr class="table-row">
             <td>
@@ -7363,7 +7386,7 @@
                 <button type="button" class="btn-action btn-disapprove" onclick="dismissCandidateSource('${escapeHtml(s.id)}', '${escapeHtml(s.domain)}')" title="Dismiss candidate source">
                   ✕ Dismiss
                 </button>
-                <a href="${escapeHtml(sUrl)}" onclick="openCuratorWindow('${escapeHtml(sUrl)}'); return false;" class="ticket-deep-link" style="color: #94a3b8; font-size: 0.75rem;" title="Visit website">
+                <a href="${escapeHtml(sUrl)}" target="_blank" rel="noopener noreferrer" onclick="openCuratorWindow(this.href); return false;" class="ticket-deep-link" style="color: #94a3b8; font-size: 0.75rem;" title="Visit website">
                   Visit ↗
                 </a>
               </div>
@@ -7499,7 +7522,7 @@
             <td style="font-size: 0.78rem;">
               ${fb.sanitized_price ? `<div style="color: #38bdf8; font-weight: 600;">Price: ${escapeHtml(fb.sanitized_price)}</div>` : ''}
               ${fb.sanitized_url ? `
-                <a href="${escapeHtml(fb.sanitized_url)}" onclick="openCuratorWindow('${escapeHtml(fb.sanitized_url)}'); return false;" class="ticket-deep-link" style="color: #60a5fa; font-size: 0.75rem;">
+                <a href="${escapeHtml(safeExternalUrl(fb.sanitized_url))}" target="_blank" rel="noopener noreferrer nofollow" onclick="openCuratorWindow(this.href); return false;" class="ticket-deep-link" style="color: #60a5fa; font-size: 0.75rem;">
                   Submitted Link ↗
                 </a>
               ` : '<span style="color: var(--text-faint);">No link attached</span>'}
@@ -9150,13 +9173,13 @@
     };
 
     function escapeHtml(str) {
-      if (!str) return '';
+      if (str === null || str === undefined) return '';
       return String(str)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+        .replace(/'/g, '&#39;');
     }
 
     // Load Data
@@ -15289,7 +15312,7 @@
                           <span>🛡️ Inspect Quarantine Queue (${qCount}) ➔</span>
                         </button>
                       ` : ''}
-                      <a href="index.html" target="_blank" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #fff; font-weight: 800; font-size: 0.76rem; padding: 6px 14px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                      <a href="index.html" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #fff; font-weight: 800; font-size: 0.76rem; padding: 6px 14px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                         <span>🌲 View Live Public Web App ↗</span>
                       </a>
                     </div>

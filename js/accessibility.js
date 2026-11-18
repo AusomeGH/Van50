@@ -1,6 +1,40 @@
 // Van50 — Physical Venue Accessibility & Outing Share Engine
 // Backed by Google Maps Verified Attributes, Architectural Specs & Visitor Reviews
 
+// Shared Security Primitives: HTML Entity Escaping & Strict HTTP(S) URL Protocol Allowlisting
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function safeExternalUrl(rawUrl) {
+  if (rawUrl === null || rawUrl === undefined) return '#';
+  const trimmed = String(rawUrl).trim();
+  if (!trimmed || trimmed === '#' || trimmed === 'undefined' || trimmed === 'null') return '#';
+  try {
+    const baseOrigin = (typeof window !== 'undefined' && window.location && /^https?:\/\//i.test(window.location.origin))
+      ? window.location.origin
+      : 'https://ausomegh.github.io';
+    const parsed = new URL(trimmed, baseOrigin);
+    if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+      return parsed.href;
+    }
+    return '#';
+  } catch (_) {
+    return '#';
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.escapeHtml = escapeHtml;
+  window.safeExternalUrl = safeExternalUrl;
+}
+
 window.VENUE_ACCESSIBILITY = {
   // 1. The Cinematheque
   "the cinematheque": {
@@ -728,8 +762,9 @@ window.VENUE_ACCESSIBILITY = {
 
 // Render SVG Accessibility Icons (Green circle for Full, Yellow circle for Partial, Red circle + Cross-out for Inaccessible)
 window.renderAccessBadgeSvg = function(status, size = 18) {
+  const safeSize = Math.max(8, Math.min(128, Number(size) || 18));
   if (status === 'partial') {
-    return `<svg class="access-svg access-svg-partial" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" aria-hidden="true" title="Partially Wheelchair Accessible">
+    return `<svg class="access-svg access-svg-partial" viewBox="0 0 24 24" width="${safeSize}" height="${safeSize}" fill="none" aria-hidden="true" title="Partially Wheelchair Accessible">
       <!-- Yellow Warning Circle Ring around Wheelchair -->
       <circle cx="12" cy="12" r="10.5" stroke="#f59e0b" stroke-width="2.2" fill="rgba(245, 158, 11, 0.15)"/>
       <circle cx="10" cy="6" r="1.5" fill="#f59e0b"/>
@@ -738,7 +773,7 @@ window.renderAccessBadgeSvg = function(status, size = 18) {
     </svg>`;
   }
   if (status === 'inaccessible') {
-    return `<svg class="access-svg access-svg-inaccessible" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" aria-hidden="true" title="Not Wheelchair Accessible (Stairs Only)">
+    return `<svg class="access-svg access-svg-inaccessible" viewBox="0 0 24 24" width="${safeSize}" height="${safeSize}" fill="none" aria-hidden="true" title="Not Wheelchair Accessible (Stairs Only)">
       <!-- Red Circle with Universal Prohibition Cross-Out Slash over Wheelchair -->
       <circle cx="12" cy="12" r="10.5" stroke="#ef4444" stroke-width="2.2" fill="rgba(239, 68, 68, 0.15)"/>
       <circle cx="10" cy="6" r="1.5" fill="#ef4444" opacity="0.8"/>
@@ -748,7 +783,7 @@ window.renderAccessBadgeSvg = function(status, size = 18) {
     </svg>`;
   }
   // Fully accessible: Green circular emblem with wheelchair
-  return `<svg class="access-svg access-svg-full" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" aria-hidden="true" title="Fully Wheelchair Accessible">
+  return `<svg class="access-svg access-svg-full" viewBox="0 0 24 24" width="${safeSize}" height="${safeSize}" fill="none" aria-hidden="true" title="Fully Wheelchair Accessible">
     <circle cx="12" cy="12" r="10.5" stroke="#10b981" stroke-width="2" fill="rgba(16, 185, 129, 0.15)"/>
     <circle cx="10" cy="6" r="1.5" fill="#10b981"/>
     <path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -826,7 +861,7 @@ window.showFloatingToast = function(message) {
     toast.className = 'van50-floating-toast';
     document.body.appendChild(toast);
   }
-  toast.innerHTML = message;
+  toast.textContent = message == null ? '' : String(message);
   toast.classList.add('visible');
   if (window._toastTimeout) clearTimeout(window._toastTimeout);
   window._toastTimeout = setTimeout(() => {
@@ -857,26 +892,27 @@ window.openAccessibilityModal = function(eventId) {
     document.body.appendChild(root);
   }
 
-  const statusClass = access.status || 'accessible';
-  const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(access.query || (ev.venue + ' ' + (ev.address || 'Vancouver BC')))}`;
+  const statusClass = ['accessible', 'partial', 'inaccessible'].includes(access.status) ? access.status : 'accessible';
+  const rawGmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(access.query || (ev.venue + ' ' + (ev.address || 'Vancouver BC')))}`;
+  const gmapsUrl = safeExternalUrl(rawGmapsUrl);
 
   root.innerHTML = `
-    <div class="accessibility-modal-backdrop" id="access-modal-backdrop" onclick="closeAccessibilityModal(event)">
+    <div class="accessibility-modal-backdrop" id="access-modal-backdrop">
       <div class="accessibility-modal-card" role="dialog" aria-modal="true" aria-labelledby="access-modal-title">
         <div class="access-modal-header">
           <div class="access-header-info">
             <span class="access-status-badge status-${statusClass}">
-              ${window.renderAccessBadgeSvg ? window.renderAccessBadgeSvg(statusClass, 16) : access.badgeIcon} <span>${access.label}</span>
+              ${window.renderAccessBadgeSvg ? window.renderAccessBadgeSvg(statusClass, 16) : escapeHtml(access.badgeIcon)} <span>${escapeHtml(access.label)}</span>
             </span>
-            <h3 id="access-modal-title">${ev.venue}</h3>
-            <p class="access-header-address">📍 ${ev.address || 'Vancouver, BC'} • ${ev.neighborhood || 'Vancouver'}</p>
+            <h3 id="access-modal-title">${escapeHtml(ev.venue)}</h3>
+            <p class="access-header-address">📍 ${escapeHtml(ev.address || 'Vancouver, BC')} • ${escapeHtml(ev.neighborhood || 'Vancouver')}</p>
           </div>
-          <button type="button" class="btn-modal-close" onclick="closeAccessibilityModal()" aria-label="Close accessibility details">✕</button>
+          <button type="button" class="btn-modal-close" aria-label="Close accessibility details">✕</button>
         </div>
 
         <div class="access-modal-body">
           <div class="access-summary-banner status-${statusClass}">
-            <p><strong>Overview:</strong> ${access.summary}</p>
+            <p><strong>Overview:</strong> ${escapeHtml(access.summary)}</p>
           </div>
 
           <div class="access-dimensions-grid">
@@ -885,7 +921,7 @@ window.openAccessibilityModal = function(eventId) {
                 <span class="dim-icon">🚪</span>
                 <strong>Entrance &amp; Doors</strong>
               </div>
-              <p>${access.entrance}</p>
+              <p>${escapeHtml(access.entrance)}</p>
             </div>
 
             <div class="access-dim-card">
@@ -893,7 +929,7 @@ window.openAccessibilityModal = function(eventId) {
                 <span class="dim-icon">💺</span>
                 <strong>Seating &amp; Sightlines</strong>
               </div>
-              <p>${access.seating}</p>
+              <p>${escapeHtml(access.seating)}</p>
             </div>
 
             <div class="access-dim-card">
@@ -901,7 +937,7 @@ window.openAccessibilityModal = function(eventId) {
                 <span class="dim-icon">🚻</span>
                 <strong>Washrooms / Restrooms</strong>
               </div>
-              <p>${access.washroom}</p>
+              <p>${escapeHtml(access.washroom)}</p>
             </div>
 
             <div class="access-dim-card">
@@ -909,7 +945,7 @@ window.openAccessibilityModal = function(eventId) {
                 <span class="dim-icon">🛗</span>
                 <strong>Elevator &amp; Levels</strong>
               </div>
-              <p>${access.elevator}</p>
+              <p>${escapeHtml(access.elevator)}</p>
             </div>
           </div>
 
@@ -918,8 +954,8 @@ window.openAccessibilityModal = function(eventId) {
               <span class="dim-icon">🚌</span>
               <strong>Transit &amp; Parking Proximity</strong>
             </div>
-            <p>${access.transit}</p>
-            <p style="margin-top: 6px; color: var(--text-secondary); font-size: 0.82rem;">🅿️ ${access.parking}</p>
+            <p>${escapeHtml(access.transit)}</p>
+            <p style="margin-top: 6px; color: var(--text-secondary); font-size: 0.82rem;">🅿️ ${escapeHtml(access.parking)}</p>
           </div>
 
           <div class="access-reviews-quote-box">
@@ -927,19 +963,26 @@ window.openAccessibilityModal = function(eventId) {
               <span class="quote-icon">★</span>
               <span>Google Maps Community &amp; Visitor Insights</span>
             </div>
-            <p class="quote-text">“${access.googleReviewsNote}”</p>
+            <p class="quote-text">“${escapeHtml(access.googleReviewsNote)}”</p>
           </div>
         </div>
 
         <div class="access-modal-footer">
-          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-gmaps-direct">
+          <a href="${escapeHtml(gmapsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-gmaps-direct">
             View on Google Maps (Reviews &amp; Photos) ↗
           </a>
-          <button type="button" class="btn-modal-done" onclick="closeAccessibilityModal()">Done</button>
+          <button type="button" class="btn-modal-done">Done</button>
         </div>
       </div>
     </div>
   `;
+
+  const backdropEl = root.querySelector('#access-modal-backdrop');
+  if (backdropEl) {
+    backdropEl.addEventListener('click', (e) => window.closeAccessibilityModal(e));
+  }
+  root.querySelector('.btn-modal-close')?.addEventListener('click', () => window.closeAccessibilityModal());
+  root.querySelector('.btn-modal-done')?.addEventListener('click', () => window.closeAccessibilityModal());
 
   document.body.style.overflow = 'hidden';
   if (window._accessModalEscListener) {

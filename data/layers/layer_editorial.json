@@ -9584,53 +9584,6 @@
     "step4_grounded_at": "2026-11-08T01:36:24.097Z"
   },
   {
-    "id": "the-cinematheque-castillo-2026-11-17",
-    "event_id": "the-cinematheque-castillo-2026-11-17",
-    "clean_title": "Castillo",
-    "artist": "Abigail Mallia",
-    "lineup": [
-      "Abigail Mallia"
-    ],
-    "category": "cinema",
-    "categories": [
-      "cinema",
-      "social",
-      "festivals"
-    ],
-    "event_archetype": "cinema",
-    "archetype": "cinema",
-    "lifecycle_type": "time_bound_event",
-    "description": "Directed by Abigail Mallia and adapted from Clare Azzopardi’s novel, this gripping Maltese drama follows Amanda as she unravels long-buried family secrets set against the island's turbulent political past. The investigation blurs the line between real-world trauma and the fictional exploits of Inspector Castillo in a search for hidden truths.",
-    "restrictions": "All Ages",
-    "frequencyLabel": "One-Time Event",
-    "dateSchedule": "2026-11-17 • 8:20 PM",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
-    "input_fingerprint": "049c5becd15b10f1548b81bc9428ea4c58946cd3",
-    "source_engine": "antigravity_1event_worker",
-    "enriched_at": "2026-11-08T01:29:18.253Z",
-    "audited_at": "2026-11-08T01:29:18.253Z",
-    "step_free_entrance": "Level ground-floor entrance with automated push-button power doors directly on Howe Street",
-    "elevator_lift": "not_applicable",
-    "accessible_washrooms": "Wheelchair-accessible single-stall, all-gender washroom with automated push-button door (39-inch wide opening)",
-    "sensory_calibrations": null,
-    "hearing_loop": null,
-    "service_animals": "Certified guide dogs and service animals permitted",
-    "payment_methods": "Debit, credit card (Visa, Mastercard, Amex), and cash accepted",
-    "water_refill_station": null,
-    "outside_food_policy": "No outside commercial food or beverages permitted inside the cinema auditorium",
-    "coat_check": null,
-    "film_runtime_minutes": null,
-    "film_language_subtitles": null,
-    "projection_format": "DCP Digital Cinema Projection",
-    "print_condition_notes": null,
-    "concession_alcohol": "Non-licensed auditorium (freshly popped popcorn, candy, local baked goods, tea, coffee, and fountain sodas; no alcohol served)",
-    "festival_pass_rules": null,
-    "seat_reservation_type": "General Admission (Unassigned Seating)",
-    "step4_grounded_at": "2026-11-08T01:36:24.097Z"
-  },
-  {
     "id": "the-cinematheque-still-afloat-2026-11-19",
     "event_id": "the-cinematheque-still-afloat-2026-11-19",
     "clean_title": "Still Afloat",
@@ -18347,52 +18300,6 @@
     "step4_grounded_at": "2026-11-06T18:00:20.766Z"
   },
   {
-    "id": "roundhouse-arts-recr-merry-gay-bright-2026-12-20",
-    "event_id": "roundhouse-arts-recr-merry-gay-bright-2026-12-20",
-    "clean_title": "Merry, Gay, & Bright",
-    "artist": null,
-    "lineup": [],
-    "category": "markets",
-    "categories": [
-      "markets",
-      "arts",
-      "social",
-      "festivals",
-      "free-public-access"
-    ],
-    "event_archetype": "festival",
-    "archetype": "festival",
-    "lifecycle_type": "time_bound_event",
-    "description": "Browse a vibrant curated queer market showcasing handcrafted artisanal goods, innovative art, and design from local 2SLGBTQIA+ creators. Between shopping, catch high-energy live performances from an electrifying lineup of drag artists celebrating self-expression and community.",
-    "restrictions": "All Ages / Family Friendly",
-    "frequencyLabel": "Weekly Drop-in",
-    "dateSchedule": "2026-12-20 • 11:00 AM",
-    "holiday_affiliation": "christmas",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
-    "input_fingerprint": "a1551f120dca3193fe618907339283b7a708880e",
-    "source_engine": "antigravity_1event_worker",
-    "enriched_at": "2026-11-06T17:42:51.496Z",
-    "audited_at": "2026-11-06T17:42:51.496Z",
-    "step_free_entrance": "Level, step-free main entrance with curb cuts and automated push-button power doors",
-    "elevator_lift": "not_applicable",
-    "accessible_washrooms": "Designated universal/gender-neutral accessible washroom (Room 112) with grab bars, lowered sink/mirror, and wide threshold; wheelchair accessible stalls in multi-stall washrooms",
-    "sensory_calibrations": null,
-    "hearing_loop": null,
-    "service_animals": "Certified guide and service animals welcome throughout the facility (BC Guide Dog & Service Dog Act compliant)",
-    "payment_methods": "Debit, Visa, MasterCard, Cash (reception desk for drop-in recreation programs)",
-    "water_refill_station": null,
-    "outside_food_policy": "Outside snacks, meals, and non-alcoholic drinks permitted in public lobby and seating areas; no alcohol permitted unless part of a licensed, permitted event",
-    "coat_check": null,
-    "festival_hub_directory": null,
-    "festival_pass_type": null,
-    "rush_seating_rules": null,
-    "central_box_office": null,
-    "volunteer_ticket_exchange": null,
-    "step4_grounded_at": "2026-11-06T18:00:20.766Z"
-  },
-  {
     "id": "roundhouse-community-33rd-annual-winter-solstice-fe-2026-12-21",
     "event_id": "roundhouse-community-33rd-annual-winter-solstice-fe-2026-12-21",
     "clean_title": "33rd Annual Winter Solstice Festival",
@@ -20458,9 +20365,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "russell-brewing-taproom-standup-comedy",
@@ -20486,9 +20393,9 @@
     "restrictions": "19+ (Valid Government Photo ID Required)",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "clayton-public-house-standup-comedy",
@@ -20514,9 +20421,9 @@
     "restrictions": "19+ (Valid Government Photo ID Required)",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "newton-cultural-centre-coffeehouse-concert",
@@ -20543,9 +20450,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "bell-performing-arts-centre-touring-series",
@@ -20572,9 +20479,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "museum-of-surrey-exhibitions-heritage-gallery",
@@ -20601,9 +20508,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -20630,9 +20537,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -20660,9 +20567,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "landmark-cinemas-guildford-reel-deals",
@@ -20687,9 +20594,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "craving-for-a-game-friday-night-magic-board-games",
@@ -20716,9 +20623,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "project-climbing-centre-cloverdale-bouldering",
@@ -20745,9 +20652,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "central-city-fun-park-roller-skating-arcade",
@@ -20774,9 +20681,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -20803,9 +20710,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "grandview-heights-aquatic-centre-drop-in",
@@ -20832,9 +20739,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -20861,9 +20768,9 @@
     "restrictions": "19+ for wine tasting flights (scenic vineyard patio open to accompanied guests)",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "bear-creek-park-gardens-trails-mini-train",
@@ -20889,9 +20796,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": "Bear Creek Lights",
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -20917,9 +20824,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -20945,9 +20852,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -20973,9 +20880,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "bell-performing-arts-bhajan-clubbing-2-0",
@@ -32328,9 +32235,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": "Surrey Tree Lighting Festival & Holiday Market",
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "revue-stage-dirty-little-secrets-improv-sh-2026-11-21",
@@ -33618,9 +33525,9 @@
     "restrictions": "19+ after 9:00 PM",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "surrey-arts-centre-studio-theatre-drama-improv",
@@ -33647,9 +33554,9 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "the-cinematheque-green-light-18",
@@ -42620,46 +42527,6 @@
     "rainout_policy": null
   },
   {
-    "id": "father-bauer-arena-a-ubc-thunderbirds-women-s-hocke-2026-12-05",
-    "event_id": "father-bauer-arena-a-ubc-thunderbirds-women-s-hocke-2026-12-05",
-    "clean_title": "UBC Thunderbirds Women's Hockey vs. Manitoba Bisons",
-    "artist": null,
-    "lineup": null,
-    "category": "sports",
-    "categories": [
-      "sports"
-    ],
-    "event_archetype": "active_rec",
-    "archetype": "active_rec",
-    "lifecycle_type": "time_bound_event",
-    "description": "Cheer on the UBC Thunderbirds women's hockey team as they face off on home ice against the visiting Manitoba Bisons. Expect fast-paced collegiate hockey action and spirited university competition at the Doug Mitchell Thunderbird Sports Centre.",
-    "restrictions": "All Ages / Family Friendly",
-    "frequencyLabel": "One-off",
-    "dateSchedule": "2026-12-05 • 3:00 PM",
-    "is_religious": false,
-    "curator_instructions": null,
-    "curator_notes": null,
-    "input_fingerprint": "e07fa2b721ef364e0206cdfd214bf9002141f61d",
-    "source_engine": "antigravity_1event_worker",
-    "enriched_at": "2026-11-18T10:57:20.327Z",
-    "audited_at": "2026-11-18T10:57:20.328Z",
-    "step_free_entrance": "Step-free, grade-level accessible main entrance via Wesbrook Mall with automated doors and an accessible drop-off zone at the east entrance",
-    "elevator_lift": "Two public passenger elevators providing full barrier-free vertical access between the arena floor and main concourse levels",
-    "accessible_washrooms": "Dedicated universal accessible single-occupant washrooms on the south concourse (Section 100) and north concourse (Sections 116/117), plus accessible stalls in all multi-stall restrooms",
-    "sensory_calibrations": null,
-    "hearing_loop": null,
-    "service_animals": "Certified guide dogs and service animals assisting individuals with disabilities are permitted; pets prohibited during ticketed events",
-    "payment_methods": "Major credit cards (Visa, Mastercard, Amex), debit, and contactless mobile pay (Apple Pay, Google Pay); cashless venue for concessions",
-    "water_refill_station": null,
-    "outside_food_policy": "Strictly no outside commercial food or beverages permitted into ticketed arena events; empty reusable water bottles permitted for refill at drinking fountains",
-    "coat_check": null,
-    "digital_waiver_required": null,
-    "required_safety_gear": null,
-    "locker_availability": null,
-    "physical_intensity_level": null,
-    "rainout_policy": null
-  },
-  {
     "id": "yuk-yuk-s-niagara-fa-frank-spadone-2026-11-20",
     "event_id": "yuk-yuk-s-niagara-fa-frank-spadone-2026-11-20",
     "clean_title": "Frank Spadone",
@@ -42926,8 +42793,8 @@
     "restrictions": "All Ages",
     "festival_affiliation": null,
     "source_engine": "enricher_ai_v2",
-    "enriched_at": "2026-11-18T10:58:15.790Z",
-    "audited_at": "2026-11-18T10:58:15.790Z",
-    "step4_grounded_at": "2026-11-18T10:58:15.790Z"
+    "enriched_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-18T19:09:36.873Z",
+    "step4_grounded_at": "2026-11-18T19:09:36.873Z"
   }
 ]

@@ -1,6 +1,77 @@
 // Van50 -- Application State Management, Multi-Filter Engine & UI Orchestration
 // Strictly displays events under $50.00 CAD total out-of-pocket per person.
 
+// ==============================================================================
+// 0A. SHARED CLIENT-SIDE SECURITY PRIMITIVES (XSS Escaping, Safe URLs & Rate-Limit)
+// ==============================================================================
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function safeExternalUrl(rawUrl) {
+  if (typeof rawUrl !== 'string') return '#';
+  const trimmed = rawUrl.trim();
+  if (!trimmed || trimmed === '#') return '#';
+  try {
+    const baseOrigin = (typeof window !== 'undefined' && window.location && /^https?:$/i.test(window.location.protocol))
+      ? window.location.origin
+      : 'https://van50.local';
+    const parsed = new URL(trimmed, baseOrigin);
+    if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+      return parsed.href;
+    }
+    return '#';
+  } catch (_) {
+    return '#';
+  }
+}
+
+window.escapeHtml = escapeHtml;
+window.safeExternalUrl = safeExternalUrl;
+
+const FORM_SUBMISSION_COOLDOWN_MS = 30000;
+const _formCooldownMemory = Object.create(null);
+
+function getFormCooldownRemainingSec(formKey) {
+  const now = Date.now();
+  let lastTs = Number(_formCooldownMemory[formKey] || 0);
+  try {
+    const stored = Number(sessionStorage.getItem('van50_form_cooldown_' + formKey) || 0);
+    if (stored > lastTs) lastTs = stored;
+  } catch (_) { }
+  if (!lastTs || now < lastTs) return 0;
+  const elapsed = now - lastTs;
+  if (elapsed >= FORM_SUBMISSION_COOLDOWN_MS) return 0;
+  return Math.max(1, Math.ceil((FORM_SUBMISSION_COOLDOWN_MS - elapsed) / 1000));
+}
+
+function recordFormSubmissionTimestamp(formKey) {
+  const now = Date.now();
+  _formCooldownMemory[formKey] = now;
+  try {
+    sessionStorage.setItem('van50_form_cooldown_' + formKey, String(now));
+  } catch (_) { }
+}
+
+function renderSafeMailtoStatus(containerEl, prefixText, mailtoHref) {
+  if (!containerEl) return;
+  containerEl.textContent = '';
+  containerEl.appendChild(document.createTextNode(prefixText + ' '));
+  if (typeof mailtoHref === 'string' && /^mailto:/i.test(mailtoHref)) {
+    const linkEl = document.createElement('a');
+    linkEl.href = mailtoHref;
+    linkEl.textContent = 'Click to send via Email ↗';
+    linkEl.style.cssText = 'color:#fff;font-weight:700;text-decoration:underline;margin-left:4px;';
+    containerEl.appendChild(linkEl);
+  }
+}
+
 // 0. CORE TAXONOMY & CLUSTER CONSTANTS (Authoritative Defaults)
 window.VANCOUVER_NEIGHBORHOODS = window.VANCOUVER_NEIGHBORHOODS || [
   "Downtown, Gastown & Yaletown",
@@ -419,6 +490,21 @@ let ALL_EVENTS = (typeof window !== 'undefined' && (window.VAN50_EVENTS || windo
   ? (window.VAN50_EVENTS || window.VANCOUVER_EVENTS).map(normalizeActiveEvent)
   : (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS.map(normalizeActiveEvent) : (typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS.map(normalizeActiveEvent) : []));
 
+const ALLOWED_URL_CATEGORIES = new Set([
+  'all', 'music', 'shows', 'cinema', 'outdoors', 'arts',
+  'social', 'trivia', 'markets', 'festivals', 'sports', 'free-public-access'
+]);
+const ALLOWED_URL_DAYS = new Set(['all', 'daily', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']);
+const ALLOWED_URL_TIMES = new Set(['all', 'early-morning', 'afternoon', 'early-evening', 'late-evening']);
+const ALLOWED_URL_FREQUENCIES = new Set(['all', 'one-off', 'weekly', 'monthly', 'daily', 'limited-run', 'seasonal']);
+const ALLOWED_URL_SORTS = new Set(['date', 'price', 'price-asc', 'price-desc', 'title']);
+
+function sanitizeUrlEventIdToken(raw) {
+  const cleaned = String(raw || '').trim().slice(0, 120);
+  if (!cleaned || /[<>"'`\u0000-\u001F]/.test(cleaned)) return '';
+  return cleaned;
+}
+
 function restoreFiltersFromUrlParams() {
   if (typeof window === 'undefined' || !window.location || !window.location.search) return;
   const params = new URLSearchParams(window.location.search);
@@ -432,7 +518,7 @@ function restoreFiltersFromUrlParams() {
   }
 
   if (params.has('q')) {
-    state.searchQuery = (params.get('q') || '').trim();
+    state.searchQuery = (params.get('q') || '').trim().slice(0, 200);
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.value = state.searchQuery;
     const clearSearchBtn = document.getElementById('btn-clear-search');
@@ -440,13 +526,17 @@ function restoreFiltersFromUrlParams() {
   }
 
   if (params.has('cat')) {
-    const catVal = (params.get('cat') || '').trim();
-    if (catVal) state.category = catVal;
+    const catVal = (params.get('cat') || '').trim().toLowerCase().slice(0, 40);
+    if (catVal && ALLOWED_URL_CATEGORIES.has(catVal)) {
+      state.category = catVal;
+    }
   }
 
   if (params.has('fest')) {
-    const festVal = (params.get('fest') || '').trim();
-    if (festVal) state.selectedThemeFilter = festVal;
+    const festVal = (params.get('fest') || '').trim().slice(0, 80);
+    if (festVal && /^[a-z0-9:_-]+$/i.test(festVal)) {
+      state.selectedThemeFilter = festVal;
+    }
   }
 
   if (params.has('cost')) {
@@ -483,17 +573,21 @@ function restoreFiltersFromUrlParams() {
   }
 
   if (params.has('day')) {
-    const dayVal = (params.get('day') || '').trim();
-    if (dayVal) state.dayOfWeek = dayVal;
+    const dayVal = (params.get('day') || '').trim().toLowerCase().slice(0, 20);
+    if (dayVal && ALLOWED_URL_DAYS.has(dayVal)) {
+      state.dayOfWeek = dayVal;
+    }
   }
 
   if (params.has('time')) {
-    const timeVal = (params.get('time') || '').trim();
-    if (timeVal) state.timeSlot = timeVal;
+    const timeVal = (params.get('time') || '').trim().toLowerCase().slice(0, 30);
+    if (timeVal && ALLOWED_URL_TIMES.has(timeVal)) {
+      state.timeSlot = timeVal;
+    }
   }
 
   if (params.has('hood')) {
-    const hoodVal = (params.get('hood') || '').trim();
+    const hoodVal = (params.get('hood') || '').trim().slice(0, 400);
     if (hoodVal && typeof window.NEIGHBORHOODS !== 'undefined') {
       if (hoodVal.toLowerCase() === 'all') {
         state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
@@ -508,13 +602,17 @@ function restoreFiltersFromUrlParams() {
   }
 
   if (params.has('rec')) {
-    const recVal = (params.get('rec') || '').trim();
-    if (recVal) state.frequency = recVal;
+    const recVal = (params.get('rec') || '').trim().toLowerCase().slice(0, 30);
+    if (recVal && ALLOWED_URL_FREQUENCIES.has(recVal)) {
+      state.frequency = recVal;
+    }
   }
 
   if (params.has('sort')) {
-    const sortVal = (params.get('sort') || '').trim();
-    if (sortVal) state.sortBy = sortVal;
+    const sortVal = (params.get('sort') || '').trim().toLowerCase().slice(0, 30);
+    if (sortVal && ALLOWED_URL_SORTS.has(sortVal)) {
+      state.sortBy = sortVal;
+    }
   }
 
   if (params.has('focus')) {
@@ -525,11 +623,12 @@ function restoreFiltersFromUrlParams() {
   }
 
   if (params.has('plan')) {
-    const rawPlan = (params.get('plan') || '').trim();
+    const rawPlan = (params.get('plan') || '').trim().slice(0, 2000);
     const parsedIds = rawPlan
       .split(',')
+      .slice(0, 50)
       .map(s => {
-        try { return decodeURIComponent(s.trim()); } catch (_) { return s.trim(); }
+        try { return sanitizeUrlEventIdToken(decodeURIComponent(s.trim())); } catch (_) { return sanitizeUrlEventIdToken(s.trim()); }
       })
       .filter(Boolean);
     state.sharedPlanIds = parsedIds.length > 0 ? parsedIds : null;
@@ -2171,8 +2270,108 @@ function setupEventListeners() {
     });
   }
 
-  // Delegated listener for Outbound Ticket & Event Link clicks
+  // Delegated listener for Outbound Ticket & Event Link clicks + CSP-safe data-action dispatch
+  function dispatchDataAction(actionEl, e) {
+    if (!actionEl) return false;
+    const action = actionEl.getAttribute('data-action');
+    if (!action) return false;
+
+    switch (action) {
+      case 'cycle-theme-box':
+        cycleThemeBoxState(actionEl.getAttribute('data-theme-key') || '', e);
+        return true;
+      case 'clear-selected-tag':
+        clearSelectedTag();
+        return true;
+      case 'toggle-theme':
+        toggleThemeFilter(actionEl.getAttribute('data-theme-key') || '', e);
+        return true;
+      case 'exclude-theme':
+        toggleExcludeTheme(actionEl.getAttribute('data-theme-key') || '', e);
+        return true;
+      case 'reset-category-search':
+        resetCategoryForSearch();
+        return true;
+      case 'clear-selected-venue':
+        clearSelectedVenue();
+        return true;
+      case 'reset-all-filters':
+        resetAllFilters();
+        return true;
+      case 'filter-category':
+        if (e) e.stopPropagation();
+        filterByCategory(actionEl.getAttribute('data-cat-id') || 'all');
+        return true;
+      case 'scroll-time-group':
+        smoothScrollToTimeGroup(actionEl.getAttribute('data-group-id') || '', e);
+        return true;
+      case 'toggle-time-group':
+        if (e) e.stopPropagation();
+        toggleTimeGroup(actionEl.getAttribute('data-group-key') || '');
+        return true;
+      case 'toggle-admission-tiers':
+        toggleAdmissionTiers(
+          actionEl.getAttribute('data-bucket-key') || '',
+          actionEl.getAttribute('data-event-id') || '',
+          e
+        );
+        return true;
+      case 'filter-venue':
+        if (e) e.stopPropagation();
+        filterByVenue(actionEl.getAttribute('data-venue') || '');
+        return true;
+      case 'toggle-weekly-hours':
+        window.toggleWeeklyHours(actionEl.getAttribute('data-event-id') || '', e, actionEl);
+        return true;
+      case 'toggle-showings':
+        window.toggleShowings(actionEl.getAttribute('data-event-id') || '', e, actionEl);
+        return true;
+      case 'card-accordion':
+        window.toggleMobileCardAccordion(actionEl.getAttribute('data-event-id') || '', e);
+        return true;
+      case 'open-access-modal':
+        if (e) e.stopPropagation();
+        if (typeof window.openAccessibilityModal === 'function') {
+          window.openAccessibilityModal(actionEl.getAttribute('data-event-id') || '');
+        }
+        return true;
+      case 'share-event':
+        window.shareEvent(actionEl.getAttribute('data-event-id') || '', actionEl, e);
+        return true;
+      case 'copy-event-link':
+        window.copyEventLinkOnly(actionEl.getAttribute('data-event-id') || '', actionEl, e);
+        return true;
+      case 'toggle-save-event':
+        if (e) e.stopPropagation();
+        window.toggleSaveEvent(actionEl.getAttribute('data-event-id') || '');
+        return true;
+      case 'toggle-saved-expand':
+        window.toggleSavedCardExpand(actionEl.getAttribute('data-event-id') || '', e);
+        return true;
+      case 'save-shared-plan':
+        window.saveSharedPlanToMyList(actionEl);
+        return true;
+      case 'clear-shared-plan':
+        window.clearSharedPlanView();
+        return true;
+      case 'set-event-focus':
+        window.setEventFocusFilter(actionEl.getAttribute('data-focus-mode') || 'all');
+        return true;
+      case 'dismiss-filter-chip':
+        window.dismissSecondaryFilterChip(actionEl.getAttribute('data-chip-key') || '');
+        return true;
+      default:
+        return false;
+    }
+  }
+
   document.addEventListener('click', (e) => {
+    const blockedAnchor = e.target.closest('a[target="_blank"]');
+    if (blockedAnchor && blockedAnchor.getAttribute('href') === '#') {
+      e.preventDefault();
+      return;
+    }
+
     const ctaBtn = e.target.closest('.btn-ticket-cta');
     if (ctaBtn) {
       const card = ctaBtn.closest('.event-card');
@@ -2184,7 +2383,44 @@ function setupEventListeners() {
       const pathKey = eventId ? `tickets/${eventId}` : 'tickets/external';
       window.trackAnonymousEvent(pathKey, `Tickets: ${label}`);
     }
+
+    const actionEl = e.target.closest('[data-action]');
+    if (actionEl) {
+      dispatchDataAction(actionEl, e);
+    }
   });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const roleBtn = e.target.closest('[role="button"][data-action]');
+    if (roleBtn && roleBtn === e.target) {
+      e.preventDefault();
+      dispatchDataAction(roleBtn, e);
+    }
+  });
+
+  const resetTopBtn = document.getElementById('btn-reset-filters-top');
+  if (resetTopBtn) {
+    resetTopBtn.addEventListener('click', resetAllFilters);
+  }
+  const sharePlanBtnEl = document.getElementById('share-plan-btn');
+  if (sharePlanBtnEl) {
+    sharePlanBtnEl.addEventListener('click', () => {
+      if (typeof window.shareOutingPlan === 'function') window.shareOutingPlan(sharePlanBtnEl);
+    });
+  }
+  const copyPlanLinkBtnEl = document.getElementById('copy-plan-link-btn');
+  if (copyPlanLinkBtnEl) {
+    copyPlanLinkBtnEl.addEventListener('click', () => {
+      if (typeof window.copyOutingPlanLinkOnly === 'function') window.copyOutingPlanLinkOnly(copyPlanLinkBtnEl);
+    });
+  }
+  const clearPlanBtnEl = document.getElementById('clear-plan-btn');
+  if (clearPlanBtnEl) {
+    clearPlanBtnEl.addEventListener('click', () => {
+      if (typeof window.clearSavedEvents === 'function') window.clearSavedEvents();
+    });
+  }
 
   // Search input & interactive controls
   const searchInput = document.getElementById('search-input');
@@ -2203,14 +2439,18 @@ function setupEventListeners() {
     const _urlParams = new URLSearchParams(window.location.search);
     const _qParam = _urlParams.get('search') || _urlParams.get('q');
     if (_qParam) {
-      searchInput.value = _qParam;
-      state.searchQuery = _qParam.trim();
+      const cleanQ = String(_qParam).trim().slice(0, 200);
+      searchInput.value = cleanQ;
+      state.searchQuery = cleanQ;
       updateClearBtnVisibility();
     }
 
     const _catParam = _urlParams.get('category') || _urlParams.get('cat');
     if (_catParam) {
-      state.category = _catParam.trim();
+      const cleanCat = String(_catParam).trim().toLowerCase().slice(0, 40);
+      if (ALLOWED_URL_CATEGORIES.has(cleanCat)) {
+        state.category = cleanCat;
+      }
     }
 
     const _hideDailyParam = _urlParams.get('hideDaily') || _urlParams.get('showsOnly');
@@ -2767,13 +3007,25 @@ function setupEventListeners() {
         return;
       }
 
-      const venueName = (venueInput ? venueInput.value : '').trim();
+      const cooldownSec = getFormCooldownRemainingSec('price_feedback');
+      if (cooldownSec > 0) {
+        if (statusBox) {
+          statusBox.style.display = 'block';
+          statusBox.style.background = 'rgba(245, 158, 11, 0.15)';
+          statusBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
+          statusBox.style.color = '#fcd34d';
+          statusBox.textContent = `Please wait ${cooldownSec}s before submitting another price update.`;
+        }
+        return;
+      }
+
+      const venueName = (venueInput ? venueInput.value : '').trim().slice(0, 160);
       const pintVal = pintInput && pintInput.value.trim() !== '' ? parseFloat(pintInput.value.trim()) : null;
       const cocktailVal = cocktailInput && cocktailInput.value.trim() !== '' ? parseFloat(cocktailInput.value.trim()) : null;
       const isAllIn = allInCheck ? allInCheck.checked : false;
-      const note = noteInput ? noteInput.value.trim() : '';
+      const note = noteInput ? noteInput.value.trim().slice(0, 200) : '';
 
-      if (pintVal === null && cocktailVal === null) {
+      if ((pintVal === null || isNaN(pintVal)) && (cocktailVal === null || isNaN(cocktailVal))) {
         if (statusBox) {
           statusBox.style.display = 'block';
           statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
@@ -2790,10 +3042,11 @@ function setupEventListeners() {
       }
 
       const sendStaticPriceFallback = () => {
+        recordFormSubmissionTimestamp('price_feedback');
         const summaryLines = [
           `Venue: ${venueName}`,
-          pintVal !== null ? `Cheapest Pint: $${pintVal.toFixed(2)} CAD` : null,
-          cocktailVal !== null ? `Cheapest Cocktail/Highball: $${cocktailVal.toFixed(2)} CAD` : null,
+          (pintVal !== null && !isNaN(pintVal)) ? `Cheapest Pint: $${pintVal.toFixed(2)} CAD` : null,
+          (cocktailVal !== null && !isNaN(cocktailVal)) ? `Cheapest Cocktail/Highball: $${cocktailVal.toFixed(2)} CAD` : null,
           `Tax Included: ${isAllIn ? 'Yes (All-In)' : 'No (+BC Liquor Tax)'}`,
           note ? `Note / Source: ${note}` : null
         ].filter(Boolean).join('\n');
@@ -2806,7 +3059,7 @@ function setupEventListeners() {
           statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
           statusBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
           statusBox.style.color = '#6ee7b7';
-          statusBox.innerHTML = `✓ Prepared for Van50 Curators (copied to clipboard). <a href="${mailtoHref}" style="color:#fff;font-weight:700;text-decoration:underline;margin-left:4px;">Click to send via Email ↗</a>`;
+          renderSafeMailtoStatus(statusBox, '✓ Prepared for Van50 Curators (copied to clipboard).', mailtoHref);
         }
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -2836,6 +3089,7 @@ function setupEventListeners() {
 
         const data = await res.json();
         if (res.ok && data.success) {
+          recordFormSubmissionTimestamp('price_feedback');
           if (statusBox) {
             statusBox.style.display = 'block';
             statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
@@ -3276,20 +3530,21 @@ function renderFestivalSpotlight() {
             type="button"
             class="festival-theme-item-row festival-theme-box-btn ${isSelected ? 'item-row-selected' : ''} ${isExcluded ? 'item-row-excluded' : ''}"
             data-theme-state="${stateAttr}"
+            data-action="cycle-theme-box"
+            data-theme-key="${escapeHtml(g.key)}"
             aria-pressed="${isSelected ? 'true' : (isExcluded ? 'mixed' : 'false')}"
-            onclick="cycleThemeBoxState('${g.key}', event)"
-            title="${boxTitle.replace(/"/g, '&quot;')}"
+            title="${escapeHtml(boxTitle)}"
           >
             <div class="theme-box-top-row">
-              <strong class="theme-item-name">${meta.label}</strong>
-              <span class="theme-item-count">(${g.count})</span>
+              <strong class="theme-item-name">${escapeHtml(meta.label)}</strong>
+              <span class="theme-item-count">(${Number(g.count) || 0})</span>
             </div>
             <div class="theme-item-subrow">
-              ${(g.urgencyBadge && !/live\s*now/i.test(g.urgencyBadge)) ? `<span class="festival-urgency-badge ${g.urgencyClass || ''}">${g.urgencyBadge}</span>` : ''}
-              ${meta.datesLabel ? `<span class="theme-item-dates-pill">${meta.datesLabel}</span>` : ''}
+              ${(g.urgencyBadge && !/live\s*now/i.test(g.urgencyBadge)) ? `<span class="festival-urgency-badge ${escapeHtml(g.urgencyClass || '')}">${escapeHtml(g.urgencyBadge)}</span>` : ''}
+              ${meta.datesLabel ? `<span class="theme-item-dates-pill">${escapeHtml(meta.datesLabel)}</span>` : ''}
               ${stateBadgeHtml}
             </div>
-            ${meta.shortDesc ? `<span class="theme-item-short-desc">${meta.shortDesc}</span>` : ''}
+            ${meta.shortDesc ? `<span class="theme-item-short-desc">${escapeHtml(meta.shortDesc)}</span>` : ''}
           </button>
         `;
   }).join('')}
@@ -3485,7 +3740,7 @@ function renderCategoryPills() {
     pill.type = 'button';
     pill.className = `category-pill ${state.category === cat.id ? 'active' : ''}${isExtra ? ' category-pill-extra' : ''}`;
     const displayLabel = cat.shortLabel || (cat.label === 'Free Public Access' ? 'Free Access' : cat.label);
-    pill.innerHTML = `<span class="cat-pill-label">${displayLabel}</span>`;
+    pill.innerHTML = `<span class="cat-pill-label">${escapeHtml(displayLabel)}</span>`;
     pill.title = cat.label;
     pill.setAttribute('data-goatcounter-click', 'category-' + cat.id);
     pill.setAttribute('data-goatcounter-title', 'Category: ' + cat.label);
@@ -3601,7 +3856,7 @@ function renderQuickCategoryStrip(poolOverride) {
     btn.className = `quick-cat-pill ${isActive ? 'active' : ''}${isZero ? ' is-empty-cat' : ''}`;
     btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     if (count !== null) {
-      btn.innerHTML = `<span class="quick-cat-label">${item.label}</span><span class="quick-cat-count">${count}</span>`;
+      btn.innerHTML = `<span class="quick-cat-label">${escapeHtml(item.label)}</span><span class="quick-cat-count">${Number(count) || 0}</span>`;
     } else {
       btn.textContent = item.label;
     }
@@ -3624,7 +3879,7 @@ function renderDayPills() {
   DAYS_OF_WEEK.forEach(day => {
     const pill = document.createElement('button');
     pill.className = `day-pill ${state.dayOfWeek === day.id ? 'active' : ''}`;
-    pill.innerHTML = day.icon ? `<span>${day.icon}</span> <span>${day.label}</span>` : `<span>${day.label}</span>`;
+    pill.innerHTML = day.icon ? `<span>${escapeHtml(day.icon)}</span> <span>${escapeHtml(day.label)}</span>` : `<span>${escapeHtml(day.label)}</span>`;
     pill.title = day.full || day.label;
     pill.addEventListener('click', () => {
       state.dayOfWeek = day.id;
@@ -3643,7 +3898,7 @@ function renderTimePills() {
   TIME_SLOTS.forEach(slot => {
     const pill = document.createElement('button');
     pill.className = `time-pill ${state.timeSlot === slot.id ? 'active' : ''}`;
-    pill.innerHTML = slot.icon ? `<span>${slot.icon}</span> <span>${slot.label}</span>` : `<span>${slot.label}</span>`;
+    pill.innerHTML = slot.icon ? `<span>${escapeHtml(slot.icon)}</span> <span>${escapeHtml(slot.label)}</span>` : `<span>${escapeHtml(slot.label)}</span>`;
     if (slot.desc) pill.title = slot.desc;
     pill.addEventListener('click', () => {
       state.timeSlot = slot.id;
@@ -3767,7 +4022,7 @@ function renderNeighborhoodPills() {
     pill.className = `nh-pill ${isSelected ? 'active' : ''}`;
     pill.setAttribute('data-nh', nh);
     pill.setAttribute('data-nh-region', 'vancouver');
-    pill.innerHTML = `<span>${nh}</span>`;
+    pill.innerHTML = `<span>${escapeHtml(nh)}</span>`;
     pill.addEventListener('click', () => {
       if (state.selectedNeighborhoods.has(nh)) {
         state.selectedNeighborhoods.delete(nh);
@@ -3802,7 +4057,7 @@ function renderNeighborhoodPills() {
     macroBtn.setAttribute('data-macro-id', macro.id);
     macroBtn.setAttribute('data-nh-region', 'surrey');
     macroBtn.title = `Filter to ${macro.aliases.join(', ')}`;
-    macroBtn.innerHTML = `<span>${macro.label}</span>`;
+    macroBtn.innerHTML = `<span>${escapeHtml(macro.label)}</span>`;
     macroBtn.addEventListener('click', () => {
       if (onlyMacroSelected) {
         state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
@@ -3824,7 +4079,7 @@ function renderNeighborhoodPills() {
     pill.className = `nh-pill ${isSelected ? 'active' : ''}`;
     pill.setAttribute('data-nh', nh);
     pill.setAttribute('data-nh-region', 'surrey');
-    pill.innerHTML = `<span>${nh}</span>`;
+    pill.innerHTML = `<span>${escapeHtml(nh)}</span>`;
     pill.addEventListener('click', () => {
       // If all neighborhoods were selected by default and user clicks a specific Surrey town centre, isolate that town centre (or toggle if already isolated)
       if (allSelected) {
@@ -3859,7 +4114,7 @@ function renderFrequencyPills() {
   FREQUENCIES.forEach(fq => {
     const pill = document.createElement('button');
     pill.className = `freq-filter-pill ${state.frequency === fq.id ? 'active' : ''}`;
-    pill.innerHTML = `<span>${fq.icon}</span> <span>${fq.label}</span>`;
+    pill.innerHTML = `<span>${escapeHtml(fq.icon)}</span> <span>${escapeHtml(fq.label)}</span>`;
     pill.addEventListener('click', () => {
       state.frequency = (fq.id !== 'all' && state.frequency === fq.id) ? 'all' : fq.id;
       if (state.frequency === 'daily' && state.hideDaily) {
@@ -4862,11 +5117,12 @@ function applyFiltersAndRender() {
   // Update Results Counter (with internal ended events tracker & active tag/theme indicator)
   const countBar = document.getElementById('results-count');
   if (countBar) {
+    const safeSelectedTag = escapeHtml(state.selectedTag || '');
     const tagBadgeHtml = state.selectedTag ? `
-      <div class="active-tag-pill" title="Filtered by #${state.selectedTag}. Click ✕ to clear.">
+      <div class="active-tag-pill" title="Filtered by #${safeSelectedTag}. Click ✕ to clear.">
         <span class="tag-label">Tag:</span>
-        <span>#${state.selectedTag}</span>
-        <button type="button" class="btn-clear-tag" onclick="clearSelectedTag()" aria-label="Clear hashtag filter">✕</button>
+        <span>#${safeSelectedTag}</span>
+        <button type="button" class="btn-clear-tag" data-action="clear-selected-tag" aria-label="Clear hashtag filter">✕</button>
       </div>
     ` : '';
 
@@ -4882,10 +5138,10 @@ function applyFiltersAndRender() {
       : '';
 
     const themeFilterPillHtml = activeThemeObj ? `
-      <div class="active-tag-pill" title="Filtered to ${activeThemeObj.label}. Click ✕ to clear.">
+      <div class="active-tag-pill" title="Filtered to ${escapeHtml(activeThemeObj.label)}. Click ✕ to clear.">
         <span class="tag-label">Theme:</span>
-        <span>${activeThemeDisplay}</span>
-        <button type="button" class="btn-clear-tag" onclick="toggleThemeFilter('${activeThemeObj.key}')" aria-label="Clear theme filter">✕</button>
+        <span>${escapeHtml(activeThemeDisplay)}</span>
+        <button type="button" class="btn-clear-tag" data-action="toggle-theme" data-theme-key="${escapeHtml(activeThemeObj.key)}" aria-label="Clear theme filter">✕</button>
       </div>
     ` : '';
 
@@ -4893,10 +5149,10 @@ function applyFiltersAndRender() {
       ? Array.from(state.excludedThemes).map(exKey => {
         const exObj = themeGroups.find(g => g.key === exKey) || { key: exKey, label: exKey.split(':')[1] || exKey };
         return `
-            <div class="active-tag-pill excluded-tag-pill" title="Excluding ${exObj.label}. Click ✕ to restore.">
+            <div class="active-tag-pill excluded-tag-pill" title="Excluding ${escapeHtml(exObj.label)}. Click ✕ to restore.">
               <span class="tag-label">Hidden:</span>
-              <span>🚫 ${exObj.label}</span>
-              <button type="button" class="btn-clear-tag" onclick="toggleExcludeTheme('${exKey}', event)" aria-label="Restore ${exObj.label}">✕</button>
+              <span>🚫 ${escapeHtml(exObj.label)}</span>
+              <button type="button" class="btn-clear-tag" data-action="exclude-theme" data-theme-key="${escapeHtml(exKey)}" aria-label="Restore ${escapeHtml(exObj.label)}">✕</button>
             </div>
           `;
       }).join('')
@@ -4909,8 +5165,8 @@ function applyFiltersAndRender() {
       if (crossMatches > 0) {
         crossCategoryBannerHtml = `
           <div style="margin-top: 8px;">
-            <button type="button" class="btn-cross-category" onclick="resetCategoryForSearch()" style="cursor: pointer; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">
-              Found ${crossMatches} match${crossMatches > 1 ? 'es' : ''} across all categories • View All ↗
+            <button type="button" class="btn-cross-category" data-action="reset-category-search" style="cursor: pointer; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">
+              Found ${Number(crossMatches)} match${crossMatches > 1 ? 'es' : ''} across all categories • View All ↗
             </button>
           </div>
         `;
@@ -4920,10 +5176,10 @@ function applyFiltersAndRender() {
     const reactiveDateText = getReactiveDateHeaderLabel(now);
     const mapWrapperEl = document.getElementById('map-view-wrapper');
     const isMapCurrentlyActive = Boolean(mapWrapperEl && (mapWrapperEl.classList.contains('active') || mapWrapperEl.style.display === 'block'));
-    countBar.innerHTML = `<div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">${reactiveDateText}</span></div>
+    countBar.innerHTML = `<div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">${escapeHtml(reactiveDateText)}</span></div>
       <div class="results-count-right-group" style="display: inline-flex; align-items: center; gap: 10px; margin-left: auto;">
         <div class="results-count-text">
-          Showing <strong>${filtered.length}</strong> outings under $50
+          Showing <strong>${Number(filtered.length)}</strong> outings under $50
         </div>
         <div class="inline-view-switcher" role="group" aria-label="View Switcher">
           <button type="button" class="inline-view-mode-btn view-switcher-btn ${!isMapCurrentlyActive ? 'active' : ''}" data-view="cards" data-view-mode="cards" aria-pressed="${!isMapCurrentlyActive ? 'true' : 'false'}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span>Cards</span></button>
@@ -5873,14 +6129,13 @@ window.smoothScrollToTimeGroup = function (groupId, event) {
   }, 20);
 };
 
-window.toggleWeeklyHours = function (eventId, event) {
+window.toggleWeeklyHours = function (eventId, event, triggerEl) {
   if (event) {
     event.preventDefault();
     event.stopPropagation();
   }
-  const scopedRoot = (event && event.currentTarget && event.currentTarget.closest)
-    ? event.currentTarget.closest('.card-weekly-hours-block')
-    : null;
+  const refEl = triggerEl || (event && ((event.currentTarget && event.currentTarget.closest ? event.currentTarget : null) || (event.target && event.target.closest ? event.target : null)));
+  const scopedRoot = (refEl && refEl.closest) ? refEl.closest('.card-weekly-hours-block') : null;
   const table = (scopedRoot && scopedRoot.querySelector('.weekly-hours-table')) || document.getElementById(`hours-table-${eventId}`);
   const btn = (scopedRoot && scopedRoot.querySelector('.btn-toggle-hours')) || document.getElementById(`btn-toggle-hours-${eventId}`);
   if (!table) return;
@@ -5908,14 +6163,13 @@ window.toggleWeeklyHours = function (eventId, event) {
   }
 };
 
-window.toggleShowings = function (eventId, event) {
+window.toggleShowings = function (eventId, event, triggerEl) {
   if (event) {
     event.preventDefault();
     event.stopPropagation();
   }
-  const scopedRoot = (event && event.currentTarget && event.currentTarget.closest)
-    ? event.currentTarget.closest('.card-showings-block')
-    : null;
+  const refEl = triggerEl || (event && ((event.currentTarget && event.currentTarget.closest ? event.currentTarget : null) || (event.target && event.target.closest ? event.target : null)));
+  const scopedRoot = (refEl && refEl.closest) ? refEl.closest('.card-showings-block') : null;
   const el = (scopedRoot && (scopedRoot.querySelector('.collapsible-showings') || scopedRoot.querySelector('[id^="showings-table-"]') || scopedRoot.querySelector('[id^="showings-more-"]')))
     || document.getElementById(`showings-table-${eventId}`)
     || document.getElementById(`showings-more-${eventId}`);
@@ -5976,13 +6230,14 @@ function renderEventCards(events) {
   const grid = document.getElementById('events-grid');
   if (!grid) return;
 
+  const safeSelectedVenue = escapeHtml(state.selectedVenue || '');
   const venueBannerHtml = state.selectedVenue ? `
     <div class="active-venue-banner" id="active-venue-banner" style="grid-column: 1 / -1;">
       <div class="venue-banner-content">
         <span class="venue-banner-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
-        <span>Showing all <strong>${events.length}</strong> verified events at <strong>${state.selectedVenue}</strong></span>
+        <span>Showing all <strong>${Number(events.length)}</strong> verified events at <strong>${safeSelectedVenue}</strong></span>
       </div>
-      <button type="button" class="btn-clear-venue" onclick="clearSelectedVenue()" aria-label="Clear venue filter">Clear Venue Filter ✕</button>
+      <button type="button" class="btn-clear-venue" data-action="clear-selected-venue" aria-label="Clear venue filter">Clear Venue Filter ✕</button>
     </div>
   ` : '';
 
@@ -5990,9 +6245,9 @@ function renderEventCards(events) {
     const activeFilterList = getActiveFiltersSummaryList();
     const activePillsHtml = activeFilterList.length > 0
       ? `<div class="zero-results-active-filters" role="region" aria-label="Active Filters Applied">
-           <div class="zero-results-filters-heading">Active Filters Currently Applied (${activeFilterList.length}):</div>
+           <div class="zero-results-filters-heading">Active Filters Currently Applied (${Number(activeFilterList.length)}):</div>
            <div class="zero-results-filter-pills">
-             ${activeFilterList.map(f => `<span class="zero-results-filter-pill">${f}</span>`).join('')}
+             ${activeFilterList.map(f => `<span class="zero-results-filter-pill">${escapeHtml(f)}</span>`).join('')}
            </div>
          </div>`
       : `<div class="zero-results-active-filters"><span class="zero-results-filter-pill">No custom filters active</span></div>`;
@@ -6009,8 +6264,8 @@ function renderEventCards(events) {
         </p>
         ${activePillsHtml}
         <div class="zero-results-actions">
-          <button type="button" class="btn btn-roulette btn-reset-all-primary" id="btn-zero-results-reset" onclick="resetAllFilters()">🔄 Reset All Filters</button>
-          ${state.selectedVenue ? `<button type="button" class="btn" onclick="clearSelectedVenue()" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Clear Venue Filter</button>` : ''}
+          <button type="button" class="btn btn-roulette btn-reset-all-primary" id="btn-zero-results-reset" data-action="reset-all-filters">🔄 Reset All Filters</button>
+          ${state.selectedVenue ? `<button type="button" class="btn" data-action="clear-selected-venue" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Clear Venue Filter</button>` : ''}
         </div>
       </div>
     `;
@@ -6023,8 +6278,8 @@ function renderEventCards(events) {
       grid.innerHTML = `
         ${venueBannerHtml}
         <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
-          <h3 style="color: var(--text-main); margin-bottom: 8px;">No Current Events Under $50 at ${state.selectedVenue}</h3>
-          <button class="btn btn-roulette" onclick="clearSelectedVenue()">Clear Venue Filter</button>
+          <h3 style="color: var(--text-main); margin-bottom: 8px;">No Current Events Under $50 at ${safeSelectedVenue}</h3>
+          <button type="button" class="btn btn-roulette" data-action="clear-selected-venue">Clear Venue Filter</button>
         </div>
       `;
       return;
@@ -6049,8 +6304,8 @@ function renderEventCards(events) {
           Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Scheduled Events Only".
         </p>
         <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-          <button class="btn btn-roulette" onclick="resetAllFilters()">Reset All Filters</button>
-          <button type="button" class="btn" onclick="filterByCategory('all')" style="background: var(--price-low-bg); border: 1px solid var(--border-subtle); color: var(--price-low-fg); padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Show All Active Outings</button>
+          <button type="button" class="btn btn-roulette" data-action="reset-all-filters">Reset All Filters</button>
+          <button type="button" class="btn" data-action="filter-category" data-cat-id="all" style="background: var(--price-low-bg); border: 1px solid var(--border-subtle); color: var(--price-low-fg); padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Show All Active Outings</button>
         </div>
       </div>
     `;
@@ -6168,9 +6423,9 @@ function renderEventCards(events) {
     navBarHtml = `
       <nav class="time-nav-bar" aria-label="Jump to event timeframes">
         ${activeBuckets.map(b => `
-          <a href="#group-${b.key}" class="time-nav-pill" onclick="smoothScrollToTimeGroup('group-${b.key}', event)">
-            <span>${b.shortTitle}</span>
-            <span class="time-nav-count">${b.list.length}</span>
+          <a href="#group-${escapeHtml(b.key)}" class="time-nav-pill" data-action="scroll-time-group" data-group-id="group-${escapeHtml(b.key)}">
+            <span>${escapeHtml(b.shortTitle)}</span>
+            <span class="time-nav-count">${Number(b.list.length)}</span>
           </a>
         `).join('')}
       </nav>
@@ -6187,36 +6442,40 @@ function renderEventCards(events) {
       cardsHtml =
         scheduledItems.map(ev => renderSingleEventCardHtml(ev, b.key)).join('') +
         `<div class="anytime-dropins-subdivider" role="separator" aria-label="Anytime and Scenic Drop-Ins">
-          <span class="anytime-subdivider-label">Anytime &amp; Scenic Drop-Ins (${dropInItems.length})</span>
+          <span class="anytime-subdivider-label">Anytime &amp; Scenic Drop-Ins (${Number(dropInItems.length)})</span>
           <span class="anytime-subdivider-line" aria-hidden="true"></span>
         </div>` +
         dropInItems.map(ev => renderSingleEventCardHtml(ev, b.key)).join('');
     } else {
       cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev, b.key)).join('');
     }
+    const safeKey = escapeHtml(b.key);
+    const safeTitle = escapeHtml(b.title);
+    const safeShortTitle = escapeHtml(b.shortTitle);
+    const safeRange = escapeHtml(b.range);
     return `
-      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${b.key}" data-group-title="${b.shortTitle}" data-group-heading="${b.title}" data-group-range="${b.range}">
-        <div class="time-group-header" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${b.key}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${b.title}">
+      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${safeKey}" data-group-title="${safeShortTitle}" data-group-heading="${safeTitle}" data-group-range="${safeRange}">
+        <div class="time-group-header" data-action="toggle-time-group" data-group-key="${safeKey}" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${safeKey}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${safeTitle}">
           <div class="time-group-title-wrap">
             <span class="time-group-icon" style="display:none;"></span>
-            <h2 class="time-group-title">${b.title}</h2>
-            <span class="time-group-date-range">${b.range}</span>
+            <h2 class="time-group-title">${safeTitle}</h2>
+            <span class="time-group-date-range">${safeRange}</span>
           </div>
           <div class="time-group-actions">
-            <span class="time-group-count-badge">${b.list.length} event${b.list.length === 1 ? '' : 's'}</span>
-            <button class="btn-group-collapse-toggle" type="button" aria-expanded="${!isCollapsed}" aria-label="${isCollapsed ? 'Expand section' : 'Collapse section'}" onclick="event.stopPropagation(); toggleTimeGroup('${b.key}')">
+            <span class="time-group-count-badge">${Number(b.list.length)} event${b.list.length === 1 ? '' : 's'}</span>
+            <button class="btn-group-collapse-toggle" type="button" aria-expanded="${!isCollapsed}" aria-label="${isCollapsed ? 'Expand section' : 'Collapse section'}" data-action="toggle-time-group" data-group-key="${safeKey}">
               <span class="toggle-icon">${isCollapsed ? '▶' : '▼'}</span>
               <span class="toggle-label">${isCollapsed ? 'Expand' : 'Collapse'}</span>
             </button>
           </div>
         </div>
         ${isCollapsed ? `
-          <div class="time-group-collapsed-banner" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" title="Click to expand ${b.title}">
-            <span class="collapsed-banner-info"><strong>${b.title}</strong> is collapsed (${b.list.length} event${b.list.length === 1 ? '' : 's'})</span>
+          <div class="time-group-collapsed-banner" data-action="toggle-time-group" data-group-key="${safeKey}" role="button" tabindex="0" title="Click to expand ${safeTitle}">
+            <span class="collapsed-banner-info"><strong>${safeTitle}</strong> is collapsed (${Number(b.list.length)} event${b.list.length === 1 ? '' : 's'})</span>
             <span class="collapsed-banner-action">Click to expand outings ▾</span>
           </div>
         ` : `
-          <div class="time-group-cards-grid" id="cards-grid-${b.key}">
+          <div class="time-group-cards-grid" id="cards-grid-${safeKey}">
             ${cardsHtml}
           </div>
         `}
@@ -6548,13 +6807,15 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
     return { hasTiers: false, html: '' };
   }
 
-  const drawerId = `tiers-drawer-${bucketKey}-${ev.id}`;
-  const hintId = `tier-hint-${bucketKey}-${ev.id}`;
+  const safeBucketKey = escapeHtml(bucketKey || 'list');
+  const safeEvId = escapeHtml(ev.id || '');
+  const drawerId = `tiers-drawer-${safeBucketKey}-${safeEvId}`;
+  const hintId = `tier-hint-${safeBucketKey}-${safeEvId}`;
 
   const listItemsHtml = dedupedTiers.map(t => {
     const isAddon = Boolean(t.isAddon || isAddonTier(t));
     const valText = isAddon ? `+$${Number(t.price).toFixed(2)} CAD` : (t.label || (t.price === 0 ? 'Free ($0)' : `$${Number(t.price).toFixed(2)} CAD`));
-    const isFreeVal = !isAddon && (t.price === 0 || valText.toLowerCase().includes('free'));
+    const isFreeVal = !isAddon && (t.price === 0 || String(valText).toLowerCase().includes('free'));
 
     let statusClass = isAddon ? 'tier-addon-item' : '';
     let statusBadge = '';
@@ -6574,9 +6835,9 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
 
     return `
       <li class="expanded-tier-item ${statusClass}">
-        <span class="tier-name">${t.name}</span>
+        <span class="tier-name">${escapeHtml(t.name)}</span>
         <span class="tier-dots-leader" aria-hidden="true"></span>
-        <span class="tier-val ${isFreeVal ? 'tier-free' : ''}">${valText}</span>
+        <span class="tier-val ${isFreeVal ? 'tier-free' : ''}">${escapeHtml(valText)}</span>
         ${statusBadge}
       </li>
     `;
@@ -6585,8 +6846,8 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
   const html = `
     <div class="card-expanded-tiers" id="${drawerId}" style="display: none;" aria-hidden="true">
       <div class="expanded-tiers-header">
-        <span>Admission Rates (${dedupedTiers.length} Tiers)</span>
-        <button type="button" class="btn-close-tiers" onclick="toggleAdmissionTiers('${bucketKey}', '${ev.id}', event)" title="Close tiers breakdown" aria-label="Close tiers breakdown">✕</button>
+        <span>Admission Rates (${Number(dedupedTiers.length)} Tiers)</span>
+        <button type="button" class="btn-close-tiers" data-action="toggle-admission-tiers" data-bucket-key="${safeBucketKey}" data-event-id="${safeEvId}" title="Close tiers breakdown" aria-label="Close tiers breakdown">✕</button>
       </div>
       <ul class="expanded-tiers-list">
         ${listItemsHtml}
@@ -6633,16 +6894,19 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeQuery)}`;
 
   // Venue Event Count & Filter Button (Requirement 7)
+  const safeEventId = escapeHtml(ev.id || '');
+  const safeVenueText = escapeHtml(ev.venue || '');
   const venueTotalCount = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e.venue === ev.venue).length;
   const isThisVenueSelected = state.selectedVenue === ev.venue;
   const venueOtherEventsBtnHtml = venueTotalCount > 1 ? `
       <button 
         type="button" 
         class="btn-venue-filter ${isThisVenueSelected ? 'active' : ''}" 
-        onclick="filterByVenue('${(ev.venue || '').replace(/'/g, "\\'")}')" 
-        title="${isThisVenueSelected ? 'Clear filter for ' + ev.venue : 'Show all ' + venueTotalCount + ' events at ' + ev.venue}"
+        data-action="filter-venue"
+        data-venue="${safeVenueText}"
+        title="${isThisVenueSelected ? 'Clear filter for ' + safeVenueText : 'Show all ' + Number(venueTotalCount) + ' events at ' + safeVenueText}"
       >
-        ${isThisVenueSelected ? 'Viewing this venue ✕' : 'See all ' + venueTotalCount + ' events here'}
+        ${isThisVenueSelected ? 'Viewing this venue ✕' : 'See all ' + Number(venueTotalCount) + ' events here'}
       </button>
     ` : '';
 
@@ -6665,7 +6929,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <div class="card-artist-badge" title="Featured band / artist lineup">
               <span class="artist-icon"></span>
               <span class="artist-label">Featuring:</span>
-              <strong class="artist-name">${artistStr}</strong>
+              <strong class="artist-name">${escapeHtml(artistStr)}</strong>
             </div>
           `;
       }
@@ -6678,7 +6942,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   // Film Buzzwords, Topic Tags & Critical Reviews
   const buzzwordsHtml = (ev.buzzwords && Array.isArray(ev.buzzwords) && ev.buzzwords.length > 0) ? `
       <div class="card-buzzwords-row" title="Genre topics & non-spoiler themes">
-        ${ev.buzzwords.map(bw => `<span class="card-buzzword-pill">${bw}</span>`).join('')}
+        ${ev.buzzwords.map(bw => `<span class="card-buzzword-pill">${escapeHtml(bw)}</span>`).join('')}
       </div>
     ` : '';
 
@@ -6689,23 +6953,23 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             ${ev.ratings.map(r => {
     const srcLower = (r.source || '').toLowerCase();
     const srcClass = srcLower.includes('rotten') ? 'rt' : (srcLower.includes('letterboxd') ? 'letterboxd' : 'imdb');
-    return `<span class="film-rating-chip ${srcClass}" title="${r.source} rating">${r.icon || '⭐'} ${r.source}: <strong>${r.score}</strong></span>`;
+    return `<span class="film-rating-chip ${srcClass}" title="${escapeHtml(r.source)} rating">${escapeHtml(r.icon || '⭐')} ${escapeHtml(r.source)}: <strong>${escapeHtml(r.score)}</strong></span>`;
   }).join('')}
           </div>
         ` : ''}
-        ${ev.reviewQuote ? `<p class="film-review-quote">“${ev.reviewQuote}”</p>` : ''}
+        ${ev.reviewQuote ? `<p class="film-review-quote">“${escapeHtml(ev.reviewQuote)}”</p>` : ''}
       </div>
     ` : '';
 
   const contentAdvisoryHtml = ev.contentAdvisory ? `
       <div class="card-content-advisory-box" title="Audience content advisory">
         <span aria-hidden="true" style="flex-shrink: 0;">⚠️</span>
-        <span>${ev.contentAdvisory}</span>
+        <span>${escapeHtml(ev.contentAdvisory)}</span>
       </div>
     ` : '';
 
   // CTA button with Sold-Out handling (links to ticketing portal waitlist if sold out)
-  const escapedTitle = (ev.title || '').replace(/"/g, '&quot;');
+  const escapedTitle = escapeHtml(ev.title || '');
   // Resolve date-specific instance ticket URL (tied directly to specific event occurrence date)
   const targetDateStr = (topDate && topDate.dateStr) || (ev._computedNextDate ? `${ev._computedNextDate.getFullYear()}-${String(ev._computedNextDate.getMonth() + 1).padStart(2, '0')}-${String(ev._computedNextDate.getDate()).padStart(2, '0')}` : null);
   let matchedShowing = null;
@@ -6716,40 +6980,44 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     matchedShowing = [ev.repeatShowings.show_1, ev.repeatShowings.show_2, ev.repeatShowings.show_3]
       .find(s => s && s.date === targetDateStr && s.ticket_url);
   }
-  const primaryTicketUrl = (matchedShowing && matchedShowing.ticket_url) ? matchedShowing.ticket_url : ev.websiteUrl;
+  const primaryTicketUrl = safeExternalUrl((matchedShowing && matchedShowing.ticket_url) ? matchedShowing.ticket_url : ev.websiteUrl);
+  const safePrimaryTicketHref = escapeHtml(primaryTicketUrl);
+  const safeWebsiteHref = escapeHtml(safeExternalUrl(ev.websiteUrl));
+  const safeGmapsHref = escapeHtml(safeExternalUrl(gmapsUrl));
+  const safeVenueUrlHref = venueUrl ? escapeHtml(safeExternalUrl(venueUrl)) : '';
 
-  const escapedVenue = (ev.venue || '').replace(/"/g, '&quot;');
+  const escapedVenue = escapeHtml(ev.venue || '');
   const ctaButtonHtml = isSoldOut ? `
       <a 
-        href="${primaryTicketUrl}" 
+        href="${safePrimaryTicketHref}" 
         target="_blank" 
         rel="noopener noreferrer" 
         referrerpolicy="no-referrer"
         class="btn-ticket-cta sold-out"
-        data-event-id="${ev.id}"
+        data-event-id="${safeEventId}"
         data-event-title="${escapedTitle}"
         data-event-venue="${escapedVenue}"
-        data-goatcounter-click="tickets-${ev.id}"
+        data-goatcounter-click="tickets-${safeEventId}"
         data-goatcounter-title="Tickets: ${escapedTitle} (${escapedVenue})"
         data-goatcounter-no-session="1"
-        aria-label="${ev.title} is sold out - check ticket portal or waitlist"
+        aria-label="${escapedTitle} is sold out - check ticket portal or waitlist"
       >
         Sold Out (Waitlist) ↗
       </a>
     ` : `
       <a 
-        href="${primaryTicketUrl}" 
+        href="${safePrimaryTicketHref}" 
         target="_blank" 
         rel="noopener noreferrer" 
         referrerpolicy="no-referrer"
         class="btn-ticket-cta"
-        data-event-id="${ev.id}"
+        data-event-id="${safeEventId}"
         data-event-title="${escapedTitle}"
         data-event-venue="${escapedVenue}"
-        data-goatcounter-click="tickets-${ev.id}"
+        data-goatcounter-click="tickets-${safeEventId}"
         data-goatcounter-title="Tickets: ${escapedTitle} (${escapedVenue})"
         data-goatcounter-no-session="1"
-        aria-label="Get tickets for ${ev.title}"
+        aria-label="Get tickets for ${escapedTitle}"
       >
         Get Tickets / Details ↗
       </a>
@@ -6767,7 +7035,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       detailsText.match(/displays \$?([0-9\.]+) pre-tax/i);
     if (match) {
       const val = match[1].startsWith('$') || match[1].includes(':') ? match[1] : `$${match[1]}`;
-      preTaxNoteHtml = `<div class="price-pretax-note">Note: Displays ${val} pre-tax before checkout</div>`;
+      preTaxNoteHtml = `<div class="price-pretax-note">Note: Displays ${escapeHtml(val)} pre-tax before checkout</div>`;
     } else {
       preTaxNoteHtml = `<div class="price-pretax-note">Note: Displays pre-tax sticker price before checkout</div>`;
     }
@@ -6888,27 +7156,27 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         const isCurrentDay = (d.k === curKey);
         return `
             <div class="weekly-hour-day-row ${isCurrentDay ? 'current-day' : ''}">
-              <span class="day-col">${d.label}:</span>
-              <span class="hours-col">${hoursStr}</span>
+              <span class="day-col">${escapeHtml(d.label)}:</span>
+              <span class="hours-col">${escapeHtml(hoursStr)}</span>
             </div>
           `;
       }).join('');
 
       weeklyHoursHtml = `
-          <div class="card-weekly-hours-block" id="hours-block-${ev.id}">
-            <div class="weekly-hours-summary-row" onclick="toggleWeeklyHours('${ev.id}', event)" title="Click to view/hide 7-day schedule">
+          <div class="card-weekly-hours-block" id="hours-block-${safeEventId}">
+            <div class="weekly-hours-summary-row" data-action="toggle-weekly-hours" data-event-id="${safeEventId}" title="Click to view/hide 7-day schedule">
               <div class="wh-summary-left">
                 <div class="wh-active-day-box">
-                  <span class="wh-active-day-name">${activeDayLabel}:</span>
-                  <span class="wh-active-hours-val">${activeHours}</span>
+                  <span class="wh-active-day-name">${escapeHtml(activeDayLabel)}:</span>
+                  <span class="wh-active-hours-val">${escapeHtml(activeHours)}</span>
                 </div>
               </div>
-              <button type="button" class="btn-toggle-hours" id="btn-toggle-hours-${ev.id}" aria-expanded="false" aria-label="Toggle weekly schedule">
+              <button type="button" class="btn-toggle-hours" id="btn-toggle-hours-${safeEventId}" aria-expanded="false" aria-label="Toggle weekly schedule">
                 <span class="toggle-text">Full Week</span>
                 <span class="wh-chevron">▾</span>
               </button>
             </div>
-            <div class="weekly-hours-table collapsible-hours" id="hours-table-${ev.id}" style="display: none;">
+            <div class="weekly-hours-table collapsible-hours" id="hours-table-${safeEventId}" style="display: none;">
               ${rows}
             </div>
           </div>
@@ -6917,12 +7185,12 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       // For venues or events with unique shows or limited days, display only the single active day/time without a dropdown
       if (activeHours && !activeHours.toLowerCase().includes('not listed') && !activeHours.toLowerCase().includes('check schedule')) {
         weeklyHoursHtml = `
-            <div class="card-weekly-hours-block static-hours-block" id="hours-block-${ev.id}">
+            <div class="card-weekly-hours-block static-hours-block" id="hours-block-${safeEventId}">
               <div class="weekly-hours-summary-row static-schedule-row">
                 <div class="wh-summary-left">
                   <div class="wh-active-day-box">
-                    <span class="wh-active-day-name">${activeDayLabel}:</span>
-                    <span class="wh-active-hours-val">${activeHours}</span>
+                    <span class="wh-active-day-name">${escapeHtml(activeDayLabel)}:</span>
+                    <span class="wh-active-hours-val">${escapeHtml(activeHours)}</span>
                   </div>
                 </div>
               </div>
@@ -6937,8 +7205,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   if (Array.isArray(ev.showings) && ev.showings.length > 1) {
     const isFilmFestival = (ev.category === 'cinema' || ev.isFestival || (ev.subTags && ev.subTags.includes('festival')));
     const sectionTitle = isFilmFestival
-      ? `Festival Screenings &amp; Locations (${ev.showings.length})`
-      : `Upcoming Dates &amp; Times (${ev.showings.length})`;
+      ? `Festival Screenings &amp; Locations (${Number(ev.showings.length)})`
+      : `Upcoming Dates &amp; Times (${Number(ev.showings.length)})`;
 
     const nowD = new Date();
     const curTodayStr = `${nowD.getFullYear()}-${String(nowD.getMonth() + 1).padStart(2, '0')}-${String(nowD.getDate()).padStart(2, '0')}`;
@@ -6954,27 +7222,27 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       const timeLabel = formatDisplayTime12h(s.start_time || '');
       const venueLabel = s.venue_name || s.venue || ev.venue || ev.venue_name || 'Vancouver Venue';
       const addrLabel = s.full_address || s.neighborhood || ev.address || ev.neighborhood || '';
-      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueLabel + ' ' + (addrLabel || 'Vancouver BC'))}`;
-      const bookUrl = s.ticket_url || ev.websiteUrl;
+      const showingGmapsHref = escapeHtml(safeExternalUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueLabel + ' ' + (addrLabel || 'Vancouver BC'))}`));
+      const safeBookHref = escapeHtml(safeExternalUrl(s.ticket_url || ev.websiteUrl));
       const costText = (s.cost !== undefined && s.cost !== null) ? (Number(s.cost) === 0 ? 'Free' : `$${Number(s.cost).toFixed(2)}`) : '';
-      const isSoldOut = s.status === 'sold_out' || s.is_sold_out;
-      const actionHtml = isSoldOut
-        ? `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="badge-showing-sold-out" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-block; cursor: pointer;" title="Sold out — click to check ticket portal or waitlist">Sold Out ↗</a>`
-        : `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
-                ${costText ? `${costText} ↗` : 'Book ↗'}
+      const isSoldOutShowing = s.status === 'sold_out' || s.is_sold_out;
+      const actionHtml = isSoldOutShowing
+        ? `<a href="${safeBookHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="badge-showing-sold-out" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-block; cursor: pointer;" title="Sold out — click to check ticket portal or waitlist">Sold Out ↗</a>`
+        : `<a href="${safeBookHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
+                ${costText ? `${escapeHtml(costText)} ↗` : 'Book ↗'}
               </a>`;
 
       return `
           <div class="showing-row ${isShowingToday ? 'showing-today' : ''}">
             <div class="showing-time-col">
-              <span class="showing-date">${dateLabel}</span>
-              <span class="showing-time">${timeLabel}</span>
+              <span class="showing-date">${escapeHtml(dateLabel)}</span>
+              <span class="showing-time">${escapeHtml(timeLabel)}</span>
             </div>
             <div class="showing-venue-col">
-              <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="showing-venue-link" title="Open ${venueLabel} in Google Maps">
-                <strong>${venueLabel}</strong>
+              <a href="${showingGmapsHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="showing-venue-link" title="Open ${escapeHtml(venueLabel)} in Google Maps">
+                <strong>${escapeHtml(venueLabel)}</strong>
               </a>
-              <span class="showing-address">${addrLabel}</span>
+              <span class="showing-address">${escapeHtml(addrLabel)}</span>
             </div>
             <div class="showing-action-col">
               ${actionHtml}
@@ -6998,27 +7266,27 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       const allRowsHtml = activeShowings.map(renderShowingRow).join('');
 
       showingsHtml = `
-          <div class="card-showings-block" id="showings-block-${ev.id}">
-            <div class="showings-summary-row" onclick="toggleShowings('${ev.id}', event)" title="Click to view/hide all ${activeShowings.length} upcoming scheduled dates">
+          <div class="card-showings-block" id="showings-block-${safeEventId}">
+            <div class="showings-summary-row" data-action="toggle-showings" data-event-id="${safeEventId}" title="Click to view/hide all ${Number(activeShowings.length)} upcoming scheduled dates">
               <div class="wh-summary-left">
                 <div class="wh-active-day-box">
                   <span class="wh-active-day-name">Next:</span>
-                  <span class="wh-active-hours-val">${primaryDateLabel}${primaryTimeLabel}</span>
+                  <span class="wh-active-hours-val">${escapeHtml(primaryDateLabel + primaryTimeLabel)}</span>
                 </div>
               </div>
               <button 
                 type="button" 
                 class="btn-toggle-showings btn-toggle-hours" 
-                id="btn-toggle-showings-${ev.id}" 
+                id="btn-toggle-showings-${safeEventId}" 
                 aria-expanded="false" 
-                data-count="${activeShowings.length}"
-                aria-label="Toggle all ${activeShowings.length} upcoming showings for ${ev.title}"
+                data-count="${Number(activeShowings.length)}"
+                aria-label="Toggle all ${Number(activeShowings.length)} upcoming showings for ${escapedTitle}"
               >
-                <span class="toggle-text">All Dates (${activeShowings.length})</span>
+                <span class="toggle-text">All Dates (${Number(activeShowings.length)})</span>
                 <span class="wh-chevron">▾</span>
               </button>
             </div>
-            <div class="showings-table collapsible-showings" id="showings-table-${ev.id}" style="display: none;">
+            <div class="showings-table collapsible-showings" id="showings-table-${safeEventId}" style="display: none;">
               ${allRowsHtml}
             </div>
           </div>
@@ -7033,13 +7301,13 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     waypointsHtml = `
         <div class="card-waypoints-box">
           <div class="waypoints-box-header">
-            <span>Featured Waypoints & Landmarks (${ev.waypoints.length})</span>
+            <span>Featured Waypoints &amp; Landmarks (${Number(ev.waypoints.length)})</span>
           </div>
           <div class="waypoints-box-list">
             ${ev.waypoints.map(wp => `
               <div class="waypoint-row">
-                <strong class="waypoint-name">• ${wp.name}</strong>
-                <span class="waypoint-desc">${wp.desc}</span>
+                <strong class="waypoint-name">• ${escapeHtml(wp.name)}</strong>
+                <span class="waypoint-desc">${escapeHtml(wp.desc)}</span>
               </div>
             `).join('')}
           </div>
@@ -7051,18 +7319,18 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   let benchmarkHtml = '';
   const benchItems = [];
   if (ev.drink_benchmark) {
-    benchItems.push(`<span>Bar: <strong>${ev.drink_benchmark}</strong></span>`);
+    benchItems.push(`<span>Bar: <strong>${escapeHtml(ev.drink_benchmark)}</strong></span>`);
   }
   if (ev.concession_benchmark) {
-    benchItems.push(`<span>Concessions: <strong>${ev.concession_benchmark}</strong></span>`);
+    benchItems.push(`<span>Concessions: <strong>${escapeHtml(ev.concession_benchmark)}</strong></span>`);
   }
   if (ev.coffee_benchmark) {
-    benchItems.push(`<span>Coffee: <strong>${ev.coffee_benchmark}</strong></span>`);
+    benchItems.push(`<span>Coffee: <strong>${escapeHtml(ev.coffee_benchmark)}</strong></span>`);
   }
   if (ev.food_service_note) {
-    benchItems.push(`<span class="food-service-note"><em>${ev.food_service_note}</em></span>`);
+    benchItems.push(`<span class="food-service-note"><em>${escapeHtml(ev.food_service_note)}</em></span>`);
   } else if (ev.meal_benchmark) {
-    benchItems.push(`<span>Meal: <strong>${ev.meal_benchmark}</strong></span>`);
+    benchItems.push(`<span>Meal: <strong>${escapeHtml(ev.meal_benchmark)}</strong></span>`);
   }
 
   if (benchItems.length > 0) {
@@ -7077,7 +7345,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   // Option A: Outing Spend Estimator Pill (Direct Out-of-Pocket Transparency)
   let spendEstimatorHtml = '';
   const venueNameStr = ev.venue_name || ev.venue || ev.location || '';
-  const escapedVenueAttr = venueNameStr.replace(/"/g, '&quot;');
+  const escapedVenueAttr = escapeHtml(venueNameStr);
   const suggestBtnHtml = `<button type="button" class="btn-suggest-price" data-suggest-venue="${escapedVenueAttr}" title="Suggest updated drink or item prices for ${escapedVenueAttr}">Suggest price ✎</button>`;
 
   if (ev.typical_item_spend) {
@@ -7094,7 +7362,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
     spendEstimatorHtml = `
         <div class="card-spend-estimator-pill" title="Estimated out-of-pocket cost for purchases at this outing">
-          <span class="spend-pill-label"><strong>${spendTag}:</strong> ${ev.typical_item_spend}</span>
+          <span class="spend-pill-label"><strong>${escapeHtml(spendTag)}:</strong> ${escapeHtml(ev.typical_item_spend)}</span>
           ${suggestBtnHtml}
         </div>
       `;
@@ -7154,26 +7422,37 @@ function renderSingleEventCardHtml(ev, bucketKey) {
   const catMeta = getCardSemanticCategoryMeta(ev);
   const row2VenueMetaText = formatSmartRow2VenueMeta(ev, shortNeighborhood, row2TimeDisplay);
   const isSavedDrawerCard = bucketKey === 'saved-drawer';
-  const cardDomId = isSavedDrawerCard ? `saved-card-${ev.id}` : `card-${ev.id}`;
-  const shareBtnDomId = isSavedDrawerCard ? `btn-share-saved-${ev.id}` : `btn-share-${ev.id}`;
-  const copyLinkBtnDomId = isSavedDrawerCard ? `btn-copy-link-saved-${ev.id}` : `btn-copy-link-${ev.id}`;
+  const cardDomId = isSavedDrawerCard ? `saved-card-${safeEventId}` : `card-${safeEventId}`;
+  const shareBtnDomId = isSavedDrawerCard ? `btn-share-saved-${safeEventId}` : `btn-share-${safeEventId}`;
+  const copyLinkBtnDomId = isSavedDrawerCard ? `btn-copy-link-saved-${safeEventId}` : `btn-copy-link-${safeEventId}`;
   const isPersistedExpanded = !isSavedDrawerCard && state.expandedCardIds && state.expandedCardIds.has(ev.id);
   const extraCardClasses = isSavedDrawerCard
     ? 'saved-drawer-functional-card mobile-expanded desktop-expanded'
     : (isPersistedExpanded ? 'mobile-expanded desktop-expanded' : '');
 
+  const safeDisplayTitle = escapeHtml(formatCardDisplayTitle(ev.title, ev));
+  const safeBucketAttr = escapeHtml(bucketKey || 'list');
+  const safeCatFilterId = escapeHtml(catMeta.filterId || 'all');
+  const safeCatLabel = escapeHtml(catMeta.label || '');
+  const safeCatThemeKey = escapeHtml(catMeta.themeKey || '');
+  const safeFreqClass = String(freqClass || 'one-off').replace(/[^a-z0-9_-]/gi, '');
+  const safeAccessStatus = ['accessible', 'partial', 'inaccessible'].includes(accessInfo.status) ? accessInfo.status : 'accessible';
+  const safeAccessSvgHtml = (typeof window.renderAccessBadgeSvg === 'function')
+    ? window.renderAccessBadgeSvg(safeAccessStatus, 20)
+    : escapeHtml(accessInfo.badgeIcon || '♿');
+
   return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${catMeta.themeKey}" data-scroll-date="${topDate.badgeText}" data-scroll-day="${scrollDayFull}" data-bucket-key="${bucketKey}" ${isSavedDrawerCard ? '' : `onclick="toggleMobileCardAccordion('${ev.id}', event)"`}>
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${safeCatThemeKey}" data-scroll-date="${escapeHtml(topDate.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFull)}" data-bucket-key="${safeBucketAttr}" ${isSavedDrawerCard ? '' : `data-action="card-accordion" data-event-id="${safeEventId}"`}>
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
-            <span class="mobile-card-title">${formatCardDisplayTitle(ev.title, ev)}</span>
+            <span class="mobile-card-title">${safeDisplayTitle}</span>
             <span class="mobile-card-price-pill ${isSoldOut ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std'))}">${isSoldOut ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
           </div>
           <div class="mobile-card-row-2">
-            <button type="button" class="row2-category-pill" onclick="event.stopPropagation(); filterByCategory('${catMeta.filterId}')" title="Click to filter by ${catMeta.label}">${catMeta.label}</button>
+            <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterId}" title="Click to filter by ${safeCatLabel}">${safeCatLabel}</button>
             ${row2ContextPillHtml}
-            <span class="mobile-card-meta-text">${row2VenueMetaText}</span>
+            <span class="mobile-card-meta-text">${escapeHtml(row2VenueMetaText)}</span>
             <span class="mobile-card-chevron" aria-hidden="true">▾</span>
           </div>
         </div>
@@ -7190,37 +7469,42 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         <div class="card-top-bar">
           <div class="header-badges-left">
             <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
-              <span>${topDate.badgeText}</span>
+              <span>${escapeHtml(topDate.badgeText)}</span>
             </span>
             <button 
               type="button" 
-              class="card-category-badge category-${catMeta.filterId}" 
-              onclick="event.stopPropagation(); filterByCategory('${catMeta.filterId}')" 
-              title="Click to filter by ${catMeta.label}"
-              aria-label="Category: ${catMeta.label}"
+              class="card-category-badge category-${safeCatFilterId}" 
+              data-action="filter-category"
+              data-cat-id="${safeCatFilterId}"
+              title="Click to filter by ${safeCatLabel}"
+              aria-label="Category: ${safeCatLabel}"
             >
-              <span class="category-badge-text">${catMeta.label}</span>
+              <span class="category-badge-text">${safeCatLabel}</span>
             </button>
             ${(Array.isArray(ev.themeBadges) && ev.themeBadges.length > 0) ? ev.themeBadges.map(tb => {
     const isSelected = state.selectedThemeFilter === tb.key;
     const showIcon = Boolean(tb.icon && !String(tb.label || '').startsWith(tb.icon));
+    const safeTbKey = escapeHtml(tb.key || '');
+    const safeTbLabel = escapeHtml(tb.label || '');
     return `
                 <div class="card-theme-badge-pill ${isSelected ? 'active' : ''}">
                   <button
                     type="button"
                     class="card-theme-badge-main"
-                    onclick="toggleThemeFilter('${tb.key}', event)"
-                    title="${isSelected ? `Showing only ${tb.label}. Click to clear` : `Click to filter by ${tb.label}`}"
+                    data-action="toggle-theme"
+                    data-theme-key="${safeTbKey}"
+                    title="${isSelected ? `Showing only ${safeTbLabel}. Click to clear` : `Click to filter by ${safeTbLabel}`}"
                   >
-                    ${showIcon ? `<span>${tb.icon}</span>` : ''}
-                    <span>${tb.label}</span>
+                    ${showIcon ? `<span>${escapeHtml(tb.icon)}</span>` : ''}
+                    <span>${safeTbLabel}</span>
                   </button>
                   <button
                     type="button"
                     class="card-theme-badge-exclude"
-                    onclick="toggleExcludeTheme('${tb.key}', event)"
-                    title="Filter out (hide) ${tb.label} events"
-                    aria-label="Hide ${tb.label} events"
+                    data-action="exclude-theme"
+                    data-theme-key="${safeTbKey}"
+                    title="Filter out (hide) ${safeTbLabel} events"
+                    aria-label="Hide ${safeTbLabel} events"
                   >✕</button>
                 </div>
               `;
@@ -7233,12 +7517,13 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <!-- Accessibility Details Button -->
             <button 
               type="button" 
-              class="btn-card-action btn-card-access ${accessInfo.status}" 
-              onclick="openAccessibilityModal('${ev.id}')"
-              title="${accessInfo.label} (${ev.venue}) • Click for Google Maps accessibility details"
-              aria-label="Accessibility information for ${ev.venue}: ${accessInfo.label}"
+              class="btn-card-action btn-card-access ${safeAccessStatus}" 
+              data-action="open-access-modal"
+              data-event-id="${safeEventId}"
+              title="${escapeHtml(accessInfo.label)} (${safeVenueText}) • Click for Google Maps accessibility details"
+              aria-label="Accessibility information for ${safeVenueText}: ${escapeHtml(accessInfo.label)}"
             >
-              <span class="access-btn-icon">${accessInfo.badgeSvg || (window.renderAccessBadgeSvg ? window.renderAccessBadgeSvg(accessInfo.status, 20) : accessInfo.badgeIcon)}</span>
+              <span class="access-btn-icon">${safeAccessSvgHtml}</span>
             </button>
 
             <!-- Share Event Button -->
@@ -7246,7 +7531,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               type="button" 
               class="btn-card-action btn-card-share" 
               id="${shareBtnDomId}"
-              onclick="shareEvent('${ev.id}', this, event)" 
+              data-action="share-event"
+              data-event-id="${safeEventId}"
               title="Share concise event summary & link"
               aria-label="Share ${escapedTitle}"
             >
@@ -7258,7 +7544,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               type="button" 
               class="btn-card-action btn-card-copy-link" 
               id="${copyLinkBtnDomId}"
-              onclick="copyEventLinkOnly('${ev.id}', this, event)" 
+              data-action="copy-event-link"
+              data-event-id="${safeEventId}"
               title="Copy Link Only"
               aria-label="Copy Link Only for ${escapedTitle}"
             >
@@ -7269,7 +7556,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <button 
               type="button"
               class="btn-card-action btn-save-card ${isSaved ? 'saved' : ''}" 
-              onclick="toggleSaveEvent('${ev.id}')" 
+              data-action="toggle-save-event"
+              data-event-id="${safeEventId}"
               aria-label="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
               title="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
             >
@@ -7282,8 +7570,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
         <!-- Event Details: Clickable Title Link (Always shortened to FRINGE: for Fringe shows) -->
         <h2 class="card-title">
-          <a href="${ev.websiteUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="card-title-link" title="Get tickets & details for ${ev.title}">
-            ${formatCardDisplayTitle(ev.title, ev)}
+          <a href="${safeWebsiteHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="card-title-link" title="Get tickets & details for ${escapedTitle}">
+            ${safeDisplayTitle}
           </a>
         </h2>
         
@@ -7292,11 +7580,11 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
         <!-- Roving / Nomadic Series Organizer Badge -->
         ${ev.organizer ? `
-          <div class="card-organizer-badge" title="Roving community event organized by ${ev.organizer}">
+          <div class="card-organizer-badge" title="Roving community event organized by ${escapeHtml(ev.organizer)}">
             <span class="organizer-icon"></span>
             <span class="organizer-label">Series:</span>
-            <strong class="organizer-name">${ev.organizer}</strong>
-            ${ev.editionVenue ? `<span class="edition-venue">(${ev.editionVenue})</span>` : ''}
+            <strong class="organizer-name">${escapeHtml(ev.organizer)}</strong>
+            ${ev.editionVenue ? `<span class="edition-venue">(${escapeHtml(ev.editionVenue)})</span>` : ''}
           </div>
         ` : ''}
 
@@ -7304,26 +7592,26 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         ${(ev.agePolicy || ev.admissionPolicy || accessModelHtml) ? `
           <div class="card-policy-row">
             ${accessModelHtml}
-            ${ev.agePolicy ? `<span class="policy-pill age-policy" title="${ev.agePolicy}">${ev.agePolicy}</span>` : ''}
-            ${ev.admissionPolicy ? `<span class="policy-pill admission-policy" title="${ev.admissionPolicy}">${ev.admissionPolicy}</span>` : ''}
+            ${ev.agePolicy ? `<span class="policy-pill age-policy" title="${escapeHtml(ev.agePolicy)}">${escapeHtml(ev.agePolicy)}</span>` : ''}
+            ${ev.admissionPolicy ? `<span class="policy-pill admission-policy" title="${escapeHtml(ev.admissionPolicy)}">${escapeHtml(ev.admissionPolicy)}</span>` : ''}
           </div>
         ` : ''}
 
         <!-- Roving Physical Host Note -->
         ${ev.rovingNote ? `
-          <div class="card-roving-note"><em>${ev.rovingNote}</em></div>
+          <div class="card-roving-note"><em>${escapeHtml(ev.rovingNote)}</em></div>
         ` : ''}
         
         <!-- Venue Row: Direct Pinpoint Google Maps Directions + Official Venue Website + Venue Isolation Filter -->
         <div class="card-venue-row">
-          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps">
+          <a href="${safeGmapsHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${safeVenueText} (${escapeHtml(ev.address || 'Vancouver')}) in Google Maps">
             <span class="venue-pin-icon" aria-label="Map location"><svg width="32" height="32" viewBox="0 0 24 24" fill="#ef4444" aria-hidden="true" style="color: #ef4444; flex-shrink: 0; vertical-align: middle; margin-right: 4px; filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.55));"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
-            <span class="venue-name">${ev.venue}</span>
+            <span class="venue-name">${safeVenueText}</span>
           </a>
-          ${(venueUrl || venueOtherEventsBtnHtml) ? `
+          ${(safeVenueUrlHref || venueOtherEventsBtnHtml) ? `
             <div class="card-venue-actions-col">
-              ${venueUrl ? `
-                <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
+              ${safeVenueUrlHref ? `
+                <a href="${safeVenueUrlHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-website-link venue-link" title="Visit official website of ${safeVenueText}">
                   <span class="website-label">Venue Site ↗</span>
                 </a>
               ` : ''}
@@ -7335,8 +7623,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         <!-- Schedule Row: Rendered strictly when NO weekly hours block and NO multi-showings block is present -->
         ${(!weeklyHoursHtml && !showingsHtml) ? `
           <div class="card-schedule-row">
-            <span>${formatScheduleText12h(ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar')}</span>
-            ${(ev.frequencyLabel && !ev.isFreePublic) ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
+            <span>${escapeHtml(formatScheduleText12h(ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'))}</span>
+            ${(ev.frequencyLabel && !ev.isFreePublic) ? `<span class="card-meta-pill ${safeFreqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${escapeHtml(ev.frequencyLabel)}</span>` : ''}
           </div>
         ` : ''}
 
@@ -7350,7 +7638,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
         ${filmReviewsHtml}
 
-        <p class="card-desc">${ev.description || ('Live music and performance at ' + ev.venue)}</p>
+        <p class="card-desc">${escapeHtml(ev.description || ('Live music and performance at ' + (ev.venue || 'Vancouver')))}</p>
 
         ${contentAdvisoryHtml}
 
@@ -7363,9 +7651,9 @@ function renderSingleEventCardHtml(ev, bucketKey) {
           ${tiersInfo.html || ''}
           <div class="card-footer">
             <div class="price-box ${tiersInfo.hasTiers ? 'price-box-interactive' : ''}" 
-                 ${tiersInfo.hasTiers ? `onclick="toggleAdmissionTiers('${bucketKey}', '${ev.id}', event)" role="button" tabindex="0" aria-expanded="false" title="Click to view all ${tiersInfo.count} admission tiers"` : ''}>
+                 ${tiersInfo.hasTiers ? `data-action="toggle-admission-tiers" data-bucket-key="${safeBucketAttr}" data-event-id="${safeEventId}" role="button" tabindex="0" aria-expanded="false" title="Click to view all ${Number(tiersInfo.count)} admission tiers"` : ''}>
               <div class="price-breakdown-row">
-                <span class="price-main ${ev.isFree || ev.price === 0 ? 'free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std')}">${standardPrice}</span>
+                <span class="price-main ${ev.isFree || ev.price === 0 ? 'free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std')}">${escapeHtml(standardPrice)}</span>
                 ${tiersInfo.hasTiers ? `<span class="price-tiers-toggle-hint" id="${tiersInfo.hintId}">Tiers ▾</span>` : ''}
               </div>
             </div>
@@ -7518,17 +7806,21 @@ function renderItinerary() {
     const expandedCardHtml = isExpanded
       ? `<div class="itinerary-expanded-card-wrap">${renderSingleEventCardHtml(ev, 'saved-drawer')}</div>`
       : '';
+    const safeId = escapeHtml(ev.id || '');
+    const safeTitle = escapeHtml(ev.title || '');
+    const safeVenue = escapeHtml(ev.venue || '');
+    const safePrice = escapeHtml(formatStandardPrice(ev));
     return `
-      <div class="itinerary-item-card ${isExpanded ? 'is-expanded' : ''}" data-saved-event-id="${ev.id}">
-        <div class="itinerary-item-summary-row" role="button" tabindex="0" aria-expanded="${isExpanded}" onclick="toggleSavedCardExpand('${ev.id}', event)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSavedCardExpand('${ev.id}', event);}" title="${isExpanded ? 'Collapse card details' : 'Click to expand full event card'}">
+      <div class="itinerary-item-card ${isExpanded ? 'is-expanded' : ''}" data-saved-event-id="${safeId}">
+        <div class="itinerary-item-summary-row" role="button" tabindex="0" aria-expanded="${isExpanded}" data-action="toggle-saved-expand" data-event-id="${safeId}" title="${isExpanded ? 'Collapse card details' : 'Click to expand full event card'}">
           <div style="flex: 1; min-width: 0;">
-            <div class="itinerary-item-title">${ev.title}</div>
-            <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 4px;">${ev.venue}</div>
-            <div class="itinerary-item-price">${formatStandardPrice(ev)}</div>
+            <div class="itinerary-item-title">${safeTitle}</div>
+            <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 4px;">${safeVenue}</div>
+            <div class="itinerary-item-price">${safePrice}</div>
           </div>
           <div class="itinerary-item-controls">
             <span class="itinerary-expand-chevron" aria-hidden="true">${isExpanded ? '▴' : '▾'}</span>
-            <button type="button" class="btn-remove-item" onclick="event.stopPropagation(); toggleSaveEvent('${ev.id}')" title="Remove from Saved Events" aria-label="Remove ${ev.title.replace(/"/g, '&quot;')} from Saved Events">✕</button>
+            <button type="button" class="btn-remove-item" data-action="toggle-save-event" data-event-id="${safeId}" title="Remove from Saved Events" aria-label="Remove ${safeTitle} from Saved Events">✕</button>
           </div>
         </div>
         ${expandedCardHtml}
@@ -7814,11 +8106,11 @@ function renderSharedPlanBanner(sharedEvents) {
   banner.innerHTML = `
     <div class="shared-plan-banner-info">
       <strong class="shared-plan-banner-title">Shared Outing Plan</strong>
-      <span class="shared-plan-banner-meta">${list.length} ${list.length === 1 ? 'outing' : 'outings'} • <strong>$${totalCost.toFixed(2)} CAD</strong> combined total</span>
+      <span class="shared-plan-banner-meta">${Number(list.length)} ${list.length === 1 ? 'outing' : 'outings'} • <strong>$${totalCost.toFixed(2)} CAD</strong> combined total</span>
     </div>
     <div class="shared-plan-banner-actions">
-      <button type="button" class="btn-shared-plan-save" onclick="saveSharedPlanToMyList(this)">${allAlreadySaved ? 'Saved in My List ✓' : 'Save Plan to My List'}</button>
-      <button type="button" class="btn-shared-plan-clear" onclick="clearSharedPlanView()">Show All Outings</button>
+      <button type="button" class="btn-shared-plan-save" data-action="save-shared-plan">${allAlreadySaved ? 'Saved in My List ✓' : 'Save Plan to My List'}</button>
+      <button type="button" class="btn-shared-plan-clear" data-action="clear-shared-plan">Show All Outings</button>
     </div>
   `;
 }
@@ -7850,7 +8142,7 @@ function hydrateDeepLinksFromUrl() {
 
   // Hydrate ?event=<id> on initial load AND across async loadCentralReference() re-render
   if (params.has('event')) {
-    const rawId = (params.get('event') || '').trim();
+    const rawId = sanitizeUrlEventIdToken(params.get('event') || '');
     if (!rawId) return;
     const nowMs = Date.now();
     const isInitialHydration = window._hydratedDeepLinkEventId !== rawId;
@@ -7978,24 +8270,24 @@ function renderReviewQueueModal() {
     <div class="quarantined-card">
       <div class="quarantined-card-header">
         <div>
-          <h3 class="quarantined-card-title">${q.title}</h3>
-          <div class="quarantined-card-venue">📍 ${q.venue} (${q.neighborhood || 'Vancouver'})</div>
+          <h3 class="quarantined-card-title">${escapeHtml(q.title)}</h3>
+          <div class="quarantined-card-venue">📍 ${escapeHtml(q.venue)} (${escapeHtml(q.neighborhood || 'Vancouver')})</div>
         </div>
         <span class="quarantined-flag-badge">⚠️ QUARANTINED</span>
       </div>
 
       <div class="quarantined-reason-box">
-        <strong>Reason Flagged:</strong> ${q.flagReason}
+        <strong>Reason Flagged:</strong> ${escapeHtml(q.flagReason)}
       </div>
 
       <div class="quarantined-meta-row">
         <div>
           <span style="color: var(--text-muted);">Attempted Price:</span>
-          <span style="color: #f59e0b; font-weight: 700; margin-left: 4px;">${q.attemptedPriceLabel}</span>
-          <span style="color: var(--text-muted); margin-left: 8px;">Provider: ${q.provider}</span>
+          <span style="color: #f59e0b; font-weight: 700; margin-left: 4px;">${escapeHtml(q.attemptedPriceLabel)}</span>
+          <span style="color: var(--text-muted); margin-left: 8px;">Provider: ${escapeHtml(q.provider)}</span>
         </div>
         <a 
-          href="${q.websiteUrl}" 
+          href="${escapeHtml(safeExternalUrl(q.websiteUrl))}" 
           target="_blank" 
           rel="noopener noreferrer" 
           referrerpolicy="no-referrer" 
@@ -8133,7 +8425,25 @@ function initCommunityFeedbackModal() {
       const targetIdInput = document.getElementById('feedback-target-event-id');
       const hpInput = document.getElementById('feedback-hp');
 
-      const message = messageInput?.value?.trim() || '';
+      const hpVal = (hpInput && hpInput.value ? hpInput.value : '').trim();
+      if (hpVal !== '') {
+        closeFeedbackModal();
+        return;
+      }
+
+      const cooldownSec = getFormCooldownRemainingSec('community_feedback');
+      if (cooldownSec > 0) {
+        if (alertBox) {
+          alertBox.style.display = 'block';
+          alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
+          alertBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
+          alertBox.style.color = '#fcd34d';
+          alertBox.textContent = `Please wait ${cooldownSec}s before sending another submission.`;
+        }
+        return;
+      }
+
+      const message = (messageInput?.value?.trim() || '').slice(0, 2000);
       if (!message) {
         if (alertBox) {
           alertBox.style.display = 'block';
@@ -8147,7 +8457,7 @@ function initCommunityFeedbackModal() {
 
       const payload = {
         message: message,
-        target_event_id: targetIdInput?.value || '',
+        target_event_id: sanitizeUrlEventIdToken(targetIdInput?.value || ''),
         hp_field: hpInput?.value || ''
       };
 
@@ -8157,6 +8467,7 @@ function initCommunityFeedbackModal() {
       }
 
       const sendStaticFeedbackFallback = () => {
+        recordFormSubmissionTimestamp('community_feedback');
         const bodyLines = [
           payload.target_event_id ? `Event ID: ${payload.target_event_id}` : null,
           `Feedback / Show Suggestion:`,
@@ -8174,7 +8485,7 @@ function initCommunityFeedbackModal() {
           alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
           alertBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
           alertBox.style.color = '#34d399';
-          alertBox.innerHTML = `✓ Copied &amp; prepared for Van50 Curators! <a href="${mailtoHref}" style="color:#fff;font-weight:700;text-decoration:underline;margin-left:4px;">Click to send via Email ↗</a>`;
+          renderSafeMailtoStatus(alertBox, '✓ Copied & prepared for Van50 Curators!', mailtoHref);
         }
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -8198,6 +8509,7 @@ function initCommunityFeedbackModal() {
         const data = await res.json();
 
         if (res.ok && data.success) {
+          recordFormSubmissionTimestamp('community_feedback');
           if (alertBox) {
             alertBox.style.display = 'block';
             alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
@@ -8350,7 +8662,7 @@ function renderActiveFilterChips(filteredCount) {
     if (triggerLabelEl) {
       triggerLabelEl.textContent = labelText;
     } else {
-      mobileFilterTrigger.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg><span id="mobile-filter-trigger-label">${labelText}</span>`;
+      mobileFilterTrigger.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg><span id="mobile-filter-trigger-label">${escapeHtml(labelText)}</span>`;
     }
     mobileFilterTrigger.classList.toggle('has-active-filters', drawerActiveCount > 0);
   }
@@ -8367,17 +8679,18 @@ function renderActiveFilterChips(filteredCount) {
   }
 
   const quickHideWorshipHtml = showQuickHideWorshipSubPill ? `
-      <button type="button" class="active-filter-chip quick-refine-subpill" onclick="setEventFocusFilter('no-worship')" title="Exclude devotional worship services while keeping secular & choral concerts" aria-label="Hide Worship Services">
+      <button type="button" class="active-filter-chip quick-refine-subpill" data-action="set-event-focus" data-focus-mode="no-worship" title="Exclude devotional worship services while keeping secular & choral concerts" aria-label="Hide Worship Services">
         <span>Hide Worship Services</span>
       </button>
     ` : '';
 
   chipsContainer.style.display = 'flex';
   chipsContainer.innerHTML = chips.map(c => {
-    const safeKey = String(c.key).replace(/'/g, "\\'");
+    const safeKeyAttr = escapeHtml(c.key);
+    const safeLabel = escapeHtml(c.label);
     return `
-      <button type="button" class="active-filter-chip" onclick="dismissSecondaryFilterChip('${safeKey}')" title="Remove ${c.label} filter" aria-label="Remove ${c.label} filter">
-        <span>${c.label}</span>
+      <button type="button" class="active-filter-chip" data-action="dismiss-filter-chip" data-chip-key="${safeKeyAttr}" title="Remove ${safeLabel} filter" aria-label="Remove ${safeLabel} filter">
+        <span>${safeLabel}</span>
         <span class="chip-dismiss" aria-hidden="true">×</span>
       </button>
     `;

@@ -2,8 +2,47 @@
 // Lazy-loaded singleton Map View with resilient coordinate resolution, venue-grouped category emoji pins,
 // price-tier SVG pills, multi-event shared InfoWindow, and Town Centre Quick-Jump controls.
 
-if (typeof window !== 'undefined' && !window.VAN50_MAPS_KEY) {
-  window.VAN50_MAPS_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';
+var escapeHtml = (typeof window !== 'undefined' && typeof window.escapeHtml === 'function')
+  ? window.escapeHtml
+  : function (str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    };
+
+var safeExternalUrl = (typeof window !== 'undefined' && typeof window.safeExternalUrl === 'function')
+  ? window.safeExternalUrl
+  : function (rawUrl) {
+      if (rawUrl === null || rawUrl === undefined) return '#';
+      const trimmed = String(rawUrl).trim();
+      if (!trimmed || trimmed === '#' || trimmed === 'undefined' || trimmed === 'null') return '#';
+      try {
+        const baseOrigin = (typeof window !== 'undefined' && window.location && /^https?:\/\//i.test(window.location.origin))
+          ? window.location.origin
+          : 'https://ausomegh.github.io';
+        const parsed = new URL(trimmed, baseOrigin);
+        if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+          return parsed.href;
+        }
+        return '#';
+      } catch (_) {
+        return '#';
+      }
+    };
+
+if (typeof window !== 'undefined') {
+  window.escapeHtml = escapeHtml;
+  window.safeExternalUrl = safeExternalUrl;
+  if (!window.VAN50_MAPS_KEY) {
+    const metaMapsKey = (typeof document !== 'undefined')
+      ? document.querySelector('meta[name="van50-maps-key"]')?.getAttribute('content')
+      : null;
+    window.VAN50_MAPS_KEY = (metaMapsKey && metaMapsKey.trim()) || 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';
+  }
 }
 const GOOGLE_MAPS_API_KEY = (typeof window !== 'undefined' && window.VAN50_MAPS_KEY) || 'YOUR_GOOGLE_MAPS_API_KEY';
 
@@ -347,7 +386,7 @@ function buildVenueGroupInfoWindowHtml(group) {
   const neighborhood = group.neighborhood || 'Vancouver';
   const count = group.events.length;
   const gmapsQuery = encodeURIComponent(`${venueName} ${neighborhood} BC`);
-  const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+  const gmapsUrl = safeExternalUrl(`https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`);
 
   const itemsHtml = group.events.map((ev) => {
     const emoji = getCategoryEmoji(ev);
@@ -356,7 +395,7 @@ function buildVenueGroupInfoWindowHtml(group) {
     const priceStr = formatEventPriceBadge(ev);
     const evPrice = getEventNumericPrice(ev);
     const tierColors = getPriceTierColors(evPrice);
-    const ticketUrl = ev.websiteUrl || ev.ticket_url || ev.details_url || '#';
+    const ticketUrl = safeExternalUrl(ev.websiteUrl || ev.ticket_url || ev.details_url || '#');
     const inferredTags = (typeof window !== 'undefined' && typeof window.inferHolidaySubTags === 'function')
       ? window.inferHolidaySubTags(ev)
       : (Array.isArray(ev.tags) ? ev.tags : (Array.isArray(ev.subTags) ? ev.subTags : []));
@@ -376,7 +415,7 @@ function buildVenueGroupInfoWindowHtml(group) {
       <div class="gmap-venue-iw-item">
         <div class="gmap-venue-iw-item-top">
           <div class="gmap-venue-iw-item-title">
-            <span>${emoji}</span>
+            <span>${escapeHtml(emoji)}</span>
             <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
           </div>
           <span class="gmap-iw-badge" style="background:${tierColors.bg};color:#ffffff;border:none;flex-shrink:0;">
@@ -402,7 +441,7 @@ function buildVenueGroupInfoWindowHtml(group) {
         <h4 class="gmap-venue-iw-name">📍 ${escapeHtml(venueName)}</h4>
         <div class="gmap-venue-iw-sub">
           <span>${escapeHtml(neighborhood)}</span>
-          <span>${count} ${count === 1 ? 'event' : 'events'}</span>
+          <span>${Number(count) || 0} ${count === 1 ? 'event' : 'events'}</span>
         </div>
       </div>
       <div class="gmap-venue-iw-list">
@@ -739,16 +778,6 @@ if (typeof document !== 'undefined') {
   } else {
     bindTownCentreJumpButtons();
   }
-}
-
-function escapeHtml(str) {
-  if (str == null) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
 }
 
 if (typeof window !== 'undefined') {

@@ -39,11 +39,12 @@
   <meta http-equiv="Expires" content="0">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' https://*.googleapis.com https://*.gstatic.com https://gc.zgo.at 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com https://van50.goatcounter.com; connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://*.google.com https://van50.goatcounter.com data:; worker-src 'self' blob:; frame-src 'self' https://*.google.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:;">
+  <meta name="van50-maps-key" content="AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg">
 
-  <link rel="stylesheet" href="css/style.css?v=8.1.0">
-  <link rel="stylesheet" href="css/components.css?v=8.1.0">
-  <script>window.VAN50_MAPS_KEY = 'AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg';</script>
-
+  <link rel="stylesheet" href="css/style.css?v=8.1.1">
+  <link rel="stylesheet" href="css/components.css?v=8.1.1">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -61,7 +62,7 @@
       </a>
 
       <div class="nav-actions">
-        <a href="simulator.html" target="_blank" rel="noopener" id="header-curator-preview-btn"
+        <a href="simulator.html" target="_blank" rel="noopener noreferrer" id="header-curator-preview-btn"
           class="header-curator-preview-link" title="Open Multi-Device User Preview in New Tab" hidden
           style="display: none;">Preview ↗</a>
         <button class="btn btn-accessibility" id="accessibility-btn" aria-label="Toggle Accessibility Mode"
@@ -277,7 +278,7 @@
             </button>
 
             <!-- Top Section Reset All Filters Button -->
-            <button type="button" class="btn-reset-filters-top" id="btn-reset-filters-top" onclick="resetAllFilters()"
+            <button type="button" class="btn-reset-filters-top" id="btn-reset-filters-top"
               title="Reset all search, category, spend, and date filters to default" aria-label="Reset all filters">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
@@ -491,7 +492,9 @@
       <form id="price-feedback-form" style="display: flex; flex-direction: column; gap: 14px;">
         <input type="hidden" id="price-feedback-venue-input">
         <!-- Anti-bot honeypot -->
-        <input type="text" id="price-feedback-hp" style="display: none;" tabindex="-1" autocomplete="off">
+        <div style="display: none !important;" aria-hidden="true">
+          <input type="text" name="website_url_hp" id="price-feedback-hp" tabindex="-1" autocomplete="off">
+        </div>
 
         <div>
           <label for="price-feedback-pint"
@@ -606,10 +609,9 @@
 
       <div class="itinerary-actions-row" id="itinerary-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button type="button" class="btn-share-plan" id="share-plan-btn"
-          onclick="window.shareOutingPlan && window.shareOutingPlan(this)" style="flex: 1 1 auto; display: none;">Share
+          style="flex: 1 1 auto; display: none;">Share
           Plan</button>
         <button type="button" class="btn-copy-plan btn-copy-link-only" id="copy-plan-link-btn"
-          onclick="window.copyOutingPlanLinkOnly && window.copyOutingPlanLinkOnly(this)"
           title="Copy raw plan link with zero text"
           style="flex: 0 1 auto; display: none; align-items: center; gap: 5px;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
@@ -620,7 +622,7 @@
           <span>Copy Link Only</span>
         </button>
         <button type="button" class="btn-clear-plan" id="clear-plan-btn"
-          onclick="window.clearSavedEvents && window.clearSavedEvents()" style="display: none;"
+          style="display: none;"
           aria-label="Clear all saved events">Clear</button>
       </div>
       <span style="display: none;"></span>
@@ -704,12 +706,12 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=8.1.0"></script>
-  <script src="js/accessibility.js?v=8.1.0"></script>
-  <script src="js/map.js?v=8.1.0"></script>
-  <script src="js/roulette.js?v=8.1.0"></script>
-  <script src="js/app.js?v=8.1.0"></script>
-  <script src="js/pwa-install.js?v=8.1.0"></script>
+  <script src="js/data.js?v=8.1.1"></script>
+  <script src="js/accessibility.js?v=8.1.1"></script>
+  <script src="js/map.js?v=8.1.1"></script>
+  <script src="js/roulette.js?v=8.1.1"></script>
+  <script src="js/app.js?v=8.1.1"></script>
+  <script src="js/pwa-install.js?v=8.1.1"></script>
 
 </body>
 

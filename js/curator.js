@@ -103,6 +103,22 @@ const state = {
 // 0. URL RESOLUTION & CANONICAL LINK HELPERS
 // ==============================================================================
 
+function safeExternalUrl(rawUrl) {
+  if (typeof rawUrl !== 'string') return '#';
+  const trimmed = rawUrl.trim();
+  if (!trimmed || trimmed === '#') return '#';
+  try {
+    const baseOrigin = (typeof window !== 'undefined' && window.location && /^https?:$/i.test(window.location.protocol))
+      ? window.location.origin
+      : 'https://van50.local';
+    const parsed = new URL(trimmed, baseOrigin);
+    return (parsed.protocol === 'https:' || parsed.protocol === 'http:') ? parsed.href : '#';
+  } catch (_) {
+    return '#';
+  }
+}
+window.safeExternalUrl = safeExternalUrl;
+
 function getEventExternalUrl(ev) {
   if (!ev) return '';
   const candidates = [
@@ -123,10 +139,10 @@ function getEventExternalUrl(ev) {
         trimmed !== '#' &&
         trimmed !== 'undefined' &&
         trimmed !== 'null' &&
-        trimmed !== 'Direct' &&
-        !trimmed.startsWith('javascript:')
+        trimmed !== 'Direct'
       ) {
-        return trimmed;
+        const safe = safeExternalUrl(trimmed);
+        if (safe !== '#') return safe;
       }
     }
   }
@@ -150,10 +166,10 @@ function getVenueExternalUrl(v) {
         trimmed &&
         trimmed !== '#' &&
         trimmed !== 'undefined' &&
-        trimmed !== 'null' &&
-        !trimmed.startsWith('javascript:')
+        trimmed !== 'null'
       ) {
-        return trimmed;
+        const safe = safeExternalUrl(trimmed);
+        if (safe !== '#') return safe;
       }
     }
   }
@@ -1036,11 +1052,14 @@ function renderCardScreenshotThumbnails(inst) {
     <div class="curator-instruction-shots" style="margin: 8px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
       <span style="font-size: 0.78rem; font-weight: 600; color: #d8b4fe;">🖼️ ${paths.length} Screenshot${paths.length > 1 ? 's' : ''} Attached:</span>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        ${paths.map((p, idx) => `
-          <a href="${p}" target="_blank" rel="noopener noreferrer" title="Click to view full-size screenshot proof #${idx + 1}" style="display: inline-block; text-decoration: none;">
-            <img src="${p}" alt="Screenshot #${idx + 1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
+        ${paths.map((p, idx) => {
+          const safeShotUrl = escapeHtml(safeExternalUrl(p));
+          return `
+          <a href="${safeShotUrl}" target="_blank" rel="noopener noreferrer" title="Click to view full-size screenshot proof #${idx + 1}" style="display: inline-block; text-decoration: none;">
+            <img src="${safeShotUrl}" alt="Screenshot #${idx + 1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
           </a>
-        `).join('')}
+        `;
+        }).join('')}
       </div>
     </div>
   `;
@@ -1445,20 +1464,20 @@ function renderEventCard(ev, index) {
             
             <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
               ${ev.emailScreenshot ? `
-                <a href="${ev.emailScreenshot}" target="_blank" rel="noopener noreferrer" title="Click to open full email screenshot in new tab" style="display: inline-block; position: relative; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 2px 8px rgba(0,0,0,0.4); text-decoration: none;">
-                  <img src="${ev.emailScreenshot}" alt="Newsletter Email Screenshot" style="height: 75px; width: 130px; object-fit: cover; object-position: top; display: block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                <a href="${escapeHtml(safeExternalUrl(ev.emailScreenshot))}" target="_blank" rel="noopener noreferrer" title="Click to open full email screenshot in new tab" style="display: inline-block; position: relative; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 2px 8px rgba(0,0,0,0.4); text-decoration: none;">
+                  <img src="${escapeHtml(safeExternalUrl(ev.emailScreenshot))}" alt="Newsletter Email Screenshot" style="height: 75px; width: 130px; object-fit: cover; object-position: top; display: block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
                   <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.85); color: #38bdf8; font-size: 0.68rem; text-align: center; padding: 2px 0; font-weight: 600;">🖼️ Full Screenshot ↗</div>
                 </a>
               ` : ''}
               
               <div style="display: flex; flex-direction: column; gap: 6px;">
                 ${ev.emailScreenshot ? `
-                  <button type="button" onclick="openEmailScreenshotModal('${ev.id}')" style="background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.32)'" onmouseout="this.style.background='rgba(56, 189, 248, 0.18)'">
+                  <button type="button" onclick="openEmailScreenshotModal('${escapeHtml(ev.id)}')" style="background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.32)'" onmouseout="this.style.background='rgba(56, 189, 248, 0.18)'">
                     <span>🔍</span> Inspect Full Email Screenshot
                   </button>
                 ` : ''}
                 ${ev.emailHtmlPath ? `
-                  <a href="${ev.emailHtmlPath}" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; font-size: 0.78rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;">
+                  <a href="${escapeHtml(safeExternalUrl(ev.emailHtmlPath))}" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; font-size: 0.78rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;">
                     <span>📄</span> View Original HTML Digest ↗
                   </a>
                 ` : ''}
@@ -1590,9 +1609,9 @@ function renderEventCard(ev, index) {
               <label class="curator-label">Fee Breakdown / Audit Note</label>
               <input 
                 type="text" 
-                id="edit-fee-${ev.id}" 
+                id="edit-fee-${escapeHtml(ev.id)}" 
                 class="curator-input" 
-                value="Verified via Curator Studio review (${ev.provider || 'Direct'})"
+                value="Verified via Curator Studio review (${escapeHtml(ev.provider || 'Direct')})"
               >
             </div>
           </div>
@@ -2021,7 +2040,7 @@ window.openAIInstructionModal = function (eventId, mode = 'approve') {
         issues.push(`🚨 <strong>Budget Ceiling Exceeded:</strong> Detected rate of $${attPriceForIssues.toFixed(2)} CAD exceeds strict $50.00 CAD ceiling.`);
       }
       if (dateStatus && dateStatus.isUnconfirmed) {
-        issues.push(`📅 <strong>Date/Schedule Unconfirmed:</strong> ${dateStatus.dateLabel || 'Schedule or performance times are pending verification.'}`);
+        issues.push(`📅 <strong>Date/Schedule Unconfirmed:</strong> ${escapeHtml(dateStatus.dateLabel || 'Schedule or performance times are pending verification.')}`);
       }
       if (isDrift(ev)) {
         issues.push(`⚠️ <strong>Live Page Drift:</strong> Schedule or pricing deviated from prior baseline.`);
@@ -5329,14 +5348,15 @@ function showToast(message, type = 'success') {
 
 // Helpers
 function escapeHtml(str) {
-  if (!str) return '';
+  if (str === null || str === undefined) return '';
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(/'/g, '&#39;');
 }
+window.escapeHtml = escapeHtml;
 
 function jsonStringify(obj) {
   return JSON.stringify(obj);
@@ -6462,14 +6482,14 @@ function renderMasterCatalogList() {
       const show1 = ev.show_1 || {};
       const dates = [ev.show_1?.date, ev.show_2?.date, ev.show_3?.date].filter(Boolean);
       const showingsBadge = dates.length > 1 ? `<span style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 4px; padding: 2px 6px; font-size: 0.72rem;">${dates.length} Verified Showings</span>` : '';
-      const tags = (ev.tags || []).map(t => `<span style="background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; color: #94a3b8;">#${t}</span>`).join(' ');
+      const tags = (ev.tags || []).map(t => `<span style="background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; color: #94a3b8;">#${escapeHtml(t)}</span>`).join(' ');
 
       return `
         <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
             <div>
               <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                <span class="badge-card-number" title="Catalog Card #${cardNum}">Card #${cardNum}</span>
+                <span class="badge-card-number" title="Catalog Card #${escapeHtml(cardNum)}">Card #${escapeHtml(cardNum)}</span>
                 <strong style="color: #f8fafc; font-size: 0.96rem;">${escapeHtml(ev.event_name || ev.title || 'Event')}</strong>
               </div>
               <div style="color: #38bdf8; font-size: 0.84rem; margin-top: 2px;">📍 ${escapeHtml(ev.venue_name || ev.venue || '')} • <span style="color: #94a3b8;">${escapeHtml(ev.neighborhood || '')}</span></div>
@@ -6481,10 +6501,10 @@ function renderMasterCatalogList() {
           </div>
           <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4;">${escapeHtml(ev.description || 'No description provided.')}</div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.76rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 6px;">
-            <div>📅 Show 1: ${show1.date || 'Upcoming'} ${show1.start_time ? `at ${show1.start_time}` : ''} | Provider: <strong style="color: #cbd5e1;">${escapeHtml(ev.ticket_provider || 'Direct')}</strong></div>
+            <div>📅 Show 1: ${escapeHtml(show1.date || 'Upcoming')} ${show1.start_time ? `at ${escapeHtml(show1.start_time)}` : ''} | Provider: <strong style="color: #cbd5e1;">${escapeHtml(ev.ticket_provider || 'Direct')}</strong></div>
             <div style="display: flex; gap: 8px; align-items: center;">
               ${tags}
-              ${ev.ticket_url ? `<a href="${escapeHtml(ev.ticket_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
+              ${ev.ticket_url ? `<a href="${escapeHtml(safeExternalUrl(ev.ticket_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
               <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(ev.event_id || ev.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
             </div>
           </div>
@@ -6506,8 +6526,8 @@ function renderMasterCatalogList() {
           <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(addr)}</div>
           ${vm.description ? `<div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 2px;">${escapeHtml(vm.description)}</div>` : ''}
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem; align-items: center;">
-            ${calUrl ? `<a href="${escapeHtml(calUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
-            ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(vm.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
+            ${calUrl ? `<a href="${escapeHtml(safeExternalUrl(calUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
+            ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(safeExternalUrl(vm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
             <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(vm.venue_name || vm.name || vm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
           </div>
         </div>
@@ -6540,8 +6560,8 @@ function renderMasterCatalogList() {
           </div>
           <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(fm.location || fm.discovered_from_title || 'Vancouver, BC')} • <strong style="color: #cbd5e1;">${escapeHtml(fm.description || 'Festival / Seasonal Series')}</strong></div>
           <div style="display: flex; gap: 10px; margin-top: 4px; font-size: 0.78rem; align-items: center; flex-wrap: wrap;">
-            ${fm.schedule_url ? `<a href="${escapeHtml(fm.schedule_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
-            ${fm.website_url ? `<a href="${escapeHtml(fm.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
+            ${fm.schedule_url ? `<a href="${escapeHtml(safeExternalUrl(fm.schedule_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
+            ${fm.website_url ? `<a href="${escapeHtml(safeExternalUrl(fm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
             <div style="margin-left: auto; display: flex; gap: 6px; align-items: center;">
               ${isPending ? `
                 <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${escapeHtml(fslug)}', '${escapeHtml(fname.replace(/'/g, "\\'"))}'); setTimeout(() => fetchMasterCatalog('festivals_master', true), 400);" style="padding: 3px 9px; font-size: 0.72rem; color: #f87171; border-color: rgba(239, 68, 68, 0.4);">✕ Dismiss</button>
@@ -6562,7 +6582,7 @@ function renderMasterCatalogList() {
             <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">💡 ${escapeHtml(ts.notes || 'Ticketing source')}</div>
           </div>
           <div>
-            ${ts.website_url && ts.website_url !== 'Direct' ? `<a href="${escapeHtml(ts.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="padding: 4px 10px; font-size: 0.76rem;">Visit ↗</a>` : '<span style="color: #4ade80; font-size: 0.8rem;">Door / Cash</span>'}
+            ${ts.website_url && ts.website_url !== 'Direct' ? `<a href="${escapeHtml(safeExternalUrl(ts.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="padding: 4px 10px; font-size: 0.76rem;">Visit ↗</a>` : '<span style="color: #4ade80; font-size: 0.8rem;">Door / Cash</span>'}
           </div>
         </div>
       `;
@@ -6578,7 +6598,7 @@ function renderMasterCatalogList() {
           <div style="font-size: 0.82rem; color: #cbd5e1;">🎯 ${escapeHtml(ds.focus || '')}</div>
           <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 2px;">Policy: ${escapeHtml(ds.resolutionPolicy || 'Extract outbound canonical ticket portal')}</div>
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
-            ${ds.eventsUrl ? `<a href="${escapeHtml(ds.eventsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Calendar Feed ↗</a>` : ''}
+            ${ds.eventsUrl ? `<a href="${escapeHtml(safeExternalUrl(ds.eventsUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Calendar Feed ↗</a>` : ''}
           </div>
         </div>
       `;
@@ -6838,6 +6858,7 @@ function renderDiscoveredSourcesCards() {
     const notes = s.curatorNotes || '';
     const eventsUrl = s.eventsUrl || (domain ? `https://${domain}` : '#');
 
+    const safeEventsUrl = safeExternalUrl(eventsUrl);
     return `
       <div class="curator-card" id="card-source-${escapeHtml(sId)}" style="border-left: 4px solid #38bdf8;">
         <div class="curator-card-top">
@@ -6846,7 +6867,7 @@ function renderDiscoveredSourcesCards() {
               <span>📡</span> ${escapeHtml(name)}
             </h3>
             <div class="curator-card-meta">
-              <span>🌐 <strong>Domain:</strong> <a href="${escapeHtml(eventsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #7dd3fc; text-decoration: underline;">${escapeHtml(domain)}</a></span>
+              <span>🌐 <strong>Domain:</strong> <a href="${escapeHtml(safeEventsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #7dd3fc; text-decoration: underline;">${escapeHtml(domain)}</a></span>
               <span>🏷️ <strong>Type:</strong> ${escapeHtml(typeLabel)}</span>
               <span>💰 <strong>Budget Fit:</strong> ${escapeHtml(budget)}</span>
               <span>📈 <strong>Est. Yield:</strong> ${escapeHtml(yieldEst)}</span>
@@ -6867,7 +6888,7 @@ function renderDiscoveredSourcesCards() {
           <div><strong>🎯 Focus / Content Scope:</strong> ${escapeHtml(focus)}</div>
           ${notes ? `<div style="margin-top: 6px; color: #94a3b8;"><strong>📝 AI Curator Notes:</strong> ${escapeHtml(notes)}</div>` : ''}
           <div style="margin-top: 8px; display: flex; gap: 16px; align-items: center;">
-            <a href="${escapeHtml(eventsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-weight: 500;">
+            <a href="${escapeHtml(safeEventsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-weight: 500;">
               Open Calendar / Ticket Page (<code>${escapeHtml(eventsUrl)}</code>) ↗
             </a>
           </div>
@@ -6904,7 +6925,7 @@ function renderDiscoveredSourcesCards() {
           </div>
           <div>
             <a 
-              href="${escapeHtml(eventsUrl)}" 
+              href="${escapeHtml(safeEventsUrl)}" 
               target="_blank" 
               rel="noopener noreferrer" 
               referrerpolicy="no-referrer"
@@ -7052,42 +7073,44 @@ function renderUserFeedbackCards() {
     const dateStr = fb.submitted_at ? new Date(fb.submitted_at).toLocaleString() : 'Recently';
     const messageText = fb.sanitized_message || fb.sanitized_comment || '';
 
+    const safeFbId = escapeHtml(fb.feedback_id || '');
+    const safeFbUrl = fb.sanitized_url ? safeExternalUrl(fb.sanitized_url) : '';
     return `
-          <div class="curator-card" id="fb-card-${fb.feedback_id}" style="background: var(--curator-surface); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px; padding: 16px 20px;">
+          <div class="curator-card" id="fb-card-${safeFbId}" style="background: var(--curator-surface); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px; padding: 16px 20px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span style="background: rgba(52, 211, 153, 0.15); color: #34d399; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3);">
-                  ${typeBadge}
+                  ${escapeHtml(typeBadge)}
                 </span>
                 <span style="background: rgba(148, 163, 184, 0.12); color: #94a3b8; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">
                   🛡️ Sandboxed
                 </span>
               </div>
-              <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${dateStr}</span>
+              <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(dateStr)}</span>
             </div>
 
             <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: #fff; margin: 0 0 6px 0;">
-              ${fb.sanitized_title}
+              ${escapeHtml(fb.sanitized_title)}
             </h3>
 
-            ${fb.sanitized_price ? `<div style="font-size: 0.82rem; color: #38bdf8; margin-bottom: 6px;"><strong>Price Note:</strong> ${fb.sanitized_price}</div>` : ''}
+            ${fb.sanitized_price ? `<div style="font-size: 0.82rem; color: #38bdf8; margin-bottom: 6px;"><strong>Price Note:</strong> ${escapeHtml(fb.sanitized_price)}</div>` : ''}
 
-            ${fb.sanitized_url ? `
+            ${(safeFbUrl && safeFbUrl !== '#') ? `
               <div style="font-size: 0.8rem; margin-bottom: 10px;">
                 <span style="color: var(--curator-text-muted);">Submitted Link:</span>
-                <a href="${fb.sanitized_url}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer" style="color: #60a5fa; text-decoration: underline; word-break: break-all; margin-left: 4px;">
-                  ${fb.sanitized_url} ↗
+                <a href="${escapeHtml(safeFbUrl)}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer" style="color: #60a5fa; text-decoration: underline; word-break: break-all; margin-left: 4px;">
+                  ${escapeHtml(safeFbUrl)} ↗
                 </a>
               </div>
             ` : ''}
 
-            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; word-break: break-word; white-space: pre-wrap;">${messageText}</div>
+            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; word-break: break-word; white-space: pre-wrap;">${escapeHtml(messageText)}</div>
 
             <div style="display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px;">
-              <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissUserFeedback('${fb.feedback_id}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissUserFeedback('${safeFbId}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
                 Dismiss
               </button>
-              <button type="button" class="btn-curator btn-curator-primary" onclick="resolveUserFeedback('${fb.feedback_id}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
+              <button type="button" class="btn-curator btn-curator-primary" onclick="resolveUserFeedback('${safeFbId}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
                 ✓ Mark Resolved
               </button>
             </div>
@@ -7206,15 +7229,16 @@ function renderNewsletterSignupsCards() {
     </div>
     <div style="display: flex; flex-direction: column; gap: 14px;">
       ${signups.map(su => {
-    const dateStr = su.detected_at ? new Date(su.detected_at).toLocaleString() : 'Recently';
-    const targetEmail = su.suggested_email || 'Van50.Submit@gmail.com';
+    const dateStr = escapeHtml(su.detected_at ? new Date(su.detected_at).toLocaleString() : 'Recently');
+    const targetEmail = escapeHtml(su.suggested_email || 'Van50.Submit@gmail.com');
+    const safeSuId = escapeHtml(su.id || '');
     const safeVenueName = escapeHtml(su.venue_name || 'Discovered Venue');
     const safeMethod = escapeHtml(su.method || 'Newsletter Direct Link');
-    const safeWebsite = escapeHtml(su.website_url || '');
-    const safeSignupUrl = escapeHtml(su.signup_url || '');
+    const safeWebsite = escapeHtml(safeExternalUrl(su.website_url || ''));
+    const safeSignupUrl = escapeHtml(safeExternalUrl(su.signup_url || ''));
 
     return `
-          <div class="curator-card" id="nl-card-${su.id}" style="background: var(--curator-surface); border: 1px solid rgba(244, 114, 182, 0.3); border-radius: 10px; padding: 16px 20px;">
+          <div class="curator-card" id="nl-card-${safeSuId}" style="background: var(--curator-surface); border: 1px solid rgba(244, 114, 182, 0.3); border-radius: 10px; padding: 16px 20px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span style="background: rgba(244, 114, 182, 0.15); color: #f472b6; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(244, 114, 182, 0.3);">
@@ -7262,10 +7286,10 @@ function renderNewsletterSignupsCards() {
               </a>
 
               <div style="display: flex; gap: 8px;">
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissNewsletterSignup('${su.id}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissNewsletterSignup('${safeSuId}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
                   Dismiss
                 </button>
-                <button type="button" class="btn-curator btn-curator-primary" onclick="markNewsletterSubscribed('${su.id}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
+                <button type="button" class="btn-curator btn-curator-primary" onclick="markNewsletterSubscribed('${safeSuId}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
                   ✓ Mark Subscribed
                 </button>
               </div>

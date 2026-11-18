@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-18T17:13:40.316Z",
-    "pendingCount": 0,
+    "updatedAt": "2026-11-18T18:52:27.989176+00:00",
+    "pendingCount": 3,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements.",
     "totalInstructions": 78
   },
@@ -3835,6 +3835,78 @@
       "subEvents": [],
       "subEventsCount": 0,
       "resolvedAt": "2026-11-18T17:13:40.316Z"
+    },
+    {
+      "id": "inst_1795027654348",
+      "createdAt": "2026-11-18T18:47:34.366102+00:00",
+      "status": "pending",
+      "eventId": "the-pearl-shrek-rave-2027-02-06",
+      "eventTitle": "Shrek Rave",
+      "venueName": "The Pearl",
+      "sourceUrl": "https://www.ticketweb.ca/event/shrek-rave-the-pearl-tickets/14434274",
+      "instructionText": "Screenshot proof attached: Shrek Rave ($28.41 CAD).",
+      "screenshotPath": "data/curator_screenshots/screenshot_1795027654348_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1795027654348_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "targetScraperOrEngine": "The Pearl",
+      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Shrek Rave ($28.41 CAD).",
+      "extractedTiers": [],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
+    },
+    {
+      "id": "inst_1795027783278",
+      "createdAt": "2026-11-18T18:49:43.289506+00:00",
+      "status": "pending",
+      "eventId": "the-american-modo-live-the-plant-present-ra-2027-04-04",
+      "eventTitle": "Radio Free Alice w/ Special Guests",
+      "venueName": "The American",
+      "sourceUrl": "https://www.ticketweb.ca/event/radio-free-alice-with-special-the-american-tickets/14434064",
+      "instructionText": "Screenshot proof attached: Radio Free Alice w/ Special Guests ($0.00 CAD).",
+      "screenshotPath": "data/curator_screenshots/screenshot_1795027783278_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1795027783278_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "targetScraperOrEngine": "The American",
+      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Radio Free Alice w/ Special Guests ($0.00 CAD).",
+      "extractedTiers": [],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
+    },
+    {
+      "id": "inst_1795027947967",
+      "createdAt": "2026-11-18T18:52:27.980993+00:00",
+      "status": "pending",
+      "eventId": "fortune-sound-club-jonah-yano-2027-02-20",
+      "eventTitle": "Jonah Yano",
+      "venueName": "Fortune Sound Club",
+      "sourceUrl": "https://www.ticketweb.ca/event/jonah-yano-fortune-sound-club-tickets/14435664",
+      "instructionText": "Screenshot proof attached: Jonah Yano ($0.00 CAD).",
+      "screenshotPath": "data/curator_screenshots/screenshot_1795027947967_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1795027947967_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "targetScraperOrEngine": "Fortune Sound Club",
+      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Jonah Yano ($0.00 CAD).",
+      "extractedTiers": [],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
     }
   ],
   "lastLearnedAt": "2026-09-26T11:01:14.885134+00:00"

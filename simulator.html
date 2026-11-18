@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Van50 User Preview Simulator — Multi-Device Studio</title>
   <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; frame-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self';">
   <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -644,7 +648,10 @@
                   <div class="mobile-address-pill">🔒 van50.ca</div>
                   <button type="button" class="btn-collapse-urlbar" id="btn-collapse-urlbar" title="Collapse or expand mobile browser address bar to test dynamic viewport height (dvh)">▴ Bar</button>
                 </div>
-                <iframe id="sim-frame-primary" class="sim-iframe" src="./index.html" title="Van50 Primary Device Preview"></iframe>
+                <iframe id="sim-frame-primary" class="sim-iframe" src="./index.html"
+                  sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="Van50 Primary Device Preview"></iframe>
                 <div class="mobile-home-indicator-bar">
                   <span class="home-indicator-pill"></span>
                 </div>
@@ -786,8 +793,30 @@
       const screenSecondary = document.getElementById('screen-secondary');
       let iframeSecondary = null;
 
+      const SIM_SANDBOX_POLICY = 'allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox';
+
       function buildPreviewUrl(bustCache) {
-        return bustCache ? `./index.html?_t=${Date.now()}` : './index.html';
+        const suffix = bustCache ? `?_t=${Date.now()}` : '';
+        try {
+          const resolved = new URL(`./index.html${suffix}`, window.location.href);
+          if (window.location.origin && window.location.origin !== 'null' && resolved.origin !== window.location.origin) {
+            return './index.html';
+          }
+          return `./index.html${suffix}`;
+        } catch (_) {
+          return './index.html';
+        }
+      }
+
+      function setSlotCaption(captionEl, label, width, height) {
+        if (!captionEl) return;
+        captionEl.textContent = '';
+        const strongEl = document.createElement('strong');
+        strongEl.textContent = String(label || '');
+        const spanEl = document.createElement('span');
+        spanEl.textContent = `${Number(width) || 0} × ${Number(height) || 0}`;
+        captionEl.appendChild(strongEl);
+        captionEl.appendChild(spanEl);
       }
 
       function ensureSecondaryIframeMounted() {
@@ -796,6 +825,8 @@
         iframeSecondary.id = 'sim-frame-secondary';
         iframeSecondary.className = 'sim-iframe';
         iframeSecondary.title = 'Van50 Desktop Split Preview';
+        iframeSecondary.setAttribute('sandbox', SIM_SANDBOX_POLICY);
+        iframeSecondary.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
         iframeSecondary.src = buildPreviewUrl(false);
         iframeSecondary.addEventListener('load', () => {
           syncFrameEnvironment(iframeSecondary, SPLIT_DESKTOP);
@@ -898,11 +929,11 @@
         const scale = computeStageScale(primaryMetrics, secondaryMetrics);
 
         applySlotGeometry(bezelPrimary, screenPrimary, shellPrimary, primarySpec, primaryMetrics, scale);
-        captionPrimary.innerHTML = `<strong>${primarySpec.label}</strong><span>${primarySpec.width} × ${primarySpec.height}</span>`;
+        setSlotCaption(captionPrimary, primarySpec.label, primarySpec.width, primarySpec.height);
 
         if (simState.mode === 'split' && secondaryMetrics) {
           applySlotGeometry(bezelSecondary, screenSecondary, shellSecondary, SPLIT_DESKTOP, secondaryMetrics, scale);
-          captionSecondary.innerHTML = `<strong>${SPLIT_DESKTOP.label}</strong><span>${SPLIT_DESKTOP.width} × ${SPLIT_DESKTOP.height}</span>`;
+          setSlotCaption(captionSecondary, SPLIT_DESKTOP.label, SPLIT_DESKTOP.width, SPLIT_DESKTOP.height);
         }
 
         // Toolbar button states

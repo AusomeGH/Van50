@@ -918,5 +918,177 @@
       "arbitration_reasoning": "Adopted the specific box office title 'Forest Explorers: Spectacular Seasons' to preserve the full program identity while grounding the category in the outdoors editorial layer and keeping is_sold_out false due to active $16 admission."
     },
     "updatedAt": "2026-11-18T10:58:15.790Z"
+  },
+  "the-american-modo-live-the-plant-present-ra-2027-04-04": {
+    "sig": "title mismatch between schedule (\"MODO-LIVE, The Plant present... RADIO FREE ALICE w/ Special Guests\") and box office (\"Radio Free Alice w/ Special Guests\")::Screenshot proof attached: Radio Free Alice w/ Special Guests ($0.00 CAD).",
+    "decision": {
+      "clean_title": "Radio Free Alice w/ Special Guests",
+      "artist": "Radio Free Alice",
+      "lineup": [
+        "Radio Free Alice"
+      ],
+      "date": "2027-04-04",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the clean title 'Radio Free Alice w/ Special Guests' per mandatory curator instruction and box office/seed layers, stripping promoter billing prefixes ('MODO-LIVE, The Plant present...')."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "vandusen-botanical-g-sakura-days-japan-fair-1112": {
+    "sig": "date mismatch between schedule (2027-04-11) and box office (2023-04-16)::",
+    "decision": {
+      "clean_title": "Sakura Days Japan Fair",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-04-11",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "festivals",
+      "arbitration_reasoning": "Resolved date to upcoming 2027-04-11 matching the schedule harvester and seed over the stale 2023 historical box office crawl date, while retaining live verified 10:00 AM start time and adult admission pricing."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "queen-elizabeth-thea-nutcracker-2026-12-09": {
+    "sig": "title mismatch between schedule (\"Nutcracker\") and box office (\"Ballet BC Presents: Royal Winnipeg Ballet's Nutcracker\")::",
+    "decision": {
+      "clean_title": "Ballet BC Presents: Royal Winnipeg Ballet's Nutcracker",
+      "artist": "Royal Winnipeg Ballet",
+      "lineup": [
+        "Ballet BC",
+        "Royal Winnipeg Ballet"
+      ],
+      "date": "2026-12-09",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the specific full presenter and production title from the Seed and Box Office layers over the generic schedule layer slug, extracting Royal Winnipeg Ballet as the performing company."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "orpheum-peter-and-the-wolf-2027-01-17": {
+    "sig": "title mismatch between schedule (\"Peter and the Wolf\") and box office (\"Kids Concerts | Peter and the Wolf\")::",
+    "decision": {
+      "clean_title": "VSO Kids Concert: Peter and the Wolf",
+      "artist": "Vancouver Symphony Orchestra",
+      "lineup": [
+        "Vancouver Symphony Orchestra"
+      ],
+      "date": "2027-01-17",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Resolved title by adopting the canonical Seed and series context ('VSO Kids Concert: Peter and the Wolf') over stripped schedule and UI breadcrumb box office strings, while grounding the primary artist as Vancouver Symphony Orchestra and preserving verified box office timing."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "fox-cabaret-renforshort-2027-02-13": {
+    "sig": "title mismatch between schedule (\"renforshort\") and box office (\"renforshort: Meet Me In The Lobby Tour\")::",
+    "decision": {
+      "clean_title": "renforshort: Meet Me In The Lobby Tour",
+      "artist": "renforshort",
+      "lineup": [
+        "renforshort"
+      ],
+      "date": "2027-02-13",
+      "start_time": "7:00 PM",
+      "doors_time": "7:00 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the descriptive full tour title from Seed and Box Office layers over the truncated artist-only title from the schedule harvester, isolating 'renforshort' as the lead artist."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "fox-cabaret-peel-dream-magazine-north-amer-2027-04-16": {
+    "sig": "title mismatch between schedule (\"Peel Dream Magazine - North America 2027, Dari Bay\") and box office (\"Peel Dream Magazine w/ Dari Bay\")::",
+    "decision": {
+      "clean_title": "Peel Dream Magazine w/ Dari Bay",
+      "artist": "Peel Dream Magazine",
+      "lineup": [
+        "Peel Dream Magazine",
+        "Dari Bay"
+      ],
+      "date": "2027-04-16",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the concise ticketing title 'Peel Dream Magazine w/ Dari Bay' which matches both the primary box office source and original seed, while extracting Dari Bay as support."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "hollywood-theatre-racing-mount-pleasant-2027-05-11": {
+    "sig": "title mismatch between schedule (\"Racing Mount Pleasant\") and box office (\"Racing Mount Pleasant w/ Dutch Interior\")::",
+    "decision": {
+      "clean_title": "Racing Mount Pleasant w/ Dutch Interior",
+      "artist": "Racing Mount Pleasant",
+      "lineup": [
+        "Racing Mount Pleasant",
+        "Dutch Interior"
+      ],
+      "date": "2027-05-11",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the fuller title including billing support ('w/ Dutch Interior') from the Seed and Box Office layers while categorizing headliner and supporting act into lineup."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "hollywood-theatre-1tbsp-2027-02-27": {
+    "sig": "title mismatch between schedule (\"1TBSP\") and box office (\"1tbsp: Big Soaps Tour\")::",
+    "decision": {
+      "clean_title": "1tbsp: Big Soaps Tour",
+      "artist": "1tbsp",
+      "lineup": [
+        "1tbsp"
+      ],
+      "date": "2027-02-27",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the descriptive full tour title '1tbsp: Big Soaps Tour' from Seed and Box Office layers over the bare artist acronym reported in the schedule layer."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "hollywood-theatre-john-craigie-2026-12-05": {
+    "sig": "title mismatch between schedule (\"John Craigie\") and box office (\"John Craigie: Keep It Warm Tour\")::",
+    "decision": {
+      "clean_title": "John Craigie: Keep It Warm Tour",
+      "artist": "John Craigie",
+      "lineup": [
+        "John Craigie"
+      ],
+      "date": "2026-12-05",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the complete tour title 'John Craigie: Keep It Warm Tour' corroborated by both the Seed and Box Office layers over the truncated artist-only schedule entry."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "the-pearl-frost-children-with-special-gu-2026-12-05": {
+    "sig": "title mismatch between schedule (\"Frost Children with Special Guests\") and box office (\"Frost Children with Kuru\")::",
+    "decision": {
+      "clean_title": "Frost Children with Kuru",
+      "artist": "Frost Children",
+      "lineup": [
+        "Frost Children",
+        "Kuru"
+      ],
+      "date": "2026-12-05",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the specific performer name 'Kuru' from the official Ticketmaster Seed and Box Office layers over the generic schedule placeholder 'Special Guests', classified as music per editorial context."
+    },
+    "updatedAt": "2026-11-18T19:09:36.873Z"
   }
 }
