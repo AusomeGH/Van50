@@ -1196,10 +1196,44 @@ def map_super_cluster(ev_or_venue):
     venue_l = str(ev_or_venue.get('venue') or ev_or_venue.get('venue_name') or ev_or_venue.get('name') or '').lower()
     ev_id = str(ev_or_venue.get('id') or ev_or_venue.get('venueId') or '').lower()
 
-    # Preserve Surrey neighborhood taxonomy
-    is_east_van_grandview = ('grandview-woodland' in old_nl or 'grandview woodland' in old_nl or 'vancouver' in addr_l)
+    # Preserve Burnaby, Richmond, New West, Langley & Surrey neighborhood taxonomy
+    loc_blob = f"{old_nl} {addr_l}"
+    is_east_van_grandview = ('grandview-woodland' in old_nl or 'grandview woodland' in old_nl or ', vancouver, bc' in addr_l)
+
+    if city_l == 'burnaby' or (not is_east_van_grandview and any(k in loc_blob for k in ('burnaby', 'metrotown', 'deer lake', 'brentwood', 'lougheed', 'edmonds', 'simon fraser', 'sfu'))):
+        if any(k in loc_blob for k in ('brentwood', 'north burnaby', 'burnaby heights', 'capitol hill', 'willingdon')):
+            return 'Brentwood & North Burnaby'
+        if any(k in loc_blob for k in ('lougheed', 'sfu', 'simon fraser', 'burnaby mountain', 'burquitlam')):
+            return 'Lougheed & SFU'
+        if any(k in loc_blob for k in ('edmonds', 'south burnaby', 'highgate', 'big bend', 'macpherson')):
+            return 'Edmonds & South Burnaby'
+        return 'Metrotown & Deer Lake'
+
+    if city_l == 'richmond' or (not is_east_van_grandview and any(k in loc_blob for k in ('richmond', 'steveston', 'brighouse', 'lansdowne', 'ironwood', 'minoru', 'terra nova'))):
+        if any(k in loc_blob for k in ('steveston', 'garry point', 'westwater', 'moncton', 'britannia shipyards')):
+            return 'Steveston Village'
+        if any(k in loc_blob for k in ('east richmond', 'ironwood', 'bridgeport', 'riverport', 'westminster hwy')):
+            return 'East Richmond & Ironwood'
+        return 'City Centre & Brighouse'
+
+    if city_l in ('new westminster', 'new west', 'new-west') or (not is_east_van_grandview and any(k in loc_blob for k in ('new westminster', 'new west', 'sapperton', 'queensborough'))):
+        if 'queensborough' in loc_blob:
+            return 'Queensborough'
+        if any(k in loc_blob for k in ('uptown', 'sapperton', 'eighth ave', 'queen\'s park', 'moody park')):
+            return 'Uptown & Sapperton'
+        return 'Downtown & Columbia St'
+
+    if city_l == 'langley' or (not is_east_van_grandview and any(k in loc_blob for k in ('langley', 'fort langley', 'willoughby', 'walnut grove', 'murrayville', 'aldergrove', 'willowbrook'))):
+        if 'fort langley' in loc_blob or 'mavis ave' in loc_blob:
+            return 'Fort Langley'
+        if any(k in loc_blob for k in ('willoughby', 'walnut grove', 'carvolth', 'yorkson')):
+            return 'Willoughby & Walnut Grove'
+        if any(k in loc_blob for k in ('murrayville', 'aldergrove', 'brookswood', '216 st', '8 ave')):
+            return 'Murrayville & Aldergrove'
+        return 'Langley City & Willowbrook'
+
     is_surrey = (city_l == 'surrey') or (not is_east_van_grandview and any(
-        k in f"{old_nl} {addr_l}" for k in (
+        k in loc_blob for k in (
             'surrey', 'whalley', 'guildford', 'fleetwood', 'fraser heights',
             'newton', 'bear creek', 'panorama', 'sullivan', 'cloverdale',
             'clayton', 'south surrey', 'grandview heights', 'crescent beach', 'bridgeview'
@@ -1534,12 +1568,19 @@ def sync_js_data_file():
 
         for ev in events:
             ev["neighborhood"] = map_super_cluster(ev)
-            if ev["neighborhood"] in ("Surrey Central / Whalley", "Guildford", "Fleetwood", "Newton", "Cloverdale", "South Surrey"):
-                ev["city"] = "Surrey"
-                ev["region"] = "Surrey"
+            nh = ev["neighborhood"]
+            if nh in ("Surrey Central / Whalley", "Guildford", "Fleetwood", "Newton", "Cloverdale", "South Surrey"):
+                ev["city"], ev["region"] = "Surrey", "Surrey"
+            elif nh in ("Metrotown & Deer Lake", "Brentwood & North Burnaby", "Lougheed & SFU", "Edmonds & South Burnaby"):
+                ev["city"], ev["region"] = "Burnaby", "Burnaby"
+            elif nh in ("City Centre & Brighouse", "Steveston Village", "East Richmond & Ironwood"):
+                ev["city"], ev["region"] = "Richmond", "Richmond"
+            elif nh in ("Downtown & Columbia St", "Uptown & Sapperton", "Queensborough"):
+                ev["city"], ev["region"] = "New Westminster", "New West"
+            elif nh in ("Langley City & Willowbrook", "Fort Langley", "Willoughby & Walnut Grove", "Murrayville & Aldergrove"):
+                ev["city"], ev["region"] = "Langley", "Langley"
             elif not ev.get("city"):
-                ev["city"] = "Vancouver"
-                ev["region"] = "Vancouver"
+                ev["city"], ev["region"] = "Vancouver", "Vancouver"
 
         quarantined = []
         if os.path.exists(MANUAL_QUEUE_PATH):
@@ -1583,14 +1624,19 @@ def sync_js_data_file():
                 print(f"[WARN] Failed to load venues for VENUE_URLS: {e}")
 
 
-        timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
-        js_content = f"""// Van50 — Vancouver & Surrey Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on {timestamp}
-// Single Reference Source Architecture • 0 Client-Side Scraping
+        public_strip_keys = {
+            "dimension_audit", "proof_keyframes", "venue_grounding",
+            "arbitration_log", "qc_raw_payload", "stagehand_trace"
+        }
+        public_events = [{k: v for k, v in ev.items() if k not in public_strip_keys} for ev in events]
 
-const VANCOUVER_EVENTS = {json.dumps(events, indent=2, ensure_ascii=False)};
-const MANUAL_REVIEW_QUEUE = {json.dumps(quarantined, indent=2, ensure_ascii=False)};
-const SURREY_REFERENCE_SOURCES = {json.dumps(surrey_sources, indent=2, ensure_ascii=False)};
+        timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+        js_content = f"""// Van50 — Metro Vancouver Events & Outings (Strictly <= $50 CAD)
+// AUTO-GENERATED slim public bundle from data/events.json on {timestamp}
+
+const VANCOUVER_EVENTS = {json.dumps(public_events, separators=(",", ":"), ensure_ascii=False)};
+const MANUAL_REVIEW_QUEUE = [];
+const SURREY_REFERENCE_SOURCES = {json.dumps(surrey_sources, separators=(",", ":"), ensure_ascii=False)};
 
 window.VAN50_EVENTS = VANCOUVER_EVENTS;
 window.VANCOUVER_EVENTS = VANCOUVER_EVENTS;
@@ -1614,13 +1660,47 @@ const SURREY_NEIGHBORHOODS = [
   "South Surrey"
 ];
 
+const BURNABY_NEIGHBORHOODS = [
+  "Metrotown & Deer Lake",
+  "Brentwood & North Burnaby",
+  "Lougheed & SFU",
+  "Edmonds & South Burnaby"
+];
+
+const RICHMOND_NEIGHBORHOODS = [
+  "City Centre & Brighouse",
+  "Steveston Village",
+  "East Richmond & Ironwood"
+];
+
+const NEW_WEST_NEIGHBORHOODS = [
+  "Downtown & Columbia St",
+  "Uptown & Sapperton",
+  "Queensborough"
+];
+
+const LANGLEY_NEIGHBORHOODS = [
+  "Langley City & Willowbrook",
+  "Fort Langley",
+  "Willoughby & Walnut Grove",
+  "Murrayville & Aldergrove"
+];
+
 const NEIGHBORHOODS = [
   ...VANCOUVER_NEIGHBORHOODS,
-  ...SURREY_NEIGHBORHOODS
+  ...SURREY_NEIGHBORHOODS,
+  ...BURNABY_NEIGHBORHOODS,
+  ...RICHMOND_NEIGHBORHOODS,
+  ...NEW_WEST_NEIGHBORHOODS,
+  ...LANGLEY_NEIGHBORHOODS
 ];
 
 window.VANCOUVER_NEIGHBORHOODS = VANCOUVER_NEIGHBORHOODS;
 window.SURREY_NEIGHBORHOODS = SURREY_NEIGHBORHOODS;
+window.BURNABY_NEIGHBORHOODS = BURNABY_NEIGHBORHOODS;
+window.RICHMOND_NEIGHBORHOODS = RICHMOND_NEIGHBORHOODS;
+window.NEW_WEST_NEIGHBORHOODS = NEW_WEST_NEIGHBORHOODS;
+window.LANGLEY_NEIGHBORHOODS = LANGLEY_NEIGHBORHOODS;
 window.NEIGHBORHOODS = NEIGHBORHOODS;
 
 // Days of the Week
@@ -2221,10 +2301,18 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             self._apply_cors_headers()
             self.end_headers()
 
+            child_env = dict(os.environ)
+            req_engine = qs.get("engine", [""])[0]
+            if req_engine == "antigravity" or target_url.startswith("agy://") or "VAN50_ENGINE" not in child_env:
+                child_env["VAN50_ENGINE"] = req_engine or "antigravity"
+            if qs.get("model", [""])[0]:
+                child_env["VAN50_AGY_MODEL"] = qs.get("model", [""])[0]
+
             try:
                 ACTIVE_STAGEHAND_PROC = subprocess.Popen(
                     cmd,
                     cwd=os.path.join(BASE_DIR, "ripper"),
+                    env=child_env,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT,
                     text=True,

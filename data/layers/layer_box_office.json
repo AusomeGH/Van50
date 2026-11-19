@@ -42841,7 +42841,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": "Missing resolvable HTTP/HTTPS destination URL",
     "quarantine_reason": "missing_ticket_link",
     "event_id": "surrey-eagles-bchl-hockey-south-surrey-arena",
@@ -42943,7 +42943,7 @@
       }
     ],
     "restrictions": "19+ (Valid Government Photo ID Required)",
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": "Missing resolvable HTTP/HTTPS destination URL",
     "quarantine_reason": "missing_ticket_link",
     "event_id": "russell-brewing-taproom-standup-comedy",
@@ -43026,7 +43026,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": "Stagehand extension world not ready for frame D86D6AE4B46E7767A35D426F9B06E2DC; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null,
     "event_id": "clayton-public-house-standup-comedy",
@@ -43118,7 +43118,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing",
     "event_id": "newton-cultural-centre-coffeehouse-concert",
@@ -43191,7 +43191,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "museum-of-surrey-exhibitions-heritage-gallery",
@@ -43243,7 +43243,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -43295,7 +43295,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -43357,118 +43357,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
-  },
-  {
-    "id": "landmark-cinemas-guildford-reel-deals",
-    "status": "VERIFIED",
-    "success": false,
-    "venue_name": "Landmark Cinemas Guildford",
-    "title": "Reel Deals & Indie Screenings",
-    "date": "2026-11-17",
-    "doors_time": null,
-    "start_time": "6:30 PM",
-    "end_time": null,
-    "tier1_name": "General Admission",
-    "tier1_price_base": 13,
-    "tier1_price_fee": 0,
-    "tier1_price_tax": 0,
-    "tier1_price_read": 13,
-    "tier1_price_calculated": 13,
-    "tier1_discrepancy_delta": 0,
-    "tier1_price_all_in": 13,
-    "tier1_quote": "$13.00 CAD",
-    "tier2_name": null,
-    "tier2_price_base": null,
-    "tier2_price_fee": null,
-    "tier2_price_tax": null,
-    "tier2_price_read": null,
-    "tier2_price_calculated": null,
-    "tier2_discrepancy_delta": 0,
-    "tier2_price_all_in": null,
-    "tier2_quote": null,
-    "tier3_name": null,
-    "tier3_price_base": null,
-    "tier3_price_fee": null,
-    "tier3_price_tax": null,
-    "tier3_price_read": null,
-    "tier3_price_calculated": null,
-    "tier3_discrepancy_delta": 0,
-    "tier3_price_all_in": null,
-    "tier3_quote": null,
-    "all_tiers": [
-      {
-        "name": "General Admission",
-        "price": 13,
-        "price_base": 13,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 13,
-        "price_calculated": 13,
-        "price_all_in": 13,
-        "is_available": true
-      }
-    ],
-    "pricing_model": "flat_ticket",
-    "is_free": false,
-    "is_sold_out": false,
-    "ticket_provider": "Venue Direct / Civic Portal",
-    "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
-    "failed_url": null,
-    "dead_urls": [],
-    "proof_keyframe": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-10",
-        "start_time": "6:30 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "concluded",
-        "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-13",
-        "start_time": "7:00 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "concluded",
-        "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
-      },
-      {
-        "slot": 3,
-        "date": "2026-11-17",
-        "start_time": "6:30 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
-      }
-    ],
-    "restrictions": "All Ages",
-    "audited_at": "2026-11-18T19:09:36.873Z",
-    "error": "Target page gated by anti-bot security verification challenge",
-    "quarantine_reason": "antibot_challenge_blocked",
-    "event_id": "landmark-cinemas-guildford-reel-deals",
-    "operational_status": "available",
-    "booking_protocol": "online_advance",
-    "details_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 13,
-        "price_base": 13,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 13,
-        "price_calculated": 13,
-        "price_all_in": 13,
-        "is_available": true
-      }
-    ],
-    "other_cost_label": null,
-    "other_cost_price": null
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "craving-for-a-game-friday-night-magic-board-games",
@@ -43549,7 +43438,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": "Missing resolvable HTTP/HTTPS destination URL",
     "quarantine_reason": "missing_ticket_link",
     "event_id": "craving-for-a-game-friday-night-magic-board-games",
@@ -43634,7 +43523,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": "Failed match: title score 30% below threshold (none or insufficient tokens from [indoor, bouldering, evening, session])",
     "quarantine_reason": "fatal_mismatched_entity",
     "event_id": "project-climbing-centre-cloverdale-bouldering",
@@ -43707,7 +43596,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -43769,7 +43658,7 @@
     "proof_keyframe": "data/proof_keyframes/birdies-and-buckets-pitch-putt-heated-range_cart.png",
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": null,
     "quarantine_reason": null,
     "event_id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -43852,7 +43741,7 @@
     "proof_keyframe": "data/proof_keyframes/grandview-heights-aquatic-centre-drop-in_cart.png",
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing",
     "event_id": "grandview-heights-aquatic-centre-drop-in",
@@ -43935,7 +43824,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-18T19:09:36.873Z",
+    "audited_at": "2026-11-19T18:42:37.930Z",
     "error": "Stagehand extension world not ready for frame 80652CB74C0B47EC5B2A26C48D6E2951; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null,
     "event_id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -44018,7 +43907,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -44070,7 +43959,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -44122,7 +44011,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -44174,7 +44063,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "bell-performing-arts-take-it-to-the-limit-a-tribute",
@@ -76033,7 +75922,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
   },
   {
     "id": "numbers-cabaret-drag-show-xxx-friday-2027-01-01",
@@ -76132,110 +76021,6 @@
     "audited_at": "2026-11-17T02:51:19.685Z",
     "error": null,
     "quarantine_reason": null
-  },
-  {
-    "id": "dublin-crossing-celtic-rock-weekend-session",
-    "event_id": "dublin-crossing-celtic-rock-weekend-session",
-    "title": "Live Celtic & Rock Weekend Session",
-    "venue_name": "Dublin Crossing Irish Pub",
-    "status": "VERIFIED",
-    "operational_status": "available",
-    "is_sold_out": false,
-    "is_free": true,
-    "pricing_model": "free_access",
-    "booking_protocol": "walk_up_only",
-    "ticket_provider": "Venue Direct / Civic Portal",
-    "ticket_url": "https://dublincrossing.com/surrey/",
-    "details_url": "https://dublincrossing.com/surrey/",
-    "tier1_name": "Free Public Access",
-    "tier1_price_base": 0,
-    "tier1_price_fee": 0,
-    "tier1_price_tax": 0,
-    "tier1_price_read": 0,
-    "tier1_price_calculated": 0,
-    "tier1_price_all_in": 0,
-    "tier1_quote": "Free ($0) • No Cover",
-    "all_tiers": [
-      {
-        "name": "Free Public Access",
-        "price": 0,
-        "price_base": 0,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 0,
-        "price_calculated": 0,
-        "price_all_in": 0,
-        "is_available": true
-      }
-    ],
-    "tiers": [
-      {
-        "name": "Free Public Access",
-        "price": 0,
-        "price_base": 0,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 0,
-        "price_calculated": 0,
-        "price_all_in": 0,
-        "is_available": true
-      }
-    ],
-    "other_cost_label": null,
-    "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
-  },
-  {
-    "id": "surrey-arts-centre-studio-theatre-drama-improv",
-    "event_id": "surrey-arts-centre-studio-theatre-drama-improv",
-    "title": "Studio Theatre Indie Drama & Improv",
-    "venue_name": "Surrey Arts Centre",
-    "status": "VERIFIED",
-    "operational_status": "available",
-    "is_sold_out": false,
-    "is_free": false,
-    "pricing_model": "flat_ticket",
-    "booking_protocol": "online_advance",
-    "ticket_provider": "Venue Direct / Civic Portal",
-    "ticket_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
-    "details_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
-    "tier1_name": "General Admission",
-    "tier1_price_base": 25,
-    "tier1_price_fee": 0,
-    "tier1_price_tax": 0,
-    "tier1_price_read": 25,
-    "tier1_price_calculated": 25,
-    "tier1_price_all_in": 25,
-    "tier1_quote": "$25.00 CAD",
-    "all_tiers": [
-      {
-        "name": "General Admission",
-        "price": 25,
-        "price_base": 25,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 25,
-        "price_calculated": 25,
-        "price_all_in": 25,
-        "is_available": true
-      }
-    ],
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 25,
-        "price_base": 25,
-        "price_fee": 0,
-        "price_tax": 0,
-        "price_read": 25,
-        "price_calculated": 25,
-        "price_all_in": 25,
-        "is_available": true
-      }
-    ],
-    "other_cost_label": null,
-    "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
   },
   {
     "id": "grand-taj-banquet-ha-our-journey-to-anandpur-sahib-2026-11-21",
@@ -110498,6 +110283,354 @@
     "quarantine_reason": "unverified_box_office_pricing"
   },
   {
+    "id": "studio-b-at-gateway-silk-road-music-lunar-new-year-2027-02-06",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "venue_name": "Gateway Theatre",
+    "title": "Silk Road Music: Lunar New Year Celebration",
+    "date": "2027-02-06",
+    "doors_time": "none_available",
+    "start_time": "1:00 PM",
+    "end_time": "2:00 PM",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 30,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 30,
+    "tier1_price_calculated": 30,
+    "tier1_discrepancy_delta": 0,
+    "tier1_price_all_in": 30,
+    "tier1_quote": "General Admission: $30",
+    "tier2_name": null,
+    "tier2_price_base": null,
+    "tier2_price_fee": null,
+    "tier2_price_tax": null,
+    "tier2_price_read": null,
+    "tier2_price_calculated": null,
+    "tier2_discrepancy_delta": 0,
+    "tier2_price_all_in": null,
+    "tier2_quote": null,
+    "tier3_name": "none_available",
+    "tier3_price_base": null,
+    "tier3_price_fee": null,
+    "tier3_price_tax": null,
+    "tier3_price_read": null,
+    "tier3_price_calculated": null,
+    "tier3_discrepancy_delta": 0,
+    "tier3_price_all_in": null,
+    "tier3_quote": null,
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 30,
+        "price_base": 30,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 30,
+        "price_calculated": 30,
+        "price_delta": 0,
+        "label": "$30.00 CAD",
+        "isAvailable": true
+      }
+    ],
+    "pricing_model": "standard",
+    "is_free": false,
+    "is_sold_out": false,
+    "ticket_provider": "Spektrix",
+    "ticket_url": "https://booking.gatewaytheatre.com/EventAvailability?EventId=57001&ref=bookNow&scroll=timeAndDates",
+    "failed_url": null,
+    "dead_urls": [],
+    "proof_keyframe": "data/proof_keyframes/studio-b-at-gateway-silk-road-music-lunar-new-year-2027-02-06_cart.png",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2027-02-06",
+        "start_time": "1:00 PM",
+        "doors_time": "none_available",
+        "end_time": "2:00 PM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 2,
+        "date": "2027-02-06",
+        "start_time": "3:30 PM",
+        "doors_time": "none_available",
+        "end_time": "4:30 PM",
+        "status": "upcoming"
+      }
+    ],
+    "restrictions": "6+",
+    "audited_at": "2026-11-19T18:36:56.732Z",
+    "error": null,
+    "quarantine_reason": null
+  },
+  {
+    "id": "anvil-centre-atrium-downtown-s-living-room-2026-11-23",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "venue_name": "Anvil Centre - Atrium (first floor lobby)",
+    "title": "Downtown's Living Room",
+    "date": "2026-11-23",
+    "doors_time": "none_available",
+    "start_time": "5:30 PM",
+    "end_time": "8:00 PM",
+    "tier1_name": "Free Admission",
+    "tier1_price_base": 0,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 0,
+    "tier1_price_calculated": 0,
+    "tier1_discrepancy_delta": 0,
+    "tier1_price_all_in": 0,
+    "tier1_quote": "Drop-in | Free",
+    "tier2_name": null,
+    "tier2_price_base": null,
+    "tier2_price_fee": null,
+    "tier2_price_tax": null,
+    "tier2_price_read": null,
+    "tier2_price_calculated": null,
+    "tier2_discrepancy_delta": 0,
+    "tier2_price_all_in": null,
+    "tier2_quote": null,
+    "tier3_name": "none_available",
+    "tier3_price_base": null,
+    "tier3_price_fee": null,
+    "tier3_price_tax": null,
+    "tier3_price_read": null,
+    "tier3_price_calculated": null,
+    "tier3_discrepancy_delta": 0,
+    "tier3_price_all_in": null,
+    "tier3_quote": null,
+    "all_tiers": [
+      {
+        "name": "Free Admission",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
+        "price_delta": 0,
+        "label": "Free ($0)",
+        "isAvailable": true
+      }
+    ],
+    "pricing_model": "free_access",
+    "is_free": true,
+    "is_sold_out": false,
+    "ticket_provider": "Direct Box Office",
+    "ticket_url": "https://anvilcentre.com/our-events/downtowns-living-room-nov-23/",
+    "failed_url": null,
+    "dead_urls": [],
+    "proof_keyframe": "data/proof_keyframes/anvil-centre-atrium-downtown-s-living-room-2026-11-23_cart.png",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-23",
+        "start_time": "5:30 PM",
+        "doors_time": "none_available",
+        "end_time": "8:00 PM",
+        "status": "upcoming"
+      }
+    ],
+    "restrictions": "All Ages",
+    "audited_at": "2026-11-19T18:36:57.718Z",
+    "error": null,
+    "quarantine_reason": null
+  },
+  {
+    "id": "anvil-theatre-sarkissian-yoon-and-pfau-whisp-2026-11-23",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "venue_name": "Anvil Centre",
+    "title": "Sarkissian, Yoon and Pfau: Whispers and Sparks",
+    "date": "2026-11-23",
+    "doors_time": "none_available",
+    "start_time": "1:00 PM",
+    "end_time": "3:00 PM",
+    "tier1_name": "Single Ticket",
+    "tier1_price_base": 35.55,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 35.55,
+    "tier1_price_calculated": 35.55,
+    "tier1_discrepancy_delta": 0,
+    "tier1_price_all_in": 35.55,
+    "tier1_quote": "$35.55 (including service charges and taxes)",
+    "tier2_name": null,
+    "tier2_price_base": null,
+    "tier2_price_fee": null,
+    "tier2_price_tax": null,
+    "tier2_price_read": null,
+    "tier2_price_calculated": null,
+    "tier2_discrepancy_delta": 0,
+    "tier2_price_all_in": null,
+    "tier2_quote": null,
+    "tier3_name": "none_available",
+    "tier3_price_base": null,
+    "tier3_price_fee": null,
+    "tier3_price_tax": null,
+    "tier3_price_read": null,
+    "tier3_price_calculated": null,
+    "tier3_discrepancy_delta": 0,
+    "tier3_price_all_in": null,
+    "tier3_quote": null,
+    "all_tiers": [
+      {
+        "name": "Single Ticket",
+        "price": 35.55,
+        "price_base": 35.55,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 35.55,
+        "price_calculated": 35.55,
+        "price_delta": 0,
+        "label": "$35.55 CAD",
+        "isAvailable": true
+      }
+    ],
+    "pricing_model": "standard",
+    "is_free": false,
+    "is_sold_out": false,
+    "ticket_provider": "Ticketpro",
+    "ticket_url": "https://ticketsnw.ticketpro.ca/en/pages/1695410410?aff=mts",
+    "failed_url": null,
+    "dead_urls": [],
+    "proof_keyframe": "data/proof_keyframes/anvil-theatre-sarkissian-yoon-and-pfau-whisp-2026-11-23_cart.png",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-23",
+        "start_time": "1:00 PM",
+        "doors_time": "none_available",
+        "end_time": "3:00 PM",
+        "status": "upcoming"
+      }
+    ],
+    "restrictions": "All Ages",
+    "audited_at": "2026-11-19T18:37:45.018Z",
+    "error": null,
+    "quarantine_reason": null
+  },
+  {
+    "id": "gateway-theatre-she-shoots-she-scores-2027-02-15",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "venue_name": "Gateway Theatre",
+    "title": "She Shoots, She Scores!",
+    "date": "2027-02-15",
+    "doors_time": "none_available",
+    "start_time": "10:00 AM",
+    "end_time": "10:55 AM",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 25,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 25,
+    "tier1_price_calculated": 25,
+    "tier1_discrepancy_delta": 0,
+    "tier1_price_all_in": 25,
+    "tier1_quote": "General Admission: $25",
+    "tier2_name": "Youth (18 and under)",
+    "tier2_price_base": 13.5,
+    "tier2_price_fee": 0,
+    "tier2_price_tax": 0,
+    "tier2_price_read": 13.5,
+    "tier2_price_calculated": 13.5,
+    "tier2_discrepancy_delta": 0,
+    "tier2_price_all_in": 13.5,
+    "tier2_quote": null,
+    "tier3_name": "none_available",
+    "tier3_price_base": null,
+    "tier3_price_fee": null,
+    "tier3_price_tax": null,
+    "tier3_price_read": null,
+    "tier3_price_calculated": null,
+    "tier3_discrepancy_delta": 0,
+    "tier3_price_all_in": null,
+    "tier3_quote": null,
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 25,
+        "price_base": 25,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 25,
+        "price_calculated": 25,
+        "price_delta": 0,
+        "label": "$25.00 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "Youth (18 and under)",
+        "price": 13.5,
+        "price_base": 13.5,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 13.5,
+        "price_calculated": 13.5,
+        "price_delta": 0,
+        "label": "$13.50 CAD",
+        "isAvailable": true
+      }
+    ],
+    "pricing_model": "standard",
+    "is_free": false,
+    "is_sold_out": false,
+    "ticket_provider": "Spektrix",
+    "ticket_url": "https://booking.gatewaytheatre.com/EventAvailability?EventId=54001&ref=bookNow&scroll=timeAndDates",
+    "failed_url": null,
+    "dead_urls": [],
+    "proof_keyframe": "data/proof_keyframes/gateway-theatre-she-shoots-she-scores-2027-02-15_cart.png",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2027-02-15",
+        "start_time": "10:00 AM",
+        "doors_time": "none_available",
+        "end_time": "10:55 AM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 2,
+        "date": "2027-02-17",
+        "start_time": "10:00 AM",
+        "doors_time": "none_available",
+        "end_time": "10:55 AM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 3,
+        "date": "2027-02-17",
+        "start_time": "1:00 PM",
+        "doors_time": "none_available",
+        "end_time": "1:55 PM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 4,
+        "date": "2027-02-18",
+        "start_time": "10:00 AM",
+        "doors_time": "none_available",
+        "end_time": "10:55 AM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 5,
+        "date": "2027-02-18",
+        "start_time": "1:00 PM",
+        "doors_time": "none_available",
+        "end_time": "1:55 PM",
+        "status": "upcoming"
+      }
+    ],
+    "restrictions": "All Ages",
+    "audited_at": "2026-11-19T18:37:46.101Z",
+    "error": null,
+    "quarantine_reason": null
+  },
+  {
     "id": "surrey-knights-pjhl-hockey-north-surrey",
     "event_id": "surrey-knights-pjhl-hockey-north-surrey",
     "title": "Surrey Knights PJHL Hockey Night",
@@ -110547,6 +110680,162 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-18T19:09:36.873Z"
+    "audited_at": "2026-11-19T18:42:37.930Z"
+  },
+  {
+    "id": "dublin-crossing-celtic-rock-weekend-session",
+    "event_id": "dublin-crossing-celtic-rock-weekend-session",
+    "title": "Live Celtic & Rock Weekend Session",
+    "venue_name": "Dublin Crossing Irish Pub",
+    "status": "VERIFIED",
+    "operational_status": "available",
+    "is_sold_out": false,
+    "is_free": true,
+    "pricing_model": "free_access",
+    "booking_protocol": "walk_up_only",
+    "ticket_provider": "Venue Direct / Civic Portal",
+    "ticket_url": "https://dublincrossing.com/surrey/",
+    "details_url": "https://dublincrossing.com/surrey/",
+    "tier1_name": "Free Public Access",
+    "tier1_price_base": 0,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 0,
+    "tier1_price_calculated": 0,
+    "tier1_price_all_in": 0,
+    "tier1_quote": "Free ($0) • No Cover",
+    "all_tiers": [
+      {
+        "name": "Free Public Access",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
+        "price_all_in": 0,
+        "is_available": true
+      }
+    ],
+    "tiers": [
+      {
+        "name": "Free Public Access",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
+        "price_all_in": 0,
+        "is_available": true
+      }
+    ],
+    "other_cost_label": null,
+    "other_cost_price": null,
+    "audited_at": "2026-11-19T18:42:37.930Z"
+  },
+  {
+    "id": "surrey-arts-centre-studio-theatre-drama-improv",
+    "event_id": "surrey-arts-centre-studio-theatre-drama-improv",
+    "title": "Studio Theatre Indie Drama & Improv",
+    "venue_name": "Surrey Arts Centre",
+    "status": "VERIFIED",
+    "operational_status": "available",
+    "is_sold_out": false,
+    "is_free": false,
+    "pricing_model": "flat_ticket",
+    "booking_protocol": "online_advance",
+    "ticket_provider": "Venue Direct / Civic Portal",
+    "ticket_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
+    "details_url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres/buy-tickets",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 25,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 25,
+    "tier1_price_calculated": 25,
+    "tier1_price_all_in": 25,
+    "tier1_quote": "$25.00 CAD",
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 25,
+        "price_base": 25,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 25,
+        "price_calculated": 25,
+        "price_all_in": 25,
+        "is_available": true
+      }
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 25,
+        "price_base": 25,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 25,
+        "price_calculated": 25,
+        "price_all_in": 25,
+        "is_available": true
+      }
+    ],
+    "other_cost_label": null,
+    "other_cost_price": null,
+    "audited_at": "2026-11-19T18:42:37.930Z"
+  },
+  {
+    "id": "landmark-cinemas-guildford-reel-deals",
+    "event_id": "landmark-cinemas-guildford-reel-deals",
+    "title": "Reel Deals & Indie Screenings",
+    "venue_name": "Landmark Cinemas Guildford",
+    "status": "VERIFIED",
+    "operational_status": "available",
+    "is_sold_out": false,
+    "is_free": false,
+    "pricing_model": "flat_ticket",
+    "booking_protocol": "online_advance",
+    "ticket_provider": "Venue Direct / Civic Portal",
+    "ticket_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+    "details_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+    "tier1_name": "General Admission",
+    "tier1_price_base": 13,
+    "tier1_price_fee": 0,
+    "tier1_price_tax": 0,
+    "tier1_price_read": 13,
+    "tier1_price_calculated": 13,
+    "tier1_price_all_in": 13,
+    "tier1_quote": "$13.00 CAD",
+    "all_tiers": [
+      {
+        "name": "General Admission",
+        "price": 13,
+        "price_base": 13,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 13,
+        "price_calculated": 13,
+        "price_all_in": 13,
+        "is_available": true
+      }
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 13,
+        "price_base": 13,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 13,
+        "price_calculated": 13,
+        "price_all_in": 13,
+        "is_available": true
+      }
+    ],
+    "other_cost_label": null,
+    "other_cost_price": null,
+    "audited_at": "2026-11-19T18:42:37.930Z"
   }
 ]

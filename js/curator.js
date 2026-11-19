@@ -8045,7 +8045,7 @@ function initStagehandRipperUI() {
     let firstFeedName = scopedFeeds[0]?.name || cp.last_feed_name || 'Source #1';
 
     const cpScope = String(cp.city_scope || 'all').toLowerCase();
-    const cpMarkedCompleted = cp.status === 'completed' &&
+    const cpMarkedCompleted = scopedFeeds.length === 0 && cp.status === 'completed' &&
       (cpScope === 'all' || cpScope === activeCity) &&
       Number(cp.completed_feeds_count || 0) >= Math.max(1, Number(cp.total_feeds || 1));
 
@@ -14234,18 +14234,8 @@ function initStagehandRipperUI() {
         <div style="margin-bottom: 14px;">
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
             <label style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em;">
-              1. Select Cities to Scan
+              1. Select City Scope to Scan (6 Metro Cities)
             </label>
-            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.76rem; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.3); padding: 4px 10px; border-radius: 6px;">
-              <label style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 700; color: #e2e8f0;">
-                <input type="checkbox" id="c1a-chk-vancouver" checked onchange="window.onC1ACityCheckboxChange('vancouver')" style="accent-color: #38bdf8; cursor: pointer;">
-                <span>🏙️ Vancouver</span>
-              </label>
-              <label style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 700; color: #e2e8f0;">
-                <input type="checkbox" id="c1a-chk-surrey" checked onchange="window.onC1ACityCheckboxChange('surrey')" style="accent-color: #34d399; cursor: pointer;">
-                <span>🦌 Surrey</span>
-              </label>
-            </div>
           </div>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; max-height: 290px; overflow-y: auto; padding-right: 2px;">
@@ -14484,8 +14474,9 @@ function initStagehandRipperUI() {
       ? cityStats.lastFeedName
       : cityStats.firstFeedName;
 
-    const cityTag = chosenCity === 'vancouver' ? '🏙️ Vancouver Only' : (chosenCity === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro (Van + Surrey)');
-    const baseTarget = chosenCity === 'vancouver' ? 'all:vancouver' : (chosenCity === 'surrey' ? 'all:surrey' : 'all');
+    const metaChosen = CURATOR_HARVESTER_CITY_META[chosenCity] || CURATOR_HARVESTER_CITY_META.all;
+    const cityTag = chosenCity === 'all' ? '🌲 All Metro (6 Cities)' : `${metaChosen.icon} ${metaChosen.label} Only`;
+    const baseTarget = window.harvesterCityTargetVal(chosenCity);
     const targetUrl = effectiveResume ? `${baseTarget}:resume` : baseTarget;
 
     isPipelineTestMode = true;
@@ -16653,7 +16644,8 @@ function initStagehandRipperUI() {
       html += `<optgroup label="${cityTagLabel}Discovery Portals &amp; Municipal Calendars (${sourceFeeds.length}${q ? ' matching' : ''})">`;
       sourceFeeds.forEach(s => {
         const sub = s.domain || '';
-        const cityIcon = s.city === 'Surrey' ? '🦌 ' : '🏙️ ';
+        const sKey = window.normalizeCuratorCityScope(s.city || 'Vancouver');
+        const cityIcon = `${(CURATOR_HARVESTER_CITY_META[sKey] || CURATOR_HARVESTER_CITY_META.vancouver).icon} `;
         const isSel = (currentVal === s.url) ? 'selected' : '';
         html += `<option value="${escapeHtml(s.url)}" data-name="${escapeHtml(s.name)}" data-city="${escapeHtml(s.city || 'Vancouver')}" ${isSel}>${cityIcon}${escapeHtml(s.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
       });
@@ -16683,10 +16675,11 @@ function initStagehandRipperUI() {
         badge.textContent = `${totalMatches} Match${totalMatches === 1 ? '' : 'es'}`;
         badge.style.background = 'rgba(56, 189, 248, 0.18)';
         badge.style.color = '#38bdf8';
-      } else if (currentVal === 'all:vancouver') {
-        badge.textContent = `🏙️ Vancouver (${vanTotal} Sources)`;
-      } else if (currentVal === 'all:surrey') {
-        badge.textContent = `🦌 Surrey (${surTotal} Sources)`;
+      } else if (String(currentVal).startsWith('all:')) {
+        const cKey = window.normalizeCuratorCityScope(String(currentVal).slice(4));
+        const meta = CURATOR_HARVESTER_CITY_META[cKey] || CURATOR_HARVESTER_CITY_META.all;
+        const cnt = feeds.filter(f => window.normalizeCuratorCityScope(f.city || 'Vancouver') === cKey).length;
+        badge.textContent = `${meta.icon} ${meta.label} (${cnt} Sources)`;
       } else {
         badge.textContent = currentVal === 'all' ? `🌲 All Metro (${feeds.length} Sources)` : 'Single Feed';
       }
@@ -16753,7 +16746,7 @@ function initStagehandRipperUI() {
         hintEl.innerHTML = `<span>Targeting <strong>${cityDisplay} sources</strong> sequentially to harvest ${effectiveCount} candidate event links into <code>layer_schedules.json</code>.</span>`;
       }
       if (btnLabelEl) {
-        const shortCity = cityKey === 'vancouver' ? 'Vancouver' : (cityKey === 'surrey' ? 'Surrey' : 'Metro');
+        const shortCity = cityKey === 'all' ? 'Metro' : (CURATOR_HARVESTER_CITY_META[cityKey]?.label || cityKey);
         btnLabelEl.textContent = `🚀 Harvest ${effectiveCount} ${shortCity} Events`;
       }
     } else if (val === 'custom') {
@@ -18328,9 +18321,8 @@ function initStagehandRipperUI() {
       if (/127\.0\.0\.1.*test-canary|canary/i.test(rawUrlStr)) {
         targetLabel = '🧪 Canary Test Harness (10 test events)';
       } else if (isMultiFeedCrawl) {
-        const cityLabel = inferredCity === 'vancouver'
-          ? '🏙️ Vancouver Only'
-          : (inferredCity === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro (Van + Surrey)');
+        const metaInf = CURATOR_HARVESTER_CITY_META[inferredCity] || CURATOR_HARVESTER_CITY_META.all;
+        const cityLabel = inferredCity === 'all' ? '🌲 All Metro (6 Cities)' : `${metaInf.icon} ${metaInf.label} Only`;
         const startText = isResumeHarvest && feedStats.completedFeeds > 0
           ? `Resuming at #${feedStats.resumeFeedNum}/${feedStats.totalFeeds} (${feedStats.lastFeedName})`
           : `Fresh Scan (#1/${feedStats.totalFeeds})`;

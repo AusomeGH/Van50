@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-18T18:52:27.989176+00:00",
-    "pendingCount": 3,
+    "updatedAt": "2026-11-19T18:50:55.000Z",
+    "pendingCount": 0,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements.",
     "totalInstructions": 78
   },
@@ -3839,7 +3839,7 @@
     {
       "id": "inst_1795027654348",
       "createdAt": "2026-11-18T18:47:34.366102+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "the-pearl-shrek-rave-2027-02-06",
       "eventTitle": "Shrek Rave",
       "venueName": "The Pearl",
@@ -3851,19 +3851,20 @@
       ],
       "hasScreenshot": true,
       "screenshotCount": 1,
-      "actionTaken": "queue_only",
-      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "archived_past_event",
+      "curatorNote": "Verified via screenshot proof: Past event (Jan 17, 2026 giveaway closed). Evicted from quarantine and archived in data/archived_events.json.",
       "targetScraperOrEngine": "The Pearl",
-      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Shrek Rave ($28.41 CAD).",
+      "aiLearnedSummary": "Archived past Shrek Rave listing at The Pearl.",
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "resolvedAt": "2026-11-19T18:50:55.000Z"
     },
     {
       "id": "inst_1795027783278",
       "createdAt": "2026-11-18T18:49:43.289506+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "the-american-modo-live-the-plant-present-ra-2027-04-04",
       "eventTitle": "Radio Free Alice w/ Special Guests",
       "venueName": "The American",
@@ -3875,19 +3876,28 @@
       ],
       "hasScreenshot": true,
       "screenshotCount": 1,
-      "actionTaken": "queue_only",
-      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "promoted_to_catalog",
+      "curatorNote": "Verified via TicketWeb checkout screenshot: ADV GA $25.00 + $7.55 fees = $32.55 CAD all-in (<= $50 CAD). Promoted to data/events.json.",
       "targetScraperOrEngine": "The American",
-      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Radio Free Alice w/ Special Guests ($0.00 CAD).",
-      "extractedTiers": [],
+      "aiLearnedSummary": "Promoted Radio Free Alice w/ Special Guests at The American ($32.55 CAD all-in) to active catalog.",
+      "extractedTiers": [
+        {
+          "name": "General Admission (ADV)",
+          "base": 25,
+          "fee": 7.55,
+          "tax": 0,
+          "total": 32.55
+        }
+      ],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "resolvedAt": "2026-11-19T18:50:55.000Z"
     },
     {
       "id": "inst_1795027947967",
       "createdAt": "2026-11-18T18:52:27.980993+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "fortune-sound-club-jonah-yano-2027-02-20",
       "eventTitle": "Jonah Yano",
       "venueName": "Fortune Sound Club",
@@ -3899,14 +3909,23 @@
       ],
       "hasScreenshot": true,
       "screenshotCount": 1,
-      "actionTaken": "queue_only",
-      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "actionTaken": "promoted_to_catalog",
+      "curatorNote": "Verified via TicketWeb checkout screenshot: ADV GA $25.00 + $8.11 fees + $1.25 tax = $34.36 CAD all-in (<= $50 CAD). Promoted to data/events.json.",
       "targetScraperOrEngine": "Fortune Sound Club",
-      "aiLearnedSummary": "Instruction recorded: Screenshot proof attached: Jonah Yano ($0.00 CAD).",
-      "extractedTiers": [],
+      "aiLearnedSummary": "Promoted Jonah Yano at Fortune Sound Club ($34.36 CAD all-in) to active catalog.",
+      "extractedTiers": [
+        {
+          "name": "General Admission (ADV)",
+          "base": 25,
+          "fee": 8.11,
+          "tax": 1.25,
+          "total": 34.36
+        }
+      ],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "resolvedAt": "2026-11-19T18:50:55.000Z"
     }
   ],
   "lastLearnedAt": "2026-09-26T11:01:14.885134+00:00"

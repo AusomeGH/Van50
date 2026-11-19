@@ -1,5 +1,41 @@
 [
   {
+    "timestamp": "2026-11-19T18:37:46.161Z",
+    "event_id": "gateway-theatre-she-shoots-she-scores-2027-02-15",
+    "target_name": "She Shoots, She Scores!",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 45
+  },
+  {
+    "timestamp": "2026-11-19T18:37:45.078Z",
+    "event_id": "anvil-theatre-sarkissian-yoon-and-pfau-whisp-2026-11-23",
+    "target_name": "Sarkissian, Yoon and Pfau: Whispers and Sparks",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 44
+  },
+  {
+    "timestamp": "2026-11-19T18:36:57.969Z",
+    "event_id": "anvil-centre-atrium-downtown-s-living-room-2026-11-23",
+    "target_name": "Downtown's Living Room",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 44
+  },
+  {
+    "timestamp": "2026-11-19T18:36:56.798Z",
+    "event_id": "studio-b-at-gateway-silk-road-music-lunar-new-year-2027-02-06",
+    "target_name": "Silk Road Music: Lunar New Year Celebration",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 42
+  },
+  {
     "timestamp": "2026-11-18T19:09:36.818Z",
     "event_id": "commodore-ballroom-strangelove-the-depeche-mode-e-2027-02-19",
     "target_name": "Strangelove: The Depeche Mode Experience",
@@ -4462,41 +4498,5 @@
     "status": "BUDGET_BREACH",
     "success": false,
     "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-18T05:58:31.481Z",
-    "event_id": "orpheum-vso-pops-swing-the-night-away-2026-11-20",
-    "target_name": "VSO Pops: Swing the Night Away with Jens Lindemann",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": false,
-    "duration_seconds": 47
-  },
-  {
-    "timestamp": "2026-11-18T05:58:19.644Z",
-    "event_id": "emily-carr-universit-emily-carr-university-annual-s-2026-11-26",
-    "target_name": "Emily Carr University Annual Student Art Sale",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 45
-  },
-  {
-    "timestamp": "2026-11-18T05:57:41.157Z",
-    "event_id": "the-beaumont-studios-laughter-is-the-best-medicine-2026-11-22",
-    "target_name": "Laughter is the Best Medicine: An Improv for Wellness Fundraiser",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T05:57:30.693Z",
-    "event_id": "wesbrook-village-wesbrook-village-holiday-marke-2026-11-20",
-    "target_name": "Wesbrook Village Holiday Market at UBC",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 40
   }
 ]

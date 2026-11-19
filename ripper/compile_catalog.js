@@ -3473,16 +3473,29 @@ export async function compileCatalog(options = {}) {
           return String(venue.city).trim();
         }
         const raw = `${venue.neighborhood || ""} ${addrOnly} ${existing.city || ""}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        if (/\b(langley|fort langley|willoughby|walnut grove|murrayville|brookswood|aldergrove)\b/i.test(raw)) return "Langley";
+        if (/\b(burnaby|metrotown|brentwood|lougheed|deer lake|edmonds|simon fraser|sfu)\b/i.test(raw)) return "Burnaby";
+        if (/\b(richmond|steveston|brighouse|lansdowne|ironwood|minoru|terra nova)\b/i.test(raw)) return "Richmond";
+        if (/\b(new westminster|new west|sapperton|queensborough)\b/i.test(raw)) return "New Westminster";
+        if (/\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw)) return "Surrey";
+        return "Vancouver";
       })(),
       region: (() => {
         const addrOnly = `${venue.full_address || venue.address || ""}`;
         const muniMatch = addrOnly.match(/,\s*(North Vancouver|West Vancouver|Burnaby|Richmond|Coquitlam|Port Coquitlam|Port Moody|New Westminster|Surrey|White Rock|Delta|Langley|Maple Ridge|Pitt Meadows|Vancouver)\s*,\s*BC\b/i);
-        if (muniMatch) {
-          return /^(?:surrey|white rock)$/i.test(muniMatch[1].trim()) ? "Surrey" : "Vancouver";
-        }
+        const muni = muniMatch ? muniMatch[1].replace(/\s+/g, " ").trim().toLowerCase() : String(venue.city || existing.city || "").trim().toLowerCase();
+        if (muni === "surrey" || muni === "white rock") return "Surrey";
+        if (muni === "burnaby") return "Burnaby";
+        if (muni === "richmond") return "Richmond";
+        if (muni === "new westminster" || muni === "new west") return "New West";
+        if (muni === "langley") return "Langley";
         const raw = `${venue.city || ""} ${venue.neighborhood || ""} ${addrOnly}`;
-        return /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw) ? "Surrey" : "Vancouver";
+        if (/\b(langley|fort langley|willoughby|walnut grove|murrayville|brookswood|aldergrove)\b/i.test(raw)) return "Langley";
+        if (/\b(burnaby|metrotown|brentwood|lougheed|deer lake|edmonds|simon fraser|sfu)\b/i.test(raw)) return "Burnaby";
+        if (/\b(richmond|steveston|brighouse|lansdowne|ironwood|minoru|terra nova)\b/i.test(raw)) return "Richmond";
+        if (/\b(new westminster|new west|sapperton|queensborough)\b/i.test(raw)) return "New West";
+        if (/\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|grandview heights|south surrey|crescent beach|bridgeview|white rock|oceana parc|peace arch)\b/i.test(raw)) return "Surrey";
+        return "Vancouver";
       })(),
       coordinates: isLocationConfirmed ? (normalizedCoordinates || venue.coordinates) : null,
       lat: isLocationConfirmed && Array.isArray(normalizedCoordinates || venue.coordinates) ? (normalizedCoordinates || venue.coordinates)[0] : (existing.lat ?? null),
