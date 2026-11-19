@@ -1,5 +1,5 @@
 {
-  "total_sources": 201,
+  "total_sources": 304,
   "sources": [
     {
       "id": "venue:stanley-park-seawall",
@@ -1599,6 +1599,1036 @@
       "type": "venue",
       "url": "https://thedrive.ca/events/",
       "neighborhood": "Commercial Drive, Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-arts-council",
+      "name": "Langley Arts Council",
+      "type": "venue",
+      "url": "https://www.langleyartscouncil.ca/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-community-music-school",
+      "name": "Langley Community Music School",
+      "type": "venue",
+      "url": "https://langleymusic.com/concerts-events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-fort-langley-national-historic-site",
+      "name": "Fort Langley National Historic Site",
+      "type": "venue",
+      "url": "https://parks.canada.ca/lhn-nhs/bc/langley/activ/calendrier-calendar",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-salishan-place-by-the-river",
+      "name": "Salishan Place by the River",
+      "type": "venue",
+      "url": "https://www.salishanculturalcentre.ca/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-canadian-museum-of-flight",
+      "name": "Canadian Museum of Flight",
+      "type": "venue",
+      "url": "https://www.canadianflight.org/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-fraser-valley-heritage-railway-society",
+      "name": "Fraser Valley Heritage Railway Society",
+      "type": "venue",
+      "url": "https://fvhrs.org/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-bez-arts-hub",
+      "name": "Bez Arts Hub",
+      "type": "venue",
+      "url": "https://www.bezartshub.com/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-farm-country-brewing",
+      "name": "Farm Country Brewing",
+      "type": "venue",
+      "url": "https://farmcountrybrewing.com/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-camp-beer-co",
+      "name": "Camp Beer Co.",
+      "type": "venue",
+      "url": "https://campbeer.ca/pages/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-trading-post-brewing",
+      "name": "Trading Post Brewing",
+      "type": "venue",
+      "url": "https://tradingpostbrewing.com/pages/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-five-roads-brewing",
+      "name": "Five Roads Brewing",
+      "type": "venue",
+      "url": "https://fiveroadsbrewing.com/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-dead-frog-brewery",
+      "name": "Dead Frog Brewery",
+      "type": "venue",
+      "url": "https://deadfrog.ca/tasting-room/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-brookswood-brewing",
+      "name": "Brookswood Brewing",
+      "type": "venue",
+      "url": "https://brookswoodbrewing.com/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-smuggler-s-trail-caskworks",
+      "name": "Smuggler's Trail Caskworks",
+      "type": "venue",
+      "url": "https://smugglers-trail.com/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-locality-brewing",
+      "name": "Locality Brewing",
+      "type": "venue",
+      "url": "https://localitybrewing.ca/pages/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-fraser-valley-cider-company",
+      "name": "Fraser Valley Cider Company",
+      "type": "venue",
+      "url": "https://fraservalleycider.ca/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-festina-lente-estate-winery",
+      "name": "Festina Lente Estate Winery",
+      "type": "venue",
+      "url": "https://festinalente.ca/pages/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-vancouver-giants-whl",
+      "name": "Vancouver Giants (WHL)",
+      "type": "discovery",
+      "url": "https://chl.ca/whl-giants/tickets/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-vancouver-fc-cpl-soccer",
+      "name": "Vancouver FC (CPL Soccer)",
+      "type": "discovery",
+      "url": "https://www.vancouverfc.com/schedule",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-vancouver-bandits-cebl-basketball",
+      "name": "Vancouver Bandits (CEBL Basketball)",
+      "type": "discovery",
+      "url": "https://www.vancouverbandits.ca/schedule",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-rivermen-bchl",
+      "name": "Langley Rivermen (BCHL)",
+      "type": "discovery",
+      "url": "https://www.langleyrivermen.com/stats/schedule",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-trappers-pjhl",
+      "name": "Langley Trappers (PJHL)",
+      "type": "discovery",
+      "url": "https://www.langleytrappers.com/stats/schedule",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-rams-cjfl",
+      "name": "Langley Rams (CJFL)",
+      "type": "discovery",
+      "url": "https://www.langleyrams.com/schedule",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-tourism-langley-events",
+      "name": "Tourism Langley Events",
+      "type": "discovery",
+      "url": "https://www.tourism-langley.ca/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-discover-langley-city",
+      "name": "Discover Langley City",
+      "type": "discovery",
+      "url": "https://www.discoverlangleycity.com/play/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-downtown-langley-bia",
+      "name": "Downtown Langley BIA",
+      "type": "discovery",
+      "url": "https://www.downtownlangley.com/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-fort-langley-community-events",
+      "name": "Fort Langley Community Events",
+      "type": "discovery",
+      "url": "https://www.fortlangley.ca/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-community-farmers-market",
+      "name": "Langley Community Farmers Market",
+      "type": "discovery",
+      "url": "https://langleyfarmersmarket.com/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-shadbolt-centre-for-the-arts-box-office",
+      "name": "Shadbolt Centre for the Arts Box Office",
+      "type": "venue",
+      "url": "https://tickets.shadboltcentre.com/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-michael-j-fox-theatre",
+      "name": "Michael J. Fox Theatre",
+      "type": "venue",
+      "url": "https://www.michaeljfoxtheatre.ca/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-village-museum",
+      "name": "Burnaby Village Museum",
+      "type": "venue",
+      "url": "https://www.burnabyvillagemuseum.ca/EN/main/what-s-on.html",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-art-gallery",
+      "name": "Burnaby Art Gallery",
+      "type": "venue",
+      "url": "https://www.burnabyartgallery.ca/350/Exhibitions-Events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-nikkei-national-museum-cultural-centre",
+      "name": "Nikkei National Museum & Cultural Centre",
+      "type": "venue",
+      "url": "https://centre.nikkeiplace.org/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-deer-lake-gallery-burnaby-arts-council",
+      "name": "Deer Lake Gallery (Burnaby Arts Council)",
+      "type": "venue",
+      "url": "https://deerlakegallery.org/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-artists-guild",
+      "name": "Burnaby Artists Guild",
+      "type": "venue",
+      "url": "https://www.burnabyartistsguild.com/events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-gibson-art-museum-sfu",
+      "name": "Gibson Art Museum (SFU)",
+      "type": "venue",
+      "url": "https://gibson.sfu.ca/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-sfu-trottier-observatory-starry-nights",
+      "name": "SFU Trottier Observatory (Starry Nights)",
+      "type": "venue",
+      "url": "https://www.sfu.ca/science/community/trottier-observatory.html",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-sfu-philosophers-cafe",
+      "name": "SFU Philosophers' Cafe",
+      "type": "venue",
+      "url": "https://www.sfu.ca/philosopherscafe.html",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-scandinavian-community-centre",
+      "name": "Scandinavian Community Centre",
+      "type": "venue",
+      "url": "https://scandinaviancentre.org/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-symphony",
+      "name": "Burnaby Symphony",
+      "type": "venue",
+      "url": "https://www.burnabysymphony.org/concerts/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-dageraad-brewing",
+      "name": "Dageraad Brewing",
+      "type": "venue",
+      "url": "https://dageraadbrewing.com/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-studio-brewing",
+      "name": "Studio Brewing",
+      "type": "venue",
+      "url": "https://studiobrewing.ca/pages/events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-admiral-pub-grill",
+      "name": "Admiral Pub & Grill",
+      "type": "venue",
+      "url": "https://admiralpub.ca/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-great-bear-pub",
+      "name": "Great Bear Pub",
+      "type": "venue",
+      "url": "https://greatbearpub.com/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-lakers-lacrosse",
+      "name": "Burnaby Lakers Lacrosse",
+      "type": "discovery",
+      "url": "https://www.burnabylakers.com/schedule",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-steelers-pjhl",
+      "name": "Burnaby Steelers (PJHL)",
+      "type": "discovery",
+      "url": "https://www.burnabysteelers.com/stats/schedule",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-sfu-athletics",
+      "name": "SFU Athletics",
+      "type": "discovery",
+      "url": "https://athletics.sfu.ca/calendar",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-tourism-burnaby-festivals-events",
+      "name": "Tourism Burnaby Festivals & Events",
+      "type": "discovery",
+      "url": "https://tourismburnaby.com/festivals-events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-city-of-burnaby-events",
+      "name": "City of Burnaby Events",
+      "type": "discovery",
+      "url": "https://www.burnaby.ca/recreation-and-arts/events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-heights-bia",
+      "name": "Burnaby Heights BIA",
+      "type": "discovery",
+      "url": "https://www.burnabyheights.com/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-north-road-bia",
+      "name": "North Road BIA",
+      "type": "discovery",
+      "url": "https://www.northroadbia.ca/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-lake-park-association",
+      "name": "Burnaby Lake Park Association",
+      "type": "discovery",
+      "url": "https://www.burnabylake.com/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-metro-vancouver-regional-parks-calendar",
+      "name": "Metro Vancouver Regional Parks Calendar",
+      "type": "discovery",
+      "url": "https://www.metrovancouver.org/events/calendar",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-artisan-farmers-market",
+      "name": "Burnaby Artisan Farmers Market",
+      "type": "discovery",
+      "url": "https://artisanmarkets.ca/burnaby/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-anvil-centre-anvil-theatre",
+      "name": "Anvil Centre & Anvil Theatre",
+      "type": "venue",
+      "url": "https://anvilcentre.com/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-massey-theatre",
+      "name": "Massey Theatre",
+      "type": "venue",
+      "url": "https://www.masseytheatre.com/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-vagabond-players-bernie-legge-theatre",
+      "name": "Vagabond Players (Bernie Legge Theatre)",
+      "type": "venue",
+      "url": "https://vagabondplayers.ca/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-royal-city-musical-theatre",
+      "name": "Royal City Musical Theatre",
+      "type": "venue",
+      "url": "https://www.royalcitymusicaltheatre.com/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-douglas-college-arts-events",
+      "name": "Douglas College Arts Events",
+      "type": "venue",
+      "url": "https://www.douglascollege.ca/artsevents",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-amelia-douglas-gallery",
+      "name": "Amelia Douglas Gallery",
+      "type": "venue",
+      "url": "https://www.douglascollege.ca/community-visitors/arts-events/amelia-douglas-gallery",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-arts-new-west",
+      "name": "Arts New West",
+      "type": "venue",
+      "url": "https://artsnewwest.ca/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-fraser-river-discovery-centre",
+      "name": "Fraser River Discovery Centre",
+      "type": "venue",
+      "url": "https://fraserriverdiscovery.org/programs-events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-new-westminster-heritage-preservation-society",
+      "name": "New Westminster Heritage Preservation Society",
+      "type": "venue",
+      "url": "https://www.nwheritage.org/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-new-westminster-museums-archives",
+      "name": "New Westminster Museums & Archives",
+      "type": "venue",
+      "url": "https://www.newwestcity.ca/services/arts-and-heritage/museums-and-archives",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-river-market-at-westminster-quay",
+      "name": "River Market at Westminster Quay",
+      "type": "venue",
+      "url": "https://rivermarket.ca/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-bully-s-studios",
+      "name": "Bully's Studios",
+      "type": "venue",
+      "url": "https://bullystudios.ca/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-moodswing-coffee-bar",
+      "name": "Moodswing Coffee + Bar",
+      "type": "venue",
+      "url": "https://moodswingbar.ca/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-rain-city-games-new-west",
+      "name": "Rain City Games (New West)",
+      "type": "venue",
+      "url": "https://raincitygames.com/pages/events",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-steel-oak-brewing",
+      "name": "Steel & Oak Brewing",
+      "type": "venue",
+      "url": "https://steelandoak.ca/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-another-beer-co",
+      "name": "Another Beer Co.",
+      "type": "venue",
+      "url": "https://abcbrewing.ca/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-howe-sound-taphouse-new-west",
+      "name": "Howe Sound Taphouse New West",
+      "type": "venue",
+      "url": "https://www.howesound.com/event-list",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-georgie-s-local-kitchen-bar",
+      "name": "Georgie's Local Kitchen & Bar",
+      "type": "venue",
+      "url": "https://georgieslocal.ca/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-paddlewheeler-pub",
+      "name": "Paddlewheeler Pub",
+      "type": "venue",
+      "url": "https://paddlewheelerpub.com/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-new-westminster-salmonbellies",
+      "name": "New Westminster Salmonbellies",
+      "type": "discovery",
+      "url": "https://www.salmonbellies.com/schedule",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-douglas-college-royals-athletics",
+      "name": "Douglas College Royals Athletics",
+      "type": "discovery",
+      "url": "https://douglasroyals.ca/calendar",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-tourism-new-westminster-events",
+      "name": "Tourism New Westminster Events",
+      "type": "discovery",
+      "url": "https://tourismnewwestminster.com/new-west-events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-city-of-new-westminster-calendar",
+      "name": "City of New Westminster Calendar",
+      "type": "discovery",
+      "url": "https://www.newwestcity.ca/calendar",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-downtown-new-west-bia",
+      "name": "Downtown New West BIA",
+      "type": "discovery",
+      "url": "https://www.downtownnewwest.ca/events",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-uptown-new-west-bia",
+      "name": "Uptown New West BIA",
+      "type": "discovery",
+      "url": "https://uptownnewwest.ca/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-west-new-west-farmers-market",
+      "name": "New West Farmers Market",
+      "type": "discovery",
+      "url": "https://newwestfarmersmarket.ca/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New West",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-gateway-theatre",
+      "name": "Gateway Theatre",
+      "type": "venue",
+      "url": "https://www.gatewaytheatre.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-art-gallery",
+      "name": "Richmond Art Gallery",
+      "type": "venue",
+      "url": "https://www.richmondartgallery.org/events",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-arts-coalition",
+      "name": "Richmond Arts Coalition",
+      "type": "venue",
+      "url": "https://www.richmondartscoalition.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-lipont-place",
+      "name": "Lipont Place",
+      "type": "venue",
+      "url": "https://lipontplace.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-olympic-oval",
+      "name": "Richmond Olympic Oval",
+      "type": "venue",
+      "url": "https://richmondoval.ca/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-steveston-heritage-sites",
+      "name": "Steveston Heritage Sites",
+      "type": "venue",
+      "url": "https://stevestonheritage.ca/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-gulf-of-georgia-cannery-nhs",
+      "name": "Gulf of Georgia Cannery NHS",
+      "type": "venue",
+      "url": "https://gulfofgeorgiacannery.org/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-orchestra-chorus-association",
+      "name": "Richmond Orchestra & Chorus Association",
+      "type": "venue",
+      "url": "https://www.roca.ca/concerts/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-london-heritage-farm",
+      "name": "London Heritage Farm",
+      "type": "venue",
+      "url": "https://londonfarm.ca/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-swing-out-richmond",
+      "name": "Swing Out Richmond",
+      "type": "venue",
+      "url": "https://swingoutrichmond.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-britannia-brewing-co",
+      "name": "Britannia Brewing Co.",
+      "type": "venue",
+      "url": "https://bbco.ca/pages/events",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-monkey-9-brewing",
+      "name": "Monkey 9 Brewing",
+      "type": "venue",
+      "url": "https://monkey9brewing.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-o-hare-s-gastropub",
+      "name": "O'Hare's GastroPub",
+      "type": "venue",
+      "url": "https://ohares.pub/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-buck-ear-bar-grill",
+      "name": "Buck & Ear Bar & Grill",
+      "type": "venue",
+      "url": "https://buckandear.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-country-vines-winery",
+      "name": "Country Vines Winery",
+      "type": "venue",
+      "url": "https://countryvines.ca/pages/events",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-country-farms",
+      "name": "Richmond Country Farms",
+      "type": "discovery",
+      "url": "https://www.richmondcountryfarms.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-the-sharing-farm",
+      "name": "The Sharing Farm",
+      "type": "discovery",
+      "url": "https://www.sharingfarm.ca/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-urban-bounty-richmond",
+      "name": "Urban Bounty Richmond",
+      "type": "discovery",
+      "url": "https://urbanbounty.ca/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-sockeyes-pjhl",
+      "name": "Richmond Sockeyes (PJHL)",
+      "type": "discovery",
+      "url": "https://www.richmondsockeyes.com/stats/schedule",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-tourism-richmond-events",
+      "name": "Tourism Richmond Events",
+      "type": "discovery",
+      "url": "https://www.visitrichmondbc.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-city-of-richmond-events",
+      "name": "City of Richmond Events",
+      "type": "discovery",
+      "url": "https://www.richmond.ca/parks-recreation/about/events.htm",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-explore-steveston",
+      "name": "Explore Steveston",
+      "type": "discovery",
+      "url": "https://www.exploresteveston.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-steveston-farmers-artisans-market",
+      "name": "Steveston Farmers & Artisans Market",
+      "type": "discovery",
+      "url": "https://sfam.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
       "last_scouted_at": null
     }
   ],

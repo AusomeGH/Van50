@@ -781,11 +781,40 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
 /**
  * Infers city ("Surrey" | "Vancouver") from a venue or source record.
  */
+const VALID_HARVESTER_CITIES = new Set(["vancouver", "surrey", "burnaby", "richmond", "new-west", "langley"]);
+
+function normalizeHarvesterCityKey(raw = "all") {
+  const s = String(raw || "all").trim().toLowerCase();
+  if (s === "vancouver" || s === "van") return "vancouver";
+  if (s === "surrey" || s === "white rock") return "surrey";
+  if (s === "burnaby") return "burnaby";
+  if (s === "richmond") return "richmond";
+  if (s === "new-west" || s === "new west" || s === "newwest" || s === "new westminster" || s === "new-westminster") return "new-west";
+  if (s === "langley" || s === "fort langley" || s === "city of langley" || s === "township of langley") return "langley";
+  return "all";
+}
+
 export function inferFeedCity(item = {}) {
-  const explicit = String(item.city || item.region || "").trim().toLowerCase();
+  const explicit = normalizeHarvesterCityKey(item.region || item.city || "");
   if (explicit === "surrey") return "Surrey";
+  if (explicit === "burnaby") return "Burnaby";
+  if (explicit === "richmond") return "Richmond";
+  if (explicit === "new-west") return "New West";
+  if (explicit === "langley") return "Langley";
   if (explicit === "vancouver") return "Vancouver";
   const blob = `${item.venue_name || ""} ${item.name || ""} ${item.neighborhood || ""} ${item.full_address || ""} ${item.address || ""} ${item.url || ""} ${item.calendar_url || ""} ${item.website_url || ""}`.toLowerCase();
+  if (/\b(langley|fort langley|willoughby|walnut grove|murrayville|brookswood|aldergrove|bezartshub|langleyeventscentre|canadianflight|salishanculturalcentre|farmcountrybrewing|campbeer|tradingpostbrewing|fiveroadsbrewing|deadfrog|brookswoodbrewing|smugglers-trail|localitybrewing|fraservalleycider|festinalente|langleyrivermen|langleytrappers|langleyrams|vancouverbandits)\b/i.test(blob)) {
+    return "Langley";
+  }
+  if (/\b(burnaby|metrotown|brentwood|lougheed|deer lake|edmonds|shadboltcentre|michaeljfoxtheatre|burnabyvillagemuseum|burnabyartgallery|nikkeiplace|deerlakegallery|gibson\.sfu|dageraadbrewing|studiobrewing|admiralpub|greatbearpub|scandinaviancentre|burnabysymphony|burnabylakers|burnabysteelers|athletics\.sfu|northroadbia)\b/i.test(blob)) {
+    return "Burnaby";
+  }
+  if (/\b(richmond|steveston|brighouse|lansdowne|ironwood|minoru|gatewaytheatre|richmondartgallery|richmondartscoalition|lipontplace|richmondoval|stevestonheritage|gulfofgeorgiacannery|roca\.ca|londonfarm|swingoutrichmond|bbco\.ca|monkey9brewing|ohares\.pub|buckandear|countryvines|luluislandwinery|richmondsockeyes|sharingfarm|urbanbounty|sfam\.ca)\b/i.test(blob)) {
+    return "Richmond";
+  }
+  if (/\b(new westminster|new west|sapperton|queensborough|anvilcentre|anviltheatre|masseytheatre|vagabondplayers|royalcitymusicaltheatre|douglascollege|artsnewwest|fraserriverdiscovery|nwheritage|rivermarket|bullystudios|moodswingbar|raincitygames|steelandoak|abcbrewing|georgieslocal|paddlewheelerpub|salmonbellies|douglasroyals)\b/i.test(blob)) {
+    return "New West";
+  }
   const surreyTokens = [
     "surrey", "whalley", "guildford", "fleetwood", "newton", "cloverdale",
     "bear creek", "panorama", "crescent beach", "grandview", "fraser downs",
@@ -849,8 +878,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
     console.warn(`[WARN] Could not read venues.json: ${err.message}`);
   }
 
-  const rawCity = String(options.city || "all").trim().toLowerCase();
-  const cityScope = (rawCity === "vancouver" || rawCity === "surrey") ? rawCity : "all";
+  const cityScope = normalizeHarvesterCityKey(options.city || "all");
 
   const seenUrls = new Set();
   const allFeeds = [];
@@ -975,10 +1003,10 @@ export async function runAllVenueFeedsBatch(options = {}) {
 
   allFeeds.sort((a, b) => (scoreFeedPriority(b) - scoreFeedPriority(a)) || String(a.name || "").localeCompare(String(b.name || "")));
 
-  // Filter feeds by requested single city ("vancouver" | "surrey") or keep all ("all")
+  // Filter feeds by requested single city ("vancouver" | "surrey" | "burnaby" | "richmond" | "new-west" | "langley") or keep all ("all")
   const feeds = cityScope === "all"
     ? allFeeds
-    : allFeeds.filter((f) => String(f.city || "Vancouver").toLowerCase() === cityScope);
+    : allFeeds.filter((f) => normalizeHarvesterCityKey(f.city || "Vancouver") === cityScope);
 
   const maxTotalEvents = (options.maxEvents !== undefined && options.maxEvents !== null) ? Number(options.maxEvents) : 0;
   const isResume = Boolean(options.resume);
@@ -1035,11 +1063,16 @@ export async function runAllVenueFeedsBatch(options = {}) {
   }
 
   let totalHarvestedEvents = 0;
-  const cityLabel = cityScope === "vancouver"
-    ? "🏙️ VANCOUVER ONLY"
-    : cityScope === "surrey"
-      ? "🦌 SURREY ONLY"
-      : "🌲 ALL METRO (VANCOUVER + SURREY)";
+  const CITY_LABELS = {
+    vancouver: "🏙️ VANCOUVER ONLY",
+    surrey: "🦌 SURREY ONLY",
+    burnaby: "🏔️ BURNABY ONLY",
+    richmond: "🌊 RICHMOND ONLY",
+    "new-west": "⚓ NEW WEST ONLY",
+    langley: "🐎 LANGLEY ONLY",
+    all: "🌲 ALL METRO (6 CITIES)"
+  };
+  const cityLabel = CITY_LABELS[cityScope] || CITY_LABELS.all;
 
   const initialScannedInScope = feeds.filter((f) => completedNormUrls.has(normalizeCrawlerFeedUrl(f.url))).length;
   console.log(`\n================================================================`);
@@ -1193,24 +1226,19 @@ if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
   const max = (rawMax !== undefined && rawMax !== "") ? parseInt(rawMax, 10) : 0;
 
   const normTarget = targetCal.toLowerCase();
+  const strippedTarget = normTarget.replace(/^all:/, "").replace(/:resume$/, "");
   const isBatchTarget =
     !normTarget ||
     normTarget === "all" ||
     normTarget === "all:resume" ||
-    normTarget === "vancouver" ||
-    normTarget === "vancouver:resume" ||
-    normTarget === "all:vancouver" ||
-    normTarget === "all:vancouver:resume" ||
-    normTarget === "surrey" ||
-    normTarget === "surrey:resume" ||
-    normTarget === "all:surrey" ||
-    normTarget === "all:surrey:resume";
+    VALID_HARVESTER_CITIES.has(strippedTarget);
 
   if (isBatchTarget) {
     const isResumeTarget = normTarget.endsWith(":resume") || isResumeCli;
-    let resolvedCity = cliCity || "all";
-    if (normTarget.includes("vancouver")) resolvedCity = "vancouver";
-    else if (normTarget.includes("surrey")) resolvedCity = "surrey";
+    let resolvedCity = normalizeHarvesterCityKey(cliCity || "all");
+    if (VALID_HARVESTER_CITIES.has(strippedTarget)) {
+      resolvedCity = strippedTarget;
+    }
 
     runAllVenueFeedsBatch({ maxEvents: max, resume: isResumeTarget, city: resolvedCity })
       .then(() => process.exit(0))

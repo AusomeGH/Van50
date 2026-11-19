@@ -4251,14 +4251,48 @@ const SURREY_NEIGHBORHOODS = [
   "South Surrey"
 ];
 
-// Regional Super-Clusters (Vancouver + Surrey Town Centres)
+const BURNABY_NEIGHBORHOODS = [
+  "Metrotown & Deer Lake",
+  "Brentwood & North Burnaby",
+  "Lougheed & SFU",
+  "Edmonds & South Burnaby"
+];
+
+const RICHMOND_NEIGHBORHOODS = [
+  "City Centre & Brighouse",
+  "Steveston Village",
+  "East Richmond & Ironwood"
+];
+
+const NEW_WEST_NEIGHBORHOODS = [
+  "Downtown & Columbia St",
+  "Uptown & Sapperton",
+  "Queensborough"
+];
+
+const LANGLEY_NEIGHBORHOODS = [
+  "Langley City & Willowbrook",
+  "Fort Langley",
+  "Willoughby & Walnut Grove",
+  "Murrayville & Aldergrove"
+];
+
+// Regional Super-Clusters (Vancouver + Surrey + Burnaby + Richmond + New West + Langley)
 const NEIGHBORHOODS = [
   ...VANCOUVER_NEIGHBORHOODS,
-  ...SURREY_NEIGHBORHOODS
+  ...SURREY_NEIGHBORHOODS,
+  ...BURNABY_NEIGHBORHOODS,
+  ...RICHMOND_NEIGHBORHOODS,
+  ...NEW_WEST_NEIGHBORHOODS,
+  ...LANGLEY_NEIGHBORHOODS
 ];
 
 window.VANCOUVER_NEIGHBORHOODS = VANCOUVER_NEIGHBORHOODS;
 window.SURREY_NEIGHBORHOODS = SURREY_NEIGHBORHOODS;
+window.BURNABY_NEIGHBORHOODS = BURNABY_NEIGHBORHOODS;
+window.RICHMOND_NEIGHBORHOODS = RICHMOND_NEIGHBORHOODS;
+window.NEW_WEST_NEIGHBORHOODS = NEW_WEST_NEIGHBORHOODS;
+window.LANGLEY_NEIGHBORHOODS = LANGLEY_NEIGHBORHOODS;
 window.NEIGHBORHOODS = NEIGHBORHOODS;
 
 // Days of the Week

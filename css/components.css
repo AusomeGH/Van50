@@ -8955,15 +8955,25 @@ body.van50-accessible {
 
 .pre-feed-controls-row .region-filter-bar {
   display: inline-flex !important;
-  flex: 0 0 auto !important;
+  flex: 0 1 auto !important;
   width: auto !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   margin: 0 !important;
   padding: 2px !important;
   gap: 2px !important;
   flex-wrap: nowrap !important;
 }
 
+.pre-feed-controls-row .region-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
 .pre-feed-controls-row .region-pill {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
   flex: 0 0 auto !important;
   padding: 5px 10px !important;
   font-size: 0.76rem !important;

@@ -1886,17 +1886,37 @@
                   Cities:</span>
                 <button type="button" id="btn-opt-harvest-city-all" class="btn-limit-chip active"
                   onclick="setHarvesterCityScope('all')" style="font-size: 0.7rem; padding: 3px 9px; font-weight: 700;">
-                  🌲 All Metro (Van + Surrey)
+                  🌲 All Metro (6 Cities)
                 </button>
                 <button type="button" id="btn-opt-harvest-city-vancouver" class="btn-limit-chip"
                   onclick="setHarvesterCityScope('vancouver')"
                   style="font-size: 0.7rem; padding: 3px 9px; font-weight: 700;">
-                  🏙️ Vancouver Only
+                  🏙️ Vancouver
                 </button>
                 <button type="button" id="btn-opt-harvest-city-surrey" class="btn-limit-chip"
                   onclick="setHarvesterCityScope('surrey')"
                   style="font-size: 0.7rem; padding: 3px 9px; font-weight: 700;">
-                  🦌 Surrey Only
+                  🦌 Surrey
+                </button>
+                <button type="button" id="btn-opt-harvest-city-burnaby" class="btn-limit-chip"
+                  onclick="setHarvesterCityScope('burnaby')"
+                  style="font-size: 0.7rem; padding: 3px 9px; font-weight: 700;">
+                  🏔️ Burnaby
+                </button>
+                <button type="button" id="btn-opt-harvest-city-richmond" class="btn-limit-chip"
+                  onclick="setHarvesterCityScope('richmond')"
+                  style="font-size: 0.7rem; padding: 3px 9px; font-weight: 700;">
+                  🌊 Richmond
+                </button>
+                <button type="button" id="btn-opt-harvest-city-new-west" class="btn-limit-chip"
+                  onclick="setHarvesterCityScope('new-west')"
+                  style="font-size: 0.7rem; padding: 3px 9px; font-weight: 700;">
+                  ⚓ New West
+                </button>
+                <button type="button" id="btn-opt-harvest-city-langley" class="btn-limit-chip"
+                  onclick="setHarvesterCityScope('langley')"
+                  style="font-size: 0.7rem; padding: 3px 9px; font-weight: 700;">
+                  🐎 Langley
                 </button>
               </div>
             </div>
@@ -2490,12 +2510,32 @@
                   <button type="button" class="btn-limit-chip" id="chip-harvester-city-vancouver"
                     data-city-scope="vancouver" onclick="setHarvesterCityScope('vancouver')"
                     style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
-                    🏙️ Vancouver Only (<span id="harvester-city-count-vancouver">Van</span>)
+                    🏙️ Vancouver (<span id="harvester-city-count-vancouver">Van</span>)
                   </button>
                   <button type="button" class="btn-limit-chip" id="chip-harvester-city-surrey" data-city-scope="surrey"
                     onclick="setHarvesterCityScope('surrey')"
                     style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
-                    🦌 Surrey Only (<span id="harvester-city-count-surrey">Surrey</span>)
+                    🦌 Surrey (<span id="harvester-city-count-surrey">Surrey</span>)
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-burnaby" data-city-scope="burnaby"
+                    onclick="setHarvesterCityScope('burnaby')"
+                    style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
+                    🏔️ Burnaby (<span id="harvester-city-count-burnaby">Burnaby</span>)
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-richmond" data-city-scope="richmond"
+                    onclick="setHarvesterCityScope('richmond')"
+                    style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
+                    🌊 Richmond (<span id="harvester-city-count-richmond">Richmond</span>)
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-new-west" data-city-scope="new-west"
+                    onclick="setHarvesterCityScope('new-west')"
+                    style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
+                    ⚓ New West (<span id="harvester-city-count-new-west">New West</span>)
+                  </button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-langley" data-city-scope="langley"
+                    onclick="setHarvesterCityScope('langley')"
+                    style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
+                    🐎 Langley (<span id="harvester-city-count-langley">Langley</span>)
                   </button>
                 </div>
               </div>

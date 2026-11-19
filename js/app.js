@@ -91,6 +91,53 @@ window.SURREY_NEIGHBORHOODS = window.SURREY_NEIGHBORHOODS || [
   "South Surrey"
 ];
 
+window.BURNABY_NEIGHBORHOODS = window.BURNABY_NEIGHBORHOODS || [
+  "Metrotown & Deer Lake",
+  "Brentwood & North Burnaby",
+  "Lougheed & SFU",
+  "Edmonds & South Burnaby"
+];
+
+window.RICHMOND_NEIGHBORHOODS = window.RICHMOND_NEIGHBORHOODS || [
+  "City Centre & Brighouse",
+  "Steveston Village",
+  "East Richmond & Ironwood"
+];
+
+window.NEW_WEST_NEIGHBORHOODS = window.NEW_WEST_NEIGHBORHOODS || [
+  "Downtown & Columbia St",
+  "Uptown & Sapperton",
+  "Queensborough"
+];
+
+window.LANGLEY_NEIGHBORHOODS = window.LANGLEY_NEIGHBORHOODS || [
+  "Langley City & Willowbrook",
+  "Fort Langley",
+  "Willoughby & Walnut Grove",
+  "Murrayville & Aldergrove"
+];
+
+window.REGION_META = {
+  all: { key: "all", label: "All", icon: "🌲" },
+  vancouver: { key: "vancouver", label: "Vancouver", icon: "🏙️" },
+  surrey: { key: "surrey", label: "Surrey", icon: "🦌" },
+  burnaby: { key: "burnaby", label: "Burnaby", icon: "🏔️" },
+  richmond: { key: "richmond", label: "Richmond", icon: "🌊" },
+  "new-west": { key: "new-west", label: "New West", icon: "⚓" },
+  langley: { key: "langley", label: "Langley", icon: "🐎" }
+};
+
+window.normalizeRegionKey = function (raw) {
+  const s = String(raw || 'all').trim().toLowerCase();
+  if (s === 'vancouver' || s === 'van') return 'vancouver';
+  if (s === 'surrey' || s === 'white rock') return 'surrey';
+  if (s === 'burnaby') return 'burnaby';
+  if (s === 'richmond') return 'richmond';
+  if (s === 'new-west' || s === 'new west' || s === 'newwest' || s === 'new westminster' || s === 'new-westminster') return 'new-west';
+  if (s === 'langley' || s === 'fort langley') return 'langley';
+  return 'all';
+};
+
 window.SURREY_MACRO_GROUPS = window.SURREY_MACRO_GROUPS || [
   {
     id: "north-surrey",
@@ -114,7 +161,11 @@ window.SURREY_MACRO_GROUPS = window.SURREY_MACRO_GROUPS || [
 
 window.NEIGHBORHOODS = [
   ...window.VANCOUVER_NEIGHBORHOODS,
-  ...window.SURREY_NEIGHBORHOODS
+  ...window.SURREY_NEIGHBORHOODS,
+  ...window.BURNABY_NEIGHBORHOODS,
+  ...window.RICHMOND_NEIGHBORHOODS,
+  ...window.NEW_WEST_NEIGHBORHOODS,
+  ...window.LANGLEY_NEIGHBORHOODS
 ];
 
 window.DAYS_OF_WEEK = window.DAYS_OF_WEEK || [
@@ -510,11 +561,9 @@ function restoreFiltersFromUrlParams() {
   const params = new URLSearchParams(window.location.search);
 
   if (params.has('region')) {
-    const regVal = (params.get('region') || '').trim().toLowerCase();
-    if (regVal === 'vancouver' || regVal === 'surrey' || regVal === 'all') {
-      state.region = regVal;
-      window.van50SelectedRegion = regVal;
-    }
+    const regVal = window.normalizeRegionKey(params.get('region'));
+    state.region = regVal;
+    window.van50SelectedRegion = regVal;
   }
 
   if (params.has('q')) {
@@ -702,7 +751,8 @@ function syncFiltersToUrlParams() {
 function getActiveFiltersSummaryList() {
   const active = [];
   if (state.region && state.region !== 'all') {
-    active.push(`Region: ${state.region === 'surrey' ? '🦌 Surrey' : '🏙️ Vancouver'}`);
+    const rm = (window.REGION_META && window.REGION_META[state.region]) || { icon: '📍', label: state.region };
+    active.push(`Region: ${rm.icon} ${rm.label}`);
   }
   if (state.searchQuery && state.searchQuery.trim() !== '') {
     active.push(`Search: "${state.searchQuery.trim()}"`);
@@ -1937,15 +1987,36 @@ function normalizeActiveEvent(item) {
   const rawAddr = String(item.full_address || item.address || "").trim();
   const explicitMuniMatch = rawAddr.match(/,\s*(North Vancouver|West Vancouver|Burnaby|Richmond|Coquitlam|Port Coquitlam|Port Moody|New Westminster|Surrey|White Rock|Delta|Langley|Maple Ridge|Pitt Meadows|Vancouver)\s*,\s*BC\b/i);
   const explicitAddrCity = explicitMuniMatch ? explicitMuniMatch[1].replace(/\s+/g, " ").trim() : null;
-  const isNonSurreyMetroMuni = Boolean(explicitAddrCity && !/^(?:surrey|white rock)$/i.test(explicitAddrCity));
+  const locBlob = `${rawHood} ${rawAddr}`;
+  const itemCityRaw = String(explicitAddrCity || item.city || "").trim();
   const isEastVanGrandview = /grandview[- ]woodland/i.test(rawHood) || /\bvancouver\b/i.test(rawAddr);
-  const isSurreyEvent = !isNonSurreyMetroMuni && !isEastVanGrandview && (
-    /^(?:surrey|white rock)$/i.test(String(explicitAddrCity || item.city || "").trim()) ||
-    String(item.region || "").toLowerCase() === "surrey" ||
-    /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview|white rock)\b/i.test(`${rawHood} ${rawAddr}`)
-  );
-  const resolvedCity = explicitAddrCity || (item.city && String(item.city).trim()) || (isSurreyEvent ? "Surrey" : "Vancouver");
-  const resolvedRegion = isSurreyEvent ? "Surrey" : "Vancouver";
+
+  let inferredCity = explicitAddrCity || "";
+  if (!inferredCity) {
+    if (/^(?:burnaby|richmond|new westminster|new west|langley|surrey|white rock)$/i.test(itemCityRaw)) {
+      inferredCity = /^new west/i.test(itemCityRaw) ? "New Westminster" : (/^white rock$/i.test(itemCityRaw) ? "Surrey" : itemCityRaw);
+    } else if (!isEastVanGrandview && /\b(langley|fort langley|willoughby|walnut grove|murrayville|brookswood|aldergrove)\b/i.test(locBlob)) {
+      inferredCity = "Langley";
+    } else if (!isEastVanGrandview && /\b(burnaby|metrotown|brentwood|lougheed|deer lake|edmonds|simon fraser|sfu)\b/i.test(locBlob)) {
+      inferredCity = "Burnaby";
+    } else if (!isEastVanGrandview && /\b(richmond|steveston|brighouse|lansdowne|ironwood|minoru|terra nova)\b/i.test(locBlob)) {
+      inferredCity = "Richmond";
+    } else if (!isEastVanGrandview && /\b(new westminster|new west|sapperton|queensborough)\b/i.test(locBlob)) {
+      inferredCity = "New Westminster";
+    } else if (!isEastVanGrandview && (String(item.region || "").toLowerCase() === "surrey" || /\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview|white rock)\b/i.test(locBlob))) {
+      inferredCity = "Surrey";
+    } else {
+      inferredCity = itemCityRaw || "Vancouver";
+    }
+  }
+  const resolvedCity = inferredCity;
+  const cityLowerNorm = resolvedCity.toLowerCase();
+  let resolvedRegion = "Vancouver";
+  if (cityLowerNorm === "surrey" || cityLowerNorm === "white rock") resolvedRegion = "Surrey";
+  else if (cityLowerNorm === "burnaby") resolvedRegion = "Burnaby";
+  else if (cityLowerNorm === "richmond") resolvedRegion = "Richmond";
+  else if (cityLowerNorm === "new westminster" || cityLowerNorm === "new west") resolvedRegion = "New West";
+  else if (cityLowerNorm === "langley") resolvedRegion = "Langley";
 
   const customPriceLabel = (item.priceLabel && typeof item.priceLabel === "string" && (
     (finalPrice === 0 && /free/i.test(item.priceLabel)) ||
@@ -3957,7 +4028,42 @@ function resolveCanonicalNeighborhoodCluster(nhStr, evCity) {
   const s = String(nhStr || "").trim().toLowerCase();
   const c = String(evCity || "").trim().toLowerCase();
   const isSurreyCity = c === "surrey" || c === "white rock";
-  if (/^(?:north vancouver|west vancouver|burnaby|richmond|new westminster|coquitlam|port coquitlam|port moody|delta|langley|maple ridge|pitt meadows)$/i.test(c)) {
+  const isBurnabyCity = c === "burnaby";
+  const isRichmondCity = c === "richmond";
+  const isNewWestCity = c === "new westminster" || c === "new west" || c === "new-west";
+  const isLangleyCity = c === "langley";
+
+  // Dedicated Burnaby clusters
+  if (isBurnabyCity || /\bburnaby\b|\bmetrotown\b|\bdeer lake\b|\bbrentwood\b|\blougheed\b|\bedmonds\b|\bsfu\b|\bsimon fraser\b/i.test(s)) {
+    if (/brentwood|north burnaby|burnaby heights|capitol hill|willingdon|hastings/i.test(s)) return "Brentwood & North Burnaby";
+    if (/lougheed|sfu|simon fraser|burnaby mountain|burquitlam|production way/i.test(s)) return "Lougheed & SFU";
+    if (/edmonds|south burnaby|big bend|highgate|marine way|riverway/i.test(s)) return "Edmonds & South Burnaby";
+    return "Metrotown & Deer Lake";
+  }
+
+  // Dedicated Richmond clusters
+  if (isRichmondCity || /\brichmond\b|\bsteveston\b|\bbrighouse\b|\blansdowne\b|\bironwood\b|\bminoru\b|\bterra nova\b/i.test(s)) {
+    if (/steveston|garry point|london landing|terra nova/i.test(s)) return "Steveston Village";
+    if (/east richmond|ironwood|hamilton|cambie|bridgeport|riverport|silvercity/i.test(s)) return "East Richmond & Ironwood";
+    return "City Centre & Brighouse";
+  }
+
+  // Dedicated New Westminster clusters
+  if (isNewWestCity || /\bnew westminster\b|\bnew west\b|\bsapperton\b|\bqueensborough\b/i.test(s)) {
+    if (/queensborough/i.test(s)) return "Queensborough";
+    if (/uptown|sapperton|moody park|brow of the hill|massey|glenbrooke|queen'?s park/i.test(s)) return "Uptown & Sapperton";
+    return "Downtown & Columbia St";
+  }
+
+  // Dedicated Langley clusters
+  if (isLangleyCity || /\blangley\b|\bfort langley\b|\bwilloughby\b|\bwalnut grove\b|\bmurrayville\b|\baldergrove\b|\bwillowbrook\b/i.test(s)) {
+    if (/fort langley/i.test(s)) return "Fort Langley";
+    if (/willoughby|walnut grove|carvolth|yorkson/i.test(s)) return "Willoughby & Walnut Grove";
+    if (/murrayville|aldergrove|brookswood|fernridge/i.test(s)) return "Murrayville & Aldergrove";
+    return "Langley City & Willowbrook";
+  }
+
+  if (/^(?:north vancouver|west vancouver|coquitlam|port coquitlam|port moody|delta|maple ridge|pitt meadows)$/i.test(c)) {
     return "North Shore, Burnaby & Metro";
   }
   if (!s) return isSurreyCity ? "Surrey Central / Whalley" : "Downtown, Gastown & Yaletown";
@@ -3988,7 +4094,7 @@ function resolveCanonicalNeighborhoodCluster(nhStr, evCity) {
   if (/granville island|false creek|olympic village|fairview|south granville|senakw/i.test(s)) {
     return "Granville Island & False Creek";
   }
-  if (/north shore|north van|west van|burnaby|new west|richmond|coquitlam|port moody|metro/i.test(s)) {
+  if (/north shore|north van|west van|coquitlam|port moody|metro/i.test(s)) {
     return "North Shore, Burnaby & Metro";
   }
   return nhStr;
@@ -4004,8 +4110,7 @@ function eventMatchesNeighborhoodFilter(ev, selectedSet) {
 }
 
 function setRegionFilter(region) {
-  const norm = String(region || 'all').trim().toLowerCase();
-  const validRegion = (norm === 'vancouver' || norm === 'surrey') ? norm : 'all';
+  const validRegion = window.normalizeRegionKey(region);
   state.region = validRegion;
   window.van50SelectedRegion = validRegion;
   window._userChangedRegion = true;
@@ -4051,7 +4156,7 @@ function renderNeighborhoodPills() {
 
   // 1. Vancouver Neighborhoods Group
   const vanGroup = document.createElement('div');
-  vanGroup.className = `nh-region-group ${state.region === 'surrey' ? 'nh-dimmed-by-region' : ''}`;
+  vanGroup.className = `nh-region-group ${(state.region && state.region !== 'all' && state.region !== 'vancouver') ? 'nh-dimmed-by-region' : ''}`;
   vanGroup.setAttribute('data-region-group', 'vancouver');
 
   const vanHeader = document.createElement('div');
@@ -4083,7 +4188,7 @@ function renderNeighborhoodPills() {
 
   // 2. Surrey Town Centres & Macro Quick-Select Group
   const surreyGroup = document.createElement('div');
-  surreyGroup.className = `nh-region-group ${state.region === 'vancouver' ? 'nh-dimmed-by-region' : ''}`;
+  surreyGroup.className = `nh-region-group ${(state.region && state.region !== 'all' && state.region !== 'surrey') ? 'nh-dimmed-by-region' : ''}`;
   surreyGroup.setAttribute('data-region-group', 'surrey');
 
   const surreyHeader = document.createElement('div');
@@ -4143,6 +4248,53 @@ function renderNeighborhoodPills() {
     surreyGroup.appendChild(pill);
   });
   container.appendChild(surreyGroup);
+
+  // 3–6. Burnaby, Richmond, New West & Langley Neighborhood Groups
+  const extraCityGroups = [
+    { key: 'burnaby', title: '🏔️ Burnaby Neighborhoods', list: window.BURNABY_NEIGHBORHOODS || [] },
+    { key: 'richmond', title: '🌊 Richmond Neighborhoods', list: window.RICHMOND_NEIGHBORHOODS || [] },
+    { key: 'new-west', title: '⚓ New Westminster Neighborhoods', list: window.NEW_WEST_NEIGHBORHOODS || [] },
+    { key: 'langley', title: '🐎 Langley Neighborhoods', list: window.LANGLEY_NEIGHBORHOODS || [] }
+  ];
+  extraCityGroups.forEach((cg) => {
+    if (!cg.list.length) return;
+    const grp = document.createElement('div');
+    grp.className = `nh-region-group ${(state.region && state.region !== 'all' && state.region !== cg.key) ? 'nh-dimmed-by-region' : ''}`;
+    grp.setAttribute('data-region-group', cg.key);
+
+    const hdr = document.createElement('div');
+    hdr.className = 'nh-group-label';
+    hdr.textContent = cg.title;
+    grp.appendChild(hdr);
+
+    cg.list.forEach(nh => {
+      const pill = document.createElement('button');
+      pill.type = 'button';
+      const isSelected = state.selectedNeighborhoods.has(nh);
+      const allSelected = state.selectedNeighborhoods.size === window.NEIGHBORHOODS.length;
+      pill.className = `nh-pill ${isSelected ? 'active' : ''}`;
+      pill.setAttribute('data-nh', nh);
+      pill.setAttribute('data-nh-region', cg.key);
+      pill.innerHTML = `<span>${escapeHtml(nh)}</span>`;
+      pill.addEventListener('click', () => {
+        if (allSelected) {
+          state.selectedNeighborhoods = new Set([nh]);
+        } else if (state.selectedNeighborhoods.has(nh)) {
+          state.selectedNeighborhoods.delete(nh);
+          if (state.selectedNeighborhoods.size === 0) {
+            state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
+          }
+        } else {
+          state.selectedNeighborhoods.add(nh);
+        }
+        window.trackAnonymousEvent('neighborhood/' + nh.toLowerCase().replace(/[^a-z0-9]+/g, '-'), 'Neighborhood: ' + nh);
+        renderNeighborhoodPills();
+        applyFiltersAndRender();
+      });
+      grp.appendChild(pill);
+    });
+    container.appendChild(grp);
+  });
 
   const toggleBtn = document.getElementById('btn-toggle-all-neighborhoods');
   if (toggleBtn) {
@@ -4953,12 +5105,10 @@ function applyFiltersAndRender() {
       return inPlan;
     }
 
-    // 0. Top-Level Region Filter (all | vancouver | surrey)
+    // 0. Top-Level Region Filter (all | vancouver | surrey | burnaby | richmond | new-west | langley)
     if (state.region && state.region !== 'all') {
-      const evCityLower = String(ev.city || '').trim().toLowerCase();
-      const evRegionLower = String(ev.region || (evCityLower === 'surrey' || evCityLower === 'white rock' ? 'surrey' : 'vancouver')).trim().toLowerCase();
-      if (state.region === 'surrey' && evRegionLower !== 'surrey') return false;
-      if (state.region === 'vancouver' && evRegionLower !== 'vancouver') return false;
+      const evRegionKey = window.normalizeRegionKey(ev.region || ev.city || 'vancouver');
+      if (state.region !== evRegionKey) return false;
     }
 
     // Venue Isolation Filter (Requirement 3: When clicking events at a venue, show all events at the venue)

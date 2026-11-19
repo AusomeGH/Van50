@@ -12,7 +12,27 @@ except Exception:
     pass
 
 surrey_re = re.compile(
-    r"\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview)\b",
+    r"\b(surrey|whalley|guildford|fleetwood|fraser heights|newton|bear creek|panorama\s+ridge|sullivan heights|cloverdale|clayton|south surrey|grandview heights|crescent beach|bridgeview|white rock)\b",
+    re.IGNORECASE,
+)
+burnaby_re = re.compile(
+    r"\b(burnaby|metrotown|brentwood|lougheed|deer lake|edmonds|simon fraser|sfu)\b",
+    re.IGNORECASE,
+)
+richmond_re = re.compile(
+    r"\b(richmond|steveston|brighouse|lansdowne|ironwood|minoru|terra nova)\b",
+    re.IGNORECASE,
+)
+newwest_re = re.compile(
+    r"\b(new westminster|new west|sapperton|queensborough)\b",
+    re.IGNORECASE,
+)
+langley_re = re.compile(
+    r"\b(langley|fort langley|willoughby|walnut grove|murrayville|brookswood|aldergrove)\b",
+    re.IGNORECASE,
+)
+explicit_muni_re = re.compile(
+    r",\s*(North Vancouver|West Vancouver|Burnaby|Richmond|Coquitlam|Port Coquitlam|Port Moody|New Westminster|Surrey|White Rock|Delta|Langley|Maple Ridge|Pitt Meadows|Vancouver)\s*,\s*BC\b",
     re.IGNORECASE,
 )
 
@@ -74,12 +94,38 @@ for ev in events:
                 updated_events = True
     raw_hood = str(ev.get("neighborhood") or "")
     raw_addr = f"{ev.get('address') or ''} {ev.get('full_address') or ''}"
-    is_east_van_grandview = bool(re.search(r"grandview[- ]woodland", raw_hood, re.I) or re.search(r"\bvancouver\b", raw_addr, re.I))
+    is_east_van_grandview = bool(re.search(r"grandview[- ]woodland", raw_hood, re.I) or re.search(r",\s*vancouver\s*,\s*bc\b", raw_addr, re.I))
     raw_loc = f"{raw_hood} {raw_addr}"
-    inferred_city = "Surrey" if (not is_east_van_grandview and surrey_re.search(raw_loc)) else "Vancouver"
-    if ev.get("city") != inferred_city or ev.get("region") != inferred_city:
+    muni_match = explicit_muni_re.search(raw_addr)
+    if muni_match:
+        muni_raw = re.sub(r"\s+", " ", muni_match.group(1)).strip().lower()
+        if muni_raw in ("surrey", "white rock"):
+            inferred_city, inferred_region = "Surrey", "Surrey"
+        elif muni_raw == "burnaby":
+            inferred_city, inferred_region = "Burnaby", "Burnaby"
+        elif muni_raw == "richmond":
+            inferred_city, inferred_region = "Richmond", "Richmond"
+        elif muni_raw == "new westminster":
+            inferred_city, inferred_region = "New Westminster", "New West"
+        elif muni_raw == "langley":
+            inferred_city, inferred_region = "Langley", "Langley"
+        else:
+            inferred_city, inferred_region = muni_match.group(1).strip(), "Vancouver"
+    elif not is_east_van_grandview and langley_re.search(raw_loc):
+        inferred_city, inferred_region = "Langley", "Langley"
+    elif not is_east_van_grandview and burnaby_re.search(raw_loc):
+        inferred_city, inferred_region = "Burnaby", "Burnaby"
+    elif not is_east_van_grandview and richmond_re.search(raw_loc):
+        inferred_city, inferred_region = "Richmond", "Richmond"
+    elif not is_east_van_grandview and newwest_re.search(raw_loc):
+        inferred_city, inferred_region = "New Westminster", "New West"
+    elif not is_east_van_grandview and surrey_re.search(raw_loc):
+        inferred_city, inferred_region = "Surrey", "Surrey"
+    else:
+        inferred_city, inferred_region = "Vancouver", "Vancouver"
+    if ev.get("city") != inferred_city or ev.get("region") != inferred_region:
         ev["city"] = inferred_city
-        ev["region"] = inferred_city
+        ev["region"] = inferred_region
         updated_events = True
     coords = ev.get("coordinates")
     if isinstance(coords, list) and len(coords) >= 2:
@@ -204,13 +250,47 @@ const SURREY_NEIGHBORHOODS = [
   "South Surrey"
 ];
 
+const BURNABY_NEIGHBORHOODS = [
+  "Metrotown & Deer Lake",
+  "Brentwood & North Burnaby",
+  "Lougheed & SFU",
+  "Edmonds & South Burnaby"
+];
+
+const RICHMOND_NEIGHBORHOODS = [
+  "City Centre & Brighouse",
+  "Steveston Village",
+  "East Richmond & Ironwood"
+];
+
+const NEW_WEST_NEIGHBORHOODS = [
+  "Downtown & Columbia St",
+  "Uptown & Sapperton",
+  "Queensborough"
+];
+
+const LANGLEY_NEIGHBORHOODS = [
+  "Langley City & Willowbrook",
+  "Fort Langley",
+  "Willoughby & Walnut Grove",
+  "Murrayville & Aldergrove"
+];
+
 const NEIGHBORHOODS = [
   ...VANCOUVER_NEIGHBORHOODS,
-  ...SURREY_NEIGHBORHOODS
+  ...SURREY_NEIGHBORHOODS,
+  ...BURNABY_NEIGHBORHOODS,
+  ...RICHMOND_NEIGHBORHOODS,
+  ...NEW_WEST_NEIGHBORHOODS,
+  ...LANGLEY_NEIGHBORHOODS
 ];
 
 window.VANCOUVER_NEIGHBORHOODS = VANCOUVER_NEIGHBORHOODS;
 window.SURREY_NEIGHBORHOODS = SURREY_NEIGHBORHOODS;
+window.BURNABY_NEIGHBORHOODS = BURNABY_NEIGHBORHOODS;
+window.RICHMOND_NEIGHBORHOODS = RICHMOND_NEIGHBORHOODS;
+window.NEW_WEST_NEIGHBORHOODS = NEW_WEST_NEIGHBORHOODS;
+window.LANGLEY_NEIGHBORHOODS = LANGLEY_NEIGHBORHOODS;
 window.NEIGHBORHOODS = NEIGHBORHOODS;
 
 const DAYS_OF_WEEK = [

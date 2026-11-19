@@ -1664,5 +1664,397 @@
     "website_url": "https://www.newtonbia.com/program-listings/",
     "description": "Car-Free Day Surrey at Newton Town Centre",
     "price": 0
+  },
+  {
+    "id": "fort-langley-jazz-arts-festival",
+    "slug": "fort-langley-jazz-arts-festival",
+    "name": "Fort Langley Jazz & Arts Festival",
+    "festival_name": "Fort Langley Jazz & Arts Festival",
+    "aliases": [
+      "Fort Langley Jazz & Arts Festival"
+    ],
+    "city": "Langley",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://fortlangleyjazzfest.com/schedule/",
+    "schedule_url": "https://fortlangleyjazzfest.com/schedule/",
+    "location": "Fort Langley Village, Langley, BC",
+    "start_date": "2027-07-22",
+    "end_date": "2027-07-25",
+    "description": "Annual summer jazz and visual arts festival in historic Fort Langley featuring free outdoor stages and ticketed headliner concerts.",
+    "category": "Live Music",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.1674,
+      -122.5732
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "bard-in-the-valley-langley",
+    "slug": "bard-in-the-valley-langley",
+    "name": "Bard in the Valley",
+    "festival_name": "Bard in the Valley",
+    "aliases": [
+      "Bard in the Valley"
+    ],
+    "city": "Langley",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://bardinthevalley.com/",
+    "schedule_url": "https://bardinthevalley.com/",
+    "location": "Douglas Park Spirit Square & Township 7 Vineyards, Langley, BC",
+    "start_date": "2027-07-08",
+    "end_date": "2027-08-01",
+    "description": "Annual summer Shakespeare in the park festival in Langley with free Douglas Park performances and ticketed vineyard shows.",
+    "category": "Comedy & Shows",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.1044,
+      -122.6604
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "glow-langley-holiday-lights",
+    "slug": "glow-langley-holiday-lights",
+    "name": "Glow Langley Christmas Light Festival",
+    "festival_name": "Glow Langley Christmas Light Festival",
+    "aliases": [
+      "Glow Langley Christmas Light Festival"
+    ],
+    "city": "Langley",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://langley.glowgardens.com/plan-your-visit/",
+    "schedule_url": "https://langley.glowgardens.com/plan-your-visit/",
+    "location": "6690 216 St, Langley, BC",
+    "start_date": "2026-11-20",
+    "end_date": "2026-12-31",
+    "description": "Seasonal indoor/outdoor holiday light gardens, illuminated tunnels, artisan market, and live festive entertainment in Langley.",
+    "category": "Outdoors & Scenic",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 24,
+    "coordinates": [
+      49.1243,
+      -122.6284
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "hyack-festival-new-west",
+    "slug": "hyack-festival-new-west",
+    "name": "Hyack Festival",
+    "festival_name": "Hyack Festival",
+    "aliases": [
+      "Hyack Festival"
+    ],
+    "city": "New Westminster",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://hyackfestival.com/events/",
+    "schedule_url": "https://hyackfestival.com/events/",
+    "location": "Queen's Park & Downtown New Westminster, BC",
+    "start_date": "2027-05-22",
+    "end_date": "2027-05-24",
+    "description": "New Westminster's signature spring heritage celebration featuring the Hyack International Parade, Uptown Live stages, and Festival in the Park.",
+    "category": "Outdoors & Scenic",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.216,
+      -122.906
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "new-west-pride-festival",
+    "slug": "new-west-pride-festival",
+    "name": "New West Pride Week & Street Party",
+    "festival_name": "New West Pride Week & Street Party",
+    "aliases": [
+      "New West Pride Week & Street Party"
+    ],
+    "city": "New Westminster",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://www.newwestpride.ca/events/",
+    "schedule_url": "https://www.newwestpride.ca/events/",
+    "location": "Columbia Street, New Westminster, BC",
+    "start_date": "2027-08-07",
+    "end_date": "2027-08-14",
+    "description": "Annual 2SLGBTQIA+ community arts, live music, and free Columbia Street celebration in downtown New Westminster.",
+    "category": "Outdoors & Scenic",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.2016,
+      -122.9102
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "new-west-film-fest",
+    "slug": "new-west-film-fest",
+    "name": "New West Film Fest",
+    "festival_name": "New West Film Fest",
+    "aliases": [
+      "New West Film Fest"
+    ],
+    "city": "New Westminster",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://newwestfilmfest.ca/",
+    "schedule_url": "https://newwestfilmfest.ca/",
+    "location": "Landmark Cinemas & Anvil Centre, New Westminster, BC",
+    "start_date": "2027-10-15",
+    "end_date": "2027-10-17",
+    "description": "Annual independent film festival in New Westminster showcasing BC and international features, documentaries, and short films.",
+    "category": "Indie Cinema",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 15,
+    "coordinates": [
+      49.2016,
+      -122.9102
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "litfest-new-west",
+    "slug": "litfest-new-west",
+    "name": "LitFest New West",
+    "festival_name": "LitFest New West",
+    "aliases": [
+      "LitFest New West"
+    ],
+    "city": "New Westminster",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://litfestnewwest.ca/",
+    "schedule_url": "https://litfestnewwest.ca/",
+    "location": "Anvil Centre & New Westminster Cultural Venues",
+    "start_date": "2027-04-17",
+    "end_date": "2027-04-24",
+    "description": "Annual literary arts festival featuring free author readings, writing workshops, and panel discussions across New Westminster.",
+    "category": "Arts & Galleries",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.2016,
+      -122.9102
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "recovery-day-bc-new-west",
+    "slug": "recovery-day-bc-new-west",
+    "name": "Recovery Day BC",
+    "festival_name": "Recovery Day BC",
+    "aliases": [
+      "Recovery Day BC"
+    ],
+    "city": "New Westminster",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://www.recoverydaybc.ca/",
+    "schedule_url": "https://www.recoverydaybc.ca/",
+    "location": "Uptown New Westminster (6th St & 6th Ave), BC",
+    "start_date": "2027-09-11",
+    "end_date": "2027-09-11",
+    "description": "Canada's largest free outdoor street festival celebrating recovery, live music, food trucks, and community wellness in Uptown New West.",
+    "category": "Live Music",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.213,
+      -122.921
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "richmond-night-market",
+    "slug": "richmond-night-market",
+    "name": "Richmond Night Market",
+    "festival_name": "Richmond Night Market",
+    "aliases": [
+      "Richmond Night Market"
+    ],
+    "city": "Richmond",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://richmondnightmarket.com/",
+    "schedule_url": "https://richmondnightmarket.com/",
+    "location": "8351 River Rd (Bridgeport Station), Richmond, BC",
+    "start_date": "2027-04-24",
+    "end_date": "2027-10-12",
+    "description": "North America's largest open-air Asian night market featuring hundreds of international street food stalls, live stage performances, and games.",
+    "category": "Activities",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 8.5,
+    "coordinates": [
+      49.1932,
+      -123.131
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "steveston-salmon-festival",
+    "slug": "steveston-salmon-festival",
+    "name": "Steveston Salmon Festival",
+    "festival_name": "Steveston Salmon Festival",
+    "aliases": [
+      "Steveston Salmon Festival"
+    ],
+    "city": "Richmond",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://stevestonsalmonfest.ca/",
+    "schedule_url": "https://stevestonsalmonfest.ca/",
+    "location": "Steveston Village, Richmond, BC",
+    "start_date": "2027-07-01",
+    "end_date": "2027-07-01",
+    "description": "Canada Day tradition in Steveston featuring a free parade, live music stages, Japanese cultural show, artisan market, and wild salmon barbecue.",
+    "category": "Outdoors & Scenic",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.1251,
+      -123.182
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "richmond-maritime-festival",
+    "slug": "richmond-maritime-festival",
+    "name": "Richmond Maritime Festival",
+    "festival_name": "Richmond Maritime Festival",
+    "aliases": [
+      "Richmond Maritime Festival"
+    ],
+    "city": "Richmond",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://www.richmondmaritimefestival.ca/",
+    "schedule_url": "https://www.richmondmaritimefestival.ca/",
+    "location": "Britannia Shipyards NHS, Steveston, Richmond, BC",
+    "start_date": "2027-08-21",
+    "end_date": "2027-08-22",
+    "description": "Free waterfront festival at Britannia Shipyards celebrating wooden boats, maritime heritage, live bands, and roving performers.",
+    "category": "Arts & Galleries",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.1225,
+      -123.1731
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "richmond-world-festival",
+    "slug": "richmond-world-festival",
+    "name": "Richmond World Festival",
+    "festival_name": "Richmond World Festival",
+    "aliases": [
+      "Richmond World Festival"
+    ],
+    "city": "Richmond",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://richmondworldfestival.com/",
+    "schedule_url": "https://richmondworldfestival.com/",
+    "location": "Minoru Park, Richmond, BC",
+    "start_date": "2027-09-03",
+    "end_date": "2027-09-04",
+    "description": "Free multicultural music, arts, and culinary festival in Minoru Park with multiple live stages and dozens of food trucks.",
+    "category": "Live Music",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.1656,
+      -123.1445
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "doors-open-richmond",
+    "slug": "doors-open-richmond",
+    "name": "Doors Open Richmond",
+    "festival_name": "Doors Open Richmond",
+    "aliases": [
+      "Doors Open Richmond"
+    ],
+    "city": "Richmond",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://doorsopenrichmond.ca/",
+    "schedule_url": "https://doorsopenrichmond.ca/",
+    "location": "Civic & Cultural Sites across Richmond, BC",
+    "start_date": "2027-06-05",
+    "end_date": "2027-06-06",
+    "description": "Annual free weekend granting behind-the-scenes access to Richmond's museums, temples, studios, heritage sites, and civic landmarks.",
+    "category": "Arts & Galleries",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.1666,
+      -123.1336
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
+  },
+  {
+    "id": "steveston-dragon-boat-festival",
+    "slug": "steveston-dragon-boat-festival",
+    "name": "Steveston Dragon Boat Festival",
+    "festival_name": "Steveston Dragon Boat Festival",
+    "aliases": [
+      "Steveston Dragon Boat Festival"
+    ],
+    "city": "Richmond",
+    "status": "approved",
+    "approvalStatus": "approved",
+    "website_url": "https://richmonddragonboat.ca/",
+    "schedule_url": "https://richmonddragonboat.ca/",
+    "location": "Imperial Landing & Britannia Shipyards, Steveston, BC",
+    "start_date": "2027-08-21",
+    "end_date": "2027-08-21",
+    "description": "Free-to-spectate annual dragon boat races along the Steveston waterfront paired with live entertainment and riverside food vendors.",
+    "category": "Sports",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0,
+    "coordinates": [
+      49.1225,
+      -123.1731
+    ],
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false
   }
 ]

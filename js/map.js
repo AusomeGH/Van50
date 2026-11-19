@@ -67,8 +67,35 @@ const HOOD_COORDS = {
   'Marpole': { lat: 49.2104, lng: -123.1302 },
   'North Shore': { lat: 49.3125, lng: -123.0792 },
   'Burnaby': { lat: 49.2488, lng: -122.9805 },
+  'Metrotown': { lat: 49.2276, lng: -123.0076 },
+  'Metrotown & Deer Lake': { lat: 49.2276, lng: -123.0076 },
+  'Deer Lake': { lat: 49.2349, lng: -122.9746 },
+  'Brentwood': { lat: 49.2664, lng: -123.0016 },
+  'Brentwood & North Burnaby': { lat: 49.2664, lng: -123.0016 },
+  'Lougheed': { lat: 49.2485, lng: -122.8970 },
+  'Lougheed & SFU': { lat: 49.2650, lng: -122.9120 },
+  'SFU': { lat: 49.2781, lng: -122.9199 },
+  'Edmonds': { lat: 49.2121, lng: -122.9592 },
+  'Edmonds & South Burnaby': { lat: 49.2121, lng: -122.9592 },
   'New Westminster': { lat: 49.2057, lng: -122.9110 },
+  'New West': { lat: 49.2057, lng: -122.9110 },
+  'Downtown & Columbia St': { lat: 49.2016, lng: -122.9102 },
+  'Uptown & Sapperton': { lat: 49.2160, lng: -122.9110 },
+  'Sapperton': { lat: 49.2244, lng: -122.8895 },
+  'Queensborough': { lat: 49.1886, lng: -122.9435 },
   'Richmond': { lat: 49.1666, lng: -123.1336 },
+  'City Centre & Brighouse': { lat: 49.1666, lng: -123.1364 },
+  'Steveston': { lat: 49.1251, lng: -123.1820 },
+  'Steveston Village': { lat: 49.1251, lng: -123.1820 },
+  'East Richmond & Ironwood': { lat: 49.1422, lng: -123.0965 },
+  'Langley': { lat: 49.1044, lng: -122.6604 },
+  'Langley City & Willowbrook': { lat: 49.1086, lng: -122.6587 },
+  'Fort Langley': { lat: 49.1704, lng: -122.5795 },
+  'Willoughby': { lat: 49.1419, lng: -122.6552 },
+  'Willoughby & Walnut Grove': { lat: 49.1520, lng: -122.6420 },
+  'Walnut Grove': { lat: 49.1642, lng: -122.6365 },
+  'Murrayville & Aldergrove': { lat: 49.0850, lng: -122.5800 },
+  'Aldergrove': { lat: 49.0575, lng: -122.4706 },
   'Surrey Central': { lat: 49.1896, lng: -122.8479 },
   'Surrey Central / Whalley': { lat: 49.1896, lng: -122.8479 },
   'City Centre': { lat: 49.1896, lng: -122.8479 },
@@ -742,6 +769,18 @@ async function panMapToRegion(region) {
   } else if (norm === 'vancouver') {
     mapInstance.panTo({ lat: 49.265, lng: -123.120 });
     mapInstance.setZoom(12);
+  } else if (norm === 'burnaby') {
+    mapInstance.panTo({ lat: 49.2488, lng: -122.9805 });
+    mapInstance.setZoom(12);
+  } else if (norm === 'richmond') {
+    mapInstance.panTo({ lat: 49.1666, lng: -123.1336 });
+    mapInstance.setZoom(12);
+  } else if (norm === 'new-west' || norm === 'new west' || norm === 'new westminster') {
+    mapInstance.panTo({ lat: 49.2057, lng: -122.9110 });
+    mapInstance.setZoom(13);
+  } else if (norm === 'langley') {
+    mapInstance.panTo({ lat: 49.1180, lng: -122.6350 });
+    mapInstance.setZoom(11);
   } else {
     fitActiveMapMarkers();
   }

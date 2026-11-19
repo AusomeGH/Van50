@@ -7987,11 +7987,36 @@ function initStagehandRipperUI() {
 
   let venueFeedsAutoLoadTriggered = false;
 
+  const CURATOR_HARVESTER_CITY_META = {
+    all: { key: 'all', icon: '🌲', label: 'All Metro', shortLabel: 'All' },
+    vancouver: { key: 'vancouver', icon: '🏙️', label: 'Vancouver', shortLabel: 'Van' },
+    surrey: { key: 'surrey', icon: '🦌', label: 'Surrey', shortLabel: 'Surrey' },
+    burnaby: { key: 'burnaby', icon: '🏔️', label: 'Burnaby', shortLabel: 'Burnaby' },
+    richmond: { key: 'richmond', icon: '🌊', label: 'Richmond', shortLabel: 'Richmond' },
+    'new-west': { key: 'new-west', icon: '⚓', label: 'New West', shortLabel: 'New West' },
+    langley: { key: 'langley', icon: '🐎', label: 'Langley', shortLabel: 'Langley' }
+  };
+  const CURATOR_HARVESTER_CITY_KEYS = ['all', 'vancouver', 'surrey', 'burnaby', 'richmond', 'new-west', 'langley'];
+  window.normalizeCuratorCityScope = (raw) => {
+    const s = String(raw || 'all').trim().toLowerCase();
+    if (s === 'vancouver' || s === 'van') return 'vancouver';
+    if (s === 'surrey' || s === 'white rock') return 'surrey';
+    if (s === 'burnaby') return 'burnaby';
+    if (s === 'richmond') return 'richmond';
+    if (s === 'new-west' || s === 'new west' || s === 'newwest' || s === 'new westminster' || s === 'new-westminster') return 'new-west';
+    if (s === 'langley' || s === 'fort langley' || s === 'city of langley' || s === 'township of langley') return 'langley';
+    return 'all';
+  };
+  window.harvesterCityTargetVal = (scope) => {
+    const k = window.normalizeCuratorCityScope(scope);
+    return k === 'all' ? 'all' : `all:${k}`;
+  };
+
   window.getHarvesterFeedStats = (cityOverride) => {
     const cp = state.harvesterCheckpoint || {};
     const rawCompleted = Array.isArray(cp.completed_feed_urls) ? cp.completed_feed_urls : [];
     const completedNormSet = new Set(rawCompleted.map(u => normalizeCuratorFeedUrl(u)).filter(Boolean));
-    const activeCity = (cityOverride || window.harvesterCityScope || 'all').toLowerCase();
+    const activeCity = window.normalizeCuratorCityScope(cityOverride || window.harvesterCityScope || 'all');
     const allFeeds = (cachedVenueFeeds && cachedVenueFeeds.length > 0) ? cachedVenueFeeds : [];
 
     if (allFeeds.length === 0 && !venueFeedsAutoLoadTriggered && typeof loadVenueFeedsList === 'function') {
@@ -8008,7 +8033,7 @@ function initStagehandRipperUI() {
 
     const scopedFeeds = activeCity === 'all'
       ? allFeeds
-      : allFeeds.filter(f => String(f.city || 'Vancouver').toLowerCase() === activeCity);
+      : allFeeds.filter(f => window.normalizeCuratorCityScope(f.city || 'Vancouver') === activeCity);
 
     let totalFeeds = scopedFeeds.length > 0
       ? scopedFeeds.length
@@ -8852,15 +8877,12 @@ function initStagehandRipperUI() {
     }
 
     if (cachedVenueFeeds && cachedVenueFeeds.length > 0) {
-      const allStats = window.getHarvesterFeedStats('all');
-      const vanStats = window.getHarvesterFeedStats('vancouver');
-      const surStats = window.getHarvesterFeedStats('surrey');
-      const optCityAll = document.getElementById('btn-opt-harvest-city-all');
-      const optCityVan = document.getElementById('btn-opt-harvest-city-vancouver');
-      const optCitySur = document.getElementById('btn-opt-harvest-city-surrey');
-      if (optCityAll) optCityAll.textContent = `🌲 All Metro (${allStats.completedFeeds}/${allStats.totalFeeds})`;
-      if (optCityVan) optCityVan.textContent = `🏙️ Vancouver Only (${vanStats.completedFeeds}/${vanStats.totalFeeds})`;
-      if (optCitySur) optCitySur.textContent = `🦌 Surrey Only (${surStats.completedFeeds}/${surStats.totalFeeds})`;
+      CURATOR_HARVESTER_CITY_KEYS.forEach(cKey => {
+        const st = window.getHarvesterFeedStats(cKey);
+        const meta = CURATOR_HARVESTER_CITY_META[cKey];
+        const optBtn = document.getElementById(`btn-opt-harvest-city-${cKey}`);
+        if (optBtn && meta) optBtn.textContent = `${meta.icon} ${meta.label} (${st.completedFeeds}/${st.totalFeeds})`;
+      });
     }
 
     const badgeHarvested = document.getElementById('badge-count-harvested');
@@ -14226,35 +14248,63 @@ function initStagehandRipperUI() {
             </div>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div id="c1a-card-all" onclick="window.selectC1ACityScope('all')" style="cursor: pointer; padding: 10px 12px; border-radius: 9px; border: 1px solid #c084fc; background: rgba(168, 85, 247, 0.18); transition: all 0.15s ease;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; max-height: 290px; overflow-y: auto; padding-right: 2px;">
+            <div id="c1a-card-all" onclick="window.selectC1ACityScope('all')" style="grid-column: 1 / -1; cursor: pointer; padding: 9px 12px; border-radius: 9px; border: 1px solid #c084fc; background: rgba(168, 85, 247, 0.18); transition: border-color 0.15s ease, background-color 0.15s ease;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <span style="font-size: 0.85rem; font-weight: 800; color: #f8fafc;">🌲 All Metro (Vancouver + Surrey)</span>
-                <span id="c1a-badge-all" style="font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.45);">All Sources</span>
+                <span style="font-size: 0.84rem; font-weight: 800; color: #f8fafc;">🌲 All Metro (6 Cities)</span>
+                <span id="c1a-badge-all" style="font-size: 0.69rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.45);">All Sources</span>
               </div>
-              <div id="c1a-sub-all" style="font-size: 0.72rem; color: #cbd5e1; margin-top: 3px;">
-                Scans official venue calendars and discovery feeds across both Vancouver and Surrey.
+              <div id="c1a-sub-all" style="font-size: 0.71rem; color: #cbd5e1; margin-top: 3px;">
+                Scans official calendars across Vancouver, Surrey, Burnaby, Richmond, New West &amp; Langley.
               </div>
             </div>
 
-            <div id="c1a-card-vancouver" onclick="window.selectC1ACityScope('vancouver')" style="cursor: pointer; padding: 10px 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65); transition: all 0.15s ease;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <span style="font-size: 0.85rem; font-weight: 800; color: #f8fafc;">🏙️ Vancouver Only</span>
-                <span id="c1a-badge-vancouver" style="font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);">Vancouver Sources</span>
+            <div id="c1a-card-vancouver" onclick="window.selectC1ACityScope('vancouver')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🏙️ Vancouver</span>
+                <span id="c1a-badge-vancouver" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);">Van</span>
               </div>
-              <div id="c1a-sub-vancouver" style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">
-                Scans only Vancouver venues, theatres, comedy clubs, and cultural calendars.
-              </div>
+              <div id="c1a-sub-vancouver" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Vancouver theatres, clubs &amp; cultural feeds.</div>
             </div>
 
-            <div id="c1a-card-surrey" onclick="window.selectC1ACityScope('surrey')" style="cursor: pointer; padding: 10px 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65); transition: all 0.15s ease;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <span style="font-size: 0.85rem; font-weight: 800; color: #f8fafc;">🦌 Surrey Only</span>
-                <span id="c1a-badge-surrey" style="font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.4);">Surrey Sources</span>
+            <div id="c1a-card-surrey" onclick="window.selectC1ACityScope('surrey')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🦌 Surrey</span>
+                <span id="c1a-badge-surrey" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.4);">Surrey</span>
               </div>
-              <div id="c1a-sub-surrey" style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">
-                Scans only Surrey venues, 6 town centres (Whalley, Guildford, Fleetwood, Newton, Cloverdale, South Surrey), and civic calendars.
+              <div id="c1a-sub-surrey" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Surrey 6 town centres &amp; civic feeds.</div>
+            </div>
+
+            <div id="c1a-card-burnaby" onclick="window.selectC1ACityScope('burnaby')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🏔️ Burnaby</span>
+                <span id="c1a-badge-burnaby" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(251, 191, 36, 0.4);">Burnaby</span>
               </div>
+              <div id="c1a-sub-burnaby" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Shadbolt, SFU, Metrotown, breweries &amp; sports.</div>
+            </div>
+
+            <div id="c1a-card-richmond" onclick="window.selectC1ACityScope('richmond')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🌊 Richmond</span>
+                <span id="c1a-badge-richmond" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(14, 165, 233, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);">Richmond</span>
+              </div>
+              <div id="c1a-sub-richmond" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Gateway Theatre, Steveston, galleries &amp; wineries.</div>
+            </div>
+
+            <div id="c1a-card-new-west" onclick="window.selectC1ACityScope('new-west')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">⚓ New West</span>
+                <span id="c1a-badge-new-west" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(236, 72, 153, 0.2); color: #f9a8d4; border: 1px solid rgba(244, 114, 182, 0.4);">New West</span>
+              </div>
+              <div id="c1a-sub-new-west" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Anvil Centre, Massey, Quay, Bully's &amp; breweries.</div>
+            </div>
+
+            <div id="c1a-card-langley" onclick="window.selectC1ACityScope('langley')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🐎 Langley</span>
+                <span id="c1a-badge-langley" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(168, 85, 247, 0.2); color: #d8b4fe; border: 1px solid rgba(192, 132, 252, 0.4);">Langley</span>
+              </div>
+              <div id="c1a-sub-langley" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Fort Langley, LEC, Bez Arts, breweries &amp; sports.</div>
             </div>
           </div>
         </div>
@@ -14322,7 +14372,7 @@ function initStagehandRipperUI() {
     if (chkVan) chkVan.checked = (scope === 'all' || scope === 'vancouver');
     if (chkSur) chkSur.checked = (scope === 'all' || scope === 'surrey');
 
-    ['all', 'vancouver', 'surrey'].forEach(key => {
+    CURATOR_HARVESTER_CITY_KEYS.forEach(key => {
       const card = document.getElementById(`c1a-card-${key}`);
       if (!card) return;
       const isSelected = key === scope;
@@ -14343,7 +14393,8 @@ function initStagehandRipperUI() {
 
     const btnConfirm = document.getElementById('c1a-btn-confirm');
     const btnChain = document.getElementById('c1a-btn-confirm-chain');
-    const cityLabel = scope === 'vancouver' ? '🏙️ Vancouver Only' : (scope === 'surrey' ? '🦌 Surrey Only' : '🌲 All Metro');
+    const metaScope = CURATOR_HARVESTER_CITY_META[scope] || CURATOR_HARVESTER_CITY_META.all;
+    const cityLabel = `${metaScope.icon} ${metaScope.label}`;
     const countLabel = (count === 'all' || count === 0) ? 'All Events' : `${count} Events`;
     const modeLabel = resume ? 'Continue' : 'Fresh';
     if (btnConfirm) {
@@ -14355,7 +14406,7 @@ function initStagehandRipperUI() {
   }
 
   window.selectC1ACityScope = function (scope) {
-    window.c1aModalState.cityScope = (scope === 'vancouver' || scope === 'surrey') ? scope : 'all';
+    window.c1aModalState.cityScope = window.normalizeCuratorCityScope(scope);
     refreshContinue1AModalUI();
   };
 
@@ -14480,37 +14531,22 @@ function initStagehandRipperUI() {
     }
     const modal = ensureContinue1ACityModalExists();
     await loadVenueFeedsList();
-    const allStats = window.getHarvesterFeedStats('all');
-    const vanStats = window.getHarvesterFeedStats('vancouver');
-    const surStats = window.getHarvesterFeedStats('surrey');
+    CURATOR_HARVESTER_CITY_KEYS.forEach(cKey => {
+      const st = window.getHarvesterFeedStats(cKey);
+      const badgeEl = document.getElementById(`c1a-badge-${cKey}`);
+      if (badgeEl) badgeEl.textContent = `${st.completedFeeds}/${st.totalFeeds} Scanned • ${st.remainingFeeds} Left`;
+      if (cKey !== 'all') {
+        const subEl = document.getElementById(`c1a-sub-${cKey}`);
+        const meta = CURATOR_HARVESTER_CITY_META[cKey];
+        if (subEl && meta) {
+          subEl.textContent = st.remainingFeeds > 0
+            ? `Next (#${st.resumeFeedNum}/${st.totalFeeds}): ${st.lastFeedName}`
+            : `All ${st.totalFeeds} ${meta.label} feeds scanned — fresh pass from #1.`;
+        }
+      }
+    });
 
-    const bAll = document.getElementById('c1a-badge-all');
-    const bVan = document.getElementById('c1a-badge-vancouver');
-    const bSur = document.getElementById('c1a-badge-surrey');
-    if (bAll) bAll.textContent = `${allStats.completedFeeds}/${allStats.totalFeeds} Scanned • ${allStats.remainingFeeds} Remaining`;
-    if (bVan) bVan.textContent = `${vanStats.completedFeeds}/${vanStats.totalFeeds} Scanned • ${vanStats.remainingFeeds} Remaining`;
-    if (bSur) bSur.textContent = `${surStats.completedFeeds}/${surStats.totalFeeds} Scanned • ${surStats.remainingFeeds} Remaining`;
-
-    const subVan = document.getElementById('c1a-sub-vancouver');
-    const subSur = document.getElementById('c1a-sub-surrey');
-    if (subVan) {
-      subVan.textContent = vanStats.remainingFeeds > 0
-        ? `Next unscanned (#${vanStats.resumeFeedNum}/${vanStats.totalFeeds}): ${vanStats.lastFeedName} (${vanStats.remainingFeeds} remaining)`
-        : `All ${vanStats.totalFeeds} Vancouver feeds scanned — selecting Vancouver will start a fresh pass from #1.`;
-    }
-    if (subSur) {
-      subSur.textContent = surStats.remainingFeeds > 0
-        ? `Next unscanned (#${surStats.resumeFeedNum}/${surStats.totalFeeds}): ${surStats.lastFeedName} (${surStats.remainingFeeds} remaining)`
-        : `All ${surStats.totalFeeds} Surrey feeds scanned — selecting Surrey will start a fresh pass from #1.`;
-    }
-
-    if (window.harvesterCityScope === 'vancouver' || window.harvesterCityScope === 'surrey') {
-      window.c1aModalState.cityScope = window.harvesterCityScope;
-    } else if (vanStats.remainingFeeds === 0 && surStats.remainingFeeds > 0) {
-      window.c1aModalState.cityScope = 'surrey';
-    } else {
-      window.c1aModalState.cityScope = 'all';
-    }
+    window.c1aModalState.cityScope = window.normalizeCuratorCityScope(window.harvesterCityScope || 'all');
     window.c1aModalState.resumeMode = true;
     refreshContinue1AModalUI();
     modal.style.display = 'flex';
@@ -15304,15 +15340,14 @@ function initStagehandRipperUI() {
 
         if (stageKey === 'harvest') {
           const shouldResume = window.harvesterResumeMode !== false;
-          const hCity = (window.harvesterCityScope === 'vancouver' || window.harvesterCityScope === 'surrey')
-            ? window.harvesterCityScope
-            : 'all';
-          const baseTarget = hCity === 'vancouver' ? 'all:vancouver' : (hCity === 'surrey' ? 'all:surrey' : 'all');
-          const cityTag = hCity === 'vancouver' ? ' • 🏙️ Vancouver Only' : (hCity === 'surrey' ? ' • 🦌 Surrey Only' : '');
+          const hCity = window.normalizeCuratorCityScope(window.harvesterCityScope || 'all');
+          const baseTarget = window.harvesterCityTargetVal(hCity);
+          const hMeta = CURATOR_HARVESTER_CITY_META[hCity] || CURATOR_HARVESTER_CITY_META.all;
+          const cityTag = hCity === 'all' ? '' : ` • ${hMeta.icon} ${hMeta.label} Only`;
           runPipelineAction({
             mode: 'calendar',
             title: `🧪 Stage 1A: Schedule Harvester (${pipelineBatchSize === 'all' ? 'All' : batchCap} Events${cityTag}${shouldResume ? ' • Resuming' : ''})`,
-            initialStatus: `Crawling ${hCity === 'all' ? 'Metro' : hCity} venue & discovery feeds${shouldResume ? ' from stopped checkpoint' : ''} to discover ${pipelineBatchSize === 'all' ? 'all' : batchCap} discrete events...`,
+            initialStatus: `Crawling ${hCity === 'all' ? 'Metro' : hMeta.label} venue & discovery feeds${shouldResume ? ' from stopped checkpoint' : ''} to discover ${pipelineBatchSize === 'all' ? 'all' : batchCap} discrete events...`,
             limit: batchCap,
             url: shouldResume ? `${baseTarget}:resume` : baseTarget,
             all: true,
@@ -16235,10 +16270,26 @@ function initStagehandRipperUI() {
   window.harvesterCityScope = 'all';
 
   function inferCuratorFeedCity(item = {}) {
-    const explicit = String(item.city || item.region || '').trim().toLowerCase();
+    const explicit = window.normalizeCuratorCityScope(item.region || item.city || '');
     if (explicit === 'surrey') return 'Surrey';
+    if (explicit === 'burnaby') return 'Burnaby';
+    if (explicit === 'richmond') return 'Richmond';
+    if (explicit === 'new-west') return 'New West';
+    if (explicit === 'langley') return 'Langley';
     if (explicit === 'vancouver') return 'Vancouver';
     const blob = `${item.venue_name || ''} ${item.name || ''} ${item.neighborhood || ''} ${item.full_address || ''} ${item.address || ''} ${item.url || ''} ${item.calendar_url || ''} ${item.website_url || ''} ${item.domain || ''}`.toLowerCase();
+    if (/\b(langley|fort langley|willoughby|walnut grove|murrayville|brookswood|aldergrove|bezartshub|langleyeventscentre|canadianflight|salishanculturalcentre|farmcountrybrewing|campbeer|tradingpostbrewing|fiveroadsbrewing|deadfrog|brookswoodbrewing|smugglers-trail|localitybrewing|fraservalleycider|festinalente|langleyrivermen|langleytrappers|langleyrams|vancouverbandits)\b/i.test(blob)) {
+      return 'Langley';
+    }
+    if (/\b(burnaby|metrotown|brentwood|lougheed|deer lake|edmonds|shadboltcentre|michaeljfoxtheatre|burnabyvillagemuseum|burnabyartgallery|nikkeiplace|deerlakegallery|gibson\.sfu|dageraadbrewing|studiobrewing|admiralpub|greatbearpub|scandinaviancentre|burnabysymphony|burnabylakers|burnabysteelers|athletics\.sfu|northroadbia)\b/i.test(blob)) {
+      return 'Burnaby';
+    }
+    if (/\b(richmond|steveston|brighouse|lansdowne|ironwood|minoru|gatewaytheatre|richmondartgallery|richmondartscoalition|lipontplace|richmondoval|stevestonheritage|gulfofgeorgiacannery|roca\.ca|londonfarm|swingoutrichmond|bbco\.ca|monkey9brewing|ohares\.pub|buckandear|countryvines|luluislandwinery|richmondsockeyes|sharingfarm|urbanbounty|sfam\.ca)\b/i.test(blob)) {
+      return 'Richmond';
+    }
+    if (/\b(new westminster|new west|sapperton|queensborough|anvilcentre|anviltheatre|masseytheatre|vagabondplayers|royalcitymusicaltheatre|douglascollege|artsnewwest|fraserriverdiscovery|nwheritage|rivermarket|bullystudios|moodswingbar|raincitygames|steelandoak|abcbrewing|georgieslocal|paddlewheelerpub|salmonbellies|douglasroyals)\b/i.test(blob)) {
+      return 'New West';
+    }
     const surreyTokens = [
       'surrey', 'whalley', 'guildford', 'fleetwood', 'newton', 'cloverdale',
       'bear creek', 'panorama', 'crescent beach', 'grandview', 'fraser downs',
@@ -16490,22 +16541,21 @@ function initStagehandRipperUI() {
   }
 
   function updateHarvesterCityScopePillsUI(cityScope, feeds = []) {
-    const norm = (cityScope === 'vancouver' || cityScope === 'surrey') ? cityScope : 'all';
-    ['all', 'vancouver', 'surrey'].forEach(c => {
+    const norm = window.normalizeCuratorCityScope(cityScope);
+    CURATOR_HARVESTER_CITY_KEYS.forEach(c => {
       const btn = document.getElementById(`chip-harvester-city-${c}`);
       if (btn) btn.classList.toggle('active', c === norm);
       const optBtn = document.getElementById(`btn-opt-harvest-city-${c}`);
       if (optBtn) optBtn.classList.toggle('active', c === norm);
     });
     if (Array.isArray(feeds) && feeds.length > 0) {
-      const vanCount = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'vancouver').length;
-      const surCount = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'surrey').length;
       const allEl = document.getElementById('harvester-city-count-all');
-      const vanEl = document.getElementById('harvester-city-count-vancouver');
-      const surEl = document.getElementById('harvester-city-count-surrey');
       if (allEl) allEl.textContent = `${feeds.length} Sources`;
-      if (vanEl) vanEl.textContent = `${vanCount} Sources`;
-      if (surEl) surEl.textContent = `${surCount} Sources`;
+      CURATOR_HARVESTER_CITY_KEYS.filter(c => c !== 'all').forEach(c => {
+        const cnt = feeds.filter(f => window.normalizeCuratorCityScope(f.city || 'Vancouver') === c).length;
+        const el = document.getElementById(`harvester-city-count-${c}`);
+        if (el) el.textContent = `${cnt}`;
+      });
     }
     if (typeof window.syncHarvesterCheckpointAndEventsUI === 'function') {
       window.syncHarvesterCheckpointAndEventsUI();
@@ -16516,7 +16566,7 @@ function initStagehandRipperUI() {
   }
 
   window.setHarvesterCityScope = async function (city) {
-    const norm = (city === 'vancouver' || city === 'surrey') ? city : 'all';
+    const norm = window.normalizeCuratorCityScope(city);
     window.harvesterCityScope = norm;
     const autoModal = document.getElementById('auto-pipeline-options-modal');
     if (autoModal && autoModal.style.display === 'flex' && window.selectedAutoPipelineScope !== 'harvest' && typeof window.selectAutoPipelineScope === 'function') {
@@ -16527,7 +16577,7 @@ function initStagehandRipperUI() {
     const searchInput = document.getElementById('pipeline-search-venue-feed');
     const q = searchInput ? searchInput.value : '';
     await window.populateVenueFeedsDropdown(q);
-    const targetVal = norm === 'vancouver' ? 'all:vancouver' : (norm === 'surrey' ? 'all:surrey' : 'all');
+    const targetVal = window.harvesterCityTargetVal(norm);
     const select = document.getElementById('pipeline-select-venue-feed');
     if (select && !q) {
       select.value = targetVal;
@@ -16540,21 +16590,16 @@ function initStagehandRipperUI() {
     if (!select) return;
 
     const feeds = await loadVenueFeedsList();
-    const cityScope = (window.harvesterCityScope === 'vancouver' || window.harvesterCityScope === 'surrey')
-      ? window.harvesterCityScope
-      : 'all';
+    const cityScope = window.normalizeCuratorCityScope(window.harvesterCityScope || 'all');
     updateHarvesterCityScopePillsUI(cityScope, feeds);
 
     const q = (filterQuery || '').trim().toLowerCase();
-    const defaultBatchVal = cityScope === 'vancouver' ? 'all:vancouver' : (cityScope === 'surrey' ? 'all:surrey' : 'all');
+    const defaultBatchVal = window.harvesterCityTargetVal(cityScope);
     const currentVal = select.value || defaultBatchVal;
 
     const scopedFeeds = cityScope === 'all'
       ? feeds
-      : feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === cityScope);
-
-    const vanTotal = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'vancouver').length;
-    const surTotal = feeds.filter(f => (f.city || 'Vancouver').toLowerCase() === 'surrey').length;
+      : feeds.filter(f => window.normalizeCuratorCityScope(f.city || 'Vancouver') === cityScope);
 
     let venueFeeds = scopedFeeds.filter(f => f.type === 'venue').sort((a, b) => a.name.localeCompare(b.name));
     let sourceFeeds = scopedFeeds.filter(f => f.type === 'source').sort((a, b) => a.name.localeCompare(b.name));
@@ -16579,20 +16624,25 @@ function initStagehandRipperUI() {
     let html = '';
 
     if (!q) {
-      html += `<option value="all" ${currentVal === 'all' ? 'selected' : ''}>🌲 All Metro Sources — Vancouver + Surrey (${feeds.length} sources)</option>`;
-      html += `<option value="all:vancouver" ${currentVal === 'all:vancouver' ? 'selected' : ''}>🏙️ All Vancouver Sources Only — Scan 1 City (${vanTotal} sources)</option>`;
-      html += `<option value="all:surrey" ${currentVal === 'all:surrey' ? 'selected' : ''}>🦌 All Surrey Sources Only — Scan 1 City (${surTotal} sources)</option>`;
+      html += `<option value="all" ${currentVal === 'all' ? 'selected' : ''}>🌲 All Metro Sources — 6 Cities (${feeds.length} sources)</option>`;
+      CURATOR_HARVESTER_CITY_KEYS.filter(c => c !== 'all').forEach(c => {
+        const meta = CURATOR_HARVESTER_CITY_META[c];
+        const cnt = feeds.filter(f => window.normalizeCuratorCityScope(f.city || 'Vancouver') === c).length;
+        const optVal = `all:${c}`;
+        html += `<option value="${optVal}" ${currentVal === optVal ? 'selected' : ''}>${meta.icon} All ${meta.label} Sources Only (${cnt} sources)</option>`;
+      });
     } else {
-      html += `<option value="${defaultBatchVal}">🌐 Clear search to crawl all ${cityScope === 'all' ? 'Metro' : cityScope} sources</option>`;
+      html += `<option value="${defaultBatchVal}">🌐 Clear search to crawl all ${cityScope === 'all' ? 'Metro' : (CURATOR_HARVESTER_CITY_META[cityScope]?.label || cityScope)} sources</option>`;
     }
 
-    const cityTagLabel = cityScope === 'vancouver' ? 'Vancouver ' : (cityScope === 'surrey' ? 'Surrey ' : '');
+    const cityTagLabel = cityScope === 'all' ? '' : `${CURATOR_HARVESTER_CITY_META[cityScope]?.label || cityScope} `;
 
     if (venueFeeds.length > 0) {
       html += `<optgroup label="${cityTagLabel}Physical Venue Feeds (${venueFeeds.length}${q ? ' matching' : ''})">`;
       venueFeeds.forEach(v => {
         const sub = v.domain || v.neighborhood || '';
-        const cityIcon = v.city === 'Surrey' ? '🦌 ' : '🏙️ ';
+        const cKey = window.normalizeCuratorCityScope(v.city || 'Vancouver');
+        const cityIcon = `${(CURATOR_HARVESTER_CITY_META[cKey] || CURATOR_HARVESTER_CITY_META.vancouver).icon} `;
         const isSel = (currentVal === v.url) ? 'selected' : '';
         html += `<option value="${escapeHtml(v.url)}" data-name="${escapeHtml(v.name)}" data-city="${escapeHtml(v.city || 'Vancouver')}" ${isSel}>${cityIcon}${escapeHtml(v.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
       });
@@ -16672,14 +16722,15 @@ function initStagehandRipperUI() {
 
     const effectiveCount = (pipelineBatchSize === 'all') ? 'All' : (typeof pipelineBatchSize === 'number' ? pipelineBatchSize : 5);
 
-    if (!val || val === 'all' || val === 'all:vancouver' || val === 'all:surrey') {
-      const targetVal = (val === 'all:vancouver' || val === 'all:surrey')
-        ? val
-        : (window.harvesterCityScope === 'vancouver' ? 'all:vancouver' : (window.harvesterCityScope === 'surrey' ? 'all:surrey' : 'all'));
-      const cityKey = targetVal === 'all:vancouver' ? 'vancouver' : (targetVal === 'all:surrey' ? 'surrey' : 'all');
+    const isBatchCityVal = !val || val === 'all' || String(val).startsWith('all:');
+    if (isBatchCityVal) {
+      const explicitFromVal = String(val || '').startsWith('all:') ? window.normalizeCuratorCityScope(String(val).slice(4)) : null;
+      const cityKey = explicitFromVal || window.normalizeCuratorCityScope(window.harvesterCityScope || 'all');
+      const targetVal = window.harvesterCityTargetVal(cityKey);
       window.harvesterCityScope = cityKey;
       updateHarvesterCityScopePillsUI(cityKey, cachedVenueFeeds || []);
-      const cityDisplay = cityKey === 'vancouver' ? '🏙️ Vancouver' : (cityKey === 'surrey' ? '🦌 Surrey' : '🌲 All Metro');
+      const meta = CURATOR_HARVESTER_CITY_META[cityKey] || CURATOR_HARVESTER_CITY_META.all;
+      const cityDisplay = `${meta.icon} ${meta.label}`;
 
       if (select) select.value = targetVal;
       if (badge) {
@@ -17922,9 +17973,7 @@ function initStagehandRipperUI() {
       if (singleCardWrapper) singleCardWrapper.style.display = 'none';
 
       if (typeof window.populateVenueFeedsDropdown === 'function') {
-        const initTarget = window.harvesterCityScope === 'vancouver'
-          ? 'all:vancouver'
-          : (window.harvesterCityScope === 'surrey' ? 'all:surrey' : 'all');
+        const initTarget = window.harvesterCityTargetVal(window.harvesterCityScope || 'all');
         window.populateVenueFeedsDropdown().then(() => {
           if (!(isExecuting && window.activePipelineRunningStageKey === 'harvest')) {
             window.onVenueFeedSelected(initTarget);
@@ -18251,9 +18300,10 @@ function initStagehandRipperUI() {
     if (mode === 'calendar' || mode === 'harvester') {
       captureHarvesterPreRunBaseline();
       const rawUrlStr = String(url || '').trim();
-      const inferredCity = rawUrlStr.includes('all:vancouver')
-        ? 'vancouver'
-        : (rawUrlStr.includes('all:surrey') ? 'surrey' : (params.city || window.harvesterCityScope || 'all'));
+      const cityFromUrlMatch = rawUrlStr.match(/^all:([a-z-]+?)(?::resume)?$/i);
+      const inferredCity = cityFromUrlMatch
+        ? window.normalizeCuratorCityScope(cityFromUrlMatch[1])
+        : window.normalizeCuratorCityScope(params.city || window.harvesterCityScope || 'all');
       const feedStats = typeof window.getHarvesterFeedStats === 'function'
         ? window.getHarvesterFeedStats(inferredCity)
         : { completedFeeds: 0, totalFeeds: 297, resumeFeedNum: 1, lastFeedName: 'Source #1', firstFeedName: 'Source #1', isComplete: false };
@@ -20059,10 +20109,10 @@ function initStagehandRipperUI() {
           ? 0
           : (Number(window.pipelineBatchSize) || 0);
 
-        if (feedVal === 'all' || feedVal === 'all:vancouver' || feedVal === 'all:surrey') {
-          const baseScope = (feedVal === 'all:vancouver' || feedVal === 'all:surrey')
+        if (feedVal === 'all' || String(feedVal).startsWith('all:')) {
+          const baseScope = String(feedVal).startsWith('all:')
             ? feedVal
-            : (window.harvesterCityScope === 'vancouver' ? 'all:vancouver' : (window.harvesterCityScope === 'surrey' ? 'all:surrey' : 'all'));
+            : window.harvesterCityTargetVal(window.harvesterCityScope || 'all');
           url = (window.harvesterResumeMode !== false) ? `${baseScope}:resume` : baseScope;
           allParam = true;
           limitVal = batchCap;
