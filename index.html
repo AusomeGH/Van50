@@ -43,9 +43,10 @@
     content="default-src 'self'; script-src 'self' https://*.googleapis.com https://*.gstatic.com https://gc.zgo.at 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com https://van50.goatcounter.com; connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://*.google.com https://script.google.com https://script.googleusercontent.com https://van50.goatcounter.com data:; worker-src 'self' blob:; frame-src 'self' https://*.google.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
   <meta name="van50-maps-key" content="AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg">
   <!-- Deployed Google Apps Script Web App URL for zero-email Feedback & Price Updates -->
-  <meta name="van50-submissions-url" content="https://script.google.com/macros/s/AKfycbwbUvlCMYbBH9ukYSc_OaP9qF1nMtvhcEgsajmbTDmrun89CxQDoHMledPyTRWuqUK7vA/exec">
+  <meta name="van50-submissions-url"
+    content="https://script.google.com/macros/s/AKfycbwbUvlCMYbBH9ukYSc_OaP9qF1nMtvhcEgsajmbTDmrun89CxQDoHMledPyTRWuqUK7vA/exec">
 
-  <link rel="stylesheet" href="css/style.css?v=8.5.0">
+  <link rel="stylesheet" href="css/style.css?v=8.6.0">
   <link rel="stylesheet" href="css/components.css?v=8.5.0">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
@@ -67,8 +68,8 @@
         <a href="simulator.html" target="_blank" rel="noopener noreferrer" id="header-curator-preview-btn"
           class="header-curator-preview-link" title="Open Multi-Device User Preview in New Tab" hidden
           style="display: none;">Preview ↗</a>
-        <button type="button" class="btn btn-accessibility" id="accessibility-btn" aria-label="Toggle Accessibility Mode (Step-Free / Accessible)"
-          aria-pressed="false"
+        <button type="button" class="btn btn-accessibility" id="accessibility-btn"
+          aria-label="Toggle Accessibility Mode (Step-Free / Accessible)" aria-pressed="false"
           title="Filter Step-Free / Accessible venues & toggle Accessible Mode (High contrast, larger text, enhanced focus)">
           <span class="access-icon" aria-hidden="true">♿</span>
           <span class="access-label">Accessibility</span>
@@ -98,7 +99,8 @@
     <!-- Hero Section -->
     <section class="hero-section" id="hero-banner">
       <h1 class="hero-title">
-        Local Outings <span class="gradient-text">Under $50</span> — Taxes &amp; Fees Included
+        Local Outings <span class="gradient-text">Under $50</span>
+        <span class="hero-title-subline">(taxes and fees included)</span>
       </h1>
       <p class="hero-subtitle">
         Curated comedy, live music, indie cinema, sports, trivia, and scenic drop-ins across Metro Vancouver &amp;
@@ -214,10 +216,14 @@
             <span><strong>Spend (All-In CAD):</strong></span>
           </div>
           <div class="cost-quick-tabs drawer-spend-pills" role="group" aria-label="Cost Quick Filters">
-            <button type="button" class="cost-quick-btn active" data-quick="all" id="quick-cost-all" aria-pressed="true">All (≤ $50)</button>
-            <button type="button" class="cost-quick-btn" data-quick="free" id="quick-cost-free" aria-pressed="false">Free ($0)</button>
-            <button type="button" class="cost-quick-btn" data-quick="under15" id="quick-cost-15" aria-pressed="false">Under $15</button>
-            <button type="button" class="cost-quick-btn" data-quick="under30" id="quick-cost-30" aria-pressed="false">Under $30</button>
+            <button type="button" class="cost-quick-btn active" data-quick="all" id="quick-cost-all"
+              aria-pressed="true">All (≤ $50)</button>
+            <button type="button" class="cost-quick-btn" data-quick="free" id="quick-cost-free"
+              aria-pressed="false">Free ($0)</button>
+            <button type="button" class="cost-quick-btn" data-quick="under15" id="quick-cost-15"
+              aria-pressed="false">Under $15</button>
+            <button type="button" class="cost-quick-btn" data-quick="under30" id="quick-cost-30"
+              aria-pressed="false">Under $30</button>
           </div>
         </div>
 

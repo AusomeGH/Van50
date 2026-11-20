@@ -1390,6 +1390,10 @@ function renderCards(items) {
     return;
   }
 
+  container.innerHTML = items.map((ev, index) => renderEventCard(ev, index)).join('');
+  attachCardDragDropListeners(container);
+}
+
 function renderEventCard(ev, index) {
   const cardNum = getEventCardNumber(ev, index);
   const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
@@ -1691,8 +1695,8 @@ function renderEventCard(ev, index) {
     `;
 }
 
-  container.innerHTML = items.map((ev, index) => renderEventCard(ev, index)).join('');
-
+function attachCardDragDropListeners(container) {
+  if (!container) return;
   // Attach card-level Drag & Drop for instant screenshot verification
   container.querySelectorAll('.curator-card').forEach(card => {
     const evId = card.getAttribute('data-event-id');
