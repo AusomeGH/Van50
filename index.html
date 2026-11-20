@@ -46,8 +46,8 @@
   <meta name="van50-submissions-url"
     content="https://script.google.com/macros/s/AKfycbwbUvlCMYbBH9ukYSc_OaP9qF1nMtvhcEgsajmbTDmrun89CxQDoHMledPyTRWuqUK7vA/exec">
 
-  <link rel="stylesheet" href="css/style.css?v=8.6.0">
-  <link rel="stylesheet" href="css/components.css?v=8.7.0">
+  <link rel="stylesheet" href="css/style.css?v=8.8.0">
+  <link rel="stylesheet" href="css/components.css?v=8.8.0">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -59,7 +59,12 @@
   <header class="site-header" id="main-header">
     <div class="container nav-container">
       <a href="#" class="brand-logo" id="brand-home-link" aria-label="Van50 Home">
-        <span class="brand-icon">🌲</span>
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L5 12h4l-3 6h12l-3-6h4L12 2z"></path>
+            <line x1="12" y1="18" x2="12" y2="22"></line>
+          </svg>
+        </span>
         <span class="brand-name">Van<span>50</span></span>
         <span class="brand-badge">≤ $50 All-In</span>
       </a>
@@ -71,22 +76,30 @@
         <button type="button" class="btn btn-accessibility" id="accessibility-btn"
           aria-label="Toggle Accessibility Mode (Step-Free / Accessible)" aria-pressed="false"
           title="Filter Step-Free / Accessible venues & toggle Accessible Mode (High contrast, larger text, enhanced focus)">
-          <span class="access-icon" aria-hidden="true">♿</span>
+          <span class="access-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="4.5" r="2"></circle>
+              <path d="M5 9.5h14"></path>
+              <path d="M12 9.5v5"></path>
+              <path d="M9 21l3-6.5 3 6.5"></path>
+            </svg>
+          </span>
           <span class="access-label">Accessibility</span>
         </button>
         <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Events">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true"
-            style="margin-right: 4px; vertical-align: -2px;">
-            <path
-              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
           </svg>
           <span class="nav-btn-label">Saved Events</span>
           <span class="itinerary-count-badge" id="itinerary-count">0</span>
         </button>
         <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue"
-          title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue"
-          style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); color: var(--brand-primary); padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
-          <span aria-hidden="true">💡</span>
+          title="Suggest an upcoming event or venue (≤ $50 All-In) or report an issue">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
           <span class="nav-btn-label">Suggest / Report</span>
         </button>
       </div>
@@ -100,7 +113,7 @@
     <section class="hero-section" id="hero-banner">
       <h1 class="hero-title">
         Local Outings <span class="gradient-text">Under $50</span>
-        <span class="hero-title-subline">(taxes and fees included)</span>
+        <span class="hero-title-subline">Taxes &amp; Fees Included</span>
       </h1>
       <p class="hero-subtitle">
         Curated comedy, live music, indie cinema, sports, trivia, and scenic drop-ins across Metro Vancouver &amp;
@@ -227,26 +240,17 @@
           </div>
         </div>
 
-        <!-- Discounts & 55+ Section -->
+        <!-- Options & Discounts Section (Consolidated Single Row) -->
         <div class="drawer-filter-section access-discounts-section" id="access-discounts-section">
           <div class="drawer-section-header">
-            <span><strong>Discounts &amp; 55+:</strong></span>
+            <span><strong>Options &amp; Discounts:</strong></span>
           </div>
-          <div class="access-discounts-toggles single-toggle-row" role="group" aria-label="Discounts and 55+ Filters">
+          <div class="access-discounts-toggles" role="group" aria-label="Options and Discounts">
             <button type="button" class="drawer-toggle-pill" id="toggle-senior-deals" aria-pressed="false"
               title="Show events offering senior (55+/65+) discounts, rates, or senior-friendly programming">
               <span class="toggle-pill-indicator" aria-hidden="true"></span>
               <span>Senior Deals &amp; 55+</span>
             </button>
-          </div>
-        </div>
-
-        <!-- Event Preferences Filter (Single Religious Events Toggle) -->
-        <div class="drawer-filter-section event-preferences-section" id="event-preferences-section">
-          <div class="drawer-section-header">
-            <span><strong>Event Preferences:</strong></span>
-          </div>
-          <div class="event-preferences-row" role="group" aria-label="Event Preferences">
             <button type="button" class="drawer-toggle-pill active" id="toggle-include-religious" aria-pressed="true"
               title="Toggle off to hide religious, faith-based worship, and sacred church programming">
               <span class="toggle-pill-indicator" aria-hidden="true"></span>
@@ -270,8 +274,14 @@
 
     <!-- Results Count Bar -->
     <div class="results-count-bar dynamic-date-count-bar" id="results-count" aria-live="polite">
-      <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">📅
-          All Upcoming Outings</span></div>
+      <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -3px; margin-right: 4px;">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>All Upcoming Outings</span></div>
       <div class="results-count-text" id="results-count-text">Loading local outings…</div>
     </div>
 
@@ -286,12 +296,25 @@
       <div class="map-view-wrapper" id="map-view-wrapper" style="display: none;">
         <div class="map-jump-toolbar" id="map-jump-bar" role="region" aria-label="Jump to City">
           <div class="map-jump-header">
-            <span class="map-jump-label">📍 Jump to City:</span>
-            <span class="map-pin-count-badge" id="map-pin-count-badge">0 events plotted</span>
+            <span class="map-jump-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -3px; margin-right: 4px;">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>Jump to City:</span>
+            <span class="map-pin-count-badge" id="map-pin-count-badge">Loading map…</span>
           </div>
-          <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="Town Centre Quick Jump">
+          <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="City Quick Jump">
             <button type="button" class="map-jump-pill map-jump-near-me" id="map-jump-near-me" data-area="near-me"
-              aria-label="Center map on my current location">📍 Near Me</button>
+              aria-label="Center map on my current location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -2px; margin-right: 4px;">
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="12" y1="2" x2="12" y2="6"></line>
+                <line x1="12" y1="18" x2="12" y2="22"></line>
+                <line x1="2" y1="12" x2="6" y2="12"></line>
+                <line x1="18" y1="12" x2="22" y2="12"></line>
+              </svg>Near Me</button>
             <button type="button" class="map-jump-pill" data-area="Vancouver" data-lat="49.2650" data-lng="-123.1200"
               data-zoom="12">Vancouver</button>
             <button type="button" class="map-jump-pill" data-area="Surrey" data-lat="49.1350" data-lng="-122.8200"
@@ -356,8 +379,13 @@
           Suggest Price Update
         </h2>
         <div id="price-feedback-venue-display"
-          style="font-size: 0.96rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">
-          📍 <span id="price-feedback-venue-name">Venue</span>
+          style="font-size: 0.96rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; display: inline-flex; align-items: center; gap: 6px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span id="price-feedback-venue-name">Venue</span>
         </div>
         <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45; margin: 0;">
           Help fellow locals budget accurately. Submit menu prices directly—no account or personal data
@@ -481,7 +509,7 @@
           Estimated Cost</div>
         <div id="itinerary-total-cost"
           style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--accent-primary);">
-          $0.00 CAD
+          $0
         </div>
       </div>
       <div id="itinerary-budget-status"
@@ -517,8 +545,10 @@
         <strong>Van50</strong> — Curated Local Events &amp; Outings Guide (Under $50 All-In). Strictly local
         independent arts, comedy, music, and outdoors.
       </p>
-      <p style="font-size: 0.74rem; color: var(--text-muted);">
-        Single Reference Source Architecture (Verified Local Feeds • 0 Client-Side Scraping).
+      <p style="font-size: 0.78rem; color: var(--text-muted); max-width: 680px; margin: 0 auto; line-height: 1.55;">
+        We do our best to verify all-in pricing and schedules, but venues change details and occasional inaccuracies may
+        slip through. Spot an error? <button type="button" class="footer-inline-link" data-open-feedback>Let us
+          know</button>—and always confirm final details with the organizer before heading out.
       </p>
       <p style="margin-top: 12px;">
         <button type="button" id="feedback-footer-btn"
@@ -544,14 +574,17 @@
       <button class="modal-close-btn" id="close-feedback-btn" aria-label="Close modal">✕</button>
 
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-        <span style="font-size: 1.4rem;">💬</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--brand-primary); flex-shrink: 0;">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
         <h3
           style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin: 0;">
           Feedback &amp; Suggestions
         </h3>
       </div>
       <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5;">
-        Have an event or venue recommendation (≤ $50 CAD), issue/price update, or thought to share? Enter it below. If
+        Have an event or venue recommendation (≤ $50 All-In), issue/price update, or thought to share? Enter it below. If
         you'd like us to follow up, feel free to include your contact email or phone number in the box.
       </p>
 
@@ -588,8 +621,8 @@
   <!-- Scripts -->
   <script src="js/data.js?v=8.5.0"></script>
   <script src="js/accessibility.js?v=8.5.0"></script>
-  <script src="js/map.js?v=8.8.0"></script>
-  <script src="js/app.js?v=8.7.0"></script>
+  <script src="js/map.js?v=8.9.0"></script>
+  <script src="js/app.js?v=8.8.0"></script>
   <script src="js/pwa-install.js?v=8.5.0"></script>
 
 </body>

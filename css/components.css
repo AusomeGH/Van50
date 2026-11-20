@@ -10684,3 +10684,122 @@ html, body, main, #events-grid, #events-list {
   opacity: 0.7;
   padding: 4px 6px;
 }
+
+/* ==============================================================================
+   COLOR, TYPOGRAPHY & SEMANTIC HIERARCHY POLISH PASS
+   ============================================================================== */
+
+/* 1. Page Canvas, Card Hairline Borders & Frosted Sticky Date Group Headers */
+body.light-mode,
+[data-theme="light"] body,
+html[data-theme="light"] {
+  --bg-app: #F8FAFC;
+  --bg-page: #F8FAFC;
+}
+
+body.light-mode .event-card,
+[data-theme="light"] .event-card {
+  background: #FFFFFF !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-right: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.light-mode .event-card:hover,
+[data-theme="light"] .event-card:hover {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.07) !important;
+}
+
+.date-group-header,
+.time-group-header.date-group-header {
+  background: rgba(248, 250, 249, 0.92) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 2. Price Badge Color Hierarchy (Standard > $10 = Neutral Slate; Free / <= $10 / Senior = Soft Emerald) */
+section[aria-label="Events List"] .mobile-card-price-pill,
+.mobile-card-price-pill,
+.price-main,
+.itinerary-item-price,
+#itinerary-total-cost,
+.itinerary-count-badge,
+.quick-cat-count,
+.time-group-count-badge,
+.map-legend-count,
+.map-pin-count-badge {
+  font-variant-numeric: tabular-nums;
+}
+
+section[aria-label="Events List"] .mobile-card-price-pill.is-std,
+.mobile-card-price-pill.is-std {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+  border: 1px solid #E2E8F0 !important;
+  font-weight: 700 !important;
+}
+
+section[aria-label="Events List"] .mobile-card-price-pill.is-free,
+section[aria-label="Events List"] .mobile-card-price-pill.is-low,
+section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price,
+.mobile-card-price-pill.is-free,
+.mobile-card-price-pill.is-low,
+.mobile-card-price-pill.is-senior-price {
+  background: #DCFCE7 !important;
+  color: #166534 !important;
+  border: 1px solid #BBF7D0 !important;
+  font-weight: 700 !important;
+}
+
+/* 3. Unified Neutral Slate Header Utility Buttons */
+.site-header .nav-actions .btn-accessibility,
+.site-header .nav-actions .btn-itinerary,
+.site-header .nav-actions .btn-feedback {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 7px 13px;
+  border-radius: var(--radius-md, 10px);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.site-header .nav-actions .btn-accessibility:hover,
+.site-header .nav-actions .btn-itinerary:hover,
+.site-header .nav-actions .btn-feedback:hover {
+  background: #F1F5F9;
+  border-color: rgba(15, 23, 42, 0.22);
+  color: #0F172A;
+}
+
+.site-header .nav-actions .btn-accessibility[aria-pressed="true"],
+.site-header .nav-actions .btn-accessibility.active {
+  background: #0F766E !important;
+  border-color: #0F766E !important;
+  color: #FFFFFF !important;
+}
+
+.site-header .nav-actions .itinerary-count-badge {
+  background: #E2E8F0;
+  color: #334155;
+  font-weight: 700;
+}
+
+.site-header .nav-actions .itinerary-count-badge.has-saved {
+  background: #0F766E !important;
+  color: #FFFFFF !important;
+}
+
+.brand-logo .brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0F766E;
+}

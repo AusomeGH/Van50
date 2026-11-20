@@ -920,7 +920,7 @@ function setLocateButtonsLoading(isLoading) {
   if (pillBtn) {
     pillBtn.classList.toggle('is-locating', isLoading);
     pillBtn.disabled = isLoading;
-    pillBtn.textContent = isLoading ? '📍 Locating…' : '📍 Near Me';
+    pillBtn.textContent = isLoading ? 'Locating…' : 'Near Me';
   }
 }
 
@@ -979,7 +979,7 @@ async function centerMapOnUserLocation() {
         });
       }
 
-      const allJumpButtons = document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button');
+      const allJumpButtons = document.querySelectorAll('#map-jump-pills button');
       const nearMeBtn = document.getElementById('map-jump-near-me');
       allJumpButtons.forEach((btn) => btn.classList.toggle('active', btn === nearMeBtn));
       renderMapLegend(latestFilteredEvents, latestHasMixedVenues);
@@ -1008,7 +1008,7 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng, explicitZo
       return;
     }
     if (attrArea === 'fit-bounds') {
-      document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button').forEach(b => b.classList.toggle('active', b === clickedBtn));
+      document.querySelectorAll('#map-jump-pills button').forEach(b => b.classList.toggle('active', b === clickedBtn));
       fitActiveMapMarkers();
       return;
     }
@@ -1046,7 +1046,7 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng, explicitZo
       const matchedKey = Object.keys(HOOD_COORDS).find(k => k.toLowerCase() === key.toLowerCase() || key.toLowerCase().includes(k.toLowerCase()));
       if (matchedKey) targetCoords = HOOD_COORDS[matchedKey];
     }
-    clickedBtn = document.querySelector(`div[aria-label="Town Centre Quick Jump"] button[data-area="${key}"]`);
+    clickedBtn = document.querySelector(`#map-jump-pills button[data-area="${key}"]`);
     if (clickedBtn && isNaN(parseInt(explicitZoom, 10))) {
       const btnZoom = parseInt(clickedBtn.getAttribute('data-zoom'), 10);
       if (!isNaN(btnZoom)) targetZoom = btnZoom;
@@ -1055,7 +1055,7 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng, explicitZo
 
   if (!targetCoords) return;
 
-  const allJumpButtons = document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button');
+  const allJumpButtons = document.querySelectorAll('#map-jump-pills button');
   allJumpButtons.forEach((btn) => {
     btn.classList.toggle('active', btn === clickedBtn);
   });
@@ -1137,7 +1137,7 @@ function fitActiveMapMarkers() {
 }
 
 function bindTownCentreJumpButtons() {
-  const jumpContainer = document.querySelector('div[aria-label="Town Centre Quick Jump"]');
+  const jumpContainer = document.getElementById('map-jump-pills') || document.querySelector('div[aria-label="City Quick Jump"]');
   if (jumpContainer) {
     const buttons = jumpContainer.querySelectorAll('button');
     buttons.forEach((btn) => {

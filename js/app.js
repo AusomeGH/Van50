@@ -6024,27 +6024,27 @@ function formatStandardPrice(ev) {
         return 'Free ($0)';
       }
       if (baseMin === 0) {
-        return `Free – $${combinedUpper.toFixed(2)} all-in`;
+        return `Free – $${formatCompactDollarNum(combinedUpper)} all-in`;
       }
       if (baseMin === combinedUpper) {
-        return `$${baseMin.toFixed(2)} all-in`;
+        return `$${formatCompactDollarNum(baseMin)} all-in`;
       }
-      return `$${baseMin.toFixed(2)} – $${combinedUpper.toFixed(2)} all-in`;
+      return `$${formatCompactDollarNum(baseMin)} – $${formatCompactDollarNum(combinedUpper)} all-in`;
     }
 
     if (admissionTiers.length > 1) {
       const minP = Math.min(...admissionTiers.map(t => t.price));
       const maxP = Math.max(...admissionTiers.map(t => t.price));
       if (minP === maxP) {
-        return minP === 0 ? 'Free ($0)' : `$${minP.toFixed(2)} all-in`;
+        return minP === 0 ? 'Free ($0)' : `$${formatCompactDollarNum(minP)} all-in`;
       }
       if (minP === 0) {
-        return `Free – $${maxP.toFixed(2)} all-in`;
+        return `Free – $${formatCompactDollarNum(maxP)} all-in`;
       }
-      return `$${minP.toFixed(2)} – $${maxP.toFixed(2)} all-in`;
+      return `$${formatCompactDollarNum(minP)} – $${formatCompactDollarNum(maxP)} all-in`;
     } else if (admissionTiers.length === 1) {
       const p = admissionTiers[0].price;
-      return p === 0 ? 'Free ($0)' : `$${p.toFixed(2)} all-in`;
+      return p === 0 ? 'Free ($0)' : `$${formatCompactDollarNum(p)} all-in`;
     }
   }
 
@@ -6052,7 +6052,7 @@ function formatStandardPrice(ev) {
   if (tiers.length > 0 && activeTiers.length === 0) {
     const doorTier = tiers.find(t => t.isDoor);
     if (doorTier) {
-      return `$${doorTier.price.toFixed(2)} door`;
+      return `$${formatCompactDollarNum(doorTier.price)} door`;
     }
     const hasSoldOut = tiers.some(t => t.isSoldOut);
     if (hasSoldOut) return 'Sold Out';
@@ -6065,13 +6065,13 @@ function formatStandardPrice(ev) {
     return 'Free ($0)';
   }
   if (ev.pricingType === 'door') {
-    return ev.price === 0 ? 'Free ($0)' : `$${ev.price.toFixed(2)} door`;
+    return ev.price === 0 ? 'Free ($0)' : `$${formatCompactDollarNum(ev.price)} door`;
   }
   if (ev.pricingType === 'food-drink') {
     return `Free entry (~$${ev.price.toFixed(0)} food/drink)`;
   }
   // Platform ticket breakdown
-  return `$${ev.price.toFixed(2)} all-in`;
+  return `$${formatCompactDollarNum(ev.price)} all-in`;
 }
 
 // ==============================================================================
@@ -7398,7 +7398,7 @@ function getCollapsedPricePillInfo(ev) {
     }
     return {
       text: `$${formatCompactDollarNum(seniorPrice)} Senior`,
-      className: `is-senior-price ${seniorPrice <= 25 ? 'is-low' : 'is-std'}`,
+      className: 'is-senior-price is-low',
       hasMultiTiers
     };
   }
@@ -7419,9 +7419,9 @@ function getCollapsedPricePillInfo(ev) {
       return { text: 'Free • Tiers ▾', className: 'is-free has-tiers', hasMultiTiers: true };
     }
     if (maxP > minP) {
-      return { text: `From $${formatCompactDollarNum(minP)} ▾`, className: `${minP <= 25 ? 'is-low' : 'is-std'} has-tiers`, hasMultiTiers: true };
+      return { text: `From $${formatCompactDollarNum(minP)} ▾`, className: `${minP <= 10 ? 'is-low' : 'is-std'} has-tiers`, hasMultiTiers: true };
     }
-    return { text: `$${formatCompactDollarNum(minP)} • Tiers ▾`, className: `${minP <= 25 ? 'is-low' : 'is-std'} has-tiers`, hasMultiTiers: true };
+    return { text: `$${formatCompactDollarNum(minP)} • Tiers ▾`, className: `${minP <= 10 ? 'is-low' : 'is-std'} has-tiers`, hasMultiTiers: true };
   }
 
   if (isFree) {
@@ -7429,7 +7429,7 @@ function getCollapsedPricePillInfo(ev) {
   }
   return {
     text: `$${formatCompactDollarNum(basePrice)}`,
-    className: basePrice <= 25 ? 'is-low' : 'is-std',
+    className: basePrice <= 10 ? 'is-low' : 'is-std',
     hasMultiTiers: false
   };
 }
@@ -7498,13 +7498,8 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
     const pillInfoC = getCollapsedPricePillInfo(ev);
     const topDateC = formatCardTopDate(ev, bucketKey);
     const isHappeningNowC = isEventHappeningNow(ev, new Date());
-    const getOrdSuffixC = (n) => {
-      const s = ['th', 'st', 'nd', 'rd'];
-      const v = n % 100;
-      return n + (s[(v - 20) % 10] || s[v] || s[0]);
-    };
     const scrollDayFullC = (topDateC && topDateC.dateObj instanceof Date && !isNaN(topDateC.dateObj.getTime()))
-      ? `${topDateC.dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short' })} ${getOrdSuffixC(topDateC.dateObj.getDate())}`
+      ? topDateC.dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
       : (topDateC.badgeText || '');
     const cardTagSetC = new Set([
       ...(Array.isArray(ev.tags) ? ev.tags : []),
@@ -8080,13 +8075,8 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
     ? window.getVenueAccessibility(ev.venue)
     : { status: 'accessible', label: 'Wheelchair Accessible', badgeIcon: '♿', summary: 'Ground-floor street level entrance.' };
   const isHappeningNow = isEventHappeningNow(ev, new Date());
-  const getOrdSuffix = (n) => {
-    const s = ['th', 'st', 'nd', 'rd'];
-    const v = n % 100;
-    return n + (s[(v - 20) % 10] || s[v] || s[0]);
-  };
   const scrollDayFull = (topDate && topDate.dateObj instanceof Date && !isNaN(topDate.dateObj.getTime()))
-    ? `${topDate.dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short' })} ${getOrdSuffix(topDate.dateObj.getDate())}`
+    ? topDate.dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
     : (topDate.badgeText || '');
 
   const cardTagSet = new Set([
@@ -8461,8 +8451,14 @@ window.toggleSaveEvent = function (eventId) {
 
 function updateItineraryBadge() {
   const badge = document.getElementById('itinerary-count');
+  const btn = document.getElementById('itinerary-btn');
+  const count = state.savedEvents.size;
   if (badge) {
-    badge.textContent = state.savedEvents.size;
+    badge.textContent = count;
+    badge.classList.toggle('has-saved', count > 0);
+  }
+  if (btn) {
+    btn.classList.toggle('has-saved', count > 0);
   }
 }
 
@@ -8486,7 +8482,7 @@ function renderItinerary() {
         No saved events yet.<br>Click the heart icon on any card to save an outing.
       </div>
     `;
-    totalEl.textContent = '$0.00 CAD';
+    totalEl.textContent = '$0';
     if (statusEl) statusEl.textContent = 'Add events to calculate';
     const emptyFill = document.getElementById('itinerary-budget-meter-fill');
     if (emptyFill) {
@@ -8526,11 +8522,11 @@ function renderItinerary() {
     `;
   }).join('');
 
-  totalEl.textContent = `$${totalCost.toFixed(2)} CAD`;
+  totalEl.textContent = `$${formatCompactDollarNum(totalCost)}`;
   if (statusEl) {
     statusEl.innerHTML = totalCost <= 50.00
-      ? `<span style="color: #0f766e; font-weight: 700;">$${(50 - totalCost).toFixed(2)} CAD remaining under $50 target</span>`
-      : `<span style="color: #e11d48; font-weight: 700;">$${(totalCost - 50).toFixed(2)} CAD over $50 outing target</span>`;
+      ? `<span style="color: #0f766e; font-weight: 700;">$${formatCompactDollarNum(50 - totalCost)} remaining under $50 target</span>`
+      : `<span style="color: #e11d48; font-weight: 700;">$${formatCompactDollarNum(totalCost - 50)} over $50 outing target</span>`;
     const meterFill = document.getElementById('itinerary-budget-meter-fill');
     if (meterFill) {
       const pct = Math.min(100, Math.max(0, (totalCost / 50) * 100));
@@ -9112,6 +9108,9 @@ function initCommunityFeedbackModal() {
 
   if (navBtn) navBtn.addEventListener('click', () => openFeedbackModal());
   if (footerBtn) footerBtn.addEventListener('click', () => openFeedbackModal());
+  document.querySelectorAll('[data-open-feedback]').forEach(el => {
+    el.addEventListener('click', () => openFeedbackModal());
+  });
   if (closeBtn) closeBtn.addEventListener('click', closeFeedbackModal);
   if (cancelBtn) cancelBtn.addEventListener('click', closeFeedbackModal);
 
