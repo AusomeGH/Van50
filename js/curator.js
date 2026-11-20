@@ -4799,6 +4799,141 @@ window.openAddVenueModalFromEvent = function (eventId) {
 // 7B. NEW HOLIDAYS PIPELINE & CURATOR APPROVAL LOGIC
 // ==============================================================================
 
+function getEventsForPendingFestival(fest) {
+  const festSlug = String(fest.slug || fest.id || '').trim().toLowerCase();
+  const festName = String(fest.festival_name || fest.name || festSlug).trim().toLowerCase();
+  const discoveredId = String(fest.discovered_from_event_id || '').trim().toLowerCase();
+  const aliasSet = new Set(
+    [festName, festSlug, ...(Array.isArray(fest.aliases) ? fest.aliases : [])]
+      .map(s => String(s || '').trim().toLowerCase())
+      .filter(Boolean)
+  );
+
+  const pools = [
+    { bucket: 'Live', color: '#4ade80', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
+    { bucket: 'Quarantined', color: '#fbbf24', bg: 'rgba(245, 158, 11, 0.16)', border: 'rgba(245, 158, 11, 0.35)', list: state.quarantinedEvents || [] },
+    { bucket: 'Scheduled', color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.16)', border: 'rgba(56, 189, 248, 0.35)', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
+    { bucket: 'Archived', color: '#94a3b8', bg: 'rgba(148, 163, 184, 0.14)', border: 'rgba(148, 163, 184, 0.3)', list: state.archivedEvents || [] }
+  ];
+
+  const seenIds = new Set();
+  const matched = [];
+
+  for (const pool of pools) {
+    for (const ev of pool.list) {
+      if (!ev || typeof ev !== 'object') continue;
+      const evId = String(ev.id || ev.event_id || '').trim();
+      const evIdLower = evId.toLowerCase();
+      if (evIdLower && seenIds.has(evIdLower)) continue;
+
+      const evTitle = String(ev.title || ev.event_name || '').trim().toLowerCase();
+      const fa = String(ev.festival_affiliation || ev.festivalAffiliation || '').trim().toLowerCase();
+      const allTags = []
+        .concat(Array.isArray(ev.tags) ? ev.tags : [], Array.isArray(ev.subTags) ? ev.subTags : [], Array.isArray(ev.sub_tags) ? ev.sub_tags : [])
+        .map(t => String(t || '').trim().toLowerCase());
+
+      const isMatch =
+        (discoveredId && evIdLower === discoveredId) ||
+        (fa && fa !== 'none' && (aliasSet.has(fa) || (festName && (fa.includes(festName) || festName.includes(fa))))) ||
+        (festSlug && (allTags.includes(festSlug) || allTags.includes(`festival:${festSlug}`))) ||
+        (festName && evTitle && evTitle === festName);
+
+      if (isMatch) {
+        if (evIdLower) seenIds.add(evIdLower);
+        matched.push({ ev, bucket: pool.bucket, color: pool.color, bg: pool.bg, border: pool.border });
+      }
+    }
+  }
+
+  return matched;
+}
+
+window.closeFestivalEventPreview = function () {
+  const modal = document.getElementById('festival-event-preview-modal');
+  if (modal) modal.style.display = 'none';
+};
+
+window.openFestivalEventPreview = function (eventId, bucketHint = '') {
+  const targetId = String(eventId || '').trim();
+  if (!targetId) return;
+
+  const pools = [
+    { bucket: 'Live', color: '#4ade80', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
+    { bucket: 'Quarantined', color: '#fbbf24', list: state.quarantinedEvents || [] },
+    { bucket: 'Scheduled', color: '#38bdf8', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
+    { bucket: 'Archived', color: '#94a3b8', list: state.archivedEvents || [] }
+  ];
+
+  let found = null;
+  let foundBucket = bucketHint || 'Catalog';
+  let foundColor = '#38bdf8';
+  for (const pool of pools) {
+    const hit = pool.list.find(e => e && String(e.id || e.event_id || '').trim() === targetId);
+    if (hit) {
+      found = hit;
+      foundBucket = pool.bucket;
+      foundColor = pool.color;
+      break;
+    }
+  }
+
+  let modal = document.getElementById('festival-event-preview-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'festival-event-preview-modal';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(2,6,23,0.78);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;';
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) window.closeFestivalEventPreview();
+    });
+    document.body.appendChild(modal);
+  }
+
+  if (!found) {
+    showToast(`Event "${targetId}" is not currently loaded in local Curator pools.`, 'info');
+    return;
+  }
+
+  const title = found.event_name || found.title || targetId;
+  const venue = found.venue_name || found.venue || 'Venue TBD';
+  const address = found.full_address || found.address || found.neighborhood || '';
+  const dateStr = found.show_1?.date || found.date || found.dateSchedule || 'TBD';
+  const timeStr = found.show_1?.start_time || found.start_time || found.time || '';
+  const rawPrice = found.pricing_all_in_cad?.regular ?? found.price_all_in ?? found.price;
+  const priceLabel = rawPrice === 0 ? 'Free ($0)' : (rawPrice != null && !Number.isNaN(Number(rawPrice)) ? `$${Number(rawPrice).toFixed(2)} CAD` : 'TBD');
+  const extUrl = found.ticket_url || found.details_url || found.websiteUrl || found.source_url || '';
+  const desc = found.description || found.synopsis || 'No description available.';
+  const archReason = found.archive_reason || found.quarantine_reason || found.reason || '';
+
+  modal.innerHTML = `
+    <div style="background:#0f172a;border:1px solid rgba(236,72,153,0.45);border-radius:12px;max-width:620px;width:100%;padding:20px 22px;box-shadow:0 24px 60px rgba(0,0,0,0.65);color:#f8fafc;max-height:85vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,0.08);color:${foundColor};border:1px solid ${foundColor}55;">${escapeHtml(foundBucket)}</span>
+            <span style="font-size:0.74rem;color:#94a3b8;font-family:monospace;">${escapeHtml(targetId)}</span>
+          </div>
+          <h3 style="margin:0;font-size:1.15rem;color:#f8fafc;line-height:1.3;">${escapeHtml(title)}</h3>
+        </div>
+        <button type="button" onclick="closeFestivalEventPreview()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.16);color:#cbd5e1;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:0.9rem;">✕</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;font-size:0.82rem;margin-bottom:12px;">
+        <div><span style="color:#94a3b8;">📍 Venue:</span> <strong>${escapeHtml(venue)}</strong></div>
+        <div><span style="color:#94a3b8;">📅 Date:</span> <strong>${escapeHtml(dateStr)}${timeStr ? ` • ${escapeHtml(timeStr)}` : ''}</strong></div>
+        <div><span style="color:#94a3b8;">💵 Price:</span> <strong style="color:#4ade80;">${escapeHtml(priceLabel)}</strong></div>
+        ${address ? `<div><span style="color:#94a3b8;">🗺️ Location:</span> ${escapeHtml(address)}</div>` : ''}
+      </div>
+      ${archReason ? `<div style="font-size:0.78rem;color:#fca5a5;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:7px 10px;margin-bottom:12px;"><strong>Status Note:</strong> ${escapeHtml(archReason)}</div>` : ''}
+      <div style="font-size:0.84rem;color:#cbd5e1;line-height:1.5;margin-bottom:16px;">${escapeHtml(desc)}</div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;">
+        ${extUrl ? `<a href="${escapeHtml(safeExternalUrl(extUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="color:#38bdf8;border-color:rgba(56,189,248,0.4);text-decoration:none;">🔗 Open Event Page ↗</a>` : ''}
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="closeFestivalEventPreview(); openAIInstructionModal('${escapeHtml(targetId)}', 'instruct');" style="color:#d8b4fe;border-color:rgba(168,85,247,0.4);">📝 AI Guidance</button>
+        <button type="button" class="btn-curator btn-curator-primary" onclick="closeFestivalEventPreview();">Done</button>
+      </div>
+    </div>
+  `;
+  modal.style.display = 'flex';
+};
+
 function renderHolidayCards() {
   const container = document.getElementById('curator-cards-list');
   const countDisplay = document.getElementById('curator-results-text');
@@ -4835,6 +4970,49 @@ function renderHolidayCards() {
           const startDate = fest.start_date || 'TBD';
           const endDate = fest.end_date || 'TBD';
           const discFrom = fest.discovered_from_title || fest.discovered_from_event_id || 'AI Enrichment / Scout';
+          const matchedEvents = getEventsForPendingFestival(fest);
+          const eventsListHtml = matchedEvents.length > 0
+            ? matchedEvents.map(({ ev, bucket, color, bg, border }) => {
+                const evId = String(ev.id || ev.event_id || '').trim();
+                const evTitle = ev.event_name || ev.title || evId || 'Untitled Event';
+                const evVenue = ev.venue_name || ev.venue || '';
+                const evDate = ev.show_1?.date || ev.date || ev.dateSchedule || 'TBD';
+                const evPrice = ev.pricing_all_in_cad?.regular ?? ev.price_all_in ?? ev.price;
+                const priceText = evPrice === 0 ? 'Free' : (evPrice != null && !Number.isNaN(Number(evPrice)) ? `$${Number(evPrice).toFixed(2)}` : '');
+                const evUrl = ev.ticket_url || ev.details_url || ev.websiteUrl || ev.source_url || '';
+                return `
+                  <div onclick="openFestivalEventPreview('${escapeHtml(evId)}', '${escapeHtml(bucket)}')"
+                    role="button" tabindex="0"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFestivalEventPreview('${escapeHtml(evId)}', '${escapeHtml(bucket)}');}"
+                    title="Click to inspect event details"
+                    style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;"
+                    onmouseover="this.style.borderColor='rgba(236,72,153,0.55)'; this.style.background='rgba(236,72,153,0.08)';"
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.background='rgba(15,23,42,0.55)';">
+                    <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+                      <div style="display: flex; align-items: center; gap: 7px; flex-wrap: wrap;">
+                        <span style="font-size: 0.68rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: ${bg}; color: ${color}; border: 1px solid ${border};">${escapeHtml(bucket)}</span>
+                        <span style="color: #f8fafc; font-weight: 600; font-size: 0.86rem; text-decoration: underline; text-decoration-color: rgba(244, 114, 182, 0.45); text-underline-offset: 2px;">${escapeHtml(evTitle)}</span>
+                      </div>
+                      <div style="font-size: 0.75rem; color: #94a3b8; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span>📅 ${escapeHtml(evDate)}</span>
+                        ${evVenue ? `<span>📍 ${escapeHtml(evVenue)}</span>` : ''}
+                        ${priceText ? `<span style="color: #4ade80; font-weight: 600;">${escapeHtml(priceText)}</span>` : ''}
+                      </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                      ${evUrl ? `<a href="${escapeHtml(safeExternalUrl(evUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" onclick="event.stopPropagation();" style="font-size: 0.75rem; color: #38bdf8; text-decoration: underline; white-space: nowrap;">Event Page ↗</a>` : ''}
+                      <span style="font-size: 0.74rem; color: #f472b6; white-space: nowrap;">Inspect ›</span>
+                    </div>
+                  </div>
+                `;
+              }).join('')
+            : (fest.website_url ? `
+                <a href="${escapeHtml(safeExternalUrl(fest.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
+                  style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); color: #38bdf8; text-decoration: none; font-size: 0.82rem;">
+                  <span>🔗 ${escapeHtml(fest.discovered_from_title || festName)} (${escapeHtml(fest.discovered_from_event_id || 'Source Link')})</span>
+                  <span>Open ↗</span>
+                </a>
+              ` : `<div style="font-size: 0.78rem; color: #94a3b8; font-style: italic;">No matching events currently loaded in active, quarantined, or archived pools.</div>`);
           return `
             <div class="curator-card" id="card-festival-${escapeHtml(festSlug)}" style="border-left: 4px solid #ec4899; margin-bottom: 16px;">
               <div class="curator-card-top">
@@ -4853,6 +5031,16 @@ function renderHolidayCards() {
                 <span class="curator-badge-pill" style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.45);">
                   🎪 New Festival Candidate
                 </span>
+              </div>
+
+              <div style="background: rgba(236, 72, 153, 0.05); border: 1px solid rgba(236, 72, 153, 0.22); border-radius: 8px; padding: 10px 12px; margin: 12px 0;">
+                <div style="font-size: 0.78rem; font-weight: 700; color: #f9a8d4; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                  <span>📋 Events Under This Proposed Festival (${matchedEvents.length})</span>
+                  <span style="font-size: 0.72rem; font-weight: 400; color: #94a3b8;">Click any event to preview details</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  ${eventsListHtml}
+                </div>
               </div>
 
               <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; align-items: end;">

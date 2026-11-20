@@ -1,5 +1,482 @@
 [
   {
+    "timestamp": "2026-11-20T00:37:34.663Z",
+    "event_id": "central-park-pitch-p-burnaby-pitch-putt-meet-new-go-2026-11-14",
+    "target_name": "Burnaby Pitch & Putt: Meet New Golfers at Central Park!",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 37
+  },
+  {
+    "timestamp": "2026-11-20T00:36:55.571Z",
+    "event_id": "mountain-view-park-free-outdoor-fitness-boot-camp-2026-11-11",
+    "target_name": "FREE Outdoor Fitness Boot Camp (All Ages & Levels Welcome)",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-20T00:36:53.738Z",
+    "event_id": "3-dogs-brewing-music-trivia-at-3-dogs-brewing-2026-11-19",
+    "target_name": "Music Trivia at 3 Dogs Brewing",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-20T00:36:10.918Z",
+    "event_id": "beer-shack-live-music-at-the-beershack-2026-11-13",
+    "target_name": "Live music at the Beershack",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 37
+  },
+  {
+    "timestamp": "2026-11-20T00:36:09.681Z",
+    "event_id": "joyce-collingwood-st-french-language-exchange-with-2026-11-14",
+    "target_name": "French language exchange with snacks and drinks at a cozy place",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 43
+  },
+  {
+    "timestamp": "2026-11-20T00:35:29.988Z",
+    "event_id": "anvil-centre-friendship-club-gaming-free-at-2026-11-15",
+    "target_name": "🎲 Friendship Club Gaming 🎲 (FREE at the Anvil Centre)",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 39
+  },
+  {
+    "timestamp": "2026-11-20T00:35:23.448Z",
+    "event_id": "new-westminster-publ-new-westminster-writers-group-2026-11-14",
+    "target_name": "New Westminster Writers Group Live at the Library!",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-20T00:34:47.328Z",
+    "event_id": "delicia-cafe-bakery-bavardez-le-dimanche-pr-s-de-n-2026-11-15",
+    "target_name": "Bavardez le dimanche près de New West Stn",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 37
+  },
+  {
+    "timestamp": "2026-11-20T00:34:38.589Z",
+    "event_id": "kpu-richmond-mycology-food-medicine-cultiva-2026-11-13",
+    "target_name": "Mycology: Food, Medicine & Cultivation",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 39
+  },
+  {
+    "timestamp": "2026-11-20T00:34:06.937Z",
+    "event_id": "anvil-centre-atrium-downtown-s-living-room-2026-11-23",
+    "target_name": "Downtown's Living Room",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 39
+  },
+  {
+    "timestamp": "2026-11-20T00:33:56.245Z",
+    "event_id": "surrey-knights-north-pacific-junior-hockey-league-p-2026-04-23",
+    "target_name": "Pacific Junior Hockey League Positioned as B.C.’s First U20 Junior Development League",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-20T00:33:23.466Z",
+    "event_id": "coquitlam-public-lib-coquitlam-practical-philosophy-2026-11-10",
+    "target_name": "COQUITLAM - Practical Philosophy Meetup",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-20T00:33:17.249Z",
+    "event_id": "camp-beer-co-2026-student-pioneer-tap-serie-2026-11-12",
+    "target_name": "You’re Invited: 2026 Student Pioneer Tap Series!",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-19T23:57:10.286Z",
+    "event_id": "anvil-centre-downtown-s-living-room-2026-11-23",
+    "target_name": "Downtown’s Living Room",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-19T23:57:10.160Z",
+    "event_id": "anvil-theatre-despres-davis-raymond-chan-sha-2027-05-10",
+    "target_name": "Despres, Davis, Raymond & Chan: Shades of C Minor",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-19T23:56:25.550Z",
+    "event_id": "anvil-theatre-the-reluctant-princess-her-ext-2027-03-19",
+    "target_name": "The Reluctant Princess & Her Extraordinary Band of Pirates",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 47
+  },
+  {
+    "timestamp": "2026-11-19T23:56:19.934Z",
+    "event_id": "anvil-theatre-academy-chamber-players-notes-2027-04-05",
+    "target_name": "Academy Chamber Players: Notes from Italia",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 44
+  },
+  {
+    "timestamp": "2026-11-19T23:55:34.496Z",
+    "event_id": "anvil-theatre-k-stobbe-and-p-williamson-echo-2027-03-01",
+    "target_name": "K Stobbe and P Williamson: Echoes Reimagined",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 48
+  },
+  {
+    "timestamp": "2026-11-19T23:55:31.430Z",
+    "event_id": "anvil-theatre-fascinating-rhythms-the-gershw-2027-02-14",
+    "target_name": "Fascinating Rhythms: The Gershwin Songbook on Film & Live with The Angela Verbrugge Quartet",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 51
+  },
+  {
+    "timestamp": "2026-11-19T23:54:43.145Z",
+    "event_id": "anvil-theatre-summer-1976-2027-02-04",
+    "target_name": "Summer, 1976",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-19T23:54:36.797Z",
+    "event_id": "anvil-theatre-corpo-imago-s-imago-obsidian-2027-01-29",
+    "target_name": "Corpo Imago’s Imago/Obsidian",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 51
+  },
+  {
+    "timestamp": "2026-11-19T23:53:52.921Z",
+    "event_id": "everett-crowley-park-bird-walk-2026-11-29",
+    "target_name": "Bird Walk",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-19T23:53:41.723Z",
+    "event_id": "anvil-centre-downtown-s-living-room-2026-12-21",
+    "target_name": "Downtown's Living Room",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-19T23:53:12.854Z",
+    "event_id": "grand-luxe-hall-west-six-turntables-2026-11-21",
+    "target_name": "Six Turntables",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-19T23:53:00.083Z",
+    "event_id": "champlain-heights-co-baby-me-pilates-2026-11-26",
+    "target_name": "Baby & Me Pilates",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 37
+  },
+  {
+    "timestamp": "2026-11-19T23:52:22.615Z",
+    "event_id": "online-vancouver-free-weekly-energy-healings-2026-11-17",
+    "target_name": "Free Weekly Energy Healings",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 52
+  },
+  {
+    "timestamp": "2026-11-19T23:52:18.780Z",
+    "event_id": "anvil-centre-downtown-s-living-room-2026-12-14",
+    "target_name": "Downtown's Living Room",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-19T23:51:33.414Z",
+    "event_id": "studio-t-sfu-school-co-lab-3-stealing-2026-12-03",
+    "target_name": "CO-LAB 3: Stealing",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-19T23:51:27.116Z",
+    "event_id": "sfu-goldcorp-centre-ai-energy-environment-communit-2026-11-19",
+    "target_name": "AI: Energy, Environment & Community",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-19T23:50:48.321Z",
+    "event_id": "champlain-heights-co-intergenerational-tea-sweets-2026-11-23",
+    "target_name": "Intergenerational Tea & Sweets",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-19T23:50:46.897Z",
+    "event_id": "anvil-centre-downtown-s-living-room-2026-12-07",
+    "target_name": "Downtown's Living Room",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-19T23:50:05.436Z",
+    "event_id": "viff-centre-lochmadd-naza-2026-11-17",
+    "target_name": "NAZA",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 52
+  },
+  {
+    "timestamp": "2026-11-19T23:50:04.881Z",
+    "event_id": "ams-student-nest-uni-shein-box-santa-tour-2026-2026-11-17",
+    "target_name": "SHEIN Box Santa Tour 2026",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 54
+  },
+  {
+    "timestamp": "2026-11-19T23:49:09.120Z",
+    "event_id": "sfu-goldcorp-centre-peeling-oranges-2026-11-26",
+    "target_name": "Peeling Oranges",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 58
+  },
+  {
+    "timestamp": "2026-11-19T23:49:07.007Z",
+    "event_id": "room-4350-sfu-school-emerging-stage-h-c-2026-11-27",
+    "target_name": "EMERGING STAGE H/C",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 47
+  },
+  {
+    "timestamp": "2026-11-19T23:48:16.417Z",
+    "event_id": "champlain-heights-co-planting-and-invasive-pull-2026-11-21",
+    "target_name": "Planting and Invasive Pull",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-19T23:48:06.900Z",
+    "event_id": "anvil-theatre-pharis-jason-romero-2027-04-17",
+    "target_name": "Anvil Theatre Presents Pharis & Jason Romero",
+    "target_type": "event_qc",
+    "status": "BUDGET_BREACH",
+    "success": false,
+    "duration_seconds": 43
+  },
+  {
+    "timestamp": "2026-11-19T23:47:36.503Z",
+    "event_id": "anvil-theatre-2026-christmas-ballet-gala-2026-12-06",
+    "target_name": "2026 Christmas Ballet Gala",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 44
+  },
+  {
+    "timestamp": "2026-11-19T23:47:19.779Z",
+    "event_id": "viff-centre-the-history-of-concrete-2026-11-17",
+    "target_name": "The History of Concrete",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-19T23:46:48.110Z",
+    "event_id": "roundhouse-community-first-nations-art-applied-art-2026-11-17",
+    "target_name": "First Nations Art / Applied Art + Design Combined Exhibition",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 35
+  },
+  {
+    "timestamp": "2026-11-19T23:46:36.901Z",
+    "event_id": "sfu-school-for-the-c-caminando-con-pehu-n-walking-w-2026-11-20",
+    "target_name": "Caminando con Pehuén (Walking with Pehuén)",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-19T23:46:09.805Z",
+    "event_id": "djavad-mowafaghian-c-banned-film-series-to-singapor-2026-12-02",
+    "target_name": "BANNED FILM SERIES: To Singapore, With Love (Singapore)",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 51
+  },
+  {
+    "timestamp": "2026-11-19T23:45:52.370Z",
+    "event_id": "champlain-heights-co-health-rhythms-group-drumming-2026-11-21",
+    "target_name": "Health Rhythms – Group Drumming: A Wellness Experience",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 42
+  },
+  {
+    "timestamp": "2026-11-19T23:45:15.486Z",
+    "event_id": "anvil-theatre-michael-kaeshammer-2027-03-06",
+    "target_name": "Michael Kaeshammer",
+    "target_type": "event_qc",
+    "status": "BUDGET_BREACH",
+    "success": false,
+    "duration_seconds": 44
+  },
+  {
+    "timestamp": "2026-11-19T23:45:04.851Z",
+    "event_id": "anvil-theatre-galvin-cello-quartet-beyond-th-2027-02-08",
+    "target_name": "Galvin Cello Quartet: Beyond the Expected",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 42
+  },
+  {
+    "timestamp": "2026-11-19T23:44:27.495Z",
+    "event_id": "anvil-theatre-battle-at-the-anvil-2027-01-16",
+    "target_name": "Battle at the Anvil | BOOM! Pro Wrestling",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 41
+  },
+  {
+    "timestamp": "2026-11-19T23:44:18.727Z",
+    "event_id": "anvil-centre-downtown-s-living-room-2026-11-30",
+    "target_name": "Downtown's Living Room",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 38
+  },
+  {
+    "timestamp": "2026-11-19T23:43:42.696Z",
+    "event_id": "surrey-libraries-cla-babytime-2026-11-17",
+    "target_name": "Babytime",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 33
+  },
+  {
+    "timestamp": "2026-11-19T23:43:36.820Z",
+    "event_id": "viff-centre-viff-cin-award-winning-feature-akashi-d-2026-11-17",
+    "target_name": "Award-winning Feature AKASHI Debuts at VIFF Centre",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 46
+  },
+  {
+    "timestamp": "2026-11-19T23:43:04.728Z",
+    "event_id": "container-brewing-container-cribbage-league-seas-2026-11-17",
+    "target_name": "Container Cribbage League (Season 4)",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 17
+  },
+  {
+    "timestamp": "2026-11-19T23:42:46.217Z",
+    "event_id": "alex-neighbourhood-h-spanish-conversation-2026-11-10",
+    "target_name": "Spanish Conversation",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-19T23:42:42.930Z",
+    "event_id": "bear-creek-park-nature-at-night-walk-at-bear-c-2026-11-10",
+    "target_name": "Nature at Night Walk at Bear Creek Lights",
+    "target_type": "event_qc",
+    "status": "VERIFIED_PASS",
+    "success": true,
+    "duration_seconds": 36
+  },
+  {
+    "timestamp": "2026-11-19T23:42:07.916Z",
+    "event_id": "the-pearl-too-many-zooz-audio-lipstick-t-2027-05-15",
+    "target_name": "Too Many Zooz: Audio Lipstick Tour",
+    "target_type": "event_qc",
+    "status": "ANTIBOT_CHALLENGE_BLOCKED",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
     "timestamp": "2026-11-19T18:37:46.161Z",
     "event_id": "gateway-theatre-she-shoots-she-scores-2027-02-15",
     "target_name": "She Shoots, She Scores!",
@@ -4021,482 +4498,5 @@
     "status": "FATAL_MISMATCHED_ENTITY",
     "success": false,
     "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:13:56.194Z",
-    "event_id": "surrey-civic-plaza-skating-at-civic-plaza-2026-11-26",
-    "target_name": "Skating at Civic Plaza",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 35
-  },
-  {
-    "timestamp": "2026-11-18T06:13:53.425Z",
-    "event_id": "the-djavad-mowafaghi-ai-energy-environment-communit-2026-11-19",
-    "target_name": "AI: Energy, Environment & Community",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-18T06:13:18.969Z",
-    "event_id": "olympic-village-stag-the-elvis-christmas-comeback-s-2026-11-26",
-    "target_name": "THE ELVIS CHRISTMAS COMEBACK SPECIAL",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 34
-  },
-  {
-    "timestamp": "2026-11-18T06:13:16.994Z",
-    "event_id": "queen-elizabeth-thea-the-barber-of-seville-2027-02-13",
-    "target_name": "The Barber of Seville",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 34
-  },
-  {
-    "timestamp": "2026-11-18T06:12:39.818Z",
-    "event_id": "hollywood-theatre-bombargo-2026-11-22",
-    "target_name": "Bombargo",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 33
-  },
-  {
-    "timestamp": "2026-11-18T06:12:38.525Z",
-    "event_id": "hollywood-theatre-the-pineapple-thief-2026-12-13",
-    "target_name": "The Pineapple Thief",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:12:26.961Z",
-    "event_id": "hollywood-theatre-dj-raphi-hype-tour-2-0-2026-11-30",
-    "target_name": "DJ RAPHI - HYPE TOUR 2.0",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:12:17.012Z",
-    "event_id": "hollywood-theatre-the-jayhawks-sanctuary-park-to-2026-12-02",
-    "target_name": "The Jayhawks - Sanctuary Park Tour: Celebrating 40 Years of The Jayhawks",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 35
-  },
-  {
-    "timestamp": "2026-11-18T06:12:02.539Z",
-    "event_id": "hollywood-theatre-dancing-queen-abba-x-queen-dan-2026-11-27",
-    "target_name": "Dancing Queen: ABBA x Queen Dance Party",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:11:46.670Z",
-    "event_id": "centennial-theatre-theatre-reserved-for-private-e-2026-11-27",
-    "target_name": "THEATRE RESERVED FOR PRIVATE EVENT",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-18T06:11:37.857Z",
-    "event_id": "orpheum-peter-and-the-wolf-2027-01-17",
-    "target_name": "Peter and the Wolf",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:11:24.767Z",
-    "event_id": "centennial-theatre-the-fairy-doll-2026-11-22",
-    "target_name": "The Fairy Doll",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 55
-  },
-  {
-    "timestamp": "2026-11-18T06:11:10.714Z",
-    "event_id": "hollywood-theatre-the-divas-of-studio-54-2026-11-27",
-    "target_name": "Infidels Jazz Presents: The Divas of Studio 54 at the Hollywood Theatre",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 51
-  },
-  {
-    "timestamp": "2026-11-18T06:10:25.771Z",
-    "event_id": "stanley-park-horse-d-stanley-park-horse-drawn-tours-1-30",
-    "target_name": "Stanley Park Horse-Drawn Tours",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 36
-  },
-  {
-    "timestamp": "2026-11-18T06:10:15.771Z",
-    "event_id": "lynn-canyon-ecology-spectacular-seasons-1",
-    "target_name": "Forest Explorers: Spectacular Seasons",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 30
-  },
-  {
-    "timestamp": "2026-11-18T06:09:44.952Z",
-    "event_id": "evergreen-cultural-c-abba-blahblahblah-a-swedish-di-2026-12-10",
-    "target_name": "ABBA-blahblahblah: A Swedish Disco Holiday Comedy Special",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 31
-  },
-  {
-    "timestamp": "2026-11-18T06:09:42.227Z",
-    "event_id": "evergreen-arts-abba-blahblahblah-a-swedish-di-2026-12-09",
-    "target_name": "ABBA-blahblahblah: A Swedish Disco Holiday Comedy Special",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 43
-  },
-  {
-    "timestamp": "2026-11-18T06:09:10.729Z",
-    "event_id": "yuk-yuk-s-niagara-fa-frank-spadone-2026-11-20",
-    "target_name": "Frank Spadone",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 37
-  },
-  {
-    "timestamp": "2026-11-18T06:08:50.457Z",
-    "event_id": "war-memorial-gym-ubc-thunderbirds-basketball-vs-2026-11-20",
-    "target_name": "UBC Thunderbirds Basketball vs. MacEwan Griffins",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 40
-  },
-  {
-    "timestamp": "2026-11-18T06:08:29.609Z",
-    "event_id": "aristotle-behind-the-glass-by-painter8-18-22",
-    "target_name": "Behind the Glass by Painter8",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-18T06:08:07.155Z",
-    "event_id": "vancouver-playhouse-terra-string-quartet-17",
-    "target_name": "Friends Of Chamber Music Presents - Terra String Quartet (USA)",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 35
-  },
-  {
-    "timestamp": "2026-11-18T06:07:53.754Z",
-    "event_id": "the-american-besties-vol-3-2026-11-21",
-    "target_name": "BESTIES VOL 3.",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 36
-  },
-  {
-    "timestamp": "2026-11-18T06:07:28.160Z",
-    "event_id": "vancouver-playhouse-mixed-nuts-2026-12-11",
-    "target_name": "Mixed Nuts",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 30
-  },
-  {
-    "timestamp": "2026-11-18T06:07:13.830Z",
-    "event_id": "cloverdale-fairgroun-ramadan-fest-bc-2027-02-11",
-    "target_name": "Ramadan Fest BC",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 38
-  },
-  {
-    "timestamp": "2026-11-18T06:06:54.253Z",
-    "event_id": "mount-pleasant-unnam-rosmersholm-2026-11-29",
-    "target_name": "Rosmersholm",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:06:36.859Z",
-    "event_id": "museum-of-anthropolo-in-a-different-light-reflectin",
-    "target_name": "In a Different Light: Reflecting on Northwest Coast Art",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 41
-  },
-  {
-    "timestamp": "2026-11-18T06:06:31.683Z",
-    "event_id": "cloverdale-fairgroun-now-hiring-front-of-house-even-2026-11-26",
-    "target_name": "Now Hiring: Front of House Event Staff Jobs at Noël Surrey",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 30
-  },
-  {
-    "timestamp": "2026-11-18T06:05:57.750Z",
-    "event_id": "newton-town-centre-car-free-day-surrey-6",
-    "target_name": "Car-Free Day Surrey",
-    "target_type": "event_qc",
-    "status": "VERIFIED_FREE_PUBLIC_ACCESS",
-    "success": true,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:05:57.632Z",
-    "event_id": "food-court-at-the-am-founder-s-table-startup-social-2026-12-06",
-    "target_name": "Founder’s Table: Startup Social Meetup - Brentwood",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 34
-  },
-  {
-    "timestamp": "2026-11-18T06:05:52.165Z",
-    "event_id": "lanalou-s-curds-whey-2026-11-21",
-    "target_name": "Curds & Whey",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 38
-  },
-  {
-    "timestamp": "2026-11-18T06:05:19.919Z",
-    "event_id": "holland-park-movies-under-the-stars-15",
-    "target_name": "Movies Under The Stars",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 29
-  },
-  {
-    "timestamp": "2026-11-18T06:05:10.488Z",
-    "event_id": "pne-forum-bunt-2027-05-29",
-    "target_name": "Bunt.",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 36
-  },
-  {
-    "timestamp": "2026-11-18T06:04:47.641Z",
-    "event_id": "harbour-event-conven-maddix-pres-extatic-2027-now-w-2027-01-29",
-    "target_name": "Maddix Pres. Extatic 2027: Now We Rave Tour",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:04:32.964Z",
-    "event_id": "west-langley-hall-bchra-monthly-meetings-2027-01-05",
-    "target_name": "BCHRA Monthly Meetings",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 33
-  },
-  {
-    "timestamp": "2026-11-18T06:04:30.631Z",
-    "event_id": "the-polygon-gallery-catherine-blackburn-jeneen-fre-142027",
-    "target_name": "Catherine Blackburn + Jeneen Frei Njootli: Traces",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-18T06:03:55.758Z",
-    "event_id": "burnaby-village-muse-festive-village-2026-11-25",
-    "target_name": "Festive Village",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-18T06:03:54.433Z",
-    "event_id": "vandusen-botanical-g-festival-of-lights-2026-11-27",
-    "target_name": "Festival of Lights",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 47
-  },
-  {
-    "timestamp": "2026-11-18T06:03:19.027Z",
-    "event_id": "capilano-suspension-canyon-lights-2026-11-20",
-    "target_name": "Canyon Lights",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 35
-  },
-  {
-    "timestamp": "2026-11-18T06:02:48.846Z",
-    "event_id": "vancouver-poetry-hou-vancouver-poetry-slam-ft-nate-2026-11-02",
-    "target_name": "Vancouver Poetry Slam ft. Nate Nate Nainers",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 30
-  },
-  {
-    "timestamp": "2026-11-18T06:02:39.618Z",
-    "event_id": "shipbuilders-square-shipyards-christmas-festival",
-    "target_name": "Shipyards Christmas Festival",
-    "target_type": "event_qc",
-    "status": "VERIFIED_FREE_PUBLIC_ACCESS",
-    "success": true,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:02:39.519Z",
-    "event_id": "the-pearl-eiv-r-w-midori-jaeger-17",
-    "target_name": "Eivør w/ Midori Jaeger",
-    "target_type": "event_qc",
-    "status": "FATAL_MISMATCHED_ENTITY",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-18T06:02:14.497Z",
-    "event_id": "surrey-libraries-fle-babytime-2026-11-24",
-    "target_name": "Babytime",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 30
-  },
-  {
-    "timestamp": "2026-11-18T06:01:50.742Z",
-    "event_id": "st-andrew-s-wesley-u-parent-tot-2026-11-18",
-    "target_name": "Parent & Tot",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 29
-  },
-  {
-    "timestamp": "2026-11-18T06:01:39.989Z",
-    "event_id": "sfu-burnaby-bennett-join-us-for-gis-day-2026-2026-11-18",
-    "target_name": "Join us for GIS Day 2026: Indigenous and Decolonizing Approaches to Spatial Thinking and Research",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-18T06:01:17.683Z",
-    "event_id": "roedde-house-museum-a-very-victorian-christmas-mar-2026-12-05",
-    "target_name": "A Very Victorian Christmas Market 2026 – Dark Edition",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 33
-  },
-  {
-    "timestamp": "2026-11-18T06:01:02.891Z",
-    "event_id": "north-surrey-sport-a-pacific-junior-hockey-league-s-2026-11-26",
-    "target_name": "Pacific Junior Hockey League Schedule 2026-27 Regular Season: Mission City Outlaws vs Surrey Knights",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-18T06:00:38.689Z",
-    "event_id": "kpu-surrey-surrey-li-analogue-hour-2-5",
-    "target_name": "Analogue Hour",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 30
-  },
-  {
-    "timestamp": "2026-11-18T06:00:26.724Z",
-    "event_id": "granville-island-pub-granville-island-public-market",
-    "target_name": "Granville Island Public Market & Courtyard Buskers",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 35
-  },
-  {
-    "timestamp": "2026-11-18T06:00:04.643Z",
-    "event_id": "surrey-public-librar-surrey-cares-foundation-tech-c-2026-11-21",
-    "target_name": "Surrey Cares Foundation Tech Cafe - November 21",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 29
-  },
-  {
-    "timestamp": "2026-11-18T05:59:45.803Z",
-    "event_id": "the-roxy-tuesday-night-live-music-with",
-    "target_name": "Tuesday Night Live Music with Loaded",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 29
-  },
-  {
-    "timestamp": "2026-11-18T05:59:31.049Z",
-    "event_id": "daily-hive-listed-i-m-going-through-some-things-2026-11-19",
-    "target_name": "I'm Going Through Some Things: A Solo Show by Ben Immanuel",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 32
-  },
-  {
-    "timestamp": "2026-11-18T05:59:12.786Z",
-    "event_id": "grandview-park-christmas-wonderland-on-the-dr-2026-11-29",
-    "target_name": "Christmas Wonderland on The Drive",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 37
-  },
-  {
-    "timestamp": "2026-11-18T05:58:54.474Z",
-    "event_id": "vancouver-playhouse-karen-flamenco-dance-company-p-2026-11-21",
-    "target_name": "Karen Flamenco Dance Company presents Frida",
-    "target_type": "event_qc",
-    "status": "BUDGET_BREACH",
-    "success": false,
-    "duration_seconds": 31
   }
 ]

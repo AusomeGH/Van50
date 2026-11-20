@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.4.0",
     "updatedAt": "2026-11-19",
-    "totalSources": 175,
+    "totalSources": 163,
     "region": "Metro Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
   },
@@ -257,26 +257,6 @@
       "last_scout_yield": 0
     },
     {
-      "id": "ticketweb-vancouver",
-      "name": "TicketWeb (Vancouver)",
-      "domain": "ticketweb.ca",
-      "eventsUrl": "https://www.ticketweb.ca/",
-      "apiUrl": null,
-      "type": "direct_ticketing_discovery",
-      "typeLabel": "Mid-Sized Club & Live Music Ticketing",
-      "focus": "Indie rock, punk, metal, retro dance parties, touring live acts (Hollywood Theatre, Rickshaw, Wise Hall, Pearl)",
-      "bestForCategories": [
-        "music",
-        "shows"
-      ],
-      "harvestMethod": "html_and_schema_extraction",
-      "targetBudgetTier": "<= $50 CAD",
-      "resolutionPolicy": "Extract live Schema.org offers or venue event mirror; calculate exact all-in total with service fees and 5% GST; quarantine if > $50 CAD.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:08.069123",
-      "last_scout_yield": 2
-    },
-    {
       "id": "dice-vancouver",
       "name": "DICE (Vancouver)",
       "domain": "dice.fm",
@@ -357,109 +337,6 @@
       "last_scout_yield": 0
     },
     {
-      "id": "tickettailor-vancouver",
-      "name": "Ticket Tailor (Vancouver)",
-      "domain": "tickettailor.com",
-      "eventsUrl": "https://www.tickettailor.com/",
-      "apiUrl": null,
-      "type": "direct_ticketing_discovery",
-      "typeLabel": "Flat-Fee Grassroots & Community Ticketing",
-      "focus": "DIY concerts, craft fairs, drag shows, queer dances, community workshops",
-      "bestForCategories": [
-        "arts",
-        "music",
-        "activities"
-      ],
-      "harvestMethod": "html_and_schema_extraction",
-      "targetBudgetTier": "<= $50 CAD",
-      "resolutionPolicy": "Parse transparent low flat fees and calculate verified total out-of-pocket price.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:19.628403",
-      "last_scout_yield": 24
-    },
-    {
-      "id": "zeffy-vancouver",
-      "name": "Zeffy (Vancouver Non-Profits)",
-      "domain": "zeffy.com",
-      "eventsUrl": "https://www.zeffy.com/",
-      "apiUrl": null,
-      "type": "direct_ticketing_discovery",
-      "typeLabel": "100% Free Non-Profit & Charity Platform",
-      "focus": "Charity choir concerts, heritage walking tours, museum talks, community arts fundraisers",
-      "bestForCategories": [
-        "activities",
-        "arts",
-        "outdoors"
-      ],
-      "harvestMethod": "next_data_payload_and_schema",
-      "targetBudgetTier": "<= $50 CAD & free",
-      "resolutionPolicy": "Confirm $0 platform fee; verify 100% transparent admission for Canadian registered non-profits.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:21.494689",
-      "last_scout_yield": 25
-    },
-    {
-      "id": "humanitix-vancouver",
-      "name": "Humanitix (Vancouver)",
-      "domain": "humanitix.com",
-      "eventsUrl": "https://humanitix.com/",
-      "apiUrl": null,
-      "type": "direct_ticketing_discovery",
-      "typeLabel": "Charity-Driven Community Ticketing",
-      "focus": "Community storytelling, environmental symposiums, local speaker panels, education",
-      "bestForCategories": [
-        "activities",
-        "arts"
-      ],
-      "harvestMethod": "html_and_schema_extraction",
-      "targetBudgetTier": "<= $50 CAD",
-      "resolutionPolicy": "Extract transparent charity booking fee and calculate all-in checkout amount.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:25.135262",
-      "last_scout_yield": 24
-    },
-    {
-      "id": "universe-vancouver",
-      "name": "Universe (Vancouver)",
-      "domain": "universe.com",
-      "eventsUrl": "https://www.universe.com/",
-      "apiUrl": null,
-      "type": "direct_ticketing_discovery",
-      "typeLabel": "Film Festivals & Pop-Up Events",
-      "focus": "DOXA Documentary Film Festival, Latin American Film Festival, food & craft beverage tastings",
-      "bestForCategories": [
-        "cinema",
-        "activities",
-        "arts"
-      ],
-      "harvestMethod": "html_and_schema_extraction",
-      "targetBudgetTier": "<= $50 CAD",
-      "resolutionPolicy": "Parse embedded state or Schema.org offers; enforce <= $50 total checkout.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:26.850831",
-      "last_scout_yield": 20
-    },
-    {
-      "id": "vtix-vancouver",
-      "name": "VTix Online (Vancouver)",
-      "domain": "vtixonline.com",
-      "eventsUrl": "https://www.vtixonline.com/",
-      "apiUrl": null,
-      "type": "direct_ticketing_discovery",
-      "typeLabel": "Regional Performance & Box Office Ticketing",
-      "focus": "Hollywood Theatre special showcases, Shadbolt Centre performances, indie theatre and dance",
-      "bestForCategories": [
-        "shows",
-        "music"
-      ],
-      "harvestMethod": "html_and_schema_extraction",
-      "targetBudgetTier": "<= $50 CAD",
-      "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:29.867126",
-      "last_scout_yield": 12
-    },
-    {
       "id": "vancouver-civic-theatres",
       "name": "Vancouver Civic Theatres",
       "domain": "vancouvercivictheatres.com",
@@ -499,27 +376,6 @@
       "last_scout_yield": 2
     },
     {
-      "id": "city-of-vancouver-culture",
-      "name": "City of Vancouver Parks, Recreation & Culture",
-      "domain": "vancouver.ca",
-      "eventsUrl": "https://www.destinationvancouver.com/things-to-do/",
-      "rssUrl": null,
-      "type": "civic_recreation_directory",
-      "typeLabel": "Municipal Parks, Recreation & Civic Directory",
-      "focus": "Free public access attractions, municipal parks, seawalls, beaches, drop-in recreation, and community centres",
-      "bestForCategories": [
-        "outdoors",
-        "Free Public Access",
-        "activities"
-      ],
-      "harvestMethod": "html_calendar",
-      "targetBudgetTier": "Free ($0 CAD)",
-      "resolutionPolicy": "Identify free civic amenities, seawalls, outdoor fitness, pitch & putts, and park trails; verify current open hours, seasonal schedules, and maintenance closures.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:51.800404",
-      "last_scout_yield": 0
-    },
-    {
       "id": "vpl-events",
       "name": "Vancouver Public Library (VPL)",
       "domain": "vpl.ca",
@@ -538,27 +394,6 @@
       "resolutionPolicy": "Direct civic authority; extract free drop-in library programs, Central branch rooftop garden access, and community maker sessions.",
       "status": "active",
       "last_scouted_at": "2026-10-08T13:13:52.500766",
-      "last_scout_yield": 0
-    },
-    {
-      "id": "destination-vancouver-free",
-      "name": "Destination Vancouver: Free & Budget Outings",
-      "domain": "destinationvancouver.com",
-      "eventsUrl": "https://www.destinationvancouver.com/activities/free-and-nearly-free/",
-      "rssUrl": null,
-      "type": "civic_tourism_directory",
-      "typeLabel": "Official Free & Low-Cost Civic Cultural Guide",
-      "focus": "Permanent free public attractions, viewpoints, historic heritage sites, and scenic outdoor destinations",
-      "bestForCategories": [
-        "Free Public Access",
-        "outdoors",
-        "arts"
-      ],
-      "harvestMethod": "html_calendar",
-      "targetBudgetTier": "Free ($0 CAD)",
-      "resolutionPolicy": "Extract permanent free public destinations and verify open access hours and seasonal availability.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:13:53.754408",
       "last_scout_yield": 0
     },
     {
@@ -864,26 +699,6 @@
       "last_scout_yield": 0
     },
     {
-      "id": "iq-2000-trivia",
-      "name": "IQ 2000 Trivia",
-      "domain": "instagram.com",
-      "eventsUrl": "https://www.instagram.com/iq2000trivia",
-      "rssUrl": null,
-      "type": "editorial_aggregator",
-      "typeLabel": "Discovered Community & Culture Source",
-      "focus": "Weekly free pub trivia nights and themed quiz championships across Vancouver venues.",
-      "bestForCategories": [
-        "Free Public Access",
-        "activities"
-      ],
-      "harvestMethod": "html_calendar",
-      "targetBudgetTier": "<= $50 CAD & free",
-      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:15:06.533342",
-      "last_scout_yield": 0
-    },
-    {
       "id": "runvan-community-hub",
       "name": "RUNVAN Community Hub",
       "domain": "runvan.org",
@@ -984,26 +799,6 @@
       "last_scout_yield": 9
     },
     {
-      "id": "vancouver-recreation-activity-portal",
-      "name": "Vancouver Recreation Activity Portal",
-      "domain": "vanrec.ca",
-      "eventsUrl": "https://vanrec.ca/",
-      "rssUrl": null,
-      "type": "civic_tourism_directory",
-      "typeLabel": "Discovered Community & Culture Source",
-      "focus": "City of Vancouver recreation schedules including free walks, stewardship days, and drop-in centre sessions.",
-      "bestForCategories": [
-        "Free Public Access",
-        "activities"
-      ],
-      "harvestMethod": "html_calendar",
-      "targetBudgetTier": "<= $50 CAD & free",
-      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:15:26.918138",
-      "last_scout_yield": 0
-    },
-    {
       "id": "arts-club-theatre",
       "name": "Arts Club Theatre Company",
       "domain": "artsclub.com",
@@ -1097,25 +892,6 @@
       "status": "active",
       "last_scouted_at": "2026-10-08T13:16:12.444775",
       "last_scout_yield": 10
-    },
-    {
-      "id": "orangetickets",
-      "name": "Orange Tickets Canada",
-      "domain": "orangetickets.ca",
-      "eventsUrl": "https://orangetickets.ca",
-      "type": "ticketing_platform_radar",
-      "typeLabel": "Specialty Live Music Ticketing",
-      "focus": "Metal, punk, underground rock concerts at Rickshaw and live venues",
-      "bestForCategories": [
-        "shows",
-        "arts",
-        "music"
-      ],
-      "harvestMethod": "html_calendar",
-      "targetBudgetTier": "<= $50 CAD",
-      "status": "active",
-      "last_scouted_at": "2026-10-08T13:16:15.238512",
-      "last_scout_yield": 25
     },
     {
       "id": "latincouver",
@@ -1358,28 +1134,6 @@
       "status": "active",
       "last_scouted_at": null,
       "last_scout_yield": 0
-    },
-    {
-      "id": "testy-canary-feed",
-      "name": "TESTY Canary Zero-Information Control Feed",
-      "domain": "127.0.0.1:8080",
-      "eventsUrl": "http://127.0.0.1:8080/test_harness/index.html",
-      "calendarUrl": "http://127.0.0.1:8080/test_harness/index.html",
-      "type": "canary_test_feed",
-      "typeLabel": "Canary Quality Control Test Feed (Negative Control)",
-      "focus": "Negative control testing for fallback defaults, hardcoded values, and synthetic hallucinations across all 9 archetypes",
-      "bestForCategories": [
-        "shows",
-        "arts",
-        "movies",
-        "activities"
-      ],
-      "harvestMethod": "html_calendar",
-      "targetBudgetTier": "Zero-information testing",
-      "resolutionPolicy": "Extract 9 testy archetype events and verify that pipeline assigns honest nulls without default fallbacks.",
-      "status": "active",
-      "last_scouted_at": null,
-      "last_scout_yield": 9
     },
     {
       "id": "langley-langley-events-centre",
@@ -3800,24 +3554,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-10",
-      "number": 10,
-      "group": "B. Town Centre BIAs & Local Chambers",
-      "name": "Downtown Surrey BIA",
-      "url": "https://www.downtownsurreybia.com",
-      "description": "Surrey Central, Holland Park, and Whalley events",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-11",
-      "number": 11,
-      "group": "B. Town Centre BIAs & Local Chambers",
-      "name": "Cloverdale BIA",
-      "url": "https://www.cloverdalebia.com",
-      "description": "Historic Downtown Cloverdale street markets, car shows, and festivals",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-12",
       "number": 12,
       "group": "B. Town Centre BIAs & Local Chambers",
@@ -3833,15 +3569,6 @@
       "name": "Newton BIA",
       "url": "https://www.newtonbia.com",
       "description": "Cultural walks, live music pop-ups, and Newton plaza activations",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-14",
-      "number": 14,
-      "group": "B. Town Centre BIAs & Local Chambers",
-      "name": "Fleetwood BIA",
-      "url": "https://www.fleetwoodbia.com",
-      "description": "Fleetwood community festivals and seasonal markets",
       "city": "Surrey"
     },
     {
@@ -3918,15 +3645,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-23",
-      "number": 23,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "Kwantlen Polytechnic University (KPU) Events",
-      "url": "https://www.kpu.ca/events",
-      "description": "Music recitals, fine arts exhibitions, and talks at Newton & Cloverdale campuses",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-24",
       "number": 24,
       "group": "C. Major Theatres, Fairgrounds & University Campuses",
@@ -3942,15 +3660,6 @@
       "name": "Eventbrite — Surrey Local Events",
       "url": "https://www.eventbrite.ca/d/canada--surrey/events/",
       "description": "Stand-up comedy, Paint Nites, pub trivia, and workshops",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-26",
-      "number": 26,
-      "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
-      "name": "Showpass — Surrey & Fraser Valley",
-      "url": "https://www.showpass.com",
-      "description": "Local taproom comedy, country bar gigs, and seasonal festivals",
       "city": "Surrey"
     },
     {
@@ -4098,15 +3807,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-43",
-      "number": 43,
-      "group": "F. Spectator Sports & Recreation Schedules",
-      "name": "Canada Cup Softball Schedule",
-      "url": "https://www.canadacup.com",
-      "description": "International women's softball at Softball City",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-44",
       "number": 44,
       "group": "F. Spectator Sports & Recreation Schedules",
@@ -4122,15 +3822,6 @@
       "name": "City of Surrey Drop-In Recreation Schedules",
       "url": "https://www.surrey.ca/activities-parks-recreation/drop-schedules",
       "description": "Live drop-in public skate, wave pool, gymnasium, and fitness schedules across all 6 town centres",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-46",
-      "number": 46,
-      "group": "A. Municipal, Tourism & Cultural Calendars",
-      "name": "Surrey Schools (SD36) Community & Cultural Events",
-      "url": "https://www.surreyschools.ca",
-      "description": "District arts festivals, student theatre showcases, and community workshops",
       "city": "Surrey"
     },
     {
@@ -4206,24 +3897,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-55",
-      "number": 55,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "SFU Surrey Campus Community Events",
-      "url": "https://www.sfu.ca/surrey",
-      "description": "Public talks, open houses, and cultural programming at SFU Surrey Central",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-56",
-      "number": 56,
-      "group": "E. Local Journalism & Regional Curators",
-      "name": "r/SurreyBC Community Event Threads",
-      "url": "https://www.reddit.com/r/SurreyBC",
-      "description": "Grassroots local event announcements, weekend threads, and neighbourhood pop-ups",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-57",
       "number": 57,
       "group": "F. Spectator Sports & Recreation Schedules",
@@ -4275,24 +3948,6 @@
       "name": "Salaam Events Ramadan Fest Surrey",
       "url": "https://salaamevents.com/ramadanfest/",
       "description": "Annual Ramadan night market, halal food festival, and cultural bazaar in Surrey",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-63",
-      "number": 63,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "Bell Performing Arts Centre (Main Portal)",
-      "url": "https://bellperformingartscentre.com/",
-      "description": "Surrey's flagship 1,050-seat performing arts theatre in Sullivan Heights",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-64",
-      "number": 64,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "Surrey Schools International Children's Festival & Jazz Festival History",
-      "url": "https://www.surreyschools.ca/festival-history",
-      "description": "Surrey Schools annual student jazz, dance, theatre, and performing arts festivals",
       "city": "Surrey"
     },
     {
@@ -4563,15 +4218,6 @@
       "name": "Fleetwood BIA Community Events Hub",
       "url": "https://fleetwoodbia.com/home/fleetwood-bia-c-3/",
       "description": "Fleetwood Business Improvement Association street activations and seasonal events",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-95",
-      "number": 95,
-      "group": "D. Heritage, Nature & Eco-Centre Experiences",
-      "name": "Darts Hill Garden Park Conservatory Trust (South Surrey)",
-      "url": "https://dartshill.ca/",
-      "description": "Botanical garden open houses, plant sales, and guided seasonal walks in South Surrey",
       "city": "Surrey"
     },
     {

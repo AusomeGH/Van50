@@ -504,8 +504,11 @@ window.trackAnonymousEvent = function (path, title) {
   }
 };
 
+const ALL_CITY_REGIONS = ['vancouver', 'surrey', 'burnaby', 'richmond', 'new-west', 'langley'];
+
 const state = {
   region: 'all',
+  selectedRegions: new Set(),
   minBudget: 0,
   maxBudget: 50,
   hideDaily: false,
@@ -521,7 +524,6 @@ const state = {
   frequency: 'all',
   dayOfWeek: 'all',
   timeSlot: 'all',
-  selectedNeighborhoods: new Set(window.NEIGHBORHOODS),
   selectedTag: null,
   selectedVenue: null,
   searchQuery: '',
@@ -534,6 +536,18 @@ const state = {
   sortBy: 'date'
 };
 window.van50SelectedRegion = 'all';
+
+function syncRegionStateString() {
+  if (!state.selectedRegions || state.selectedRegions.size === 0 || state.selectedRegions.size >= ALL_CITY_REGIONS.length) {
+    if (state.selectedRegions && state.selectedRegions.size >= ALL_CITY_REGIONS.length) {
+      state.selectedRegions.clear();
+    }
+    state.region = 'all';
+  } else {
+    state.region = Array.from(state.selectedRegions).join(',');
+  }
+  window.van50SelectedRegion = state.region;
+}
 
 // Global reference for roulette & map
 window.currentFilteredEvents = [];
@@ -561,9 +575,15 @@ function restoreFiltersFromUrlParams() {
   const params = new URLSearchParams(window.location.search);
 
   if (params.has('region')) {
-    const regVal = window.normalizeRegionKey(params.get('region'));
-    state.region = regVal;
-    window.van50SelectedRegion = regVal;
+    const rawReg = String(params.get('region') || '').trim();
+    state.selectedRegions.clear();
+    rawReg.split(',').forEach(part => {
+      const regVal = window.normalizeRegionKey(part);
+      if (regVal && regVal !== 'all') {
+        state.selectedRegions.add(regVal);
+      }
+    });
+    syncRegionStateString();
   }
 
   if (params.has('q')) {
@@ -635,21 +655,6 @@ function restoreFiltersFromUrlParams() {
     }
   }
 
-  if (params.has('hood')) {
-    const hoodVal = (params.get('hood') || '').trim().slice(0, 400);
-    if (hoodVal && typeof window.NEIGHBORHOODS !== 'undefined') {
-      if (hoodVal.toLowerCase() === 'all') {
-        state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
-      } else {
-        const requested = hoodVal.split(',').map(s => s.trim()).filter(Boolean);
-        const matched = window.NEIGHBORHOODS.filter(n => requested.some(r => r.toLowerCase() === n.toLowerCase()));
-        if (matched.length > 0) {
-          state.selectedNeighborhoods = new Set(matched);
-        }
-      }
-    }
-  }
-
   if (params.has('rec')) {
     const recVal = (params.get('rec') || '').trim().toLowerCase().slice(0, 30);
     if (recVal && ALLOWED_URL_FREQUENCIES.has(recVal)) {
@@ -689,7 +694,7 @@ function syncFiltersToUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const hadRegionParam = params.has('region');
 
-  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'rec', 'sort', 'focus', 'plan'].forEach(k => params.delete(k));
+  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'neighborhood', 'rec', 'sort', 'focus', 'plan'].forEach(k => params.delete(k));
 
   if (Array.isArray(state.sharedPlanIds) && state.sharedPlanIds.length > 0) {
     params.set('plan', state.sharedPlanIds.map(id => encodeURIComponent(id)).join(','));
@@ -726,10 +731,6 @@ function syncFiltersToUrlParams() {
   if (state.timeSlot && state.timeSlot !== 'all') {
     params.set('time', state.timeSlot);
   }
-  const allHoods = window.NEIGHBORHOODS || [];
-  if (state.selectedNeighborhoods && state.selectedNeighborhoods.size > 0 && state.selectedNeighborhoods.size < allHoods.length) {
-    params.set('hood', Array.from(state.selectedNeighborhoods).join(','));
-  }
   if (state.frequency && state.frequency !== 'all') {
     params.set('rec', state.frequency);
   }
@@ -750,9 +751,12 @@ function syncFiltersToUrlParams() {
 
 function getActiveFiltersSummaryList() {
   const active = [];
-  if (state.region && state.region !== 'all') {
-    const rm = (window.REGION_META && window.REGION_META[state.region]) || { icon: '📍', label: state.region };
-    active.push(`Region: ${rm.icon} ${rm.label}`);
+  if (state.selectedRegions && state.selectedRegions.size > 0) {
+    const labels = Array.from(state.selectedRegions).map(rk => {
+      const rm = (window.REGION_META && window.REGION_META[rk]) || { icon: '📍', label: rk };
+      return `${rm.icon} ${rm.label}`;
+    });
+    active.push(`Cities: ${labels.join(', ')}`);
   }
   if (state.searchQuery && state.searchQuery.trim() !== '') {
     active.push(`Search: "${state.searchQuery.trim()}"`);
@@ -786,14 +790,6 @@ function getActiveFiltersSummaryList() {
   if (state.timeSlot && state.timeSlot !== 'all') {
     const timeObj = (typeof TIME_SLOTS !== 'undefined' ? TIME_SLOTS : []).find(t => t.id === state.timeSlot);
     active.push(`Time: ${timeObj ? timeObj.label : state.timeSlot}`);
-  }
-  const allHoods = window.NEIGHBORHOODS || [];
-  if (state.selectedNeighborhoods && state.selectedNeighborhoods.size < allHoods.length) {
-    if (state.selectedNeighborhoods.size === 0) {
-      active.push('Neighborhoods: None selected');
-    } else {
-      active.push(`Neighborhood: ${Array.from(state.selectedNeighborhoods).join(', ')}`);
-    }
   }
   if (state.frequency && state.frequency !== 'all') {
     const freqObj = (typeof FREQUENCIES !== 'undefined' ? FREQUENCIES : []).find(f => f.id === state.frequency);
@@ -832,11 +828,11 @@ document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
   restoreFiltersFromUrlParams();
   renderRegionPills();
+  renderRegionPills();
   renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
   renderTimePills();
-  renderNeighborhoodPills();
   renderFrequencyPills();
   renderEventFocusPills();
   updateSliderVisuals();
@@ -2866,22 +2862,6 @@ function setupEventListeners() {
 
   window.bindAllViewSwitcherButtons();
 
-  // Neighborhood Toggle All
-  const toggleAllNhBtn = document.getElementById('btn-toggle-all-neighborhoods');
-  if (toggleAllNhBtn && typeof NEIGHBORHOODS !== 'undefined') {
-    toggleAllNhBtn.addEventListener('click', () => {
-      if (state.selectedNeighborhoods.size === NEIGHBORHOODS.length) {
-        state.selectedNeighborhoods.clear();
-        toggleAllNhBtn.textContent = 'Select All';
-      } else {
-        state.selectedNeighborhoods = new Set(NEIGHBORHOODS);
-        toggleAllNhBtn.textContent = 'Deselect All';
-      }
-      renderNeighborhoodPills();
-      applyFiltersAndRender();
-    });
-  }
-
   // Surprise Outing Roulette is wired via #btn-open-roulette in js/roulette.js
 
   // More Filters Collapsible Toggle
@@ -2993,8 +2973,8 @@ function setupEventListeners() {
   window._legacyOpenMobileFiltersSheet = window.openMobileFiltersSheet;
 
   window.resetSecondaryFilters = function () {
-    state.region = 'all';
-    window.van50SelectedRegion = 'all';
+    state.selectedRegions.clear();
+    syncRegionStateString();
     renderRegionPills();
     state.category = 'all'; state.selectedThemeFilter = null; if (state.excludedThemes) state.excludedThemes.clear(); state.hideFestivalEvents = false; renderCategoryPills(); renderFestivalSpotlight();
     state.minBudget = 0;
@@ -3002,7 +2982,6 @@ function setupEventListeners() {
     state.dayOfWeek = 'all';
     state.timeSlot = 'all';
     state.frequency = 'all';
-    state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
     state.hideDaily = false;
     state.accessibleOnly = false;
     state.eventFocus = 'all';
@@ -3012,7 +2991,6 @@ function setupEventListeners() {
     if (chkAccessibleOnly) chkAccessibleOnly.checked = false;
     renderDayPills();
     renderTimePills();
-    renderNeighborhoodPills();
     renderFrequencyPills();
     renderEventFocusPills();
     clearActiveQuickButtons();
@@ -4111,16 +4089,23 @@ function eventMatchesNeighborhoodFilter(ev, selectedSet) {
 
 function setRegionFilter(region) {
   const validRegion = window.normalizeRegionKey(region);
-  state.region = validRegion;
-  window.van50SelectedRegion = validRegion;
+  if (validRegion === 'all') {
+    state.selectedRegions.clear();
+  } else {
+    if (state.selectedRegions.has(validRegion)) {
+      state.selectedRegions.delete(validRegion);
+    } else {
+      state.selectedRegions.add(validRegion);
+    }
+  }
+  syncRegionStateString();
   window._userChangedRegion = true;
 
   renderRegionPills();
-  renderNeighborhoodPills();
   applyFiltersAndRender();
 
   if (typeof window.panMapToRegion === 'function') {
-    window.panMapToRegion(validRegion);
+    window.panMapToRegion(state.selectedRegions);
   }
 }
 window.setRegionFilter = setRegionFilter;
@@ -4128,10 +4113,11 @@ window.setRegionFilter = setRegionFilter;
 function renderRegionPills() {
   const bar = document.getElementById('region-filter-bar');
   if (!bar) return;
+  const isAllActive = !state.selectedRegions || state.selectedRegions.size === 0;
   const pills = bar.querySelectorAll('.region-pill[data-region]');
   pills.forEach(btn => {
     const reg = (btn.getAttribute('data-region') || 'all').toLowerCase();
-    const isActive = state.region === reg;
+    const isActive = reg === 'all' ? isAllActive : state.selectedRegions.has(reg);
     btn.classList.toggle('active', isActive);
     btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     if (!btn._van50RegionBound) {
@@ -4145,6 +4131,8 @@ function renderRegionPills() {
 window.renderRegionPills = renderRegionPills;
 
 function renderNeighborhoodPills() {
+  // Neighborhood filtering removed — geography is filtered strictly by City.
+  return;
   const container = document.getElementById('neighborhood-pills-wrap');
   if (!container || typeof NEIGHBORHOODS === 'undefined') return;
 
@@ -5105,10 +5093,10 @@ function applyFiltersAndRender() {
       return inPlan;
     }
 
-    // 0. Top-Level Region Filter (all | vancouver | surrey | burnaby | richmond | new-west | langley)
-    if (state.region && state.region !== 'all') {
+    // 0. Top-Level Multi-City Region Filter (all | vancouver | surrey | burnaby | richmond | new-west | langley)
+    if (state.selectedRegions && state.selectedRegions.size > 0) {
       const evRegionKey = window.normalizeRegionKey(ev.region || ev.city || 'vancouver');
-      if (state.region !== evRegionKey) return false;
+      if (!state.selectedRegions.has(evRegionKey)) return false;
     }
 
     // Venue Isolation Filter (Requirement 3: When clicking events at a venue, show all events at the venue)
@@ -5242,16 +5230,6 @@ function applyFiltersAndRender() {
       }
     }
 
-    // 6. Multi-Select Neighborhood
-    const allClustersCount = (window.NEIGHBORHOODS && window.NEIGHBORHOODS.length) || 12;
-    if (state.selectedNeighborhoods.size === 0) {
-      state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
-    } else if (state.selectedNeighborhoods.size < allClustersCount) {
-      if (!eventMatchesNeighborhoodFilter(ev, state.selectedNeighborhoods)) {
-        return false;
-      }
-    }
-
     // 7. Shows & Special Events Only Toggle (Hides everyday drop-in spots and open-hours venues)
     if (state.hideDaily) {
       if (
@@ -5338,9 +5316,6 @@ function applyFiltersAndRender() {
   if (state.timeSlot !== 'all') secondaryFilterCount++;
   if (state.frequency !== 'all') secondaryFilterCount++;
   if (state.eventFocus && state.eventFocus !== 'all') secondaryFilterCount++;
-  if (typeof NEIGHBORHOODS !== 'undefined' && state.selectedNeighborhoods.size > 0 && state.selectedNeighborhoods.size < NEIGHBORHOODS.length) {
-    secondaryFilterCount++;
-  }
   const moreCountBadge = document.getElementById('active-filters-count');
   if (moreCountBadge) {
     if (secondaryFilterCount > 0) {
@@ -5865,7 +5840,6 @@ function filterByVenue(venueName) {
     state.frequency = 'all';
     state.dayOfWeek = 'all';
     state.timeSlot = 'all';
-    state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
     state.selectedTag = null;
     state.searchQuery = '';
     state.pricingType = 'all';
@@ -8145,6 +8119,8 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
 }
 
 function resetAllFilters() {
+  state.selectedRegions.clear();
+  syncRegionStateString();
   state.sortBy = 'date';
   state.minBudget = 0;
   state.maxBudget = 50;
@@ -8152,7 +8128,6 @@ function resetAllFilters() {
   state.frequency = 'all';
   state.dayOfWeek = 'all';
   state.timeSlot = 'all';
-  state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
   state.hideDaily = false;
   state.hideFestivalEvents = false;
   state.selectedThemeFilter = null;
@@ -8187,11 +8162,11 @@ function resetAllFilters() {
   const chkAccess = document.getElementById('chk-accessible-only');
   if (chkAccess) chkAccess.checked = false;
 
+  renderRegionPills();
   renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
   renderTimePills();
-  renderNeighborhoodPills();
   renderFrequencyPills();
   renderEventFocusPills();
   clearActiveQuickButtons();
@@ -8586,6 +8561,7 @@ function renderSharedPlanBanner(sharedEvents) {
   const banner = document.getElementById('shared-plan-banner');
   if (!banner) return;
   if (!Array.isArray(state.sharedPlanIds) || state.sharedPlanIds.length === 0) {
+    banner.hidden = true;
     banner.style.display = 'none';
     banner.innerHTML = '';
     return;
@@ -8593,6 +8569,7 @@ function renderSharedPlanBanner(sharedEvents) {
   const list = Array.isArray(sharedEvents) ? sharedEvents : [];
   const totalCost = list.reduce((sum, ev) => sum + (Number(ev.price) || 0), 0);
   const allAlreadySaved = list.length > 0 && list.every(ev => state.savedEvents.has(ev.id));
+  banner.hidden = false;
   banner.style.display = 'flex';
   banner.innerHTML = `
     <div class="shared-plan-banner-info">
@@ -8658,8 +8635,8 @@ function hydrateDeepLinksFromUrl() {
     if (!cardEl && isInitialHydration) {
       // Clear conflicting filters so the target event is guaranteed visible
       state.sharedPlanIds = null;
-      state.region = 'all';
-      window.van50SelectedRegion = 'all';
+      state.selectedRegions.clear();
+      syncRegionStateString();
       state.minBudget = 0;
       state.maxBudget = 50;
       state.category = 'all';
@@ -8672,7 +8649,6 @@ function hydrateDeepLinksFromUrl() {
       state.dayOfWeek = 'all';
       state.timeSlot = 'all';
       state.frequency = 'all';
-      state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
       state.selectedTag = null;
       state.selectedVenue = null;
       state.searchQuery = '';
@@ -8682,7 +8658,6 @@ function hydrateDeepLinksFromUrl() {
       renderCategoryPills();
       renderDayPills();
       renderTimePills();
-      renderNeighborhoodPills();
       renderFrequencyPills();
       renderEventFocusPills();
       updateSliderVisuals();
@@ -8721,12 +8696,13 @@ window.hydrateDeepLinksFromUrl = hydrateDeepLinksFromUrl;
 
 function updateReviewQueueBadge() {
   const container = document.getElementById('curator-footer-container');
+  const curatorLink = document.getElementById('btn-open-review-queue');
   const badge = document.getElementById('review-queue-count');
   const items = (typeof MANUAL_REVIEW_QUEUE !== 'undefined') ? MANUAL_REVIEW_QUEUE : [];
   if (badge) {
     badge.textContent = items.length;
   }
-  // Reveal curator portal button only if ?curator=true, ?admin=true, or active curator session
+  // Reveal curator portal button only if ?curator=1, ?curator=true, ?admin=1, or ?admin=true is present
   const urlParams = new URLSearchParams(window.location.search);
   const curatorVal = String(urlParams.get('curator') || '').toLowerCase();
   const adminVal = String(urlParams.get('admin') || '').toLowerCase();
@@ -8734,7 +8710,11 @@ function updateReviewQueueBadge() {
   const isCurator = hasExplicitCuratorParam || Boolean(sessionStorage.getItem('van50_curator_token'));
   document.body.classList.toggle('admin-mode-enabled', isCurator);
   if (container) {
-    container.style.display = isCurator ? 'block' : 'none';
+    container.hidden = !hasExplicitCuratorParam;
+    container.style.display = hasExplicitCuratorParam ? 'block' : 'none';
+  }
+  if (curatorLink) {
+    curatorLink.hidden = !hasExplicitCuratorParam;
   }
   const headerPreviewBtn = document.getElementById('header-curator-preview-btn');
   if (headerPreviewBtn) {
@@ -9113,15 +9093,6 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'time', label: slotDef ? slotDef.label : state.timeSlot });
   }
 
-  // 4. Neighborhoods
-  const allNh = window.NEIGHBORHOODS || [];
-  if (state.selectedNeighborhoods && state.selectedNeighborhoods.size > 0 && state.selectedNeighborhoods.size < allNh.length) {
-    Array.from(state.selectedNeighborhoods).forEach(nh => {
-      const shortNh = String(nh).split(',')[0].split('&')[0].trim();
-      chips.push({ key: 'nh:' + nh, label: shortNh });
-    });
-  }
-
   // 5. Recurrence Frequency
   if (state.frequency && state.frequency !== 'all') {
     const freqDef = (typeof FREQUENCIES !== 'undefined' ? FREQUENCIES : []).find(f => f.id === state.frequency);
@@ -9222,13 +9193,6 @@ window.dismissSecondaryFilterChip = function (chipKey) {
   } else if (chipKey === 'time') {
     state.timeSlot = 'all';
     renderTimePills();
-  } else if (chipKey.startsWith('nh:')) {
-    const targetNh = chipKey.slice(3);
-    state.selectedNeighborhoods.delete(targetNh);
-    if (state.selectedNeighborhoods.size === 0) {
-      state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
-    }
-    renderNeighborhoodPills();
   } else if (chipKey === 'frequency') {
     state.frequency = 'all';
     renderFrequencyPills();
@@ -9309,7 +9273,7 @@ window.toggleMapInfoWindowCard = function (itemEl, evObj) {
     itemEl.classList.remove('is-expanded');
     itemEl.setAttribute('aria-expanded', 'false');
     mountEl.style.display = 'none';
-    if (hintEl) hintEl.textContent = 'Details ▾';
+    if (hintEl) hintEl.textContent = 'Details →';
     return;
   }
 

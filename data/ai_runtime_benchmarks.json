@@ -140,15 +140,27 @@
       "label": "QC AI Full Catalog Audit",
       "averageDurationSeconds": 290.5,
       "averageDurationFormatted": "4m 51s",
-      "totalRuns": 176,
+      "totalRuns": 178,
       "lastRun": {
-        "timestamp": "2026-11-19T18:37:46.165Z",
-        "durationSeconds": 96,
-        "durationFormatted": "1m 36s",
-        "itemsProcessed": 4,
+        "timestamp": "2026-11-20T00:37:34.670Z",
+        "durationSeconds": 297,
+        "durationFormatted": "4m 57s",
+        "itemsProcessed": 13,
         "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
       },
       "history": [
+        {
+          "timestamp": "2026-11-20T00:37:34.670Z",
+          "durationSeconds": 297,
+          "durationFormatted": "4m 57s",
+          "itemsProcessed": 13
+        },
+        {
+          "timestamp": "2026-11-19T23:57:10.291Z",
+          "durationSeconds": 911,
+          "durationFormatted": "15m 11s",
+          "itemsProcessed": 40
+        },
         {
           "timestamp": "2026-11-19T18:37:46.165Z",
           "durationSeconds": 96,
@@ -436,18 +448,6 @@
           "durationSeconds": 60,
           "durationFormatted": "1m 0s",
           "itemsProcessed": 2
-        },
-        {
-          "timestamp": "2026-11-04T15:19:06.043Z",
-          "durationSeconds": 870,
-          "durationFormatted": "14m 30s",
-          "itemsProcessed": 20
-        },
-        {
-          "timestamp": "2026-11-04T14:55:02.815Z",
-          "durationSeconds": 375,
-          "durationFormatted": "6m 15s",
-          "itemsProcessed": 10
         }
       ],
       "last_run_timestamp": "2026-10-13T14:04:00-07:00"

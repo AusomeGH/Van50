@@ -5,34 +5,34 @@
 var escapeHtml = (typeof window !== 'undefined' && typeof window.escapeHtml === 'function')
   ? window.escapeHtml
   : function (str) {
-      if (str === null || str === undefined) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    };
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  };
 
 var safeExternalUrl = (typeof window !== 'undefined' && typeof window.safeExternalUrl === 'function')
   ? window.safeExternalUrl
   : function (rawUrl) {
-      if (rawUrl === null || rawUrl === undefined) return '#';
-      const trimmed = String(rawUrl).trim();
-      if (!trimmed || trimmed === '#' || trimmed === 'undefined' || trimmed === 'null') return '#';
-      try {
-        const baseOrigin = (typeof window !== 'undefined' && window.location && /^https?:\/\//i.test(window.location.origin))
-          ? window.location.origin
-          : 'https://ausomegh.github.io';
-        const parsed = new URL(trimmed, baseOrigin);
-        if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
-          return parsed.href;
-        }
-        return '#';
-      } catch (_) {
-        return '#';
+    if (rawUrl === null || rawUrl === undefined) return '#';
+    const trimmed = String(rawUrl).trim();
+    if (!trimmed || trimmed === '#' || trimmed === 'undefined' || trimmed === 'null') return '#';
+    try {
+      const baseOrigin = (typeof window !== 'undefined' && window.location && /^https?:\/\//i.test(window.location.origin))
+        ? window.location.origin
+        : 'https://ausomegh.github.io';
+      const parsed = new URL(trimmed, baseOrigin);
+      if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+        return parsed.href;
       }
-    };
+      return '#';
+    } catch (_) {
+      return '#';
+    }
+  };
 
 if (typeof window !== 'undefined') {
   window.escapeHtml = escapeHtml;
@@ -123,6 +123,8 @@ if (typeof window !== 'undefined') {
 let mapInstance = null;
 let sharedInfoWindow = null;
 let markersArray = [];
+let userLocationMarker = null;
+let locationStatusTimer = null;
 let googleMapsScriptPromise = null;
 let mapAuthFailed = false;
 let latestFilteredEvents = [];
@@ -135,6 +137,7 @@ function getMapCanvasElement() {
 
 function updatePlottedCounterText(count) {
   const badge = document.getElementById('map-pin-count-badge')
+    || document.querySelector('div[aria-label="Jump to City"] .map-pin-count-badge')
     || document.querySelector('div[aria-label="Jump to Area"] .map-pin-count-badge');
   if (badge) {
     badge.textContent = `${count} events plotted`;
@@ -379,7 +382,7 @@ function formatEventPriceBadge(event) {
   if (event?.isSoldOut || event?.is_sold_out) return 'Sold Out';
   const p = getEventNumericPrice(event);
   if (p <= 0) return 'Free';
-  return `$${p % 1 === 0 ? p.toFixed(0) : p.toFixed(2)} CAD`;
+  return `$${p % 1 === 0 ? p.toFixed(0) : p.toFixed(2)}`;
 }
 
 /**
@@ -416,46 +419,25 @@ function buildVenueGroupInfoWindowHtml(group) {
   const gmapsUrl = safeExternalUrl(`https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`);
 
   const itemsHtml = group.events.map((ev) => {
-    const emoji = getCategoryEmoji(ev);
     const title = ev.title || ev.event_name || 'Event';
     const evId = ev.id || ev.event_id || '';
     const dayTime = ev.dateSchedule || ev.date_schedule || ev.date || 'Upcoming';
     const priceStr = formatEventPriceBadge(ev);
     const evPrice = getEventNumericPrice(ev);
     const tierColors = getPriceTierColors(evPrice);
-    const inferredTags = (typeof window !== 'undefined' && typeof window.inferHolidaySubTags === 'function')
-      ? window.inferHolidaySubTags(ev)
-      : (Array.isArray(ev.tags) ? ev.tags : (Array.isArray(ev.subTags) ? ev.subTags : []));
-    const tagSet = new Set([
-      ...(Array.isArray(ev.tags) ? ev.tags : []),
-      ...(Array.isArray(ev.subTags) ? ev.subTags : []),
-      ...(Array.isArray(inferredTags) ? inferredTags : [])
-    ].map(t => String(t || '').toLowerCase().trim()));
-    let contextSubBadgeHtml = '';
-    if (tagSet.has('faith-based') || tagSet.has('religious-service')) {
-      contextSubBadgeHtml = `<span class="gmap-iw-context-badge" style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px;border-radius:6px;background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle);font-size:0.7rem;font-weight:600;white-space:nowrap;">⛪ Faith-Based</span>`;
-    } else if (tagSet.has('sacred-music') || tagSet.has('choral')) {
-      contextSubBadgeHtml = `<span class="gmap-iw-context-badge" style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px;border-radius:6px;background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle);font-size:0.7rem;font-weight:600;white-space:nowrap;">🎼 Sacred Choral</span>`;
-    }
 
     return `
       <div class="gmap-venue-iw-item" data-action="toggle-map-card" data-event-id="${escapeHtml(evId)}" role="button" tabindex="0" aria-expanded="false">
         <div class="gmap-venue-iw-item-header">
           <div class="gmap-venue-iw-item-top">
-            <div class="gmap-venue-iw-item-title">
-              <span>${escapeHtml(emoji)}</span>
-              <span>${escapeHtml(title)}</span>
-            </div>
-            <span class="gmap-iw-badge" style="background:${tierColors.bg};color:#ffffff;border:none;flex-shrink:0;">
+            <div class="gmap-venue-iw-item-title">${escapeHtml(title)}</div>
+            <span class="gmap-iw-badge" style="background:${tierColors.bg};color:#ffffff;border:none;flex-shrink:0;white-space:nowrap;">
               ${escapeHtml(priceStr)}
             </span>
           </div>
-          <div class="gmap-venue-iw-item-meta" style="flex-wrap:wrap;">
-            <span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;">
-              <span>🗓️ ${escapeHtml(dayTime)}</span>
-              ${contextSubBadgeHtml}
-            </span>
-            <span class="gmap-iw-expand-hint" aria-hidden="true">Details ▾</span>
+          <div class="gmap-venue-iw-item-meta">
+            <span class="gmap-venue-iw-item-date">${escapeHtml(dayTime)}</span>
+            <span class="gmap-iw-expand-hint" aria-hidden="true">Details →</span>
           </div>
         </div>
         <div class="gmap-iw-expanded-card-mount" data-map-card-mount="${escapeHtml(evId)}" style="display:none;"></div>
@@ -512,7 +494,7 @@ function renderMapMarkers(filteredEvents, options = {}) {
   markersArray = [];
 
   if (!sharedInfoWindow) {
-    sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 330 });
+    sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
   }
 
   // Group events by coordinate (rounded to 4 decimal places) or normalized venue name
@@ -650,10 +632,12 @@ async function initVancouverMap() {
         fullscreenControl: true,
         zoomControl: true,
         gestureHandling: 'greedy',
-        clickableIcons: false
+        clickableIcons: false,
+        padding: { bottom: 64 }
       });
+      mapInstance.setOptions({ padding: { bottom: 64 } });
 
-      sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 330 });
+      sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
 
       mapInstance.addListener('click', () => {
         if (sharedInfoWindow) sharedInfoWindow.close();
@@ -676,21 +660,128 @@ function invalidateVancouverMap() {
   requestAnimationFrame(() => {
     try {
       window.google.maps.event.trigger(mapInstance, 'resize');
-    } catch (_) {}
+    } catch (_) { }
   });
 }
 
+function showMapLocationStatus(message) {
+  const statusEl = document.getElementById('map-location-status');
+  if (!statusEl) return;
+  if (locationStatusTimer) {
+    clearTimeout(locationStatusTimer);
+    locationStatusTimer = null;
+  }
+  if (!message) {
+    statusEl.hidden = true;
+    statusEl.textContent = '';
+    return;
+  }
+  statusEl.textContent = message;
+  statusEl.hidden = false;
+  locationStatusTimer = setTimeout(() => {
+    statusEl.hidden = true;
+    statusEl.textContent = '';
+    locationStatusTimer = null;
+  }, 5500);
+}
+
+function setLocateButtonsLoading(isLoading) {
+  const floatBtn = document.getElementById('map-locate-me-btn');
+  const pillBtn = document.getElementById('map-jump-near-me');
+  if (floatBtn) {
+    floatBtn.classList.toggle('is-locating', isLoading);
+    floatBtn.disabled = isLoading;
+    floatBtn.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+  }
+  if (pillBtn) {
+    pillBtn.classList.toggle('is-locating', isLoading);
+    pillBtn.disabled = isLoading;
+    pillBtn.textContent = isLoading ? '📍 Locating…' : '📍 Near Me';
+  }
+}
+
+function buildUserLocationMarkerIcon() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <circle cx="18" cy="18" r="16" fill="#2563EB" fill-opacity="0.22"/>
+    <circle cx="18" cy="18" r="8.5" fill="#2563EB" stroke="#FFFFFF" stroke-width="3"/>
+  </svg>`;
+  return {
+    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+    scaledSize: new window.google.maps.Size(36, 36),
+    anchor: new window.google.maps.Point(18, 18)
+  };
+}
+
+async function centerMapOnUserLocation() {
+  const fallbackMsg = 'Location access is off — enable browser location to center near you.';
+  if (typeof navigator === 'undefined' || !navigator.geolocation) {
+    showMapLocationStatus(fallbackMsg);
+    return;
+  }
+
+  setLocateButtonsLoading(true);
+  showMapLocationStatus('');
+
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      setLocateButtonsLoading(false);
+      const lat = pos && pos.coords ? pos.coords.latitude : NaN;
+      const lng = pos && pos.coords ? pos.coords.longitude : NaN;
+      if (isNaN(lat) || isNaN(lng)) {
+        showMapLocationStatus(fallbackMsg);
+        return;
+      }
+
+      if (!mapInstance) {
+        await initVancouverMap();
+      }
+      if (!mapInstance || !window.google || !window.google.maps) return;
+
+      const userPos = { lat, lng };
+      mapInstance.panTo(userPos);
+      mapInstance.setZoom(13);
+
+      if (userLocationMarker) {
+        userLocationMarker.setPosition(userPos);
+        userLocationMarker.setMap(mapInstance);
+      } else {
+        userLocationMarker = new window.google.maps.Marker({
+          position: userPos,
+          map: mapInstance,
+          title: 'Your current location',
+          icon: buildUserLocationMarkerIcon(),
+          zIndex: 999,
+          clickable: false
+        });
+      }
+
+      const allJumpButtons = document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button');
+      const nearMeBtn = document.getElementById('map-jump-near-me');
+      allJumpButtons.forEach((btn) => btn.classList.toggle('active', btn === nearMeBtn));
+    },
+    () => {
+      setLocateButtonsLoading(false);
+      showMapLocationStatus(fallbackMsg);
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
+  );
+}
+
 /**
- * Pans and zooms to a neighborhood or Town Centre when a Jump to Area button is clicked.
+ * Pans and zooms to a city when a Jump to City button is clicked.
  */
 async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng, explicitZoom) {
   let targetCoords = null;
-  let targetZoom = !isNaN(parseInt(explicitZoom, 10)) ? parseInt(explicitZoom, 10) : 14;
+  let targetZoom = !isNaN(parseInt(explicitZoom, 10)) ? parseInt(explicitZoom, 10) : 12;
   let clickedBtn = null;
 
   if (areaNameOrBtn && typeof areaNameOrBtn === 'object' && areaNameOrBtn.nodeType === 1) {
     clickedBtn = areaNameOrBtn;
     const attrArea = clickedBtn.getAttribute('data-area') || clickedBtn.textContent.trim();
+    if (attrArea === 'near-me') {
+      centerMapOnUserLocation();
+      return;
+    }
     if (attrArea === 'fit-bounds') {
       document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button').forEach(b => b.classList.toggle('active', b === clickedBtn));
       fitActiveMapMarkers();
@@ -711,6 +802,10 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng, explicitZo
     }
   } else if (typeof areaNameOrBtn === 'string') {
     const key = areaNameOrBtn.trim();
+    if (key === 'near-me') {
+      centerMapOnUserLocation();
+      return;
+    }
     if (key === 'fit-bounds') {
       fitActiveMapMarkers();
       return;
@@ -751,10 +846,18 @@ async function jumpToMapArea(areaNameOrBtn, explicitLat, explicitLng, explicitZo
 }
 
 /**
- * Pans and fits map bounds when the top-level Region filter changes ('all', 'vancouver', 'surrey').
+ * Pans and fits map bounds when the top-level Region filter changes (single city, multi-city, or 'all').
  */
 async function panMapToRegion(region) {
-  const norm = String(region || 'all').toLowerCase();
+  let regionList = [];
+  if (region instanceof Set) {
+    regionList = Array.from(region).map(r => String(r || '').toLowerCase()).filter(r => r && r !== 'all');
+  } else if (Array.isArray(region)) {
+    regionList = region.map(r => String(r || '').toLowerCase()).filter(r => r && r !== 'all');
+  } else {
+    regionList = String(region || 'all').toLowerCase().split(',').map(s => s.trim()).filter(r => r && r !== 'all');
+  }
+
   if (!mapInstance) {
     const mapWrapper = document.getElementById('map-view-wrapper');
     const isMapVisible = Boolean(mapWrapper && (mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block'));
@@ -763,27 +866,36 @@ async function panMapToRegion(region) {
   }
   if (!mapInstance || !window.google || !window.google.maps) return;
 
-  if (norm === 'surrey') {
-    mapInstance.panTo({ lat: 49.135, lng: -122.820 });
-    mapInstance.setZoom(11);
-  } else if (norm === 'vancouver') {
-    mapInstance.panTo({ lat: 49.265, lng: -123.120 });
-    mapInstance.setZoom(12);
-  } else if (norm === 'burnaby') {
-    mapInstance.panTo({ lat: 49.2488, lng: -122.9805 });
-    mapInstance.setZoom(12);
-  } else if (norm === 'richmond') {
-    mapInstance.panTo({ lat: 49.1666, lng: -123.1336 });
-    mapInstance.setZoom(12);
-  } else if (norm === 'new-west' || norm === 'new west' || norm === 'new westminster') {
-    mapInstance.panTo({ lat: 49.2057, lng: -122.9110 });
-    mapInstance.setZoom(13);
-  } else if (norm === 'langley') {
-    mapInstance.panTo({ lat: 49.1180, lng: -122.6350 });
-    mapInstance.setZoom(11);
-  } else {
-    fitActiveMapMarkers();
+  if (regionList.length === 1) {
+    const norm = regionList[0];
+    if (norm === 'surrey') {
+      mapInstance.panTo({ lat: 49.135, lng: -122.820 });
+      mapInstance.setZoom(11);
+      return;
+    } else if (norm === 'vancouver') {
+      mapInstance.panTo({ lat: 49.265, lng: -123.120 });
+      mapInstance.setZoom(12);
+      return;
+    } else if (norm === 'burnaby') {
+      mapInstance.panTo({ lat: 49.2488, lng: -122.9805 });
+      mapInstance.setZoom(12);
+      return;
+    } else if (norm === 'richmond') {
+      mapInstance.panTo({ lat: 49.1666, lng: -123.1336 });
+      mapInstance.setZoom(12);
+      return;
+    } else if (norm === 'new-west' || norm === 'new west' || norm === 'new westminster') {
+      mapInstance.panTo({ lat: 49.2057, lng: -122.9110 });
+      mapInstance.setZoom(13);
+      return;
+    } else if (norm === 'langley') {
+      mapInstance.panTo({ lat: 49.1180, lng: -122.6350 });
+      mapInstance.setZoom(11);
+      return;
+    }
   }
+
+  fitActiveMapMarkers();
 }
 
 function fitActiveMapMarkers() {
@@ -801,15 +913,23 @@ function fitActiveMapMarkers() {
 
 function bindTownCentreJumpButtons() {
   const jumpContainer = document.querySelector('div[aria-label="Town Centre Quick Jump"]');
-  if (!jumpContainer) return;
-  const buttons = jumpContainer.querySelectorAll('button');
-  buttons.forEach((btn) => {
-    if (btn._van50JumpBound) return;
-    btn._van50JumpBound = true;
-    btn.addEventListener('click', () => {
-      jumpToMapArea(btn);
+  if (jumpContainer) {
+    const buttons = jumpContainer.querySelectorAll('button');
+    buttons.forEach((btn) => {
+      if (btn._van50JumpBound) return;
+      btn._van50JumpBound = true;
+      btn.addEventListener('click', () => {
+        jumpToMapArea(btn);
+      });
     });
-  });
+  }
+  const locateBtn = document.getElementById('map-locate-me-btn');
+  if (locateBtn && !locateBtn._van50LocateBound) {
+    locateBtn._van50LocateBound = true;
+    locateBtn.addEventListener('click', () => {
+      centerMapOnUserLocation();
+    });
+  }
 }
 
 if (typeof document !== 'undefined') {
@@ -831,6 +951,7 @@ if (typeof window !== 'undefined') {
   window.initVancouverMap = initVancouverMap;
   window.invalidateVancouverMap = invalidateVancouverMap;
   window.jumpToMapArea = jumpToMapArea;
+  window.centerMapOnUserLocation = centerMapOnUserLocation;
   window.panMapToRegion = panMapToRegion;
   window.fitActiveMapMarkers = fitActiveMapMarkers;
 }

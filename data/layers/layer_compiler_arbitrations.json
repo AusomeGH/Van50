@@ -1090,5 +1090,270 @@
       "arbitration_reasoning": "Adopted the specific performer name 'Kuru' from the official Ticketmaster Seed and Box Office layers over the generic schedule placeholder 'Special Guests', classified as music per editorial context."
     },
     "updatedAt": "2026-11-18T19:09:36.873Z"
+  },
+  "anvil-theatre-pharis-jason-romero-2027-04-17": {
+    "sig": "title mismatch between schedule (\"Pharis & Jason Romero\") and box office (\"Anvil Theatre Presents Pharis & Jason Romero\")::",
+    "decision": {
+      "clean_title": "Pharis & Jason Romero",
+      "artist": "Pharis & Jason Romero",
+      "lineup": [
+        "Pharis & Jason Romero"
+      ],
+      "date": "2027-04-17",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Stripped the redundant venue presenter prefix 'Anvil Theatre Presents' to establish the clean canonical performance title matching the seed and schedule layers."
+    },
+    "updatedAt": "2026-11-19T23:57:10.342Z"
+  },
+  "alex-neighbourhood-h-spanish-conversation-2026-11-10": {
+    "sig": "date mismatch between schedule (2026-11-10) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "Spanish Conversation",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "The schedule date (2026-11-10) is in the past relative to current local time (2026-11-19), whereas both the seed and live box office layers agree on the upcoming date of 2026-11-24."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "anvil-theatre-battle-at-the-anvil-2027-01-16": {
+    "sig": "title mismatch between schedule (\"Battle at the Anvil\") and box office (\"Battle at the Anvil | BOOM! Pro Wrestling\")::",
+    "decision": {
+      "clean_title": "Battle at the Anvil",
+      "artist": "BOOM! Pro Wrestling",
+      "lineup": [
+        "BOOM! Pro Wrestling"
+      ],
+      "date": "2027-01-16",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Adopted the concise core event title 'Battle at the Anvil' confirmed across Seed, Schedule, and Editorial layers while parsing the promoter/troupe suffix 'BOOM! Pro Wrestling' from the box office title into the artist lineup."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "viff-centre-lochmadd-naza-2026-11-17": {
+    "sig": "date mismatch between schedule (2026-11-17) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "NAZA",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-11-24 based on live box office inspection showing the active upcoming screening slot, with the past 2026-11-17 schedule date superseded."
+    },
+    "updatedAt": "2026-11-19T23:57:10.342Z"
+  },
+  "bear-creek-park-nature-at-night-walk-at-bear-c-2026-11-10": {
+    "sig": "date mismatch between schedule (2026-11-10) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "Nature at Night Walk at Bear Creek Lights",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-19",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "outdoors",
+      "arbitration_reasoning": "Resolved date to 2026-11-19 based on real-time box office verification over historical schedule seed, classified category as outdoors per editorial enrichment."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "roundhouse-community-first-nations-art-applied-art-2026-11-17": {
+    "sig": "date mismatch between schedule (2026-11-17) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "First Nations Art / Applied Art + Design Combined Exhibition",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": "9:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Live box office verification takes precedence over historical schedule dates, establishing the active upcoming exhibition date as 2026-11-24 with free admission."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "ams-student-nest-uni-shein-box-santa-tour-2026-2026-11-17": {
+    "sig": "date mismatch between schedule (2026-11-17) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "SHEIN Box Santa Tour",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-19",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Arbitrated date to 2026-11-19 following live Box Office verification and the current temporal calendar over historical seed listings, keeping editorial titling and Free Admission status."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "online-vancouver-free-weekly-energy-healings-2026-11-17": {
+    "sig": "date mismatch between schedule (2026-11-17) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "Weekly Energy Healings",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-11-24 because the 2026-11-17 schedule date is in the past relative to current time and the box office layer verified active upcoming ticket inventory for the next weekly session."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "viff-centre-viff-cin-award-winning-feature-akashi-d-2026-11-17": {
+    "sig": "date mismatch between schedule (2026-11-17) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "Akashi",
+      "artist": "Mayumi Yoshida",
+      "lineup": [
+        "Mayumi Yoshida"
+      ],
+      "date": "2026-11-19",
+      "start_time": "5:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the verified box office layer's live checkout showing date of 2026-11-19 and start time of 5:00 PM over the initial schedule crawl, paired with the enriched title, artist lineup, and cinema category."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "viff-centre-the-history-of-concrete-2026-11-17": {
+    "sig": "date mismatch between schedule (2026-11-17) and box office (2026-12-06)::",
+    "decision": {
+      "clean_title": "The History of Concrete",
+      "artist": "John Wilson",
+      "lineup": [
+        "John Wilson"
+      ],
+      "date": "2026-12-06",
+      "start_time": "9:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the verified box office checkout date (2026-12-06) as authoritative over the schedule layer, which referred to a past date (2026-11-17), while retaining the verified single-visit adult admission tier and editorial cinema categorization."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "surrey-libraries-cla-babytime-2026-11-17": {
+    "sig": "date mismatch between schedule (2026-11-17) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "Babytime",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": "1:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Since 2026-11-17 has already elapsed relative to the current date, the date conflict is resolved in favor of the active upcoming session detected by the box office layer on 2026-11-24."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "djavad-mowafaghian-c-banned-film-series-to-singapor-2026-12-02": {
+    "sig": "title mismatch between schedule (\"BANNED FILM SERIES: TO SINGAPORE, WITH LOVE\") and box office (\"BANNED FILM SERIES: To Singapore, With Love (Singapore)\")::",
+    "decision": {
+      "clean_title": "Banned Film Series: To Singapore, with Love",
+      "artist": "Tan Pin Pin",
+      "lineup": [
+        "Tan Pin Pin"
+      ],
+      "date": "2026-12-02",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the Editorial layer's properly title-cased clean title and cinema taxonomy, reconciled with Box Office verification confirming active free General Admission tickets starting at 7:00 PM."
+    },
+    "updatedAt": "2026-11-20T00:13:03.921Z"
+  },
+  "surrey-knights-north-pacific-junior-hockey-league-p-2026-04-23": {
+    "sig": "date mismatch between schedule (2026-11-12) and box office (2026-04-23)::",
+    "decision": {
+      "clean_title": "Pacific Junior Hockey League Positioned as B.C.’s First U20 Junior Development League",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-21",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved the date conflict using the seed URL announcement publication date of 2026-11-21, as the box office date was stale from an earlier run and schedule date was inaccurate."
+    },
+    "updatedAt": "2026-11-20T00:47:06.662Z"
+  },
+  "kpu-richmond-mycology-food-medicine-cultiva-2026-11-13": {
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
+    "decision": {
+      "clean_title": "Mycology: Food, Medicine & Cultivation",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-20",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2026-11-20 and start time to 6:00 PM based on agreement between the primary Seed source and the Box Office verification layer over the schedule layer."
+    },
+    "updatedAt": "2026-11-20T00:47:06.662Z"
+  },
+  "camp-beer-co-2026-student-pioneer-tap-serie-2026-11-12": {
+    "sig": "title mismatch between schedule (\"2026 Student Pioneer Tap Series\") and box office (\"You’re Invited: 2026 Student Pioneer Tap Series!\")|date mismatch between schedule (2026-11-12) and box office (2026-11-26)::",
+    "decision": {
+      "clean_title": "2026 Student Pioneer Tap Series",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the clean editorial/schedule title stripped of promotional prefixes and prioritized the box office layer's live checkout date of 2026-11-26 and 6:00 PM start time over the historical seed schedule."
+    },
+    "updatedAt": "2026-11-20T00:47:06.662Z"
+  },
+  "3-dogs-brewing-music-trivia-at-3-dogs-brewing-2026-11-19": {
+    "sig": "date mismatch between schedule (2026-11-12) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "Music Trivia",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-19",
+      "start_time": "7:00 PM",
+      "doors_time": "6:00 PM",
+      "is_sold_out": false,
+      "category": "trivia",
+      "arbitration_reasoning": "Resolved date to 2026-11-19 as targeted by the canonical event key and verified by live box office inventory, while adopting doors time from the schedule layer and clean metadata from the editorial enricher."
+    },
+    "updatedAt": "2026-11-20T00:47:06.662Z"
+  },
+  "anvil-centre-friendship-club-gaming-free-at-2026-11-15": {
+    "sig": "title mismatch between schedule (\"Friendship Club Gaming (FREE at the Anvil Centre)\") and box office (\"🎲 Friendship Club Gaming 🎲 (FREE at the Anvil Centre)\")::",
+    "decision": {
+      "clean_title": "Friendship Club Gaming",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-15",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the Editorial layer's clean title to strip decorative emojis and redundant venue/free qualifiers, while confirming free admission and 12:00 PM start time from the Box Office layer."
+    },
+    "updatedAt": "2026-11-20T00:47:06.662Z"
   }
 }

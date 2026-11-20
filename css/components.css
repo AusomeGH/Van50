@@ -6037,7 +6037,7 @@ body.van50-accessible .card-ticket-link {
   }
 
   /* 8. Automate the Active Vancouver Festivals Banner (Horizontal Scroll Strip on Mobile) */
-  section[aria-label="Active Vancouver Festivals"] .festival-active-items-list {
+  section[aria-label="Active Local Festivals"] .festival-active-items-list {
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
@@ -6047,11 +6047,11 @@ body.van50-accessible .card-ticket-link {
     padding-bottom: 2px;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-active-items-list::-webkit-scrollbar {
+  section[aria-label="Active Local Festivals"] .festival-active-items-list::-webkit-scrollbar {
     display: none;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+  section[aria-label="Active Local Festivals"] .festival-theme-item-row {
     flex: 0 0 auto;
     min-width: 240px;
     max-width: 82vw;
@@ -6312,20 +6312,20 @@ body.van50-accessible .card-ticket-link {
   }
 
   /* Active Festivals Strip compact mobile sizing */
-  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+  section[aria-label="Active Local Festivals"] .festival-spotlight-card {
     padding: 8px 10px !important;
     border-radius: 12px !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-compact-header-row {
+  section[aria-label="Active Local Festivals"] .festival-compact-header-row {
     margin-bottom: 4px !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title {
+  section[aria-label="Active Local Festivals"] .festival-spotlight-title {
     font-size: 0.84rem !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+  section[aria-label="Active Local Festivals"] .festival-theme-item-row {
     padding: 6px 10px !important;
     min-width: 230px !important;
     max-width: 82vw !important;
@@ -6399,19 +6399,19 @@ div[aria-label="View Switcher"] {
 
   /* Festival Selection Inside Filter Window */
   #mobile-filters-sheet #festival-spotlight-container,
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] {
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] {
     margin: 2px 0 4px 0 !important;
     width: 100% !important;
   }
 
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] .festival-spotlight-card {
     padding: 10px 12px !important;
     border-radius: 12px !important;
     background: rgba(255, 255, 255, 0.03) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-active-items-list {
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] .festival-active-items-list {
     display: flex !important;
     flex-direction: column !important;
     overflow-x: visible !important;
@@ -6419,7 +6419,7 @@ div[aria-label="View Switcher"] {
     padding: 2px 0 0 0 !important;
   }
 
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] .festival-theme-item-row {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
@@ -7026,18 +7026,18 @@ body {
   }
 
   /* Festival Cards Inside Filter Window */
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] .festival-spotlight-card {
     background: var(--bg-elevated) !important;
     border: 1px solid var(--border-subtle) !important;
     padding: 12px 14px !important;
   }
 
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title,
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .theme-item-name {
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] .festival-spotlight-title,
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] .theme-item-name {
     color: var(--text-main) !important;
   }
 
-  #mobile-filters-sheet section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+  #mobile-filters-sheet section[aria-label="Active Local Festivals"] .festival-theme-item-row {
     background: var(--bg-card) !important;
     border: 1px solid var(--border-subtle) !important;
     padding: 10px 12px !important;
@@ -7162,7 +7162,7 @@ body {
 }
 
 .festival-spotlight-card,
-section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+section[aria-label="Active Local Festivals"] .festival-spotlight-card {
   background: var(--bg-elevated) !important;
   border: 1px solid var(--border-subtle) !important;
   box-shadow: var(--shadow-sm) !important;
@@ -7185,7 +7185,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
 }
 
 .festival-theme-item-row,
-section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+section[aria-label="Active Local Festivals"] .festival-theme-item-row {
   background: var(--bg-card) !important;
   border: 1px solid var(--border-subtle) !important;
   border-radius: 12px !important;
@@ -7194,7 +7194,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
 }
 
 .festival-theme-item-row:hover,
-section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover {
+section[aria-label="Active Local Festivals"] .festival-theme-item-row:hover {
   background: var(--bg-card) !important;
   border-color: var(--brand-primary) !important;
   box-shadow: var(--shadow-md) !important;
@@ -7635,7 +7635,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   }
 
   /* 2. Surface Active Festivals Outside the Closed Drawer on Mobile as a Compact Single-Line Horizontal Scroll Strip */
-  section[aria-label="Active Vancouver Festivals"],
+  section[aria-label="Active Local Festivals"],
   #festival-spotlight-container {
     margin: 4px 0 8px 0 !important;
     padding: 0 !important;
@@ -7645,13 +7645,13 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
     -webkit-overflow-scrolling: touch !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
+  section[aria-label="Active Local Festivals"]::-webkit-scrollbar,
   #festival-spotlight-container::-webkit-scrollbar,
-  section[aria-label="Active Vancouver Festivals"] .festival-active-items-list::-webkit-scrollbar {
+  section[aria-label="Active Local Festivals"] .festival-active-items-list::-webkit-scrollbar {
     display: none !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-card {
+  section[aria-label="Active Local Festivals"] .festival-spotlight-card {
     padding: 8px 12px !important;
     border-radius: 12px !important;
     background: var(--bg-elevated) !important;
@@ -7659,16 +7659,16 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
     box-shadow: var(--shadow-sm) !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-compact-header-row {
+  section[aria-label="Active Local Festivals"] .festival-compact-header-row {
     margin-bottom: 6px !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-spotlight-title {
+  section[aria-label="Active Local Festivals"] .festival-spotlight-title {
     font-size: 0.82rem !important;
     color: var(--text-main) !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-active-items-list {
+  section[aria-label="Active Local Festivals"] .festival-active-items-list {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -7680,7 +7680,7 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
     padding: 2px 2px 4px 2px !important;
   }
 
-  section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row {
+  section[aria-label="Active Local Festivals"] .festival-theme-item-row {
     display: inline-flex !important;
     flex-direction: column !important;
     flex: 0 0 auto !important;
@@ -8018,13 +8018,22 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   display: flex;
   align-items: center;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+}
+
+.map-jump-pills::-webkit-scrollbar {
+  display: none;
 }
 
 .map-jump-pill {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  flex-shrink: 0;
   padding: 5px 12px;
   border-radius: 9999px;
   font-size: 0.76rem;
@@ -8035,6 +8044,107 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
   cursor: pointer;
   transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
   white-space: nowrap;
+}
+
+.map-jump-pill.map-jump-near-me {
+  border-color: rgba(37, 99, 235, 0.35);
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.map-jump-pill.map-jump-near-me:hover,
+.map-jump-pill.map-jump-near-me.active {
+  background: #2563EB;
+  color: #ffffff;
+  border-color: #2563EB;
+}
+
+.map-jump-pill.is-locating {
+  opacity: 0.75;
+  cursor: wait;
+}
+
+.map-canvas-container {
+  position: relative;
+  width: 100%;
+}
+
+.map-locate-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 112px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-surface, var(--bg-card, #ffffff));
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.map-locate-btn:hover {
+  color: #2563EB;
+  border-color: #2563EB;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.24);
+}
+
+.map-locate-btn:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+
+.map-locate-btn .map-locate-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2.2px solid rgba(37, 99, 235, 0.25);
+  border-top-color: #2563EB;
+  border-radius: 50%;
+  animation: van50MapSpin 0.75s linear infinite;
+}
+
+.map-locate-btn.is-locating .map-locate-icon {
+  display: none;
+}
+
+.map-locate-btn.is-locating .map-locate-spinner {
+  display: block;
+}
+
+@keyframes van50MapSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.map-location-status {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  max-width: calc(100% - 28px);
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.92);
+  color: #f8fafc;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.map-location-status[hidden] {
+  display: none !important;
 }
 
 .map-jump-pill:hover {
@@ -8082,6 +8192,8 @@ section[aria-label="Active Vancouver Festivals"] .festival-theme-item-row:hover 
 
 .gmap-iw-badge {
   display: inline-block;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-size: 0.72rem;
   font-weight: 800;
   padding: 2px 8px;
@@ -8311,7 +8423,7 @@ section[aria-label="Events List"] {
 /* Horizontal Scroll Carousels (Contained to 100% width with hidden scrollbars) */
 div[aria-label="Quick Category Filters"],
 .quick-category-strip,
-section[aria-label="Active Vancouver Festivals"],
+section[aria-label="Active Local Festivals"],
 .time-nav-bar {
   display: flex;
   flex-wrap: nowrap;
@@ -8326,7 +8438,7 @@ section[aria-label="Active Vancouver Festivals"],
 
 div[aria-label="Quick Category Filters"]::-webkit-scrollbar,
 .quick-category-strip::-webkit-scrollbar,
-section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
+section[aria-label="Active Local Festivals"]::-webkit-scrollbar,
 .time-nav-bar::-webkit-scrollbar {
   display: none !important;
 }
@@ -8369,28 +8481,49 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   pointer-events: auto !important;
 }
 
+/* Google Maps InfoWindow Container Overrides (Prevent Horizontal Clipping) */
+.gm-style-iw-c {
+  max-width: min(320px, calc(100vw - 40px)) !important;
+  padding: 12px 12px 12px 12px !important;
+  box-sizing: border-box !important;
+}
+
+.gm-style-iw-d {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  max-height: 52vh !important;
+  box-sizing: border-box !important;
+  padding-right: 4px !important;
+}
+
 /* Multi-Event Venue InfoWindow Styles */
 .gmap-venue-iw {
   font-family: var(--font-body);
   color: var(--text-main);
-  min-width: 260px;
-  max-width: min(410px, 84vw);
-  padding: 2px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .gmap-venue-iw-header {
   padding-bottom: 8px;
   margin-bottom: 8px;
   border-bottom: 1px solid var(--border-subtle);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .gmap-venue-iw-name {
   font-family: var(--font-heading);
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: var(--text-main);
   line-height: 1.25;
   margin: 0 0 3px 0;
+  overflow-wrap: break-word;
 }
 
 .gmap-venue-iw-sub {
@@ -8407,13 +8540,20 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: min(440px, 58vh);
+  width: 100%;
+  min-width: 0;
+  max-height: min(440px, 44vh);
   overflow-y: auto;
-  padding-right: 4px;
+  overflow-x: hidden;
+  padding-right: 2px;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .gmap-venue-iw-item {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
@@ -8440,6 +8580,9 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   cursor: pointer;
 }
 
@@ -8447,6 +8590,7 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--brand-primary);
+  flex-shrink: 0;
   white-space: nowrap;
 }
 
@@ -8454,6 +8598,9 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid var(--border-subtle);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .gmap-iw-expanded-card-mount .event-card.map-iw-functional-card {
@@ -8480,7 +8627,10 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 6px;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .gmap-venue-iw-item-title {
@@ -8490,6 +8640,9 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   color: var(--text-main);
   line-height: 1.25;
   flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .gmap-venue-iw-item-title a {
@@ -8506,9 +8659,19 @@ section[aria-label="Active Vancouver Festivals"]::-webkit-scrollbar,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   font-size: 0.74rem;
   color: var(--text-muted);
+}
+
+.gmap-venue-iw-item-date {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .gmap-venue-iw-ticket-link {
@@ -8936,35 +9099,29 @@ body.van50-accessible {
 
 .pre-feed-controls-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
   width: 100%;
   max-width: 100%;
   margin: 0 0 8px 0;
   padding: 2px 0;
-  overflow-x: auto;
-  scrollbar-width: none;
   box-sizing: border-box;
 }
 
-.pre-feed-controls-row::-webkit-scrollbar {
-  display: none;
-}
-
 .pre-feed-controls-row .region-filter-bar {
-  display: inline-flex !important;
-  flex: 0 1 auto !important;
-  width: auto !important;
-  max-width: 100% !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
   overflow-x: auto !important;
+  gap: 6px !important;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  width: 100% !important;
+  max-width: 100% !important;
+  justify-content: flex-start !important;
   margin: 0 !important;
-  padding: 2px !important;
-  gap: 2px !important;
-  flex-wrap: nowrap !important;
+  padding: 4px !important;
+  box-sizing: border-box;
 }
 
 .pre-feed-controls-row .region-filter-bar::-webkit-scrollbar {
@@ -8973,10 +9130,10 @@ body.van50-accessible {
 
 .pre-feed-controls-row .region-pill {
   flex: 0 0 auto !important;
+  flex-shrink: 0 !important;
   white-space: nowrap !important;
-  flex: 0 0 auto !important;
-  padding: 5px 10px !important;
-  font-size: 0.76rem !important;
+  padding: 6px 12px !important;
+  font-size: 0.78rem !important;
 }
 
 .pre-feed-controls-row .top-quick-toggles-bar {
@@ -8986,6 +9143,7 @@ body.van50-accessible {
   flex: 0 0 auto;
   gap: 6px;
   width: auto;
+  max-width: 100%;
   padding: 0;
   margin: 0;
 }
@@ -9173,14 +9331,15 @@ section[aria-label="Events List"] .row2-category-pill,
 
 @media (max-width: 768px) {
   .pre-feed-controls-row {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
     gap: 6px;
     margin: 0 0 6px 0;
   }
 
   .pre-feed-controls-row .region-pill {
-    padding: 4px 9px !important;
-    font-size: 0.74rem !important;
+    padding: 5px 11px !important;
+    font-size: 0.76rem !important;
   }
 
   .top-quick-toggle-pill {

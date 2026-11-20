@@ -94,14 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (candidates.length === 0) {
       titleEl.textContent = 'No Outings Match Your Filters';
-      descEl.textContent = 'Try adjusting your spend range or neighborhood selection first.';
+      descEl.textContent = 'Try adjusting your spend range or city selection first.';
       return;
     }
 
     spinBtn.disabled = true;
     iconEl.classList.add('spinning');
     titleEl.textContent = 'Selecting Spontaneous Outing...';
-    descEl.textContent = 'Exploring Vancouver comedy, music, indie cinema, and trails...';
+    descEl.textContent = 'Exploring local comedy, music, indie cinema, and trails...';
 
     const icons = ['🎭', '🎬', '🌲', '🎙️', '🍻', '⚾', '🥟', '🏮', '🪩', '🎲'];
     let counter = 0;

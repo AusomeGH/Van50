@@ -1237,8 +1237,8 @@
     "name": "Surrey Fest Downtown",
     "festival_name": "Surrey Fest Downtown",
     "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "rejected",
+    "approvalStatus": "rejected",
     "discovered_from_event_id": "downtown-surrey-surrey-fest-downtown",
     "venue_name": "Surrey City Hall (Surrey Civic Plaza)",
     "location": "13450 104 Avenue, Surrey, BC V3T 1V8",
@@ -1248,7 +1248,8 @@
     "category": "festivals",
     "website_url": "https://www.downtownsurreybia.com/Events/SurreyFestDowntown",
     "description": "Annual June community street festival at Surrey Civic Plaza featuring live music stages, local artisan vendors, and cultural showcases in Surrey Central.",
-    "price": 0
+    "price": 0,
+    "rejectedAt": "2026-11-19"
   },
   {
     "id": "winterfest-at-mos",
@@ -1433,8 +1434,8 @@
     "aliases": [
       "VGX 2026"
     ],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "approved",
+    "approvalStatus": "approved",
     "discovered_from_event_id": "vancouver-convention-vancouver-game-expo-vgx-2026-2026-12-05",
     "venue_name": "Vancouver Convention Centre",
     "location": "1055 Canada Pl, Vancouver, BC V6C 0C3",
@@ -1443,7 +1444,8 @@
     "category": "festivals",
     "website_url": "https://vangameexpo.ca",
     "description": "A community-first celebration of gaming culture uniting players, indie developers, and enthusiasts in the heart of Downtown Vancouver. Immerse yourself in hands-on showcases, community tournaments, and creative panels spotlighting the Pacific Northwest's vibrant gaming scene.",
-    "price": 29
+    "price": 29,
+    "approvedAt": "2026-11-19"
   },
   {
     "id": "winter-in-the-village-steveston-s-holiday-celebration",
@@ -1509,8 +1511,8 @@
     "name": "Ramadan Fest BC",
     "festival_name": "Ramadan Fest BC",
     "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "approved",
+    "approvalStatus": "approved",
     "discovered_from_event_id": "cloverdale-fairgroun-ramadan-fest-bc-2027-02-11",
     "venue_name": "Cloverdale Fairgrounds",
     "location": "6050 176 St, Surrey, BC V3S 4E7",
@@ -1519,16 +1521,19 @@
     "category": "shows",
     "website_url": "https://salaamevents.com/ramadanfest/",
     "description": "Ramadan Fest BC at Cloverdale Fairgrounds",
-    "price": 0
+    "price": 0,
+    "approvedAt": "2026-11-19"
   },
   {
     "id": "eastside-cultural-crawl",
     "slug": "eastside-cultural-crawl",
     "name": "Eastside Cultural Crawl",
     "festival_name": "Eastside Cultural Crawl",
-    "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "aliases": [
+      "Eastside Culture Crawl"
+    ],
+    "status": "approved",
+    "approvalStatus": "approved",
     "discovered_from_event_id": "eastside-arts-distri-eastside-cultural-crawl-2026-11-19",
     "venue_name": "Vancouver’s Eastside Arts District",
     "location": "Vancouver’s Eastside Arts District",
@@ -1537,25 +1542,8 @@
     "category": "festivals",
     "website_url": "https://thedrive.ca/culturecrawl-2026/",
     "description": "Eastside Cultural Crawl at Vancouver’s Eastside Arts District",
-    "price": 0
-  },
-  {
-    "id": "eastside-culture-crawl",
-    "slug": "eastside-culture-crawl",
-    "name": "Eastside Culture Crawl",
-    "festival_name": "Eastside Culture Crawl",
-    "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
-    "discovered_from_event_id": "various-east-vancouv-eastside-culture-crawl-2026-11-19",
-    "venue_name": "Various Metro Vancouver Venues",
-    "location": "Various Metro Vancouver Venues",
-    "start_date": "2026-11-19",
-    "end_date": "2026-11-19",
-    "category": "festivals",
-    "website_url": "https://www.createastir.ca/articles/alannah-clamp-eastside-culture-crawl-2026",
-    "description": "This annual multi-day open-studio festival welcomes the public into artist spaces across East Vancouver to explore work across diverse visual art disciplines. Spearheaded by the Eastside Arts Society, the crawl connects community members directly with creators inside their working studios.",
-    "price": 0
+    "price": 0,
+    "approvedAt": "2026-11-19"
   },
   {
     "id": "vancouver-indigenous-fashion-week",
@@ -1563,8 +1551,8 @@
     "name": "Vancouver Indigenous Fashion Week",
     "festival_name": "Vancouver Indigenous Fashion Week",
     "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "approved",
+    "approvalStatus": "approved",
     "discovered_from_event_id": "queen-elizabeth-thea-vancouver-indigenous-fashion-w-18-21",
     "venue_name": "Queen Elizabeth Theatre",
     "location": "630 Hamilton St, Vancouver, BC V6B 5N6",
@@ -1573,7 +1561,8 @@
     "category": "festivals",
     "website_url": "https://www.straight.com/listings/events/1469866",
     "description": "Experience runway showcases highlighting contemporary Indigenous-designed fashion alongside dynamic live musical performances. Set inside the Queen Elizabeth Theatre, this celebration brings together vibrant cultural artistry and cutting-edge design on stage.",
-    "price": 34.25
+    "price": 34.25,
+    "approvedAt": "2026-11-19"
   },
   {
     "id": "dunbar-holiday-craft-fair",
@@ -1581,8 +1570,8 @@
     "name": "Dunbar Holiday Craft Fair",
     "festival_name": "Dunbar Holiday Craft Fair",
     "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "rejected",
+    "approvalStatus": "rejected",
     "discovered_from_event_id": "dunbar-community-cen-dunbar-holiday-craft-fair-21",
     "venue_name": "Dunbar Community Centre",
     "location": "4747 Dunbar St, Vancouver, BC V6S 2H2",
@@ -1591,7 +1580,8 @@
     "category": "markets",
     "website_url": "https://vancitydigest.ca/events/1264-dunbar-holiday-craft-fair",
     "description": "Browse an expansive seasonal market gathering local artisans and makers offering handcrafted holiday goods and gifts. Visitors can enjoy live music, family activities, and an evening community tree lighting celebration.",
-    "price": 5
+    "price": 5,
+    "rejectedAt": "2026-11-19"
   },
   {
     "id": "bc-gin-festival",
@@ -1599,8 +1589,8 @@
     "name": "BC Gin Festival",
     "festival_name": "BC Gin Festival",
     "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "rejected",
+    "approvalStatus": "rejected",
     "discovered_from_event_id": "roundhouse-community-bc-gin-festival-27",
     "venue_name": "Roundhouse Community Arts & Recreation Centre",
     "location": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
@@ -1609,7 +1599,8 @@
     "category": "festivals",
     "website_url": "https://vancitydigest.ca/events/1244-bc-gin-festival",
     "description": "Sample an array of regional craft spirits alongside conversations with local distillers, a botanical marketplace, and an on-site bottle shop. Proceeds from this tasting celebration support the Indian Summer Arts Society.",
-    "price": 0
+    "price": 0,
+    "rejectedAt": "2026-11-19"
   },
   {
     "id": "queer-joy-magick-fair-celebration-of-makers-readers-healers",
@@ -2056,5 +2047,41 @@
     ],
     "restrictions": "All Ages / Family Friendly",
     "is_sold_out": false
+  },
+  {
+    "id": "merry-gay-and-bright-queer-market-and-drag-show",
+    "slug": "merry-gay-and-bright-queer-market-and-drag-show",
+    "name": "Merry, Gay, and Bright: Queer Market and Drag Show",
+    "festival_name": "Merry, Gay, and Bright: Queer Market and Drag Show",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "yaletown-roundhouse-merry-gay-and-bright-queer-mar-20",
+    "venue_name": "Roundhouse Community Arts & Recreation Centre",
+    "location": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
+    "start_date": "2026-12-20",
+    "end_date": "2026-12-20",
+    "category": "markets",
+    "website_url": "https://freshlyfruity.com/",
+    "description": "Celebrate the festive season at a winter market featuring over 55 2SLGBTQIA+ makers alongside live drag performances. Shoppers can don their gayest apparel to browse unique artisan goods and even witness a Vegas-style pop-up wedding.",
+    "price": 8
+  },
+  {
+    "id": "eastside-culture-crawl",
+    "slug": "eastside-culture-crawl",
+    "name": "Eastside Culture Crawl",
+    "festival_name": "Eastside Culture Crawl",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "various-east-vancouv-eastside-culture-crawl-2026-11-19",
+    "venue_name": "Eastside Arts Society",
+    "location": "716 E Hastings St, Vancouver, BC V6A 1R5",
+    "start_date": "2026-11-20",
+    "end_date": "2026-11-20",
+    "category": "festivals",
+    "website_url": "https://www.createastir.ca/articles/alannah-clamp-eastside-culture-crawl-2026",
+    "description": "This annual multi-day open-studio festival welcomes the public into artist spaces across East Vancouver to explore work across diverse visual art disciplines. Spearheaded by the Eastside Arts Society, the crawl connects community members directly with creators inside their working studios.",
+    "price": 0
   }
 ]

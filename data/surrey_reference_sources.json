@@ -81,24 +81,6 @@
     "city": "Surrey"
   },
   {
-    "id": "surrey-ref-10",
-    "number": 10,
-    "group": "B. Town Centre BIAs & Local Chambers",
-    "name": "Downtown Surrey BIA",
-    "url": "https://www.downtownsurreybia.com",
-    "description": "Surrey Central, Holland Park, and Whalley events",
-    "city": "Surrey"
-  },
-  {
-    "id": "surrey-ref-11",
-    "number": 11,
-    "group": "B. Town Centre BIAs & Local Chambers",
-    "name": "Cloverdale BIA",
-    "url": "https://www.cloverdalebia.com",
-    "description": "Historic Downtown Cloverdale street markets, car shows, and festivals",
-    "city": "Surrey"
-  },
-  {
     "id": "surrey-ref-12",
     "number": 12,
     "group": "B. Town Centre BIAs & Local Chambers",
@@ -114,15 +96,6 @@
     "name": "Newton BIA",
     "url": "https://www.newtonbia.com",
     "description": "Cultural walks, live music pop-ups, and Newton plaza activations",
-    "city": "Surrey"
-  },
-  {
-    "id": "surrey-ref-14",
-    "number": 14,
-    "group": "B. Town Centre BIAs & Local Chambers",
-    "name": "Fleetwood BIA",
-    "url": "https://www.fleetwoodbia.com",
-    "description": "Fleetwood community festivals and seasonal markets",
     "city": "Surrey"
   },
   {
@@ -199,15 +172,6 @@
     "city": "Surrey"
   },
   {
-    "id": "surrey-ref-23",
-    "number": 23,
-    "group": "C. Major Theatres, Fairgrounds & University Campuses",
-    "name": "Kwantlen Polytechnic University (KPU) Events",
-    "url": "https://www.kpu.ca/events",
-    "description": "Music recitals, fine arts exhibitions, and talks at Newton & Cloverdale campuses",
-    "city": "Surrey"
-  },
-  {
     "id": "surrey-ref-24",
     "number": 24,
     "group": "C. Major Theatres, Fairgrounds & University Campuses",
@@ -223,15 +187,6 @@
     "name": "Eventbrite — Surrey Local Events",
     "url": "https://www.eventbrite.ca/d/canada--surrey/events/",
     "description": "Stand-up comedy, Paint Nites, pub trivia, and workshops",
-    "city": "Surrey"
-  },
-  {
-    "id": "surrey-ref-26",
-    "number": 26,
-    "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
-    "name": "Showpass — Surrey & Fraser Valley",
-    "url": "https://www.showpass.com",
-    "description": "Local taproom comedy, country bar gigs, and seasonal festivals",
     "city": "Surrey"
   },
   {
@@ -379,15 +334,6 @@
     "city": "Surrey"
   },
   {
-    "id": "surrey-ref-43",
-    "number": 43,
-    "group": "F. Spectator Sports & Recreation Schedules",
-    "name": "Canada Cup Softball Schedule",
-    "url": "https://www.canadacup.com",
-    "description": "International women's softball at Softball City",
-    "city": "Surrey"
-  },
-  {
     "id": "surrey-ref-44",
     "number": 44,
     "group": "F. Spectator Sports & Recreation Schedules",
@@ -403,15 +349,6 @@
     "name": "City of Surrey Drop-In Recreation Schedules",
     "url": "https://www.surrey.ca/activities-parks-recreation/drop-schedules",
     "description": "Live drop-in public skate, wave pool, gymnasium, and fitness schedules across all 6 town centres",
-    "city": "Surrey"
-  },
-  {
-    "id": "surrey-ref-46",
-    "number": 46,
-    "group": "A. Municipal, Tourism & Cultural Calendars",
-    "name": "Surrey Schools (SD36) Community & Cultural Events",
-    "url": "https://www.surreyschools.ca",
-    "description": "District arts festivals, student theatre showcases, and community workshops",
     "city": "Surrey"
   },
   {
@@ -487,24 +424,6 @@
     "city": "Surrey"
   },
   {
-    "id": "surrey-ref-55",
-    "number": 55,
-    "group": "C. Major Theatres, Fairgrounds & University Campuses",
-    "name": "SFU Surrey Campus Community Events",
-    "url": "https://www.sfu.ca/surrey",
-    "description": "Public talks, open houses, and cultural programming at SFU Surrey Central",
-    "city": "Surrey"
-  },
-  {
-    "id": "surrey-ref-56",
-    "number": 56,
-    "group": "E. Local Journalism & Regional Curators",
-    "name": "r/SurreyBC Community Event Threads",
-    "url": "https://www.reddit.com/r/SurreyBC",
-    "description": "Grassroots local event announcements, weekend threads, and neighbourhood pop-ups",
-    "city": "Surrey"
-  },
-  {
     "id": "surrey-ref-57",
     "number": 57,
     "group": "F. Spectator Sports & Recreation Schedules",
@@ -556,24 +475,6 @@
     "name": "Salaam Events Ramadan Fest Surrey",
     "url": "https://salaamevents.com/ramadanfest/",
     "description": "Annual Ramadan night market, halal food festival, and cultural bazaar in Surrey",
-    "city": "Surrey"
-  },
-  {
-    "id": "surrey-ref-63",
-    "number": 63,
-    "group": "C. Major Theatres, Fairgrounds & University Campuses",
-    "name": "Bell Performing Arts Centre (Main Portal)",
-    "url": "https://bellperformingartscentre.com/",
-    "description": "Surrey's flagship 1,050-seat performing arts theatre in Sullivan Heights",
-    "city": "Surrey"
-  },
-  {
-    "id": "surrey-ref-64",
-    "number": 64,
-    "group": "C. Major Theatres, Fairgrounds & University Campuses",
-    "name": "Surrey Schools International Children's Festival & Jazz Festival History",
-    "url": "https://www.surreyschools.ca/festival-history",
-    "description": "Surrey Schools annual student jazz, dance, theatre, and performing arts festivals",
     "city": "Surrey"
   },
   {
@@ -847,15 +748,6 @@
     "city": "Surrey"
   },
   {
-    "id": "surrey-ref-95",
-    "number": 95,
-    "group": "D. Heritage, Nature & Eco-Centre Experiences",
-    "name": "Darts Hill Garden Park Conservatory Trust (South Surrey)",
-    "url": "https://dartshill.ca/",
-    "description": "Botanical garden open houses, plant sales, and guided seasonal walks in South Surrey",
-    "city": "Surrey"
-  },
-  {
     "id": "surrey-ref-96",
     "number": 96,
     "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
@@ -946,4 +838,3 @@
     "city": "Surrey"
   }
 ]
-

@@ -169,7 +169,7 @@ export function getExistingCatalogLookup() {
     if (/^(?:discover\s+events\s+in\s+|things\s+to\s+do\s+in\s+|free\s+holiday\s+events\s+in\s+|toy\s+drives\s+around\s+|upcoming\s+holiday\s+events\s+at\s+|victoria\s+festivals\s+and\s+events|vancouver['’]s\s+best\s+|vancouver\s+history\s+and\s+culture|vancouver\s+rainy\s+day\s+activities|list\s+your\s+event\b)/i.test(rawTitle)) {
       return true;
     }
-    if (/\b(?:503\s+service\s+unavailable|502\s+bad\s+gateway|closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|exhibition\s+catalogue|school\s+boundaries|roster\s+(?:202\d[-–]\d{2}|regular\s+season)|(?:@|at)\s+(?:abbotsford\s+pilots|mission\s+city\s+outlaws|chilliwack\s+jets)|settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|sfu\s+livewhale\s+calendar|tuition\s+estimator|educationplannerbc|applying\s+to\s+kpu|why\s+choose\s+kpu|kpu\s+registration|find\s+your\s+classroom|exam\s+review|naloxone\s+training\s+session\s+for\s+students|registration\s+101\s+information\s+session|canadian\s+taxes\s+for\s+international\s+students)\b/i.test(rawTitle)) {
+    if (/\b(?:503\s+service\s+unavailable|502\s+bad\s+gateway|closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|birthday\s+part(?:y|ies)|court\s+rental|private\s+(?:youth\s+|adult\s+)?tutoring|bus\s+trip\b|(?:mfa|ma|phd|ph\.d\.|thesis|dissertation)\s+defen[cs]e|supplemental\s+application|(?:virtual|online)\s+info(?:rmation)?\s+session|information\s+sessions?:|(?:sca|campus|admissions?|program|faculty|department)\s+open\s+house|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|exhibition\s+catalogue|school\s+boundaries|roster\s+(?:202\d[-–]\d{2}|regular\s+season)|(?:@|at)\s+(?:abbotsford\s+pilots|mission\s+city\s+outlaws|chilliwack\s+jets)|settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|sfu\s+livewhale\s+calendar|tuition\s+estimator|educationplannerbc|applying\s+to\s+kpu|why\s+choose\s+kpu|kpu\s+registration|find\s+your\s+classroom|exam\s+review|naloxone\s+training\s+session\s+for\s+students|registration\s+101\s+information\s+session|canadian\s+taxes\s+for\s+international\s+students)\b/i.test(rawTitle)) {
       return true;
     }
     if (/\bwebinar\b/i.test(rawTitle) && !/\b(?:in[- ]person|hybrid)\b/i.test(rawTitle)) {
@@ -580,16 +580,43 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
           const allSlotsConcluded = allShowings.length > 0 && allShowings.every((sh) => sh && sh.status === "concluded");
           const isMissingDateNonPerennial = !hasUpcomingShowing && (rawDateStr === "none_available" || rawDateStr === "");
 
+          // Normalize non-ISO dates (e.g. "November 19" or "Nov 19, 2026") to strict YYYY-MM-DD
+          let normalizedIsoDate = extractedIso;
+          if (!normalizedIsoDate && hasUpcomingShowing) {
+            const nextSh = isoShowings.filter((sh) => sh.date >= todayIsoNow).sort((a, b) => a.date.localeCompare(b.date))[0];
+            if (nextSh) normalizedIsoDate = nextSh.date;
+          }
+          if (!normalizedIsoDate && rawDateStr) {
+            const mdMatch = rawDateStr.match(/\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+(\d{1,2})(?:st|nd|rd|th)?(?:,?\s*(202\d))?\b/i);
+            if (mdMatch) {
+              const mm = monthMapNow[mdMatch[1].toLowerCase().slice(0, 3)];
+              const dd = String(mdMatch[2]).padStart(2, "0");
+              let yyyy = mdMatch[3] || todayIsoNow.slice(0, 4);
+              let candidate = `${yyyy}-${mm}-${dd}`;
+              if (!mdMatch[3] && candidate < todayIsoNow) {
+                candidate = `${Number(yyyy) + 1}-${mm}-${dd}`;
+              }
+              normalizedIsoDate = candidate;
+            }
+          }
+          if (normalizedIsoDate && /^\d{4}-\d{2}-\d{2}$/.test(normalizedIsoDate)) {
+            card.date = normalizedIsoDate;
+            if (card.id && /-(?:202\d-\d{2}-\d{2}|\d{1,2})$/.test(card.id)) {
+              card.id = card.id.replace(/-(?:202\d-\d{2}-\d{2}|\d{1,2})$/, `-${normalizedIsoDate}`);
+            }
+          }
+
           if (
-            (extractedIso && extractedIso < todayIsoNow && !hasUpcomingShowing) ||
+            (normalizedIsoDate && normalizedIsoDate < todayIsoNow && !hasUpcomingShowing) ||
             (isoShowings.length > 0 && !hasUpcomingShowing) ||
             (!hasUpcomingShowing && extractedYm && extractedYm < currentYearMonthNow) ||
             (!hasUpcomingShowing && isPre2026YearOnly) ||
             (!hasUpcomingShowing && allSlotsConcluded) ||
-            isMissingDateNonPerennial
+            isMissingDateNonPerennial ||
+            (!normalizedIsoDate && !hasUpcomingShowing)
           ) {
-            console.log(`🛡️ [Past / Unscheduled Event Suppressed] "${card.title}" (${extractedIso || rawDateStr || "none_available"}) is past or lacks upcoming dates (< ${todayIsoNow}). Suppressing from layer_schedules.json.`);
-            results.push({ url: targetUrl, success: false, isNew: false, error: "Concluded or unscheduled past event" });
+            console.log(`🛡️ [Past / Unscheduled / Non-ISO Date Suppressed] "${card.title}" (${normalizedIsoDate || rawDateStr || "none_available"}) lacks a valid upcoming YYYY-MM-DD date (>= ${todayIsoNow}). Suppressing from layer_schedules.json.`);
+            results.push({ url: targetUrl, success: false, isNew: false, error: "Concluded, unscheduled, or non-ISO date event" });
             return;
           }
         }
@@ -621,7 +648,7 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
           !cleanVenueStr ||
           /^(?:none_available|search_exhausted_null|quarantine_fatal|online|virtual|zoom|teams|flohockey|flosports|[eé]v[eè]nement\s+en\s+ligne|vancouver|metro\s+vancouver|surrey|burnaby|richmond|victoria|604\s*now|miss604|do604|daily\s*hive|admitone|eventbrite|showpass|vancouver['’]s\s+best\s+places|vancouver\s+rainy\s+day\s+activities)$/i.test(cleanVenueStr) ||
           /^(?:various\s+venues|multiple\s+venues)\b/i.test(cleanVenueStr) ||
-          /\b(?:flohockey|flosports|online\s+broadcast)\b/i.test(cleanVenueStr) ||
+          /\b(?:flohockey|flosports|online\s+broadcast|online\s+via|via\s+zoom|zoom\s+(?:meeting|webinar)|microsoft\s+teams|google\s+meet|virtual\s+(?:event|session|only))\b/i.test(cleanVenueStr) ||
           /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(cleanVenueStr) ||
           /\b(?:cobble\s+hill|cobblestone\s+pub|sea\s+to\s+sky\s+gondola|brackendale|squamish|whistler|chilliwack|abbotsford|nanaimo|kelowna|victoriasbestplaces)\b/i.test(geoCheckBlob)
         ) {
@@ -663,7 +690,12 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
         try {
           const resolvedCity = card.city || options.city || inferFeedCity({ venue_name: evVenue, url: targetUrl });
           await safeUpdateJsonFile(SCHEDULES_PATH, [], (schedules) => {
-            const existingIdx = schedules.findIndex((s) => (s.id || s.event_id) === card.id);
+            const normTitleKey = (t) => String(t || "").toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, " ").trim();
+            let existingIdx = schedules.findIndex((s) => (s.id || s.event_id) === card.id);
+            if (existingIdx === -1 && card.title && card.date) {
+              const tKey = normTitleKey(card.title);
+              existingIdx = schedules.findIndex((s) => normTitleKey(s.title) === tKey && s.date === card.date);
+            }
             const schedEntry = {
               id: card.id,
               event_id: card.id,
@@ -691,7 +723,14 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
             };
             inspectCardForCandidateLink(schedEntry);
             if (existingIdx !== -1) {
-              schedules[existingIdx] = schedEntry;
+              const prev = schedules[existingIdx];
+              const scoreEntry = (rec) =>
+                (rec.time && rec.time !== "none_available" && rec.time !== "TBA" ? 2 : 0) +
+                (rec.price != null ? 2 : 0) +
+                (rec.ticket_url && !/(?:calendar|events\.html|events\/?)$/i.test(rec.ticket_url) ? 3 : 0);
+              if ((prev.id || prev.event_id) === card.id || scoreEntry(schedEntry) >= scoreEntry(prev)) {
+                schedules[existingIdx] = schedEntry;
+              }
             } else {
               schedules.push(schedEntry);
             }
@@ -858,7 +897,23 @@ function normalizeCrawlerFeedUrl(u = "") {
 function isExcludedCrawlerFeedUrl(u = "") {
   const s = String(u || "").trim();
   if (!s || !s.startsWith("http")) return true;
-  return /127\.0\.0\.1|localhost|example\.com|testcellar/i.test(s);
+  // Test fixtures, permanently closed venues, and social/forum login walls
+  if (/127\.0\.0\.1|localhost|example\.com|testcellar|anzaclub\.org|instagram\.com|reddit\.com|facebook\.com|tiktok\.com/i.test(s)) {
+    return true;
+  }
+  // Unfiltered national/global ticketing root homepages (keep venue/city-scoped subpaths)
+  if (/^https?:\/\/(?:www\.)?(?:showpass|ticketweb|tickettailor|universe|vtixonline|zeffy|humanitix|orangetickets|eventbrite)\.(?:com|ca)\/?$/i.test(s)) {
+    return true;
+  }
+  // High-noise school district, student-admin, and community-centre rental/rec portals
+  if (/champlainheightscc\.ca|vanrec\.ca\/?$|surreyschools\.ca|kpu\.ca\/events|sfu\.ca\/surrey|ams\.ubc\.ca\/student-life\/events/i.test(s)) {
+    return true;
+  }
+  // Static perennial parks, beaches, pitch-and-putts, and destination guides (grounded via venue_detailer.js, not event calendars)
+  if (/parks-recreation\/parks\/|pitch-putt|pitch-and-putt|\/roofgarden|\/ubc-rose-garden|\/listings\/kitsilano-beach-park|\/listings\/queen-elizabeth-park|\/listings\/stanley-park|destinationvancouver\.com\/(?:activities\/free-and-nearly-free|things-to-do\/?$|inspirations\/golf\/)|^https?:\/\/(?:www\.)?(?:dartshill\.ca|vandusengarden\.org|ecologycentre\.ca)\/?$/i.test(s)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -884,6 +939,8 @@ export async function runAllVenueFeedsBatch(options = {}) {
   const allFeeds = [];
   for (const v of venues) {
     if (v.is_test_canary) continue;
+    // Skip perennial drop-in parks/beaches/open public spaces (handled by venue_detailer.js, not calendar_harvester.js)
+    if (v.access_model === "open_public_space" || v.lifecycle_type === "perennial_drop_in") continue;
     const vName = (v.venue_name || v.name || "").trim();
     if (!vName) continue;
     const curatorInfo = getCuratorInfo({ venue: vName });
@@ -1000,6 +1057,29 @@ export async function runAllVenueFeedsBatch(options = {}) {
 
     return score;
   }
+
+  // Drop redundant bare root homepages (e.g. riotheatre.ca/) when a dedicated subpath feed exists for the same host (e.g. riotheatre.ca/calendar/)
+  const hostsWithSubpath = new Set();
+  for (const f of allFeeds) {
+    try {
+      const uo = new URL(f.url);
+      const host = uo.hostname.replace(/^www\./, "").toLowerCase();
+      if (uo.pathname && uo.pathname !== "/") {
+        hostsWithSubpath.add(host);
+      }
+    } catch {}
+  }
+  const dedupedFeeds = allFeeds.filter((f) => {
+    try {
+      const uo = new URL(f.url);
+      const host = uo.hostname.replace(/^www\./, "").toLowerCase();
+      const isBareRoot = !uo.pathname || uo.pathname === "/";
+      if (isBareRoot && hostsWithSubpath.has(host)) return false;
+    } catch {}
+    return true;
+  });
+  allFeeds.length = 0;
+  allFeeds.push(...dedupedFeeds);
 
   allFeeds.sort((a, b) => (scoreFeedPriority(b) - scoreFeedPriority(a)) || String(a.name || "").localeCompare(String(b.name || "")));
 

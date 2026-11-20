@@ -1,22 +1,6 @@
 {
-  "total_sources": 304,
+  "total_sources": 272,
   "sources": [
-    {
-      "id": "venue:stanley-park-seawall",
-      "name": "Stanley Park Seawall",
-      "type": "venue",
-      "url": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:lynn-canyon-park",
-      "name": "Lynn Canyon Park",
-      "type": "venue",
-      "url": "https://ecologycentre.ca",
-      "neighborhood": "North Shore, Burnaby & Metro",
-      "last_scouted_at": null
-    },
     {
       "id": "venue:granville-island-public-market",
       "name": "Granville Island Public Market",
@@ -34,35 +18,11 @@
       "last_scouted_at": null
     },
     {
-      "id": "venue:vpl-central-library-level-9",
-      "name": "VPL Central Library (Level 9)",
-      "type": "venue",
-      "url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "last_scouted_at": null
-    },
-    {
       "id": "venue:dr-sun-yat-sen-public-courtyard",
       "name": "Dr. Sun Yat-Sen Public Courtyard",
       "type": "venue",
       "url": "https://vancouverchinesegarden.com/visit/",
       "neighborhood": "Downtown, Gastown & Yaletown",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:ubc-rose-garden-trail-6",
-      "name": "UBC Rose Garden & Trail 6",
-      "type": "venue",
-      "url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
-      "neighborhood": "Kitsilano, Point Grey & UBC",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:queen-elizabeth-park",
-      "name": "Queen Elizabeth Park",
-      "type": "venue",
-      "url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
-      "neighborhood": "Mount Pleasant & South Vancouver",
       "last_scouted_at": null
     },
     {
@@ -127,14 +87,6 @@
       "type": "venue",
       "url": "https://riotheatre.ca/calendar/",
       "neighborhood": "Commercial Drive & East Vancouver",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:the-fox-cabaret",
-      "name": "The Fox Cabaret",
-      "type": "venue",
-      "url": "https://www.foxcabaret.com/",
-      "neighborhood": "Mount Pleasant & South Vancouver",
       "last_scouted_at": null
     },
     {
@@ -210,14 +162,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "venue:stanley-park-pitch-putt",
-      "name": "Stanley Park Pitch & Putt",
-      "type": "venue",
-      "url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "last_scouted_at": null
-    },
-    {
       "id": "venue:vancouver-art-gallery",
       "name": "Vancouver Art Gallery",
       "type": "venue",
@@ -231,14 +175,6 @@
       "type": "venue",
       "url": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
       "neighborhood": "North Shore, Burnaby & Metro",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:kitsilano-beach-park",
-      "name": "Kitsilano Beach Park",
-      "type": "venue",
-      "url": "https://kitsilanoshowboat.com/",
-      "neighborhood": "Kitsilano, Point Grey & UBC",
       "last_scouted_at": null
     },
     {
@@ -274,14 +210,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "venue:guilt-co",
-      "name": "Guilt & Co.",
-      "type": "venue",
-      "url": "https://www.guiltandcompany.com/#ajsection-upcoming",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "last_scouted_at": null
-    },
-    {
       "id": "venue:ubc-instructional-resources-centre-irc",
       "name": "UBC Instructional Resources Centre (IRC)",
       "type": "venue",
@@ -295,14 +223,6 @@
       "type": "venue",
       "url": "https://iq2000trivia.com",
       "neighborhood": "Mount Pleasant & South Vancouver",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:runvan-clubhouse-seawall",
-      "name": "RUNVAN Clubhouse & Seawall",
-      "type": "venue",
-      "url": "https://runvan.org",
-      "neighborhood": "Downtown, Gastown & Yaletown",
       "last_scouted_at": null
     },
     {
@@ -375,14 +295,6 @@
       "type": "venue",
       "url": "https://wisehall.ca",
       "neighborhood": "Commercial Drive & East Vancouver",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:the-anza-club",
-      "name": "The Anza Club",
-      "type": "venue",
-      "url": "https://anzaclub.org",
-      "neighborhood": "Mount Pleasant & South Vancouver",
       "last_scouted_at": null
     },
     {
@@ -466,14 +378,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "venue:rickshaw-theatre",
-      "name": "Rickshaw Theatre",
-      "type": "venue",
-      "url": "https://rickshawtheatre.com/",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "last_scouted_at": null
-    },
-    {
       "id": "venue:waterfront-theatre",
       "name": "Waterfront Theatre",
       "type": "venue",
@@ -514,27 +418,11 @@
       "last_scouted_at": null
     },
     {
-      "id": "venue:queen-elizabeth-park-pitch-putt",
-      "name": "Queen Elizabeth Park Pitch & Putt",
-      "type": "venue",
-      "url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
-      "neighborhood": "Mount Pleasant & South Vancouver",
-      "last_scouted_at": null
-    },
-    {
       "id": "venue:rupert-park-pitch-putt",
       "name": "Rupert Park Pitch & Putt",
       "type": "venue",
       "url": "https://www.destinationvancouver.com/things-to-do/outdoor-activities/golf",
       "neighborhood": "Commercial Drive & East Vancouver",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:central-park-pitch-putt",
-      "name": "Central Park Pitch & Putt",
-      "type": "venue",
-      "url": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
-      "neighborhood": "North Shore, Burnaby & Metro",
       "last_scouted_at": null
     },
     {
@@ -551,14 +439,6 @@
       "type": "venue",
       "url": "https://thepearlvancouver.com/calendar/",
       "neighborhood": "Downtown",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:the-wise-hall",
-      "name": "The WISE Hall",
-      "type": "venue",
-      "url": "https://www.ticketweb.ca/",
-      "neighborhood": "Commercial Drive",
       "last_scouted_at": null
     },
     {
@@ -607,14 +487,6 @@
       "type": "venue",
       "url": "https://do604.com/events/comedy",
       "neighborhood": "Chinatown",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:the-shipyards",
-      "name": "The Shipyards",
-      "type": "venue",
-      "url": "https://theshipyards.ca",
-      "neighborhood": "Lower Lonsdale",
       "last_scouted_at": null
     },
     {
@@ -759,14 +631,6 @@
       "type": "venue",
       "url": "https://vancouvercivictheatres.com/venues/annex/",
       "neighborhood": "Downtown / Yaletown",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:test-qa-cellar-1790801024",
-      "name": "Test QA Cellar 1790801024",
-      "type": "venue",
-      "url": "https://testcellar.example.com/events",
-      "neighborhood": "Gastown / Chinatown",
       "last_scouted_at": null
     },
     {
@@ -1002,54 +866,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "discovery:tessitura-vso-arts-club-bard-on-the-beach",
-      "name": "Tessitura (VSO / Arts Club / Bard on the Beach)",
-      "type": "aggregator",
-      "url": "https://www.vancouversymphony.ca/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:ticket-tailor-vancouver",
-      "name": "Ticket Tailor (Vancouver)",
-      "type": "aggregator",
-      "url": "https://www.tickettailor.com/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:zeffy-vancouver-non-profits",
-      "name": "Zeffy (Vancouver Non-Profits)",
-      "type": "aggregator",
-      "url": "https://www.zeffy.com/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:humanitix-vancouver",
-      "name": "Humanitix (Vancouver)",
-      "type": "aggregator",
-      "url": "https://humanitix.com/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:universe-vancouver",
-      "name": "Universe (Vancouver)",
-      "type": "aggregator",
-      "url": "https://www.universe.com/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:vtix-online-vancouver",
-      "name": "VTix Online (Vancouver)",
-      "type": "aggregator",
-      "url": "https://www.vtixonline.com/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
       "id": "discovery:broadway-across-canada-vancouver",
       "name": "Broadway Across Canada (Vancouver)",
       "type": "aggregator",
@@ -1058,26 +874,10 @@
       "last_scouted_at": null
     },
     {
-      "id": "discovery:city-of-vancouver-parks-recreation-culture",
-      "name": "City of Vancouver Parks, Recreation & Culture",
-      "type": "aggregator",
-      "url": "https://www.destinationvancouver.com/things-to-do/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
       "id": "discovery:vancouver-public-library-vpl",
       "name": "Vancouver Public Library (VPL)",
       "type": "aggregator",
       "url": "https://www.vpl.ca/events",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:destination-vancouver-free-budget-outings",
-      "name": "Destination Vancouver: Free & Budget Outings",
-      "type": "aggregator",
-      "url": "https://www.destinationvancouver.com/activities/free-and-nearly-free/",
       "category": "general",
       "last_scouted_at": null
     },
@@ -1194,14 +994,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "discovery:iq-2000-trivia",
-      "name": "IQ 2000 Trivia",
-      "type": "aggregator",
-      "url": "https://www.instagram.com/iq2000trivia",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
       "id": "discovery:runvan-community-hub",
       "name": "RUNVAN Community Hub",
       "type": "aggregator",
@@ -1222,14 +1014,6 @@
       "name": "Scene in the Dark",
       "type": "aggregator",
       "url": "https://sceneinthedark.com/",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:vancouver-recreation-activity-portal",
-      "name": "Vancouver Recreation Activity Portal",
-      "type": "aggregator",
-      "url": "https://vanrec.ca/",
       "category": "general",
       "last_scouted_at": null
     },
@@ -1274,20 +1058,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "festival:vancouver-fringe-festival",
-      "name": "Vancouver Fringe Festival",
-      "type": "festival",
-      "url": "https://vancouverfringe.com",
-      "last_scouted_at": null
-    },
-    {
-      "id": "festival:vancouver-international-film-festival",
-      "name": "Vancouver International Film Festival (VIFF)",
-      "type": "festival",
-      "url": "https://viff.org",
-      "last_scouted_at": null
-    },
-    {
       "id": "festival:khatsahlano-street-party",
       "name": "Khatsahlano Street Party",
       "type": "festival",
@@ -1306,13 +1076,6 @@
       "name": "BC Culture Days",
       "type": "festival",
       "url": "https://culturedays.ca/en/bc",
-      "last_scouted_at": null
-    },
-    {
-      "id": "festival:public-disco-society",
-      "name": "Public Disco Festival",
-      "type": "festival",
-      "url": "https://publicdisco.ca",
       "last_scouted_at": null
     },
     {
@@ -1343,14 +1106,6 @@
       "type": "venue",
       "url": "https://www.nvcl.ca/events",
       "neighborhood": "Central Lonsdale",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:university-of-british-columbia-ams-student-nest",
-      "name": "University of British Columbia - AMS Student Nest",
-      "type": "venue",
-      "url": "https://www.ams.ubc.ca/student-life/events/",
-      "neighborhood": "UBC",
       "last_scouted_at": null
     },
     {
@@ -1423,14 +1178,6 @@
       "type": "venue",
       "url": "https://www.therecroom.com/burnaby-brentwood/events",
       "neighborhood": "Brentwood",
-      "last_scouted_at": null
-    },
-    {
-      "id": "venue:champlain-heights-community-centre",
-      "name": "Champlain Heights Community Centre",
-      "type": "venue",
-      "url": "https://champlainheightscc.ca/calendar/",
-      "neighborhood": "Champlain Heights",
       "last_scouted_at": null
     },
     {
@@ -2715,24 +2462,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-10",
-      "number": 10,
-      "group": "B. Town Centre BIAs & Local Chambers",
-      "name": "Downtown Surrey BIA",
-      "url": "https://www.downtownsurreybia.com",
-      "description": "Surrey Central, Holland Park, and Whalley events",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-11",
-      "number": 11,
-      "group": "B. Town Centre BIAs & Local Chambers",
-      "name": "Cloverdale BIA",
-      "url": "https://www.cloverdalebia.com",
-      "description": "Historic Downtown Cloverdale street markets, car shows, and festivals",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-12",
       "number": 12,
       "group": "B. Town Centre BIAs & Local Chambers",
@@ -2748,15 +2477,6 @@
       "name": "Newton BIA",
       "url": "https://www.newtonbia.com",
       "description": "Cultural walks, live music pop-ups, and Newton plaza activations",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-14",
-      "number": 14,
-      "group": "B. Town Centre BIAs & Local Chambers",
-      "name": "Fleetwood BIA",
-      "url": "https://www.fleetwoodbia.com",
-      "description": "Fleetwood community festivals and seasonal markets",
       "city": "Surrey"
     },
     {
@@ -2833,15 +2553,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-23",
-      "number": 23,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "Kwantlen Polytechnic University (KPU) Events",
-      "url": "https://www.kpu.ca/events",
-      "description": "Music recitals, fine arts exhibitions, and talks at Newton & Cloverdale campuses",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-24",
       "number": 24,
       "group": "C. Major Theatres, Fairgrounds & University Campuses",
@@ -2857,15 +2568,6 @@
       "name": "Eventbrite — Surrey Local Events",
       "url": "https://www.eventbrite.ca/d/canada--surrey/events/",
       "description": "Stand-up comedy, Paint Nites, pub trivia, and workshops",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-26",
-      "number": 26,
-      "group": "D. Independent Ticketing, Comedy & Nightlife Platforms (Surrey Filter)",
-      "name": "Showpass — Surrey & Fraser Valley",
-      "url": "https://www.showpass.com",
-      "description": "Local taproom comedy, country bar gigs, and seasonal festivals",
       "city": "Surrey"
     },
     {
@@ -3013,15 +2715,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-43",
-      "number": 43,
-      "group": "F. Spectator Sports & Recreation Schedules",
-      "name": "Canada Cup Softball Schedule",
-      "url": "https://www.canadacup.com",
-      "description": "International women's softball at Softball City",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-44",
       "number": 44,
       "group": "F. Spectator Sports & Recreation Schedules",
@@ -3037,15 +2730,6 @@
       "name": "City of Surrey Drop-In Recreation Schedules",
       "url": "https://www.surrey.ca/activities-parks-recreation/drop-schedules",
       "description": "Live drop-in public skate, wave pool, gymnasium, and fitness schedules across all 6 town centres",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-46",
-      "number": 46,
-      "group": "A. Municipal, Tourism & Cultural Calendars",
-      "name": "Surrey Schools (SD36) Community & Cultural Events",
-      "url": "https://www.surreyschools.ca",
-      "description": "District arts festivals, student theatre showcases, and community workshops",
       "city": "Surrey"
     },
     {
@@ -3121,24 +2805,6 @@
       "city": "Surrey"
     },
     {
-      "id": "surrey-ref-55",
-      "number": 55,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "SFU Surrey Campus Community Events",
-      "url": "https://www.sfu.ca/surrey",
-      "description": "Public talks, open houses, and cultural programming at SFU Surrey Central",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-56",
-      "number": 56,
-      "group": "E. Local Journalism & Regional Curators",
-      "name": "r/SurreyBC Community Event Threads",
-      "url": "https://www.reddit.com/r/SurreyBC",
-      "description": "Grassroots local event announcements, weekend threads, and neighbourhood pop-ups",
-      "city": "Surrey"
-    },
-    {
       "id": "surrey-ref-57",
       "number": 57,
       "group": "F. Spectator Sports & Recreation Schedules",
@@ -3190,24 +2856,6 @@
       "name": "Salaam Events Ramadan Fest Surrey",
       "url": "https://salaamevents.com/ramadanfest/",
       "description": "Annual Ramadan night market, halal food festival, and cultural bazaar in Surrey",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-63",
-      "number": 63,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "Bell Performing Arts Centre (Main Portal)",
-      "url": "https://bellperformingartscentre.com/",
-      "description": "Surrey's flagship 1,050-seat performing arts theatre in Sullivan Heights",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-64",
-      "number": 64,
-      "group": "C. Major Theatres, Fairgrounds & University Campuses",
-      "name": "Surrey Schools International Children's Festival & Jazz Festival History",
-      "url": "https://www.surreyschools.ca/festival-history",
-      "description": "Surrey Schools annual student jazz, dance, theatre, and performing arts festivals",
       "city": "Surrey"
     },
     {
@@ -3478,15 +3126,6 @@
       "name": "Fleetwood BIA Community Events Hub",
       "url": "https://fleetwoodbia.com/home/fleetwood-bia-c-3/",
       "description": "Fleetwood Business Improvement Association street activations and seasonal events",
-      "city": "Surrey"
-    },
-    {
-      "id": "surrey-ref-95",
-      "number": 95,
-      "group": "D. Heritage, Nature & Eco-Centre Experiences",
-      "name": "Darts Hill Garden Park Conservatory Trust (South Surrey)",
-      "url": "https://dartshill.ca/",
-      "description": "Botanical garden open houses, plant sales, and guided seasonal walks in South Surrey",
       "city": "Surrey"
     },
     {

@@ -312,6 +312,13 @@ export function matchVenue(venueQuery, venues) {
     if (/\([^)]*\b(?:fitness\s+centre|gymnasium)\b[^)]*\)/i.test(vRaw) && !/\b(?:fitness|gym|gymnasium|zumba|workout)\b/i.test(rawQuery)) {
       return true;
     }
+    const vRoom = vRaw.match(/\b(?:room|rm|studio)\s+([a-z0-9]+)\b/i);
+    if (vRoom) {
+      const qRoom = rawQuery.match(/\b(?:room|rm|studio)\s+([a-z0-9]+)\b/i);
+      if (!qRoom || qRoom[1].toLowerCase() !== vRoom[1].toLowerCase()) {
+        return true;
+      }
+    }
     return false;
   };
 
@@ -689,7 +696,7 @@ export async function compileCatalog(options = {}) {
     )) {
       return true;
     }
-    if (v && /^(?:online|virtual|zoom|livestream|stream|online\s*\([^)]+\)|microsoft\s+teams)$/i.test(v)) {
+    if (v && /^(?:online(?:\s*[,/(–-].*)?|virtual(?:\s*[,/(–-].*)?|zoom|livestream|stream|microsoft\s+teams)$/i.test(v)) {
       return true;
     }
     if (!isActivePublished && v && (
@@ -2783,7 +2790,7 @@ export async function compileCatalog(options = {}) {
     const eventNumCard = `Event_Num_Card_${String(currentCardIdx).padStart(9, "0")}`;
 
     const rawPerennialArchetype = seed.event_archetype || existing.event_archetype || edit.event_archetype || edit.archetype || null;
-    const archetype = (isPerennial
+    let archetype = (isPerennial
       ? classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, rawPerennialArchetype, {
         description,
         lifecycle_type: resolvedLifecycle,
@@ -2792,6 +2799,9 @@ export async function compileCatalog(options = {}) {
       })
       : (edit.event_archetype || edit.archetype || seed.event_archetype || classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, null, { description, lifecycle_type: resolvedLifecycle }))
     ) || null;
+    if (!isPerennial && archetype === "civic_park" && (venue.environment_type === "indoor" || /\banvil\s*(?:centre|theatre)\b/i.test(venue.venue_name || "")) && /^(?:music|shows|comedy|sports)$/i.test(categories[0] || "")) {
+      archetype = "live_stage";
+    }
     if (archetype === "cinema" && (categories[0] === "arts" || categories[0] === "shows")) {
       categories[0] = "cinema";
     }
