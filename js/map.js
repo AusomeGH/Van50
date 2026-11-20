@@ -330,12 +330,40 @@ function resolveEventCoordinates(event, index = 0) {
 }
 
 /**
- * Maps an event's primary category / tags / title to its canonical category emoji:
- *   🎤 Comedy | 🎬 Indie Cinema | 🎸 Live Music | 🌲 Outdoors | 🧠 Trivia/Games |
- *   🎭 Arts/Theatre | 🏒 Sports | 🎪 Festivals | 📍 Default
+ * Single Shared Semantic Category Color Palette (Cards + Map Pins + Map Legend)
+ * High-contrast, colorblind-distinguishable hex values matching .event-card left borders.
  */
-function getCategoryEmoji(event) {
-  if (!event) return '📍';
+const CATEGORY_COLORS = {
+  music: { id: 'music', label: 'Music', emoji: '🎸', color: '#7C3AED', filterId: 'music' },
+  shows: { id: 'shows', label: 'Comedy & Stage', emoji: '🎤', color: '#DC2626', filterId: 'shows' },
+  cinema: { id: 'cinema', label: 'Cinema', emoji: '🎬', color: '#2563EB', filterId: 'cinema' },
+  outdoors: { id: 'outdoors', label: 'Outdoors', emoji: '🌲', color: '#15803D', filterId: 'outdoors' },
+  arts: { id: 'arts', label: 'Arts', emoji: '🎭', color: '#DB2777', filterId: 'arts' },
+  social: { id: 'social', label: 'Social & Games', emoji: '🧠', color: '#D97706', filterId: 'social' },
+  markets: { id: 'markets', label: 'Markets', emoji: '🛍️', color: '#0D9488', filterId: 'markets' },
+  festivals: { id: 'festivals', label: 'Festivals', emoji: '🎪', color: '#EA580C', filterId: 'festivals' },
+  sports: { id: 'sports', label: 'Sports', emoji: '🏒', color: '#0284C7', filterId: 'sports' },
+  mixed: { id: 'mixed', label: 'Mixed / Multi-Category Venue', emoji: '📍', color: '#334155', filterId: null }
+};
+const CATEGORY_LEGEND_ORDER = ['music', 'shows', 'cinema', 'outdoors', 'arts', 'social', 'markets', 'festivals', 'sports'];
+
+if (typeof window !== 'undefined') {
+  window.CATEGORY_COLORS = CATEGORY_COLORS;
+}
+
+const iconCache = new Map();
+let mapLegendExpanded = (typeof window !== 'undefined') ? window.innerWidth >= 768 : true;
+let mapLegendUserToggled = false;
+let latestHasMixedVenues = false;
+
+function resolveMapEventCategoryKey(event) {
+  if (!event) return 'arts';
+  if (typeof window !== 'undefined' && typeof window.getCardSemanticCategoryMeta === 'function') {
+    const meta = window.getCardSemanticCategoryMeta(event);
+    if (meta && meta.filterId && CATEGORY_COLORS[meta.filterId]) {
+      return meta.filterId;
+    }
+  }
   const cat = String(event.category || event.primary_category || '').toLowerCase();
   const arch = String(event.event_archetype || event.archetype || '').toLowerCase();
   const tags = Array.isArray(event.subTags)
@@ -344,22 +372,24 @@ function getCategoryEmoji(event) {
   const title = String(event.title || event.event_name || '').toLowerCase();
   const combined = `${cat} ${arch} ${tags} ${title}`;
 
-  if (/\b(trivia|quiz|board-game|board game|bingo|social_gaming|chess|games)\b/.test(combined)) return '🧠';
-  if (/\b(comedy|stand-up|standup|improv|laugh)\b/.test(combined)) return '🎤';
-  if (cat === 'cinema' || arch === 'cinema' || /\b(cinema|film|movie|screening|35mm)\b/.test(combined)) return '🎬';
-  if (cat === 'music' || /\b(music|concert|band|jazz|dj|symphony|orchestra|gig|live-music)\b/.test(combined)) return '🎸';
-  if (/\b(hockey|sport|sports|basketball|football|soccer|skating|golf|pitch & putt|active_rec)\b/.test(combined)) return '🏒';
-  if (cat === 'outdoors' || arch === 'civic_park' || /\b(outdoors|outdoor|park|seawall|garden|beach|nature|trail)\b/.test(combined)) return '🌲';
-  if (cat === 'festivals' || arch === 'festival' || Boolean(event.isFestival) || /\b(festival|diwali|fringe|viff|market|markets)\b/.test(combined)) return '🎪';
-  if (cat === 'shows' || cat === 'social' || arch === 'live_stage' || arch === 'museum_gallery' || /\b(theatre|theater|arts|gallery|museum|exhibition|burlesque|cabaret|opera|dance)\b/.test(combined)) return '🎭';
-  return '📍';
+  if (/\b(trivia|quiz|board-game|board game|bingo|social_gaming|chess|games)\b/.test(combined)) return 'social';
+  if (cat === 'cinema' || arch === 'cinema' || /\b(cinema|film|movie|screening|35mm)\b/.test(combined)) return 'cinema';
+  if (cat === 'shows' || /\b(comedy|stand-up|standup|improv|theatre|theater|burlesque|cabaret|opera)\b/.test(combined)) return 'shows';
+  if (cat === 'music' || /\b(music|concert|band|jazz|dj|symphony|orchestra|gig|live-music)\b/.test(combined)) return 'music';
+  if (cat === 'markets' || /\b(market|markets|bazaar)\b/.test(combined)) return 'markets';
+  if (cat === 'sports' || arch === 'active_rec' || /\b(hockey|sport|sports|skating|golf|pitch & putt)\b/.test(combined)) return 'sports';
+  if (cat === 'outdoors' || arch === 'civic_park' || /\b(outdoors|outdoor|park|seawall|garden|beach|nature|trail)\b/.test(combined)) return 'outdoors';
+  if (cat === 'festivals' || arch === 'festival' || Boolean(event.isFestival)) return 'festivals';
+  return 'arts';
+}
+
+function getEventCategoryColor(event) {
+  const key = resolveMapEventCategoryKey(event);
+  return (CATEGORY_COLORS[key] || CATEGORY_COLORS.arts).color;
 }
 
 /**
- * Determines Price-Tier colors based on lowest price at the venue:
- *   $0 / Free : Emerald Green (#10B981, border #059669, text #FFFFFF)
- *   $1 - $25  : Sky Blue      (#0284C7, border #0369A1, text #FFFFFF)
- *   $26 - $50 : Deep Forest   (#0D6E52, border #064E3B, text #FFFFFF)
+ * Determines Price-Tier colors for InfoWindow price badges.
  */
 function getPriceTierColors(minPrice) {
   const p = parseFloat(minPrice);
@@ -386,30 +416,71 @@ function formatEventPriceBadge(event) {
 }
 
 /**
- * Builds an SVG pill/circle marker icon displaying the Category Emoji (+ count if multiple events)
- * and colored by the venue's lowest price tier.
+ * Cached SVG teardrop pin generator keyed by `${color}-${count}` (plus mixed flag).
+ * - Single event (count === 1): Teardrop pin filled with category hex, 2px white stroke, subtle shadow, white center dot.
+ * - Multi-event (count > 1): Same-category color or #334155 Dark Slate (with two-tone ring) + bold white numeric count.
  */
-function buildVenueGroupMarkerIcon(pinLabel, colors, isMulti) {
-  const width = isMulti ? Math.max(54, pinLabel.length * 8 + 18) : 36;
-  const height = 30;
-  const halfW = Math.round(width / 2);
+function createCategoryPinIcon(color, count = 1, isMixed = false, emoji = '📍') {
+  const safeCount = Math.max(1, Number(count) || 1);
+  const safeColor = color || '#334155';
+  const safeEmoji = emoji || '📍';
+  const cacheKey = `${safeColor}-${safeCount}-${isMixed ? 1 : 0}-${safeEmoji}`;
+
+  if (iconCache.has(cacheKey)) {
+    const cached = iconCache.get(cacheKey);
+    if (window.google && window.google.maps) {
+      return {
+        url: cached.url,
+        scaledSize: new window.google.maps.Size(cached.w, cached.h),
+        anchor: new window.google.maps.Point(cached.anchorX, cached.anchorY)
+      };
+    }
+    return cached;
+  }
+
+  const isMulti = safeCount > 1;
+  const pinLabel = isMulti ? `${safeEmoji} ×${safeCount}` : safeEmoji;
+  const w = isMulti ? Math.max(58, pinLabel.length * 8 + 18) : 36;
+  const bodyH = 30;
+  const h = bodyH + 8;
+  const halfW = Math.round(w / 2);
   const rx = 14;
 
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height + 6}" viewBox="0 0 ${width} ${height + 6}">
-    <rect x="1.5" y="1.5" width="${width - 3}" height="${height - 3}" rx="${rx}" fill="${colors.bg}" stroke="${colors.border}" stroke-width="2"/>
-    <polygon points="${halfW - 5},${height - 2} ${halfW + 5},${height - 2} ${halfW},${height + 5}" fill="${colors.border}"/>
-    <text x="${halfW}" y="19.5" text-anchor="middle" fill="${colors.text}" font-family="Plus Jakarta Sans, Segoe UI Emoji, Apple Color Emoji, Noto Color Emoji, sans-serif" font-size="12.5" font-weight="800">${escapeHtml(pinLabel)}</text>
+  const innerRingHtml = isMixed
+    ? `<rect x="4" y="4" width="${w - 8}" height="${bodyH - 8}" rx="${rx - 2.5}" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-dasharray="3 2"/>`
+    : '';
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <ellipse cx="${halfW}" cy="${h - 1.5}" rx="${isMulti ? 9 : 6}" ry="2" fill="rgba(15,23,42,0.28)"/>
+    <polygon points="${halfW - 6},${bodyH - 2} ${halfW + 6},${bodyH - 2} ${halfW},${bodyH + 6}" fill="#FFFFFF"/>
+    <rect x="1.5" y="1.5" width="${w - 3}" height="${bodyH - 3}" rx="${rx}" fill="${safeColor}" stroke="#FFFFFF" stroke-width="2"/>
+    <polygon points="${halfW - 4.5},${bodyH - 2.5} ${halfW + 4.5},${bodyH - 2.5} ${halfW},${bodyH + 4}" fill="${safeColor}"/>
+    ${innerRingHtml}
+    <text x="${halfW}" y="19.5" text-anchor="middle" fill="#FFFFFF" font-family="Plus Jakarta Sans, Segoe UI Emoji, Apple Color Emoji, Noto Color Emoji, sans-serif" font-size="${isMulti ? '12.5' : '14'}" font-weight="800">${escapeHtml(pinLabel)}</text>
   </svg>`;
 
-  return {
+  const entry = {
     url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
-    scaledSize: new window.google.maps.Size(width, height + 6),
-    anchor: new window.google.maps.Point(halfW, height + 5)
+    w,
+    h,
+    anchorX: halfW,
+    anchorY: bodyH + 6
   };
+  iconCache.set(cacheKey, entry);
+
+  if (window.google && window.google.maps) {
+    return {
+      url: entry.url,
+      scaledSize: new window.google.maps.Size(w, h),
+      anchor: new window.google.maps.Point(halfW, bodyH + 6)
+    };
+  }
+  return entry;
 }
 
 /**
  * Builds the multi-event InfoWindow HTML for a grouped venue marker.
+ * Each mini-card gets a 3px colored left border matching its specific category color.
  */
 function buildVenueGroupInfoWindowHtml(group) {
   const venueName = group.venueName || 'Metro Vancouver Venue';
@@ -425,9 +496,11 @@ function buildVenueGroupInfoWindowHtml(group) {
     const priceStr = formatEventPriceBadge(ev);
     const evPrice = getEventNumericPrice(ev);
     const tierColors = getPriceTierColors(evPrice);
+    const catKey = resolveMapEventCategoryKey(ev);
+    const catColor = (CATEGORY_COLORS[catKey] || CATEGORY_COLORS.arts).color;
 
     return `
-      <div class="gmap-venue-iw-item" data-action="toggle-map-card" data-event-id="${escapeHtml(evId)}" role="button" tabindex="0" aria-expanded="false">
+      <div class="gmap-venue-iw-item" data-action="toggle-map-card" data-event-id="${escapeHtml(evId)}" role="button" tabindex="0" aria-expanded="false" style="border-left: 3px solid ${escapeHtml(catColor)};">
         <div class="gmap-venue-iw-item-header">
           <div class="gmap-venue-iw-item-top">
             <div class="gmap-venue-iw-item-title">${escapeHtml(title)}</div>
@@ -466,10 +539,145 @@ function buildVenueGroupInfoWindowHtml(group) {
   `;
 }
 
+function collapseMapLegendOnMobile() {
+  if (typeof window !== 'undefined' && window.innerWidth < 768 && mapLegendExpanded) {
+    mapLegendExpanded = false;
+    renderMapLegend(latestFilteredEvents, latestHasMixedVenues);
+  }
+}
+
+function bindMapLegendEventIsolation(legendEl) {
+  if (!legendEl || legendEl._van50Isolated) return;
+  legendEl._van50Isolated = true;
+  ['click', 'mousedown', 'pointerdown', 'touchstart', 'wheel'].forEach((evtName) => {
+    legendEl.addEventListener(evtName, (e) => {
+      e.stopPropagation();
+    }, { passive: evtName === 'wheel' || evtName === 'touchstart' });
+  });
+}
+
+function renderMapLegend(filteredEvents, hasMixedVenues) {
+  const legendEl = document.getElementById('map-legend');
+  if (!legendEl) return;
+  bindMapLegendEventIsolation(legendEl);
+
+  if (!mapLegendUserToggled && typeof window !== 'undefined') {
+    mapLegendExpanded = window.innerWidth >= 768;
+  }
+
+  const activeCategory = (typeof window.getCurrentCategoryFilter === 'function')
+    ? String(window.getCurrentCategoryFilter() || 'all')
+    : 'all';
+
+  // Count events per category across the active city/search/date pool so users can 1-tap switch categories
+  const countPool = (Array.isArray(window._lastCategoryCountPool) && window._lastCategoryCountPool.length > 0)
+    ? window._lastCategoryCountPool
+    : (Array.isArray(filteredEvents) ? filteredEvents : []);
+
+  const countsByCat = {};
+  countPool.forEach((ev) => {
+    const k = resolveMapEventCategoryKey(ev);
+    countsByCat[k] = (countsByCat[k] || 0) + 1;
+  });
+
+  const visibleCats = CATEGORY_LEGEND_ORDER.filter(k => (countsByCat[k] || 0) > 0);
+  const showMixedRow = Boolean(hasMixedVenues);
+  const showUserLocRow = Boolean(userLocationMarker && typeof userLocationMarker.getMap === 'function' && userLocationMarker.getMap());
+
+  const rowsHtml = visibleCats.map((k) => {
+    const def = CATEGORY_COLORS[k];
+    const count = countsByCat[k] || 0;
+    const isSelected = activeCategory === def.filterId;
+    const isDimmed = activeCategory !== 'all' && !isSelected;
+    return `
+      <button type="button" class="map-legend-item ${isSelected ? 'is-selected' : ''} ${isDimmed ? 'is-dimmed' : ''}" data-legend-cat="${escapeHtml(def.filterId)}" aria-pressed="${isSelected ? 'true' : 'false'}" title="Filter map by ${escapeHtml(def.label)}">
+        <span class="map-legend-swatch" style="background:${escapeHtml(def.color)};"></span>
+        <span class="map-legend-emoji" aria-hidden="true">${escapeHtml(def.emoji || '')}</span>
+        <span class="map-legend-label">${escapeHtml(def.label)}</span>
+        <span class="map-legend-count">(${Number(count)})</span>
+      </button>
+    `;
+  }).join('');
+
+  const footerItems = [];
+  if (showMixedRow) {
+    footerItems.push(`
+      <div class="map-legend-static-row">
+        <span class="map-legend-mixed-badge">3</span>
+        <span class="map-legend-static-text">Dark Pin — Multi-category venue</span>
+      </div>
+    `);
+  }
+  if (showUserLocRow) {
+    footerItems.push(`
+      <div class="map-legend-static-row">
+        <span class="map-legend-user-dot"></span>
+        <span class="map-legend-static-text">Blue Halo — Your Location</span>
+      </div>
+    `);
+  }
+
+  legendEl.classList.toggle('is-expanded', mapLegendExpanded);
+  legendEl.classList.toggle('is-collapsed', !mapLegendExpanded);
+
+  legendEl.innerHTML = `
+    <div class="map-legend-header">
+      <button type="button" class="map-legend-toggle" aria-expanded="${mapLegendExpanded ? 'true' : 'false'}" aria-controls="map-legend-body">
+        <span class="map-legend-dot-cluster" aria-hidden="true">
+          <i style="background:#7C3AED"></i>
+          <i style="background:#DC2626"></i>
+          <i style="background:#15803D"></i>
+        </span>
+        <span class="map-legend-title">Legend</span>
+        <span class="map-legend-chevron" aria-hidden="true">${mapLegendExpanded ? '▾' : '▸'}</span>
+      </button>
+      ${(mapLegendExpanded && activeCategory !== 'all') ? `<button type="button" class="map-legend-reset" data-legend-reset="1">Show All</button>` : ''}
+    </div>
+    ${mapLegendExpanded ? `
+      <div class="map-legend-body" id="map-legend-body">
+        <div class="map-legend-list" role="group" aria-label="Filter map by category">
+          ${rowsHtml || '<div class="map-legend-empty">No pins in current view</div>'}
+        </div>
+        ${footerItems.length > 0 ? `<div class="map-legend-divider"></div><div class="map-legend-footer">${footerItems.join('')}</div>` : ''}
+      </div>
+    ` : ''}
+  `;
+
+  const toggleBtn = legendEl.querySelector('.map-legend-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mapLegendUserToggled = true;
+      mapLegendExpanded = !mapLegendExpanded;
+      renderMapLegend(latestFilteredEvents, latestHasMixedVenues);
+    });
+  }
+
+  const resetBtn = legendEl.querySelector('.map-legend-reset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (typeof window.filterByCategory === 'function') {
+        window.filterByCategory('all');
+      }
+    });
+  }
+
+  legendEl.querySelectorAll('.map-legend-item[data-legend-cat]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const catId = btn.getAttribute('data-legend-cat');
+      if (catId && typeof window.filterByCategory === 'function') {
+        window.filterByCategory(catId);
+      }
+    });
+  });
+}
+
 /**
  * Groups filteredEvents by venue / coordinate (rounded to 4 decimal places),
- * plots category-emoji + price-tier SVG markers, updates the "X events plotted" counter,
- * and fits bounds.
+ * plots semantic category-colored SVG markers, updates the "X events plotted" counter
+ * and Map Legend overlay, and fits bounds.
  */
 function renderMapMarkers(filteredEvents, options = {}) {
   const eventsList = Array.isArray(filteredEvents)
@@ -482,6 +690,7 @@ function renderMapMarkers(filteredEvents, options = {}) {
   updatePlottedCounterText(eventsList.length);
 
   if (!mapInstance || !window.google || !window.google.maps || mapAuthFailed) {
+    renderMapLegend(eventsList, false);
     return;
   }
 
@@ -523,12 +732,14 @@ function renderMapMarkers(filteredEvents, options = {}) {
         lat: coords.lat,
         lng: coords.lng,
         events: [],
+        categoryKeys: new Set(),
         minPrice: Infinity
       };
       venueGroupsMap.set(coordKey, group);
     }
 
     group.events.push(event);
+    group.categoryKeys.add(resolveMapEventCategoryKey(event));
     const evPrice = getEventNumericPrice(event);
     if (evPrice < group.minPrice) {
       group.minPrice = evPrice;
@@ -536,27 +747,33 @@ function renderMapMarkers(filteredEvents, options = {}) {
   });
 
   const bounds = new window.google.maps.LatLngBounds();
+  let hasMixedVenues = false;
 
   venueGroupsMap.forEach((group) => {
     const count = group.events.length;
-    const primaryEmoji = getCategoryEmoji(group.events[0]);
-    const pinLabel = count > 1 ? `${primaryEmoji} ×${count}` : primaryEmoji;
+    const isMixed = count > 1 && group.categoryKeys.size > 1;
+    if (isMixed) hasMixedVenues = true;
+    const primaryCatKey = Array.from(group.categoryKeys)[0] || 'arts';
+    const primaryCatDef = CATEGORY_COLORS[primaryCatKey] || CATEGORY_COLORS.arts;
+    const pinColor = isMixed ? CATEGORY_COLORS.mixed.color : primaryCatDef.color;
+    const pinEmoji = isMixed ? CATEGORY_COLORS.mixed.emoji : primaryCatDef.emoji;
     const minPrice = group.minPrice === Infinity ? 0 : group.minPrice;
-    const colors = getPriceTierColors(minPrice);
-    const icon = buildVenueGroupMarkerIcon(pinLabel, colors, count > 1);
+    const priceInfo = getPriceTierColors(minPrice);
+    const icon = createCategoryPinIcon(pinColor, count, isMixed, pinEmoji);
     const position = { lat: group.lat, lng: group.lng };
 
     const marker = new window.google.maps.Marker({
       position,
       map: mapInstance,
       title: count > 1
-        ? `${group.venueName} (${count} events • from ${colors.tierLabel})`
-        : `${group.events[0].title || 'Event'} @ ${group.venueName} (${colors.tierLabel})`,
+        ? `${group.venueName} (${count} events • from ${priceInfo.tierLabel})`
+        : `${group.events[0].title || 'Event'} @ ${group.venueName} (${priceInfo.tierLabel})`,
       icon,
       optimized: true
     });
 
     marker.addListener('click', () => {
+      collapseMapLegendOnMobile();
       sharedInfoWindow.setContent(buildVenueGroupInfoWindowHtml(group));
       sharedInfoWindow.open({
         anchor: marker,
@@ -568,8 +785,10 @@ function renderMapMarkers(filteredEvents, options = {}) {
     bounds.extend(position);
   });
 
+  latestHasMixedVenues = hasMixedVenues;
   window.activeMapMarkers = markersArray;
   updatePlottedCounterText(eventsList.length);
+  renderMapLegend(eventsList, hasMixedVenues);
 
   const activeRegion = String(options.region || window.van50SelectedRegion || 'all').toLowerCase();
   if (activeRegion === 'surrey') {
@@ -640,7 +859,12 @@ async function initVancouverMap() {
       sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
 
       mapInstance.addListener('click', () => {
+        collapseMapLegendOnMobile();
         if (sharedInfoWindow) sharedInfoWindow.close();
+      });
+
+      mapInstance.addListener('dragstart', () => {
+        collapseMapLegendOnMobile();
       });
 
       window.vancouverMapInstance = mapInstance;
@@ -758,6 +982,7 @@ async function centerMapOnUserLocation() {
       const allJumpButtons = document.querySelectorAll('div[aria-label="Town Centre Quick Jump"] button');
       const nearMeBtn = document.getElementById('map-jump-near-me');
       allJumpButtons.forEach((btn) => btn.classList.toggle('active', btn === nearMeBtn));
+      renderMapLegend(latestFilteredEvents, latestHasMixedVenues);
     },
     () => {
       setLocateButtonsLoading(false);
@@ -944,7 +1169,9 @@ if (typeof window !== 'undefined') {
   window.loadGoogleMapsScript = loadGoogleMapsScript;
   window.resolveEventCoords = resolveEventCoords;
   window.resolveEventCoordinates = resolveEventCoordinates;
-  window.getCategoryEmoji = getCategoryEmoji;
+  window.createCategoryPinIcon = createCategoryPinIcon;
+  window.getEventCategoryColor = getEventCategoryColor;
+  window.renderMapLegend = renderMapLegend;
   window.renderMapMarkers = renderMapMarkers;
   window.renderGoogleMapMarkers = renderMapMarkers;
   window.updateMapMarkers = renderMapMarkers;

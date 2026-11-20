@@ -1390,7 +1390,7 @@ function getCardSemanticCategoryMeta(ev) {
     return { label: 'Music', themeKey: 'music', filterId: 'music' };
   }
   if (cats.includes('markets') || /\bmarket\b/i.test(catLabel) || /\b(holiday\s+market|christmas\s+market|winter\s+market|artisan\s+market|craft\s+market|farmers\s+market)\b/i.test(titleStr)) {
-    return { label: 'Markets', themeKey: 'arts', filterId: 'markets' };
+    return { label: 'Markets', themeKey: 'markets', filterId: 'markets' };
   }
   if (cats.includes('sports') || arch === 'active_rec' || /\b(sports?|golf|pitch\s*&\s*putt|skating|curling|hockey|baseball|soccer|bowling|roller)\b/i.test(combined)) {
     return { label: 'Sports', themeKey: 'sports', filterId: 'sports' };
@@ -1405,7 +1405,7 @@ function getCardSemanticCategoryMeta(ev) {
     return { label: 'Stage', themeKey: 'comedy', filterId: 'shows' };
   }
   if (cats.includes('festivals') || arch === 'festival') {
-    return { label: 'Festival', themeKey: 'arts', filterId: 'festivals' };
+    return { label: 'Festival', themeKey: 'festivals', filterId: 'festivals' };
   }
   if (cats.includes('arts') || cats.includes('culture') || arch === 'museum_gallery' || arch === 'workshop' || /\b(gallery|museum|exhibition|exhibit|workshop|art)\b/i.test(combined)) {
     return { label: 'Arts', themeKey: 'arts', filterId: 'arts' };
@@ -1416,6 +1416,7 @@ function getCardSemanticCategoryMeta(ev) {
   return { label: 'Arts', themeKey: 'arts', filterId: 'arts' };
 }
 window.getCardSemanticCategoryMeta = getCardSemanticCategoryMeta;
+window.getCurrentCategoryFilter = () => (typeof state !== 'undefined' && state.category) ? state.category : 'all';
 
 function getCompactRow2CategoryLabel(ev) {
   return getCardSemanticCategoryMeta(ev).label;
