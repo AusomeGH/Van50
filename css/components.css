@@ -716,8 +716,9 @@
    ============================================================================== */
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
   gap: 18px;
+  align-items: start;
   margin-bottom: 50px;
 }
 
@@ -738,8 +739,6 @@
   transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
   position: relative;
   overflow: hidden;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 290px;
 }
 
 .event-card:hover {
@@ -3269,8 +3268,9 @@
 
 .time-group-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
   gap: 20px;
+  align-items: start;
 }
 
 @media (max-width: 480px) {
@@ -5530,13 +5530,20 @@ body.van50-accessible .card-ticket-link {
 .mobile-sheet-footer,
 .mobile-sheet-backdrop,
 .mobile-sheet-handle,
-.mobile-view-toggle,
-.mobile-card-compact-header {
+.mobile-view-toggle {
   display: none;
 }
 
+.mobile-card-compact-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
 .card-expandable-details {
-  display: contents;
+  display: none;
+  flex-direction: column;
 }
 
 /* Active Filter Summary Strip & Dismissible Pills */
@@ -7271,10 +7278,10 @@ section[aria-label="Active Local Festivals"] .festival-theme-item-row:hover {
   .events-grid:not(.is-hidden):not([hidden]),
   .time-group-cards-grid {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)) !important;
     gap: 20px !important;
     width: 100% !important;
-    align-items: stretch !important;
+    align-items: start !important;
   }
 
   .events-grid>.event-card,
@@ -9792,6 +9799,269 @@ button.festival-theme-item-row.festival-theme-box-btn:focus-visible {
 }
 
 .btn-shared-plan-clear:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+/* ==============================================================================
+   11. UNIFIED DESKTOP + MOBILE EVENT CARD ACCORDION, PRE-FEED ROW & SLIM FESTIVALS
+   ============================================================================== */
+
+/* Always-visible 2-row summary header on ALL viewports (Desktop & Mobile) */
+section[aria-label="Events List"] .event-card {
+  padding: 14px 16px !important;
+  cursor: pointer;
+  content-visibility: visible !important;
+  contain-intrinsic-size: auto !important;
+}
+
+section[aria-label="Events List"] .mobile-card-compact-header {
+  display: flex !important;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+  visibility: visible;
+  opacity: 1;
+}
+
+section[aria-label="Events List"] .mobile-card-row-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+section[aria-label="Events List"] .mobile-card-title {
+  font-family: var(--font-heading);
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.32;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+section[aria-label="Events List"] .mobile-card-price-pill {
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 2px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  line-height: 1.35;
+}
+
+section[aria-label="Events List"] .mobile-card-row-2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  min-width: 0;
+  width: 100%;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+section[aria-label="Events List"] .row2-context-pill {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+section[aria-label="Events List"] .mobile-card-meta-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+section[aria-label="Events List"] .mobile-card-chevron {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--brand-primary);
+  transition: transform 0.2s ease;
+}
+
+section[aria-label="Events List"] .event-card.mobile-expanded .mobile-card-chevron,
+section[aria-label="Events List"] .event-card.desktop-expanded .mobile-card-chevron {
+  transform: rotate(180deg);
+}
+
+/* Collapsed state hides ONLY .card-expandable-details; expands cleanly on click */
+section[aria-label="Events List"] .card-expandable-details {
+  display: none;
+  flex-direction: column;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+section[aria-label="Events List"] .event-card.mobile-expanded .card-expandable-details,
+section[aria-label="Events List"] .event-card.desktop-expanded .card-expandable-details {
+  display: flex;
+}
+
+section[aria-label="Events List"] .card-expandable-details .card-title {
+  display: none !important;
+}
+
+/* Desktop Pre-Feed Controls: Single Clean Row (7-City Region Filter + Quick Toggles) */
+@media (min-width: 769px) {
+  .pre-feed-controls-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 2px 0 6px 0;
+    padding: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .pre-feed-controls-row .region-filter-bar {
+    width: auto !important;
+    flex: 0 1 auto !important;
+    margin: 0 !important;
+  }
+
+  .pre-feed-controls-row .top-quick-toggles-bar {
+    margin-left: auto;
+  }
+}
+
+/* Slim Collapsible Current Festivals & Holidays Strip */
+.festival-spotlight-section {
+  margin: 4px 0 10px !important;
+}
+
+.festival-spotlight-card.festival-compact-banner,
+section[aria-label="Active Local Festivals"] .festival-spotlight-card.festival-compact-banner {
+  padding: 8px 12px !important;
+  border-radius: 12px !important;
+}
+
+.festival-compact-banner .festival-spotlight-left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.festival-compact-banner .festival-compact-header-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin: 0 !important;
+  width: 100%;
+}
+
+.festival-compact-banner .festival-spotlight-title {
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted) !important;
+  text-align: left !important;
+  width: auto !important;
+  margin: 0 !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.festival-compact-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 1px 0;
+}
+
+.festival-compact-chips-row::-webkit-scrollbar {
+  display: none;
+}
+
+.festival-compact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.festival-compact-chip:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.festival-compact-chip.item-row-selected {
+  background: var(--price-free-bg);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.festival-compact-chip.item-row-excluded {
+  background: rgba(225, 29, 72, 0.08);
+  border-color: rgba(225, 29, 72, 0.35);
+  color: #e11d48;
+}
+
+.festival-compact-chip .theme-item-count {
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+.btn-festival-details-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 9999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-festival-details-toggle:hover {
   border-color: var(--brand-primary);
   color: var(--brand-primary);
 }

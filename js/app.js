@@ -2355,6 +2355,9 @@ function setupEventListeners() {
       case 'cycle-theme-box':
         cycleThemeBoxState(actionEl.getAttribute('data-theme-key') || '', e);
         return true;
+      case 'toggle-festival-spotlight':
+        toggleFestivalDetailsDrawer();
+        return true;
       case 'clear-selected-tag':
         clearSelectedTag();
         return true;
@@ -3603,7 +3606,38 @@ function renderFestivalSpotlight() {
     bannerTitle = 'Current Holidays';
   }
 
-  const activeItemsListHtml = themeGroups.length > 0 ? `
+  const isExpanded = Boolean(state.festivalDetailsExpanded);
+  const compactChipsHtml = themeGroups.map(g => {
+    const meta = getThemeMetadata(g);
+    const isSelected = state.selectedThemeFilter === g.key;
+    const isExcluded = Boolean(state.excludedThemes && state.excludedThemes.has(g.key));
+    const stateAttr = isSelected ? 'only' : (isExcluded ? 'excluded' : 'default');
+    const stateBadgeHtml = isSelected
+      ? `<span class="theme-state-pill state-only">Only</span>`
+      : (isExcluded ? `<span class="theme-state-pill state-hidden">Hidden</span>` : '');
+    const boxTitle = isSelected
+      ? `Showing only ${meta.label} (${g.count}). Click again to hide from feed.`
+      : (isExcluded
+        ? `${meta.label} hidden from feed. Click again to reset and include with all outings.`
+        : `Click to show only ${meta.label} (${g.count} outings)`);
+    return `
+      <button
+        type="button"
+        class="festival-compact-chip ${isSelected ? 'item-row-selected' : ''} ${isExcluded ? 'item-row-excluded' : ''}"
+        data-theme-state="${stateAttr}"
+        data-action="cycle-theme-box"
+        data-theme-key="${escapeHtml(g.key)}"
+        aria-pressed="${isSelected ? 'true' : (isExcluded ? 'mixed' : 'false')}"
+        title="${escapeHtml(boxTitle)}"
+      >
+        <span class="festival-chip-name">${escapeHtml(meta.label)}</span>
+        <span class="theme-item-count">${Number(g.count) || 0}</span>
+        ${stateBadgeHtml}
+      </button>
+    `;
+  }).join('');
+
+  const activeItemsListHtml = (isExpanded && themeGroups.length > 0) ? `
     <div class="festival-active-items-list" role="group" aria-label="Active festivals and holidays">
       ${themeGroups.map(g => {
     const meta = getThemeMetadata(g);
@@ -3645,10 +3679,17 @@ function renderFestivalSpotlight() {
   ` : '';
 
   container.innerHTML = `
-    <div class="festival-spotlight-card festival-compact-banner">
+    <div class="festival-spotlight-card festival-compact-banner ${isExpanded ? 'is-expanded' : 'is-collapsed'}">
       <div class="festival-spotlight-left">
         <div class="festival-compact-header-row">
           <h2 class="festival-spotlight-title">${bannerTitle}</h2>
+          <div class="festival-compact-chips-row" role="group" aria-label="Quick festival and holiday filters">
+            ${compactChipsHtml}
+          </div>
+          <button type="button" class="btn-festival-details-toggle" data-action="toggle-festival-spotlight" aria-expanded="${isExpanded ? 'true' : 'false'}" title="${isExpanded ? 'Collapse festival dates & descriptions' : 'Show festival dates & descriptions'}">
+            <span>${isExpanded ? 'Less' : 'Details'}</span>
+            <span class="festival-toggle-chevron" aria-hidden="true">${isExpanded ? '▴' : '▾'}</span>
+          </button>
         </div>
         ${activeItemsListHtml}
       </div>
@@ -3918,23 +3959,7 @@ function renderQuickCategoryStrip(poolOverride) {
     : (Array.isArray(window._lastCategoryCountPool) ? window._lastCategoryCountPool : []);
   const hasPool = Array.isArray(poolOverride) || Array.isArray(window._lastCategoryCountPool);
 
-  const now = new Date();
-  const todayDayCode = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][now.getDay()];
-  const isTodayActive = state.dayOfWeek === todayDayCode;
   strip.innerHTML = '';
-
-  const todayPill = document.createElement('button');
-  todayPill.type = 'button';
-  todayPill.id = 'quick-today-pill';
-  todayPill.className = `quick-cat-pill quick-today-pill ${isTodayActive ? 'active' : ''}`;
-  todayPill.setAttribute('aria-pressed', isTodayActive ? 'true' : 'false');
-  todayPill.textContent = 'Today';
-  todayPill.addEventListener('click', () => {
-    state.dayOfWeek = (state.dayOfWeek === todayDayCode) ? 'all' : todayDayCode;
-    renderDayPills();
-    applyFiltersAndRender();
-  });
-  strip.appendChild(todayPill);
 
   QUICK_CATEGORY_ITEMS.forEach(item => {
     const btn = document.createElement('button');

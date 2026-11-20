@@ -368,7 +368,7 @@ button {
    Hero Section
    ============================================================================== */
 .hero-section {
-  padding: 28px 0 18px;
+  padding: 14px 0 8px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -377,11 +377,11 @@ button {
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.65rem, 4vw, 2.45rem);
+  font-size: clamp(1.55rem, 3.6vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.2;
-  margin-bottom: 8px;
+  line-height: 1.18;
+  margin-bottom: 4px;
   max-width: 780px;
   color: var(--text-main);
 }
@@ -392,11 +392,11 @@ button {
 }
 
 .hero-subtitle {
-  font-size: 0.98rem;
+  font-size: 0.94rem;
   color: var(--text-muted);
   max-width: 640px;
-  margin-bottom: 12px;
-  line-height: 1.5;
+  margin-bottom: 4px;
+  line-height: 1.45;
 }
 
 /* Search Bar & Sticky Scroll Date Bar */
@@ -449,12 +449,12 @@ button {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 0 auto 14px;
+  margin: 0 auto 8px;
   position: sticky;
   top: 64px;
   z-index: 85;
   background: var(--bg-app);
-  padding: 10px 0;
+  padding: 6px 0;
   transition: box-shadow 0.2s ease;
 }
 
