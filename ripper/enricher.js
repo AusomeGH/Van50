@@ -539,17 +539,25 @@ export async function fetchLivePageDescription(url) {
     ]);
     if (!html) return null;
 
-    // 1. Meta Description (name or property)
+    const isGenericSiteBoilerplate = (val) => {
+      if (!val || typeof val !== "string") return true;
+      const v = val.trim();
+      if (v.length < 25) return true;
+      if (/^(?:find|buy|get|book)\s+tickets\s+for\b/i.test(v) && /\bshowing at\b/i.test(v)) return true;
+      if (/\b(?:burnaby\s+public\s+library\s+empowers\s+the\s+community|fvrl\s+is\s+the\s+largest\s+public\s+library\s+system|gateway\s+theatre\s+is\s+a\s+stage\s+for\s+change|north\s+vancouver\s+city\s+library\s+is\s+a\s+vibrant|the\s+digital\s+library['’]?s\s+doors\s+are\s+always\s+open|welcome\s+to\s+the\s+official\s+website|we\s+use\s+cookies|all\s+rights\s+reserved|subscribe\s+to\s+our\s+newsletter)\b/i.test(v)) return true;
+      return false;
+    };
+
+    // 1. Meta Description (name or property) — skip generic site-wide boilerplate
     const metaRegexes = [
       /<meta[^>]+(?:name|property)=["'](?:description|og:description|twitter:description)["'][^>]+content=["']([^"']+)["']/i,
       /<meta[^>]+content=["']([^"']+)["'][^>]+(?:name|property)=["'](?:description|og:description|twitter:description)["']/i
     ];
     for (const rx of metaRegexes) {
       const match = html.match(rx);
-      if (match && match[1] && match[1].trim().length > 25) {
+      if (match && match[1]) {
         const val = unescapeHtml(match[1].trim());
-        if (/^(?:find|buy|get|book)\s+tickets\s+for\b/i.test(val) && /\bshowing at\b/i.test(val)) continue;
-        return val;
+        if (!isGenericSiteBoilerplate(val)) return val;
       }
     }
 
@@ -561,11 +569,30 @@ export async function fetchLivePageDescription(url) {
         const parsed = JSON.parse(jsonMatch[1]);
         const items = Array.isArray(parsed) ? parsed : [parsed];
         for (const item of items) {
-          if (item && typeof item.description === "string" && item.description.trim().length > 25) {
-            return unescapeHtml(item.description.trim());
+          if (item && typeof item.description === "string") {
+            const val = unescapeHtml(item.description.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+            if (!isGenericSiteBoilerplate(val)) return val;
           }
         }
       } catch (_) { }
+    }
+
+    // 3. Main-content <p> paragraph extraction fallback (when meta/JSON-LD are absent or boilerplate)
+    const bodyHtml = html
+      .replace(/<(script|style|noscript|svg|nav|header|footer|aside|form)[^>]*>[\s\S]*?<\/\1>/gi, " ");
+    const pRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+    const paragraphs = [];
+    let pMatch;
+    while ((pMatch = pRegex.exec(bodyHtml)) !== null) {
+      const text = unescapeHtml(pMatch[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+      if (text.length < 45 || text.length > 900) continue;
+      if (isGenericSiteBoilerplate(text)) continue;
+      if (/^(?:copyright|©|privacy\s+policy|terms\s+of|skip\s+to|menu|search|sign\s+in|log\s+in|powered\s+by|javascript\s+is\s+required)/i.test(text)) continue;
+      paragraphs.push(text);
+      if (paragraphs.join(" ").length >= 420 || paragraphs.length >= 3) break;
+    }
+    if (paragraphs.length > 0) {
+      return paragraphs.join(" ").slice(0, 650).trim();
     }
   } catch (_) {
     // Network failure or timeout: silently fail back to deterministic synthesis
@@ -1285,10 +1312,12 @@ export async function runEnricher(options = {}) {
         curator_instruction: activeCuratorNote,
       });
 
+      const isDeterministicNullFallback = Boolean(existingEd && existingEd.description === null && existingEd.source_engine === "deterministic_cognitive_nlp");
       const canReuseCachedEditorial = Boolean(
         !options.force &&
         existingEd &&
         !isCorruptedOrStale(existingEd) &&
+        !(isDeterministicNullFallback && (useAgy || apiKey)) &&
         existingEd.input_fingerprint &&
         existingEd.input_fingerprint === inputFingerprint &&
         (existingEd.description === null

@@ -10065,3 +10065,336 @@ section[aria-label="Active Local Festivals"] .festival-spotlight-card.festival-c
   border-color: var(--brand-primary);
   color: var(--brand-primary);
 }
+
+/* ==============================================================================
+   UX STREAMLINE: TICKET CTA, TIER STRIP, MAP PILL, DRAWER SECTIONS & FEST BAR
+   ============================================================================== */
+
+/* 1. High-Visibility Thumb-Friendly Ticket / Tier CTA Button */
+.btn-ticket-cta,
+a.btn-ticket-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 42px !important;
+  padding: 10px 18px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.2;
+  text-decoration: none !important;
+  background: var(--brand-primary, #0d9488) !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.22) !important;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+}
+
+.btn-ticket-cta:hover,
+a.btn-ticket-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.34) !important;
+  color: #ffffff !important;
+}
+
+.btn-ticket-cta:active,
+a.btn-ticket-cta:active {
+  transform: translateY(0);
+}
+
+.btn-ticket-cta:focus-visible,
+a.btn-ticket-cta:focus-visible {
+  outline: 3px solid var(--brand-primary, #0d9488) !important;
+  outline-offset: 2px !important;
+}
+
+.btn-ticket-cta.sold-out,
+a.btn-ticket-cta.sold-out {
+  background: #64748b !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* Matching Solid Pill Button inside Map InfoWindow Popup */
+.gmap-iw-expand-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  min-height: 28px;
+  border-radius: 9999px;
+  background: var(--brand-primary, #0d9488);
+  color: #ffffff !important;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(13, 148, 136, 0.24);
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gmap-venue-iw-item:hover .gmap-iw-expand-hint {
+  transform: translateY(-1px);
+  filter: brightness(1.07);
+  box-shadow: 0 3px 8px rgba(13, 148, 136, 0.32);
+}
+
+.gmap-venue-iw-item:focus-visible .gmap-iw-expand-hint {
+  outline: 2px solid var(--brand-primary, #0d9488);
+  outline-offset: 2px;
+}
+
+/* Collapsed Card Price Pill Senior & Multi-Tier Styling */
+section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price {
+  background: rgba(13, 148, 136, 0.14);
+  color: var(--brand-primary, #0d9488);
+  border: 1px solid rgba(13, 148, 136, 0.45);
+}
+
+/* Expanded Card Horizontal Ticket Tier Mini-Badges Strip */
+.card-tier-badges-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 10px;
+}
+
+.card-tier-mini-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.card-tier-mini-badge strong {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.card-tier-mini-badge.is-senior-tier {
+  background: rgba(13, 148, 136, 0.1);
+  border-color: rgba(13, 148, 136, 0.4);
+  color: var(--brand-primary, #0d9488);
+}
+
+.card-tier-mini-badge.is-senior-tier strong {
+  color: var(--brand-primary, #0d9488);
+}
+
+.card-tier-mini-badge.is-tier-soldout {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+/* 2. Compact Single-Line Expandable Seasonal Festivals Summary Bar */
+.festival-summary-bar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 2px;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.festival-summary-bar-btn:focus-visible {
+  outline: 2px solid var(--brand-primary, #0d9488);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.festival-summary-bar-left {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  min-width: 0;
+}
+
+.festival-summary-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.festival-summary-active-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: var(--price-free-bg, rgba(13, 148, 136, 0.12));
+  border: 1px solid var(--brand-primary, #0d9488);
+  color: var(--brand-primary, #0d9488);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.festival-summary-bar-btn .festival-toggle-chevron {
+  font-size: 0.85rem;
+  color: var(--brand-primary, #0d9488);
+  flex-shrink: 0;
+}
+
+/* 3. Streamlined Filters Drawer Sections (Spend, Access & Discounts, Time, Style) */
+#mobile-filters-sheet .drawer-filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+#mobile-filters-sheet .drawer-filter-section:first-of-type {
+  border-top: none;
+  padding-top: 4px;
+}
+
+#mobile-filters-sheet .drawer-section-header {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+#mobile-filters-sheet .drawer-section-header strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+#mobile-filters-sheet .drawer-spend-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#mobile-filters-sheet .drawer-spend-pills .cost-quick-btn {
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+#mobile-filters-sheet .drawer-spend-pills .cost-quick-btn.active {
+  background: var(--brand-primary, #0d9488) !important;
+  border-color: var(--brand-primary, #0d9488) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+}
+
+.access-discounts-toggles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 420px) {
+  .access-discounts-toggles {
+    grid-template-columns: 1fr;
+  }
+}
+
+.drawer-toggle-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.drawer-toggle-pill:hover {
+  border-color: var(--brand-primary, #0d9488);
+  background: var(--bg-card);
+}
+
+.drawer-toggle-pill:focus-visible {
+  outline: 2px solid var(--brand-primary, #0d9488);
+  outline-offset: 2px;
+}
+
+.drawer-toggle-pill .toggle-pill-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-muted);
+  background: transparent;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.drawer-toggle-pill.active {
+  background: rgba(13, 148, 136, 0.12);
+  border-color: var(--brand-primary, #0d9488);
+  color: var(--brand-primary, #0d9488);
+  font-weight: 700;
+}
+
+.drawer-toggle-pill.active .toggle-pill-indicator {
+  background: var(--brand-primary, #0d9488);
+  border-color: var(--brand-primary, #0d9488);
+}
+
+.access-display-mode-row {
+  margin-top: 2px;
+}
+
+.drawer-display-access-btn {
+  width: 100%;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border-radius: 10px;
+}
+
+#mobile-filters-sheet .time-pills-wrap,
+#mobile-filters-sheet .event-focus-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#mobile-filters-sheet .time-pill,
+#mobile-filters-sheet .focus-pill {
+  min-height: 36px;
+  padding: 6px 13px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+#mobile-filters-sheet .time-pill.active,
+#mobile-filters-sheet .focus-pill.active {
+  background: var(--brand-primary, #0d9488) !important;
+  border-color: var(--brand-primary, #0d9488) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+}

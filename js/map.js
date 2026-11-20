@@ -437,7 +437,7 @@ function buildVenueGroupInfoWindowHtml(group) {
           </div>
           <div class="gmap-venue-iw-item-meta">
             <span class="gmap-venue-iw-item-date">${escapeHtml(dayTime)}</span>
-            <span class="gmap-iw-expand-hint" aria-hidden="true">Details →</span>
+            <span class="gmap-iw-expand-hint" aria-hidden="true">Details &amp; Tickets →</span>
           </div>
         </div>
         <div class="gmap-iw-expanded-card-mount" data-map-card-mount="${escapeHtml(evId)}" style="display:none;"></div>

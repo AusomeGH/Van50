@@ -158,7 +158,7 @@ export function parseHumanDateToIso(str, defaultYear = 2026, contextHint = "") {
     jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06",
     jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12"
   };
-  const m = str.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s*,?\s*(202\d))?/i);
+  const m = str.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s*,?\s*(202\d))?/i);
   if (m) {
     const month = months[m[1].toLowerCase().slice(0, 3)];
     const day = String(parseInt(m[2], 10)).padStart(2, "0");
@@ -372,13 +372,14 @@ export function matchVenue(venueQuery, venues) {
         if (new RegExp(`(?:^|\\s)${campus}(?:\\s|$)`).test(norm)) quals.add(`campus:${campus}`);
       }
     }
-    if (/\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|north\s+vancouver\s+(?:city|district)\s+public\s+library)\b/.test(norm)) {
+    if (/\b(?:surrey\s+libraries|vancouver\s+public\s+library|vpl|burnaby\s+public\s+library|richmond\s+public\s+library|coquitlam\s+public\s+library|north\s+vancouver\s+(?:city|district)\s+public\s+library|fraser\s+valley\s+regional\s+library|fvrl)\b/.test(norm)) {
       if (/\b(?:vancouver\s+public\s+library|vpl)\b/.test(norm)) quals.add("libsys:vancouver");
       if (/\bsurrey\s+libraries\b/.test(norm)) quals.add("libsys:surrey");
       if (/\bburnaby\s+public\s+library\b/.test(norm)) quals.add("libsys:burnaby");
       if (/\bcoquitlam\s+public\s+library\b/.test(norm)) quals.add("libsys:coquitlam");
       if (/\brichmond\s+public\s+library\b/.test(norm)) quals.add("libsys:richmond");
       if (/\bnorth\s+vancouver\s+(?:city|district)\s+public\s+library\b/.test(norm)) quals.add("libsys:northvan");
+      if (/\b(?:fraser\s+valley\s+regional\s+library|fvrl)\b/.test(norm)) quals.add("libsys:fraser");
     }
     return quals;
   };
@@ -391,12 +392,15 @@ export function matchVenue(venueQuery, venues) {
     "gallery", "theatre", "theater", "hall", "centre", "center", "room", "park", "cafe", "club",
     "place", "house", "space", "vancouver", "public", "market", "gardens", "garden", "promenade",
     "courtyard", "district", "waterfront", "quay", "island", "plaza", "building", "square", "beach",
-    "fine", "arts", "street", "avenue", "road", "drive", "lane", "studio", "studios", "stage",
+    "fine", "arts", "art", "street", "avenue", "road", "drive", "lane", "studio", "studios", "stage",
     "lounge", "bar", "pub", "inn", "hotel", "society", "association", "classical", "the", "and",
     "for", "with", "at", "by", "of", "central", "north", "south", "east", "west", "main", "downtown",
-    "burnaby", "city", "metro", "village", "shop", "live", "venue", "pacific", "granville", "olympic",
+    "burnaby", "surrey", "richmond", "coquitlam", "langley", "delta", "new", "westminster",
+    "city", "metro", "village", "shop", "live", "venue", "pacific", "granville", "olympic",
     "queen", "elizabeth", "international", "cinemas", "cinema", "company", "council", "family",
-    "libraries", "library", "branch", "branches", "campus"
+    "libraries", "library", "branch", "branches", "campus", "community", "recreation", "secondary",
+    "school", "anglican", "church", "christian", "reformed", "baptist", "united", "cultural",
+    "regional", "fraser", "valley", "museum", "college", "university", "welcome"
   ]);
 
   const queryTokens = cleanQuery.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t));
@@ -3176,7 +3180,8 @@ export async function compileCatalog(options = {}) {
       if (venue.is_out_of_market === true) return true;
       const combinedGeoText = `${venueAddress} ${venue.neighborhood || ""} ${cleanTitle || ""} ${sched.title || ""} ${seedTitle || ""} ${ticketUrl || ""} ${detailsUrl || ""}`;
       if (/\b(?:OUT[- ]OF[- ]MARKET|Fraser\s+Valley\s+Regional\s+District|Capital\s+Regional\s+District|Gulf\s+Islands)\b/i.test(combinedGeoText)) return true;
-      if (/\b(?:Abbotsford|Chilliwack|Mission|Squamish|Whistler|Pemberton|Victoria|Nanaimo|Salt\s+Spring\s+Island|Kelowna|Kamloops|Calgary|Edmonton|Toronto|Montreal|Montréal|Ottawa|Winnipeg|Halifax|Seattle|Portland)\s*,\s*(?:BC|AB|ON|QC|MB|NS|WA|OR|Canada|USA)\b/i.test(`${venueAddress} ${venue.neighborhood || ""}`)) return true;
+      if (/\b(?:Agassiz|Hope|Harrison\s+Hot\s+Springs|Abbotsford|Chilliwack|Mission|Squamish|Whistler|Pemberton|Victoria|Nanaimo|Salt\s+Spring\s+Island|Kelowna|Kamloops|Calgary|Edmonton|Toronto|Montreal|Montréal|Ottawa|Winnipeg|Halifax|Seattle|Portland)\s*,\s*(?:BC|AB|ON|QC|MB|NS|WA|OR|Canada|USA)\b/i.test(`${venueAddress} ${venue.neighborhood || ""}`)) return true;
+      if (/\b(?:Agassiz\s+Library|Chilliwack\s+Library|Abbotsford\s+Library|Hope\s+Library|Mission\s+Library)\b/i.test(`${venue.venue_name || ""} ${sched.venue_name || ""} ${seed.venue_name || ""}`)) return true;
       if (/\b(?:calgary'?s\s+biggest|edmonton'?s\s+biggest|toronto'?s\s+biggest|montreal'?s\s+biggest|in\s+squamish|in\s+victoria|in\s+kelowna|in\s+abbotsford|les\s+foufounes)\b/i.test(`${sched.title || ""} ${seedTitle || ""} ${ticketUrl || ""}`)) return true;
       return false;
     })();
@@ -3792,9 +3797,10 @@ export async function compileCatalog(options = {}) {
 
     // Check if card meets criteria to be published to active catalog:
     const hasActiveShowings = Array.isArray(compiledCard.showings) && compiledCard.showings.some((s) => (s.status === "upcoming" || s.status === "active") && s.date && /^\d{4}-\d{2}-\d{2}$/.test(String(s.date)) && String(s.date) >= todayIso);
+    const isConcludedStatus = (st) => st === "concluded" || st === "cancelled" || st === "past" || st === "passed";
     const allShowingsConcluded = !isPerennial && (
-      (Array.isArray(compiledCard.showings) && compiledCard.showings.length > 0 && compiledCard.showings.every((s) => s.status === "concluded" || s.status === "cancelled")) ||
-      (!hasActiveShowings && Array.isArray(sched.showings) && sched.showings.length > 0 && sched.showings.every((s) => s.status === "concluded" || s.status === "cancelled"))
+      (Array.isArray(compiledCard.showings) && compiledCard.showings.length > 0 && compiledCard.showings.every((s) => isConcludedStatus(s.status))) ||
+      (!hasActiveShowings && Array.isArray(sched.showings) && sched.showings.length > 0 && sched.showings.every((s) => isConcludedStatus(s.status)))
     );
     const hasExplicitPastSentinel = !isPerennial && !hasActiveShowings && (sched.date === "past_event" || box.date === "past_event" || compiledCard.date === "past_event");
     const isDatePast = !isPerennial && Boolean(compiledCard.date) && /^\d{4}-\d{2}-\d{2}$/.test(compiledCard.date) && compiledCard.date < todayIso;
@@ -3814,7 +3820,7 @@ export async function compileCatalog(options = {}) {
     const fullCardProse = `${compiledCard.title || ""} ${compiledCard.description || ""} ${sched.description || ""} ${edit.description || ""}`;
     const isMandatoryMultiWeekCourse = /\b(?:you\s+must\s+attend\s+all\s+(?:six|four|five|seven|eight|\d+)\s+sessions|must\s+attend\s+all\s+(?:six|\d+)?\s*sessions|(?:4|5|6|7|8|10|12)[- ]week\s+(?:series|course|program)\b[\s\S]{0,120}\bmust\s+attend|(?:4|5|6|7|8|10|12|four|five|six|seven|eight)[- ](?:week|session)\s+(?:progressive\s+course|collaborative\s+series|instructional\s+course|curriculum))\b/i.test(fullCardProse);
     const isOnlineOnlyEvent =
-      /^(?:online|virtual|online\s*\/\s*virtual|zoom|livestream|[eé]v[eè]nement\s+en\s+ligne|online\s*\([^)]+\)|microsoft\s+teams)$/i.test(String(sched.venue_name || sched.venue || box.venue_name || compiledCard.venue || "").trim()) ||
+      /^(?:online(?:\s+event|\s+only)?|virtual(?:\s+event)?|online\s*\/\s*virtual|zoom|livestream|bluesky|[eé]v[eè]nement\s+en\s+ligne|online\s*\([^)]+\)|microsoft\s+teams)$/i.test(String(sched.venue_name || sched.venue || box.venue_name || compiledCard.venue || "").trim()) ||
       (/\b(?:campus\s*:\s*online|location\s*:\s*online|register\s+on\s+teams|zoom\s+webinar|[eé]v[eè]nement\s+en\s+ligne|-\s+en\s+ligne\b)\b/i.test(fullCardProse) && !/\b(?:in[- ]person|hybrid)\b/i.test(fullCardProse)) ||
       (/\bwebinar\b/i.test(compiledCard.title || "") && !/\b(?:in[- ]person|hybrid)\b/i.test(fullCardProse));
     const eventIdStem = String(eventId || "").toLowerCase().trim().replace(/-(?:202\d-\d{2}-\d{2}|202\d\d{4}|\d{1,2})$/, "");
@@ -3825,7 +3831,8 @@ export async function compileCatalog(options = {}) {
     );
     const isInternalOrCaseworkService =
       recurringStemBlacklist.has(eventIdStem) ||
-      /\b(?:settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|for\s+students\s+across\s+simon\s+fraser\s+university\s+to\s+pitch\s+their\s+ideas\s+privately|international\s+focus\s+week\s+community\s+wall|one\s+on\s+one\s+technology\s+help|explore\s+healthcare\s+job\s+opportunities|undergrad\s+research\s+drop[- ]in\s+chats|practice\s+3[- ]minute\s+thesis|congregational\s+choir\s+rehearsal|sunday\s+morning\s+service|candlelit\s+contemplative|west\s+end\s+children['’]?s\s+choir)\b/i.test(fullCardProse);
+      /\b(?:sunday\s+morning\s+service|congregational\s+choir\s+rehearsal|candlelit\s+contemplative)\b/i.test(compiledCard.title || "") ||
+      /\b(?:settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|for\s+students\s+across\s+simon\s+fraser\s+university\s+to\s+pitch\s+their\s+ideas\s+privately|international\s+focus\s+week\s+community\s+wall|one\s+on\s+one\s+technology\s+help|explore\s+healthcare\s+job\s+opportunities|undergrad\s+research\s+drop[- ]in\s+chats|practice\s+3[- ]minute\s+thesis|west\s+end\s+children['’]?s\s+choir)\b/i.test(fullCardProse);
 
     // Helper to route card directly to historical archive registry
     const archiveCard = (reason, reviewStatus, errorMsg) => {

@@ -179,12 +179,10 @@ window.DAYS_OF_WEEK = window.DAYS_OF_WEEK || [
   { id: "sun", label: "Sun", full: "Sunday" }
 ];
 
-window.TIME_SLOTS = window.TIME_SLOTS || [
-  { id: "all", label: "Any Time", icon: "" },
-  { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
-  { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
-  { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
-  { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
+window.TIME_SLOTS = [
+  { id: "daytime", label: "Daytime / Matinee (Before 5 PM)", shortLabel: "Daytime / Matinee", desc: "Before 5:00 PM" },
+  { id: "evening", label: "Evening (5–9 PM)", shortLabel: "Evening (5–9 PM)", desc: "5:00 PM – 9:00 PM" },
+  { id: "late-night", label: "Late Night (9 PM+)", shortLabel: "Late Night (9 PM+)", desc: "9:00 PM and later" }
 ];
 
 window.CATEGORIES = [
@@ -519,6 +517,7 @@ const state = {
   excludedThemes: new Set(),
   accessibleMode: false,
   accessibleOnly: false,
+  seniorDealsOnly: false,
   eventFocus: 'all',
   category: 'all',
   frequency: 'all',
@@ -560,7 +559,7 @@ const ALLOWED_URL_CATEGORIES = new Set([
   'social', 'trivia', 'markets', 'festivals', 'sports', 'free-public-access'
 ]);
 const ALLOWED_URL_DAYS = new Set(['all', 'daily', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']);
-const ALLOWED_URL_TIMES = new Set(['all', 'early-morning', 'afternoon', 'early-evening', 'late-evening']);
+const ALLOWED_URL_TIMES = new Set(['all', 'daytime', 'evening', 'late-night', 'early-morning', 'afternoon', 'early-evening', 'late-evening']);
 const ALLOWED_URL_FREQUENCIES = new Set(['all', 'one-off', 'weekly', 'monthly', 'daily', 'limited-run', 'seasonal']);
 const ALLOWED_URL_SORTS = new Set(['date', 'price', 'price-asc', 'price-desc', 'title']);
 
@@ -619,6 +618,9 @@ function restoreFiltersFromUrlParams() {
     } else if (costVal === 'under25') {
       state.minBudget = 0;
       state.maxBudget = 25;
+    } else if (costVal === 'under30') {
+      state.minBudget = 0;
+      state.maxBudget = 30;
     } else if (costVal === 'paid') {
       state.minBudget = 1;
       state.maxBudget = 50;
@@ -651,7 +653,13 @@ function restoreFiltersFromUrlParams() {
   if (params.has('time')) {
     const timeVal = (params.get('time') || '').trim().toLowerCase().slice(0, 30);
     if (timeVal && ALLOWED_URL_TIMES.has(timeVal)) {
-      state.timeSlot = timeVal;
+      const legacyTimeMap = {
+        'early-morning': 'daytime',
+        'afternoon': 'daytime',
+        'early-evening': 'evening',
+        'late-evening': 'late-night'
+      };
+      state.timeSlot = legacyTimeMap[timeVal] || timeVal;
     }
   }
 
@@ -671,9 +679,19 @@ function restoreFiltersFromUrlParams() {
 
   if (params.has('focus')) {
     const focusVal = (params.get('focus') || '').trim().toLowerCase();
-    if (['all', 'no-worship', 'secular', 'faith'].includes(focusVal)) {
-      state.eventFocus = focusVal;
+    const legacyFocusMap = { 'secular': 'general', 'no-worship': 'sacred-music' };
+    const mappedFocus = legacyFocusMap[focusVal] || focusVal;
+    if (['all', 'general', 'sacred-music', 'faith'].includes(mappedFocus)) {
+      state.eventFocus = mappedFocus;
     }
+  }
+
+  if (params.get('senior') === '1' || params.get('senior') === 'true') {
+    state.seniorDealsOnly = true;
+  }
+
+  if (params.get('accessible') === '1' || params.get('accessible') === 'true') {
+    state.accessibleOnly = true;
   }
 
   if (params.has('plan')) {
@@ -694,7 +712,7 @@ function syncFiltersToUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const hadRegionParam = params.has('region');
 
-  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'neighborhood', 'rec', 'sort', 'focus', 'plan'].forEach(k => params.delete(k));
+  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'neighborhood', 'rec', 'sort', 'focus', 'senior', 'accessible', 'plan'].forEach(k => params.delete(k));
 
   if (Array.isArray(state.sharedPlanIds) && state.sharedPlanIds.length > 0) {
     params.set('plan', state.sharedPlanIds.map(id => encodeURIComponent(id)).join(','));
@@ -719,6 +737,8 @@ function syncFiltersToUrlParams() {
       params.set('cost', 'under15');
     } else if (state.minBudget === 0 && state.maxBudget === 25) {
       params.set('cost', 'under25');
+    } else if (state.minBudget === 0 && state.maxBudget === 30) {
+      params.set('cost', 'under30');
     } else if (state.minBudget === 1 && state.maxBudget === 50) {
       params.set('cost', 'paid');
     } else {
@@ -739,6 +759,12 @@ function syncFiltersToUrlParams() {
   }
   if (state.eventFocus && state.eventFocus !== 'all') {
     params.set('focus', state.eventFocus);
+  }
+  if (state.seniorDealsOnly) {
+    params.set('senior', '1');
+  }
+  if (state.accessibleOnly) {
+    params.set('accessible', '1');
   }
 
   const queryStr = params.toString();
@@ -804,16 +830,21 @@ function getActiveFiltersSummaryList() {
   if (state.hideDaily) {
     active.push('Scheduled Events Only');
   }
+  if (state.seniorDealsOnly) {
+    active.push('Senior Deals & 55+');
+  }
   if (state.accessibleOnly) {
-    active.push('Accessible Venues Only');
+    active.push('Step-Free / Accessible');
   }
   if (state.eventFocus && state.eventFocus !== 'all') {
     const focusLabels = {
-      'no-worship': 'Secular & Choral Only',
-      'secular': 'Strictly Secular',
-      'faith': 'Faith-Based & Sacred Only'
+      'general': 'General & Community Only',
+      'sacred-music': 'Include Sacred Music & Choirs',
+      'faith': 'Include Faith & Worship',
+      'no-worship': 'Include Sacred Music & Choirs',
+      'secular': 'General & Community Only'
     };
-    active.push(`Event Focus: ${focusLabels[state.eventFocus] || state.eventFocus}`);
+    active.push(`Holiday & Venue Style: ${focusLabels[state.eventFocus] || state.eventFocus}`);
   }
   if (state.sortBy && state.sortBy !== 'date') {
     active.push(`Sort: ${state.sortBy}`);
@@ -835,6 +866,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTimePills();
   renderFrequencyPills();
   renderEventFocusPills();
+  clearActiveQuickButtons();
+  if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
   updateSliderVisuals();
   applyFiltersAndRender();
   hydrateDeepLinksFromUrl();
@@ -2184,6 +2217,15 @@ function normalizeActiveEvent(item) {
     price_adult: item.price_adult !== undefined ? item.price_adult : null,
     price_student: item.price_student !== undefined ? item.price_student : null,
     price_member: item.price_member !== undefined ? item.price_member : null,
+    seniorPrice: (item.seniorPrice !== undefined && item.seniorPrice !== null && item.seniorPrice !== '')
+      ? Number(item.seniorPrice)
+      : ((item.senior_price !== undefined && item.senior_price !== null && item.senior_price !== '')
+        ? Number(item.senior_price)
+        : ((item.price_senior !== undefined && item.price_senior !== null && item.price_senior !== '')
+          ? Number(item.price_senior)
+          : null)),
+    seniorDiscountNote: sanitizeMojibake(item.seniorDiscountNote || item.senior_discount_note || ''),
+    seniorFriendly: Boolean(item.seniorFriendly || item.senior_friendly),
     tier_custom_name_1: item.tier_custom_name_1 || null,
     tier_custom_price_1: item.tier_custom_price_1 !== undefined && item.tier_custom_price_1 !== null ? Number(item.tier_custom_price_1) : null,
     tier_custom_name_2: item.tier_custom_name_2 || null,
@@ -2695,12 +2737,16 @@ function setupEventListeners() {
     maxSlider.addEventListener('change', flushSliderFilterRender);
   }
 
-  // Quick Cost Presets (Free, Paid, All)
+  // Quick Cost Presets (All <= $50, Free $0, Under $15, Under $30)
   const quickButtons = document.querySelectorAll('.cost-quick-btn');
   quickButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      quickButtons.forEach(b => b.classList.remove('active'));
+      quickButtons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       const preset = btn.dataset.quick;
 
       if (preset === 'all') {
@@ -2715,6 +2761,9 @@ function setupEventListeners() {
       } else if (preset === 'under25') {
         state.minBudget = 0;
         state.maxBudget = 25;
+      } else if (preset === 'under30') {
+        state.minBudget = 0;
+        state.maxBudget = 30;
       } else if (preset === 'under50') {
         state.minBudget = 0;
         state.maxBudget = 50;
@@ -2774,11 +2823,48 @@ function setupEventListeners() {
     });
   }
 
-  // Wheelchair Accessible Only Toggle
+  // Drawer Access & Discounts Toggles (Senior Deals & 55+ and Step-Free / Accessible)
+  window.syncDrawerAccessToggles = function () {
+    const seniorBtn = document.getElementById('toggle-senior-deals');
+    if (seniorBtn) {
+      const isSenior = Boolean(state.seniorDealsOnly);
+      seniorBtn.classList.toggle('active', isSenior);
+      seniorBtn.setAttribute('aria-pressed', isSenior ? 'true' : 'false');
+    }
+    const accessToggleBtn = document.getElementById('toggle-accessible-only');
+    if (accessToggleBtn) {
+      const isAcc = Boolean(state.accessibleOnly);
+      accessToggleBtn.classList.toggle('active', isAcc);
+      accessToggleBtn.setAttribute('aria-pressed', isAcc ? 'true' : 'false');
+    }
+    const legacyChkAccess = document.getElementById('chk-accessible-only');
+    if (legacyChkAccess) legacyChkAccess.checked = Boolean(state.accessibleOnly);
+  };
+
+  const toggleSeniorDealsBtn = document.getElementById('toggle-senior-deals');
+  if (toggleSeniorDealsBtn) {
+    toggleSeniorDealsBtn.addEventListener('click', () => {
+      state.seniorDealsOnly = !state.seniorDealsOnly;
+      window.syncDrawerAccessToggles();
+      applyFiltersAndRender();
+    });
+  }
+
+  const toggleAccessibleOnlyBtn = document.getElementById('toggle-accessible-only');
+  if (toggleAccessibleOnlyBtn) {
+    toggleAccessibleOnlyBtn.addEventListener('click', () => {
+      state.accessibleOnly = !state.accessibleOnly;
+      window.syncDrawerAccessToggles();
+      applyFiltersAndRender();
+    });
+  }
+
+  // Legacy Wheelchair Accessible Only Checkbox fallback (if present)
   const chkAccessibleOnly = document.getElementById('chk-accessible-only');
   if (chkAccessibleOnly) {
     chkAccessibleOnly.addEventListener('change', (e) => {
       state.accessibleOnly = Boolean(e.target.checked);
+      window.syncDrawerAccessToggles();
       applyFiltersAndRender();
     });
   }
@@ -2987,11 +3073,13 @@ function setupEventListeners() {
     state.frequency = 'all';
     state.hideDaily = false;
     state.accessibleOnly = false;
+    state.seniorDealsOnly = false;
     state.eventFocus = 'all';
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 50;
     if (hideDailyToggle) hideDailyToggle.checked = false;
     if (chkAccessibleOnly) chkAccessibleOnly.checked = false;
+    if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
     renderDayPills();
     renderTimePills();
     renderFrequencyPills();
@@ -3030,6 +3118,7 @@ function setupEventListeners() {
     const venueDisplay = document.getElementById('price-feedback-venue-name');
     const pintInput = document.getElementById('price-feedback-pint');
     const cocktailInput = document.getElementById('price-feedback-cocktail');
+    const seniorInput = document.getElementById('price-feedback-senior');
     const allInCheck = document.getElementById('price-feedback-all-in');
     const noteInput = document.getElementById('price-feedback-note');
     const hpInput = document.getElementById('price-feedback-hp');
@@ -3040,6 +3129,7 @@ function setupEventListeners() {
     if (venueDisplay) venueDisplay.textContent = vName;
     if (pintInput) pintInput.value = '';
     if (cocktailInput) cocktailInput.value = '';
+    if (seniorInput) seniorInput.value = '';
     if (allInCheck) allInCheck.checked = false;
     if (noteInput) noteInput.value = '';
     if (hpInput) hpInput.value = '';
@@ -3092,6 +3182,7 @@ function setupEventListeners() {
       const venueInput = document.getElementById('price-feedback-venue-input');
       const pintInput = document.getElementById('price-feedback-pint');
       const cocktailInput = document.getElementById('price-feedback-cocktail');
+      const seniorInput = document.getElementById('price-feedback-senior');
       const allInCheck = document.getElementById('price-feedback-all-in');
       const noteInput = document.getElementById('price-feedback-note');
       const hpInput = document.getElementById('price-feedback-hp');
@@ -3118,16 +3209,17 @@ function setupEventListeners() {
       const venueName = (venueInput ? venueInput.value : '').trim().slice(0, 160);
       const pintVal = pintInput && pintInput.value.trim() !== '' ? parseFloat(pintInput.value.trim()) : null;
       const cocktailVal = cocktailInput && cocktailInput.value.trim() !== '' ? parseFloat(cocktailInput.value.trim()) : null;
+      const seniorVal = seniorInput && seniorInput.value.trim() !== '' ? parseFloat(seniorInput.value.trim()) : null;
       const isAllIn = allInCheck ? allInCheck.checked : false;
       const note = noteInput ? noteInput.value.trim().slice(0, 200) : '';
 
-      if ((pintVal === null || isNaN(pintVal)) && (cocktailVal === null || isNaN(cocktailVal))) {
+      if ((pintVal === null || isNaN(pintVal)) && (cocktailVal === null || isNaN(cocktailVal)) && (seniorVal === null || isNaN(seniorVal))) {
         if (statusBox) {
           statusBox.style.display = 'block';
           statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
           statusBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
           statusBox.style.color = '#fca5a5';
-          statusBox.textContent = 'Please enter at least one price (cheapest pint or cheapest cocktail/highball).';
+          statusBox.textContent = 'Please enter at least one price (pint, cocktail/highball, or senior 65+ price).';
         }
         return;
       }
@@ -3143,6 +3235,7 @@ function setupEventListeners() {
           `Venue: ${venueName}`,
           (pintVal !== null && !isNaN(pintVal)) ? `Cheapest Pint: $${pintVal.toFixed(2)} CAD` : null,
           (cocktailVal !== null && !isNaN(cocktailVal)) ? `Cheapest Cocktail/Highball: $${cocktailVal.toFixed(2)} CAD` : null,
+          (seniorVal !== null && !isNaN(seniorVal)) ? `Senior / 65+ Price: $${seniorVal.toFixed(2)} CAD` : null,
           `Tax Included: ${isAllIn ? 'Yes (All-In)' : 'No (+BC Liquor Tax)'}`,
           note ? `Note / Source: ${note}` : null
         ].filter(Boolean).join('\n');
@@ -3172,6 +3265,7 @@ function setupEventListeners() {
             venue_name: venueName,
             cheapest_pint_input: pintVal,
             cheapest_cocktail_input: cocktailVal,
+            seniorPrice: (seniorVal !== null && !isNaN(seniorVal)) ? seniorVal : null,
             is_all_in: isAllIn,
             note: note,
             honeypot: hpInput ? hpInput.value : ''
@@ -3248,28 +3342,27 @@ function updateSliderVisuals() {
 
 function clearActiveQuickButtons() {
   const quickButtons = document.querySelectorAll('.cost-quick-btn');
-  const minSlider = document.getElementById('min-spend-slider');
-  const maxSlider = document.getElementById('max-spend-slider');
-  const minVal = minSlider ? parseInt(minSlider.value) : state.minBudget;
-  const maxVal = maxSlider ? parseInt(maxSlider.value) : state.maxBudget;
+  const minVal = state.minBudget;
+  const maxVal = state.maxBudget;
 
-  quickButtons.forEach(b => b.classList.remove('active'));
+  quickButtons.forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed', 'false');
+  });
 
+  let activeBtn = null;
   if (minVal === 0 && maxVal === 0) {
-    const freeBtn = document.getElementById('quick-cost-free');
-    if (freeBtn) freeBtn.classList.add('active');
+    activeBtn = document.getElementById('quick-cost-free');
   } else if (minVal === 0 && maxVal === 15) {
-    const u15Btn = document.getElementById('quick-cost-15');
-    if (u15Btn) u15Btn.classList.add('active');
-  } else if (minVal === 0 && maxVal === 25) {
-    const u25Btn = document.getElementById('quick-cost-25');
-    if (u25Btn) u25Btn.classList.add('active');
-  } else if (minVal >= 1 && maxVal === 50) {
-    const paidBtn = document.getElementById('quick-cost-paid');
-    if (paidBtn) paidBtn.classList.add('active');
+    activeBtn = document.getElementById('quick-cost-15');
+  } else if (minVal === 0 && maxVal === 30) {
+    activeBtn = document.getElementById('quick-cost-30');
   } else if (minVal === 0 && maxVal === 50) {
-    const allBtn = document.getElementById('quick-cost-all');
-    if (allBtn) allBtn.classList.add('active');
+    activeBtn = document.getElementById('quick-cost-all');
+  }
+  if (activeBtn) {
+    activeBtn.classList.add('active');
+    activeBtn.setAttribute('aria-pressed', 'true');
   }
   if (typeof window.syncTopQuickToggles === 'function') {
     window.syncTopQuickToggles();
@@ -3678,19 +3771,25 @@ function renderFestivalSpotlight() {
     </div>
   ` : '';
 
+  const activeThemeSummary = state.selectedThemeFilter
+    ? (() => {
+        const g = themeGroups.find(x => x.key === state.selectedThemeFilter);
+        const m = g ? getThemeMetadata(g) : null;
+        return m ? `<span class="festival-summary-active-pill">${escapeHtml(m.label)}</span>` : '';
+      })()
+    : '';
+
   container.innerHTML = `
     <div class="festival-spotlight-card festival-compact-banner ${isExpanded ? 'is-expanded' : 'is-collapsed'}">
       <div class="festival-spotlight-left">
-        <div class="festival-compact-header-row">
-          <h2 class="festival-spotlight-title">${bannerTitle}</h2>
-          <div class="festival-compact-chips-row" role="group" aria-label="Quick festival and holiday filters">
-            ${compactChipsHtml}
-          </div>
-          <button type="button" class="btn-festival-details-toggle" data-action="toggle-festival-spotlight" aria-expanded="${isExpanded ? 'true' : 'false'}" title="${isExpanded ? 'Collapse festival dates & descriptions' : 'Show festival dates & descriptions'}">
-            <span>${isExpanded ? 'Less' : 'Details'}</span>
-            <span class="festival-toggle-chevron" aria-hidden="true">${isExpanded ? '▴' : '▾'}</span>
-          </button>
-        </div>
+        <button type="button" class="festival-summary-bar-btn" data-action="toggle-festival-spotlight" aria-expanded="${isExpanded ? 'true' : 'false'}" title="${isExpanded ? 'Collapse seasonal festivals & holidays' : 'Expand seasonal festivals & holidays'}">
+          <span class="festival-summary-bar-left">
+            <span class="festival-spotlight-title">Seasonal Festivals &amp; Holidays</span>
+            <span class="festival-summary-count">(${Number(themeGroups.length)} active)</span>
+            ${activeThemeSummary}
+          </span>
+          <span class="festival-toggle-chevron" aria-hidden="true">${isExpanded ? '▴' : '▾'}</span>
+        </button>
         ${activeItemsListHtml}
       </div>
     </div>
@@ -4015,11 +4114,14 @@ function renderTimePills() {
   container.innerHTML = '';
   TIME_SLOTS.forEach(slot => {
     const pill = document.createElement('button');
-    pill.className = `time-pill ${state.timeSlot === slot.id ? 'active' : ''}`;
-    pill.innerHTML = slot.icon ? `<span>${escapeHtml(slot.icon)}</span> <span>${escapeHtml(slot.label)}</span>` : `<span>${escapeHtml(slot.label)}</span>`;
+    pill.type = 'button';
+    const isActive = state.timeSlot === slot.id;
+    pill.className = `time-pill ${isActive ? 'active' : ''}`;
+    pill.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    pill.innerHTML = `<span>${escapeHtml(slot.label)}</span>`;
     if (slot.desc) pill.title = slot.desc;
     pill.addEventListener('click', () => {
-      state.timeSlot = slot.id;
+      state.timeSlot = (state.timeSlot === slot.id) ? 'all' : slot.id;
       renderTimePills();
       applyFiltersAndRender();
     });
@@ -4340,10 +4442,10 @@ function renderFrequencyPills() {
 }
 
 const EVENT_FOCUS_OPTIONS = [
-  { id: 'all', label: 'All Outings', chipLabel: 'All Outings' },
-  { id: 'no-worship', label: 'Secular & Choral Only', chipLabel: 'Secular & Choral Only' },
-  { id: 'secular', label: 'Strictly Secular', chipLabel: 'Strictly Secular' },
-  { id: 'faith', label: 'Faith-Based & Sacred Only', chipLabel: 'Faith-Based & Sacred Only' }
+  { id: 'all', label: 'All Outings', chipLabel: 'All Outings', desc: 'Shows all events and outings' },
+  { id: 'general', label: 'General & Community Only', chipLabel: 'General & Community Only', desc: 'Markets, lights, comedy, theatre, secular concerts; hides church concerts and worship services' },
+  { id: 'sacred-music', label: 'Include Sacred Music & Choirs', chipLabel: 'Include Sacred Music & Choirs', desc: 'Includes classical/choral concerts in churches; hides worship services' },
+  { id: 'faith', label: 'Include Faith & Worship', chipLabel: 'Include Faith & Worship', desc: 'Shows all events including religious services' }
 ];
 
 function renderEventFocusPills() {
@@ -4358,6 +4460,7 @@ function renderEventFocusPills() {
     btn.className = `focus-pill freq-filter-pill ${isActive ? 'active' : ''}`;
     btn.setAttribute('data-focus', opt.id);
     btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    if (opt.desc) btn.title = opt.desc;
     btn.textContent = opt.label;
     btn.addEventListener('click', () => {
       window.setEventFocusFilter(opt.id);
@@ -4368,8 +4471,10 @@ function renderEventFocusPills() {
 window.renderEventFocusPills = renderEventFocusPills;
 
 window.setEventFocusFilter = function (focusMode) {
-  const valid = ['all', 'no-worship', 'secular', 'faith'];
-  state.eventFocus = valid.includes(focusMode) ? focusMode : 'all';
+  const legacyMap = { 'secular': 'general', 'no-worship': 'sacred-music' };
+  const mapped = legacyMap[focusMode] || focusMode;
+  const valid = ['all', 'general', 'sacred-music', 'faith'];
+  state.eventFocus = valid.includes(mapped) ? mapped : 'all';
   renderEventFocusPills();
   applyFiltersAndRender();
 };
@@ -5028,6 +5133,77 @@ function doesEventMatchCategory(ev, catId, hasFreeTierHint) {
 }
 window.doesEventMatchCategory = doesEventMatchCategory;
 
+const SENIOR_DEAL_REGEX = /\b(senior|55\+|60\+|65\+|older adult|pensioner)\b/i;
+
+function getEventSeniorPrice(ev) {
+  if (!ev) return null;
+  if (ev.seniorPrice !== undefined && ev.seniorPrice !== null && ev.seniorPrice !== '') {
+    const sp = Number(ev.seniorPrice);
+    if (Number.isFinite(sp) && sp >= 0 && sp <= 50) return sp;
+  }
+  const tiers = Array.isArray(ev.tiers) ? ev.tiers : [];
+  const seniorTiers = tiers.filter(t => t && !t.isAddon && !isAddonTier(t) && !t.isSoldOut && !t.isExpired && SENIOR_DEAL_REGEX.test(String(t.name || '')) && Number.isFinite(Number(t.price)) && Number(t.price) >= 0 && Number(t.price) <= 50);
+  if (seniorTiers.length > 0) {
+    return Math.min(...seniorTiers.map(t => Number(t.price)));
+  }
+  return null;
+}
+
+function eventHasSeniorDeal(ev) {
+  if (!ev) return false;
+  if (ev.seniorPrice != null && Number.isFinite(Number(ev.seniorPrice))) return true;
+  if (ev.seniorDiscountNote && String(ev.seniorDiscountNote).trim().length > 0) return true;
+  if (ev.seniorFriendly === true) return true;
+  if (getEventSeniorPrice(ev) !== null) return true;
+  const tierNames = Array.isArray(ev.tiers) ? ev.tiers.map(t => t && t.name ? t.name : '').join(' ') : '';
+  const combined = `${tierNames} ${ev.title || ''} ${ev.description || ''} ${ev.admissionPolicy || ''} ${ev.agePolicy || ''}`;
+  return SENIOR_DEAL_REGEX.test(combined);
+}
+
+function eventMatchesTimeSlot(ev, targetSlot) {
+  if (!targetSlot || targetSlot === 'all') return true;
+  const slotMap = {
+    'early-morning': 'daytime',
+    'afternoon': 'daytime',
+    'early-evening': 'evening',
+    'late-evening': 'late-night'
+  };
+  const normalized = slotMap[targetSlot] || targetSlot;
+  const isDropIn = isAnytimeDropInEvent(ev);
+  if (isDropIn) {
+    if (normalized === 'daytime') return true;
+    if (normalized === 'evening') {
+      const closing = getEventClosingTimeToday(ev, new Date());
+      return !closing || closing.closingMinutes > 1020; // open past 5 PM
+    }
+    if (normalized === 'late-night') {
+      const closing = getEventClosingTimeToday(ev, new Date());
+      return Boolean(closing && closing.closingMinutes >= 1290); // open past 9:30 PM
+    }
+    return true;
+  }
+
+  const candidateMinutes = [];
+  if (Array.isArray(ev.showings) && ev.showings.length > 0) {
+    ev.showings.forEach(s => {
+      const m = parseClockTimeToMinutes(s && (s.start_time || s.time));
+      if (m !== null) candidateMinutes.push(m);
+    });
+  }
+  if (candidateMinutes.length === 0) {
+    const m = getEventSortMinuteOfDay(ev);
+    if (m !== null && m < 9999) candidateMinutes.push(m);
+  }
+  if (candidateMinutes.length === 0) return false;
+
+  return candidateMinutes.some(mins => {
+    if (normalized === 'daytime') return mins >= 240 && mins < 1020; // 4:00 AM – 4:59 PM
+    if (normalized === 'evening') return mins >= 1020 && mins < 1260; // 5:00 PM – 8:59 PM
+    if (normalized === 'late-night') return mins >= 1260 || mins < 240; // 9:00 PM – 3:59 AM
+    return true;
+  });
+}
+
 function applyFiltersAndRender() {
   const now = new Date();
   const year = now.getFullYear();
@@ -5169,6 +5345,13 @@ function applyFiltersAndRender() {
       }
     }
 
+    // Senior Deals & 55+ Filter
+    if (state.seniorDealsOnly) {
+      if (!eventHasSeniorDeal(ev)) {
+        return false;
+      }
+    }
+
     // 1. Strict Budget Cap & Slider Range (<= $50.00 CAD) with Dual-Tier Support
     const hasPaidTier = Array.isArray(ev.tiers) && ev.tiers.some(t => t.price > 0 && t.price <= 50);
     const hasFreeTier = ev.price === 0 || ev.isFree || ev.pricingType === 'free-option' || (Array.isArray(ev.tiers) && ev.tiers.some(t => t.price === 0 && !isAddonTier(t)));
@@ -5240,10 +5423,9 @@ function applyFiltersAndRender() {
       }
     }
 
-    // 4. Starting Time Filter (Requirement 9)
+    // 4. Starting Time Filter
     if (state.timeSlot !== 'all') {
-      const slots = ev.timeSlots || [];
-      if (!slots.includes(state.timeSlot)) return false;
+      if (!eventMatchesTimeSlot(ev, state.timeSlot)) return false;
     }
 
     // 5. Recurrence Frequency Filter
@@ -5268,8 +5450,8 @@ function applyFiltersAndRender() {
       }
     }
 
-    // 7b. Event Focus / Religious & Cultural Preference Filter
-    if (state.eventFocus && state.eventFocus !== 'all') {
+    // 7b. Holiday & Venue Style Filter
+    if (state.eventFocus && state.eventFocus !== 'all' && state.eventFocus !== 'faith') {
       const focusTagSet = new Set([
         ...(Array.isArray(ev.tags) ? ev.tags : []),
         ...(Array.isArray(ev.subTags) ? ev.subTags : []),
@@ -5277,9 +5459,8 @@ function applyFiltersAndRender() {
       ].map(t => String(t || '').toLowerCase().trim()));
       const isFaithEvent = focusTagSet.has('faith-based') || focusTagSet.has('religious-service');
       const isSacredChoralEvent = focusTagSet.has('sacred-music') || focusTagSet.has('choral');
-      if (state.eventFocus === 'no-worship' && isFaithEvent) return false;
-      if (state.eventFocus === 'secular' && (isFaithEvent || isSacredChoralEvent)) return false;
-      if (state.eventFocus === 'faith' && !isFaithEvent && !isSacredChoralEvent) return false;
+      if ((state.eventFocus === 'sacred-music' || state.eventFocus === 'no-worship') && isFaithEvent) return false;
+      if ((state.eventFocus === 'general' || state.eventFocus === 'secular') && (isFaithEvent || isSacredChoralEvent)) return false;
     }
 
     // 8. Hashtag Filter (Click on hashtag to isolate cards with that tag; easily deselectable)
@@ -7264,6 +7445,111 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
   };
 }
 
+function formatCompactDollarNum(n) {
+  const num = Number(n || 0);
+  if (!Number.isFinite(num) || num <= 0) return '0';
+  return num % 1 === 0 ? num.toFixed(0) : num.toFixed(2);
+}
+
+function getCollapsedPricePillInfo(ev) {
+  const isSoldOut = Boolean(ev && ev.isSoldOut);
+  const rawTiers = Array.isArray(ev && ev.tiers) ? ev.tiers : [];
+  const validTiers = rawTiers.filter(t => t && !t.isAddon && !isAddonTier(t) && !t.isSoldOut && !t.isExpired && Number.isFinite(Number(t.price)) && Number(t.price) >= 0 && Number(t.price) <= 50);
+  const seniorPrice = getEventSeniorPrice(ev);
+  const hasSeniorNote = Boolean(ev && ev.seniorDiscountNote && String(ev.seniorDiscountNote).trim().length > 0);
+  const hasMultiTiers = validTiers.length > 1 || seniorPrice !== null || hasSeniorNote;
+
+  // Dynamic Senior Card Pricing when Senior Deals & 55+ filter is active
+  if (!isSoldOut && state.seniorDealsOnly && seniorPrice !== null) {
+    if (seniorPrice <= 0) {
+      return { text: 'Free (65+)', className: 'is-free is-senior-price', hasMultiTiers };
+    }
+    return {
+      text: `$${formatCompactDollarNum(seniorPrice)} Senior`,
+      className: `is-senior-price ${seniorPrice <= 25 ? 'is-low' : 'is-std'}`,
+      hasMultiTiers
+    };
+  }
+
+  if (isSoldOut) {
+    return { text: 'Sold Out', className: 'is-sold-out', hasMultiTiers };
+  }
+
+  const basePrice = Number(ev && ev.price ? ev.price : 0);
+  const isFree = Boolean(ev && (ev.isFree || basePrice <= 0));
+
+  if (hasMultiTiers) {
+    const prices = validTiers.length > 0 ? validTiers.map(t => Number(t.price)) : [basePrice];
+    if (seniorPrice !== null) prices.push(seniorPrice);
+    const minP = Math.min(...prices);
+    const maxP = Math.max(...prices);
+    if (minP <= 0) {
+      return { text: 'Free • Tiers ▾', className: 'is-free has-tiers', hasMultiTiers: true };
+    }
+    if (maxP > minP) {
+      return { text: `From $${formatCompactDollarNum(minP)} ▾`, className: `${minP <= 25 ? 'is-low' : 'is-std'} has-tiers`, hasMultiTiers: true };
+    }
+    return { text: `$${formatCompactDollarNum(minP)} • Tiers ▾`, className: `${minP <= 25 ? 'is-low' : 'is-std'} has-tiers`, hasMultiTiers: true };
+  }
+
+  if (isFree) {
+    return { text: 'Free', className: 'is-free', hasMultiTiers: false };
+  }
+  return {
+    text: `$${formatCompactDollarNum(basePrice)}`,
+    className: basePrice <= 25 ? 'is-low' : 'is-std',
+    hasMultiTiers: false
+  };
+}
+
+function renderExpandedTierBadgesStrip(ev) {
+  const rawTiers = (Array.isArray(ev && ev.tiers) && ev.tiers.length > 0) ? ev.tiers : resolveEventTiers(ev);
+  const validTiers = (Array.isArray(rawTiers) ? rawTiers : []).filter(t => {
+    if (!t || t.isAddon || isAddonTier(t)) return false;
+    const n = String(t.name || '').trim().toLowerCase();
+    if (!n || n === 'null' || n === 'undefined') return false;
+    return Number.isFinite(Number(t.price)) && Number(t.price) >= 0 && Number(t.price) <= 50;
+  });
+
+  // De-duplicate tiers by normalized name + price
+  const seen = new Set();
+  const deduped = [];
+  for (const t of validTiers) {
+    const key = `${String(t.name || '').trim().toLowerCase()}_${Number(t.price)}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      deduped.push(t);
+    }
+  }
+
+  const seniorPrice = getEventSeniorPrice(ev);
+  const hasSeniorTierInList = deduped.some(t => SENIOR_DEAL_REGEX.test(String(t.name || '')));
+  const seniorNote = (ev && ev.seniorDiscountNote && String(ev.seniorDiscountNote).trim()) ? String(ev.seniorDiscountNote).trim() : '';
+
+  const badges = [];
+  if (deduped.length > 1 || (deduped.length === 1 && (seniorPrice !== null || seniorNote))) {
+    deduped.forEach(t => {
+      const p = Number(t.price);
+      const isSeniorTier = SENIOR_DEAL_REGEX.test(String(t.name || ''));
+      const priceText = p <= 0 ? 'Free' : `$${formatCompactDollarNum(p)} All-In`;
+      const soldSuffix = t.isSoldOut ? ' (Sold Out)' : '';
+      badges.push(`<span class="card-tier-mini-badge ${isSeniorTier ? 'is-senior-tier' : ''} ${t.isSoldOut ? 'is-tier-soldout' : ''}">${escapeHtml(t.name)}: <strong>${escapeHtml(priceText)}</strong>${escapeHtml(soldSuffix)}</span>`);
+    });
+  }
+
+  if (seniorPrice !== null && !hasSeniorTierInList) {
+    const sText = seniorPrice <= 0 ? 'Free' : `$${formatCompactDollarNum(seniorPrice)} All-In`;
+    badges.push(`<span class="card-tier-mini-badge is-senior-tier">Senior 65+: <strong>${escapeHtml(sText)}</strong></span>`);
+  }
+
+  if (seniorNote) {
+    badges.push(`<span class="card-tier-mini-badge is-senior-tier is-senior-note">Senior Rate: <strong>${escapeHtml(seniorNote)}</strong></span>`);
+  }
+
+  if (badges.length === 0) return '';
+  return `<div class="card-tier-badges-strip" aria-label="Ticket tiers and discounts">${badges.join('')}</div>`;
+}
+
 function renderSingleEventCardHtml(ev, bucketKey, options) {
   const forceFullBody = Boolean(options && options.forceFullBody);
   const isSavedDrawerCardEarly = bucketKey === 'saved-drawer';
@@ -7272,11 +7558,12 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
 
   // Fast compact card path (lazy-mounts .card-expandable-details on click; memoized per event+bucket for instant search)
   if (!forceFullBody && !isSavedDrawerCardEarly && !isMapIwCardEarly && !isPersistedExpandedEarly) {
-    const cacheKey = `${ev.id || ''}|${bucketKey || 'list'}|${ev.isSoldOut ? 1 : 0}`;
+    const cacheKey = `${ev.id || ''}|${bucketKey || 'list'}|${ev.isSoldOut ? 1 : 0}|${state.seniorDealsOnly ? 1 : 0}`;
     if (window._compactCardHtmlCache && window._compactCardHtmlCache.has(cacheKey)) {
       return window._compactCardHtmlCache.get(cacheKey);
     }
     const isSoldOutC = Boolean(ev.isSoldOut);
+    const pillInfoC = getCollapsedPricePillInfo(ev);
     const topDateC = formatCardTopDate(ev, bucketKey);
     const isHappeningNowC = isEventHappeningNow(ev, new Date());
     const getOrdSuffixC = (n) => {
@@ -7313,7 +7600,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
             <span class="mobile-card-title">${safeDisplayTitleC}</span>
-            <span class="mobile-card-price-pill ${isSoldOutC ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std'))}">${isSoldOutC ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
+            <span class="mobile-card-price-pill ${pillInfoC.className}">${escapeHtml(pillInfoC.text)}</span>
           </div>
           <div class="mobile-card-row-2">
             <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterIdC}" title="Click to filter by ${safeCatLabelC}">${safeCatLabelC}</button>
@@ -7455,6 +7742,9 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
   const safeVenueUrlHref = venueUrl ? escapeHtml(safeExternalUrl(venueUrl)) : '';
 
   const escapedVenue = escapeHtml(ev.venue || '');
+  const pillInfoFull = getCollapsedPricePillInfo(ev);
+  const expandedTierBadgesHtml = renderExpandedTierBadgesStrip(ev);
+  const primaryCtaLabel = pillInfoFull.hasMultiTiers ? 'View Ticket Tiers ↗' : 'Get Tickets / Info ↗';
   const ctaButtonHtml = isSoldOut ? `
       <a 
         href="${safePrimaryTicketHref}" 
@@ -7487,7 +7777,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
         data-goatcounter-no-session="1"
         aria-label="Get tickets for ${escapedTitle}"
       >
-        Get Tickets / Details ↗
+        ${primaryCtaLabel}
       </a>
     `;
 
@@ -7924,7 +8214,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
         <div class="mobile-card-compact-header">
           <div class="mobile-card-row-1">
             <span class="mobile-card-title">${safeDisplayTitle}</span>
-            <span class="mobile-card-price-pill ${isSoldOut ? 'is-sold-out' : (ev.isFree || ev.price === 0 ? 'is-free' : (Number(ev.price || 0) <= 25 ? 'is-low' : 'is-std'))}">${isSoldOut ? 'Sold Out' : ((ev.isFree || ev.price === 0) ? 'Free' : `$${Number(ev.price || 0).toFixed(Number(ev.price || 0) % 1 === 0 ? 0 : 2)}`)}</span>
+            <span class="mobile-card-price-pill ${pillInfoFull.className}">${escapeHtml(pillInfoFull.text)}</span>
           </div>
           <div class="mobile-card-row-2">
             <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterId}" title="Click to filter by ${safeCatLabel}">${safeCatLabel}</button>
@@ -8125,6 +8415,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
         <div class="card-pricing-block">
           ${subdetailsHtml}
           ${spendEstimatorHtml}
+          ${expandedTierBadgesHtml}
           ${tiersInfo.html || ''}
           <div class="card-footer">
             <div class="price-box ${tiersInfo.hasTiers ? 'price-box-interactive' : ''}" 
@@ -8184,8 +8475,10 @@ function resetAllFilters() {
   if (hideDailyToggle) hideDailyToggle.checked = false;
 
   state.accessibleOnly = false;
+  state.seniorDealsOnly = false;
   const chkAccess = document.getElementById('chk-accessible-only');
   if (chkAccess) chkAccess.checked = false;
+  if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
 
   renderRegionPills();
   renderFestivalSpotlight();
@@ -8822,7 +9115,7 @@ function setAccessibilityMode(enabled, notify = true) {
     btn.classList.toggle('active', state.accessibleMode);
     const label = btn.querySelector('.access-label');
     if (label) {
-      label.textContent = state.accessibleMode ? 'Accessible: ON' : 'Accessibility';
+      label.textContent = state.accessibleMode ? 'Accessibility Display: ON' : 'Accessibility Display Mode';
     }
   }
 
@@ -9099,9 +9392,10 @@ function renderActiveFilterChips(filteredCount) {
   // 1. Spend / Cost Filter
   if (state.minBudget !== 0 || state.maxBudget !== 50) {
     let costLabel = `$${state.minBudget}–$${state.maxBudget}`;
-    if (state.minBudget === 0 && state.maxBudget === 0) costLabel = 'Free';
-    else if (state.minBudget === 0 && state.maxBudget === 15) costLabel = '≤ $15';
-    else if (state.minBudget === 0 && state.maxBudget === 25) costLabel = '≤ $25';
+    if (state.minBudget === 0 && state.maxBudget === 0) costLabel = 'Free ($0)';
+    else if (state.minBudget === 0 && state.maxBudget === 15) costLabel = 'Under $15';
+    else if (state.minBudget === 0 && state.maxBudget === 25) costLabel = 'Under $25';
+    else if (state.minBudget === 0 && state.maxBudget === 30) costLabel = 'Under $30';
     else if (state.minBudget >= 1 && state.maxBudget === 50) costLabel = 'Paid';
     chips.push({ key: 'cost', label: costLabel });
   }
@@ -9115,7 +9409,7 @@ function renderActiveFilterChips(filteredCount) {
   // 3. Starting Time
   if (state.timeSlot && state.timeSlot !== 'all') {
     const slotDef = (window.TIME_SLOTS || []).find(s => s.id === state.timeSlot);
-    chips.push({ key: 'time', label: slotDef ? slotDef.label : state.timeSlot });
+    chips.push({ key: 'time', label: slotDef ? (slotDef.shortLabel || slotDef.label) : state.timeSlot });
   }
 
   // 5. Recurrence Frequency
@@ -9129,23 +9423,31 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'hideDaily', label: 'Hide Daily Drop-In' });
   }
 
-  // 7. Accessible Venues Only
-  if (state.accessibleOnly) {
-    chips.push({ key: 'accessibleOnly', label: 'Accessible' });
+  // 7. Senior Deals & 55+
+  if (state.seniorDealsOnly) {
+    chips.push({ key: 'seniorDeals', label: 'Senior Deals & 55+' });
   }
 
-  // 8. Event Focus / Religious & Cultural Preference
+  // 7b. Step-Free / Accessible Venues Only
+  if (state.accessibleOnly) {
+    chips.push({ key: 'accessibleOnly', label: 'Step-Free / Accessible' });
+  }
+
+  // 8. Holiday & Venue Style Filter
   if (state.eventFocus && state.eventFocus !== 'all') {
     const focusChipLabels = {
-      'no-worship': 'Secular & Choral Only',
-      'secular': 'Strictly Secular',
-      'faith': 'Faith-Based & Sacred Only'
+      'general': 'General & Community Only',
+      'sacred-music': 'Include Sacred Music & Choirs',
+      'faith': 'Include Faith & Worship',
+      'no-worship': 'Include Sacred Music & Choirs',
+      'secular': 'General & Community Only'
     };
     chips.push({ key: 'eventFocus', label: focusChipLabels[state.eventFocus] || state.eventFocus });
   }
 
-  // Count only filters located inside the Filters dropdown (Paid & Hide Daily Drop-In live in the top quick-bar)
-  const drawerActiveCount = chips.filter(c => c.key !== 'hideDaily' && !(c.key === 'cost' && c.label === 'Paid')).length;
+  // Count only filters located inside the Filters drawer (Category, Theme, Paid & Hide Daily live in primary top bars)
+  const drawerKeys = new Set(['cost', 'time', 'seniorDeals', 'accessibleOnly', 'eventFocus']);
+  const drawerActiveCount = chips.filter(c => drawerKeys.has(c.key) && !(c.key === 'cost' && c.label === 'Paid')).length;
   if (mobileFilterTrigger) {
     const labelText = drawerActiveCount > 0 ? `Filters (${drawerActiveCount})` : 'Filters';
     const triggerLabelEl = document.getElementById('mobile-filter-trigger-label') || mobileFilterTrigger.querySelector('span');
@@ -9169,7 +9471,7 @@ function renderActiveFilterChips(filteredCount) {
   }
 
   const quickHideWorshipHtml = showQuickHideWorshipSubPill ? `
-      <button type="button" class="active-filter-chip quick-refine-subpill" data-action="set-event-focus" data-focus-mode="no-worship" title="Exclude devotional worship services while keeping secular & choral concerts" aria-label="Hide Worship Services">
+      <button type="button" class="active-filter-chip quick-refine-subpill" data-action="set-event-focus" data-focus-mode="sacred-music" title="Hide worship services while keeping community & choral events" aria-label="Hide Worship Services">
         <span>Hide Worship Services</span>
       </button>
     ` : '';
@@ -9225,10 +9527,14 @@ window.dismissSecondaryFilterChip = function (chipKey) {
     state.hideDaily = false;
     const hideDailyToggle = document.getElementById('hide-daily-toggle');
     if (hideDailyToggle) hideDailyToggle.checked = false;
+  } else if (chipKey === 'seniorDeals') {
+    state.seniorDealsOnly = false;
+    if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
   } else if (chipKey === 'accessibleOnly') {
     state.accessibleOnly = false;
     const chkAccess = document.getElementById('chk-accessible-only');
     if (chkAccess) chkAccess.checked = false;
+    if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
   }
   applyFiltersAndRender();
 };
@@ -9298,7 +9604,7 @@ window.toggleMapInfoWindowCard = function (itemEl, evObj) {
     itemEl.classList.remove('is-expanded');
     itemEl.setAttribute('aria-expanded', 'false');
     mountEl.style.display = 'none';
-    if (hintEl) hintEl.textContent = 'Details →';
+    if (hintEl) hintEl.textContent = 'Details & Tickets →';
     return;
   }
 

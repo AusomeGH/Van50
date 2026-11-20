@@ -365,8 +365,8 @@ def run_smoke_test(port: int = 8085) -> bool:
     httpd.shutdown()
     httpd.server_close()
 
-    # Verify Categories
-    cat_count = dom_html.count('class="category-pill')
+    # Verify Categories (primary quick-category strip or legacy category bar)
+    cat_count = dom_html.count('class="quick-cat-pill') + dom_html.count('class="category-pill')
     card_count = dom_html.count('class="event-card')
 
     print(f"   • Rendered Category Pills: {cat_count}")

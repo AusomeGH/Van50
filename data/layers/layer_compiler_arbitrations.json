@@ -240,7 +240,7 @@
   "hollywood-theatre-best-of-1990-s-2000-s-music-vi-2027-01-08": {
     "sig": "title mismatch between schedule (\"Best of 1990’s & 2000’s Music Video Pop Party\") and box office (\"Best of 1990’s & 2000’s Music Video Pop Party - Backstreet Boys vs Spice Girls Edition with DJ Flip Out\")::",
     "decision": {
-      "clean_title": "Best of 1990’s & 2000’s Music Video Pop Party",
+      "clean_title": "Best of 1990’s & 2000’s Music Video Pop Party - Backstreet Boys vs Spice Girls Edition",
       "artist": "DJ Flip Out",
       "lineup": [
         "DJ Flip Out"
@@ -250,9 +250,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Adopted the core series title from Seed, Schedule, and Editorial layers while parsing DJ Flip Out from the box office subtitle into the artist and lineup dimensions."
+      "arbitration_reasoning": "Adopted the specific theme edition from the box office title while extracting DJ Flip Out into the artist/lineup fields and confirming ticket availability at $20.75 CAD."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-20T15:29:25.258Z"
   },
   "comedy-after-dark-saturday-night-stand-up-comedy-2025-01-22": {
     "sig": "title mismatch between schedule (\"Saturday Night Stand Up Comedy\") and box office (\"SATURDAY NIGHT STAND UP COMEDY @ COMEDY AFTER DARK\")::",
@@ -947,9 +947,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "festivals",
-      "arbitration_reasoning": "Resolved date to upcoming 2027-04-11 matching the schedule harvester and seed over the stale 2023 historical box office crawl date, while retaining live verified 10:00 AM start time and adult admission pricing."
+      "arbitration_reasoning": "Arbitrated to the upcoming April 11-12 festival date over the stale 2023 box office date, while adopting live box office start time and available tier pricing under festivals taxonomy."
     },
-    "updatedAt": "2026-11-18T19:09:36.873Z"
+    "updatedAt": "2026-11-20T15:29:25.258Z"
   },
   "queen-elizabeth-thea-nutcracker-2026-12-09": {
     "sig": "title mismatch between schedule (\"Nutcracker\") and box office (\"Ballet BC Presents: Royal Winnipeg Ballet's Nutcracker\")::",
@@ -972,19 +972,17 @@
   "orpheum-peter-and-the-wolf-2027-01-17": {
     "sig": "title mismatch between schedule (\"Peter and the Wolf\") and box office (\"Kids Concerts | Peter and the Wolf\")::",
     "decision": {
-      "clean_title": "VSO Kids Concert: Peter and the Wolf",
-      "artist": "Vancouver Symphony Orchestra",
-      "lineup": [
-        "Vancouver Symphony Orchestra"
-      ],
+      "clean_title": "Peter and the Wolf",
+      "artist": null,
+      "lineup": [],
       "date": "2027-01-17",
       "start_time": "2:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Resolved title by adopting the canonical Seed and series context ('VSO Kids Concert: Peter and the Wolf') over stripped schedule and UI breadcrumb box office strings, while grounding the primary artist as Vancouver Symphony Orchestra and preserving verified box office timing."
+      "arbitration_reasoning": "Stripped the generic series prefix 'Kids Concerts | ' from the box office title in favor of the clean canonical work title 'Peter and the Wolf' supported by the Seed, Schedule, and Editorial layers."
     },
-    "updatedAt": "2026-11-18T19:09:36.873Z"
+    "updatedAt": "2026-11-20T15:29:25.258Z"
   },
   "fox-cabaret-renforshort-2027-02-13": {
     "sig": "title mismatch between schedule (\"renforshort\") and box office (\"renforshort: Meet Me In The Lobby Tour\")::",
@@ -1355,5 +1353,572 @@
       "arbitration_reasoning": "Adopted the Editorial layer's clean title to strip decorative emojis and redundant venue/free qualifiers, while confirming free admission and 12:00 PM start time from the Box Office layer."
     },
     "updatedAt": "2026-11-20T00:47:06.662Z"
+  },
+  "queen-s-park-arena-bellies-vs-victoria-shamrocks-2027-07-30": {
+    "sig": "date mismatch between schedule (2027-07-30) and box office (2026-07-30)::",
+    "decision": {
+      "clean_title": "Bellies vs. Victoria Shamrocks",
+      "artist": null,
+      "lineup": [
+        "New Westminster Salmonbellies",
+        "Victoria Shamrocks"
+      ],
+      "date": "2027-07-30",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2027-07-30 by accepting the fully-qualified YYYY-MM-DD from the Seed and Schedule layers over the yearless Box Office layer string."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "minoru-arena-langley-trappers-vs-richmond-s-2026-11-22": {
+    "sig": "date mismatch between schedule (2026-11-22) and box office (2026-11-01)::",
+    "decision": {
+      "clean_title": "Langley Trappers vs. Richmond Sockeyes",
+      "artist": null,
+      "lineup": [
+        "Langley Trappers",
+        "Richmond Sockeyes"
+      ],
+      "date": "2026-11-22",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2026-11-22 as both Seed and Schedule layers align on this future match date over the unpriced box office snapshot, with category mapped to sports for junior hockey."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "simon-fraser-univers-simon-fraser-last-chance-meet-2027-02-20": {
+    "sig": "date mismatch between schedule (2027-02-20) and box office (2026-10-24)::",
+    "decision": {
+      "clean_title": "Simon Fraser Last Chance Meet",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-20",
+      "start_time": "5:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2027-02-20 matching the seed schedule and event identifier, retained start time of 5:00 PM from box office, and classified as sports based on SFU swimming and diving meet context."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "richmond-olympic-ova-winter-parka-warehouse-sale-30-2027-10-30": {
+    "sig": "date mismatch between schedule (2027-10-30) and box office (2026-10-30)::",
+    "decision": {
+      "clean_title": "Winter Parka Warehouse Sale",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-10-30",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the 2027-10-30 date verified across both the seed and schedule harvester layers, as 2026-10-30 in the box office layer is an unverified past date relative to the current calendar."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "pitt-meadows-family-program-guide-2026-12-01": {
+    "sig": "date mismatch between schedule (2026-12-01) and box office (2027-01-01)::",
+    "decision": {
+      "clean_title": "Program Guide",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-01",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "free-public-access",
+      "arbitration_reasoning": "Adopted the upcoming schedule date (2026-12-01) over the box office placeholder date (2027-01-01) and assigned free-public-access based on Pitt Meadows City Hall's grounded access model."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "parq-casino-d-6-loun-society-club-fire-ice-2027-11-14": {
+    "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
+    "decision": {
+      "clean_title": "Society Club - Fire & Ice",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-14",
+      "start_time": "9:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-11-14 matching the Box Office layer's verified 'Nov 14' showing for the active 2026 calendar cycle over the ungrounded 2027 future seed date."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "richmond-olympic-ova-kendo-canada-maple-cup-14-2027-11-14": {
+    "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
+    "decision": {
+      "clean_title": "Kendo Canada Maple Cup",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-11-14",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Adopted the upcoming forward-looking date (2027-11-14) attested by both the event seed and schedule harvester, as the box office 2026-11-14 date is already in the past relative to the current calendar time."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "minoru-chapel-songs-for-a-new-world-13-2027-11-13": {
+    "sig": "date mismatch between schedule (2027-11-13) and box office (2026-11-14)::",
+    "decision": {
+      "clean_title": "Songs For A New World",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-11-13",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2027-11-13 as corroborated by both the primary seed and schedule harvester layer over the unverified box office record."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "nikkei-national-muse-japanese-calligraphy-workshop-2026-11-22": {
+    "sig": "title mismatch between schedule (\"Japanese Calligraphy Workshop\") and box office (\"Japanese Calligraphy (Shodō) workshop\")::",
+    "decision": {
+      "clean_title": "Japanese Calligraphy (Shodō) Workshop",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-22",
+      "start_time": "1:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the more specific, culturally descriptive title from the official Eventbrite box office page while standardizing title casing, confirmed the ISO date from the schedule layer, and verified the sold-out status from box office inventory."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "capulet-art-gallery-exhibition-pepe-hidalgo-see-th-2027-11-14": {
+    "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
+    "decision": {
+      "clean_title": "Exhibition: Pepe Hidalgo – See the Unseen, Hear the Unspoken",
+      "artist": "Pepe Hidalgo",
+      "lineup": [
+        "Pepe Hidalgo"
+      ],
+      "date": "2027-11-14",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2027-11-14 following the corroborated seed and schedule layers as 2026-11-14 is in the past relative to the current date."
+    },
+    "updatedAt": "2026-11-20T13:24:26.543Z"
+  },
+  "cloverdale-fairgroun-noel-surrey-with-the-magic-of-2026-11-27": {
+    "sig": "title mismatch between schedule (\"Noel Surrey with the Magic of Bright Nights - Noël Holiday Light Festival\") and box office (\"Noel Surrey with the Magic of Bright Nights\")::",
+    "decision": {
+      "clean_title": "Noel Surrey with the Magic of Bright Nights",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": "3:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "festivals",
+      "arbitration_reasoning": "Selected the concise official show title verified by the Box Office and Editorial layers while categorizing as 'festivals' per editorial enricher."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "hollywood-theatre-strongboi-headline-tour-2027-2027-03-04": {
+    "sig": "title mismatch between schedule (\"strongboi headline tour 2027\") and box office (\"strongboi: Headline Tour 2027\")::",
+    "decision": {
+      "clean_title": "strongboi: Headline Tour",
+      "artist": "strongboi",
+      "lineup": [
+        "strongboi"
+      ],
+      "date": "2027-03-04",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the properly capitalized and punctuated title styling from the box office and editorial layers, extracted lead performer strongboi for the lineup, verified single-visit $35.00 ticket availability, and prioritized the specialized music taxonomy from the editorial enricher."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "richmond-city-hall-c-exhibition-aspire-richmond-ins-8-2027-09-08": {
+    "sig": "date mismatch between schedule (2027-09-08) and box office (2026-09-08)::",
+    "decision": {
+      "clean_title": "Aspire Richmond – Inspired Connections",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-09-08",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the upcoming forward schedule date of 2027-09-08 over the past 2026-09-08 date, confirmed free public admission, and selected the clean editorial title and arts category."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "steveston-museum-and-pop-up-artists-marsha-hoggan-j-1-2027-11-01": {
+    "sig": "date mismatch between schedule (2027-11-01) and box office (2026-11-01)::",
+    "decision": {
+      "clean_title": "Pop-up Artists: Marsha Hoggan, Jennifer James, Scott Pleydell-Pearce",
+      "artist": null,
+      "lineup": [
+        "Marsha Hoggan",
+        "Jennifer James",
+        "Scott Pleydell-Pearce"
+      ],
+      "date": "2026-11-01",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the box office tier date of 2026-11-01 matching the event ID and active exhibition schedule over the distant 2027 calendar harvester projection."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "richmond-brighouse-l-5th-annual-art-exhibition-isla-2-2027-11-02": {
+    "sig": "date mismatch between schedule (2027-11-02) and box office (2026-11-02)::",
+    "decision": {
+      "clean_title": "5th Annual Art Exhibition – Islamic Art Experience",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-11-02",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2027-11-02 per schedule layer as the upcoming temporal occurrence (2026-11-02 is in the past relative to the November 2026 current date), maintained free admission status from box office, and adopted the enriched category 'arts'."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "richmond-art-gallery-exhibition-tour-in-mandarin-2027-11-08": {
+    "sig": "date mismatch between schedule (2027-11-08) and box office (2026-11-08)::",
+    "decision": {
+      "clean_title": "國語導覽 – Exhibition Tour in Mandarin",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-08",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2026-11-08 based on live box office verification and the event's canonical timing against a projected schedule anomaly."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "richmond-cultural-ce-pop-up-show-and-sale-richmond-14-2027-11-14": {
+    "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-15)::",
+    "decision": {
+      "clean_title": "Pop-up Show and Sale – Richmond Artists Guild",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-11-14",
+      "start_time": "11:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Adopted the future schedule date of 2027-11-14 since 2026-11-15 is in the past relative to the current temporal context, while inheriting the box office start time and editorial market categorization."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "lansdowne-centre-exhibition-shades-of-fall-6-2027-11-06": {
+    "sig": "date mismatch between schedule (2027-11-06) and box office (2026-11-06)::",
+    "decision": {
+      "clean_title": "Exhibition: Shades of Fall",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-11-06",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the schedule harvester's future date (2027-11-06) matching the canonical event ID over the box office layer's past date (2026-11-06), retained the editorial category 'arts', and verified free public admission."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "broadmoor-baptist-ch-concert-letters-from-the-past-2027-11-11": {
+    "sig": "date mismatch between schedule (2027-11-11) and box office (2026-11-11)::",
+    "decision": {
+      "clean_title": "Letters from the Past, Letters from the Future",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-11-11",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Selected upcoming future date 2027-11-11 over past date 2026-11-11 relative to current system time, adopting the editorial title and box office matinee timing."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "steveston-hub-live-music-kristian-naso-s-hid-2026-11-21": {
+    "sig": "title mismatch between schedule (\"Live Music: Kristian Naso’s Hidden Gems 5tet\") and box office (\"Kristian Naso's Hidden Gems 5tet at Steveston Hub\")::",
+    "decision": {
+      "clean_title": "Kristian Naso’s Hidden Gems 5tet",
+      "artist": "Kristian Naso’s Hidden Gems 5tet",
+      "lineup": [
+        "Kristian Naso’s Hidden Gems 5tet"
+      ],
+      "date": "2026-11-21",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the Editorial layer's clean performer-focused title by stripping the generic 'Live Music:' prefix from the schedule and redundant 'at Steveston Hub' venue suffix from the box office title."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "the-orpheum-richmond-delta-youth-orchestra-2026-11-22": {
+    "sig": "title mismatch between schedule (\"Richmond Delta Youth Orchestra – 55th Anniversary Concert: Then, Now, Next!\") and box office (\"55: Then. Now. Next - Richmond Delta Youth Orchestra's 55th anniversary concert\")::",
+    "decision": {
+      "clean_title": "Richmond Delta Youth Orchestra – 55th Anniversary Concert: Then, Now, Next!",
+      "artist": "Richmond Delta Youth Orchestra",
+      "lineup": [
+        "Richmond Delta Youth Orchestra"
+      ],
+      "date": "2026-11-22",
+      "start_time": "3:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the canonical title from Seed, Schedule, and Editorial layers while pulling verified 3:00 PM matinee timing and ticket availability from the Showpass box office layer."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "vancouver-chinese-cu-sea-mind-illusions-awakening-m-5-2026-12-05": {
+    "sig": "title mismatch between schedule (\"Sea & Mind: Illusions & Awakening—Mastering Invisible Routes 海 · 心 · 間 Exhibition Opening\") and box office (\"Opening | Sea & Mind: Mastering Invisible Routes 海 · 心 · 間\")::",
+    "decision": {
+      "clean_title": "Sea & Mind: Illusions & Awakening—Mastering Invisible Routes 海 · 心 · 間 Exhibition Opening",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-05",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the complete and descriptive exhibition title from the Seed, Schedule, and Editorial layers over the truncated box office ticket listing headline, while retaining the verified 2:00 PM start time and arts taxonomy."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "richmond-art-gallery-blind-led-tour-in-english-or-m-2026-12-03": {
+    "sig": "title mismatch between schedule (\"Blind-Led Tour in English or Mandarin / 列治文美術館盲人導覽\") and box office (\"Blind-Led Tour in English with Johnny Tai\")::",
+    "decision": {
+      "clean_title": "Blind-Led Tour in English or Mandarin / 列治文美術館盲人導覽",
+      "artist": "Johnny Tai",
+      "lineup": [
+        "Johnny Tai"
+      ],
+      "date": "2026-12-03",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the bilingual canonical exhibition title from Seed, Schedule, and Editorial layers while capturing Johnny Tai from Box Office into artist/lineup, confirming arts category and active free RSVP registration."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "simon-fraser-univers-sfu-red-leafs-vs-black-hills-s-2026-11-26": {
+    "sig": "title mismatch between schedule (\"SFU Red Leafs vs Black Hills State (S.D.) Men's Basketball\") and box office (\"SFU Men's Basketball vs. Black Hills State University\")::",
+    "decision": {
+      "clean_title": "SFU Red Leafs vs Black Hills State (S.D.) Men's Basketball",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Adopted the specific team moniker 'SFU Red Leafs' from the schedule and editorial layers over the generic ticketing modal title, verified start time of 7:00 PM from box office, and confirmed sports category."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "richmond-cultural-ce-tagor-zero-waste-with-sandra-s-2026-11-24": {
+    "sig": "title mismatch between schedule (\"TAGOR: “Zero Waste” with Sandra Sandvik\") and box office (\"November 24 “Zero Waste” with Sandra Sandvik\")::",
+    "decision": {
+      "clean_title": "TAGOR: “Zero Waste” with Sandra Sandvik",
+      "artist": "Sandra Sandvik",
+      "lineup": [
+        "Sandra Sandvik"
+      ],
+      "date": "2026-11-24",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the canonical presenter-prefixed title from Seed, Schedule, and Editorial layers over the date-prefixed page title from Box Office, and retained verified free admission."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "simon-fraser-univers-sfu-women-s-basketball-vs-alas-2026-12-03": {
+    "sig": "title mismatch between schedule (\"SFU Women's Basketball vs Alaska\") and box office (\"SFU Women's Basketball vs. University of Alaska\")::",
+    "decision": {
+      "clean_title": "SFU Women's Basketball vs. University of Alaska",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-03",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Adopted the official Box Office and ticketing title 'SFU Women's Basketball vs. University of Alaska' as the most accurate canonical title while confirming availability, category, and 7:00 PM start time from the live box office and editorial layers."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "centennial-theatre-come-try-ringette-free-2026-11-29": {
+    "sig": "date mismatch between schedule (2026-11-29) and box office (2026-11-01)::",
+    "decision": {
+      "clean_title": "Come Try Ringette",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-29",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2026-11-29 matching the canonical event ID and upcoming schedule harvester, dismissing the past 2026-11-01 box office artifact."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "monova-museum-of-nor-sensory-friendly-sunday-2026-11-21": {
+    "sig": "title mismatch between schedule (\"Sensory Friendly Sunday\") and box office (\"Sensory Friendly Sundays\")|date mismatch between schedule (2026-11-21) and box office (2026-05-17)::",
+    "decision": {
+      "clean_title": "Sensory Friendly Sunday",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-21",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the singular title agreed upon by Seed, Schedule, and Editorial layers, retained the upcoming target date 2026-11-21 over the past date from box office, and merged the verified morning start time and free admission tier."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "presentation-house-t-the-sword-in-the-stone-2026-12-11": {
+    "sig": "date mismatch between schedule (2026-12-11) and box office (2026-12-01)::",
+    "decision": {
+      "clean_title": "The Sword in the Stone",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-11",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the schedule harvester's specific event date of 2026-12-11 matching the event ID and showing calendar, while retaining verified live box office pricing and editorial synopsis."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "gordon-smith-gallery-speaker-series-designing-our-b-2026-12-10": {
+    "sig": "title mismatch between schedule (\"Speaker Series: Designing Our Built Envionment\") and box office (\"SPEAKER SERIES | Art Education, For Life: Designing Our Built Environment\")::",
+    "decision": {
+      "clean_title": "Speaker Series: Designing Our Built Environment",
+      "artist": null,
+      "lineup": [
+        "Mike Bernard",
+        "Michael Leckie",
+        "Raneen Nosh",
+        "Camille Gingras"
+      ],
+      "date": "2026-12-10",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the Editorial layer's cleanly capitalized and typo-corrected title 'Speaker Series: Designing Our Built Environment' over the raw uppercase box office header and misspelled schedule seed, while retaining the verified 6:30 PM start time and free admission status."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "crave-bistro-and-bar-moms-night-out-summer-s-last-h-2027-08-21": {
+    "sig": "date mismatch between schedule (2027-08-21) and box office (2026-08-21)::",
+    "decision": {
+      "clean_title": "Moms’ Night Out: Summer’s Last Hurrah (90s & 2000s Flashback)",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-08-21",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the ISO-formatted date 2027-08-21 from the schedule layer and event ID matching the box office 'Aug 21' showing, preserved the verified $15.00 CAD single-visit ticket inventory, and categorized as social based on editorial consensus."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "simon-fraser-univers-first-responders-trauma-preven-2026-11-26": {
+    "sig": "title mismatch between schedule (\"First Responders Trauma Prevention and Recovery Info Session (Online)\") and box office (\"First Responders Trauma Prevention and Recovery Info Session — Nov 26, 2026\")::",
+    "decision": {
+      "clean_title": "First Responders Trauma Prevention and Recovery Info Session",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the editorial layer's clean title stripped of redundant date and format suffixes, retained the confirmed 2026-11-26 date and 12:00 PM start time from the box office layer, and confirmed free admission availability."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "simon-fraser-univers-vocational-rehabilitation-and-2027-02-09": {
+    "sig": "title mismatch between schedule (\"Vocational Rehabilitation and Disability Management Info Session (Online)\") and box office (\"Vocational Rehabilitation and Disability Management Info Session — Feb 09\")::",
+    "decision": {
+      "clean_title": "Vocational Rehabilitation and Disability Management Info Session (Online)",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-09",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the complete editorial and schedule title over the box office listing which appended a transient date suffix ('— Feb 09')."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "simon-fraser-univers-dialogue-and-civic-engagement-2027-02-17": {
+    "sig": "title mismatch between schedule (\"Dialogue and Civic Engagement Certificate Info Session (Online)\") and box office (\"Dialogue & Civic Engagement Program Info Session (Online) — Feb 17, 2027\")::",
+    "decision": {
+      "clean_title": "Dialogue and Civic Engagement Certificate Info Session",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-17",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the Editorial clean title by stripping trailing dates and formatting noise while preserving the core event identity, reconciled the category to arts, and verified zero-cost General Admission availability."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "new-westminster-publ-babytime-0-12-months-2026-11-26": {
+    "sig": "date mismatch between schedule (2026-11-20) and box office (2026-11-26)::",
+    "decision": {
+      "clean_title": "Babytime (0-12 months)",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "10:30 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "The date and start time were resolved to 2026-11-26 at 10:30 AM to match the event ID and specific box office booking instance."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "burnaby-public-libra-digital-safety-101-2027-11-19": {
+    "sig": "date mismatch between schedule (2027-11-19) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "Digital Safety 101",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-19",
+      "start_time": "11:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-11-19 as verified by the Box Office checkout inspection matching the current annual calendar cycle over an anomalous 2027 harvester forward-projection."
+    },
+    "updatedAt": "2026-11-20T15:29:25.258Z"
   }
 }
