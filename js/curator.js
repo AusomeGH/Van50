@@ -454,6 +454,11 @@ async function loadQuarantineQueue() {
       const pillUserFbCountEl = document.getElementById('pill-count-user-feedback');
       if (userFbCountEl) userFbCountEl.textContent = state.userFeedbackQueue.length;
       if (pillUserFbCountEl) pillUserFbCountEl.textContent = state.userFeedbackQueue.length;
+      const collectedBadge = document.getElementById('collected-feedback-count');
+      if (collectedBadge) collectedBadge.textContent = String(state.userFeedbackQueue.length);
+      if (typeof window.fetchSheetSubmissions === 'function') {
+        window.fetchSheetSubmissions(true).catch(() => {});
+      }
 
       state.pendingNewsletterSignups = data.pendingNewsletterSignups || [];
       const nlCountEl = document.getElementById('stat-nl-signups-count');
@@ -7264,6 +7269,181 @@ function switchFilterToUserFeedback() {
   const list = document.getElementById('curator-cards-list');
   if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+function getCuratorSubmissionsUrl() {
+  const meta = document.querySelector('meta[name="van50-submissions-url"]');
+  return meta ? (meta.getAttribute('content') || '').trim() : '';
+}
+
+window.fetchSheetSubmissions = async function (silent = false) {
+  const url = getCuratorSubmissionsUrl();
+  if (!url) return { feedback: [], priceUpdates: [], error: 'Missing van50-submissions-url meta tag' };
+  try {
+    const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}_t=${Date.now()}`, { cache: 'no-store' });
+    const text = await res.text();
+    let data = null;
+    try { data = JSON.parse(text); } catch (_) { }
+    if (!res.ok || !data || !data.success) {
+      return {
+        feedback: [],
+        priceUpdates: [],
+        needsRedeploy: true,
+        error: (data && data.error) || 'Update your Google Apps Script deployment to a New Version so doGet() is active.'
+      };
+    }
+    state.sheetFeedback = Array.isArray(data.feedback) ? data.feedback : [];
+    state.sheetPriceUpdates = Array.isArray(data.priceUpdates) ? data.priceUpdates : [];
+    const totalCount = (state.userFeedbackQueue || []).length + state.sheetFeedback.length + state.sheetPriceUpdates.length;
+    const badge = document.getElementById('collected-feedback-count');
+    if (badge) badge.textContent = String(totalCount);
+    if (!silent) showToast(`Synced ${state.sheetFeedback.length} feedback & ${state.sheetPriceUpdates.length} price update(s) from Google Sheet.`, 'success');
+    return { feedback: state.sheetFeedback, priceUpdates: state.sheetPriceUpdates, error: null };
+  } catch (err) {
+    return { feedback: [], priceUpdates: [], needsRedeploy: true, error: String(err) };
+  }
+};
+
+window.closeCollectedFeedbackModal = function () {
+  const modal = document.getElementById('collected-feedback-modal');
+  if (modal) modal.style.display = 'none';
+};
+
+window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
+  let modal = document.getElementById('collected-feedback-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'collected-feedback-modal';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:10060;background:rgba(2,6,23,0.82);display:none;align-items:center;justify-content:center;padding:20px;';
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) window.closeCollectedFeedbackModal();
+    });
+    document.body.appendChild(modal);
+  }
+
+  modal.style.display = 'flex';
+  modal.innerHTML = `
+    <div style="background:#0f172a;border:1px solid rgba(16,185,129,0.45);border-radius:14px;max-width:860px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.75);color:#f8fafc;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.1);gap:12px;flex-wrap:wrap;">
+        <div>
+          <h3 style="margin:0;font-family:var(--font-heading);font-size:1.2rem;color:#6ee7b7;">💬 Collected Public Feedback &amp; Price Updates</h3>
+          <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">Live submissions from your Van50 Google Sheet + local Quarantine queue</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="openCollectedFeedbackModal('${jsStrArg(activeTab)}')" style="border-color:rgba(56,189,248,0.45);color:#7dd3fc;">🔄 Refresh</button>
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="closeCollectedFeedbackModal()">✕ Close</button>
+        </div>
+      </div>
+      <div id="collected-feedback-body" style="padding:16px 20px;overflow-y:auto;flex:1;">
+        <div style="text-align:center;padding:32px;color:#94a3b8;">Loading submissions from Google Sheet…</div>
+      </div>
+    </div>
+  `;
+
+  const result = await window.fetchSheetSubmissions(true);
+  const body = document.getElementById('collected-feedback-body');
+  if (!body) return;
+
+  const localFeedback = state.userFeedbackQueue || [];
+  const sheetFeedback = result.feedback || [];
+  const sheetPrices = result.priceUpdates || [];
+  const fbTotal = sheetFeedback.length + localFeedback.length;
+
+  const tabBarHtml = `
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+      <button type="button" class="btn-curator ${activeTab === 'feedback' ? 'btn-curator-primary' : 'btn-curator-ghost'}" onclick="renderCollectedFeedbackTab('feedback')" id="cf-tab-feedback">
+        💬 Feedback &amp; Suggestions (${fbTotal})
+      </button>
+      <button type="button" class="btn-curator ${activeTab === 'prices' ? 'btn-curator-primary' : 'btn-curator-ghost'}" onclick="renderCollectedFeedbackTab('prices')" id="cf-tab-prices">
+        💵 Price Updates &amp; Senior Rates (${sheetPrices.length})
+      </button>
+    </div>
+    ${result.needsRedeploy ? `
+      <div style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.4);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:0.82rem;color:#fde68a;line-height:1.45;">
+        <strong>One-time Google Apps Script update needed to read rows:</strong> Paste the updated <code>scripts/google_apps_script_submissions.gs</code> (which adds <code>doGet()</code>) into Apps Script, then click <strong>Deploy → Manage deployments → Edit (✎) → Version: New version → Deploy</strong>. Your URL stays the same!
+      </div>
+    ` : ''}
+    <div id="cf-tab-content"></div>
+  `;
+  body.innerHTML = tabBarHtml;
+
+  window.renderCollectedFeedbackTab = function (tab) {
+    const contentEl = document.getElementById('cf-tab-content');
+    const bFb = document.getElementById('cf-tab-feedback');
+    const bPr = document.getElementById('cf-tab-prices');
+    if (bFb) bFb.className = `btn-curator ${tab === 'feedback' ? 'btn-curator-primary' : 'btn-curator-ghost'}`;
+    if (bPr) bPr.className = `btn-curator ${tab === 'prices' ? 'btn-curator-primary' : 'btn-curator-ghost'}`;
+    if (!contentEl) return;
+
+    if (tab === 'prices') {
+      if (sheetPrices.length === 0) {
+        contentEl.innerHTML = '<div style="text-align:center;padding:32px;color:#94a3b8;">No price updates collected yet.</div>';
+        return;
+      }
+      contentEl.innerHTML = `<div style="display:flex;flex-direction:column;gap:10px;">` + sheetPrices.map(r => {
+        const ts = r['Timestamp (UTC)'] ? new Date(r['Timestamp (UTC)']).toLocaleString() : '';
+        const venue = r['Venue Name'] || 'Venue';
+        const pint = r['Cheapest Pint ($ CAD)'];
+        const cocktail = r['Cheapest Cocktail ($ CAD)'];
+        const senior = r['Senior / 65+ Price ($ CAD)'];
+        const taxIn = r['Tax Included (All-In)'] || 'No';
+        const note = r['Note / Source'] || '';
+        const parts = [];
+        if (pint !== '' && pint != null) parts.push(`🍺 Pint: <strong>$${escapeHtml(pint)}</strong>`);
+        if (cocktail !== '' && cocktail != null) parts.push(`🍸 Cocktail: <strong>$${escapeHtml(cocktail)}</strong>`);
+        if (senior !== '' && senior != null) parts.push(`🎟️ Senior / 65+: <strong>$${escapeHtml(senior)}</strong>`);
+        return `
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+              <strong style="color:#f8fafc;font-size:0.95rem;">📍 ${escapeHtml(venue)}</strong>
+              <span style="font-size:0.74rem;color:#94a3b8;">${escapeHtml(ts)} • Tax-in: ${escapeHtml(taxIn)}</span>
+            </div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:0.84rem;color:#38bdf8;margin-bottom:${note ? '6px' : '0'};">
+              ${parts.join(' &nbsp;•&nbsp; ') || 'No numeric price entered'}
+            </div>
+            ${note ? `<div style="font-size:0.8rem;color:#cbd5e1;">Note: ${escapeHtml(note)}</div>` : ''}
+          </div>
+        `;
+      }).join('') + `</div>`;
+      return;
+    }
+
+    // Feedback & Suggestions tab
+    const cards = [];
+    sheetFeedback.forEach(r => {
+      const ts = r['Timestamp (UTC)'] ? new Date(r['Timestamp (UTC)']).toLocaleString() : '';
+      const targetId = r['Target Event ID'] || '';
+      const msg = r['Message / Suggestion'] || '';
+      cards.push(`
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:12px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35);">Google Sheet</span>
+            ${targetId ? `<span style="font-size:0.74rem;color:#38bdf8;font-family:monospace;">Event: ${escapeHtml(targetId)}</span>` : ''}
+            <span style="font-size:0.74rem;color:#94a3b8;margin-left:auto;">${escapeHtml(ts)}</span>
+          </div>
+          <div style="font-size:0.86rem;color:#e2e8f0;line-height:1.5;white-space:pre-wrap;word-break:break-word;">${escapeHtml(msg)}</div>
+        </div>
+      `);
+    });
+    localFeedback.forEach(fb => {
+      const ts = fb.submitted_at ? new Date(fb.submitted_at).toLocaleString() : 'Local';
+      const msg = fb.sanitized_message || fb.sanitized_comment || '';
+      cards.push(`
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(56,189,248,0.3);border-radius:8px;padding:12px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(56,189,248,0.15);color:#7dd3fc;border:1px solid rgba(56,189,248,0.35);">Local Queue</span>
+            <span style="font-size:0.74rem;color:#94a3b8;margin-left:auto;">${escapeHtml(ts)}</span>
+          </div>
+          <div style="font-size:0.86rem;color:#e2e8f0;line-height:1.5;white-space:pre-wrap;word-break:break-word;">${escapeHtml(msg)}</div>
+        </div>
+      `);
+    });
+    contentEl.innerHTML = cards.length > 0
+      ? `<div style="display:flex;flex-direction:column;gap:10px;">${cards.join('')}</div>`
+      : '<div style="text-align:center;padding:32px;color:#94a3b8;">No community feedback collected yet.</div>';
+  };
+
+  window.renderCollectedFeedbackTab(activeTab);
+};
 
 function renderUserFeedbackCards() {
   const container = document.getElementById('curator-cards-list');

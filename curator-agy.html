@@ -9,7 +9,9 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self'; object-src 'none'; base-uri 'self';">
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'self';">
+  <meta name="van50-submissions-url"
+    content="https://script.google.com/macros/s/AKfycbwbUvlCMYbBH9ukYSc_OaP9qF1nMtvhcEgsajmbTDmrun89CxQDoHMledPyTRWuqUK7vA/exec">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -77,6 +79,13 @@
           <span>📋 Feedback History:</span>
           <span class="stat-val" id="stat-instructions-count">0</span>
         </div>
+        <button type="button" class="stat-pill clickable-pill" id="btn-view-collected-feedback"
+          onclick="openCollectedFeedbackModal()"
+          style="cursor: pointer; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.45); color: #6ee7b7;"
+          title="View all community feedback, show suggestions, and price updates collected from the live Google Sheet & local queue">
+          <span>💬 Collected Feedback</span>
+          <span class="stat-val" id="collected-feedback-count">0</span>
+        </button>
         <!-- Hidden legacy header pills kept synced for JS compatibility; surfaced prominently in #curator-pending-actions-inbox -->
         <div style="display: none;">
           <div id="stat-quarantined-pill"><span id="stat-pending-count">0</span></div>
@@ -3422,7 +3431,7 @@
     } catch (_) {}
     window.VAN50_ENGINE = 'antigravity';
   </script>
-  <script src="js/curator.js?v=1.6.2"></script>
+  <script src="js/curator.js?v=1.6.3"></script>
 </body>
 
 </html>

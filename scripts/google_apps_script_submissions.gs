@@ -15,6 +15,39 @@
  *    and deploy Van50 to production.
  */
 
+function doGet(e) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var feedbackRows = readSheetRows(ss, 'Feedback');
+    var priceRows = readSheetRows(ss, 'Price Updates');
+    return jsonResponse({
+      success: true,
+      feedback: feedbackRows,
+      priceUpdates: priceRows,
+      fetchedAt: new Date().toISOString()
+    });
+  } catch (err) {
+    return jsonResponse({ success: false, error: String(err) });
+  }
+}
+
+function readSheetRows(ss, name) {
+  var sheet = ss.getSheetByName(name);
+  if (!sheet) return [];
+  var values = sheet.getDataRange().getValues();
+  if (!values || values.length <= 1) return [];
+  var headers = values[0].map(function (h) { return String(h || '').trim(); });
+  var rows = [];
+  for (var i = values.length - 1; i >= 1; i--) {
+    var rowObj = { _row: i + 1 };
+    for (var c = 0; c < headers.length; c++) {
+      rowObj[headers[c]] = values[i][c];
+    }
+    rows.push(rowObj);
+  }
+  return rows;
+}
+
 function doPost(e) {
   try {
     var raw = (e && e.postData && e.postData.contents) ? e.postData.contents : '{}';
