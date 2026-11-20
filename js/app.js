@@ -59,6 +59,36 @@ function recordFormSubmissionTimestamp(formKey) {
   } catch (_) { }
 }
 
+function getVan50SubmissionsUrl() {
+  if (typeof window !== 'undefined' && typeof window.VAN50_SUBMISSIONS_URL === 'string' && window.VAN50_SUBMISSIONS_URL.trim()) {
+    return window.VAN50_SUBMISSIONS_URL.trim();
+  }
+  if (typeof document !== 'undefined') {
+    const meta = document.querySelector('meta[name="van50-submissions-url"]');
+    const val = meta ? (meta.getAttribute('content') || '').trim() : '';
+    if (val) return val;
+  }
+  return '';
+}
+
+async function submitToGoogleAppsScript(payload) {
+  const endpointUrl = getVan50SubmissionsUrl();
+  if (!endpointUrl || !/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec/i.test(endpointUrl)) {
+    return { configured: false, ok: false };
+  }
+  const enriched = {
+    ...payload,
+    page_url: (typeof window !== 'undefined' && window.location) ? window.location.href : ''
+  };
+  await fetch(endpointUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(enriched)
+  });
+  return { configured: true, ok: true };
+}
+
 function renderSafeMailtoStatus(containerEl, prefixText, mailtoHref) {
   if (!containerEl) return;
   containerEl.textContent = '';
@@ -3179,51 +3209,63 @@ function setupEventListeners() {
         submitBtn.textContent = 'Submitting...';
       }
 
-      const sendStaticPriceFallback = () => {
-        recordFormSubmissionTimestamp('price_feedback');
-        const summaryLines = [
-          `Venue: ${venueName}`,
-          (pintVal !== null && !isNaN(pintVal)) ? `Cheapest Pint: $${pintVal.toFixed(2)} CAD` : null,
-          (cocktailVal !== null && !isNaN(cocktailVal)) ? `Cheapest Cocktail/Highball: $${cocktailVal.toFixed(2)} CAD` : null,
-          (seniorVal !== null && !isNaN(seniorVal)) ? `Senior / 65+ Price: $${seniorVal.toFixed(2)} CAD` : null,
-          `Tax Included: ${isAllIn ? 'Yes (All-In)' : 'No (+BC Liquor Tax)'}`,
-          note ? `Note / Source: ${note}` : null
-        ].filter(Boolean).join('\n');
-        const mailtoHref = `mailto:Van50.Submit@gmail.com?subject=${encodeURIComponent(`[Van50 Price Update] ${venueName}`)}&body=${encodeURIComponent(summaryLines)}`;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(summaryLines).catch(() => { });
-        }
+      const pricePayload = {
+        type: 'price_update',
+        venue_name: venueName,
+        cheapest_pint_input: pintVal,
+        cheapest_cocktail_input: cocktailVal,
+        seniorPrice: (seniorVal !== null && !isNaN(seniorVal)) ? seniorVal : null,
+        is_all_in: isAllIn,
+        note: note,
+        honeypot: hpInput ? hpInput.value : ''
+      };
+
+      const sendGoogleSheetPriceFallback = async () => {
+        try {
+          const gsResult = await submitToGoogleAppsScript(pricePayload);
+          if (gsResult.configured && gsResult.ok) {
+            recordFormSubmissionTimestamp('price_feedback');
+            if (statusBox) {
+              statusBox.style.display = 'block';
+              statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
+              statusBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+              statusBox.style.color = '#6ee7b7';
+              statusBox.textContent = '✓ Thank you! Your price update has been saved for Van50 review.';
+            }
+            if (submitBtn) submitBtn.textContent = '✓ Submitted';
+            setTimeout(() => { window.closePriceFeedbackModal(); }, 1800);
+            return;
+          }
+        } catch (_) { }
+
         if (statusBox) {
           statusBox.style.display = 'block';
-          statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
-          statusBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
-          statusBox.style.color = '#6ee7b7';
-          renderSafeMailtoStatus(statusBox, '✓ Prepared for Van50 Curators (copied to clipboard).', mailtoHref);
+          statusBox.style.background = 'rgba(245, 158, 11, 0.15)';
+          statusBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
+          statusBox.style.color = '#fcd34d';
+          statusBox.textContent = 'Submissions endpoint not yet connected. Paste your Google Apps Script Web App URL into index.html (van50-submissions-url).';
         }
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = '✓ Draft Ready';
+          submitBtn.textContent = 'Submit Price Update';
         }
-        window.location.href = mailtoHref;
       };
+
+      const isLocalHost = typeof window !== 'undefined' && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+      if (!isLocalHost && getVan50SubmissionsUrl()) {
+        await sendGoogleSheetPriceFallback();
+        return;
+      }
 
       try {
         const res = await fetch('/api/suggest-price', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            venue_name: venueName,
-            cheapest_pint_input: pintVal,
-            cheapest_cocktail_input: cocktailVal,
-            seniorPrice: (seniorVal !== null && !isNaN(seniorVal)) ? seniorVal : null,
-            is_all_in: isAllIn,
-            note: note,
-            honeypot: hpInput ? hpInput.value : ''
-          })
+          body: JSON.stringify(pricePayload)
         });
 
         if (res.status === 404 || res.status === 405) {
-          sendStaticPriceFallback();
+          await sendGoogleSheetPriceFallback();
           return;
         }
 
@@ -3257,7 +3299,7 @@ function setupEventListeners() {
           }
         }
       } catch (err) {
-        sendStaticPriceFallback();
+        await sendGoogleSheetPriceFallback();
       }
     });
   }
@@ -9118,6 +9160,7 @@ function initCommunityFeedbackModal() {
       }
 
       const payload = {
+        type: 'feedback',
         message: message,
         target_event_id: sanitizeUrlEventIdToken(targetIdInput?.value || ''),
         hp_field: hpInput?.value || ''
@@ -9128,33 +9171,48 @@ function initCommunityFeedbackModal() {
         submitBtn.textContent = 'Submitting...';
       }
 
-      const sendStaticFeedbackFallback = () => {
-        recordFormSubmissionTimestamp('community_feedback');
-        const bodyLines = [
-          payload.target_event_id ? `Event ID: ${payload.target_event_id}` : null,
-          `Feedback / Show Suggestion:`,
-          message
-        ].filter(Boolean).join('\n\n');
-        const subj = payload.target_event_id
-          ? `[Van50 Issue Report] ${payload.target_event_id}`
-          : `[Van50 Show Suggestion / Feedback]`;
-        const mailtoHref = `mailto:Van50.Submit@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(bodyLines)}`;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(bodyLines).catch(() => { });
-        }
+      const sendGoogleSheetFeedbackFallback = async () => {
+        try {
+          const gsResult = await submitToGoogleAppsScript(payload);
+          if (gsResult.configured && gsResult.ok) {
+            recordFormSubmissionTimestamp('community_feedback');
+            if (alertBox) {
+              alertBox.style.display = 'block';
+              alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
+              alertBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+              alertBox.style.color = '#34d399';
+              alertBox.textContent = '✓ Thank you! Your feedback has been saved for Van50 review.';
+            }
+            form.reset();
+            setTimeout(() => {
+              closeFeedbackModal();
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Feedback';
+              }
+            }, 1800);
+            return;
+          }
+        } catch (_) { }
+
         if (alertBox) {
           alertBox.style.display = 'block';
-          alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
-          alertBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
-          alertBox.style.color = '#34d399';
-          renderSafeMailtoStatus(alertBox, '✓ Copied & prepared for Van50 Curators!', mailtoHref);
+          alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
+          alertBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
+          alertBox.style.color = '#fcd34d';
+          alertBox.textContent = 'Submissions endpoint not yet connected. Paste your Google Apps Script Web App URL into index.html (van50-submissions-url).';
         }
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = '✓ Draft Ready';
+          submitBtn.textContent = 'Send Feedback';
         }
-        window.location.href = mailtoHref;
       };
+
+      const isLocalHost = typeof window !== 'undefined' && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+      if (!isLocalHost && getVan50SubmissionsUrl()) {
+        await sendGoogleSheetFeedbackFallback();
+        return;
+      }
 
       try {
         const res = await fetch('/api/feedback', {
@@ -9164,7 +9222,7 @@ function initCommunityFeedbackModal() {
         });
 
         if (res.status === 404 || res.status === 405) {
-          sendStaticFeedbackFallback();
+          await sendGoogleSheetFeedbackFallback();
           return;
         }
 
@@ -9201,7 +9259,7 @@ function initCommunityFeedbackModal() {
           }
         }
       } catch (err) {
-        sendStaticFeedbackFallback();
+        await sendGoogleSheetFeedbackFallback();
       }
     });
   }

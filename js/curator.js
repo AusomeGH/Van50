@@ -1873,17 +1873,57 @@ window.setModalViewMode = function (mode = 'screenshot') {
   }, 100);
 };
 
+function jsStrArg(val) {
+  return escapeHtml(
+    String(val ?? '')
+      .replace(/\\/g, '\\\\')
+      .replace(/'/g, "\\'")
+      .replace(/\r?\n/g, ' ')
+  );
+}
+
 window.openAIInstructionModal = function (eventId, mode = 'approve') {
   let ev = (state.quarantinedEvents || []).find(e => e.id === eventId) ||
     (state.archivedEvents || []).find(e => e.id === eventId) ||
     (state.discoveredVenues || []).find(v => v.id === eventId) ||
     (state.discoveredSources || []).find(s => s.id === eventId);
 
+  // Also search festivals & pending holidays registries
+  if (!ev && Array.isArray(state.festivals)) {
+    const festHit = state.festivals.find(f =>
+      f && (f.slug === eventId || f.id === eventId || f.festival_name === eventId || f.name === eventId)
+    );
+    if (festHit) {
+      ev = {
+        id: festHit.slug || festHit.id || festHit.festival_name || festHit.name || eventId,
+        title: festHit.festival_name || festHit.name || eventId,
+        venue: festHit.venue_name || festHit.location || 'Metro Vancouver',
+        websiteUrl: festHit.website_url || festHit.schedule_url || '',
+        category: festHit.category || 'festivals',
+        price: festHit.price ?? 0
+      };
+    }
+  }
+  if (!ev && Array.isArray(state.pendingHolidays)) {
+    const holHit = state.pendingHolidays.find(h => h && (h.id === eventId || h.label === eventId));
+    if (holHit) {
+      ev = {
+        id: holHit.id || eventId,
+        title: holHit.label || holHit.id || eventId,
+        venue: 'Metro Vancouver',
+        websiteUrl: '',
+        category: 'festivals',
+        price: 0
+      };
+    }
+  }
+
   // Cross-search master catalogs data (events, venues, festivals)
   if (!ev && state.masterCatalogsData) {
     for (const key of Object.keys(state.masterCatalogsData)) {
       const found = (state.masterCatalogsData[key] || []).find(item =>
         item.id === eventId ||
+        item.slug === eventId ||
         item.event_id === eventId ||
         item.venue_name === eventId ||
         item.name === eventId ||
@@ -5061,7 +5101,7 @@ function renderHolidayCards() {
                           return `<option value="${escapeHtml(afSlug)}">${escapeHtml(afLabel)}</option>`;
                         }).join('')}
                       </select>
-                      <button type="button" class="btn-curator btn-curator-ghost" onclick="mergePendingFestival('${escapeHtml(festSlug)}', '${escapeHtml(festName.replace(/'/g, "\\'"))}')"
+                      <button type="button" class="btn-curator btn-curator-ghost" onclick="mergePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
                         style="border-color: rgba(56, 189, 248, 0.45); color: #7dd3fc; white-space: nowrap;">
                         🔀 Merge Alias
                       </button>
@@ -5071,11 +5111,15 @@ function renderHolidayCards() {
               </div>
 
               <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px; flex-wrap: wrap;">
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${escapeHtml(festSlug)}', '${escapeHtml(festName.replace(/'/g, "\\'"))}')"
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(festSlug)}', 'instruct')"
+                  style="border-color: rgba(168, 85, 247, 0.45); color: #d8b4fe; margin-right: auto;">
+                  📝 Feedback / Guidance
+                </button>
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
                   style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
                   ✕ Dismiss (Keep Events Standalone)
                 </button>
-                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${escapeHtml(festSlug)}', '${escapeHtml(festName.replace(/'/g, "\\'"))}')"
+                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
                   style="background: linear-gradient(135deg, #db2777, #9333ea); border-color: #f472b6;">
                   ✓ Approve &amp; Activate Festival
                 </button>
@@ -5286,7 +5330,10 @@ window.rejectHoliday = async function (holidayId) {
 };
 
 window.approvePendingFestival = async function (festSlug, fallbackName) {
-  if (!state.token) return;
+  if (!state.token) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
   const nameInput = document.getElementById(`fest-approve-name-${festSlug}`);
   const canonicalName = (nameInput ? nameInput.value.trim() : '') || fallbackName || festSlug;
   try {
@@ -5320,7 +5367,10 @@ window.approvePendingFestival = async function (festSlug, fallbackName) {
 };
 
 window.mergePendingFestival = async function (festSlug, sourceName) {
-  if (!state.token) return;
+  if (!state.token) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
   const targetSel = document.getElementById(`fest-merge-target-${festSlug}`);
   const targetSlug = targetSel ? targetSel.value.trim() : '';
   if (!targetSlug) {
@@ -5354,7 +5404,10 @@ window.mergePendingFestival = async function (festSlug, sourceName) {
 };
 
 window.rejectPendingFestival = async function (festSlug, festName) {
-  if (!state.token) return;
+  if (!state.token) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
   if (!confirm(`Dismiss festival candidate '${festName || festSlug}'? Its events will remain standalone cards.`)) return;
   try {
     const res = await fetch('/api/curator/reject-festival', {
@@ -6693,7 +6746,7 @@ function renderMasterCatalogList() {
             <div style="display: flex; gap: 8px; align-items: center;">
               ${tags}
               ${ev.ticket_url ? `<a href="${escapeHtml(safeExternalUrl(ev.ticket_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
-              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(ev.event_id || ev.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(ev.event_id || ev.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
             </div>
           </div>
         </div>
@@ -6716,7 +6769,7 @@ function renderMasterCatalogList() {
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem; align-items: center;">
             ${calUrl ? `<a href="${escapeHtml(safeExternalUrl(calUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
             ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(safeExternalUrl(vm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
-            <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(vm.venue_name || vm.name || vm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(vm.venue_name || vm.name || vm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
           </div>
         </div>
       `;
@@ -6752,10 +6805,10 @@ function renderMasterCatalogList() {
             ${fm.website_url ? `<a href="${escapeHtml(safeExternalUrl(fm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
             <div style="margin-left: auto; display: flex; gap: 6px; align-items: center;">
               ${isPending ? `
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${escapeHtml(fslug)}', '${escapeHtml(fname.replace(/'/g, "\\'"))}'); setTimeout(() => fetchMasterCatalog('festivals_master', true), 400);" style="padding: 3px 9px; font-size: 0.72rem; color: #f87171; border-color: rgba(239, 68, 68, 0.4);">✕ Dismiss</button>
-                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${escapeHtml(fslug)}', '${escapeHtml(fname.replace(/'/g, "\\'"))}'); setTimeout(() => fetchMasterCatalog('festivals_master', true), 400);" style="padding: 3px 10px; font-size: 0.72rem; background: #db2777; border-color: #f472b6;">✓ Approve Festival</button>
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${jsStrArg(fslug)}', '${jsStrArg(fname)}').then(() => fetchMasterCatalog('festivals_master', true));" style="padding: 3px 9px; font-size: 0.72rem; color: #f87171; border-color: rgba(239, 68, 68, 0.4);">✕ Dismiss</button>
+                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${jsStrArg(fslug)}', '${jsStrArg(fname)}').then(() => fetchMasterCatalog('festivals_master', true));" style="padding: 3px 10px; font-size: 0.72rem; background: #db2777; border-color: #f472b6;">✓ Approve Festival</button>
               ` : ''}
-              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(fname)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI">📝 Guidance</button>
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(fslug)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI">📝 Guidance</button>
             </div>
           </div>
         </div>

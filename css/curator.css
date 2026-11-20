@@ -773,6 +773,15 @@ body {
   pointer-events: auto;
 }
 
+/* Ensure AI Guidance & Add Venue modals always stack above Master Catalogs / Preview / Pipeline modals */
+#ai-instruction-modal.curator-modal-overlay {
+  z-index: 10050 !important;
+}
+
+#add-venue-modal.curator-modal-overlay {
+  z-index: 10040 !important;
+}
+
 .curator-modal-card {
   background: var(--curator-surface);
   border: 1px solid rgba(255, 255, 255, 0.15);
