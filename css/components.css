@@ -2411,52 +2411,6 @@
   color: #fff;
 }
 
-.roulette-wheel-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  margin: 16px 0 20px;
-  min-height: 140px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.roulette-icon {
-  font-size: 2.4rem;
-  margin-bottom: 8px;
-  transition: transform 0.1s ease;
-}
-
-.roulette-icon.spinning {
-  animation: spin-icon 0.15s infinite linear;
-}
-
-@keyframes spin-icon {
-  from {
-    transform: rotate(0deg) scale(1.1);
-  }
-
-  to {
-    transform: rotate(360deg) scale(1.1);
-  }
-}
-
-.roulette-result-title {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 6px;
-}
-
-.roulette-result-desc {
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-}
-
 /* ==============================================================================
    6. Outing Itinerary Drawer
    ============================================================================== */
@@ -10397,4 +10351,81 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price {
   border-color: var(--brand-primary, #0d9488) !important;
   color: #ffffff !important;
   box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+}
+
+/* ==============================================================================
+   UX SIMPLIFICATION: DRAWER CATEGORIES, SINGLE TOGGLES, FULL-CARD CLICK & STICKY DATES
+   ============================================================================== */
+
+/* 1. Categories Inside Filters Drawer */
+#mobile-filters-sheet .drawer-categories-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#mobile-filters-sheet .drawer-categories-grid .quick-cat-pill {
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+
+/* Single-Toggle Rows Inside Drawer (Discounts & 55+, Event Preferences) */
+.access-discounts-toggles.single-toggle-row,
+.event-preferences-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.access-discounts-toggles.single-toggle-row .drawer-toggle-pill,
+.event-preferences-row .drawer-toggle-pill {
+  flex: 1 1 auto;
+}
+
+/* 5. Entire Non-Interactive Event Card Surface Clickable */
+.event-card {
+  cursor: pointer;
+}
+
+.event-card .card-desc {
+  cursor: pointer;
+}
+
+.event-card .mobile-card-compact-header:focus-visible {
+  outline: 2px solid var(--brand-primary, #0d9488);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* 7. Sticky Date Group Headers (Never break sticky with overflow-x: hidden) */
+html, body, main, #events-grid, #events-list {
+  overflow-x: clip !important;
+}
+
+.date-group,
+.events-time-group.date-group {
+  position: relative;
+  overflow: visible !important;
+}
+
+.date-group-header,
+.time-group-header.date-group-header {
+  position: sticky !important;
+  top: var(--sticky-header-offset, 64px) !important;
+  z-index: 20 !important;
+  background: var(--bg-app, #f8faf9) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding-block: 10px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+}
+
+[data-theme="dark"] .date-group-header,
+[data-theme="dark"] .time-group-header.date-group-header {
+  background: rgba(15, 23, 42, 0.92) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }

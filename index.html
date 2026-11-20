@@ -43,8 +43,8 @@
     content="default-src 'self'; script-src 'self' https://*.googleapis.com https://*.gstatic.com https://gc.zgo.at 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com https://van50.goatcounter.com; connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://*.google.com https://van50.goatcounter.com data:; worker-src 'self' blob:; frame-src 'self' https://*.google.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:;">
   <meta name="van50-maps-key" content="AIzaSyAzpE5cht7VwkSO4t6g37PGr7tHzayctbg">
 
-  <link rel="stylesheet" href="css/style.css?v=8.4.0">
-  <link rel="stylesheet" href="css/components.css?v=8.4.0">
+  <link rel="stylesheet" href="css/style.css?v=8.5.0">
+  <link rel="stylesheet" href="css/components.css?v=8.5.0">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -65,6 +65,12 @@
         <a href="simulator.html" target="_blank" rel="noopener noreferrer" id="header-curator-preview-btn"
           class="header-curator-preview-link" title="Open Multi-Device User Preview in New Tab" hidden
           style="display: none;">Preview ↗</a>
+        <button type="button" class="btn btn-accessibility" id="accessibility-btn" aria-label="Toggle Accessibility Mode (Step-Free / Accessible)"
+          aria-pressed="false"
+          title="Filter Step-Free / Accessible venues & toggle Accessible Mode (High contrast, larger text, enhanced focus)">
+          <span class="access-icon" aria-hidden="true">♿</span>
+          <span class="access-label">Accessibility</span>
+        </button>
         <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Events">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#e11d48" aria-hidden="true"
             style="margin-right: 4px; vertical-align: -2px;">
@@ -156,11 +162,6 @@
           </svg>
           <span id="mobile-filter-trigger-label">Filters</span>
         </button>
-        <button type="button" id="btn-open-roulette" class="mobile-filter-trigger btn-surprise-me"
-          aria-label="Surprise Outing Generator" title="Spin for a random local outing matching your active filters">
-          <span aria-hidden="true">🎲</span>
-          <span class="surprise-me-label">Surprise</span>
-        </button>
         <button type="button" id="mobile-top-map-btn" class="mobile-filter-trigger mobile-top-map-btn view-switcher-btn"
           data-view="toggle" aria-pressed="false" aria-label="Switch between Map and Card view">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -173,7 +174,6 @@
         </button>
       </div>
     </div>
-    <div class="quick-category-strip" id="quick-category-strip" role="group" aria-label="Quick Category Filters"></div>
     <section class="festival-spotlight-section" id="festival-spotlight-container" style="display: none;"
       aria-label="Active Local Festivals"></section>
     <!-- Filter Controls Hub -->
@@ -197,6 +197,15 @@
           </div>
         </div>
 
+        <!-- Categories Filter (First Section Inside Drawer) -->
+        <div class="drawer-filter-section categories-drawer-section" id="categories-drawer-section">
+          <div class="drawer-section-header">
+            <span><strong>Categories:</strong></span>
+          </div>
+          <div class="quick-category-strip drawer-categories-grid" id="quick-category-strip" role="group"
+            aria-label="Category Filters"></div>
+        </div>
+
         <!-- Spend Filter (4 Single-Tap Pills) -->
         <div class="drawer-filter-section spend-filter-section" id="spend-filter-section">
           <div class="drawer-section-header">
@@ -210,54 +219,31 @@
           </div>
         </div>
 
-        <!-- Access & Discounts Section (Senior Deals & 55+ + Step-Free / Accessible) -->
+        <!-- Discounts & 55+ Section -->
         <div class="drawer-filter-section access-discounts-section" id="access-discounts-section">
           <div class="drawer-section-header">
-            <span><strong>Access &amp; Discounts:</strong></span>
+            <span><strong>Discounts &amp; 55+:</strong></span>
           </div>
-          <div class="access-discounts-toggles" role="group" aria-label="Access and Discounts Filters">
+          <div class="access-discounts-toggles single-toggle-row" role="group" aria-label="Discounts and 55+ Filters">
             <button type="button" class="drawer-toggle-pill" id="toggle-senior-deals" aria-pressed="false"
               title="Show events offering senior (55+/65+) discounts, rates, or senior-friendly programming">
               <span class="toggle-pill-indicator" aria-hidden="true"></span>
               <span>Senior Deals &amp; 55+</span>
             </button>
-            <button type="button" class="drawer-toggle-pill" id="toggle-accessible-only" aria-pressed="false"
-              title="Show only venues with verified step-free / wheelchair accessibility">
+          </div>
+        </div>
+
+        <!-- Event Preferences Filter (Single Religious Events Toggle) -->
+        <div class="drawer-filter-section event-preferences-section" id="event-preferences-section">
+          <div class="drawer-section-header">
+            <span><strong>Event Preferences:</strong></span>
+          </div>
+          <div class="event-preferences-row" role="group" aria-label="Event Preferences">
+            <button type="button" class="drawer-toggle-pill active" id="toggle-include-religious" aria-pressed="true"
+              title="Toggle off to hide religious, faith-based worship, and sacred church programming">
               <span class="toggle-pill-indicator" aria-hidden="true"></span>
-              <span>♿ Step-Free / Accessible</span>
+              <span>Include Religious Events</span>
             </button>
-          </div>
-          <div class="access-display-mode-row">
-            <button type="button" class="btn btn-accessibility drawer-display-access-btn" id="accessibility-btn"
-              aria-label="Toggle Accessibility Display Mode" aria-pressed="false"
-              title="Toggle High Contrast, larger text, enhanced focus, and 48px touch targets">
-              <span class="access-icon" aria-hidden="true">♿</span>
-              <span class="access-label">Accessibility Display Mode</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Starting Time Filter -->
-        <div class="drawer-filter-section times-section" id="times-section">
-          <div class="times-header drawer-section-header">
-            <span><strong>Starting Time:</strong></span>
-          </div>
-          <div class="time-pills-wrap" id="time-pills-wrap" role="group" aria-label="Filter by Starting Time">
-            <!-- Dynamically generated time slot pills -->
-          </div>
-        </div>
-
-        <!-- Holiday & Venue Style Filter -->
-        <div class="drawer-filter-section event-focus-section" id="event-focus-section">
-          <div class="event-focus-header drawer-section-header">
-            <span><strong>Holiday &amp; Venue Style:</strong></span>
-          </div>
-          <div class="event-focus-pills-wrap" id="event-focus-pills-wrap" role="group"
-            aria-label="Holiday and Venue Style Filter">
-            <button type="button" class="focus-pill active" data-focus="all" aria-pressed="true">All Outings</button>
-            <button type="button" class="focus-pill" data-focus="general" aria-pressed="false">General &amp; Community Only</button>
-            <button type="button" class="focus-pill" data-focus="sacred-music" aria-pressed="false">Include Sacred Music &amp; Choirs</button>
-            <button type="button" class="focus-pill" data-focus="faith" aria-pressed="false">Include Faith &amp; Worship</button>
           </div>
         </div>
 
@@ -343,39 +329,6 @@
     </svg>
     <span>Map</span>
   </button>
-
-  <!-- Surprise Outing Generator / Roulette Modal -->
-  <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-label="Surprise Outing Generator"
-    aria-labelledby="roulette-modal-title" aria-hidden="true" inert>
-    <div class="modal-box">
-      <div class="mobile-sheet-handle" aria-hidden="true"></div>
-      <button class="modal-close-btn" id="close-roulette-modal" aria-label="Close modal">✕</button>
-
-      <div class="roulette-container">
-        <h2 id="roulette-modal-title"
-          style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; color: var(--text-primary);">
-          Surprise Outing Generator
-        </h2>
-        <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 16px;">
-          Find a spontaneous local outing for $50 or less matching your active filters.
-        </p>
-
-        <div class="roulette-wheel-box">
-          <div class="roulette-icon" id="roulette-icon">🎲</div>
-          <div class="roulette-result-title" id="roulette-title">Need Spontaneous Inspiration?</div>
-          <div class="roulette-result-desc" id="roulette-desc">
-            Hit spin to pick a random event from your active filters.
-          </div>
-        </div>
-
-        <button class="btn-copy-plan" id="roulette-action-btn" data-goatcounter-click="roulette-spin"
-          data-goatcounter-title="Outing Roulette Spin" data-goatcounter-no-session="1"
-          style="width: 100%; border: none;">
-          Spin for an Outing
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- Crowdsourced Price Feedback Modal -->
   <div class="modal-overlay" id="price-feedback-modal" role="dialog" aria-modal="true" aria-label="Suggest Price Update"
@@ -540,16 +493,6 @@
       <div class="itinerary-actions-row" id="itinerary-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button type="button" class="btn-share-plan" id="share-plan-btn" style="flex: 1 1 auto; display: none;">Share
           Plan</button>
-        <button type="button" class="btn-copy-plan btn-copy-link-only" id="copy-plan-link-btn"
-          title="Copy raw plan link with zero text"
-          style="flex: 0 1 auto; display: none; align-items: center; gap: 5px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-          </svg>
-          <span>Copy Link Only</span>
-        </button>
         <button type="button" class="btn-clear-plan" id="clear-plan-btn" style="display: none;"
           aria-label="Clear all saved events">Clear</button>
       </div>
@@ -634,12 +577,11 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=8.4.0"></script>
-  <script src="js/accessibility.js?v=8.4.0"></script>
-  <script src="js/map.js?v=8.4.0"></script>
-  <script src="js/roulette.js?v=8.4.0"></script>
-  <script src="js/app.js?v=8.4.0"></script>
-  <script src="js/pwa-install.js?v=8.4.0"></script>
+  <script src="js/data.js?v=8.5.0"></script>
+  <script src="js/accessibility.js?v=8.5.0"></script>
+  <script src="js/map.js?v=8.5.0"></script>
+  <script src="js/app.js?v=8.5.0"></script>
+  <script src="js/pwa-install.js?v=8.5.0"></script>
 
 </body>
 

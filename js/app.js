@@ -179,12 +179,6 @@ window.DAYS_OF_WEEK = window.DAYS_OF_WEEK || [
   { id: "sun", label: "Sun", full: "Sunday" }
 ];
 
-window.TIME_SLOTS = [
-  { id: "daytime", label: "Daytime / Matinee (Before 5 PM)", shortLabel: "Daytime / Matinee", desc: "Before 5:00 PM" },
-  { id: "evening", label: "Evening (5–9 PM)", shortLabel: "Evening (5–9 PM)", desc: "5:00 PM – 9:00 PM" },
-  { id: "late-night", label: "Late Night (9 PM+)", shortLabel: "Late Night (9 PM+)", desc: "9:00 PM and later" }
-];
-
 window.CATEGORIES = [
   { id: "all", label: "All", shortLabel: "All", icon: "" },
   { id: "music", label: "Music", shortLabel: "Music", icon: "" },
@@ -518,11 +512,10 @@ const state = {
   accessibleMode: false,
   accessibleOnly: false,
   seniorDealsOnly: false,
-  eventFocus: 'all',
+  includeReligious: true,
   category: 'all',
   frequency: 'all',
   dayOfWeek: 'all',
-  timeSlot: 'all',
   selectedTag: null,
   selectedVenue: null,
   searchQuery: '',
@@ -559,7 +552,6 @@ const ALLOWED_URL_CATEGORIES = new Set([
   'social', 'trivia', 'markets', 'festivals', 'sports', 'free-public-access'
 ]);
 const ALLOWED_URL_DAYS = new Set(['all', 'daily', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']);
-const ALLOWED_URL_TIMES = new Set(['all', 'daytime', 'evening', 'late-night', 'early-morning', 'afternoon', 'early-evening', 'late-evening']);
 const ALLOWED_URL_FREQUENCIES = new Set(['all', 'one-off', 'weekly', 'monthly', 'daily', 'limited-run', 'seasonal']);
 const ALLOWED_URL_SORTS = new Set(['date', 'price', 'price-asc', 'price-desc', 'title']);
 
@@ -650,19 +642,6 @@ function restoreFiltersFromUrlParams() {
     }
   }
 
-  if (params.has('time')) {
-    const timeVal = (params.get('time') || '').trim().toLowerCase().slice(0, 30);
-    if (timeVal && ALLOWED_URL_TIMES.has(timeVal)) {
-      const legacyTimeMap = {
-        'early-morning': 'daytime',
-        'afternoon': 'daytime',
-        'early-evening': 'evening',
-        'late-evening': 'late-night'
-      };
-      state.timeSlot = legacyTimeMap[timeVal] || timeVal;
-    }
-  }
-
   if (params.has('rec')) {
     const recVal = (params.get('rec') || '').trim().toLowerCase().slice(0, 30);
     if (recVal && ALLOWED_URL_FREQUENCIES.has(recVal)) {
@@ -677,12 +656,12 @@ function restoreFiltersFromUrlParams() {
     }
   }
 
-  if (params.has('focus')) {
+  if (params.get('religious') === '0' || params.get('religious') === 'false') {
+    state.includeReligious = false;
+  } else if (params.has('focus')) {
     const focusVal = (params.get('focus') || '').trim().toLowerCase();
-    const legacyFocusMap = { 'secular': 'general', 'no-worship': 'sacred-music' };
-    const mappedFocus = legacyFocusMap[focusVal] || focusVal;
-    if (['all', 'general', 'sacred-music', 'faith'].includes(mappedFocus)) {
-      state.eventFocus = mappedFocus;
+    if (focusVal === 'general' || focusVal === 'secular' || focusVal === 'no-worship') {
+      state.includeReligious = false;
     }
   }
 
@@ -712,7 +691,7 @@ function syncFiltersToUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const hadRegionParam = params.has('region');
 
-  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'neighborhood', 'rec', 'sort', 'focus', 'senior', 'accessible', 'plan'].forEach(k => params.delete(k));
+  ['region', 'q', 'cat', 'fest', 'cost', 'day', 'time', 'hood', 'neighborhood', 'rec', 'sort', 'focus', 'religious', 'senior', 'accessible', 'plan'].forEach(k => params.delete(k));
 
   if (Array.isArray(state.sharedPlanIds) && state.sharedPlanIds.length > 0) {
     params.set('plan', state.sharedPlanIds.map(id => encodeURIComponent(id)).join(','));
@@ -748,17 +727,14 @@ function syncFiltersToUrlParams() {
   if (state.dayOfWeek && state.dayOfWeek !== 'all') {
     params.set('day', state.dayOfWeek);
   }
-  if (state.timeSlot && state.timeSlot !== 'all') {
-    params.set('time', state.timeSlot);
-  }
   if (state.frequency && state.frequency !== 'all') {
     params.set('rec', state.frequency);
   }
   if (state.sortBy && state.sortBy !== 'date') {
     params.set('sort', state.sortBy);
   }
-  if (state.eventFocus && state.eventFocus !== 'all') {
-    params.set('focus', state.eventFocus);
+  if (state.includeReligious === false) {
+    params.set('religious', '0');
   }
   if (state.seniorDealsOnly) {
     params.set('senior', '1');
@@ -813,10 +789,6 @@ function getActiveFiltersSummaryList() {
     const dayObj = (typeof DAYS_OF_WEEK !== 'undefined' ? DAYS_OF_WEEK : []).find(d => d.id === state.dayOfWeek);
     active.push(`Day: ${dayObj ? dayObj.label : state.dayOfWeek}`);
   }
-  if (state.timeSlot && state.timeSlot !== 'all') {
-    const timeObj = (typeof TIME_SLOTS !== 'undefined' ? TIME_SLOTS : []).find(t => t.id === state.timeSlot);
-    active.push(`Time: ${timeObj ? timeObj.label : state.timeSlot}`);
-  }
   if (state.frequency && state.frequency !== 'all') {
     const freqObj = (typeof FREQUENCIES !== 'undefined' ? FREQUENCIES : []).find(f => f.id === state.frequency);
     active.push(`Recurrence: ${freqObj ? freqObj.label : state.frequency}`);
@@ -836,15 +808,8 @@ function getActiveFiltersSummaryList() {
   if (state.accessibleOnly) {
     active.push('Step-Free / Accessible');
   }
-  if (state.eventFocus && state.eventFocus !== 'all') {
-    const focusLabels = {
-      'general': 'General & Community Only',
-      'sacred-music': 'Include Sacred Music & Choirs',
-      'faith': 'Include Faith & Worship',
-      'no-worship': 'Include Sacred Music & Choirs',
-      'secular': 'General & Community Only'
-    };
-    active.push(`Holiday & Venue Style: ${focusLabels[state.eventFocus] || state.eventFocus}`);
+  if (state.includeReligious === false) {
+    active.push('No Religious Events');
   }
   if (state.sortBy && state.sortBy !== 'date') {
     active.push(`Sort: ${state.sortBy}`);
@@ -863,11 +828,10 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
-  renderTimePills();
   renderFrequencyPills();
-  renderEventFocusPills();
   clearActiveQuickButtons();
   if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
+  if (typeof window.syncStickyHeaderOffset === 'function') window.syncStickyHeaderOffset();
   updateSliderVisuals();
   applyFiltersAndRender();
   hydrateDeepLinksFromUrl();
@@ -2378,11 +2342,13 @@ function showSyncTimestamp(isoStr, count) {
 // ==============================================================================
 
 function setupEventListeners() {
-  // Accessibility Mode Toggle
+  // Accessibility Mode Toggle (Top Header: Step-Free / Accessible + Accessible Display Mode)
   const accessBtn = document.getElementById('accessibility-btn');
   if (accessBtn) {
     accessBtn.addEventListener('click', () => {
       toggleAccessibilityMode();
+      state.accessibleOnly = Boolean(state.accessibleMode);
+      applyFiltersAndRender();
       window.trackAnonymousEvent('preference/accessible-mode', 'Toggle Accessible Mode');
     });
   }
@@ -2823,7 +2789,7 @@ function setupEventListeners() {
     });
   }
 
-  // Drawer Access & Discounts Toggles (Senior Deals & 55+ and Step-Free / Accessible)
+  // Drawer Discounts & 55+ and Event Preferences Toggles
   window.syncDrawerAccessToggles = function () {
     const seniorBtn = document.getElementById('toggle-senior-deals');
     if (seniorBtn) {
@@ -2831,14 +2797,12 @@ function setupEventListeners() {
       seniorBtn.classList.toggle('active', isSenior);
       seniorBtn.setAttribute('aria-pressed', isSenior ? 'true' : 'false');
     }
-    const accessToggleBtn = document.getElementById('toggle-accessible-only');
-    if (accessToggleBtn) {
-      const isAcc = Boolean(state.accessibleOnly);
-      accessToggleBtn.classList.toggle('active', isAcc);
-      accessToggleBtn.setAttribute('aria-pressed', isAcc ? 'true' : 'false');
+    const religiousBtn = document.getElementById('toggle-include-religious');
+    if (religiousBtn) {
+      const isIncluded = state.includeReligious !== false;
+      religiousBtn.classList.toggle('active', isIncluded);
+      religiousBtn.setAttribute('aria-pressed', isIncluded ? 'true' : 'false');
     }
-    const legacyChkAccess = document.getElementById('chk-accessible-only');
-    if (legacyChkAccess) legacyChkAccess.checked = Boolean(state.accessibleOnly);
   };
 
   const toggleSeniorDealsBtn = document.getElementById('toggle-senior-deals');
@@ -2850,20 +2814,10 @@ function setupEventListeners() {
     });
   }
 
-  const toggleAccessibleOnlyBtn = document.getElementById('toggle-accessible-only');
-  if (toggleAccessibleOnlyBtn) {
-    toggleAccessibleOnlyBtn.addEventListener('click', () => {
-      state.accessibleOnly = !state.accessibleOnly;
-      window.syncDrawerAccessToggles();
-      applyFiltersAndRender();
-    });
-  }
-
-  // Legacy Wheelchair Accessible Only Checkbox fallback (if present)
-  const chkAccessibleOnly = document.getElementById('chk-accessible-only');
-  if (chkAccessibleOnly) {
-    chkAccessibleOnly.addEventListener('change', (e) => {
-      state.accessibleOnly = Boolean(e.target.checked);
+  const toggleIncludeReligiousBtn = document.getElementById('toggle-include-religious');
+  if (toggleIncludeReligiousBtn) {
+    toggleIncludeReligiousBtn.addEventListener('click', () => {
+      state.includeReligious = state.includeReligious === false ? true : false;
       window.syncDrawerAccessToggles();
       applyFiltersAndRender();
     });
@@ -3069,21 +3023,17 @@ function setupEventListeners() {
     state.minBudget = 0;
     state.maxBudget = 50;
     state.dayOfWeek = 'all';
-    state.timeSlot = 'all';
     state.frequency = 'all';
     state.hideDaily = false;
     state.accessibleOnly = false;
     state.seniorDealsOnly = false;
-    state.eventFocus = 'all';
+    state.includeReligious = true;
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 50;
     if (hideDailyToggle) hideDailyToggle.checked = false;
-    if (chkAccessibleOnly) chkAccessibleOnly.checked = false;
     if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
     renderDayPills();
-    renderTimePills();
     renderFrequencyPills();
-    renderEventFocusPills();
     clearActiveQuickButtons();
     updateSliderVisuals();
     applyFiltersAndRender();
@@ -4107,28 +4057,6 @@ function renderDayPills() {
   });
 }
 
-function renderTimePills() {
-  const container = document.getElementById('time-pills-wrap');
-  if (!container || typeof TIME_SLOTS === 'undefined') return;
-
-  container.innerHTML = '';
-  TIME_SLOTS.forEach(slot => {
-    const pill = document.createElement('button');
-    pill.type = 'button';
-    const isActive = state.timeSlot === slot.id;
-    pill.className = `time-pill ${isActive ? 'active' : ''}`;
-    pill.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    pill.innerHTML = `<span>${escapeHtml(slot.label)}</span>`;
-    if (slot.desc) pill.title = slot.desc;
-    pill.addEventListener('click', () => {
-      state.timeSlot = (state.timeSlot === slot.id) ? 'all' : slot.id;
-      renderTimePills();
-      applyFiltersAndRender();
-    });
-    container.appendChild(pill);
-  });
-}
-
 function resolveCanonicalNeighborhoodCluster(nhStr, evCity) {
   const s = String(nhStr || "").trim().toLowerCase();
   const c = String(evCity || "").trim().toLowerCase();
@@ -4441,41 +4369,13 @@ function renderFrequencyPills() {
   });
 }
 
-const EVENT_FOCUS_OPTIONS = [
-  { id: 'all', label: 'All Outings', chipLabel: 'All Outings', desc: 'Shows all events and outings' },
-  { id: 'general', label: 'General & Community Only', chipLabel: 'General & Community Only', desc: 'Markets, lights, comedy, theatre, secular concerts; hides church concerts and worship services' },
-  { id: 'sacred-music', label: 'Include Sacred Music & Choirs', chipLabel: 'Include Sacred Music & Choirs', desc: 'Includes classical/choral concerts in churches; hides worship services' },
-  { id: 'faith', label: 'Include Faith & Worship', chipLabel: 'Include Faith & Worship', desc: 'Shows all events including religious services' }
-];
-
-function renderEventFocusPills() {
-  const container = document.getElementById('event-focus-pills-wrap');
-  if (!container) return;
-  const curFocus = state.eventFocus || 'all';
-  container.innerHTML = '';
-  EVENT_FOCUS_OPTIONS.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    const isActive = curFocus === opt.id;
-    btn.className = `focus-pill freq-filter-pill ${isActive ? 'active' : ''}`;
-    btn.setAttribute('data-focus', opt.id);
-    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    if (opt.desc) btn.title = opt.desc;
-    btn.textContent = opt.label;
-    btn.addEventListener('click', () => {
-      window.setEventFocusFilter(opt.id);
-    });
-    container.appendChild(btn);
-  });
-}
-window.renderEventFocusPills = renderEventFocusPills;
-
 window.setEventFocusFilter = function (focusMode) {
-  const legacyMap = { 'secular': 'general', 'no-worship': 'sacred-music' };
-  const mapped = legacyMap[focusMode] || focusMode;
-  const valid = ['all', 'general', 'sacred-music', 'faith'];
-  state.eventFocus = valid.includes(mapped) ? mapped : 'all';
-  renderEventFocusPills();
+  if (focusMode === 'all' || focusMode === 'faith') {
+    state.includeReligious = true;
+  } else {
+    state.includeReligious = false;
+  }
+  if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
   applyFiltersAndRender();
 };
 
@@ -5160,50 +5060,6 @@ function eventHasSeniorDeal(ev) {
   return SENIOR_DEAL_REGEX.test(combined);
 }
 
-function eventMatchesTimeSlot(ev, targetSlot) {
-  if (!targetSlot || targetSlot === 'all') return true;
-  const slotMap = {
-    'early-morning': 'daytime',
-    'afternoon': 'daytime',
-    'early-evening': 'evening',
-    'late-evening': 'late-night'
-  };
-  const normalized = slotMap[targetSlot] || targetSlot;
-  const isDropIn = isAnytimeDropInEvent(ev);
-  if (isDropIn) {
-    if (normalized === 'daytime') return true;
-    if (normalized === 'evening') {
-      const closing = getEventClosingTimeToday(ev, new Date());
-      return !closing || closing.closingMinutes > 1020; // open past 5 PM
-    }
-    if (normalized === 'late-night') {
-      const closing = getEventClosingTimeToday(ev, new Date());
-      return Boolean(closing && closing.closingMinutes >= 1290); // open past 9:30 PM
-    }
-    return true;
-  }
-
-  const candidateMinutes = [];
-  if (Array.isArray(ev.showings) && ev.showings.length > 0) {
-    ev.showings.forEach(s => {
-      const m = parseClockTimeToMinutes(s && (s.start_time || s.time));
-      if (m !== null) candidateMinutes.push(m);
-    });
-  }
-  if (candidateMinutes.length === 0) {
-    const m = getEventSortMinuteOfDay(ev);
-    if (m !== null && m < 9999) candidateMinutes.push(m);
-  }
-  if (candidateMinutes.length === 0) return false;
-
-  return candidateMinutes.some(mins => {
-    if (normalized === 'daytime') return mins >= 240 && mins < 1020; // 4:00 AM – 4:59 PM
-    if (normalized === 'evening') return mins >= 1020 && mins < 1260; // 5:00 PM – 8:59 PM
-    if (normalized === 'late-night') return mins >= 1260 || mins < 240; // 9:00 PM – 3:59 AM
-    return true;
-  });
-}
-
 function applyFiltersAndRender() {
   const now = new Date();
   const year = now.getFullYear();
@@ -5423,11 +5279,6 @@ function applyFiltersAndRender() {
       }
     }
 
-    // 4. Starting Time Filter
-    if (state.timeSlot !== 'all') {
-      if (!eventMatchesTimeSlot(ev, state.timeSlot)) return false;
-    }
-
     // 5. Recurrence Frequency Filter
     if (state.frequency !== 'all') {
       if (state.frequency === 'limited-run' || state.frequency === 'seasonal') {
@@ -5450,17 +5301,16 @@ function applyFiltersAndRender() {
       }
     }
 
-    // 7b. Holiday & Venue Style Filter
-    if (state.eventFocus && state.eventFocus !== 'all' && state.eventFocus !== 'faith') {
+    // 7b. Single Religious Events Toggle (when toggled OFF, hide religious/faith/sacred programming)
+    if (state.includeReligious === false) {
       const focusTagSet = new Set([
         ...(Array.isArray(ev.tags) ? ev.tags : []),
         ...(Array.isArray(ev.subTags) ? ev.subTags : []),
         ...inferHolidaySubTags(ev)
       ].map(t => String(t || '').toLowerCase().trim()));
-      const isFaithEvent = focusTagSet.has('faith-based') || focusTagSet.has('religious-service');
+      const isFaithEvent = Boolean(ev.isReligious || ev.is_religious) || focusTagSet.has('faith-based') || focusTagSet.has('religious-service');
       const isSacredChoralEvent = focusTagSet.has('sacred-music') || focusTagSet.has('choral');
-      if ((state.eventFocus === 'sacred-music' || state.eventFocus === 'no-worship') && isFaithEvent) return false;
-      if ((state.eventFocus === 'general' || state.eventFocus === 'secular') && (isFaithEvent || isSacredChoralEvent)) return false;
+      if (isFaithEvent || isSacredChoralEvent) return false;
     }
 
     // 8. Hashtag Filter (Click on hashtag to isolate cards with that tag; easily deselectable)
@@ -5519,9 +5369,9 @@ function applyFiltersAndRender() {
   // Update More Filters active counter badge
   let secondaryFilterCount = 0;
   if (state.dayOfWeek !== 'all') secondaryFilterCount++;
-  if (state.timeSlot !== 'all') secondaryFilterCount++;
   if (state.frequency !== 'all') secondaryFilterCount++;
-  if (state.eventFocus && state.eventFocus !== 'all') secondaryFilterCount++;
+  if (state.includeReligious === false) secondaryFilterCount++;
+  if (state.seniorDealsOnly) secondaryFilterCount++;
   const moreCountBadge = document.getElementById('active-filters-count');
   if (moreCountBadge) {
     if (secondaryFilterCount > 0) {
@@ -6045,33 +5895,26 @@ function filterByVenue(venueName) {
     state.hideDaily = false;
     state.frequency = 'all';
     state.dayOfWeek = 'all';
-    state.timeSlot = 'all';
     state.selectedTag = null;
     state.searchQuery = '';
     state.pricingType = 'all';
-    state.eventFocus = 'all';
+    state.includeReligious = true;
+    state.seniorDealsOnly = false;
     if (state.activeFestivalId) state.activeFestivalId = null;
 
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.value = '';
     const btnClearSearch = document.getElementById('btn-clear-search');
     if (btnClearSearch) btnClearSearch.style.display = 'none';
-    const minSlider = document.getElementById('min-spend-slider');
-    const maxSlider = document.getElementById('max-spend-slider');
-    if (minSlider) minSlider.value = 0;
-    if (maxSlider) maxSlider.value = 50;
     const chkSched = document.getElementById('chk-scheduled-only') || document.getElementById('hide-daily-toggle');
     if (chkSched) chkSched.checked = false;
     state.accessibleOnly = false;
-    const chkAccess = document.getElementById('chk-accessible-only');
-    if (chkAccess) chkAccess.checked = false;
+    if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
 
     renderCategoryPills();
     renderDayPills();
-    renderTimePills();
     renderNeighborhoodPills();
     renderFrequencyPills();
-    renderEventFocusPills();
     clearActiveQuickButtons();
     updateSliderVisuals();
   }
@@ -6967,52 +6810,97 @@ function renderEventCards(events) {
     return false;
   };
 
-  // Render sections with subtle "Anytime & Scenic Drop-Ins" sub-divider when both scheduled & drop-in items exist
+  // Render sections with dedicated sticky <section class="date-group"> wrappers for every day & Anytime Drop-Ins
   const sectionsHtml = activeBuckets.map(b => {
     const isCollapsed = Boolean(state.collapsedTimeGroups && state.collapsedTimeGroups.has(b.key));
     const scheduledItems = b.list.filter(ev => !isAnytimeDropInEvent(ev));
     const dropInItems = b.list.filter(ev => isAnytimeDropInEvent(ev));
+    const splitDropInsSection = !isCollapsed && scheduledItems.length > 0 && dropInItems.length > 0;
+
     let cardsHtml = '';
+    let dropInSectionHtml = '';
+
     if (!isCollapsed) {
-      const orderedItems = [];
-      if (scheduledItems.length > 0 && dropInItems.length > 0) {
-        scheduledItems.forEach(ev => orderedItems.push({ type: 'card', ev }));
-        orderedItems.push({ type: 'subdivider', count: dropInItems.length });
-        dropInItems.forEach(ev => orderedItems.push({ type: 'card', ev }));
-      } else {
-        b.list.forEach(ev => orderedItems.push({ type: 'card', ev }));
-      }
+      const primaryList = splitDropInsSection ? scheduledItems : b.list;
+      const orderedItems = primaryList.map(ev => ({ type: 'card', ev }));
 
       const bucketTake = Math.min(orderedItems.length, Math.max(0, remainingInitialBudget));
       const initialSlice = orderedItems.slice(0, bucketTake);
       const remainingSlice = orderedItems.slice(bucketTake);
-      const renderedCardsInSlice = initialSlice.filter(entry => entry.type === 'card').length;
+      const renderedCardsInSlice = initialSlice.length;
       remainingInitialBudget = Math.max(0, remainingInitialBudget - renderedCardsInSlice);
       cardsHtml = initialSlice.map(entry => renderBucketQueueItem(entry, b.key)).join('');
 
       if (remainingSlice.length > 0) {
         window._pendingBucketQueues[b.key] = remainingSlice;
-        const remainingCards = remainingSlice.filter(entry => entry.type === 'card').length;
+        const remainingCards = remainingSlice.length;
         const safeKeyAttr = escapeHtml(b.key);
         cardsHtml += `<div class="load-more-cards-sentinel" data-bucket-key="${safeKeyAttr}" style="grid-column: 1 / -1; display: flex; justify-content: center; padding: 14px 0;">
           <button type="button" class="btn-load-more-cards" data-action="load-more-bucket" data-bucket-key="${safeKeyAttr}" style="padding: 9px 18px; border-radius: 999px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); color: var(--text-primary); font-weight: 600; font-size: 0.85rem; cursor: pointer;">Show more outings (${Number(remainingCards)} remaining)</button>
         </div>`;
+      }
+
+      if (splitDropInsSection) {
+        const dropKey = `${b.key}-dropins`;
+        const dropCollapsed = Boolean(state.collapsedTimeGroups && state.collapsedTimeGroups.has(dropKey));
+        const dropOrdered = dropInItems.map(ev => ({ type: 'card', ev }));
+        const dropTake = dropCollapsed ? 0 : Math.min(dropOrdered.length, Math.max(8, remainingInitialBudget));
+        const dropInitial = dropOrdered.slice(0, dropTake);
+        const dropRemaining = dropOrdered.slice(dropTake);
+        remainingInitialBudget = Math.max(0, remainingInitialBudget - dropInitial.length);
+        let dropCardsHtml = dropInitial.map(entry => renderBucketQueueItem(entry, b.key)).join('');
+        if (!dropCollapsed && dropRemaining.length > 0) {
+          window._pendingBucketQueues[dropKey] = dropRemaining;
+          const safeDropKeyAttr = escapeHtml(dropKey);
+          dropCardsHtml += `<div class="load-more-cards-sentinel" data-bucket-key="${safeDropKeyAttr}" style="grid-column: 1 / -1; display: flex; justify-content: center; padding: 14px 0;">
+            <button type="button" class="btn-load-more-cards" data-action="load-more-bucket" data-bucket-key="${safeDropKeyAttr}" style="padding: 9px 18px; border-radius: 999px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); color: var(--text-primary); font-weight: 600; font-size: 0.85rem; cursor: pointer;">Show more drop-ins (${Number(dropRemaining.length)} remaining)</button>
+          </div>`;
+        }
+        const safeDropKey = escapeHtml(dropKey);
+        dropInSectionHtml = `
+          <section class="events-time-group date-group date-group-dropins ${dropCollapsed ? 'collapsed' : ''}" id="group-${safeDropKey}" data-group-title="Anytime &amp; Scenic Drop-Ins" data-group-heading="Anytime &amp; Scenic Drop-Ins" data-group-range="Open Hours">
+            <div class="time-group-header date-group-header" data-action="toggle-time-group" data-group-key="${safeDropKey}" role="button" tabindex="0" aria-expanded="${!dropCollapsed}" aria-controls="cards-grid-${safeDropKey}" title="Click to ${dropCollapsed ? 'expand' : 'collapse'} Anytime &amp; Scenic Drop-Ins">
+              <div class="time-group-title-wrap">
+                <h2 class="time-group-title">Anytime &amp; Scenic Drop-Ins</h2>
+                <span class="time-group-date-range">Open Daily / Drop-In</span>
+              </div>
+              <div class="time-group-actions">
+                <span class="time-group-count-badge">${Number(dropInItems.length)} spot${dropInItems.length === 1 ? '' : 's'}</span>
+                <button class="btn-group-collapse-toggle" type="button" aria-expanded="${!dropCollapsed}" aria-label="${dropCollapsed ? 'Expand section' : 'Collapse section'}" data-action="toggle-time-group" data-group-key="${safeDropKey}">
+                  <span class="toggle-icon">${dropCollapsed ? '▶' : '▼'}</span>
+                  <span class="toggle-label">${dropCollapsed ? 'Expand' : 'Collapse'}</span>
+                </button>
+              </div>
+            </div>
+            ${dropCollapsed ? `
+              <div class="time-group-collapsed-banner" data-action="toggle-time-group" data-group-key="${safeDropKey}" role="button" tabindex="0" title="Click to expand Anytime &amp; Scenic Drop-Ins">
+                <span class="collapsed-banner-info"><strong>Anytime &amp; Scenic Drop-Ins</strong> is collapsed (${Number(dropInItems.length)} spot${dropInItems.length === 1 ? '' : 's'})</span>
+                <span class="collapsed-banner-action">Click to expand outings ▾</span>
+              </div>
+            ` : `
+              <div class="time-group-cards-grid events-grid-section" id="cards-grid-${safeDropKey}">
+                ${dropCardsHtml}
+              </div>
+            `}
+          </section>
+        `;
       }
     }
     const safeKey = escapeHtml(b.key);
     const safeTitle = escapeHtml(b.title);
     const safeShortTitle = escapeHtml(b.shortTitle);
     const safeRange = escapeHtml(b.range);
+    const displayCount = splitDropInsSection ? scheduledItems.length : b.list.length;
     return `
-      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${safeKey}" data-group-title="${safeShortTitle}" data-group-heading="${safeTitle}" data-group-range="${safeRange}">
-        <div class="time-group-header" data-action="toggle-time-group" data-group-key="${safeKey}" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${safeKey}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${safeTitle}">
+      <section class="events-time-group date-group ${isCollapsed ? 'collapsed' : ''}" id="group-${safeKey}" data-group-title="${safeShortTitle}" data-group-heading="${safeTitle}" data-group-range="${safeRange}">
+        <div class="time-group-header date-group-header" data-action="toggle-time-group" data-group-key="${safeKey}" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${safeKey}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${safeTitle}">
           <div class="time-group-title-wrap">
             <span class="time-group-icon" style="display:none;"></span>
             <h2 class="time-group-title">${safeTitle}</h2>
             <span class="time-group-date-range">${safeRange}</span>
           </div>
           <div class="time-group-actions">
-            <span class="time-group-count-badge">${Number(b.list.length)} event${b.list.length === 1 ? '' : 's'}</span>
+            <span class="time-group-count-badge">${Number(displayCount)} event${displayCount === 1 ? '' : 's'}</span>
             <button class="btn-group-collapse-toggle" type="button" aria-expanded="${!isCollapsed}" aria-label="${isCollapsed ? 'Expand section' : 'Collapse section'}" data-action="toggle-time-group" data-group-key="${safeKey}">
               <span class="toggle-icon">${isCollapsed ? '▶' : '▼'}</span>
               <span class="toggle-label">${isCollapsed ? 'Expand' : 'Collapse'}</span>
@@ -7025,11 +6913,12 @@ function renderEventCards(events) {
             <span class="collapsed-banner-action">Click to expand outings ▾</span>
           </div>
         ` : `
-          <div class="time-group-cards-grid" id="cards-grid-${safeKey}">
+          <div class="time-group-cards-grid events-grid-section" id="cards-grid-${safeKey}">
             ${cardsHtml}
           </div>
         `}
       </section>
+      ${dropInSectionHtml}
     `;
   }).join('');
 
@@ -7597,7 +7486,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
     const safeCatThemeKeyC = escapeHtml(catMetaC.themeKey || '');
     const compactHtml = `
       <article class="event-card ${isSoldOutC ? 'card-sold-out' : ''} ${isHappeningNowC ? 'card-happening-now' : ''}" id="card-${safeEventIdC}" data-cat-theme="${safeCatThemeKeyC}" data-scroll-date="${escapeHtml(topDateC.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFullC)}" data-bucket-key="${safeBucketAttrC}" data-action="card-accordion" data-event-id="${safeEventIdC}">
-        <div class="mobile-card-compact-header">
+        <div class="mobile-card-compact-header" tabindex="0" aria-expanded="false">
           <div class="mobile-card-row-1">
             <span class="mobile-card-title">${safeDisplayTitleC}</span>
             <span class="mobile-card-price-pill ${pillInfoC.className}">${escapeHtml(pillInfoC.text)}</span>
@@ -8211,7 +8100,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
   return `
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${safeCatThemeKey}" data-scroll-date="${escapeHtml(topDate.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFull)}" data-bucket-key="${safeBucketAttr}" ${(isSavedDrawerCard || isMapIwCard) ? '' : `data-action="card-accordion" data-event-id="${safeEventId}"`}>
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
-        <div class="mobile-card-compact-header">
+        <div class="mobile-card-compact-header" tabindex="0" aria-expanded="${isPersistedExpanded ? 'true' : 'false'}">
           <div class="mobile-card-row-1">
             <span class="mobile-card-title">${safeDisplayTitle}</span>
             <span class="mobile-card-price-pill ${pillInfoFull.className}">${escapeHtml(pillInfoFull.text)}</span>
@@ -8300,23 +8189,10 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
               id="${shareBtnDomId}"
               data-action="share-event"
               data-event-id="${safeEventId}"
-              title="Share concise event summary & link"
+              title="Share event link & details"
               aria-label="Share ${escapedTitle}"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-            </button>
-
-            <!-- Copy Link Only Button -->
-            <button 
-              type="button" 
-              class="btn-card-action btn-card-copy-link" 
-              id="${copyLinkBtnDomId}"
-              data-action="copy-event-link"
-              data-event-id="${safeEventId}"
-              title="Copy Link Only"
-              aria-label="Copy Link Only for ${escapedTitle}"
-            >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             </button>
 
             <!-- Save Outing Button -->
@@ -8443,7 +8319,6 @@ function resetAllFilters() {
   state.category = 'all';
   state.frequency = 'all';
   state.dayOfWeek = 'all';
-  state.timeSlot = 'all';
   state.hideDaily = false;
   state.hideFestivalEvents = false;
   state.selectedThemeFilter = null;
@@ -8451,7 +8326,7 @@ function resetAllFilters() {
   state.selectedTag = null;
   state.selectedVenue = null;
   state.searchQuery = '';
-  state.eventFocus = 'all';
+  state.includeReligious = true;
   state.sharedPlanIds = null;
 
   const searchInput = document.getElementById('search-input');
@@ -8476,17 +8351,13 @@ function resetAllFilters() {
 
   state.accessibleOnly = false;
   state.seniorDealsOnly = false;
-  const chkAccess = document.getElementById('chk-accessible-only');
-  if (chkAccess) chkAccess.checked = false;
   if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
 
   renderRegionPills();
   renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
-  renderTimePills();
   renderFrequencyPills();
-  renderEventFocusPills();
   clearActiveQuickButtons();
   updateSliderVisuals();
   applyFiltersAndRender();
@@ -8737,16 +8608,13 @@ function flashButtonCopied(btnEl, label = 'Copied ✓', durationMs = 1800) {
   }, durationMs);
 }
 
-function canInvokeMobileShareSheet(sharePayload) {
+function canInvokeNativeShareSheet(sharePayload) {
   if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return false;
-  const isMobileDevice = (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
-    || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
-  if (!isMobileDevice) return false;
   if (typeof navigator.canShare === 'function') {
     try {
       return navigator.canShare(sharePayload);
     } catch (_) {
-      return false;
+      return true;
     }
   }
   return true;
@@ -8776,7 +8644,7 @@ window.shareSingleEventConcise = async function (eventId, btnEl, domEv) {
     url: shareUrl
   };
 
-  if (canInvokeMobileShareSheet(nativePayload)) {
+  if (canInvokeNativeShareSheet(nativePayload)) {
     try {
       await navigator.share(nativePayload);
       return;
@@ -8787,7 +8655,8 @@ window.shareSingleEventConcise = async function (eventId, btnEl, domEv) {
 
   try {
     await copyTextSilently(clipboardPayload);
-    flashButtonCopied(targetBtn, 'Copied ✓', 1800);
+    flashButtonCopied(targetBtn, 'Copied share link!', 2000);
+    if (typeof showToast === 'function') showToast('Copied share link!', 'info');
   } catch (_) { }
 };
 window.shareEvent = window.shareSingleEventConcise;
@@ -8846,7 +8715,7 @@ window.shareOutingPlan = async function (btnEl) {
     url: planData.planUrl
   };
 
-  if (canInvokeMobileShareSheet(nativePayload)) {
+  if (canInvokeNativeShareSheet(nativePayload)) {
     try {
       await navigator.share(nativePayload);
       return;
@@ -8857,7 +8726,8 @@ window.shareOutingPlan = async function (btnEl) {
 
   try {
     await copyTextSilently(planData.clipboardText);
-    flashButtonCopied(targetBtn, 'Copied ✓', 1800);
+    flashButtonCopied(targetBtn, 'Copied share link!', 2000);
+    if (typeof showToast === 'function') showToast('Copied share link!', 'info');
   } catch (_) { }
 };
 
@@ -8963,21 +8833,20 @@ function hydrateDeepLinksFromUrl() {
       state.hideFestivalEvents = false;
       state.hideDaily = false;
       state.accessibleOnly = false;
-      state.eventFocus = 'all';
+      state.seniorDealsOnly = false;
+      state.includeReligious = true;
       state.dayOfWeek = 'all';
-      state.timeSlot = 'all';
       state.frequency = 'all';
       state.selectedTag = null;
       state.selectedVenue = null;
       state.searchQuery = '';
       if (state.collapsedTimeGroups) state.collapsedTimeGroups.clear();
+      if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
       renderRegionPills();
       renderFestivalSpotlight();
       renderCategoryPills();
       renderDayPills();
-      renderTimePills();
       renderFrequencyPills();
-      renderEventFocusPills();
       updateSliderVisuals();
       applyFiltersAndRender();
       cardEl = document.getElementById(`card-${targetEv.id}`);
@@ -9101,6 +8970,7 @@ function initAccessibility() {
   try {
     const isAccessible = localStorage.getItem('van50_accessible_mode') === 'true';
     setAccessibilityMode(isAccessible, false);
+    if (isAccessible) state.accessibleOnly = true;
   } catch (e) { }
 }
 
@@ -9115,7 +8985,7 @@ function setAccessibilityMode(enabled, notify = true) {
     btn.classList.toggle('active', state.accessibleMode);
     const label = btn.querySelector('.access-label');
     if (label) {
-      label.textContent = state.accessibleMode ? 'Accessibility Display: ON' : 'Accessibility Display Mode';
+      label.textContent = state.accessibleMode ? 'Accessible: ON' : 'Accessibility';
     }
   }
 
@@ -9406,12 +9276,6 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'day', label: dayDef ? dayDef.label : state.dayOfWeek });
   }
 
-  // 3. Starting Time
-  if (state.timeSlot && state.timeSlot !== 'all') {
-    const slotDef = (window.TIME_SLOTS || []).find(s => s.id === state.timeSlot);
-    chips.push({ key: 'time', label: slotDef ? (slotDef.shortLabel || slotDef.label) : state.timeSlot });
-  }
-
   // 5. Recurrence Frequency
   if (state.frequency && state.frequency !== 'all') {
     const freqDef = (typeof FREQUENCIES !== 'undefined' ? FREQUENCIES : []).find(f => f.id === state.frequency);
@@ -9428,25 +9292,18 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'seniorDeals', label: 'Senior Deals & 55+' });
   }
 
-  // 7b. Step-Free / Accessible Venues Only
+  // 7b. Step-Free / Accessible Venues Only (Top Header Toggle)
   if (state.accessibleOnly) {
     chips.push({ key: 'accessibleOnly', label: 'Step-Free / Accessible' });
   }
 
-  // 8. Holiday & Venue Style Filter
-  if (state.eventFocus && state.eventFocus !== 'all') {
-    const focusChipLabels = {
-      'general': 'General & Community Only',
-      'sacred-music': 'Include Sacred Music & Choirs',
-      'faith': 'Include Faith & Worship',
-      'no-worship': 'Include Sacred Music & Choirs',
-      'secular': 'General & Community Only'
-    };
-    chips.push({ key: 'eventFocus', label: focusChipLabels[state.eventFocus] || state.eventFocus });
+  // 8. Single Religious Events Toggle (when toggled OFF)
+  if (state.includeReligious === false) {
+    chips.push({ key: 'noReligious', label: 'No Religious Events' });
   }
 
-  // Count only filters located inside the Filters drawer (Category, Theme, Paid & Hide Daily live in primary top bars)
-  const drawerKeys = new Set(['cost', 'time', 'seniorDeals', 'accessibleOnly', 'eventFocus']);
+  // Count filters located inside the Filters drawer (Category, Spend [non-Paid], Senior Deals & 55+, No Religious Events)
+  const drawerKeys = new Set(['category', 'cost', 'seniorDeals', 'noReligious']);
   const drawerActiveCount = chips.filter(c => drawerKeys.has(c.key) && !(c.key === 'cost' && c.label === 'Paid')).length;
   if (mobileFilterTrigger) {
     const labelText = drawerActiveCount > 0 ? `Filters (${drawerActiveCount})` : 'Filters';
@@ -9461,20 +9318,11 @@ function renderActiveFilterChips(filteredCount) {
 
   if (!chipsContainer) return;
 
-  const isHolidayOrFestivalActive = Boolean(state.selectedThemeFilter) || state.category === 'festivals';
-  const showQuickHideWorshipSubPill = isHolidayOrFestivalActive && (!state.eventFocus || state.eventFocus === 'all');
-
-  if (chips.length === 0 && !showQuickHideWorshipSubPill) {
+  if (chips.length === 0) {
     chipsContainer.style.display = 'none';
     chipsContainer.innerHTML = '';
     return;
   }
-
-  const quickHideWorshipHtml = showQuickHideWorshipSubPill ? `
-      <button type="button" class="active-filter-chip quick-refine-subpill" data-action="set-event-focus" data-focus-mode="sacred-music" title="Hide worship services while keeping community & choral events" aria-label="Hide Worship Services">
-        <span>Hide Worship Services</span>
-      </button>
-    ` : '';
 
   chipsContainer.style.display = 'flex';
   chipsContainer.innerHTML = chips.map(c => {
@@ -9486,7 +9334,7 @@ function renderActiveFilterChips(filteredCount) {
         <span class="chip-dismiss" aria-hidden="true">×</span>
       </button>
     `;
-  }).join('') + quickHideWorshipHtml;
+  }).join('');
 }
 
 window.dismissSecondaryFilterChip = function (chipKey) {
@@ -9501,25 +9349,18 @@ window.dismissSecondaryFilterChip = function (chipKey) {
     const tk = chipKey.slice(8);
     if (state.excludedThemes) state.excludedThemes.delete(tk);
     renderFestivalSpotlight();
-  } else if (chipKey === 'eventFocus') {
-    state.eventFocus = 'all';
-    renderEventFocusPills();
+  } else if (chipKey === 'noReligious' || chipKey === 'eventFocus') {
+    state.includeReligious = true;
+    if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
   }
   if (chipKey === 'cost') {
     state.minBudget = 0;
     state.maxBudget = 50;
-    const minSlider = document.getElementById('min-spend-slider');
-    const maxSlider = document.getElementById('max-spend-slider');
-    if (minSlider) minSlider.value = 0;
-    if (maxSlider) maxSlider.value = 50;
     clearActiveQuickButtons();
     updateSliderVisuals();
   } else if (chipKey === 'day') {
     state.dayOfWeek = 'all';
     renderDayPills();
-  } else if (chipKey === 'time') {
-    state.timeSlot = 'all';
-    renderTimePills();
   } else if (chipKey === 'frequency') {
     state.frequency = 'all';
     renderFrequencyPills();
@@ -9532,8 +9373,7 @@ window.dismissSecondaryFilterChip = function (chipKey) {
     if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
   } else if (chipKey === 'accessibleOnly') {
     state.accessibleOnly = false;
-    const chkAccess = document.getElementById('chk-accessible-only');
-    if (chkAccess) chkAccess.checked = false;
+    if (state.accessibleMode) setAccessibilityMode(false, false);
     if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
   }
   applyFiltersAndRender();
@@ -9558,18 +9398,18 @@ window.hydrateLazyEventCardBody = function (cardEl, eventId) {
 };
 
 window.toggleMobileCardAccordion = function (eventId, evObj) {
-  if (evObj && evObj.target) {
-    if (evObj.target.closest('.row2-category-pill')) {
-      return;
-    }
-    const interactiveEl = evObj.target.closest('a, button, input, label, .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive, .weekly-hours-summary-row, .showings-summary-row');
-    const insideCompactHeader = evObj.target.closest('.mobile-card-compact-header');
-    if (interactiveEl && !insideCompactHeader) {
-      return;
-    }
+  // Prevent accidental collapse when user is highlighting/selecting text inside the card
+  if (typeof window !== 'undefined' && window.getSelection && window.getSelection().toString().length > 0) {
+    return;
   }
   const cardEl = document.getElementById(`card-${eventId}`);
   if (!cardEl) return;
+  if (evObj && evObj.target) {
+    const interactiveEl = evObj.target.closest('a, button, input, select, textarea, label, [role="button"], .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive, .weekly-hours-summary-row, .showings-summary-row');
+    if (interactiveEl && interactiveEl !== cardEl && !interactiveEl.classList.contains('mobile-card-compact-header')) {
+      return;
+    }
+  }
   if (!state.expandedCardIds) state.expandedCardIds = new Set();
   const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
   const expandClass = isDesktop ? 'desktop-expanded' : 'mobile-expanded';
@@ -9578,9 +9418,24 @@ window.toggleMobileCardAccordion = function (eventId, evObj) {
     window.hydrateLazyEventCardBody(cardEl, eventId);
   }
   const nowExpanded = cardEl.classList.toggle(expandClass);
+  const compactHeader = cardEl.querySelector('.mobile-card-compact-header');
+  if (compactHeader) {
+    compactHeader.setAttribute('aria-expanded', nowExpanded ? 'true' : 'false');
+  }
   if (nowExpanded) state.expandedCardIds.add(eventId);
   else state.expandedCardIds.delete(eventId);
 };
+
+// Keyboard accessibility (Enter / Space) on card primary toggle headers
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const headerEl = e.target && e.target.closest ? e.target.closest('.mobile-card-compact-header') : null;
+  if (!headerEl || e.target !== headerEl) return;
+  const cardEl = headerEl.closest('.event-card[data-event-id]');
+  if (!cardEl) return;
+  e.preventDefault();
+  window.toggleMobileCardAccordion(cardEl.getAttribute('data-event-id') || '', null);
+});
 
 window.toggleMapInfoWindowCard = function (itemEl, evObj) {
   if (!itemEl) return;
@@ -9635,8 +9490,26 @@ window.updateScrollDateIndicator = function () {
   stickyBar.classList.toggle('is-scrolled', scrollY > 90 && !isMapActive);
 };
 
+window.syncStickyHeaderOffset = function () {
+  const searchBar = document.getElementById('mobile-search-filter-bar');
+  const siteHeader = document.getElementById('main-header');
+  let offset = 64;
+  if (searchBar) {
+    const barStyle = window.getComputedStyle(searchBar);
+    const barTop = parseFloat(barStyle.top) || 0;
+    const barHeight = searchBar.getBoundingClientRect().height || 56;
+    offset = Math.round(barTop + barHeight);
+  } else if (siteHeader) {
+    offset = Math.round(siteHeader.getBoundingClientRect().height || 64);
+  }
+  document.documentElement.style.setProperty('--sticky-header-offset', `${offset}px`);
+};
+
 window.addEventListener('scroll', window.updateScrollDateIndicator, { passive: true });
 window.addEventListener('resize', () => {
+  if (typeof window.syncStickyHeaderOffset === 'function') {
+    window.syncStickyHeaderOffset();
+  }
   if (typeof window.updateScrollDateIndicator === 'function') {
     window.updateScrollDateIndicator();
   }
