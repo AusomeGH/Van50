@@ -520,6 +520,34 @@ export async function resolveViffActiveBookUrl(rawUrl, eventCard = {}) {
 }
 
 /**
+ * Upgrade Richmond Arts Coalition (`richmondartscoalition.com/event/...`) aggregator pages
+ * directly to the official venue/organizer website URL listed in `.tribe-events-event-url`.
+ */
+export async function resolveRichmondArtsCoalitionExternalUrl(rawUrl, eventCard = {}) {
+  if (!rawUrl || typeof rawUrl !== "string") return null;
+  if (!/richmondartscoalition\.com\/event\//i.test(rawUrl)) return null;
+
+  try {
+    const html = await fetchHtmlText(rawUrl, 8000);
+    if (!html) return null;
+    const webMatch =
+      html.match(/tribe-events-event-url[^>]*>[\s\S]*?href=["'](https?:\/\/[^"']+)["']/i) ||
+      html.match(/Website:\s*(?:<\/?[^>]*>\s*)*<a[^>]+href=["'](https?:\/\/[^"']+)["']/i);
+    if (!webMatch || !webMatch[1]) return null;
+    const candidate = webMatch[1].replace(/&amp;|&#038;/gi, "&").trim();
+    if (/richmondartscoalition\.com|facebook\.com|instagram\.com|twitter\.com|x\.com|youtube\.com|outlook\.(?:live|office)\.com|google\.com\/calendar/i.test(candidate)) {
+      return null;
+    }
+    return {
+      directCheckoutUrl: candidate,
+      aggregatorUrl: rawUrl,
+    };
+  } catch (_) {
+    return null;
+  }
+}
+
+/**
  * Upgrade VSO (`vancouversymphony.ca/event/...` or `vancouversymphony.ca/series/...`) URLs
  * directly to their Tessitura TNEW checkout URL (`https://secure.vancouversymphony.ca/<pkg>/<perf>`),
  * matching the target card's venue and date when multi-venue or multi-date showings exist.

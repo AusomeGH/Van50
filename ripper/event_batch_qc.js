@@ -15,6 +15,7 @@ import {
   huntTier1LinkForEvent,
   resolveTicketTailorDirectCheckoutUrl,
   resolveViffActiveBookUrl,
+  resolveRichmondArtsCoalitionExternalUrl,
   resolveVsoDirectCheckoutUrl,
   resolveArtsClubShowUrl,
   resolveSurreyDirectCheckoutUrl,
@@ -172,6 +173,104 @@ async function fetchSurreySpektrixLiveCartContext(rawUrl) {
 }
 
 const _bellSpektrixRuntimeCache = new Map();
+
+let _cultchSpektrixEventsRuntimeCache = null;
+let _cultchSpektrixInstancesRuntimeCache = null;
+async function fetchCultchSpektrixLiveCartContext(rawUrl) {
+  try {
+    if (!rawUrl || typeof rawUrl !== "string") return "";
+    const cleanUrl = rawUrl.replace(/&amp;|&#038;/gi, "&");
+    if (!/thecultch\.com/i.test(cleanUrl)) return "";
+    const instMatch = cleanUrl.match(/EventInstanceId=(\d+)/i) || cleanUrl.match(/ChooseSeats\/(\d+)/i);
+    if (!instMatch) return "";
+    const targetNumericInstId = instMatch[1];
+
+    if (!_cultchSpektrixEventsRuntimeCache) {
+      const evRes = await fetch("https://ticketing.thecultch.com/thecultch/api/v3/events", { signal: AbortSignal.timeout(7000) });
+      if (evRes.ok) {
+        const parsed = await evRes.json();
+        if (Array.isArray(parsed)) _cultchSpektrixEventsRuntimeCache = parsed;
+      }
+    }
+    const eventsList = Array.isArray(_cultchSpektrixEventsRuntimeCache) ? _cultchSpektrixEventsRuntimeCache : [];
+
+    if (!_cultchSpektrixInstancesRuntimeCache) {
+      const todayIso = new Date().toISOString().slice(0, 10);
+      const instListRes = await fetch(
+        `https://ticketing.thecultch.com/thecultch/api/v3/instances?instanceStart_from=${todayIso}`,
+        { signal: AbortSignal.timeout(8000) }
+      );
+      if (instListRes.ok) {
+        const allInsts = await instListRes.json();
+        if (Array.isArray(allInsts)) _cultchSpektrixInstancesRuntimeCache = allInsts;
+      }
+    }
+    const matchedInst = Array.isArray(_cultchSpektrixInstancesRuntimeCache)
+      ? _cultchSpektrixInstancesRuntimeCache.find((inst) => inst && String(parseInt(inst.id, 10)) === targetNumericInstId)
+      : null;
+    if (!matchedInst) return "";
+
+    const parentEventId = matchedInst.event && matchedInst.event.id ? matchedInst.event.id : null;
+    const parentEvent = parentEventId ? eventsList.find((ev) => ev && ev.id === parentEventId) || null : null;
+
+    const [statusRes, priceRes] = await Promise.all([
+      fetch(`https://ticketing.thecultch.com/thecultch/api/v3/instances/${encodeURIComponent(matchedInst.id)}/status?includeChildPlans=true`, {
+        signal: AbortSignal.timeout(7000),
+      }).catch(() => null),
+      fetch(`https://ticketing.thecultch.com/thecultch/api/v3/instances/${encodeURIComponent(matchedInst.id)}/price-list`, {
+        signal: AbortSignal.timeout(7000),
+      }).catch(() => null),
+    ]);
+
+    const statusJson = statusRes && statusRes.ok ? await statusRes.json().catch(() => null) : null;
+    const priceJson = priceRes && priceRes.ok ? await priceRes.json().catch(() => null) : null;
+
+    const eventName = parentEvent?.name || "";
+    const eventDesc = String(parentEvent?.htmlDescription || parentEvent?.description || "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const startIso = String(matchedInst.start || "");
+    const availableCount = statusJson && typeof statusJson.available === "number" ? statusJson.available : null;
+    const capacityCount = statusJson && typeof statusJson.capacity === "number" ? statusJson.capacity : null;
+    const hallName = statusJson?.name || "";
+
+    const CULTCH_FEE = 7.0;
+    const CULTCH_TAX = 0.35;
+    const tierLines = [];
+    if (priceJson && Array.isArray(priceJson.prices)) {
+      const seen = new Set();
+      const sorted = [...priceJson.prices]
+        .filter((p) => p && typeof p.amount === "number" && !/essential companion/i.test(String(p.ticketType?.name || "")))
+        .sort((a, b) => a.amount - b.amount);
+      for (const p of sorted) {
+        const tName = p.ticketType?.name || "Seat";
+        const bName = p.priceBand?.name || "";
+        const label = bName && bName !== "All Seats" ? `${tName} (${bName})` : tName;
+        const base = Number(p.amount.toFixed(2));
+        const allIn = Number((base + CULTCH_FEE + CULTCH_TAX).toFixed(2));
+        const key = `${label}:${base}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        tierLines.push(`- ${label}: $${allIn.toFixed(2)} CAD (base=$${base.toFixed(2)}, fee=$${CULTCH_FEE.toFixed(2)}, tax=$${CULTCH_TAX.toFixed(2)}, all_in=$${allIn.toFixed(2)})`);
+      }
+    }
+
+    return [
+      `--- LIVE THE CULTCH SPEKTRIX CHECKOUT LEDGER (EventInstanceId=${targetNumericInstId}) ---`,
+      eventName ? `EVENT TITLE: ${eventName}` : "",
+      hallName ? `STAGE / HALL: ${hallName} (The Cultch — 1895 Venables St, Vancouver, BC)` : "",
+      startIso ? `PERFORMANCE START: ${startIso}` : "",
+      availableCount !== null ? `INVENTORY STATUS: ${availableCount > 0 ? `AVAILABLE (${availableCount} of ${capacityCount || "?"} seats remaining — is_sold_out: false)` : "SOLD OUT (0 seats remaining — is_sold_out: true)"}` : "",
+      tierLines.length > 0 ? `VERIFIED SINGLE-VISIT TICKET TIERS (CAD):\n${tierLines.join("\n")}` : "",
+      eventDesc ? `EVENT DESCRIPTION: ${eventDesc.slice(0, 800)}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  } catch (_) {
+    return "";
+  }
+}
 async function fetchBellSpektrixLiveCartContext(rawUrl, extraText = "") {
   try {
     const combinedProbe = `${rawUrl || ""}\n${extraText || ""}`;
@@ -1069,9 +1168,13 @@ export async function collectAllFramesText(page, extraContextText = "") {
   sections.push(...bodyTailSections);
   try {
     const liveUrl = (typeof page.url === "function" ? await page.url() : "") || "";
-    if (/purchase\.surrey\.ca\/(?:ChooseSeats\/\d+|EventAvailability)|EventInstanceId=\d+/i.test(liveUrl)) {
+    if (/purchase\.surrey\.ca\/(?:ChooseSeats\/\d+|EventAvailability)/i.test(liveUrl)) {
       const surreyCtx = await fetchSurreySpektrixLiveCartContext(liveUrl);
       if (surreyCtx) sections.push(`\n${surreyCtx}`);
+    }
+    if (/thecultch\.com\/ticket\/|ticketing\.thecultch\.com\//i.test(liveUrl)) {
+      const cultchCtx = await fetchCultchSpektrixLiveCartContext(liveUrl);
+      if (cultchCtx) sections.push(`\n${cultchCtx}`);
     }
     if (/bellperformingartscentre\.com/i.test(liveUrl)) {
       const bellCtx = await fetchBellSpektrixLiveCartContext(liveUrl, sections.join("\n"));
@@ -1813,6 +1916,27 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         if (!eventCard.details_url || eventCard.details_url.includes("select-date")) {
           eventCard.details_url = ttUp.seriesEventUrl;
         }
+        break;
+      }
+    }
+    if (/thecultch\.com\/ticket\//i.test(urlToUpgrade) && /&#038;|&amp;/i.test(urlToUpgrade)) {
+      const cleanCultchUrl = urlToUpgrade.replace(/&amp;|&#038;/gi, "&");
+      console.log(`🎭 [The Cultch URL Cleanup] Decoded HTML entity -> ${cleanCultchUrl}`);
+      targetUrl = cleanCultchUrl;
+      candidateUrl = cleanCultchUrl;
+      eventCard.ticket_url = cleanCultchUrl;
+      eventCard.candidate_tier1_url = cleanCultchUrl;
+      break;
+    }
+    if (/richmondartscoalition\.com\/event\//i.test(urlToUpgrade)) {
+      const racUp = await resolveRichmondArtsCoalitionExternalUrl(urlToUpgrade, eventCard);
+      if (racUp && racUp.directCheckoutUrl) {
+        console.log(`🎨 [Richmond Arts Coalition Upgrade] Resolved official event page ${urlToUpgrade} -> ${racUp.directCheckoutUrl}`);
+        targetUrl = racUp.directCheckoutUrl;
+        candidateUrl = racUp.directCheckoutUrl;
+        eventCard.ticket_url = racUp.directCheckoutUrl;
+        eventCard.candidate_tier1_url = racUp.directCheckoutUrl;
+        eventCard.details_url = racUp.directCheckoutUrl;
         break;
       }
     }

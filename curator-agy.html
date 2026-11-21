@@ -86,6 +86,13 @@
           <span>💬 Collected Feedback</span>
           <span class="stat-val" id="collected-feedback-count">0</span>
         </button>
+        <button type="button" class="stat-pill clickable-pill" id="btn-view-approved-holidays"
+          onclick="openApprovedHolidaysModal()"
+          style="cursor: pointer; background: rgba(249, 115, 22, 0.14); border: 1px solid rgba(249, 115, 22, 0.45); color: #fdba74;"
+          title="View, rename, combine, or remove Approved Holidays">
+          <span>🎉 Approved Holidays:</span>
+          <span class="stat-val" id="approved-holidays-count">0</span>
+        </button>
         <!-- Hidden legacy header pills kept synced for JS compatibility; surfaced prominently in #curator-pending-actions-inbox -->
         <div style="display: none;">
           <div id="stat-quarantined-pill"><span id="stat-pending-count">0</span></div>
@@ -3431,7 +3438,7 @@
     } catch (_) {}
     window.VAN50_ENGINE = 'antigravity';
   </script>
-  <script src="js/curator.js?v=1.6.4"></script>
+  <script src="js/curator.js?v=1.6.5"></script>
 </body>
 
 </html>

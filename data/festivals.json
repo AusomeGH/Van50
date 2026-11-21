@@ -2371,5 +2371,23 @@
     "website_url": "https://www.nvrc.ca/notices-events-blog/events-calendar/holiday-cheer-lynn-valley-village",
     "description": "Celebrate the festive season in Lynn Valley Village with holiday card printmaking using the Burnaby Art Gallery's mobile press, hands-on seasonal crafts, and live roaming carolers. Stroll through the village plaza to take in the illuminated Parade of Trees and enjoy community holiday festivities for all ages.",
     "price": 0
+  },
+  {
+    "id": "cloverdale-rodeo-and-country-fair",
+    "slug": "cloverdale-rodeo-and-country-fair",
+    "name": "Cloverdale Rodeo and Country Fair",
+    "festival_name": "Cloverdale Rodeo and Country Fair",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "cloverdale-fairgroun-cloverdale-rodeo-and-country-f-20-242027",
+    "venue_name": "Cloverdale Fairgrounds",
+    "location": "6050 176 St, Surrey, BC V3S 4E7",
+    "start_date": "2027-05-20",
+    "end_date": "2027-05-20",
+    "category": "festivals",
+    "website_url": "https://cloverdalerodeo.com/country-fair/event-schedule/",
+    "description": "Experience an iconic Fraser Valley tradition packed with live rodeo action, live music stages, and the lively Longhorn Saloon. Visitors can explore vibrant fairground attractions including the Indigenous Village, diverse food vendors, and dedicated family-friendly activities.",
+    "price": 0
   }
 ]

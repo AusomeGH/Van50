@@ -5236,6 +5236,185 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "remainingPending": len(h_data.get("pendingHolidays", []))
             })
 
+        # API: Rename an approved holiday (label, icon, optional dates_label)
+        if path == "/api/curator/rename-holiday":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            holiday_id = (payload.get("holidayId") or payload.get("id") or "").strip().lower()
+            new_label = (payload.get("label") or "").strip()
+            new_icon = (payload.get("icon") or "").strip()
+            new_dates_label = payload.get("dates_label")
+            if not holiday_id or not new_label:
+                return self._send_json(400, {"error": "Missing holidayId or new label"})
+
+            h_data = {"metadata": {}, "approvedHolidays": [], "pendingHolidays": []}
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                except Exception:
+                    pass
+
+            approved_list = h_data.get("approvedHolidays", [])
+            matched = next((h for h in approved_list if str(h.get("id", "")).strip().lower() == holiday_id), None)
+            if not matched:
+                return self._send_json(404, {"error": f"Approved holiday '{holiday_id}' not found"})
+
+            old_label = matched.get("label") or holiday_id
+            matched["label"] = new_label
+            if new_icon:
+                matched["icon"] = new_icon
+            if isinstance(new_dates_label, str) and new_dates_label.strip():
+                matched["dates_label"] = new_dates_label.strip()
+            h_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
+
+            with open(HOLIDAYS_PATH, "w", encoding="utf-8") as hf:
+                json.dump(h_data, hf, indent=2, ensure_ascii=False)
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Renamed holiday '{old_label}' to '{new_label}'.",
+                "holiday": matched,
+                "approvedHolidays": approved_list
+            })
+
+        # API: Combine / merge one approved holiday into another canonical approved holiday
+        if path == "/api/curator/merge-holiday":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            source_id = (payload.get("sourceHolidayId") or payload.get("holidayId") or "").strip().lower()
+            target_id = (payload.get("targetHolidayId") or "").strip().lower()
+            if not source_id or not target_id:
+                return self._send_json(400, {"error": "Missing sourceHolidayId or targetHolidayId"})
+            if source_id == target_id:
+                return self._send_json(400, {"error": "Cannot combine a holiday with itself"})
+
+            h_data = {"metadata": {}, "approvedHolidays": [], "pendingHolidays": []}
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                except Exception:
+                    pass
+
+            approved_list = h_data.get("approvedHolidays", [])
+            pending_list = h_data.get("pendingHolidays", [])
+            source_hol = next((h for h in approved_list if str(h.get("id", "")).strip().lower() == source_id), None)
+            from_pending = False
+            if not source_hol:
+                source_hol = next((h for h in pending_list if str(h.get("id", "")).strip().lower() == source_id), None)
+                from_pending = source_hol is not None
+            target_hol = next((h for h in approved_list if str(h.get("id", "")).strip().lower() == target_id), None)
+            if not source_hol:
+                return self._send_json(404, {"error": f"Source holiday '{source_id}' not found"})
+            if not target_hol:
+                return self._send_json(404, {"error": f"Target holiday '{target_id}' not found"})
+
+            # Collect aliases from source into target
+            aliases = target_hol.get("aliases")
+            if not isinstance(aliases, list):
+                aliases = []
+            source_tokens = {source_id}
+            if source_id not in aliases and source_id != target_id:
+                aliases.append(source_id)
+            if isinstance(source_hol.get("aliases"), list):
+                for al in source_hol["aliases"]:
+                    al_str = str(al).strip()
+                    if al_str:
+                        source_tokens.add(al_str.lower())
+                        if al_str not in aliases and al_str.lower() != target_id:
+                            aliases.append(al_str)
+            target_hol["aliases"] = aliases
+
+            # Remove source from approved or pending list
+            if from_pending:
+                h_data["pendingHolidays"] = [h for h in pending_list if str(h.get("id", "")).strip().lower() != source_id]
+            else:
+                h_data["approvedHolidays"] = [h for h in approved_list if str(h.get("id", "")).strip().lower() != source_id]
+            h_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
+
+            with open(HOLIDAYS_PATH, "w", encoding="utf-8") as hf:
+                json.dump(h_data, hf, indent=2, ensure_ascii=False)
+
+            # Re-tag matching events in events.json to target_id
+            updated_events = 0
+            if os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                        ev_list = json.load(ef)
+                    for ev in ev_list:
+                        changed = False
+                        for key in ("holiday_affiliation", "holidayAffiliation"):
+                            val = str(ev.get(key) or "").strip().lower()
+                            if val and val in source_tokens:
+                                ev[key] = target_id
+                                changed = True
+                        da = ev.get("dimension_audit")
+                        if isinstance(da, dict):
+                            for dkey in ("D008_holiday_affiliation", "D009_holiday_affiliation"):
+                                dnode = da.get(dkey)
+                                if isinstance(dnode, dict):
+                                    dval = str(dnode.get("value") or "").strip().lower()
+                                    if dval and dval in source_tokens:
+                                        dnode["value"] = target_id
+                                        changed = True
+                        if changed:
+                            updated_events += 1
+                    if updated_events > 0:
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                            json.dump(ev_list, ef, indent=2, ensure_ascii=False)
+                        sync_js_data_file()
+                except Exception:
+                    pass
+
+            src_label = source_hol.get("label") or source_id
+            tgt_label = target_hol.get("label") or target_id
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Combined '{src_label}' into '{tgt_label}' ({updated_events} event(s) updated).",
+                "targetHoliday": target_hol,
+                "approvedHolidays": h_data["approvedHolidays"],
+                "updatedEventsCount": updated_events
+            })
+
+        # API: Remove an approved holiday from approved_holidays.json
+        if path == "/api/curator/remove-holiday":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            holiday_id = (payload.get("holidayId") or payload.get("id") or "").strip().lower()
+            if not holiday_id:
+                return self._send_json(400, {"error": "Missing holidayId"})
+
+            h_data = {"metadata": {}, "approvedHolidays": [], "pendingHolidays": []}
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                except Exception:
+                    pass
+
+            approved_list = h_data.get("approvedHolidays", [])
+            matched = next((h for h in approved_list if str(h.get("id", "")).strip().lower() == holiday_id), None)
+            if not matched:
+                return self._send_json(404, {"error": f"Approved holiday '{holiday_id}' not found"})
+
+            removed_label = matched.get("label") or holiday_id
+            h_data["approvedHolidays"] = [h for h in approved_list if str(h.get("id", "")).strip().lower() != holiday_id]
+            h_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
+
+            with open(HOLIDAYS_PATH, "w", encoding="utf-8") as hf:
+                json.dump(h_data, hf, indent=2, ensure_ascii=False)
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Removed '{removed_label}' from Approved Holidays.",
+                "removedId": holiday_id,
+                "approvedHolidays": h_data["approvedHolidays"]
+            })
+
         # API: Approve pending festival in festivals.json
         if path == "/api/curator/approve-festival":
             if not self._check_authenticated():
@@ -5442,6 +5621,241 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             return self._send_json(200, {
                 "success": True,
                 "message": f"Festival '{fest_name or fest_id}' dismissed (events remain standalone cards)."
+            })
+
+        # API: Edit / rename an approved festival in festivals.json
+        if path == "/api/curator/rename-festival":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            fest_id = (payload.get("festivalId") or payload.get("slug") or payload.get("id") or "").strip().lower()
+            new_name = (payload.get("name") or payload.get("festival_name") or "").strip()
+            start_date = payload.get("start_date")
+            end_date = payload.get("end_date")
+            website_url = payload.get("website_url")
+            if not fest_id or not new_name:
+                return self._send_json(400, {"error": "Missing festivalId or new name"})
+
+            fests = []
+            if os.path.exists(FESTIVALS_PATH):
+                try:
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as ff:
+                        loaded = json.load(ff)
+                        fests = loaded if isinstance(loaded, list) else loaded.get("festivals", [])
+                except Exception:
+                    pass
+
+            matched = None
+            for f in fests:
+                f_slug = str(f.get("slug") or f.get("id") or "").strip().lower()
+                if f_slug == fest_id:
+                    matched = f
+                    break
+            if not matched:
+                return self._send_json(404, {"error": f"Festival '{fest_id}' not found"})
+
+            old_name = str(matched.get("festival_name") or matched.get("name") or fest_id).strip()
+            if old_name and old_name.lower() != new_name.lower():
+                aliases = matched.get("aliases")
+                if not isinstance(aliases, list):
+                    aliases = []
+                if old_name not in aliases:
+                    aliases.append(old_name)
+                matched["aliases"] = aliases
+            matched["name"] = new_name
+            matched["festival_name"] = new_name
+            if isinstance(start_date, str):
+                matched["start_date"] = start_date.strip()
+            if isinstance(end_date, str):
+                matched["end_date"] = end_date.strip()
+            if isinstance(website_url, str):
+                matched["website_url"] = website_url.strip()
+
+            with open(FESTIVALS_PATH, "w", encoding="utf-8") as ff:
+                json.dump(fests, ff, indent=2, ensure_ascii=False)
+
+            updated_events = 0
+            if old_name.lower() != new_name.lower() and os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                        ev_list = json.load(ef)
+                    for ev in ev_list:
+                        ev_aff = str(ev.get("festival_affiliation") or ev.get("festivalAffiliation") or "").strip()
+                        if ev_aff and ev_aff.lower() in (old_name.lower(), fest_id):
+                            ev["festival_affiliation"] = new_name
+                            ev["festivalAffiliation"] = new_name
+                            updated_events += 1
+                    if updated_events > 0:
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                            json.dump(ev_list, ef, indent=2, ensure_ascii=False)
+                        sync_js_data_file()
+                except Exception:
+                    pass
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Updated festival '{new_name}'" + (f" ({updated_events} event(s) re-tagged)." if updated_events else "."),
+                "festival": matched,
+                "festivals": fests,
+                "updatedEventsCount": updated_events
+            })
+
+        # API: Remove an approved festival from festivals.json
+        if path == "/api/curator/remove-festival":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            fest_id = (payload.get("festivalId") or payload.get("slug") or payload.get("id") or "").strip().lower()
+            if not fest_id:
+                return self._send_json(400, {"error": "Missing festivalId"})
+
+            fests = []
+            if os.path.exists(FESTIVALS_PATH):
+                try:
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as ff:
+                        loaded = json.load(ff)
+                        fests = loaded if isinstance(loaded, list) else loaded.get("festivals", [])
+                except Exception:
+                    pass
+
+            removed = None
+            new_fests = []
+            for f in fests:
+                f_slug = str(f.get("slug") or f.get("id") or "").strip().lower()
+                if f_slug == fest_id and removed is None:
+                    removed = f
+                else:
+                    new_fests.append(f)
+
+            if not removed:
+                return self._send_json(404, {"error": f"Festival '{fest_id}' not found"})
+
+            with open(FESTIVALS_PATH, "w", encoding="utf-8") as ff:
+                json.dump(new_fests, ff, indent=2, ensure_ascii=False)
+
+            removed_label = removed.get("festival_name") or removed.get("name") or fest_id
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Removed '{removed_label}' from Approved Festivals.",
+                "removedId": fest_id,
+                "festivals": new_fests
+            })
+
+        # API: Merge a pending or approved festival into an existing Approved Holiday
+        if path == "/api/curator/merge-festival-into-holiday":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            fest_id = (payload.get("festivalId") or payload.get("sourceFestivalId") or payload.get("slug") or "").strip().lower()
+            fest_name = (payload.get("sourceName") or payload.get("name") or "").strip()
+            target_holiday_id = (payload.get("targetHolidayId") or "").strip().lower()
+            if not target_holiday_id or (not fest_id and not fest_name):
+                return self._send_json(400, {"error": "Missing festivalId or targetHolidayId"})
+
+            h_data = {"metadata": {}, "approvedHolidays": [], "pendingHolidays": []}
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                except Exception:
+                    pass
+
+            approved_holidays = h_data.get("approvedHolidays", [])
+            target_hol = next((h for h in approved_holidays if str(h.get("id", "")).strip().lower() == target_holiday_id), None)
+            if not target_hol:
+                return self._send_json(404, {"error": f"Target holiday '{target_holiday_id}' not found"})
+
+            fests = []
+            if os.path.exists(FESTIVALS_PATH):
+                try:
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as ff:
+                        loaded = json.load(ff)
+                        fests = loaded if isinstance(loaded, list) else loaded.get("festivals", [])
+                except Exception:
+                    pass
+
+            source_fest = None
+            for f in fests:
+                f_slug = str(f.get("slug") or f.get("id") or "").strip().lower()
+                f_label = str(f.get("festival_name") or f.get("name") or "").strip()
+                if (fest_id and f_slug == fest_id) or (fest_name and f_label.lower() == fest_name.lower()):
+                    source_fest = f
+                    f["status"] = "merged_into_holiday"
+                    f["approvalStatus"] = "merged_into_holiday"
+                    f["merged_into_holiday"] = target_holiday_id
+                    break
+
+            with open(FESTIVALS_PATH, "w", encoding="utf-8") as ff:
+                json.dump(fests, ff, indent=2, ensure_ascii=False)
+
+            aliases = target_hol.get("aliases")
+            if not isinstance(aliases, list):
+                aliases = []
+            source_tokens = set()
+            for tok in [fest_id, fest_name]:
+                if tok:
+                    source_tokens.add(tok.lower())
+            if fest_id and fest_id not in aliases and fest_id != target_holiday_id:
+                aliases.append(fest_id)
+            if source_fest:
+                sf_name = str(source_fest.get("festival_name") or source_fest.get("name") or "").strip()
+                if sf_name:
+                    source_tokens.add(sf_name.lower())
+                if isinstance(source_fest.get("aliases"), list):
+                    for al in source_fest["aliases"]:
+                        al_str = str(al).strip()
+                        if al_str:
+                            source_tokens.add(al_str.lower())
+                            if al_str not in aliases and al_str.lower() != target_holiday_id:
+                                aliases.append(al_str)
+            target_hol["aliases"] = aliases
+            h_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
+
+            with open(HOLIDAYS_PATH, "w", encoding="utf-8") as hf:
+                json.dump(h_data, hf, indent=2, ensure_ascii=False)
+
+            disc_event_id = source_fest.get("discovered_from_event_id") if source_fest else None
+            updated_events = 0
+            if os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                        ev_list = json.load(ef)
+                    for ev in ev_list:
+                        ev_id = ev.get("id") or ev.get("event_id")
+                        ev_aff = str(ev.get("festival_affiliation") or ev.get("festivalAffiliation") or "").strip().lower()
+                        ev_title = str(ev.get("title") or "").lower()
+                        if (
+                            (disc_event_id and ev_id == disc_event_id) or
+                            (ev_aff and ev_aff in source_tokens) or
+                            (fest_name and fest_name.lower() in ev_title)
+                        ):
+                            ev["holiday_affiliation"] = target_holiday_id
+                            ev["holidayAffiliation"] = target_holiday_id
+                            if ev_aff in source_tokens:
+                                ev["festival_affiliation"] = None
+                                ev["festivalAffiliation"] = None
+                            da = ev.get("dimension_audit")
+                            if isinstance(da, dict):
+                                for dkey in ("D008_holiday_affiliation", "D009_holiday_affiliation"):
+                                    if isinstance(da.get(dkey), dict):
+                                        da[dkey]["value"] = target_holiday_id
+                            updated_events += 1
+                    if updated_events > 0:
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                            json.dump(ev_list, ef, indent=2, ensure_ascii=False)
+                        sync_js_data_file()
+                except Exception:
+                    pass
+
+            src_label = (source_fest.get("festival_name") if source_fest else None) or fest_name or fest_id
+            tgt_label = target_hol.get("label") or target_holiday_id
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Folded '{src_label}' into holiday '{tgt_label}' ({updated_events} event(s) updated).",
+                "targetHoliday": target_hol,
+                "approvedHolidays": approved_holidays,
+                "festivals": fests,
+                "updatedEventsCount": updated_events
             })
 
         # API: Approve candidate source and enroll into discovery_sources.json

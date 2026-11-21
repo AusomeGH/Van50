@@ -684,6 +684,7 @@ function updateFilterCounts() {
     if (el) el.textContent = count;
   };
   const pendingFestHolCount = getPendingFestivalsAndHolidays().total;
+  setT('approved-holidays-count', (state.approvedHolidays || []).length);
   setT('pill-count-all', all.length);
   setT('pill-count-feedback', feedback);
   setT('pill-count-newsletter', newsletter);
@@ -4975,7 +4976,7 @@ window.openFestivalEventPreview = function (eventId, bucketHint = '') {
       <div style="font-size:0.84rem;color:#cbd5e1;line-height:1.5;margin-bottom:16px;">${escapeHtml(desc)}</div>
       <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;">
         ${extUrl ? `<a href="${escapeHtml(safeExternalUrl(extUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="color:#38bdf8;border-color:rgba(56,189,248,0.4);text-decoration:none;">🔗 Open Event Page ↗</a>` : ''}
-        <button type="button" class="btn-curator btn-curator-ghost" onclick="closeFestivalEventPreview(); openAIInstructionModal('${escapeHtml(targetId)}', 'instruct');" style="color:#d8b4fe;border-color:rgba(168,85,247,0.4);">📝 AI Guidance</button>
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="closeFestivalEventPreview(); openAIInstructionModal('${jsStrArg(targetId)}', 'instruct');" style="color:#d8b4fe;border-color:rgba(168,85,247,0.4);">📝 AI Guidance</button>
         <button type="button" class="btn-curator btn-curator-primary" onclick="closeFestivalEventPreview();">Done</button>
       </div>
     </div>
@@ -4983,12 +4984,196 @@ window.openFestivalEventPreview = function (eventId, bucketHint = '') {
   modal.style.display = 'flex';
 };
 
+function getEventsForHoliday(hol) {
+  const holId = String(hol.id || '').trim().toLowerCase();
+  const holLabel = String(hol.label || holId).trim().toLowerCase();
+  const aliasSet = new Set(
+    [holId, ...(Array.isArray(hol.aliases) ? hol.aliases : [])]
+      .map(s => String(s || '').trim().toLowerCase())
+      .filter(Boolean)
+  );
+
+  const pools = [
+    { bucket: 'Live', color: '#4ade80', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
+    { bucket: 'Quarantined', color: '#fbbf24', bg: 'rgba(245, 158, 11, 0.16)', border: 'rgba(245, 158, 11, 0.35)', list: state.quarantinedEvents || [] },
+    { bucket: 'Scheduled', color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.16)', border: 'rgba(56, 189, 248, 0.35)', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
+    { bucket: 'Archived', color: '#94a3b8', bg: 'rgba(148, 163, 184, 0.14)', border: 'rgba(148, 163, 184, 0.3)', list: state.archivedEvents || [] }
+  ];
+
+  const seenIds = new Set();
+  const matched = [];
+  const detectedEventId = String(hol.eventId || hol.detectedInEventId || '').trim().toLowerCase();
+
+  for (const pool of pools) {
+    for (const ev of pool.list) {
+      if (!ev || typeof ev !== 'object') continue;
+      const evId = String(ev.id || ev.event_id || '').trim();
+      const evIdLower = evId.toLowerCase();
+      if (evIdLower && seenIds.has(evIdLower)) continue;
+
+      const da = ev.dimension_audit && typeof ev.dimension_audit === 'object' ? ev.dimension_audit : null;
+      const daHol = da ? String((da.D008_holiday_affiliation?.value || da.D009_holiday_affiliation?.value) || '').trim().toLowerCase() : '';
+      const ha = String(ev.holiday_affiliation || ev.holidayAffiliation || daHol || '').trim().toLowerCase();
+      const allTags = []
+        .concat(Array.isArray(ev.tags) ? ev.tags : [], Array.isArray(ev.subTags) ? ev.subTags : [], Array.isArray(ev.sub_tags) ? ev.sub_tags : [])
+        .map(t => String(t || '').trim().toLowerCase());
+
+      const isMatch =
+        (detectedEventId && evIdLower === detectedEventId) ||
+        (ha && aliasSet.has(ha)) ||
+        (holId && (allTags.includes(holId) || allTags.includes(`holiday:${holId}`))) ||
+        (ha && holLabel && ha === holLabel);
+
+      if (isMatch) {
+        if (evIdLower) seenIds.add(evIdLower);
+        matched.push({ ev, bucket: pool.bucket, color: pool.color, bg: pool.bg, border: pool.border });
+      }
+    }
+  }
+  return matched;
+}
+
+function getFestivalDateStatus(fest) {
+  const sRaw = String(fest.start_date || '').trim();
+  const eRaw = String(fest.end_date || '').trim();
+  const isoRe = /^\d{4}-\d{2}-\d{2}$/;
+  const hasStart = isoRe.test(sRaw);
+  const hasEnd = isoRe.test(eRaw);
+
+  const fmtDate = (iso) => {
+    const [y, m, d] = iso.split('-').map(Number);
+    const dt = new Date(y, m - 1, d);
+    return dt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+  };
+  const fmtShort = (iso) => {
+    const [y, m, d] = iso.split('-').map(Number);
+    const dt = new Date(y, m - 1, d);
+    return dt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+  };
+
+  if (!hasStart && !hasEnd) {
+    return {
+      statusKey: 'tba',
+      dateRangeText: 'Dates TBA',
+      badgeText: 'Dates TBA',
+      color: '#94a3b8',
+      bg: 'rgba(148, 163, 184, 0.14)',
+      border: 'rgba(148, 163, 184, 0.3)'
+    };
+  }
+
+  const startIso = hasStart ? sRaw : eRaw;
+  const endIso = hasEnd ? eRaw : sRaw;
+  const dateRangeText = startIso === endIso
+    ? fmtDate(startIso)
+    : (startIso.slice(0, 4) === endIso.slice(0, 4)
+      ? `${fmtShort(startIso)} – ${fmtDate(endIso)}`
+      : `${fmtDate(startIso)} – ${fmtDate(endIso)}`);
+
+  const today = new Date();
+  const todayIso = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+  if (todayIso >= startIso && todayIso <= endIso) {
+    return {
+      statusKey: 'active',
+      dateRangeText,
+      badgeText: 'Active Now',
+      color: '#4ade80',
+      bg: 'rgba(16, 185, 129, 0.16)',
+      border: 'rgba(16, 185, 129, 0.4)'
+    };
+  }
+  if (todayIso < startIso) {
+    return {
+      statusKey: 'upcoming',
+      dateRangeText,
+      badgeText: 'Upcoming',
+      color: '#38bdf8',
+      bg: 'rgba(56, 189, 248, 0.16)',
+      border: 'rgba(56, 189, 248, 0.4)'
+    };
+  }
+  return {
+    statusKey: 'past',
+    dateRangeText,
+    badgeText: 'Ended',
+    color: '#94a3b8',
+    bg: 'rgba(100, 116, 139, 0.18)',
+    border: 'rgba(100, 116, 139, 0.35)'
+  };
+}
+
+function renderMatchedEventsMiniList(matchedEvents, emptyFallbackHtml = '') {
+  if (!matchedEvents || matchedEvents.length === 0) {
+    return emptyFallbackHtml || `<div style="font-size: 0.78rem; color: #94a3b8; font-style: italic;">No matching events currently loaded in active, quarantined, or archived pools.</div>`;
+  }
+  return matchedEvents.map(({ ev, bucket, color, bg, border }) => {
+    const evId = String(ev.id || ev.event_id || '').trim();
+    const evTitle = ev.event_name || ev.title || evId || 'Untitled Event';
+    const evVenue = ev.venue_name || ev.venue || '';
+    const evDate = ev.show_1?.date || ev.date || ev.dateSchedule || 'TBD';
+    const evPrice = ev.pricing_all_in_cad?.regular ?? ev.price_all_in ?? ev.price;
+    const priceText = evPrice === 0 ? 'Free' : (evPrice != null && !Number.isNaN(Number(evPrice)) ? `$${Number(evPrice).toFixed(2)}` : '');
+    const evUrl = ev.ticket_url || ev.details_url || ev.websiteUrl || ev.source_url || '';
+    return `
+      <div onclick="openFestivalEventPreview('${jsStrArg(evId)}', '${jsStrArg(bucket)}')"
+        role="button" tabindex="0"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFestivalEventPreview('${jsStrArg(evId)}', '${jsStrArg(bucket)}');}"
+        title="Click to inspect event details"
+        style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;"
+        onmouseover="this.style.borderColor='rgba(236,72,153,0.55)'; this.style.background='rgba(236,72,153,0.08)';"
+        onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.background='rgba(15,23,42,0.55)';">
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <div style="display: flex; align-items: center; gap: 7px; flex-wrap: wrap;">
+            <span style="font-size: 0.68rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: ${bg}; color: ${color}; border: 1px solid ${border};">${escapeHtml(bucket)}</span>
+            <span style="color: #f8fafc; font-weight: 600; font-size: 0.86rem; text-decoration: underline; text-decoration-color: rgba(244, 114, 182, 0.45); text-underline-offset: 2px;">${escapeHtml(evTitle)}</span>
+          </div>
+          <div style="font-size: 0.75rem; color: #94a3b8; display: flex; gap: 10px; flex-wrap: wrap;">
+            <span>📅 ${escapeHtml(evDate)}</span>
+            ${evVenue ? `<span>📍 ${escapeHtml(evVenue)}</span>` : ''}
+            ${priceText ? `<span style="color: #4ade80; font-weight: 600;">${escapeHtml(priceText)}</span>` : ''}
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+          ${evUrl ? `<a href="${escapeHtml(safeExternalUrl(evUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" onclick="event.stopPropagation();" style="font-size: 0.75rem; color: #38bdf8; text-decoration: underline; white-space: nowrap;">Event Page ↗</a>` : ''}
+          <span style="font-size: 0.74rem; color: #f472b6; white-space: nowrap;">Inspect ›</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+window.setFestivalsSubTab = function (tab) {
+  state.festivalsSubTab = tab;
+  renderHolidayCards();
+};
+
+window.setApprovedFestivalsSearch = function (val) {
+  state.approvedFestivalsSearch = String(val || '');
+  renderHolidayCards();
+  const input = document.getElementById('approved-festivals-search-input');
+  if (input) {
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  }
+};
+
+window.setApprovedFestivalsStatusFilter = function (statusKey) {
+  state.approvedFestivalsStatusFilter = statusKey;
+  renderHolidayCards();
+};
+
+window.setApprovedFestivalsSort = function (sortKey) {
+  state.approvedFestivalsSort = sortKey;
+  renderHolidayCards();
+};
+
 function renderHolidayCards() {
   const container = document.getElementById('curator-cards-list');
   const countDisplay = document.getElementById('curator-results-text');
   if (!container) return;
 
-  const { pendingHolidays: pending, quarantinedFestivals, unapprovedFests, total } = getPendingFestivalsAndHolidays();
+  const { pendingHolidays: pending, quarantinedFestivals, unapprovedFests } = getPendingFestivalsAndHolidays();
   const approved = state.approvedHolidays || [];
   const approvedFestivals = (state.festivals || state.masterCatalogsData?.festivals || [])
     .filter(f => f && (f.status === 'approved' || f.approvalStatus === 'approved') && f.status !== 'rejected' && f.status !== 'merged_into_holiday' && !f.merged_into_holiday)
@@ -5000,279 +5185,618 @@ function renderHolidayCards() {
     });
 
   const pendingTaxonomyCount = unapprovedFests.length + pending.length;
+
+  // Smart default sub-tab on first visit so user lands on actionable items
+  if (!state.festivalsSubTab) {
+    if (pendingTaxonomyCount > 0) state.festivalsSubTab = 'pending';
+    else if (quarantinedFestivals.length > 0) state.festivalsSubTab = 'quarantined';
+    else state.festivalsSubTab = 'approved_festivals';
+  }
+  const activeSubTab = state.festivalsSubTab;
+
   if (countDisplay) {
-    countDisplay.innerHTML = `Showing <strong>${pendingTaxonomyCount}</strong> festival(s) &amp; holiday(s) needing approval${quarantinedFestivals.length > 0 ? ` (+ <strong>${quarantinedFestivals.length}</strong> quarantined festival-related event(s) below)` : ''}`;
+    countDisplay.innerHTML = `Festivals &amp; Holidays: <strong>${pendingTaxonomyCount}</strong> needing approval &bull; <strong>${quarantinedFestivals.length}</strong> quarantined event(s) &bull; <strong>${approvedFestivals.length}</strong> approved festivals &bull; <strong>${approved.length}</strong> approved holidays`;
   }
 
-  let html = '';
+  const subTabBtnStyle = (isActive, accentColor, accentBg, accentBorder) =>
+    isActive
+      ? `background:${accentBg};border:1px solid ${accentBorder};color:${accentColor};font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:0.84rem;display:inline-flex;align-items:center;gap:7px;`
+      : `background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#cbd5e1;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:0.84rem;display:inline-flex;align-items:center;gap:7px;`;
 
-  // 1. Pending Festivals Awaiting Curator Approval (Top Priority)
-  if (unapprovedFests.length > 0) {
-    html += `
-      <div style="margin-bottom: 22px;">
-        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #f472b6; margin: 0 0 12px 0;">
-          🎪 Pending Festivals Awaiting Curator Approval (${unapprovedFests.length})
-        </h4>
-        ${unapprovedFests.map((fest, idx) => {
-          const festSlug = String(fest.slug || fest.id || `fest-${idx}`).trim();
-          const festName = String(fest.festival_name || fest.name || festSlug).trim();
-          const startDate = fest.start_date || 'TBD';
-          const endDate = fest.end_date || 'TBD';
-          const discFrom = fest.discovered_from_title || fest.discovered_from_event_id || 'AI Enrichment / Scout';
-          const matchedEvents = getEventsForPendingFestival(fest);
-          const eventsListHtml = matchedEvents.length > 0
-            ? matchedEvents.map(({ ev, bucket, color, bg, border }) => {
-                const evId = String(ev.id || ev.event_id || '').trim();
-                const evTitle = ev.event_name || ev.title || evId || 'Untitled Event';
-                const evVenue = ev.venue_name || ev.venue || '';
-                const evDate = ev.show_1?.date || ev.date || ev.dateSchedule || 'TBD';
-                const evPrice = ev.pricing_all_in_cad?.regular ?? ev.price_all_in ?? ev.price;
-                const priceText = evPrice === 0 ? 'Free' : (evPrice != null && !Number.isNaN(Number(evPrice)) ? `$${Number(evPrice).toFixed(2)}` : '');
-                const evUrl = ev.ticket_url || ev.details_url || ev.websiteUrl || ev.source_url || '';
-                return `
-                  <div onclick="openFestivalEventPreview('${escapeHtml(evId)}', '${escapeHtml(bucket)}')"
-                    role="button" tabindex="0"
-                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFestivalEventPreview('${escapeHtml(evId)}', '${escapeHtml(bucket)}');}"
-                    title="Click to inspect event details"
-                    style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;"
-                    onmouseover="this.style.borderColor='rgba(236,72,153,0.55)'; this.style.background='rgba(236,72,153,0.08)';"
-                    onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.background='rgba(15,23,42,0.55)';">
-                    <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
-                      <div style="display: flex; align-items: center; gap: 7px; flex-wrap: wrap;">
-                        <span style="font-size: 0.68rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: ${bg}; color: ${color}; border: 1px solid ${border};">${escapeHtml(bucket)}</span>
-                        <span style="color: #f8fafc; font-weight: 600; font-size: 0.86rem; text-decoration: underline; text-decoration-color: rgba(244, 114, 182, 0.45); text-underline-offset: 2px;">${escapeHtml(evTitle)}</span>
-                      </div>
-                      <div style="font-size: 0.75rem; color: #94a3b8; display: flex; gap: 10px; flex-wrap: wrap;">
-                        <span>📅 ${escapeHtml(evDate)}</span>
-                        ${evVenue ? `<span>📍 ${escapeHtml(evVenue)}</span>` : ''}
-                        ${priceText ? `<span style="color: #4ade80; font-weight: 600;">${escapeHtml(priceText)}</span>` : ''}
-                      </div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-                      ${evUrl ? `<a href="${escapeHtml(safeExternalUrl(evUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" onclick="event.stopPropagation();" style="font-size: 0.75rem; color: #38bdf8; text-decoration: underline; white-space: nowrap;">Event Page ↗</a>` : ''}
-                      <span style="font-size: 0.74rem; color: #f472b6; white-space: nowrap;">Inspect ›</span>
-                    </div>
-                  </div>
-                `;
-              }).join('')
-            : (fest.website_url ? `
-                <a href="${escapeHtml(safeExternalUrl(fest.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
-                  style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); color: #38bdf8; text-decoration: none; font-size: 0.82rem;">
-                  <span>🔗 ${escapeHtml(fest.discovered_from_title || festName)} (${escapeHtml(fest.discovered_from_event_id || 'Source Link')})</span>
-                  <span>Open ↗</span>
-                </a>
-              ` : `<div style="font-size: 0.78rem; color: #94a3b8; font-style: italic;">No matching events currently loaded in active, quarantined, or archived pools.</div>`);
-          return `
-            <div class="curator-card" id="card-festival-${escapeHtml(festSlug)}" style="border-left: 4px solid #ec4899; margin-bottom: 16px;">
-              <div class="curator-card-top">
-                <div>
-                  <h3 class="curator-card-title" style="color: #f9a8d4; display: flex; align-items: center; gap: 8px;">
-                    <span>🎪</span>
-                    <span>${escapeHtml(festName)}</span>
-                    <span style="font-size: 0.78rem; font-weight: normal; color: #94a3b8;">(slug: ${escapeHtml(festSlug)})</span>
-                  </h3>
-                  <div class="curator-card-meta">
-                    <span>📅 <strong>Dates:</strong> ${escapeHtml(startDate)} – ${escapeHtml(endDate)}</span>
-                    <span>🔍 <strong>Detected From:</strong> ${escapeHtml(discFrom)}</span>
-                    <span>🏷️ <strong>Status:</strong> <span style="color: #fbcfe8; font-weight: 700;">Pending Curator Approval</span></span>
-                  </div>
-                </div>
-                <span class="curator-badge-pill" style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.45);">
-                  🎪 New Festival Candidate
-                </span>
-              </div>
+  let html = `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:12px 14px;background:rgba(15,23,42,0.7);border:1px solid rgba(255,255,255,0.1);border-radius:12px;">
+      <button type="button" onclick="setFestivalsSubTab('pending')"
+        style="${subTabBtnStyle(activeSubTab === 'pending', '#f9a8d4', 'rgba(236,72,153,0.2)', 'rgba(236,72,153,0.55)')}">
+        <span>⏳ Needs Approval</span>
+        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${pendingTaxonomyCount}</span>
+      </button>
+      <button type="button" onclick="setFestivalsSubTab('quarantined')"
+        style="${subTabBtnStyle(activeSubTab === 'quarantined', '#fde68a', 'rgba(245,158,11,0.2)', 'rgba(245,158,11,0.55)')}">
+        <span>⚠️ Quarantined Events</span>
+        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${quarantinedFestivals.length}</span>
+      </button>
+      <button type="button" onclick="setFestivalsSubTab('approved_festivals')"
+        style="${subTabBtnStyle(activeSubTab === 'approved_festivals', '#7dd3fc', 'rgba(56,189,248,0.18)', 'rgba(56,189,248,0.5)')}">
+        <span>🎪 Approved Festivals</span>
+        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${approvedFestivals.length}</span>
+      </button>
+      <button type="button" onclick="setFestivalsSubTab('approved_holidays')"
+        style="${subTabBtnStyle(activeSubTab === 'approved_holidays', '#fdba74', 'rgba(249,115,22,0.18)', 'rgba(249,115,22,0.5)')}">
+        <span>🎉 Approved Holidays</span>
+        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${approved.length}</span>
+      </button>
+    </div>
+  `;
 
-              <div style="background: rgba(236, 72, 153, 0.05); border: 1px solid rgba(236, 72, 153, 0.22); border-radius: 8px; padding: 10px 12px; margin: 12px 0;">
-                <div style="font-size: 0.78rem; font-weight: 700; color: #f9a8d4; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-                  <span>📋 Events Under This Proposed Festival (${matchedEvents.length})</span>
-                  <span style="font-size: 0.72rem; font-weight: 400; color: #94a3b8;">Click any event to preview details</span>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 6px;">
-                  ${eventsListHtml}
-                </div>
-              </div>
+  // ============================================================================
+  // SUB-TAB 1: NEEDS APPROVAL (Pending Festivals + Pending Holidays)
+  // ============================================================================
+  if (activeSubTab === 'pending') {
+    if (unapprovedFests.length > 0) {
+      html += `
+        <div style="margin-bottom: 24px;">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #f472b6; margin: 0 0 12px 0;">
+            🎪 Pending Festivals Awaiting Curator Approval (${unapprovedFests.length})
+          </h4>
+          ${unapprovedFests.map((fest, idx) => {
+            const festSlug = String(fest.slug || fest.id || `fest-${idx}`).trim();
+            const festName = String(fest.festival_name || fest.name || festSlug).trim();
+            const dateMeta = getFestivalDateStatus(fest);
+            const discFrom = fest.discovered_from_title || fest.discovered_from_event_id || 'AI Enrichment / Scout';
+            const matchedEvents = getEventsForPendingFestival(fest);
+            const fallbackUrlHtml = fest.website_url ? `
+              <a href="${escapeHtml(safeExternalUrl(fest.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
+                style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); color: #38bdf8; text-decoration: none; font-size: 0.82rem;">
+                <span>🔗 ${escapeHtml(fest.discovered_from_title || festName)} (${escapeHtml(fest.discovered_from_event_id || 'Source Link')})</span>
+                <span>Open ↗</span>
+              </a>
+            ` : '';
+            const eventsListHtml = renderMatchedEventsMiniList(matchedEvents, fallbackUrlHtml);
 
-              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; align-items: end;">
-                <div>
-                  <label style="display: block; font-size: 0.74rem; color: #94a3b8; margin-bottom: 4px;">Canonical Festival Name</label>
-                  <input type="text" id="fest-approve-name-${escapeHtml(festSlug)}" value="${escapeHtml(festName)}"
-                    style="width: 100%; font-size: 0.9rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
-                </div>
-                ${approvedFestivals.length > 0 ? `
+            return `
+              <div class="curator-card" id="card-festival-${escapeHtml(festSlug)}" style="border-left: 4px solid #ec4899; margin-bottom: 16px;">
+                <div class="curator-card-top">
                   <div>
-                    <label style="display: block; font-size: 0.74rem; color: #94a3b8; margin-bottom: 4px;">Or Merge as Alias Into Existing Festival:</label>
+                    <h3 class="curator-card-title" style="color: #f9a8d4; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                      <span>🎪</span>
+                      <span>${escapeHtml(festName)}</span>
+                      <span style="font-size: 0.76rem; font-weight: normal; color: #94a3b8; font-family: monospace;">(${escapeHtml(festSlug)})</span>
+                    </h3>
+                    <div class="curator-card-meta">
+                      <span>📅 <strong>Dates:</strong> ${escapeHtml(dateMeta.dateRangeText)}</span>
+                      <span>🔍 <strong>Detected From:</strong> ${escapeHtml(discFrom)}</span>
+                      <span>🏷️ <strong>Status:</strong> <span style="color: #fbcfe8; font-weight: 700;">Pending Curator Approval</span></span>
+                    </div>
+                  </div>
+                  <span class="curator-badge-pill" style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.45);">
+                    🎪 New Festival Candidate
+                  </span>
+                </div>
+
+                <div style="background: rgba(236, 72, 153, 0.05); border: 1px solid rgba(236, 72, 153, 0.22); border-radius: 8px; padding: 10px 12px; margin: 12px 0;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #f9a8d4; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>📋 Events Under This Proposed Festival (${matchedEvents.length})</span>
+                    <span style="font-size: 0.72rem; font-weight: 400; color: #94a3b8;">Click any event to preview details</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    ${eventsListHtml}
+                  </div>
+                </div>
+
+                <!-- Clear 3-Path Decision Panel -->
+                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; align-items: end;">
+                  <div>
+                    <label style="display: block; font-size: 0.74rem; color: #f9a8d4; font-weight: 600; margin-bottom: 4px;">Path A — Approve as New Festival</label>
                     <div style="display: flex; gap: 6px;">
-                      <select id="fest-merge-target-${escapeHtml(festSlug)}" class="curator-select" style="flex: 1; padding: 6px 8px; font-size: 0.82rem;">
-                        <option value="">-- Select canonical festival to merge into --</option>
-                        ${approvedFestivals.map(af => {
-                          const afSlug = af.slug || af.id || af.festival_name || af.name || '';
-                          const afLabel = af.festival_name || af.name || afSlug;
-                          return `<option value="${escapeHtml(afSlug)}">${escapeHtml(afLabel)}</option>`;
-                        }).join('')}
-                      </select>
-                      <button type="button" class="btn-curator btn-curator-ghost" onclick="mergePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
-                        style="border-color: rgba(56, 189, 248, 0.45); color: #7dd3fc; white-space: nowrap;">
-                        🔀 Merge Alias
+                      <input type="text" id="fest-approve-name-${escapeHtml(festSlug)}" value="${escapeHtml(festName)}"
+                        style="flex: 1; font-size: 0.88rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                      <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
+                        style="background: linear-gradient(135deg, #db2777, #9333ea); border-color: #f472b6; white-space: nowrap;">
+                        ✓ Approve
                       </button>
                     </div>
                   </div>
-                ` : ''}
-              </div>
-
-              <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px; flex-wrap: wrap;">
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(festSlug)}', 'instruct')"
-                  style="border-color: rgba(168, 85, 247, 0.45); color: #d8b4fe; margin-right: auto;">
-                  📝 Feedback / Guidance
-                </button>
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
-                  style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
-                  ✕ Dismiss (Keep Events Standalone)
-                </button>
-                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
-                  style="background: linear-gradient(135deg, #db2777, #9333ea); border-color: #f472b6;">
-                  ✓ Approve &amp; Activate Festival
-                </button>
-              </div>
-            </div>
-          `;
-        }).join('')}
-      </div>
-    `;
-  }
-
-  // 2. Pending Holidays Awaiting Curator Sign-Off
-  if (pending.length > 0) {
-    html += `
-      <div style="margin-bottom: 22px;">
-        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #fdba74; margin: 0 0 12px 0;">
-          🎉 Pending Holidays Awaiting Curator Sign-Off (${pending.length})
-        </h4>
-        ${pending.map(h => {
-          const defaultLabel = h.label || h.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-          const defaultIcon = h.icon || '🎉';
-          return `
-            <div class="curator-card" id="card-holiday-${escapeHtml(h.id)}" style="border-left: 4px solid #f97316; margin-bottom: 16px;">
-              <div class="curator-card-top">
-                <div>
-                  <h3 class="curator-card-title" style="color: #fdba74; display: flex; align-items: center; gap: 8px;">
-                    <span>${escapeHtml(defaultIcon)}</span>
-                    <span>${escapeHtml(defaultLabel)}</span>
-                    <span style="font-size: 0.8rem; font-weight: normal; color: #94a3b8;">(#${escapeHtml(h.id)})</span>
-                  </h3>
-                  <div class="curator-card-meta">
-                    <span>🔍 <strong>Detected In:</strong> ${escapeHtml(h.eventTitle || h.detectedInEvent || 'AI Event Scout')}</span>
-                    <span>📅 <strong>Detected Date:</strong> ${escapeHtml(h.detectedAt || 'Today')}</span>
-                    <span>🏷️ <strong>Status:</strong> <span style="color: #fed7aa; font-weight: 600;">Pending Curator Sign-off</span></span>
-                  </div>
+                  ${(approvedFestivals.length > 0 || approved.length > 0) ? `
+                    <div>
+                      <label style="display: block; font-size: 0.74rem; color: #7dd3fc; font-weight: 600; margin-bottom: 4px;">Path B — Merge Into Existing Festival or Holiday</label>
+                      <div style="display: flex; gap: 6px;">
+                        <select id="fest-merge-target-${escapeHtml(festSlug)}" class="curator-select" style="flex: 1; padding: 7px 8px; font-size: 0.82rem;">
+                          <option value="">-- Select target festival or holiday --</option>
+                          ${approved.length > 0 ? `
+                            <optgroup label="🎉 Approved Holidays (fold into seasonal holiday)">
+                              ${approved.map(ah => `<option value="holiday:${escapeHtml(ah.id)}">${escapeHtml((ah.icon || '🎉') + ' ' + (ah.label || ah.id))}</option>`).join('')}
+                            </optgroup>
+                          ` : ''}
+                          ${approvedFestivals.length > 0 ? `
+                            <optgroup label="🎪 Approved Festivals (merge as alias)">
+                              ${approvedFestivals.map(af => {
+                                const afSlug = af.slug || af.id || af.festival_name || af.name || '';
+                                const afLabel = af.festival_name || af.name || afSlug;
+                                return `<option value="festival:${escapeHtml(afSlug)}">${escapeHtml(afLabel)}</option>`;
+                              }).join('')}
+                            </optgroup>
+                          ` : ''}
+                        </select>
+                        <button type="button" class="btn-curator btn-curator-ghost" onclick="mergePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
+                          style="border-color: rgba(56, 189, 248, 0.45); color: #7dd3fc; white-space: nowrap;">
+                          🔀 Merge
+                        </button>
+                      </div>
+                    </div>
+                  ` : ''}
                 </div>
-                <div style="display: flex; gap: 6px; align-items: flex-start;">
+
+                <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap;">
+                  <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(festSlug)}', 'instruct')"
+                    style="border-color: rgba(168, 85, 247, 0.45); color: #d8b4fe;">
+                    📝 Feedback / Guidance
+                  </button>
+                  <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
+                    style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                    ✕ Path C — Dismiss (Keep Events Standalone)
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    if (pending.length > 0) {
+      html += `
+        <div style="margin-bottom: 24px;">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #fdba74; margin: 0 0 12px 0;">
+            🎉 Pending Holidays Awaiting Curator Sign-Off (${pending.length})
+          </h4>
+          ${pending.map(h => {
+            const hId = String(h.id || '').trim();
+            const defaultLabel = h.label || hId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            const defaultIcon = h.icon || '🎉';
+            const matchedEvents = getEventsForHoliday(h);
+            return `
+              <div class="curator-card" id="card-holiday-${escapeHtml(hId)}" style="border-left: 4px solid #f97316; margin-bottom: 16px;">
+                <div class="curator-card-top">
+                  <div>
+                    <h3 class="curator-card-title" style="color: #fdba74; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                      <span>${escapeHtml(defaultIcon)}</span>
+                      <span>${escapeHtml(defaultLabel)}</span>
+                      <span style="font-size: 0.78rem; font-weight: normal; color: #94a3b8; font-family: monospace;">(#${escapeHtml(hId)})</span>
+                    </h3>
+                    <div class="curator-card-meta">
+                      <span>🔍 <strong>Detected In:</strong> ${escapeHtml(h.eventTitle || h.detectedInEvent || 'AI Event Scout')}</span>
+                      <span>📅 <strong>Detected Date:</strong> ${escapeHtml(h.detectedAt || 'Today')}</span>
+                      <span>🏷️ <strong>Status:</strong> <span style="color: #fed7aa; font-weight: 600;">Pending Curator Sign-off</span></span>
+                    </div>
+                  </div>
                   <span class="curator-badge-pill" style="background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4);">
                     🎉 New Holiday Discovery
                   </span>
                 </div>
-              </div>
 
-              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 14px; margin: 12px 0;">
-                <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 10px; font-weight: 600;">
-                  Curator Taxonomy Settings:
-                </div>
-                <div style="display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: center;">
-                  <div>
-                    <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Icon / Emoji</label>
-                    <input type="text" id="holiday-icon-${escapeHtml(h.id)}" value="${escapeHtml(defaultIcon)}" style="width: 100%; text-align: center; font-size: 1.25rem; padding: 6px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                <div style="background: rgba(249, 115, 22, 0.05); border: 1px solid rgba(249, 115, 22, 0.22); border-radius: 8px; padding: 10px 12px; margin: 12px 0;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #fdba74; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>📋 Events Under This Proposed Holiday (${matchedEvents.length})</span>
+                    <span style="font-size: 0.72rem; font-weight: 400; color: #94a3b8;">Click any event to preview details</span>
                   </div>
-                  <div>
-                    <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Display Label</label>
-                    <input type="text" id="holiday-label-${escapeHtml(h.id)}" value="${escapeHtml(defaultLabel)}" style="width: 100%; font-size: 0.95rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    ${renderMatchedEventsMiniList(matchedEvents)}
                   </div>
                 </div>
-              </div>
 
-              <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px;">
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectHoliday('${escapeHtml(h.id)}')" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
-                  ✕ Reject / Dismiss
-                </button>
-                <button type="button" class="btn-curator btn-curator-primary" onclick="approveHoliday('${escapeHtml(h.id)}')" style="background: #ea580c; border-color: #f97316;">
-                  ✓ Approve &amp; Register Holiday
-                </button>
+                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; align-items: end;">
+                  <div>
+                    <div style="font-size: 0.74rem; color: #fdba74; font-weight: 600; margin-bottom: 6px;">Path A — Approve as New Holiday</div>
+                    <div style="display: grid; grid-template-columns: 64px 1fr auto; gap: 8px; align-items: center;">
+                      <input type="text" id="holiday-icon-${escapeHtml(hId)}" value="${escapeHtml(defaultIcon)}" title="Icon / Emoji"
+                        style="width: 100%; text-align: center; font-size: 1.15rem; padding: 6px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                      <input type="text" id="holiday-label-${escapeHtml(hId)}" value="${escapeHtml(defaultLabel)}" title="Display Label"
+                        style="width: 100%; font-size: 0.88rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                      <button type="button" class="btn-curator btn-curator-primary" onclick="approveHoliday('${jsStrArg(hId)}')"
+                        style="background: #ea580c; border-color: #f97316; white-space: nowrap;">
+                        ✓ Approve
+                      </button>
+                    </div>
+                  </div>
+                  ${approved.length > 0 ? `
+                    <div>
+                      <div style="font-size: 0.74rem; color: #d8b4fe; font-weight: 600; margin-bottom: 6px;">Path B — Combine Into Existing Approved Holiday</div>
+                      <div style="display: flex; gap: 6px;">
+                        <select id="pending-holiday-merge-target-${escapeHtml(hId)}" class="curator-select" style="flex: 1; padding: 7px 8px; font-size: 0.82rem;">
+                          <option value="">-- Select target holiday --</option>
+                          ${approved.map(ah => `<option value="${escapeHtml(ah.id)}">${escapeHtml((ah.icon || '🎉') + ' ' + (ah.label || ah.id))}</option>`).join('')}
+                        </select>
+                        <button type="button" class="btn-curator btn-curator-ghost" onclick="combinePendingHoliday('${jsStrArg(hId)}', '${jsStrArg(defaultLabel)}')"
+                          style="border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe; white-space: nowrap;">
+                          🔀 Combine
+                        </button>
+                      </div>
+                    </div>
+                  ` : ''}
+                </div>
+
+                <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
+                  <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectHoliday('${jsStrArg(hId)}')" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                    ✕ Path C — Reject / Dismiss
+                  </button>
+                </div>
               </div>
-            </div>
-          `;
-        }).join('')}
-      </div>
-    `;
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    if (pendingTaxonomyCount === 0) {
+      html += `
+        <div style="text-align: center; padding: 36px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
+          <div style="font-size: 2.2rem; margin-bottom: 10px;">✅</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: #fff; margin-bottom: 6px;">
+            No Pending Festivals or Holidays Awaiting Approval
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto 14px; line-height: 1.5;">
+            All discovered festival and holiday categories are currently verified. Use the tabs above to inspect quarantined events or manage your approved registries.
+          </p>
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+            ${quarantinedFestivals.length > 0 ? `<button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('quarantined')" style="border-color:rgba(245,158,11,0.45);color:#fde68a;">⚠️ View ${quarantinedFestivals.length} Quarantined Event(s)</button>` : ''}
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('approved_festivals')" style="border-color:rgba(56,189,248,0.45);color:#7dd3fc;">🎪 Manage Approved Festivals (${approvedFestivals.length})</button>
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('approved_holidays')" style="border-color:rgba(249,115,22,0.45);color:#fdba74;">🎉 Manage Approved Holidays (${approved.length})</button>
+          </div>
+        </div>
+      `;
+    }
   }
 
-  if (pendingTaxonomyCount === 0) {
-    html += `
-      <div style="text-align: center; padding: 36px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px; margin-bottom: 24px;">
-        <div style="font-size: 2.2rem; margin-bottom: 10px;">🎉</div>
-        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: #fff; margin-bottom: 6px;">
-          No Pending Festivals or Holidays Awaiting Approval
-        </h3>
-        <p style="font-size: 0.86rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
-          All discovered festival and holiday categories are currently verified and registered.
-        </p>
-      </div>
-    `;
-  }
-
-  // 3. Quarantined Festival-Related Individual Events (Collapsible secondary section below approvals)
-  if (quarantinedFestivals.length > 0) {
-    html += `
-      <details style="margin-bottom: 24px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 16px;" ${pendingTaxonomyCount === 0 ? 'open' : ''}>
-        <summary style="cursor: pointer; font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: #fdba74; user-select: none;">
-          🎪 Quarantined Festival-Related Events (${quarantinedFestivals.length}) — Click to expand/collapse
-        </summary>
-        <div style="margin-top: 14px;">
+  // ============================================================================
+  // SUB-TAB 2: QUARANTINED FESTIVAL-RELATED EVENTS
+  // ============================================================================
+  if (activeSubTab === 'quarantined') {
+    if (quarantinedFestivals.length > 0) {
+      html += `
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+            <h4 style="font-family:var(--font-heading);font-size:1.05rem;color:#fde68a;margin:0;">
+              ⚠️ Quarantined Festival-Related Events (${quarantinedFestivals.length})
+            </h4>
+            <span style="font-size:0.78rem;color:#94a3b8;">Individual event cards tagged as festival events that need quarantine triage</span>
+          </div>
           ${quarantinedFestivals.map((ev, idx) => renderEventCard(ev, idx)).join('')}
         </div>
-      </details>
+      `;
+    } else {
+      html += `
+        <div style="text-align: center; padding: 36px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">🎉</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: #fff; margin-bottom: 4px;">No Quarantined Festival Events</h3>
+          <p style="font-size: 0.84rem; color: var(--curator-text-muted); margin: 0;">All festival-related events have cleared quarantine.</p>
+        </div>
+      `;
+    }
+  }
+
+  // ============================================================================
+  // SUB-TAB 3: APPROVED FESTIVALS REGISTRY (Search, Filter, Inspect, Edit, Combine, Remove)
+  // ============================================================================
+  if (activeSubTab === 'approved_festivals') {
+    const searchQ = String(state.approvedFestivalsSearch || '').trim().toLowerCase();
+    const statusFilter = state.approvedFestivalsStatusFilter || 'all';
+    const sortBy = state.approvedFestivalsSort || 'alpha';
+
+    const enrichedFests = approvedFestivals.map(af => {
+      const slug = String(af.slug || af.id || af.festival_name || af.name || '').trim();
+      const name = String(af.festival_name || af.name || slug || 'Festival').trim();
+      const dateMeta = getFestivalDateStatus(af);
+      const matchedEvents = getEventsForPendingFestival(af);
+      const liveCount = matchedEvents.filter(m => m.bucket === 'Live').length;
+      return { af, slug, name, dateMeta, matchedEvents, liveCount };
+    });
+
+    const statusCounts = { all: enrichedFests.length, active: 0, upcoming: 0, past: 0, tba: 0 };
+    enrichedFests.forEach(item => {
+      statusCounts[item.dateMeta.statusKey] = (statusCounts[item.dateMeta.statusKey] || 0) + 1;
+    });
+
+    let filteredFests = enrichedFests.filter(item => {
+      if (statusFilter !== 'all' && item.dateMeta.statusKey !== statusFilter) return false;
+      if (searchQ) {
+        const aliasesStr = Array.isArray(item.af.aliases) ? item.af.aliases.join(' ').toLowerCase() : '';
+        return item.name.toLowerCase().includes(searchQ) || item.slug.toLowerCase().includes(searchQ) || aliasesStr.includes(searchQ);
+      }
+      return true;
+    });
+
+    if (sortBy === 'events') {
+      filteredFests.sort((a, b) => (b.liveCount - a.liveCount) || (b.matchedEvents.length - a.matchedEvents.length) || a.name.localeCompare(b.name));
+    } else if (sortBy === 'date') {
+      filteredFests.sort((a, b) => String(a.af.start_date || '9999-99-99').localeCompare(String(b.af.start_date || '9999-99-99')));
+    } else {
+      filteredFests.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base', numeric: true }));
+    }
+
+    const pillStyle = (active) => active
+      ? 'padding:5px 10px;border-radius:999px;font-size:0.76rem;font-weight:700;cursor:pointer;background:rgba(56,189,248,0.2);border:1px solid rgba(56,189,248,0.55);color:#7dd3fc;'
+      : 'padding:5px 10px;border-radius:999px;font-size:0.76rem;font-weight:600;cursor:pointer;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#94a3b8;';
+
+    html += `
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <input type="text" id="approved-festivals-search-input" value="${escapeHtml(state.approvedFestivalsSearch || '')}"
+            oninput="setApprovedFestivalsSearch(this.value)"
+            placeholder="🔍 Search approved festivals by name, slug, or alias…"
+            style="flex:1;min-width:240px;padding:8px 12px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.16);border-radius:8px;color:#f8fafc;font-size:0.86rem;">
+          <select onchange="setApprovedFestivalsSort(this.value)" class="curator-select" style="padding:8px 10px;font-size:0.82rem;">
+            <option value="alpha" ${sortBy === 'alpha' ? 'selected' : ''}>Sort: A–Z</option>
+            <option value="events" ${sortBy === 'events' ? 'selected' : ''}>Sort: Most Live Events</option>
+            <option value="date" ${sortBy === 'date' ? 'selected' : ''}>Sort: Start Date</option>
+          </select>
+        </div>
+
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:16px;">
+          <button type="button" onclick="setApprovedFestivalsStatusFilter('all')" style="${pillStyle(statusFilter === 'all')}">All (${statusCounts.all})</button>
+          <button type="button" onclick="setApprovedFestivalsStatusFilter('active')" style="${pillStyle(statusFilter === 'active')}">🟢 Active Now (${statusCounts.active})</button>
+          <button type="button" onclick="setApprovedFestivalsStatusFilter('upcoming')" style="${pillStyle(statusFilter === 'upcoming')}">🔵 Upcoming (${statusCounts.upcoming})</button>
+          <button type="button" onclick="setApprovedFestivalsStatusFilter('past')" style="${pillStyle(statusFilter === 'past')}">⚪ Ended (${statusCounts.past})</button>
+          <button type="button" onclick="setApprovedFestivalsStatusFilter('tba')" style="${pillStyle(statusFilter === 'tba')}">📅 Dates TBA (${statusCounts.tba})</button>
+        </div>
+
+        ${filteredFests.length === 0 ? `
+          <div style="text-align:center;padding:32px;color:#94a3b8;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;">
+            No approved festivals match your current search/filter.
+          </div>
+        ` : `
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            ${filteredFests.map(({ af, slug, name, dateMeta, matchedEvents, liveCount }) => {
+              const aliases = Array.isArray(af.aliases) ? af.aliases : [];
+              const otherFests = approvedFestivals.filter(o => String(o.slug || o.id || '').toLowerCase() !== slug.toLowerCase());
+              const liveBadgeStyle = liveCount > 0
+                ? 'background:rgba(16,185,129,0.16);color:#4ade80;border:1px solid rgba(16,185,129,0.4);'
+                : 'background:rgba(148,163,184,0.12);color:#94a3b8;border:1px solid rgba(148,163,184,0.28);';
+              return `
+                <div id="approved-fest-row-${escapeHtml(slug)}" style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:12px 15px;">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+                    <div style="min-width:0;flex:1;">
+                      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                        <span style="font-size:1.2rem;">🎪</span>
+                        <strong style="color:#f8fafc;font-size:0.98rem;">${escapeHtml(name)}</strong>
+                        <span style="font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:999px;background:${dateMeta.bg};color:${dateMeta.color};border:1px solid ${dateMeta.border};">${escapeHtml(dateMeta.badgeText)}</span>
+                        <span style="font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:999px;${liveBadgeStyle}">${liveCount} live</span>
+                      </div>
+                      <div style="font-size:0.76rem;color:#94a3b8;margin-top:4px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                        <span>📅 ${escapeHtml(dateMeta.dateRangeText)}</span>
+                        <span style="font-family:monospace;">slug: "${escapeHtml(slug)}"</span>
+                        ${af.website_url ? `<a href="${escapeHtml(safeExternalUrl(af.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color:#38bdf8;text-decoration:underline;">Website ↗</a>` : ''}
+                      </div>
+                      ${aliases.length > 0 ? `
+                        <div style="font-size:0.72rem;color:#94a3b8;margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;align-items:center;">
+                          <span style="color:#cbd5e1;font-weight:600;">Aliases:</span>
+                          ${aliases.map(al => `<span style="font-family:monospace;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#bae6fd;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
+                        </div>
+                      ` : ''}
+                    </div>
+                    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                      <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleFestivalEventsDrawer('${jsStrArg(slug)}')"
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(236,72,153,0.4);color:#f9a8d4;">
+                        📋 Events (${matchedEvents.length})
+                      </button>
+                      <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleEditApprovedFestival('${jsStrArg(slug)}')"
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(56,189,248,0.45);color:#7dd3fc;">
+                        ✏️ Edit
+                      </button>
+                      <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleCombineApprovedFestival('${jsStrArg(slug)}')"
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(168,85,247,0.5);color:#d8b4fe;">
+                        🔀 Combine
+                      </button>
+                      <button type="button" class="btn-curator btn-curator-ghost" onclick="removeApprovedFestival('${jsStrArg(slug)}', '${jsStrArg(name)}')"
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(239,68,68,0.45);color:#fca5a5;">
+                        🗑️ Remove
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Expandable Events Drawer -->
+                  <div id="af-events-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                      ${renderMatchedEventsMiniList(matchedEvents)}
+                    </div>
+                  </div>
+
+                  <!-- Inline Edit Drawer -->
+                  <div id="af-edit-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr auto;gap:8px;align-items:end;flex-wrap:wrap;">
+                      <div>
+                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Festival Name</label>
+                        <input type="text" id="af-edit-name-${escapeHtml(slug)}" value="${escapeHtml(name)}"
+                          style="width:100%;font-size:0.84rem;padding:6px 9px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                      </div>
+                      <div>
+                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Start Date</label>
+                        <input type="date" id="af-edit-start-${escapeHtml(slug)}" value="${escapeHtml(af.start_date || '')}"
+                          style="width:100%;font-size:0.82rem;padding:6px 8px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                      </div>
+                      <div>
+                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">End Date</label>
+                        <input type="date" id="af-edit-end-${escapeHtml(slug)}" value="${escapeHtml(af.end_date || '')}"
+                          style="width:100%;font-size:0.82rem;padding:6px 8px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                      </div>
+                      <div>
+                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Website URL</label>
+                        <input type="url" id="af-edit-url-${escapeHtml(slug)}" value="${escapeHtml(af.website_url || '')}" placeholder="https://..."
+                          style="width:100%;font-size:0.82rem;padding:6px 9px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                      </div>
+                      <div style="display:flex;gap:6px;">
+                        <button type="button" class="btn-curator btn-curator-primary" onclick="saveEditApprovedFestival('${jsStrArg(slug)}')"
+                          style="padding:6px 11px;font-size:0.78rem;background:#0284c7;border-color:#38bdf8;">💾 Save</button>
+                        <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleEditApprovedFestival('${jsStrArg(slug)}')"
+                          style="padding:6px 9px;font-size:0.78rem;">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Inline Combine Drawer -->
+                  <div id="af-combine-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                      <span style="font-size:0.78rem;color:#d8b4fe;font-weight:600;">Combine into:</span>
+                      <select id="af-combine-target-${escapeHtml(slug)}" class="curator-select" style="flex:1;min-width:220px;padding:6px 9px;font-size:0.82rem;">
+                        <option value="">-- Select target festival or holiday --</option>
+                        ${approved.length > 0 ? `
+                          <optgroup label="🎉 Approved Holidays">
+                            ${approved.map(ah => `<option value="holiday:${escapeHtml(ah.id)}">${escapeHtml((ah.icon || '🎉') + ' ' + (ah.label || ah.id))}</option>`).join('')}
+                          </optgroup>
+                        ` : ''}
+                        ${otherFests.length > 0 ? `
+                          <optgroup label="🎪 Approved Festivals">
+                            ${otherFests.map(of => {
+                              const ofSlug = of.slug || of.id || of.festival_name || of.name || '';
+                              const ofLabel = of.festival_name || of.name || ofSlug;
+                              return `<option value="festival:${escapeHtml(ofSlug)}">${escapeHtml(ofLabel)}</option>`;
+                            }).join('')}
+                          </optgroup>
+                        ` : ''}
+                      </select>
+                      <button type="button" class="btn-curator btn-curator-primary" onclick="combineApprovedFestival('${jsStrArg(slug)}', '${jsStrArg(name)}')"
+                        style="padding:6px 11px;font-size:0.78rem;background:#7c3aed;border-color:#a855f7;">🔀 Confirm Combine</button>
+                      <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleCombineApprovedFestival('${jsStrArg(slug)}')"
+                        style="padding:6px 9px;font-size:0.78rem;">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `}
+      </div>
     `;
   }
 
-  // Also append approved holidays overview section
-  html += `
-    <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: #e2e8f0; margin: 0; display: flex; align-items: center; gap: 8px;">
-          <span>✅</span> Approved Holidays Registry (${approved.length})
-        </h4>
-        <span style="font-size: 0.78rem; color: #94a3b8;">When AI scouts detect these tags, events are auto-approved</span>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px;">
-        ${approved.map(ah => `
-          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 1.4rem;">${escapeHtml(ah.icon || '🎉')}</span>
-            <div style="overflow: hidden;">
-              <div style="color: #fff; font-weight: 600; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(ah.label || ah.id)}</div>
-              <div style="color: #94a3b8; font-size: 0.75rem; font-family: monospace;">tag: "${escapeHtml(ah.id)}"</div>
-            </div>
+  // ============================================================================
+  // SUB-TAB 4: APPROVED HOLIDAYS REGISTRY (With Live Counts & Inline Management)
+  // ============================================================================
+  if (activeSubTab === 'approved_holidays') {
+    html += `
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+          <div>
+            <h4 style="font-family:var(--font-heading);font-size:1.05rem;color:#fdba74;margin:0;">
+              🎉 Approved Holidays Registry (${approved.length})
+            </h4>
+            <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">When AI scouts detect these tags, events are auto-approved. Manage inline below or via the header button.</div>
           </div>
-        `).join('')}
-      </div>
-    </div>
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="openApprovedHolidaysModal()"
+            style="padding:6px 12px;font-size:0.8rem;border-color:rgba(249,115,22,0.5);color:#fdba74;">
+            🪟 Open in Modal
+          </button>
+        </div>
 
-    <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: #e2e8f0; margin: 0; display: flex; align-items: center; gap: 8px;">
-          <span>🎪</span> Approved Festivals Registry (${approvedFestivals.length})
-        </h4>
-        <span style="font-size: 0.78rem; color: #94a3b8;">Registered Metro Vancouver cultural festivals in data/festivals.json</span>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          ${approved.map(ah => {
+            const id = String(ah.id || '');
+            const label = String(ah.label || id);
+            const icon = String(ah.icon || '🎉');
+            const datesLabel = ah.dates_label ? String(ah.dates_label) : '';
+            const aliases = Array.isArray(ah.aliases) ? ah.aliases : [];
+            const matchedEvents = getEventsForHoliday(ah);
+            const liveCount = matchedEvents.filter(m => m.bucket === 'Live').length;
+            const otherTargets = approved.filter(other => String(other.id || '') !== id);
+            const liveBadgeStyle = liveCount > 0
+              ? 'background:rgba(16,185,129,0.16);color:#4ade80;border:1px solid rgba(16,185,129,0.4);'
+              : 'background:rgba(148,163,184,0.12);color:#94a3b8;border:1px solid rgba(148,163,184,0.28);';
+
+            return `
+              <div style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:12px 15px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+                  <div style="display:flex;align-items:flex-start;gap:10px;min-width:0;flex:1;">
+                    <span style="font-size:1.5rem;line-height:1.1;">${escapeHtml(icon)}</span>
+                    <div style="min-width:0;flex:1;">
+                      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                        <strong style="color:#f8fafc;font-size:0.98rem;">${escapeHtml(label)}</strong>
+                        <span style="font-size:0.72rem;font-family:monospace;color:#94a3b8;background:rgba(255,255,255,0.06);padding:2px 7px;border-radius:999px;">tag: "${escapeHtml(id)}"</span>
+                        <span style="font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:999px;${liveBadgeStyle}">${liveCount} live</span>
+                        ${datesLabel ? `<span style="font-size:0.74rem;color:#7dd3fc;">📅 ${escapeHtml(datesLabel)}</span>` : ''}
+                      </div>
+                      ${ah.short_description ? `<div style="font-size:0.78rem;color:#cbd5e1;margin-top:4px;">${escapeHtml(ah.short_description)}</div>` : ''}
+                      ${aliases.length > 0 ? `
+                        <div style="font-size:0.72rem;color:#94a3b8;margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;align-items:center;">
+                          <span style="color:#cbd5e1;font-weight:600;">Aliases:</span>
+                          ${aliases.map(al => `<span style="font-family:monospace;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.28);color:#fed7aa;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
+                        </div>
+                      ` : ''}
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                    <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleHolidayEventsDrawer('${jsStrArg(id)}')"
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(249,115,22,0.4);color:#fdba74;">
+                      📋 Events (${matchedEvents.length})
+                    </button>
+                    <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleRenameApprovedHoliday('${jsStrArg(id)}', 'tab')"
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(56,189,248,0.45);color:#7dd3fc;">
+                      ✏️ Rename
+                    </button>
+                    <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleCombineApprovedHoliday('${jsStrArg(id)}', 'tab')"
+                      ${otherTargets.length === 0 ? 'disabled' : ''}
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(168,85,247,0.5);color:#d8b4fe;">
+                      🔀 Combine
+                    </button>
+                    <button type="button" class="btn-curator btn-curator-ghost" onclick="removeApprovedHoliday('${jsStrArg(id)}', '${jsStrArg(label)}')"
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(239,68,68,0.45);color:#fca5a5;">
+                      🗑️ Remove
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Expandable Events Drawer -->
+                <div id="ah-tab-events-drawer-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    ${renderMatchedEventsMiniList(matchedEvents)}
+                  </div>
+                </div>
+
+                <!-- Inline Rename Drawer (Tab) -->
+                <div id="ah-tab-rename-panel-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                  <div style="display:grid;grid-template-columns:68px 1fr 160px auto;gap:8px;align-items:end;flex-wrap:wrap;">
+                    <div>
+                      <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Icon</label>
+                      <input type="text" id="ah-tab-rename-icon-${escapeHtml(id)}" value="${escapeHtml(icon)}"
+                        style="width:100%;text-align:center;font-size:1.1rem;padding:6px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Display Label</label>
+                      <input type="text" id="ah-tab-rename-label-${escapeHtml(id)}" value="${escapeHtml(label)}"
+                        style="width:100%;font-size:0.86rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Dates Label</label>
+                      <input type="text" id="ah-tab-rename-dates-${escapeHtml(id)}" value="${escapeHtml(datesLabel)}" placeholder="e.g. Nov 13 – Jan 3"
+                        style="width:100%;font-size:0.82rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                    </div>
+                    <div style="display:flex;gap:6px;">
+                      <button type="button" class="btn-curator btn-curator-primary" onclick="saveRenameApprovedHoliday('${jsStrArg(id)}', 'tab')"
+                        style="padding:7px 11px;font-size:0.78rem;background:#0284c7;border-color:#38bdf8;">💾 Save</button>
+                      <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleRenameApprovedHoliday('${jsStrArg(id)}', 'tab')"
+                        style="padding:7px 9px;font-size:0.78rem;">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Inline Combine Drawer (Tab) -->
+                <div id="ah-tab-combine-panel-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    <span style="font-size:0.78rem;color:#d8b4fe;font-weight:600;">Combine into:</span>
+                    <select id="ah-tab-combine-target-${escapeHtml(id)}" class="curator-select" style="flex:1;min-width:220px;padding:6px 9px;font-size:0.82rem;">
+                      ${otherTargets.map(other => `<option value="${escapeHtml(other.id)}">${escapeHtml((other.icon || '🎉') + ' ' + (other.label || other.id))} (#${escapeHtml(other.id)})</option>`).join('')}
+                    </select>
+                    <button type="button" class="btn-curator btn-curator-primary" onclick="combineApprovedHoliday('${jsStrArg(id)}', '${jsStrArg(label)}', 'tab')"
+                      style="padding:6px 11px;font-size:0.78rem;background:#7c3aed;border-color:#a855f7;">🔀 Confirm Combine</button>
+                    <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleCombineApprovedHoliday('${jsStrArg(id)}', 'tab')"
+                      style="padding:6px 9px;font-size:0.78rem;">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;">
-        ${approvedFestivals.map(af => `
-          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 1.4rem;">🎪</span>
-            <div style="overflow: hidden;">
-              <div style="color: #fff; font-weight: 600; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(af.festival_name || af.name || 'Festival')}</div>
-              <div style="color: #94a3b8; font-size: 0.75rem;">${escapeHtml(af.start_date || 'TBA')} – ${escapeHtml(af.end_date || 'TBA')}</div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `;
+    `;
+  }
 
   container.innerHTML = html;
 }
@@ -5338,6 +5862,387 @@ window.rejectHoliday = async function (holidayId) {
   }
 };
 
+// ============================================================================
+// Approved Holidays Manager Modal (View / Rename / Combine / Remove)
+// ============================================================================
+window.closeApprovedHolidaysModal = function () {
+  const modal = document.getElementById('approved-holidays-modal');
+  if (modal) modal.style.display = 'none';
+};
+
+window.openApprovedHolidaysModal = async function () {
+  let modal = document.getElementById('approved-holidays-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'approved-holidays-modal';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:10065;background:rgba(2,6,23,0.82);display:none;align-items:center;justify-content:center;padding:20px;';
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) window.closeApprovedHolidaysModal();
+    });
+    document.body.appendChild(modal);
+  }
+
+  modal.style.display = 'flex';
+  modal.innerHTML = `
+    <div style="background:#0f172a;border:1px solid rgba(249,115,22,0.45);border-radius:14px;max-width:900px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.75);color:#f8fafc;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.1);gap:12px;flex-wrap:wrap;">
+        <div>
+          <h3 style="margin:0;font-family:var(--font-heading);font-size:1.2rem;color:#fdba74;">🎉 Approved Holidays Manager</h3>
+          <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">Rename display labels/icons, combine overlapping holidays (and re-tag matching events), or remove entries from <code>data/approved_holidays.json</code></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="openApprovedHolidaysModal()" style="border-color:rgba(56,189,248,0.45);color:#7dd3fc;">🔄 Refresh</button>
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="closeApprovedHolidaysModal()">✕ Close</button>
+        </div>
+      </div>
+      <div id="approved-holidays-modal-body" style="padding:16px 20px;overflow-y:auto;flex:1;">
+        <div style="text-align:center;padding:32px;color:#94a3b8;">Loading approved holidays…</div>
+      </div>
+    </div>
+  `;
+
+  if (state.token) {
+    try {
+      const res = await fetch(`/api/curator/holidays?_t=${Date.now()}`, {
+        headers: { 'Curator-Token': state.token },
+        cache: 'no-store'
+      });
+      if (res.ok) {
+        const holData = await res.json();
+        state.approvedHolidays = holData.approvedHolidays || [];
+        state.pendingHolidays = holData.pendingHolidays || [];
+        updateFilterCounts();
+      }
+    } catch (e) {
+      console.warn('Could not refresh approved holidays:', e);
+    }
+  }
+
+  window.renderApprovedHolidaysModalBody();
+};
+
+window.renderApprovedHolidaysModalBody = function () {
+  const body = document.getElementById('approved-holidays-modal-body');
+  if (!body) return;
+
+  const approved = state.approvedHolidays || [];
+  if (approved.length === 0) {
+    body.innerHTML = `
+      <div style="text-align:center;padding:36px 20px;color:#94a3b8;">
+        <div style="font-size:2rem;margin-bottom:8px;">🎉</div>
+        <div style="font-weight:600;color:#e2e8f0;margin-bottom:4px;">No approved holidays in registry</div>
+        <div style="font-size:0.82rem;">Approve newly detected holidays from the Festivals &amp; Holidays inbox tab.</div>
+      </div>
+    `;
+    return;
+  }
+
+  body.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:0.82rem;color:#94a3b8;">
+      <span>Showing <strong style="color:#f8fafc;">${approved.length}</strong> approved holiday${approved.length === 1 ? '' : 's'}</span>
+      <span>Changes save directly to <code>data/approved_holidays.json</code></span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      ${approved.map(ah => {
+        const id = String(ah.id || '');
+        const label = String(ah.label || id);
+        const icon = String(ah.icon || '🎉');
+        const datesLabel = ah.dates_label ? String(ah.dates_label) : '';
+        const aliases = Array.isArray(ah.aliases) ? ah.aliases : [];
+        const otherTargets = approved.filter(other => String(other.id || '') !== id);
+        const targetOptionsHtml = otherTargets.map(other =>
+          `<option value="${escapeHtml(other.id)}">${escapeHtml((other.icon || '🎉') + ' ' + (other.label || other.id))} (#${escapeHtml(other.id)})</option>`
+        ).join('');
+
+        return `
+          <div id="approved-holiday-row-${escapeHtml(id)}" style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 16px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+              <div style="display:flex;align-items:flex-start;gap:12px;min-width:0;flex:1;">
+                <span style="font-size:1.65rem;line-height:1.1;flex-shrink:0;">${escapeHtml(icon)}</span>
+                <div style="min-width:0;flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <strong style="color:#f8fafc;font-size:1rem;">${escapeHtml(label)}</strong>
+                    <span style="font-size:0.74rem;font-family:monospace;color:#94a3b8;background:rgba(255,255,255,0.06);padding:2px 7px;border-radius:999px;">tag: "${escapeHtml(id)}"</span>
+                    ${datesLabel ? `<span style="font-size:0.74rem;color:#7dd3fc;">📅 ${escapeHtml(datesLabel)}</span>` : ''}
+                  </div>
+                  ${ah.short_description ? `<div style="font-size:0.8rem;color:#cbd5e1;margin-top:4px;line-height:1.4;">${escapeHtml(ah.short_description)}</div>` : ''}
+                  ${aliases.length > 0 ? `
+                    <div style="font-size:0.73rem;color:#94a3b8;margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;">
+                      <span style="font-weight:600;color:#cbd5e1;">Aliases:</span>
+                      ${aliases.map(al => `<span style="font-family:monospace;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.28);color:#fed7aa;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                <button type="button" class="btn-curator btn-curator-ghost"
+                  onclick="toggleRenameApprovedHoliday('${jsStrArg(id)}')"
+                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(56,189,248,0.45);color:#7dd3fc;">
+                  ✏️ Rename
+                </button>
+                <button type="button" class="btn-curator btn-curator-ghost"
+                  onclick="toggleCombineApprovedHoliday('${jsStrArg(id)}')"
+                  ${otherTargets.length === 0 ? 'disabled' : ''}
+                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(168,85,247,0.5);color:#d8b4fe;">
+                  🔀 Combine
+                </button>
+                <button type="button" class="btn-curator btn-curator-ghost"
+                  onclick="removeApprovedHoliday('${jsStrArg(id)}', '${jsStrArg(label)}')"
+                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(239,68,68,0.45);color:#fca5a5;">
+                  🗑️ Remove
+                </button>
+              </div>
+            </div>
+
+            <!-- Inline Rename Drawer -->
+            <div id="ah-rename-panel-${escapeHtml(id)}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);">
+              <div style="display:grid;grid-template-columns:72px 1fr 160px auto;gap:8px;align-items:end;flex-wrap:wrap;">
+                <div>
+                  <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Icon</label>
+                  <input type="text" id="ah-rename-icon-${escapeHtml(id)}" value="${escapeHtml(icon)}"
+                    style="width:100%;text-align:center;font-size:1.1rem;padding:6px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                </div>
+                <div>
+                  <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Display Label</label>
+                  <input type="text" id="ah-rename-label-${escapeHtml(id)}" value="${escapeHtml(label)}"
+                    style="width:100%;font-size:0.88rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                </div>
+                <div>
+                  <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Dates Label (optional)</label>
+                  <input type="text" id="ah-rename-dates-${escapeHtml(id)}" value="${escapeHtml(datesLabel)}" placeholder="e.g. Nov 13 – Jan 3"
+                    style="width:100%;font-size:0.84rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                </div>
+                <div style="display:flex;gap:6px;">
+                  <button type="button" class="btn-curator btn-curator-primary"
+                    onclick="saveRenameApprovedHoliday('${jsStrArg(id)}')"
+                    style="padding:7px 12px;font-size:0.8rem;background:#0284c7;border-color:#38bdf8;">
+                    💾 Save
+                  </button>
+                  <button type="button" class="btn-curator btn-curator-ghost"
+                    onclick="toggleRenameApprovedHoliday('${jsStrArg(id)}')"
+                    style="padding:7px 10px;font-size:0.8rem;">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inline Combine Drawer -->
+            <div id="ah-combine-panel-${escapeHtml(id)}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);">
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <span style="font-size:0.8rem;color:#d8b4fe;font-weight:600;">Combine into:</span>
+                <select id="ah-combine-target-${escapeHtml(id)}"
+                  style="flex:1;min-width:220px;padding:7px 10px;background:#020617;border:1px solid rgba(168,85,247,0.45);border-radius:6px;color:#f8fafc;font-size:0.84rem;">
+                  ${targetOptionsHtml}
+                </select>
+                <button type="button" class="btn-curator btn-curator-primary"
+                  onclick="combineApprovedHoliday('${jsStrArg(id)}', '${jsStrArg(label)}')"
+                  style="padding:7px 12px;font-size:0.8rem;background:#7c3aed;border-color:#a855f7;">
+                  🔀 Confirm Combine
+                </button>
+                <button type="button" class="btn-curator btn-curator-ghost"
+                  onclick="toggleCombineApprovedHoliday('${jsStrArg(id)}')"
+                  style="padding:7px 10px;font-size:0.8rem;">
+                  Cancel
+                </button>
+              </div>
+              <div style="font-size:0.74rem;color:#94a3b8;margin-top:6px;">
+                Adds <code>${escapeHtml(id)}</code> as an alias on the target holiday, removes this duplicate entry, and re-tags matching events in <code>events.json</code>.
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+};
+
+window.toggleRenameApprovedHoliday = function (holidayId, scope = 'modal') {
+  const prefix = scope === 'tab' ? 'ah-tab-' : 'ah-';
+  const renamePanel = document.getElementById(`${prefix}rename-panel-${holidayId}`);
+  const combinePanel = document.getElementById(`${prefix}combine-panel-${holidayId}`);
+  if (combinePanel) combinePanel.style.display = 'none';
+  if (renamePanel) {
+    const opening = renamePanel.style.display === 'none';
+    renamePanel.style.display = opening ? 'block' : 'none';
+    if (opening) {
+      const input = document.getElementById(`${prefix}rename-label-${holidayId}`);
+      if (input) input.focus();
+    }
+  }
+};
+
+window.toggleCombineApprovedHoliday = function (holidayId, scope = 'modal') {
+  const prefix = scope === 'tab' ? 'ah-tab-' : 'ah-';
+  const combinePanel = document.getElementById(`${prefix}combine-panel-${holidayId}`);
+  const renamePanel = document.getElementById(`${prefix}rename-panel-${holidayId}`);
+  if (renamePanel) renamePanel.style.display = 'none';
+  if (combinePanel) {
+    combinePanel.style.display = combinePanel.style.display === 'none' ? 'block' : 'none';
+  }
+};
+
+window.toggleHolidayEventsDrawer = function (holidayId) {
+  const drawer = document.getElementById(`ah-tab-events-drawer-${holidayId}`);
+  if (drawer) drawer.style.display = drawer.style.display === 'none' ? 'block' : 'none';
+};
+
+window.saveRenameApprovedHoliday = async function (holidayId, scope = 'modal') {
+  if (!state.token || !holidayId) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
+  const prefix = scope === 'tab' ? 'ah-tab-' : 'ah-';
+  const labelEl = document.getElementById(`${prefix}rename-label-${holidayId}`);
+  const iconEl = document.getElementById(`${prefix}rename-icon-${holidayId}`);
+  const datesEl = document.getElementById(`${prefix}rename-dates-${holidayId}`);
+  const label = labelEl ? labelEl.value.trim() : '';
+  const icon = iconEl ? iconEl.value.trim() : '';
+  const dates_label = datesEl ? datesEl.value.trim() : '';
+
+  if (!label) {
+    showToast('Display label cannot be empty.', 'warning');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/curator/rename-holiday', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ holidayId, label, icon, dates_label })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      state.approvedHolidays = data.approvedHolidays || state.approvedHolidays;
+      showToast(data.message || `Renamed holiday '${holidayId}'.`, 'success');
+      updateFilterCounts();
+      window.renderApprovedHolidaysModalBody();
+      if (state.filter === 'holidays') applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to rename holiday', 'error');
+    }
+  } catch (err) {
+    showToast('Network error renaming holiday', 'error');
+  }
+};
+
+window.combineApprovedHoliday = async function (sourceHolidayId, sourceLabel, scope = 'modal') {
+  if (!state.token || !sourceHolidayId) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
+  const prefix = scope === 'tab' ? 'ah-tab-' : 'ah-';
+  const selectEl = document.getElementById(`${prefix}combine-target-${sourceHolidayId}`);
+  const targetHolidayId = selectEl ? selectEl.value : '';
+  if (!targetHolidayId) {
+    showToast('Select a target holiday to combine into.', 'warning');
+    return;
+  }
+  const targetOptionText = selectEl.options[selectEl.selectedIndex]?.textContent || targetHolidayId;
+  if (!confirm(`Combine "${sourceLabel}" (#${sourceHolidayId}) into "${targetOptionText}"?\n\nThis will add "${sourceHolidayId}" as an alias, remove the duplicate entry, and re-tag matching events.`)) {
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/curator/merge-holiday', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ sourceHolidayId, targetHolidayId })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      state.approvedHolidays = data.approvedHolidays || state.approvedHolidays;
+      showToast(data.message || `Combined '${sourceLabel}' successfully.`, 'success');
+      updateFilterCounts();
+      window.renderApprovedHolidaysModalBody();
+      if (state.filter === 'holidays') applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to combine holidays', 'error');
+    }
+  } catch (err) {
+    showToast('Network error combining holidays', 'error');
+  }
+};
+
+window.combinePendingHoliday = async function (sourceHolidayId, sourceLabel) {
+  if (!state.token || !sourceHolidayId) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
+  const selectEl = document.getElementById(`pending-holiday-merge-target-${sourceHolidayId}`);
+  const targetHolidayId = selectEl ? selectEl.value : '';
+  if (!targetHolidayId) {
+    showToast('Select an existing Approved Holiday to combine into.', 'warning');
+    return;
+  }
+  const targetOptionText = selectEl.options[selectEl.selectedIndex]?.textContent || targetHolidayId;
+  if (!confirm(`Combine pending holiday "${sourceLabel}" (#${sourceHolidayId}) into "${targetOptionText}"?`)) {
+    return;
+  }
+  try {
+    const res = await fetch('/api/curator/merge-holiday', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ sourceHolidayId, targetHolidayId })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      state.pendingHolidays = (state.pendingHolidays || []).filter(h => h.id !== sourceHolidayId);
+      state.approvedHolidays = data.approvedHolidays || state.approvedHolidays;
+      showToast(data.message || `Combined '${sourceLabel}' into '${targetOptionText}'.`, 'success');
+      updateFilterCounts();
+      applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to combine pending holiday', 'error');
+    }
+  } catch (err) {
+    showToast('Network error combining pending holiday', 'error');
+  }
+};
+
+window.removeApprovedHoliday = async function (holidayId, holidayLabel) {
+  if (!state.token || !holidayId) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
+  if (!confirm(`Remove "${holidayLabel}" (#${holidayId}) from the Approved Holidays list?`)) {
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/curator/remove-holiday', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ holidayId })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      state.approvedHolidays = data.approvedHolidays || (state.approvedHolidays || []).filter(h => h.id !== holidayId);
+      showToast(data.message || `Removed '${holidayLabel}' from Approved Holidays.`, 'info');
+      updateFilterCounts();
+      window.renderApprovedHolidaysModalBody();
+      if (state.filter === 'holidays') applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to remove holiday', 'error');
+    }
+  } catch (err) {
+    showToast('Network error removing holiday', 'error');
+  }
+};
+
 window.approvePendingFestival = async function (festSlug, fallbackName) {
   if (!state.token) {
     showToast('Please unlock Curator Studio first.', 'warning');
@@ -5381,27 +6286,41 @@ window.mergePendingFestival = async function (festSlug, sourceName) {
     return;
   }
   const targetSel = document.getElementById(`fest-merge-target-${festSlug}`);
-  const targetSlug = targetSel ? targetSel.value.trim() : '';
-  if (!targetSlug) {
-    showToast('Please select an existing festival from the dropdown first.', 'warning');
+  const rawTarget = targetSel ? targetSel.value.trim() : '';
+  if (!rawTarget) {
+    showToast('Please select an existing festival or holiday from the dropdown first.', 'warning');
     return;
   }
+
+  const isHolidayTarget = rawTarget.startsWith('holiday:');
+  const cleanTarget = rawTarget.replace(/^(festival:|holiday:)/, '');
+
   try {
-    const res = await fetch('/api/curator/merge-festival', {
+    const endpoint = isHolidayTarget ? '/api/curator/merge-festival-into-holiday' : '/api/curator/merge-festival';
+    const payload = isHolidayTarget
+      ? { festivalId: festSlug, sourceName, targetHolidayId: cleanTarget }
+      : { sourceFestivalId: festSlug, sourceName, targetFestivalId: cleanTarget };
+
+    const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Curator-Token': state.token
       },
-      body: JSON.stringify({ sourceFestivalId: festSlug, sourceName, targetFestivalId: targetSlug })
+      body: JSON.stringify(payload)
     });
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast(data.message || `Merged '${sourceName}' into existing festival!`, 'success');
-      state.festivals = (state.festivals || []).filter(f => {
-        const s = String(f.slug || f.id || '').toLowerCase();
-        return s !== String(festSlug).toLowerCase();
-      });
+      showToast(data.message || `Merged '${sourceName}' successfully!`, 'success');
+      if (Array.isArray(data.approvedHolidays)) state.approvedHolidays = data.approvedHolidays;
+      if (Array.isArray(data.festivals)) {
+        state.festivals = data.festivals;
+      } else {
+        state.festivals = (state.festivals || []).filter(f => {
+          const s = String(f.slug || f.id || '').toLowerCase();
+          return s !== String(festSlug).toLowerCase();
+        });
+      }
       updateFilterCounts();
       applyFiltersAndRender();
     } else {
@@ -5409,6 +6328,157 @@ window.mergePendingFestival = async function (festSlug, sourceName) {
     }
   } catch (err) {
     showToast('Network error merging festival', 'error');
+  }
+};
+
+window.toggleFestivalEventsDrawer = function (festSlug) {
+  const drawer = document.getElementById(`af-events-drawer-${festSlug}`);
+  if (drawer) drawer.style.display = drawer.style.display === 'none' ? 'block' : 'none';
+};
+
+window.toggleEditApprovedFestival = function (festSlug) {
+  const editDrawer = document.getElementById(`af-edit-drawer-${festSlug}`);
+  const combineDrawer = document.getElementById(`af-combine-drawer-${festSlug}`);
+  if (combineDrawer) combineDrawer.style.display = 'none';
+  if (editDrawer) {
+    const opening = editDrawer.style.display === 'none';
+    editDrawer.style.display = opening ? 'block' : 'none';
+    if (opening) {
+      const input = document.getElementById(`af-edit-name-${festSlug}`);
+      if (input) input.focus();
+    }
+  }
+};
+
+window.toggleCombineApprovedFestival = function (festSlug) {
+  const combineDrawer = document.getElementById(`af-combine-drawer-${festSlug}`);
+  const editDrawer = document.getElementById(`af-edit-drawer-${festSlug}`);
+  if (editDrawer) editDrawer.style.display = 'none';
+  if (combineDrawer) {
+    combineDrawer.style.display = combineDrawer.style.display === 'none' ? 'block' : 'none';
+  }
+};
+
+window.saveEditApprovedFestival = async function (festSlug) {
+  if (!state.token || !festSlug) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
+  const name = document.getElementById(`af-edit-name-${festSlug}`)?.value.trim() || '';
+  const start_date = document.getElementById(`af-edit-start-${festSlug}`)?.value.trim() || '';
+  const end_date = document.getElementById(`af-edit-end-${festSlug}`)?.value.trim() || '';
+  const website_url = document.getElementById(`af-edit-url-${festSlug}`)?.value.trim() || '';
+  if (!name) {
+    showToast('Festival name cannot be empty.', 'warning');
+    return;
+  }
+  try {
+    const res = await fetch('/api/curator/rename-festival', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ festivalId: festSlug, name, start_date, end_date, website_url })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      if (Array.isArray(data.festivals)) state.festivals = data.festivals;
+      showToast(data.message || `Updated festival '${name}'.`, 'success');
+      updateFilterCounts();
+      applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to update festival', 'error');
+    }
+  } catch (err) {
+    showToast('Network error updating festival', 'error');
+  }
+};
+
+window.combineApprovedFestival = async function (festSlug, sourceName) {
+  if (!state.token || !festSlug) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
+  const selectEl = document.getElementById(`af-combine-target-${festSlug}`);
+  const rawTarget = selectEl ? selectEl.value.trim() : '';
+  if (!rawTarget) {
+    showToast('Please select a target festival or holiday.', 'warning');
+    return;
+  }
+  const targetLabel = selectEl.options[selectEl.selectedIndex]?.textContent || rawTarget;
+  const isHolidayTarget = rawTarget.startsWith('holiday:');
+  const cleanTarget = rawTarget.replace(/^(festival:|holiday:)/, '');
+
+  if (!confirm(`Combine "${sourceName}" into "${targetLabel}"?\n\nThis will merge aliases and re-tag matching events.`)) {
+    return;
+  }
+
+  try {
+    const endpoint = isHolidayTarget ? '/api/curator/merge-festival-into-holiday' : '/api/curator/merge-festival';
+    const payload = isHolidayTarget
+      ? { festivalId: festSlug, sourceName, targetHolidayId: cleanTarget }
+      : { sourceFestivalId: festSlug, sourceName, targetFestivalId: cleanTarget };
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      if (Array.isArray(data.approvedHolidays)) state.approvedHolidays = data.approvedHolidays;
+      if (Array.isArray(data.festivals)) {
+        state.festivals = data.festivals;
+      } else {
+        state.festivals = (state.festivals || []).filter(f => String(f.slug || f.id || '').toLowerCase() !== festSlug.toLowerCase());
+      }
+      showToast(data.message || `Combined '${sourceName}' into '${targetLabel}'.`, 'success');
+      updateFilterCounts();
+      applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to combine festival', 'error');
+    }
+  } catch (err) {
+    showToast('Network error combining festival', 'error');
+  }
+};
+
+window.removeApprovedFestival = async function (festSlug, festName) {
+  if (!state.token || !festSlug) {
+    showToast('Please unlock Curator Studio first.', 'warning');
+    return;
+  }
+  if (!confirm(`Remove "${festName}" (${festSlug}) from the Approved Festivals list?`)) {
+    return;
+  }
+  try {
+    const res = await fetch('/api/curator/remove-festival', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ festivalId: festSlug })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      if (Array.isArray(data.festivals)) {
+        state.festivals = data.festivals;
+      } else {
+        state.festivals = (state.festivals || []).filter(f => String(f.slug || f.id || '').toLowerCase() !== festSlug.toLowerCase());
+      }
+      showToast(data.message || `Removed '${festName}' from Approved Festivals.`, 'info');
+      updateFilterCounts();
+      applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to remove festival', 'error');
+    }
+  } catch (err) {
+    showToast('Network error removing festival', 'error');
   }
 };
 

@@ -27,9 +27,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "cinema",
-      "arbitration_reasoning": "Adopted the canonical title 'Silent Movie Mondays' supported by Seed, Box Office, and Editorial layers over the schedule layer's redundant series year suffix, classified under cinema."
+      "arbitration_reasoning": "Adopted authoritative canonical series title 'Silent Movie Mondays' agreed upon across Seed, Box Office, and Editorial layers while discarding the extraneous schedule year suffix ': 2026'."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "landmark-cinemas-guildford-reel-deals": {
     "sig": "date mismatch between schedule (2026-11-10) and box office (2026-11-17)::",
@@ -79,7 +79,7 @@
   "the-revue-stage-infidels-jazz-presents-dean-th-2026-12-13": {
     "sig": "title mismatch between schedule (\"Infidels Jazz Presents: Dean Thiessen Plays Charlie Brown\") and box office (\"Infidels Jazz Presents: Dean Thiessen Plays Charlie Brown (2PM)\")::",
     "decision": {
-      "clean_title": "Dean Thiessen Plays Charlie Brown",
+      "clean_title": "Infidels Jazz Presents: Dean Thiessen Plays Charlie Brown",
       "artist": "Dean Thiessen",
       "lineup": [
         "Dean Thiessen"
@@ -88,10 +88,10 @@
       "start_time": "2:00 PM",
       "doors_time": null,
       "is_sold_out": true,
-      "category": "shows",
-      "arbitration_reasoning": "Adopted the canonical editorial clean title stripping the presenter prefix and time suffix, populated lead performer Dean Thiessen, extracted 2:00 PM start time from the box office layer, and upheld the sold-out status as all ticket tiers are marked unavailable."
+      "category": "music",
+      "arbitration_reasoning": "Standardized the title by stripping the parenthetical showtime which is captured directly in start_time, identified Dean Thiessen as lead artist, and retained sold-out status as confirmed by the box office tier."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "russell-brewing-taproom-standup-comedy": {
     "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
@@ -109,19 +109,19 @@
     "updatedAt": "2026-11-17T02:59:36.800Z"
   },
   "the-improv-centre-heart-felt-holiday-2026-11-19": {
-    "sig": "title mismatch between schedule (\"Heart Felt Holiday\") and box office (\"Heart Felt Holiday: An Improvised Puppet Rom-Com\")::",
+    "sig": "title mismatch between schedule (\"Heart Felt Holiday\") and box office (\"Heart Felt Holiday: An Improvised Puppet Rom-Com\")|date mismatch between schedule (2026-11-19) and box office (2026-11-21)::",
     "decision": {
       "clean_title": "Heart Felt Holiday: An Improvised Puppet Rom-Com",
       "artist": null,
       "lineup": [],
-      "date": "2026-11-19",
+      "date": "2026-11-21",
       "start_time": "7:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Adopted the specific, full production title from the Seed and Box Office layers over the truncated calendar schedule label, retaining the verified 7:00 PM showtime."
+      "arbitration_reasoning": "Adopted the full descriptive title and confirmed date of 2026-11-21 supported in lockstep by Seed, Box Office, and Editorial layers over the truncated schedule entry."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "surrey-eagles-bchl-hockey-south-surrey-arena": {
     "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
@@ -139,7 +139,7 @@
     "updatedAt": "2026-11-17T02:59:36.800Z"
   },
   "van50-tightrope-theatre-murder-she-improvised-20261113": {
-    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-21)::",
     "decision": {
       "clean_title": "Murder She Improvised",
       "artist": null,
@@ -147,14 +147,14 @@
         "Tightrope Theatre",
         "Dad's Garage Theatre"
       ],
-      "date": "2026-11-20",
+      "date": "2026-11-21",
       "start_time": "7:30 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Resolved date to 2026-11-20 by aligning with verified Box Office live cart and Seed checkout URL, which supersedes the harvester date mismatch."
+      "arbitration_reasoning": "Resolved date to 2026-11-21 based on agreement between the Seed URL ticket checkout ID and live Box Office layer inspection."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "lindsay-family-stage-the-gingerbread-men-2026-12-07": {
     "sig": "title mismatch between schedule (\"The Gingerbread Men\") and box office (\"The Gingerbread Men: And Yet Another Holiday Cabaret\")::",
@@ -223,7 +223,7 @@
   "celebrities-nightclu-playhouse-pres-no-thanks-boxin-2026-12-26": {
     "sig": "title mismatch between schedule (\"Playhouse Pres: No Thanks (Boxing Day Bash)\") and box office (\"No Thanks: Boxing Day Bash\")::",
     "decision": {
-      "clean_title": "Playhouse Pres: No Thanks (Boxing Day Bash)",
+      "clean_title": "No Thanks (Boxing Day Bash)",
       "artist": "No Thanks",
       "lineup": [
         "No Thanks"
@@ -233,9 +233,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Adopted the fuller authoritative schedule and TicketWeb event title ('Playhouse Pres: No Thanks (Boxing Day Bash)') while extracting lead performer 'No Thanks' into the artist/lineup dimensions and classifying under music."
+      "arbitration_reasoning": "Adopted the Editorial layer's clean title stripping the promotional series prefix ('Playhouse Pres:') while reconciling the confirmed date from the Seed and Schedule layers and lead performer from description."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "hollywood-theatre-best-of-1990-s-2000-s-music-vi-2027-01-08": {
     "sig": "title mismatch between schedule (\"Best of 1990’s & 2000’s Music Video Pop Party\") and box office (\"Best of 1990’s & 2000’s Music Video Pop Party - Backstreet Boys vs Spice Girls Edition with DJ Flip Out\")::",
@@ -255,7 +255,7 @@
     "updatedAt": "2026-11-20T15:29:25.258Z"
   },
   "comedy-after-dark-saturday-night-stand-up-comedy-2025-01-22": {
-    "sig": "title mismatch between schedule (\"Saturday Night Stand Up Comedy\") and box office (\"SATURDAY NIGHT STAND UP COMEDY @ COMEDY AFTER DARK\")::",
+    "sig": "date mismatch between schedule (2026-11-07) and box office (2020-02-08)::",
     "decision": {
       "clean_title": "Saturday Night Stand Up Comedy",
       "artist": null,
@@ -264,19 +264,19 @@
         "Cass Furman",
         "Michael Balazo"
       ],
-      "date": "2026-11-07",
+      "date": "2026-11-28",
       "start_time": "7:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Adopted the canonical title 'Saturday Night Stand Up Comedy' by stripping the redundant venue suffix and all-caps formatting from the box office layer to match the schedule, seed, and editorial layers."
+      "arbitration_reasoning": "Rejected the stale 2020-02-08 box office date artifact and past 2026-11-07 schedule date in favor of the upcoming seed date 2026-11-28 relative to current November 2026 timeframe, retaining the 7:00 PM start time and verified active General Admission tier."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "celebrities-nightclu-playhouse-pres-andrew-bayer-2026-12-05": {
     "sig": "title mismatch between schedule (\"Playhouse Pres: Andrew Bayer\") and box office (\"Playhouse Pres. Andrew Bayer\")::",
     "decision": {
-      "clean_title": "Andrew Bayer",
+      "clean_title": "Playhouse Pres: Andrew Bayer",
       "artist": "Andrew Bayer",
       "lineup": [
         "Andrew Bayer"
@@ -286,9 +286,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Resolved the title conflict by stripping the promotional club series prefix ('Playhouse Pres') in favour of clean artist identity 'Andrew Bayer', adopting the verified 2026-12-05 schedule date and music category."
+      "arbitration_reasoning": "Adopted the canonical series and performer title 'Playhouse Pres: Andrew Bayer' as confirmed by the schedule layer and TicketWeb event naming, resolving 'Andrew Bayer' as the primary artist and lead in the lineup."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "roedde-house-museum-vico-concert-in-the-parlour-uz-2026-11-20": {
     "sig": "title mismatch between schedule (\"VICO Concert in the Parlour: Uzbek Musical Heritage\") and box office (\"Concert in the Parlour: Uzbek Musical Heritage\")::",
@@ -1295,19 +1295,19 @@
     "updatedAt": "2026-11-20T00:47:06.662Z"
   },
   "kpu-richmond-mycology-food-medicine-cultiva-2026-11-13": {
-    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-27)::",
     "decision": {
       "clean_title": "Mycology: Food, Medicine & Cultivation",
       "artist": null,
       "lineup": [],
-      "date": "2026-11-20",
+      "date": "2026-11-27",
       "start_time": "6:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "arts",
-      "arbitration_reasoning": "Resolved date to 2026-11-20 and start time to 6:00 PM based on agreement between the primary Seed source and the Box Office verification layer over the schedule layer."
+      "arbitration_reasoning": "Resolved date to 2026-11-27 and start_time to 6:00 PM following the authoritative live Box Office layer corroborated by the initial Seed URL, while avoiding the past date 2026-11-13 from Schedule."
     },
-    "updatedAt": "2026-11-20T00:47:06.662Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "camp-beer-co-2026-student-pioneer-tap-serie-2026-11-12": {
     "sig": "title mismatch between schedule (\"2026 Student Pioneer Tap Series\") and box office (\"You’re Invited: 2026 Student Pioneer Tap Series!\")|date mismatch between schedule (2026-11-12) and box office (2026-11-26)::",
@@ -1377,21 +1377,18 @@
     "decision": {
       "clean_title": "Langley Trappers vs. Richmond Sockeyes",
       "artist": null,
-      "lineup": [
-        "Langley Trappers",
-        "Richmond Sockeyes"
-      ],
+      "lineup": [],
       "date": "2026-11-22",
       "start_time": null,
       "doors_time": null,
       "is_sold_out": false,
       "category": "sports",
-      "arbitration_reasoning": "Resolved date to 2026-11-22 as both Seed and Schedule layers align on this future match date over the unpriced box office snapshot, with category mapped to sports for junior hockey."
+      "arbitration_reasoning": "Resolved date to 2026-11-22 following the matching event seed and harvested schedule over the unpriced box office fallback date."
     },
-    "updatedAt": "2026-11-20T13:24:26.543Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "simon-fraser-univers-simon-fraser-last-chance-meet-2027-02-20": {
-    "sig": "date mismatch between schedule (2027-02-20) and box office (2026-10-24)::",
+    "sig": "date mismatch between schedule (2027-02-20) and box office (2026-10-23)::",
     "decision": {
       "clean_title": "Simon Fraser Last Chance Meet",
       "artist": null,
@@ -1401,9 +1398,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "sports",
-      "arbitration_reasoning": "Resolved date to 2027-02-20 matching the seed schedule and event identifier, retained start time of 5:00 PM from box office, and classified as sports based on SFU swimming and diving meet context."
+      "arbitration_reasoning": "Resolved date to 2027-02-20 based on schedule layer and seed calendar alignment for the Last Chance Meet, adopting 5:00 PM start time from box office."
     },
-    "updatedAt": "2026-11-20T13:24:26.543Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "richmond-olympic-ova-winter-parka-warehouse-sale-30-2027-10-30": {
     "sig": "date mismatch between schedule (2027-10-30) and box office (2026-10-30)::",
@@ -1423,17 +1420,17 @@
   "pitt-meadows-family-program-guide-2026-12-01": {
     "sig": "date mismatch between schedule (2026-12-01) and box office (2027-01-01)::",
     "decision": {
-      "clean_title": "Program Guide",
+      "clean_title": "Winter Program Registration",
       "artist": null,
       "lineup": [],
       "date": "2026-12-01",
-      "start_time": null,
+      "start_time": "8:00 AM",
       "doors_time": null,
       "is_sold_out": false,
-      "category": "free-public-access",
-      "arbitration_reasoning": "Adopted the upcoming schedule date (2026-12-01) over the box office placeholder date (2027-01-01) and assigned free-public-access based on Pitt Meadows City Hall's grounded access model."
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2026-12-01 matching the Schedule Layer and corroborated by the editorial description confirming Tuesday, December 1 at 8:00 AM registration opening."
     },
-    "updatedAt": "2026-11-20T13:24:26.543Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "parq-casino-d-6-loun-society-club-fire-ice-2027-11-14": {
     "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
@@ -1441,14 +1438,14 @@
       "clean_title": "Society Club - Fire & Ice",
       "artist": null,
       "lineup": [],
-      "date": "2026-11-14",
+      "date": "2027-11-14",
       "start_time": "9:30 PM",
       "doors_time": null,
       "is_sold_out": false,
-      "category": "shows",
-      "arbitration_reasoning": "Resolved date to 2026-11-14 matching the Box Office layer's verified 'Nov 14' showing for the active 2026 calendar cycle over the ungrounded 2027 future seed date."
+      "category": "music",
+      "arbitration_reasoning": "Resolved date to 2027-11-14 as confirmed by both Seed and Schedule layers over Box Office's partial 'Nov 14' text parsed into the current calendar year, with music category from editorial and 9:30 PM start time from box office."
     },
-    "updatedAt": "2026-11-20T13:24:26.543Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "richmond-olympic-ova-kendo-canada-maple-cup-14-2027-11-14": {
     "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
@@ -1491,9 +1488,9 @@
       "doors_time": null,
       "is_sold_out": true,
       "category": "arts",
-      "arbitration_reasoning": "Adopted the more specific, culturally descriptive title from the official Eventbrite box office page while standardizing title casing, confirmed the ISO date from the schedule layer, and verified the sold-out status from box office inventory."
+      "arbitration_reasoning": "Adopted the complete editorial and seed title including the Japanese art name (Shodō) and categorized as arts, aligning with the confirmed 1:00 PM start time and box office sold-out status."
     },
-    "updatedAt": "2026-11-20T13:24:26.543Z"
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "capulet-art-gallery-exhibition-pepe-hidalgo-see-th-2027-11-14": {
     "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
@@ -1920,5 +1917,165 @@
       "arbitration_reasoning": "Resolved date to 2026-11-19 as verified by the Box Office checkout inspection matching the current annual calendar cycle over an anomalous 2027 harvester forward-projection."
     },
     "updatedAt": "2026-11-20T15:29:25.258Z"
+  },
+  "austria-vancouver-cl-mgv-lyra-concert-choir-2026-11-29": {
+    "sig": "title mismatch between schedule (\"MGV Lyra Concert (Choir)\") and box office (\"Fall concert hosted by MGV Lyra\")::",
+    "decision": {
+      "clean_title": "MGV Lyra Concert",
+      "artist": "MGV Lyra",
+      "lineup": [
+        "MGV Lyra"
+      ],
+      "date": "2026-11-29",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise editorial title 'MGV Lyra Concert' reconciling the choir's specific performance name over the generic host descriptor, while retaining the confirmed 2026-11-29 date, noon start time, and active free reserved tier."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "guildford-recreation-sensory-friendly-swims-2026-11-18": {
+    "sig": "date mismatch between schedule (2026-11-18) and box office (2026-12-16)::",
+    "decision": {
+      "clean_title": "Sensory Friendly Swims",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-16",
+      "start_time": "1:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2026-12-16 as corroborated by both the Seed and Box Office layers over the past 2026-11-18 schedule date."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "viff-centre-andrzej-wajda-100-war-peace-2026-11-19": {
+    "sig": "date mismatch between schedule (2026-11-19) and box office (2026-11-22)::",
+    "decision": {
+      "clean_title": "Andrzej Wajda 100: War & Peace",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-22",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Arbitrated date to 2026-11-22 as both the live box office checkout layer and original seed corroborate the November 22nd screening date over the harvested schedule layer."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "prana-lounge-403-658-sahaja-yoga-20": {
+    "sig": "title mismatch between schedule (\"Sahaja Yoga\") and box office (\"Sahaja Yoga Meditation\")::",
+    "decision": {
+      "clean_title": "Sahaja Yoga Meditation",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-20",
+      "start_time": "2:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the canonical title 'Sahaja Yoga Meditation' verified across Seed, Box Office, Editorial, and Existing layers over the truncated Schedule entry."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "fox-cabaret-the-sunday-service-2026-11-01": {
+    "sig": "date mismatch between schedule (2026-11-01) and box office (2026-11-22)::",
+    "decision": {
+      "clean_title": "The Sunday Service",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-22",
+      "start_time": "8:00 PM",
+      "doors_time": "7:00 PM",
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Arbitrated date to 2026-11-22 based on concordant live checkout box office and seed evidence for this upcoming Sunday showing, retaining the schedule layer's explicit doors/showtime breakdown."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "rio-theatre-jfl-vancouver-usama-siddiquee-2027-02-23": {
+    "sig": "title mismatch between schedule (\"JFL Vancouver: Usama Siddiquee\") and box office (\"Usama Siddiquee\")::",
+    "decision": {
+      "clean_title": "JFL Vancouver: Usama Siddiquee",
+      "artist": "Usama Siddiquee",
+      "lineup": [
+        "Usama Siddiquee"
+      ],
+      "date": "2027-02-23",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the full festival-branded title 'JFL Vancouver: Usama Siddiquee' from Seed and Schedule layers while attributing the performer from the Box Office layer, which verified the event is completely sold out across all single-visit tiers."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "celebrities-nightclu-playhouse-pres-sidequest-2026-12-12": {
+    "sig": "title mismatch between schedule (\"Playhouse Pres: SIDEQUEST\") and box office (\"Playhouse: Sidequest\")::",
+    "decision": {
+      "clean_title": "Playhouse: Sidequest",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-12",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the standard title-cased editorial and box office title 'Playhouse: Sidequest' over the abbreviated all-caps schedule variant while preserving the verified 2026-12-12 date."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "celebrities-nightclu-playhouse-pres-whipped-cream-2026-11-28": {
+    "sig": "title mismatch between schedule (\"Playhouse Pres: Whipped Cream\") and box office (\"Playhouse Pres. Whipped Cream\")::",
+    "decision": {
+      "clean_title": "Whipped Cream",
+      "artist": "Whipped Cream",
+      "lineup": [
+        "Whipped Cream"
+      ],
+      "date": "2026-11-28",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Resolved title to 'Whipped Cream' by stripping the promoter prefix 'Playhouse Pres:' in alignment with the editorial layer and seed artist identity."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
+  },
+  "celebrities-nightclu-playhouse-pres-frank-walker-2026-11-21": {
+    "sig": "title mismatch between schedule (\"Playhouse Pres: Frank Walker\") and box office (\"Frank Walker\")::",
+    "decision": {
+      "clean_title": "Playhouse Pres: Frank Walker",
+      "artist": "Frank Walker",
+      "lineup": [
+        "Frank Walker"
+      ],
+      "date": "2026-11-21",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the complete presentation title 'Playhouse Pres: Frank Walker' from the schedule layer and official ticket URL context, while isolating 'Frank Walker' as the lead artist/lineup."
+    },
+    "updatedAt": "2026-11-21T03:48:45.533Z"
+  },
+  "hollywood-theatre-vincent-lima-your-world-is-big-2027-03-08": {
+    "sig": "title mismatch between schedule (\"Vincent Lima: Your World Is Big Enough Tour 2027\") and box office (\"VINCENT LIMA - Your World Is Big Enough Tour 2027\")::",
+    "decision": {
+      "clean_title": "Vincent Lima: Your World Is Big Enough Tour 2027",
+      "artist": "Vincent Lima",
+      "lineup": [
+        "Vincent Lima"
+      ],
+      "date": "2027-03-08",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Standardized the title to title case from the Schedule and Seed layers while incorporating the enriched music category and artist extraction."
+    },
+    "updatedAt": "2026-11-21T04:48:26.722Z"
   }
 }

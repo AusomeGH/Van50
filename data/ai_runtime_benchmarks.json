@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-04",
+    "updatedAt": "2026-11-20",
     "description": "Historical execution runtimes and estimates for Antigravity AI Scout, QC, and Quarantine workflows"
   },
   "workflows": {
@@ -140,15 +140,33 @@
       "label": "QC AI Full Catalog Audit",
       "averageDurationSeconds": 290.5,
       "averageDurationFormatted": "4m 51s",
-      "totalRuns": 179,
+      "totalRuns": 182,
       "lastRun": {
-        "timestamp": "2026-11-20T13:24:26.477Z",
-        "durationSeconds": 8635,
-        "durationFormatted": "143m 55s",
-        "itemsProcessed": 411,
+        "timestamp": "2026-11-21T03:48:45.500Z",
+        "durationSeconds": 1958,
+        "durationFormatted": "32m 38s",
+        "itemsProcessed": 115,
         "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
       },
       "history": [
+        {
+          "timestamp": "2026-11-21T03:48:45.500Z",
+          "durationSeconds": 1958,
+          "durationFormatted": "32m 38s",
+          "itemsProcessed": 115
+        },
+        {
+          "timestamp": "2026-11-21T01:04:31.815Z",
+          "durationSeconds": 376,
+          "durationFormatted": "6m 16s",
+          "itemsProcessed": 23
+        },
+        {
+          "timestamp": "2026-11-21T00:49:13.090Z",
+          "durationSeconds": 2122,
+          "durationFormatted": "35m 22s",
+          "itemsProcessed": 166
+        },
         {
           "timestamp": "2026-11-20T13:24:26.477Z",
           "durationSeconds": 8635,
@@ -430,24 +448,6 @@
           "durationSeconds": 37,
           "durationFormatted": "0m 37s",
           "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-11-05T14:55:59.425Z",
-          "durationSeconds": 127,
-          "durationFormatted": "2m 7s",
-          "itemsProcessed": 3
-        },
-        {
-          "timestamp": "2026-11-05T14:01:09.881Z",
-          "durationSeconds": 822,
-          "durationFormatted": "13m 42s",
-          "itemsProcessed": 20
-        },
-        {
-          "timestamp": "2026-11-04T17:02:10.643Z",
-          "durationSeconds": 1042,
-          "durationFormatted": "17m 22s",
-          "itemsProcessed": 15
         }
       ],
       "last_run_timestamp": "2026-10-13T14:04:00-07:00"
@@ -456,17 +456,33 @@
       "label": "Quarantine AI Healer & Resolution",
       "averageDurationSeconds": 64.1,
       "averageDurationFormatted": "1m 4s",
-      "totalRuns": 54,
+      "totalRuns": 56,
       "lastRun": {
-        "timestamp": "2026-11-16T20:01:19-07:00",
-        "durationSeconds": 1378,
-        "durationFormatted": "22m 58s",
-        "itemsProcessed": 98,
-        "itemsGraduated": 28,
-        "itemsArchived": 1,
-        "notes": "Post-fix Quarantine sweep across 98 items (21m 16s Stagehand + 1m 42s Compiler). Cross-origin iframe priority + Eventbrite checkout-external fallback healed 14/16 Eventbrite cards and 1/1 Showpass monthly slug; graduated 28 verified <= $50 CAD events to data/events.json (304 total active), cutting quarantine queue from 99 down to 70."
+        "timestamp": "2026-11-20T18:04:43-07:00",
+        "durationSeconds": 388,
+        "durationFormatted": "6m 28s",
+        "itemsProcessed": 23,
+        "itemsGraduated": 17,
+        "itemsArchived": 3,
+        "notes": "Targeted domain-blocker sweep (Cultch Spektrix API v3 + Richmond Arts Coalition external URL resolver + VIFF slug fixes + Van Dop Gallery grounding). Graduated 17/23 and archived 3/23 (20/23 resolved), bringing active catalog to 721 and quarantine down to 115."
       },
       "history": [
+        {
+          "timestamp": "2026-11-20T18:04:43-07:00",
+          "durationSeconds": 388,
+          "durationFormatted": "6m 28s",
+          "itemsProcessed": 23,
+          "itemsGraduated": 17,
+          "itemsArchived": 3
+        },
+        {
+          "timestamp": "2026-11-20T17:49:28-07:00",
+          "durationSeconds": 2137,
+          "durationFormatted": "35m 37s",
+          "itemsProcessed": 167,
+          "itemsGraduated": 17,
+          "itemsArchived": 12
+        },
         {
           "timestamp": "2026-11-16T20:01:19-07:00",
           "durationSeconds": 1378,
@@ -846,46 +862,6 @@
         {
           "timestamp": "2026-10-08T21:34:10",
           "durationSeconds": 0.8,
-          "durationFormatted": "0s",
-          "itemsProcessed": 1,
-          "itemsGraduated": 0,
-          "itemsArchived": 1
-        },
-        {
-          "timestamp": "2026-10-08T21:34:12",
-          "durationSeconds": 0.9,
-          "durationFormatted": "0s",
-          "itemsProcessed": 1,
-          "itemsGraduated": 0,
-          "itemsArchived": 1
-        },
-        {
-          "timestamp": "2026-10-08T21:34:13",
-          "durationSeconds": 0.7,
-          "durationFormatted": "0s",
-          "itemsProcessed": 1,
-          "itemsGraduated": 0,
-          "itemsArchived": 1
-        },
-        {
-          "timestamp": "2026-10-08T21:34:15",
-          "durationSeconds": 1.1,
-          "durationFormatted": "1s",
-          "itemsProcessed": 1,
-          "itemsGraduated": 0,
-          "itemsArchived": 1
-        },
-        {
-          "timestamp": "2026-10-08T21:34:16",
-          "durationSeconds": 0.9,
-          "durationFormatted": "0s",
-          "itemsProcessed": 1,
-          "itemsGraduated": 0,
-          "itemsArchived": 1
-        },
-        {
-          "timestamp": "2026-10-08T21:34:33",
-          "durationSeconds": 0,
           "durationFormatted": "0s",
           "itemsProcessed": 1,
           "itemsGraduated": 0,
