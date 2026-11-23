@@ -772,6 +772,7 @@ function renderMapMarkers(filteredEvents, options = {}) {
       optimized: true
     });
 
+    marker._van50Group = group;
     marker.addListener('click', () => {
       collapseMapLegendOnMobile();
       sharedInfoWindow.setContent(buildVenueGroupInfoWindowHtml(group));
@@ -1165,6 +1166,51 @@ if (typeof document !== 'undefined') {
   }
 }
 
+/**
+ * Pans/zooms the map to a specific event's coordinates (zoom: 15) and opens its marker InfoWindow.
+ */
+async function focusEventOnMap(eventId) {
+  if (!eventId) return false;
+  const ensureReady = async () => {
+    if (!mapInstance) {
+      await initVancouverMap();
+    }
+    if (!mapInstance) return false;
+    const targetMarker = markersArray.find(m =>
+      m && m._van50Group && Array.isArray(m._van50Group.events) &&
+      m._van50Group.events.some(ev => String(ev.id || ev.event_id) === String(eventId))
+    );
+    if (targetMarker && targetMarker._van50Group) {
+      const pos = targetMarker.getPosition();
+      mapInstance.panTo(pos);
+      mapInstance.setZoom(15);
+      collapseMapLegendOnMobile();
+      sharedInfoWindow.setContent(buildVenueGroupInfoWindowHtml(targetMarker._van50Group));
+      sharedInfoWindow.open({ anchor: targetMarker, map: mapInstance });
+      return true;
+    }
+    // Fallback: locate coordinates directly from catalog
+    const allEvs = (window.currentFilteredEvents && window.currentFilteredEvents.length > 0)
+      ? window.currentFilteredEvents
+      : (window.ALL_EVENTS || []);
+    const ev = allEvs.find(e => String(e.id || e.event_id) === String(eventId));
+    if (ev) {
+      const coords = resolveEventCoordinates(ev, 0);
+      if (coords && coords.length === 2) {
+        mapInstance.panTo({ lat: coords[0], lng: coords[1] });
+        mapInstance.setZoom(15);
+        return true;
+      }
+    }
+    return false;
+  };
+  const ok = await ensureReady();
+  if (!ok) {
+    setTimeout(() => { ensureReady(); }, 450);
+  }
+  return ok;
+}
+
 if (typeof window !== 'undefined') {
   window.loadGoogleMapsScript = loadGoogleMapsScript;
   window.resolveEventCoords = resolveEventCoords;
@@ -1181,4 +1227,5 @@ if (typeof window !== 'undefined') {
   window.centerMapOnUserLocation = centerMapOnUserLocation;
   window.panMapToRegion = panMapToRegion;
   window.fitActiveMapMarkers = fitActiveMapMarkers;
+  window.focusEventOnMap = focusEventOnMap;
 }

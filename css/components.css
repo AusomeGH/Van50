@@ -10803,3 +10803,316 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price,
   justify-content: center;
   color: #0F766E;
 }
+
+
+/* ==============================================================================
+   USABILITY UPGRADES: UNIFIED SUGGEST / REPORT MODAL, FLOATING MAP DEDUP,
+   MUTED ZERO-MATCH DRAWER CTA & EXPANDED CARD VIEW-ON-MAP BUTTON
+   ============================================================================== */
+
+.sr-modal-box {
+  max-width: 540px;
+  text-align: left;
+  padding: 22px 24px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.sr-modal-header {
+  margin-bottom: 12px;
+  padding-right: 28px;
+}
+
+.sr-modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 3px 0;
+}
+
+.sr-modal-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sr-context-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(13, 148, 136, 0.09);
+  border: 1px solid rgba(13, 148, 136, 0.28);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.sr-mode-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.sr-mode-tab {
+  padding: 7px 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.sr-mode-tab:hover {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+.sr-mode-tab.active {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary-fg, #ffffff);
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+}
+
+.sr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sr-mode-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sr-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sr-field-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sr-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sr-currency-wrap {
+  position: relative;
+}
+
+.sr-currency-prefix {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  pointer-events: none;
+}
+
+.sr-input-currency {
+  padding-left: 26px !important;
+  width: 100%;
+}
+
+.sr-quick-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sr-flag-pill {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sr-flag-pill:hover {
+  border-color: var(--brand-primary);
+  color: var(--text-primary);
+}
+
+.sr-flag-pill.active,
+.sr-flag-pill[aria-pressed="true"] {
+  background: rgba(13, 148, 136, 0.16);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.sr-checkbox-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+}
+
+.sr-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sr-checkbox-label input[type="checkbox"] {
+  accent-color: var(--brand-primary);
+  width: 15px;
+  height: 15px;
+}
+
+.sr-helper-text {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-left: 23px;
+  margin-top: 2px;
+}
+
+.sr-drink-details {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+.sr-drink-summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  user-select: none;
+}
+
+.sr-drink-body {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sr-status-alert {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.sr-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* Muted 0-Matches state on Filters Drawer Apply Button */
+.btn-mobile-sheet-apply.is-zero-matches,
+#mobile-filters-sheet .btn-mobile-sheet-apply.is-zero-matches {
+  background: var(--bg-elevated) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: none !important;
+}
+
+/* Floating Map Button Deduplication when Top Toolbar Map Button is Visible */
+.mobile-view-toggle {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.mobile-view-toggle.is-top-visible {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translate(-50%, 18px) !important;
+}
+
+/* Expanded Card "View on Map" Button */
+.btn-card-view-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  background: rgba(13, 148, 136, 0.08);
+  color: var(--brand-primary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-card-view-map:hover {
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+@media (max-width: 560px) {
+  .sr-mode-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sr-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Enforce clean single-line Date Group Headers across all day sections (matching Today's Events) */
+.time-group-header.date-group-header {
+  flex-wrap: nowrap !important;
+  gap: 10px !important;
+}
+
+.time-group-header.date-group-header .time-group-title-wrap {
+  display: flex !important;
+  align-items: baseline !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  overflow: hidden !important;
+}
+
+.time-group-header.date-group-header .time-group-title {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex-shrink: 1 !important;
+}
+
+.time-group-header.date-group-header .time-group-date-range {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.time-group-header.date-group-header .time-group-actions {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}

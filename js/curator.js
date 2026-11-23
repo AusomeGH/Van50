@@ -869,6 +869,10 @@ function applyFiltersAndRender() {
   // User Submissions & Feedback Tab
   if (state.activeFilter === 'user_feedback') {
     renderUserFeedbackCards();
+    if (!state._sheetSubmissionsFetchedOnce && typeof window.fetchSheetSubmissions === 'function') {
+      state._sheetSubmissionsFetchedOnce = true;
+      window.fetchSheetSubmissions(true).catch(() => {});
+    }
     return;
   }
 
@@ -8355,7 +8359,10 @@ window.fetchSheetSubmissions = async function (silent = false) {
   const url = getCuratorSubmissionsUrl();
   if (!url) return { feedback: [], priceUpdates: [], error: 'Missing van50-submissions-url meta tag' };
   try {
-    const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}_t=${Date.now()}`, { cache: 'no-store' });
+    const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}_t=${Date.now()}`, {
+      method: 'GET',
+      redirect: 'follow'
+    });
     const text = await res.text();
     let data = null;
     try { data = JSON.parse(text); } catch (_) { }
@@ -8581,34 +8588,58 @@ function renderUserFeedbackCards() {
     return;
   }
 
-  const sheetFeedbackHtml = sheetFeedback.map(item => `
+  const sheetFeedbackHtml = sheetFeedback.map(item => {
+    const ts = item['Timestamp (UTC)'] || item.timestamp || item.submitted_at || '';
+    const msg = item['Message / Suggestion'] || item.message || item.feedback || '';
+    const targetEv = item['Target Event ID'] || item.target_event_id || '';
+    const pageUrl = item['Page URL'] || item.page_url || '';
+    return `
     <div class="curator-card" style="background: var(--curator-surface); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px 18px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-        <span style="background: rgba(56, 189, 248, 0.15); color: #7dd3fc; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.35);">
-          ☁️ Live Google Sheet Feedback
-        </span>
-        <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(item.timestamp || item.submitted_at || '')}</span>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="background: rgba(56, 189, 248, 0.15); color: #7dd3fc; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.35);">
+            ☁️ Live Google Sheet Feedback
+          </span>
+          ${targetEv ? `<span style="font-size: 0.74rem; color: #94a3b8;">Event: <code>${escapeHtml(String(targetEv))}</code></span>` : ''}
+        </div>
+        <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(ts ? new Date(ts).toLocaleString() : '')}</span>
       </div>
-      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 10px 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(item.message || item.feedback || '')}</div>
+      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 10px 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(String(msg))}</div>
+      ${pageUrl ? `<div style="margin-top: 6px; font-size: 0.74rem; color: #94a3b8;">Source: ${escapeHtml(String(pageUrl))}</div>` : ''}
     </div>
-  `).join('');
+  `;
+  }).join('');
 
-  const sheetPricesHtml = sheetPrices.map(item => `
+  const sheetPricesHtml = sheetPrices.map(item => {
+    const ts = item['Timestamp (UTC)'] || item.timestamp || item.submitted_at || '';
+    const venue = item['Venue Name'] || item.venue_name || item.venue || 'Venue Price Update';
+    const pint = item['Cheapest Pint ($ CAD)'] ?? item.cheapest_pint_input;
+    const cocktail = item['Cheapest Cocktail ($ CAD)'] ?? item.cheapest_cocktail_input;
+    const senior = item['Senior / 65+ Price ($ CAD)'] ?? item.seniorPrice;
+    const ticket = item['Ticket / Cover ($ CAD)'] ?? item.ticketPrice;
+    const flags = item['Quick Flags'] || item.quickFlags || '';
+    const note = item['Note / Source'] || item.note || '';
+    const hasVal = (v) => v !== null && v !== undefined && String(v).trim() !== '';
+    return `
     <div class="curator-card" style="background: var(--curator-surface); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 10px; padding: 14px 18px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
         <span style="background: rgba(251, 191, 36, 0.15); color: #fde68a; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(251, 191, 36, 0.35);">
           💵 Live Google Sheet Price Update
         </span>
-        <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(item.timestamp || item.submitted_at || '')}</span>
+        <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(ts ? new Date(ts).toLocaleString() : '')}</span>
       </div>
-      <h4 style="color: #fff; margin: 0 0 6px 0; font-size: 1rem;">${escapeHtml(item.venue_name || item.venue || 'Venue Price Update')}</h4>
-      <div style="font-size: 0.85rem; color: #cbd5e1;">
-        ${item.cheapest_pint_input ? `Pint: <strong>$${escapeHtml(String(item.cheapest_pint_input))}</strong> ` : ''}
-        ${item.cheapest_cocktail_input ? `Cocktail: <strong>$${escapeHtml(String(item.cheapest_cocktail_input))}</strong> ` : ''}
-        ${item.note ? `<div style="margin-top: 6px; color: #94a3b8;">${escapeHtml(item.note)}</div>` : ''}
+      <h4 style="color: #fff; margin: 0 0 6px 0; font-size: 1rem;">${escapeHtml(String(venue))}</h4>
+      <div style="font-size: 0.85rem; color: #cbd5e1; display: flex; flex-wrap: wrap; gap: 10px;">
+        ${hasVal(ticket) ? `<span>Ticket: <strong>$${escapeHtml(String(ticket))}</strong></span>` : ''}
+        ${hasVal(senior) ? `<span>Senior: <strong>$${escapeHtml(String(senior))}</strong></span>` : ''}
+        ${hasVal(pint) ? `<span>Pint: <strong>$${escapeHtml(String(pint))}</strong></span>` : ''}
+        ${hasVal(cocktail) ? `<span>Cocktail: <strong>$${escapeHtml(String(cocktail))}</strong></span>` : ''}
+        ${flags ? `<span>Flags: <strong>${escapeHtml(String(flags))}</strong></span>` : ''}
       </div>
+      ${note ? `<div style="margin-top: 6px; font-size: 0.82rem; color: #94a3b8;">Note: ${escapeHtml(String(note))}</div>` : ''}
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   container.innerHTML = headerBarHtml + `
     <div style="display: flex; flex-direction: column; gap: 14px;">

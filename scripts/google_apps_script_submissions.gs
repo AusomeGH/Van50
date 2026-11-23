@@ -73,28 +73,42 @@ function doPost(e) {
         'Senior / 65+ Price ($ CAD)',
         'Tax Included (All-In)',
         'Note / Source',
-        'Page URL'
+        'Page URL',
+        'Ticket / Cover ($ CAD)',
+        'Quick Flags',
+        'Event Title',
+        'City',
+        'Listed Price'
       ]);
+
+      var flagsStr = Array.isArray(data.quickFlags)
+        ? data.quickFlags.join(', ')
+        : sanitizeCell(data.quickFlags, 200);
 
       priceSheet.appendRow([
         timestamp,
         'New',
-        sanitizeCell(data.venue_name, 160),
+        sanitizeCell(data.venue_name || data.venue, 160),
         formatNum(data.cheapest_pint_input),
         formatNum(data.cheapest_cocktail_input),
         formatNum(data.seniorPrice),
         data.is_all_in ? 'Yes' : 'No',
         sanitizeCell(data.note, 250),
-        sanitizeCell(data.page_url, 300)
+        sanitizeCell(data.page_url || data.pageUrl, 300),
+        formatNum(data.ticketPrice),
+        sanitizeCell(flagsStr, 200),
+        sanitizeCell(data.eventTitle, 180),
+        sanitizeCell(data.city, 80),
+        sanitizeCell(data.listedPrice, 40)
       ]);
 
       return jsonResponse({
         success: true,
-        message: 'Thank you! Your price update has been saved for review.'
+        message: 'Thank you! Your price / status update has been saved for review.'
       });
     }
 
-    // Default: Community Feedback / Show Suggestion / Issue Report
+    // Default: Community Feedback / Show Suggestion / Fix Details / General Note
     var feedbackSheet = getOrCreateSheet(ss, 'Feedback', [
       'Timestamp (UTC)',
       'Status',
@@ -103,7 +117,11 @@ function doPost(e) {
       'Page URL'
     ]);
 
-    var msg = sanitizeCell(data.message, 2000);
+    var categoryPrefix = sanitizeCell(data.category, 60);
+    var rawMsg = sanitizeCell(data.message, 2000);
+    var msg = categoryPrefix && rawMsg && rawMsg.indexOf('[') !== 0
+      ? ('[' + categoryPrefix + '] ' + rawMsg)
+      : rawMsg;
     if (!msg) {
       return jsonResponse({ success: false, error: 'Empty message' });
     }
@@ -111,9 +129,9 @@ function doPost(e) {
     feedbackSheet.appendRow([
       timestamp,
       'New',
-      sanitizeCell(data.target_event_id, 120),
+      sanitizeCell(data.target_event_id || data.eventId, 120),
       msg,
-      sanitizeCell(data.page_url, 300)
+      sanitizeCell(data.page_url || data.pageUrl, 300)
     ]);
 
     return jsonResponse({

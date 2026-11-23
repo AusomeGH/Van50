@@ -2841,26 +2841,34 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             if payload.get("honeypot"):
                 return self._send_json(200, {"success": True, "message": "Price update submitted successfully."})
 
-            venue_name = sanitize_text(str(payload.get("venue_name", "")).strip())
+            venue_name = sanitize_text(str(payload.get("venue_name") or payload.get("venue") or payload.get("eventTitle") or "").strip())
             if not venue_name:
-                return self._send_json(400, {"error": "Venue name is required."})
+                return self._send_json(400, {"error": "Venue or event name is required."})
 
             pint_input_raw = payload.get("cheapest_pint_input")
             cocktail_input_raw = payload.get("cheapest_cocktail_input")
-            is_all_in = bool(payload.get("is_all_in", False))
-            note = sanitize_text(str(payload.get("note", "")).strip())[:200]
+            ticket_input_raw = payload.get("ticketPrice")
+            senior_input_raw = payload.get("seniorPrice")
+            quick_flags_raw = payload.get("quickFlags")
+            quick_flags = [sanitize_text(str(f).strip())[:60] for f in quick_flags_raw if str(f).strip()] if isinstance(quick_flags_raw, list) else []
+            is_all_in = bool(payload.get("is_all_in", True))
+            drink_all_in = bool(payload.get("drink_is_all_in", False))
+            note = sanitize_text(str(payload.get("note", "")).strip())[:300]
 
             pint_menu = None
             pint_tax_in = None
             cocktail_menu = None
             cocktail_tax_in = None
+            ticket_price = None
+            ticket_all_in = None
+            senior_price = None
 
             try:
                 if pint_input_raw is not None and str(pint_input_raw).strip() != "":
                     p_val = float(pint_input_raw)
                     if p_val > 0:
                         pint_menu = round(p_val, 2)
-                        pint_tax_in = pint_menu if is_all_in else round(pint_menu * 1.15, 2)
+                        pint_tax_in = pint_menu if drink_all_in else round(pint_menu * 1.15, 2)
             except (ValueError, TypeError):
                 pass
 
@@ -2869,17 +2877,42 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     c_val = float(cocktail_input_raw)
                     if c_val > 0:
                         cocktail_menu = round(c_val, 2)
-                        cocktail_tax_in = cocktail_menu if is_all_in else round(cocktail_menu * 1.15, 2)
+                        cocktail_tax_in = cocktail_menu if drink_all_in else round(cocktail_menu * 1.15, 2)
             except (ValueError, TypeError):
                 pass
 
-            if pint_menu is None and cocktail_menu is None:
-                return self._send_json(400, {"error": "Please provide at least one price (cheapest pint or cocktail/highball)."})
+            try:
+                if ticket_input_raw is not None and str(ticket_input_raw).strip() != "":
+                    t_val = float(ticket_input_raw)
+                    if t_val >= 0:
+                        ticket_price = round(t_val, 2)
+                        ticket_all_in = ticket_price if is_all_in else round(ticket_price * 1.05, 2)
+            except (ValueError, TypeError):
+                pass
+
+            try:
+                if senior_input_raw is not None and str(senior_input_raw).strip() != "":
+                    s_val = float(senior_input_raw)
+                    if s_val >= 0:
+                        senior_price = round(s_val, 2)
+            except (ValueError, TypeError):
+                pass
+
+            if pint_menu is None and cocktail_menu is None and ticket_price is None and senior_price is None and not quick_flags and not note:
+                return self._send_json(400, {"error": "Please select a quick flag or enter at least one price update."})
 
             # Price limits removed per user specification: all submissions recorded directly; filtering handled via Antigravity AI
             report_entry = {
                 "report_id": f"cpr_{int(time.time())}_{os.urandom(3).hex()}",
                 "venue_name": venue_name,
+                "event_id": sanitize_text(str(payload.get("eventId") or "").strip()) or None,
+                "event_title": sanitize_text(str(payload.get("eventTitle") or "").strip()) or None,
+                "city": sanitize_text(str(payload.get("city") or "").strip()) or None,
+                "listed_price": sanitize_text(str(payload.get("listedPrice") or "").strip()) or None,
+                "ticket_price_input": ticket_price,
+                "ticket_price_all_in": ticket_all_in,
+                "senior_price": senior_price,
+                "quick_flags": quick_flags,
                 "cheapest_pint_menu": pint_menu,
                 "cheapest_pint_tax_in": pint_tax_in,
                 "cheapest_cocktail_menu": cocktail_menu,

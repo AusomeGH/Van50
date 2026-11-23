@@ -2415,6 +2415,21 @@ function setupEventListeners() {
       case 'reset-all-filters':
         resetAllFilters();
         return true;
+      case 'clear-date-filter':
+        state.dayOfWeek = 'all';
+        state.frequency = 'all';
+        state.hideDaily = false;
+        renderDayPills();
+        renderFrequencyPills();
+        if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
+        applyFiltersAndRender();
+        return true;
+      case 'view-on-map':
+        if (e) e.stopPropagation();
+        if (typeof window.viewEventOnMap === 'function') {
+          window.viewEventOnMap(actionEl.getAttribute('data-event-id') || '');
+        }
+        return true;
       case 'filter-category':
         if (e) e.stopPropagation();
         filterByCategory(actionEl.getAttribute('data-cat-id') || 'all');
@@ -2777,7 +2792,7 @@ function setupEventListeners() {
     });
   });
 
-  // Top Quick-Bar Toggles (Outside Filter Dropdown: "Paid" & "Hide Daily Drop-In")
+  // Top Quick-Bar Toggles (Outside Filter Dropdown: "Paid Only", "Free Only" & "Hide Anytime Drop-Ins")
   const topTogglePaid = document.getElementById('top-toggle-paid');
   if (topTogglePaid) {
     topTogglePaid.addEventListener('click', () => {
@@ -2792,7 +2807,26 @@ function setupEventListeners() {
       if (minSlider) minSlider.value = state.minBudget;
       if (maxSlider) maxSlider.value = state.maxBudget;
       updateSliderVisuals();
-      clearActiveQuickButtons();
+      if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
+      applyFiltersAndRender();
+    });
+  }
+
+  const topToggleFree = document.getElementById('top-toggle-free');
+  if (topToggleFree) {
+    topToggleFree.addEventListener('click', () => {
+      const isFreeCurrentlyActive = state.minBudget === 0 && state.maxBudget === 0;
+      if (isFreeCurrentlyActive) {
+        state.minBudget = 0;
+        state.maxBudget = 50;
+      } else {
+        state.minBudget = 0;
+        state.maxBudget = 0;
+      }
+      if (minSlider) minSlider.value = state.minBudget;
+      if (maxSlider) maxSlider.value = state.maxBudget;
+      updateSliderVisuals();
+      if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
       applyFiltersAndRender();
     });
   }
@@ -2958,23 +2992,105 @@ function setupEventListeners() {
     });
   }
 
+  // Mobile Swipe-Back History Guard for Overlays (Filters Drawer, Saved Events Drawer, Suggest / Report Modal)
+  let _activeHistoryOverlay = null;
+  let _isHandlingPopState = false;
+
+  window.pushOverlayHistoryState = function (overlayName) {
+    if (!overlayName || typeof history === 'undefined' || typeof history.pushState !== 'function') return;
+    if (_activeHistoryOverlay === overlayName) return;
+    _activeHistoryOverlay = overlayName;
+    try {
+      history.pushState({ uiOverlay: overlayName }, '');
+    } catch (_) { }
+  };
+
+  window.popOverlayHistoryState = function (overlayName, fromPopState = false) {
+    if (_activeHistoryOverlay === overlayName) {
+      _activeHistoryOverlay = null;
+      if (!fromPopState && !_isHandlingPopState && history.state && history.state.uiOverlay === overlayName) {
+        try {
+          history.back();
+        } catch (_) { }
+      }
+    }
+  };
+
+  window.addEventListener('popstate', () => {
+    if (!_activeHistoryOverlay) return;
+    const closing = _activeHistoryOverlay;
+    _isHandlingPopState = true;
+    _activeHistoryOverlay = null;
+    try {
+      if (closing === 'filters' && typeof window.closeMobileFiltersSheet === 'function') {
+        window.closeMobileFiltersSheet(true);
+      } else if (closing === 'saved' && typeof window.closeItineraryDrawer === 'function') {
+        window.closeItineraryDrawer(true);
+      } else if (closing === 'suggest_report' && typeof window.closeSuggestReportModal === 'function') {
+        window.closeSuggestReportModal(true);
+      }
+    } finally {
+      _isHandlingPopState = false;
+    }
+  });
+
+  // View Event on Map Helper (switches to Map View, pans/zooms to zoom 15, opens InfoWindow)
+  window.viewEventOnMap = function (eventId) {
+    if (!eventId) return;
+    window.setCatalogViewMode('map');
+    const mapWrapperEl = document.getElementById('map-view-wrapper');
+    if (mapWrapperEl) {
+      mapWrapperEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setTimeout(() => {
+      if (typeof window.focusEventOnMap === 'function') {
+        window.focusEventOnMap(eventId);
+      }
+    }, 180);
+  };
+
+  // Deduplicate Floating Map Button via IntersectionObserver on Top Search/Filter Toolbar
+  const topSearchToolbar = document.getElementById('mobile-search-filter-bar');
+  const floatingMapBtn = document.getElementById('mobile-view-toggle');
+  if (topSearchToolbar && floatingMapBtn && typeof IntersectionObserver === 'function') {
+    const mapBtnObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        floatingMapBtn.classList.toggle('is-top-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    mapBtnObserver.observe(topSearchToolbar);
+  }
+
   // Itinerary Drawer Handlers
   const itineraryBtn = document.getElementById('itinerary-btn');
   const closeItineraryBtn = document.getElementById('close-itinerary-btn');
   const drawer = document.getElementById('itinerary-drawer');
   const copyPlanBtn = document.getElementById('copy-plan-btn');
 
+  window.openItineraryDrawer = function () {
+    if (!drawer) return;
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    drawer.removeAttribute('inert');
+    renderItinerary();
+    window.pushOverlayHistoryState('saved');
+  };
+
+  window.closeItineraryDrawer = function (fromPopState = false) {
+    if (!drawer) return;
+    const wasOpen = drawer.classList.contains('active');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('inert', '');
+    if (wasOpen) window.popOverlayHistoryState('saved', fromPopState);
+  };
+
   if (itineraryBtn && drawer) {
-    itineraryBtn.addEventListener('click', () => {
-      drawer.classList.add('active'); drawer.setAttribute('aria-hidden', 'false'); drawer.removeAttribute('inert');
-      renderItinerary();
-    });
+    itineraryBtn.addEventListener('click', () => window.openItineraryDrawer());
   }
 
   if (closeItineraryBtn && drawer) {
-    closeItineraryBtn.addEventListener('click', () => {
-      drawer.classList.remove('active'); drawer.setAttribute('aria-hidden', 'true'); drawer.setAttribute('inert', '');
-    });
+    closeItineraryBtn.addEventListener('click', () => window.closeItineraryDrawer(false));
   }
 
   if (copyPlanBtn) {
@@ -3019,18 +3135,21 @@ function setupEventListeners() {
       }
     }
     window.syncSecondaryFiltersA11y();
+    window.pushOverlayHistoryState('filters');
   };
 
-  window.closeMobileFiltersSheet = function () {
+  window.closeMobileFiltersSheet = function (fromPopState = false) {
+    const wasOpen = Boolean(mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open'));
     if (mobileFiltersSheet) mobileFiltersSheet.classList.remove('is-open');
     if (mobileSheetBackdrop) mobileSheetBackdrop.classList.remove('is-open');
     if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'false');
     window.syncSecondaryFiltersA11y();
+    if (wasOpen) window.popOverlayHistoryState('filters', fromPopState);
   };
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
-      window.closeMobileFiltersSheet();
+      window.closeMobileFiltersSheet(false);
     }
   });
 
@@ -3057,6 +3176,7 @@ function setupEventListeners() {
     state.frequency = 'all';
     state.hideDaily = false;
     state.accessibleOnly = false;
+    if (state.accessibleMode) setAccessibilityMode(false, false);
     state.seniorDealsOnly = false;
     state.includeReligious = true;
     if (minSlider) minSlider.value = 0;
@@ -3073,237 +3193,44 @@ function setupEventListeners() {
   if (mobileFilterTrigger) {
     mobileFilterTrigger.addEventListener('click', () => {
       if (mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
-        window.closeMobileFiltersSheet();
+        window.closeMobileFiltersSheet(false);
       } else {
         window.openMobileFiltersSheet();
       }
     });
   }
-  if (mobileSheetCloseBtn) mobileSheetCloseBtn.addEventListener('click', window.closeMobileFiltersSheet);
-  if (mobileSheetBackdrop) mobileSheetBackdrop.addEventListener('click', window.closeMobileFiltersSheet);
-  if (mobileSheetApplyBtn) mobileSheetApplyBtn.addEventListener('click', window.closeMobileFiltersSheet);
+  if (mobileSheetCloseBtn) mobileSheetCloseBtn.addEventListener('click', () => window.closeMobileFiltersSheet(false));
+  if (mobileSheetBackdrop) mobileSheetBackdrop.addEventListener('click', () => window.closeMobileFiltersSheet(false));
+  if (mobileSheetApplyBtn) mobileSheetApplyBtn.addEventListener('click', () => window.closeMobileFiltersSheet(false));
   if (mobileSheetResetBtn) mobileSheetResetBtn.addEventListener('click', window.resetSecondaryFilters);
 
   // Curator Studio link (#btn-open-review-queue) navigates directly to curator-agy.html
 
-  // Price Feedback Modal Handlers (Crowdsourced Pricing Transparency)
-  const priceModal = document.getElementById('price-feedback-modal');
-  const closePriceModalBtn = document.getElementById('close-price-feedback-btn');
-  const cancelPriceModalBtn = document.getElementById('btn-cancel-price-feedback');
-  const priceFeedbackForm = document.getElementById('price-feedback-form');
-
-  window.openPriceFeedbackModal = function (venueName) {
-    if (!priceModal) return;
-    const vName = (venueName || 'Selected Venue').trim();
-    const venueInput = document.getElementById('price-feedback-venue-input');
-    const venueDisplay = document.getElementById('price-feedback-venue-name');
-    const pintInput = document.getElementById('price-feedback-pint');
-    const cocktailInput = document.getElementById('price-feedback-cocktail');
-    const seniorInput = document.getElementById('price-feedback-senior');
-    const allInCheck = document.getElementById('price-feedback-all-in');
-    const noteInput = document.getElementById('price-feedback-note');
-    const hpInput = document.getElementById('price-feedback-hp');
-    const statusBox = document.getElementById('price-feedback-status');
-    const submitBtn = document.getElementById('btn-submit-price-feedback');
-
-    if (venueInput) venueInput.value = vName;
-    if (venueDisplay) venueDisplay.textContent = vName;
-    if (pintInput) pintInput.value = '';
-    if (cocktailInput) cocktailInput.value = '';
-    if (seniorInput) seniorInput.value = '';
-    if (allInCheck) allInCheck.checked = false;
-    if (noteInput) noteInput.value = '';
-    if (hpInput) hpInput.value = '';
-    if (statusBox) {
-      statusBox.style.display = 'none';
-      statusBox.textContent = '';
-      statusBox.className = '';
-    }
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit Price Update';
-    }
-
-    priceModal.classList.add('active'); priceModal.setAttribute('aria-hidden', 'false'); priceModal.removeAttribute('inert');
-    setTimeout(() => {
-      if (pintInput) pintInput.focus();
-    }, 100);
-  };
-
-  window.closePriceFeedbackModal = function () {
-    if (priceModal) { priceModal.classList.remove('active'); priceModal.setAttribute('aria-hidden', 'true'); priceModal.setAttribute('inert', ''); }
-  };
-
-  if (closePriceModalBtn) {
-    closePriceModalBtn.addEventListener('click', window.closePriceFeedbackModal);
-  }
-  if (cancelPriceModalBtn) {
-    cancelPriceModalBtn.addEventListener('click', window.closePriceFeedbackModal);
-  }
-  if (priceModal) {
-    priceModal.addEventListener('click', (e) => {
-      if (e.target === priceModal) window.closePriceFeedbackModal();
-    });
-  }
-
-  // Global delegation for click on .btn-suggest-price
+  // Global delegation for .btn-suggest-price (routes to Unified Suggest / Report Modal in Price / Status mode)
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-suggest-price');
     if (btn) {
       e.preventDefault();
       e.stopPropagation();
+      const eventId = btn.getAttribute('data-event-id') || '';
       const vName = btn.getAttribute('data-suggest-venue') || '';
-      window.openPriceFeedbackModal(vName);
+      if (typeof window.openSuggestReportModal === 'function') {
+        window.openSuggestReportModal({ mode: 'price_status', eventId, venue: vName });
+      }
     }
   });
 
-  if (priceFeedbackForm) {
-    priceFeedbackForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const venueInput = document.getElementById('price-feedback-venue-input');
-      const pintInput = document.getElementById('price-feedback-pint');
-      const cocktailInput = document.getElementById('price-feedback-cocktail');
-      const seniorInput = document.getElementById('price-feedback-senior');
-      const allInCheck = document.getElementById('price-feedback-all-in');
-      const noteInput = document.getElementById('price-feedback-note');
-      const hpInput = document.getElementById('price-feedback-hp');
-      const statusBox = document.getElementById('price-feedback-status');
-      const submitBtn = document.getElementById('btn-submit-price-feedback');
+  window.openPriceFeedbackModal = function (venueName, eventId = '') {
+    if (typeof window.openSuggestReportModal === 'function') {
+      window.openSuggestReportModal({ mode: 'price_status', eventId, venue: venueName || '' });
+    }
+  };
 
-      if (hpInput && hpInput.value.trim() !== '') {
-        window.closePriceFeedbackModal();
-        return;
-      }
-
-      const cooldownSec = getFormCooldownRemainingSec('price_feedback');
-      if (cooldownSec > 0) {
-        if (statusBox) {
-          statusBox.style.display = 'block';
-          statusBox.style.background = 'rgba(245, 158, 11, 0.15)';
-          statusBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
-          statusBox.style.color = '#fcd34d';
-          statusBox.textContent = `Please wait ${cooldownSec}s before submitting another price update.`;
-        }
-        return;
-      }
-
-      const venueName = (venueInput ? venueInput.value : '').trim().slice(0, 160);
-      const pintVal = pintInput && pintInput.value.trim() !== '' ? parseFloat(pintInput.value.trim()) : null;
-      const cocktailVal = cocktailInput && cocktailInput.value.trim() !== '' ? parseFloat(cocktailInput.value.trim()) : null;
-      const seniorVal = seniorInput && seniorInput.value.trim() !== '' ? parseFloat(seniorInput.value.trim()) : null;
-      const isAllIn = allInCheck ? allInCheck.checked : false;
-      const note = noteInput ? noteInput.value.trim().slice(0, 200) : '';
-
-      if ((pintVal === null || isNaN(pintVal)) && (cocktailVal === null || isNaN(cocktailVal)) && (seniorVal === null || isNaN(seniorVal))) {
-        if (statusBox) {
-          statusBox.style.display = 'block';
-          statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
-          statusBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
-          statusBox.style.color = '#fca5a5';
-          statusBox.textContent = 'Please enter at least one price (pint, cocktail/highball, or senior 65+ price).';
-        }
-        return;
-      }
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
-      }
-
-      const pricePayload = {
-        type: 'price_update',
-        venue_name: venueName,
-        cheapest_pint_input: pintVal,
-        cheapest_cocktail_input: cocktailVal,
-        seniorPrice: (seniorVal !== null && !isNaN(seniorVal)) ? seniorVal : null,
-        is_all_in: isAllIn,
-        note: note,
-        honeypot: hpInput ? hpInput.value : ''
-      };
-
-      const sendGoogleSheetPriceFallback = async () => {
-        try {
-          const gsResult = await submitToGoogleAppsScript(pricePayload);
-          if (gsResult.configured && gsResult.ok) {
-            recordFormSubmissionTimestamp('price_feedback');
-            if (statusBox) {
-              statusBox.style.display = 'block';
-              statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
-              statusBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
-              statusBox.style.color = '#6ee7b7';
-              statusBox.textContent = '✓ Thank you! Your price update has been saved for Van50 review.';
-            }
-            if (submitBtn) submitBtn.textContent = '✓ Submitted';
-            setTimeout(() => { window.closePriceFeedbackModal(); }, 1800);
-            return;
-          }
-        } catch (_) { }
-
-        if (statusBox) {
-          statusBox.style.display = 'block';
-          statusBox.style.background = 'rgba(245, 158, 11, 0.15)';
-          statusBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
-          statusBox.style.color = '#fcd34d';
-          statusBox.textContent = 'Submissions endpoint not yet connected. Paste your Google Apps Script Web App URL into index.html (van50-submissions-url).';
-        }
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Price Update';
-        }
-      };
-
-      const isLocalHost = typeof window !== 'undefined' && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
-      if (!isLocalHost && getVan50SubmissionsUrl()) {
-        await sendGoogleSheetPriceFallback();
-        return;
-      }
-
-      try {
-        const res = await fetch('/api/suggest-price', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(pricePayload)
-        });
-
-        if (res.status === 404 || res.status === 405) {
-          await sendGoogleSheetPriceFallback();
-          return;
-        }
-
-        const data = await res.json();
-        if (res.ok && data.success) {
-          recordFormSubmissionTimestamp('price_feedback');
-          if (statusBox) {
-            statusBox.style.display = 'block';
-            statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
-            statusBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
-            statusBox.style.color = '#6ee7b7';
-            statusBox.textContent = '✓ Thank you! Your price update has been received and will help calibrate Vancouver outing spend estimates.';
-          }
-          if (submitBtn) {
-            submitBtn.textContent = '✓ Submitted';
-          }
-          setTimeout(() => {
-            window.closePriceFeedbackModal();
-          }, 1800);
-        } else {
-          if (statusBox) {
-            statusBox.style.display = 'block';
-            statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
-            statusBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
-            statusBox.style.color = '#fca5a5';
-            statusBox.textContent = data.error || 'Failed to submit price update. Please try again.';
-          }
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit Price Update';
-          }
-        }
-      } catch (err) {
-        await sendGoogleSheetPriceFallback();
-      }
-    });
-  }
+  window.closePriceFeedbackModal = function (fromPopState = false) {
+    if (typeof window.closeSuggestReportModal === 'function') {
+      window.closeSuggestReportModal(fromPopState);
+    }
+  };
 }
 
 
@@ -3364,11 +3291,17 @@ function clearActiveQuickButtons() {
 
 window.syncTopQuickToggles = function () {
   const topPaidBtn = document.getElementById('top-toggle-paid');
+  const topFreeBtn = document.getElementById('top-toggle-free');
   const topHideDailyBtn = document.getElementById('top-toggle-hide-daily');
   const isPaidOnly = state.minBudget >= 1 && state.maxBudget === 50;
+  const isFreeOnly = state.minBudget === 0 && state.maxBudget === 0;
   if (topPaidBtn) {
     topPaidBtn.classList.toggle('active', isPaidOnly);
     topPaidBtn.setAttribute('aria-pressed', isPaidOnly ? 'true' : 'false');
+  }
+  if (topFreeBtn) {
+    topFreeBtn.classList.toggle('active', isFreeOnly);
+    topFreeBtn.setAttribute('aria-pressed', isFreeOnly ? 'true' : 'false');
   }
   if (topHideDailyBtn) {
     const isHideDaily = Boolean(state.hideDaily);
@@ -3377,6 +3310,20 @@ window.syncTopQuickToggles = function () {
   }
   const legacyHideDailyChk = document.getElementById('hide-daily-toggle');
   if (legacyHideDailyChk) legacyHideDailyChk.checked = Boolean(state.hideDaily);
+
+  // Sync the 5 mutually-exclusive Spend pills inside the Filters drawer as a single source of truth
+  let activePreset = null;
+  if (state.minBudget === 0 && state.maxBudget === 50) activePreset = 'all';
+  else if (state.minBudget === 0 && state.maxBudget === 0) activePreset = 'free';
+  else if (state.minBudget === 0 && state.maxBudget === 15) activePreset = 'under15';
+  else if (state.minBudget === 0 && state.maxBudget === 30) activePreset = 'under30';
+  else if (state.minBudget >= 1 && state.maxBudget === 50) activePreset = 'paid';
+
+  document.querySelectorAll('.cost-quick-btn').forEach(b => {
+    const isMatch = Boolean(activePreset && b.dataset.quick === activePreset);
+    b.classList.toggle('active', isMatch);
+    b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+  });
 };
 
 // ==============================================================================
@@ -6615,6 +6562,12 @@ function renderEventCards(events) {
          </div>`
       : `<div class="zero-results-active-filters"><span class="zero-results-filter-pill">No custom filters active</span></div>`;
 
+    const hasNarrowDateFilter = Boolean(
+      (state.dayOfWeek && state.dayOfWeek !== 'all') ||
+      (state.frequency && state.frequency !== 'all') ||
+      state.hideDaily
+    );
+
     grid.innerHTML = `
       ${venueBannerHtml}
       <div class="zero-results-recovery-card" role="status" aria-live="polite" style="grid-column: 1 / -1;">
@@ -6623,11 +6576,12 @@ function renderEventCards(events) {
         </div>
         <h3 class="zero-results-title">No Outings Match Your Current Filters</h3>
         <p class="zero-results-subtitle">
-          0 Vancouver outings under $50 CAD matched this exact filter combination. Review your active filters below or reset to browse all verified outings.
+          0 outings under $50 CAD matched this exact filter combination. Review your active filters below or reset to browse all verified outings.
         </p>
         ${activePillsHtml}
         <div class="zero-results-actions">
           <button type="button" class="btn btn-roulette btn-reset-all-primary" id="btn-zero-results-reset" data-action="reset-all-filters">🔄 Reset All Filters</button>
+          ${hasNarrowDateFilter ? `<button type="button" class="btn" id="btn-zero-results-all-dates" data-action="clear-date-filter" style="background: rgba(13, 148, 136, 0.14); border: 1px solid rgba(13, 148, 136, 0.42); color: var(--brand-primary); padding: 10px 18px; border-radius: var(--radius-md); font-weight: 700; cursor: pointer;">📅 Show All Upcoming Dates</button>` : ''}
           ${state.selectedVenue ? `<button type="button" class="btn" data-action="clear-selected-venue" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Clear Venue Filter</button>` : ''}
         </div>
       </div>
@@ -6733,31 +6687,50 @@ function renderEventCards(events) {
   beyondDate.setDate(beyondDate.getDate() + 1);
   const upcomingLabel = `Starting ${fmtMonthDay(beyondDate)} & Beyond`;
 
-  const buckets = {
-    today: [],
-    tomorrow: [],
-    this_week: [],
-    next_week: [],
-    upcoming: []
+  const toIsoKey = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const getOrdinal = (n) => {
+    const s = ['th', 'st', 'nd', 'rd'];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
   };
+  const formatSingleDayHeading = (d) => {
+    const weekday = d.toLocaleDateString('en-US', { weekday: 'long' });
+    const month = d.toLocaleDateString('en-US', { month: 'short' });
+    return `${weekday} ${month} ${getOrdinal(d.getDate())}`;
+  };
+  const formatSingleDayShort = (d) => d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+  const todayIso = toIsoKey(today);
+  const tomorrowIso = toIsoKey(tomorrow);
+  const dayBucketsMap = new Map();
+  const anytimeDropInsList = [];
 
   events.forEach(ev => {
     const { bucket, date } = getEventTimeBucket(ev, now);
     ev._computedNextDate = date;
-    buckets[bucket].push(ev);
+    if (isAnytimeDropInEvent(ev)) {
+      anytimeDropInsList.push(ev);
+      return;
+    }
+    let targetDate = (date instanceof Date && !isNaN(date.getTime())) ? date : null;
+    if (!targetDate) {
+      if (bucket === 'today') targetDate = today;
+      else if (bucket === 'tomorrow') targetDate = tomorrow;
+    }
+    const dayKey = targetDate ? toIsoKey(targetDate) : 'unscheduled';
+    if (!dayBucketsMap.has(dayKey)) {
+      dayBucketsMap.set(dayKey, { dayKey, dateObj: targetDate, list: [] });
+    }
+    dayBucketsMap.get(dayKey).list.push(ev);
   });
 
-  // Sort within buckets: Scheduled events with start times FIRST (chronological), Anytime/Daily Drop-Ins LAST
+  // Sort within each day bucket chronologically by start time, then price
   const toDayFloorMs = (d) => (d instanceof Date && !isNaN(d.getTime()))
     ? new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
     : 9999999999999;
 
-  Object.keys(buckets).forEach(k => {
-    buckets[k].sort((a, b) => {
-      const aDropIn = isAnytimeDropInEvent(a);
-      const bDropIn = isAnytimeDropInEvent(b);
-      if (aDropIn !== bDropIn) return aDropIn ? 1 : -1;
-
+  const sortBucketList = (list) => {
+    list.sort((a, b) => {
       const aDay = toDayFloorMs(a._computedNextDate);
       const bDay = toDayFloorMs(b._computedNextDate);
       if (aDay !== bDay) return aDay - bDay;
@@ -6768,15 +6741,71 @@ function renderEventCards(events) {
 
       return (a.price || 0) - (b.price || 0);
     });
+  };
+
+  dayBucketsMap.forEach(entry => sortBucketList(entry.list));
+  anytimeDropInsList.sort((a, b) => (a.price || 0) - (b.price || 0) || String(a.title || '').localeCompare(String(b.title || '')));
+
+  const sortedDayEntries = Array.from(dayBucketsMap.values()).sort((a, b) => {
+    if (a.dayKey === 'unscheduled') return 1;
+    if (b.dayKey === 'unscheduled') return -1;
+    return a.dayKey.localeCompare(b.dayKey);
   });
 
-  const bucketMeta = [
-    { key: 'today', title: "Today's Events", shortTitle: "Today", icon: '', range: todayLabel, list: buckets.today },
-    { key: 'tomorrow', title: "Tomorrow's Events", shortTitle: "Tomorrow", icon: '', range: tomorrowLabel, list: buckets.tomorrow },
-    { key: 'this_week', title: "This Week's Events", shortTitle: "This Week", icon: '', range: thisWeekLabel, list: buckets.this_week },
-    { key: 'next_week', title: "Next Week's Events", shortTitle: "Next Week", icon: '', range: nextWeekLabel, list: buckets.next_week },
-    { key: 'upcoming', title: "Upcoming & Future Events", shortTitle: "Upcoming", icon: '', range: upcomingLabel, list: buckets.upcoming }
-  ];
+  const bucketMeta = [];
+  let dropInsAttached = false;
+
+  sortedDayEntries.forEach(entry => {
+    if (entry.dayKey === todayIso) {
+      bucketMeta.push({
+        key: 'today',
+        title: "Today's Events",
+        shortTitle: 'Today',
+        icon: '',
+        range: todayLabel,
+        list: anytimeDropInsList.length > 0 ? [...entry.list, ...anytimeDropInsList] : entry.list
+      });
+      dropInsAttached = true;
+    } else if (entry.dayKey === tomorrowIso) {
+      bucketMeta.push({
+        key: 'tomorrow',
+        title: "Tomorrow's Events",
+        shortTitle: 'Tomorrow',
+        icon: '',
+        range: tomorrowLabel,
+        list: entry.list
+      });
+    } else if (entry.dateObj) {
+      bucketMeta.push({
+        key: `day-${entry.dayKey}`,
+        title: formatSingleDayHeading(entry.dateObj),
+        shortTitle: formatSingleDayShort(entry.dateObj),
+        icon: '',
+        range: '',
+        list: entry.list
+      });
+    } else {
+      bucketMeta.push({
+        key: 'upcoming',
+        title: 'Upcoming Events',
+        shortTitle: 'Upcoming',
+        icon: '',
+        range: '',
+        list: entry.list
+      });
+    }
+  });
+
+  if (!dropInsAttached && anytimeDropInsList.length > 0) {
+    bucketMeta.push({
+      key: 'dropins',
+      title: 'Anytime & Scenic Drop-Ins',
+      shortTitle: 'Anytime Drop-Ins',
+      icon: '',
+      range: 'Open Daily',
+      list: anytimeDropInsList
+    });
+  }
 
   const activeBuckets = bucketMeta.filter(b => b.list.length > 0);
 
@@ -6940,7 +6969,7 @@ function renderEventCards(events) {
           <div class="time-group-title-wrap">
             <span class="time-group-icon" style="display:none;"></span>
             <h2 class="time-group-title">${safeTitle}</h2>
-            <span class="time-group-date-range">${safeRange}</span>
+            ${safeRange ? `<span class="time-group-date-range">${safeRange}</span>` : ''}
           </div>
           <div class="time-group-actions">
             <span class="time-group-count-badge">${Number(displayCount)} event${displayCount === 1 ? '' : 's'}</span>
@@ -8031,7 +8060,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
   let spendEstimatorHtml = '';
   const venueNameStr = ev.venue_name || ev.venue || ev.location || '';
   const escapedVenueAttr = escapeHtml(venueNameStr);
-  const suggestBtnHtml = `<button type="button" class="btn-suggest-price" data-suggest-venue="${escapedVenueAttr}" title="Suggest updated drink or item prices for ${escapedVenueAttr}">Suggest price ✎</button>`;
+  const suggestBtnHtml = `<button type="button" class="btn-suggest-price" data-event-id="${safeEventId}" data-suggest-venue="${escapedVenueAttr}" title="Report status or suggest updated prices for ${escapedVenueAttr}">Report / Price ✎</button>`;
 
   if (ev.typical_item_spend) {
     let spendTag = (ev.typical_item_spend === 'No on-site concessions') ? 'On-Site Concessions' : 'Expected Outing Spend';
@@ -8284,16 +8313,20 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
             <span class="venue-pin-icon" aria-label="Map location"><svg width="32" height="32" viewBox="0 0 24 24" fill="#ef4444" aria-hidden="true" style="color: #ef4444; flex-shrink: 0; vertical-align: middle; margin-right: 4px; filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.55));"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
             <span class="venue-name">${safeVenueText}</span>
           </a>
-          ${(safeVenueUrlHref || venueOtherEventsBtnHtml) ? `
-            <div class="card-venue-actions-col">
-              ${safeVenueUrlHref ? `
-                <a href="${safeVenueUrlHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-website-link venue-link" title="Visit official website of ${safeVenueText}">
-                  <span class="website-label">Venue Site ↗</span>
-                </a>
-              ` : ''}
-              ${venueOtherEventsBtnHtml}
-            </div>
-          ` : ''}
+          <div class="card-venue-actions-col">
+            ${!isMapIwCard ? `
+              <button type="button" class="btn-card-view-map" data-action="view-on-map" data-event-id="${safeEventId}" title="Locate ${safeVenueText} on the interactive map" aria-label="View ${safeVenueText} on Map">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                <span>View on Map</span>
+              </button>
+            ` : ''}
+            ${safeVenueUrlHref ? `
+              <a href="${safeVenueUrlHref}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-website-link venue-link" title="Visit official website of ${safeVenueText}">
+                <span class="website-label">Venue Site ↗</span>
+              </a>
+            ` : ''}
+            ${venueOtherEventsBtnHtml}
+          </div>
         </div>
 
         <!-- Schedule Row: Rendered strictly when NO weekly hours block and NO multi-showings block is present -->
@@ -8383,6 +8416,7 @@ function resetAllFilters() {
   if (hideDailyToggle) hideDailyToggle.checked = false;
 
   state.accessibleOnly = false;
+  if (state.accessibleMode) setAccessibilityMode(false, false);
   state.seniorDealsOnly = false;
   if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
 
@@ -9024,7 +9058,7 @@ function setAccessibilityMode(enabled, notify = true) {
     btn.classList.toggle('active', state.accessibleMode);
     const label = btn.querySelector('.access-label');
     if (label) {
-      label.textContent = state.accessibleMode ? 'Accessible: ON' : 'Accessibility';
+      label.textContent = state.accessibleMode ? 'Accessible Venues: ON' : 'Accessible Venues';
     }
   }
 
@@ -9051,230 +9085,422 @@ window.setAccessibilityMode = setAccessibilityMode;
 window.toggleAccessibilityMode = toggleAccessibilityMode;
 
 // ==============================================================================
-// COMMUNITY FEEDBACK & QUARANTINED SUGGESTIONS MODAL (SINGLE OPEN-ENDED FORM)
+// UNIFIED, CONTEXT-AWARE "SUGGEST / REPORT" MODAL
 // ==============================================================================
 
-function openFeedbackModal(presetText = '', targetEventId = '') {
-  const modal = document.getElementById('feedback-modal');
+function setSuggestReportMode(mode) {
+  const validModes = ['price_status', 'fix_details', 'suggest_event', 'general_note'];
+  const activeMode = validModes.includes(mode) ? mode : 'suggest_event';
+  const modeInput = document.getElementById('sr-mode-input');
+  if (modeInput) modeInput.value = activeMode;
+
+  document.querySelectorAll('.sr-mode-tab').forEach(tab => {
+    const isMatch = tab.getAttribute('data-sr-mode') === activeMode;
+    tab.classList.toggle('active', isMatch);
+    tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.sr-mode-panel').forEach(panel => {
+    const isMatch = panel.getAttribute('data-sr-panel') === activeMode;
+    panel.style.display = isMatch ? 'flex' : 'none';
+  });
+
+  const submitBtn = document.getElementById('btn-submit-suggest-report');
+  if (submitBtn && !submitBtn.disabled) {
+    const labels = {
+      price_status: 'Submit Price / Status',
+      fix_details: 'Submit Correction',
+      suggest_event: 'Suggest Event',
+      general_note: 'Send Note'
+    };
+    submitBtn.textContent = labels[activeMode] || 'Send Submission';
+  }
+}
+
+function openSuggestReportModal(options = {}) {
+  const modal = document.getElementById('suggest-report-modal');
   if (!modal) return;
 
-  const messageInput = document.getElementById('feedback-message');
-  const targetIdInput = document.getElementById('feedback-target-event-id');
-  const alertBox = document.getElementById('feedback-alert');
+  const opts = (typeof options === 'string') ? { mode: 'general_note', presetText: options } : (options || {});
+  const form = document.getElementById('suggest-report-form');
+  if (form) form.reset();
 
-  if (messageInput && presetText) {
-    messageInput.value = presetText;
-  }
-  if (targetIdInput) {
-    targetIdInput.value = targetEventId || '';
-  }
-  if (alertBox) {
-    alertBox.style.display = 'none';
-    alertBox.textContent = '';
+  modal.querySelectorAll('.sr-flag-pill').forEach(pill => {
+    pill.classList.remove('active');
+    pill.setAttribute('aria-pressed', 'false');
+  });
+
+  const ticketAllIn = document.getElementById('sr-ticket-all-in');
+  if (ticketAllIn) ticketAllIn.checked = true;
+  const drinkDetails = document.getElementById('sr-drink-details');
+  if (drinkDetails) drinkDetails.open = false;
+
+  let ev = null;
+  if (opts.eventId) {
+    const pool = (Array.isArray(window.currentActiveCatalog) && window.currentActiveCatalog.length > 0)
+      ? window.currentActiveCatalog
+      : (window.ALL_EVENTS || []);
+    ev = pool.find(e => String(e.id || e.event_id) === String(opts.eventId)) || null;
   }
 
-  modal.classList.add('active');
-  modal.setAttribute('aria-hidden', 'false'); modal.removeAttribute('inert');
-  if (messageInput) {
-    messageInput.focus();
-    if (presetText) {
-      // Place cursor at the end of the prefilled text
-      messageInput.setSelectionRange(messageInput.value.length, messageInput.value.length);
+  const eventId = opts.eventId || (ev ? (ev.id || ev.event_id || '') : '');
+  const eventTitle = opts.eventTitle || (ev ? (ev.title || ev.event_name || '') : '');
+  const venue = opts.venue || (ev ? (ev.venue_name || ev.venue || ev.location || '') : '');
+  const city = opts.city || (ev ? (ev.city || ev.region || 'Vancouver') : '');
+  const listedPriceNum = ev ? Number(ev.price_all_in ?? ev.price ?? 0) : null;
+  const listedPrice = opts.listedPrice || (ev ? (listedPriceNum === 0 ? 'Free ($0)' : `$${listedPriceNum.toFixed(2).replace(/\.00$/, '')}`) : '');
+
+  const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
+  setVal('sr-event-id', eventId);
+  setVal('sr-event-title', eventTitle);
+  setVal('sr-venue', venue);
+  setVal('sr-city', city);
+  setVal('sr-listed-price', listedPrice);
+  setVal('sr-hp', '');
+
+  const contextBanner = document.getElementById('sr-context-banner');
+  const contextText = document.getElementById('sr-context-text');
+  if (contextBanner && contextText) {
+    if (eventTitle || venue) {
+      const parts = [];
+      if (eventTitle) parts.push(eventTitle);
+      if (venue) parts.push(city ? `${venue} (${city})` : venue);
+      if (listedPrice) parts.push(`Listed: ${listedPrice} All-In`);
+      contextText.textContent = parts.join(' • ');
+      contextBanner.style.display = 'flex';
+    } else {
+      contextText.textContent = '';
+      contextBanner.style.display = 'none';
     }
   }
-}
 
-function closeFeedbackModal() {
-  const modal = document.getElementById('feedback-modal');
-  if (!modal) return;
-  modal.classList.remove('active');
-  modal.setAttribute('aria-hidden', 'true'); modal.setAttribute('inert', '');
-  const form = document.getElementById('community-feedback-form');
-  if (form) form.reset();
-  const alertBox = document.getElementById('feedback-alert');
+  const defaultMode = opts.mode || ((eventId || venue) ? 'price_status' : 'suggest_event');
+  setSuggestReportMode(defaultMode);
+
+  if (opts.presetText) {
+    const targetInput = defaultMode === 'fix_details'
+      ? document.getElementById('sr-fix-details')
+      : document.getElementById('sr-general-message');
+    if (targetInput) targetInput.value = opts.presetText;
+  }
+
+  const alertBox = document.getElementById('sr-status-alert');
   if (alertBox) {
     alertBox.style.display = 'none';
     alertBox.textContent = '';
   }
+  const submitBtn = document.getElementById('btn-submit-suggest-report');
+  if (submitBtn) submitBtn.disabled = false;
+  setSuggestReportMode(defaultMode);
+
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  modal.removeAttribute('inert');
+  document.body.style.overflow = 'hidden';
+  if (typeof window.pushOverlayHistoryState === 'function') {
+    window.pushOverlayHistoryState('suggest_report');
+  }
 }
 
-function initCommunityFeedbackModal() {
+function closeSuggestReportModal(fromPopState = false) {
+  const modal = document.getElementById('suggest-report-modal');
+  if (!modal) return;
+  const wasOpen = modal.classList.contains('active');
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  modal.setAttribute('inert', '');
+  document.body.style.overflow = '';
+  if (wasOpen && typeof window.popOverlayHistoryState === 'function') {
+    window.popOverlayHistoryState('suggest_report', fromPopState);
+  }
+}
+
+function openFeedbackModal(presetText = '', targetEventId = '') {
+  openSuggestReportModal({
+    mode: targetEventId ? 'fix_details' : 'suggest_event',
+    eventId: targetEventId || '',
+    presetText: presetText || ''
+  });
+}
+
+function initSuggestReportModal() {
+  const modal = document.getElementById('suggest-report-modal');
+  const form = document.getElementById('suggest-report-form');
+  const closeBtn = document.getElementById('close-suggest-report-btn');
+  const cancelBtn = document.getElementById('btn-cancel-suggest-report');
   const navBtn = document.getElementById('feedback-nav-btn');
   const footerBtn = document.getElementById('feedback-footer-btn');
-  const closeBtn = document.getElementById('close-feedback-btn');
-  const cancelBtn = document.getElementById('btn-cancel-feedback');
-  const modal = document.getElementById('feedback-modal');
-  const form = document.getElementById('community-feedback-form');
 
-  if (navBtn) navBtn.addEventListener('click', () => openFeedbackModal());
-  if (footerBtn) footerBtn.addEventListener('click', () => openFeedbackModal());
+  if (navBtn) navBtn.addEventListener('click', () => openSuggestReportModal({ mode: 'suggest_event' }));
+  if (footerBtn) footerBtn.addEventListener('click', () => openSuggestReportModal({ mode: 'suggest_event' }));
   document.querySelectorAll('[data-open-feedback]').forEach(el => {
-    el.addEventListener('click', () => openFeedbackModal());
+    el.addEventListener('click', () => openSuggestReportModal({ mode: 'suggest_event' }));
   });
-  if (closeBtn) closeBtn.addEventListener('click', closeFeedbackModal);
-  if (cancelBtn) cancelBtn.addEventListener('click', closeFeedbackModal);
 
+  if (closeBtn) closeBtn.addEventListener('click', () => closeSuggestReportModal(false));
+  if (cancelBtn) cancelBtn.addEventListener('click', () => closeSuggestReportModal(false));
   if (modal) {
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeFeedbackModal();
+      if (e.target === modal) closeSuggestReportModal(false);
+    });
+    modal.querySelectorAll('.sr-mode-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        setSuggestReportMode(tab.getAttribute('data-sr-mode') || 'suggest_event');
+      });
+    });
+    modal.querySelectorAll('.sr-flag-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const nextState = !pill.classList.contains('active');
+        pill.classList.toggle('active', nextState);
+        pill.setAttribute('aria-pressed', nextState ? 'true' : 'false');
+      });
     });
   }
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const submitBtn = document.getElementById('btn-submit-feedback');
-      const alertBox = document.getElementById('feedback-alert');
-      const messageInput = document.getElementById('feedback-message');
-      const targetIdInput = document.getElementById('feedback-target-event-id');
-      const hpInput = document.getElementById('feedback-hp');
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+      closeSuggestReportModal(false);
+    }
+  });
 
-      const hpVal = (hpInput && hpInput.value ? hpInput.value : '').trim();
-      if (hpVal !== '') {
-        closeFeedbackModal();
+  if (!form) return;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const alertBox = document.getElementById('sr-status-alert');
+    const submitBtn = document.getElementById('btn-submit-suggest-report');
+    const hpVal = (document.getElementById('sr-hp')?.value || '').trim();
+    if (hpVal !== '') {
+      closeSuggestReportModal(false);
+      return;
+    }
+
+    const showAlert = (msg, type = 'error') => {
+      if (!alertBox) return;
+      const styles = {
+        error: ['rgba(239,68,68,0.15)', 'rgba(239,68,68,0.4)', '#ef4444'],
+        warn: ['rgba(245,158,11,0.15)', 'rgba(245,158,11,0.4)', '#d97706'],
+        success: ['rgba(16,185,129,0.15)', 'rgba(16,185,129,0.4)', '#059669']
+      };
+      const [bg, bd, fg] = styles[type] || styles.error;
+      alertBox.style.display = 'block';
+      alertBox.style.background = bg;
+      alertBox.style.border = `1px solid ${bd}`;
+      alertBox.style.color = fg;
+      alertBox.textContent = msg;
+    };
+
+    const mode = document.getElementById('sr-mode-input')?.value || 'suggest_event';
+    const cooldownKey = mode === 'price_status' ? 'price_feedback' : 'community_feedback';
+    const cooldownSec = getFormCooldownRemainingSec(cooldownKey);
+    if (cooldownSec > 0) {
+      showAlert(`Please wait ${cooldownSec}s before sending another submission.`, 'warn');
+      return;
+    }
+
+    const eventId = sanitizeUrlEventIdToken(document.getElementById('sr-event-id')?.value || '');
+    const eventTitle = (document.getElementById('sr-event-title')?.value || '').trim().slice(0, 180);
+    const venue = (document.getElementById('sr-venue')?.value || '').trim().slice(0, 160);
+    const city = (document.getElementById('sr-city')?.value || '').trim().slice(0, 80);
+    const listedPrice = (document.getElementById('sr-listed-price')?.value || '').trim().slice(0, 40);
+    const pageUrl = (typeof window !== 'undefined' && window.location) ? window.location.href : '';
+
+    const getActiveFlags = (panelId) => {
+      const panel = document.getElementById(panelId);
+      if (!panel) return [];
+      return Array.from(panel.querySelectorAll('.sr-flag-pill.active')).map(p => p.getAttribute('data-sr-flag') || '').filter(Boolean);
+    };
+
+    let endpoint = '/api/feedback';
+    let payload = null;
+
+    if (mode === 'price_status') {
+      const quickFlags = getActiveFlags('sr-panel-price_status');
+      const parseNum = (id) => {
+        const raw = (document.getElementById(id)?.value || '').trim();
+        if (!raw) return null;
+        const n = parseFloat(raw);
+        return isNaN(n) ? null : n;
+      };
+      const ticketPrice = parseNum('sr-ticket-price');
+      const seniorPrice = parseNum('sr-senior-price');
+      const pintPrice = parseNum('sr-pint-price');
+      const cocktailPrice = parseNum('sr-cocktail-price');
+      const isAllIn = Boolean(document.getElementById('sr-ticket-all-in')?.checked);
+      const drinkIsAllIn = Boolean(document.getElementById('sr-drink-all-in')?.checked);
+      const note = (document.getElementById('sr-price-note')?.value || '').trim().slice(0, 250);
+
+      if (quickFlags.length === 0 && ticketPrice === null && seniorPrice === null && pintPrice === null && cocktailPrice === null && !note) {
+        showAlert('Tap at least one quick flag or enter a ticket, senior, or drink price.');
         return;
       }
 
-      const cooldownSec = getFormCooldownRemainingSec('community_feedback');
-      if (cooldownSec > 0) {
-        if (alertBox) {
-          alertBox.style.display = 'block';
-          alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
-          alertBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
-          alertBox.style.color = '#fcd34d';
-          alertBox.textContent = `Please wait ${cooldownSec}s before sending another submission.`;
-        }
+      endpoint = '/api/suggest-price';
+      payload = {
+        type: 'price_update',
+        venue_name: venue || eventTitle || 'Unspecified Venue',
+        venue: venue || '',
+        eventId,
+        eventTitle,
+        city,
+        listedPrice,
+        ticketPrice,
+        seniorPrice,
+        quickFlags,
+        cheapest_pint_input: pintPrice,
+        cheapest_cocktail_input: cocktailPrice,
+        is_all_in: isAllIn,
+        drink_is_all_in: drinkIsAllIn,
+        note,
+        pageUrl,
+        page_url: pageUrl,
+        honeypot: hpVal
+      };
+    } else if (mode === 'fix_details') {
+      const quickFlags = getActiveFlags('sr-panel-fix_details');
+      const details = (document.getElementById('sr-fix-details')?.value || '').trim().slice(0, 1000);
+      if (quickFlags.length === 0 && !details) {
+        showAlert('Select at least one issue flag or describe what needs fixing.');
         return;
       }
-
-      const message = (messageInput?.value?.trim() || '').slice(0, 2000);
-      if (!message) {
-        if (alertBox) {
-          alertBox.style.display = 'block';
-          alertBox.style.background = 'rgba(239, 68, 68, 0.15)';
-          alertBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
-          alertBox.style.color = '#f87171';
-          alertBox.textContent = 'Please enter your message or suggestion.';
-        }
-        return;
-      }
-
-      const payload = {
+      const ctx = [eventTitle, venue ? `${venue}${city ? ` (${city})` : ''}` : ''].filter(Boolean).join(' • ');
+      const lines = [
+        ctx ? `Event: ${ctx}` : '',
+        quickFlags.length ? `Flags: ${quickFlags.join(', ')}` : '',
+        details ? `Details: ${details}` : ''
+      ].filter(Boolean).join('\n');
+      payload = {
         type: 'feedback',
-        message: message,
-        target_event_id: sanitizeUrlEventIdToken(targetIdInput?.value || ''),
-        hp_field: hpInput?.value || ''
+        submission_type: 'correction',
+        category: 'Fix Details',
+        target_event_id: eventId,
+        eventId,
+        eventTitle,
+        venue,
+        city,
+        listedPrice,
+        message: `[Fix Details] ${lines}`,
+        pageUrl,
+        page_url: pageUrl,
+        hp_field: hpVal
       };
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
-      }
-
-      const sendGoogleSheetFeedbackFallback = async () => {
-        try {
-          const gsResult = await submitToGoogleAppsScript(payload);
-          if (gsResult.configured && gsResult.ok) {
-            recordFormSubmissionTimestamp('community_feedback');
-            if (alertBox) {
-              alertBox.style.display = 'block';
-              alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
-              alertBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
-              alertBox.style.color = '#34d399';
-              alertBox.textContent = '✓ Thank you! Your feedback has been saved for Van50 review.';
-            }
-            form.reset();
-            setTimeout(() => {
-              closeFeedbackModal();
-              if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Feedback';
-              }
-            }, 1800);
-            return;
-          }
-        } catch (_) { }
-
-        if (alertBox) {
-          alertBox.style.display = 'block';
-          alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
-          alertBox.style.border = '1px solid rgba(245, 158, 11, 0.4)';
-          alertBox.style.color = '#fcd34d';
-          alertBox.textContent = 'Submissions endpoint not yet connected. Paste your Google Apps Script Web App URL into index.html (van50-submissions-url).';
-        }
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Feedback';
-        }
-      };
-
-      const isLocalHost = typeof window !== 'undefined' && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
-      if (!isLocalHost && getVan50SubmissionsUrl()) {
-        await sendGoogleSheetFeedbackFallback();
+    } else if (mode === 'suggest_event') {
+      const name = (document.getElementById('sr-suggest-name')?.value || '').trim().slice(0, 160);
+      const sCity = (document.getElementById('sr-suggest-city')?.value || 'Vancouver').trim();
+      const sPrice = (document.getElementById('sr-suggest-price')?.value || '').trim();
+      const sUrl = (document.getElementById('sr-suggest-url')?.value || '').trim().slice(0, 300);
+      const sNotes = (document.getElementById('sr-suggest-notes')?.value || '').trim().slice(0, 1000);
+      if (!name) {
+        showAlert('Please enter the Event or Venue Name.');
         return;
       }
+      const lines = [
+        `Name: ${name}`,
+        `City: ${sCity}`,
+        sPrice ? `Approx. All-In Price: $${sPrice}` : '',
+        sUrl ? `URL: ${sUrl}` : '',
+        sNotes ? `Notes: ${sNotes}` : ''
+      ].filter(Boolean).join('\n');
+      payload = {
+        type: 'feedback',
+        submission_type: 'event_suggestion',
+        category: 'Suggest Event',
+        title: name,
+        target_event_id: eventId,
+        message: `[Suggest Event] ${lines}`,
+        pageUrl,
+        page_url: pageUrl,
+        hp_field: hpVal
+      };
+    } else {
+      const msg = (document.getElementById('sr-general-message')?.value || '').trim().slice(0, 2000);
+      const email = (document.getElementById('sr-contact-email')?.value || '').trim().slice(0, 160);
+      if (!msg) {
+        showAlert('Please enter your message.');
+        return;
+      }
+      const fullMsg = email ? `[General Note] ${msg}\nReply Email: ${email}` : `[General Note] ${msg}`;
+      payload = {
+        type: 'feedback',
+        submission_type: 'general_comment',
+        category: 'General Note',
+        target_event_id: eventId,
+        message: fullMsg,
+        pageUrl,
+        page_url: pageUrl,
+        hp_field: hpVal
+      };
+    }
 
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+    }
+
+    const sendGoogleSheetFallback = async () => {
       try {
-        const res = await fetch('/api/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (res.status === 404 || res.status === 405) {
-          await sendGoogleSheetFeedbackFallback();
+        const gsResult = await submitToGoogleAppsScript(payload);
+        if (gsResult.configured && gsResult.ok) {
+          recordFormSubmissionTimestamp(cooldownKey);
+          showAlert('✓ Thank you! Your submission has been saved for Van50 review.', 'success');
+          if (submitBtn) submitBtn.textContent = '✓ Submitted';
+          setTimeout(() => closeSuggestReportModal(false), 1600);
           return;
         }
-
-        const data = await res.json();
-
-        if (res.ok && data.success) {
-          recordFormSubmissionTimestamp('community_feedback');
-          if (alertBox) {
-            alertBox.style.display = 'block';
-            alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
-            alertBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
-            alertBox.style.color = '#34d399';
-            alertBox.textContent = '✓ ' + (data.message || 'Thank you! Your feedback has been sent for review.');
-          }
-          form.reset();
-          setTimeout(() => {
-            closeFeedbackModal();
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = 'Send Feedback';
-            }
-          }, 1800);
-        } else {
-          if (alertBox) {
-            alertBox.style.display = 'block';
-            alertBox.style.background = 'rgba(239, 68, 68, 0.15)';
-            alertBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
-            alertBox.style.color = '#f87171';
-            alertBox.textContent = '⚠️ ' + (data.error || 'Failed to submit feedback.');
-          }
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Feedback';
-          }
-        }
-      } catch (err) {
-        await sendGoogleSheetFeedbackFallback();
+      } catch (_) { }
+      showAlert('Submissions endpoint not yet connected. Check van50-submissions-url in index.html.', 'warn');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        setSuggestReportMode(mode);
       }
-    });
-  }
+    };
+
+    const isLocalHost = typeof window !== 'undefined' && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+    if (!isLocalHost && getVan50SubmissionsUrl()) {
+      await sendGoogleSheetFallback();
+      return;
+    }
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.status === 404 || res.status === 405) {
+        await sendGoogleSheetFallback();
+        return;
+      }
+      const data = await res.json();
+      if (res.ok && data.success) {
+        recordFormSubmissionTimestamp(cooldownKey);
+        showAlert('✓ ' + (data.message || 'Thank you! Your submission has been received.'), 'success');
+        if (submitBtn) submitBtn.textContent = '✓ Submitted';
+        setTimeout(() => closeSuggestReportModal(false), 1600);
+      } else {
+        showAlert('⚠️ ' + (data.error || 'Failed to submit. Please try again.'));
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          setSuggestReportMode(mode);
+        }
+      }
+    } catch (_) {
+      await sendGoogleSheetFallback();
+    }
+  });
 }
 
-// Global hook for event cards to trigger "Report Issue"
+window.openSuggestReportModal = openSuggestReportModal;
+window.closeSuggestReportModal = closeSuggestReportModal;
+window.setSuggestReportMode = setSuggestReportMode;
+window.openFeedbackModal = openFeedbackModal;
 window.reportEventIssue = function (eventId, eventTitle) {
-  openFeedbackModal(eventTitle ? `Regarding "${eventTitle}": ` : '', eventId);
+  openSuggestReportModal({ mode: 'fix_details', eventId: eventId || '', eventTitle: eventTitle || '' });
 };
 
-// Initialize after DOM load
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initCommunityFeedbackModal);
+  document.addEventListener('DOMContentLoaded', initSuggestReportModal);
 } else {
-  initCommunityFeedbackModal();
+  initSuggestReportModal();
 }
 
 
@@ -9291,7 +9517,13 @@ function renderActiveFilterChips(filteredCount) {
   const mobileSheetApplyBtn = document.getElementById('mobile-sheet-apply-btn');
 
   if (mobileSheetApplyBtn && typeof filteredCount === 'number') {
-    mobileSheetApplyBtn.textContent = `Show ${filteredCount} Outing${filteredCount === 1 ? '' : 's'}`;
+    if (filteredCount === 0) {
+      mobileSheetApplyBtn.textContent = '0 Matches — Adjust Filters';
+      mobileSheetApplyBtn.classList.add('is-zero-matches');
+    } else {
+      mobileSheetApplyBtn.textContent = `Show ${filteredCount} Outing${filteredCount === 1 ? '' : 's'}`;
+      mobileSheetApplyBtn.classList.remove('is-zero-matches');
+    }
   }
 
   const chips = [];
@@ -9324,7 +9556,7 @@ function renderActiveFilterChips(filteredCount) {
     else if (state.minBudget === 0 && state.maxBudget === 15) costLabel = 'Under $15';
     else if (state.minBudget === 0 && state.maxBudget === 25) costLabel = 'Under $25';
     else if (state.minBudget === 0 && state.maxBudget === 30) costLabel = 'Under $30';
-    else if (state.minBudget >= 1 && state.maxBudget === 50) costLabel = 'Paid';
+    else if (state.minBudget >= 1 && state.maxBudget === 50) costLabel = 'Paid Only';
     chips.push({ key: 'cost', label: costLabel });
   }
 
@@ -9340,9 +9572,9 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'frequency', label: freqDef ? freqDef.label : state.frequency });
   }
 
-  // 6. Hide Daily Drop-In Spots
+  // 6. Hide Anytime Drop-Ins
   if (state.hideDaily) {
-    chips.push({ key: 'hideDaily', label: 'Hide Daily Drop-In' });
+    chips.push({ key: 'hideDaily', label: 'Hide Anytime Drop-Ins' });
   }
 
   // 7. Senior Deals & 55+
@@ -9350,9 +9582,9 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'seniorDeals', label: 'Senior Deals & 55+' });
   }
 
-  // 7b. Step-Free / Accessible Venues Only (Top Header Toggle)
+  // 7b. Accessible Venues Only (Top Header Toggle)
   if (state.accessibleOnly) {
-    chips.push({ key: 'accessibleOnly', label: 'Step-Free / Accessible' });
+    chips.push({ key: 'accessibleOnly', label: 'Accessible Venues' });
   }
 
   // 8. Single Religious Events Toggle (when toggled OFF)
@@ -9360,9 +9592,9 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'noReligious', label: 'No Religious Events' });
   }
 
-  // Count filters located inside the Filters drawer (Category, Spend [non-Paid], Senior Deals & 55+, No Religious Events)
+  // Count filters located inside the Filters drawer (Category, Spend, Senior Deals & 55+, No Religious Events)
   const drawerKeys = new Set(['category', 'cost', 'seniorDeals', 'noReligious']);
-  const drawerActiveCount = chips.filter(c => drawerKeys.has(c.key) && !(c.key === 'cost' && c.label === 'Paid')).length;
+  const drawerActiveCount = chips.filter(c => drawerKeys.has(c.key)).length;
   if (mobileFilterTrigger) {
     const labelText = drawerActiveCount > 0 ? `Filters (${drawerActiveCount})` : 'Filters';
     const triggerLabelEl = document.getElementById('mobile-filter-trigger-label') || mobileFilterTrigger.querySelector('span');
