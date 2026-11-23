@@ -33,7 +33,7 @@
     rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/curator.css?v=1.2.3">
+  <link rel="stylesheet" href="css/curator.css?v=1.2.4">
   <style>
     @keyframes spin {
       0% {
@@ -74,18 +74,6 @@
           <span>🧠 Learned Rules:</span>
           <span class="stat-val" id="stat-rules-count">0</span>
         </div>
-        <div class="stat-pill clickable-pill" id="stat-instructions-pill" style="cursor: pointer;"
-          title="Inspect Curator Feedback History and Venue Guidelines">
-          <span>📋 Feedback History:</span>
-          <span class="stat-val" id="stat-instructions-count">0</span>
-        </div>
-        <button type="button" class="stat-pill clickable-pill" id="btn-view-collected-feedback"
-          onclick="openCollectedFeedbackModal()"
-          style="cursor: pointer; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.45); color: #6ee7b7;"
-          title="View all community feedback, show suggestions, and price updates collected from the live Google Sheet & local queue">
-          <span>💬 Collected Feedback</span>
-          <span class="stat-val" id="collected-feedback-count">0</span>
-        </button>
         <button type="button" class="stat-pill clickable-pill" id="btn-view-approved-holidays"
           onclick="openApprovedHolidaysModal()"
           style="cursor: pointer; background: rgba(249, 115, 22, 0.14); border: 1px solid rgba(249, 115, 22, 0.45); color: #fdba74;"
@@ -187,8 +175,8 @@
       aria-label="Pending Curator Approvals and Actions">
       <div class="pending-inbox-title-group">
         <span class="pending-inbox-badge" id="pending-inbox-status-badge">✅ All Approvals Clear</span>
-        <span id="pending-inbox-summary-text" style="font-size: 0.78rem; color: #cbd5e1; font-weight: 600;">
-          Click any queue to review pending festivals, holidays, venues, sources, or quarantined events:
+        <span id="pending-inbox-summary-text" style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">
+          Queues:
         </span>
       </div>
       <div class="pending-inbox-pills">
@@ -534,10 +522,10 @@
       </div>
     </section>
 
-    <!-- Controls Section -->
+    <!-- Controls Section (Compact Space-Optimized Toolbar) -->
     <section class="curator-controls-section">
+      <!-- Row 1: Remaining Quarantine Sub-Filters + Status Count & Batch Actions -->
       <div class="curator-filters-row">
-        <!-- Quarantine Sub-Filters (Non-quarantine queues live in the Pending Approvals Inbox above) -->
         <div class="curator-pills-group" id="filter-pills-group" style="align-items: center;">
           <button type="button" class="curator-filter-pill active" data-filter="all">⚠️ All Quarantined (<span
               id="pill-count-all">0</span>)</button>
@@ -548,15 +536,6 @@
             style="border: 1px solid rgba(192, 132, 252, 0.5); color: #d8b4fe;"
             title="Quarantined events where you wrote notes or attached screenshots">📝 Has Curator Notes (<span
               id="pill-count-feedback">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="handled"
-            title="Events with saved curator guidance ready for re-check">📋 Guidance Saved (<span
-              id="pill-count-handled">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="drift">⚠️ Page Changed (<span
-              id="pill-count-drift">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="unverified">Unverified Price (<span
-              id="pill-count-unverified">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="brokenlink">Broken / 404 Link (<span
-              id="pill-count-brokenlink">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="course">Multi-Week Course (<span
               id="pill-count-course">0</span>)</button>
 
@@ -578,63 +557,60 @@
               id="pill-count-user-feedback">0</span>)</button>
         </div>
 
-        <!-- Search & Sort Row -->
-        <div class="curator-search-sort-row">
-          <div class="curator-search-box">
-            <span class="curator-search-icon">🔍</span>
-            <input type="text" id="curator-search-input" class="curator-search-input"
-              placeholder="Search event title, venue, provider..." autocomplete="off">
-            <button type="button" class="btn-clear-curator-search" id="btn-clear-curator-search"
-              title="Clear search text" aria-label="Clear search"
-              style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; font-size: 0.95rem; cursor: pointer; padding: 2px 6px;">✕</button>
-          </div>
-
-          <select id="curator-platform-select" class="curator-select" autocomplete="off">
-            <option value="all">All Ticketing Platforms</option>
-            <option value="Eventbrite">Eventbrite</option>
-            <option value="TicketWeb">TicketWeb</option>
-            <option value="Ticketmaster">Ticketmaster</option>
-            <option value="AdmitOne">AdmitOne</option>
-            <option value="Showpass">Showpass</option>
-            <option value="VTix">VTix</option>
-            <option value="Turntable Tickets">Turntable Tickets</option>
-          </select>
-
-          <select id="curator-sort-select" class="curator-select" autocomplete="off">
-            <option value="date-desc">Flagged: Newest First</option>
-            <option value="date-asc">Flagged: Oldest First</option>
-            <option value="price-asc">Attempted Price: Low to High</option>
-            <option value="price-desc">Attempted Price: High to Low</option>
-            <option value="venue-asc">Venue: A to Z</option>
-          </select>
-
-          <button type="button" class="btn-curator btn-curator-ghost" id="btn-clear-settings"
-            title="Reset search text, platform filter, sort order, and active queue view without restarting the server"
-            style="border: 1px solid rgba(255, 255, 255, 0.16); color: #cbd5e1; font-size: 0.82rem; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer; border-radius: 8px;">
-            <span>↺</span>
-            <span>Reset Search &amp; Filters</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Status Summary -->
-      <div class="curator-status-bar"
-        style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-        <div id="curator-results-text">Showing <strong>0</strong> quarantined items</div>
-        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <!-- Compact Status & Batch Action Buttons inline with Filters -->
+        <div class="curator-inline-actions">
+          <div id="curator-results-text" class="curator-results-inline">Showing <strong>0</strong> quarantined items</div>
           <button type="button" class="btn-curator" id="btn-status-run-quarantine"
             onclick="autoRunQuarantinedStages1BTo4(event)"
-            style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border: 1px solid #f59e0b; color: #fff; font-size: 0.78rem; font-weight: 700; padding: 6px 13px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);"
+            style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border: 1px solid #f59e0b; color: #fff; font-size: 0.76rem; font-weight: 700; padding: 5px 11px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);"
             title="Re-run quarantined items through Steps 1B ➔ 5 using any saved curator notes">
             <span id="btn-status-run-quarantine-label">🛡️ Re-Check Quarantined Queue</span>
           </button>
           <button type="button" class="btn-curator" id="btn-status-run-newest-passed"
             onclick="autoRunNewestPassedBatchStages1BTo5(event)"
-            style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border: 1px solid #34d399; color: #fff; font-size: 0.78rem; font-weight: 700; padding: 6px 13px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);"
+            style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border: 1px solid #34d399; color: #fff; font-size: 0.76rem; font-weight: 700; padding: 5px 11px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);"
             title="Re-audit the most recently published batch of events through Steps 1B ➔ 5">
             <span id="btn-status-run-newest-passed-label">🔄 Re-Audit Last Published Batch</span>
           </button>
         </div>
+      </div>
+
+      <!-- Row 2: Search & Sort Row -->
+      <div class="curator-search-sort-row">
+        <div class="curator-search-box">
+          <span class="curator-search-icon">🔍</span>
+          <input type="text" id="curator-search-input" class="curator-search-input"
+            placeholder="Search event title, venue, provider..." autocomplete="off">
+          <button type="button" class="btn-clear-curator-search" id="btn-clear-curator-search"
+            title="Clear search text" aria-label="Clear search"
+            style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; font-size: 0.95rem; cursor: pointer; padding: 2px 6px;">✕</button>
+        </div>
+
+        <select id="curator-platform-select" class="curator-select" autocomplete="off">
+          <option value="all">All Ticketing Platforms</option>
+          <option value="Eventbrite">Eventbrite</option>
+          <option value="TicketWeb">TicketWeb</option>
+          <option value="Ticketmaster">Ticketmaster</option>
+          <option value="AdmitOne">AdmitOne</option>
+          <option value="Showpass">Showpass</option>
+          <option value="VTix">VTix</option>
+          <option value="Turntable Tickets">Turntable Tickets</option>
+        </select>
+
+        <select id="curator-sort-select" class="curator-select" autocomplete="off">
+          <option value="date-desc">Flagged: Newest First</option>
+          <option value="date-asc">Flagged: Oldest First</option>
+          <option value="price-asc">Attempted Price: Low to High</option>
+          <option value="price-desc">Attempted Price: High to Low</option>
+          <option value="venue-asc">Venue: A to Z</option>
+        </select>
+
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-clear-settings"
+          title="Reset search text, platform filter, sort order, and active queue view without restarting the server"
+          style="border: 1px solid rgba(255, 255, 255, 0.16); color: #cbd5e1; font-size: 0.78rem; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer; border-radius: 8px;">
+          <span>↺</span>
+          <span>Reset Search &amp; Filters</span>
+        </button>
       </div>
     </section>
 

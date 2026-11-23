@@ -50,32 +50,32 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 16px 0;
+  padding: 10px 0;
 }
 
 .curator-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px 14px;
   flex-wrap: wrap;
 }
 
 .curator-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   color: #fff;
 }
 
 .curator-logo-icon {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .curator-brand-title {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -88,9 +88,9 @@ body {
   background: rgba(56, 189, 248, 0.15);
   border: 1px solid rgba(56, 189, 248, 0.4);
   color: var(--curator-accent);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 2px 8px;
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -99,18 +99,19 @@ body {
 .curator-stats-strip {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .stat-pill {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--curator-border);
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 8px;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .stat-val {
@@ -121,7 +122,13 @@ body {
 .curator-nav-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.curator-nav-actions .btn-curator {
+  padding: 5px 10px;
+  font-size: 0.78rem;
 }
 
 .automation-badge-container {
@@ -259,22 +266,37 @@ body {
 
 /* Controls Bar */
 .curator-controls-section {
-  padding: 24px 0 16px;
+  padding: 10px 0 12px;
 }
 
 .curator-filters-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px 14px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+}
+
+.curator-inline-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.curator-results-inline {
+  font-size: 0.8rem;
+  color: var(--curator-text-muted);
+  white-space: nowrap;
+  margin-right: 4px;
 }
 
 .curator-pills-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
@@ -282,9 +304,9 @@ body {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--curator-border);
   color: var(--curator-text-muted);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 5px 11px;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -385,14 +407,14 @@ body {
 .curator-search-sort-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .curator-search-box {
   position: relative;
   flex: 1;
-  min-width: 260px;
+  min-width: 240px;
 }
 
 .curator-search-input {
@@ -400,9 +422,9 @@ body {
   background: var(--curator-card);
   border: 1px solid var(--curator-border);
   color: #fff;
-  padding: 9px 14px 9px 36px;
+  padding: 7px 12px 7px 34px;
   border-radius: 8px;
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -440,9 +462,9 @@ body {
   background: var(--curator-card);
   border: 1px solid var(--curator-border);
   color: #fff;
-  padding: 9px 14px;
+  padding: 7px 12px;
   border-radius: 8px;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   outline: none;
   cursor: pointer;
 }
@@ -3463,19 +3485,19 @@ body.van50-accessible #curator-accessibility-btn.active {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px 14px;
-  margin: 0 0 14px 0;
-  padding: 10px 14px;
-  border-radius: 12px;
+  gap: 8px 12px;
+  margin: 10px 0 8px 0;
+  padding: 7px 12px;
+  border-radius: 10px;
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.92) 100%);
   border: 1px solid rgba(251, 146, 60, 0.38);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
   transition: all 0.2s ease;
 }
 .curator-pending-inbox.all-clear {
   background: rgba(15, 23, 42, 0.65);
   border-color: rgba(52, 211, 153, 0.28);
-  padding: 7px 14px;
+  padding: 6px 12px;
 }
 .pending-inbox-title-group {
   display: flex;
@@ -4061,8 +4083,8 @@ body.van50-accessible #curator-accessibility-btn.active {
 
 /* Collapsible 6-Step Pipeline Rail in Curator Antigravity Mode */
 .agy-pipeline-rail-panel.is-collapsed {
-  padding: 10px 14px;
-  margin-bottom: 12px;
+  padding: 8px 14px;
+  margin-bottom: 8px;
 }
 
 .agy-pipeline-rail-panel.is-collapsed .agy-rail-top-header {
