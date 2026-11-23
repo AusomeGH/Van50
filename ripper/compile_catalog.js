@@ -2522,7 +2522,7 @@ export async function compileCatalog(options = {}) {
         if (/\b(?:dinner|pancake|santa|family\s+day|cheer|winter\s+fair|wonderland|christmas\s+in|concord\s+christmas|winterfest)\b/i.test(titleLower)) return "social";
         if (c === "festivals") return "social";
       }
-      if (/\b(?:fan\s+expo|game\s+expo|culture\s+crawl|sakura\s+days|winter\s+solstice\s+festival|festival\s+of\s+lights|noel\s+surrey|lights\s+at\s+lafarge|festive\s+village|shipyards\s+christmas\s+festival|heritage\s+holidays|langley\s+christmas\s+village|cloverdale\s+rodeo)\b/i.test(titleLower)) {
+      if (/\b(?:fan\s+expo|culture\s+crawl|sakura\s+days|winter\s+solstice\s+festival|festival\s+of\s+lights|noel\s+surrey|lights\s+at\s+lafarge|festive\s+village|shipyards\s+christmas\s+festival|heritage\s+holidays|langley\s+christmas\s+village|cloverdale\s+rodeo)\b/i.test(titleLower)) {
         return "festivals";
       }
       if (/\b(?:christmas\s+market|holiday\s+market|farmers\s+market|night\s+market|craft\s+market|pottery\s+sale|craft\s+fair)\b/i.test(titleLower)) {
@@ -2921,6 +2921,16 @@ export async function compileCatalog(options = {}) {
     const resolvedFestivalAffiliation = isMatchedFestivalApproved
       ? (matchedFestival.festival_name || matchedFestival.name)
       : null;
+
+    // If explicitly rejected in data/festivals.json, ensure the event is never highlighted or categorized as a festival
+    if (matchedFestival && (matchedFestival.status === "rejected" || matchedFestival.approvalStatus === "rejected")) {
+      const nonFestCats = categories.filter((c) => c !== "festivals");
+      categories.length = 0;
+      categories.push(...(nonFestCats.length > 0 ? nonFestCats : ["social"]));
+      if (archetype === "festival") {
+        archetype = /\b(?:game|gaming|board\s*game|esports|expo)\b/i.test(cleanTitle || "") ? "social_gaming" : "live_stage";
+      }
+    }
 
     const resolvedHolidayAffiliation = (() => {
       if (matchedFestival && matchedFestival.merged_into_holiday) {

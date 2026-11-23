@@ -98,8 +98,7 @@
           <span id="curator-stop-indicator" class="main-stop-dot"></span>
           <span id="curator-stop-label">Pipeline Idle</span>
         </button>
-        <button type="button" class="btn-curator" id="btn-curator-active-scan"
-          onclick="reopenLivePipelineModal()"
+        <button type="button" class="btn-curator" id="btn-curator-active-scan" onclick="reopenLivePipelineModal()"
           style="display: none; background: linear-gradient(135deg, #0284c7, #38bdf8); border: 1px solid #7dd3fc; color: #fff; font-weight: 800;"
           title="Jump directly to the active pipeline scan view &amp; live terminal">
           <span>📟 Active Scan View</span>
@@ -261,8 +260,7 @@
               <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium)</option>
             </select>
           </div>
-          <button type="button" class="btn-limit-chip" id="btn-toggle-agy-rail"
-            onclick="toggleAgyPipelineRail()"
+          <button type="button" class="btn-limit-chip" id="btn-toggle-agy-rail" onclick="toggleAgyPipelineRail()"
             aria-expanded="false"
             style="padding: 6px 11px; font-size: 0.75rem; font-weight: 700; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18); color: #e2e8f0; border-radius: 7px; cursor: pointer;">
             ▼ Show 6-Step Rail
@@ -483,7 +481,8 @@
               (<code>layer_box_office.json</code> + <code>_cart.png</code>) → <strong>3 Verify Venue Info</strong>
               (<code>venues.json</code>) → <strong>4 Clean Titles &amp; Details</strong>
               (<code>layer_editorial.json</code>) → <strong>5 Merge &amp; Publish</strong> (<code>events.json</code> +
-              <code>js/data.js</code>).</div>
+              <code>js/data.js</code>).
+            </div>
             <div style="margin-top: 4px; color: #64748b;">Whenever you add Curator Guidance notes or screenshots to a
               quarantined event, workers read those notes first on the next check.</div>
           </div>
@@ -493,7 +492,8 @@
       <!-- Hidden legacy DOM mirrors so zero existing JS selectors break -->
       <div style="display: none;">
         <button type="button" id="btn-header-run-quarantine"><span id="btn-header-run-quarantine-label"></span></button>
-        <button type="button" id="btn-header-run-newest-passed"><span id="btn-header-run-newest-passed-label"></span></button>
+        <button type="button" id="btn-header-run-newest-passed"><span
+            id="btn-header-run-newest-passed-label"></span></button>
         <button type="button" id="btn-header-continue-1a"><span id="btn-header-continue-1a-label"></span></button>
         <button type="button" id="btn-close-scans-guide"><span id="scans-guide-toggle-label"></span></button>
         <button type="button" id="btn-banner-continue-1a"><span id="btn-banner-continue-1a-label"></span></button>
@@ -541,25 +541,23 @@
 
           <!-- Hidden mirror pills (accessed directly via Pending Approvals Inbox cards above) -->
           <span class="curator-filter-divider" aria-hidden="true" style="display: none;"></span>
-          <button type="button" class="curator-filter-pill" data-filter="holidays"
-            style="display: none;"
+          <button type="button" class="curator-filter-pill" data-filter="holidays" style="display: none;"
             title="Festivals and holiday categories awaiting curator approval">🎉 Festivals &amp; Holidays (<span
               id="pill-count-holidays">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="discovered_venues" style="display: none;">🏛️ Discovered Venues (<span
-              id="pill-count-discovered-venues">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="discovered_sources"
-            style="display: none;"
+          <button type="button" class="curator-filter-pill" data-filter="discovered_venues" style="display: none;">🏛️
+            Discovered Venues (<span id="pill-count-discovered-venues">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="discovered_sources" style="display: none;"
             title="Candidate event calendars and ticketing feeds discovered by AI">📡
             Discovered Sources (<span id="pill-count-discovered-sources">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="user_feedback"
-            style="display: none;"
+          <button type="button" class="curator-filter-pill" data-filter="user_feedback" style="display: none;"
             title="Community event submissions and corrections">💬 User Submissions (<span
               id="pill-count-user-feedback">0</span>)</button>
         </div>
 
         <!-- Compact Status & Batch Action Buttons inline with Filters -->
         <div class="curator-inline-actions">
-          <div id="curator-results-text" class="curator-results-inline">Showing <strong>0</strong> quarantined items</div>
+          <div id="curator-results-text" class="curator-results-inline">Showing <strong>0</strong> quarantined items
+          </div>
           <button type="button" class="btn-curator" id="btn-status-run-quarantine"
             onclick="autoRunQuarantinedStages1BTo4(event)"
             style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); border: 1px solid #f59e0b; color: #fff; font-size: 0.76rem; font-weight: 700; padding: 5px 11px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);"
@@ -581,8 +579,8 @@
           <span class="curator-search-icon">🔍</span>
           <input type="text" id="curator-search-input" class="curator-search-input"
             placeholder="Search event title, venue, provider..." autocomplete="off">
-          <button type="button" class="btn-clear-curator-search" id="btn-clear-curator-search"
-            title="Clear search text" aria-label="Clear search"
+          <button type="button" class="btn-clear-curator-search" id="btn-clear-curator-search" title="Clear search text"
+            aria-label="Clear search"
             style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; font-size: 0.95rem; cursor: pointer; padding: 2px 6px;">✕</button>
         </div>
 
@@ -678,8 +676,7 @@
             style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; line-height: 1.35;">
             <div style="font-weight: 600; color: #f8fafc;" id="ai-inst-summary-title">Event Title</div>
             <div style="color: #94a3b8; margin-top: 2px;" id="ai-inst-summary-venue">Venue • Platform</div>
-            <a href="#" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
-              id="ai-inst-summary-link"
+            <a href="#" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" id="ai-inst-summary-link"
               style="color: #38bdf8; word-break: break-all; text-decoration: underline; font-size: 0.78rem; display: inline-block; margin-top: 3px;">Source
               Page ↗</a>
           </div>
@@ -2466,10 +2463,16 @@
             <!-- Compact Active Scan Summary Strip (Replaces Tall Step 1A Config Controls Once Scan Starts) -->
             <div id="pipeline-harvester-compressed-summary"
               style="display: none; background: rgba(192, 132, 252, 0.08); border: 1px solid rgba(192, 132, 252, 0.35); border-radius: 7px; padding: 7px 11px; flex-direction: column; gap: 4px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <div style="font-size: 0.74rem; color: #f1f5f9; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; min-width: 0; flex: 1;">
-                  <span style="font-size: 0.67rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #c084fc; white-space: nowrap;">🎯 Selected:</span>
-                  <span id="harvester-compressed-selected-text" style="font-weight: 700; color: #f8fafc; line-height: 1.3;">All Metro Venue Feeds • All Events</span>
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <div
+                  style="font-size: 0.74rem; color: #f1f5f9; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; min-width: 0; flex: 1;">
+                  <span
+                    style="font-size: 0.67rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #c084fc; white-space: nowrap;">🎯
+                    Selected:</span>
+                  <span id="harvester-compressed-selected-text"
+                    style="font-weight: 700; color: #f8fafc; line-height: 1.3;">All Metro Venue Feeds • All
+                    Events</span>
                 </div>
                 <button type="button" id="btn-toggle-harvester-controls" class="btn-limit-chip"
                   onclick="toggleHarvesterCompressedControls()"
@@ -2478,9 +2481,13 @@
                   ▾ Show Controls
                 </button>
               </div>
-              <div style="font-size: 0.72rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; line-height: 1.3;">
-                <span style="font-size: 0.67rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #38bdf8; white-space: nowrap;">📡 Scan Status:</span>
-                <span id="harvester-compressed-status-text" style="font-weight: 600; color: #e2e8f0;">Initializing Step 1A Schedule Harvester…</span>
+              <div
+                style="font-size: 0.72rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; line-height: 1.3;">
+                <span
+                  style="font-size: 0.67rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #38bdf8; white-space: nowrap;">📡
+                  Scan Status:</span>
+                <span id="harvester-compressed-status-text" style="font-weight: 600; color: #e2e8f0;">Initializing Step
+                  1A Schedule Harvester…</span>
               </div>
             </div>
 
@@ -2539,23 +2546,23 @@
                     style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
                     🦌 Surrey (<span id="harvester-city-count-surrey">Surrey</span>)
                   </button>
-                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-burnaby" data-city-scope="burnaby"
-                    onclick="setHarvesterCityScope('burnaby')"
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-burnaby"
+                    data-city-scope="burnaby" onclick="setHarvesterCityScope('burnaby')"
                     style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
                     🏔️ Burnaby (<span id="harvester-city-count-burnaby">Burnaby</span>)
                   </button>
-                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-richmond" data-city-scope="richmond"
-                    onclick="setHarvesterCityScope('richmond')"
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-richmond"
+                    data-city-scope="richmond" onclick="setHarvesterCityScope('richmond')"
                     style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
                     🌊 Richmond (<span id="harvester-city-count-richmond">Richmond</span>)
                   </button>
-                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-new-west" data-city-scope="new-west"
-                    onclick="setHarvesterCityScope('new-west')"
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-new-west"
+                    data-city-scope="new-west" onclick="setHarvesterCityScope('new-west')"
                     style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
                     ⚓ New West (<span id="harvester-city-count-new-west">New West</span>)
                   </button>
-                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-langley" data-city-scope="langley"
-                    onclick="setHarvesterCityScope('langley')"
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-city-langley"
+                    data-city-scope="langley" onclick="setHarvesterCityScope('langley')"
                     style="padding: 4px 10px; font-size: 0.72rem; font-weight: 700;">
                     🐎 Langley (<span id="harvester-city-count-langley">Langley</span>)
                   </button>
@@ -2864,14 +2871,14 @@
               <div style="display: flex; align-items: center; gap: 5px;">
                 <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Start #:</label>
                 <input type="number" id="pipeline-card-start" class="curator-input"
-                  style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1"
-                  value="1" oninput="onStartNumberInput()">
+                  style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" value="1"
+                  oninput="onStartNumberInput()">
               </div>
               <div style="display: flex; align-items: center; gap: 5px;">
                 <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Stop #:</label>
                 <input type="number" id="pipeline-card-stop" class="curator-input"
-                  style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1"
-                  value="5" oninput="onStopNumberInput()">
+                  style="width: 58px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" value="5"
+                  oninput="onStopNumberInput()">
               </div>
               <div id="pipeline-range-count-badge" style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">
                 (5 Cards Selected: #1 to #5)
@@ -3387,13 +3394,13 @@
       const safeHref = (typeof window.safeExternalUrl === 'function')
         ? window.safeExternalUrl(url)
         : (() => {
-            try {
-              const p = new URL(String(url || '').trim(), window.location.origin);
-              return (p.protocol === 'https:' || p.protocol === 'http:') ? p.href : '#';
-            } catch (_) {
-              return '#';
-            }
-          })();
+          try {
+            const p = new URL(String(url || '').trim(), window.location.origin);
+            return (p.protocol === 'https:' || p.protocol === 'http:') ? p.href : '#';
+          } catch (_) {
+            return '#';
+          }
+        })();
       if (!safeHref || safeHref === '#') return false;
       const width = Math.min(1200, window.screen.availWidth - 100);
       const height = Math.min(900, window.screen.availHeight - 80);
@@ -3405,7 +3412,7 @@
         `noopener,noreferrer,width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=yes,resizable=yes,scrollbars=yes`
       );
       if (win) {
-        try { win.opener = null; } catch (_) {}
+        try { win.opener = null; } catch (_) { }
         win.focus();
       }
       return false;
@@ -3435,16 +3442,16 @@
       }
       try {
         sessionStorage.setItem('van50_agy_rail_expanded', shouldCollapse ? '0' : '1');
-      } catch (_) {}
+      } catch (_) { }
     };
     try {
       if (sessionStorage.getItem('van50_agy_rail_expanded') === '1') {
         window.toggleAgyPipelineRail(true);
       }
-    } catch (_) {}
+    } catch (_) { }
     window.VAN50_ENGINE = 'antigravity';
   </script>
-  <script src="js/curator.js?v=1.6.5"></script>
+  <script src="js/curator.js?v=1.6.8"></script>
 </body>
 
 </html>

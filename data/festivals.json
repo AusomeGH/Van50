@@ -1434,18 +1434,17 @@
     "aliases": [
       "VGX 2026"
     ],
-    "status": "approved",
-    "approvalStatus": "approved",
+    "status": "rejected",
+    "approvalStatus": "rejected",
     "discovered_from_event_id": "vancouver-convention-vancouver-game-expo-vgx-2026-2026-12-05",
     "venue_name": "Vancouver Convention Centre",
     "location": "1055 Canada Pl, Vancouver, BC V6C 0C3",
     "start_date": "2026-12-05",
     "end_date": "2026-12-05",
-    "category": "festivals",
+    "category": "social",
     "website_url": "https://vangameexpo.ca",
     "description": "A community-first celebration of gaming culture uniting players, indie developers, and enthusiasts in the heart of Downtown Vancouver. Immerse yourself in hands-on showcases, community tournaments, and creative panels spotlighting the Pacific Northwest's vibrant gaming scene.",
-    "price": 29,
-    "approvedAt": "2026-11-19"
+    "price": 29
   },
   {
     "id": "winter-in-the-village-steveston-s-holiday-celebration",
@@ -2427,5 +2426,23 @@
     "description": "Experience an iconic Fraser Valley tradition packed with live rodeo action, live music stages, and the lively Longhorn Saloon. Visitors can explore vibrant fairground attractions including the Indigenous Village, diverse food vendors, and dedicated family-friendly activities.",
     "price": 0,
     "rejectedAt": "2026-11-23"
+  },
+  {
+    "id": "cloverdale-rodeo-grand-entry-team-applications-now-open",
+    "slug": "cloverdale-rodeo-grand-entry-team-applications-now-open",
+    "name": "Cloverdale Rodeo Grand Entry Team Applications Now Open",
+    "festival_name": "Cloverdale Rodeo Grand Entry Team Applications Now Open",
+    "aliases": [],
+    "status": "pending_curator_approval",
+    "approvalStatus": "pending",
+    "discovered_from_event_id": "cloverdale-rodeo-and-cloverdale-rodeo-grand-entry-t-2026-11-23",
+    "venue_name": "Cloverdale Rodeo and Country Fair",
+    "location": "Cloverdale Rodeo and Country Fair",
+    "start_date": "2026-11-23",
+    "end_date": "2026-11-23",
+    "category": "festivals",
+    "website_url": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/",
+    "description": "Cloverdale Rodeo Grand Entry Team Applications Now Open at Cloverdale Rodeo and Country Fair",
+    "price": 0
   }
 ]

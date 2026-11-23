@@ -707,7 +707,7 @@ function updateFilterCounts() {
   const statA = document.getElementById('stat-audit-count');
   if (statA) statA.textContent = pendingFestHolCount;
 
-  const userSubs = Array.isArray(state.userFeedbackQueue)
+  const localSubs = Array.isArray(state.userFeedbackQueue)
     ? state.userFeedbackQueue.length
     : all.filter(e =>
         e.source === 'user_submission' ||
@@ -715,6 +715,9 @@ function updateFilterCounts() {
         e.isUserSubmission ||
         String(e.flagReason || e.quarantineReason || '').toLowerCase().includes('submission')
       ).length;
+  const sheetSubs = (Array.isArray(state.sheetFeedback) ? state.sheetFeedback.length : 0) +
+    (Array.isArray(state.sheetPriceUpdates) ? state.sheetPriceUpdates.length : 0);
+  const userSubs = localSubs + sheetSubs;
   setT('pill-count-user-feedback', userSubs);
   setT('stat-user-feedback-count', userSubs);
 
@@ -8357,6 +8360,7 @@ window.fetchSheetSubmissions = async function (silent = false) {
     let data = null;
     try { data = JSON.parse(text); } catch (_) { }
     if (!res.ok || !data || !data.success) {
+      state.sheetSubmissionsNeedsRedeploy = true;
       return {
         feedback: [],
         priceUpdates: [],
@@ -8366,12 +8370,16 @@ window.fetchSheetSubmissions = async function (silent = false) {
     }
     state.sheetFeedback = Array.isArray(data.feedback) ? data.feedback : [];
     state.sheetPriceUpdates = Array.isArray(data.priceUpdates) ? data.priceUpdates : [];
+    state.sheetSubmissionsNeedsRedeploy = false;
     const totalCount = (state.userFeedbackQueue || []).length + state.sheetFeedback.length + state.sheetPriceUpdates.length;
     const badge = document.getElementById('collected-feedback-count');
     if (badge) badge.textContent = String(totalCount);
+    if (typeof updateFilterCounts === 'function') updateFilterCounts();
+    if (state.activeFilter === 'user_feedback' && typeof renderUserFeedbackCards === 'function') renderUserFeedbackCards();
     if (!silent) showToast(`Synced ${state.sheetFeedback.length} feedback & ${state.sheetPriceUpdates.length} price update(s) from Google Sheet.`, 'success');
     return { feedback: state.sheetFeedback, priceUpdates: state.sheetPriceUpdates, error: null };
   } catch (err) {
+    state.sheetSubmissionsNeedsRedeploy = true;
     return { feedback: [], priceUpdates: [], needsRedeploy: true, error: String(err) };
   }
 };
@@ -8524,16 +8532,46 @@ function renderUserFeedbackCards() {
   if (!container) return;
 
   const feedbacks = state.userFeedbackQueue || [];
+  const sheetFeedback = Array.isArray(state.sheetFeedback) ? state.sheetFeedback : [];
+  const sheetPrices = Array.isArray(state.sheetPriceUpdates) ? state.sheetPriceUpdates : [];
+  const totalCount = feedbacks.length + sheetFeedback.length + sheetPrices.length;
+
   if (countDisplay) {
-    countDisplay.innerHTML = `Showing <strong>${feedbacks.length}</strong> sandboxed community submission(s) in Quarantine`;
+    countDisplay.innerHTML = `Showing <strong>${totalCount}</strong> community submission(s) (${feedbacks.length} local • ${sheetFeedback.length} Sheet feedback • ${sheetPrices.length} Sheet price updates)`;
   }
 
-  if (feedbacks.length === 0) {
-    container.innerHTML = `
-      <div style="text-align: center; padding: 60px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
+  const headerBarHtml = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
+      <div>
+        <h4 style="color: #6ee7b7; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
+          🛡️ Community Feedback, Suggestions &amp; Price Reports (${totalCount})
+        </h4>
+        <span style="font-size: 0.78rem; color: var(--curator-text-muted);">
+          Local quarantine queue + live Google Sheet submissions. Local price reports are also in Master Catalogs → Crowdsourced Prices.
+        </span>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="window.fetchSheetSubmissions(false).then(() => renderUserFeedbackCards())" style="font-size: 0.78rem; padding: 5px 12px; border-color: rgba(56,189,248,0.45); color: #7dd3fc;">
+          🔄 Sync Google Sheet
+        </button>
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="if (typeof openMasterCatalogsModal === 'function') openMasterCatalogsModal('crowdsourced_prices')" style="font-size: 0.78rem; padding: 5px 12px; border-color: rgba(251,191,36,0.45); color: #fde68a;">
+          💵 Local Price Reports
+        </button>
+      </div>
+    </div>
+    ${state.sheetSubmissionsNeedsRedeploy ? `
+      <div style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.8rem; color: #fde68a; line-height: 1.45;">
+        <strong>Google Sheet sync note:</strong> Live GitHub Pages submissions write to your Google Sheet, but reading rows back into Curator Mode requires deploying a New Version of <code>scripts/google_apps_script_submissions.gs</code> with <code>doGet()</code> enabled (<strong>Deploy → Manage deployments → Edit → Version: New version → Deploy</strong>).
+      </div>
+    ` : ''}
+  `;
+
+  if (totalCount === 0) {
+    container.innerHTML = headerBarHtml + `
+      <div style="text-align: center; padding: 48px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
         <div style="font-size: 2.5rem; margin-bottom: 12px;">💬</div>
         <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
-          No Community Submissions in Quarantine
+          No Pending Community Submissions
         </h3>
         <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
           All user suggestions, event tips, and issue reports submitted from the public site have been reviewed.
@@ -8543,18 +8581,39 @@ function renderUserFeedbackCards() {
     return;
   }
 
-  container.innerHTML = `
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
-      <div>
-        <h4 style="color: #6ee7b7; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
-          🛡️ Sandboxed Community Submissions Queue (${feedbacks.length})
-        </h4>
-        <span style="font-size: 0.78rem; color: var(--curator-text-muted);">
-          All user inputs are pre-sanitized, HTML-escaped, and sandboxed in Quarantine.
+  const sheetFeedbackHtml = sheetFeedback.map(item => `
+    <div class="curator-card" style="background: var(--curator-surface); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+        <span style="background: rgba(56, 189, 248, 0.15); color: #7dd3fc; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.35);">
+          ☁️ Live Google Sheet Feedback
         </span>
+        <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(item.timestamp || item.submitted_at || '')}</span>
+      </div>
+      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 10px 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(item.message || item.feedback || '')}</div>
+    </div>
+  `).join('');
+
+  const sheetPricesHtml = sheetPrices.map(item => `
+    <div class="curator-card" style="background: var(--curator-surface); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 10px; padding: 14px 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+        <span style="background: rgba(251, 191, 36, 0.15); color: #fde68a; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(251, 191, 36, 0.35);">
+          💵 Live Google Sheet Price Update
+        </span>
+        <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(item.timestamp || item.submitted_at || '')}</span>
+      </div>
+      <h4 style="color: #fff; margin: 0 0 6px 0; font-size: 1rem;">${escapeHtml(item.venue_name || item.venue || 'Venue Price Update')}</h4>
+      <div style="font-size: 0.85rem; color: #cbd5e1;">
+        ${item.cheapest_pint_input ? `Pint: <strong>$${escapeHtml(String(item.cheapest_pint_input))}</strong> ` : ''}
+        ${item.cheapest_cocktail_input ? `Cocktail: <strong>$${escapeHtml(String(item.cheapest_cocktail_input))}</strong> ` : ''}
+        ${item.note ? `<div style="margin-top: 6px; color: #94a3b8;">${escapeHtml(item.note)}</div>` : ''}
       </div>
     </div>
+  `).join('');
+
+  container.innerHTML = headerBarHtml + `
     <div style="display: flex; flex-direction: column; gap: 14px;">
+      ${sheetFeedbackHtml}
+      ${sheetPricesHtml}
       ${feedbacks.map(fb => {
     const typeLabels = {
       user_feedback: 'Community Feedback / Tip',
@@ -17845,7 +17904,20 @@ function initStagehandRipperUI() {
   function isExcludedCuratorFeedUrl(u = '') {
     const s = String(u || '').trim();
     if (!s || !s.startsWith('http')) return true;
-    return /127\.0\.0\.1|localhost|example\.com|testcellar/i.test(s);
+    // Mirror calendar_harvester.js isExcludedCrawlerFeedUrl() 1-to-1
+    if (/127\.0\.0\.1|localhost|example\.com|testcellar|anzaclub\.org|instagram\.com|reddit\.com|facebook\.com|tiktok\.com/i.test(s)) {
+      return true;
+    }
+    if (/^https?:\/\/(?:www\.)?(?:showpass|ticketweb|tickettailor|universe|vtixonline|zeffy|humanitix|orangetickets|eventbrite)\.(?:com|ca)\/?$/i.test(s)) {
+      return true;
+    }
+    if (/champlainheightscc\.ca|vanrec\.ca\/?$|surreyschools\.ca|kpu\.ca\/events|sfu\.ca\/surrey|ams\.ubc\.ca\/student-life\/events/i.test(s)) {
+      return true;
+    }
+    if (/parks-recreation\/parks\/|pitch-putt|pitch-and-putt|\/roofgarden|\/ubc-rose-garden|\/listings\/kitsilano-beach-park|\/listings\/queen-elizabeth-park|\/listings\/stanley-park|destinationvancouver\.com\/(?:activities\/free-and-nearly-free|things-to-do\/?$|inspirations\/golf\/)|^https?:\/\/(?:www\.)?(?:dartshill\.ca|vandusengarden\.org|ecologycentre\.ca)\/?$/i.test(s)) {
+      return true;
+    }
+    return false;
   }
 
   function resolveCuratorLearnedVenueUrl(venueName = '', deepLinks = {}) {
@@ -17857,7 +17929,10 @@ function initStagehandRipperUI() {
     const exactKey = keys.find(k => k.toLowerCase().trim() === cleanVenue);
     if (exactKey) return deepLinks[exactKey];
     if (cleanVenue.length >= 6) {
-      const subKey = keys.find(k => k.toLowerCase().includes(cleanVenue));
+      const subKey = keys.find(k => {
+        const ck = k.toLowerCase().trim();
+        return ck.includes(cleanVenue) || (ck.length >= 6 && cleanVenue.includes(ck));
+      });
       if (subKey) return deepLinks[subKey];
     }
     return '';
@@ -17896,14 +17971,28 @@ function initStagehandRipperUI() {
     const seenUrls = new Set();
 
     // Load learned venue deep-link overrides so feed URLs match calendar_harvester.js
-    let learnedVenueLinks = {};
-    try {
-      const lrRes = await fetch('/data/curator_learned_rules.json?_t=' + Date.now());
-      if (lrRes.ok) {
-        const lrData = await lrRes.json();
-        learnedVenueLinks = lrData.venue_calendar_deep_links || {};
-      }
-    } catch (_) { }
+    let learnedVenueLinks = (state.learnedRules && state.learnedRules.venue_calendar_deep_links) || {};
+    if (Object.keys(learnedVenueLinks).length === 0) {
+      try {
+        const lrRes = await fetch('/api/curator/rules?_t=' + Date.now(), {
+          headers: typeof getAuthHeaders === 'function' ? getAuthHeaders() : {}
+        });
+        if (lrRes.ok) {
+          const lrData = await lrRes.json();
+          state.learnedRules = lrData;
+          learnedVenueLinks = lrData.venue_calendar_deep_links || {};
+        }
+      } catch (_) { }
+    }
+    if (Object.keys(learnedVenueLinks).length === 0) {
+      try {
+        const lrRes = await fetch('/data/curator_learned_rules.json?_t=' + Date.now());
+        if (lrRes.ok) {
+          const lrData = await lrRes.json();
+          learnedVenueLinks = lrData.venue_calendar_deep_links || {};
+        }
+      } catch (_) { }
+    }
 
     // 1. Physical Venues from master or /data/venues.json
     let rawVenues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || [];
@@ -17920,6 +18009,8 @@ function initStagehandRipperUI() {
     if (Array.isArray(rawVenues)) {
       rawVenues.forEach(v => {
         if (v.is_test_canary) return;
+        // Skip perennial drop-in parks/beaches/open public spaces (handled by venue_detailer.js, not calendar_harvester.js)
+        if (v.access_model === 'open_public_space' || v.lifecycle_type === 'perennial_drop_in') return;
         const name = (v.venue_name || v.name || '').trim();
         const learnedUrl = name ? resolveCuratorLearnedVenueUrl(name, learnedVenueLinks) : '';
         const url = (learnedUrl || v.calendar_url || v.calendarUrl || v.website_url || v.websiteUrl || '').trim();
@@ -17949,7 +18040,7 @@ function initStagehandRipperUI() {
       { name: 'The Rickshaw Theatre', url: 'https://rickshawtheatre.com/events/', city: 'Vancouver', type: 'venue' },
       { name: 'The Fox Cabaret', url: 'https://www.foxcabaret.com/calendar', city: 'Vancouver', type: 'venue' },
       { name: 'VIFF Centre', url: 'https://viff.org/whats-on/', city: 'Vancouver', type: 'venue' },
-      { name: 'Firehall Arts Centre', url: 'https://www.firehallartscentre.ca/on-stage/', city: 'Vancouver', type: 'venue' },
+      { name: 'Firehall Arts Centre', url: 'https://www.firehallartscentre.ca/whats-on/', city: 'Vancouver', type: 'venue' },
       { name: 'The Improv Centre', url: 'https://theimprovcentre.ca/shows/', city: 'Vancouver', type: 'venue' }
     ];
     seedFeeds.forEach(sf => {
@@ -17978,6 +18069,7 @@ function initStagehandRipperUI() {
     if (Array.isArray(rawSources)) {
       rawSources.forEach(s => {
         if (s.id === 'testy-canary-feed' || s.type === 'canary_test_feed' || s.is_test_canary) return;
+        if (['waf_blocked', 'timeout_unreachable', 'inactive', 'disabled'].includes(String(s.status || '').toLowerCase())) return;
         const name = (s.name || s.id || '').trim();
         const url = (s.eventsUrl || s.calendarUrl || s.url || '').trim();
         const norm = normalizeCuratorFeedUrl(url);
@@ -18044,6 +18136,29 @@ function initStagehandRipperUI() {
       ];
       fallbacks.forEach(f => feeds.push(f));
     }
+
+    // Drop redundant bare root homepages when a dedicated subpath feed exists for the same host (mirrors calendar_harvester.js)
+    const hostsWithSubpath = new Set();
+    for (const f of feeds) {
+      try {
+        const uo = new URL(f.url);
+        const host = uo.hostname.replace(/^www\./, '').toLowerCase();
+        if (uo.pathname && uo.pathname !== '/') {
+          hostsWithSubpath.add(host);
+        }
+      } catch (_) { }
+    }
+    const dedupedFeeds = feeds.filter(f => {
+      try {
+        const uo = new URL(f.url);
+        const host = uo.hostname.replace(/^www\./, '').toLowerCase();
+        const isBareRoot = !uo.pathname || uo.pathname === '/';
+        if (isBareRoot && hostsWithSubpath.has(host)) return false;
+      } catch (_) { }
+      return true;
+    });
+    feeds.length = 0;
+    feeds.push(...dedupedFeeds);
 
     // Sort identically to calendar_harvester.js so UI feed numbers match crawler order 1-to-1
     feeds.sort((a, b) => (scoreCuratorFeedPriority(b) - scoreCuratorFeedPriority(a)) || String(a.name || '').localeCompare(String(b.name || '')));
