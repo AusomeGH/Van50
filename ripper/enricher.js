@@ -173,13 +173,49 @@ export function classifyArchetype(title, category, venue, rawArchetype, extra = 
     extra.access_model === "open_public_space" ||
     extra.access_model === "free_public_access";
 
+const NON_FESTIVAL_EXCLUSION_RE = /\b(?:pottery\s+sale|bake.*sale|quilt.*sale|craft\s+fair|craft\s+market|holiday\s+market|christmas\s+market|winter\s+market|farmers['’]?\s+market|queer\s+market|indigenous\s+market|makers?.*readers?.*healers?|community\s+dinner|pancake\s+lunch|meet\s+santa|visit\s+with\s+santa|tree\s+lighting\s+ceremony|carols\s+and\s+crafts|songs\s+in\s+the\s+snow|holiday\s+cheer\s+at|family\s+day\s+celebration|children['’]?s\s+winter\s+fair|world\s+tour|presents\s+diwali\s+celebration)\b/i;
+
+function qualifiesAsTrueFestival(title = "", description = "", extra = {}) {
+  const t = String(title || "").trim();
+  const d = String(description || "").trim();
+  const text = `${t} ${d}`;
+  if (!t) return false;
+  if (NON_FESTIVAL_EXCLUSION_RE.test(t)) return false;
+
+  // Count structural criteria (2-of-4 required, never matching venue_name)
+  let criteria = 0;
+  // 1. Multi-program / multi-stage / curated festival format
+  if (/\b(?:film\s+festival|music\s+festival|arts\s+festival|jazz\s+fest|fringe\s+festival|folk\s+music|writers\s+fest|fan\s+expo|game\s+expo|rodeo\s+and\s+country\s+fair|multi-?stage|multiple\s+stages|open-?studio|biennale|solstice\s+festival)\b/i.test(text)) {
+    criteria++;
+  }
+  // 2. Multi-day or multi-venue / civic-scale footprint
+  if (/\b(?:multi-?day|multiple\s+venues|city-?wide|across\s+east|car-?free\s+day|street\s+party|fairgrounds|botanical\s+garden|historic\s+site|convention\s+centre)\b/i.test(text) || (Array.isArray(extra.showings) && extra.showings.length >= 2)) {
+    criteria++;
+  }
+  // 3. Flagship annual civic/cultural anchor
+  if (/\b(?:eastside\s+culture\s+crawl|vandusen\s+festival\s+of\s+lights|sakura\s+days|winter\s+solstice\s+festival|noel\s+surrey|bright\s+nights|lights\s+at\s+lafarge|festive\s+village|shipyards\s+christmas\s+festival|heritage\s+holidays|langley\s+christmas\s+village|khatsahlano|diwali\s+fest|doxa|viff|heart\s+of\s+the\s+city|cloverdale\s+rodeo)\b/i.test(t)) {
+    criteria += 2;
+  }
+  // 4. Multi-discipline experience (2+ distinct pillars)
+  const pillars = [
+    /\b(?:live\s+music|performances?|stages?|concerts?)\b/i.test(d),
+    /\b(?:workshops?|activities|hands-on)\b/i.test(d),
+    /\b(?:artisan|vendors?|chalets?|market)\b/i.test(d),
+    /\b(?:lights?|installations?|exhibits?|films?|screenings?|rodeo)\b/i.test(d),
+  ].filter(Boolean).length;
+  if (pillars >= 2) criteria++;
+
+  return criteria >= 2;
+}
+
   // Perennial drop-in parks, markets, galleries, and recreation facilities must never be locked to live_stage, cinema, or roving_series
   const PERENNIAL_DISALLOWED_ARCHETYPES = new Set(["live_stage", "cinema", "roving_series"]);
 
   if (
     rawArchetype &&
     ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"].includes(rawArchetype) &&
-    !(isPerennialDropIn && PERENNIAL_DISALLOWED_ARCHETYPES.has(rawArchetype))
+    !(isPerennialDropIn && PERENNIAL_DISALLOWED_ARCHETYPES.has(rawArchetype)) &&
+    !(rawArchetype === "festival" && !qualifiesAsTrueFestival(title, extra.description, extra))
   ) {
     return rawArchetype;
   }
@@ -192,8 +228,8 @@ export function classifyArchetype(title, category, venue, rawArchetype, extra = 
     return "workshop";
   }
 
-  // 2. Multi-Venue Festivals & Cultural Celebrations (Archetype I: 790–799)
-  if (/\b(?:festival|fest\b|diwali|fringe|doxa|apple festival|jazz fest|vanjazz|pride festival|film festival|viff|celebration|biennale)\b/i.test(`${title || ""} ${extra.festival_affiliation || ""}`)) {
+  // 2. Multi-Venue Festivals & Cultural Celebrations (Archetype I: 790–799) — strict 2-of-4 structural gate
+  if (qualifiesAsTrueFestival(title, extra.description, extra)) {
     return "festival";
   }
 

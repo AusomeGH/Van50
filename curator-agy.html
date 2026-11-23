@@ -110,6 +110,12 @@
           <span id="curator-stop-indicator" class="main-stop-dot"></span>
           <span id="curator-stop-label">Pipeline Idle</span>
         </button>
+        <button type="button" class="btn-curator" id="btn-curator-active-scan"
+          onclick="reopenLivePipelineModal()"
+          style="display: none; background: linear-gradient(135deg, #0284c7, #38bdf8); border: 1px solid #7dd3fc; color: #fff; font-weight: 800;"
+          title="Jump directly to the active pipeline scan view &amp; live terminal">
+          <span>📟 Active Scan View</span>
+        </button>
         <button type="button" class="btn-curator btn-curator-danger" id="btn-restart-system"
           title="Restart the local Python server, stop stuck worker processes, clear browser caches, and reload fresh data">
           <span id="btn-restart-icon">🔄</span>
@@ -252,6 +258,18 @@
               <option value="gemini-3.8-flash-high">Gemini 3.8 Flash (High)</option>
               <option value="gemini-4-argon-low">Gemini 4 Argon (Low)</option>
               <option value="gemini-4-argon-medium">Gemini 4 Argon (Medium)</option>
+              <option value="gemini-4-argon-high">Gemini 4 Argon (High)</option>
+              <option value="gemini-4-carbon-low">Gemini 4 Carbon (Low)</option>
+              <option value="gemini-4-carbon-medium">Gemini 4 Carbon (Medium)</option>
+              <option value="gemini-4-carbon-high">Gemini 4 Carbon (High)</option>
+              <option value="gemini-4-neon-low">Gemini 4 Neon (Low)</option>
+              <option value="gemini-4-neon-medium">Gemini 4 Neon (Medium)</option>
+              <option value="gemini-4-neon-high">Gemini 4 Neon (High)</option>
+              <option value="gemini-4-neon-xhigh">Gemini 4 Neon (XHigh)</option>
+              <option value="gemini-4-hydrogen-low">Gemini 4 Hydrogen (Low)</option>
+              <option value="gemini-4-hydrogen-medium">Gemini 4 Hydrogen (Medium)</option>
+              <option value="gemini-4-hydrogen-high">Gemini 4 Hydrogen (High)</option>
+              <option value="gemini-4-hydrogen-xhigh">Gemini 4 Hydrogen (XHigh)</option>
               <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium)</option>
             </select>
           </div>
@@ -2163,6 +2181,18 @@
               <option value="gemini-3.8-flash-high">Gemini 3.8 Flash (High, 125s timeout)</option>
               <option value="gemini-4-argon-low">Gemini 4 Argon (Low, 95s timeout)</option>
               <option value="gemini-4-argon-medium">Gemini 4 Argon (Medium, 120s timeout)</option>
+              <option value="gemini-4-argon-high">Gemini 4 Argon (High, 150s timeout)</option>
+              <option value="gemini-4-carbon-low">Gemini 4 Carbon (Low, 95s timeout)</option>
+              <option value="gemini-4-carbon-medium">Gemini 4 Carbon (Medium, 120s timeout)</option>
+              <option value="gemini-4-carbon-high">Gemini 4 Carbon (High, 150s timeout)</option>
+              <option value="gemini-4-neon-low">Gemini 4 Neon (Low, 95s timeout)</option>
+              <option value="gemini-4-neon-medium">Gemini 4 Neon (Medium, 120s timeout)</option>
+              <option value="gemini-4-neon-high">Gemini 4 Neon (High, 150s timeout)</option>
+              <option value="gemini-4-neon-xhigh">Gemini 4 Neon (XHigh, 180s timeout)</option>
+              <option value="gemini-4-hydrogen-low">Gemini 4 Hydrogen (Low, 95s timeout)</option>
+              <option value="gemini-4-hydrogen-medium">Gemini 4 Hydrogen (Medium, 120s timeout)</option>
+              <option value="gemini-4-hydrogen-high">Gemini 4 Hydrogen (High, 150s timeout)</option>
+              <option value="gemini-4-hydrogen-xhigh">Gemini 4 Hydrogen (XHigh, 180s timeout)</option>
               <option value="claude-sonnet-5-5-medium">Claude Sonnet 5.5 (Medium, 120s timeout)</option>
             </select>
           </div>

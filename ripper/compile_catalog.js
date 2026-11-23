@@ -428,6 +428,16 @@ export function matchVenue(venueQuery, venues) {
     }
     if (isSubFacilityMismatch(v)) continue;
 
+    // Facility-type incompatibility guard: never match an outdoor park/beach/plaza to an indoor institution (e.g. "Douglas Park" must never match "Douglas College - New Westminster Campus")
+    const isOutdoorPark = (s) => /\b(?:park|beach|seawall|plaza|trail|garden|gardens)\b/i.test(String(s || ""));
+    const isIndoorInstitution = (s) => /\b(?:college|university|school|theatre|theater|library|hotel|church|museum|cinema)\b/i.test(String(s || ""));
+    if (
+      (isOutdoorPark(rawQuery) && isIndoorInstitution(vRawName) && !isOutdoorPark(vRawName)) ||
+      (isIndoorInstitution(rawQuery) && isOutdoorPark(vRawName) && !isIndoorInstitution(vRawName))
+    ) {
+      continue;
+    }
+
     const vClean = vRawName.toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
     const vTokens = new Set(vClean.split(" ").filter((t) => t.length >= 3 && !commonStopwords.has(t)));
     if (vTokens.size === 0) continue;
@@ -523,7 +533,8 @@ export function detectLayerConflicts({ seed = {}, sched = {}, box = {}, edit = {
     if (["parks-nature", "parks", "park", "outdoors", "nature", "garden", "gardens"].includes(c)) return "parks-nature";
     if (["workshops", "workshop", "classes", "class", "craft"].includes(c)) return "workshops";
     if (["sports-rec", "sports", "recreation", "active-rec", "fitness", "skating"].includes(c)) return "sports-rec";
-    if (["festivals", "festival", "holiday-market", "market"].includes(c)) return "festivals";
+    if (["festivals", "festival"].includes(c)) return "festivals";
+    if (["holiday-market", "market", "markets"].includes(c)) return "markets";
     return c;
   };
   const normEditCat = normalizeConflictCategory(edit.category);
@@ -2497,12 +2508,25 @@ export async function compileCatalog(options = {}) {
     const CANONICAL_CATEGORIES = new Set([
       "music", "cinema", "shows", "outdoors", "arts", "markets", "social", "festivals", "sports", "trivia", "free-public-access"
     ]);
+    const STRICT_NON_FESTIVAL_RE = /\b(?:pottery\s+sale|bake.*sale|quilt.*sale|craft\s+fair|craft\s+market|holiday\s+market|christmas\s+market|winter\s+market|farmers['’]?\s+market|queer\s+market|indigenous\s+market|makers?.*readers?.*healers?|community\s+dinner|pancake\s+lunch|meet\s+santa|visit\s+with\s+santa|tree\s+lighting\s+ceremony|bright\s+in\s+burnaby|carols\s+and\s+crafts|songs\s+in\s+the\s+snow|holiday\s+cheer\s+at|family\s+day\s+celebration|children['’]?s\s+winter\s+fair|parkgate\s+winter\s+lights|winter\s+lights\s+festival|christmas\s+wonderland\s+on\s+the\s+drive|christmas\s+in\s+pitt\s+meadows|christmas\s+in\s+the\s+square|concord\s+christmas|holiday\s+bonfire|winterfest|world\s+tour|presents\s+diwali\s+celebration)\b/i;
+
     const normalizeCanonicalCategory = (rawCat, titleStr = "", venueStr = "") => {
       const c = String(rawCat || "").trim().toLowerCase();
+      const titleLower = String(titleStr || "").toLowerCase();
       const blob = `${titleStr} ${venueStr}`.toLowerCase();
-      if (/\b(?:tree\s+lighting\s+festival|fan\s+expo)\b/i.test(blob)) return "festivals";
-      if (/\b(?:christmas\s+market|holiday\s+market|farmers\s+market|night\s+market|craft\s+market)\b/i.test(blob) && !/\b(?:festival\s+&\s+holiday\s+market|tree\s+lighting)\b/i.test(blob)) {
-        if (c === "culture" || !CANONICAL_CATEGORIES.has(c)) return "markets";
+      // Hard exclusions: never route small markets, pottery sales, dinners, Santa visits, tree lightings, or single concerts to "festivals"
+      if (STRICT_NON_FESTIVAL_RE.test(titleLower)) {
+        if (/\b(?:market|craft\s+fair|pottery\s+sale|bake.*sale|quilt.*sale|makers?.*readers?)\b/i.test(titleLower)) return "markets";
+        if (/\b(?:songs\s+in\s+the\s+snow|concert|carols)\b/i.test(titleLower)) return "music";
+        if (/\b(?:tree\s+lighting|bonfire|park|bright\s+in\s+burnaby|winter\s+lights)\b/i.test(titleLower)) return "outdoors";
+        if (/\b(?:dinner|pancake|santa|family\s+day|cheer|winter\s+fair|wonderland|christmas\s+in|concord\s+christmas|winterfest)\b/i.test(titleLower)) return "social";
+        if (c === "festivals") return "social";
+      }
+      if (/\b(?:fan\s+expo|game\s+expo|culture\s+crawl|sakura\s+days|winter\s+solstice\s+festival|festival\s+of\s+lights|noel\s+surrey|lights\s+at\s+lafarge|festive\s+village|shipyards\s+christmas\s+festival|heritage\s+holidays|langley\s+christmas\s+village|cloverdale\s+rodeo)\b/i.test(titleLower)) {
+        return "festivals";
+      }
+      if (/\b(?:christmas\s+market|holiday\s+market|farmers\s+market|night\s+market|craft\s+market|pottery\s+sale|craft\s+fair)\b/i.test(titleLower)) {
+        return "markets";
       }
       if (CANONICAL_CATEGORIES.has(c)) return c;
       if (c === "comedy" || c === "theatre" || c === "theater" || c === "performing-arts" || c === "live_stage") return "shows";
@@ -2514,9 +2538,9 @@ export async function compileCatalog(options = {}) {
         return "social";
       }
       if (c === "culture" || c === "cultural" || c === "holiday") {
-        if (/\bmarket\b/i.test(blob)) return "markets";
-        if (/\b(?:festival|expo|parade|celebration|carnival)\b/i.test(blob)) return "festivals";
-        if (/\b(?:meet\s+santa|visit\s+with\s+santa|social|meetup)\b/i.test(blob)) return "social";
+        if (/\bmarket\b/i.test(titleLower)) return "markets";
+        if (/\b(?:festival|expo|parade|carnival)\b/i.test(titleLower) && !STRICT_NON_FESTIVAL_RE.test(titleLower)) return "festivals";
+        if (/\b(?:meet\s+santa|visit\s+with\s+santa|social|meetup|celebration|dinner)\b/i.test(titleLower)) return "social";
         return "arts";
       }
       if (c === "crafts" || c === "workshop" || c === "workshops") return "arts";
@@ -2852,9 +2876,10 @@ export async function compileCatalog(options = {}) {
           : (archetype === "festival" ? cleanTitle : null);
 
     // Auto-stage newly discovered unapproved festivals into data/festivals.json with status: "pending_curator_approval"
-    // so the Antigravity Curator prompts the user to approve, merge into an existing festival, or reject it!
+    // Enforce strict 2-of-4 festival exclusions so small markets, pottery sales, single-venue dinners, tree lightings, and concerts are never staged as festivals
     const isWinterHolidaySubAttraction = /\b(?:christmas|santa|noel|holiday\s*market|holiday\s*celebration|winter\s*market|winter\s*solstice|winterfest|winter\s*in\s*the\s*village|festive\s*village|lights\s*of\s*hope|lights\s*at\s*lafarge|canyon\s*lights|festival\s*of\s*lights|bright\s*nights|surrey\s*tree\s*lighting|winter\s*trout\s*fest|merry\s*(?:,|&|and)?\s*(?:gay\s*(?:,|&|and)?)?\s*bright)\b/i.test(rawCandidateFestName || "");
-    if (!matchedFestival && rawCandidateFestName && !isWinterHolidaySubAttraction && Array.isArray(festivalsRegistry)) {
+    const isNonFestivalExcluded = STRICT_NON_FESTIVAL_RE.test(rawCandidateFestName || "");
+    if (!matchedFestival && rawCandidateFestName && !isWinterHolidaySubAttraction && !isNonFestivalExcluded && Array.isArray(festivalsRegistry)) {
       const candSlug = String(rawCandidateFestName).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
       const alreadyInRegistry = festivalsRegistry.some((f) => {
         const s = f.slug || f.id || String(f.festival_name || f.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");

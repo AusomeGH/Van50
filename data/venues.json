@@ -22364,39 +22364,39 @@
     "full_address": "5-20555 56 Ave, Langley City, BC V3A 3Y9",
     "neighborhood": "Langley City",
     "coordinates": [
-      49.1037,
-      -122.6542
+      49.1043,
+      -122.6543
     ],
     "access_model": "free_public_access",
     "environment_type": "indoor",
     "venue_type": "bar_club_music_lounge",
     "_gps_inferred": false,
     "weekly_hours": "Mon: 2:00 PM - 6:00 PM; Tue: 2:00 PM - 7:00 PM; Wed-Thu: 12:00 PM - 8:00 PM; Fri: 12:00 PM - 10:00 PM; Sat: 11:00 AM - 10:00 PM; Sun: 11:00 AM - 6:00 PM",
-    "transit_info": "TransLink bus routes 503 (Fraser Highway Express), 501, 502, and 342 along 56 Ave and nearby Langley Centre exchange",
-    "step_free_entrance": "Step-free, ground-level entrance directly into commercial plaza taproom",
+    "transit_info": "TransLink bus routes 503, 342, 560 along 56 Ave or walking distance from Langley Centre bus exchange",
+    "step_free_entrance": "Ground-level street/strip-mall entrance with wide step-free access and flat concrete threshold",
     "elevator_lift": "not_applicable",
-    "accessible_washrooms": "Wheelchair-accessible ground-floor single-occupancy / gender-neutral washrooms",
-    "service_animals": "Certified service animals welcome indoors; well-behaved dogs permitted on the patio",
+    "accessible_washrooms": "Standard accessible single-stall ground-floor customer washroom",
+    "service_animals": "Certified guide and service dogs permitted indoors under BC Guide Dog and Service Dog Act; pet-friendly patio policy",
     "accessibility": {
-      "step_free": "Step-free, ground-level entrance directly into commercial plaza taproom",
+      "step_free": "Ground-level street/strip-mall entrance with wide step-free access and flat concrete threshold",
       "elevator": "not_applicable",
-      "washrooms": "Wheelchair-accessible ground-floor single-occupancy / gender-neutral washrooms",
-      "service_animals": "Certified service animals welcome indoors; well-behaved dogs permitted on the patio"
+      "washrooms": "Standard accessible single-stall ground-floor customer washroom",
+      "service_animals": "Certified guide and service dogs permitted indoors under BC Guide Dog and Service Dog Act; pet-friendly patio policy"
     },
-    "on_site_fnb": "Full craft brewery taproom featuring 12 rotating house taps, flights, and an on-site kitchen serving artisan Neapolitan pizzas, burgers, tacos, and shareables",
-    "outside_food_policy": "No outside food or drinks permitted (full kitchen operating on-site)",
+    "on_site_fnb": "Full craft brewery taproom and kitchen serving 12 rotating house beers on tap, Neapolitan-style pizzas, burgers, tacos, and shareable appetizers",
+    "outside_food_policy": "No outside food or drinks permitted due to on-site licensed full kitchen and liquor primary licensing",
     "payment_methods": "Debit, Visa, MasterCard, Apple Pay, Google Pay, Cash",
-    "beer_benchmark": "$6.95 CAD (12 oz tulip pour; $5.00 CAD during happy hour, $9.50 CAD 20 oz sleeve)",
-    "cocktail_benchmark": "$10.50 CAD (craft cocktails & seasonal ciders)",
+    "beer_benchmark": "$7.50 CAD (16oz house craft draft pint / $5.00 CAD 12oz happy hour sleeve)",
+    "cocktail_benchmark": "$11.00 CAD (taproom guest cider / feature cocktail)",
     "coffee_benchmark": null,
-    "meal_benchmark": "$17.00 CAD (The Cattle Drive Prime Rib Burger with fries or 12-inch Neapolitan Pizza)",
+    "meal_benchmark": "$17.00 CAD (12-inch Margherita pizza or taco plate)",
     "spend_benchmarks": {
-      "beer": "$6.95 CAD (12 oz tulip pour; $5.00 CAD during happy hour, $9.50 CAD 20 oz sleeve)",
-      "cocktail": "$10.50 CAD (craft cocktails & seasonal ciders)",
-      "meal": "$17.00 CAD (The Cattle Drive Prime Rib Burger with fries or 12-inch Neapolitan Pizza)",
+      "beer": "$7.50 CAD (16oz house craft draft pint / $5.00 CAD 12oz happy hour sleeve)",
+      "cocktail": "$11.00 CAD (taproom guest cider / feature cocktail)",
+      "meal": "$17.00 CAD (12-inch Margherita pizza or taco plate)",
       "coffee": null
     },
-    "last_grounded_at": "2026-11-20T14:10:37.986Z",
+    "last_grounded_at": "2026-11-22T20:20:32.214Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -23898,5 +23898,56 @@
     "access_model": "free_public_access",
     "environment_type": "indoor",
     "venue_type": "civic_library_community_centre"
+  },
+  {
+    "venue_id": "douglas-park-langley",
+    "venue_name": "Douglas Park (Langley)",
+    "aliases": [
+      "Douglas Park",
+      "Douglas Park Langley",
+      "Douglas Park Spirit Square"
+    ],
+    "address": "5403 206 St, Langley, BC V3A 2E2",
+    "full_address": "5403 206 St, Langley, BC V3A 2E2",
+    "neighborhood": "Langley City",
+    "city": "Langley",
+    "region": "Langley",
+    "coordinates": [
+      49.1019,
+      -122.6529
+    ],
+    "lat": 49.1006,
+    "lng": -122.6512,
+    "access_model": "open_public_space",
+    "environment_type": "outdoor",
+    "venue_type": "park_beach_outdoor",
+    "_gps_inferred": false,
+    "weekly_hours": "Daily: 8:00 AM - 10:00 PM",
+    "transit_info": "TransLink bus routes 501, 502, 503, 560, and 564 serving Langley Centre Exchange within a 5-10 minute walk (approx. 500m)",
+    "step_free_entrance": "Paved flat pathways and concrete access routes from 206 Street and Douglas Crescent to the playground, water park, and sports courts",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Accessible public washroom building located on-site adjacent to the water spray park and playground",
+    "service_animals": "Service animals welcome; dogs permitted on leash along perimeter pathways (dogs prohibited inside playground and spray park zones)",
+    "accessibility": {
+      "step_free": "Paved flat pathways and concrete access routes from 206 Street and Douglas Crescent to the playground, water park, and sports courts",
+      "elevator": "not_applicable",
+      "washrooms": "Accessible public washroom building located on-site adjacent to the water spray park and playground",
+      "service_animals": "Service animals welcome; dogs permitted on leash along perimeter pathways (dogs prohibited inside playground and spray park zones)"
+    },
+    "on_site_fnb": "No permanent cafe or bar on-site; seasonal concession or food trucks during community festival events; drinking fountains available",
+    "outside_food_policy": "Outside food and picnics permitted; picnic tables and open grass lawns available (alcohol prohibited)",
+    "payment_methods": "Free public access (cashless or cash at occasional seasonal community event stalls)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-23T01:06:34.332Z",
+    "grounding_source": "google_maps_reviews_ai"
   }
 ]

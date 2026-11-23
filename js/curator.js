@@ -5195,7 +5195,7 @@ function renderHolidayCards() {
   const activeSubTab = state.festivalsSubTab;
 
   if (countDisplay) {
-    countDisplay.innerHTML = `Festivals &amp; Holidays: <strong>${pendingTaxonomyCount}</strong> needing approval &bull; <strong>${quarantinedFestivals.length}</strong> quarantined event(s) &bull; <strong>${approvedFestivals.length}</strong> approved festivals &bull; <strong>${approved.length}</strong> approved holidays`;
+    countDisplay.innerHTML = `Festivals &amp; Holidays: <strong>${pendingTaxonomyCount}</strong> needing approval &bull; <strong>${quarantinedFestivals.length}</strong> quarantined festival/holiday event(s) &bull; <strong>${approvedFestivals.length}</strong> approved festivals &bull; <strong>${approved.length}</strong> approved holidays`;
   }
 
   const subTabBtnStyle = (isActive, accentColor, accentBg, accentBorder) =>
@@ -5212,7 +5212,7 @@ function renderHolidayCards() {
       </button>
       <button type="button" onclick="setFestivalsSubTab('quarantined')"
         style="${subTabBtnStyle(activeSubTab === 'quarantined', '#fde68a', 'rgba(245,158,11,0.2)', 'rgba(245,158,11,0.55)')}">
-        <span>⚠️ Quarantined Events</span>
+        <span>⚠️ Quarantined Festival/Holiday</span>
         <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${quarantinedFestivals.length}</span>
       </button>
       <button type="button" onclick="setFestivalsSubTab('approved_festivals')"
@@ -6487,7 +6487,6 @@ window.rejectPendingFestival = async function (festSlug, festName) {
     showToast('Please unlock Curator Studio first.', 'warning');
     return;
   }
-  if (!confirm(`Dismiss festival candidate '${festName || festSlug}'? Its events will remain standalone cards.`)) return;
   try {
     const res = await fetch('/api/curator/reject-festival', {
       method: 'POST',
@@ -8990,22 +8989,30 @@ function initStagehandRipperUI() {
   const pipelineItemProgress = document.getElementById('pipeline-item-progress');
   const pipelineProgressBar = document.getElementById('pipeline-progress-bar');
 
-  // Main Page Global Stop Run Button (Request 2)
+  // Main Page Global Stop Run Button (Request 2) + Active Scan View Jump Button
   const updateMainStopButtonState = (isRunning, pid = null) => {
     const btn = document.getElementById('btn-curator-stop-run');
+    const activeScanBtn = document.getElementById('btn-curator-active-scan');
     const label = document.getElementById('curator-stop-label');
     const indicator = document.getElementById('curator-stop-indicator');
+    window._activeStagehandRunning = Boolean(isRunning);
+    window._activeStagehandPid = pid || null;
     if (!btn) return;
     if (isRunning) {
       btn.classList.remove('is-idle');
       btn.classList.add('is-running');
       if (label) label.textContent = pid ? `🛑 Stop Run [PID: ${pid}]` : '🛑 Stop Run';
       btn.title = `Active scan running${pid ? ` (PID: ${pid})` : ''}! Click to halt immediately.`;
+      if (activeScanBtn) {
+        activeScanBtn.style.display = 'inline-flex';
+        activeScanBtn.title = `Jump to the active pipeline scan view${pid ? ` (PID: ${pid})` : ''}`;
+      }
     } else {
       btn.classList.remove('is-running');
       btn.classList.add('is-idle');
       if (label) label.textContent = 'Not Running';
       btn.title = 'Not running — No active scan or worker process in background';
+      if (activeScanBtn) activeScanBtn.style.display = 'none';
     }
   };
 
@@ -10462,7 +10469,7 @@ function initStagehandRipperUI() {
     quarantineBtnLabels.forEach(id => {
       const el = document.getElementById(id);
       if (el && !isExecuting) {
-        el.textContent = `🛡️ Re-Check Quarantined Queue (${qCount})`;
+        el.textContent = `🛡️ Re-Check All Quarantined (${qCount})`;
       }
     });
 
@@ -14872,6 +14879,25 @@ function initStagehandRipperUI() {
       pipelineModal.style.display = 'flex';
       pipelineModal.classList.add('active');
       document.body.style.overflow = 'hidden';
+    }
+    // If the user closed & reopened Curator Studio while a server-side worker is still running
+    // (no activeEventSource in this tab), jump straight into Active Scan View with live status & stop controls
+    if (!activeEventSource && window._activeStagehandRunning) {
+      const controlsEl = document.getElementById('pipeline-modal-controls');
+      const summaryStripEl = document.getElementById('pipeline-active-summary-strip');
+      if (controlsEl) controlsEl.style.display = 'none';
+      if (summaryStripEl) summaryStripEl.style.display = 'flex';
+      if (btnStopPipeline) btnStopPipeline.style.display = 'inline-block';
+      if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'inline-flex';
+      const pidLabel = window._activeStagehandPid ? ` [PID: ${window._activeStagehandPid}]` : '';
+      if (pipelineStatusText) {
+        pipelineStatusText.textContent = `Active background pipeline worker running${pidLabel}...`;
+      }
+      if (pipelineConsoleOutput && !pipelineConsoleOutput.textContent.trim()) {
+        pipelineConsoleOutput.textContent = `🔄 Reattached to active background pipeline worker${pidLabel}.\n` +
+          `   The previous browser tab closed its SSE stream, but the worker is still executing on the server.\n` +
+          `   Live status is being polled every 3s; use "🛑 Stop Run" above to halt it anytime.\n`;
+      }
     }
   };
 

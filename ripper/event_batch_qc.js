@@ -182,8 +182,10 @@ async function fetchCultchSpektrixLiveCartContext(rawUrl) {
     const cleanUrl = rawUrl.replace(/&amp;|&#038;/gi, "&");
     if (!/thecultch\.com/i.test(cleanUrl)) return "";
     const instMatch = cleanUrl.match(/EventInstanceId=(\d+)/i) || cleanUrl.match(/ChooseSeats\/(\d+)/i);
-    if (!instMatch) return "";
-    const targetNumericInstId = instMatch[1];
+    const webEventMatch = cleanUrl.match(/WebEventId=([A-Za-z0-9_-]+)/i);
+    if (!instMatch && !webEventMatch) return "";
+    const targetNumericInstId = instMatch ? instMatch[1] : null;
+    const targetWebEventId = webEventMatch ? webEventMatch[1] : null;
 
     if (!_cultchSpektrixEventsRuntimeCache) {
       const evRes = await fetch("https://ticketing.thecultch.com/thecultch/api/v3/events", { signal: AbortSignal.timeout(7000) });
@@ -205,9 +207,17 @@ async function fetchCultchSpektrixLiveCartContext(rawUrl) {
         if (Array.isArray(allInsts)) _cultchSpektrixInstancesRuntimeCache = allInsts;
       }
     }
-    const matchedInst = Array.isArray(_cultchSpektrixInstancesRuntimeCache)
-      ? _cultchSpektrixInstancesRuntimeCache.find((inst) => inst && String(parseInt(inst.id, 10)) === targetNumericInstId)
-      : null;
+    let matchedInst = null;
+    if (Array.isArray(_cultchSpektrixInstancesRuntimeCache)) {
+      if (targetNumericInstId) {
+        matchedInst = _cultchSpektrixInstancesRuntimeCache.find((inst) => inst && String(parseInt(inst.id, 10)) === targetNumericInstId) || null;
+      } else if (targetWebEventId) {
+        const webEv = eventsList.find((ev) => ev && String(ev.webEventId || "").toLowerCase() === targetWebEventId.toLowerCase());
+        if (webEv && webEv.id) {
+          matchedInst = _cultchSpektrixInstancesRuntimeCache.find((inst) => inst && inst.event && inst.event.id === webEv.id) || null;
+        }
+      }
+    }
     if (!matchedInst) return "";
 
     const parentEventId = matchedInst.event && matchedInst.event.id ? matchedInst.event.id : null;
@@ -3806,9 +3816,37 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     const durationSec = Math.round((Date.now() - startTime) / 1000);
     const hasVerifiedNumericPrice = fullUpdatedCard.price_all_in != null || Boolean(fullUpdatedCard.isFree);
     const isActualBudgetBreach = fullUpdatedCard.price_all_in != null && fullUpdatedCard.price_all_in > 50.0;
+
+    // Stage 2 Proof/Cart Verification Guards: prevent false VERIFIED_PASS on unclicked Showpass seat maps ($0.00 total) or unhydrated Cultch iframes ($0 fee)
+    const finalCartUrl = String(checkoutUrl || targetUrl || fullUpdatedCard.ticket_url || "").toLowerCase();
+    const finalCartText = await page.evaluate(() => (document.body ? document.body.innerText : "")).catch(() => String(pageInfo?.text || ""));
+    const finalCartLower = String(finalCartText || "").toLowerCase();
+    const isUnclickedShowpassSeatMap =
+      /showpass\.com/i.test(finalCartUrl) &&
+      finalCartLower.includes("select a seat") &&
+      /total\s*:?\s*\$0\.00/i.test(finalCartLower) &&
+      !fullUpdatedCard.isFree &&
+      Number(fullUpdatedCard.price_fee || 0) === 0;
+    const isUnhydratedCultchIframe =
+      /thecultch\.com/i.test(finalCartUrl) &&
+      !fullUpdatedCard.isFree &&
+      Number(fullUpdatedCard.price_all_in || fullUpdatedCard.price_base || 0) > 0 &&
+      Number(fullUpdatedCard.price_fee || 0) === 0 &&
+      !finalCartLower.includes("service fee") &&
+      !finalCartLower.includes("order summary");
+
+    if (isUnclickedShowpassSeatMap) {
+      console.warn(`🛡️ [Stage 2 Cart Proof Guard] Unclicked Showpass seat map detected ("Select a seat" + Total $0.00, fee=$0) — downgrading to UNVERIFIED_PRICING.`);
+    }
+    if (isUnhydratedCultchIframe) {
+      console.warn(`🛡️ [Stage 2 Cart Proof Guard] Unhydrated Cultch Spektrix iframe detected (paid show with fee=$0) — downgrading to UNVERIFIED_PRICING.`);
+    }
+
     const auditStatus = isActualBudgetBreach
       ? "BUDGET_BREACH"
-      : (hasVerifiedNumericPrice && fullUpdatedCard.budget_qualified_under_50 ? "VERIFIED_PASS" : "UNVERIFIED_PRICING");
+      : (hasVerifiedNumericPrice && fullUpdatedCard.budget_qualified_under_50 && !isUnclickedShowpassSeatMap && !isUnhydratedCultchIframe
+          ? "VERIFIED_PASS"
+          : "UNVERIFIED_PRICING");
 
     console.log(`✅ Audit Completed in ${durationSec}s:`);
     const logBase = fullUpdatedCard.price_base != null ? fullUpdatedCard.price_base : (fullUpdatedCard.price != null ? fullUpdatedCard.price : "N/A");

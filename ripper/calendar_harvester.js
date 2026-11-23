@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { Stagehand, localBrowser } from "@browserbasehq/stagehand";
-import { runHybridRipper } from "./hybrid_ripper.js";
+import { runHybridRipper, generateSlug } from "./hybrid_ripper.js";
 import { runPostHarvestLinkUpgrader, inspectCardForCandidateLink } from "./link_upgrader.js";
 import { scanCatalogLinkHealth } from "./link_health_scanner.js";
 import { huntBatchTier1Links, runStep1BLinkUpgrader } from "./tier1_hunter.js";
@@ -249,15 +249,230 @@ export function getExistingCatalogLookup() {
   };
 }
 
+const STAGE1A_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
+const SOURCE_HEALTH_PATH = path.join(ROOT_DIR, "data", "layers", "source_health_report.json");
+
+const HARD_REJECT_URL_RE = /\/(?:login|signup|sign-?in|register|cart|basket|viewbasket|myaccount|account|privacy|terms|contact|about|who-we-are|donate|donations?|ticket-donations?|support|corporate-giving|patrons-circle|major-gifts|gift-cards?|vouchers?|faq|volunteer|volunteering|membership|season-memberships?|season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|stats\/(?:roster|standings|leaders|player|game-center|schedule|team)|merchandise|merch|shop|store|ticket-info|tickets-info|ticketinfo|ticket-policies|pricing|admission-rates|rates|concession-menu|menus?|rentals?|private-events?|book-for-private|health-and-safety|house-rules|protocols|press|careers|jobs|staff|board|sponsors?|be-a-sponsor|sponsorship|scholarships?|trophies|gallery-publications|exhibition-catalogues|city-government|city-departments|public-safety|services-and-payments|sport-hosting|things-to-do|eat-drink|events\/purchase|submit|virtual-tour|crime-prevention|bike-valet|past-events|archive|category|tag|author|wp-content\/uploads|accessibility|directions|parking|series|education)\b|web\.archive\.org|ticket-donation|donation-program/i;
+
+const DIRECT_TICKETING_RE = /(?:eventbrite\.(?:ca|com)\/e\/|ticketweb\.ca\/event\/|universe\.com\/events\/|purchase\.theimprovcentre\.ca\/ChooseSeats|vtixonline\.com\/|admitone\.com\/events\/[^/]+\/(?:pro|community)\/[^/]+\/[^/]+\/[^/]+|riotheatretickets\.ca\/events\/|bloomtickets\.ca\/event\/|humanitix\.com\/|eventive\.org\/|dice\.fm\/event\/|simpletix\.(?:ca|com)\/e\/|tickettailor\.com\/events\/|showpass\.com\/(?!o\/|s\/|m\/|discover|search|login|signup|cart|checkout|about|terms|privacy|organizations|cities|venues|explore|sell|pricing|contact|support|help|faq|blog|app|download|features|resources|partners)[a-z0-9-]{3,}|EventInstanceId=\d+|WebEventId=[A-Za-z0-9_-]+)/i;
+
+const DATE_SLUG_OR_ID_RE = /(?:202[6-9]-\d{2}-\d{2}|\/(?:events?|shows?|listings\/events)\/\d{3,}(?:\/|$))/i;
+const DATE_BADGE_RE = /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}\b|\b\d{1,2}:\d{2}\s*(?:am|pm)\b/i;
+const GENERIC_EVENT_PATH_RE = /\/(?:events?|shows?|films?|tickets?|schedule|performances?|screenings?|chooseseats|production|whats-on|whatson|season|concert|exhibition|program)\b/i;
+
+async function recordSourceHealth(url, status, detail = "") {
+  try {
+    await safeUpdateJsonFile(SOURCE_HEALTH_PATH, {}, (report) => {
+      const obj = (report && typeof report === "object" && !Array.isArray(report)) ? report : {};
+      obj[url] = {
+        url,
+        status,
+        detail: String(detail || "").slice(0, 140),
+        checked_at: new Date().toISOString(),
+      };
+      return obj;
+    });
+  } catch (_) {
+    // Non-fatal telemetry write
+  }
+}
+
+function extractJsonLdEventsFromHtml(html, baseUrl) {
+  const events = [];
+  if (!html || typeof html !== "string") return events;
+  const scriptRe = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let m;
+  const collect = (node) => {
+    if (!node || typeof node !== "object") return;
+    if (Array.isArray(node)) {
+      node.forEach(collect);
+      return;
+    }
+    if (Array.isArray(node["@graph"])) {
+      node["@graph"].forEach(collect);
+    }
+    const rawType = Array.isArray(node["@type"]) ? node["@type"].join(" ") : String(node["@type"] || "");
+    if (/\b(?:Event|MusicEvent|TheaterEvent|ComedyEvent|Festival|ExhibitionEvent|SocialEvent|SportsEvent|DanceEvent|ScreeningEvent|VisualArtsEvent|LiteraryEvent)\b/i.test(rawType)) {
+      let evUrl = node.url || (node.offers && !Array.isArray(node.offers) ? node.offers.url : null) || null;
+      if (evUrl && baseUrl) {
+        try { evUrl = new URL(evUrl, baseUrl).href.split("#")[0]; } catch (_) { evUrl = null; }
+      }
+      const loc = Array.isArray(node.location) ? node.location[0] : node.location;
+      const venueName = typeof loc === "string" ? loc : (loc && loc.name ? String(loc.name) : "");
+      const addrObj = loc && loc.address ? loc.address : null;
+      const addressStr = typeof addrObj === "string"
+        ? addrObj
+        : (addrObj ? [addrObj.streetAddress, addrObj.addressLocality, addrObj.addressRegion].filter(Boolean).join(", ") : "");
+      const offers = Array.isArray(node.offers) ? node.offers[0] : node.offers;
+      const offerUrl = offers && offers.url ? String(offers.url) : null;
+      events.push({
+        url: evUrl,
+        name: node.name ? String(node.name).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() : "",
+        startDate: node.startDate ? String(node.startDate).trim() : "",
+        endDate: node.endDate ? String(node.endDate).trim() : "",
+        venue: venueName.trim(),
+        address: addressStr.trim(),
+        city: addrObj && addrObj.addressLocality ? String(addrObj.addressLocality).trim() : "",
+        description: node.description ? String(node.description).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 400) : "",
+        ticketUrl: offerUrl,
+      });
+    }
+  };
+  while ((m = scriptRe.exec(html)) !== null) {
+    try {
+      const parsed = JSON.parse(m[1].trim());
+      collect(parsed);
+    } catch (_) {
+      // Ignore malformed JSON-LD blocks
+    }
+  }
+  return events;
+}
+
+function scoreAndFilterCandidateEntries(entries, calendarUrl) {
+  const calNorm = (calendarUrl || "").split("?")[0].split("#")[0].replace(/\/$/, "");
+  const scoredMap = new Map();
+
+  for (const entry of entries) {
+    const rawHref = String(entry.href || "").trim();
+    if (!rawHref || !rawHref.startsWith("http")) continue;
+    if (HARD_REJECT_URL_RE.test(rawHref)) continue;
+
+    const hrefNorm = rawHref.split("?")[0].split("#")[0].replace(/\/$/, "");
+    if (hrefNorm === calNorm) continue;
+
+    let urlObj;
+    try {
+      urlObj = new URL(hrefNorm);
+    } catch (_) {
+      continue;
+    }
+    const p = urlObj.pathname.replace(/\/$/, "").toLowerCase();
+    if (["", "/events", "/shows", "/tickets", "/schedule", "/calendar", "/listings", "/whats-on", "/whatson", "/season", "/programs", "/exhibitions", "/ticket-info", "/pricing", "/rates"].includes(p)) {
+      continue;
+    }
+    if (p.endsWith("/ticket-info") || p.endsWith("/pricing") || p.endsWith("/admission-rates") || p.endsWith("/concession-menu")) {
+      continue;
+    }
+    if (/thecinematheque\.ca\/films\/(?:director\/|20(?:1\d|2[0-5])\/)/i.test(hrefNorm)) continue;
+    if (/vancouversbestplaces\.com\/(?:best-places|on-a-rainy-day|events-calendar)(?:\/|$)|victoriasbestplaces\.com/i.test(hrefNorm)) continue;
+    if (/miss604\.com\/202\d\/|604now\.com\/list-events/i.test(hrefNorm)) continue;
+    if (/eventbrite\.(?:ca|com)\/(?:b|d|ttd|l|o|cc)\//i.test(hrefNorm)) continue;
+    if (/admitone\.com\/events\/(?:cobble-hill|victoria|nanaimo|kelowna|kamloops|calgary|edmonton|toronto|seattle)(?:\/|$)/i.test(hrefNorm)) continue;
+    if (/admitone\.com\/events\/[^/]+(?:$|\/(?:community|pro)(?:\/[a-z0-9_-]+)?$)/i.test(hrefNorm)) continue;
+    if (/\.(?:pdf|jpg|jpeg|png|gif|svg|webp|ics|zip)$/i.test(p)) continue;
+
+    const label = String(entry.label || "").trim();
+    if (/^(?:home|about|contact|events|calendar|tickets|schedule|menu|search|skip to|more|read more|view all|log in|sign in|subscribe|donate|shop|races)$/i.test(label) && !entry.fromJsonLd && !DIRECT_TICKETING_RE.test(rawHref)) {
+      continue;
+    }
+
+    let score = 0;
+    if (entry.fromJsonLd) score = Math.max(score, 100);
+    if (DIRECT_TICKETING_RE.test(rawHref)) score = Math.max(score, 80);
+    if (DATE_SLUG_OR_ID_RE.test(rawHref)) score = Math.max(score, 60);
+    if (entry.hasDateEvidence || DATE_BADGE_RE.test(label)) score = Math.max(score, 40);
+    if (score === 0 && GENERIC_EVENT_PATH_RE.test(rawHref)) score = 10;
+
+    if (score === 0) continue;
+
+    const finalUrl = DIRECT_TICKETING_RE.test(rawHref) && /EventInstanceId=|WebEventId=/i.test(rawHref) ? rawHref.split("#")[0] : hrefNorm;
+    const prev = scoredMap.get(finalUrl);
+    if (!prev || score > prev.score) {
+      scoredMap.set(finalUrl, { url: finalUrl, score });
+    }
+  }
+
+  let ranked = Array.from(scoredMap.values()).sort((a, b) => b.score - a.score);
+  // When high-confidence event links (>= 40) exist, drop low-signal generic path-only (+10) noise
+  const highConf = ranked.filter((x) => x.score >= 40);
+  if (highConf.length > 0) {
+    ranked = highConf;
+  }
+  return ranked.map((x) => x.url);
+}
+
 /**
- * Wide-Scan Calendar Link Extractor
- * Navigates to a venue calendar page and harvests discrete event deep links.
+ * Wide-Scan Calendar Link Extractor (HTTP-First Hybrid with Targeted SPA Fallback)
+ * 1. Fast parallel-safe HTTP pre-flight health check (<1s) skips dead/404/403/429/DNS sources without launching Chromium.
+ * 2. Extracts schema.org/Event JSON-LD + main-body links with deterministic priority scoring.
+ * 3. Falls back to headless Chromium ONLY when an HTTP-200 source is a JS-rendered SPA returning 0 HTTP candidates.
  */
 export async function harvestCalendarLinks(calendarUrl) {
   if (!calendarUrl || calendarUrl === "all" || !calendarUrl.startsWith("http")) {
     calendarUrl = "https://theimprovcentre.ca/shows/";
   }
   console.log(`\n📅 HARVESTING CALENDAR LINKS from: ${calendarUrl}`);
+
+  // 1. Fast HTTP Pre-Flight Health Check + Lightweight HTML/JSON-LD Extraction
+  let httpOk = false;
+  let httpFinalUrl = calendarUrl;
+  try {
+    const httpStart = Date.now();
+    const res = await fetch(calendarUrl, {
+      redirect: "follow",
+      signal: AbortSignal.timeout(7000),
+      headers: {
+        "User-Agent": STAGE1A_UA,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      },
+    });
+    const httpMs = Date.now() - httpStart;
+    httpFinalUrl = res.url || calendarUrl;
+
+    if (!res.ok) {
+      const bucket = [403, 406, 429].includes(res.status) ? "waf_or_ratelimit" : `http_${res.status}`;
+      console.log(`🩺 [Stage 1A Health] HTTP ${res.status} (${bucket}, ${httpMs}ms) on ${calendarUrl} — skipping Chromium launch.`);
+      await recordSourceHealth(calendarUrl, bucket, `HTTP ${res.status}`);
+      return [];
+    }
+
+    httpOk = true;
+    const html = await res.text();
+    const rawEntries = [];
+
+    // Tier 1: schema.org/Event JSON-LD items
+    const jsonLdEvents = extractJsonLdEventsFromHtml(html, httpFinalUrl);
+    for (const je of jsonLdEvents) {
+      if (je.url) {
+        rawEntries.push({ href: je.url, label: je.name, fromJsonLd: true, hasDateEvidence: Boolean(je.startDate) });
+      }
+    }
+
+    // Tier 2–4: Strip header/nav/footer/script/style chrome before extracting <a> links
+    const strippedBody = html
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<(?:header|nav|footer)\b[^>]*>[\s\S]*?<\/(?:header|nav|footer)>/gi, " ");
+    const aRe = /<a\s+[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+    let m;
+    while ((m = aRe.exec(strippedBody)) !== null) {
+      let href = m[1].trim();
+      const label = m[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      try {
+        href = new URL(href, httpFinalUrl).href;
+      } catch (_) {
+        continue;
+      }
+      rawEntries.push({ href, label, fromJsonLd: false, hasDateEvidence: DATE_BADGE_RE.test(label) });
+    }
+
+    const httpLinks = scoreAndFilterCandidateEntries(rawEntries, httpFinalUrl);
+    await recordSourceHealth(calendarUrl, "http_200_ok", `links=${httpLinks.length} jsonLd=${jsonLdEvents.length} (${httpMs}ms)`);
+    if (httpLinks.length > 0) {
+      console.log(`⚡ [Stage 1A HTTP-First] Discovered ${httpLinks.length} prioritized event candidate links in ${httpMs}ms (JSON-LD: ${jsonLdEvents.length}, Chromium bypassed).`);
+      return httpLinks;
+    }
+    console.log(`🔄 [Stage 1A SPA Fallback] HTTP 200 (${httpMs}ms) returned 0 static links on ${calendarUrl} — launching targeted Chromium fallback...`);
+  } catch (httpErr) {
+    console.log(`🩺 [Stage 1A Health] Network/DNS error (${httpErr.message.slice(0, 80)}) on ${calendarUrl} — skipping Chromium launch.`);
+    await recordSourceHealth(calendarUrl, "network_or_dns_err", httpErr.message);
+    return [];
+  }
+
+  if (!httpOk) return [];
+
+  // 2. Targeted SPA Chromium Fallback (only reached for HTTP-200 JS-rendered calendars)
   const apiKey = process.env.GEMINI_API_KEY || "";
   let browser;
   let stagehand;
@@ -271,126 +486,40 @@ export async function harvestCalendarLinks(calendarUrl) {
         apiKey: apiKey.trim(),
       },
     });
-    const page = await stagehand.browser.context.newPage(calendarUrl);
-    await new Promise((r) => setTimeout(r, 4000)); // Allow dynamic calendar hydration
+    const page = await stagehand.browser.context.newPage(httpFinalUrl);
+    await new Promise((r) => setTimeout(r, 2000)); // Tighter SPA hydration window
 
-    // Auto-scroll to trigger lazy-loaded cards
     await page.evaluate(async () => {
-      window.scrollBy(0, 1000);
-      await new Promise((r) => setTimeout(r, 1000));
-      window.scrollBy(0, 1000);
+      window.scrollBy(0, 1200);
+      await new Promise((r) => setTimeout(r, 800));
     });
-    await new Promise((r) => setTimeout(r, 1500));
 
-    // Extract event deep links using both DOM structural inspection (event cards, date badges, CTA buttons) and platform URL rules
-    const links = await page.evaluate((origin, calendarUrl) => {
-      const anchors = Array.from(document.querySelectorAll("a[href]"));
-      const eventRegex = /\/(?:events?|shows?|films?|tickets?|schedule|performances?|screenings?|chooseseats|production|whats-on|whatson|season|concert|exhibition|program)\b/i;
-      const ignoreRegex = /\/(?:login|signup|cart|basket|viewbasket|myaccount|account|privacy|terms|contact|about|who-we-are|donate|donations?|ticket-donations?|support|corporate-giving|patrons-circle|major-gifts|gift-cards?|vouchers?|faq|volunteer|volunteering|membership|season-memberships?|season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|stats\/(?:roster|standings|leaders|player|game-center|schedule|team)|merchandise|merch|shop|ticket-info|tickets-info|ticketinfo|ticket-policies|pricing|admission-rates|rates|concession-menu|menus?|rentals?|private-events?|health-and-safety|house-rules|protocols|press|careers|staff|board|sponsors?|be-a-sponsor|sponsorship|scholarships?|trophies|gallery-publications|exhibition-catalogues|city-government|city-departments|public-safety|wp-content\/uploads|accessibility|directions|parking|series|education)\b/i;
-      const ctaTextRegex = /\b(?:buy\s+tickets?|get\s+tickets?|book\s+now|tickets?|reserve|more\s+info|event\s+details|view\s+event|view\s+show|learn\s+more|select\s+date)\b/i;
+    const domEntries = await page.evaluate(() => {
       const dateBadgeRegex = /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}\b|\b\d{1,2}:\d{2}\s*(?:am|pm)\b/i;
-
-      const candidates = new Set();
-      const calNorm = (calendarUrl || '').replace(/\/$/, "");
-
-      for (const a of anchors) {
+      const out = [];
+      for (const a of Array.from(document.querySelectorAll("a[href]"))) {
+        if (a.closest("nav, header, footer")) continue;
         const href = a.href;
         if (!href || !href.startsWith("http")) continue;
-        if (ignoreRegex.test(href)) continue;
-        if (href.includes("ticket-donation") || href.includes("donation-program")) continue;
-
-        const hrefNorm = href.split("?")[0].split("#")[0].replace(/\/$/, "");
-        if (hrefNorm === calNorm) continue;
-
-        // Skip generic root/directory index navigation paths that are not discrete events
-        let urlObj = null;
-        try {
-          urlObj = new URL(hrefNorm);
-          const p = urlObj.pathname.replace(/\/$/, "").toLowerCase();
-          if (["", "/events", "/shows", "/tickets", "/schedule", "/calendar", "/listings", "/whats-on", "/whatson", "/season", "/programs", "/exhibitions", "/ticket-info", "/pricing", "/rates"].includes(p)) {
-            continue;
-          }
-          if (p.endsWith("/ticket-info") || p.endsWith("/pricing") || p.endsWith("/admission-rates") || p.endsWith("/concession-menu")) {
-            continue;
-          }
-        } catch (_) {
-          continue;
-        }
-
-        // Skip Showpass non-event organizer/utility/city-discovery links
-        if (href.includes("showpass.com/")) {
-          try {
-            const spPath = new URL(href).pathname.replace(/^\/|\/$/g, "");
-            const firstSeg = spPath.split("/")[0].toLowerCase();
-            if (["o", "s", "m", "discover", "search", "login", "signup", "cart", "checkout", "about", "terms", "privacy", "organizations", "cities", "venues", "explore", "sell", "pricing", "contact", "support", "help", "faq", "blog", "app", "download", "features", "resources", "partners"].includes(firstSeg)) {
-              continue;
-            }
-          } catch (_) { }
-        }
-
-        // Skip archival Cinematheque director/pre-2026 pages, tourism guide hubs, and out-of-market/hub AdmitOne pages
-        if (/thecinematheque\.ca\/films\/(?:director\/|20(?:1\d|2[0-5])\/)/i.test(hrefNorm)) continue;
-        if (/vancouversbestplaces\.com\/(?:best-places|on-a-rainy-day|events-calendar)(?:\/|$)|victoriasbestplaces\.com/i.test(hrefNorm)) continue;
-        if (/miss604\.com\/202\d\/|604now\.com\/list-events/i.test(hrefNorm)) continue;
-        if (/eventbrite\.(?:ca|com)\/(?:b|d|ttd|l|o|cc)\//i.test(hrefNorm)) continue;
-        if (/admitone\.com\/events\/(?:cobble-hill|victoria|nanaimo|kelowna|kamloops|calgary|edmonton|toronto|seattle)(?:\/|$)/i.test(hrefNorm)) continue;
-        if (/admitone\.com\/events\/[^/]+(?:$|\/(?:community|pro)(?:\/[a-z0-9_-]+)?$)/i.test(hrefNorm)) continue;
-
-        // 1. Known Ticketing Platform Deep Links
-        let isCandidate = false;
-        if (
-          href.includes("eventbrite.ca/e/") ||
-          href.includes("eventbrite.com/e/") ||
-          href.includes("ticketweb.ca/event/") ||
-          href.includes("universe.com/events/") ||
-          href.includes("purchase.theimprovcentre.ca/ChooseSeats") ||
-          href.includes("vtixonline.com/") ||
-          href.includes("admitone.com/") ||
-          href.includes("riotheatretickets.ca/events/") ||
-          href.includes("bloomtickets.ca/event/") ||
-          href.includes("humanitix.com/") ||
-          href.includes("eventive.org/") ||
-          href.includes("dice.fm/event/")
-        ) {
-          isCandidate = true;
-        } else if (href.includes("showpass.com/")) {
-          isCandidate = true;
-        } else if (
-          eventRegex.test(href) ||
-          href.includes("/shows/") ||
-          href.includes("/events/")
-        ) {
-          isCandidate = true;
-        } else {
-          // 2. DOM Structural Inspection (Catches clean event URLs that don't have "/events/" in their path, e.g. /whats-on/hamlet or /2026/show-slug)
-          const isSameOrigin = urlObj && urlObj.origin === origin;
-          const pathSegments = urlObj ? urlObj.pathname.replace(/^\/|\/$/g, "").split("/").filter(Boolean) : [];
-          const inHeaderOrFooterNav = Boolean(a.closest("nav, header, footer"));
-
-          if (!inHeaderOrFooterNav && isSameOrigin && pathSegments.length >= 1) {
-            const cardContainer = a.closest('article, [class*="event"], [class*="show"], [class*="card"], [class*="performance"], [class*="listing"], [class*="program"], [class*="production"]');
-            const linkText = (a.innerText || a.textContent || "").trim();
-            const containerText = cardContainer ? (cardContainer.innerText || cardContainer.textContent || "") : "";
-            const hasTimeTag = cardContainer ? Boolean(cardContainer.querySelector("time, [datetime], [class*='date'], [class*='time']")) : false;
-            const hasDateEvidence = hasTimeTag || dateBadgeRegex.test(containerText);
-
-            if (cardContainer && (hasDateEvidence || ctaTextRegex.test(linkText))) {
-              isCandidate = true;
-            }
-          }
-        }
-
-        if (isCandidate) {
-          candidates.add(href.split("?")[0].split("#")[0]);
-        }
+        const cardContainer = a.closest('article, [class*="event"], [class*="show"], [class*="card"], [class*="performance"], [class*="listing"], [class*="program"], [class*="production"]');
+        const label = (a.innerText || a.textContent || "").trim();
+        const containerText = cardContainer ? (cardContainer.innerText || cardContainer.textContent || "") : "";
+        const hasTimeTag = cardContainer ? Boolean(cardContainer.querySelector("time, [datetime], [class*='date'], [class*='time']")) : false;
+        out.push({
+          href,
+          label: label.slice(0, 120),
+          fromJsonLd: false,
+          hasDateEvidence: hasTimeTag || dateBadgeRegex.test(containerText) || dateBadgeRegex.test(label),
+        });
       }
-      return Array.from(candidates);
-    }, new URL(calendarUrl).origin, calendarUrl);
+      return out;
+    });
 
-    console.log(`🎯 Discovered ${links.length} distinct event candidate links on calendar.`);
+    const links = scoreAndFilterCandidateEntries(domEntries, httpFinalUrl);
+    console.log(`🎯 Discovered ${links.length} distinct event candidate links on SPA calendar.`);
     return links;
   } catch (err) {
-    console.error(`⚠️ Error harvesting calendar links: ${err.message}`);
+    console.error(`⚠️ Error harvesting SPA calendar links: ${err.message}`);
     return [];
   } finally {
     if (stagehand) {
@@ -557,8 +686,90 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
 
       const itemStartMs = Date.now();
       try {
-        // Discrete execution per event with fresh context, bounded by browser semaphore
-        const card = await step1aBrowserSemaphore.run(() => runHybridRipper(targetUrl, { autoApprove, fromHarvester: true }));
+        // Lightweight HTTP/JSON-LD Pre-Screen (<1s): skip dead 404/410 links and fast-path valid schema.org/Event pages without booting Chromium/LLM
+        let card = null;
+        try {
+          const preRes = await fetch(targetUrl, {
+            redirect: "follow",
+            signal: AbortSignal.timeout(6000),
+            headers: { "User-Agent": STAGE1A_UA, "Accept": "text/html,application/xhtml+xml" },
+          });
+          if (preRes.status === 404 || preRes.status === 410) {
+            console.log(`🩺 [Stage 1A Pre-Screen] Dead link HTTP ${preRes.status} (${targetUrl}) — skipping browser rip.`);
+            results.push({ url: targetUrl, success: false, isNew: false, error: `Dead link HTTP ${preRes.status}` });
+            return;
+          }
+          if (preRes.ok) {
+            const preHtml = await preRes.text();
+            const ldList = extractJsonLdEventsFromHtml(preHtml, preRes.url || targetUrl);
+            const todayIsoFast = new Date().toLocaleDateString("en-CA", { timeZone: "America/Vancouver" });
+            const validLd = ldList.find((ev) => {
+              const rawStart = String(ev.startDate || "").trim();
+              if (!ev.name || !ev.venue || !rawStart || /^(?:online|virtual)\b/i.test(ev.venue)) return false;
+              let localIso = null;
+              if (/(?:Z|[+-]\d{2}:?\d{2})$/i.test(rawStart)) {
+                const dt = new Date(rawStart);
+                if (!Number.isNaN(dt.getTime())) {
+                  localIso = dt.toLocaleDateString("en-CA", { timeZone: "America/Vancouver" });
+                }
+              } else {
+                const m = rawStart.match(/^(\d{4}-\d{2}-\d{2})/);
+                if (m) localIso = m[1];
+              }
+              return Boolean(localIso && localIso >= todayIsoFast);
+            });
+            if (validLd) {
+              const rawStart = String(validLd.startDate || "").trim();
+              let localIso = null;
+              let fastTime = "";
+              if (/(?:Z|[+-]\d{2}:?\d{2})$/i.test(rawStart)) {
+                const dt = new Date(rawStart);
+                localIso = dt.toLocaleDateString("en-CA", { timeZone: "America/Vancouver" });
+                if (/T\d{2}:\d{2}/.test(rawStart)) {
+                  fastTime = dt.toLocaleTimeString("en-US", { timeZone: "America/Vancouver", hour: "numeric", minute: "2-digit", hour12: true });
+                }
+              } else {
+                const isoM = rawStart.match(/^(\d{4}-\d{2}-\d{2})/);
+                localIso = isoM ? isoM[1] : null;
+                const timeM = rawStart.match(/T(\d{2}):(\d{2})/);
+                if (timeM) {
+                  const hh = Number(timeM[1]);
+                  const mm = timeM[2];
+                  const ampm = hh >= 12 ? "PM" : "AM";
+                  const h12 = hh % 12 === 0 ? 12 : hh % 12;
+                  fastTime = `${h12}:${mm} ${ampm}`;
+                }
+              }
+              const fastId = generateSlug(validLd.venue, validLd.name, localIso);
+              card = {
+                id: fastId,
+                title: validLd.name,
+                venue: validLd.venue,
+                venue_name: validLd.venue,
+                address: validLd.address || null,
+                city: validLd.city || null,
+                date: localIso,
+                dateSchedule: localIso,
+                time: fastTime || null,
+                ticket_url: validLd.ticketUrl || null,
+                details_url: preRes.url || targetUrl,
+                description: validLd.description || null,
+                price: null,
+                priceLabel: "Pending Box Office QC",
+                showings: [{ date: localIso, time: fastTime || null, status: "upcoming" }],
+                lifecycle_type: "time_bound_event",
+              };
+              console.log(`⚡ [Stage 1A JSON-LD Fast-Path] Extracted "${card.title}" @ ${card.venue} (${card.date}${fastTime ? ` ${fastTime}` : ""}) in ${Date.now() - itemStartMs}ms — bypassed Chromium/LLM!`);
+            }
+          }
+        } catch (_) {
+          // Non-fatal pre-screen error; fall through to Stagehand Hybrid Ripper
+        }
+
+        if (!card) {
+          // Discrete execution per event with fresh context, bounded by browser semaphore
+          card = await step1aBrowserSemaphore.run(() => runHybridRipper(targetUrl, { autoApprove, fromHarvester: true }));
+        }
         const evDate = card.date || card.dateSchedule || "TBD";
         const evTime = card.time || card.doors_time || "";
         const evVenue = card.venue || card.venue_name || "Vancouver Venue";
@@ -643,14 +854,16 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
 
         // Gate 3 Physical Venue & Metro Vancouver Geofence Invariant: Reject raw street addresses, aggregators, placeholder venues, and out-of-market cities
         const cleanVenueStr = String(evVenue || "").trim();
-        const geoCheckBlob = `${cleanVenueStr} ${targetUrl || ""} ${card.title || ""}`;
+        const geoCheckBlob = `${cleanVenueStr} ${card.address || ""} ${card.full_address || ""} ${card.city || ""} ${card.location || ""} ${targetUrl || ""} ${card.title || ""} ${(card.description || "").slice(0, 300)}`;
         if (
           !cleanVenueStr ||
           /^(?:none_available|search_exhausted_null|quarantine_fatal|online|virtual|zoom|teams|flohockey|flosports|[eé]v[eè]nement\s+en\s+ligne|vancouver|metro\s+vancouver|surrey|burnaby|richmond|victoria|604\s*now|miss604|do604|daily\s*hive|admitone|eventbrite|showpass|vancouver['’]s\s+best\s+places|vancouver\s+rainy\s+day\s+activities)$/i.test(cleanVenueStr) ||
+          /^(?:online|virtual)(?:\s*[,(/-]|\s*$)/i.test(cleanVenueStr) ||
           /^(?:various\s+venues|multiple\s+venues)\b/i.test(cleanVenueStr) ||
           /\b(?:flohockey|flosports|online\s+broadcast|online\s+via|via\s+zoom|zoom\s+(?:meeting|webinar)|microsoft\s+teams|google\s+meet|virtual\s+(?:event|session|only))\b/i.test(cleanVenueStr) ||
           /^\d+\s+[A-Za-z0-9\s,.]+(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Way|Hwy|Highway)\b/i.test(cleanVenueStr) ||
-          /\b(?:cobble\s+hill|cobblestone\s+pub|sea\s+to\s+sky\s+gondola|brackendale|squamish|whistler|chilliwack|abbotsford|nanaimo|kelowna|victoriasbestplaces)\b/i.test(geoCheckBlob)
+          /\b(?:cobble\s+hill|cobblestone\s+pub|capital\s+ballroom|mcpherson\s+playhouse|sea\s+to\s+sky\s+gondola|brackendale|squamish|whistler|chilliwack|abbotsford|nanaimo|kelowna|victoriasbestplaces)\b/i.test(geoCheckBlob) ||
+          /\bclosed\s+off\s+(?:specifically\s+)?for\b/i.test(geoCheckBlob)
         ) {
           console.log(`🛡️ [Gate 3 Venue / Geofence Invariant] Suppressing "${card.title}" — invalid/non-physical or out-of-market venue "${cleanVenueStr}" (${targetUrl}).`);
           results.push({
@@ -664,7 +877,14 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
 
         // Check if card is already archived or matches a recurring blacklisted stem
         const cardStemNorm = cardIdNorm.replace(/-(?:202\d-\d{2}-\d{2}|202\d\d{4}|\d{1,2})$/, "");
-        if (lookup.archivedIds.has(cardIdNorm) || (lookup.recurringBlacklistStems && lookup.recurringBlacklistStems.has(cardStemNorm))) {
+        const cardIdNoThe = cardIdNorm.replace(/^the-/, "");
+        const cardIdWithThe = cardIdNorm.startsWith("the-") ? cardIdNorm : `the-${cardIdNorm}`;
+        if (
+          lookup.archivedIds.has(cardIdNorm) ||
+          lookup.archivedIds.has(cardIdNoThe) ||
+          lookup.archivedIds.has(cardIdWithThe) ||
+          (lookup.recurringBlacklistStems && lookup.recurringBlacklistStems.has(cardStemNorm))
+        ) {
           console.log(`🛡️ [Archived Event Suppressed] "${card.title}" [${card.id}] is permanently archived/disqualified. Suppressing from layer_schedules.json.`);
           results.push({
             url: targetUrl,
@@ -675,12 +895,23 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
           return;
         }
 
-        const isAlreadyInCatalog = lookup.knownIds.has(cardIdNorm) ||
-          (card.ticket_url && lookup.knownUrls.has(card.ticket_url.split("?")[0].split("#")[0].replace(/\/$/, "").toLowerCase())) ||
+        const normTicketUrlKey = card.ticket_url ? card.ticket_url.split("?")[0].split("#")[0].replace(/\/$/, "").toLowerCase() : null;
+        const isAlreadyInCatalog =
+          lookup.knownIds.has(cardIdNorm) ||
+          lookup.knownIds.has(cardIdNoThe) ||
+          lookup.knownIds.has(cardIdWithThe) ||
+          (normTicketUrlKey && lookup.knownUrls.has(normTicketUrlKey)) ||
           (card.title && lookup.knownTitles.has(card.title.toLowerCase().trim()) && card.date);
 
         if (isAlreadyInCatalog) {
-          console.log(`ℹ️ [Catalog Match] "${card.title}" (${card.id}) already cataloged in data/events.json — continuing scan for new events...`);
+          console.log(`ℹ️ [Catalog Match] "${card.title}" (${card.id}) already cataloged — skipping duplicate write to layer_schedules.json.`);
+          results.push({
+            url: targetUrl,
+            success: false,
+            isNew: false,
+            error: "Already cataloged duplicate",
+          });
+          return;
         } else {
           console.log(`✨ HARVESTED EVENT: "${card.title}" | Date: ${evDate} | Time: ${evTime || "TBD"} | Venue: ${evVenue} | Price: ${card.priceLabel || "$0"} | URL: ${card.ticket_url || targetUrl || ""} [${card.id}]`);
         }
@@ -966,7 +1197,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
     { name: "The Rickshaw Theatre", url: "https://rickshawtheatre.com/events/", city: "Vancouver" },
     { name: "The Fox Cabaret", url: "https://www.foxcabaret.com/calendar", city: "Vancouver" },
     { name: "VIFF Centre", url: "https://viff.org/whats-on/", city: "Vancouver" },
-    { name: "Firehall Arts Centre", url: "https://www.firehallartscentre.ca/on-stage/", city: "Vancouver" },
+    { name: "Firehall Arts Centre", url: "https://www.firehallartscentre.ca/whats-on/", city: "Vancouver" },
     { name: "The Improv Centre", url: "https://theimprovcentre.ca/shows/", city: "Vancouver" }
   ];
   for (const s of seedFeeds) {
@@ -984,6 +1215,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
       const discSources = Array.isArray(discRaw) ? discRaw : (discRaw.sources || []);
       for (const s of discSources) {
         if (s.id === "testy-canary-feed" || s.type === "canary_test_feed" || s.is_test_canary) continue;
+        if (["waf_blocked", "timeout_unreachable", "inactive", "disabled"].includes(String(s.status || "").toLowerCase())) continue;
         const sName = (s.name || s.id || "").trim();
         const u = (s.eventsUrl || s.calendarUrl || s.url || "").trim();
         const norm = normalizeCrawlerFeedUrl(u);
@@ -1067,7 +1299,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
       if (uo.pathname && uo.pathname !== "/") {
         hostsWithSubpath.add(host);
       }
-    } catch {}
+    } catch { }
   }
   const dedupedFeeds = allFeeds.filter((f) => {
     try {
@@ -1075,7 +1307,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
       const host = uo.hostname.replace(/^www\./, "").toLowerCase();
       const isBareRoot = !uo.pathname || uo.pathname === "/";
       if (isBareRoot && hostsWithSubpath.has(host)) return false;
-    } catch {}
+    } catch { }
     return true;
   });
   allFeeds.length = 0;

@@ -1,0 +1,2408 @@
+{
+  "https://www.vancouverisawesome.com/events": {
+    "url": "https://www.vancouverisawesome.com/events",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 403",
+    "checked_at": "2026-11-22T20:00:49.812Z"
+  },
+  "https://sceneinthedark.com/": {
+    "url": "https://sceneinthedark.com/",
+    "status": "http_200_ok",
+    "detail": "links=28 jsonLd=0 (273ms)",
+    "checked_at": "2026-11-23T09:47:51.870Z"
+  },
+  "https://theimprovcentre.ca/shows/": {
+    "url": "https://theimprovcentre.ca/shows/",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (220ms)",
+    "checked_at": "2026-11-23T04:34:33.707Z"
+  },
+  "https://www.bezartshub.com/events": {
+    "url": "https://www.bezartshub.com/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:32:31.930Z"
+  },
+  "https://farmcountrybrewing.com/events/": {
+    "url": "https://farmcountrybrewing.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=7 jsonLd=7 (793ms)",
+    "checked_at": "2026-11-23T06:19:23.577Z"
+  },
+  "https://www.bellperformingartscentre.com/events/": {
+    "url": "https://www.bellperformingartscentre.com/events/",
+    "status": "http_511",
+    "detail": "HTTP 511",
+    "checked_at": "2026-11-23T02:06:08.029Z"
+  },
+  "https://discoversurreybc.com/events/music-city-showcase/": {
+    "url": "https://discoversurreybc.com/events/music-city-showcase/",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=1 (1870ms)",
+    "checked_at": "2026-11-23T02:06:11.076Z"
+  },
+  "https://rickshawtheatre.com/events/": {
+    "url": "https://rickshawtheatre.com/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T02:07:51.383Z"
+  },
+  "https://tightropetheatre.com/shows": {
+    "url": "https://tightropetheatre.com/shows",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (208ms)",
+    "checked_at": "2026-11-23T02:07:52.655Z"
+  },
+  "https://admitone.com/events/vancouver/venues/biltmore-cabaret": {
+    "url": "https://admitone.com/events/vancouver/venues/biltmore-cabaret",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T02:07:54.546Z"
+  },
+  "https://www.foxcabaret.com/calendar": {
+    "url": "https://www.foxcabaret.com/calendar",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T02:07:55.913Z"
+  },
+  "https://www.firehallartscentre.ca/whats-on/": {
+    "url": "https://www.firehallartscentre.ca/whats-on/",
+    "status": "http_200_ok",
+    "detail": "links=9 jsonLd=0 (801ms)",
+    "checked_at": "2026-11-23T02:07:57.768Z"
+  },
+  "https://viff.org/whats-on/": {
+    "url": "https://viff.org/whats-on/",
+    "status": "http_200_ok",
+    "detail": "links=35 jsonLd=0 (94ms)",
+    "checked_at": "2026-11-23T02:12:19.036Z"
+  },
+  "https://discoversurreybc.com/events/access-afro-caribbean-festival-of-surrey/": {
+    "url": "https://discoversurreybc.com/events/access-afro-caribbean-festival-of-surrey/",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=1 (1148ms)",
+    "checked_at": "2026-11-23T02:20:31.878Z"
+  },
+  "https://discoversurreybc.com/events/battle-of-the-brews/": {
+    "url": "https://discoversurreybc.com/events/battle-of-the-brews/",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=1 (1243ms)",
+    "checked_at": "2026-11-23T02:22:51.416Z"
+  },
+  "https://www.ticketweb.ca/venue/celebrities-nightclub-vancouver-bc/273974": {
+    "url": "https://www.ticketweb.ca/venue/celebrities-nightclub-vancouver-bc/273974",
+    "status": "http_200_ok",
+    "detail": "links=40 jsonLd=20 (375ms)",
+    "checked_at": "2026-11-23T02:25:10.214Z"
+  },
+  "https://www.discoversurreybc.com/events": {
+    "url": "https://www.discoversurreybc.com/events",
+    "status": "http_200_ok",
+    "detail": "links=22 jsonLd=0 (1004ms)",
+    "checked_at": "2026-11-23T02:32:38.332Z"
+  },
+  "https://discoversurreybc.com/events/fleetwood-block-party/": {
+    "url": "https://discoversurreybc.com/events/fleetwood-block-party/",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=1 (1212ms)",
+    "checked_at": "2026-11-23T02:41:01.184Z"
+  },
+  "https://discoversurreybc.com/events/pataka-esports-festival/": {
+    "url": "https://discoversurreybc.com/events/pataka-esports-festival/",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=1 (1262ms)",
+    "checked_at": "2026-11-23T02:43:22.193Z"
+  },
+  "https://discoversurreybc.com/events/surrey-fest-downtown/": {
+    "url": "https://discoversurreybc.com/events/surrey-fest-downtown/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T02:45:40.430Z"
+  },
+  "https://thecultch.com/whats-on/": {
+    "url": "https://thecultch.com/whats-on/",
+    "status": "http_200_ok",
+    "detail": "links=8 jsonLd=0 (96ms)",
+    "checked_at": "2026-11-23T02:45:41.569Z"
+  },
+  "https://www.surrey.ca/arts-culture/surrey-civic-theatres": {
+    "url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres",
+    "status": "http_200_ok",
+    "detail": "links=17 jsonLd=0 (894ms)",
+    "checked_at": "2026-11-23T02:45:44.153Z"
+  },
+  "https://thecultch.com/venues/york-theatre/": {
+    "url": "https://thecultch.com/venues/york-theatre/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (868ms)",
+    "checked_at": "2026-11-23T02:45:46.549Z"
+  },
+  "https://www.tightropetheatre.com/weekly-live-shows": {
+    "url": "https://www.tightropetheatre.com/weekly-live-shows",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (94ms)",
+    "checked_at": "2026-11-23T02:45:56.202Z"
+  },
+  "https://www.showpass.com/o/vancouver/": {
+    "url": "https://www.showpass.com/o/vancouver/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (197ms)",
+    "checked_at": "2026-11-23T02:45:58.023Z"
+  },
+  "https://www.firehallartscentre.ca/on-stage/": {
+    "url": "https://www.firehallartscentre.ca/on-stage/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T02:46:40.540Z"
+  },
+  "https://admitone.com/events/vancouver": {
+    "url": "https://admitone.com/events/vancouver",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (335ms)",
+    "checked_at": "2026-11-23T02:46:41.951Z"
+  },
+  "https://anvilcentre.com/events/": {
+    "url": "https://anvilcentre.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (512ms)",
+    "checked_at": "2026-11-23T02:47:02.473Z"
+  },
+  "https://artsclub.com/shows": {
+    "url": "https://artsclub.com/shows",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (220ms)",
+    "checked_at": "2026-11-23T03:05:14.923Z"
+  },
+  "https://brewhall.com/events/": {
+    "url": "https://brewhall.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (379ms)",
+    "checked_at": "2026-11-23T03:06:12.932Z"
+  },
+  "https://vancouverfringe.com/shows/": {
+    "url": "https://vancouverfringe.com/shows/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T03:06:26.821Z"
+  },
+  "https://www.nvrc.ca/centennial-theatre/whats-on": {
+    "url": "https://www.nvrc.ca/centennial-theatre/whats-on",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T03:06:34.853Z"
+  },
+  "https://centralcity.ca/events/": {
+    "url": "https://centralcity.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (277ms)",
+    "checked_at": "2026-11-23T03:06:36.155Z"
+  },
+  "https://www.surrey.ca/news-events/events": {
+    "url": "https://www.surrey.ca/news-events/events",
+    "status": "http_200_ok",
+    "detail": "links=11 jsonLd=0 (923ms)",
+    "checked_at": "2026-11-23T03:07:31.343Z"
+  },
+  "https://croatiancentre.com/events/": {
+    "url": "https://croatiancentre.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (102ms)",
+    "checked_at": "2026-11-23T03:10:58.422Z"
+  },
+  "https://deerlakegallery.org/events/": {
+    "url": "https://deerlakegallery.org/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T03:11:02.130Z"
+  },
+  "https://www.sfu.ca/sca/events---news/events.html": {
+    "url": "https://www.sfu.ca/sca/events---news/events.html",
+    "status": "http_200_ok",
+    "detail": "links=173 jsonLd=0 (108ms)",
+    "checked_at": "2026-11-23T03:11:03.309Z"
+  },
+  "https://www.gatewaytheatre.com/events/": {
+    "url": "https://www.gatewaytheatre.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (268ms)",
+    "checked_at": "2026-11-23T04:17:54.005Z"
+  },
+  "https://guildfordtowncentre.com/events": {
+    "url": "https://guildfordtowncentre.com/events",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T04:18:47.443Z"
+  },
+  "https://www.hollywoodtheatre.ca/events": {
+    "url": "https://www.hollywoodtheatre.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=70 jsonLd=0 (98ms)",
+    "checked_at": "2026-11-23T04:18:48.578Z"
+  },
+  "https://www.langleyeventscentre.com/events": {
+    "url": "https://www.langleyeventscentre.com/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (141ms)",
+    "checked_at": "2026-11-23T04:22:27.924Z"
+  },
+  "https://www.masseytheatre.com/events/": {
+    "url": "https://www.masseytheatre.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=9 jsonLd=0 (992ms)",
+    "checked_at": "2026-11-23T04:22:37.776Z"
+  },
+  "https://michaeljfoxtheatre.ca/events/": {
+    "url": "https://michaeljfoxtheatre.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=12 jsonLd=0 (814ms)",
+    "checked_at": "2026-11-23T04:22:44.820Z"
+  },
+  "https://www.artscouncilofsurrey.ca/events": {
+    "url": "https://www.artscouncilofsurrey.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (1325ms)",
+    "checked_at": "2026-11-23T04:23:39.505Z"
+  },
+  "https://centre.nikkeiplace.org/events/": {
+    "url": "https://centre.nikkeiplace.org/events/",
+    "status": "http_200_ok",
+    "detail": "links=10 jsonLd=0 (451ms)",
+    "checked_at": "2026-11-23T04:24:29.919Z"
+  },
+  "https://www.normanrothsteintheatre.com/events": {
+    "url": "https://www.normanrothsteintheatre.com/events",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (270ms)",
+    "checked_at": "2026-11-23T04:29:32.194Z"
+  },
+  "https://www.richmondartgallery.org/events": {
+    "url": "https://www.richmondartgallery.org/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T04:30:42.254Z"
+  },
+  "https://www.roundhouse.ca/events/": {
+    "url": "https://www.roundhouse.ca/events/",
+    "status": "http_520",
+    "detail": "HTTP 520",
+    "checked_at": "2026-11-23T04:30:43.634Z"
+  },
+  "https://scandinaviancentre.org/events/": {
+    "url": "https://scandinaviancentre.org/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T04:30:44.760Z"
+  },
+  "https://www.slicevancouver.ca/events": {
+    "url": "https://www.slicevancouver.ca/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T04:30:45.964Z"
+  },
+  "https://thecinematheque.ca/films/calendar": {
+    "url": "https://thecinematheque.ca/films/calendar",
+    "status": "http_200_ok",
+    "detail": "links=59 jsonLd=0 (433ms)",
+    "checked_at": "2026-11-23T04:30:47.422Z"
+  },
+  "https://www.roxyvancouver.com/calendar": {
+    "url": "https://www.roxyvancouver.com/calendar",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T04:34:35.421Z"
+  },
+  "https://www.langleycity.ca/community-culture/events": {
+    "url": "https://www.langleycity.ca/community-culture/events",
+    "status": "http_200_ok",
+    "detail": "links=21 jsonLd=0 (395ms)",
+    "checked_at": "2026-11-23T04:34:36.902Z"
+  },
+  "https://troutlakecc.com/events": {
+    "url": "https://troutlakecc.com/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (804ms)",
+    "checked_at": "2026-11-23T04:39:41.453Z"
+  },
+  "https://www.vanartgallery.bc.ca/events": {
+    "url": "https://www.vanartgallery.bc.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (952ms)",
+    "checked_at": "2026-11-23T04:41:32.780Z"
+  },
+  "https://www.vancouveropera.ca/whats-on/": {
+    "url": "https://www.vancouveropera.ca/whats-on/",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=0 (536ms)",
+    "checked_at": "2026-11-23T04:51:13.095Z"
+  },
+  "https://604now.com/events": {
+    "url": "https://604now.com/events",
+    "status": "http_200_ok",
+    "detail": "links=40 jsonLd=0 (585ms)",
+    "checked_at": "2026-11-23T04:52:52.465Z"
+  },
+  "https://admiralpub.ca/events/": {
+    "url": "https://admiralpub.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (753ms)",
+    "checked_at": "2026-11-23T05:03:02.453Z"
+  },
+  "https://admitone.com/events/surrey": {
+    "url": "https://admitone.com/events/surrey",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (720ms)",
+    "checked_at": "2026-11-23T05:13:10.885Z"
+  },
+  "https://www.alexhouse.net/events-calendar": {
+    "url": "https://www.alexhouse.net/events-calendar",
+    "status": "http_200_ok",
+    "detail": "links=18 jsonLd=0 (239ms)",
+    "checked_at": "2026-11-23T05:13:23.055Z"
+  },
+  "https://vancouvercivictheatres.com/events/": {
+    "url": "https://vancouvercivictheatres.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (3231ms)",
+    "checked_at": "2026-11-23T05:15:17.828Z"
+  },
+  "https://abcbrewing.ca/events/": {
+    "url": "https://abcbrewing.ca/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T05:17:02.468Z"
+  },
+  "https://artsnewwest.ca/events/": {
+    "url": "https://artsnewwest.ca/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:17:04.080Z"
+  },
+  "https://culturedays.ca/en/events": {
+    "url": "https://culturedays.ca/en/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (425ms)",
+    "checked_at": "2026-11-23T05:17:05.535Z"
+  },
+  "https://bbco.ca/pages/events": {
+    "url": "https://bbco.ca/pages/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:32:36.291Z"
+  },
+  "https://vancouver.broadway.com/shows/": {
+    "url": "https://vancouver.broadway.com/shows/",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (85ms)",
+    "checked_at": "2026-11-23T05:32:37.423Z"
+  },
+  "https://brookswoodbrewing.com/events/": {
+    "url": "https://brookswoodbrewing.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (345ms)",
+    "checked_at": "2026-11-23T05:33:23.087Z"
+  },
+  "https://buckandear.com/events/": {
+    "url": "https://buckandear.com/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T05:33:32.182Z"
+  },
+  "https://www.burnabyartistsguild.com/events": {
+    "url": "https://www.burnabyartistsguild.com/events",
+    "status": "http_200_ok",
+    "detail": "links=16 jsonLd=0 (420ms)",
+    "checked_at": "2026-11-23T05:33:33.707Z"
+  },
+  "https://www.burnabyheights.com/events/": {
+    "url": "https://www.burnabyheights.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (73ms)",
+    "checked_at": "2026-11-23T05:39:36.592Z"
+  },
+  "https://www.burnabysteelers.com/stats/schedule": {
+    "url": "https://www.burnabysteelers.com/stats/schedule",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T05:40:28.166Z"
+  },
+  "https://www.campbeer.ca/events": {
+    "url": "https://www.campbeer.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=3 (307ms)",
+    "checked_at": "2026-11-23T05:40:29.500Z"
+  },
+  "https://www.burnaby.ca/recreation-and-arts/events": {
+    "url": "https://www.burnaby.ca/recreation-and-arts/events",
+    "status": "http_200_ok",
+    "detail": "links=10 jsonLd=0 (870ms)",
+    "checked_at": "2026-11-23T05:40:53.497Z"
+  },
+  "https://www.newwestcity.ca/calendar": {
+    "url": "https://www.newwestcity.ca/calendar",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:44:28.872Z"
+  },
+  "https://www.richmond.ca/parks-recreation/about/events.htm": {
+    "url": "https://www.richmond.ca/parks-recreation/about/events.htm",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:44:29.982Z"
+  },
+  "https://thedrive.ca/events/": {
+    "url": "https://thedrive.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (922ms)",
+    "checked_at": "2026-11-23T05:44:32.008Z"
+  },
+  "https://www.commodoreballroom.com/events": {
+    "url": "https://www.commodoreballroom.com/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:45:25.722Z"
+  },
+  "https://countryvines.ca/pages/events": {
+    "url": "https://countryvines.ca/pages/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:45:27.098Z"
+  },
+  "https://dageraadbrewing.com/events/": {
+    "url": "https://dageraadbrewing.com/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:45:29.952Z"
+  },
+  "https://dailyhive.com/vancouver/listed/events": {
+    "url": "https://dailyhive.com/vancouver/listed/events",
+    "status": "http_200_ok",
+    "detail": "links=12 jsonLd=0 (189ms)",
+    "checked_at": "2026-11-23T05:45:31.175Z"
+  },
+  "https://deadfrog.ca/tasting-room/events/": {
+    "url": "https://deadfrog.ca/tasting-room/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (676ms)",
+    "checked_at": "2026-11-23T05:50:05.233Z"
+  },
+  "https://www.discoverlangleycity.com/play/events/": {
+    "url": "https://www.discoverlangleycity.com/play/events/",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (86ms)",
+    "checked_at": "2026-11-23T05:50:14.420Z"
+  },
+  "https://do604.com/events": {
+    "url": "https://do604.com/events",
+    "status": "http_200_ok",
+    "detail": "links=23 jsonLd=0 (362ms)",
+    "checked_at": "2026-11-23T05:50:24.467Z"
+  },
+  "https://douglasroyals.ca/calendar": {
+    "url": "https://douglasroyals.ca/calendar",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T05:59:01.175Z"
+  },
+  "https://www.downtownlangley.com/events": {
+    "url": "https://www.downtownlangley.com/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T05:59:02.329Z"
+  },
+  "https://www.downtownnewwest.ca/events": {
+    "url": "https://www.downtownnewwest.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (396ms)",
+    "checked_at": "2026-11-23T05:59:03.894Z"
+  },
+  "https://www.downtownsurreybia.com/Events": {
+    "url": "https://www.downtownsurreybia.com/Events",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (296ms)",
+    "checked_at": "2026-11-23T05:59:13.682Z"
+  },
+  "https://www.dublincalling.com/events": {
+    "url": "https://www.dublincalling.com/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:00:00.591Z"
+  },
+  "https://culturecrawl.ca/events/": {
+    "url": "https://culturecrawl.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (487ms)",
+    "checked_at": "2026-11-23T06:00:02.129Z"
+  },
+  "https://www.eventbrite.ca/d/canada--surrey/events/": {
+    "url": "https://www.eventbrite.ca/d/canada--surrey/events/",
+    "status": "http_200_ok",
+    "detail": "links=20 jsonLd=0 (1894ms)",
+    "checked_at": "2026-11-23T06:14:00.230Z"
+  },
+  "https://www.eventbrite.ca/d/canada--vancouver/events/": {
+    "url": "https://www.eventbrite.ca/d/canada--vancouver/events/",
+    "status": "http_200_ok",
+    "detail": "links=21 jsonLd=0 (1232ms)",
+    "checked_at": "2026-11-23T06:15:48.783Z"
+  },
+  "https://www.exploresteveston.com/events/": {
+    "url": "https://www.exploresteveston.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (364ms)",
+    "checked_at": "2026-11-23T06:18:31.903Z"
+  },
+  "https://www.explorewhiterock.com/events": {
+    "url": "https://www.explorewhiterock.com/events",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (1187ms)",
+    "checked_at": "2026-11-23T06:19:18.817Z"
+  },
+  "https://festinalente.ca/pages/events": {
+    "url": "https://festinalente.ca/pages/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:19:30.110Z"
+  },
+  "https://fiveroadsbrewing.com/events/": {
+    "url": "https://fiveroadsbrewing.com/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T06:19:31.438Z"
+  },
+  "https://folkstaracademy.org/events/": {
+    "url": "https://folkstaracademy.org/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (338ms)",
+    "checked_at": "2026-11-23T06:19:32.900Z"
+  },
+  "https://fraservalleycider.ca/events/": {
+    "url": "https://fraservalleycider.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (728ms)",
+    "checked_at": "2026-11-23T06:19:43.248Z"
+  },
+  "https://fvhrs.org/events/": {
+    "url": "https://fvhrs.org/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1376ms)",
+    "checked_at": "2026-11-23T06:22:16.712Z"
+  },
+  "https://www.galint.gg/events": {
+    "url": "https://www.galint.gg/events",
+    "status": "http_200_ok",
+    "detail": "links=8 jsonLd=0 (144ms)",
+    "checked_at": "2026-11-23T06:22:26.988Z"
+  },
+  "https://georgieslocal.ca/events/": {
+    "url": "https://georgieslocal.ca/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:24:49.463Z"
+  },
+  "https://gibson.sfu.ca/events/": {
+    "url": "https://gibson.sfu.ca/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:24:50.878Z"
+  },
+  "https://ra.co/events": {
+    "url": "https://ra.co/events",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 403",
+    "checked_at": "2026-11-23T06:24:52.000Z"
+  },
+  "https://granvilleisland.com/events": {
+    "url": "https://granvilleisland.com/events",
+    "status": "http_200_ok",
+    "detail": "links=12 jsonLd=12 (6144ms)",
+    "checked_at": "2026-11-23T06:24:59.185Z"
+  },
+  "https://greatbearpub.com/events/": {
+    "url": "https://greatbearpub.com/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T06:25:51.073Z"
+  },
+  "https://gulfofgeorgiacannery.org/events/": {
+    "url": "https://gulfofgeorgiacannery.org/events/",
+    "status": "http_200_ok",
+    "detail": "links=7 jsonLd=0 (1609ms)",
+    "checked_at": "2026-11-23T06:25:53.777Z"
+  },
+  "https://granvilleisland.com/events-list": {
+    "url": "https://granvilleisland.com/events-list",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:29:01.645Z"
+  },
+  "https://kitsilanoshowboat.com/homepage/calendar/": {
+    "url": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (795ms)",
+    "checked_at": "2026-11-23T06:29:03.597Z"
+  },
+  "https://langleyarts.ca/events": {
+    "url": "https://langleyarts.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=7 jsonLd=0 (866ms)",
+    "checked_at": "2026-11-23T06:29:13.578Z"
+  },
+  "https://www.langleyrams.com/schedule": {
+    "url": "https://www.langleyrams.com/schedule",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (128ms)",
+    "checked_at": "2026-11-23T06:32:32.869Z"
+  },
+  "https://www.langleyrivermen.com/stats/schedule": {
+    "url": "https://www.langleyrivermen.com/stats/schedule",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (199ms)",
+    "checked_at": "2026-11-23T06:32:41.709Z"
+  },
+  "https://www.langleytrappers.com/stats/schedule": {
+    "url": "https://www.langleytrappers.com/stats/schedule",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (758ms)",
+    "checked_at": "2026-11-23T06:35:20.260Z"
+  },
+  "https://www.latincouver.ca/events/": {
+    "url": "https://www.latincouver.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (4282ms)",
+    "checked_at": "2026-11-23T06:37:02.413Z"
+  },
+  "https://lavenderland.ca/pages/events": {
+    "url": "https://lavenderland.ca/pages/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (391ms)",
+    "checked_at": "2026-11-23T06:38:59.266Z"
+  },
+  "https://lipontplace.com/events/": {
+    "url": "https://lipontplace.com/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:39:09.154Z"
+  },
+  "https://localitybrewing.ca/pages/events": {
+    "url": "https://localitybrewing.ca/pages/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:39:10.533Z"
+  },
+  "https://londonfarm.ca/events/": {
+    "url": "https://londonfarm.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (254ms)",
+    "checked_at": "2026-11-23T06:39:11.806Z"
+  },
+  "https://luluislandwinery.com/events/": {
+    "url": "https://luluislandwinery.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=5 jsonLd=0 (206ms)",
+    "checked_at": "2026-11-23T06:39:20.724Z"
+  },
+  "https://miss604.com/events/": {
+    "url": "https://miss604.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (523ms)",
+    "checked_at": "2026-11-23T06:41:01.398Z"
+  },
+  "https://monkey9brewing.com/events/": {
+    "url": "https://monkey9brewing.com/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T06:41:10.967Z"
+  },
+  "https://www.nwheritage.org/events/": {
+    "url": "https://www.nwheritage.org/events/",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T06:41:19.010Z"
+  },
+  "https://www.salmonbellies.com/schedule": {
+    "url": "https://www.salmonbellies.com/schedule",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T06:41:20.190Z"
+  },
+  "https://nightowlbars.ca/events/": {
+    "url": "https://nightowlbars.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (99ms)",
+    "checked_at": "2026-11-23T06:41:21.328Z"
+  },
+  "https://www.northroadbia.ca/events/": {
+    "url": "https://www.northroadbia.ca/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T06:41:30.421Z"
+  },
+  "https://www.surreyknights.ca/stats/schedule": {
+    "url": "https://www.surreyknights.ca/stats/schedule",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (736ms)",
+    "checked_at": "2026-11-23T06:41:32.186Z"
+  },
+  "https://ohares.pub/events/": {
+    "url": "https://ohares.pub/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (947ms)",
+    "checked_at": "2026-11-23T06:43:15.801Z"
+  },
+  "https://www.ticketleader.ca/events": {
+    "url": "https://www.ticketleader.ca/events",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 406",
+    "checked_at": "2026-11-23T06:44:18.065Z"
+  },
+  "https://paddlewheelerpub.com/events/": {
+    "url": "https://paddlewheelerpub.com/events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T06:44:19.123Z"
+  },
+  "https://gitd.ca/pages/whats-on": {
+    "url": "https://gitd.ca/pages/whats-on",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (197ms)",
+    "checked_at": "2026-11-23T06:44:20.350Z"
+  },
+  "https://www.pittmeadowsmuseum.com/events.html": {
+    "url": "https://www.pittmeadowsmuseum.com/events.html",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (391ms)",
+    "checked_at": "2026-11-23T06:45:05.456Z"
+  },
+  "https://publicdisco.ca/events": {
+    "url": "https://publicdisco.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=11 jsonLd=0 (577ms)",
+    "checked_at": "2026-11-23T06:45:14.734Z"
+  },
+  "https://raincitygames.com/pages/events": {
+    "url": "https://raincitygames.com/pages/events",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T06:49:16.883Z"
+  },
+  "https://www.richmondartscoalition.com/events/": {
+    "url": "https://www.richmondartscoalition.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=91 jsonLd=57 (2409ms)",
+    "checked_at": "2026-11-23T06:49:20.415Z"
+  },
+  "https://www.richmondcountryfarms.com/events/": {
+    "url": "https://www.richmondcountryfarms.com/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T07:04:28.006Z"
+  },
+  "https://richmondoval.ca/events/": {
+    "url": "https://richmondoval.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=19 jsonLd=14 (511ms)",
+    "checked_at": "2026-11-23T07:04:29.571Z"
+  },
+  "https://www.richmondsockeyes.com/stats/schedule": {
+    "url": "https://www.richmondsockeyes.com/stats/schedule",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (789ms)",
+    "checked_at": "2026-11-23T07:10:56.560Z"
+  },
+  "https://rivermarket.ca/events/": {
+    "url": "https://rivermarket.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (2337ms)",
+    "checked_at": "2026-11-23T07:12:35.355Z"
+  },
+  "https://www.roeddehouse.org/events": {
+    "url": "https://www.roeddehouse.org/events",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=6 (2747ms)",
+    "checked_at": "2026-11-23T07:13:30.150Z"
+  },
+  "https://pocolegion.ca/calendar-of-events/": {
+    "url": "https://pocolegion.ca/calendar-of-events/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T07:13:37.176Z"
+  },
+  "https://www.salishanculturalcentre.ca/events": {
+    "url": "https://www.salishanculturalcentre.ca/events",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T07:13:38.231Z"
+  },
+  "https://www.milb.com/vancouver/schedule": {
+    "url": "https://www.milb.com/vancouver/schedule",
+    "status": "http_200_ok",
+    "detail": "links=13 jsonLd=0 (1519ms)",
+    "checked_at": "2026-11-23T07:13:40.804Z"
+  },
+  "https://scoutmagazine.ca/events/": {
+    "url": "https://scoutmagazine.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (511ms)",
+    "checked_at": "2026-11-23T07:16:54.428Z"
+  },
+  "https://athletics.sfu.ca/calendar": {
+    "url": "https://athletics.sfu.ca/calendar",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (750ms)",
+    "checked_at": "2026-11-23T07:17:48.613Z"
+  },
+  "https://events.sfu.ca": {
+    "url": "https://events.sfu.ca",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (383ms)",
+    "checked_at": "2026-11-23T07:21:35.755Z"
+  },
+  "https://www.sswrchamber.ca/events": {
+    "url": "https://www.sswrchamber.ca/events",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T07:21:37.645Z"
+  },
+  "https://www.surreyeagles.ca/stats/schedule": {
+    "url": "https://www.surreyeagles.ca/stats/schedule",
+    "status": "http_503",
+    "detail": "HTTP 503",
+    "checked_at": "2026-11-23T07:21:38.768Z"
+  },
+  "https://standrewswesley.com/events/": {
+    "url": "https://standrewswesley.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (108ms)",
+    "checked_at": "2026-11-23T07:21:39.937Z"
+  },
+  "https://steelandoak.ca/events/": {
+    "url": "https://steelandoak.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (928ms)",
+    "checked_at": "2026-11-23T07:35:46.840Z"
+  },
+  "https://stevestonheritage.ca/events/": {
+    "url": "https://stevestonheritage.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=5 jsonLd=5 (2056ms)",
+    "checked_at": "2026-11-23T07:35:52.827Z"
+  },
+  "https://studiobrewing.ca/pages/events": {
+    "url": "https://studiobrewing.ca/pages/events",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T07:36:04.289Z"
+  },
+  "https://www.surreylibraries.ca/events": {
+    "url": "https://www.surreylibraries.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=10 jsonLd=0 (321ms)",
+    "checked_at": "2026-11-23T07:36:05.635Z"
+  },
+  "https://do604.com/events/comedy": {
+    "url": "https://do604.com/events/comedy",
+    "status": "http_200_ok",
+    "detail": "links=25 jsonLd=0 (374ms)",
+    "checked_at": "2026-11-23T07:39:28.557Z"
+  },
+  "https://thecobalt.ca/events": {
+    "url": "https://thecobalt.ca/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T07:48:18.361Z"
+  },
+  "https://themainonmain.com/events": {
+    "url": "https://themainonmain.com/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T07:48:19.783Z"
+  },
+  "https://thepearlvancouver.com/calendar/": {
+    "url": "https://thepearlvancouver.com/calendar/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T07:48:21.477Z"
+  },
+  "https://www.therecroom.com/burnaby-brentwood/events": {
+    "url": "https://www.therecroom.com/burnaby-brentwood/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (736ms)",
+    "checked_at": "2026-11-23T07:48:23.247Z"
+  },
+  "https://www.therecroom.com/granville/events": {
+    "url": "https://www.therecroom.com/granville/events",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (279ms)",
+    "checked_at": "2026-11-23T07:48:32.159Z"
+  },
+  "https://atthewaldorf.com/events": {
+    "url": "https://atthewaldorf.com/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T07:49:31.614Z"
+  },
+  "https://www.todocanada.ca/city/vancouver/events/": {
+    "url": "https://www.todocanada.ca/city/vancouver/events/",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 403",
+    "checked_at": "2026-11-23T07:49:32.717Z"
+  },
+  "https://www.tourism-langley.ca/events/": {
+    "url": "https://www.tourism-langley.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=15 jsonLd=0 (3236ms)",
+    "checked_at": "2026-11-23T07:49:37.065Z"
+  },
+  "https://www.visitrichmondbc.com/events/": {
+    "url": "https://www.visitrichmondbc.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=3 (583ms)",
+    "checked_at": "2026-11-23T07:54:11.071Z"
+  },
+  "https://www.tradingpostbrewing.com/events/": {
+    "url": "https://www.tradingpostbrewing.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=12 jsonLd=0 (1407ms)",
+    "checked_at": "2026-11-23T07:55:02.092Z"
+  },
+  "https://www.tsawwassenmills.com/events-entertainment/": {
+    "url": "https://www.tsawwassenmills.com/events-entertainment/",
+    "status": "http_200_ok",
+    "detail": "links=15 jsonLd=15 (276ms)",
+    "checked_at": "2026-11-23T07:59:15.738Z"
+  },
+  "https://tyrantstudios.com/events": {
+    "url": "https://tyrantstudios.com/events",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:05:53.188Z"
+  },
+  "https://uptownnewwest.ca/events/": {
+    "url": "https://uptownnewwest.ca/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (612ms)",
+    "checked_at": "2026-11-23T08:05:54.824Z"
+  },
+  "https://www.thebandits.ca/schedule": {
+    "url": "https://www.thebandits.ca/schedule",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (282ms)",
+    "checked_at": "2026-11-23T08:06:04.082Z"
+  },
+  "https://vancouverpoetryhouse.com/events/": {
+    "url": "https://vancouverpoetryhouse.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=1 (1095ms)",
+    "checked_at": "2026-11-23T08:07:04.100Z"
+  },
+  "https://writersfest.bc.ca/events": {
+    "url": "https://writersfest.bc.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=2 (109ms)",
+    "checked_at": "2026-11-23T08:07:05.770Z"
+  },
+  "https://vancouversbestplaces.com/events-calendar": {
+    "url": "https://vancouversbestplaces.com/events-calendar",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (1105ms)",
+    "checked_at": "2026-11-23T08:07:08.547Z"
+  },
+  "https://www.5xfest.com/": {
+    "url": "https://www.5xfest.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (143ms)",
+    "checked_at": "2026-11-23T08:07:10.229Z"
+  },
+  "https://www.douglascollege.ca/community-visitors/arts-events/amelia-douglas-gallery": {
+    "url": "https://www.douglascollege.ca/community-visitors/arts-events/amelia-douglas-gallery",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:07:20.362Z"
+  },
+  "https://ariaconvention.com/": {
+    "url": "https://ariaconvention.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2717ms)",
+    "checked_at": "2026-11-23T08:07:24.283Z"
+  },
+  "https://www.bandsintown.com/c/surrey-canada": {
+    "url": "https://www.bandsintown.com/c/surrey-canada",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 403",
+    "checked_at": "2026-11-23T08:07:34.305Z"
+  },
+  "https://www.billreidgallery.ca/blogs/exhibitions-page": {
+    "url": "https://www.billreidgallery.ca/blogs/exhibitions-page",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (177ms)",
+    "checked_at": "2026-11-23T08:07:35.514Z"
+  },
+  "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery": {
+    "url": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (879ms)",
+    "checked_at": "2026-11-23T08:08:34.208Z"
+  },
+  "https://www.burnabyartgallery.ca/350/Exhibitions-Events": {
+    "url": "https://www.burnabyartgallery.ca/350/Exhibitions-Events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:10:16.213Z"
+  },
+  "https://lfas.sd35.bc.ca/": {
+    "url": "https://lfas.sd35.bc.ca/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (614ms)",
+    "checked_at": "2026-11-23T08:10:17.904Z"
+  },
+  "https://cagvancouver.org/exhibitions-and-events": {
+    "url": "https://cagvancouver.org/exhibitions-and-events",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=0 (293ms)",
+    "checked_at": "2026-11-23T08:11:04.345Z"
+  },
+  "https://www.contemporaryartgallery.ca/exhibitions/": {
+    "url": "https://www.contemporaryartgallery.ca/exhibitions/",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=0 (302ms)",
+    "checked_at": "2026-11-23T08:11:53.549Z"
+  },
+  "https://craftcouncilbc.ca/ccbc-gallery/": {
+    "url": "https://craftcouncilbc.ca/ccbc-gallery/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:12:44.333Z"
+  },
+  "https://frankiesjazzclub.com": {
+    "url": "https://frankiesjazzclub.com",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T08:12:52.375Z"
+  },
+  "https://fraserriverdiscovery.org/visit/": {
+    "url": "https://fraserriverdiscovery.org/visit/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:12:56.117Z"
+  },
+  "https://fraserriverdiscovery.org/programs-events/": {
+    "url": "https://fraserriverdiscovery.org/programs-events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:12:58.851Z"
+  },
+  "https://www.grandempirehall.com/": {
+    "url": "https://www.grandempirehall.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1785ms)",
+    "checked_at": "2026-11-23T08:13:01.667Z"
+  },
+  "https://www.surrey.ca/parks-recreation/recreation-facilities/grandview-heights-aquatic-centre": {
+    "url": "https://www.surrey.ca/parks-recreation/recreation-facilities/grandview-heights-aquatic-centre",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (714ms)",
+    "checked_at": "2026-11-23T08:13:14.166Z"
+  },
+  "https://www.guildfordgolf.com/": {
+    "url": "https://www.guildfordgolf.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (269ms)",
+    "checked_at": "2026-11-23T08:15:50.758Z"
+  },
+  "https://www.honeybeecentre.com/courses-and-workshops/": {
+    "url": "https://www.honeybeecentre.com/courses-and-workshops/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:16:00.130Z"
+  },
+  "https://www.landmarkcinemas.com/showtimes/surrey-guildford": {
+    "url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (545ms)",
+    "checked_at": "2026-11-23T08:16:01.710Z"
+  },
+  "https://langleymusic.com/concerts-events/": {
+    "url": "https://langleymusic.com/concerts-events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (347ms)",
+    "checked_at": "2026-11-23T08:16:44.038Z"
+  },
+  "https://livevan.com/": {
+    "url": "https://livevan.com/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (514ms)",
+    "checked_at": "2026-11-23T08:16:54.414Z"
+  },
+  "https://newmediagallery.ca/": {
+    "url": "https://newmediagallery.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (502ms)",
+    "checked_at": "2026-11-23T08:17:40.422Z"
+  },
+  "https://newvisionmusicsociety.org/": {
+    "url": "https://newvisionmusicsociety.org/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:17:49.652Z"
+  },
+  "https://pacifictheatre.org/season/": {
+    "url": "https://pacifictheatre.org/season/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:17:50.903Z"
+  },
+  "https://www.pendulumgallery.bc.ca/exhibition-current/": {
+    "url": "https://www.pendulumgallery.bc.ca/exhibition-current/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1599ms)",
+    "checked_at": "2026-11-23T08:17:53.519Z"
+  },
+  "https://www.penmar.ca/home-1": {
+    "url": "https://www.penmar.ca/home-1",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (127ms)",
+    "checked_at": "2026-11-23T08:18:02.965Z"
+  },
+  "https://www.pittmeadows.ca/pmag": {
+    "url": "https://www.pittmeadows.ca/pmag",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1203ms)",
+    "checked_at": "2026-11-23T08:18:12.968Z"
+  },
+  "https://www.projectclimbing.ca/rates/": {
+    "url": "https://www.projectclimbing.ca/rates/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1280ms)",
+    "checked_at": "2026-11-23T08:19:08.274Z"
+  },
+  "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/": {
+    "url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+    "status": "http_200_ok",
+    "detail": "links=20 jsonLd=30 (2053ms)",
+    "checked_at": "2026-11-23T08:19:19.692Z"
+  },
+  "https://www.richmondartgallery.org/exhibitions": {
+    "url": "https://www.richmondartgallery.org/exhibitions",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (502ms)",
+    "checked_at": "2026-11-23T08:19:51.467Z"
+  },
+  "https://www.rctheatreco.com": {
+    "url": "https://www.rctheatreco.com",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2487ms)",
+    "checked_at": "2026-11-23T08:20:43.616Z"
+  },
+  "https://www.royalcitymusicaltheatre.com/": {
+    "url": "https://www.royalcitymusicaltheatre.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (566ms)",
+    "checked_at": "2026-11-23T08:26:35.572Z"
+  },
+  "https://tickets.shadboltcentre.com/": {
+    "url": "https://tickets.shadboltcentre.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (403ms)",
+    "checked_at": "2026-11-23T08:27:33.404Z"
+  },
+  "https://www.surrey.ca/arts-culture/surrey-art-gallery/exhibitions": {
+    "url": "https://www.surrey.ca/arts-culture/surrey-art-gallery/exhibitions",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (631ms)",
+    "checked_at": "2026-11-23T08:27:43.069Z"
+  },
+  "https://www.surrey.ca/arts-culture/surrey-art-gallery": {
+    "url": "https://www.surrey.ca/arts-culture/surrey-art-gallery",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (737ms)",
+    "checked_at": "2026-11-23T08:28:42.500Z"
+  },
+  "https://tickets.surrey.ca/TheatreManager/1/login?event=0": {
+    "url": "https://tickets.surrey.ca/TheatreManager/1/login?event=0",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (152ms)",
+    "checked_at": "2026-11-23T08:29:27.204Z"
+  },
+  "https://surreycanadaday.ca/": {
+    "url": "https://surreycanadaday.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=1 (383ms)",
+    "checked_at": "2026-11-23T08:29:36.423Z"
+  },
+  "https://www.surrey.ca/parks-recreation/surrey-nature-centre": {
+    "url": "https://www.surrey.ca/parks-recreation/surrey-nature-centre",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:30:39.524Z"
+  },
+  "https://www.eventbrite.ca/o/jokes-please-31441829869": {
+    "url": "https://www.eventbrite.ca/o/jokes-please-31441829869",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (169ms)",
+    "checked_at": "2026-11-23T08:30:40.732Z"
+  },
+  "https://www.vancouversymphony.ca/concerts/": {
+    "url": "https://www.vancouversymphony.ca/concerts/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1545ms)",
+    "checked_at": "2026-11-23T08:30:44.062Z"
+  },
+  "https://thepolygon.ca/exhibitions/": {
+    "url": "https://thepolygon.ca/exhibitions/",
+    "status": "http_200_ok",
+    "detail": "links=7 jsonLd=0 (725ms)",
+    "checked_at": "2026-11-23T08:34:12.397Z"
+  },
+  "https://www.wisehall.ca": {
+    "url": "https://www.wisehall.ca",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (94ms)",
+    "checked_at": "2026-11-23T08:35:00.795Z"
+  },
+  "https://touchstonetheatre.com/": {
+    "url": "https://touchstonetheatre.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1199ms)",
+    "checked_at": "2026-11-23T08:35:11.113Z"
+  },
+  "https://vaninstitute.ca": {
+    "url": "https://vaninstitute.ca",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (309ms)",
+    "checked_at": "2026-11-23T08:36:59.016Z"
+  },
+  "https://vagabondplayers.ca/": {
+    "url": "https://vagabondplayers.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (529ms)",
+    "checked_at": "2026-11-23T08:37:09.517Z"
+  },
+  "https://www.wakeupmusicfestival.com/about-wake-up-at-kpu": {
+    "url": "https://www.wakeupmusicfestival.com/about-wake-up-at-kpu",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (621ms)",
+    "checked_at": "2026-11-23T08:37:19.177Z"
+  },
+  "https://www.carouseltheatre.ca/waterfront-theatre/": {
+    "url": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:37:28.706Z"
+  },
+  "https://whalleylegion.org/news-%26-calendar": {
+    "url": "https://whalleylegion.org/news-%26-calendar",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:37:29.879Z"
+  },
+  "https://www.whiterockplayers.ca": {
+    "url": "https://www.whiterockplayers.ca",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (123ms)",
+    "checked_at": "2026-11-23T08:37:31.061Z"
+  },
+  "https://www.nvrc.ca/notices-events-blog/events": {
+    "url": "https://www.nvrc.ca/notices-events-blog/events",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T08:37:39.700Z"
+  },
+  "https://www.waterstreetcafe.ca/2nd-floor-gastown": {
+    "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (92ms)",
+    "checked_at": "2026-11-23T08:37:40.817Z"
+  },
+  "https://3dogsbrewing.ca/": {
+    "url": "https://3dogsbrewing.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (456ms)",
+    "checked_at": "2026-11-23T08:37:50.532Z"
+  },
+  "https://barnsidebrewing.ca/": {
+    "url": "https://barnsidebrewing.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (83ms)",
+    "checked_at": "2026-11-23T08:37:59.327Z"
+  },
+  "https://lifedrawing.org/sessions": {
+    "url": "https://lifedrawing.org/sessions",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (354ms)",
+    "checked_at": "2026-11-23T08:38:08.592Z"
+  },
+  "https://bchra.ca/": {
+    "url": "https://bchra.ca/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:38:17.484Z"
+  },
+  "https://bcvintagetruckmuseum.org/": {
+    "url": "https://bcvintagetruckmuseum.org/",
+    "status": "http_500",
+    "detail": "HTTP 500",
+    "checked_at": "2026-11-23T08:38:19.504Z"
+  },
+  "https://www.surrey.ca/bearcreeklights": {
+    "url": "https://www.surrey.ca/bearcreeklights",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (797ms)",
+    "checked_at": "2026-11-23T08:38:21.324Z"
+  },
+  "https://bearcreektickets.surrey.ca/": {
+    "url": "https://bearcreektickets.surrey.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (801ms)",
+    "checked_at": "2026-11-23T08:38:23.682Z"
+  },
+  "https://belli.pizza/": {
+    "url": "https://belli.pizza/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (585ms)",
+    "checked_at": "2026-11-23T08:38:33.626Z"
+  },
+  "https://www.birdiesandbuckets.com/rates": {
+    "url": "https://www.birdiesandbuckets.com/rates",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2083ms)",
+    "checked_at": "2026-11-23T08:38:45.594Z"
+  },
+  "https://www.bluefrogstudios.ca": {
+    "url": "https://www.bluefrogstudios.ca",
+    "status": "http_200_ok",
+    "detail": "links=13 jsonLd=0 (362ms)",
+    "checked_at": "2026-11-23T08:38:56.409Z"
+  },
+  "https://stevestonheritage.ca/visit/britannia-shipyards/": {
+    "url": "https://stevestonheritage.ca/visit/britannia-shipyards/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (3204ms)",
+    "checked_at": "2026-11-23T08:39:01.231Z"
+  },
+  "https://www.brownssocialhouse.com/brewery-district": {
+    "url": "https://www.brownssocialhouse.com/brewery-district",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (446ms)",
+    "checked_at": "2026-11-23T08:42:06.386Z"
+  },
+  "https://bullystudios.ca/": {
+    "url": "https://bullystudios.ca/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:42:15.870Z"
+  },
+  "https://artisanmarkets.ca/burnaby/": {
+    "url": "https://artisanmarkets.ca/burnaby/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2233ms)",
+    "checked_at": "2026-11-23T08:42:19.142Z"
+  },
+  "https://www.burnabylakers.com/": {
+    "url": "https://www.burnabylakers.com/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (184ms)",
+    "checked_at": "2026-11-23T08:42:28.632Z"
+  },
+  "https://www.burnabysymphony.org/concerts/": {
+    "url": "https://www.burnabysymphony.org/concerts/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:43:17.622Z"
+  },
+  "https://www.burnabyvillagemuseum.ca/EN/main/what-s-on.html": {
+    "url": "https://www.burnabyvillagemuseum.ca/EN/main/what-s-on.html",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (339ms)",
+    "checked_at": "2026-11-23T08:43:19.065Z"
+  },
+  "https://cafeauclay.com/products/drop-in-pottery-painting": {
+    "url": "https://cafeauclay.com/products/drop-in-pottery-painting",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (204ms)",
+    "checked_at": "2026-11-23T08:44:07.087Z"
+  },
+  "https://canadacup.com/about-us/": {
+    "url": "https://canadacup.com/about-us/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (117ms)",
+    "checked_at": "2026-11-23T08:44:16.627Z"
+  },
+  "https://www.canadianmuseumofflight.org/": {
+    "url": "https://www.canadianmuseumofflight.org/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:44:25.783Z"
+  },
+  "https://canadianmuseumofflight.ca/": {
+    "url": "https://canadianmuseumofflight.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (100ms)",
+    "checked_at": "2026-11-23T08:44:26.928Z"
+  },
+  "https://www.canlansports.com/locations/ca/bc/langley-twin-rinks": {
+    "url": "https://www.canlansports.com/locations/ca/bc/langley-twin-rinks",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (669ms)",
+    "checked_at": "2026-11-23T08:44:36.501Z"
+  },
+  "https://www.carfree.ca/city/surrey": {
+    "url": "https://www.carfree.ca/city/surrey",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (88ms)",
+    "checked_at": "2026-11-23T08:45:23.548Z"
+  },
+  "https://www.chatterblock.com": {
+    "url": "https://www.chatterblock.com",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (229ms)",
+    "checked_at": "2026-11-23T08:45:32.771Z"
+  },
+  "https://chillxstudio.com": {
+    "url": "https://chillxstudio.com",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:45:34.363Z"
+  },
+  "https://artsculture.surrey.ca": {
+    "url": "https://artsculture.surrey.ca",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:45:35.413Z"
+  },
+  "https://www.surrey.ca/activities-parks-recreation/drop-schedules": {
+    "url": "https://www.surrey.ca/activities-parks-recreation/drop-schedules",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:45:37.126Z"
+  },
+  "https://purchase.surrey.ca/": {
+    "url": "https://purchase.surrey.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (96ms)",
+    "checked_at": "2026-11-23T08:45:38.253Z"
+  },
+  "https://claymatesceramicsstudio.com": {
+    "url": "https://claymatesceramicsstudio.com",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (593ms)",
+    "checked_at": "2026-11-23T08:45:47.737Z"
+  },
+  "https://www.cloverdalechamber.ca": {
+    "url": "https://www.cloverdalechamber.ca",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:47:33.321Z"
+  },
+  "https://cloverdalelegion.ca/music-entertainment/": {
+    "url": "https://cloverdalelegion.ca/music-entertainment/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:47:34.697Z"
+  },
+  "https://cloverdalemarket.ca": {
+    "url": "https://cloverdalemarket.ca",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2171ms)",
+    "checked_at": "2026-11-23T08:47:37.892Z"
+  },
+  "https://www.cloverdalereporter.com/local-events": {
+    "url": "https://www.cloverdalereporter.com/local-events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T08:47:47.977Z"
+  },
+  "https://www.cloverdalerodeo.com": {
+    "url": "https://www.cloverdalerodeo.com",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2477ms)",
+    "checked_at": "2026-11-23T08:47:51.541Z"
+  },
+  "https://cloverdalebia.com/bed-races/": {
+    "url": "https://cloverdalebia.com/bed-races/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T08:50:29.083Z"
+  },
+  "https://www.cloverdale-ae.ca/about.html": {
+    "url": "https://www.cloverdale-ae.ca/about.html",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (227ms)",
+    "checked_at": "2026-11-23T08:50:30.334Z"
+  },
+  "https://iq2000trivia.com": {
+    "url": "https://iq2000trivia.com",
+    "status": "http_200_ok",
+    "detail": "links=4 jsonLd=0 (2152ms)",
+    "checked_at": "2026-11-23T08:50:41.441Z"
+  },
+  "https://www.carfreevancouver.org": {
+    "url": "https://www.carfreevancouver.org",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (273ms)",
+    "checked_at": "2026-11-23T08:52:29.965Z"
+  },
+  "https://cougarcreekhouseofhorrors.com/": {
+    "url": "https://cougarcreekhouseofhorrors.com/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (185ms)",
+    "checked_at": "2026-11-23T08:52:39.875Z"
+  },
+  "https://cravebistro.ca/news/": {
+    "url": "https://cravebistro.ca/news/",
+    "status": "http_200_ok",
+    "detail": "links=16 jsonLd=0 (3423ms)",
+    "checked_at": "2026-11-23T08:53:31.952Z"
+  },
+  "https://www.cravingforagame.ca": {
+    "url": "https://www.cravingforagame.ca",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (534ms)",
+    "checked_at": "2026-11-23T09:01:42.191Z"
+  },
+  "https://curiocity.com/vancouver": {
+    "url": "https://curiocity.com/vancouver",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (169ms)",
+    "checked_at": "2026-11-23T09:01:51.650Z"
+  },
+  "https://dloungebar.com/": {
+    "url": "https://dloungebar.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (100ms)",
+    "checked_at": "2026-11-23T09:06:33.085Z"
+  },
+  "https://www.parqcasino.com/d-6-lounge": {
+    "url": "https://www.parqcasino.com/d-6-lounge",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (106ms)",
+    "checked_at": "2026-11-23T09:06:42.401Z"
+  },
+  "https://dailyhive.com/vancouver/listed": {
+    "url": "https://dailyhive.com/vancouver/listed",
+    "status": "http_200_ok",
+    "detail": "links=4 jsonLd=0 (90ms)",
+    "checked_at": "2026-11-23T09:07:38.493Z"
+  },
+  "https://dinekanadiyan.ca/live-entertainment": {
+    "url": "https://dinekanadiyan.ca/live-entertainment",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (135ms)",
+    "checked_at": "2026-11-23T09:09:10.437Z"
+  },
+  "https://diwalifest.com": {
+    "url": "https://diwalifest.com",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (2614ms)",
+    "checked_at": "2026-11-23T09:09:22.020Z"
+  },
+  "https://www.diwalifest.ca/": {
+    "url": "https://www.diwalifest.ca/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (5127ms)",
+    "checked_at": "2026-11-23T09:10:24.494Z"
+  },
+  "https://www.douglascollege.ca/artsevents": {
+    "url": "https://www.douglascollege.ca/artsevents",
+    "status": "http_200_ok",
+    "detail": "links=5 jsonLd=0 (203ms)",
+    "checked_at": "2026-11-23T09:11:22.012Z"
+  },
+  "https://dublincrossing.com/surrey/": {
+    "url": "https://dublincrossing.com/surrey/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T09:11:26.850Z"
+  },
+  "https://www.familyfuncanada.com/vancouver": {
+    "url": "https://www.familyfuncanada.com/vancouver",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (496ms)",
+    "checked_at": "2026-11-23T09:11:28.383Z"
+  },
+  "https://fleetwoodbia.com/home/fleetwood-bia-c-3/": {
+    "url": "https://fleetwoodbia.com/home/fleetwood-bia-c-3/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T09:11:30.296Z"
+  },
+  "https://parks.canada.ca/lhn-nhs/bc/langley/activ/calendrier-calendar": {
+    "url": "https://parks.canada.ca/lhn-nhs/bc/langley/activ/calendrier-calendar",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (3416ms)",
+    "checked_at": "2026-11-23T09:11:34.744Z"
+  },
+  "https://www.greatcanadian.com/destinations/britishcolumbia/elements-surrey/": {
+    "url": "https://www.greatcanadian.com/destinations/britishcolumbia/elements-surrey/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T09:11:44.946Z"
+  },
+  "https://granvilleisland.com/upcoming-events": {
+    "url": "https://granvilleisland.com/upcoming-events",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T09:11:52.973Z"
+  },
+  "https://gretabar.com/locations/vancouver": {
+    "url": "https://gretabar.com/locations/vancouver",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (1413ms)",
+    "checked_at": "2026-11-23T09:11:55.433Z"
+  },
+  "https://www.guiltandcompany.com/live-music": {
+    "url": "https://www.guiltandcompany.com/live-music",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T09:12:46.903Z"
+  },
+  "https://gupshupsocial.ca/": {
+    "url": "https://gupshupsocial.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (208ms)",
+    "checked_at": "2026-11-23T09:12:48.197Z"
+  },
+  "https://handeyeceramics.com/open-studio": {
+    "url": "https://handeyeceramics.com/open-studio",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (228ms)",
+    "checked_at": "2026-11-23T09:12:57.418Z"
+  },
+  "https://www.heartofthecityfestival.com/": {
+    "url": "https://www.heartofthecityfestival.com/",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (474ms)",
+    "checked_at": "2026-11-23T09:13:06.849Z"
+  },
+  "https://www.highscorelounge.ca/event-calendar": {
+    "url": "https://www.highscorelounge.ca/event-calendar",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T09:13:51.019Z"
+  },
+  "https://www.surrey.ca/arts-culture/historic-stewart-farm": {
+    "url": "https://www.surrey.ca/arts-culture/historic-stewart-farm",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=0 (791ms)",
+    "checked_at": "2026-11-23T09:13:52.835Z"
+  },
+  "https://www.howesound.com/event-list": {
+    "url": "https://www.howesound.com/event-list",
+    "status": "http_200_ok",
+    "detail": "links=5 jsonLd=0 (1860ms)",
+    "checked_at": "2026-11-23T09:14:38.340Z"
+  },
+  "https://imagineonestudios.com/": {
+    "url": "https://imagineonestudios.com/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (179ms)",
+    "checked_at": "2026-11-23T09:16:19.428Z"
+  },
+  "https://www.insidevancouver.ca": {
+    "url": "https://www.insidevancouver.ca",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (633ms)",
+    "checked_at": "2026-11-23T09:17:04.804Z"
+  },
+  "https://isaff.ca/film-festival/who-we-are/": {
+    "url": "https://isaff.ca/film-festival/who-we-are/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (2561ms)",
+    "checked_at": "2026-11-23T09:17:17.592Z"
+  },
+  "https://karmalounge.ca/": {
+    "url": "https://karmalounge.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (279ms)",
+    "checked_at": "2026-11-23T09:18:25.348Z"
+  },
+  "https://www.kpu.ca/science/brew/news": {
+    "url": "https://www.kpu.ca/science/brew/news",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T09:18:35.292Z"
+  },
+  "https://do604.com/venues/lanalou-s": {
+    "url": "https://do604.com/venues/lanalou-s",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=0 (185ms)",
+    "checked_at": "2026-11-23T09:18:36.503Z"
+  },
+  "https://lcfm.ca/": {
+    "url": "https://lcfm.ca/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (106ms)",
+    "checked_at": "2026-11-23T09:20:56.885Z"
+  },
+  "https://www.sfu.ca/galleries.html": {
+    "url": "https://www.sfu.ca/galleries.html",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (106ms)",
+    "checked_at": "2026-11-23T09:21:45.169Z"
+  },
+  "https://www.meetup.com/find/ca--bc--surrey/": {
+    "url": "https://www.meetup.com/find/ca--bc--surrey/",
+    "status": "http_200_ok",
+    "detail": "links=35 jsonLd=37 (3619ms)",
+    "checked_at": "2026-11-23T09:21:57.646Z"
+  },
+  "https://moodswingbar.ca/": {
+    "url": "https://moodswingbar.ca/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T09:28:43.096Z"
+  },
+  "https://moa.ubc.ca": {
+    "url": "https://moa.ubc.ca",
+    "status": "http_200_ok",
+    "detail": "links=5 jsonLd=0 (120ms)",
+    "checked_at": "2026-11-23T09:28:44.250Z"
+  },
+  "https://www.surrey.ca/arts-culture/museum-of-surrey": {
+    "url": "https://www.surrey.ca/arts-culture/museum-of-surrey",
+    "status": "http_200_ok",
+    "detail": "links=5 jsonLd=0 (705ms)",
+    "checked_at": "2026-11-23T09:30:41.226Z"
+  },
+  "https://www.naijafoodfest.ca/": {
+    "url": "https://www.naijafoodfest.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=1 (330ms)",
+    "checked_at": "2026-11-23T09:31:29.113Z"
+  },
+  "https://www.narcity.com/vancouver": {
+    "url": "https://www.narcity.com/vancouver",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (233ms)",
+    "checked_at": "2026-11-23T09:31:38.680Z"
+  },
+  "https://newwestfarmers.ca/": {
+    "url": "https://newwestfarmers.ca/",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (1420ms)",
+    "checked_at": "2026-11-23T09:36:49.587Z"
+  },
+  "https://www.newwestcity.ca/services/arts-and-heritage/museums-and-archives": {
+    "url": "https://www.newwestcity.ca/services/arts-and-heritage/museums-and-archives",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (312ms)",
+    "checked_at": "2026-11-23T09:37:51.724Z"
+  },
+  "https://www.newtonbia.com": {
+    "url": "https://www.newtonbia.com",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (472ms)",
+    "checked_at": "2026-11-23T09:38:01.175Z"
+  },
+  "https://www.noelfestival.com/": {
+    "url": "https://www.noelfestival.com/",
+    "status": "http_200_ok",
+    "detail": "links=4 jsonLd=0 (130ms)",
+    "checked_at": "2026-11-23T09:38:54.842Z"
+  },
+  "https://pacificspirituc.com/": {
+    "url": "https://pacificspirituc.com/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (260ms)",
+    "checked_at": "2026-11-23T09:39:49.268Z"
+  },
+  "https://www.paintnite.com/ca/bc/surrey": {
+    "url": "https://www.paintnite.com/ca/bc/surrey",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (275ms)",
+    "checked_at": "2026-11-23T09:40:37.461Z"
+  },
+  "https://www.parteeputt.com/vancouver": {
+    "url": "https://www.parteeputt.com/vancouver",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (279ms)",
+    "checked_at": "2026-11-23T09:41:25.593Z"
+  },
+  "https://www.peacearchnews.com/local-events": {
+    "url": "https://www.peacearchnews.com/local-events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T09:41:35.471Z"
+  },
+  "https://www.pizzerialudica.com/": {
+    "url": "https://www.pizzerialudica.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (121ms)",
+    "checked_at": "2026-11-23T09:41:36.675Z"
+  },
+  "https://purposeschool.ca/": {
+    "url": "https://purposeschool.ca/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T09:41:45.712Z"
+  },
+  "https://www.todocanada.ca/city/vancouver/event/rango-ki-holi-the-color-festival/": {
+    "url": "https://www.todocanada.ca/city/vancouver/event/rango-ki-holi-the-color-festival/",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 403",
+    "checked_at": "2026-11-23T09:41:46.816Z"
+  },
+  "https://redgate.tv/tickets/": {
+    "url": "https://redgate.tv/tickets/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (134ms)",
+    "checked_at": "2026-11-23T09:41:47.981Z"
+  },
+  "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859": {
+    "url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=1 (87ms)",
+    "checked_at": "2026-11-23T09:41:56.706Z"
+  },
+  "https://www.rhythmchanges.ca/": {
+    "url": "https://www.rhythmchanges.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (85ms)",
+    "checked_at": "2026-11-23T09:42:06.604Z"
+  },
+  "https://www.roca.ca/concerts/": {
+    "url": "https://www.roca.ca/concerts/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T09:46:57.301Z"
+  },
+  "https://royalkingpalace.com/": {
+    "url": "https://royalkingpalace.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (406ms)",
+    "checked_at": "2026-11-23T09:46:58.807Z"
+  },
+  "https://runvan.org/races/": {
+    "url": "https://runvan.org/races/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (113ms)",
+    "checked_at": "2026-11-23T09:47:08.610Z"
+  },
+  "https://www.russellbeer.com/tap-room": {
+    "url": "https://www.russellbeer.com/tap-room",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1014ms)",
+    "checked_at": "2026-11-23T09:47:18.823Z"
+  },
+  "https://rustyspub.ca/": {
+    "url": "https://rustyspub.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (597ms)",
+    "checked_at": "2026-11-23T09:47:27.976Z"
+  },
+  "https://salaamevents.com/ramadanfest/": {
+    "url": "https://salaamevents.com/ramadanfest/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T09:47:37.778Z"
+  },
+  "https://www.samz.ca/": {
+    "url": "https://www.samz.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (873ms)",
+    "checked_at": "2026-11-23T09:47:39.921Z"
+  },
+  "https://www.sawbuckspub.com/": {
+    "url": "https://www.sawbuckspub.com/",
+    "status": "http_503",
+    "detail": "HTTP 503",
+    "checked_at": "2026-11-23T09:47:50.558Z"
+  },
+  "https://www.scienceworld.ca/after-dark/": {
+    "url": "https://www.scienceworld.ca/after-dark/",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (146ms)",
+    "checked_at": "2026-11-23T09:56:22.573Z"
+  },
+  "https://www.sfu.ca/philosopherscafe.html": {
+    "url": "https://www.sfu.ca/philosopherscafe.html",
+    "status": "http_200_ok",
+    "detail": "links=12 jsonLd=0 (194ms)",
+    "checked_at": "2026-11-23T09:57:06.023Z"
+  },
+  "https://www.sfu.ca/publicsquare": {
+    "url": "https://www.sfu.ca/publicsquare",
+    "status": "http_200_ok",
+    "detail": "links=6 jsonLd=0 (161ms)",
+    "checked_at": "2026-11-23T10:02:17.797Z"
+  },
+  "https://www.sfu.ca/science/community/trottier-observatory.html": {
+    "url": "https://www.sfu.ca/science/community/trottier-observatory.html",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T10:04:42.075Z"
+  },
+  "https://shopwest4th.com": {
+    "url": "https://shopwest4th.com",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (657ms)",
+    "checked_at": "2026-11-23T10:04:43.918Z"
+  },
+  "https://shotgun.live/en/cities/vancouver": {
+    "url": "https://shotgun.live/en/cities/vancouver",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 429",
+    "checked_at": "2026-11-23T10:07:06.305Z"
+  },
+  "https://showhub.ca/": {
+    "url": "https://showhub.ca/",
+    "status": "http_200_ok",
+    "detail": "links=7 jsonLd=0 (293ms)",
+    "checked_at": "2026-11-23T10:07:07.694Z"
+  },
+  "https://slatevancouver.com/": {
+    "url": "https://slatevancouver.com/",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (81ms)",
+    "checked_at": "2026-11-23T10:08:34.380Z"
+  },
+  "https://softballcity.bc.ca/tournaments/": {
+    "url": "https://softballcity.bc.ca/tournaments/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1029ms)",
+    "checked_at": "2026-11-23T10:08:37.465Z"
+  },
+  "https://www.songkick.com/metro-areas/27398-canada-vancouver": {
+    "url": "https://www.songkick.com/metro-areas/27398-canada-vancouver",
+    "status": "http_200_ok",
+    "detail": "links=50 jsonLd=50 (106ms)",
+    "checked_at": "2026-11-23T10:08:48.752Z"
+  },
+  "https://sfam.ca/": {
+    "url": "https://sfam.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2587ms)",
+    "checked_at": "2026-11-23T10:28:11.342Z"
+  },
+  "https://stevestonheritage.ca/visit/steveston-tram/": {
+    "url": "https://stevestonheritage.ca/visit/steveston-tram/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1672ms)",
+    "checked_at": "2026-11-23T10:28:26.156Z"
+  },
+  "https://www.createastir.ca": {
+    "url": "https://www.createastir.ca",
+    "status": "http_200_ok",
+    "detail": "links=20 jsonLd=0 (275ms)",
+    "checked_at": "2026-11-23T10:30:26.988Z"
+  },
+  "https://businessinsurrey.com": {
+    "url": "https://businessinsurrey.com",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (178ms)",
+    "checked_at": "2026-11-23T10:36:59.330Z"
+  },
+  "http://surreyfest.ca/": {
+    "url": "http://surreyfest.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (697ms)",
+    "checked_at": "2026-11-23T10:38:34.336Z"
+  },
+  "https://surreyfestival.com/": {
+    "url": "https://surreyfestival.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (293ms)",
+    "checked_at": "2026-11-23T10:38:43.858Z"
+  },
+  "https://www.surreygreekfoodfest.com/about-us-2/": {
+    "url": "https://www.surreygreekfoodfest.com/about-us-2/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1403ms)",
+    "checked_at": "2026-11-23T10:39:41.660Z"
+  },
+  "https://www.surreyvaisakhiparade.com/": {
+    "url": "https://www.surreyvaisakhiparade.com/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (362ms)",
+    "checked_at": "2026-11-23T10:39:51.962Z"
+  },
+  "https://www.surreynowleader.com/local-events": {
+    "url": "https://www.surreynowleader.com/local-events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (711ms)",
+    "checked_at": "2026-11-23T10:40:40.706Z"
+  },
+  "https://partyfortheplanet.ca/": {
+    "url": "https://partyfortheplanet.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=1 (354ms)",
+    "checked_at": "2026-11-23T10:40:50.989Z"
+  },
+  "https://surreypride.ca/": {
+    "url": "https://surreypride.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (393ms)",
+    "checked_at": "2026-11-23T10:42:32.716Z"
+  },
+  "https://www.surreytreelighting.ca/": {
+    "url": "https://www.surreytreelighting.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=1 (578ms)",
+    "checked_at": "2026-11-23T10:43:27.010Z"
+  },
+  "https://surreymarket.org": {
+    "url": "https://surreymarket.org",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (345ms)",
+    "checked_at": "2026-11-23T10:45:06.998Z"
+  },
+  "https://www.burnaby.ca/recreation-and-arts/recreation-facilities/swangard-stadium": {
+    "url": "https://www.burnaby.ca/recreation-and-arts/recreation-facilities/swangard-stadium",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (956ms)",
+    "checked_at": "2026-11-23T10:46:03.964Z"
+  },
+  "https://swingoutrichmond.ca/": {
+    "url": "https://swingoutrichmond.ca/",
+    "status": "network_or_dns_err",
+    "detail": "The operation was aborted due to timeout",
+    "checked_at": "2026-11-23T10:47:52.225Z"
+  },
+  "https://www.theamerican.bar/upcoming-events": {
+    "url": "https://www.theamerican.bar/upcoming-events",
+    "status": "http_200_ok",
+    "detail": "links=15 jsonLd=0 (278ms)",
+    "checked_at": "2026-11-23T10:47:53.655Z"
+  },
+  "https://vancouvercivictheatres.com/venues/annex/": {
+    "url": "https://vancouvercivictheatres.com/venues/annex/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (410ms)",
+    "checked_at": "2026-11-23T10:50:59.226Z"
+  },
+  "https://thebeershackwr.com/": {
+    "url": "https://thebeershackwr.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (182ms)",
+    "checked_at": "2026-11-23T10:51:12.200Z"
+  },
+  "https://www.claytonpublichouse.com/": {
+    "url": "https://www.claytonpublichouse.com/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T10:51:21.017Z"
+  },
+  "https://www.straight.com/listings": {
+    "url": "https://www.straight.com/listings",
+    "status": "http_200_ok",
+    "detail": "links=27 jsonLd=0 (448ms)",
+    "checked_at": "2026-11-23T10:51:22.502Z"
+  },
+  "https://www.theonesixty.com/": {
+    "url": "https://www.theonesixty.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (286ms)",
+    "checked_at": "2026-11-23T11:04:39.518Z"
+  },
+  "https://theshipyards.ca/pipe-shop": {
+    "url": "https://theshipyards.ca/pipe-shop",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T11:05:41.900Z"
+  },
+  "https://theportsidepub.com/bookings/": {
+    "url": "https://theportsidepub.com/bookings/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (931ms)",
+    "checked_at": "2026-11-23T11:05:44.877Z"
+  },
+  "https://www.sharingfarm.ca/": {
+    "url": "https://www.sharingfarm.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (100ms)",
+    "checked_at": "2026-11-23T11:05:55.515Z"
+  },
+  "https://www.cnv.org/Parks-Recreation/The-Shipyards": {
+    "url": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "status": "http_200_ok",
+    "detail": "links=5 jsonLd=0 (384ms)",
+    "checked_at": "2026-11-23T11:06:05.049Z"
+  },
+  "https://theshowcellar.com": {
+    "url": "https://theshowcellar.com",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (303ms)",
+    "checked_at": "2026-11-23T11:06:50.414Z"
+  },
+  "https://sylviahotel.com/live-music/": {
+    "url": "https://sylviahotel.com/live-music/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T11:07:48.061Z"
+  },
+  "https://www.todocanada.ca/city/vancouver/free-events": {
+    "url": "https://www.todocanada.ca/city/vancouver/free-events",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 403",
+    "checked_at": "2026-11-23T11:07:49.168Z"
+  },
+  "https://tourismburnaby.com/festivals-events/": {
+    "url": "https://tourismburnaby.com/festivals-events/",
+    "status": "http_200_ok",
+    "detail": "links=11 jsonLd=10 (1086ms)",
+    "checked_at": "2026-11-23T11:07:51.306Z"
+  },
+  "https://tourismnewwestminster.com/new-west-events/": {
+    "url": "https://tourismnewwestminster.com/new-west-events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (145ms)",
+    "checked_at": "2026-11-23T11:09:39.191Z"
+  },
+  "https://treescoffee.com/": {
+    "url": "https://treescoffee.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (341ms)",
+    "checked_at": "2026-11-23T11:09:49.707Z"
+  },
+  "https://ubcfarm.ubc.ca/markets/": {
+    "url": "https://ubcfarm.ubc.ca/markets/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (423ms)",
+    "checked_at": "2026-11-23T11:09:59.959Z"
+  },
+  "https://urbanbounty.ca/": {
+    "url": "https://urbanbounty.ca/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (173ms)",
+    "checked_at": "2026-11-23T11:10:09.268Z"
+  },
+  "https://utopiastore.ca/": {
+    "url": "https://utopiastore.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (202ms)",
+    "checked_at": "2026-11-23T11:10:55.371Z"
+  },
+  "https://eatlocal.org/": {
+    "url": "https://eatlocal.org/",
+    "status": "http_200_ok",
+    "detail": "links=7 jsonLd=0 (335ms)",
+    "checked_at": "2026-11-23T11:11:05.115Z"
+  },
+  "https://vancouverfc.com": {
+    "url": "https://vancouverfc.com",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (628ms)",
+    "checked_at": "2026-11-23T11:14:43.651Z"
+  },
+  "https://www.cplsoccer.com/vancouverfc": {
+    "url": "https://www.cplsoccer.com/vancouverfc",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (193ms)",
+    "checked_at": "2026-11-23T11:15:28.271Z"
+  },
+  "https://chl.ca/whl-giants/tickets/": {
+    "url": "https://chl.ca/whl-giants/tickets/",
+    "status": "waf_or_ratelimit",
+    "detail": "HTTP 403",
+    "checked_at": "2026-11-23T11:16:12.948Z"
+  },
+  "https://www.vancouverhorrorshow.com/screenings": {
+    "url": "https://www.vancouverhorrorshow.com/screenings",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (263ms)",
+    "checked_at": "2026-11-23T11:16:14.381Z"
+  },
+  "https://vanmaritime.com": {
+    "url": "https://vanmaritime.com",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (1477ms)",
+    "checked_at": "2026-11-23T11:16:17.452Z"
+  },
+  "https://writersfest.bc.ca/festival-events/": {
+    "url": "https://writersfest.bc.ca/festival-events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (2095ms)",
+    "checked_at": "2026-11-23T11:16:21.246Z"
+  },
+  "https://vancouversbestplaces.com/surrey/": {
+    "url": "https://vancouversbestplaces.com/surrey/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (313ms)",
+    "checked_at": "2026-11-23T11:16:30.569Z"
+  },
+  "https://www.vinoscentivineyards.com/visit-us": {
+    "url": "https://www.vinoscentivineyards.com/visit-us",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T11:16:32.159Z"
+  },
+  "https://www.universe.com/users/ubc-thunderbirds-9PGJNS": {
+    "url": "https://www.universe.com/users/ubc-thunderbirds-9PGJNS",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (161ms)",
+    "checked_at": "2026-11-23T11:16:33.347Z"
+  },
+  "https://khatsahlano.ca": {
+    "url": "https://khatsahlano.ca",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (234ms)",
+    "checked_at": "2026-11-23T11:18:44.003Z"
+  },
+  "https://www.worldfolkfestival.com/": {
+    "url": "https://www.worldfolkfestival.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (281ms)",
+    "checked_at": "2026-11-23T11:18:54.080Z"
+  },
+  "https://www.yukyuks.com": {
+    "url": "https://www.yukyuks.com",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (372ms)",
+    "checked_at": "2026-11-23T11:19:03.857Z"
+  },
+  "https://www.burnabylake.com/events/": {
+    "url": "https://www.burnabylake.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (358ms)",
+    "checked_at": "2026-11-23T11:19:13.178Z"
+  },
+  "https://bpl.bc.ca/events": {
+    "url": "https://bpl.bc.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (581ms)",
+    "checked_at": "2026-11-23T11:19:23.000Z"
+  },
+  "https://www.metrovancouver.org/events/calendar": {
+    "url": "https://www.metrovancouver.org/events/calendar",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1329ms)",
+    "checked_at": "2026-11-23T11:30:44.762Z"
+  },
+  "https://www.nwpl.ca/events-calendar": {
+    "url": "https://www.nwpl.ca/events-calendar",
+    "status": "http_200_ok",
+    "detail": "links=22 jsonLd=23 (707ms)",
+    "checked_at": "2026-11-23T11:30:55.911Z"
+  },
+  "https://www.nvcl.ca/events": {
+    "url": "https://www.nvcl.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (141ms)",
+    "checked_at": "2026-11-23T11:30:58.644Z"
+  },
+  "https://www.fvrl.bc.ca/events": {
+    "url": "https://www.fvrl.bc.ca/events",
+    "status": "http_200_ok",
+    "detail": "links=9 jsonLd=0 (126ms)",
+    "checked_at": "2026-11-23T11:32:34.789Z"
+  },
+  "https://www.newwestcity.ca/calendar-of-events": {
+    "url": "https://www.newwestcity.ca/calendar-of-events",
+    "status": "http_200_ok",
+    "detail": "links=3 jsonLd=0 (339ms)",
+    "checked_at": "2026-11-23T11:36:35.672Z"
+  },
+  "https://www.smugglerstrailcask.com/events": {
+    "url": "https://www.smugglerstrailcask.com/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T11:38:16.853Z"
+  },
+  "https://botanicalgarden.ubc.ca/news-events/events/": {
+    "url": "https://botanicalgarden.ubc.ca/news-events/events/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T11:38:18.324Z"
+  },
+  "https://vpl.bibliocommons.com/v2/events": {
+    "url": "https://vpl.bibliocommons.com/v2/events",
+    "status": "http_200_ok",
+    "detail": "links=21 jsonLd=0 (1022ms)",
+    "checked_at": "2026-11-23T11:38:20.453Z"
+  },
+  "https://www.westcoastgardens.ca/pages/events": {
+    "url": "https://www.westcoastgardens.ca/pages/events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T11:38:38.805Z"
+  },
+  "https://www.destinationvancouver.com/events/": {
+    "url": "https://www.destinationvancouver.com/events/",
+    "status": "http_200_ok",
+    "detail": "links=2 jsonLd=0 (617ms)",
+    "checked_at": "2026-11-23T11:38:40.700Z"
+  },
+  "https://www.coqlibrary.ca/programs-events": {
+    "url": "https://www.coqlibrary.ca/programs-events",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T11:39:36.510Z"
+  },
+  "https://tajpark.ca/": {
+    "url": "https://tajpark.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (127ms)",
+    "checked_at": "2026-11-23T11:39:37.657Z"
+  },
+  "https://ecologycentre.ca/programs/": {
+    "url": "https://ecologycentre.ca/programs/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T11:39:48.197Z"
+  },
+  "https://www.alexhouse.net/alex-fest": {
+    "url": "https://www.alexhouse.net/alex-fest",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (781ms)",
+    "checked_at": "2026-11-23T11:39:50.128Z"
+  },
+  "https://www.bctrains.com/": {
+    "url": "https://www.bctrains.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (118ms)",
+    "checked_at": "2026-11-23T11:40:00.008Z"
+  },
+  "https://vandusengarden.org/explore/bloedel-conservatory/": {
+    "url": "https://vandusengarden.org/explore/bloedel-conservatory/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (88ms)",
+    "checked_at": "2026-11-23T11:40:09.120Z"
+  },
+  "https://www.centralcityfunpark.com/pricing/": {
+    "url": "https://www.centralcityfunpark.com/pricing/",
+    "status": "http_404",
+    "detail": "HTTP 404",
+    "checked_at": "2026-11-23T11:40:18.535Z"
+  },
+  "https://legion240.org": {
+    "url": "https://legion240.org",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T11:40:19.585Z"
+  },
+  "https://www.deltaheritageairpark.org/": {
+    "url": "https://www.deltaheritageairpark.org/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (1072ms)",
+    "checked_at": "2026-11-23T11:40:21.685Z"
+  },
+  "https://vancouverchinesegarden.com/visit/": {
+    "url": "https://vancouverchinesegarden.com/visit/",
+    "status": "http_200_ok",
+    "detail": "links=4 jsonLd=0 (105ms)",
+    "checked_at": "2026-11-23T11:40:30.862Z"
+  },
+  "https://www.fvdedinthepark.com/": {
+    "url": "https://www.fvdedinthepark.com/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (249ms)",
+    "checked_at": "2026-11-23T11:42:17.206Z"
+  },
+  "https://www.surrey.ca/parks-recreation/surrey-parks/park-programs/sounds-of-summer": {
+    "url": "https://www.surrey.ca/parks-recreation/surrey-parks/park-programs/sounds-of-summer",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (974ms)",
+    "checked_at": "2026-11-23T11:42:27.652Z"
+  },
+  "https://surreyfusionfestival.ca/": {
+    "url": "https://surreyfusionfestival.ca/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=1 (329ms)",
+    "checked_at": "2026-11-23T11:42:37.926Z"
+  },
+  "https://www.thecomedydepartment.com/vancouver-shows/": {
+    "url": "https://www.thecomedydepartment.com/vancouver-shows/",
+    "status": "network_or_dns_err",
+    "detail": "fetch failed",
+    "checked_at": "2026-11-23T11:44:15.083Z"
+  }
+}

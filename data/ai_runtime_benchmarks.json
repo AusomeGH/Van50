@@ -140,15 +140,51 @@
       "label": "QC AI Full Catalog Audit",
       "averageDurationSeconds": 290.5,
       "averageDurationFormatted": "4m 51s",
-      "totalRuns": 182,
+      "totalRuns": 188,
       "lastRun": {
-        "timestamp": "2026-11-21T03:48:45.500Z",
-        "durationSeconds": 1958,
-        "durationFormatted": "32m 38s",
-        "itemsProcessed": 115,
+        "timestamp": "2026-11-23T00:53:29.819Z",
+        "durationSeconds": 1813,
+        "durationFormatted": "30m 13s",
+        "itemsProcessed": 93,
         "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
       },
       "history": [
+        {
+          "timestamp": "2026-11-23T00:53:29.819Z",
+          "durationSeconds": 1813,
+          "durationFormatted": "30m 13s",
+          "itemsProcessed": 93
+        },
+        {
+          "timestamp": "2026-11-22T23:39:30.229Z",
+          "durationSeconds": 1661,
+          "durationFormatted": "27m 41s",
+          "itemsProcessed": 95
+        },
+        {
+          "timestamp": "2026-11-22T20:19:06.297Z",
+          "durationSeconds": 39,
+          "durationFormatted": "0m 39s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-11-22T19:37:15.870Z",
+          "durationSeconds": 46,
+          "durationFormatted": "0m 46s",
+          "itemsProcessed": 2
+        },
+        {
+          "timestamp": "2026-11-22T04:21:45.249Z",
+          "durationSeconds": 186,
+          "durationFormatted": "3m 6s",
+          "itemsProcessed": 11
+        },
+        {
+          "timestamp": "2026-11-22T01:59:02.489Z",
+          "durationSeconds": 44,
+          "durationFormatted": "0m 44s",
+          "itemsProcessed": 2
+        },
         {
           "timestamp": "2026-11-21T03:48:45.500Z",
           "durationSeconds": 1958,
@@ -411,42 +447,6 @@
           "timestamp": "2026-11-06T04:08:52.683Z",
           "durationSeconds": 44,
           "durationFormatted": "0m 44s",
-          "itemsProcessed": 1
-        },
-        {
-          "timestamp": "2026-11-06T03:58:45.741Z",
-          "durationSeconds": 327,
-          "durationFormatted": "5m 27s",
-          "itemsProcessed": 9
-        },
-        {
-          "timestamp": "2026-11-06T02:06:25.654Z",
-          "durationSeconds": 3236,
-          "durationFormatted": "53m 56s",
-          "itemsProcessed": 59
-        },
-        {
-          "timestamp": "2026-11-05T22:42:05.355Z",
-          "durationSeconds": 2373,
-          "durationFormatted": "39m 33s",
-          "itemsProcessed": 50
-        },
-        {
-          "timestamp": "2026-11-05T17:33:05.906Z",
-          "durationSeconds": 2012,
-          "durationFormatted": "33m 32s",
-          "itemsProcessed": 50
-        },
-        {
-          "timestamp": "2026-11-05T16:34:12.649Z",
-          "durationSeconds": 2306,
-          "durationFormatted": "38m 26s",
-          "itemsProcessed": 50
-        },
-        {
-          "timestamp": "2026-11-05T15:45:43.446Z",
-          "durationSeconds": 37,
-          "durationFormatted": "0m 37s",
           "itemsProcessed": 1
         }
       ],

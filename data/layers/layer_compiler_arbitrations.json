@@ -109,19 +109,19 @@
     "updatedAt": "2026-11-17T02:59:36.800Z"
   },
   "the-improv-centre-heart-felt-holiday-2026-11-19": {
-    "sig": "title mismatch between schedule (\"Heart Felt Holiday\") and box office (\"Heart Felt Holiday: An Improvised Puppet Rom-Com\")|date mismatch between schedule (2026-11-19) and box office (2026-11-21)::",
+    "sig": "title mismatch between schedule (\"Heart Felt Holiday\") and box office (\"Heart Felt Holiday: An Improvised Puppet Rom-Com\")|date mismatch between schedule (2026-11-19) and box office (2026-11-27)::",
     "decision": {
       "clean_title": "Heart Felt Holiday: An Improvised Puppet Rom-Com",
       "artist": null,
       "lineup": [],
-      "date": "2026-11-21",
+      "date": "2026-11-27",
       "start_time": "7:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Adopted the full descriptive title and confirmed date of 2026-11-21 supported in lockstep by Seed, Box Office, and Editorial layers over the truncated schedule entry."
+      "arbitration_reasoning": "Adopted the complete subtitle from the Seed, Box Office, and Editorial layers over the truncated schedule title, and resolved the date to 2026-11-27 based on direct agreement between Seed and the live Box Office layer."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "surrey-eagles-bchl-hockey-south-surrey-arena": {
     "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-20)::",
@@ -139,7 +139,7 @@
     "updatedAt": "2026-11-17T02:59:36.800Z"
   },
   "van50-tightrope-theatre-murder-she-improvised-20261113": {
-    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-21)::",
+    "sig": "date mismatch between schedule (2026-11-13) and box office (2026-11-27)::",
     "decision": {
       "clean_title": "Murder She Improvised",
       "artist": null,
@@ -147,14 +147,14 @@
         "Tightrope Theatre",
         "Dad's Garage Theatre"
       ],
-      "date": "2026-11-21",
+      "date": "2026-11-27",
       "start_time": "7:30 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Resolved date to 2026-11-21 based on agreement between the Seed URL ticket checkout ID and live Box Office layer inspection."
+      "arbitration_reasoning": "Resolved date to 2026-11-27 per Tier 2 Epistemic Precedence where the live checkout box office layer and ticketing seed URL agree on the active cart performance date over the schedule harvester."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "lindsay-family-stage-the-gingerbread-men-2026-12-07": {
     "sig": "title mismatch between schedule (\"The Gingerbread Men\") and box office (\"The Gingerbread Men: And Yet Another Holiday Cabaret\")::",
@@ -221,7 +221,7 @@
     "updatedAt": "2026-11-17T02:59:36.800Z"
   },
   "celebrities-nightclu-playhouse-pres-no-thanks-boxin-2026-12-26": {
-    "sig": "title mismatch between schedule (\"Playhouse Pres: No Thanks (Boxing Day Bash)\") and box office (\"No Thanks: Boxing Day Bash\")::",
+    "sig": "title mismatch between schedule (\"Playhouse Pres: No Thanks (Boxing Day Bash)\") and box office (\"No Thanks (Boxing Day Bash)\")::",
     "decision": {
       "clean_title": "No Thanks (Boxing Day Bash)",
       "artist": "No Thanks",
@@ -233,9 +233,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Adopted the Editorial layer's clean title stripping the promotional series prefix ('Playhouse Pres:') while reconciling the confirmed date from the Seed and Schedule layers and lead performer from description."
+      "arbitration_reasoning": "Resolved title to 'No Thanks (Boxing Day Bash)' by stripping the promotional presenter prefix 'Playhouse Pres:' consistent with editorial and seed records, while extracting 'No Thanks' as lead artist."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "hollywood-theatre-best-of-1990-s-2000-s-music-vi-2027-01-08": {
     "sig": "title mismatch between schedule (\"Best of 1990’s & 2000’s Music Video Pop Party\") and box office (\"Best of 1990’s & 2000’s Music Video Pop Party - Backstreet Boys vs Spice Girls Edition with DJ Flip Out\")::",
@@ -255,7 +255,7 @@
     "updatedAt": "2026-11-20T15:29:25.258Z"
   },
   "comedy-after-dark-saturday-night-stand-up-comedy-2025-01-22": {
-    "sig": "date mismatch between schedule (2026-11-07) and box office (2020-02-08)::",
+    "sig": "title mismatch between schedule (\"Saturday Night Stand Up Comedy\") and box office (\"SATURDAY NIGHT STAND UP COMEDY @ COMEDY AFTER DARK\")::",
     "decision": {
       "clean_title": "Saturday Night Stand Up Comedy",
       "artist": null,
@@ -269,9 +269,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Rejected the stale 2020-02-08 box office date artifact and past 2026-11-07 schedule date in favor of the upcoming seed date 2026-11-28 relative to current November 2026 timeframe, retaining the 7:00 PM start time and verified active General Admission tier."
+      "arbitration_reasoning": "Adopted the title-cased editorial title over all-caps box office text, stripping the redundant venue suffix, and reconciled the active showing date and start time from seed and schedule evidence."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "celebrities-nightclu-playhouse-pres-andrew-bayer-2026-12-05": {
     "sig": "title mismatch between schedule (\"Playhouse Pres: Andrew Bayer\") and box office (\"Playhouse Pres. Andrew Bayer\")::",
@@ -286,9 +286,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Adopted the canonical series and performer title 'Playhouse Pres: Andrew Bayer' as confirmed by the schedule layer and TicketWeb event naming, resolving 'Andrew Bayer' as the primary artist and lead in the lineup."
+      "arbitration_reasoning": "Standardized the title to 'Playhouse Pres: Andrew Bayer' aligning with the schedule layer and official TicketWeb event slug while isolating Andrew Bayer as lead artist."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-23T00:53:29.848Z"
   },
   "roedde-house-museum-vico-concert-in-the-parlour-uz-2026-11-20": {
     "sig": "title mismatch between schedule (\"VICO Concert in the Parlour: Uzbek Musical Heritage\") and box office (\"Concert in the Parlour: Uzbek Musical Heritage\")::",
@@ -1002,22 +1002,22 @@
     "updatedAt": "2026-11-18T19:09:36.873Z"
   },
   "fox-cabaret-peel-dream-magazine-north-amer-2027-04-16": {
-    "sig": "title mismatch between schedule (\"Peel Dream Magazine - North America 2027, Dari Bay\") and box office (\"Peel Dream Magazine w/ Dari Bay\")::",
+    "sig": "title mismatch between schedule (\"Peel Dream Magazine - North America 2027, Dari Bay\") and box office (\"Peel Dream Magazine with Dari Bay\")::",
     "decision": {
-      "clean_title": "Peel Dream Magazine w/ Dari Bay",
+      "clean_title": "Peel Dream Magazine with Dari Bay",
       "artist": "Peel Dream Magazine",
       "lineup": [
         "Peel Dream Magazine",
         "Dari Bay"
       ],
       "date": "2027-04-16",
-      "start_time": "7:30 PM",
+      "start_time": null,
       "doors_time": null,
       "is_sold_out": false,
-      "category": "shows",
-      "arbitration_reasoning": "Adopted the concise ticketing title 'Peel Dream Magazine w/ Dari Bay' which matches both the primary box office source and original seed, while extracting Dari Bay as support."
+      "category": "music",
+      "arbitration_reasoning": "Adopted 'Peel Dream Magazine with Dari Bay' matching the Box Office, Seed, and Editorial layers while stripping tour branding ('North America 2027') from the title into performer lineup details."
     },
-    "updatedAt": "2026-11-18T19:09:36.873Z"
+    "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "hollywood-theatre-racing-mount-pleasant-2027-05-11": {
     "sig": "title mismatch between schedule (\"Racing Mount Pleasant\") and box office (\"Racing Mount Pleasant w/ Dutch Interior\")::",
@@ -1398,9 +1398,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "sports",
-      "arbitration_reasoning": "Resolved date to 2027-02-20 based on schedule layer and seed calendar alignment for the Last Chance Meet, adopting 5:00 PM start time from box office."
+      "arbitration_reasoning": "Adopted the schedule layer's specific future date of 2027-02-20 for the Last Chance Meet as indicated by the athletics schedule and seed, while preserving the box office start time of 5:00 PM."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-23T00:53:29.848Z"
   },
   "richmond-olympic-ova-winter-parka-warehouse-sale-30-2027-10-30": {
     "sig": "date mismatch between schedule (2027-10-30) and box office (2026-10-30)::",
@@ -1931,9 +1931,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Adopted the concise editorial title 'MGV Lyra Concert' reconciling the choir's specific performance name over the generic host descriptor, while retaining the confirmed 2026-11-29 date, noon start time, and active free reserved tier."
+      "arbitration_reasoning": "Adopted the concise authoritative title confirmed by seed and editorial layers over descriptive schedule/box office variants, and grounded MGV Lyra as the choral performer."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-23T00:53:29.848Z"
   },
   "guildford-recreation-sensory-friendly-swims-2026-11-18": {
     "sig": "date mismatch between schedule (2026-11-18) and box office (2026-12-16)::",
@@ -1951,19 +1951,19 @@
     "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "viff-centre-andrzej-wajda-100-war-peace-2026-11-19": {
-    "sig": "date mismatch between schedule (2026-11-19) and box office (2026-11-22)::",
+    "sig": "date mismatch between schedule (2026-11-19) and box office (2026-11-25)::",
     "decision": {
       "clean_title": "Andrzej Wajda 100: War & Peace",
       "artist": null,
       "lineup": [],
-      "date": "2026-11-22",
-      "start_time": "6:30 PM",
+      "date": "2026-11-25",
+      "start_time": "8:40 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "cinema",
-      "arbitration_reasoning": "Arbitrated date to 2026-11-22 as both the live box office checkout layer and original seed corroborate the November 22nd screening date over the harvested schedule layer."
+      "arbitration_reasoning": "Arbitrated the date conflict in favor of the live Box Office layer (2026-11-25) as active checkout ticketing takes epistemic precedence over calendar/schedule estimates for this specific booking slot."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-23T00:53:29.848Z"
   },
   "prana-lounge-403-658-sahaja-yoga-20": {
     "sig": "title mismatch between schedule (\"Sahaja Yoga\") and box office (\"Sahaja Yoga Meditation\")::",
@@ -2062,9 +2062,9 @@
     "updatedAt": "2026-11-21T03:48:45.533Z"
   },
   "hollywood-theatre-vincent-lima-your-world-is-big-2027-03-08": {
-    "sig": "title mismatch between schedule (\"Vincent Lima: Your World Is Big Enough Tour 2027\") and box office (\"VINCENT LIMA - Your World Is Big Enough Tour 2027\")::",
+    "sig": "title mismatch between schedule (\"Vincent Lima: Your World Is Big Enough Tour 2027\") and box office (\"Timbre Concerts Presents VINCENT LIMA Your World Is Big Enough Tour 2027\")::",
     "decision": {
-      "clean_title": "Vincent Lima: Your World Is Big Enough Tour 2027",
+      "clean_title": "Vincent Lima: Your World Is Big Enough Tour",
       "artist": "Vincent Lima",
       "lineup": [
         "Vincent Lima"
@@ -2074,8 +2074,262 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Standardized the title to title case from the Schedule and Seed layers while incorporating the enriched music category and artist extraction."
+      "arbitration_reasoning": "Stripped the third-party promoter prefix ('Timbre Concerts Presents') and redundant tour year suffix from the box office title in favor of the clean editorial and seed show identity, identified Vincent Lima as the lead artist, and adopted the verified live start time and music taxonomy."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "mansion-nightclub-cityvibez-saturdays-2026-11-21": {
+    "sig": "title mismatch between schedule (\"CityVibez Saturdays\") and box office (\"Friday & Saturday! Free Cover Mansion Nightclub! CityVibez\")::",
+    "decision": {
+      "clean_title": "CityVibez Saturdays",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-21",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise, canonical 'CityVibez Saturdays' title from the Seed, Schedule, and Editorial layers over the Box Office marketing headline, mapped the category to music, and verified free admission under $50 CAD."
+    },
+    "updatedAt": "2026-11-22T23:39:30.254Z"
+  },
+  "little-mountain-gall-20-20-20-stand-up-comedy-2026-11-21": {
+    "sig": "date mismatch between schedule (2026-11-21) and box office (2026-12-19)::",
+    "decision": {
+      "clean_title": "20/20/20 Stand-Up Comedy",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-19",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-12-19 as confirmed by both the Box Office live checkout layer and original Seed source over the outdated schedule slice."
+    },
+    "updatedAt": "2026-11-22T23:39:30.254Z"
+  },
+  "orpheum-live-nation-presents-amanda-ma-2026-11-23": {
+    "sig": "title mismatch between schedule (\"Live Nation presents Amanda Marshall - The Dirty 30 Tour\") and box office (\"Amanda Marshall - The Dirty 30 Tour\")::",
+    "decision": {
+      "clean_title": "Amanda Marshall - The Dirty 30 Tour",
+      "artist": "Amanda Marshall",
+      "lineup": [
+        "Amanda Marshall"
+      ],
+      "date": "2026-11-23",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped promoter prefix 'Live Nation presents' in favor of the clean artist and tour title supported across Seed, Box Office, and Editorial layers."
+    },
+    "updatedAt": "2026-11-22T23:39:30.254Z"
+  },
+  "langley-events-centr-vancouver-giants-2025-26-regul-2026-11-21": {
+    "sig": "title mismatch between schedule (\"Vancouver Giants 2025 - 26 Regular Season Schedule\") and box office (\"Vancouver Giants 2025-26 Regular Season Schedule\")|date mismatch between schedule (2026-11-21) and box office (2026-11-22)::",
+    "decision": {
+      "clean_title": "Vancouver Giants 2025-26 Regular Season Schedule",
+      "artist": "Vancouver Giants",
+      "lineup": [
+        "Vancouver Giants"
+      ],
+      "date": "2026-11-22",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Adopted the canonical unspaced season hyphenation from Seed/Box Office, resolved date to 2026-11-22 matching the live verified Box Office checkout time of 4:00 PM, and retained sports taxonomy."
+    },
+    "updatedAt": "2026-11-23T01:07:11.149Z"
+  },
+  "the-pearl-babes-on-babes-presents-11th-y-2026-11-27": {
+    "sig": "title mismatch between schedule (\"Babes on Babes Presents: 11th Year Anniversary\") and box office (\"Babes on Babes: 11th Year Anniversary\")::",
+    "decision": {
+      "clean_title": "Babes on Babes: 11th Year Anniversary",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted 'Babes on Babes: 11th Year Anniversary' across Seed, Box Office, and Editorial layers to strip promoter prefix fluff and maintain clean presentation, validated date from Seed/Schedule, and preserved music category."
+    },
+    "updatedAt": "2026-11-22T23:39:30.254Z"
+  },
+  "richmond-olympic-ova-karate-canada-open-2026-11-21": {
+    "sig": "date mismatch between schedule (2026-11-21) and box office (2026-11-22)::",
+    "decision": {
+      "clean_title": "Karate Canada Open",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-22",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2026-11-22 based on agreement between the Seed event URL and live Box Office layer, with sports category adopted from Editorial enricher."
+    },
+    "updatedAt": "2026-11-22T23:39:30.254Z"
+  },
+  "pacific-spirit-unite-united-voices-choir-brings-two-2026-11-22": {
+    "sig": "title mismatch between schedule (\"United Voices Choir brings two of Mozart’s sacred choral works to the stage\") and box office (\"United Voices Choir: Mozart's Requiem & Coronation Mass\")|date mismatch between schedule (2026-11-22) and box office (2026-11-27)::",
+    "decision": {
+      "clean_title": "United Voices Choir: Mozart's Requiem & Coronation Mass",
+      "artist": "United Voices Choir",
+      "lineup": [
+        "United Voices Choir"
+      ],
+      "date": "2026-11-27",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Selected the authoritative event program title confirmed across Seed, Editorial, and Box Office, adopted the live Box Office showing date (2026-11-27) and time (7:30 PM), categorized as music per Editorial, and preserved available inventory status."
+    },
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "vancouver-giants-group-tickets-vancouver-giants-2026-11-21": {
+    "sig": "date mismatch between schedule (2026-11-21) and box office (2026-11-22)::",
+    "decision": {
+      "clean_title": "Group Tickets - Vancouver Giants",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-22",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Arbitrated the date to 2026-11-22 based on agreement between the Seed and Stagehand Box Office verification layers, while adopting the Editorial layer's sports taxonomy."
+    },
+    "updatedAt": "2026-11-22T23:39:30.254Z"
+  },
+  "langley-events-centr-vancouver-giants-vs-penticton-2026-11-21": {
+    "sig": "date mismatch between schedule (2026-11-21) and box office (2026-11-22)::",
+    "decision": {
+      "clean_title": "Vancouver Giants vs. Penticton Vees",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-22",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2026-11-22 per Box Office live checkout inspection supported by the original seed date, with sports category from editorial enrichment."
+    },
+    "updatedAt": "2026-11-22T23:39:30.254Z"
+  },
+  "admiral-grill-gabriel-s-sunday-jazz-show-2026-11-22": {
+    "sig": "date mismatch between schedule (2026-11-22) and box office (2026-11-29)::",
+    "decision": {
+      "clean_title": "Gabriel's Sunday Jazz Show",
+      "artist": "Gabriel",
+      "lineup": [
+        "Gabriel"
+      ],
+      "date": "2026-11-22",
+      "start_time": "5:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "The date was resolved to 2026-11-22 matching the specific event target ID, seed, and schedule layer, treating the box office layer's 2026-11-29 date as a recurring weekly series advance date."
+    },
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "gateway-theatre-the-flame-storytelling-showcas-2027-04-11": {
+    "sig": "date mismatch between schedule (2027-04-11) and box office (2026-04-12)::",
+    "decision": {
+      "clean_title": "The Flame: Storytelling Showcase",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-04-11",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the upcoming future date 2027-04-11 from the schedule and seed layers to replace the past showing date, retaining the verified 7:00 PM start time and sold-out status from the box office inspection."
+    },
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "museum-of-anthropolo-the-woolly-dog-a-lost-breed-of-20262027": {
+    "sig": "date mismatch between schedule (2026-09-20) and box office (2027-09-20)::",
+    "decision": {
+      "clean_title": "The Woolly Dog: A Lost Breed of the Salish Sea",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-09-20",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2026-09-20 reflecting the opening date of the exhibition span ('September 2026 – August 2027') indicated by the Schedule Layer, and classified under 'arts' matching museum exhibition standards."
+    },
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "the-american-r3d-at-the-american-2026-11-27": {
+    "sig": "title mismatch between schedule (\"R3D AT THE AMERICAN\") and box office (\"R3D\")::",
+    "decision": {
+      "clean_title": "R3D",
+      "artist": "R3D",
+      "lineup": [
+        "R3D"
+      ],
+      "date": "2026-11-27",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise artist title 'R3D' over the venue-suffixed schedule variant 'R3D AT THE AMERICAN' while converting the 22:00 start time to 10:00 PM."
+    },
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "wise-hall-oscar-lindsey-2027-03-31": {
+    "sig": "title mismatch between schedule (\"Oscar Lindsey\") and box office (\"Oscar Lindsey - Sunshine Tour\")::",
+    "decision": {
+      "clean_title": "Oscar Lindsey - Sunshine Tour",
+      "artist": "Oscar Lindsey",
+      "lineup": [
+        "Oscar Lindsey"
+      ],
+      "date": "2027-03-31",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the verified box office tour title 'Oscar Lindsey - Sunshine Tour' as it enriches the schedule listing while retaining the schedule's confirmed date and the editorial music category."
+    },
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "admiral-grill-bingpot-trivia-night-2026-11-23": {
+    "sig": "date mismatch between schedule (2026-11-23) and box office (2026-11-30)::",
+    "decision": {
+      "clean_title": "Bingpot Trivia Night",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "trivia",
+      "arbitration_reasoning": "Resolved date to 2026-11-23 matching the specific event target ID, seed, and schedule layer recurrence, while adopting the verified 7:30 PM start time from the box office layer."
+    },
+    "updatedAt": "2026-11-23T00:53:29.848Z"
+  },
+  "river-rock-casino-re-ele-yan-moment-2026-world-tour-2026-11-23": {
+    "sig": "title mismatch between schedule (\"Ele Yan – MOMENT 2026 World Tour\") and box office (\"Ele Yan: MOMENT 2026 World Tour\")::",
+    "decision": {
+      "clean_title": "Ele Yan: MOMENT 2026 World Tour",
+      "artist": "Ele Yan",
+      "lineup": [
+        "Ele Yan"
+      ],
+      "date": "2026-11-23",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the standard colon title formatting from the official primary box office and seed sources while extracting lead artist Ele Yan from the editorial details and categorizing as music."
+    },
+    "updatedAt": "2026-11-23T01:07:11.149Z"
   }
 }
