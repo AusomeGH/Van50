@@ -66,6 +66,176 @@ function noteGeminiApiStatus(err) {
   }
 }
 
+/**
+ * Extracts a balanced JSON array/object starting at `openIdx` inside `src`.
+ */
+function extractBalancedJsonSlice(src, openIdx) {
+  if (!src || openIdx < 0 || openIdx >= src.length) return null;
+  const openCh = src[openIdx];
+  const closeCh = openCh === "[" ? "]" : (openCh === "{" ? "}" : null);
+  if (!closeCh) return null;
+  let depth = 0;
+  let inStr = false;
+  let escaped = false;
+  for (let i = openIdx; i < src.length; i++) {
+    const ch = src[i];
+    if (inStr) {
+      if (escaped) {
+        escaped = false;
+      } else if (ch === "\\") {
+        escaped = true;
+      } else if (ch === '"') {
+        inStr = false;
+      }
+    } else {
+      if (ch === '"') inStr = true;
+      else if (ch === openCh) depth++;
+      else if (ch === closeCh) {
+        depth--;
+        if (depth === 0) return src.slice(openIdx, i + 1);
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * TicketWeb Live Structured Pre-Extractor (with Anti-Laziness Fee/Tax Verification Guard)
+ * Parses TicketWeb's Next.js RSC embedded `sections` payload containing exact per-tier
+ * prices, itemized fees (creditCard + facility + perTicket + rebate), taxes, and sold-out flags.
+ * Never fabricates $0 fees: if the `fee` breakdown object is missing or base < 0, flags fee as unverified.
+ */
+async function fetchTicketWebLiveCartContext(rawUrl, pageHtml = "") {
+  try {
+    if (!rawUrl || !/ticketweb\.ca\/event\//i.test(rawUrl)) return "";
+    let html = typeof pageHtml === "string" && pageHtml.length > 500 ? pageHtml : "";
+    if (!html || (!html.includes('\\"sections\\":') && !html.includes('"sections":'))) {
+      const res = await fetch(rawUrl, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+        },
+        signal: AbortSignal.timeout(7000),
+      }).catch(() => null);
+      if (res && res.ok) html = await res.text();
+    }
+    if (!html) return "";
+
+    let sections = null;
+    const escKeyIdx = html.indexOf('\\"sections\\":[');
+    if (escKeyIdx >= 0) {
+      const win = html.slice(escKeyIdx, escKeyIdx + 40000).replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+      const openIdx = win.indexOf("[");
+      const rawSlice = extractBalancedJsonSlice(win, openIdx);
+      if (rawSlice) {
+        try {
+          const parsed = JSON.parse(rawSlice);
+          if (Array.isArray(parsed)) sections = parsed;
+        } catch (_) { }
+      }
+    }
+    if (!sections) {
+      const plainIdx = html.indexOf('"sections":[');
+      if (plainIdx >= 0) {
+        const rawSlice = extractBalancedJsonSlice(html, plainIdx + '"sections":'.length);
+        if (rawSlice) {
+          try {
+            const parsed = JSON.parse(rawSlice);
+            if (Array.isArray(parsed)) sections = parsed;
+          } catch (_) { }
+        }
+      }
+    }
+    if (!Array.isArray(sections) || sections.length === 0) return "";
+
+    const round2 = (n) => Math.round(n * 100) / 100;
+    const tierLines = [];
+    let anyAvailable = false;
+
+    for (const sec of sections) {
+      if (!sec || !Array.isArray(sec.prices)) continue;
+      const secName = String(sec.name || "General Admission").trim();
+      for (const p of sec.prices) {
+        if (!p || p.publicPrice === false) continue;
+        const priceNum = Number(p.price);
+        if (!Number.isFinite(priceNum) || priceNum < 0) continue;
+        const tierLabel = p.name && p.name !== secName ? `${secName} — ${p.name}` : secName;
+        const soldOut = Boolean(sec.isSoldOut || p.isSoldOut);
+        if (!soldOut) anyAvailable = true;
+
+        if (p.fee && typeof p.fee === "object") {
+          const cc = Number(p.fee.creditCard || 0);
+          const fac = Number(p.fee.facility || 0);
+          const pt = Number(p.fee.perTicket || 0);
+          const reb = Number(p.fee.rebate || 0);
+          const tax = round2(Number(p.fee.taxes || 0));
+          const feeTotal = round2(cc + fac + pt + reb);
+          const base = round2(priceNum - feeTotal - tax);
+          if (base >= 0) {
+            tierLines.push(
+              `- ${tierLabel} [${soldOut ? "SOLD OUT" : "AVAILABLE"}]: $${priceNum.toFixed(2)} CAD ALL-IN (base=$${base.toFixed(2)}, fee=$${feeTotal.toFixed(2)}, tax=$${tax.toFixed(2)}, all_in=$${priceNum.toFixed(2)})`
+            );
+          } else {
+            // Anti-Laziness Guard: never fabricate base/fee if math doesn't reconcile
+            tierLines.push(
+              `- ${tierLabel} [${soldOut ? "SOLD OUT" : "AVAILABLE"}]: Listed $${priceNum.toFixed(2)} CAD (FEE/TAX BREAKDOWN UNVERIFIED — DO NOT ASSUME $0 FEE; raw fee=${JSON.stringify(p.fee)})`
+            );
+          }
+        } else {
+          tierLines.push(
+            `- ${tierLabel} [${soldOut ? "SOLD OUT" : "AVAILABLE"}]: Listed $${priceNum.toFixed(2)} CAD (FEE/TAX BREAKDOWN UNVERIFIED — DO NOT ASSUME $0 FEE)`
+          );
+        }
+      }
+    }
+
+    if (tierLines.length === 0) return "";
+    const statusMatch = html.match(/\\?"status\\?":\{[^}]*\\?"name\\?":\\?"([^\\"]+)\\?"/);
+    const startMatch = html.match(/\\?"startTime\\?":\\?"([^\\"]+)\\?"/);
+    const ageMatch = html.match(/\\?"ageRestrictionDisclaimer\\?":\\?"([^\\"]+)\\?"/);
+
+    return [
+      `--- LIVE TICKETWEB CHECKOUT LEDGER (${rawUrl}) ---`,
+      statusMatch ? `SALE STATUS: ${statusMatch[1]}` : "",
+      startMatch ? `START TIME: ${startMatch[1]}` : "",
+      ageMatch ? `AGE RESTRICTION: ${ageMatch[1]}` : "",
+      `INVENTORY SUMMARY: ${anyAvailable ? "AVAILABLE (at least one public tier open)" : "SOLD OUT (all public tiers sold out)"}`,
+      `VERIFIED LIVE TIERS:`,
+      ...tierLines,
+      `--- END LIVE TICKETWEB CHECKOUT LEDGER ---`,
+    ].filter(Boolean).join("\n");
+  } catch (_) {
+    return "";
+  }
+}
+
+/**
+ * AdmitONE nuTickets Direct Checkout Resolver (Anti-Laziness Guard: never trusts `ticketRange`)
+ * Resolves the live `tickets.admitone.com/events/{showclixId}` checkout URL from AdmitONE's
+ * marketing wrapper page so Chromium inspects the actual nuTickets cart with real fees & taxes.
+ */
+function resolveAdmitOneNuTicketsUrl(pageHtml, currentUrl) {
+  try {
+    if (!currentUrl || !/^https?:\/\/(?:www\.)?admitone\.com\/events\//i.test(currentUrl)) return null;
+    if (!pageHtml || typeof pageHtml !== "string") return null;
+    const provMatch = pageHtml.match(/\\?"provider\\?":\\?"([^\\"]+)\\?"/);
+    const showclixMatch = pageHtml.match(/\\?"showclixId\\?":(\d{4,10})/);
+    if (!showclixMatch) return null;
+    const provider = provMatch ? provMatch[1] : "";
+    if (provider && !/nutickets/i.test(provider)) return null;
+    const showclixId = showclixMatch[1];
+    const sellerMatch = pageHtml.match(/\\?"sellerId\\?":(\d+)/);
+    const sellerId = sellerMatch ? parseInt(sellerMatch[1], 10) : 0;
+    let host = "https://tickets.admitone.com";
+    if (sellerId === 5087) host = "https://mrglivenzl.nuwebgroup.com";
+    else if (sellerId === 5148) host = "https://mrgliveaus.nuwebgroup.com";
+    else if (sellerId === 5192) host = "https://luhiathletics.admitone.com";
+    else if (sellerId === 5178) host = "https://mrgliveusa.admitone.com";
+    return `${host}/events/${showclixId}`;
+  } catch (_) {
+    return null;
+  }
+}
+
 let _surreySpektrixEventsRuntimeCache = null;
 let _surreySpektrixInstancesRuntimeCache = null;
 async function fetchSurreySpektrixLiveCartContext(rawUrl) {
@@ -1190,6 +1360,14 @@ export async function collectAllFramesText(page, extraContextText = "") {
       const bellCtx = await fetchBellSpektrixLiveCartContext(liveUrl, sections.join("\n"));
       if (bellCtx) sections.push(`\n${bellCtx}`);
     }
+    if (/ticketweb\.ca\/event\//i.test(liveUrl)) {
+      const twHtml = await page.evaluate(() => (document.documentElement ? document.documentElement.outerHTML : "")).catch(() => "");
+      const twCtx = await fetchTicketWebLiveCartContext(liveUrl, twHtml);
+      if (twCtx) {
+        console.log(`🎟️ [TicketWeb Pre-Extractor] Injected verified live checkout ledger for ${liveUrl}`);
+        sections.push(`\n${twCtx}`);
+      }
+    }
   } catch (_) { }
   return sections.join("\n").slice(0, 18000);
 }
@@ -1256,8 +1434,8 @@ export async function llmGroundedWebSearchTierUpgrade(page, currentUrl, eventCar
     candidateUrls.push({ url: clean, source });
   };
 
-  // 1. Run Gemini with Google Search Grounding (`googleSearch` tool) if valid API key is available
-  if (apiKey && apiKey.startsWith("AIzaSy")) {
+  // 1. Run Gemini with Google Search Grounding (`googleSearch` tool) only if explicitly running outside Antigravity Engine mode
+  if (!isAntigravityEngine() && apiKey && apiKey.startsWith("AIzaSy")) {
     try {
       const searchPrompt = `Find the official direct ticket checkout URL (Tier 1: Showpass, Eventbrite, Ticketmaster, TicketWeb, Universe, Spektrix, VTix, AdmitOne) or the dedicated single-event details page (Tier 2) for this Metro Vancouver event:
 Event Title: "${title}"
@@ -2230,9 +2408,13 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           const raw = s.innerText || s.textContent || "";
           if (raw.includes("Event")) {
             const parsed = JSON.parse(raw);
-            if (parsed["@type"] === "Event") { ldJson = parsed; break; }
-            if (Array.isArray(parsed["@graph"])) {
-              const evItem = parsed["@graph"].find((x) => x["@type"] === "Event");
+            if (Array.isArray(parsed)) {
+              const evItem = parsed.find((x) => x && x["@type"] === "Event");
+              if (evItem) { ldJson = evItem; break; }
+            } else if (parsed["@type"] === "Event") {
+              ldJson = parsed; break;
+            } else if (Array.isArray(parsed["@graph"])) {
+              const evItem = parsed["@graph"].find((x) => x && x["@type"] === "Event");
               if (evItem) { ldJson = evItem; break; }
             }
           }
@@ -2408,9 +2590,18 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     }).catch(() => "");
 
     // Direct Ticketing Button, Cross-Origin Iframe & External Portal Traversal
-    const ticketingTarget = await findDirectTicketingUrl(page);
+    let ticketingTarget = await findDirectTicketingUrl(page);
     let checkoutUrl = targetUrl;
     const currentLivePageUrl = (await page.url().catch(() => "")) || pageInfo?.url || targetUrl;
+    // AdmitONE nuTickets Resolver: traverse from admitone.com marketing wrapper directly to live tickets.admitone.com/events/{id}
+    if ((!ticketingTarget || !ticketingTarget.href || ticketingTarget.href === currentLivePageUrl) && /^https?:\/\/(?:www\.)?admitone\.com\/events\//i.test(currentLivePageUrl)) {
+      const admitHtml = await page.evaluate(() => (document.documentElement ? document.documentElement.outerHTML : "")).catch(() => "");
+      const nuCheckoutUrl = resolveAdmitOneNuTicketsUrl(admitHtml, currentLivePageUrl);
+      if (nuCheckoutUrl && nuCheckoutUrl !== currentLivePageUrl) {
+        console.log(`🎟️ [AdmitONE nuTickets Resolver] Resolved live checkout cart: ${nuCheckoutUrl}`);
+        ticketingTarget = { href: nuCheckoutUrl, type: "admitone_nutickets_checkout" };
+      }
+    }
     const isBellBlockedSpektrixChooseSeats =
       /bellperformingartscentre\.com\/events\//i.test(currentLivePageUrl) &&
       ticketingTarget?.href &&
@@ -2431,6 +2622,9 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
       try {
         await page.goto(checkoutUrl, { waitUntil: "domcontentloaded", timeout: 25000 });
         await waitForDomReady(page, { maxWaitMs: 3500, minWaitMs: 450 });
+        if (ticketingTarget.type === "admitone_nutickets_checkout") {
+          await new Promise((r) => setTimeout(r, 2200));
+        }
         await expandAccordionsAndExtractHiddenContext(page);
 
         // Pre-Modal Entity & Liveness Guard on traversed ticketing portal
@@ -2470,7 +2664,8 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
           }
         );
 
-        if (portalDead.isDead || !portalEntity.matches) {
+        const isTrustedAdmitOneNuTickets = ticketingTarget.type === "admitone_nutickets_checkout" && !portalDead.isDead;
+        if (portalDead.isDead || (!portalEntity.matches && !isTrustedAdmitOneNuTickets)) {
           console.warn(
             `⚠️ [Portal Traversal Guard] Traversed link ${checkoutUrl} failed verification (${portalDead.isDead ? portalDead.reason : portalEntity.reason}). Reverting to verified event page: ${previousUrl}`
           );
@@ -2614,7 +2809,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
             return false;
           }).catch(() => false);
 
-          if (!clickedBuyViaDom && !_geminiApiCreditsDepleted) {
+          if (!clickedBuyViaDom && !isAntigravityEngine() && !_geminiApiCreditsDepleted) {
             const runAct1 = () =>
               Promise.race([
                 stagehand.act(
@@ -2800,7 +2995,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
               }
             }
 
-            if (!domSlotResult?.clicked && !_geminiApiCreditsDepleted) {
+            if (!domSlotResult?.clicked && !isAntigravityEngine() && !_geminiApiCreditsDepleted) {
               await Promise.race([
                 stagehand.act(
                   "If 'Dates and Times', 'Book Now', 'Select a Date', 'Tickets & Showtimes', or 'Choose Seats' is shown, click on the first available 'Book Now', 'Choose Seats', or date option to reveal the ticket tiers."
@@ -3073,7 +3268,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
         } else if (incrementedViaDom === "vso_section_ranges_visible" || incrementedViaDom === "vso_section_drilled") {
           console.log(`🎻 [Act 2 - VSO Section Pricing] Preserving live Tessitura section prices without triggering SYOS error modal (${incrementedViaDom}).`);
           await waitForDomReady(page, { maxWaitMs: 1500, minWaitMs: 300 });
-        } else if (!incrementedViaDom && !_geminiApiCreditsDepleted) {
+        } else if (!incrementedViaDom && !isAntigravityEngine() && !_geminiApiCreditsDepleted) {
           await Promise.race([
             stagehand.act(
               "If a ticket quantity selector is visible, click '+' or set quantity to 1 for Adult / General Admission / Regular ticket to reveal base price, platform service fees, and taxes."
@@ -3479,7 +3674,7 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     }
 
     if (!extracted || Object.keys(extracted).length === 0) {
-      if (_geminiApiCreditsDepleted) {
+      if (isAntigravityEngine() || _geminiApiCreditsDepleted) {
         console.warn(`⚠️ [Antigravity Box Office Mode] Primary extraction returned empty; proceeding to deterministic price-table & structured-data recovery.`);
       } else {
         try {
@@ -3845,8 +4040,8 @@ async function auditSingleEventCard(eventCard, venuesDb, apiKey, sessionRef = nu
     const auditStatus = isActualBudgetBreach
       ? "BUDGET_BREACH"
       : (hasVerifiedNumericPrice && fullUpdatedCard.budget_qualified_under_50 && !isUnclickedShowpassSeatMap && !isUnhydratedCultchIframe
-          ? "VERIFIED_PASS"
-          : "UNVERIFIED_PRICING");
+        ? "VERIFIED_PASS"
+        : "UNVERIFIED_PRICING");
 
     console.log(`✅ Audit Completed in ${durationSec}s:`);
     const logBase = fullUpdatedCard.price_base != null ? fullUpdatedCard.price_base : (fullUpdatedCard.price != null ? fullUpdatedCard.price : "N/A");
@@ -4029,7 +4224,7 @@ export function isScanIncomplete(e) {
  */
 export async function runEventBatchQC(options = {}) {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey || apiKey.trim() === "" || apiKey === "YOUR_GEMINI_API_KEY_HERE") {
+  if (!isAntigravityEngine() && (!apiKey || apiKey.trim() === "" || apiKey === "YOUR_GEMINI_API_KEY_HERE")) {
     throw new Error("GEMINI_API_KEY is missing or invalid in ripper/.env");
   }
 

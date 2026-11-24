@@ -49,6 +49,359 @@ DISCOVERED_SOURCES_PATH = os.path.join(DATA_DIR, "discovered_sources.json")
 CROWDSOURCED_PRICES_PATH = os.path.join(DATA_DIR, "crowdsourced_price_reports.json")
 HOLIDAYS_PATH = os.path.join(DATA_DIR, "approved_holidays.json")
 SUBSCRIBED_VENUES_PATH = os.path.join(DATA_DIR, "subscribed_venues.json")
+SOURCE_CONTROLS_PATH = os.path.join(DATA_DIR, "source_controls.json")
+SOURCE_HEALTH_PATH = os.path.join(DATA_DIR, "layers", "source_health_report.json")
+LAYER_SCHEDULES_PATH = os.path.join(DATA_DIR, "layers", "layer_schedules.json")
+SURREY_SOURCES_PATH = os.path.join(DATA_DIR, "surrey_reference_sources.json")
+
+
+def _normalize_feed_url(u: str) -> str:
+    s = str(u or "").strip().lower()
+    s = re.sub(r"^https?://(www\.)?", "", s)
+    return s.rstrip("/")
+
+
+def _extract_domain(u: str) -> str:
+    try:
+        host = urlparse(str(u or "")).hostname or ""
+        return host.lower().removeprefix("www.")
+    except Exception:
+        return ""
+
+
+def _load_json_safe(path_str: str, default: Any):
+    if not os.path.exists(path_str):
+        return default
+    try:
+        with open(path_str, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
+
+
+def compute_crawl_source_stats() -> Dict[str, Any]:
+    health_raw = _load_json_safe(SOURCE_HEALTH_PATH, {})
+    if not isinstance(health_raw, dict):
+        health_raw = {}
+    controls_raw = _load_json_safe(SOURCE_CONTROLS_PATH, {})
+    controls_map = controls_raw.get("controls", {}) if isinstance(controls_raw, dict) else {}
+
+    disc_raw = _load_json_safe(DISCOVERY_SOURCES_PATH, {})
+    disc_list = disc_raw.get("sources", []) if isinstance(disc_raw, dict) else (disc_raw if isinstance(disc_raw, list) else [])
+    venues_list = _load_json_safe(VENUES_PATH, [])
+    if not isinstance(venues_list, list):
+        venues_list = []
+    surrey_raw = _load_json_safe(SURREY_SOURCES_PATH, [])
+    surrey_list = surrey_raw.get("sources", []) if isinstance(surrey_raw, dict) else (surrey_raw if isinstance(surrey_raw, list) else [])
+
+    events_list = _load_json_safe(EVENTS_PATH, [])
+    if not isinstance(events_list, list):
+        events_list = []
+    sched_raw = _load_json_safe(LAYER_SCHEDULES_PATH, [])
+    sched_list = sched_raw if isinstance(sched_raw, list) else (list(sched_raw.values()) if isinstance(sched_raw, dict) else [])
+    queue_raw = _load_json_safe(MANUAL_QUEUE_PATH, {})
+    queue_list = queue_raw.get("quarantinedEvents", []) if isinstance(queue_raw, dict) else []
+    arch_raw = _load_json_safe(ARCHIVE_PATH, [])
+    arch_list = arch_raw if isinstance(arch_raw, list) else (arch_raw.get("archivedEvents", []) if isinstance(arch_raw, dict) else [])
+
+    # 1. Domain-level yield counts across active, schedules, quarantined, archived
+    domain_stats: Dict[str, Dict[str, int]] = {}
+
+    def _bump_domains(items, field: str):
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            seen = set()
+            for key in ("url", "ticket_url", "details_url", "source_url", "candidate_tier1_url", "websiteUrl"):
+                val = item.get(key)
+                if not val:
+                    continue
+                d = _extract_domain(val)
+                if d and d not in seen:
+                    seen.add(d)
+                    if d not in domain_stats:
+                        domain_stats[d] = {"active": 0, "schedules": 0, "quarantined": 0, "archived": 0}
+                    domain_stats[d][field] += 1
+
+    _bump_domains(events_list, "active")
+    _bump_domains(sched_list, "schedules")
+    _bump_domains(queue_list, "quarantined")
+    _bump_domains(arch_list, "archived")
+
+    # 2. Infer wall-clock durations from checked_at gaps in source_health_report.json
+    health_sorted = []
+    for raw_url, h in health_raw.items():
+        if not isinstance(h, dict):
+            continue
+        u = str(h.get("url") or raw_url).strip()
+        ts_str = h.get("checked_at") or ""
+        ts_val = 0.0
+        if ts_str:
+            try:
+                ts_val = datetime.fromisoformat(ts_str.replace("Z", "+00:00")).timestamp()
+            except Exception:
+                ts_val = 0.0
+        health_sorted.append((ts_val, u, h))
+    health_sorted.sort(key=lambda x: x[0])
+
+    inferred_wall_by_norm: Dict[str, float] = {}
+    health_by_norm: Dict[str, Dict[str, Any]] = {}
+    for idx, (ts_val, u, h) in enumerate(health_sorted):
+        norm = _normalize_feed_url(u)
+        if not norm:
+            continue
+        health_by_norm[norm] = {**h, "url": u}
+        if ts_val > 0 and idx < len(health_sorted) - 1:
+            next_ts = health_sorted[idx + 1][0]
+            gap = next_ts - ts_val
+            if 0 <= gap <= 600:
+                inferred_wall_by_norm[norm] = round(gap, 1)
+
+    # 3. Merge all known crawlable feeds keyed by normalized URL
+    feeds: Dict[str, Dict[str, Any]] = {}
+
+    def _upsert(url: str, name: str, origin: str, city: str = "", src_type: str = "", disc_status: str = ""):
+        u = str(url or "").strip()
+        norm = _normalize_feed_url(u)
+        if not norm or not u.startswith("http"):
+            return
+        if norm not in feeds:
+            feeds[norm] = {
+                "url": u,
+                "norm_url": norm,
+                "domain": _extract_domain(u),
+                "name": name or _extract_domain(u) or u,
+                "origins": [origin],
+                "city": city or "Vancouver",
+                "type": src_type or origin,
+                "disc_status": disc_status or "",
+            }
+        else:
+            if origin not in feeds[norm]["origins"]:
+                feeds[norm]["origins"].append(origin)
+            if name and (feeds[norm]["name"] == feeds[norm]["domain"] or len(name) > len(feeds[norm]["name"])):
+                feeds[norm]["name"] = name
+            if city and feeds[norm]["city"] == "Vancouver" and city != "Vancouver":
+                feeds[norm]["city"] = city
+            if src_type and feeds[norm]["type"] in ("health", "venue", ""):
+                feeds[norm]["type"] = src_type
+            if disc_status:
+                feeds[norm]["disc_status"] = disc_status
+
+    for norm, h in health_by_norm.items():
+        _upsert(h.get("url", ""), _extract_domain(h.get("url", "")), "health")
+
+    for s in disc_list:
+        if not isinstance(s, dict) or s.get("is_test_canary") or s.get("id") == "testy-canary-feed":
+            continue
+        u = s.get("eventsUrl") or s.get("calendarUrl") or s.get("url") or ""
+        _upsert(u, s.get("name") or s.get("id") or "", "discovery", s.get("region") or s.get("city") or "", s.get("type") or "discovery", str(s.get("status") or ""))
+
+    for v in venues_list:
+        if not isinstance(v, dict) or v.get("is_test_canary"):
+            continue
+        if v.get("access_model") == "open_public_space" or v.get("lifecycle_type") == "perennial_drop_in":
+            continue
+        u = v.get("calendar_url") or v.get("calendarUrl") or v.get("website_url") or v.get("websiteUrl") or ""
+        _upsert(u, v.get("venue_name") or v.get("name") or "", "venue", v.get("city") or v.get("region") or "", "venue")
+
+    for s in surrey_list:
+        if not isinstance(s, dict) or s.get("is_test_canary"):
+            continue
+        _upsert(s.get("url") or "", s.get("name") or s.get("id") or "", "surrey", "Surrey", "surrey_ref")
+
+    # 4. Assemble enriched rows & summary
+    rows = []
+    summary = {
+        "total": 0,
+        "active_crawl": 0,
+        "paused": 0,
+        "disabled": 0,
+        "dead_or_blocked": 0,
+        "time_sinks": 0,
+        "stars": 0,
+        "total_est_minutes": 0.0,
+        "saved_minutes": 0.0,
+    }
+
+    for norm, f in feeds.items():
+        h = health_by_norm.get(norm, {})
+        h_status = str(h.get("status") or "unchecked")
+        h_detail = str(h.get("detail") or "")
+        m_links = re.search(r"links=(\d+)", h_detail)
+        m_jsonld = re.search(r"jsonLd=(\d+)", h_detail)
+        static_links = int(m_links.group(1)) if m_links else (h.get("last_static_links") if isinstance(h.get("last_static_links"), int) else None)
+        jsonld_count = int(m_jsonld.group(1)) if m_jsonld else (h.get("last_jsonld_count") if isinstance(h.get("last_jsonld_count"), int) else None)
+
+        explicit_dur = h.get("avg_duration_sec") if h.get("avg_duration_sec") is not None else h.get("last_duration_sec")
+        if explicit_dur is not None:
+            dur_sec = round(float(explicit_dur), 1)
+            dur_source = "measured"
+        elif norm in inferred_wall_by_norm:
+            dur_sec = inferred_wall_by_norm[norm]
+            dur_source = "inferred"
+        else:
+            dur_sec = None
+            dur_source = "none"
+
+        spa_used = bool(h.get("spa_fallback_used")) if "spa_fallback_used" in h else (h_status == "http_200_ok" and static_links == 0 and (jsonld_count or 0) == 0)
+        ds = domain_stats.get(f["domain"], {"active": 0, "schedules": 0, "quarantined": 0, "archived": 0})
+        active_cnt = ds["active"]
+        sched_cnt = ds["schedules"]
+        quar_cnt = ds["quarantined"]
+        arch_cnt = ds["archived"]
+        sec_per_active = round(dur_sec / active_cnt, 1) if (dur_sec is not None and active_cnt > 0) else None
+
+        ctrl = controls_map.get(norm) or controls_map.get(f["url"]) or {}
+        ctrl_status = str(ctrl.get("status") or "").lower()
+        if not ctrl_status:
+            if f["disc_status"].lower() in ("disabled", "inactive", "waf_blocked", "timeout_unreachable"):
+                ctrl_status = "disabled"
+            else:
+                ctrl_status = "active"
+        tier = str(ctrl.get("tier") or ("A" if active_cnt >= 10 else ("C" if (h_status != "http_200_ok" and h_status != "unchecked") else "B"))).upper()
+
+        is_dead = h_status not in ("http_200_ok", "unchecked")
+        is_aggregator = "aggregator" in str(f["type"]).lower() or f["domain"] in ("do604.com", "straight.com", "dailyhive.com", "vancouverisawesome.com", "todocanada.ca", "allevents.in", "meetup.com")
+
+        if is_dead:
+            verdict = "dead"
+        elif h_status == "unchecked":
+            verdict = "unchecked"
+        elif active_cnt >= 10 and (dur_sec is None or (sec_per_active is not None and sec_per_active <= 15)):
+            verdict = "star"
+        elif active_cnt > 0:
+            verdict = "healthy"
+        elif is_aggregator and (sched_cnt > 0 or arch_cnt >= 5):
+            verdict = "aggregator"
+        elif dur_sec is not None and dur_sec >= 60 and active_cnt == 0:
+            verdict = "time_sink"
+        else:
+            verdict = "zero_yield"
+
+        summary["total"] += 1
+        if ctrl_status == "disabled":
+            summary["disabled"] += 1
+            if dur_sec:
+                summary["saved_minutes"] += dur_sec / 60.0
+        elif ctrl_status == "paused":
+            summary["paused"] += 1
+            if dur_sec:
+                summary["saved_minutes"] += dur_sec / 60.0
+        else:
+            summary["active_crawl"] += 1
+            if dur_sec:
+                summary["total_est_minutes"] += dur_sec / 60.0
+
+        if is_dead:
+            summary["dead_or_blocked"] += 1
+        if verdict == "time_sink":
+            summary["time_sinks"] += 1
+        if verdict == "star":
+            summary["stars"] += 1
+
+        rows.append({
+            "url": f["url"],
+            "norm_url": norm,
+            "domain": f["domain"],
+            "name": f["name"],
+            "origins": f["origins"],
+            "city": f["city"],
+            "type": f["type"],
+            "health_status": h_status,
+            "health_detail": h_detail,
+            "checked_at": h.get("checked_at") or "",
+            "static_links": static_links,
+            "jsonld_count": jsonld_count,
+            "spa_fallback_used": spa_used,
+            "duration_sec": dur_sec,
+            "duration_source": dur_source,
+            "run_count": int(h.get("run_count") or 0),
+            "consecutive_zero_runs": int(h.get("consecutive_zero_runs") or 0),
+            "consecutive_error_runs": int(h.get("consecutive_error_runs") or 0),
+            "active": active_cnt,
+            "schedules": sched_cnt,
+            "quarantined": quar_cnt,
+            "archived": arch_cnt,
+            "sec_per_active": sec_per_active,
+            "verdict": verdict,
+            "control_status": ctrl_status,
+            "tier": tier,
+            "control_note": str(ctrl.get("note") or ""),
+            "control_updated_at": str(ctrl.get("updatedAt") or ""),
+        })
+
+    summary["total_est_minutes"] = round(summary["total_est_minutes"], 1)
+    summary["saved_minutes"] = round(summary["saved_minutes"], 1)
+    rows.sort(key=lambda r: (-(r["duration_sec"] if r["duration_sec"] is not None else -1), -r["active"], r["name"].lower()))
+    return {"summary": summary, "sources": rows}
+
+
+def apply_source_control_updates(updates: list) -> Dict[str, Any]:
+    data = _load_json_safe(SOURCE_CONTROLS_PATH, {"metadata": {"version": "1.0.0"}, "controls": {}})
+    if not isinstance(data, dict):
+        data = {"metadata": {"version": "1.0.0"}, "controls": {}}
+    controls = data.get("controls")
+    if not isinstance(controls, dict):
+        controls = {}
+        data["controls"] = controls
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+    changed_norms: Dict[str, str] = {}
+    applied = 0
+
+    for u_item in updates:
+        if not isinstance(u_item, dict):
+            continue
+        raw_url = str(u_item.get("url") or u_item.get("norm_url") or "").strip()
+        norm = _normalize_feed_url(raw_url)
+        if not norm:
+            continue
+        prev = controls.get(norm, {}) if isinstance(controls.get(norm), dict) else {}
+        new_status = str(u_item.get("status") or prev.get("status") or "active").lower()
+        if new_status not in ("active", "paused", "disabled"):
+            new_status = "active"
+        new_tier = str(u_item.get("tier") or prev.get("tier") or "B").upper()
+        if new_tier not in ("A", "B", "C"):
+            new_tier = "B"
+        note = str(u_item.get("note") if "note" in u_item else prev.get("note", "")).strip()[:240]
+
+        controls[norm] = {
+            "url": raw_url or prev.get("url") or norm,
+            "status": new_status,
+            "tier": new_tier,
+            "note": note,
+            "updatedAt": now_iso,
+        }
+        changed_norms[norm] = new_status
+        applied += 1
+
+    data.setdefault("metadata", {})["updatedAt"] = now_iso
+    with open(SOURCE_CONTROLS_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+    # Sync matching URLs inside discovery_sources.json so both stay aligned
+    disc_synced = 0
+    if changed_norms and os.path.exists(DISCOVERY_SOURCES_PATH):
+        try:
+            disc_data = _load_json_safe(DISCOVERY_SOURCES_PATH, None)
+            if isinstance(disc_data, dict) and isinstance(disc_data.get("sources"), list):
+                for s in disc_data["sources"]:
+                    if not isinstance(s, dict):
+                        continue
+                    s_url = s.get("eventsUrl") or s.get("calendarUrl") or s.get("url") or ""
+                    s_norm = _normalize_feed_url(s_url)
+                    if s_norm in changed_norms:
+                        s["status"] = changed_norms[s_norm]
+                        disc_synced += 1
+                if disc_synced > 0:
+                    disc_data.setdefault("metadata", {})["updatedAt"] = now_iso[:10]
+                    with open(DISCOVERY_SOURCES_PATH, "w", encoding="utf-8") as df:
+                        json.dump(disc_data, df, indent=2, ensure_ascii=False)
+        except Exception as e:
+            print(f"[WARN] Failed to sync discovery_sources.json: {e}")
+
+    return {"success": True, "applied": applied, "discoverySynced": disc_synced, "updatedAt": now_iso}
 
 import hmac
 import hashlib
@@ -2696,6 +3049,16 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
             return self._send_json(200, {"discoverySources": sources, "total": len(sources)})
 
+        # 11b. API: Get Unified Crawl Source Stats & ROI (source_health_report + yield + source_controls)
+        if path == "/api/curator/source_stats":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            try:
+                stats_payload = compute_crawl_source_stats()
+                return self._send_json(200, stats_payload)
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to compute source stats: {e}"})
+
         # 12. API: Get Active Events (events.json)
         if path in ("/api/curator/events", "/api/curator/events/active"):
             if not self._check_authenticated():
@@ -2834,6 +3197,16 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             if token:
                 revoke_session_token(token)
             return self._send_json(200, {"success": True, "message": "Session revoked and logged out."})
+
+        # 2b. API: Update Crawl Source Controls (single or bulk pause/disable/enable/tier)
+        if path == "/api/curator/source_control":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            updates = payload.get("updates")
+            if not isinstance(updates, list):
+                updates = [payload]
+            result = apply_source_control_updates(updates)
+            return self._send_json(200, result)
 
         # 3. Public API: Crowdsourced Price Suggestion (Zero PII, no auth required)
         if path == "/api/suggest-price":

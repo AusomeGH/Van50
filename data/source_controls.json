@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updatedAt": "2026-11-24T15:33:39.669900+00:00",
+    "description": "Curator crawl controls (active, paused, disabled) and cadence tiers (A, B, C) keyed by normalized feed URL."
+  },
+  "controls": {
+    "bezartshub.com/events": {
+      "url": "https://www.bezartshub.com/events",
+      "status": "active",
+      "tier": "B",
+      "note": "",
+      "updatedAt": "2026-11-24T15:23:19.530496+00:00"
+    },
+    "douglascollege.ca/community-visitors/arts-events/amelia-douglas-gallery": {
+      "url": "https://www.douglascollege.ca/community-visitors/arts-events/amelia-douglas-gallery",
+      "status": "disabled",
+      "tier": "B",
+      "note": "",
+      "updatedAt": "2026-11-24T15:33:19.354677+00:00"
+    },
+    "abcbrewing.ca/events": {
+      "url": "https://abcbrewing.ca/events/",
+      "status": "disabled",
+      "tier": "B",
+      "note": "",
+      "updatedAt": "2026-11-24T15:33:36.140884+00:00"
+    },
+    "artsnewwest.ca/events": {
+      "url": "https://artsnewwest.ca/events/",
+      "status": "disabled",
+      "tier": "B",
+      "note": "",
+      "updatedAt": "2026-11-24T15:33:39.669900+00:00"
+    }
+  }
+}

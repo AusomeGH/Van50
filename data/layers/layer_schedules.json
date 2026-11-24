@@ -1629,74 +1629,6 @@
     "step4_grounded_at": "2026-11-19T18:38:41.424Z"
   },
   {
-    "id": "rio-theatre-fight-fight-fight-2026-11-23",
-    "event_id": "rio-theatre-fight-fight-fight-2026-11-23",
-    "title": "FIGHT! FIGHT! FIGHT!",
-    "venue": "The Rio Theatre",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 9:30 PM",
-    "time": "9:30 PM",
-    "ticket_url": "https://riotheatretickets.ca/events/45458-fight-fight-fight",
-    "details_url": "https://riotheatre.ca/movie/fight-fight-fight/",
-    "source_url": "https://riotheatre.ca/movie/fight-fight-fight/",
-    "description": "Shot entirely in Nanaimo, BC, local filmmaker Sam Adolph brings his newest feature FIGHT! FIGHT! FIGHT! to the Rio Theatre for an exclusive Vancouver premiere for one night only. The screening follows call center employee Matthew Bowman through a life-altering night and will be followed by a Q&A with the filmmakers.",
-    "artist": "Sam Adolph",
-    "lineup": [
-      "Sam Adolph",
-      "Matthew Bowman",
-      "Jacob Mauser"
-    ],
-    "category": "arts",
-    "restrictions": "18+",
-    "price": 16,
-    "price_base": 16,
-    "price_fee": 0,
-    "price_all_in": 16,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "9:30 PM",
-        "doors_time": "9:00 PM",
-        "end_time": "11:30 PM",
-        "status": "upcoming",
-        "ticket_url": "https://riotheatretickets.ca/events/45458-fight-fight-fight"
-      }
-    ],
-    "audited_at": "2026-11-01T18:07:05.656Z",
-    "step1b_audited_at": "2026-11-03T20:23:36.015Z",
-    "candidate_tier1_url": "https://riotheatretickets.ca/events/45458-fight-fight-fight",
-    "candidate_tier1_source": "ai_link_auditor",
-    "candidate_tier1_staged_at": "2026-11-03T20:23:35.998Z",
-    "links": {
-      "tier1_checkout": "https://riotheatretickets.ca/events/45458-fight-fight-fight",
-      "tier2_event_page": "https://riotheatre.ca/movie/fight-fight-fight/",
-      "tier3_calendar": "https://riotheatre.ca/calendar/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://riotheatre.ca/",
-      "best_tier": "tier1",
-      "best_available": "https://riotheatretickets.ca/events/45458-fight-fight-fight"
-    },
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z",
-    "start_time": "9:30 PM",
-    "doors_time": "9:00 PM",
-    "end_time": "11:30 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-23",
-      "start_time": "9:30 PM",
-      "doors_time": "9:00 PM",
-      "end_time": "11:30 PM",
-      "status": "upcoming",
-      "ticket_url": "https://riotheatretickets.ca/events/45458-fight-fight-fight"
-    },
-    "show_2": null,
-    "show_3": null,
-    "merged_from_ids": [
-      "the-rio-theatre-fight-fight-fight-2026-11-23"
-    ]
-  },
-  {
     "id": "rio-theatre-paper-flowers-special-presenta-2026-11-28",
     "event_id": "rio-theatre-paper-flowers-special-presenta-2026-11-28",
     "title": "Paper Flowers – Special Presentation",
@@ -2182,52 +2114,6 @@
     }
   },
   {
-    "id": "the-cinematheque-the-secret-of-pin-up-island-2026-11-23",
-    "event_id": "the-cinematheque-the-secret-of-pin-up-island-2026-11-23",
-    "title": "The Secret of Pin-Up Island",
-    "venue": "The Cinematheque",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 6:30 PM",
-    "time": "6:30 PM",
-    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584509~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "details_url": "https://thecinematheque.ca/films/2026/secret-pin-up-island",
-    "source_url": "https://thecinematheque.ca/films/2026/secret-pin-up-island",
-    "description": "An all-woman cast fronts this whimsical, honey-coloured sci-fi fantasy set at the intersection of therapy and AI-frontier technology. Rina Gri stars as a patient undergoing an immersive virtual reality treatment for depression powered by a personalized AI engine.",
-    "artist": "Alecs Nastoiu",
-    "lineup": [
-      "Alecs Nastoiu",
-      "Rina Gri"
-    ],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 12,
-    "price_base": 12,
-    "price_fee": 0,
-    "price_all_in": 12,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "6:30 PM",
-        "doors_time": "none_available",
-        "end_time": "8:17 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T18:58:48.666Z",
-    "candidate_tier1_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584509~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "links": {
-      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584509~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584509~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://thecinematheque.ca/films/2026/secret-pin-up-island"
-    },
-    "step1b_audited_at": "2026-11-08T00:26:57.451Z",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-11-04T15:04:31.551Z",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z"
-  },
-  {
     "id": "the-cinematheque-dra-en-2026-11-24",
     "event_id": "the-cinematheque-dra-en-2026-11-24",
     "title": "Dražen",
@@ -2271,51 +2157,6 @@
     "step1b_audited_at": "2026-11-08T00:26:57.718Z",
     "candidate_tier1_source": "in_page_anchor_traversal",
     "candidate_tier1_staged_at": "2026-11-04T15:04:32.457Z",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z"
-  },
-  {
-    "id": "the-cinematheque-invincibles-2026-11-24",
-    "event_id": "the-cinematheque-invincibles-2026-11-24",
-    "title": "Invincibles",
-    "venue": "The Cinematheque",
-    "date": "2026-11-24",
-    "dateSchedule": "2026-11-24 • 8:40 PM",
-    "time": "8:40 PM",
-    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584515~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "details_url": "https://thecinematheque.ca/films/2026/invincibles",
-    "source_url": "https://thecinematheque.ca/films/2026/invincibles",
-    "description": "Screening as part of the European Union Film Festival 2026, Invincibles is a moving sports drama inspired by true stories from the 2019 World Para Ice Hockey Championships in Ostrava. Director Dan Pánek combines heartfelt emotion and humour to tell an uplifting tale of determination and second chances.",
-    "artist": "Dan Pánek",
-    "lineup": [
-      "Dan Pánek"
-    ],
-    "category": "arts",
-    "restrictions": "All Ages",
-    "price": 12,
-    "price_base": 12,
-    "price_fee": 0,
-    "price_all_in": 12,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-24",
-        "start_time": "8:40 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-01T18:59:58.095Z",
-    "candidate_tier1_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584515~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-    "links": {
-      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584515~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=584515~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://thecinematheque.ca/films/2026/invincibles"
-    },
-    "step1b_audited_at": "2026-11-08T00:26:57.944Z",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-11-05T13:47:18.858Z",
     "step4_grounded_at": "2026-11-19T18:38:41.424Z"
   },
   {
@@ -9065,55 +8906,6 @@
     "step4_grounded_at": "2026-11-19T18:38:41.424Z"
   },
   {
-    "id": "the-american-drawing-from-memory-2026-11-23",
-    "event_id": "the-american-drawing-from-memory-2026-11-23",
-    "title": "Drawing From Memory",
-    "venue": "The American",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 8:00 PM",
-    "time": "8:00 PM",
-    "ticket_url": "https://www.theamerican.bar/upcoming-events/drawing-from-memory-1-w775x-7wtcz-jkrt7-55dph-68x5n-la2yf-z24yz",
-    "details_url": "https://www.theamerican.bar/upcoming-events/drawing-from-memory-1-w775x-7wtcz-jkrt7-55dph-68x5n-la2yf-z24yz",
-    "source_url": "https://www.theamerican.bar/upcoming-events/drawing-from-memory-1-w775x-7wtcz-jkrt7-55dph-68x5n-la2yf-z24yz",
-    "description": "On the first and third Mondays of each month, Colleen Thompson and other local comedians host a drawing competition, asking you to draw things such as, but not limited to, your favourite cartoon character, significant cultural moments, album covers, and whatever else our hosts feel like throwing at you. The catch? You must draw everything from memory within 10 minutes, and absolutely zero references are allowed. Once you’re done, our hosts will round up your submissions, pick their favourites, and share their thoughts on the best (and politely roast the worst). Plus, all day happy hour with $5 beers. Joined by Bisou social club.",
-    "artist": "Colleen Thompson",
-    "lineup": [
-      "Colleen Thompson",
-      "Bisou social club"
-    ],
-    "category": "comedy",
-    "restrictions": "All Ages Welcome (Family Friendly)",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "8:00 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-07T02:27:30.282Z",
-    "candidate_tier1_url": null,
-    "candidate_tier1_source": "venue_subpage_extraction",
-    "candidate_tier1_staged_at": "2026-11-07T06:27:50.285Z",
-    "links": {
-      "tier1_checkout": null,
-      "best_available": "https://www.theamerican.bar/upcoming-events/drawing-from-memory-1-w775x-7wtcz-jkrt7-55dph-68x5n-la2yf-z24yz",
-      "best_tier": "tier2",
-      "tier2_event_page": "https://www.theamerican.bar/upcoming-events/drawing-from-memory-1-w775x-7wtcz-jkrt7-55dph-68x5n-la2yf-z24yz",
-      "tier3_calendar": "https://www.theamerican.bar/upcoming-events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.theamerican.bar/"
-    },
-    "step1b_audited_at": "2026-11-21T03:12:06.634Z",
-    "step4_grounded_at": "2026-11-21T03:50:55.663Z"
-  },
-  {
     "id": "the-american-r3d-at-the-american-2026-11-27",
     "event_id": "the-american-r3d-at-the-american-2026-11-27",
     "title": "R3D AT THE AMERICAN",
@@ -10079,9 +9871,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -10109,9 +9901,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -10139,9 +9931,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "project-climbing-centre-cloverdale-bouldering",
@@ -10169,9 +9961,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -10199,9 +9991,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "grandview-heights-aquatic-centre-drop-in",
@@ -10229,9 +10021,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -10259,9 +10051,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "bear-creek-park-gardens-trails-mini-train",
@@ -10289,9 +10081,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": "Bear Creek Lights",
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -10319,9 +10111,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -10349,9 +10141,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -10379,9 +10171,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-23T17:19:42.459Z",
-    "step1b_audited_at": "2026-11-23T17:19:42.459Z",
-    "step4_grounded_at": "2026-11-23T17:19:42.459Z"
+    "audited_at": "2026-11-24T14:31:01.492Z",
+    "step1b_audited_at": "2026-11-24T14:31:01.492Z",
+    "step4_grounded_at": "2026-11-24T14:31:01.492Z"
   },
   {
     "id": "vandusen-botanical-g-vandusen-festival-of-lights-2026-11-27",
@@ -10731,165 +10523,6 @@
       "best_available": "https://www.surreylibraries.ca/events/practice-speaking-french-1"
     },
     "step1b_audited_at": "2026-11-10T10:46:59.894Z",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z"
-  },
-  {
-    "id": "surrey-libraries-gui-adapted-stories-for-adults-and-2026-11-16",
-    "event_id": "surrey-libraries-gui-adapted-stories-for-adults-and-2026-11-16",
-    "title": "Adapted Stories for Adults and Teens",
-    "venue": "Surrey Libraries - Guildford Branch",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 10:30 AM",
-    "time": "10:30 AM",
-    "ticket_url": "https://www.surreylibraries.ca/events/adapted-stories-adults-and-teens-43",
-    "details_url": "https://www.surreylibraries.ca/events/adapted-stories-adults-and-teens-43",
-    "source_url": "https://www.surreylibraries.ca/events/adapted-stories-adults-and-teens-43",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "10:30 AM",
-        "doors_time": "none_available",
-        "end_time": "11:15 AM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "10:30 AM",
-        "doors_time": "none_available",
-        "end_time": "11:15 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T02:21:01.795Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.surreylibraries.ca/events/adapted-stories-adults-and-teens-43",
-      "tier3_calendar": "https://www.surreylibraries.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.surreylibraries.ca",
-      "best_tier": "tier2",
-      "best_available": "https://www.surreylibraries.ca/events/adapted-stories-adults-and-teens-43"
-    },
-    "step1b_audited_at": "2026-11-10T10:47:12.958Z",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z"
-  },
-  {
-    "id": "surrey-libraries-gui-practice-speaking-english-2026-11-16",
-    "event_id": "surrey-libraries-gui-practice-speaking-english-2026-11-16",
-    "title": "Practice Speaking English",
-    "venue": "Surrey Libraries - Guildford Branch",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 2:00 PM",
-    "time": "2:00 PM",
-    "ticket_url": "https://www.surreylibraries.ca/events/practice-speaking-english-54",
-    "details_url": "https://www.surreylibraries.ca/events/practice-speaking-english-54",
-    "source_url": "https://www.surreylibraries.ca/events/practice-speaking-english-54",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "18+",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": null,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "2:00 PM",
-        "doors_time": "none_available",
-        "end_time": "3:00 PM",
-        "status": "sold_out"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "2:00 PM",
-        "doors_time": "none_available",
-        "end_time": "3:00 PM",
-        "status": "sold_out"
-      }
-    ],
-    "audited_at": "2026-11-10T02:23:53.684Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.surreylibraries.ca/events/practice-speaking-english-54",
-      "tier3_calendar": "https://www.surreylibraries.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.surreylibraries.ca",
-      "best_tier": "tier2",
-      "best_available": "https://www.surreylibraries.ca/events/practice-speaking-english-54"
-    },
-    "step1b_audited_at": "2026-11-10T10:48:50.604Z",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z"
-  },
-  {
-    "id": "surrey-libraries-gui-pyjama-storytime-2026-11-16",
-    "event_id": "surrey-libraries-gui-pyjama-storytime-2026-11-16",
-    "title": "Pyjama Storytime",
-    "venue": "Surrey Libraries - Guildford Branch",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-16",
-    "dateSchedule": "2026-11-16 • 6:00 PM",
-    "time": "6:00 PM",
-    "ticket_url": "https://www.surreylibraries.ca/events/pyjama-storytime-38",
-    "details_url": "https://www.surreylibraries.ca/events/pyjama-storytime-38",
-    "source_url": "https://www.surreylibraries.ca/events/pyjama-storytime-38",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-16",
-        "start_time": "6:00 PM",
-        "doors_time": "none_available",
-        "end_time": "6:30 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "6:00 PM",
-        "doors_time": "none_available",
-        "end_time": "6:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T02:25:27.375Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.surreylibraries.ca/events/pyjama-storytime-38",
-      "tier3_calendar": "https://www.surreylibraries.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.surreylibraries.ca/locations/guildford-library",
-      "best_tier": "tier2",
-      "best_available": "https://www.surreylibraries.ca/events/pyjama-storytime-38"
-    },
-    "step1b_audited_at": "2026-11-10T10:49:40.698Z",
     "step4_grounded_at": "2026-11-19T18:38:41.424Z"
   },
   {
@@ -12875,51 +12508,6 @@
     },
     "step1b_audited_at": "2026-11-20T00:31:36.178Z",
     "step4_grounded_at": "2026-11-20T00:38:06.352Z"
-  },
-  {
-    "id": "edmonds-park-washroo-bike-ride-edmonds-park-amblesi-2026-11-23",
-    "event_id": "edmonds-park-washroo-bike-ride-edmonds-park-amblesi-2026-11-23",
-    "title": "Bike Ride - Edmonds Park / Ambleside Park - 57688649",
-    "venue": "Edmonds Park Washrooms",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 10:00 AM",
-    "time": "10:00 AM",
-    "ticket_url": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317210619/",
-    "details_url": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317210619/",
-    "source_url": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317210619/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "10:00 AM",
-        "doors_time": "none_available",
-        "end_time": "3:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T06:06:22.073Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317210619/",
-      "tier3_calendar": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.burnaby.ca/recreation-and-arts/recreation-facilities/edmonds-community-centre",
-      "best_tier": "tier2",
-      "best_available": "https://www.meetup.com/out-and-about-cycling-in-metro-vancouver/events/317210619/"
-    },
-    "step1b_audited_at": "2026-11-15T18:06:01.972Z",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z"
   },
   {
     "id": "central-park-pitch-p-burnaby-pitch-putt-meet-new-go-2026-11-14",
@@ -15229,65 +14817,6 @@
     "step1b_audited_at": "2026-11-10T14:03:32.264Z"
   },
   {
-    "id": "options-community-se-canadian-job-search-strategies-2026-11-10",
-    "event_id": "options-community-se-canadian-job-search-strategies-2026-11-10",
-    "title": "Canadian Job Search Strategies Workshop (In-person)",
-    "venue": "Options Community Services",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-10",
-    "dateSchedule": "2026-11-10 • 2:00 PM",
-    "time": "2:00 PM",
-    "ticket_url": null,
-    "details_url": null,
-    "source_url": "https://allevents.in/surrey/canadian-job-search-strategies-workshop-in-person/10000560946906297",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-10",
-        "start_time": "2:00 PM",
-        "doors_time": "none_available",
-        "end_time": "6:00 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-16",
-        "start_time": "10:00 AM",
-        "doors_time": "none_available",
-        "end_time": "2:00 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 3,
-        "date": "2026-11-17",
-        "start_time": "2:00 PM",
-        "doors_time": "none_available",
-        "end_time": "6:00 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 4,
-        "date": "2026-11-23",
-        "start_time": "10:00 AM",
-        "doors_time": "none_available",
-        "end_time": "2:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-10T08:52:20.832Z",
-    "step1b_audited_at": "2026-11-10T14:03:45.398Z"
-  },
-  {
     "id": "sfu-surrey-campus-e-the-national-day-of-remembranc-2026-12-04",
     "event_id": "sfu-surrey-campus-e-the-national-day-of-remembranc-2026-12-04",
     "title": "The National Day of Remembrance and Action on Violence Against Women - Surrey Campus Memorial Event",
@@ -16822,58 +16351,6 @@
     },
     "step1b_audited_at": "2026-11-18T03:45:53.724Z",
     "step4_grounded_at": "2026-11-19T18:38:41.424Z"
-  },
-  {
-    "id": "hollywood-theatre-craft-club-cinema-shakespeare-2026-11-23",
-    "event_id": "hollywood-theatre-craft-club-cinema-shakespeare-2026-11-23",
-    "title": "Craft Club Cinema: Shakespeare in Love",
-    "venue": "Hollywood Theatre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 7:30 PM",
-    "time": "7:30 PM",
-    "ticket_url": "https://app.opendate.io/e/craft-club-cinema-shakespeare-in-love-november-23-2026-732907",
-    "details_url": "https://www.hollywoodtheatre.ca/events/craft-club-cinema-shakespeare-in-love",
-    "source_url": "https://www.hollywoodtheatre.ca/events/craft-club-cinema-shakespeare-in-love",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "7:30 PM",
-        "doors_time": "6:00 PM",
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://app.opendate.io/e/craft-club-cinema-shakespeare-in-love-november-23-2026-732907"
-      }
-    ],
-    "audited_at": "2026-11-17T04:08:39.185Z",
-    "candidate_tier1_url": "https://app.opendate.io/e/craft-club-cinema-shakespeare-in-love-november-23-2026-732907",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-11-18T03:45:44.938Z",
-    "links": {
-      "tier1_checkout": "https://app.opendate.io/e/craft-club-cinema-shakespeare-in-love-november-23-2026-732907",
-      "best_available": "https://app.opendate.io/e/craft-club-cinema-shakespeare-in-love-november-23-2026-732907",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://www.hollywoodtheatre.ca/events/craft-club-cinema-shakespeare-in-love"
-    },
-    "step1b_audited_at": "2026-11-18T03:45:44.954Z",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z",
-    "venue_name": "Hollywood Theatre",
-    "start_time": "7:30 PM",
-    "doors_time": "6:00 PM",
-    "end_time": null,
-    "booking_protocol": "online_reservation",
-    "access_model": "ticketed_admission"
   },
   {
     "id": "hollywood-theatre-the-blues-brothers-2026-11-24",
@@ -20105,126 +19582,6 @@
     "venue_name": "VIFF Centre - VIFF Cinema",
     "doors_time": null,
     "end_time": null,
-    "booking_protocol": "online_reservation",
-    "access_model": "ticketed_admission"
-  },
-  {
-    "id": "viff-centre-raise-the-red-lantern-2026-11-20",
-    "event_id": "viff-centre-raise-the-red-lantern-2026-11-20",
-    "title": "Raise the Red Lantern",
-    "venue": "VIFF Centre - VIFF Cinema",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-20",
-    "dateSchedule": "Nov 20, Nov 21, Nov 22 & Nov 23 (5 Showings)",
-    "time": "5:00 PM",
-    "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV",
-    "details_url": "https://viff.org/whats-on/raise-the-red-lantern/",
-    "source_url": "https://viff.org/whats-on/raise-the-red-lantern/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "19+",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-20",
-        "start_time": "5:00 PM",
-        "doors_time": null,
-        "end_time": "7:05 PM",
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-21",
-        "start_time": "1:00 PM",
-        "doors_time": null,
-        "end_time": "3:05 PM",
-        "status": "sold_out",
-        "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-      },
-      {
-        "slot": 3,
-        "date": "2026-11-21",
-        "start_time": "7:45 PM",
-        "doors_time": null,
-        "end_time": "9:50 PM",
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-      },
-      {
-        "slot": 4,
-        "date": "2026-11-22",
-        "start_time": "8:45 PM",
-        "doors_time": null,
-        "end_time": "10:50 PM",
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-      },
-      {
-        "slot": 5,
-        "date": "2026-11-23",
-        "start_time": "2:30 PM",
-        "doors_time": null,
-        "end_time": "4:35 PM",
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-      }
-    ],
-    "audited_at": "2026-11-17T16:18:13.707Z",
-    "candidate_tier1_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV",
-    "candidate_tier1_source": "existing_verified",
-    "candidate_tier1_staged_at": "2026-11-18T04:18:32.341Z",
-    "links": {
-      "tier1_checkout": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV",
-      "tier2_event_page": "https://viff.org/whats-on/raise-the-red-lantern/",
-      "best_available": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV",
-      "best_tier": "tier1"
-    },
-    "step1b_audited_at": "2026-11-18T04:18:32.356Z",
-    "start_time": "5:00 PM",
-    "end_time": "7:05 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-20",
-      "start_time": "5:00 PM",
-      "doors_time": null,
-      "end_time": "7:05 PM",
-      "status": "upcoming",
-      "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-11-21",
-      "start_time": "1:00 PM",
-      "doors_time": null,
-      "end_time": "3:05 PM",
-      "status": "sold_out",
-      "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-    },
-    "show_3": {
-      "slot": 3,
-      "date": "2026-11-21",
-      "start_time": "7:45 PM",
-      "doors_time": null,
-      "end_time": "9:50 PM",
-      "status": "upcoming",
-      "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/dlCDX9H9rV"
-    },
-    "frequencyLabel": "Multi-Date Run (5 Showings)",
-    "merged_from_ids": [
-      "viff-centre-viff-cin-raise-the-red-lantern-2026-11-20",
-      "viff-centre-viff-cin-raise-the-red-lantern-2026-11-21"
-    ],
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z",
-    "venue_name": "VIFF Centre - VIFF Cinema",
-    "doors_time": null,
     "booking_protocol": "online_reservation",
     "access_model": "ticketed_admission"
   },
@@ -25320,95 +24677,6 @@
     "access_model": "ticketed_admission"
   },
   {
-    "id": "anvil-centre-atrium-downtown-s-living-room-2026-11-23",
-    "event_id": "anvil-centre-atrium-downtown-s-living-room-2026-11-23",
-    "title": "Downtown's Living Room",
-    "venue": "Anvil Centre - Atrium (first floor lobby)",
-    "city": "New West",
-    "region": "New West",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 5:30 PM",
-    "time": "5:30 PM",
-    "ticket_url": "https://anvilcentre.com/our-events/downtowns-living-room-nov-23/",
-    "details_url": "https://anvilcentre.com/our-events/downtowns-living-room-nov-23/",
-    "source_url": "https://anvilcentre.com/our-events/downtowns-living-room-nov-23/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "5:30 PM",
-        "doors_time": "none_available",
-        "end_time": "8:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-19T18:33:01.465Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://anvilcentre.com/our-events/downtowns-living-room-nov-23/",
-      "tier3_calendar": "https://anvilcentre.com/our-events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://anvilcentre.com/",
-      "best_tier": "tier2",
-      "best_available": "https://anvilcentre.com/our-events/downtowns-living-room-nov-23/"
-    },
-    "step1b_audited_at": "2026-11-20T00:32:33.378Z",
-    "step4_grounded_at": "2026-11-20T00:38:06.352Z"
-  },
-  {
-    "id": "anvil-centre-sarkissian-yoon-and-pfau-whisp-2026-11-23",
-    "event_id": "anvil-centre-sarkissian-yoon-and-pfau-whisp-2026-11-23",
-    "title": "Sarkissian, Yoon and Pfau: Whispers and Sparks",
-    "venue": "Anvil Centre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 1:00 PM",
-    "time": "1:00 PM",
-    "ticket_url": "https://anviltheatre.ca/event/sarkissian-yoon-and-pfau-whispers-and-sparks/",
-    "details_url": "https://www.straight.com/listings/events/1467068",
-    "source_url": "https://www.straight.com/listings/events/1467068",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 35.55,
-    "price_base": 35.55,
-    "price_fee": 0,
-    "price_all_in": 35.55,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "1:00 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T10:54:36.803Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://anviltheatre.ca/event/sarkissian-yoon-and-pfau-whispers-and-sparks/",
-      "tier3_calendar": "https://anviltheatre.ca/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://anvilcentre.com/",
-      "best_tier": "tier2",
-      "best_available": "https://anviltheatre.ca/event/sarkissian-yoon-and-pfau-whispers-and-sparks/"
-    },
-    "step1b_audited_at": "2026-11-23T11:46:19.377Z"
-  },
-  {
     "id": "studio-b-at-gateway-silk-road-music-lunar-new-year-2027-02-06",
     "event_id": "studio-b-at-gateway-silk-road-music-lunar-new-year-2027-02-06",
     "title": "Silk Road Music: Lunar New Year Celebration",
@@ -25502,9 +24770,9 @@
     "venue": "Anvil Centre",
     "city": "New West",
     "region": "New West",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 5:30 PM",
-    "time": "5:30 PM",
+    "date": "2026-11-02",
+    "dateSchedule": "Nov 2 – Dec 14 (7 Showings)",
+    "time": "6:30 PM",
     "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room",
     "details_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room",
     "source_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room",
@@ -25522,41 +24790,64 @@
         "slot": 1,
         "date": "2026-11-02",
         "start_time": "6:30 PM",
-        "doors_time": "none_available",
+        "doors_time": null,
         "end_time": "9:00 PM",
-        "status": "concluded"
+        "status": "concluded",
+        "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
       },
       {
         "slot": 2,
         "date": "2026-11-09",
         "start_time": "6:30 PM",
-        "doors_time": "none_available",
+        "doors_time": null,
         "end_time": "9:00 PM",
-        "status": "concluded"
+        "status": "concluded",
+        "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
       },
       {
         "slot": 3,
         "date": "2026-11-16",
         "start_time": "5:30 PM",
-        "doors_time": "none_available",
+        "doors_time": null,
         "end_time": "8:00 PM",
-        "status": "concluded"
+        "status": "concluded",
+        "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
       },
       {
         "slot": 4,
         "date": "2026-11-23",
         "start_time": "5:30 PM",
-        "doors_time": "none_available",
+        "doors_time": null,
         "end_time": "8:00 PM",
-        "status": "upcoming"
+        "status": "upcoming",
+        "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
       },
       {
         "slot": 5,
         "date": "2026-11-30",
         "start_time": "5:30 PM",
-        "doors_time": "none_available",
+        "doors_time": null,
         "end_time": "8:00 PM",
-        "status": "upcoming"
+        "status": "upcoming",
+        "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
+      },
+      {
+        "slot": 6,
+        "date": "2026-12-07",
+        "start_time": "5:30 PM",
+        "doors_time": null,
+        "end_time": "8:00 PM",
+        "status": "upcoming",
+        "ticket_url": "https://anvilcentre.com/our-events/downtowns-living-room-dec-7"
+      },
+      {
+        "slot": 7,
+        "date": "2026-12-14",
+        "start_time": "5:30 PM",
+        "doors_time": null,
+        "end_time": "8:00 PM",
+        "status": "upcoming",
+        "ticket_url": "https://anvilcentre.com/our-events/downtowns-living-room-dec-14/"
       }
     ],
     "audited_at": "2026-11-20T02:45:05.225Z",
@@ -25569,7 +24860,42 @@
       "best_tier": "tier2",
       "best_available": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
     },
-    "step1b_audited_at": "2026-11-23T11:47:23.997Z"
+    "step1b_audited_at": "2026-11-23T11:47:23.997Z",
+    "start_time": "6:30 PM",
+    "end_time": "9:00 PM",
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-02",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "end_time": "9:00 PM",
+      "status": "concluded",
+      "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
+    },
+    "show_2": {
+      "slot": 2,
+      "date": "2026-11-09",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "end_time": "9:00 PM",
+      "status": "concluded",
+      "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
+    },
+    "show_3": {
+      "slot": 3,
+      "date": "2026-11-16",
+      "start_time": "5:30 PM",
+      "doors_time": null,
+      "end_time": "8:00 PM",
+      "status": "concluded",
+      "ticket_url": "https://www.newwestcity.ca/community-culture/event-calendar/downtowns-living-room"
+    },
+    "frequencyLabel": "Multi-Date Run (7 Showings)",
+    "merged_from_ids": [
+      "anvil-centre-downtown-s-living-room-2026-11-30",
+      "anvil-centre-downtown-s-living-room-2026-12-07",
+      "anvil-centre-downtown-s-living-room-2026-12-14"
+    ]
   },
   {
     "id": "anvil-theatre-2026-christmas-ballet-gala-2026-12-06",
@@ -26050,51 +25376,6 @@
     "step4_grounded_at": "2026-11-19T23:57:47.863Z"
   },
   {
-    "id": "champlain-heights-co-intergenerational-tea-sweets-2026-11-23",
-    "event_id": "champlain-heights-co-intergenerational-tea-sweets-2026-11-23",
-    "title": "Intergenerational Tea & Sweets",
-    "venue": "Champlain Heights Community Centre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 1:45 PM",
-    "time": "1:45 PM",
-    "ticket_url": "https://champlainheightscc.ca/event/intergenerational-tea-sweets/",
-    "details_url": "https://champlainheightscc.ca/event/intergenerational-tea-sweets/",
-    "source_url": "https://champlainheightscc.ca/event/intergenerational-tea-sweets/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "Senior",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "1:45 PM",
-        "doors_time": "none_available",
-        "end_time": "2:45 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-19T19:14:20.352Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://champlainheightscc.ca/event/intergenerational-tea-sweets/",
-      "tier3_calendar": "https://champlainheightscc.ca/calendar/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://champlainheightscc.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://champlainheightscc.ca/event/intergenerational-tea-sweets/"
-    },
-    "step1b_audited_at": "2026-11-19T23:39:06.203Z",
-    "step4_grounded_at": "2026-11-19T23:57:47.863Z"
-  },
-  {
     "id": "champlain-heights-co-baby-me-pilates-2026-11-26",
     "event_id": "champlain-heights-co-baby-me-pilates-2026-11-26",
     "title": "Baby & Me Pilates",
@@ -26398,96 +25679,6 @@
     "step4_grounded_at": "2026-11-19T23:57:47.863Z"
   },
   {
-    "id": "room-2205-sfu-school-in-praise-of-the-dark-closets-2026-11-23",
-    "event_id": "room-2205-sfu-school-in-praise-of-the-dark-closets-2026-11-23",
-    "title": "In Praise of the \"Dark Closets\": Towards an Aesthetics of Suspended Utility",
-    "venue": "SFU School for the Contemporary Arts - Room 4955 (Goldcorp Centre for the Arts)",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 3:00 PM",
-    "time": "3:00 PM",
-    "ticket_url": "https://www.sfu.ca/sca/events---news/events/in-praise-of-the--dark-closets---towards-an-aesthetics-of-suspen.html",
-    "details_url": "https://www.sfu.ca/sca/events---news/events/in-praise-of-the--dark-closets---towards-an-aesthetics-of-suspen.html",
-    "source_url": "https://www.sfu.ca/sca/events---news/events/in-praise-of-the--dark-closets---towards-an-aesthetics-of-suspen.html",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "3:00 PM",
-        "doors_time": "none_available",
-        "end_time": "5:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T01:15:45.570Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.sfu.ca/sca/events---news/events/in-praise-of-the--dark-closets---towards-an-aesthetics-of-suspen.html",
-      "tier3_calendar": "https://www.sfu.ca/sca/events---news/events.html",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.sfu.ca/sca.html",
-      "best_tier": "tier2",
-      "best_available": "https://www.sfu.ca/sca/events---news/events/in-praise-of-the--dark-closets---towards-an-aesthetics-of-suspen.html"
-    },
-    "step1b_audited_at": "2026-11-20T09:22:18.142Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "sfu-school-for-the-c-the-sun-melts-turns-of-phrases-2026-11-23",
-    "event_id": "sfu-school-for-the-c-the-sun-melts-turns-of-phrases-2026-11-23",
-    "title": "The sun melts turns of phrases",
-    "venue": "SFU School for the Contemporary Arts - Room 4955 (Goldcorp Centre for the Arts)",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 10:30 AM",
-    "time": "10:30 AM",
-    "ticket_url": "https://www.sfu.ca/sca/events---news/events/the-sun-melts-turns-of-phrases.html",
-    "details_url": "https://www.sfu.ca/sca/events---news/events/the-sun-melts-turns-of-phrases.html",
-    "source_url": "https://www.sfu.ca/sca/events---news/events/the-sun-melts-turns-of-phrases.html",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "10:30 AM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T01:15:47.456Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.sfu.ca/sca/events---news/events/the-sun-melts-turns-of-phrases.html",
-      "tier3_calendar": "https://www.sfu.ca/sca/events---news/events.html",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.sfu.ca/sca.html",
-      "best_tier": "tier2",
-      "best_available": "https://www.sfu.ca/sca/events---news/events/the-sun-melts-turns-of-phrases.html"
-    },
-    "step1b_audited_at": "2026-11-20T09:22:24.656Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
     "id": "simon-fraser-univers-phd-information-session-2026-11-27",
     "event_id": "simon-fraser-univers-phd-information-session-2026-11-27",
     "title": "PhD Information Session",
@@ -26608,52 +25799,6 @@
     },
     "step1b_audited_at": "2026-11-20T09:23:38.087Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "gateway-theatre-the-flame-storytelling-showcas-2027-04-11",
-    "event_id": "gateway-theatre-the-flame-storytelling-showcas-2027-04-11",
-    "title": "The Flame: Storytelling Showcase",
-    "venue": "Gateway Theatre",
-    "city": "Richmond",
-    "region": "Richmond",
-    "date": "2027-04-11",
-    "dateSchedule": "2027-04-11 • none_available",
-    "time": "none_available",
-    "ticket_url": "https://www.gatewaytheatre.com/events/the-flame/",
-    "details_url": "https://www.gatewaytheatre.com/events/the-flame/",
-    "source_url": "https://www.gatewaytheatre.com/events/page/3/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-04-11",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T01:45:35.458Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.gatewaytheatre.com/events/the-flame/",
-      "tier3_calendar": "https://www.gatewaytheatre.com/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.gatewaytheatre.com/",
-      "best_available": "https://www.gatewaytheatre.com/events/page/3/",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.035Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "best_tier": "tier2"
   },
   {
     "id": "massey-theatre-merry-bright-songs-and-stories-2026-12-06",
@@ -27288,7 +26433,7 @@
       "best_available": "https://www.langleycity.ca/community-culture/events/film-festival",
       "best_tier": "tier2"
     },
-    "step1b_audited_at": "2026-11-23T00:23:14.035Z",
+    "step1b_audited_at": "2026-11-23T23:38:17.886Z",
     "step4_grounded_at": "2026-11-23T01:05:54.594Z",
     "best_tier": "tier2"
   },
@@ -28213,51 +27358,6 @@
       "alex-house-knitting-circle-alex-house-2026-12-07",
       "alex-house-knitting-circle-alex-house-2026-12-14"
     ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "alex-house-crescent-coffee-culture-creativity-work-2026-11-23",
-    "event_id": "alex-house-crescent-coffee-culture-creativity-work-2026-11-23",
-    "title": "Coffee, Culture & Creativity Workshop",
-    "venue": "Alex House Crescent Beach",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 9:30 AM",
-    "time": "9:30 AM",
-    "ticket_url": "https://www.alexhouse.net/events-calendar/yghflfljcwejp4n-lzbjn-b93ey-jzywa-zp6m6-bydlr-9a8gb-6mj7j-z7wre-7556k-lpcwc-b3fwj-a88c5-7mzpf-46mg9",
-    "details_url": "https://www.alexhouse.net/events-calendar/yghflfljcwejp4n-lzbjn-b93ey-jzywa-zp6m6-bydlr-9a8gb-6mj7j-z7wre-7556k-lpcwc-b3fwj-a88c5-7mzpf-46mg9",
-    "source_url": "https://www.alexhouse.net/events-calendar/yghflfljcwejp4n-lzbjn-b93ey-jzywa-zp6m6-bydlr-9a8gb-6mj7j-z7wre-7556k-lpcwc-b3fwj-a88c5-7mzpf-46mg9",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "11:00 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T02:22:34.573Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.alexhouse.net/events-calendar/yghflfljcwejp4n-lzbjn-b93ey-jzywa-zp6m6-bydlr-9a8gb-6mj7j-z7wre-7556k-lpcwc-b3fwj-a88c5-7mzpf-46mg9",
-      "tier3_calendar": "https://www.alexhouse.net/events-calendar",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.alexhouse.net/",
-      "best_tier": "tier2",
-      "best_available": "https://www.alexhouse.net/events-calendar/yghflfljcwejp4n-lzbjn-b93ey-jzywa-zp6m6-bydlr-9a8gb-6mj7j-z7wre-7556k-lpcwc-b3fwj-a88c5-7mzpf-46mg9"
-    },
-    "step1b_audited_at": "2026-11-20T09:33:24.415Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
@@ -29317,89 +28417,6 @@
     },
     "step1b_audited_at": "2026-11-20T09:42:25.799Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "river-rock-casino-re-ele-yan-moment-2026-world-tour-2026-11-23",
-    "event_id": "river-rock-casino-re-ele-yan-moment-2026-world-tour-2026-11-23",
-    "title": "Ele Yan – MOMENT 2026 World Tour",
-    "venue": "River Rock Casino",
-    "city": "Richmond",
-    "region": "Richmond",
-    "date": "2026-11-23",
-    "dateSchedule": "Nov 23 & Nov 24 (2 Showings)",
-    "time": "none_available",
-    "ticket_url": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-23-2026/event/1100652EE2CCF6D7",
-    "details_url": "https://richmondartscoalition.com/event/ele-yan-moment-2026-world-tour/",
-    "source_url": "https://richmondartscoalition.com/event/ele-yan-moment-2026-world-tour/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-23-2026/event/1100652EE2CCF6D7"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-24",
-        "start_time": "8:00 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-24-2026/event/1100653DC66BBBC8"
-      }
-    ],
-    "audited_at": "2026-11-20T04:35:49.625Z",
-    "candidate_tier1_url": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-23-2026/event/1100652EE2CCF6D7",
-    "candidate_tier1_source": "existing_verified",
-    "candidate_tier1_staged_at": "2026-11-20T09:44:05.692Z",
-    "links": {
-      "tier1_checkout": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-23-2026/event/1100652EE2CCF6D7",
-      "tier2_event_page": "https://richmondartscoalition.com/event/ele-yan-moment-2026-world-tour/",
-      "tier3_calendar": "https://riverrock.com/entertainment/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://riverrock.com/",
-      "best_available": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-23-2026/event/1100652EE2CCF6D7",
-      "best_tier": "tier1"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.035Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "best_tier": "tier1",
-    "start_time": "none_available",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-23",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-23-2026/event/1100652EE2CCF6D7"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-11-24",
-      "start_time": "8:00 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.ticketmaster.ca/ele-yan-moment-2026-world-tour-richmond-british-columbia-11-24-2026/event/1100653DC66BBBC8"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "river-rock-casino-re-ele-yan-moment-2026-world-tour-2026-11-24"
-    ]
   },
   {
     "id": "richmond-cultural-ce-tagor-zero-waste-with-sandra-s-2026-11-24",
@@ -31069,51 +30086,6 @@
       "best_available": "https://www.nvrc.ca/notices-events-blog/events-calendar"
     },
     "step1b_audited_at": "2026-11-20T10:01:55.951Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "gordon-smith-gallery-exhibition-tour-at-the-gordon-2026-11-23",
-    "event_id": "gordon-smith-gallery-exhibition-tour-at-the-gordon-2026-11-23",
-    "title": "Exhibition Tour at the Gordon Smith Gallery",
-    "venue": "Gordon Smith Gallery of Canadian Art",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 3:30 PM",
-    "time": "3:30 PM",
-    "ticket_url": "https://www.nvrc.ca/notices-events-blog/events-calendar/exhibition-tour-gordon-smith-gallery",
-    "details_url": "https://www.nvrc.ca/notices-events-blog/events-calendar/exhibition-tour-gordon-smith-gallery",
-    "source_url": "https://www.nvrc.ca/notices-events-blog/events-calendar/exhibition-tour-gordon-smith-gallery",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "3:30 PM",
-        "doors_time": "none_available",
-        "end_time": "4:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T06:00:21.626Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.nvrc.ca/notices-events-blog/events-calendar/exhibition-tour-gordon-smith-gallery",
-      "tier3_calendar": "https://www.nvrc.ca/notices-events-blog/events-calendar",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.smithfoundation.co/",
-      "best_tier": "tier2",
-      "best_available": "https://www.nvrc.ca/notices-events-blog/events-calendar/exhibition-tour-gordon-smith-gallery"
-    },
-    "step1b_audited_at": "2026-11-20T10:05:39.253Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
@@ -32874,51 +31846,6 @@
     "step1b_audited_at": "2026-11-23T00:23:14.034Z",
     "step4_grounded_at": "2026-11-23T01:05:54.594Z",
     "best_tier": "tier1"
-  },
-  {
-    "id": "pacific-spirit-unite-purdys-christmas-chocolate-fun-2026-11-23",
-    "event_id": "pacific-spirit-unite-purdys-christmas-chocolate-fun-2026-11-23",
-    "title": "Purdys Christmas Chocolate Fundraiser",
-    "venue": "Pacific Spirit United Church",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 3:00 PM",
-    "time": "3:00 PM",
-    "ticket_url": "https://www.pacificspirituc.com/event-details-registration/purdys-christmas-chocolate-fundraiser",
-    "details_url": "https://www.pacificspirituc.com/event-details-registration/purdys-christmas-chocolate-fundraiser",
-    "source_url": "https://www.pacificspirituc.com/event-details-registration/purdys-christmas-chocolate-fundraiser",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "3:00 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T06:41:14.128Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.pacificspirituc.com/event-details-registration/purdys-christmas-chocolate-fundraiser",
-      "tier3_calendar": "https://www.pacificspirituc.com/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.pacificspirituc.com/",
-      "best_tier": "tier2",
-      "best_available": "https://www.pacificspirituc.com/event-details-registration/purdys-christmas-chocolate-fundraiser"
-    },
-    "step1b_audited_at": "2026-11-20T10:18:19.029Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
     "id": "pacific-spirit-unite-women-s-advent-service-2026-th-2026-11-30",
@@ -35288,87 +34215,6 @@
     "venue_name": "Burnaby Public Library - McGill"
   },
   {
-    "id": "burnaby-public-libra-english-reading-circle-2026-11-21",
-    "event_id": "burnaby-public-libra-english-reading-circle-2026-11-21",
-    "title": "English Reading Circle",
-    "venue": "Burnaby Public Library - McGill",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-11-21",
-    "dateSchedule": "Nov 21 & Dec 19 (2 Showings)",
-    "time": "10:30 AM",
-    "ticket_url": "https://bpl.bc.ca/events/english-reading-circle-november-21",
-    "details_url": "https://bpl.bc.ca/events/english-reading-circle-november-21",
-    "source_url": "https://bpl.bc.ca/events/english-reading-circle-november-21",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": null,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-21",
-        "start_time": "10:30 AM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://bpl.bc.ca/events/english-reading-circle-november-21"
-      },
-      {
-        "slot": 2,
-        "date": "2026-12-19",
-        "start_time": "10:30 AM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://bpl.bc.ca/events/english-reading-circle-december-19"
-      }
-    ],
-    "audited_at": "2026-11-20T07:46:07.731Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://bpl.bc.ca/events/english-reading-circle-november-21",
-      "tier3_calendar": "https://www.vpl.ca/branches/central/level-9/roofgarden",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vpl.ca/central",
-      "best_available": "https://bpl.bc.ca/events/english-reading-circle-november-21",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.034Z",
-    "start_time": "10:30 AM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-21",
-      "start_time": "10:30 AM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://bpl.bc.ca/events/english-reading-circle-november-21"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-12-19",
-      "start_time": "10:30 AM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://bpl.bc.ca/events/english-reading-circle-december-19"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "burnaby-public-libra-english-reading-circle-2026-12-19"
-    ],
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "venue_name": "Burnaby Public Library - McGill",
-    "best_tier": "tier2"
-  },
-  {
     "id": "burnaby-public-libra-senior-safety-2026-11-24",
     "event_id": "burnaby-public-libra-senior-safety-2026-11-24",
     "title": "Senior Safety",
@@ -35895,53 +34741,6 @@
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
-    "id": "burnaby-public-libra-smartphone-tips-and-tricks-2026-11-26",
-    "event_id": "burnaby-public-libra-smartphone-tips-and-tricks-2026-11-26",
-    "title": "Smartphone Tips and Tricks",
-    "venue": "Burnaby Public Library - McGill",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-11-26",
-    "dateSchedule": "Thursday, November 26 • 11:00 AM",
-    "time": "11:00 AM",
-    "ticket_url": "https://bpl.bc.ca/events/smartphone-tips-and-tricks-november-26",
-    "details_url": "https://bpl.bc.ca/events/smartphone-tips-and-tricks-november-26",
-    "source_url": "https://bpl.bc.ca/events/smartphone-tips-and-tricks-november-26",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "Thursday, November 26",
-        "start_time": "11:00 AM",
-        "doors_time": "none_available",
-        "end_time": "12:30 PM",
-        "status": "sold_out"
-      }
-    ],
-    "audited_at": "2026-11-20T07:50:34.345Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://bpl.bc.ca/events/smartphone-tips-and-tricks-november-26",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://bpl.bc.ca/",
-      "best_available": "https://bpl.bc.ca/events/smartphone-tips-and-tricks-november-26",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.034Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "venue_name": "Burnaby Public Library - McGill",
-    "best_tier": "tier2"
-  },
-  {
     "id": "burnaby-public-libra-hora-do-conto-portuguese-story-2026-11-28",
     "event_id": "burnaby-public-libra-hora-do-conto-portuguese-story-2026-11-28",
     "title": "Hora do conto | Portuguese Storytime",
@@ -36179,99 +34978,6 @@
       "burnaby-public-libra-baby-social-2026-12-15"
     ],
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "burnaby-public-libra-advance-planning-wills-powers-2026-12-01",
-    "event_id": "burnaby-public-libra-advance-planning-wills-powers-2026-12-01",
-    "title": "Advance Planning: Wills, Powers of Attorney and More",
-    "venue": "Burnaby Public Library - McGill",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-12-01",
-    "dateSchedule": "Tuesday, December 1 • 1:00 PM",
-    "time": "1:00 PM",
-    "ticket_url": "https://bpl.bc.ca/events/advance-planning-december-1",
-    "details_url": "https://bpl.bc.ca/events/advance-planning-december-1",
-    "source_url": "https://bpl.bc.ca/events/advance-planning-december-1",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": null,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "Tuesday, December 1",
-        "start_time": "1:00 PM",
-        "doors_time": "none_available",
-        "end_time": "2:30 PM",
-        "status": "sold_out"
-      }
-    ],
-    "audited_at": "2026-11-20T07:52:01.272Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://bpl.bc.ca/events/advance-planning-december-1",
-      "tier3_calendar": "https://bpl.bc.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://bpl.bc.ca/",
-      "best_available": "https://bpl.bc.ca/events/advance-planning-december-1",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.034Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "venue_name": "Burnaby Public Library - McGill",
-    "best_tier": "tier2"
-  },
-  {
-    "id": "burnaby-public-libra-what-is-cloud-storage-2026-12-01",
-    "event_id": "burnaby-public-libra-what-is-cloud-storage-2026-12-01",
-    "title": "What is Cloud Storage?",
-    "venue": "Burnaby Public Library - Temporary Cameron",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-12-01",
-    "dateSchedule": "Tuesday, December 1 • 1:00 PM",
-    "time": "1:00 PM",
-    "ticket_url": "https://bpl.bc.ca/events/what-is-cloud-storage-december-1",
-    "details_url": "https://bpl.bc.ca/events/what-is-cloud-storage-december-1",
-    "source_url": "https://bpl.bc.ca/events/what-is-cloud-storage-december-1",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "Tuesday, December 1",
-        "start_time": "1:00 PM",
-        "doors_time": "none_available",
-        "end_time": "2:30 PM",
-        "status": "sold_out"
-      }
-    ],
-    "audited_at": "2026-11-20T07:52:38.851Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://bpl.bc.ca/events/what-is-cloud-storage-december-1",
-      "tier3_calendar": "https://bpl.bc.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://bpl.bc.ca/",
-      "best_available": "https://bpl.bc.ca/events/what-is-cloud-storage-december-1",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.033Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "best_tier": "tier2"
   },
   {
     "id": "burnaby-public-libra-digital-studio-tech-help-drop-2026-12-02",
@@ -36580,52 +35286,6 @@
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
-    "id": "burnaby-public-libra-author-talk-stories-of-food-cu-2026-12-10",
-    "event_id": "burnaby-public-libra-author-talk-stories-of-food-cu-2026-12-10",
-    "title": "Author Talk: Stories of Food, Culture and Migration",
-    "venue": "Burnaby Public Library - Bob Prittie Metrotown",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-12-10",
-    "dateSchedule": "Thursday, December 10 • 6:00 PM",
-    "time": "6:00 PM",
-    "ticket_url": "https://bpl.bc.ca/events/author-talk-stories-of-food-culture-and-migration",
-    "details_url": "https://bpl.bc.ca/events/author-talk-stories-of-food-culture-and-migration",
-    "source_url": "https://bpl.bc.ca/events/author-talk-stories-of-food-culture-and-migration",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": null,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "Thursday, December 10",
-        "start_time": "6:00 PM",
-        "doors_time": "none_available",
-        "end_time": "7:30 PM",
-        "status": "sold_out"
-      }
-    ],
-    "audited_at": "2026-11-20T07:59:32.235Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://bpl.bc.ca/events/author-talk-stories-of-food-culture-and-migration",
-      "tier3_calendar": "https://bpl.bc.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://bpl.bc.ca/",
-      "best_available": "https://bpl.bc.ca/events/author-talk-stories-of-food-culture-and-migration",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.033Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "best_tier": "tier2"
-  },
-  {
     "id": "burnaby-public-libra-2slgbtq-afternoon-social-2026-12-11",
     "event_id": "burnaby-public-libra-2slgbtq-afternoon-social-2026-12-11",
     "title": "2SLGBTQ+ Afternoon Social",
@@ -36669,52 +35329,6 @@
     },
     "step1b_audited_at": "2026-11-20T10:40:30.657Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "burnaby-public-libra-english-conversation-circle-2026-12-12",
-    "event_id": "burnaby-public-libra-english-conversation-circle-2026-12-12",
-    "title": "English Conversation Circle",
-    "venue": "Burnaby Public Library - Tommy Douglas Branch",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-12-12",
-    "dateSchedule": "Saturday, December 12 • 2:00 PM",
-    "time": "2:00 PM",
-    "ticket_url": "https://bpl.bc.ca/events/english-conversation-circle-december-12",
-    "details_url": "https://bpl.bc.ca/events/english-conversation-circle-december-12",
-    "source_url": "https://bpl.bc.ca/events/english-conversation-circle-december-12",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "18+",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "Saturday, December 12",
-        "start_time": "2:00 PM",
-        "doors_time": "none_available",
-        "end_time": "3:00 PM",
-        "status": "sold_out"
-      }
-    ],
-    "audited_at": "2026-11-20T08:00:22.033Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://bpl.bc.ca/events/english-conversation-circle-december-12",
-      "tier3_calendar": "https://bpl.bc.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://bpl.bc.ca/visit/locations-and-hours/tommy-douglas",
-      "best_available": "https://bpl.bc.ca/events/english-conversation-circle-december-12",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.033Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "best_tier": "tier2"
   },
   {
     "id": "burnaby-public-libra-smartphone-tips-and-tricks-2026-12-15",
@@ -37297,51 +35911,6 @@
       "best_available": "https://www.nwpl.ca/events/french-reading-buddies-6-9-years-10/"
     },
     "step1b_audited_at": "2026-11-20T10:46:09.009Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "new-westminster-publ-spanish-storytime-and-playtime-2026-11-23",
-    "event_id": "new-westminster-publ-spanish-storytime-and-playtime-2026-11-23",
-    "title": "Spanish Storytime and Playtime (All ages)",
-    "venue": "New Westminster Public Library",
-    "city": "New West",
-    "region": "New West",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 4:00 PM",
-    "time": "4:00 PM",
-    "ticket_url": "https://www.nwpl.ca/events/spanish-storytime-and-playtime-all-ages/",
-    "details_url": "https://www.nwpl.ca/events/spanish-storytime-and-playtime-all-ages/",
-    "source_url": "https://www.nwpl.ca/events/spanish-storytime-and-playtime-all-ages/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "4:00 PM",
-        "doors_time": "none_available",
-        "end_time": "5:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T08:09:58.931Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.nwpl.ca/events/spanish-storytime-and-playtime-all-ages/",
-      "tier3_calendar": "https://www.nwpl.ca/events-calendar",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.nwpl.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.nwpl.ca/events/spanish-storytime-and-playtime-all-ages/"
-    },
-    "step1b_audited_at": "2026-11-20T10:47:01.350Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
@@ -39032,52 +37601,6 @@
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
-    "id": "north-vancouver-city-high-tea-and-tales-from-youth-2026-11-23",
-    "event_id": "north-vancouver-city-high-tea-and-tales-from-youth-2026-11-23",
-    "title": "High tea and tales: From youth to wisdom",
-    "venue": "North Vancouver City Library",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 4:00 PM",
-    "time": "4:00 PM",
-    "ticket_url": "https://www.nvcl.ca/events/high-tea-and-tales-youth-wisdom-0",
-    "details_url": "https://www.nvcl.ca/events/high-tea-and-tales-youth-wisdom-0",
-    "source_url": "https://www.nvcl.ca/events/high-tea-and-tales-youth-wisdom-0",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "4:00 PM",
-        "doors_time": "none_available",
-        "end_time": "5:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T08:34:59.493Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.nvcl.ca/events/high-tea-and-tales-youth-wisdom-0",
-      "tier3_calendar": "https://www.nvcl.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.nvcl.ca/",
-      "best_available": "https://www.nvcl.ca/events/high-tea-and-tales-youth-wisdom-0",
-      "best_tier": "tier2"
-    },
-    "step1b_audited_at": "2026-11-23T00:23:14.033Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "best_tier": "tier2"
-  },
-  {
     "id": "north-vancouver-city-teen-open-space-2026-11-20",
     "event_id": "north-vancouver-city-teen-open-space-2026-11-20",
     "title": "Teen open space",
@@ -39283,60 +37806,6 @@
     },
     "step1b_audited_at": "2026-11-20T10:58:32.914Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "fraser-valley-region-dinosaur-diorama-contest-2026-11-20",
-    "event_id": "fraser-valley-region-dinosaur-diorama-contest-2026-11-20",
-    "title": "Dinosaur Diorama Contest",
-    "venue": "Ladner Pioneer Library",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-20",
-    "dateSchedule": "2026-11-20 • 09:00 AM",
-    "time": "09:00 AM",
-    "ticket_url": "https://www.fvrl.bc.ca/events/25424",
-    "details_url": "https://www.fvrl.bc.ca/events/25424",
-    "source_url": "https://www.fvrl.bc.ca/events/25424",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-20",
-        "start_time": "09:00 AM",
-        "doors_time": "none_available",
-        "end_time": "05:00 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "09:00 AM",
-        "doors_time": "none_available",
-        "end_time": "05:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T08:40:12.056Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.fvrl.bc.ca/events/25424",
-      "tier3_calendar": "https://www.fvrl.bc.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vpl.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.fvrl.bc.ca/events/25424"
-    },
-    "step1b_audited_at": "2026-11-20T10:58:41.794Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z",
-    "venue_name": "Ladner Pioneer Library"
   },
   {
     "id": "fraser-valley-region-babytime-2026-11-20",
@@ -39784,71 +38253,6 @@
     },
     "best_tier": "tier2",
     "step1b_audited_at": "2026-11-22T01:58:17.325Z"
-  },
-  {
-    "id": "orpheum-live-nation-presents-amanda-ma-2026-11-23",
-    "event_id": "orpheum-live-nation-presents-amanda-ma-2026-11-23",
-    "title": "Live Nation presents Amanda Marshall - The Dirty 30 Tour",
-    "venue": "The Orpheum",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 7:30 PM",
-    "time": "7:30 PM",
-    "ticket_url": "https://www.ticketmaster.ca/amanda-marshall-the-dirty-30-tour-vancouver-british-columbia-11-23-2026/event/110064D39B9E779F",
-    "details_url": "https://vancouvercivictheatres.com/events/amanda-marshall-nov-23-2026/",
-    "source_url": "https://vancouvercivictheatres.com/events/amanda-marshall-nov-23-2026/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "7:30 PM",
-        "doors_time": "6:30 PM",
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.ticketmaster.ca/amanda-marshall-the-dirty-30-tour-vancouver-british-columbia-11-23-2026/event/110064D39B9E779F"
-      }
-    ],
-    "audited_at": "2026-11-22T04:03:30.320Z",
-    "candidate_tier1_url": "https://www.ticketmaster.ca/amanda-marshall-the-dirty-30-tour-vancouver-british-columbia-11-23-2026/event/110064D39B9E779F",
-    "links": {
-      "tier1_checkout": "https://www.ticketmaster.ca/amanda-marshall-the-dirty-30-tour-vancouver-british-columbia-11-23-2026/event/110064D39B9E779F",
-      "tier2_event_page": "https://vancouvercivictheatres.com/events/amanda-marshall-nov-23-2026/",
-      "tier3_calendar": "https://vancouvercivictheatres.com/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://vancouvercivictheatres.com/venues/orpheum/",
-      "best_available": "https://www.ticketmaster.ca/amanda-marshall-the-dirty-30-tour-vancouver-british-columbia-11-23-2026/event/110064D39B9E779F",
-      "best_tier": "tier1"
-    },
-    "best_tier": "tier1",
-    "step1b_audited_at": "2026-11-23T00:23:14.033Z",
-    "step4_grounded_at": "2026-11-23T01:05:54.594Z",
-    "start_time": "7:30 PM",
-    "doors_time": "6:30 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-23",
-      "start_time": "7:30 PM",
-      "doors_time": "6:30 PM",
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.ticketmaster.ca/amanda-marshall-the-dirty-30-tour-vancouver-british-columbia-11-23-2026/event/110064D39B9E779F"
-    },
-    "show_2": null,
-    "show_3": null,
-    "merged_from_ids": [
-      "orpheum-theatre-amanda-marshall-the-dirty-30-t-2026-11-23",
-      "orpheum-theatre-amanda-marshall-and-kellie-lod-2026-11-23"
-    ]
   },
   {
     "id": "queen-elizabeth-thea-the-barber-of-seville-13182021",
@@ -40587,299 +38991,6 @@
     "step1b_audited_at": "2026-11-23T11:50:14.536Z"
   },
   {
-    "id": "viff-centre-viff-cin-framework-strangers-on-a-train-2026-11-23",
-    "event_id": "viff-centre-viff-cin-framework-strangers-on-a-train-2026-11-23",
-    "title": "FRAMEWORK: Strangers on a Train",
-    "venue": "VIFF Centre - VIFF Cinema",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "Nov 23 & Nov 24 (2 Showings)",
-    "time": "11:00 AM",
-    "ticket_url": "https://viff.org/whats-on/strangers-on-a-train/book/0wUriHw5tg",
-    "details_url": "https://viff.org/whats-on/strangers-on-a-train/",
-    "source_url": "https://viff.org/whats-on/strangers-on-a-train",
-    "description": "Sociopath Charles Bruno (Robert Walker) strikes up a conversation with star tennis player Guy Haynes (Farley Granger) and makes him a gentleman's proposition: Bruno will kill Guy's unloved wife, on the understanding that he will return the favour.",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "11:00 AM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/strangers-on-a-train/book/0wUriHw5tg"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-24",
-        "start_time": "6:00 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/strangers-on-a-train/book/CbJ8v2BEx1"
-      }
-    ],
-    "audited_at": "2026-11-23T02:14:17.005Z",
-    "candidate_tier1_url": "https://viff.org/whats-on/strangers-on-a-train/book/0wUriHw5tg",
-    "candidate_tier1_source": "existing_verified",
-    "candidate_tier1_staged_at": "2026-11-23T11:48:43.830Z",
-    "links": {
-      "tier1_checkout": "https://viff.org/whats-on/strangers-on-a-train/book/0wUriHw5tg",
-      "tier2_event_page": "https://viff.org/whats-on/strangers-on-a-train/",
-      "best_available": "https://viff.org/whats-on/strangers-on-a-train/book/0wUriHw5tg",
-      "best_tier": "tier1"
-    },
-    "step1b_audited_at": "2026-11-23T11:48:43.849Z",
-    "start_time": "11:00 AM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-23",
-      "start_time": "11:00 AM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://viff.org/whats-on/strangers-on-a-train/book/0wUriHw5tg"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-11-24",
-      "start_time": "6:00 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://viff.org/whats-on/strangers-on-a-train/book/CbJ8v2BEx1"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "viff-centre-viff-cin-strangers-on-a-train-2026-11-23",
-      "viff-centre-lochmadd-strangers-on-a-train-2026-11-24"
-    ]
-  },
-  {
-    "id": "vancouver-internatio-a-generation-2026-11-23",
-    "event_id": "vancouver-internatio-a-generation-2026-11-23",
-    "title": "A Generation",
-    "venue": "Vancouver International Film Centre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-22",
-    "dateSchedule": "Nov 22 & Nov 23 (2 Showings)",
-    "time": "1:00 PM",
-    "ticket_url": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/",
-    "details_url": "https://www.straight.com/listings/events/1470290",
-    "source_url": "https://www.straight.com/listings/events/1470290",
-    "description": "Wajda's first film is set in Warsaw, 1942 and concerns a young man much like himself, living in squalor and doing his best to disrupt the German Occupation, eventually falling in with a Communist-leaning Resistance cell.",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 15,
-    "price_base": 15,
-    "price_fee": 0,
-    "price_all_in": 15,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-22",
-        "start_time": "1:00 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "concluded",
-        "ticket_url": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "2:00 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/"
-      }
-    ],
-    "audited_at": "2026-11-23T10:55:24.205Z",
-    "candidate_tier1_url": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/",
-    "candidate_tier1_source": "ai_link_auditor",
-    "candidate_tier1_staged_at": "2026-11-23T11:50:36.597Z",
-    "links": {
-      "tier1_checkout": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/",
-      "tier2_event_page": "https://viff.org/whats-on/a-generation/",
-      "tier3_calendar": "https://viff.org/whats-on-calendar/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://viff.org/",
-      "best_tier": "tier1",
-      "best_available": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/"
-    },
-    "step1b_audited_at": "2026-11-23T11:50:36.616Z",
-    "start_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-22",
-      "start_time": "1:00 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "concluded",
-      "ticket_url": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-11-23",
-      "start_time": "2:00 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://viff.org/whats-on/a-generation/book/RgOFBReRQe/"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "viff-centre-viff-cin-andrzej-wajda-100-a-generation-2026-11-23"
-    ]
-  },
-  {
-    "id": "vancouver-internatio-kanal-2026-11-23",
-    "event_id": "vancouver-internatio-kanal-2026-11-23",
-    "title": "Kanal",
-    "venue": "Vancouver International Film Centre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-22",
-    "dateSchedule": "Nov 22 & Nov 23 (2 Showings)",
-    "time": "3:00 PM",
-    "ticket_url": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/",
-    "details_url": "https://www.straight.com/listings/events/1470304",
-    "source_url": "https://www.straight.com/listings/events/1470304",
-    "description": "Warsaw, 1944. Resistance fighters wage a desperate battle against the German occupying forces, finding refuge of sorts in the city’s sewer system. Wajda's second feature shared a Jury Prize at Cannes with Bergman's Seventh Seal.",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 15,
-    "price_base": 15,
-    "price_fee": 0,
-    "price_all_in": 15,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-22",
-        "start_time": "3:00 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "concluded",
-        "ticket_url": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "3:50 PM",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/"
-      }
-    ],
-    "audited_at": "2026-11-23T10:56:30.094Z",
-    "candidate_tier1_url": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/",
-    "candidate_tier1_source": "ai_link_auditor",
-    "candidate_tier1_staged_at": "2026-11-23T11:52:12.576Z",
-    "links": {
-      "tier1_checkout": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/",
-      "tier2_event_page": "https://viff.org/whats-on/kanal/",
-      "tier3_calendar": "https://viff.org/whats-on/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://viff.org/",
-      "best_tier": "tier1",
-      "best_available": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/"
-    },
-    "step1b_audited_at": "2026-11-23T11:52:12.624Z",
-    "start_time": "3:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-22",
-      "start_time": "3:00 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "concluded",
-      "ticket_url": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2026-11-23",
-      "start_time": "3:50 PM",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://viff.org/whats-on/kanal/book/4N2Vuod0kG/"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "viff-centre-viff-cin-andrzej-wajda-100-kanal-2026-11-23"
-    ]
-  },
-  {
-    "id": "vancouver-internatio-orfeo-2026-11-23",
-    "event_id": "vancouver-internatio-orfeo-2026-11-23",
-    "title": "Orfeo",
-    "venue": "Vancouver International Film Centre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 5:30 PM",
-    "time": "5:30 PM",
-    "ticket_url": "https://viff.org/whats-on/orfeo/",
-    "details_url": "https://www.straight.com/listings/events/1470318",
-    "source_url": "https://www.straight.com/listings/events/1470318",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 15,
-    "price_base": 15,
-    "price_fee": 0,
-    "price_all_in": 15,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-22",
-        "start_time": "6:45 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "concluded"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-23",
-        "start_time": "5:30 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T10:56:59.336Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://viff.org/whats-on/orfeo/",
-      "tier3_calendar": "https://viff.org/whats-on/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://viff.org/",
-      "best_tier": "tier2",
-      "best_available": "https://viff.org/whats-on/orfeo/"
-    },
-    "step1b_audited_at": "2026-11-23T11:50:32.363Z"
-  },
-  {
     "id": "viff-centre-viff-cin-yellow-letters-2026-11-23",
     "event_id": "viff-centre-viff-cin-yellow-letters-2026-11-23",
     "title": "Yellow Letters",
@@ -41580,70 +39691,6 @@
       "best_tier": "tier1"
     },
     "step1b_audited_at": "2026-11-23T11:50:53.256Z"
-  },
-  {
-    "id": "vogue-theatre-gwar-with-midnight-mac-sabbath-2026-11-25",
-    "event_id": "vogue-theatre-gwar-with-midnight-mac-sabbath-2026-11-25",
-    "title": "Gwar with Midnight, Mac Sabbath, Atomic Rule",
-    "venue": "Vogue Theatre",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-25",
-    "dateSchedule": "2026-11-25",
-    "time": "none_available",
-    "ticket_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/gwar/gwar/69e65130f037a1ce30713484",
-    "details_url": "https://www.songkick.com/concerts/43163299-gwar-at-vogue-theatre",
-    "source_url": "https://www.songkick.com/concerts/43163299-gwar-at-vogue-theatre",
-    "description": "Artist Presale: April 29 @ 10:00AM PT MRG Presale: April 30 @ 10:00AM PT On Sale : May 1 @ 10:00AM PT The story of&#8239;GWAR&#8239;is carved across the history of this hopeless planet, but&#8239;GWARthemselves&nbsp;are not of this world&hellip;Their story begins far past Uranus, in the deepest reaches of space, where the beings known as&#8239;GWAR&#8239;were warriors in the&nbsp;Scumdogs&nbsp;of ",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-25",
-        "start_time": "none_available",
-        "doors_time": "7:00 PM",
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/gwar/gwar/69e65130f037a1ce30713484"
-      }
-    ],
-    "audited_at": "2026-11-23T10:12:43.400Z",
-    "candidate_tier1_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/gwar/gwar/69e65130f037a1ce30713484",
-    "candidate_tier1_source": "ai_link_auditor",
-    "candidate_tier1_staged_at": "2026-11-23T12:59:51.068Z",
-    "links": {
-      "tier1_checkout": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/gwar/gwar/69e65130f037a1ce30713484",
-      "tier2_event_page": "https://www.songkick.com/concerts/43163299-gwar-at-vogue-theatre",
-      "tier3_calendar": "https://www.voguetheatre.com/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.voguetheatre.com/",
-      "best_tier": "tier1",
-      "best_available": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/gwar/gwar/69e65130f037a1ce30713484"
-    },
-    "step1b_audited_at": "2026-11-23T12:59:51.106Z",
-    "start_time": "none_available",
-    "doors_time": "7:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-25",
-      "start_time": "none_available",
-      "doors_time": "7:00 PM",
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://admitone.com/events/vancouver/pro/concerts/vogue-theatre/gwar/gwar/69e65130f037a1ce30713484"
-    },
-    "show_2": null,
-    "show_3": null,
-    "merged_from_ids": [
-      "vogue-theatre-gwar-2026-11-25"
-    ]
   },
   {
     "id": "biltmore-cabaret-mc-hammersmith-2026-11-25",
@@ -42642,18 +40689,18 @@
     "step1b_audited_at": "2026-11-23T11:56:56.180Z"
   },
   {
-    "id": "hollywood-theatre-uncle-strut-2027-05-01",
-    "event_id": "hollywood-theatre-uncle-strut-2027-05-01",
+    "id": "hollywood-theatre-uncle-strut-2027-04-30",
+    "event_id": "hollywood-theatre-uncle-strut-2027-04-30",
     "title": "Uncle Strut",
     "venue": "Hollywood Theatre",
     "city": "Vancouver",
     "region": "Vancouver",
     "date": "2027-04-30",
-    "dateSchedule": "Apr 30 & May 1 (2 Showings)",
+    "dateSchedule": "2027-04-30 • none_available",
     "time": "none_available",
-    "ticket_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night1",
-    "details_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night1",
-    "source_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night1",
+    "ticket_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night2",
+    "details_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night2",
+    "source_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night2",
     "description": null,
     "artist": null,
     "lineup": [],
@@ -42668,57 +40715,24 @@
         "slot": 1,
         "date": "2027-04-30",
         "start_time": "none_available",
-        "doors_time": "8:00 PM",
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://app.opendate.io/s/uncle-strut-402"
-      },
-      {
-        "slot": 2,
-        "date": "2027-05-01",
-        "start_time": "none_available",
         "doors_time": "7:00 PM",
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night1"
+        "end_time": "none_available",
+        "status": "upcoming"
       }
     ],
-    "audited_at": "2026-11-23T04:21:49.673Z",
+    "audited_at": "2026-11-24T03:22:33.427Z",
     "links": {
       "tier1_checkout": null,
-      "tier2_event_page": "https://www.hollywoodtheatre.ca/events/uncle-strut-night1",
+      "tier2_event_page": "https://www.hollywoodtheatre.ca/events/uncle-strut-night2",
       "tier3_calendar": "https://www.hollywoodtheatre.ca/events",
       "tier4_civic_destination": null,
       "tier5_venue_home": "https://www.hollywoodtheatre.ca/",
       "best_tier": "tier2",
-      "best_available": "https://www.hollywoodtheatre.ca/events/uncle-strut-night1"
+      "best_available": "https://www.hollywoodtheatre.ca/events/uncle-strut-night2"
     },
-    "step1b_audited_at": "2026-11-23T11:57:23.965Z",
-    "start_time": "none_available",
-    "doors_time": "8:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-04-30",
-      "start_time": "none_available",
-      "doors_time": "8:00 PM",
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://app.opendate.io/s/uncle-strut-402"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-05-01",
-      "start_time": "none_available",
-      "doors_time": "7:00 PM",
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.hollywoodtheatre.ca/events/uncle-strut-night1"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "hollywood-theatre-uncle-strut-2027-04-30"
-    ]
+    "best_tier": "tier2",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
   },
   {
     "id": "michael-j-fox-theatr-burnaby-mountain-secondary-sch-2026-12-10",
@@ -42866,7 +40880,8 @@
       "best_tier": "tier2",
       "best_available": "https://www.langleycity.ca/community-culture/events/light-city"
     },
-    "step1b_audited_at": "2026-11-23T11:59:38.479Z"
+    "step1b_audited_at": "2026-11-23T11:59:38.479Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "trinity-western-univ-langley-city-circular-food-eco-2026-11-26",
@@ -43021,50 +41036,6 @@
       "vancouver-art-galler-indigenous-focused-gallery-tou-2026-12-07",
       "vancouver-art-galler-indigenous-focused-gallery-tou-2026-12-14"
     ]
-  },
-  {
-    "id": "vancouver-art-galler-member-after-hours-tour-2026-11-23",
-    "event_id": "vancouver-art-galler-member-after-hours-tour-2026-11-23",
-    "title": "Member After-Hours Tour",
-    "venue": "Vancouver Art Gallery",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 5:00 PM",
-    "time": "5:00 PM",
-    "ticket_url": "https://tickets.vanartgallery.bc.ca/events/018bf0fe-9831-5916-e94b-7a380357147a",
-    "details_url": "https://www.vanartgallery.bc.ca/tours/member-tour-nov-23",
-    "source_url": "https://www.vanartgallery.bc.ca/tours/member-tour-nov-23",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "5:00 PM",
-        "doors_time": "none_available",
-        "end_time": "5:45 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T04:43:25.715Z",
-    "candidate_tier1_url": "https://tickets.vanartgallery.bc.ca/events/018bf0fe-9831-5916-e94b-7a380357147a",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-23T11:59:49.408Z",
-    "links": {
-      "tier1_checkout": "https://tickets.vanartgallery.bc.ca/events/018bf0fe-9831-5916-e94b-7a380357147a",
-      "best_available": "https://tickets.vanartgallery.bc.ca/events/018bf0fe-9831-5916-e94b-7a380357147a",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://www.vanartgallery.bc.ca/exhibitions/"
-    },
-    "step1b_audited_at": "2026-11-23T11:59:49.446Z"
   },
   {
     "id": "vancouver-art-galler-lunchtime-look-with-eva-respin-2026-12-02",
@@ -44454,7 +42425,8 @@
       }
     ],
     "audited_at": "2026-11-23T05:52:57.722Z",
-    "step1b_audited_at": "2026-11-23T12:24:05.516Z"
+    "step1b_audited_at": "2026-11-23T12:24:05.516Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "the-bennett-craft-ki-maiden-vancouver-the-bennett-c-2026-12-04",
@@ -44936,7 +42908,8 @@
     ],
     "audited_at": "2026-11-23T06:19:20.536Z",
     "candidate_tier1_url": null,
-    "step1b_audited_at": "2026-11-23T12:24:21.369Z"
+    "step1b_audited_at": "2026-11-23T12:24:21.369Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "farm-country-brewing-who-should-answer-a-911-mental-2026-12-16",
@@ -45304,39 +43277,6 @@
       "best_tier": "tier1"
     },
     "step1b_audited_at": "2026-11-23T12:25:36.838Z"
-  },
-  {
-    "id": "river-rock-casino-re-ele-yan-8211-moment-2026-world-2026-11-23",
-    "event_id": "river-rock-casino-re-ele-yan-8211-moment-2026-world-2026-11-23",
-    "title": "Ele Yan &#8211; MOMENT 2026 World Tour",
-    "venue": "River Rock Casino Resort",
-    "city": "Richmond",
-    "region": "Richmond",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23",
-    "time": "1:00 AM",
-    "ticket_url": null,
-    "details_url": "https://richmondartscoalition.com/events/2026-11-24/",
-    "source_url": "https://richmondartscoalition.com/events/2026-11-24",
-    "description": "&lt;p&gt;November 23 - November 24 Ele Yan - MOMENT 2026 World Tour River Rock Casino Resort 8811 River Road Ele...&lt;/p&gt;\\n",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "date": "2026-11-23",
-        "time": "1:00 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T07:04:05.838Z",
-    "candidate_tier1_url": null,
-    "step1b_audited_at": "2026-11-23T12:28:12.711Z"
   },
   {
     "id": "richmond-olympic-ova-drive-hoopsoles-fall-showcase-2026-11-28",
@@ -46142,95 +44082,8 @@
       "best_tier": "tier2",
       "best_available": "https://www.twu.ca/news-events/events/opening-reception-between-tool-material"
     },
-    "step1b_audited_at": "2026-11-23T12:38:37.320Z"
-  },
-  {
-    "id": "140-19979-76-ave-lan-rise-align-meditation-2026-11-23",
-    "event_id": "140-19979-76-ave-lan-rise-align-meditation-2026-11-23",
-    "title": "Rise & Align Meditation",
-    "venue": "140-19979 76 Ave, Langley, BC, V2Y 3Y2, CA",
-    "city": "Langley",
-    "region": "Langley",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 10:00 AM",
-    "time": "10:00 AM",
-    "ticket_url": "https://www.tourism-langley.ca/event/rise-align-meditation-12/",
-    "details_url": "https://www.tourism-langley.ca/event/rise-align-meditation-12",
-    "source_url": "https://www.tourism-langley.ca/event/rise-align-meditation-12",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "10:00 AM",
-        "doors_time": "none_available",
-        "end_time": "11:15 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T07:53:24.417Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.tourism-langley.ca/event/rise-align-meditation-12/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://pyramidofwellness.com/",
-      "best_tier": "tier2",
-      "best_available": "https://www.tourism-langley.ca/event/rise-align-meditation-12/"
-    },
-    "step1b_audited_at": "2026-11-23T12:39:16.111Z"
-  },
-  {
-    "id": "140-19979-76-ave-lan-when-the-gong-calls-2026-11-23",
-    "event_id": "140-19979-76-ave-lan-when-the-gong-calls-2026-11-23",
-    "title": "When The Gong Calls",
-    "venue": "140-19979 76 Ave, Langley, BC, V2Y 3Y2, CA",
-    "city": "Langley",
-    "region": "Langley",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 8:30 PM",
-    "time": "8:30 PM",
-    "ticket_url": "https://www.tourism-langley.ca/event/when-the-gong-calls-12/",
-    "details_url": "https://www.tourism-langley.ca/event/when-the-gong-calls-12",
-    "source_url": "https://www.tourism-langley.ca/event/when-the-gong-calls-12",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "8:30 PM",
-        "doors_time": "none_available",
-        "end_time": "9:45 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T07:53:44.325Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.tourism-langley.ca/event/when-the-gong-calls-12/",
-      "tier3_calendar": "https://www.tourism-langley.ca/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://pyramidofwellness.com/",
-      "best_tier": "tier2",
-      "best_available": "https://www.tourism-langley.ca/event/when-the-gong-calls-12/"
-    },
-    "step1b_audited_at": "2026-11-23T12:40:06.702Z"
+    "step1b_audited_at": "2026-11-23T12:38:37.320Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "hilton-vancouver-air-something-blue-wedding-show-2027-02-20",
@@ -46316,48 +44169,6 @@
       "best_available": "https://www.sd35.bc.ca/lfas/upcoming-learning-updates-for-middle-secondary--except-vanguard---lec----friday--november-27--2026.30698"
     },
     "step1b_audited_at": "2026-11-23T12:40:02.955Z"
-  },
-  {
-    "id": "dennison-theatre-the-nutcracker-magical-christm-2026-11-23",
-    "event_id": "dennison-theatre-the-nutcracker-magical-christm-2026-11-23",
-    "title": "The Nutcracker: Magical Christmas Ballet",
-    "venue": "Dennison Theatre",
-    "city": "Missoula",
-    "region": "Missoula",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23",
-    "time": "7:00 PM",
-    "ticket_url": null,
-    "details_url": "https://theater.guide/events/the-nutcracker/",
-    "source_url": "https://theater.guide/events/the-nutcracker",
-    "description": "Theater Guide lists ticket options for The Nutcracker: Magical Christmas Ballet at Dennison Theatre in Missoula, MT. Ticket options may be available from verified providers.",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "date": "2026-11-23",
-        "time": "7:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T08:19:21.597Z",
-    "candidate_tier1_url": null,
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://theater.guide/events/the-nutcracker/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.umt.edu/dennison-theatre/",
-      "best_tier": "tier2",
-      "best_available": "https://theater.guide/events/the-nutcracker/"
-    },
-    "step1b_audited_at": "2026-11-23T12:40:42.969Z"
   },
   {
     "id": "paramount-theatre-de-chelsea-handler-2026-12-05",
@@ -46863,66 +44674,6 @@
     "step1b_audited_at": "2026-11-23T12:46:07.457Z"
   },
   {
-    "id": "cloverdale-rodeo-and-cloverdale-rodeo-grand-entry-t-2026-11-23",
-    "event_id": "cloverdale-rodeo-and-cloverdale-rodeo-grand-entry-t-2026-11-23",
-    "title": "Cloverdale Rodeo Grand Entry Team Applications Now Open",
-    "venue": "Cloverdale Rodeo and Country Fair",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/",
-    "details_url": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open",
-    "source_url": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-09",
-        "start_time": "7:00 PM",
-        "doors_time": "6:30 PM",
-        "end_time": "none_available",
-        "status": "concluded"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-16",
-        "start_time": "7:00 PM",
-        "doors_time": "6:30 PM",
-        "end_time": "none_available",
-        "status": "concluded"
-      },
-      {
-        "slot": 3,
-        "date": "2026-11-23",
-        "start_time": "7:00 PM",
-        "doors_time": "6:30 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T08:48:52.730Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://cloverdalerodeo.com/",
-      "best_tier": "tier2",
-      "best_available": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/"
-    },
-    "step1b_audited_at": "2026-11-23T12:46:46.300Z"
-  },
-  {
     "id": "riverside-park-100-l-riverside-park-outdoor-skating-2026-11-27",
     "event_id": "riverside-park-100-l-riverside-park-outdoor-skating-2026-11-27",
     "title": "Riverside Park Outdoor Skating and Multi-Use Loop",
@@ -47179,335 +44930,6 @@
       "best_available": "https://www.meetup.com/aspies-and-other-neurodivergents/events/312746156/"
     },
     "step1b_audited_at": "2026-11-23T12:49:59.413Z"
-  },
-  {
-    "id": "location-visible-to-morning-walks-2026-11-23",
-    "event_id": "location-visible-to-morning-walks-2026-11-23",
-    "title": "Morning Walks",
-    "venue": "Location visible to members",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 9:30 AM",
-    "time": "9:30 AM",
-    "ticket_url": "https://www.meetup.com/womens-circle-of-friends/events/317272705/",
-    "details_url": "https://www.meetup.com/womens-circle-of-friends/events/317272705",
-    "source_url": "https://www.meetup.com/womens-circle-of-friends/events/317272705",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "55+",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "10:30 AM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-30",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "10:30 AM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 3,
-        "date": "2026-12-07",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "10:30 AM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 4,
-        "date": "2026-12-14",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "10:30 AM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 5,
-        "date": "2026-12-21",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "10:30 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T09:23:46.252Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/womens-circle-of-friends/events/317272705/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": null,
-      "best_tier": "tier2",
-      "best_available": "https://www.meetup.com/womens-circle-of-friends/events/317272705/"
-    },
-    "step1b_audited_at": "2026-11-23T12:49:54.510Z"
-  },
-  {
-    "id": "location-visible-to-rainy-day-board-games-2026-11-23",
-    "event_id": "location-visible-to-rainy-day-board-games-2026-11-23",
-    "title": "Rainy day board games",
-    "venue": "Location visible to members",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 11:30 AM",
-    "time": "11:30 AM",
-    "ticket_url": null,
-    "details_url": "https://www.meetup.com/non-transit-accessible-hikes-and-other-activities/events/317542226",
-    "source_url": "https://www.meetup.com/non-transit-accessible-hikes-and-other-activities/events/317542226",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "11:30 AM",
-        "doors_time": "none_available",
-        "end_time": "3:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T09:24:38.432Z",
-    "dead_urls": [
-      "https://www.meetup.com/non-transit-accessible-hikes-and-other-activities/events/317542226"
-    ],
-    "candidate_tier1_url": null,
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/non-transit-accessible-hikes-and-other-activities/events/317542226",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": null,
-      "best_available": "https://www.meetup.com/non-transit-accessible-hikes-and-other-activities/events/317542226"
-    },
-    "step1b_audited_at": "2026-11-23T12:50:04.101Z"
-  },
-  {
-    "id": "location-visible-to-monday-afternoon-3-30pm-fores-2026-11-23",
-    "event_id": "location-visible-to-monday-afternoon-3-30pm-fores-2026-11-23",
-    "title": "🌿 Monday Afternoon (3:30pm) Forest Walk — Fresh Air, Fresh Energy 🌿🇨🇦",
-    "venue": "Location visible to members",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 3:30 PM",
-    "time": "3:30 PM",
-    "ticket_url": "https://www.meetup.com/coquitlam-outdoors-meetup-group/events/317464567/",
-    "details_url": "https://www.meetup.com/coquitlam-outdoors-meetup-group/events/317464567",
-    "source_url": "https://www.meetup.com/coquitlam-outdoors-meetup-group/events/317464567",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "3:30 PM",
-        "doors_time": "none_available",
-        "end_time": "4:45 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T09:24:39.542Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/coquitlam-outdoors-meetup-group/events/317464567/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": null,
-      "best_tier": "tier2",
-      "best_available": "https://www.meetup.com/coquitlam-outdoors-meetup-group/events/317464567/"
-    },
-    "step1b_audited_at": "2026-11-23T12:51:01.242Z"
-  },
-  {
-    "id": "percy-perry-stadium-morning-walk-2026-11-23",
-    "event_id": "percy-perry-stadium-morning-walk-2026-11-23",
-    "title": "Morning Walk",
-    "venue": "Percy Perry Stadium Home of the BC Highland Games",
-    "city": "Coquitlam",
-    "region": "Coquitlam",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23",
-    "time": "8:30 AM",
-    "ticket_url": null,
-    "details_url": "https://www.meetup.com/port-coquitlam-sociale-meetup-group/events/317271600/",
-    "source_url": "https://www.meetup.com/port-coquitlam-sociale-meetup-group/events/317271600",
-    "description": "Come walk, talk, connect, and make mornings something to look forward to! 📍 Location: Percy Perry Stadium ⏰ Duration: 30 minutes 🌞 Goal: Start your day f",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "date": "2026-11-23",
-        "time": "8:30 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T09:24:40.496Z",
-    "candidate_tier1_url": null,
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/port-coquitlam-sociale-meetup-group/events/317271600/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.coquitlam.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.meetup.com/port-coquitlam-sociale-meetup-group/events/317271600/"
-    },
-    "step1b_audited_at": "2026-11-23T12:51:14.261Z"
-  },
-  {
-    "id": "location-visible-to-walk-and-talk-2026-11-23",
-    "event_id": "location-visible-to-walk-and-talk-2026-11-23",
-    "title": "walk and talk",
-    "venue": "Location visible to members",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 10:45 AM",
-    "time": "10:45 AM",
-    "ticket_url": "https://www.meetup.com/burnaby-s-hip-mama-group/events/317274029/",
-    "details_url": "https://www.meetup.com/burnaby-s-hip-mama-group/events/317274029",
-    "source_url": "https://www.meetup.com/burnaby-s-hip-mama-group/events/317274029",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "1:45 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-11-30",
-        "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "1:45 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 3,
-        "date": "2026-12-07",
-        "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "1:45 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 4,
-        "date": "2026-12-14",
-        "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "1:45 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 5,
-        "date": "2026-12-21",
-        "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "1:45 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T09:25:35.531Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/burnaby-s-hip-mama-group/events/317274029/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": null,
-      "best_tier": "tier2",
-      "best_available": "https://www.meetup.com/burnaby-s-hip-mama-group/events/317274029/"
-    },
-    "step1b_audited_at": "2026-11-23T12:51:11.364Z"
-  },
-  {
-    "id": "location-visible-to-it-s-time-for-thai-2026-11-28",
-    "event_id": "location-visible-to-it-s-time-for-thai-2026-11-28",
-    "title": "It's Time for Thai! 🍜",
-    "venue": "Location visible to members",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-28",
-    "dateSchedule": "2026-11-28 • 6:30 PM",
-    "time": "6:30 PM",
-    "ticket_url": "https://www.meetup.com/burnabycoquitlamwomen/events/317101015/",
-    "details_url": "https://www.meetup.com/burnabycoquitlamwomen/events/317101015",
-    "source_url": "https://www.meetup.com/burnabycoquitlamwomen/events/317101015",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "50+",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-28",
-        "start_time": "6:30 PM",
-        "doors_time": "none_available",
-        "end_time": "8:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T09:26:23.715Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.meetup.com/burnabycoquitlamwomen/events/317101015/",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": null,
-      "best_tier": "tier2",
-      "best_available": "https://www.meetup.com/burnabycoquitlamwomen/events/317101015/"
-    },
-    "step1b_audited_at": "2026-11-23T12:52:09.182Z"
   },
   {
     "id": "samz-neighbourhood-p-christmas-party-at-samz-pub-2026-12-18",
@@ -49205,7 +46627,8 @@
       }
     ],
     "audited_at": "2026-11-23T10:22:24.863Z",
-    "step1b_audited_at": "2026-11-23T13:12:21.141Z"
+    "step1b_audited_at": "2026-11-23T13:12:21.141Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "tradex-dreamstate-saturday-pass-2026-11-28",
@@ -49859,7 +47282,8 @@
       "best_tier": "tier1",
       "tier2_event_page": "https://www.createastir.ca/articles/ubc-opera-bartered-bride-ws"
     },
-    "step1b_audited_at": "2026-11-23T13:23:12.166Z"
+    "step1b_audited_at": "2026-11-23T13:23:12.166Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "chan-centre-for-the-festive-cantatas-vivaldi-s-glo-2026-12-20",
@@ -49946,7 +47370,8 @@
       }
     ],
     "audited_at": "2026-11-23T10:33:50.964Z",
-    "step1b_audited_at": "2026-11-23T13:25:54.102Z"
+    "step1b_audited_at": "2026-11-23T13:25:54.102Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "vancouver-playhouse-2027-louise-bentall-biennial-a-2027-01-31",
@@ -50049,185 +47474,6 @@
     ],
     "audited_at": "2026-11-23T10:54:19.102Z",
     "step1b_audited_at": "2026-11-23T13:28:06.439Z"
-  },
-  {
-    "id": "vancouver-public-lib-masako-fukawa-stories-of-nikke-2026-11-23",
-    "event_id": "vancouver-public-lib-masako-fukawa-stories-of-nikke-2026-11-23",
-    "title": "Masako Fukawa: Stories of Nikkei Canadians",
-    "venue": "Vancouver Public Library Central Branch",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://www.straight.com/listings/events/1469427",
-    "details_url": "https://www.straight.com/listings/events/1469427",
-    "source_url": "https://www.straight.com/listings/events/1469427",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "7:00 PM",
-        "doors_time": "none_available",
-        "end_time": "8:15 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T10:58:32.858Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.straight.com/listings/events/1469427",
-      "tier3_calendar": "https://vpl.bibliocommons.com/v2/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vpl.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.straight.com/listings/events/1469427"
-    },
-    "step1b_audited_at": "2026-11-23T13:27:52.854Z"
-  },
-  {
-    "id": "container-brewing-monday-movie-night-at-containe-2026-11-23",
-    "event_id": "container-brewing-monday-movie-night-at-containe-2026-11-23",
-    "title": "Monday Movie Night at Container Brewing",
-    "venue": "Container Brewing",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://drinkcontainer.beer/events/1cde9589-4345-42e4-aad9-b052192d6865",
-    "details_url": "https://www.straight.com/listings/events/1470076",
-    "source_url": "https://www.straight.com/listings/events/1470076",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "7:00 PM",
-        "doors_time": "none_available",
-        "end_time": "9:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T10:59:25.433Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://drinkcontainer.beer/events/1cde9589-4345-42e4-aad9-b052192d6865",
-      "tier3_calendar": "https://drinkcontainer.beer/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://drinkcontainer.beer/",
-      "best_tier": "tier2",
-      "best_available": "https://drinkcontainer.beer/events/1cde9589-4345-42e4-aad9-b052192d6865"
-    },
-    "step1b_audited_at": "2026-11-23T13:27:43.135Z"
-  },
-  {
-    "id": "kay-meek-arts-centre-you-had-to-be-there-how-the-to-2026-11-23",
-    "event_id": "kay-meek-arts-centre-you-had-to-be-there-how-the-to-2026-11-23",
-    "title": "You Had to Be There: How the Toronto Godspell Ignited the Comedy Revolution...",
-    "venue": "Kay Meek Arts Centre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://kaymeek.com/events/you-had-to-be-there-how-the-toronto-godspell-ignited-the-comedy-revolution-2026-11-23-700-pm/seats/",
-    "details_url": "https://www.straight.com/listings/events/1470345",
-    "source_url": "https://www.straight.com/listings/events/1470345",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 15,
-    "price_base": 15,
-    "price_fee": 0,
-    "price_all_in": 15,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "7:00 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T10:59:56.528Z",
-    "links": {
-      "tier1_checkout": "https://kaymeek.com/events/you-had-to-be-there-how-the-toronto-godspell-ignited-the-comedy-revolution-2026-11-23-700-pm/seats/",
-      "tier2_event_page": "https://kaymeek.com/events/you-had-to-be-there-how-the-toronto-godspell-ignited-the-comedy-revolution-2026-11-23-700-pm/",
-      "tier3_calendar": "https://kaymeek.com/events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://kaymeek.com/",
-      "best_tier": "tier1",
-      "best_available": "https://kaymeek.com/events/you-had-to-be-there-how-the-toronto-godspell-ignited-the-comedy-revolution-2026-11-23-700-pm/seats/"
-    },
-    "step1b_audited_at": "2026-11-23T13:30:02.402Z"
-  },
-  {
-    "id": "st-helen-s-anglican-sibelius-meets-kuula-piano-tri-2026-11-23",
-    "event_id": "st-helen-s-anglican-sibelius-meets-kuula-piano-tri-2026-11-23",
-    "title": "Sibelius meets Kuula - Piano Trio",
-    "venue": "St Thomas Anglican Church",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 7:30 PM",
-    "time": "7:30 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/sibelius-meets-kuula-piano-trio-tickets-1998962934949",
-    "details_url": "https://www.straight.com/listings/events/1468525",
-    "source_url": "https://www.straight.com/listings/events/1468525",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 35,
-    "price_base": 35,
-    "price_fee": 0,
-    "price_all_in": 35,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "7:30 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T11:00:23.876Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/sibelius-meets-kuula-piano-trio-tickets-1998962934949",
-    "candidate_tier1_source": "ai_link_auditor",
-    "candidate_tier1_staged_at": "2026-11-23T13:29:58.280Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/sibelius-meets-kuula-piano-trio-tickets-1998962934949",
-      "tier2_event_page": "https://www.straight.com/listings/events/1468525",
-      "tier3_calendar": "https://sthelensvancouver.com/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://sthelensvancouver.com/",
-      "best_tier": "tier1",
-      "best_available": "https://www.eventbrite.ca/e/sibelius-meets-kuula-piano-trio-tickets-1998962934949"
-    },
-    "step1b_audited_at": "2026-11-23T13:29:58.319Z"
   },
   {
     "id": "rose-gellert-hall-free-tunes-for-tots-concert-2026-11-24",
@@ -50421,7 +47667,8 @@
       "best_tier": "tier2",
       "best_available": "https://greencollege.ubc.ca/scandai-breakthroughs-hype-and-existential-risks-era-artificial-intelligence"
     },
-    "step1b_audited_at": "2026-11-23T13:33:26.828Z"
+    "step1b_audited_at": "2026-11-23T13:33:26.828Z",
+    "step4_grounded_at": "2026-11-24T00:09:31.450Z"
   },
   {
     "id": "the-one-sixty-wine-b-paint-nite-gnome-hanging-chris-2026-12-23",
@@ -50801,50 +48048,6 @@
     "step1b_audited_at": "2026-11-23T13:36:46.521Z"
   },
   {
-    "id": "fraser-valley-region-needle-nuts-2026-11-23",
-    "event_id": "fraser-valley-region-needle-nuts-2026-11-23",
-    "title": "Needle Nuts",
-    "venue": "White Rock Library",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 9:30 AM",
-    "time": "9:30 AM",
-    "ticket_url": "https://www.fvrl.bc.ca/events/23587",
-    "details_url": "https://www.fvrl.bc.ca/events/23587",
-    "source_url": "https://www.fvrl.bc.ca/events/23587",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "Adults",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "9:30 AM",
-        "doors_time": "none_available",
-        "end_time": "1:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T11:34:07.985Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.fvrl.bc.ca/events/23587",
-      "tier3_calendar": null,
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.fvrl.bc.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.fvrl.bc.ca/events/23587"
-    },
-    "step1b_audited_at": "2026-11-23T13:38:05.420Z"
-  },
-  {
     "id": "fraser-valley-region-stitch-happens-knitting-club-2026-11-23",
     "event_id": "fraser-valley-region-stitch-happens-knitting-club-2026-11-23",
     "title": "Stitch Happens - Knitting Club",
@@ -50913,50 +48116,6 @@
     "step1b_audited_at": "2026-11-23T13:38:16.845Z"
   },
   {
-    "id": "pitt-meadows-public-knit-stitch-2026-11-23",
-    "event_id": "pitt-meadows-public-knit-stitch-2026-11-23",
-    "title": "Knit & Stitch",
-    "venue": "Pitt Meadows Public Library",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23 • 10:00 AM",
-    "time": "10:00 AM",
-    "ticket_url": "https://www.fvrl.bc.ca/events/24962",
-    "details_url": "https://www.fvrl.bc.ca/events/24962",
-    "source_url": "https://www.fvrl.bc.ca/events/24962",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-23",
-        "start_time": "10:00 AM",
-        "doors_time": "none_available",
-        "end_time": "12:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T11:35:03.091Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.fvrl.bc.ca/events/24962",
-      "tier3_calendar": "https://www.fvrl.bc.ca/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.fvrl.bc.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.fvrl.bc.ca/events/24962"
-    },
-    "step1b_audited_at": "2026-11-23T13:38:00.338Z"
-  },
-  {
     "id": "new-west-city-hall-nwfm-s-holiday-market-dec-12-1-2026-12-12",
     "event_id": "new-west-city-hall-nwfm-s-holiday-market-dec-12-1-2026-12-12",
     "title": "NWFM's Holiday Market (Dec 12 & 13)",
@@ -51007,170 +48166,6 @@
       "best_available": "https://www.newwestcity.ca/community-culture/event-calendar/nwfms-holiday-market-dec-12-13"
     },
     "step1b_audited_at": "2026-11-23T13:39:07.429Z"
-  },
-  {
-    "id": "central-library-baby-stay-and-play-2026-11-23",
-    "event_id": "central-library-baby-stay-and-play-2026-11-23",
-    "title": "Baby Stay and Play",
-    "venue": "Central Library",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23",
-    "time": "1:30 PM",
-    "ticket_url": "https://vpl.bibliocommons.com/v2/events/6a74f12af4e5db3d00c6f561",
-    "details_url": "https://vpl.bibliocommons.com/v2/events/6a74f12af4e5db3d00c6f561",
-    "source_url": "https://vpl.bibliocommons.com/v2/events/6a74f12af4e5db3d00c6f561",
-    "description": "Drop in to explore library books and toys during this playtime for connecting with other families. For ages 0 – 18 months.\\nAccessibility Information:\\nTakes place in a programming room.Participants are welcome to move, stim, or take breaks as needed.Caregivers may breast or bottle-feed babies anywhere, anytime.The expected noise level is loud.\\nVPL is committed to making our programs accessible \\",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "date": "2026-11-23",
-        "time": "1:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T11:38:27.286Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://vpl.bibliocommons.com/v2/events/6a74f12af4e5db3d00c6f561",
-      "tier3_calendar": "https://vpl.bibliocommons.com/v2/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vpl.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://vpl.bibliocommons.com/v2/events/6a74f12af4e5db3d00c6f561"
-    },
-    "step1b_audited_at": "2026-11-23T13:39:21.300Z"
-  },
-  {
-    "id": "renfrew-branch-teen-drop-in-2026-11-23",
-    "event_id": "renfrew-branch-teen-drop-in-2026-11-23",
-    "title": "Teen Drop-In",
-    "venue": "Renfrew Branch",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23",
-    "time": "3:30 PM",
-    "ticket_url": "https://vpl.bibliocommons.com/v2/events/6a7f958961e11c005177611c",
-    "details_url": "https://vpl.bibliocommons.com/v2/events/6a7f958961e11c005177611c",
-    "source_url": "https://vpl.bibliocommons.com/v2/events/6a7f958961e11c005177611c",
-    "description": "Looking for a new place to hang out or study beyond school and home? Stop by the Teen Space to chill, study, and connect with your peers at this weekly meet-up.\\nHere’s what to expect:\\n A quiet, laid-back space to read, study, and hangout with other teens\\n Have homework questions? Ask a staff member or librarianSnacks, games, and chill activities for when you need a brain break\\n*No session on M",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "date": "2026-11-23",
-        "time": "3:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T11:38:27.654Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://vpl.bibliocommons.com/v2/events/6a7f958961e11c005177611c",
-      "tier3_calendar": "https://vpl.bibliocommons.com/v2/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vpl.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://vpl.bibliocommons.com/v2/events/6a7f958961e11c005177611c"
-    },
-    "step1b_audited_at": "2026-11-23T13:39:47.432Z"
-  },
-  {
-    "id": "n-c-a-mat-ct-strathc-snap-circuits-party-2026-11-23",
-    "event_id": "n-c-a-mat-ct-strathc-snap-circuits-party-2026-11-23",
-    "title": "Snap Circuits® Party",
-    "venue": "nə́c̓aʔmat ct Strathcona Branch",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23",
-    "time": "3:30 PM",
-    "ticket_url": "https://vpl.bibliocommons.com/v2/events/6a8332d2bf1aec09082b27f1",
-    "details_url": "https://vpl.bibliocommons.com/v2/events/6a8332d2bf1aec09082b27f1",
-    "source_url": "https://vpl.bibliocommons.com/v2/events/6a8332d2bf1aec09082b27f1",
-    "description": "Drop in to the library for an electrifying STEM party! Safely experiment hands-on with circuits and electronics while having fun with other kids. For Grades K-7. Adults accompanying children under 9 must stay in the library for the duration of the program.nbsp;Drop-in.\\nAccessibility Information:\\nVPL is committed to making our programs accessible for all. If you have an access need that we have n",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "date": "2026-11-23",
-        "time": "3:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T11:38:28.976Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://vpl.bibliocommons.com/v2/events/6a8332d2bf1aec09082b27f1",
-      "tier3_calendar": "https://vpl.bibliocommons.com/v2/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vpl.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://vpl.bibliocommons.com/v2/events/6a8332d2bf1aec09082b27f1"
-    },
-    "step1b_audited_at": "2026-11-23T13:40:35.581Z"
-  },
-  {
-    "id": "champlain-heights-br-studio-mondays-2026-11-23",
-    "event_id": "champlain-heights-br-studio-mondays-2026-11-23",
-    "title": "Studio Mondays",
-    "venue": "Champlain Heights Branch",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-23",
-    "dateSchedule": "2026-11-23",
-    "time": "3:30 PM",
-    "ticket_url": "https://vpl.bibliocommons.com/v2/events/6a623976f4e5db3d00c3b80c",
-    "details_url": "https://vpl.bibliocommons.com/v2/events/6a623976f4e5db3d00c3b80c",
-    "source_url": "https://vpl.bibliocommons.com/v2/events/6a623976f4e5db3d00c3b80c",
-    "description": "Come and be inspired by our library materials and have some hands-on \\nfun with simple art activities. Please dress to get messy.nbsp;Adults accompanying children under 9 must stay in the library for the duration of the program. For Grades \\nK-7. Drop-in.\\nAccessibility Information\\nVPL is committed to making our programs accessible for all. If you \\nhave an access need that we have not addressed ",
-    "artist": null,
-    "lineup": [],
-    "category": null,
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "date": "2026-11-23",
-        "time": "3:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T11:38:29.501Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://vpl.bibliocommons.com/v2/events/6a623976f4e5db3d00c3b80c",
-      "tier3_calendar": "https://vpl.bibliocommons.com/v2/events",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.vpl.ca/location/champlain-heights-branch",
-      "best_tier": "tier2",
-      "best_available": "https://vpl.bibliocommons.com/v2/events/6a623976f4e5db3d00c3b80c"
-    },
-    "step1b_audited_at": "2026-11-23T13:40:49.177Z"
   },
   {
     "id": "peretz-centre-for-se-family-stay-and-play-2026-11-24",
@@ -51294,5 +48289,841 @@
       "best_available": "https://vpl.bibliocommons.com/v2/events/6a84eeafd4b10d00300773a9"
     },
     "step1b_audited_at": "2026-11-23T13:42:09.243Z"
+  },
+  {
+    "id": "the-improv-centre-theatresports",
+    "title": "TheatreSports",
+    "venue_name": "The Improv Centre",
+    "url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&ref=bookNow&scroll=timeAndDates",
+    "date": "Fridays & Saturdays",
+    "time": "7:30 PM",
+    "start_time": "7:30 PM",
+    "lifecycle_type": "weekly_recurring_residency",
+    "recurrence": "Weekly",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-27",
+        "start_time": "7:30 PM",
+        "doors_time": "7:00 PM",
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&ref=bookNow&scroll=timeAndDates"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-28",
+        "start_time": "7:30 PM",
+        "doors_time": "7:00 PM",
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&ref=bookNow&scroll=timeAndDates"
+      }
+    ],
+    "step1b_audited_at": "2026-11-23T23:38:17.886Z"
+  },
+  {
+    "id": "mansion-nightclub-cityvibez-saturdays-2026-11-21",
+    "title": "CityVibez Saturdays (Free Entry till 11 PM)",
+    "venue_name": "Mansion Nightclub",
+    "url": "https://www.eventbrite.ca/e/2004426762404?aff=oddtdtcreator",
+    "date": "2026-11-27",
+    "time": "9:30 PM",
+    "start_time": "9:30 PM",
+    "lifecycle_type": "weekly_recurring_residency",
+    "recurrence": "Weekly",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-27",
+        "start_time": "9:30 PM",
+        "doors_time": "9:30 PM",
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://www.eventbrite.ca/e/2004426762404?aff=oddtdtcreator"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-28",
+        "start_time": "9:30 PM",
+        "doors_time": "9:30 PM",
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://www.eventbrite.ca/e/2004426762404?aff=oddtdtcreator"
+      }
+    ],
+    "step1b_audited_at": "2026-11-23T23:38:17.886Z"
+  },
+  {
+    "id": "firehall-arts-centre-blocking-2027-01-06",
+    "event_id": "firehall-arts-centre-blocking-2027-01-06",
+    "title": "BLOCKING",
+    "venue": "Firehall Arts Centre",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2027-01-06",
+    "dateSchedule": "JAN 6 – JAN 9 • 7:30 PM",
+    "time": "7:30 PM",
+    "ticket_url": "https://purchase.firehallartscentre.ca/Checkout",
+    "details_url": "https://www.firehallartscentre.ca/event/blocking/",
+    "source_url": "https://www.firehallartscentre.ca/event/blocking",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "All Ages",
+    "price": 32,
+    "price_base": 32,
+    "price_fee": 0,
+    "price_all_in": 32,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "JAN 6 – JAN 9",
+        "start_time": "7:30 PM",
+        "doors_time": "none_available",
+        "end_time": "none_available",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T01:38:06.347Z",
+    "candidate_tier1_url": "https://purchase.firehallartscentre.ca/Checkout",
+    "links": {
+      "tier1_checkout": "https://purchase.firehallartscentre.ca/Checkout",
+      "best_available": "https://purchase.firehallartscentre.ca/Checkout",
+      "best_tier": "tier1",
+      "tier2_event_page": "https://www.firehallartscentre.ca/event/blocking/",
+      "tier3_calendar": "https://www.firehallartscentre.ca/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://firehallartscentre.ca/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "firehall-arts-centre-benevolence-219",
+    "event_id": "firehall-arts-centre-benevolence-219",
+    "title": "BENEVOLENCE",
+    "venue": "Firehall Arts Centre",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2027-04-21",
+    "dateSchedule": "APR 21 – MAY 9 • 7:30 PM",
+    "time": "7:30 PM",
+    "ticket_url": "https://purchase.firehallartscentre.ca/Checkout",
+    "details_url": "https://www.firehallartscentre.ca/event/benevolence/",
+    "source_url": "https://www.firehallartscentre.ca/event/benevolence",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "All Ages",
+    "price": 32,
+    "price_base": 32,
+    "price_fee": 0,
+    "price_all_in": 32,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "APR 21 – MAY 9",
+        "start_time": "7:30 PM",
+        "doors_time": "none_available",
+        "end_time": "none_available",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T01:38:07.349Z",
+    "candidate_tier1_url": "https://purchase.firehallartscentre.ca/Checkout",
+    "links": {
+      "tier1_checkout": "https://purchase.firehallartscentre.ca/Checkout",
+      "best_available": "https://purchase.firehallartscentre.ca/Checkout",
+      "best_tier": "tier1",
+      "tier2_event_page": "https://www.firehallartscentre.ca/event/benevolence/",
+      "tier3_calendar": "https://www.firehallartscentre.ca/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://www.firehallartscentre.ca/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "viff-centre-viff-cin-raise-the-red-lantern-2026-11-24",
+    "event_id": "viff-centre-viff-cin-raise-the-red-lantern-2026-11-24",
+    "title": "Raise the Red Lantern",
+    "venue": "VIFF Centre - VIFF Cinema",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-24",
+    "dateSchedule": "Nov 24 & Nov 25 (2 Showings)",
+    "time": "8:15 PM",
+    "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/4oRw96N2CQ/",
+    "details_url": "https://viff.org/whats-on/raise-the-red-lantern/",
+    "source_url": "https://viff.org/whats-on/raise-the-red-lantern/book/4oRw96N2CQ",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "19+",
+    "price": 17,
+    "price_base": 17,
+    "price_fee": 0,
+    "price_all_in": 17,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-24",
+        "start_time": "8:15 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/4oRw96N2CQ/"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-25",
+        "start_time": "8:20 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/hl6wMZteor/"
+      }
+    ],
+    "audited_at": "2026-11-24T01:39:30.320Z",
+    "candidate_tier1_url": "https://viff.org/whats-on/raise-the-red-lantern/book/4oRw96N2CQ/",
+    "links": {
+      "tier1_checkout": "https://viff.org/whats-on/raise-the-red-lantern/book/4oRw96N2CQ/",
+      "tier2_event_page": "https://viff.org/whats-on/raise-the-red-lantern/",
+      "best_available": "https://viff.org/whats-on/raise-the-red-lantern/book/4oRw96N2CQ",
+      "best_tier": "tier1",
+      "tier3_calendar": "https://viff.org/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://viff.org/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "start_time": "8:15 PM",
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-24",
+      "start_time": "8:15 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/4oRw96N2CQ/"
+    },
+    "show_2": {
+      "slot": 2,
+      "date": "2026-11-25",
+      "start_time": "8:20 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/raise-the-red-lantern/book/hl6wMZteor/"
+    },
+    "show_3": null,
+    "frequencyLabel": "Multi-Date Run (2 Showings)",
+    "merged_from_ids": [
+      "viff-centre-lochmadd-raise-the-red-lantern-2026-11-25"
+    ],
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "viff-centre-viff-cin-queen-at-sea-2026-11-24",
+    "event_id": "viff-centre-viff-cin-queen-at-sea-2026-11-24",
+    "title": "Queen at Sea",
+    "venue": "VIFF Centre - VIFF Cinema",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-24",
+    "dateSchedule": "Nov 24 & Nov 28 (2 Showings)",
+    "time": "2:00 PM",
+    "ticket_url": "https://viff.org/whats-on/queen-at-sea/book/ecGljYasCm/",
+    "details_url": "https://viff.org/whats-on/queen-at-sea/",
+    "source_url": "https://viff.org/whats-on/queen-at-sea/book/ecGljYasCm",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": null,
+    "price": null,
+    "price_base": null,
+    "price_fee": null,
+    "price_all_in": null,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-24",
+        "start_time": "2:00 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/queen-at-sea/book/ecGljYasCm/"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-28",
+        "start_time": "3:15 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/queen-at-sea/book/j1Dpbh5dwJ/"
+      }
+    ],
+    "audited_at": "2026-11-24T01:40:52.106Z",
+    "candidate_tier1_url": "https://viff.org/whats-on/queen-at-sea/book/ecGljYasCm/",
+    "links": {
+      "tier1_checkout": "https://viff.org/whats-on/queen-at-sea/book/ecGljYasCm/",
+      "tier2_event_page": "https://viff.org/whats-on/queen-at-sea/",
+      "best_available": "https://viff.org/whats-on/queen-at-sea/book/ecGljYasCm",
+      "best_tier": "tier1",
+      "tier3_calendar": "https://viff.org/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://viff.org/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "start_time": "2:00 PM",
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-24",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/queen-at-sea/book/ecGljYasCm/"
+    },
+    "show_2": {
+      "slot": 2,
+      "date": "2026-11-28",
+      "start_time": "3:15 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/queen-at-sea/book/j1Dpbh5dwJ/"
+    },
+    "show_3": null,
+    "frequencyLabel": "Multi-Date Run (2 Showings)",
+    "merged_from_ids": [
+      "viff-centre-lochmadd-queen-at-sea-2026-11-28"
+    ],
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "viff-centre-lochmadd-strangers-on-a-train-2026-11-24",
+    "event_id": "viff-centre-lochmadd-strangers-on-a-train-2026-11-24",
+    "title": "Strangers on a Train",
+    "venue": "VIFF Centre - Lochmaddy Studio Theatre",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-24",
+    "dateSchedule": "2026-11-24 • 6:00 PM",
+    "time": "6:00 PM",
+    "ticket_url": "https://viff.org/whats-on/strangers-on-a-train/book/CbJ8v2BEx1/",
+    "details_url": "https://viff.org/whats-on/strangers-on-a-train/",
+    "source_url": "https://viff.org/whats-on/strangers-on-a-train/book/CbJ8v2BEx1",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "19+",
+    "price": 15,
+    "price_base": 15,
+    "price_fee": 0,
+    "price_all_in": 15,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-24",
+        "start_time": "6:00 PM",
+        "doors_time": "none_available",
+        "end_time": "none_available",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T01:41:35.384Z",
+    "candidate_tier1_url": "https://viff.org/whats-on/strangers-on-a-train/book/CbJ8v2BEx1/",
+    "links": {
+      "tier1_checkout": "https://viff.org/whats-on/strangers-on-a-train/book/CbJ8v2BEx1/",
+      "tier2_event_page": "https://viff.org/whats-on/strangers-on-a-train/",
+      "best_available": "https://viff.org/whats-on/strangers-on-a-train/book/CbJ8v2BEx1",
+      "best_tier": "tier1",
+      "tier3_calendar": "https://viff.org/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://viff.org/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "viff-centre-lochmadd-innocent-sorcerers-2026-11-27",
+    "event_id": "viff-centre-lochmadd-innocent-sorcerers-2026-11-27",
+    "title": "Innocent Sorcerers",
+    "venue": "VIFF Centre - Lochmaddy Studio Theatre",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-27",
+    "dateSchedule": "2026-11-27 • 6:00 PM",
+    "time": "6:00 PM",
+    "ticket_url": "https://viff.org/whats-on/innocent-sorcerors/book/gEplNTN723",
+    "details_url": "https://viff.org/whats-on/innocent-sorcerors/",
+    "source_url": "https://viff.org/whats-on/innocent-sorcerors/book/gEplNTN723",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "19+",
+    "price": 15,
+    "price_base": 15,
+    "price_fee": 0,
+    "price_all_in": 15,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-27",
+        "start_time": "6:00 PM",
+        "doors_time": "none_available",
+        "end_time": "none_available",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T01:42:17.354Z",
+    "candidate_tier1_url": "https://viff.org/whats-on/innocent-sorcerors/book/gEplNTN723",
+    "links": {
+      "tier1_checkout": "https://viff.org/whats-on/innocent-sorcerors/book/gEplNTN723",
+      "tier2_event_page": "https://viff.org/whats-on/innocent-sorcerors/",
+      "best_available": "https://viff.org/whats-on/innocent-sorcerors/book/gEplNTN723",
+      "best_tier": "tier1",
+      "tier3_calendar": "https://viff.org/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://viff.org/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "viff-centre-viff-cin-ashes-and-diamonds-2026-11-25",
+    "event_id": "viff-centre-viff-cin-ashes-and-diamonds-2026-11-25",
+    "title": "Ashes and Diamonds",
+    "venue": "VIFF Centre - VIFF Cinema",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-25",
+    "dateSchedule": "2026-11-25 • 8:40 PM",
+    "time": "8:40 PM",
+    "ticket_url": "https://viff.org/whats-on/ashes-and-diamonds/book/0APqBLgqtX/",
+    "details_url": "https://viff.org/whats-on/ashes-and-diamonds/",
+    "source_url": "https://viff.org/whats-on/ashes-and-diamonds/book/0APqBLgqtX",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "19+",
+    "price": 17,
+    "price_base": 17,
+    "price_fee": 0,
+    "price_all_in": 17,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-25",
+        "start_time": "8:40 PM",
+        "doors_time": "none_available",
+        "end_time": "none_available",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T01:42:18.511Z",
+    "candidate_tier1_url": "https://viff.org/whats-on/ashes-and-diamonds/book/0APqBLgqtX/",
+    "links": {
+      "tier1_checkout": "https://viff.org/whats-on/ashes-and-diamonds/book/0APqBLgqtX/",
+      "tier2_event_page": "https://viff.org/whats-on/ashes-and-diamonds/",
+      "best_available": "https://viff.org/whats-on/ashes-and-diamonds/book/0APqBLgqtX",
+      "best_tier": "tier1",
+      "tier3_calendar": "https://viff.org/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://viff.org/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "viff-centre-viff-cin-minotaur-2026-11-27",
+    "event_id": "viff-centre-viff-cin-minotaur-2026-11-27",
+    "title": "Minotaur",
+    "venue": "VIFF Centre - VIFF Cinema",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-27",
+    "dateSchedule": "Nov 27 & Nov 28 (2 Showings)",
+    "time": "7:50 PM",
+    "ticket_url": "https://viff.org/whats-on/minotaur/book/7UFW7fC0fy/",
+    "details_url": "https://viff.org/whats-on/minotaur/",
+    "source_url": "https://viff.org/whats-on/minotaur/book/7UFW7fC0fy",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "19+",
+    "price": 17,
+    "price_base": 17,
+    "price_fee": 0,
+    "price_all_in": 17,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-27",
+        "start_time": "7:50 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/minotaur/book/7UFW7fC0fy/"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-28",
+        "start_time": "3:30 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/minotaur/book/dXc49XE1gc/"
+      }
+    ],
+    "audited_at": "2026-11-24T01:43:03.177Z",
+    "candidate_tier1_url": "https://viff.org/whats-on/minotaur/book/7UFW7fC0fy/",
+    "links": {
+      "tier1_checkout": "https://viff.org/whats-on/minotaur/book/7UFW7fC0fy/",
+      "tier2_event_page": "https://viff.org/whats-on/minotaur/",
+      "best_available": "https://viff.org/whats-on/minotaur/book/7UFW7fC0fy",
+      "best_tier": "tier1",
+      "tier3_calendar": "https://viff.org/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://viff.org/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "start_time": "7:50 PM",
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-27",
+      "start_time": "7:50 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/minotaur/book/7UFW7fC0fy/"
+    },
+    "show_2": {
+      "slot": 2,
+      "date": "2026-11-28",
+      "start_time": "3:30 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/minotaur/book/dXc49XE1gc/"
+    },
+    "show_3": null,
+    "frequencyLabel": "Multi-Date Run (2 Showings)",
+    "merged_from_ids": [
+      "viff-centre-viff-cin-minotaur-2026-11-28"
+    ],
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "viff-centre-lochmadd-the-theft-2026-11-27",
+    "event_id": "viff-centre-lochmadd-the-theft-2026-11-27",
+    "title": "The Theft",
+    "venue": "VIFF Centre - Lochmaddy Studio Theatre",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-27",
+    "dateSchedule": "Nov 27 & Nov 28 (2 Showings)",
+    "time": "8:10 PM",
+    "ticket_url": "https://viff.org/whats-on/the-theft/book/33m2h2vph7/",
+    "details_url": "https://viff.org/whats-on/the-theft/",
+    "source_url": "https://viff.org/whats-on/the-theft/book/33m2h2vph7",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "19+",
+    "price": 15,
+    "price_base": 15,
+    "price_fee": 0,
+    "price_all_in": 15,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-27",
+        "start_time": "8:10 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/the-theft/book/33m2h2vph7/"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-28",
+        "start_time": "1:00 PM",
+        "doors_time": null,
+        "end_time": null,
+        "status": "upcoming",
+        "ticket_url": "https://viff.org/whats-on/the-theft/book/TMVeDihlot/"
+      }
+    ],
+    "audited_at": "2026-11-24T01:44:24.882Z",
+    "candidate_tier1_url": "https://viff.org/whats-on/the-theft/book/33m2h2vph7/",
+    "links": {
+      "tier1_checkout": "https://viff.org/whats-on/the-theft/book/33m2h2vph7/",
+      "tier2_event_page": "https://viff.org/whats-on/the-theft/",
+      "best_available": "https://viff.org/whats-on/the-theft/book/33m2h2vph7",
+      "best_tier": "tier1",
+      "tier3_calendar": "https://viff.org/whats-on/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://viff.org/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.741Z",
+    "start_time": "8:10 PM",
+    "show_1": {
+      "slot": 1,
+      "date": "2026-11-27",
+      "start_time": "8:10 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/the-theft/book/33m2h2vph7/"
+    },
+    "show_2": {
+      "slot": 2,
+      "date": "2026-11-28",
+      "start_time": "1:00 PM",
+      "doors_time": null,
+      "end_time": null,
+      "status": "upcoming",
+      "ticket_url": "https://viff.org/whats-on/the-theft/book/TMVeDihlot/"
+    },
+    "show_3": null,
+    "frequencyLabel": "Multi-Date Run (2 Showings)",
+    "merged_from_ids": [
+      "viff-centre-lochmadd-the-theft-2026-11-28"
+    ],
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "lavenderland-candle-wax-hanger-workshops-at-2026-11-24",
+    "event_id": "lavenderland-candle-wax-hanger-workshops-at-2026-11-24",
+    "title": "Candle & Wax Hanger Workshops at Lavenderland",
+    "venue": "Lavenderland",
+    "city": "Vancouver",
+    "region": "Vancouver",
+    "date": "2026-11-24",
+    "dateSchedule": "2026-11-24",
+    "time": "9:00 AM",
+    "ticket_url": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/P2LC4Z",
+    "details_url": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/P2LC4Z",
+    "source_url": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/P2LC4Z",
+    "description": "Celebrate the season with a little creativity! Join us at Lavenderland for a relaxing, hands-on workshop and create your own lavender-inspired candle or decorative wax hanger. Perfect for couples, friends, families and solo visitors looking for a creative experience in Richmond, BC. 📍 Lavenderland, Richmond, BC 📅 Open Daily, except Wednesdays and Thursdays ⏰ Daily Workshop Sessions: Monday, Tues",
+    "artist": null,
+    "lineup": [],
+    "category": null,
+    "restrictions": null,
+    "price": null,
+    "price_base": null,
+    "price_fee": null,
+    "price_all_in": null,
+    "showings": [
+      {
+        "date": "2026-11-24",
+        "time": "9:00 AM",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T02:08:53.446Z",
+    "candidate_tier1_url": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/P2LC4Z",
+    "candidate_tier1_source": "card_alternate_link",
+    "candidate_tier1_confidence": "high",
+    "candidate_tier1_staged_at": "2026-11-24T02:08:53.446Z",
+    "candidate_tier1_triad_validation": {
+      "valid": true,
+      "checked_at": "2026-11-24T02:08:53.446Z",
+      "reason": "Passed whitelisted platform check, geo boundary check, title overlap, and date alignment"
+    },
+    "links": {
+      "tier1_checkout": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/P2LC4Z",
+      "best_available": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/P2LC4Z",
+      "best_tier": "tier1",
+      "tier2_event_page": "https://admitone.com/events/richmond/community/crafting/candle-wax-hanger-workshops-at-lavenderland/P2LC4Z",
+      "tier3_calendar": "https://lavenderland.ca/pages/events",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://lavenderland.ca/"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.742Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "anvil-theatre-dance-into-christmas-2026-2026-12-03",
+    "event_id": "anvil-theatre-dance-into-christmas-2026-2026-12-03",
+    "title": "Dance Into Christmas 2026",
+    "venue": "Anvil Centre",
+    "city": "New West",
+    "region": "New West",
+    "date": "2026-12-03",
+    "dateSchedule": "2026-12-03 • 7:30 PM",
+    "time": "7:30 PM",
+    "ticket_url": "https://anvilcentre.com/our-events/dance-into-christmas-2026/",
+    "details_url": "https://anvilcentre.com/our-events/dance-into-christmas-2026/",
+    "source_url": "https://anvilcentre.com/our-events/dance-into-christmas-2026",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "All Ages",
+    "price": 38,
+    "price_base": 38,
+    "price_fee": 0,
+    "price_all_in": 38,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-12-03",
+        "start_time": "7:30 PM",
+        "doors_time": "none_available",
+        "end_time": "9:30 PM",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T02:10:29.946Z",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://anvilcentre.com/our-events/dance-into-christmas-2026/",
+      "tier3_calendar": "https://anvilcentre.com/events/",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://anvilcentre.com/",
+      "best_tier": "tier2",
+      "best_available": "https://anvilcentre.com/our-events/dance-into-christmas-2026/"
+    },
+    "best_tier": "tier2",
+    "step1b_audited_at": "2026-11-24T03:36:07.742Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "anvil-theatre-hollywood-harmonies-for-the-ho-2026-12-17",
+    "event_id": "anvil-theatre-hollywood-harmonies-for-the-ho-2026-12-17",
+    "title": "Hollywood Harmonies for the Holidays",
+    "venue": "Anvil Centre",
+    "city": "New West",
+    "region": "New West",
+    "date": "2026-12-17",
+    "dateSchedule": "2026-12-17 • 7:00 PM",
+    "time": "7:00 PM",
+    "ticket_url": "https://anvilcentre.com/our-events/hollywood-harmonies-for-the-holidays",
+    "details_url": "https://anvilcentre.com/our-events/hollywood-harmonies-for-the-holidays",
+    "source_url": "https://anvilcentre.com/our-events/hollywood-harmonies-for-the-holidays",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "All Ages",
+    "price": 31,
+    "price_base": 31,
+    "price_fee": 0,
+    "price_all_in": 31,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-12-17",
+        "start_time": "7:00 PM",
+        "doors_time": "none_available",
+        "end_time": "9:00 PM",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T02:11:19.150Z",
+    "step1b_audited_at": "2026-11-24T03:36:07.742Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
+  },
+  {
+    "id": "main-stage-at-the-su-robin-hood-the-panto-2026-11-27",
+    "event_id": "main-stage-at-the-su-robin-hood-the-panto-2026-11-27",
+    "title": "Robin Hood: The Panto",
+    "venue": "Surrey City Hall (Surrey Civic Plaza)",
+    "city": "Surrey",
+    "region": "Surrey",
+    "date": "2026-11-27",
+    "dateSchedule": "2026-11-27 • 7:30 PM",
+    "time": "7:30 PM",
+    "ticket_url": "https://purchase.surrey.ca/ChooseSeats/42001",
+    "details_url": "https://www.surrey.ca/news-events/events/robin-hood-panto",
+    "source_url": "https://www.surrey.ca/news-events/events/robin-hood-panto",
+    "description": null,
+    "artist": null,
+    "lineup": [],
+    "category": "shows",
+    "restrictions": "All Ages",
+    "price": 35,
+    "price_base": 35,
+    "price_fee": 0,
+    "price_all_in": 35,
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-27",
+        "start_time": "7:30 PM",
+        "doors_time": "none_available",
+        "end_time": "9:45 PM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 2,
+        "date": "2026-11-28",
+        "start_time": "2:30 PM",
+        "doors_time": "none_available",
+        "end_time": "4:45 PM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 3,
+        "date": "2026-11-29",
+        "start_time": "2:30 PM",
+        "doors_time": "none_available",
+        "end_time": "4:45 PM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 4,
+        "date": "2026-12-03",
+        "start_time": "7:30 PM",
+        "doors_time": "none_available",
+        "end_time": "9:45 PM",
+        "status": "upcoming"
+      },
+      {
+        "slot": 5,
+        "date": "2026-12-04",
+        "start_time": "7:30 PM",
+        "doors_time": "none_available",
+        "end_time": "9:45 PM",
+        "status": "upcoming"
+      }
+    ],
+    "audited_at": "2026-11-24T02:28:24.491Z",
+    "candidate_tier1_url": "https://purchase.surrey.ca/ChooseSeats/42001",
+    "links": {
+      "tier1_checkout": "https://purchase.surrey.ca/ChooseSeats/42001",
+      "best_available": "https://purchase.surrey.ca/ChooseSeats/42001",
+      "best_tier": "tier1",
+      "tier2_event_page": "https://www.surrey.ca/news-events/events/robin-hood-panto",
+      "tier3_calendar": "https://www.surrey.ca/news-events/events",
+      "tier4_civic_destination": null,
+      "tier5_venue_home": "https://www.surrey.ca/arts-culture/surrey-civic-theatres"
+    },
+    "best_tier": "tier1",
+    "step1b_audited_at": "2026-11-24T03:36:07.742Z",
+    "step4_grounded_at": "2026-11-24T03:46:37.882Z"
   }
 ]

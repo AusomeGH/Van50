@@ -1027,9 +1027,20 @@ export async function huntTier1LinkForEvent(eventCard, options = {}) {
     if (pageHtml) {
       const extractedLinks = extractLinksFromHtml(pageHtml, currentBestUrl);
 
+      // Fix 5 (Process Audit): Reject bare generic /Checkout, /Basket, /Cart URLs lacking an event/instance ID
+      const isGenericCheckoutShell = (rawU) => {
+        try {
+          const uo = new URL(rawU);
+          const pathClean = uo.pathname.replace(/\/+$/, "").toLowerCase();
+          return /^\/(?:checkout|basket|cart|order|orders)$/.test(pathClean) && !uo.search;
+        } catch (_) {
+          return false;
+        }
+      };
+
       // Check extracted links for whitelisted ticketing deep links
       for (const item of extractedLinks) {
-        if (isWhitelistedTicketingUrl(item.url)) {
+        if (isWhitelistedTicketingUrl(item.url) && !isGenericCheckoutShell(item.url)) {
           const triad = validateTriadMatch(item.url, date, title, venue, {
             inContext: true,
             anchorText: item.anchorText,

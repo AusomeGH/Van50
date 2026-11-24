@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.2.0",
-    "updatedAt": "2026-11-18T14:35:13.914Z",
+    "updatedAt": "2026-11-24T07:54:45-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {},
@@ -95,7 +95,8 @@
     "Pitt Meadows Museum": "https://www.pittmeadowsmuseum.com/events.html",
     "Timms Community Centre": "https://www.langleycity.ca/community-culture/events",
     "Latin Plaza Hub (Latincouver)": "https://www.latincouver.ca/events/",
-    "Grandview Park": "https://thedrive.ca/events/"
+    "Grandview Park": "https://thedrive.ca/events/",
+    "Cloverdale Rodeo and Country Fair": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -707,7 +708,8 @@
     "the-cinematheque-escape-net-2026-11-22",
     "the-cinematheque-the-portuguese-2026-11-23",
     "michael-j-fox-theatr-marathi-society-of-bc-presents-2026-11-22",
-    "timms-community-cent-langley-christmas-village-2026-11-25"
+    "timms-community-cent-langley-christmas-village-2026-11-25",
+    "the-cinematheque-invincibles-2026-11-24"
   ],
   "venue_policy_rules": {
     "Pizzeria Ludica": {
@@ -1015,6 +1017,20 @@
       "curatorGuidance": "Historic Theatre, Christopher Wootten Stage at Vancity Culture Lab, and Cultch Gallery share 1895 Venables St (Commercial Drive / East Van).",
       "learnedAt": "2026-11-10T23:49:00.000Z",
       "source": "Curator Studio Instruction"
+    },
+    "Cloverdale Rodeo and Country Fair": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/",
+      "summary": "Curator guidance recorded for Cloverdale Rodeo and Country Fair: Not worthy of its own festival category",
+      "curatorGuidance": "Not worthy of its own festival category",
+      "learnedAt": "2026-11-24T14:54:45.607310+00:00",
+      "source": "Curator Studio Instruction inst_1795532085579"
     }
   },
   "notes": {

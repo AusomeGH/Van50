@@ -251,6 +251,19 @@ export function getExistingCatalogLookup() {
 
 const STAGE1A_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
 const SOURCE_HEALTH_PATH = path.join(ROOT_DIR, "data", "layers", "source_health_report.json");
+const SOURCE_CONTROLS_PATH = path.join(ROOT_DIR, "data", "source_controls.json");
+
+function loadSourceControlsMap() {
+  try {
+    if (!fs.existsSync(SOURCE_CONTROLS_PATH)) return {};
+    const raw = JSON.parse(fs.readFileSync(SOURCE_CONTROLS_PATH, "utf-8"));
+    return (raw && typeof raw === "object" && raw.controls && typeof raw.controls === "object")
+      ? raw.controls
+      : {};
+  } catch (_) {
+    return {};
+  }
+}
 
 const HARD_REJECT_URL_RE = /\/(?:login|signup|sign-?in|register|cart|basket|viewbasket|myaccount|account|privacy|terms|contact|about|who-we-are|donate|donations?|ticket-donations?|support|corporate-giving|patrons-circle|major-gifts|gift-cards?|vouchers?|faq|volunteer|volunteering|membership|season-memberships?|season-pass(?:es)?|annual-pass(?:es)?|membership-pass(?:es)?|all-access-pass(?:es)?|stats\/(?:roster|standings|leaders|player|game-center|schedule|team)|merchandise|merch|shop|store|ticket-info|tickets-info|ticketinfo|ticket-policies|pricing|admission-rates|rates|concession-menu|menus?|rentals?|private-events?|book-for-private|health-and-safety|house-rules|protocols|press|careers|jobs|staff|board|sponsors?|be-a-sponsor|sponsorship|scholarships?|trophies|gallery-publications|exhibition-catalogues|city-government|city-departments|public-safety|services-and-payments|sport-hosting|things-to-do|eat-drink|events\/purchase|submit|virtual-tour|crime-prevention|bike-valet|past-events|archive|category|tag|author|wp-content\/uploads|accessibility|directions|parking|series|education)\b|web\.archive\.org|ticket-donation|donation-program/i;
 
@@ -260,15 +273,51 @@ const DATE_SLUG_OR_ID_RE = /(?:202[6-9]-\d{2}-\d{2}|\/(?:events?|shows?|listings
 const DATE_BADGE_RE = /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}\b|\b\d{1,2}:\d{2}\s*(?:am|pm)\b/i;
 const GENERIC_EVENT_PATH_RE = /\/(?:events?|shows?|films?|tickets?|schedule|performances?|screenings?|chooseseats|production|whats-on|whatson|season|concert|exhibition|program)\b/i;
 
-async function recordSourceHealth(url, status, detail = "") {
+async function recordSourceHealth(url, status, detail = "", extra = {}) {
   try {
     await safeUpdateJsonFile(SOURCE_HEALTH_PATH, {}, (report) => {
       const obj = (report && typeof report === "object" && !Array.isArray(report)) ? report : {};
+      const prev = (obj[url] && typeof obj[url] === "object") ? obj[url] : {};
+      const isErr = status !== "http_200_ok";
       obj[url] = {
+        ...prev,
         url,
         status,
         detail: String(detail || "").slice(0, 140),
         checked_at: new Date().toISOString(),
+        consecutive_error_runs: isErr ? (Number(prev.consecutive_error_runs) || 0) + 1 : 0,
+        ...extra,
+      };
+      return obj;
+    });
+  } catch (_) {
+    // Non-fatal telemetry write
+  }
+}
+
+async function recordSourceRunMetrics(url, { durationSec = 0, newEvents = 0, totalProcessed = 0, hadError = false } = {}) {
+  try {
+    await safeUpdateJsonFile(SOURCE_HEALTH_PATH, {}, (report) => {
+      const obj = (report && typeof report === "object" && !Array.isArray(report)) ? report : {};
+      const prev = (obj[url] && typeof obj[url] === "object") ? obj[url] : { url };
+      const prevCount = Number(prev.run_count) || 0;
+      const prevAvg = Number(prev.avg_duration_sec) || 0;
+      const cleanDur = Math.max(0, Math.round(Number(durationSec || 0) * 10) / 10);
+      const nextCount = prevCount + 1;
+      const nextAvg = prevCount > 0
+        ? Math.round(((prevAvg * prevCount + cleanDur) / nextCount) * 10) / 10
+        : cleanDur;
+      obj[url] = {
+        ...prev,
+        url,
+        last_duration_sec: cleanDur,
+        avg_duration_sec: nextAvg,
+        run_count: nextCount,
+        last_new_events: Number(newEvents) || 0,
+        last_processed_events: Number(totalProcessed) || 0,
+        consecutive_zero_runs: newEvents > 0 ? 0 : (Number(prev.consecutive_zero_runs) || 0) + 1,
+        consecutive_error_runs: hadError ? (Number(prev.consecutive_error_runs) || 0) + 1 : (Number(prev.consecutive_error_runs) || 0),
+        last_run_completed_at: new Date().toISOString(),
       };
       return obj;
     });
@@ -352,6 +401,19 @@ function scoreAndFilterCandidateEntries(entries, calendarUrl) {
       continue;
     }
     if (p.endsWith("/ticket-info") || p.endsWith("/pricing") || p.endsWith("/admission-rates") || p.endsWith("/concession-menu")) {
+      continue;
+    }
+    // Fix 1 (Process Audit): Reject social media posts, organizer dashboards, /news/ archives, and past-year slugs (2010–2025)
+    if (/(?:^|\.)(?:instagram\.com|facebook\.com|fb\.me|twitter\.com|x\.com|tiktok\.com|youtube\.com|youtu\.be|linkedin\.com)$/i.test(urlObj.hostname)) {
+      continue;
+    }
+    if (/\/(?:dashboard|events\/create|create-event|login|signin|sign-in|signup|sign-up|cart|checkout|basket)(?:\/|$)/i.test(p)) {
+      continue;
+    }
+    if (/\/(?:news|quick-news|press-release|press-releases|blog|announcements)\//i.test(p)) {
+      continue;
+    }
+    if (/(?:^|[\/_-])20(?:1\d|2[0-5])(?:[\/_-]|\.html?$|$)/i.test(p)) {
       continue;
     }
     if (/thecinematheque\.ca\/films\/(?:director\/|20(?:1\d|2[0-5])\/)/i.test(hrefNorm)) continue;
@@ -458,12 +520,21 @@ export async function harvestCalendarLinks(calendarUrl) {
     }
 
     const httpLinks = scoreAndFilterCandidateEntries(rawEntries, httpFinalUrl);
-    await recordSourceHealth(calendarUrl, "http_200_ok", `links=${httpLinks.length} jsonLd=${jsonLdEvents.length} (${httpMs}ms)`);
-    if (httpLinks.length > 0) {
+    // Fix 2 (Anti-SPA Blindness Gate): Never bypass Chromium on known JS SPA portals (Showpass, Eventive, AdmitONE, TicketWeb)
+    // when no JSON-LD events were found, or when static HTML yielded < 2 links without JSON-LD.
+    const isKnownJsSpaPortal = /(?:showpass\.com|eventive\.org|admitone\.com|ticketweb\.ca)/i.test(httpFinalUrl);
+    const allowHttpBypass = httpLinks.length > 0 && (jsonLdEvents.length > 0 || (!isKnownJsSpaPortal && httpLinks.length >= 2));
+    await recordSourceHealth(calendarUrl, "http_200_ok", `links=${httpLinks.length} jsonLd=${jsonLdEvents.length} (${httpMs}ms)`, {
+      spa_fallback_used: !allowHttpBypass,
+      last_static_links: httpLinks.length,
+      last_jsonld_count: jsonLdEvents.length,
+      last_http_ms: httpMs,
+    });
+    if (allowHttpBypass) {
       console.log(`⚡ [Stage 1A HTTP-First] Discovered ${httpLinks.length} prioritized event candidate links in ${httpMs}ms (JSON-LD: ${jsonLdEvents.length}, Chromium bypassed).`);
       return httpLinks;
     }
-    console.log(`🔄 [Stage 1A SPA Fallback] HTTP 200 (${httpMs}ms) returned 0 static links on ${calendarUrl} — launching targeted Chromium fallback...`);
+    console.log(`🔄 [Stage 1A SPA Fallback] HTTP 200 (${httpMs}ms) returned ${httpLinks.length} static link(s) (JSON-LD: ${jsonLdEvents.length}${isKnownJsSpaPortal ? ", JS SPA portal" : ""}) on ${calendarUrl} — launching targeted Chromium fallback...`);
   } catch (httpErr) {
     console.log(`🩺 [Stage 1A Health] Network/DNS error (${httpErr.message.slice(0, 80)}) on ${calendarUrl} — skipping Chromium launch.`);
     await recordSourceHealth(calendarUrl, "network_or_dns_err", httpErr.message);
@@ -1313,7 +1384,32 @@ export async function runAllVenueFeedsBatch(options = {}) {
   allFeeds.length = 0;
   allFeeds.push(...dedupedFeeds);
 
-  allFeeds.sort((a, b) => (scoreFeedPriority(b) - scoreFeedPriority(a)) || String(a.name || "").localeCompare(String(b.name || "")));
+  // Apply curator source controls (disabled / paused exclusion & cadence tier priority)
+  const sourceControls = loadSourceControlsMap();
+  let curatorExcludedCount = 0;
+  const activeControlledFeeds = allFeeds.filter((f) => {
+    const norm = normalizeCrawlerFeedUrl(f.url);
+    const ctrl = sourceControls[norm] || sourceControls[f.url] || null;
+    if (ctrl) {
+      const st = String(ctrl.status || "active").toLowerCase();
+      if (st === "disabled" || st === "paused") {
+        curatorExcludedCount++;
+        return false;
+      }
+      if (ctrl.tier) f.tier = String(ctrl.tier).toUpperCase();
+    }
+    return true;
+  });
+  if (curatorExcludedCount > 0) {
+    console.log(`🎛️ [Curator Source Controls] Skipped ${curatorExcludedCount} paused/disabled feed(s) via data/source_controls.json.`);
+  }
+  allFeeds.length = 0;
+  allFeeds.push(...activeControlledFeeds);
+
+  allFeeds.sort((a, b) => {
+    const tierBoost = (f) => (f.tier === "A" ? 150 : (f.tier === "C" ? -150 : 0));
+    return ((scoreFeedPriority(b) + tierBoost(b)) - (scoreFeedPriority(a) + tierBoost(a))) || String(a.name || "").localeCompare(String(b.name || ""));
+  });
 
   // Filter feeds by requested single city ("vancouver" | "surrey" | "burnaby" | "richmond" | "new-west" | "langley") or keep all ("all")
   const feeds = cityScope === "all"
@@ -1321,6 +1417,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
     : allFeeds.filter((f) => normalizeHarvesterCityKey(f.city || "Vancouver") === cityScope);
 
   const maxTotalEvents = (options.maxEvents !== undefined && options.maxEvents !== null) ? Number(options.maxEvents) : 0;
+  const maxSources = (options.maxSources !== undefined && options.maxSources !== null) ? Number(options.maxSources) : 0;
   const isResume = Boolean(options.resume);
   const CHECKPOINT_PATH = path.join(ROOT_DIR, "data", "layers", "harvester_checkpoint.json");
 
@@ -1393,14 +1490,18 @@ export async function runAllVenueFeedsBatch(options = {}) {
   if (isResume && initialScannedInScope > 0) {
     console.log(`⏩ [Resume Mode] ${initialScannedInScope}/${feeds.length} feeds already scanned — continuing at Source #${Math.min(feeds.length, initialScannedInScope + 1)}/${feeds.length}: ${feeds[startFeedIndex]?.name || "Next Feed"}`);
   }
+  if (maxSources > 0) {
+    console.log(`🎯 Target Source Cap: Up to ${maxSources} prioritized source feeds in this run`);
+  }
   if (maxTotalEvents > 0) {
     console.log(`🎯 Target Event Cap: Exactly ${maxTotalEvents} events total across feeds`);
-  } else {
+  } else if (maxSources === 0) {
     console.log(`🎯 Scope: Unconstrained full catalog crawl for ${cityLabel}`);
   }
   console.log(`================================================================\n`);
 
   const allResults = [];
+  let sourcesProcessedThisRun = 0;
 
   for (let i = 0; i < feeds.length; i++) {
     const feed = feeds[i];
@@ -1408,6 +1509,12 @@ export async function runAllVenueFeedsBatch(options = {}) {
     if (isResume && normFeedUrl && completedNormUrls.has(normFeedUrl)) {
       continue;
     }
+
+    if (maxSources > 0 && sourcesProcessedThisRun >= maxSources) {
+      console.log(`\n🎯 REACHED SOURCE CAP: Successfully scanned ${sourcesProcessedThisRun}/${maxSources} source feeds (${totalHarvestedEvents} new events harvested).`);
+      break;
+    }
+    sourcesProcessedThisRun++;
 
     if (maxTotalEvents > 0 && totalHarvestedEvents >= maxTotalEvents) {
       console.log(`\n🎯 REACHED TARGET LIMIT: Successfully harvested ${totalHarvestedEvents}/${maxTotalEvents} discrete events.`);
@@ -1446,10 +1553,13 @@ export async function runAllVenueFeedsBatch(options = {}) {
     }
     console.log(`────────────────────────────────────────────────────────────────`);
 
+    const feedStartMs = Date.now();
     try {
       const res = await runCalendarBatch(feed.url, { ...options, city: feed.city, maxEvents: needed, allowOverviewFallback: false, isAllVenuesBatch: true });
+      const feedDurationSec = (Date.now() - feedStartMs) / 1000;
       const succeededNew = Array.isArray(res) ? res.filter((r) => r && r.success && r.isNew).length : 0;
       const succeededTotal = Array.isArray(res) ? res.filter((r) => r && r.success).length : 0;
+      await recordSourceRunMetrics(feed.url, { durationSec: feedDurationSec, newEvents: succeededNew, totalProcessed: succeededTotal, hadError: false });
       totalHarvestedEvents += succeededNew;
       allResults.push({ venue: feed.name, city: feed.city, url: feed.url, results: res, harvestedCount: succeededNew, totalProcessed: succeededTotal });
       if (succeededNew > 0) {
@@ -1490,6 +1600,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
         }));
       } catch (_) { }
     } catch (feedErr) {
+      await recordSourceRunMetrics(feed.url, { durationSec: (Date.now() - feedStartMs) / 1000, newEvents: 0, totalProcessed: 0, hadError: true });
       console.error(`❌ Error harvesting feed ${feed.name}: ${feedErr.message}`);
     }
 
@@ -1523,16 +1634,21 @@ if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
   const cliArgs = process.argv.slice(2);
   const isResumeCli = cliArgs.includes("--resume");
   let cliCity = null;
+  let cliMaxSources = 0;
   for (let i = 0; i < cliArgs.length; i++) {
     const arg = cliArgs[i];
     if (arg.startsWith("--city=")) {
       cliCity = arg.split("=")[1]?.trim().toLowerCase() || null;
     } else if (arg === "--city" && cliArgs[i + 1]) {
       cliCity = cliArgs[i + 1].trim().toLowerCase();
+    } else if (arg.startsWith("--max-sources=") || arg.startsWith("--sources=")) {
+      cliMaxSources = parseInt(arg.split("=")[1], 10) || 0;
+    } else if ((arg === "--max-sources" || arg === "--sources") && cliArgs[i + 1]) {
+      cliMaxSources = parseInt(cliArgs[i + 1], 10) || 0;
     }
   }
 
-  const positional = cliArgs.filter((a, idx) => !a.startsWith("--") && (idx === 0 || cliArgs[idx - 1] !== "--city"));
+  const positional = cliArgs.filter((a, idx) => !a.startsWith("--") && (idx === 0 || !["--city", "--max-sources", "--sources"].includes(cliArgs[idx - 1])));
   const targetCal = (positional[0] || "").trim();
   const rawMax = positional[1];
   const max = (rawMax !== undefined && rawMax !== "") ? parseInt(rawMax, 10) : 0;
@@ -1552,7 +1668,7 @@ if (process.argv[1] && process.argv[1].endsWith("calendar_harvester.js")) {
       resolvedCity = strippedTarget;
     }
 
-    runAllVenueFeedsBatch({ maxEvents: max, resume: isResumeTarget, city: resolvedCity })
+    runAllVenueFeedsBatch({ maxEvents: max, maxSources: cliMaxSources, resume: isResumeTarget, city: resolvedCity })
       .then(() => process.exit(0))
       .catch((err) => {
         console.error(`💥 All Feeds Harvester Error: ${err.message}`);

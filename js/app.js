@@ -2891,26 +2891,104 @@ function setupEventListeners() {
   // View Switcher (Cards vs Map) — Binds ALL view switcher buttons across PC & Mobile
   const eventsGrid = document.getElementById('events-grid');
   const mapWrapper = document.getElementById('map-view-wrapper');
+  let currentView = 'cards';
+  let pushedMapHistory = false;
+  let lastCardsScrollY = 0;
+  let isTopToolbarIntersecting = true;
+  window._currentCatalogView = currentView;
 
-  window.setCatalogViewMode = function (mode) {
+  const mapSvgIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>';
+
+  function buildViewUrl(targetView) {
+    try {
+      const url = new URL(window.location.href);
+      if (targetView === 'map') {
+        url.searchParams.set('view', 'map');
+      } else {
+        url.searchParams.delete('view');
+      }
+      return url.pathname + url.search + url.hash;
+    } catch (_) {
+      return targetView === 'map' ? '?view=map' : window.location.pathname;
+    }
+  }
+
+  window.updateFloatingMapReturnPill = function () {
+    const floatingBtn = document.getElementById('mobile-view-toggle');
+    if (!floatingBtn) return;
+    if (currentView === 'map') {
+      const count = Array.isArray(window._pendingMapFilteredEvents)
+        ? window._pendingMapFilteredEvents.length
+        : (document.querySelectorAll('#events-grid .event-card').length || 0);
+      floatingBtn.hidden = false;
+      floatingBtn.removeAttribute('hidden');
+      floatingBtn.classList.remove('is-top-visible');
+      floatingBtn.classList.add('is-map-return-pill', 'active');
+      floatingBtn.setAttribute('aria-pressed', 'true');
+      floatingBtn.setAttribute('aria-label', `Show Event List (${count})`);
+      floatingBtn.innerHTML = `<span>← Show Event List (${count})</span>`;
+    } else {
+      floatingBtn.classList.remove('is-map-return-pill', 'active');
+      floatingBtn.classList.toggle('is-top-visible', isTopToolbarIntersecting);
+      floatingBtn.setAttribute('aria-pressed', 'false');
+      floatingBtn.setAttribute('aria-label', 'Switch to Map view');
+      floatingBtn.innerHTML = `${mapSvgIcon}<span>Map</span>`;
+    }
+  };
+
+  window.setCatalogViewMode = function (mode, opts = {}) {
     if (!eventsGrid || !mapWrapper) return;
-    const isMap = mode === 'map';
+    const targetView = mode === 'map' ? 'map' : 'cards';
+    const isMap = targetView === 'map';
+    const fromPopState = Boolean(opts && opts.fromPopState);
+    const skipHistory = Boolean(opts && opts.skipHistory);
 
-    const cardsSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>';
-    const mapSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>';
+    // History Stack Management (synchronous inside user click handler for iOS Safari / Android Chrome swipe-back)
+    if (isMap && currentView !== 'map') {
+      lastCardsScrollY = window.scrollY || window.pageYOffset || 0;
+      if (!fromPopState && !skipHistory && typeof history !== 'undefined' && typeof history.pushState === 'function') {
+        try {
+          history.pushState({ view: 'map' }, '', buildViewUrl('map'));
+          pushedMapHistory = true;
+        } catch (_) { }
+      }
+    } else if (!isMap && currentView === 'map') {
+      if (!fromPopState && !skipHistory) {
+        if (pushedMapHistory && typeof history !== 'undefined' && typeof history.back === 'function') {
+          try {
+            history.back();
+            return;
+          } catch (_) { }
+        } else if (typeof history !== 'undefined' && typeof history.replaceState === 'function') {
+          try {
+            history.replaceState({ view: 'cards' }, '', buildViewUrl('cards'));
+          } catch (_) { }
+        }
+      }
+    }
 
-    const allToggleButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, #mobile-top-map-btn, [data-view]');
+    currentView = targetView;
+    window._currentCatalogView = currentView;
+
+    const allToggleButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, #mobile-top-map-btn, [data-view], [data-switch-view]');
     allToggleButtons.forEach((btn) => {
-      if (btn.id === 'mobile-view-toggle' || btn.id === 'mobile-top-map-btn' || btn.getAttribute('data-view') === 'toggle') {
-        btn.innerHTML = isMap ? `${cardsSvg}<span>Cards</span>` : `${mapSvg}<span>Map</span>`;
+      if (btn.id === 'mobile-view-toggle') {
+        return; // Handled unconditionally by updateFloatingMapReturnPill()
+      }
+      if (btn.id === 'mobile-top-map-btn' || btn.getAttribute('data-view') === 'toggle') {
+        btn.innerHTML = isMap ? '<span>← List View</span>' : `${mapSvgIcon}<span>Map</span>`;
         btn.classList.toggle('active', isMap);
         btn.setAttribute('aria-pressed', isMap ? 'true' : 'false');
+        btn.setAttribute('aria-label', isMap ? 'Return to List View' : 'Switch to Map view');
+        return;
+      }
+      if (btn.hasAttribute('data-switch-view')) {
         return;
       }
       const btnMode = btn.getAttribute('data-view')
         || btn.getAttribute('data-view-mode')
         || (btn.id === 'view-map-btn' || /map/i.test(btn.textContent) ? 'map' : 'cards');
-      const isBtnActive = btnMode === (isMap ? 'map' : 'cards');
+      const isBtnActive = btnMode === targetView;
       btn.classList.toggle('active', isBtnActive);
       btn.setAttribute('aria-pressed', isBtnActive ? 'true' : 'false');
     });
@@ -2943,21 +3021,28 @@ function setupEventListeners() {
         invalidateVancouverMap();
       }
     }
+
+    window.updateFloatingMapReturnPill();
+
     if (typeof window.updateScrollDateIndicator === 'function') {
       window.updateScrollDateIndicator();
     }
   };
 
   window.bindAllViewSwitcherButtons = function () {
-    const allButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, [data-view]');
+    const allButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, #mobile-top-map-btn, [data-view], [data-switch-view]');
     allButtons.forEach((btn) => {
       if (btn._van50ViewSwitcherBound) return;
       btn._van50ViewSwitcherBound = true;
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (btn.id === 'mobile-view-toggle' || btn.getAttribute('data-view') === 'toggle') {
-          const isMapCurrentlyActive = Boolean(mapWrapper && (mapWrapper.classList.contains('active') || mapWrapper.style.display === 'block'));
-          window.setCatalogViewMode(isMapCurrentlyActive ? 'cards' : 'map');
+        const explicitSwitch = btn.getAttribute('data-switch-view');
+        if (explicitSwitch) {
+          window.setCatalogViewMode(explicitSwitch === 'map' ? 'map' : 'cards');
+          return;
+        }
+        if (btn.id === 'mobile-view-toggle' || btn.id === 'mobile-top-map-btn' || btn.getAttribute('data-view') === 'toggle') {
+          window.setCatalogViewMode(currentView === 'map' ? 'cards' : 'map');
           return;
         }
         const targetMode = btn.getAttribute('data-view')
@@ -2969,6 +3054,18 @@ function setupEventListeners() {
   };
 
   window.bindAllViewSwitcherButtons();
+
+  // Clicking the Van50 header logo while in Map Mode returns to Cards View
+  const brandHomeLink = document.getElementById('brand-home-link');
+  if (brandHomeLink && !brandHomeLink._van50MapReturnBound) {
+    brandHomeLink._van50MapReturnBound = true;
+    brandHomeLink.addEventListener('click', (e) => {
+      if (currentView === 'map') {
+        e.preventDefault();
+        window.setCatalogViewMode('cards');
+      }
+    });
+  }
 
   // Surprise Outing Roulette is wired via #btn-open-roulette in js/roulette.js
 
@@ -2992,7 +3089,7 @@ function setupEventListeners() {
     });
   }
 
-  // Mobile Swipe-Back History Guard for Overlays (Filters Drawer, Saved Events Drawer, Suggest / Report Modal)
+  // Mobile Swipe-Back History Guard for Overlays (Filters Drawer, Saved Events Drawer, Suggest / Report Modal) & Map View
   let _activeHistoryOverlay = null;
   let _isHandlingPopState = false;
 
@@ -3016,21 +3113,37 @@ function setupEventListeners() {
     }
   };
 
-  window.addEventListener('popstate', () => {
-    if (!_activeHistoryOverlay) return;
-    const closing = _activeHistoryOverlay;
-    _isHandlingPopState = true;
-    _activeHistoryOverlay = null;
-    try {
-      if (closing === 'filters' && typeof window.closeMobileFiltersSheet === 'function') {
-        window.closeMobileFiltersSheet(true);
-      } else if (closing === 'saved' && typeof window.closeItineraryDrawer === 'function') {
-        window.closeItineraryDrawer(true);
-      } else if (closing === 'suggest_report' && typeof window.closeSuggestReportModal === 'function') {
-        window.closeSuggestReportModal(true);
+  window.addEventListener('popstate', (e) => {
+    if (_activeHistoryOverlay) {
+      const closing = _activeHistoryOverlay;
+      _isHandlingPopState = true;
+      _activeHistoryOverlay = null;
+      try {
+        if (closing === 'filters' && typeof window.closeMobileFiltersSheet === 'function') {
+          window.closeMobileFiltersSheet(true);
+        } else if (closing === 'saved' && typeof window.closeItineraryDrawer === 'function') {
+          window.closeItineraryDrawer(true);
+        } else if (closing === 'suggest_report' && typeof window.closeSuggestReportModal === 'function') {
+          window.closeSuggestReportModal(true);
+        }
+      } finally {
+        _isHandlingPopState = false;
       }
-    } finally {
-      _isHandlingPopState = false;
+      return;
+    }
+
+    const poppedView = e && e.state ? e.state.view : null;
+    if (currentView === 'map' && poppedView !== 'map') {
+      pushedMapHistory = false;
+      window.setCatalogViewMode('cards', { fromPopState: true });
+      try {
+        window.scrollTo({ top: lastCardsScrollY, behavior: 'instant' });
+      } catch (_) {
+        window.scrollTo(0, lastCardsScrollY);
+      }
+    } else if (currentView === 'cards' && poppedView === 'map') {
+      pushedMapHistory = true;
+      window.setCatalogViewMode('map', { fromPopState: true });
     }
   });
 
@@ -3049,17 +3162,33 @@ function setupEventListeners() {
     }, 180);
   };
 
-  // Deduplicate Floating Map Button via IntersectionObserver on Top Search/Filter Toolbar
+  // Deduplicate Floating Map Button via IntersectionObserver on Top Search/Filter Toolbar (ONLY in Cards View)
   const topSearchToolbar = document.getElementById('mobile-search-filter-bar');
   const floatingMapBtn = document.getElementById('mobile-view-toggle');
   if (topSearchToolbar && floatingMapBtn && typeof IntersectionObserver === 'function') {
     const mapBtnObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        floatingMapBtn.classList.toggle('is-top-visible', entry.isIntersecting);
+        isTopToolbarIntersecting = entry.isIntersecting;
+        if (currentView === 'cards') {
+          floatingMapBtn.classList.toggle('is-top-visible', entry.isIntersecting);
+        } else {
+          floatingMapBtn.classList.remove('is-top-visible');
+          floatingMapBtn.hidden = false;
+        }
       });
     }, { threshold: 0.05 });
     mapBtnObserver.observe(topSearchToolbar);
   }
+
+  // Support direct landing on shared ?view=map URL (without pushing extra history)
+  try {
+    if (new URLSearchParams(window.location.search).get('view') === 'map') {
+      pushedMapHistory = false;
+      setTimeout(() => {
+        window.setCatalogViewMode('map', { skipHistory: true });
+      }, 0);
+    }
+  } catch (_) { }
 
   // Itinerary Drawer Handlers
   const itineraryBtn = document.getElementById('itinerary-btn');
@@ -3148,8 +3277,16 @@ function setupEventListeners() {
   };
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
+    if (e.key !== 'Escape') return;
+    if (mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
       window.closeMobileFiltersSheet(false);
+      return;
+    }
+    const drawerOpen = Boolean(drawer && drawer.classList.contains('active'));
+    const srModal = document.getElementById('suggest-report-modal');
+    const srOpen = Boolean(srModal && srModal.classList.contains('active'));
+    if (!drawerOpen && !srOpen && !_activeHistoryOverlay && currentView === 'map') {
+      window.setCatalogViewMode('cards');
     }
   });
 
@@ -5460,6 +5597,9 @@ function applyFiltersAndRender() {
 
   // Defer Map Marker rebuilds while Map View is hidden; sync immediately when Map View is active
   window._pendingMapFilteredEvents = filtered;
+  if (typeof window.updateFloatingMapReturnPill === 'function') {
+    window.updateFloatingMapReturnPill();
+  }
   const mapWrapCheck = document.getElementById('map-view-wrapper');
   const isMapVisible = Boolean(mapWrapCheck && (mapWrapCheck.classList.contains('active') || mapWrapCheck.style.display === 'block'));
   if (isMapVisible && typeof updateMapMarkers === 'function') {

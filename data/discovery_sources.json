@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.4.0",
-    "updatedAt": "2026-11-22",
+    "updatedAt": "2026-11-24",
     "totalSources": 163,
     "region": "Metro Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
@@ -2513,7 +2513,7 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract upcoming events and resolve to official box office or event page strictly <= $50.00 CAD all-in.",
-      "status": "active",
+      "status": "disabled",
       "last_scouted_at": null,
       "last_scout_yield": 0
     },
@@ -2535,7 +2535,7 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract upcoming events and resolve to official box office or event page strictly <= $50.00 CAD all-in.",
-      "status": "active",
+      "status": "disabled",
       "last_scouted_at": null,
       "last_scout_yield": 0
     },
@@ -2730,7 +2730,7 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract upcoming events and resolve to official box office or event page strictly <= $50.00 CAD all-in.",
-      "status": "active",
+      "status": "disabled",
       "last_scouted_at": null,
       "last_scout_yield": 0
     },

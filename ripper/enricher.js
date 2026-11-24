@@ -1255,8 +1255,16 @@ export async function runEnricher(options = {}) {
     return { success: true, count: 0 };
   }
 
-  // Pre-Enrichment Link Health & Tier 1 Hunter Pass (skip for harvested runs or cards already audited by Stage 1B)
-  const unauditedHuntTargets = targets.filter((t) => !t.step1b_audited_at);
+  // Pre-Enrichment Link Health & Tier 1 Hunter Pass (skip for harvested runs or cards already audited by Stage 1B within 24h)
+  const twentyFourHoursAgoMs = Date.now() - 24 * 60 * 60 * 1000;
+  const unauditedHuntTargets = targets.filter((t) => {
+    const tid = String(t.id || t.event_id || "").toLowerCase();
+    const schedRec = scheduleMap.get(tid) || {};
+    const auditedAt = t.step1b_audited_at || schedRec.step1b_audited_at;
+    if (!auditedAt) return true;
+    const parsedMs = Date.parse(auditedAt);
+    return Number.isFinite(parsedMs) ? parsedMs < twentyFourHoursAgoMs : false;
+  });
   if (!options.skipHunt && !(options.harvestedOnly || options.scope === "harvested") && unauditedHuntTargets.length > 0 && unauditedHuntTargets.length <= 40) {
     try {
       console.log(`\n⚡ [AI Enricher Pre-Flight] Checking link health across ${unauditedHuntTargets.length} targets...`);
@@ -1441,9 +1449,18 @@ export async function runEnricher(options = {}) {
       });
 
       const VALID_ARCHETYPES = ["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"];
-      const aiArchetype = (aiResult?.event_archetype && VALID_ARCHETYPES.includes(aiResult.event_archetype))
+      let aiArchetype = (aiResult?.event_archetype && VALID_ARCHETYPES.includes(aiResult.event_archetype))
         ? aiResult.event_archetype
         : null;
+      // Fix 6B (Process Audit): Prevent indoor concerts/theatre shows at civic centres (e.g. Anvil Centre)
+      // from being misclassified as `civic_park` when they are time-bound ticketed stage performances.
+      if (
+        !isPerennial &&
+        aiArchetype === "civic_park" &&
+        (category === "music" || category === "shows" || /\b(?:theatre|theater|concert|symphony|orchestra|harmonies|comedy|cabaret|musical|play|panto|dance|recital|tribute|showcase)\b/i.test(`${cleanTitle} ${rawDesc}`))
+      ) {
+        aiArchetype = "live_stage";
+      }
       const seedArchetype = (seed.event_archetype && seed.event_archetype !== "unknown") ? seed.event_archetype : null;
       const itemArchetype = (item.event_archetype && item.event_archetype !== "unknown") ? item.event_archetype : null;
       const rawArchetype = aiArchetype || seedArchetype || (rawDesc ? itemArchetype : null);

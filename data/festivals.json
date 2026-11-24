@@ -2433,8 +2433,8 @@
     "name": "Cloverdale Rodeo Grand Entry Team Applications Now Open",
     "festival_name": "Cloverdale Rodeo Grand Entry Team Applications Now Open",
     "aliases": [],
-    "status": "pending_curator_approval",
-    "approvalStatus": "pending",
+    "status": "rejected",
+    "approvalStatus": "rejected",
     "discovered_from_event_id": "cloverdale-rodeo-and-cloverdale-rodeo-grand-entry-t-2026-11-23",
     "venue_name": "Cloverdale Rodeo and Country Fair",
     "location": "Cloverdale Rodeo and Country Fair",
@@ -2443,6 +2443,7 @@
     "category": "festivals",
     "website_url": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/",
     "description": "Cloverdale Rodeo Grand Entry Team Applications Now Open at Cloverdale Rodeo and Country Fair",
-    "price": 0
+    "price": 0,
+    "rejectedAt": "2026-11-24"
   }
 ]

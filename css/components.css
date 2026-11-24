@@ -7958,6 +7958,54 @@ section[aria-label="Active Local Festivals"] .festival-theme-item-row:hover {
   flex-wrap: wrap;
 }
 
+.map-jump-header-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.map-back-to-list-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--accent, #0F766E);
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.25);
+  transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.map-back-to-list-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.32);
+}
+
+.map-back-to-list-btn:active {
+  transform: translateY(0);
+}
+
+.map-edge-swipe-guard {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 16px;
+  z-index: 10;
+  background: transparent;
+  pointer-events: auto;
+}
+
 .map-jump-label {
   font-family: var(--font-heading);
   font-size: 0.84rem;
@@ -11046,10 +11094,42 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price,
   transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
-.mobile-view-toggle.is-top-visible {
+.mobile-view-toggle.is-top-visible:not(.is-map-return-pill) {
   opacity: 0 !important;
   pointer-events: none !important;
   transform: translate(-50%, 18px) !important;
+}
+
+/* Force Floating Return Pill Visible on Desktop & Mobile Whenever Map View is Active */
+#mobile-view-toggle.is-map-return-pill,
+.mobile-view-toggle.is-map-return-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  position: fixed !important;
+  bottom: max(20px, env(safe-area-inset-bottom, 16px)) !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  z-index: 60 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  background: var(--accent, #0F766E) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35) !important;
+  font-weight: 700 !important;
+  padding: 10px 18px !important;
+  min-height: 42px !important;
+  border-radius: 999px !important;
+  white-space: nowrap !important;
+}
+
+#mobile-view-toggle.is-map-return-pill:hover,
+.mobile-view-toggle.is-map-return-pill:hover {
+  filter: brightness(1.08);
 }
 
 /* Expanded Card "View on Map" Button */

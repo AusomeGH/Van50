@@ -157,7 +157,7 @@
     "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "lindsay-family-stage-the-gingerbread-men-2026-12-07": {
-    "sig": "title mismatch between schedule (\"The Gingerbread Men\") and box office (\"The Gingerbread Men: And Yet Another Holiday Cabaret\")::",
+    "sig": "title mismatch between schedule (\"The Gingerbread Men\") and box office (\"THE GINGERBREAD MEN: AND YET ANOTHER HOLIDAY CABARET\")::",
     "decision": {
       "clean_title": "The Gingerbread Men: And Yet Another Holiday Cabaret",
       "artist": "The Gingerbread Men",
@@ -169,9 +169,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Adopted the complete official production title 'The Gingerbread Men: And Yet Another Holiday Cabaret' corroborated by the Box Office and Seed layers, while identifying the titular group as lead artist."
+      "arbitration_reasoning": "Adopted the complete official production title from the Box Office layer formatted in title case over the truncated short title, with active adult admission verified at $29.00 CAD."
     },
-    "updatedAt": "2026-11-17T02:59:36.800Z"
+    "updatedAt": "2026-11-24T00:28:47.319Z"
   },
   "the-revue-stage-infidels-jazz-presents-happies-2026-12-05": {
     "sig": "title mismatch between schedule (\"Infidels Jazz Presents: Happiest Jazz Band Plays Disney for the Holidays\") and box office (\"Infidels Jazz Presents: Happiest Jazz Band Plays Disney FT Holidays! (2PM)\")::",
@@ -221,7 +221,7 @@
     "updatedAt": "2026-11-17T02:59:36.800Z"
   },
   "celebrities-nightclu-playhouse-pres-no-thanks-boxin-2026-12-26": {
-    "sig": "title mismatch between schedule (\"Playhouse Pres: No Thanks (Boxing Day Bash)\") and box office (\"No Thanks (Boxing Day Bash)\")::",
+    "sig": "title mismatch between schedule (\"Playhouse Pres: No Thanks (Boxing Day Bash)\") and box office (\"Playhouse Pres. No Thanks (Boxing Day Bash)\")::",
     "decision": {
       "clean_title": "No Thanks (Boxing Day Bash)",
       "artist": "No Thanks",
@@ -229,13 +229,13 @@
         "No Thanks"
       ],
       "date": "2026-12-26",
-      "start_time": null,
+      "start_time": "10:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Resolved title to 'No Thanks (Boxing Day Bash)' by stripping the promotional presenter prefix 'Playhouse Pres:' consistent with editorial and seed records, while extracting 'No Thanks' as lead artist."
+      "arbitration_reasoning": "Adopted the editorial and seed clean title stripping the promotional presenter prefix while taking verified live stage start time and availability from the box office layer."
     },
-    "updatedAt": "2026-11-22T23:39:30.254Z"
+    "updatedAt": "2026-11-24T00:27:19.154Z"
   },
   "hollywood-theatre-best-of-1990-s-2000-s-music-vi-2027-01-08": {
     "sig": "title mismatch between schedule (\"Best of 1990’s & 2000’s Music Video Pop Party\") and box office (\"Best of 1990’s & 2000’s Music Video Pop Party - Backstreet Boys vs Spice Girls Edition with DJ Flip Out\")::",
@@ -274,21 +274,21 @@
     "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "celebrities-nightclu-playhouse-pres-andrew-bayer-2026-12-05": {
-    "sig": "title mismatch between schedule (\"Playhouse Pres: Andrew Bayer\") and box office (\"Playhouse Pres. Andrew Bayer\")::",
+    "sig": "title mismatch between schedule (\"Playhouse Pres: Andrew Bayer\") and box office (\"Playhouse: Andrew Bayer\")::",
     "decision": {
-      "clean_title": "Playhouse Pres: Andrew Bayer",
+      "clean_title": "Playhouse: Andrew Bayer",
       "artist": "Andrew Bayer",
       "lineup": [
         "Andrew Bayer"
       ],
       "date": "2026-12-05",
-      "start_time": null,
+      "start_time": "10:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Standardized the title to 'Playhouse Pres: Andrew Bayer' aligning with the schedule layer and official TicketWeb event slug while isolating Andrew Bayer as lead artist."
+      "arbitration_reasoning": "Adopted 'Playhouse: Andrew Bayer' as agreed across the Seed, Box Office, and Editorial layers over the truncated 'Pres' schedule variant, while extracting Andrew Bayer as the featured artist."
     },
-    "updatedAt": "2026-11-23T00:53:29.848Z"
+    "updatedAt": "2026-11-24T00:27:19.154Z"
   },
   "roedde-house-museum-vico-concert-in-the-parlour-uz-2026-11-20": {
     "sig": "title mismatch between schedule (\"VICO Concert in the Parlour: Uzbek Musical Heritage\") and box office (\"Concert in the Parlour: Uzbek Musical Heritage\")::",
@@ -675,7 +675,7 @@
     "updatedAt": "2026-11-18T10:58:15.790Z"
   },
   "hollywood-theatre-pitbull-rave-2026-12-05": {
-    "sig": "title mismatch between schedule (\"PITBULL RAVE\") and box office (\"Pitbull Rave - Hollywood Theatre | Vancouver\")::",
+    "sig": "title mismatch between schedule (\"Pitbull Rave\") and box office (\"Pitbull Rave - Hollywood Theatre | Vancouver\")::",
     "decision": {
       "clean_title": "Pitbull Rave",
       "artist": null,
@@ -685,9 +685,9 @@
       "doors_time": "10:00 PM",
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Adopted the Editorial layer's cleaned title 'Pitbull Rave' by stripping the venue/city suffix found on the Eventbrite Box Office title, confirmed active single-visit inventory via the Final Release tier ($40.00 CAD), and normalized showtime to 10:00 PM."
+      "arbitration_reasoning": "Selected 'Pitbull Rave' by stripping redundant venue and city suffixes from the box office title to match the authoritative editorial, schedule, and seed layers."
     },
-    "updatedAt": "2026-11-18T10:58:15.790Z"
+    "updatedAt": "2026-11-24T00:28:47.319Z"
   },
   "old-toronto-meet-the-presses-2026-indie-li-2026-11-21": {
     "sig": "date mismatch between schedule (2026-11-21) and box office (2026-11-19)::",
@@ -720,7 +720,7 @@
     "updatedAt": "2026-11-18T10:58:15.790Z"
   },
   "vivo-media-arts-cent-hedwig-and-the-angry-inch-29": {
-    "sig": "title mismatch between schedule (\"Hedwig and the Angry Inch\") and box office (\"Hedwig & The Angry Inch - Zee Zee Theatre\")|date mismatch between schedule (2026-11-29) and box office (2026-11-13)::",
+    "sig": "title mismatch between schedule (\"Hedwig and the Angry Inch\") and box office (\"Hedwig & The Angry Inch - Zee Zee Theatre\")::",
     "decision": {
       "clean_title": "Hedwig and the Angry Inch",
       "artist": "Zee Zee Theatre",
@@ -732,9 +732,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Adopted the clean production title without the presenter affix, resolved the date to 2026-11-29 as the schedule layer indicates the run continues through that date while the 2026-11-13 box office date is in the past, and marked sold out as all verified tiers in the live cart are unavailable."
+      "arbitration_reasoning": "Adopted the canonical show title 'Hedwig and the Angry Inch' from Seed, Schedule, and Editorial layers while isolating the presenter 'Zee Zee Theatre' into the artist/lineup fields."
     },
-    "updatedAt": "2026-11-18T10:58:15.790Z"
+    "updatedAt": "2026-11-24T00:28:47.319Z"
   },
   "chan-centre-for-the-ubc-symphony-orchestra-choirs-2026-12-05": {
     "sig": "title mismatch between schedule (\"UBC Symphony Orchestra & Choirs\") and box office (\"UBC Symphony Orchestra and Choir\")::",
@@ -856,7 +856,7 @@
     "updatedAt": "2026-11-18T10:58:15.790Z"
   },
   "burnaby-art-gallery-jiangang-su-a-thousand-years-i-2026-11-27": {
-    "sig": "date mismatch between schedule (2026-11-27) and box office (2026-11-26)::",
+    "sig": "title mismatch between schedule (\"Jiangang Su: A Thousand Years in One Stream (Opening Reception)\") and box office (\"Jiangang Su: A Thousand Years in One Stream\")::",
     "decision": {
       "clean_title": "Jiangang Su: A Thousand Years in One Stream (Opening Reception)",
       "artist": "Jiangang Su",
@@ -868,9 +868,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "arts",
-      "arbitration_reasoning": "Resolved date to 2026-11-26 matching the box office layer's specific 7:00 PM timed session, extracted lead artist Jiangang Su from the exhibition title, and retained the editorial category 'arts'."
+      "arbitration_reasoning": "Adopted the specific '(Opening Reception)' title from Seed, Schedule, and Editorial layers to accurately reflect the scheduled evening event rather than the general exhibition."
     },
-    "updatedAt": "2026-11-18T10:58:15.790Z"
+    "updatedAt": "2026-11-24T00:28:47.319Z"
   },
   "rio-theatre-vimff-extreme-antarctica-17": {
     "sig": "title mismatch between schedule (\"VIMFF Extreme Antarctica\") and box office (\"VIMFF 2026: Extreme Antarctica\")::",
@@ -2028,21 +2028,21 @@
     "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "celebrities-nightclu-playhouse-pres-whipped-cream-2026-11-28": {
-    "sig": "title mismatch between schedule (\"Playhouse Pres: Whipped Cream\") and box office (\"Playhouse Pres. Whipped Cream\")::",
+    "sig": "title mismatch between schedule (\"Playhouse Pres: Whipped Cream\") and box office (\"Playhouse Pres. WHIPPED CREAM\")::",
     "decision": {
-      "clean_title": "Whipped Cream",
+      "clean_title": "Playhouse Pres: Whipped Cream",
       "artist": "Whipped Cream",
       "lineup": [
         "Whipped Cream"
       ],
       "date": "2026-11-28",
-      "start_time": null,
+      "start_time": "10:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Resolved title to 'Whipped Cream' by stripping the promoter prefix 'Playhouse Pres:' in alignment with the editorial layer and seed artist identity."
+      "arbitration_reasoning": "Adopted the standard title-cased series title 'Playhouse Pres: Whipped Cream' over all-caps box office styling, established lead artist Whipped Cream from the editorial and seed layers, and verified live tier availability at $35.36 CAD with a 10:00 PM start time."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-24T00:27:19.154Z"
   },
   "celebrities-nightclu-playhouse-pres-frank-walker-2026-11-21": {
     "sig": "title mismatch between schedule (\"Playhouse Pres: Frank Walker\") and box office (\"Frank Walker\")::",
@@ -2094,19 +2094,19 @@
     "updatedAt": "2026-11-22T23:39:30.254Z"
   },
   "little-mountain-gall-20-20-20-stand-up-comedy-2026-11-21": {
-    "sig": "date mismatch between schedule (2026-11-21) and box office (2026-12-19)::",
+    "sig": "title mismatch between schedule (\"20/20/20 Stand-Up Comedy\") and box office (\"20/20/20 Vancouver Stand-Up Comedy\")|date mismatch between schedule (2026-11-21) and box office (2026-12-19)::https://www.showpass.com/202020-19/",
     "decision": {
       "clean_title": "20/20/20 Stand-Up Comedy",
       "artist": null,
       "lineup": [],
       "date": "2026-12-19",
-      "start_time": null,
+      "start_time": "9:00 PM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "shows",
-      "arbitration_reasoning": "Resolved date to 2026-12-19 as confirmed by both the Box Office live checkout layer and original Seed source over the outdated schedule slice."
+      "arbitration_reasoning": "Adopted the canonical show title '20/20/20 Stand-Up Comedy' from Seed, Schedule, and Editorial layers while arbitrating the date to 2026-12-19 based on the live Stagehand checkout inspection under the mandatory curator Showpass instruction."
     },
-    "updatedAt": "2026-11-22T23:39:30.254Z"
+    "updatedAt": "2026-11-24T00:28:47.319Z"
   },
   "orpheum-live-nation-presents-amanda-ma-2026-11-23": {
     "sig": "title mismatch between schedule (\"Live Nation presents Amanda Marshall - The Dirty 30 Tour\") and box office (\"Amanda Marshall - The Dirty 30 Tour\")::",
@@ -2331,5 +2331,1092 @@
       "arbitration_reasoning": "Adopted the standard colon title formatting from the official primary box office and seed sources while extracting lead artist Ele Yan from the editorial details and categorizing as music."
     },
     "updatedAt": "2026-11-23T01:07:11.149Z"
+  },
+  "celebrities-nightclu-tickets-for-queer-coded-pres-c-2027-01-16": {
+    "sig": "title mismatch between schedule (\"Tickets for Queer Coded Pres: Crush Club | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"Queer Coded Pres: Crush Club\")::",
+    "decision": {
+      "clean_title": "Queer Coded Pres: Crush Club",
+      "artist": "Crush Club",
+      "lineup": [
+        "Crush Club"
+      ],
+      "date": "2027-01-16",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped third-party ticketing boilerplate ('Tickets for... | TicketWeb - Celebrities Nightclub in Vancouver, CA') from the schedule layer title in favor of the clean, canonical show title confirmed by the seed and live box office layers."
+    },
+    "updatedAt": "2026-11-24T00:17:51.916Z"
+  },
+  "vogue-theatre-gwar-with-midnight-mac-sabbath-2026-11-25": {
+    "sig": "title mismatch between schedule (\"Gwar with Midnight, Mac Sabbath, Atomic Rule\") and box office (\"Gwar - Gor Gor Must Die With MIDNIGHT, Mac Sabbath and Nailed Shut\")::",
+    "decision": {
+      "clean_title": "Gwar: Gor Gor Must Die with Midnight, Mac Sabbath and Nailed Shut",
+      "artist": "Gwar",
+      "lineup": [
+        "Gwar",
+        "Midnight",
+        "Mac Sabbath",
+        "Nailed Shut"
+      ],
+      "date": "2026-11-25",
+      "start_time": null,
+      "doors_time": "7:00 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Reconciled title and lineup with the official tour billing and ticketing metadata from Seed and Box Office layers ('Gor Gor Must Die' tour package with Midnight, Mac Sabbath, and Nailed Shut), while adopting the Schedule layer's confirmed 7:00 PM doors time."
+    },
+    "updatedAt": "2026-11-24T00:17:51.916Z"
+  },
+  "celebrities-nightclu-tickets-for-playhouse-pres-bra-2027-01-02": {
+    "sig": "title mismatch between schedule (\"Tickets for Playhouse Pres: BRANDON | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for Playhouse Pres: BRANDON | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "decision": {
+      "clean_title": "Playhouse Pres: BRANDON",
+      "artist": "BRANDON",
+      "lineup": [
+        "BRANDON"
+      ],
+      "date": "2027-01-02",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped TicketWeb boilerplates ('Tickets for', 'for', venue and location suffixes) to extract the canonical performance title 'Playhouse Pres: BRANDON' and verified active General Admission Tier 1 inventory at $29.21 CAD."
+    },
+    "updatedAt": "2026-11-24T00:27:19.154Z"
+  },
+  "celebrities-nightclu-tickets-for-for-real-fridays-h-2026-12-23": {
+    "sig": "title mismatch between schedule (\"Tickets for FOR REAL FRIDAYS: HOLID4YS | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for FOR REAL FRIDAYS: HOLID4YS | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "decision": {
+      "clean_title": "FOR REAL FRIDAYS: HOLID4YS",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-23",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped ticketing portal noise ('Tickets for', 'TicketWeb', venue, city) from both schedule and box office titles to extract the canonical event title 'FOR REAL FRIDAYS: HOLID4YS', while preserving verified 10:00 PM start time and active admission status."
+    },
+    "updatedAt": "2026-11-24T00:27:19.154Z"
+  },
+  "celebrities-nightclu-tickets-for-for-real-fridays-t-2026-12-04": {
+    "sig": "title mismatch between schedule (\"Tickets for FOR REAL FRIDAYS | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for FOR REAL FRIDAYS | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "decision": {
+      "clean_title": "For Real Fridays",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-04",
+      "start_time": "10:00 PM",
+      "doors_time": "10:00 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped TicketWeb page title boilerplates ('Tickets for', 'for', and venue/location suffixes) to extract the canonical club night title 'For Real Fridays'."
+    },
+    "updatedAt": "2026-11-24T00:27:19.154Z"
+  },
+  "celebrities-nightclu-tickets-for-ams-x-celebs-tuesd-2026-11-24": {
+    "sig": "title mismatch between schedule (\"Tickets for AMS x Celebs Tuesdays | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for AMS x Celebs Tuesdays | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "decision": {
+      "clean_title": "AMS x Celebs Tuesdays",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped TicketWeb boilerplates ('Tickets for', venue, city, and platform suffixes) from Schedule and Box Office layers to extract the authoritative event title 'AMS x Celebs Tuesdays'."
+    },
+    "updatedAt": "2026-11-24T00:27:19.154Z"
+  },
+  "celebrities-nightclu-tickets-for-crystallize-legacy-2026-12-03": {
+    "sig": "title mismatch between schedule (\"Tickets for CRYSTALLIZE: LEGACY | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for CRYSTALLIZE: LEGACY | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "decision": {
+      "clean_title": "CRYSTALLIZE: LEGACY",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-03",
+      "start_time": "9:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped TicketWeb page artifacts ('Tickets for', 'for', and venue/city boilerplate) to extract the canonical event title 'CRYSTALLIZE: LEGACY', while adopting the verified 9:00 PM start time and confirming inventory availability from the live box office layer."
+    },
+    "updatedAt": "2026-11-24T00:27:19.154Z"
+  },
+  "celebrities-nightclu-tickets-for-vice-city-ticketwe-2026-11-26": {
+    "sig": "title mismatch between schedule (\"Tickets for VICE CITY | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for VICE CITY | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "decision": {
+      "clean_title": "VICE CITY",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped TicketWeb boilerplates ('Tickets for', 'for', and venue suffix) from schedule and box office titles to isolate the authentic show title 'VICE CITY', validated available GA Tier 2 inventory at $17.01 CAD, and confirmed start time from the box office layer."
+    },
+    "updatedAt": "2026-11-24T00:27:19.154Z"
+  },
+  "the-pearl-canyon-riders-blue-highway-alb-2026-11-28": {
+    "sig": "title mismatch between schedule (\"Canyon Riders \"Blue Highway\" Album Release Show w/ Nine Narrows, and The Time We Died\") and box office (\"Canyon Riders \"Blue Highway\" Album Release Show\")::",
+    "decision": {
+      "clean_title": "Canyon Riders \"Blue Highway\" Album Release Show",
+      "artist": "Canyon Riders",
+      "lineup": [
+        "Nine Narrows",
+        "The Time We Died"
+      ],
+      "date": "2026-11-28",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise canonical event title agreed upon by Seed, Box Office, and Editorial layers while preserving the supporting acts in the lineup array."
+    },
+    "updatedAt": "2026-11-24T00:27:19.154Z"
+  },
+  "van50-pendulum-gallery": {
+    "sig": "category disagreement across layers (social vs free-public-access)::Pendulum Gallery at 885 West Georgia Street is 100% free public admission ($0.00 CAD) with no tickets required, open Mon-Wed 9am-6pm, Thu-Fri 9am-9pm, Sat 9am-5pm.",
+    "decision": {
+      "clean_title": "Pendulum Gallery (Kinetic Art & Exhibitions)",
+      "artist": "Andrew James McKay",
+      "lineup": [
+        "Andrew James McKay",
+        "Alan Storey"
+      ],
+      "date": null,
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "free-public-access",
+      "arbitration_reasoning": "Resolved category to free-public-access and verified is_sold_out as false following Tier 1 Curator supreme authority and grounded venue access model confirming 100% free public admission with no tickets required."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "stanley-park-seawall-rose-garden": {
+    "sig": "title mismatch between schedule (\"Stanley Park\") and box office (\"Stanley Park Seawall & Rose Garden Promenade\")::[DISAPPROVED] Change the name to Stanley Park",
+    "decision": {
+      "clean_title": "Stanley Park",
+      "artist": null,
+      "lineup": [],
+      "date": null,
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "outdoors",
+      "arbitration_reasoning": "Resolved clean_title to 'Stanley Park' following Tier 1 supreme curator instructions and editorial layer consensus over box office and seed variants."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "van50-queen-elizabeth-park-gardens": {
+    "sig": "title mismatch between schedule (\"Queen Elizabeth Park\") and box office (\"Queen Elizabeth Park & Quarry Gardens\")::[RESOLVED 2026-10-28] Purged broken par3nearme.com blog URL and upgraded to official City of Vancouver Quarry Gardens (Tier 2) and Queen Elizabeth Park (Tier 4/5) pages.",
+    "decision": {
+      "clean_title": "Queen Elizabeth Park & Quarry Gardens",
+      "artist": null,
+      "lineup": [],
+      "date": null,
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "outdoors",
+      "arbitration_reasoning": "Resolved title conflict in favor of 'Queen Elizabeth Park & Quarry Gardens' across Seed, Box Office, Editorial, and Curator instructions to accurately designate the specific quarry gardens experience within the park."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "van50-vancouver-art-gallery-free-access": {
+    "sig": "title mismatch between schedule (\"Vancouver Art Gallery (General Admission & Exhibitions)\") and box office (\"Vancouver Art Gallery (General Admission & Access Programs)\")::[DISAPPROVED] Check pricing",
+    "decision": {
+      "clean_title": "Vancouver Art Gallery (General Admission & Access Programs)",
+      "artist": null,
+      "lineup": [],
+      "date": null,
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Retained the authoritative title from Seed, Box Office, and Existing Card while confirming the $29.00 CAD Adult GA tier from the dual-entry ledger and assigning the primary arts category."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "van50-cag-contemporary-art-gallery": {
+    "sig": "category disagreement across layers (social vs arts)::",
+    "decision": {
+      "clean_title": "Contemporary Art Gallery (CAG) Public Exhibitions",
+      "artist": null,
+      "lineup": [
+        "Nour Mobarak"
+      ],
+      "date": null,
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Arbitrated category to 'arts' because Contemporary Art Gallery (CAG) is an independent visual art gallery showcasing rotating multimedia exhibitions, which specifically maps to arts rather than generic social."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "van50-rec-room-granville-arcade-social": {
+    "sig": "title mismatch between schedule (\"The Rec Room Granville: 90+ Arcade Games, Ping Pong, Pool & Trivia\") and box office (\"The Rec Room Granville: Arcade Gaming & Pinball Social\")::Resolved missing_ticket_link by linking The Rec Room Granville's official games & pricing page (therecroom.com/vancouver-granville/games) and replacing the uncalibrated $0 stamp with verified RFID arcade credit bundles ($13.65 CAD Starter / $26.25 CAD 160-Credit Value incl. 5% GST) plus $0.00 walk-in/Thursday trivia.",
+    "decision": {
+      "clean_title": "The Rec Room Granville: 90+ Arcade Games, Ping Pong, Pool & Trivia",
+      "artist": null,
+      "lineup": [],
+      "date": null,
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the schedule layer's comprehensive title covering arcade games, table sports, and trivia aligned with the curator instruction's pricing calibration ($13.65 Starter RFID bundle and Thursday trivia), while preserving category 'social' and available status."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "van50-the-american-pinball-arcade-social": {
+    "sig": "title mismatch between schedule (\"The American: Pinball, Skee-Ball & Replay Wednesday IFPA Tournament\") and box office (\"The American: Community Pinball Night & Classic Arcade Social\")::Resolved missing_ticket_link by linking The American's official events schedules (theamerican.bar/events & theamerican.ca/events-calendar) and verifying both free daily walk-in entry ($1–$2 coin-drop per game) and the $12.00 CAD Replay Wednesday IFPA Pinball Tournament.",
+    "decision": {
+      "clean_title": "The American: Pinball, Skee-Ball & Replay Wednesday IFPA Tournament",
+      "artist": null,
+      "lineup": [
+        "Replay Wednesday IFPA Pinball League"
+      ],
+      "date": null,
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the schedule and editorial title matching the curator instruction verifying both the arcade offerings and the Replay Wednesday IFPA Pinball Tournament with available single-visit entry."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "vancouver-playhouse-2027-louise-bentall-biennial-a-2027-01-31": {
+    "sig": "date mismatch between schedule (2027-01-31) and box office (2027-04-16)::",
+    "decision": {
+      "clean_title": "2027 Louise Bentall Biennial Award",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-04-16",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date conflict in favor of 2027-04-16 as corroborated by both the Box Office inspection layer and the original Seed record over the unverified Schedule layer placeholder."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "the-act-arts-centre-holidays-at-the-act-giveaway-2026-12-06": {
+    "sig": "date mismatch between schedule (2026-12-06) and box office (2026-11-06)::",
+    "decision": {
+      "clean_title": "Holidays at the ACT Giveaway",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-06",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Arbitrated the event date to 2026-12-06 based on agreement between the Seed and Schedule layers, while adopting the 10:00 AM start time from Box Office inspection."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "river-rock-casino-re-ele-yan-8211-moment-2026-world-2026-11-23": {
+    "sig": "title mismatch between schedule (\"Ele Yan &#8211; MOMENT 2026 World Tour\") and box office (\"Ele Yan – MOMENT 2026 World Tour\")::",
+    "decision": {
+      "clean_title": "Ele Yan – MOMENT 2026 World Tour",
+      "artist": "Ele Yan",
+      "lineup": [
+        "Ele Yan"
+      ],
+      "date": "2026-11-23",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Decoded the raw HTML entity &#8211; to an en-dash from the Box Office layer title and identified Ele Yan as the lead touring music artist."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "vogue-theatre-david-cross-at-vogue-theatre-v-2027-05-22": {
+    "sig": "title mismatch between schedule (\"David Cross at Vogue Theatre, Vancouver\") and box office (\"David Cross - Fake Joy World Tour\")::",
+    "decision": {
+      "clean_title": "David Cross - Fake Joy World Tour",
+      "artist": "David Cross",
+      "lineup": [
+        "David Cross"
+      ],
+      "date": "2027-05-22",
+      "start_time": "8:00 PM",
+      "doors_time": "7:00 PM",
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Selected the specific tour subtitle from the primary box office checkout layer over the generic venue-appended title found in the seed and schedule layers."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "sanctuary-salons-ignite-children-8217-s-group-2026-12-01": {
+    "sig": "title mismatch between schedule (\"Ignite! Children&#8217;s Group\") and box office (\"Ignite! Children's Group\")::",
+    "decision": {
+      "clean_title": "Ignite! Children's Group",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-01",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Decoded HTML entity &#8217; to a clean apostrophe for the title, preserved the 6:30 PM start time from the box office layer, and categorized this community church program under social."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "vancouver-art-galler-member-tour-2026-12-14": {
+    "sig": "title mismatch between schedule (\"Member Tour\") and box office (\"Member Tours\")|date mismatch between schedule (2026-12-14) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Member Tour",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "5:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted authoritative singular title 'Member Tour' from Seed and Schedule, reconciled date to 2026-11-23 matching live Box Office inspection and Seed ticket URL, and categorized under arts for Vancouver Art Gallery."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "hollywood-theatre-uncle-strut-2027-05-01": {
+    "sig": "date mismatch between schedule (2027-04-30) and box office (2027-05-01)::",
+    "decision": {
+      "clean_title": "Uncle Strut",
+      "artist": "Uncle Strut",
+      "lineup": [
+        "Uncle Strut"
+      ],
+      "date": "2027-05-01",
+      "start_time": null,
+      "doors_time": "8:00 PM",
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2027-05-01 favoring the live checkout Box Office layer and Seed URL specification over the preliminary schedule harvest, retained doors time 8:00 PM, and preserved available inventory status."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "vogue-theatre-tyson-yoshi-2026-11-27": {
+    "sig": "title mismatch between schedule (\"Tyson Yoshi\") and box office (\"Tyson Yoshi - The Villain\")::",
+    "decision": {
+      "clean_title": "Tyson Yoshi - The Villain",
+      "artist": "Tyson Yoshi",
+      "lineup": [
+        "Tyson Yoshi"
+      ],
+      "date": "2026-11-27",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the specific tour title 'Tyson Yoshi - The Villain' from the live box office layer while identifying Tyson Yoshi as the lead artist for the music category."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "vogue-theatre-alex-edelman-2027-02-18": {
+    "sig": "title mismatch between schedule (\"Alex Edelman\") and box office (\"Alex Edelman: What Are You Going To Do\")::",
+    "decision": {
+      "clean_title": "Alex Edelman: What Are You Going To Do",
+      "artist": "Alex Edelman",
+      "lineup": [
+        "Alex Edelman"
+      ],
+      "date": "2027-02-18",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the complete tour/show subtitle from the live box office page while retaining Alex Edelman as the primary artist and preserving the scheduled 7:00 PM start time."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "vancouver-playhouse-jill-barber-2026-11-26": {
+    "sig": "title mismatch between schedule (\"Jill Barber\") and box office (\"Jill Barber - Holly Jolly Jill Barber Christmas\")::",
+    "decision": {
+      "clean_title": "Jill Barber - Holly Jolly Jill Barber Christmas",
+      "artist": "Jill Barber",
+      "lineup": [
+        "Jill Barber"
+      ],
+      "date": "2026-11-26",
+      "start_time": "8:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the specific seasonal concert title reported by the live Box Office checkout modal while preserving Jill Barber as the lead artist and music category."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "roundhouse-community-portobello-west-holiday-market-2026-11-28": {
+    "sig": "title mismatch between schedule (\"Portobello West Holiday Market\") and box office (\"Portobello West Holiday Market 2026 (Sat + Sun, Nov 28 + 29)\")::",
+    "decision": {
+      "clean_title": "Portobello West Holiday Market",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-28",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Selected clean canonical title from Seed, Schedule, and Editorial layers by stripping redundant year and day-of-week noise from the raw box office ticket title."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "st-andrew-s-wesley-u-stitching-circle-2026-11-26": {
+    "sig": "title mismatch between schedule (\"Stitching Circle\") and box office (\"Community Stitching Circle\")::",
+    "decision": {
+      "clean_title": "Stitching Circle",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "1:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the concise authoritative title 'Stitching Circle' supported by Seed, Schedule, Editorial, and existing published records, while adopting the verified start time and free admission status from the Box Office layer."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-vienna-after-beethoven-2027-01-14": {
+    "sig": "title mismatch between schedule (\"Vienna After Beethoven\") and box office (\"PARC Retirement Living Tea & Trumpets | Vienna After Beethoven\")::",
+    "decision": {
+      "clean_title": "Vienna After Beethoven",
+      "artist": "Vancouver Symphony Orchestra",
+      "lineup": [
+        "Vancouver Symphony Orchestra"
+      ],
+      "date": "2027-01-14",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Selected 'Vienna After Beethoven' as the clean show title by stripping the commercial series prefix ('PARC Retirement Living Tea & Trumpets |') found in the box office layer to match Seed, Schedule, and Editorial consensus."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-tea-trumpets-2027-01-14": {
+    "sig": "title mismatch between schedule (\"Tea & Trumpets\") and box office (\"Tea & Trumpets: Magic & Fairy Tales\")|date mismatch between schedule (2027-01-14) and box office (2021-05-20)::Verified via screenshot proof: Tea & Trumpets: Magic & Fairy Tales (screenshot staged for AI visual price extraction).",
+    "decision": {
+      "clean_title": "Tea & Trumpets: Magic & Fairy Tales",
+      "artist": "Vancouver Symphony Orchestra",
+      "lineup": [
+        "Vancouver Symphony Orchestra",
+        "Christopher Gaze",
+        "Trevor Wilson"
+      ],
+      "date": "2027-01-14",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted authoritative full title confirmed by Tier 1 Curator Instruction, preserved upcoming schedule date 2027-01-14 over stale 2021 box office timestamp, and verified active inventory at $45.00 CAD."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-broadway-reimagined-with-sarah-2027-01-15": {
+    "sig": "title mismatch between schedule (\"Broadway Reimagined with Sarah Slean\") and box office (\"London Drugs VSO Pops | Broadway Reimagined with Sarah Slean\")::",
+    "decision": {
+      "clean_title": "Broadway Reimagined with Sarah Slean",
+      "artist": "Sarah Slean",
+      "lineup": [
+        "Sarah Slean",
+        "Vancouver Symphony Orchestra"
+      ],
+      "date": "2027-01-15",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Selected the canonical production title 'Broadway Reimagined with Sarah Slean' by stripping the corporate series prefix ('London Drugs VSO Pops | ') in agreement with the seed, schedule, editorial, and existing published records."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-assante-masterworks-diamond-gr-2027-01-29": {
+    "sig": "title mismatch between schedule (\"Assante Masterworks Diamond | Grieg, Liszt, Fung & Strauss\") and box office (\"Vancouver Symphony Orchestra: Assante Masterworks Diamond | Grieg, Liszt, Fung & Strauss\")::",
+    "decision": {
+      "clean_title": "Vancouver Symphony Orchestra: Grieg, Liszt, Fung & Strauss",
+      "artist": "Vancouver Symphony Orchestra",
+      "lineup": [
+        "Vancouver Symphony Orchestra"
+      ],
+      "date": "2027-01-29",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the published editorial title including the performing ensemble while stripping the corporate series branding, paired with verified 7:30 PM showtime and Section Five Adult tier pricing."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-circus-incognitus-2027-02-21": {
+    "sig": "title mismatch between schedule (\"Circus Incognitus\") and box office (\"Kids Concerts | Circus Incognitus\")::",
+    "decision": {
+      "clean_title": "Circus Incognitus",
+      "artist": "Vancouver Symphony Orchestra",
+      "lineup": [
+        "Vancouver Symphony Orchestra"
+      ],
+      "date": "2027-02-21",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the canonical show title 'Circus Incognitus' by stripping the ticketing series prefix 'Kids Concerts | ', retaining the editorial category and verified adult checkout tier."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-natural-woman-shel-a-sings-are-2027-05-21": {
+    "sig": "title mismatch between schedule (\"Natural Woman: Sheléa Sings Aretha Franklin\") and box office (\"London Drugs VSO Pops | Natural Woman: Sheléa Sings Aretha Franklin\")::two showings.  Both the same prices",
+    "decision": {
+      "clean_title": "Natural Woman: Sheléa Sings Aretha Franklin",
+      "artist": "Sheléa",
+      "lineup": [
+        "Sheléa",
+        "Vancouver Symphony Orchestra"
+      ],
+      "date": "2027-05-21",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the canonical show title by stripping the presenter series prefix 'London Drugs VSO Pops |' in accordance with Editorial and Schedule layers, verified the $35.00 CAD Adult Section Five tier is well under the $50 ceiling with active inventory across showings per curator instruction."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-elgar-s-violin-mahler-10-2027-06-04": {
+    "sig": "title mismatch between schedule (\"Elgar’s Violin & Mahler 10\") and box office (\"Assante Masterworks Diamond | Elgar’s Violin & Mahler 10\")::",
+    "decision": {
+      "clean_title": "Elgar’s Violin & Mahler 10",
+      "artist": "Vancouver Symphony Orchestra",
+      "lineup": [
+        "Vancouver Symphony Orchestra"
+      ],
+      "date": "2027-06-04",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the core artistic performance title 'Elgar’s Violin & Mahler 10' across Seed, Schedule, and Editorial layers by stripping the box office subscription series sponsor prefix ('Assante Masterworks Diamond | ')."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "the-polygon-gallery-exhibitions-at-the-polygon-gal-2026-11-04": {
+    "sig": "date mismatch between schedule (2026-11-04) and box office (2026-11-19)::",
+    "decision": {
+      "clean_title": "Exhibitions at The Polygon Gallery",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-19",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2026-11-19 and start time to 7:00 PM based on verified box office tier inspection, categorized under arts for visual gallery exhibitions."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "revue-stage-christmas-presence-2026-12-19": {
+    "sig": "title mismatch between schedule (\"Christmas Presence\") and box office (\"Christmas Presence 2026\")::",
+    "decision": {
+      "clean_title": "Christmas Presence",
+      "artist": "Pacific Theatre",
+      "lineup": [],
+      "date": "2026-12-19",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved title to canonical 'Christmas Presence' by stripping the ticketing cart year suffix '2026' in alignment with the Seed, Schedule, Editorial, and published layers."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "performance-works-little-ravers-vancouver-2026-12-12": {
+    "sig": "title mismatch between schedule (\"Little Ravers: (Vancouver)\") and box office (\"Little Ravers – Fall Series Edition\")::",
+    "decision": {
+      "clean_title": "Little Ravers",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-12",
+      "start_time": "1:00 PM",
+      "doors_time": "1:00 PM",
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise editorial title 'Little Ravers' stripped of geographic and seasonal sub-headers, reconciled start/doors times from the schedule layer, and confirmed active inventory from available GA tiers."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "lindsay-family-stage-little-darlin-2027-02-05": {
+    "sig": "date mismatch between schedule (2027-02-05) and box office (2027-02-04)::",
+    "decision": {
+      "clean_title": "Little Darlin’",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-04",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date conflict to 2027-02-04 in accordance with the live Stagehand box office checkout session and existing published record."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "bell-performing-arts-mozart-bartok-ligeti-2027-05-16": {
+    "sig": "date mismatch between schedule (2027-05-16) and box office (2027-05-14)::Decomposed Surrey Sundays performance at Bell Performing Arts Centre verified via curator screenshot ($45-$50 CAD all-in).",
+    "decision": {
+      "clean_title": "Surrey Sundays: Mozart, Bartók & Ligeti",
+      "artist": "Vancouver Symphony Orchestra",
+      "lineup": [
+        "Vancouver Symphony Orchestra",
+        "Ludovic Morlot",
+        "Alessio Bax"
+      ],
+      "date": "2027-05-16",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Under Tier 1 Supreme Authority, the curator instruction mandates the decomposed Surrey Sundays performance at Bell Performing Arts Centre, resolving the date to Sunday 2027-05-16 at 4:00 PM (rather than the Friday downtown Orpheum date of 2027-05-14) with Adult admission verified under $50 CAD."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "the-american-karaoke-2026-11-12": {
+    "sig": "title mismatch between schedule (\"KARAOKE!\") and box office (\"Karaoke at The American\")::",
+    "decision": {
+      "clean_title": "Karaoke at The American",
+      "artist": "Bria",
+      "lineup": [
+        "Bria",
+        "Neil"
+      ],
+      "date": "2026-11-12",
+      "start_time": "9:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the descriptive title 'Karaoke at The American' from Editorial, Box Office, and Existing Card over the generic uppercase Seed label, retained verified lineup and social category from Editorial, and confirmed non-sold-out status at $0 admission."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "studio-theatre-at-su-music-city-showcase-2027-02-06": {
+    "sig": "date mismatch between schedule (2027-02-06) and box office (2026-02-07)::",
+    "decision": {
+      "clean_title": "Music City Showcase",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-06",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Preserved the future scheduled performance date of 2027-02-06 matching the schedule layer, existing published card, and event identifier over the past 2026-02-07 box office record, while integrating the live verified 7:30 PM start time and $32.75 GA tier."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "surrey-libraries-fle-practice-speaking-french-2026-11-16": {
+    "sig": "date mismatch between schedule (2026-11-16) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Practice Speaking French",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "11:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-11-23 to match the active box office showing and existing published card, with category set to social per editorial enrichment."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "hollywood-theatre-wes-anderson-double-feature-2026-12-16": {
+    "sig": "title mismatch between schedule (\"Wes Anderson Double Feature\") and box office (\"The Wes Anderson Social Club - Double Feature\")::https://app.opendate.io/e/wes-anderson-double-feature-december-16-2026-784365",
+    "decision": {
+      "clean_title": "The Wes Anderson Social Club - Double Feature",
+      "artist": "Gustavo Teodoro",
+      "lineup": [
+        "Gustavo Teodoro",
+        "MY!GAY!HUSBAND!"
+      ],
+      "date": "2026-12-16",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the specific verified box office event title matching the mandatory OpenDate checkout URL while retaining the editorial lineup and active single-screening GA admission tier under $50 CAD."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "the-rio-theatre-outside-voices-winter-concert-2026-12-13": {
+    "sig": "title mismatch between schedule (\"Outside Voices: Winter Concert 2026\") and box office (\"Outside Voices: Winter Concert 2026 (Matinée Show)\")::",
+    "decision": {
+      "clean_title": "Outside Voices: Winter Concert 2026 (Matinée Show)",
+      "artist": "Outside Voices",
+      "lineup": [
+        "Outside Voices"
+      ],
+      "date": "2026-12-13",
+      "start_time": "3:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the specific matinée show title and 3:00 PM time from the box office checkout URL and layer, confirmed sold out across all tiers, and retained music categorization from editorial."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "the-rio-theatre-the-bicycle-film-festival-2026-2026-12-03": {
+    "sig": "title mismatch between schedule (\"The Bicycle Film Festival 2026\") and box office (\"HUB Cycling Presents: The Bicycle Film Festival 2026 (Program 1 & Double Feature Options)\")::",
+    "decision": {
+      "clean_title": "The Bicycle Film Festival 2026",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-03",
+      "start_time": "6:15 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the concise core title 'The Bicycle Film Festival 2026' from the seed, schedule, and editorial layers by stripping the presenter prefix and ticketing bundle suffix from the box office title."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "sfu-surrey-campus-e-the-national-day-of-remembranc-2026-12-04": {
+    "sig": "title mismatch between schedule (\"The National Day of Remembrance and Action on Violence Against Women - Surrey Campus Memorial Event\") and box office (\"SFU Surrey National Day for Remembrance & Action on Violence Against Women\")::",
+    "decision": {
+      "clean_title": "The National Day of Remembrance and Action on Violence Against Women - Surrey Campus Memorial Event",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-04",
+      "start_time": "10:30 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the complete official event title from the Schedule, Seed, and Editorial layers over the truncated Box Office listing title, with free admission verified."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "stanley-bfl-canada-s-elf-the-musical-2026-11-12": {
+    "sig": "date mismatch between schedule (2026-12-01) and box office (2026-11-18)::",
+    "decision": {
+      "clean_title": "Elf: The Musical",
+      "artist": "Arts Club Theatre Company",
+      "lineup": [],
+      "date": "2026-12-01",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Arbitrated date to upcoming performance 2026-12-01 to preserve schedule and published card continuity past the elapsed 2026-11-18 performance, while inheriting verified $39.00 ticket availability and start time from the box office layer."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "orpheum-bach-s-double-violin-concerto-2027-02-26": {
+    "sig": "title mismatch between schedule (\"Bach’s Double Violin Concerto\") and box office (\"Air China Classical Afterworks | Bach’s Double Violin Concerto\")::",
+    "decision": {
+      "clean_title": "Bach’s Double Violin Concerto",
+      "artist": "JoAnn Falletta",
+      "lineup": [
+        "JoAnn Falletta",
+        "Nikki Chooi",
+        "Timothy Chooi"
+      ],
+      "date": "2027-02-26",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise artistic title 'Bach’s Double Violin Concerto' from the Seed, Schedule, Editorial layers, and published card over the sponsor-prefixed box office heading, verified Adult GA pricing at $35.00 CAD, and mapped category to music per editorial consensus."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "panorama-park-holiday-bonfire-santa-ships-at-2026-12-05": {
+    "sig": "title mismatch between schedule (\"Holiday Bonfire & Santa Ships\") and box office (\"Holiday Bonfire & Santa Ships at Panorama Park\")::",
+    "decision": {
+      "clean_title": "Holiday Bonfire & Santa Ships",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-05",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "outdoors",
+      "arbitration_reasoning": "Adopted the concise title consensus from Seed, Schedule, Editorial, and Published Card by stripping the redundant venue suffix 'at Panorama Park'."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "comedy-ring-ringside-showcase-live-roast-c-2026-11-26": {
+    "sig": "title mismatch between schedule (\"Ringside Showcase: Live Roast Comedy\") and box office (\"Ringside SHOWCASE— Live Roast Comedy, Main Street Vancouver\")::",
+    "decision": {
+      "clean_title": "Ringside Showcase: Live Roast Comedy",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "8:00 PM",
+      "doors_time": "7:30 PM",
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the clean canonical title 'Ringside Showcase: Live Roast Comedy' by stripping the ticketing portal's venue/location suffix, validated the upcoming 2026-11-26 schedule, and confirmed available admission under $50 CAD."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "cedar-conference-cen-2027-kpu-student-pitch-competi-2027-04-28": {
+    "sig": "title mismatch between schedule (\"KPU Student Pitch Competition\") and box office (\"2027 KPU Student Pitch Competition\")::",
+    "decision": {
+      "clean_title": "KPU Student Pitch Competition",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-04-28",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the canonical clean title without redundant year prefixing as corroborated across Seed, Schedule, Editorial, and Existing card layers, and retained category 'social' for this student competition."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "asia-pacific-hall-sf-2026-sterling-prize-ceremony-a-2026-11-25": {
+    "sig": "title mismatch between schedule (\"Sterling Prize Ceremony and Conversation with Dr. Rylan Simpson\") and box office (\"2026 Sterling Prize Ceremony and Conversation with Dr. Rylan Simpson\")::",
+    "decision": {
+      "clean_title": "Sterling Prize Ceremony and Conversation with Dr. Rylan Simpson",
+      "artist": "Dr. Rylan Simpson",
+      "lineup": [
+        "Dr. Rylan Simpson"
+      ],
+      "date": "2026-11-25",
+      "start_time": "6:30 PM",
+      "doors_time": "6:00 PM",
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Selected the cleaner non-year-prefixed title agreed upon by the Seed, Schedule, Editorial, and Published layers, while extracting Dr. Rylan Simpson as the primary featured speaker."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "container-brewing-no-brainer-trivia-at-container-2026-11-18": {
+    "sig": "title mismatch between schedule (\"No Brainer Trivia\") and box office (\"No Brainer Trivia at Container\")::",
+    "decision": {
+      "clean_title": "No Brainer Trivia",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-18",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "trivia",
+      "arbitration_reasoning": "Selected canonical title 'No Brainer Trivia' by stripping the redundant venue postfix present in the box office layer to align with Seed, Schedule, Editorial, and existing published records."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "ubc-robson-square-panel-discussion-modern-iran-a-2026-12-12": {
+    "sig": "title mismatch between schedule (\"Modern Iran: Art, History and Cultural Memory\") and box office (\"Panel Discussion | Modern Iran: Art, History and Cultural Memory\")::",
+    "decision": {
+      "clean_title": "Modern Iran: Art, History and Cultural Memory",
+      "artist": null,
+      "lineup": [
+        "Pantea Haghighi",
+        "Fereshteh Daftari",
+        "Houman Sarshar"
+      ],
+      "date": "2026-12-12",
+      "start_time": "2:00 PM",
+      "doors_time": "1:30 PM",
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the concise core title matching Seed, Schedule, Editorial, and Published Card by stripping the generic 'Panel Discussion |' descriptor prefix."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "donegal-s-irish-hous-new-years-eve-donegal-s-with-t-2026-12-31": {
+    "sig": "title mismatch between schedule (\"New Years Eve with Trama 25\") and box office (\"New Years Eve @ Donegal's with Trama 25\")::",
+    "decision": {
+      "clean_title": "New Years Eve with Trama 25",
+      "artist": "Trama 25",
+      "lineup": [
+        "Trama 25"
+      ],
+      "date": "2026-12-31",
+      "start_time": "8:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise title without redundant venue name echoing from the box office layer, matching seed, schedule, and editorial consensus with active General Admission pricing at $27.96 CAD."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "celebration-life-chu-christmas-community-dinner-202-2026-12-05": {
+    "sig": "title mismatch between schedule (\"Christmas Community Dinner\") and box office (\"Christmas Community Dinner 2026\")::",
+    "decision": {
+      "clean_title": "Christmas Community Dinner",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-05",
+      "start_time": "4:30 PM",
+      "doors_time": "4:30 PM",
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the clean canonical title 'Christmas Community Dinner' as affirmed across the Seed, Schedule, Editorial, and Existing Card layers, stripping the redundant year suffix reported by the box office."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "roedde-house-museum-a-very-victorian-christmas-mar-2026-12-05": {
+    "sig": "title mismatch between schedule (\"A Very Victorian Christmas Market – Dark Edition\") and box office (\"A Very Victorian Christmas Market 2026 – Dark Edition\")::",
+    "decision": {
+      "clean_title": "A Very Victorian Christmas Market – Dark Edition",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-05",
+      "start_time": "11:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Adopted the concise title consensus from Seed, Schedule, Editorial, and Existing card by stripping the redundant year token found in the box office layer, while confirming active $5.00 door entry admission under the markets taxonomy."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "the-rio-theatre-shits-n-giggles-2026-finals-an-2026-11-26": {
+    "sig": "title mismatch between schedule (\"Shits N Giggles: Finals and Awards\") and box office (\"Shits N Giggles 2026: Finals and Awards\")::",
+    "decision": {
+      "clean_title": "Shits N Giggles: Finals and Awards",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "7:00 PM",
+      "doors_time": "6:15 PM",
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Standardized clean_title by stripping redundant annual year stamp '2026' from the box office title in alignment with the schedule, editorial, and existing published card, and categorized as 'shows' matching live comedy tournament reality."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "food-court-at-the-am-founder-s-table-startup-social-2026-12-06": {
+    "sig": "title mismatch between schedule (\"Founder’s Table: Startup Social Meetup\") and box office (\"Founder’s Table: Startup Social Meetup - Brentwood\")::",
+    "decision": {
+      "clean_title": "Founder’s Table: Startup Social Meetup",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-06",
+      "start_time": "11:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the canonical title 'Founder’s Table: Startup Social Meetup' supported by Seed, Schedule, Editorial, and existing published records, trimming the redundant location suffix added by the box office layer while categorizing as social."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "war-memorial-gym-ubc-thunderbirds-volleyball-vs-2026-11-28": {
+    "sig": "title mismatch between schedule (\"UBC Thunderbirds Volleyball vs. Alberta Pandas & Golden Bears\") and box office (\"UBC Thunderbirds Volleyball vs. ALB Pandas & Golden Bears\")::",
+    "decision": {
+      "clean_title": "UBC Thunderbirds Volleyball vs. Alberta Pandas & Golden Bears",
+      "artist": null,
+      "lineup": [
+        "UBC Thunderbirds",
+        "Alberta Pandas",
+        "Alberta Golden Bears"
+      ],
+      "date": "2026-11-28",
+      "start_time": "4:00 PM",
+      "doors_time": "3:00 PM",
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Adopted the unabbreviated authoritative title 'Alberta Pandas & Golden Bears' supported by Seed, Schedule, Editorial, and Existing card over the truncated Box Office 'ALB' abbreviation."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "surrey-libraries-gui-adapted-stories-for-adults-and-2026-11-16": {
+    "sig": "date mismatch between schedule (2026-11-16) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Adapted Stories for Adults and Teens",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "10:30 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-11-23 based on direct agreement across Seed, Box Office, and Published Card layers matching the live URL pattern."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "surrey-libraries-gui-pyjama-storytime-2026-11-16": {
+    "sig": "date mismatch between schedule (2026-11-16) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Pyjama Storytime",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date conflict in favor of 2026-11-23 corroborated by the Seed, Box Office Layer, and Existing Published Card over the stale Schedule Layer date."
+    },
+    "updatedAt": "2026-11-24T00:28:47.319Z"
+  },
+  "anvil-theatre-kutumb-kirtan-2027-09-27": {
+    "sig": "date mismatch between schedule (2027-09-27) and box office (2026-09-27)::",
+    "decision": {
+      "clean_title": "Kutumb Kirtan",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-09-27",
+      "start_time": "3:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Resolved date to 2027-09-27 as confirmed by both Seed and Schedule layers for the future showing, while adopting the verified 3:00 PM start time and $42.55 CAD single-visit adult tier from the box office ledger."
+    },
+    "updatedAt": "2026-11-24T03:52:02.717Z"
+  },
+  "firehall-arts-centre-sorry-for-your-loss-1323": {
+    "sig": "date mismatch between schedule (2027-05-13) and box office (2026-05-13)::",
+    "decision": {
+      "clean_title": "Sorry For Your Loss",
+      "artist": "Cian Parker",
+      "lineup": [
+        "Cian Parker"
+      ],
+      "date": "2027-05-13",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2027-05-13 as corroborated by both the Seed and Schedule layers for this upcoming production run, adopted the verified 7:30 PM curtain time, and maintained is_sold_out as false given available single-admission adult tiers under $50 CAD."
+    },
+    "updatedAt": "2026-11-24T03:52:02.717Z"
+  },
+  "anvil-theatre-arts-club-on-tour-presents-mom-11-2027-10-11": {
+    "sig": "title mismatch between schedule (\"Arts Club on Tour presents Mom’s the Word: Talkin’ Turkey!\") and box office (\"Arts Club On Tour: Mom’s the Word: Talkin’ Turkey!\")|date mismatch between schedule (2027-10-11) and box office (2026-10-12)::",
+    "decision": {
+      "clean_title": "Arts Club on Tour presents Mom’s the Word: Talkin’ Turkey!",
+      "artist": "Mom’s the Word Collective",
+      "lineup": [
+        "Arts Club Theatre Company",
+        "Mom’s the Word Collective"
+      ],
+      "date": "2026-10-12",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the verified live box office checkout date (2026-10-12) and start time (2:00 PM) over the harvest calendar placeholder, retained the full presenter title, and kept is_sold_out as false based on the available $33.05 CAD Zone C tier."
+    },
+    "updatedAt": "2026-11-24T03:52:02.717Z"
+  },
+  "anvil-theatre-murder-for-two-2-2027-10-02": {
+    "sig": "date mismatch between schedule (2027-10-02) and box office (2026-10-04)::",
+    "decision": {
+      "clean_title": "Murder For Two",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-10-02",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Selected the seed and schedule layer date of 2027-10-02 over the historical/stale box office date of 2026-10-04, while inheriting the verified active checkout showtime and single-visit ticket availability."
+    },
+    "updatedAt": "2026-11-24T03:52:02.717Z"
   }
 }

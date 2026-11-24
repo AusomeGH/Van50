@@ -81,6 +81,13 @@
           <span>🎉 Approved Holidays:</span>
           <span class="stat-val" id="approved-holidays-count">0</span>
         </button>
+        <button type="button" class="stat-pill clickable-pill" id="btn-view-crawl-sources"
+          onclick="openCrawlSourcesModal()"
+          style="cursor: pointer; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.45); color: #7dd3fc;"
+          title="Audit crawl source ROI, timing, health, and disable/pause low-yield sources">
+          <span>📡 Crawl Sources:</span>
+          <span class="stat-val" id="crawl-sources-active-count">—</span>
+        </button>
         <!-- Hidden legacy header pills kept synced for JS compatibility; surfaced prominently in #curator-pending-actions-inbox -->
         <div style="display: none;">
           <div id="stat-quarantined-pill"><span id="stat-pending-count">0</span></div>
@@ -209,6 +216,89 @@
           <span>⚠️ Quarantined Events</span>
           <span class="inbox-pill-count" id="inbox-count-quarantined">0</span>
         </button>
+      </div>
+    </section>
+
+    <!-- Inline Crawl Sources & ROI Manager Panel (Non-Popup) -->
+    <section id="crawl-sources-panel"
+      style="display: none; margin: 14px 0 18px 0; padding: 16px 18px; border-radius: 14px; background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.35);"
+      aria-label="Crawl Sources and ROI Manager">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+        <div>
+          <h3 style="margin: 0 0 4px 0; font-size: 1.15rem; color: #f8fafc;">📡 Crawl Sources &amp; ROI Manager</h3>
+          <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">
+            Click any column header to sort ascending/descending. Disabling or pausing a source updates <code>data/source_controls.json</code> (reversible, never deletes venue metadata).
+          </p>
+        </div>
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-close-crawl-sources-panel"
+          onclick="closeCrawlSourcesModal()" style="padding: 5px 12px; font-size: 0.78rem;">
+          ✕ Hide Panel
+        </button>
+      </div>
+
+      <!-- Summary KPI Strip -->
+      <div id="crawl-sources-summary-strip"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 8px; margin-bottom: 12px;">
+      </div>
+
+      <!-- Controls Bar -->
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+        <div class="curator-pills-group" id="crawl-sources-filter-pills" style="margin: 0;">
+          <button type="button" class="curator-filter-pill active" data-cs-filter="all">All (<span id="cs-cnt-all">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="active_crawl">✅ Active (<span id="cs-cnt-active">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="star">⭐ Stars (<span id="cs-cnt-star">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="time_sink">🐌 Time Sinks (<span id="cs-cnt-sink">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="dead">💀 Dead / WAF (<span id="cs-cnt-dead">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="stopped">⏸ Paused / Disabled (<span id="cs-cnt-stopped">0</span>)</button>
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <button type="button" class="btn-curator btn-curator-ghost" id="btn-cs-bulk-dead"
+            onclick="bulkUpdateCrawlSources('dead')"
+            style="font-size: 0.76rem; padding: 5px 10px; border-color: rgba(248, 113, 113, 0.45); color: #fca5a5;">
+            💀 Disable All Dead/WAF
+          </button>
+          <button type="button" class="btn-curator btn-curator-ghost" id="btn-cs-bulk-sinks"
+            onclick="bulkUpdateCrawlSources('sinks')"
+            style="font-size: 0.76rem; padding: 5px 10px; border-color: rgba(251, 191, 36, 0.45); color: #fcd34d;">
+            🐌 Pause &gt;60s Zero-Yield
+          </button>
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="loadCrawlSourcesStats(true)"
+            style="font-size: 0.76rem; padding: 5px 10px;">
+            🔄 Refresh
+          </button>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
+        <div class="manager-search-box" style="flex: 1; min-width: 220px;">
+          <span class="curator-search-icon">🔍</span>
+          <input type="text" id="crawl-sources-search" class="curator-search-input"
+            placeholder="Filter by name, domain, URL, city, or health status..." oninput="renderCrawlSourcesTable()">
+        </div>
+        <span id="crawl-sources-footer-status" style="font-size: 0.78rem; color: #94a3b8; white-space: nowrap;">Ready</span>
+      </div>
+
+      <!-- Table Container -->
+      <div id="crawl-sources-table-wrap"
+        style="max-height: 68vh; overflow: auto; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 10px; background: rgba(15, 23, 42, 0.65);">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+          <thead id="crawl-sources-thead" style="position: sticky; top: 0; background: #1e293b; z-index: 2; color: #cbd5e1; border-bottom: 1px solid rgba(148, 163, 184, 0.25); user-select: none;">
+            <tr>
+              <th data-cs-sort="name" onclick="toggleCrawlSourcesSort('name')" style="padding: 9px 10px; cursor: pointer; white-space: nowrap;">Source &amp; URL <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="health_status" onclick="toggleCrawlSourcesSort('health_status')" style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Health <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="duration_sec" onclick="toggleCrawlSourcesSort('duration_sec')" style="padding: 9px 8px; text-align: right; cursor: pointer; white-space: nowrap;">Time <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="active" onclick="toggleCrawlSourcesSort('active')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Live events in events.json">Active <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="schedules" onclick="toggleCrawlSourcesSort('schedules')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Harvested leads in layer_schedules.json">Sched <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="quarantined" onclick="toggleCrawlSourcesSort('quarantined')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Quarantined events in manual_review_queue.json">Quar <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="archived" onclick="toggleCrawlSourcesSort('archived')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Past/disqualified events in archived_events.json">Arch <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="verdict" onclick="toggleCrawlSourcesSort('verdict')" style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Verdict <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="tier" onclick="toggleCrawlSourcesSort('tier')" style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Tier <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="control_status" onclick="toggleCrawlSourcesSort('control_status')" style="padding: 9px 10px; text-align: right; cursor: pointer; white-space: nowrap;">Crawl Action <span class="cs-sort-ind"></span></th>
+            </tr>
+          </thead>
+          <tbody id="crawl-sources-tbody"></tbody>
+        </table>
       </div>
     </section>
 
@@ -3452,6 +3542,289 @@
     window.VAN50_ENGINE = 'antigravity';
   </script>
   <script src="js/curator.js?v=1.7.0"></script>
+  <script>
+    (function () {
+      let _csData = { summary: null, sources: [] };
+      let _csFilter = 'all';
+      let _csSortKey = 'duration_sec';
+      let _csSortDir = 'desc';
+
+      function getToken() {
+        return sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token') || '';
+      }
+      function esc(str) {
+        return String(str == null ? '' : str)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      async function loadCrawlSourcesStats(showLoading) {
+        const footer = document.getElementById('crawl-sources-footer-status');
+        if (showLoading && footer) footer.textContent = 'Loading source stats...';
+        try {
+          const res = await fetch('/api/curator/source_stats?_t=' + Date.now(), {
+            headers: { 'Curator-Token': getToken() }
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          _csData = await res.json();
+          const badge = document.getElementById('crawl-sources-active-count');
+          if (badge && _csData.summary) badge.textContent = _csData.summary.active_crawl + '/' + _csData.summary.total;
+          renderCrawlSourcesSummary();
+          renderCrawlSourcesTable();
+        } catch (err) {
+          if (footer) footer.textContent = 'Failed to load source stats: ' + err.message;
+        }
+      }
+      window.loadCrawlSourcesStats = loadCrawlSourcesStats;
+
+      window.openCrawlSourcesModal = function () {
+        const panel = document.getElementById('crawl-sources-panel');
+        if (!panel) return;
+        const isVisible = panel.style.display !== 'none';
+        if (isVisible) {
+          panel.style.display = 'none';
+          return;
+        }
+        panel.style.display = 'block';
+        loadCrawlSourcesStats(true);
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      window.closeCrawlSourcesModal = function () {
+        const panel = document.getElementById('crawl-sources-panel');
+        if (!panel) return;
+        panel.style.display = 'none';
+      };
+
+      window.toggleCrawlSourcesSort = function (key) {
+        if (_csSortKey === key) {
+          _csSortDir = (_csSortDir === 'desc') ? 'asc' : 'desc';
+        } else {
+          _csSortKey = key;
+          _csSortDir = (key === 'name' || key === 'health_status' || key === 'verdict' || key === 'tier' || key === 'control_status') ? 'asc' : 'desc';
+        }
+        renderCrawlSourcesTable();
+      };
+
+      document.getElementById('crawl-sources-filter-pills')?.addEventListener('click', function (e) {
+        const btn = e.target.closest('[data-cs-filter]');
+        if (!btn) return;
+        _csFilter = btn.getAttribute('data-cs-filter') || 'all';
+        this.querySelectorAll('[data-cs-filter]').forEach(b => b.classList.toggle('active', b === btn));
+        renderCrawlSourcesTable();
+      });
+
+      function renderCrawlSourcesSummary() {
+        const s = _csData.summary || {};
+        const strip = document.getElementById('crawl-sources-summary-strip');
+        if (!strip) return;
+        const card = (label, val, color) =>
+          `<div style="background: rgba(30,41,59,0.75); border: 1px solid rgba(148,163,184,0.2); border-radius: 8px; padding: 8px 10px;">
+            <div style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em;">${label}</div>
+            <div style="font-size: 1.05rem; font-weight: 800; color: ${color}; margin-top: 2px;">${val}</div>
+          </div>`;
+        strip.innerHTML =
+          card('Active Crawl Feeds', `${s.active_crawl || 0} / ${s.total || 0}`, '#38bdf8') +
+          card('Est. Active Sweep', `${s.total_est_minutes || 0} min`, '#f8fafc') +
+          card('Paused / Disabled', `${(s.paused || 0) + (s.disabled || 0)}`, '#fbbf24') +
+          card('Est. Time Saved', `${s.saved_minutes || 0} min`, '#4ade80') +
+          card('Dead / WAF Feeds', `${s.dead_or_blocked || 0}`, '#f87171') +
+          card('Time Sinks (>60s)', `${s.time_sinks || 0}`, '#fb923c');
+
+        const setTxt = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+        setTxt('cs-cnt-all', s.total || 0);
+        setTxt('cs-cnt-active', s.active_crawl || 0);
+        setTxt('cs-cnt-star', s.stars || 0);
+        setTxt('cs-cnt-sink', s.time_sinks || 0);
+        setTxt('cs-cnt-dead', s.dead_or_blocked || 0);
+        setTxt('cs-cnt-stopped', (s.paused || 0) + (s.disabled || 0));
+      }
+
+      function verdictBadge(v) {
+        const map = {
+          star: ['⭐ Star', '#4ade80', 'rgba(34,197,94,0.16)'],
+          healthy: ['✅ Healthy', '#38bdf8', 'rgba(56,189,248,0.16)'],
+          aggregator: ['🔀 Aggregator', '#c084fc', 'rgba(192,132,252,0.16)'],
+          time_sink: ['🐌 Time Sink', '#fb923c', 'rgba(251,146,60,0.18)'],
+          zero_yield: ['⚪ Zero-Yield', '#94a3b8', 'rgba(148,163,184,0.14)'],
+          dead: ['💀 Dead/WAF', '#f87171', 'rgba(248,113,113,0.18)'],
+          unchecked: ['⏳ Unchecked', '#cbd5e1', 'rgba(148,163,184,0.12)'],
+        };
+        const [lbl, fg, bg] = map[v] || map.unchecked;
+        return `<span style="display:inline-block;padding:2px 7px;border-radius:999px;font-size:0.72rem;font-weight:700;color:${fg};background:${bg};white-space:nowrap;">${lbl}</span>`;
+      }
+
+      function healthBadge(row) {
+        const st = row.health_status || 'unchecked';
+        let color = '#94a3b8', label = st;
+        if (st === 'http_200_ok') { color = '#4ade80'; label = '200 OK'; }
+        else if (st === 'http_404') { color = '#f87171'; label = '404'; }
+        else if (st === 'waf_or_ratelimit') { color = '#fb923c'; label = 'WAF 403'; }
+        else if (st === 'network_or_dns_err') { color = '#f87171'; label = 'DNS/Net'; }
+        else if (st.startsWith('http_5')) { color = '#f87171'; label = st.replace('http_', 'HTTP '); }
+        const spa = row.spa_fallback_used ? `<div style="font-size:0.68rem;color:#fbbf24;margin-top:2px;">⚙️ SPA fallback</div>` : '';
+        return `<span style="font-weight:700;color:${color};">${esc(label)}</span>${spa}`;
+      }
+
+      function updateSortIndicators() {
+        document.querySelectorAll('#crawl-sources-thead th[data-cs-sort]').forEach(th => {
+          const key = th.getAttribute('data-cs-sort');
+          const ind = th.querySelector('.cs-sort-ind');
+          if (!ind) return;
+          if (key === _csSortKey) {
+            ind.textContent = _csSortDir === 'asc' ? ' ▲' : ' ▼';
+            ind.style.color = '#38bdf8';
+            th.style.color = '#f8fafc';
+          } else {
+            ind.textContent = ' ⇅';
+            ind.style.color = '#475569';
+            th.style.color = '#cbd5e1';
+          }
+        });
+      }
+
+      function renderCrawlSourcesTable() {
+        const tbody = document.getElementById('crawl-sources-tbody');
+        const footer = document.getElementById('crawl-sources-footer-status');
+        if (!tbody) return;
+        updateSortIndicators();
+        const q = (document.getElementById('crawl-sources-search')?.value || '').trim().toLowerCase();
+
+        let rows = (_csData.sources || []).filter(r => {
+          if (_csFilter === 'active_crawl' && r.control_status !== 'active') return false;
+          if (_csFilter === 'star' && r.verdict !== 'star') return false;
+          if (_csFilter === 'time_sink' && r.verdict !== 'time_sink') return false;
+          if (_csFilter === 'dead' && r.verdict !== 'dead') return false;
+          if (_csFilter === 'stopped' && r.control_status === 'active') return false;
+          if (q) {
+            const hay = `${r.name} ${r.url} ${r.domain} ${r.city} ${r.health_status} ${r.verdict} ${(r.origins || []).join(' ')}`.toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        });
+
+        const dir = _csSortDir === 'asc' ? 1 : -1;
+        const numKeys = new Set(['duration_sec', 'active', 'schedules', 'quarantined', 'archived']);
+        const verdictRank = { star: 1, healthy: 2, aggregator: 3, zero_yield: 4, time_sink: 5, dead: 6, unchecked: 7 };
+        const statusRank = { active: 1, paused: 2, disabled: 3 };
+
+        rows.sort((a, b) => {
+          let cmp = 0;
+          if (numKeys.has(_csSortKey)) {
+            const av = a[_csSortKey] != null ? Number(a[_csSortKey]) : -1;
+            const bv = b[_csSortKey] != null ? Number(b[_csSortKey]) : -1;
+            cmp = av - bv;
+          } else if (_csSortKey === 'verdict') {
+            cmp = (verdictRank[a.verdict] || 99) - (verdictRank[b.verdict] || 99);
+          } else if (_csSortKey === 'control_status') {
+            cmp = (statusRank[a.control_status] || 99) - (statusRank[b.control_status] || 99);
+          } else {
+            cmp = String(a[_csSortKey] || '').localeCompare(String(b[_csSortKey] || ''));
+          }
+          if (cmp !== 0) return cmp * dir;
+          return String(a.name || '').localeCompare(String(b.name || ''));
+        });
+
+        tbody.innerHTML = rows.map(r => {
+          const isStopped = r.control_status !== 'active';
+          const rowOpacity = isStopped ? 'opacity: 0.6;' : '';
+          const timeColor = (r.duration_sec != null && r.duration_sec >= 60) ? '#f87171' : ((r.duration_sec != null && r.duration_sec >= 30) ? '#fbbf24' : '#e2e8f0');
+          const timeStr = r.duration_sec != null ? `${r.duration_sec}s` : '—';
+          const roiSub = r.sec_per_active != null ? `<div style="font-size:0.68rem;color:#94a3b8;">${r.sec_per_active}s/ev</div>` : '';
+          const origins = (r.origins || []).map(o => `<span style="font-size:0.65rem;padding:1px 5px;border-radius:4px;background:rgba(148,163,184,0.16);color:#cbd5e1;margin-right:3px;">${esc(o)}</span>`).join('');
+          const safeUrlAttr = esc(r.url);
+          const actionBtns = isStopped
+            ? `<span style="font-size:0.7rem;color:#fbbf24;margin-right:6px;text-transform:uppercase;font-weight:700;">${esc(r.control_status)}</span>
+               <button type="button" class="btn-curator btn-curator-ghost" style="padding:3px 8px;font-size:0.72rem;color:#4ade80;border-color:rgba(74,222,128,0.4);" onclick="updateSingleCrawlSource('${safeUrlAttr}', 'active')">♻ Restore</button>`
+            : `<button type="button" class="btn-curator btn-curator-ghost" style="padding:3px 7px;font-size:0.72rem;color:#fcd34d;margin-right:4px;" onclick="updateSingleCrawlSource('${safeUrlAttr}', 'paused')" title="Pause crawling this source">⏸</button>
+               <button type="button" class="btn-curator btn-curator-ghost" style="padding:3px 7px;font-size:0.72rem;color:#fca5a5;border-color:rgba(248,113,113,0.4);" onclick="updateSingleCrawlSource('${safeUrlAttr}', 'disabled')" title="Remove from crawl queue">🚫 Remove</button>`;
+
+          return `<tr style="border-bottom: 1px solid rgba(148,163,184,0.12); ${rowOpacity}">
+            <td style="padding: 8px 10px; max-width: 340px;">
+              <div style="font-weight: 700; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${esc(r.name)}</div>
+              <div style="font-size: 0.72rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <a href="${safeUrlAttr}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none;">${safeUrlAttr}</a>
+              </div>
+              <div style="margin-top: 3px;">${origins}<span style="font-size:0.65rem;color:#94a3b8;">${esc(r.city)}</span></div>
+            </td>
+            <td style="padding: 8px 8px; white-space: nowrap;">${healthBadge(r)}</td>
+            <td style="padding: 8px 8px; text-align: right; white-space: nowrap; font-weight: 700; color: ${timeColor};">${timeStr}${roiSub}</td>
+            <td style="padding: 8px 6px; text-align: right; font-family: monospace; color:#4ade80; font-weight:700;">${r.active}</td>
+            <td style="padding: 8px 6px; text-align: right; font-family: monospace; color:#38bdf8;">${r.schedules}</td>
+            <td style="padding: 8px 6px; text-align: right; font-family: monospace; color:#fbbf24;">${r.quarantined}</td>
+            <td style="padding: 8px 6px; text-align: right; font-family: monospace; color:#94a3b8;">${r.archived}</td>
+            <td style="padding: 8px 8px;">${verdictBadge(r.verdict)}</td>
+            <td style="padding: 8px 8px;">
+              <select onchange="updateSingleCrawlSource('${safeUrlAttr}', null, this.value)"
+                style="background:#0f172a;color:#e2e8f0;border:1px solid rgba(148,163,184,0.3);border-radius:6px;padding:2px 6px;font-size:0.74rem;">
+                <option value="A" ${r.tier === 'A' ? 'selected' : ''}>Tier A</option>
+                <option value="B" ${r.tier === 'B' ? 'selected' : ''}>Tier B</option>
+                <option value="C" ${r.tier === 'C' ? 'selected' : ''}>Tier C</option>
+              </select>
+            </td>
+            <td style="padding: 8px 10px; text-align: right; white-space: nowrap;">${actionBtns}</td>
+          </tr>`;
+        }).join('');
+
+        if (footer) {
+          footer.textContent = `Showing ${rows.length} of ${(_csData.sources || []).length} sources`;
+        }
+      }
+      window.renderCrawlSourcesTable = renderCrawlSourcesTable;
+
+      window.updateSingleCrawlSource = async function (url, status, tier) {
+        const body = { url };
+        if (status) body.status = status;
+        if (tier) body.tier = tier;
+        try {
+          const res = await fetch('/api/curator/source_control', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Curator-Token': getToken() },
+            body: JSON.stringify(body)
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          await loadCrawlSourcesStats(false);
+        } catch (err) {
+          alert('Failed to update source control: ' + err.message);
+        }
+      };
+
+      window.bulkUpdateCrawlSources = async function (mode) {
+        const sources = _csData.sources || [];
+        let targets = [];
+        let newStatus = 'disabled';
+        let label = '';
+        if (mode === 'dead') {
+          targets = sources.filter(r => r.verdict === 'dead' && r.control_status === 'active');
+          newStatus = 'disabled';
+          label = `Disable ${targets.length} dead/WAF-blocked source(s)?`;
+        } else if (mode === 'sinks') {
+          targets = sources.filter(r => r.verdict === 'time_sink' && r.control_status === 'active');
+          newStatus = 'paused';
+          const mins = Math.round(targets.reduce((s, r) => s + (r.duration_sec || 0), 0) / 6) / 10;
+          label = `Pause ${targets.length} zero-yield >60s time sink(s) (est. ${mins} min saved per sweep)?`;
+        }
+        if (!targets.length) {
+          alert('No active sources match this bulk rule.');
+          return;
+        }
+        if (!confirm(label + ' (Reversible anytime in Paused/Disabled tab.)')) return;
+        try {
+          const res = await fetch('/api/curator/source_control', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Curator-Token': getToken() },
+            body: JSON.stringify({ updates: targets.map(t => ({ url: t.url, status: newStatus, note: 'Bulk ' + mode + ' cleanup' })) })
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          await loadCrawlSourcesStats(false);
+        } catch (err) {
+          alert('Bulk update failed: ' + err.message);
+        }
+      };
+
+      // Populate header pill badge lightly after page init if authenticated
+      setTimeout(() => { if (getToken()) loadCrawlSourcesStats(false); }, 1500);
+    })();
+  </script>
 </body>
 
 </html>

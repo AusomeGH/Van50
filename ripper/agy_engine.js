@@ -67,10 +67,13 @@ export function resolveAgyBinary() {
  * Checks whether the pipeline is running in Antigravity Engine mode.
  */
 export function isAntigravityEngine() {
-  return (
-    process.env.VAN50_ENGINE === "antigravity" ||
-    process.argv.some((a) => a === "--engine=antigravity" || a === "--agy" || a.includes("@agy"))
-  );
+  if (
+    process.env.VAN50_ENGINE === "gemini" ||
+    process.argv.some((a) => a === "--engine=gemini" || a === "--gemini")
+  ) {
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -213,71 +216,84 @@ export async function runAntigravityOnce(prompt, options = {}) {
   const startMs = Date.now();
   console.log(`   🚀 [Antigravity Worker] Spawning fresh 1-shot agent (${model}, timeout ${timeoutLimitSec}s) → ${taskLabel}...`);
 
-  try {
-    const args = [
-      "--model",
-      model,
-      "--disable-slash-commands",
-      "--dangerously-skip-permissions",
-    ];
-    if (/-low$/i.test(model)) {
-      args.push("--effort", "low");
-    }
-    args.push("-p", prompt);
-
-    const { stdout, stderr } = await execFileAsync(agyBin, args, {
-      cwd: options.noTools ? os.tmpdir() : process.cwd(),
-      encoding: "utf8",
-      timeout: timeoutMs,
-      maxBuffer: 4 * 1024 * 1024,
-      windowsHide: true,
-    });
-
-    const elapsedSec = ((Date.now() - startMs) / 1000).toFixed(1);
-    const parsed = parseJsonFromText(stdout);
-    if (parsed) {
-      console.log(`   ✅ [Antigravity Worker] Completed in ${elapsedSec}s (fresh context terminated).`);
-      return parsed;
-    }
-    const rawSnippet = String(stdout || stderr || "").replace(/\s+/g, " ").trim().slice(0, 140);
-    const cause = `Model (${model}) returned non-JSON text instead of structured schema${rawSnippet ? `: "${rawSnippet}"` : ""}`;
-    console.warn(`   🚨 [AI TIMEOUT/ERROR] Event: "${eventTitle}" [${eventId}] | Stage: ${stage} | Model: ${model} | Elapsed: ${elapsedSec}s/${timeoutLimitSec}s | Cause: ${cause}`);
-    AGY_TIMEOUT_EVENTS.push({
-      eventId,
-      eventTitle,
-      stage,
-      model,
-      elapsedSec: Number(elapsedSec),
-      timeoutLimitSec,
-      isTimeout: false,
-      cause,
-      timestamp: new Date().toISOString(),
-    });
-    return null;
-  } catch (err) {
-    const elapsedSec = ((Date.now() - startMs) / 1000).toFixed(1);
-    const isKilledTimeout = Boolean(err.killed || err.signal === "SIGTERM" || /timed?\s*out|ETIMEDOUT/i.test(err.message || ""));
-    const stderrText = String(err.stderr || "").replace(/\s+/g, " ").trim().slice(0, 160);
-    let cause = "";
-    if (isKilledTimeout) {
-      cause = `AI Worker exceeded ${timeoutLimitSec}s deadline on ${model} (${stage} prompt size ${prompt.length} chars${stderrText ? ` — ${stderrText}` : ""})`;
-    } else {
-      cause = `CLI process error (${err.code || "ERR"}): ${stderrText || err.message}`;
-    }
-    console.warn(`   🚨 [AI TIMEOUT/ERROR] Event: "${eventTitle}" [${eventId}] | Stage: ${stage} | Model: ${model} | Elapsed: ${elapsedSec}s/${timeoutLimitSec}s | Cause: ${cause}`);
-    AGY_TIMEOUT_EVENTS.push({
-      eventId,
-      eventTitle,
-      stage,
-      model,
-      elapsedSec: Number(elapsedSec),
-      timeoutLimitSec,
-      isTimeout: isKilledTimeout,
-      cause,
-      timestamp: new Date().toISOString(),
-    });
-    return null;
+  const args = [
+    "--model",
+    model,
+    "--disable-slash-commands",
+    "--dangerously-skip-permissions",
+  ];
+  if (/-low$/i.test(model)) {
+    args.push("--effort", "low");
   }
+  args.push("-p", prompt);
+
+  // Fix 3 (Process Audit): Exponential-backoff retry (up to 2 retries) on transient CLI cold-start errors
+  // ("backend returned an empty conversation id" / "failed to start conversation" / socket hang up)
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const { stdout, stderr } = await execFileAsync(agyBin, args, {
+        cwd: options.noTools ? os.tmpdir() : process.cwd(),
+        encoding: "utf8",
+        timeout: timeoutMs,
+        maxBuffer: 4 * 1024 * 1024,
+        windowsHide: true,
+      });
+
+      const elapsedSec = ((Date.now() - startMs) / 1000).toFixed(1);
+      const parsed = parseJsonFromText(stdout);
+      if (parsed) {
+        console.log(`   ✅ [Antigravity Worker] Completed in ${elapsedSec}s${attempt > 1 ? ` (attempt ${attempt}/${maxAttempts})` : ""} (fresh context terminated).`);
+        return parsed;
+      }
+      const rawSnippet = String(stdout || stderr || "").replace(/\s+/g, " ").trim().slice(0, 140);
+      const cause = `Model (${model}) returned non-JSON text instead of structured schema${rawSnippet ? `: "${rawSnippet}"` : ""}`;
+      console.warn(`   🚨 [AI TIMEOUT/ERROR] Event: "${eventTitle}" [${eventId}] | Stage: ${stage} | Model: ${model} | Elapsed: ${elapsedSec}s/${timeoutLimitSec}s | Cause: ${cause}`);
+      AGY_TIMEOUT_EVENTS.push({
+        eventId,
+        eventTitle,
+        stage,
+        model,
+        elapsedSec: Number(elapsedSec),
+        timeoutLimitSec,
+        isTimeout: false,
+        cause,
+        timestamp: new Date().toISOString(),
+      });
+      return null;
+    } catch (err) {
+      const elapsedSec = ((Date.now() - startMs) / 1000).toFixed(1);
+      const isKilledTimeout = Boolean(err.killed || err.signal === "SIGTERM" || /timed?\s*out|ETIMEDOUT/i.test(err.message || ""));
+      const stderrText = String(err.stderr || "").replace(/\s+/g, " ").trim().slice(0, 160);
+      const isTransientColdStart = !isKilledTimeout && /empty conversation id|failed to start conversation|ECONNRESET|socket hang up/i.test(`${stderrText} ${err.message || ""}`);
+      if (isTransientColdStart && attempt < maxAttempts) {
+        const backoffMs = attempt * 2000;
+        console.warn(`   🔁 [Antigravity Worker Retry ${attempt}/${maxAttempts - 1}] Transient CLI cold-start error (${stderrText || err.message}); retrying in ${backoffMs}ms...`);
+        await new Promise((r) => setTimeout(r, backoffMs));
+        continue;
+      }
+      let cause = "";
+      if (isKilledTimeout) {
+        cause = `AI Worker exceeded ${timeoutLimitSec}s deadline on ${model} (${stage} prompt size ${prompt.length} chars${stderrText ? ` — ${stderrText}` : ""})`;
+      } else {
+        cause = `CLI process error (${err.code || "ERR"}): ${stderrText || err.message}`;
+      }
+      console.warn(`   🚨 [AI TIMEOUT/ERROR] Event: "${eventTitle}" [${eventId}] | Stage: ${stage} | Model: ${model} | Elapsed: ${elapsedSec}s/${timeoutLimitSec}s | Cause: ${cause}`);
+      AGY_TIMEOUT_EVENTS.push({
+        eventId,
+        eventTitle,
+        stage,
+        model,
+        elapsedSec: Number(elapsedSec),
+        timeoutLimitSec,
+        isTimeout: isKilledTimeout,
+        cause,
+        timestamp: new Date().toISOString(),
+      });
+      return null;
+    }
+  }
+  return null;
 }
 
 /**

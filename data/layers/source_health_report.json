@@ -14,8 +14,8 @@
   "https://theimprovcentre.ca/shows/": {
     "url": "https://theimprovcentre.ca/shows/",
     "status": "http_200_ok",
-    "detail": "links=2 jsonLd=0 (220ms)",
-    "checked_at": "2026-11-23T04:34:33.707Z"
+    "detail": "links=2 jsonLd=0 (205ms)",
+    "checked_at": "2026-11-24T03:28:56.424Z"
   },
   "https://www.bezartshub.com/events": {
     "url": "https://www.bezartshub.com/events",
@@ -33,277 +33,277 @@
     "url": "https://www.bellperformingartscentre.com/events/",
     "status": "http_511",
     "detail": "HTTP 511",
-    "checked_at": "2026-11-23T02:06:08.029Z"
+    "checked_at": "2026-11-24T01:35:51.586Z"
   },
   "https://discoversurreybc.com/events/music-city-showcase/": {
     "url": "https://discoversurreybc.com/events/music-city-showcase/",
     "status": "http_200_ok",
-    "detail": "links=6 jsonLd=1 (1870ms)",
-    "checked_at": "2026-11-23T02:06:11.076Z"
+    "detail": "links=6 jsonLd=1 (1675ms)",
+    "checked_at": "2026-11-24T01:35:54.439Z"
   },
   "https://rickshawtheatre.com/events/": {
     "url": "https://rickshawtheatre.com/events/",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T02:07:51.383Z"
+    "checked_at": "2026-11-24T01:37:17.284Z"
   },
   "https://tightropetheatre.com/shows": {
     "url": "https://tightropetheatre.com/shows",
     "status": "http_200_ok",
-    "detail": "links=2 jsonLd=0 (208ms)",
-    "checked_at": "2026-11-23T02:07:52.655Z"
+    "detail": "links=2 jsonLd=0 (221ms)",
+    "checked_at": "2026-11-24T01:37:18.580Z"
   },
   "https://admitone.com/events/vancouver/venues/biltmore-cabaret": {
     "url": "https://admitone.com/events/vancouver/venues/biltmore-cabaret",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T02:07:54.546Z"
+    "checked_at": "2026-11-24T01:37:20.472Z"
   },
   "https://www.foxcabaret.com/calendar": {
     "url": "https://www.foxcabaret.com/calendar",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T02:07:55.913Z"
+    "checked_at": "2026-11-24T01:37:21.877Z"
   },
   "https://www.firehallartscentre.ca/whats-on/": {
     "url": "https://www.firehallartscentre.ca/whats-on/",
     "status": "http_200_ok",
-    "detail": "links=9 jsonLd=0 (801ms)",
-    "checked_at": "2026-11-23T02:07:57.768Z"
+    "detail": "links=9 jsonLd=0 (772ms)",
+    "checked_at": "2026-11-24T01:37:23.706Z"
   },
   "https://viff.org/whats-on/": {
     "url": "https://viff.org/whats-on/",
     "status": "http_200_ok",
-    "detail": "links=35 jsonLd=0 (94ms)",
-    "checked_at": "2026-11-23T02:12:19.036Z"
+    "detail": "links=35 jsonLd=0 (533ms)",
+    "checked_at": "2026-11-24T01:38:50.120Z"
   },
   "https://discoversurreybc.com/events/access-afro-caribbean-festival-of-surrey/": {
     "url": "https://discoversurreybc.com/events/access-afro-caribbean-festival-of-surrey/",
     "status": "http_200_ok",
-    "detail": "links=6 jsonLd=1 (1148ms)",
-    "checked_at": "2026-11-23T02:20:31.878Z"
+    "detail": "links=6 jsonLd=1 (1132ms)",
+    "checked_at": "2026-11-24T01:44:30.447Z"
   },
   "https://discoversurreybc.com/events/battle-of-the-brews/": {
     "url": "https://discoversurreybc.com/events/battle-of-the-brews/",
     "status": "http_200_ok",
-    "detail": "links=6 jsonLd=1 (1243ms)",
-    "checked_at": "2026-11-23T02:22:51.416Z"
+    "detail": "links=6 jsonLd=1 (1009ms)",
+    "checked_at": "2026-11-24T01:46:32.610Z"
   },
   "https://www.ticketweb.ca/venue/celebrities-nightclub-vancouver-bc/273974": {
     "url": "https://www.ticketweb.ca/venue/celebrities-nightclub-vancouver-bc/273974",
     "status": "http_200_ok",
-    "detail": "links=40 jsonLd=20 (375ms)",
-    "checked_at": "2026-11-23T02:25:10.214Z"
+    "detail": "links=40 jsonLd=20 (869ms)",
+    "checked_at": "2026-11-24T01:48:35.108Z"
   },
   "https://www.discoversurreybc.com/events": {
     "url": "https://www.discoversurreybc.com/events",
     "status": "http_200_ok",
-    "detail": "links=22 jsonLd=0 (1004ms)",
-    "checked_at": "2026-11-23T02:32:38.332Z"
+    "detail": "links=26 jsonLd=0 (920ms)",
+    "checked_at": "2026-11-24T01:54:52.772Z"
   },
   "https://discoversurreybc.com/events/fleetwood-block-party/": {
     "url": "https://discoversurreybc.com/events/fleetwood-block-party/",
     "status": "http_200_ok",
-    "detail": "links=6 jsonLd=1 (1212ms)",
-    "checked_at": "2026-11-23T02:41:01.184Z"
+    "detail": "links=6 jsonLd=1 (1708ms)",
+    "checked_at": "2026-11-24T02:03:37.715Z"
   },
   "https://discoversurreybc.com/events/pataka-esports-festival/": {
     "url": "https://discoversurreybc.com/events/pataka-esports-festival/",
     "status": "http_200_ok",
-    "detail": "links=6 jsonLd=1 (1262ms)",
-    "checked_at": "2026-11-23T02:43:22.193Z"
+    "detail": "links=6 jsonLd=1 (1498ms)",
+    "checked_at": "2026-11-24T02:05:42.502Z"
   },
   "https://discoversurreybc.com/events/surrey-fest-downtown/": {
     "url": "https://discoversurreybc.com/events/surrey-fest-downtown/",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T02:45:40.430Z"
+    "checked_at": "2026-11-24T02:07:45.247Z"
   },
   "https://thecultch.com/whats-on/": {
     "url": "https://thecultch.com/whats-on/",
     "status": "http_200_ok",
-    "detail": "links=8 jsonLd=0 (96ms)",
-    "checked_at": "2026-11-23T02:45:41.569Z"
+    "detail": "links=9 jsonLd=0 (113ms)",
+    "checked_at": "2026-11-24T02:07:46.401Z"
   },
   "https://www.surrey.ca/arts-culture/surrey-civic-theatres": {
     "url": "https://www.surrey.ca/arts-culture/surrey-civic-theatres",
     "status": "http_200_ok",
-    "detail": "links=17 jsonLd=0 (894ms)",
-    "checked_at": "2026-11-23T02:45:44.153Z"
+    "detail": "links=17 jsonLd=0 (718ms)",
+    "checked_at": "2026-11-24T02:07:48.776Z"
   },
   "https://thecultch.com/venues/york-theatre/": {
     "url": "https://thecultch.com/venues/york-theatre/",
     "status": "http_200_ok",
-    "detail": "links=0 jsonLd=0 (868ms)",
-    "checked_at": "2026-11-23T02:45:46.549Z"
+    "detail": "links=0 jsonLd=0 (828ms)",
+    "checked_at": "2026-11-24T02:07:51.260Z"
   },
   "https://www.tightropetheatre.com/weekly-live-shows": {
     "url": "https://www.tightropetheatre.com/weekly-live-shows",
     "status": "http_200_ok",
-    "detail": "links=2 jsonLd=0 (94ms)",
-    "checked_at": "2026-11-23T02:45:56.202Z"
+    "detail": "links=2 jsonLd=0 (89ms)",
+    "checked_at": "2026-11-24T02:08:00.982Z"
   },
   "https://www.showpass.com/o/vancouver/": {
     "url": "https://www.showpass.com/o/vancouver/",
     "status": "http_200_ok",
-    "detail": "links=1 jsonLd=0 (197ms)",
-    "checked_at": "2026-11-23T02:45:58.023Z"
+    "detail": "links=1 jsonLd=0 (199ms)",
+    "checked_at": "2026-11-24T02:08:02.819Z"
   },
   "https://www.firehallartscentre.ca/on-stage/": {
     "url": "https://www.firehallartscentre.ca/on-stage/",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T02:46:40.540Z"
+    "checked_at": "2026-11-24T02:08:39.618Z"
   },
   "https://admitone.com/events/vancouver": {
     "url": "https://admitone.com/events/vancouver",
     "status": "http_200_ok",
-    "detail": "links=0 jsonLd=0 (335ms)",
-    "checked_at": "2026-11-23T02:46:41.951Z"
+    "detail": "links=0 jsonLd=0 (326ms)",
+    "checked_at": "2026-11-24T02:08:40.981Z"
   },
   "https://anvilcentre.com/events/": {
     "url": "https://anvilcentre.com/events/",
     "status": "http_200_ok",
-    "detail": "links=0 jsonLd=0 (512ms)",
-    "checked_at": "2026-11-23T02:47:02.473Z"
+    "detail": "links=0 jsonLd=0 (507ms)",
+    "checked_at": "2026-11-24T02:08:56.850Z"
   },
   "https://artsclub.com/shows": {
     "url": "https://artsclub.com/shows",
     "status": "http_200_ok",
-    "detail": "links=3 jsonLd=0 (220ms)",
-    "checked_at": "2026-11-23T03:05:14.923Z"
+    "detail": "links=3 jsonLd=0 (189ms)",
+    "checked_at": "2026-11-24T02:24:41.773Z"
   },
   "https://brewhall.com/events/": {
     "url": "https://brewhall.com/events/",
     "status": "http_200_ok",
-    "detail": "links=0 jsonLd=0 (379ms)",
-    "checked_at": "2026-11-23T03:06:12.932Z"
+    "detail": "links=0 jsonLd=0 (654ms)",
+    "checked_at": "2026-11-24T02:25:19.957Z"
   },
   "https://vancouverfringe.com/shows/": {
     "url": "https://vancouverfringe.com/shows/",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T03:06:26.821Z"
+    "checked_at": "2026-11-24T02:25:34.390Z"
   },
   "https://www.nvrc.ca/centennial-theatre/whats-on": {
     "url": "https://www.nvrc.ca/centennial-theatre/whats-on",
-    "status": "network_or_dns_err",
-    "detail": "The operation was aborted due to timeout",
-    "checked_at": "2026-11-23T03:06:34.853Z"
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (1013ms)",
+    "checked_at": "2026-11-24T02:25:36.434Z"
   },
   "https://centralcity.ca/events/": {
     "url": "https://centralcity.ca/events/",
     "status": "http_200_ok",
-    "detail": "links=0 jsonLd=0 (277ms)",
-    "checked_at": "2026-11-23T03:06:36.155Z"
+    "detail": "links=0 jsonLd=0 (299ms)",
+    "checked_at": "2026-11-24T02:26:14.208Z"
   },
   "https://www.surrey.ca/news-events/events": {
     "url": "https://www.surrey.ca/news-events/events",
     "status": "http_200_ok",
-    "detail": "links=11 jsonLd=0 (923ms)",
-    "checked_at": "2026-11-23T03:07:31.343Z"
+    "detail": "links=11 jsonLd=0 (870ms)",
+    "checked_at": "2026-11-24T02:27:02.914Z"
   },
   "https://croatiancentre.com/events/": {
     "url": "https://croatiancentre.com/events/",
     "status": "http_200_ok",
-    "detail": "links=3 jsonLd=0 (102ms)",
-    "checked_at": "2026-11-23T03:10:58.422Z"
+    "detail": "links=3 jsonLd=0 (96ms)",
+    "checked_at": "2026-11-24T02:28:26.845Z"
   },
   "https://deerlakegallery.org/events/": {
     "url": "https://deerlakegallery.org/events/",
     "status": "network_or_dns_err",
     "detail": "fetch failed",
-    "checked_at": "2026-11-23T03:11:02.130Z"
+    "checked_at": "2026-11-24T02:28:28.620Z"
   },
   "https://www.sfu.ca/sca/events---news/events.html": {
     "url": "https://www.sfu.ca/sca/events---news/events.html",
     "status": "http_200_ok",
-    "detail": "links=173 jsonLd=0 (108ms)",
-    "checked_at": "2026-11-23T03:11:03.309Z"
+    "detail": "links=173 jsonLd=0 (893ms)",
+    "checked_at": "2026-11-24T02:28:30.590Z"
   },
   "https://www.gatewaytheatre.com/events/": {
     "url": "https://www.gatewaytheatre.com/events/",
     "status": "http_200_ok",
-    "detail": "links=3 jsonLd=0 (268ms)",
-    "checked_at": "2026-11-23T04:17:54.005Z"
+    "detail": "links=3 jsonLd=0 (157ms)",
+    "checked_at": "2026-11-24T03:19:57.589Z"
   },
   "https://guildfordtowncentre.com/events": {
     "url": "https://guildfordtowncentre.com/events",
     "status": "network_or_dns_err",
     "detail": "fetch failed",
-    "checked_at": "2026-11-23T04:18:47.443Z"
+    "checked_at": "2026-11-24T03:20:40.370Z"
   },
   "https://www.hollywoodtheatre.ca/events": {
     "url": "https://www.hollywoodtheatre.ca/events",
     "status": "http_200_ok",
-    "detail": "links=70 jsonLd=0 (98ms)",
-    "checked_at": "2026-11-23T04:18:48.578Z"
+    "detail": "links=69 jsonLd=0 (85ms)",
+    "checked_at": "2026-11-24T03:20:41.473Z"
   },
   "https://www.langleyeventscentre.com/events": {
     "url": "https://www.langleyeventscentre.com/events",
     "status": "http_200_ok",
-    "detail": "links=0 jsonLd=0 (141ms)",
-    "checked_at": "2026-11-23T04:22:27.924Z"
+    "detail": "links=0 jsonLd=0 (137ms)",
+    "checked_at": "2026-11-24T03:22:35.902Z"
   },
   "https://www.masseytheatre.com/events/": {
     "url": "https://www.masseytheatre.com/events/",
     "status": "http_200_ok",
-    "detail": "links=9 jsonLd=0 (992ms)",
-    "checked_at": "2026-11-23T04:22:37.776Z"
+    "detail": "links=9 jsonLd=0 (1797ms)",
+    "checked_at": "2026-11-24T03:22:46.797Z"
   },
   "https://michaeljfoxtheatre.ca/events/": {
     "url": "https://michaeljfoxtheatre.ca/events/",
     "status": "http_200_ok",
-    "detail": "links=12 jsonLd=0 (814ms)",
-    "checked_at": "2026-11-23T04:22:44.820Z"
+    "detail": "links=12 jsonLd=0 (1026ms)",
+    "checked_at": "2026-11-24T03:22:50.884Z"
   },
   "https://www.artscouncilofsurrey.ca/events": {
     "url": "https://www.artscouncilofsurrey.ca/events",
     "status": "http_200_ok",
-    "detail": "links=3 jsonLd=0 (1325ms)",
-    "checked_at": "2026-11-23T04:23:39.505Z"
+    "detail": "links=3 jsonLd=0 (1283ms)",
+    "checked_at": "2026-11-24T03:22:53.825Z"
   },
   "https://centre.nikkeiplace.org/events/": {
     "url": "https://centre.nikkeiplace.org/events/",
     "status": "http_200_ok",
-    "detail": "links=10 jsonLd=0 (451ms)",
-    "checked_at": "2026-11-23T04:24:29.919Z"
+    "detail": "links=10 jsonLd=0 (428ms)",
+    "checked_at": "2026-11-24T03:23:33.459Z"
   },
   "https://www.normanrothsteintheatre.com/events": {
     "url": "https://www.normanrothsteintheatre.com/events",
     "status": "http_200_ok",
-    "detail": "links=1 jsonLd=0 (270ms)",
-    "checked_at": "2026-11-23T04:29:32.194Z"
+    "detail": "links=1 jsonLd=0 (632ms)",
+    "checked_at": "2026-11-24T03:26:52.411Z"
   },
   "https://www.richmondartgallery.org/events": {
     "url": "https://www.richmondartgallery.org/events",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T04:30:42.254Z"
+    "checked_at": "2026-11-24T03:27:32.008Z"
   },
   "https://www.roundhouse.ca/events/": {
     "url": "https://www.roundhouse.ca/events/",
     "status": "http_520",
     "detail": "HTTP 520",
-    "checked_at": "2026-11-23T04:30:43.634Z"
+    "checked_at": "2026-11-24T03:27:33.322Z"
   },
   "https://scandinaviancentre.org/events/": {
     "url": "https://scandinaviancentre.org/events/",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T04:30:44.760Z"
+    "checked_at": "2026-11-24T03:27:34.455Z"
   },
   "https://www.slicevancouver.ca/events": {
     "url": "https://www.slicevancouver.ca/events",
     "status": "http_404",
     "detail": "HTTP 404",
-    "checked_at": "2026-11-23T04:30:45.964Z"
+    "checked_at": "2026-11-24T03:27:35.640Z"
   },
   "https://thecinematheque.ca/films/calendar": {
     "url": "https://thecinematheque.ca/films/calendar",
     "status": "http_200_ok",
-    "detail": "links=59 jsonLd=0 (433ms)",
-    "checked_at": "2026-11-23T04:30:47.422Z"
+    "detail": "links=44 jsonLd=0 (395ms)",
+    "checked_at": "2026-11-24T03:27:37.068Z"
   },
   "https://www.roxyvancouver.com/calendar": {
     "url": "https://www.roxyvancouver.com/calendar",
@@ -2404,5 +2404,23 @@
     "status": "network_or_dns_err",
     "detail": "fetch failed",
     "checked_at": "2026-11-23T11:44:15.083Z"
+  },
+  "https://www.showpass.com/o/little-mountain-gallery/": {
+    "url": "https://www.showpass.com/o/little-mountain-gallery/",
+    "status": "http_200_ok",
+    "detail": "links=1 jsonLd=0 (247ms)",
+    "checked_at": "2026-11-24T01:33:39.814Z"
+  },
+  "https://vhs2026.eventive.org/schedule": {
+    "url": "https://vhs2026.eventive.org/schedule",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (309ms)",
+    "checked_at": "2026-11-24T01:34:18.539Z"
+  },
+  "https://riotheatre.ca/calendar/": {
+    "url": "https://riotheatre.ca/calendar/",
+    "status": "http_200_ok",
+    "detail": "links=0 jsonLd=0 (93ms)",
+    "checked_at": "2026-11-24T01:35:42.069Z"
   }
 }

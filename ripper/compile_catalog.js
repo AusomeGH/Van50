@@ -1867,6 +1867,25 @@ export async function compileCatalog(options = {}) {
       }
     }
 
+    // Fix 4 (Process Audit — Deterministic Past-Date Lock):
+    // If live Box Office confirmed a past ISO date (< todayIso) with no upcoming box-office showings,
+    // NEVER allow a synthetic +1yr schedule rollover (e.g. 2026-10-04 -> 2027-10-02) or stale existing showings to keep it alive.
+    if (box.date && /^\d{4}-\d{2}-\d{2}$/.test(box.date) && box.date < todayIso) {
+      const boxHasFutureShowing = Array.isArray(box.showings) && box.showings.some((s) => s && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && s.date >= todayIso);
+      const schedRolledForward = sched.date && /^\d{4}-\d{2}-\d{2}$/.test(sched.date) && Number(sched.date.slice(0, 4)) > Number(box.date.slice(0, 4));
+      const existingHasFutureShowing = Array.isArray(existing?.showings) && existing.showings.some((s) => s && /^\d{4}-\d{2}-\d{2}$/.test(s.date) && Number(s.date.slice(0, 4)) > Number(box.date.slice(0, 4)));
+      if (!boxHasFutureShowing && (schedRolledForward || existingHasFutureShowing)) {
+        console.log(`🛡️ [Compiler Past-Date Lock] Live box office confirmed past date (${box.date}); blocking synthetic +1yr rollover for "${eventId}".`);
+        sched.date = box.date;
+        if (Array.isArray(sched.showings)) {
+          sched.showings = sched.showings.filter((s) => !s || !s.date || s.date <= box.date);
+        }
+        if (Array.isArray(existing?.showings)) {
+          existing.showings = existing.showings.filter((s) => !s || !s.date || s.date <= box.date);
+        }
+      }
+    }
+
     // 3. AI ARBITRATION: Lifecycle & Showings (5 Slots)
     const explicitFallbackDate = extractFallbackDate(eventId, seedUrl || existing.ticket_url || box.ticket_url, seed, existing);
     const hasExplicitTimeBoundDate = Boolean(
@@ -3914,6 +3933,13 @@ export async function compileCatalog(options = {}) {
       console.log(`💻 [Compiler Archive] Auto-archiving online-only virtual session (Gate 3): "${compiledCard.title}" [${eventId}]`);
       archiveCard("disqualified_online_virtual", "archived_non_event", "Disqualified virtual/online-only webinar with no physical venue (Gate 3)");
     } else if (
+      !hasCuratorAction &&
+      (/^location\s+visible\s+to\s+members$/i.test(String(compiledCard.venue || compiledCard.venue_name || "").trim()) ||
+        /^location-visible-to-/i.test(eventId))
+    ) {
+      console.log(`🔒 [Compiler Archive] Auto-archiving private members-only Meetup stub (Gate 3 Physical Venue Invariant): "${compiledCard.title}" [${eventId}]`);
+      archiveCard("private_members_only_venue", "archived_non_event", "Meetup private event with hidden address ('Location visible to members') — violates Physical Venue Invariant (Gate 3)");
+    } else if (
       (/burnaby-central-railway|bcsme\.org/i.test(`${eventId} ${compiledCard.title || ""} ${compiledCard.ticket_url || ""}`)) &&
       (() => {
         const [, mStr, dStr] = todayIso.split("-");
@@ -3965,6 +3991,14 @@ export async function compileCatalog(options = {}) {
       } else if (!hasCuratorAction && (box.status === "FATAL_MISMATCHED_ENTITY" || box.status === "FATAL_EMPTY_STUB" || box.status === "FATAL_MERCH_OR_PASS")) {
         console.log(`🗑️ [Compiler Archive] Auto-archiving fatal stub/mismatch lead: "${compiledCard.title}" [${eventId}] (${box.status})`);
         archiveCard("fatal_mismatched_stub", "archived_stub", box.error || box.status);
+      } else if (
+        !hasCuratorAction &&
+        box.status === "FATAL_DEAD_LINK" &&
+        /\b(404|410|not\s+found|page\s+not\s+found|does\s+not\s+exist|no\s+longer\s+available|generic\s+(?:events|calendar)\s+index)\b/i.test(String(box.error || "")) &&
+        !/\b(403|429|500|502|503|504|timeout|timed\s*out|cloudflare|antibot)\b/i.test(String(box.error || ""))
+      ) {
+        console.log(`💀 [Compiler Archive] Auto-archiving confirmed 404/410 dead link (Gate 2a): "${compiledCard.title}" [${eventId}] (${box.error})`);
+        archiveCard("fatal_dead_link_confirmed", "archived_dead_link", box.error || "Confirmed HTTP 404/410 dead link after self-healing failed (Gate 2a)");
       } else {
         compiledCard.quarantineReason = box.status.toLowerCase();
         compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_fatal";
@@ -3997,10 +4031,23 @@ export async function compileCatalog(options = {}) {
       const isFromQuarantine = Boolean(seed._isFromQuarantine || quarantinedMap.has(eventId));
 
       if (isSoldOut && !isPriceVerified) {
-        compiledCard.quarantineReason = "sold_out";
-        compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_sold_out";
-        compiledCard.audit_error = box.error || "Event confirmed SOLD OUT on live ticketing portal (ticket prices hidden)";
-        quarantinedEvents.push(compiledCard);
+        const isSingleDateVerifiedSoldOut =
+          !hasCuratorAction &&
+          !hasAvailableEligibleTier &&
+          !isPerennial &&
+          compiledCard.lifecycle_type !== "weekly_recurring_residency" &&
+          (Array.isArray(showings) ? showings.length : 0) <= 1 &&
+          activeShowingSlots.length <= 1 &&
+          (hasAuditedBoxOffice || /bpl\.bc\.ca|nvcl\.ca|vpl\.bibliocommons\.com/i.test(String(compiledCard.ticket_url || compiledCard.details_url || "")));
+        if (isSingleDateVerifiedSoldOut) {
+          console.log(`🎟️ [Compiler Archive] Auto-archiving confirmed single-date sold-out/full event (Gate 4 verified): "${compiledCard.title}" [${eventId}]`);
+          archiveCard("sold_out_single_date", "archived_sold_out", box.error || "Confirmed sold out / full registration across all tiers on single-date event (Gate 4 verified)");
+        } else {
+          compiledCard.quarantineReason = "sold_out";
+          compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_sold_out";
+          compiledCard.audit_error = box.error || "Event confirmed SOLD OUT on live ticketing portal (ticket prices hidden)";
+          quarantinedEvents.push(compiledCard);
+        }
       } else if (!isPriceVerified && (isFromQuarantine || box.status === "UNVERIFIED_PRICING" || box.quarantine_reason === "unverified_box_office_pricing")) {
         compiledCard.quarantineReason = "unverified_box_office_pricing";
         compiledCard.reviewStatus = hasCuratorAction ? "pending_curator_review" : "quarantined_pricing";

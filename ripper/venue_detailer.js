@@ -689,6 +689,7 @@ Return a JSON object with:
     if (agyRes && typeof agyRes === "object" && Object.keys(agyRes).length > 0) {
       return agyRes;
     }
+    return null;
   }
 
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "";

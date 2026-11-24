@@ -140,11 +140,6 @@
           aria-pressed="false">Langley</button>
       </div>
       <div class="top-quick-toggles-bar" id="top-quick-toggles-bar" role="group" aria-label="Quick Outing Toggles">
-        <button type="button" class="top-quick-toggle-pill" id="top-toggle-paid" aria-pressed="false"
-          title="Show only paid or ticketed outings ($1 – $50 CAD)">
-          <span class="toggle-pill-indicator" aria-hidden="true"></span>
-          <span>Paid Only</span>
-        </button>
         <button type="button" class="top-quick-toggle-pill" id="top-toggle-free" aria-pressed="false"
           title="Show only free outings ($0 CAD)">
           <span class="toggle-pill-indicator" aria-hidden="true"></span>
@@ -303,13 +298,16 @@
       <div class="map-view-wrapper" id="map-view-wrapper" style="display: none;">
         <div class="map-jump-toolbar" id="map-jump-bar" role="region" aria-label="Jump to City">
           <div class="map-jump-header">
-            <span class="map-jump-label">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -3px; margin-right: 4px;">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>Jump to City:</span>
-            <span class="map-pin-count-badge" id="map-pin-count-badge">Loading map…</span>
+            <div class="map-jump-header-left">
+              <span class="map-jump-label">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -3px; margin-right: 4px;">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>Jump to City:</span>
+              <span class="map-pin-count-badge" id="map-pin-count-badge">Loading map…</span>
+            </div>
+            <button type="button" class="map-back-to-list-btn" data-switch-view="cards">← Back to List</button>
           </div>
           <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="City Quick Jump">
             <button type="button" class="map-jump-pill map-jump-near-me" id="map-jump-near-me" data-area="near-me"
@@ -337,6 +335,7 @@
           </div>
         </div>
         <div class="map-canvas-container">
+          <div class="map-edge-swipe-guard" aria-hidden="true"></div>
           <div id="van50-map-canvas" role="application" aria-label="Interactive Google Map of Events"></div>
           <div id="map-legend" class="map-legend" aria-label="Map Pin Legend"></div>
           <div id="map-location-status" class="map-location-status" role="status" aria-live="polite" hidden></div>
