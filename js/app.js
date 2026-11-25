@@ -2604,8 +2604,13 @@ function setupEventListeners() {
   const closeTipsBtn = document.getElementById('btn-close-tips');
 
   function updateClearBtnVisibility() {
+    const hasQuery = Boolean(searchInput && searchInput.value.trim().length > 0);
     if (clearSearchBtn) {
-      clearSearchBtn.style.display = (searchInput && searchInput.value.trim().length > 0) ? 'inline-flex' : 'none';
+      clearSearchBtn.style.display = hasQuery ? 'inline-flex' : 'none';
+    }
+    const searchWrapperEl = searchInput ? searchInput.closest('.search-wrapper') : null;
+    if (searchWrapperEl) {
+      searchWrapperEl.classList.toggle('has-query', hasQuery);
     }
   }
 
@@ -2935,6 +2940,26 @@ function setupEventListeners() {
   window._currentCatalogView = currentView;
 
   const mapSvgIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>';
+  const desktopSplitMql = typeof window.matchMedia === 'function' ? window.matchMedia('(min-width: 1024px)') : null;
+  const finePointerMql = typeof window.matchMedia === 'function' ? window.matchMedia('(hover: hover) and (pointer: fine)') : null;
+
+  function isDesktopSplitViewport() {
+    return desktopSplitMql ? desktopSplitMql.matches : (window.innerWidth >= 1024);
+  }
+
+  function syncTopMapToggleLabel(btn, isMap) {
+    if (!btn) return;
+    const isDesktop = isDesktopSplitViewport();
+    if (isDesktop) {
+      btn.innerHTML = `${mapSvgIcon}<span>Split Map</span>`;
+      btn.setAttribute('aria-label', isMap ? 'Hide Split Map' : 'Open Split Map');
+    } else {
+      btn.innerHTML = isMap ? '<span>← List View</span>' : `${mapSvgIcon}<span>Map</span>`;
+      btn.setAttribute('aria-label', isMap ? 'Return to List View' : 'Switch to Map view');
+    }
+    btn.classList.toggle('active', isMap);
+    btn.setAttribute('aria-pressed', isMap ? 'true' : 'false');
+  }
 
   function buildViewUrl(targetView) {
     try {
@@ -2977,8 +3002,11 @@ function setupEventListeners() {
     if (!eventsGrid || !mapWrapper) return;
     const targetView = mode === 'map' ? 'map' : 'cards';
     const isMap = targetView === 'map';
+    const isDesktopSplit = isDesktopSplitViewport();
     const fromPopState = Boolean(opts && opts.fromPopState);
     const skipHistory = Boolean(opts && opts.skipHistory);
+    const mainContainer = document.querySelector('main.container');
+    const workspaceSection = document.getElementById('events-workspace-section');
 
     // History Stack Management (synchronous inside user click handler for iOS Safari / Android Chrome swipe-back)
     if (isMap && currentView !== 'map') {
@@ -3013,10 +3041,7 @@ function setupEventListeners() {
         return; // Handled unconditionally by updateFloatingMapReturnPill()
       }
       if (btn.id === 'mobile-top-map-btn' || btn.getAttribute('data-view') === 'toggle') {
-        btn.innerHTML = isMap ? '<span>← List View</span>' : `${mapSvgIcon}<span>Map</span>`;
-        btn.classList.toggle('active', isMap);
-        btn.setAttribute('aria-pressed', isMap ? 'true' : 'false');
-        btn.setAttribute('aria-label', isMap ? 'Return to List View' : 'Switch to Map view');
+        syncTopMapToggleLabel(btn, isMap);
         return;
       }
       if (btn.hasAttribute('data-switch-view')) {
@@ -3031,6 +3056,8 @@ function setupEventListeners() {
     });
 
     if (!isMap) {
+      if (mainContainer) mainContainer.classList.remove('is-split-map');
+      if (workspaceSection) workspaceSection.classList.remove('is-split-map');
       eventsGrid.classList.remove('is-hidden');
       eventsGrid.removeAttribute('hidden');
       eventsGrid.style.setProperty('display', 'grid', 'important');
@@ -3038,14 +3065,31 @@ function setupEventListeners() {
       mapWrapper.classList.add('is-hidden');
       mapWrapper.setAttribute('hidden', '');
       mapWrapper.style.setProperty('display', 'none', 'important');
+      if (typeof window.clearEventMarkerHighlightOnMap === 'function') {
+        window.clearEventMarkerHighlightOnMap();
+      }
     } else {
-      eventsGrid.classList.add('is-hidden');
-      eventsGrid.setAttribute('hidden', '');
-      eventsGrid.style.setProperty('display', 'none', 'important');
-      mapWrapper.classList.remove('is-hidden');
-      mapWrapper.removeAttribute('hidden');
-      mapWrapper.classList.add('active');
-      mapWrapper.style.setProperty('display', 'block', 'important');
+      if (isDesktopSplit) {
+        if (mainContainer) mainContainer.classList.add('is-split-map');
+        if (workspaceSection) workspaceSection.classList.add('is-split-map');
+        eventsGrid.classList.remove('is-hidden');
+        eventsGrid.removeAttribute('hidden');
+        eventsGrid.style.setProperty('display', 'grid', 'important');
+        mapWrapper.classList.remove('is-hidden');
+        mapWrapper.removeAttribute('hidden');
+        mapWrapper.classList.add('active');
+        mapWrapper.style.setProperty('display', 'flex', 'important');
+      } else {
+        if (mainContainer) mainContainer.classList.remove('is-split-map');
+        if (workspaceSection) workspaceSection.classList.remove('is-split-map');
+        eventsGrid.classList.add('is-hidden');
+        eventsGrid.setAttribute('hidden', '');
+        eventsGrid.style.setProperty('display', 'none', 'important');
+        mapWrapper.classList.remove('is-hidden');
+        mapWrapper.removeAttribute('hidden');
+        mapWrapper.classList.add('active');
+        mapWrapper.style.setProperty('display', 'block', 'important');
+      }
 
       if (typeof initVancouverMap === 'function') {
         initVancouverMap();
@@ -3054,9 +3098,11 @@ function setupEventListeners() {
         window._mapMarkersDirty = false;
         updateMapMarkers(window._pendingMapFilteredEvents);
       }
-      if (typeof invalidateVancouverMap === 'function') {
-        invalidateVancouverMap();
-      }
+      requestAnimationFrame(() => {
+        if (typeof invalidateVancouverMap === 'function') {
+          invalidateVancouverMap();
+        }
+      });
     }
 
     window.updateFloatingMapReturnPill();
@@ -3065,6 +3111,47 @@ function setupEventListeners() {
       window.updateScrollDateIndicator();
     }
   };
+
+  // Sync top Map / Split Map button label on initial load & across 1024px breakpoint resizes
+  syncTopMapToggleLabel(document.getElementById('mobile-top-map-btn'), currentView === 'map');
+  if (desktopSplitMql) {
+    const handleDesktopSplitBreakpointChange = () => {
+      syncTopMapToggleLabel(document.getElementById('mobile-top-map-btn'), currentView === 'map');
+      if (currentView === 'map') {
+        window.setCatalogViewMode('map', { skipHistory: true });
+      }
+    };
+    if (typeof desktopSplitMql.addEventListener === 'function') {
+      desktopSplitMql.addEventListener('change', handleDesktopSplitBreakpointChange);
+    } else if (typeof desktopSplitMql.addListener === 'function') {
+      desktopSplitMql.addListener(handleDesktopSplitBreakpointChange);
+    }
+  }
+
+  // Desktop Card Hover -> Map Pin Highlight (only on fine-pointer hover devices when Split Map is active)
+  if (eventsGrid) {
+    let lastHoveredEventId = null;
+    eventsGrid.addEventListener('mouseover', (e) => {
+      if (currentView !== 'map' || !isDesktopSplitViewport()) return;
+      if (finePointerMql && !finePointerMql.matches) return;
+      const cardEl = e.target && typeof e.target.closest === 'function' ? e.target.closest('.event-card[data-event-id]') : null;
+      const nextId = cardEl ? cardEl.getAttribute('data-event-id') : null;
+      if (nextId === lastHoveredEventId) return;
+      lastHoveredEventId = nextId;
+      if (nextId && typeof window.highlightEventMarkerOnMap === 'function') {
+        window.highlightEventMarkerOnMap(nextId);
+      } else if (!nextId && typeof window.clearEventMarkerHighlightOnMap === 'function') {
+        window.clearEventMarkerHighlightOnMap();
+      }
+    });
+    eventsGrid.addEventListener('mouseleave', () => {
+      if (!lastHoveredEventId) return;
+      lastHoveredEventId = null;
+      if (typeof window.clearEventMarkerHighlightOnMap === 'function') {
+        window.clearEventMarkerHighlightOnMap();
+      }
+    });
+  }
 
   window.bindAllViewSwitcherButtons = function () {
     const allButtons = document.querySelectorAll('[aria-label="View Switcher"] button, .view-switcher-btn, .inline-view-mode-btn, #mobile-view-toggle, #mobile-top-map-btn, [data-view], [data-switch-view]');
@@ -3185,13 +3272,15 @@ function setupEventListeners() {
     }
   });
 
-  // View Event on Map Helper (switches to Map View, pans/zooms to zoom 15, opens InfoWindow)
+  // View Event on Map Helper (switches to Map View / Desktop Split Map, pans/zooms to zoom 15, opens InfoWindow)
   window.viewEventOnMap = function (eventId) {
     if (!eventId) return;
     window.setCatalogViewMode('map');
-    const mapWrapperEl = document.getElementById('map-view-wrapper');
-    if (mapWrapperEl) {
-      mapWrapperEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!isDesktopSplitViewport()) {
+      const mapWrapperEl = document.getElementById('map-view-wrapper');
+      if (mapWrapperEl) {
+        mapWrapperEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
     setTimeout(() => {
       if (typeof window.focusEventOnMap === 'function') {
@@ -3289,7 +3378,23 @@ function setupEventListeners() {
     }
   };
 
+  function positionDesktopFiltersPopover() {
+    if (!mobileFiltersSheet || !mobileFilterTrigger) return;
+    if (!isDesktopSplitViewport()) {
+      mobileFiltersSheet.style.removeProperty('--desktop-filters-top');
+      mobileFiltersSheet.style.removeProperty('--desktop-filters-left');
+      return;
+    }
+    const rect = mobileFilterTrigger.getBoundingClientRect();
+    const popoverWidth = Math.min(560, Math.round(window.innerWidth * 0.92));
+    const top = Math.max(64, Math.min(Math.round(rect.bottom + 8), Math.max(64, window.innerHeight - 240)));
+    const left = Math.max(16, Math.min(Math.round(rect.left), Math.max(16, window.innerWidth - popoverWidth - 16)));
+    mobileFiltersSheet.style.setProperty('--desktop-filters-top', `${top}px`);
+    mobileFiltersSheet.style.setProperty('--desktop-filters-left', `${left}px`);
+  }
+
   window.openMobileFiltersSheet = function () {
+    positionDesktopFiltersPopover();
     if (mobileFiltersSheet) mobileFiltersSheet.classList.add('is-open');
     if (mobileSheetBackdrop) mobileSheetBackdrop.classList.add('is-open');
     if (mobileFilterTrigger) mobileFilterTrigger.setAttribute('aria-expanded', 'true');
@@ -3314,17 +3419,54 @@ function setupEventListeners() {
     if (wasOpen) window.popOverlayHistoryState('filters', fromPopState);
   };
 
+  function isTypingInFormField(target) {
+    if (!target) return false;
+    const tag = String(target.tagName || '').toUpperCase();
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true;
+    if (target.isContentEditable) return true;
+    return Boolean(typeof target.closest === 'function' && target.closest('[contenteditable="true"], [contenteditable=""]'));
+  }
+
   document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape') return;
-    if (mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
-      window.closeMobileFiltersSheet(false);
+    if (e.key === 'Escape') {
+      if (mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
+        window.closeMobileFiltersSheet(false);
+        return;
+      }
+      const drawerOpen = Boolean(drawer && drawer.classList.contains('active'));
+      if (drawerOpen && typeof window.closeItineraryDrawer === 'function') {
+        window.closeItineraryDrawer(false);
+        return;
+      }
+      const srModal = document.getElementById('suggest-report-modal');
+      const srOpen = Boolean(srModal && srModal.classList.contains('active'));
+      if (srOpen) {
+        if (typeof window.closeSuggestReportModal === 'function') {
+          window.closeSuggestReportModal(false);
+        }
+        return;
+      }
+      if (!_activeHistoryOverlay && currentView === 'map') {
+        if (typeof window.closeActiveMapInfoWindow === 'function' && window.closeActiveMapInfoWindow()) {
+          return;
+        }
+        window.setCatalogViewMode('cards');
+      }
       return;
     }
-    const drawerOpen = Boolean(drawer && drawer.classList.contains('active'));
-    const srModal = document.getElementById('suggest-report-modal');
-    const srOpen = Boolean(srModal && srModal.classList.contains('active'));
-    if (!drawerOpen && !srOpen && !_activeHistoryOverlay && currentView === 'map') {
-      window.setCatalogViewMode('cards');
+
+    if (e.ctrlKey || e.metaKey || e.altKey || isTypingInFormField(e.target)) return;
+
+    if (e.key === '/') {
+      const searchEl = document.getElementById('search-input');
+      if (searchEl) {
+        e.preventDefault();
+        searchEl.focus();
+        if (typeof searchEl.select === 'function') searchEl.select();
+      }
+    } else if (e.key === 'm' || e.key === 'M') {
+      e.preventDefault();
+      window.setCatalogViewMode(currentView === 'map' ? 'cards' : 'map');
     }
   });
 
@@ -3335,7 +3477,12 @@ function setupEventListeners() {
       mobileBreakpointMql.addListener(window.syncSecondaryFiltersA11y);
     }
   }
-  window.addEventListener('resize', window.syncSecondaryFiltersA11y);
+  window.addEventListener('resize', () => {
+    window.syncSecondaryFiltersA11y();
+    if (mobileFiltersSheet && mobileFiltersSheet.classList.contains('is-open')) {
+      positionDesktopFiltersPopover();
+    }
+  });
   window.syncSecondaryFiltersA11y();
 
   window._legacyOpenMobileFiltersSheet = window.openMobileFiltersSheet;
@@ -7807,7 +7954,8 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
 
   // Fast compact card path (lazy-mounts .card-expandable-details on click; memoized per event+bucket for instant search)
   if (!forceFullBody && !isSavedDrawerCardEarly && !isMapIwCardEarly && !isPersistedExpandedEarly) {
-    const cacheKey = `${ev.id || ''}|${bucketKey || 'list'}|${ev.isSoldOut ? 1 : 0}|${state.seniorDealsOnly ? 1 : 0}`;
+    const isSavedC = Boolean(state.savedEvents && state.savedEvents.has(ev.id));
+    const cacheKey = `${ev.id || ''}|${bucketKey || 'list'}|${ev.isSoldOut ? 1 : 0}|${state.seniorDealsOnly ? 1 : 0}|${isSavedC ? 1 : 0}`;
     if (window._compactCardHtmlCache && window._compactCardHtmlCache.has(cacheKey)) {
       return window._compactCardHtmlCache.get(cacheKey);
     }
@@ -7844,7 +7992,10 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
         <div class="mobile-card-compact-header" tabindex="0" aria-expanded="false">
           <div class="mobile-card-row-1">
             <span class="mobile-card-title">${safeDisplayTitleC}</span>
-            <span class="mobile-card-price-pill ${pillInfoC.className}">${escapeHtml(pillInfoC.text)}</span>
+            <div class="mobile-card-row-1-right">
+              <button type="button" class="card-quick-save-btn ${isSavedC ? 'is-saved saved' : ''}" data-action="toggle-save-event" data-event-id="${safeEventIdC}" aria-pressed="${isSavedC ? 'true' : 'false'}" aria-label="${isSavedC ? 'Remove from Saved Events' : 'Save to Saved Events'}" title="${isSavedC ? 'Remove from Saved Events' : 'Save to Saved Events'}">${isSavedC ? '♥' : '♡'}</button>
+              <span class="mobile-card-price-pill ${pillInfoC.className}">${escapeHtml(pillInfoC.text)}</span>
+            </div>
           </div>
           <div class="mobile-card-row-2">
             <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterIdC}" title="Click to filter by ${safeCatLabelC}">${safeCatLabelC}</button>
@@ -8453,7 +8604,10 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
         <div class="mobile-card-compact-header" tabindex="0" aria-expanded="${isPersistedExpanded ? 'true' : 'false'}">
           <div class="mobile-card-row-1">
             <span class="mobile-card-title">${safeDisplayTitle}</span>
-            <span class="mobile-card-price-pill ${pillInfoFull.className}">${escapeHtml(pillInfoFull.text)}</span>
+            <div class="mobile-card-row-1-right">
+              ${(!isSavedDrawerCard && !isMapIwCard) ? `<button type="button" class="card-quick-save-btn ${isSaved ? 'is-saved saved' : ''}" data-action="toggle-save-event" data-event-id="${safeEventId}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="${isSaved ? 'Remove from Saved Events' : 'Save to Saved Events'}" title="${isSaved ? 'Remove from Saved Events' : 'Save to Saved Events'}">${isSaved ? '♥' : '♡'}</button>` : ''}
+              <span class="mobile-card-price-pill ${pillInfoFull.className}">${escapeHtml(pillInfoFull.text)}</span>
+            </div>
           </div>
           <div class="mobile-card-row-2">
             <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterId}" title="Click to filter by ${safeCatLabel}">${safeCatLabel}</button>
@@ -8758,14 +8912,22 @@ window.toggleSaveEvent = function (eventId) {
   renderItinerary();
 
   // Sync save button visuals in-place across Card View, Saved Drawer, and Map InfoWindows without closing open Map popups
+  if (window._compactCardHtmlCache && typeof window._compactCardHtmlCache.clear === 'function') {
+    window._compactCardHtmlCache.clear();
+  }
   document.querySelectorAll(`[data-action="toggle-save-event"][data-event-id="${CSS.escape(String(eventId))}"]`).forEach((btn) => {
     btn.classList.toggle('saved', willBeSaved);
+    btn.classList.toggle('is-saved', willBeSaved);
     btn.setAttribute('aria-pressed', willBeSaved ? 'true' : 'false');
+    btn.setAttribute('aria-label', willBeSaved ? 'Remove from Saved Events' : 'Save to Saved Events');
     btn.title = willBeSaved ? 'Remove from Saved Events' : 'Save to Saved Events';
+    if (btn.classList.contains('card-quick-save-btn')) {
+      btn.textContent = willBeSaved ? '♥' : '♡';
+    }
   });
 
   const mapWrapperEl = document.getElementById('map-view-wrapper');
-  const isMapActive = Boolean(mapWrapperEl && (mapWrapperEl.classList.contains('active') || mapWrapperEl.style.display === 'block'));
+  const isMapActive = Boolean(mapWrapperEl && (mapWrapperEl.classList.contains('active') || mapWrapperEl.style.display === 'block' || mapWrapperEl.style.display === 'flex'));
   if (!isMapActive) {
     applyFiltersAndRender();
   }

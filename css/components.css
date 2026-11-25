@@ -11425,6 +11425,292 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price,
   text-align: left;
 }
 
+/* ==============================================================================
+   DESKTOP SIDE-BY-SIDE SPLIT MAP VIEW & STREAMLINED LAYOUT (>= 1024px)
+   ============================================================================== */
+.search-kbd-hint {
+  display: none;
+}
+
+.map-back-desktop-label {
+  display: none;
+}
+
+.mobile-card-row-1-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.card-quick-save-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+}
+
+.card-quick-save-btn:hover {
+  color: #e11d48;
+  border-color: rgba(225, 29, 72, 0.35);
+  background: rgba(225, 29, 72, 0.08);
+  transform: scale(1.06);
+}
+
+.card-quick-save-btn.is-saved {
+  color: #e11d48;
+  border-color: rgba(225, 29, 72, 0.4);
+  background: rgba(225, 29, 72, 0.1);
+}
+
+.event-card.map-pin-highlight {
+  box-shadow: 0 0 0 2px #0F766E, 0 8px 20px rgba(15, 118, 110, 0.2) !important;
+  transition: box-shadow 0.25s ease !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-quick-save-btn {
+    display: inline-flex;
+    opacity: 0;
+  }
+
+  .event-card:hover .card-quick-save-btn,
+  .event-card:focus-within .card-quick-save-btn,
+  .card-quick-save-btn.is-saved {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* 1. Streamlined Desktop Container & Compact Above-the-Fold Hero */
+  main.container {
+    max-width: 1180px !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+    transition: max-width 0.2s ease;
+  }
+
+  main.container.is-split-map {
+    max-width: 1440px !important;
+  }
+
+  #hero-banner.hero-section {
+    padding: 12px 0 6px 0 !important;
+    margin-bottom: 6px !important;
+  }
+
+  #hero-banner .hero-title {
+    font-size: 1.55rem !important;
+    margin-bottom: 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
+
+  #hero-banner .hero-title-subline {
+    font-size: 0.78rem !important;
+    margin-top: 0 !important;
+  }
+
+  #hero-banner .hero-subtitle {
+    display: none !important;
+  }
+
+  #hero-banner .hero-active-count {
+    margin: 4px auto 4px auto !important;
+    font-size: 0.84rem !important;
+  }
+
+  /* Compact 1-line Festival & Anytime banners on desktop */
+  .festival-spotlight-section {
+    margin-bottom: 10px !important;
+  }
+
+  .festival-spotlight-card,
+  section[aria-label="Active Local Festivals"] .festival-spotlight-card {
+    padding: 8px 14px !important;
+  }
+
+  .festival-summary-bar-left {
+    flex-direction: row !important;
+    gap: 8px !important;
+  }
+
+  /* Search / shortcut hint on desktop */
+  .search-kbd-hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    pointer-events: none;
+    opacity: 0.78;
+  }
+
+  .search-wrapper.has-query .search-kbd-hint,
+  .search-wrapper:focus-within .search-kbd-hint {
+    display: none;
+  }
+
+  /* Desktop Split Map button active state */
+  #mobile-top-map-btn.active {
+    background: #0F766E !important;
+    border-color: #0F766E !important;
+    color: #FFFFFF !important;
+  }
+
+  /* 2. Default Desktop 2-Column Card Grid (Split Map Closed) */
+  #events-workspace-section:not(.is-split-map) .time-group-cards-grid.events-grid-section {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px 18px !important;
+    align-items: start !important;
+  }
+
+  /* 3. Desktop Side-by-Side Split Map Workspace */
+  #events-workspace-section.is-split-map {
+    display: grid !important;
+    grid-template-columns: minmax(420px, 46%) minmax(0, 54%) !important;
+    gap: 24px !important;
+    align-items: start !important;
+  }
+
+  #events-workspace-section.is-split-map #events-grid {
+    display: block !important;
+    min-width: 0 !important;
+  }
+
+  #events-workspace-section.is-split-map .time-group-cards-grid.events-grid-section {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    align-items: start !important;
+  }
+
+  #events-workspace-section.is-split-map #map-view-wrapper {
+    position: sticky !important;
+    top: 84px !important;
+    height: calc(100vh - 104px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
+    background: #FFFFFF !important;
+    margin: 0 !important;
+  }
+
+  #events-workspace-section.is-split-map .map-jump-toolbar {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    padding: 8px 12px !important;
+    flex-shrink: 0 !important;
+  }
+
+  #events-workspace-section.is-split-map .map-jump-header {
+    flex: 0 0 auto !important;
+    order: 2 !important;
+  }
+
+  #events-workspace-section.is-split-map .map-jump-header-left {
+    display: none !important;
+  }
+
+  #events-workspace-section.is-split-map .map-jump-pills {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    order: 1 !important;
+  }
+
+  #events-workspace-section.is-split-map .map-back-mobile-label {
+    display: none !important;
+  }
+
+  #events-workspace-section.is-split-map .map-back-desktop-label {
+    display: inline !important;
+  }
+
+  #events-workspace-section.is-split-map .map-canvas-container {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+  }
+
+  #events-workspace-section.is-split-map #van50-map-canvas {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Hide mobile-only floating bottom pill on desktop Split Map */
+  #mobile-view-toggle.is-map-return-pill,
+  .mobile-view-toggle.is-map-return-pill {
+    display: none !important;
+  }
+
+  /* 5. Desktop Anchored Filters Popover & Right-Side Saved Events Drawer */
+  #mobile-filters-sheet.mobile-filters-sheet {
+    position: fixed !important;
+    top: var(--desktop-filters-top, 118px) !important;
+    left: var(--desktop-filters-left, 50%) !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translateX(-50%) !important;
+    width: min(560px, 92vw) !important;
+    max-width: 560px !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16) !important;
+    border: 1px solid var(--border-subtle) !important;
+  }
+
+  #mobile-filters-sheet .mobile-sheet-handle {
+    display: none !important;
+  }
+
+  #itinerary-drawer.itinerary-drawer {
+    width: 400px !important;
+    max-width: 400px !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    border-radius: 16px 0 0 16px !important;
+  }
+}
+
 /* Expanded Card "View on Map" Button */
 .btn-card-view-map {
   display: inline-flex;

@@ -782,6 +782,31 @@ function renderMapMarkers(filteredEvents, options = {}) {
         anchor: marker,
         map: mapInstance
       });
+      isInfoWindowOpen = true;
+
+      // Desktop Split Map: smoothly scroll matching card into view & highlight in left pane
+      if (typeof window !== 'undefined' && window.innerWidth >= 1024 && Array.isArray(group.events)) {
+        let matchedCardEl = null;
+        for (const ev of group.events) {
+          const evId = ev && (ev.id || ev.event_id);
+          if (!evId) continue;
+          const el = document.getElementById(`card-${evId}`);
+          if (el) {
+            matchedCardEl = el;
+            break;
+          }
+        }
+        if (matchedCardEl) {
+          document.querySelectorAll('.event-card.map-pin-highlight').forEach((c) => c.classList.remove('map-pin-highlight'));
+          matchedCardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          matchedCardEl.classList.add('map-pin-highlight');
+          if (cardHighlightTimer) clearTimeout(cardHighlightTimer);
+          cardHighlightTimer = setTimeout(() => {
+            matchedCardEl.classList.remove('map-pin-highlight');
+            cardHighlightTimer = null;
+          }, 1500);
+        }
+      }
     });
 
     markersArray.push(marker);
@@ -860,10 +885,16 @@ async function initVancouverMap() {
       mapInstance.setOptions({ padding: { bottom: 64 } });
 
       sharedInfoWindow = new window.google.maps.InfoWindow({ maxWidth: 320 });
+      sharedInfoWindow.addListener('closeclick', () => {
+        isInfoWindowOpen = false;
+      });
 
       mapInstance.addListener('click', () => {
         collapseMapLegendOnMobile();
-        if (sharedInfoWindow) sharedInfoWindow.close();
+        if (sharedInfoWindow) {
+          sharedInfoWindow.close();
+          isInfoWindowOpen = false;
+        }
       });
 
       mapInstance.addListener('dragstart', () => {
@@ -1189,6 +1220,7 @@ async function focusEventOnMap(eventId) {
       collapseMapLegendOnMobile();
       sharedInfoWindow.setContent(buildVenueGroupInfoWindowHtml(targetMarker._van50Group));
       sharedInfoWindow.open({ anchor: targetMarker, map: mapInstance });
+      isInfoWindowOpen = true;
       return true;
     }
     // Fallback: locate coordinates directly from catalog
@@ -1213,6 +1245,75 @@ async function focusEventOnMap(eventId) {
   return ok;
 }
 
+let isInfoWindowOpen = false;
+let highlightedMarker = null;
+let highlightedMarkerOriginalIcon = null;
+let highlightedMarkerOriginalZIndex = null;
+let cardHighlightTimer = null;
+
+function clearEventMarkerHighlightOnMap() {
+  if (highlightedMarker) {
+    try {
+      if (highlightedMarkerOriginalIcon) {
+        highlightedMarker.setIcon(highlightedMarkerOriginalIcon);
+      }
+      highlightedMarker.setZIndex(highlightedMarkerOriginalZIndex !== undefined ? highlightedMarkerOriginalZIndex : null);
+    } catch (_) { }
+  }
+  highlightedMarker = null;
+  highlightedMarkerOriginalIcon = null;
+  highlightedMarkerOriginalZIndex = null;
+}
+
+function highlightEventMarkerOnMap(eventId) {
+  if (!eventId || !mapInstance || !window.google || !window.google.maps) return false;
+  const targetMarker = markersArray.find(m =>
+    m && m._van50Group && Array.isArray(m._van50Group.events) &&
+    m._van50Group.events.some(ev => String(ev.id || ev.event_id) === String(eventId))
+  );
+  if (!targetMarker) {
+    clearEventMarkerHighlightOnMap();
+    return false;
+  }
+  if (highlightedMarker === targetMarker) return true;
+  clearEventMarkerHighlightOnMap();
+
+  const origIcon = targetMarker.getIcon();
+  highlightedMarker = targetMarker;
+  highlightedMarkerOriginalIcon = origIcon;
+  highlightedMarkerOriginalZIndex = targetMarker.getZIndex();
+
+  try {
+    if (origIcon && typeof origIcon === 'object' && origIcon.url && origIcon.scaledSize && origIcon.anchor) {
+      const scale = 1.28;
+      targetMarker.setIcon({
+        url: origIcon.url,
+        scaledSize: new window.google.maps.Size(
+          Math.round(origIcon.scaledSize.width * scale),
+          Math.round(origIcon.scaledSize.height * scale)
+        ),
+        anchor: new window.google.maps.Point(
+          Math.round(origIcon.anchor.x * scale),
+          Math.round(origIcon.anchor.y * scale)
+        )
+      });
+    }
+    targetMarker.setZIndex(9999);
+  } catch (_) { }
+  return true;
+}
+
+function closeActiveMapInfoWindow() {
+  if (sharedInfoWindow && isInfoWindowOpen) {
+    try {
+      sharedInfoWindow.close();
+    } catch (_) { }
+    isInfoWindowOpen = false;
+    return true;
+  }
+  return false;
+}
+
 if (typeof window !== 'undefined') {
   window.loadGoogleMapsScript = loadGoogleMapsScript;
   window.resolveEventCoords = resolveEventCoords;
@@ -1230,4 +1331,7 @@ if (typeof window !== 'undefined') {
   window.panMapToRegion = panMapToRegion;
   window.fitActiveMapMarkers = fitActiveMapMarkers;
   window.focusEventOnMap = focusEventOnMap;
+  window.highlightEventMarkerOnMap = highlightEventMarkerOnMap;
+  window.clearEventMarkerHighlightOnMap = clearEventMarkerHighlightOnMap;
+  window.closeActiveMapInfoWindow = closeActiveMapInfoWindow;
 }

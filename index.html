@@ -47,7 +47,7 @@
     content="https://script.google.com/macros/s/AKfycbwbUvlCMYbBH9ukYSc_OaP9qF1nMtvhcEgsajmbTDmrun89CxQDoHMledPyTRWuqUK7vA/exec">
 
   <link rel="stylesheet" href="css/style.css?v=8.9.1">
-  <link rel="stylesheet" href="css/components.css?v=8.9.6">
+  <link rel="stylesheet" href="css/components.css?v=8.9.7">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -155,6 +155,7 @@
           <input type="search" enterkeyhint="search" id="search-input" class="search-input"
             placeholder="Search events, venues, or tags..." aria-label="Search events" autocomplete="off"
             spellcheck="false">
+          <kbd class="search-kbd-hint" id="search-kbd-hint" aria-hidden="true">/</kbd>
           <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search"
             aria-label="Clear search" style="display: none;">×</button>
         </div>
@@ -304,7 +305,7 @@
     <div class="results-count-bar dynamic-date-count-bar" id="results-count" aria-live="polite"></div>
 
     <!-- Events Content Section -->
-    <section aria-label="Events List">
+    <section id="events-workspace-section" aria-label="Events List">
       <!-- Cards Grid -->
       <div class="events-grid" id="events-grid">
         <!-- Event cards dynamically rendered by js/app.js -->
@@ -323,7 +324,7 @@
                 </svg>Jump to City:</span>
               <span class="map-pin-count-badge" id="map-pin-count-badge">Loading map…</span>
             </div>
-            <button type="button" class="map-back-to-list-btn" data-switch-view="cards">← Back to List</button>
+            <button type="button" class="map-back-to-list-btn" data-switch-view="cards"><span class="map-back-mobile-label">← Back to List</span><span class="map-back-desktop-label">✕ Hide Map</span></button>
           </div>
           <div class="map-jump-pills" id="map-jump-pills" role="group" aria-label="City Quick Jump">
             <button type="button" class="map-jump-pill map-jump-near-me" id="map-jump-near-me" data-area="near-me"
@@ -651,8 +652,8 @@
   <!-- Scripts -->
   <script src="js/data.js?v=8.5.0"></script>
   <script src="js/accessibility.js?v=8.5.0"></script>
-  <script src="js/map.js?v=8.10.1"></script>
-  <script src="js/app.js?v=8.9.8"></script>
+  <script src="js/map.js?v=8.10.2"></script>
+  <script src="js/app.js?v=8.9.9"></script>
   <script src="js/pwa-install.js?v=8.5.0"></script>
 
 </body>
