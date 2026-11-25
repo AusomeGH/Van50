@@ -537,6 +537,7 @@ const state = {
   hideDaily: false,
   hideFestivalEvents: false,
   festivalDetailsExpanded: false,
+  anytimeBannerExpanded: false,
   expandedThemes: new Set(),
   selectedThemeFilter: null,
   excludedThemes: new Set(),
@@ -2460,6 +2461,15 @@ function setupEventListeners() {
       case 'toggle-time-group':
         if (e) e.stopPropagation();
         toggleTimeGroup(actionEl.getAttribute('data-group-key') || '');
+        return true;
+      case 'toggle-anytime-banner':
+        if (e) e.stopPropagation();
+        state.anytimeBannerExpanded = !state.anytimeBannerExpanded;
+        if (typeof renderEventCards === 'function' && Array.isArray(window.currentFilteredEvents)) {
+          renderEventCards(window.currentFilteredEvents);
+        } else {
+          applyFiltersAndRender();
+        }
         return true;
       case 'toggle-admission-tiers':
         toggleAdmissionTiers(
@@ -6997,29 +7007,64 @@ function renderEventCards(events) {
     return a.dayKey.localeCompare(b.dayKey);
   });
 
+  // Render Anytime & Scenic Drop-Ins as a collapsed-by-default banner under Seasonal Festivals
+  const anytimeBannerEl = document.getElementById('anytime-dropins-banner-container');
+  if (anytimeBannerEl) {
+    if (anytimeDropInsList.length > 0 && !state.hideDaily) {
+      const isDropOpen = Boolean(state.anytimeBannerExpanded);
+      const dropCardsHtml = isDropOpen
+        ? `<div class="anytime-dropins-banner-cards events-grid-section" id="cards-grid-anytime-banner">
+             ${anytimeDropInsList.map(ev => renderSingleEventCardHtml(ev, 'dropins')).join('')}
+           </div>`
+        : '';
+      anytimeBannerEl.style.display = 'block';
+      anytimeBannerEl.innerHTML = `
+        <div class="festival-spotlight-card festival-compact-banner ${isDropOpen ? 'is-expanded' : 'is-collapsed'}">
+          <div class="festival-spotlight-left">
+            <button type="button" class="festival-summary-bar-btn" data-action="toggle-anytime-banner" aria-expanded="${isDropOpen ? 'true' : 'false'}" title="${isDropOpen ? 'Collapse anytime & scenic drop-ins' : 'Expand anytime & scenic drop-ins'}">
+              <span class="festival-summary-bar-left">
+                <span class="festival-spotlight-title">Anytime &amp; Scenic Drop-Ins</span>
+                <span class="festival-summary-count">(${Number(anytimeDropInsList.length)} spot${anytimeDropInsList.length === 1 ? '' : 's'} • Open Daily)</span>
+              </span>
+              <span class="festival-toggle-chevron" aria-hidden="true">${isDropOpen ? '▴' : '▾'}</span>
+            </button>
+            ${dropCardsHtml}
+          </div>
+        </div>
+      `;
+    } else {
+      anytimeBannerEl.style.display = 'none';
+      anytimeBannerEl.innerHTML = '';
+    }
+  }
+
   const bucketMeta = [];
-  let dropInsAttached = false;
 
   sortedDayEntries.forEach(entry => {
     if (entry.dayKey === todayIso) {
+      const todayShortDate = entry.dateObj
+        ? `${entry.dateObj.toLocaleDateString('en-US', { month: 'short' })} ${getOrdinal(entry.dateObj.getDate())}`
+        : todayLabel;
       bucketMeta.push({
         key: 'today',
         isoDate: todayIso,
-        title: "Today's Events",
+        title: `Today • ${todayShortDate}`,
         shortTitle: 'Today',
         icon: '',
-        range: todayLabel,
-        list: anytimeDropInsList.length > 0 ? [...entry.list, ...anytimeDropInsList] : entry.list
+        range: '',
+        list: entry.list
       });
-      dropInsAttached = true;
     } else if (entry.dayKey === tomorrowIso) {
+      const tomorrowShortDate = entry.dateObj
+        ? `${entry.dateObj.toLocaleDateString('en-US', { month: 'short' })} ${getOrdinal(entry.dateObj.getDate())}`
+        : tomorrowLabel;
       bucketMeta.push({
         key: 'tomorrow',
         isoDate: tomorrowIso,
-        title: "Tomorrow's Events",
+        title: `Tomorrow • ${tomorrowShortDate}`,
         shortTitle: 'Tomorrow',
         icon: '',
-        range: tomorrowLabel,
+        range: '',
         list: entry.list
       });
     } else if (entry.dateObj) {
@@ -7043,17 +7088,6 @@ function renderEventCards(events) {
       });
     }
   });
-
-  if (!dropInsAttached && anytimeDropInsList.length > 0) {
-    bucketMeta.push({
-      key: 'dropins',
-      title: 'Anytime & Scenic Drop-Ins',
-      shortTitle: 'Anytime Drop-Ins',
-      icon: '',
-      range: 'Open Daily',
-      list: anytimeDropInsList
-    });
-  }
 
   const activeBuckets = bucketMeta.filter(b => b.list.length > 0);
 
@@ -10040,6 +10074,7 @@ window.updateScrollDateIndicator = function () {
   stickyBar.classList.toggle('is-scrolled', scrollY > 90 && !isMapActive);
 };
 
+let _lastStickyHeaderOffsetPx = null;
 window.syncStickyHeaderOffset = function () {
   const searchBar = document.getElementById('mobile-search-filter-bar');
   const siteHeader = document.getElementById('main-header');
@@ -10052,16 +10087,22 @@ window.syncStickyHeaderOffset = function () {
   } else if (siteHeader) {
     offset = Math.round(siteHeader.getBoundingClientRect().height || 64);
   }
-  document.documentElement.style.setProperty('--sticky-header-offset', `${offset}px`);
+  if (offset !== _lastStickyHeaderOffsetPx) {
+    _lastStickyHeaderOffsetPx = offset;
+    document.documentElement.style.setProperty('--sticky-header-offset', `${offset}px`);
+  }
 };
 
+let _lastViewportWidth = window.innerWidth;
 window.addEventListener('scroll', window.updateScrollDateIndicator, { passive: true });
 window.addEventListener('resize', () => {
-  if (typeof window.syncStickyHeaderOffset === 'function') {
-    window.syncStickyHeaderOffset();
-  }
-  if (typeof window.updateScrollDateIndicator === 'function') {
-    window.updateScrollDateIndicator();
+  // Ignore vertical-only resize events fired by iOS Safari's dynamic address bar mid-scroll
+  const currentWidth = window.innerWidth;
+  if (currentWidth !== _lastViewportWidth) {
+    _lastViewportWidth = currentWidth;
+    if (typeof window.syncStickyHeaderOffset === 'function') {
+      window.syncStickyHeaderOffset();
+    }
   }
   const mapWrapperEl = document.getElementById('map-view-wrapper');
   if (mapWrapperEl && mapWrapperEl.classList.contains('active') && typeof invalidateVancouverMap === 'function') {

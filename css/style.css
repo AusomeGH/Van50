@@ -504,12 +504,13 @@ button {
   z-index: 85;
   background: var(--bg-app);
   padding: 6px 0;
-  transition: box-shadow 0.2s ease;
+  border-bottom: 1px solid transparent;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .mobile-search-filter-bar.is-scrolled {
   box-shadow: var(--shadow-md);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom-color: var(--border-subtle);
 }
 
 .search-filter-main-row {

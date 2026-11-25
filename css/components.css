@@ -10466,10 +10466,9 @@ html, body, main, #events-grid, #events-list {
   top: var(--sticky-header-offset, 64px) !important;
   z-index: 20 !important;
   background: var(--bg-app, #f8faf9) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   padding-block: 10px !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+  contain: layout style;
 }
 
 [data-theme="dark"] .date-group-header,
@@ -11380,6 +11379,50 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price,
 .date-pick-caret {
   font-size: 0.78em;
   opacity: 0.85;
+}
+
+/* Center both lines of the Seasonal Festivals & Holidays summary bar */
+.festival-summary-bar-btn {
+  position: relative !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.festival-summary-bar-left {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 2px !important;
+  padding: 0 24px !important;
+}
+
+.festival-summary-bar-left .festival-spotlight-title,
+.festival-summary-bar-left .festival-summary-count {
+  text-align: center !important;
+}
+
+.festival-summary-bar-btn .festival-toggle-chevron {
+  position: absolute !important;
+  right: 4px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.anytime-dropins-banner-section {
+  margin-top: -8px !important;
+  margin-bottom: 14px !important;
+}
+
+.anytime-dropins-banner-cards {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 12px;
+  width: 100%;
+  text-align: left;
 }
 
 /* Expanded Card "View on Map" Button */
