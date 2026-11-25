@@ -981,7 +981,14 @@ function resolveEventTiers(ev) {
 
     if (t.available_until) {
       try {
-        const untilDate = new Date(t.available_until);
+        const rawUntil = String(t.available_until).trim();
+        let untilDate;
+        if (/^\d{4}-\d{2}-\d{2}$/.test(rawUntil)) {
+          const [uy, um, ud] = rawUntil.split('-').map(Number);
+          untilDate = new Date(uy, um - 1, ud, 23, 59, 59, 999);
+        } else {
+          untilDate = new Date(rawUntil);
+        }
         if (!isNaN(untilDate.getTime()) && untilDate < now && status === 'available') {
           status = 'expired';
         }
@@ -3128,7 +3135,8 @@ function setupEventListeners() {
     if (_activeHistoryOverlay === overlayName) return;
     _activeHistoryOverlay = overlayName;
     try {
-      history.pushState({ uiOverlay: overlayName }, '');
+      const currentHref = window.location.pathname + window.location.search + window.location.hash;
+      history.pushState({ view: currentView, uiOverlay: overlayName }, '', currentHref);
     } catch (_) { }
   };
 
