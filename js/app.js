@@ -219,7 +219,8 @@ window.CATEGORIES = [
   { id: "social", label: "Social & Games", shortLabel: "Social & Games", icon: "" },
   { id: "markets", label: "Markets", shortLabel: "Markets", icon: "" },
   { id: "festivals", label: "Festivals", shortLabel: "Festivals", icon: "" },
-  { id: "sports", label: "Sports & Rec", shortLabel: "Sports", icon: "" }
+  { id: "sports", label: "Sports & Rec", shortLabel: "Sports", icon: "" },
+  { id: "academic", label: "Academic & Talks", shortLabel: "Academic", icon: "" }
 ];
 
 window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
@@ -546,6 +547,7 @@ const state = {
   category: 'all',
   frequency: 'all',
   dayOfWeek: 'all',
+  selectedDate: '',
   selectedTag: null,
   selectedVenue: null,
   searchQuery: '',
@@ -579,7 +581,7 @@ let ALL_EVENTS = (typeof window !== 'undefined' && (window.VAN50_EVENTS || windo
 
 const ALLOWED_URL_CATEGORIES = new Set([
   'all', 'music', 'shows', 'cinema', 'outdoors', 'arts',
-  'social', 'trivia', 'markets', 'festivals', 'sports', 'free-public-access'
+  'social', 'trivia', 'markets', 'festivals', 'sports', 'academic', 'free-public-access'
 ]);
 const ALLOWED_URL_DAYS = new Set(['all', 'daily', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']);
 const ALLOWED_URL_FREQUENCIES = new Set(['all', 'one-off', 'weekly', 'monthly', 'daily', 'limited-run', 'seasonal']);
@@ -672,6 +674,13 @@ function restoreFiltersFromUrlParams() {
     }
   }
 
+  if (params.has('date')) {
+    const dateVal = (params.get('date') || '').trim().toLowerCase().slice(0, 20);
+    if (dateVal === 'weekend' || /^\d{4}-\d{2}-\d{2}$/.test(dateVal)) {
+      state.selectedDate = dateVal;
+    }
+  }
+
   if (params.has('rec')) {
     const recVal = (params.get('rec') || '').trim().toLowerCase().slice(0, 30);
     if (recVal && ALLOWED_URL_FREQUENCIES.has(recVal)) {
@@ -757,6 +766,9 @@ function syncFiltersToUrlParams() {
   if (state.dayOfWeek && state.dayOfWeek !== 'all') {
     params.set('day', state.dayOfWeek);
   }
+  if (state.selectedDate) {
+    params.set('date', state.selectedDate);
+  }
   if (state.frequency && state.frequency !== 'all') {
     params.set('rec', state.frequency);
   }
@@ -814,6 +826,9 @@ function getActiveFiltersSummaryList() {
     } else {
       active.push(`Cost: $${state.minBudget} – $${state.maxBudget} CAD`);
     }
+  }
+  if (state.selectedDate) {
+    active.push(`Date: ${state.selectedDate === 'weekend' ? 'This Weekend' : state.selectedDate}`);
   }
   if (state.dayOfWeek && state.dayOfWeek !== 'all') {
     const dayObj = (typeof DAYS_OF_WEEK !== 'undefined' ? DAYS_OF_WEEK : []).find(d => d.id === state.dayOfWeek);
@@ -1376,6 +1391,9 @@ function getCardSemanticCategoryMeta(ev) {
   const arch = String(ev.event_archetype || ev.archetype || '').toLowerCase();
   const combined = `${titleStr} ${catLabel} ${subTagsStr}`;
 
+  if (cats.includes('academic')) {
+    return { label: 'Academic', themeKey: 'academic', filterId: 'academic' };
+  }
   if (cats.includes('trivia') || arch === 'social_gaming' || /\b(social\s*&\s*games|trivia\s*&\s*games|board\s*game|bingo|trivia|quiz|pinball|arcade)\b/i.test(combined)) {
     const isTrivia = /\b(trivia|quiz)\b/i.test(combined);
     return { label: isTrivia ? 'Trivia' : 'Games', themeKey: 'games', filterId: 'social' };
@@ -2417,10 +2435,12 @@ function setupEventListeners() {
         return true;
       case 'clear-date-filter':
         state.dayOfWeek = 'all';
+        state.selectedDate = '';
         state.frequency = 'all';
         state.hideDaily = false;
         renderDayPills();
         renderFrequencyPills();
+        if (typeof window.renderCalendarDatePicker === 'function') window.renderCalendarDatePicker();
         if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
         applyFiltersAndRender();
         return true;
@@ -3310,6 +3330,7 @@ function setupEventListeners() {
     state.minBudget = 0;
     state.maxBudget = 50;
     state.dayOfWeek = 'all';
+    state.selectedDate = '';
     state.frequency = 'all';
     state.hideDaily = false;
     state.accessibleOnly = false;
@@ -3320,6 +3341,8 @@ function setupEventListeners() {
     if (maxSlider) maxSlider.value = 50;
     if (hideDailyToggle) hideDailyToggle.checked = false;
     if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
+    if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
+    if (typeof window.renderCalendarDatePicker === 'function') window.renderCalendarDatePicker();
     renderDayPills();
     renderFrequencyPills();
     clearActiveQuickButtons();
@@ -4124,7 +4147,8 @@ const QUICK_CATEGORY_ITEMS = [
   { id: 'social', label: 'Social & Games' },
   { id: 'markets', label: 'Markets' },
   { id: 'festivals', label: 'Festivals' },
-  { id: 'sports', label: 'Sports' }
+  { id: 'sports', label: 'Sports' },
+  { id: 'academic', label: 'Academic' }
 ];
 
 function renderQuickCategoryStrip(poolOverride) {
@@ -5041,15 +5065,36 @@ function isEventHappeningNow(ev, now = new Date()) {
 }
 
 function getReactiveDateHeaderLabel(now = new Date()) {
+  const toIso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const todayIso = toIso(now);
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  const tomorrowIso = toIso(tomorrow);
   const todayShort = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
   const todayDayCode = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][now.getDay()];
+
+  if (state.selectedDate) {
+    if (state.selectedDate === 'weekend') {
+      return '📅 This Weekend (Sat & Sun)';
+    }
+    if (state.selectedDate === todayIso) {
+      return `📅 Today • ${todayShort}`;
+    }
+    if (state.selectedDate === tomorrowIso) {
+      const tomShort = tomorrow.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      return `📅 Tomorrow • ${tomShort}`;
+    }
+    const parsed = new Date(`${state.selectedDate}T12:00:00`);
+    if (!isNaN(parsed.getTime())) {
+      const nice = parsed.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      return `📅 ${nice}`;
+    }
+    return `📅 ${state.selectedDate}`;
+  }
   if (!state.dayOfWeek || state.dayOfWeek === 'all') {
     return '📅 All Upcoming Outings';
   }
   if (state.dayOfWeek === todayDayCode) {
     return `📅 Today • ${todayShort}`;
-    if (false) return '📅 All Upcoming Outings';
-    return '📅 All Upcoming Outings';
   }
   if (state.dayOfWeek === 'daily') {
     return '📅 Daily Drop-In';
@@ -5362,6 +5407,60 @@ function applyFiltersAndRender() {
       if (effectiveMax < state.minBudget || effectiveMin > state.maxBudget) return false;
     }
 
+    // 2b. Calendar Date Picker Filter (exact YYYY-MM-DD or 'weekend')
+    if (state.selectedDate) {
+      const DAY_CODES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+      const fullDayMap = {
+        sun: 'sunday', mon: 'monday', tue: 'tuesday', wed: 'wednesday',
+        thu: 'thursday', fri: 'friday', sat: 'saturday'
+      };
+      const toLocalIso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const targetDates = [];
+      if (state.selectedDate === 'weekend') {
+        const dow = now.getDay();
+        const daysToSat = dow === 6 ? 0 : (dow === 0 ? -1 : (6 - dow));
+        const sat = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysToSat);
+        const sun = new Date(sat.getFullYear(), sat.getMonth(), sat.getDate() + 1);
+        if (dow !== 0) targetDates.push(toLocalIso(sat));
+        targetDates.push(toLocalIso(sun));
+      } else if (/^\d{4}-\d{2}-\d{2}$/.test(state.selectedDate)) {
+        targetDates.push(state.selectedDate);
+      }
+
+      if (targetDates.length > 0) {
+        const isDropInCard = (
+          (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+          ev.access_model === 'open_public_space' ||
+          ev.access_model === 'free_public_access' ||
+          ev.access_model === 'drop_in_paid' ||
+          ev.isFreePublic ||
+          ev.isDaily ||
+          ev.category === 'free-public-access'
+        );
+        const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
+
+        const matchesAnyTargetDate = targetDates.some((targetIso) => {
+          const parsed = new Date(`${targetIso}T12:00:00`);
+          const dayCode = !isNaN(parsed.getTime()) ? DAY_CODES[parsed.getDay()] : '';
+          if (wh && typeof wh === 'object' && dayCode) {
+            const dayVal = wh[dayCode] || wh[fullDayMap[dayCode]];
+            if (dayVal && /closed/i.test(String(dayVal))) return false;
+          }
+          if (ev.date && String(ev.date).slice(0, 10) === targetIso) return true;
+          if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.some((dStr) => String(dStr).slice(0, 10) === targetIso)) return true;
+          if (Array.isArray(ev.showings) && ev.showings.some((s) => s && s.date && String(s.date).slice(0, 10) === targetIso)) return true;
+          if (isDropInCard) return true;
+          if ((!Array.isArray(ev.confirmedDates) || ev.confirmedDates.length === 0) && (!Array.isArray(ev.showings) || ev.showings.length === 0) && !ev.date) {
+            const days = ev.daysOfWeek || [];
+            if (dayCode && days.includes(dayCode)) return true;
+          }
+          return false;
+        });
+
+        if (!matchesAnyTargetDate) return false;
+      }
+    }
+
     // 3. Day of the Week Filter (Requirement 1)
     if (state.dayOfWeek !== 'all') {
       // Check if weekly_hours explicitly marks this day as Closed
@@ -5495,8 +5594,10 @@ function applyFiltersAndRender() {
 
   // Update More Filters active counter badge
   let secondaryFilterCount = 0;
+  if (state.selectedDate) secondaryFilterCount++;
   if (state.dayOfWeek !== 'all') secondaryFilterCount++;
   if (state.frequency !== 'all') secondaryFilterCount++;
+  if (state.hideDaily) secondaryFilterCount++;
   if (state.includeReligious === false) secondaryFilterCount++;
   if (state.seniorDealsOnly) secondaryFilterCount++;
   const moreCountBadge = document.getElementById('active-filters-count');
@@ -5568,14 +5669,17 @@ function applyFiltersAndRender() {
       }
     }
 
-    const reactiveDateText = getReactiveDateHeaderLabel(now);
+    const heroActiveCountEl = document.getElementById('hero-active-count');
+    if (heroActiveCountEl) {
+      heroActiveCountEl.innerHTML = `Showing <strong>${Number(filtered.length)}</strong> outings under $50`;
+    }
+
+    const hasResultsBadges = Boolean(tagBadgeHtml || themeFilterPillHtml || excludedPillsHtml || crossCategoryBannerHtml);
+    countBar.classList.toggle('is-empty-mobile', !hasResultsBadges);
+
     const mapWrapperEl = document.getElementById('map-view-wrapper');
     const isMapCurrentlyActive = Boolean(mapWrapperEl && (mapWrapperEl.classList.contains('active') || mapWrapperEl.style.display === 'block'));
-    countBar.innerHTML = `<div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">${escapeHtml(reactiveDateText)}</span></div>
-      <div class="results-count-right-group" style="display: inline-flex; align-items: center; gap: 10px; margin-left: auto;">
-        <div class="results-count-text">
-          Showing <strong>${Number(filtered.length)}</strong> outings under $50
-        </div>
+    countBar.innerHTML = `<div class="results-count-right-group" style="display: inline-flex; align-items: center; gap: 10px; margin-left: auto;">
         <div class="inline-view-switcher" role="group" aria-label="View Switcher">
           <button type="button" class="inline-view-mode-btn view-switcher-btn ${!isMapCurrentlyActive ? 'active' : ''}" data-view="cards" data-view-mode="cards" aria-pressed="${!isMapCurrentlyActive ? 'true' : 'false'}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span>Cards</span></button>
           <button type="button" class="inline-view-mode-btn view-switcher-btn ${isMapCurrentlyActive ? 'active' : ''}" data-view="map" data-view-mode="map" aria-pressed="${isMapCurrentlyActive ? 'true' : 'false'}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg><span>Map</span></button>
@@ -6703,6 +6807,7 @@ function renderEventCards(events) {
       : `<div class="zero-results-active-filters"><span class="zero-results-filter-pill">No custom filters active</span></div>`;
 
     const hasNarrowDateFilter = Boolean(
+      state.selectedDate ||
       (state.dayOfWeek && state.dayOfWeek !== 'all') ||
       (state.frequency && state.frequency !== 'all') ||
       state.hideDaily
@@ -6899,6 +7004,7 @@ function renderEventCards(events) {
     if (entry.dayKey === todayIso) {
       bucketMeta.push({
         key: 'today',
+        isoDate: todayIso,
         title: "Today's Events",
         shortTitle: 'Today',
         icon: '',
@@ -6909,6 +7015,7 @@ function renderEventCards(events) {
     } else if (entry.dayKey === tomorrowIso) {
       bucketMeta.push({
         key: 'tomorrow',
+        isoDate: tomorrowIso,
         title: "Tomorrow's Events",
         shortTitle: 'Tomorrow',
         icon: '',
@@ -6918,6 +7025,7 @@ function renderEventCards(events) {
     } else if (entry.dateObj) {
       bucketMeta.push({
         key: `day-${entry.dayKey}`,
+        isoDate: entry.dayKey,
         title: formatSingleDayHeading(entry.dateObj),
         shortTitle: formatSingleDayShort(entry.dateObj),
         icon: '',
@@ -6949,20 +7057,8 @@ function renderEventCards(events) {
 
   const activeBuckets = bucketMeta.filter(b => b.list.length > 0);
 
-  // Quick navigation anchor bar (rendered if 2 or more buckets have items)
-  let navBarHtml = '';
-  if (activeBuckets.length > 1) {
-    navBarHtml = `
-      <nav class="time-nav-bar" aria-label="Jump to event timeframes">
-        ${activeBuckets.map(b => `
-          <a href="#group-${escapeHtml(b.key)}" class="time-nav-pill" data-action="scroll-time-group" data-group-id="group-${escapeHtml(b.key)}">
-            <span>${escapeHtml(b.shortTitle)}</span>
-            <span class="time-nav-count">${Number(b.list.length)}</span>
-          </a>
-        `).join('')}
-      </nav>
-    `;
-  }
+  // Date selection is handled via the Calendar Picker inside Filters; omit the redundant timeframe pill row
+  const navBarHtml = '';
 
   // Incremental rendering queues with a global initial card budget (keeps initial DOM & search re-renders fast)
   const GLOBAL_INITIAL_CARD_BUDGET = 28;
@@ -7102,14 +7198,24 @@ function renderEventCards(events) {
     const safeTitle = escapeHtml(b.title);
     const safeShortTitle = escapeHtml(b.shortTitle);
     const safeRange = escapeHtml(b.range);
+    const safeIsoDate = escapeHtml(b.isoDate || '');
+    const isDatePicked = Boolean(safeIsoDate && state.selectedDate === safeIsoDate);
     const displayCount = splitDropInsSection ? scheduledItems.length : b.list.length;
+    const titleInnerHtml = (safeIsoDate && !safeRange)
+      ? `<button type="button" class="date-group-pick-btn date-group-pick-title ${isDatePicked ? 'is-selected' : ''}" data-pick-date="${safeIsoDate}" title="${isDatePicked ? 'Click to open calendar picker or change date' : `Filter events to ${safeTitle}`}" aria-pressed="${isDatePicked ? 'true' : 'false'}">${safeTitle} <span class="date-pick-caret" aria-hidden="true">📅</span></button>`
+      : safeTitle;
+    const rangeHtml = safeRange
+      ? (safeIsoDate
+        ? `<button type="button" class="time-group-date-range date-group-pick-btn ${isDatePicked ? 'is-selected' : ''}" data-pick-date="${safeIsoDate}" title="${isDatePicked ? 'Click to open calendar picker or change date' : `Filter events to ${safeRange}`}" aria-pressed="${isDatePicked ? 'true' : 'false'}">${safeRange} <span class="date-pick-caret" aria-hidden="true">📅</span></button>`
+        : `<span class="time-group-date-range">${safeRange}</span>`)
+      : '';
     return `
       <section class="events-time-group date-group ${isCollapsed ? 'collapsed' : ''}" id="group-${safeKey}" data-group-title="${safeShortTitle}" data-group-heading="${safeTitle}" data-group-range="${safeRange}">
         <div class="time-group-header date-group-header" data-action="toggle-time-group" data-group-key="${safeKey}" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${safeKey}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${safeTitle}">
           <div class="time-group-title-wrap">
             <span class="time-group-icon" style="display:none;"></span>
-            <h2 class="time-group-title">${safeTitle}</h2>
-            ${safeRange ? `<span class="time-group-date-range">${safeRange}</span>` : ''}
+            <h2 class="time-group-title">${titleInnerHtml}</h2>
+            ${rangeHtml}
           </div>
           <div class="time-group-actions">
             <span class="time-group-count-badge">${Number(displayCount)} event${displayCount === 1 ? '' : 's'}</span>
@@ -9700,7 +9806,17 @@ function renderActiveFilterChips(filteredCount) {
     chips.push({ key: 'cost', label: costLabel });
   }
 
-  // 2. Day of the Week
+  // 2. Selected Calendar Date & Day of the Week
+  if (state.selectedDate) {
+    let dateChipLabel = state.selectedDate === 'weekend' ? '📅 This Weekend' : `📅 ${state.selectedDate}`;
+    if (state.selectedDate !== 'weekend') {
+      const pd = new Date(`${state.selectedDate}T12:00:00`);
+      if (!isNaN(pd.getTime())) {
+        dateChipLabel = `📅 ${pd.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}`;
+      }
+    }
+    chips.push({ key: 'date', label: dateChipLabel });
+  }
   if (state.dayOfWeek && state.dayOfWeek !== 'all') {
     const dayDef = (window.DAYS_OF_WEEK || []).find(d => d.id === state.dayOfWeek);
     chips.push({ key: 'day', label: dayDef ? dayDef.label : state.dayOfWeek });
@@ -9788,6 +9904,9 @@ window.dismissSecondaryFilterChip = function (chipKey) {
     state.maxBudget = 50;
     clearActiveQuickButtons();
     updateSliderVisuals();
+  } else if (chipKey === 'date') {
+    state.selectedDate = '';
+    if (typeof window.renderCalendarDatePicker === 'function') window.renderCalendarDatePicker();
   } else if (chipKey === 'day') {
     state.dayOfWeek = 'all';
     renderDayPills();
@@ -9798,6 +9917,7 @@ window.dismissSecondaryFilterChip = function (chipKey) {
     state.hideDaily = false;
     const hideDailyToggle = document.getElementById('hide-daily-toggle');
     if (hideDailyToggle) hideDailyToggle.checked = false;
+    if (typeof window.syncTopQuickToggles === 'function') window.syncTopQuickToggles();
   } else if (chipKey === 'seniorDeals') {
     state.seniorDealsOnly = false;
     if (typeof window.syncDrawerAccessToggles === 'function') window.syncDrawerAccessToggles();
@@ -9948,3 +10068,207 @@ window.addEventListener('resize', () => {
     invalidateVancouverMap();
   }
 }, { passive: true });
+
+// ==============================================================================
+// Interactive Calendar Date Picker (Inside Filters Drawer + Quick Results Trigger)
+// ==============================================================================
+(function initVan50CalendarPicker() {
+  const toIso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const now = new Date();
+  let viewYear = now.getFullYear();
+  let viewMonth = now.getMonth();
+
+  function buildEventCountsByDate() {
+    const counts = new Map();
+    const list = (typeof ALL_EVENTS !== 'undefined' && Array.isArray(ALL_EVENTS)) ? ALL_EVENTS : [];
+    const bump = (iso) => {
+      if (!iso || iso.length < 10) return;
+      const key = iso.slice(0, 10);
+      counts.set(key, (counts.get(key) || 0) + 1);
+    };
+    for (const ev of list) {
+      if (!ev) continue;
+      if (ev.date) bump(String(ev.date));
+      if (Array.isArray(ev.confirmedDates)) ev.confirmedDates.forEach(d => bump(String(d)));
+      if (Array.isArray(ev.showings)) ev.showings.forEach(s => { if (s && s.date) bump(String(s.date)); });
+    }
+    return counts;
+  }
+
+  function setSelectedCalendarDate(val) {
+    state.selectedDate = val || '';
+    if (state.selectedDate) {
+      state.dayOfWeek = 'all';
+      if (/^\d{4}-\d{2}-\d{2}$/.test(state.selectedDate)) {
+        const pd = new Date(`${state.selectedDate}T12:00:00`);
+        if (!isNaN(pd.getTime())) {
+          viewYear = pd.getFullYear();
+          viewMonth = pd.getMonth();
+        }
+      }
+    }
+    window.renderCalendarDatePicker();
+    if (typeof applyFiltersAndRender === 'function') {
+      applyFiltersAndRender();
+    }
+  }
+
+  window.renderCalendarDatePicker = function () {
+    const grid = document.getElementById('calendar-days-grid');
+    const monthLabel = document.getElementById('calendar-month-label');
+    const summaryEl = document.getElementById('calendar-selected-summary');
+    const dateInput = document.getElementById('calendar-date-input');
+    const clearBtn = document.getElementById('calendar-clear-btn');
+    if (!grid || !monthLabel) return;
+
+    const today = new Date();
+    const todayIso = toIso(today);
+    const tomorrowIso = toIso(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1));
+
+    // Sync Quick Presets
+    const presetBtns = document.querySelectorAll('#date-quick-presets .date-preset-btn');
+    presetBtns.forEach((btn) => {
+      const p = btn.getAttribute('data-date-preset');
+      let isActive = false;
+      if (p === 'all') isActive = !state.selectedDate;
+      else if (p === 'today') isActive = state.selectedDate === todayIso;
+      else if (p === 'tomorrow') isActive = state.selectedDate === tomorrowIso;
+      else if (p === 'weekend') isActive = state.selectedDate === 'weekend';
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
+    // Sync Summary, Native Input & Clear Button
+    if (summaryEl) {
+      if (!state.selectedDate) {
+        summaryEl.textContent = 'All Upcoming Dates';
+      } else if (state.selectedDate === 'weekend') {
+        summaryEl.textContent = 'This Weekend (Sat & Sun)';
+      } else {
+        const pd = new Date(`${state.selectedDate}T12:00:00`);
+        summaryEl.textContent = !isNaN(pd.getTime())
+          ? pd.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })
+          : state.selectedDate;
+      }
+    }
+    if (dateInput) {
+      dateInput.min = todayIso;
+      dateInput.value = /^\d{4}-\d{2}-\d{2}$/.test(state.selectedDate) ? state.selectedDate : '';
+    }
+    if (clearBtn) {
+      clearBtn.style.display = state.selectedDate ? 'inline-flex' : 'none';
+    }
+
+    // Render Month Grid
+    const firstOfMonth = new Date(viewYear, viewMonth, 1);
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const startWeekday = firstOfMonth.getDay();
+    monthLabel.textContent = firstOfMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+    const countsByDate = buildEventCountsByDate();
+    const cells = [];
+    for (let i = 0; i < startWeekday; i++) {
+      cells.push('<span class="calendar-day-spacer" aria-hidden="true"></span>');
+    }
+    for (let day = 1; day <= daysInMonth; day++) {
+      const iso = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const isToday = iso === todayIso;
+      const isSelected = state.selectedDate === iso;
+      const isPast = iso < todayIso;
+      const evCount = countsByDate.get(iso) || 0;
+      const cls = [
+        'calendar-day-btn',
+        isToday ? 'is-today' : '',
+        isSelected ? 'is-selected' : '',
+        isPast ? 'is-past' : '',
+        evCount > 0 ? 'has-events' : ''
+      ].filter(Boolean).join(' ');
+      const title = evCount > 0 ? `${iso} — ${evCount} scheduled event${evCount === 1 ? '' : 's'}` : iso;
+      cells.push(`<button type="button" class="${cls}" data-cal-date="${iso}" title="${title}" aria-label="${title}" aria-pressed="${isSelected ? 'true' : 'false'}" ${isPast ? 'disabled' : ''}>${day}</button>`);
+    }
+    grid.innerHTML = cells.join('');
+  };
+
+  function bindCalendarControls() {
+    document.getElementById('calendar-prev-month')?.addEventListener('click', () => {
+      viewMonth--;
+      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+      window.renderCalendarDatePicker();
+    });
+    document.getElementById('calendar-next-month')?.addEventListener('click', () => {
+      viewMonth++;
+      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+      window.renderCalendarDatePicker();
+    });
+    document.getElementById('calendar-days-grid')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-cal-date]');
+      if (!btn || btn.disabled) return;
+      const iso = btn.getAttribute('data-cal-date');
+      setSelectedCalendarDate(state.selectedDate === iso ? '' : iso);
+    });
+    document.getElementById('date-quick-presets')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-date-preset]');
+      if (!btn) return;
+      const preset = btn.getAttribute('data-date-preset');
+      const t = new Date();
+      if (preset === 'all') setSelectedCalendarDate('');
+      else if (preset === 'today') setSelectedCalendarDate(toIso(t));
+      else if (preset === 'tomorrow') setSelectedCalendarDate(toIso(new Date(t.getFullYear(), t.getMonth(), t.getDate() + 1)));
+      else if (preset === 'weekend') setSelectedCalendarDate('weekend');
+    });
+    document.getElementById('calendar-date-input')?.addEventListener('change', (e) => {
+      setSelectedCalendarDate(e.target.value || '');
+    });
+    document.getElementById('calendar-clear-btn')?.addEventListener('click', () => {
+      setSelectedCalendarDate('');
+    });
+    // Clicking any date label on a feed group header opens the Calendar Picker prompt immediately on the 1st click
+    document.addEventListener('click', (e) => {
+      const pickBtn = e.target.closest('.date-group-pick-btn[data-pick-date]');
+      if (pickBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const iso = pickBtn.getAttribute('data-pick-date');
+        if (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso)) {
+          const pd = new Date(`${iso}T12:00:00`);
+          if (!isNaN(pd.getTime())) {
+            viewYear = pd.getFullYear();
+            viewMonth = pd.getMonth();
+            window.renderCalendarDatePicker();
+          }
+        }
+        if (typeof window.openMobileFiltersSheet === 'function') {
+          window.openMobileFiltersSheet();
+          setTimeout(() => {
+            document.getElementById('date-picker-drawer-section')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 120);
+        }
+        return;
+      }
+      const dateTrigger = e.target.closest('#dynamic-date-left');
+      if (!dateTrigger) return;
+      if (typeof window.openMobileFiltersSheet === 'function') {
+        window.openMobileFiltersSheet();
+        setTimeout(() => {
+          document.getElementById('date-picker-drawer-section')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 120);
+      }
+    }, true);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(state.selectedDate || '')) {
+      const pd = new Date(`${state.selectedDate}T12:00:00`);
+      if (!isNaN(pd.getTime())) {
+        viewYear = pd.getFullYear();
+        viewMonth = pd.getMonth();
+      }
+    }
+    window.renderCalendarDatePicker();
+    // Re-render once catalog data finishes loading so event indicator dots populate
+    setTimeout(() => window.renderCalendarDatePicker(), 1200);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindCalendarControls);
+  } else {
+    bindCalendarControls();
+  }
+})();

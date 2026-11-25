@@ -416,6 +416,143 @@ LOGIN_ATTEMPTS: Dict[str, Dict[str, Any]] = {}
 REVOKED_TOKENS: Set[str] = set()
 TOKEN_LIFETIME_SECONDS = 86400 * 30  # 30-day session lifetime
 ACTIVE_STAGEHAND_PROC = None
+ACTIVE_STAGEHAND_META: Dict[str, Any] = {}
+ACTIVE_STAGEHAND_LOGS: list = []
+ACTIVE_STAGEHAND_LOG_SEQ: int = 0
+ACTIVE_STAGEHAND_DONE: bool = True
+ACTIVE_STAGEHAND_EXIT_CODE = None
+ACTIVE_STAGEHAND_COND = threading.Condition()
+
+def _start_stagehand_stdout_pump(proc, mode: str, script_name: str, auto_approve: bool = False, target_url: str = ""):
+    global ACTIVE_STAGEHAND_PROC, ACTIVE_STAGEHAND_LOGS, ACTIVE_STAGEHAND_LOG_SEQ, ACTIVE_STAGEHAND_DONE, ACTIVE_STAGEHAND_EXIT_CODE
+    with ACTIVE_STAGEHAND_COND:
+        ACTIVE_STAGEHAND_LOGS = []
+        ACTIVE_STAGEHAND_LOG_SEQ = 0
+        ACTIVE_STAGEHAND_DONE = False
+        ACTIVE_STAGEHAND_EXIT_CODE = None
+        ACTIVE_STAGEHAND_META.clear()
+        ACTIVE_STAGEHAND_META.update({
+            "mode": mode,
+            "stageKey": _mode_to_stage_key(mode, target_url),
+            "scriptName": script_name,
+            "startedAt": datetime.now(timezone.utc).isoformat(),
+            "pid": proc.pid,
+        })
+        ACTIVE_STAGEHAND_COND.notify_all()
+
+    def _pump():
+        global ACTIVE_STAGEHAND_PROC, ACTIVE_STAGEHAND_LOGS, ACTIVE_STAGEHAND_LOG_SEQ, ACTIVE_STAGEHAND_DONE, ACTIVE_STAGEHAND_EXIT_CODE
+        try:
+            for line in iter(proc.stdout.readline, ''):
+                if not line:
+                    break
+                line_clean = line.rstrip("\r\n")
+                with ACTIVE_STAGEHAND_COND:
+                    ACTIVE_STAGEHAND_LOG_SEQ += 1
+                    ACTIVE_STAGEHAND_LOGS.append((ACTIVE_STAGEHAND_LOG_SEQ, line_clean))
+                    if len(ACTIVE_STAGEHAND_LOGS) > 5000:
+                        ACTIVE_STAGEHAND_LOGS = ACTIVE_STAGEHAND_LOGS[-4000:]
+                    ACTIVE_STAGEHAND_COND.notify_all()
+        except Exception as pump_err:
+            print(f"[STAGEHAND PUMP ERROR] {pump_err}", file=sys.stderr)
+        finally:
+            exit_code = -1
+            try:
+                proc.wait()
+                exit_code = proc.returncode
+            except Exception:
+                pass
+            if (auto_approve or mode == "catalog_batch") and exit_code == 0:
+                try:
+                    sync_js_data_file()
+                except Exception:
+                    pass
+            with ACTIVE_STAGEHAND_COND:
+                if ACTIVE_STAGEHAND_PROC is proc:
+                    ACTIVE_STAGEHAND_PROC = None
+                ACTIVE_STAGEHAND_DONE = True
+                ACTIVE_STAGEHAND_EXIT_CODE = exit_code
+                ACTIVE_STAGEHAND_COND.notify_all()
+
+    t = threading.Thread(target=_pump, daemon=True)
+    t.start()
+
+def _stream_stagehand_buffer_sse(handler, start_seq: int = 0):
+    cursor = start_seq
+    try:
+        while True:
+            batch = []
+            is_done = False
+            exit_code = None
+            with ACTIVE_STAGEHAND_COND:
+                batch = [(s, l) for (s, l) in ACTIVE_STAGEHAND_LOGS if s > cursor]
+                if not batch and not ACTIVE_STAGEHAND_DONE:
+                    ACTIVE_STAGEHAND_COND.wait(timeout=15.0)
+                    batch = [(s, l) for (s, l) in ACTIVE_STAGEHAND_LOGS if s > cursor]
+                is_done = ACTIVE_STAGEHAND_DONE
+                exit_code = ACTIVE_STAGEHAND_EXIT_CODE
+
+            if batch:
+                for (seq, line_clean) in batch:
+                    cursor = seq
+                    payload = json.dumps({"line": line_clean, "seq": seq}, ensure_ascii=False)
+                    handler.wfile.write(f"data: {payload}\n\n".encode("utf-8"))
+                handler.wfile.flush()
+            elif not is_done:
+                # Keep-alive SSE comment to prevent proxy/browser timeout
+                handler.wfile.write(b": keepalive\n\n")
+                handler.wfile.flush()
+
+            if is_done and not batch:
+                done_payload = json.dumps({
+                    "line": f"[COMPLETE] Stagehand finished with exit code {exit_code}",
+                    "exitCode": exit_code if exit_code is not None else 0
+                })
+                handler.wfile.write(f"event: done\ndata: {done_payload}\n\n".encode("utf-8"))
+                handler.wfile.flush()
+                return
+    except (ConnectionResetError, BrokenPipeError):
+        # Client tab disconnected — keep background worker & log buffer alive!
+        return
+    except Exception as ex:
+        try:
+            err_msg = json.dumps({"line": f"[ERROR] {str(ex)}", "error": str(ex)})
+            handler.wfile.write(f"event: error\ndata: {err_msg}\n\n".encode("utf-8"))
+            handler.wfile.flush()
+        except Exception:
+            pass
+        return
+
+def _mode_to_stage_key(mode_val: str, target_url: str = "") -> str:
+    u = str(target_url or "").lower().strip()
+    if u.startswith("agy://"):
+        step = u[6:].split("?", 1)[0].split("/", 1)[0].strip()
+        if step in ("harvest", "calendar", "harvester"):
+            return "harvest"
+        if step in ("hunter", "tier1_hunter"):
+            return "hunter"
+        if step in ("qc", "catalog_batch"):
+            return "qc"
+        if step in ("venue", "venue_detailer"):
+            return "venue"
+        if step == "enrich":
+            return "enrich"
+        if step in ("compile", "consolidate"):
+            return "compile"
+    m = str(mode_val or "").lower().strip()
+    if m in ("calendar", "harvester"):
+        return "harvest"
+    if m in ("hunter", "tier1_hunter"):
+        return "hunter"
+    if m in ("catalog_batch", "qc"):
+        return "qc"
+    if m in ("venue", "venue_detailer"):
+        return "venue"
+    if m == "enrich":
+        return "enrich"
+    if m == "compile":
+        return "compile"
+    return "qc"
 
 def get_catalog_dimensions_count() -> int:
     """Dynamically determines the dimension count from events.json dimension_audit object."""
@@ -2478,6 +2615,10 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             return self._send_json(200, {
                 "running": is_running,
                 "pid": proc_pid,
+                "mode": ACTIVE_STAGEHAND_META.get("mode") if is_running else None,
+                "stageKey": ACTIVE_STAGEHAND_META.get("stageKey") if is_running else None,
+                "scriptName": ACTIVE_STAGEHAND_META.get("scriptName") if is_running else None,
+                "startedAt": ACTIVE_STAGEHAND_META.get("startedAt") if is_running else None,
                 "ready": has_ripper and (has_agy_cli or has_api_key),
                 "hasRipper": has_ripper,
                 "hasAgyCli": has_agy_cli,
@@ -2673,35 +2814,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     errors="replace",
                     bufsize=1
                 )
-                for line in iter(ACTIVE_STAGEHAND_PROC.stdout.readline, ''):
-                    if not line:
-                        break
-                    line_clean = line.rstrip("\r\n")
-                    payload = json.dumps({"line": line_clean}, ensure_ascii=False)
-                    self.wfile.write(f"data: {payload}\n\n".encode("utf-8"))
-                    self.wfile.flush()
-
-                ACTIVE_STAGEHAND_PROC.wait()
-                exit_code = ACTIVE_STAGEHAND_PROC.returncode
-                ACTIVE_STAGEHAND_PROC = None
-
-                # Sync js/data.js if catalog batch or auto-approved
-                if (auto_approve or mode == "catalog_batch") and exit_code == 0:
-                    try:
-                        sync_js_data_file()
-                    except Exception:
-                        pass
-
-                done_payload = json.dumps({"line": f"[COMPLETE] Stagehand finished with exit code {exit_code}", "exitCode": exit_code})
-                self.wfile.write(f"event: done\ndata: {done_payload}\n\n".encode("utf-8"))
-                self.wfile.flush()
-            except (ConnectionResetError, BrokenPipeError):
-                if ACTIVE_STAGEHAND_PROC:
-                    try:
-                        ACTIVE_STAGEHAND_PROC.terminate()
-                    except Exception:
-                        pass
-                    ACTIVE_STAGEHAND_PROC = None
+                _start_stagehand_stdout_pump(ACTIVE_STAGEHAND_PROC, mode, script_name, auto_approve=auto_approve, target_url=target_url)
+                _stream_stagehand_buffer_sse(self, start_seq=0)
             except Exception as ex:
                 err_msg = json.dumps({"line": f"[ERROR] {str(ex)}", "error": str(ex)})
                 try:
@@ -2709,6 +2823,29 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     self.wfile.flush()
                 except Exception:
                     pass
+            return
+
+        # API: Reattach to Active Stagehand / Pipeline SSE Log Buffer (for Active Scan View after reload/reopen)
+        if path == "/api/curator/stagehand/attach":
+            qs = parse_qs(parsed.query)
+            is_loopback = self.client_address[0] in ("127.0.0.1", "::1", "localhost")
+            if not is_loopback:
+                token = qs.get("token", [""])[0] or self.headers.get("Curator-Token", "")
+                if not token:
+                    auth_header = self.headers.get("Authorization", "")
+                    if auth_header.startswith("Bearer "):
+                        token = auth_header.split(" ", 1)[1].strip()
+                valid, _ = verify_session_token(token)
+                if not valid:
+                    return self._send_json(401, {"error": "Authentication required"})
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+            self.send_header("Cache-Control", "no-cache, no-transform")
+            self.send_header("Connection", "keep-alive")
+            self.send_header("X-Accel-Buffering", "no")
+            self._apply_cors_headers()
+            self.end_headers()
+            _stream_stagehand_buffer_sse(self, start_seq=0)
             return
 
         # API: Live AI Activity Stream (Public/Curator real-time monitoring)

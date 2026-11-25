@@ -343,9 +343,10 @@ const CATEGORY_COLORS = {
   markets: { id: 'markets', label: 'Markets', emoji: '🛍️', color: '#0D9488', filterId: 'markets' },
   festivals: { id: 'festivals', label: 'Festivals', emoji: '🎪', color: '#EA580C', filterId: 'festivals' },
   sports: { id: 'sports', label: 'Sports', emoji: '🏒', color: '#0284C7', filterId: 'sports' },
+  academic: { id: 'academic', label: 'Academic', emoji: '🎓', color: '#4F46E5', filterId: 'academic' },
   mixed: { id: 'mixed', label: 'Mixed / Multi-Category Venue', emoji: '📍', color: '#334155', filterId: null }
 };
-const CATEGORY_LEGEND_ORDER = ['music', 'shows', 'cinema', 'outdoors', 'arts', 'social', 'markets', 'festivals', 'sports'];
+const CATEGORY_LEGEND_ORDER = ['music', 'shows', 'cinema', 'outdoors', 'arts', 'social', 'markets', 'festivals', 'sports', 'academic'];
 
 if (typeof window !== 'undefined') {
   window.CATEGORY_COLORS = CATEGORY_COLORS;
@@ -372,6 +373,7 @@ function resolveMapEventCategoryKey(event) {
   const title = String(event.title || event.event_name || '').toLowerCase();
   const combined = `${cat} ${arch} ${tags} ${title}`;
 
+  if (cat === 'academic') return 'academic';
   if (/\b(trivia|quiz|board-game|board game|bingo|social_gaming|chess|games)\b/.test(combined)) return 'social';
   if (cat === 'cinema' || arch === 'cinema' || /\b(cinema|film|movie|screening|35mm)\b/.test(combined)) return 'cinema';
   if (cat === 'shows' || /\b(comedy|stand-up|standup|improv|theatre|theater|burlesque|cabaret|opera)\b/.test(combined)) return 'shows';

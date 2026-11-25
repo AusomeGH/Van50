@@ -2523,10 +2523,12 @@ export async function compileCatalog(options = {}) {
       ? String(rawCandidateArtist).trim()
       : (lineup.length > 0 ? lineup[0] : null);
 
-    // 6. AI ARBITRATION: Categories & Search Tags (Enforce Canonical 10-Category Taxonomy)
+    // 6. AI ARBITRATION: Categories & Search Tags (Enforce Canonical 11-Category Taxonomy)
     const CANONICAL_CATEGORIES = new Set([
-      "music", "cinema", "shows", "outdoors", "arts", "markets", "social", "festivals", "sports", "trivia", "free-public-access"
+      "music", "cinema", "shows", "outdoors", "arts", "markets", "social", "festivals", "sports", "trivia", "academic", "free-public-access"
     ]);
+    const ACADEMIC_FORMAT_RE = /\b(?:lecture|colloquium|symposium|keynote|seminar\s+series|public\s+seminar|panel\s+discussion|fireside\s+chat|philosopher['’]s\s+caf[eé]|author\s+talk|public\s+talk|science\s+talk|distinguished\s+speaker|rare\s+books|special\s+collections|sterling\s+prize|research\s+(?:talk|forum|showcase|seminar)|lunch\s+poems|an\s+evening\s+with\s+author|health\s+technologies|economics\s+of\s+covenant|art,\s+history\s+and\s+cultural\s+memory|student\s+pitch\s+competition)\b/i;
+    const NON_ACADEMIC_FORMAT_RE = /\b(?:concert|symphony|jazz|improv|comedy|karaoke|yoga|basketball|hockey|soccer|market|craft\s+fair|film\s+screening|storytime|stay\s+and\s+play|knitting|crochet|chess)\b/i;
     const STRICT_NON_FESTIVAL_RE = /\b(?:pottery\s+sale|bake.*sale|quilt.*sale|craft\s+fair|craft\s+market|holiday\s+market|christmas\s+market|winter\s+market|farmers['’]?\s+market|queer\s+market|indigenous\s+market|makers?.*readers?.*healers?|community\s+dinner|pancake\s+lunch|meet\s+santa|visit\s+with\s+santa|tree\s+lighting\s+ceremony|bright\s+in\s+burnaby|carols\s+and\s+crafts|songs\s+in\s+the\s+snow|holiday\s+cheer\s+at|family\s+day\s+celebration|children['’]?s\s+winter\s+fair|parkgate\s+winter\s+lights|winter\s+lights\s+festival|christmas\s+wonderland\s+on\s+the\s+drive|christmas\s+in\s+pitt\s+meadows|christmas\s+in\s+the\s+square|concord\s+christmas|holiday\s+bonfire|winterfest|world\s+tour|presents\s+diwali\s+celebration)\b/i;
 
     const normalizeCanonicalCategory = (rawCat, titleStr = "", venueStr = "") => {
@@ -2546,6 +2548,9 @@ export async function compileCatalog(options = {}) {
       }
       if (/\b(?:christmas\s+market|holiday\s+market|farmers\s+market|night\s+market|craft\s+market|pottery\s+sale|craft\s+fair)\b/i.test(titleLower)) {
         return "markets";
+      }
+      if (ACADEMIC_FORMAT_RE.test(titleLower) && !NON_ACADEMIC_FORMAT_RE.test(titleLower)) {
+        return "academic";
       }
       if (CANONICAL_CATEGORIES.has(c)) return c;
       if (c === "comedy" || c === "theatre" || c === "theater" || c === "performing-arts" || c === "live_stage") return "shows";

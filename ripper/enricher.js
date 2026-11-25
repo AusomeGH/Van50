@@ -144,6 +144,13 @@ export function classifyCategory(title, description, rawCategory, venueData) {
   if (/\b(?:theatre|theater|play|drama|musical|stage play|monologue|broadway|fringe|burlesque|ballet|swan lake|storytelling|pro wrestling)\b/i.test(combined)) {
     return "shows";
   }
+  // 6b. Academic, Public Lectures, Symposia, Panels & Author Talks (Format beats venue)
+  if (
+    /\b(?:lecture|colloquium|symposium|keynote|seminar\s+series|public\s+seminar|panel\s+discussion|fireside\s+chat|philosopher['’]s\s+caf[eé]|author\s+talk|public\s+talk|science\s+talk|distinguished\s+speaker|rare\s+books|special\s+collections|sterling\s+prize|research\s+(?:talk|forum|showcase|seminar)|lunch\s+poems|an\s+evening\s+with\s+author|health\s+technologies)\b/i.test(`${title || ""} ${description || ""}`) &&
+    !/\b(?:concert|symphony|jazz|improv|comedy|karaoke|yoga|basketball|hockey|soccer|market|craft\s+fair|film\s+screening)\b/i.test(title || "")
+  ) {
+    return "academic";
+  }
   // 7. Visual Arts, Galleries, Workshops, Trivia & Social
   if (/\b(?:art|gallery|exhibition|sculpture|painting|ceramics|visual arts|photography|crafts|lecture|talk|workshop|walking tour|community|cultural|poetry|author|heritage|museum|trivia|board game|pinball|arcade|karaoke)\b/i.test(combined)) {
     return "social";
@@ -1018,9 +1025,11 @@ export async function runEnricher(options = {}) {
     }
   });
 
+  const scheduleMap = new Map();
   schedules.forEach((sc) => {
     const scId = sc.id || sc.event_id;
     const scIdLower = String(scId || "").toLowerCase();
+    if (scIdLower) scheduleMap.set(scIdLower, sc);
     if (scId && !existingIds.has(scId) && !archivedIds.has(scId) && Boolean(sc.step1b_audited_at) && boxAuditedIds.has(scIdLower)) {
       sourcePool.push(sc);
       existingIds.add(scId);

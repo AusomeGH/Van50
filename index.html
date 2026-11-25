@@ -47,7 +47,7 @@
     content="https://script.google.com/macros/s/AKfycbwbUvlCMYbBH9ukYSc_OaP9qF1nMtvhcEgsajmbTDmrun89CxQDoHMledPyTRWuqUK7vA/exec">
 
   <link rel="stylesheet" href="css/style.css?v=8.9.1">
-  <link rel="stylesheet" href="css/components.css?v=8.9.1">
+  <link rel="stylesheet" href="css/components.css?v=8.9.3">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -115,13 +115,14 @@
         Local Outings <span class="gradient-text">Under $50</span>
         <span class="hero-title-subline">Taxes &amp; Fees Included</span>
       </h1>
+      <div class="hero-active-count" id="hero-active-count" aria-live="polite">Loading local outings…</div>
       <p class="hero-subtitle">
         Curated comedy, live music, indie cinema, sports, trivia, and scenic drop-ins across Metro Vancouver &amp;
         Langley with zero checkout surprises.
       </p>
     </section>
 
-    <!-- Combined Single-Row Pre-Feed Controls: Region Filter + Quick Outing Toggles -->
+    <!-- Pre-Feed Controls: Region Filter -->
     <div class="pre-feed-controls-row" id="pre-feed-controls-row">
       <div class="region-filter-bar" id="region-filter-bar" role="group" aria-label="Region Filter">
         <button type="button" class="region-pill active" data-region="all" id="region-pill-all"
@@ -138,18 +139,6 @@
           aria-pressed="false">New West</button>
         <button type="button" class="region-pill" data-region="langley" id="region-pill-langley"
           aria-pressed="false">Langley</button>
-      </div>
-      <div class="top-quick-toggles-bar" id="top-quick-toggles-bar" role="group" aria-label="Quick Outing Toggles">
-        <button type="button" class="top-quick-toggle-pill" id="top-toggle-free" aria-pressed="false"
-          title="Show only free outings ($0 CAD)">
-          <span class="toggle-pill-indicator" aria-hidden="true"></span>
-          <span>Free Only</span>
-        </button>
-        <button type="button" class="top-quick-toggle-pill" id="top-toggle-hide-daily" aria-pressed="false"
-          title="Hide everyday anytime drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
-          <span class="toggle-pill-indicator" aria-hidden="true"></span>
-          <span>Hide Anytime Drop-Ins</span>
-        </button>
       </div>
     </div>
 
@@ -223,6 +212,36 @@
             aria-label="Category Filters"></div>
         </div>
 
+        <!-- Date Calendar Picker Section -->
+        <div class="drawer-filter-section date-picker-drawer-section" id="date-picker-drawer-section">
+          <div class="drawer-section-header" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+            <span><strong>Date:</strong></span>
+            <span id="calendar-selected-summary" class="calendar-selected-summary">All Upcoming Dates</span>
+          </div>
+          <div class="date-quick-presets" id="date-quick-presets" role="group" aria-label="Quick Date Presets">
+            <button type="button" class="date-preset-btn active" data-date-preset="all" aria-pressed="true">All Dates</button>
+            <button type="button" class="date-preset-btn" data-date-preset="today" aria-pressed="false">Today</button>
+            <button type="button" class="date-preset-btn" data-date-preset="tomorrow" aria-pressed="false">Tomorrow</button>
+            <button type="button" class="date-preset-btn" data-date-preset="weekend" aria-pressed="false">This Weekend</button>
+          </div>
+          <div class="calendar-picker-card" id="van50-calendar-picker" aria-label="Calendar Date Picker">
+            <div class="calendar-picker-header">
+              <button type="button" class="calendar-nav-btn" id="calendar-prev-month" aria-label="Previous month">‹</button>
+              <span class="calendar-month-label" id="calendar-month-label">November 2026</span>
+              <button type="button" class="calendar-nav-btn" id="calendar-next-month" aria-label="Next month">›</button>
+            </div>
+            <div class="calendar-weekdays" aria-hidden="true">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="calendar-days-grid" id="calendar-days-grid" role="grid" aria-label="Select a date"></div>
+            <div class="calendar-date-input-row">
+              <label for="calendar-date-input" class="calendar-input-label">Jump to date:</label>
+              <input type="date" id="calendar-date-input" class="calendar-date-input" aria-label="Pick a specific date">
+              <button type="button" class="calendar-clear-btn" id="calendar-clear-btn" style="display: none;">Clear</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Spend Filter (5 Single-Tap Mutually Exclusive Pills) -->
         <div class="drawer-filter-section spend-filter-section" id="spend-filter-section">
           <div class="drawer-section-header">
@@ -242,12 +261,22 @@
           </div>
         </div>
 
-        <!-- Options & Discounts Section (Consolidated Single Row) -->
+        <!-- Options & Discounts Section (Consolidated Toggles) -->
         <div class="drawer-filter-section access-discounts-section" id="access-discounts-section">
           <div class="drawer-section-header">
             <span><strong>Options &amp; Discounts:</strong></span>
           </div>
           <div class="access-discounts-toggles" role="group" aria-label="Options and Discounts">
+            <button type="button" class="drawer-toggle-pill" id="top-toggle-free" aria-pressed="false"
+              title="Show only free outings ($0 CAD)">
+              <span class="toggle-pill-indicator" aria-hidden="true"></span>
+              <span>Free Only</span>
+            </button>
+            <button type="button" class="drawer-toggle-pill" id="top-toggle-hide-daily" aria-pressed="false"
+              title="Hide everyday anytime drop-in spots, parks, galleries, and open-hours venues so only dated shows, concerts, screenings, and special events are shown">
+              <span class="toggle-pill-indicator" aria-hidden="true"></span>
+              <span>Hide Anytime Drop-Ins</span>
+            </button>
             <button type="button" class="drawer-toggle-pill" id="toggle-senior-deals" aria-pressed="false"
               title="Show events offering senior (55+/65+) discounts, rates, or senior-friendly programming">
               <span class="toggle-pill-indicator" aria-hidden="true"></span>
@@ -275,17 +304,7 @@
       aria-label="Shared Outing Plan" hidden></div>
 
     <!-- Results Count Bar -->
-    <div class="results-count-bar dynamic-date-count-bar" id="results-count" aria-live="polite">
-      <div class="dynamic-date-left" id="dynamic-date-left"><span class="dynamic-date-label" id="dynamic-date-label">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: -3px; margin-right: 4px;">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>All Upcoming Outings</span></div>
-      <div class="results-count-text" id="results-count-text">Loading local outings…</div>
-    </div>
+    <div class="results-count-bar dynamic-date-count-bar" id="results-count" aria-live="polite"></div>
 
     <!-- Events Content Section -->
     <section aria-label="Events List">
@@ -635,8 +654,8 @@
   <!-- Scripts -->
   <script src="js/data.js?v=8.5.0"></script>
   <script src="js/accessibility.js?v=8.5.0"></script>
-  <script src="js/map.js?v=8.10.0"></script>
-  <script src="js/app.js?v=8.9.1"></script>
+  <script src="js/map.js?v=8.10.1"></script>
+  <script src="js/app.js?v=8.9.4"></script>
   <script src="js/pwa-install.js?v=8.5.0"></script>
 
 </body>

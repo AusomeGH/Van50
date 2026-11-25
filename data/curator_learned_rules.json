@@ -709,7 +709,15 @@
     "the-cinematheque-the-portuguese-2026-11-23",
     "michael-j-fox-theatr-marathi-society-of-bc-presents-2026-11-22",
     "timms-community-cent-langley-christmas-village-2026-11-25",
-    "the-cinematheque-invincibles-2026-11-24"
+    "the-cinematheque-invincibles-2026-11-24",
+    "the-cinematheque-the-dormant-account-2026-11-25",
+    "steveston-community-steveston-christmas-craft-fair-2026-11-28",
+    "anvil-theatre-dance-into-christmas-2026-2026-12-03",
+    "sanctuary-parent-038-tot-2026-11-25",
+    "olympic-village-stag-louisa-may-alcott-s-little-wom-2027-02-16",
+    "coquitlam-public-lib-coquitlam-practical-philosophy-2026-11-24",
+    "asia-pacific-hall-sf-2026-sterling-prize-ceremony-a-2026-11-25",
+    "alex-house-tea-amp-chat-alex-house-2026-12-16"
   ],
   "venue_policy_rules": {
     "Pizzeria Ludica": {
@@ -1023,7 +1031,7 @@
       "priceRange": null,
       "pricingType": "standard",
       "minimumSpend": null,
-      "priceCeiling": 50.0,
+      "priceCeiling": 50,
       "scheduleDays": [],
       "genres": [],
       "calendarUrl": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/",

@@ -3418,5 +3418,706 @@
       "arbitration_reasoning": "Selected the seed and schedule layer date of 2027-10-02 over the historical/stale box office date of 2026-10-04, while inheriting the verified active checkout showtime and single-visit ticket availability."
     },
     "updatedAt": "2026-11-24T03:52:02.717Z"
+  },
+  "lavenderland-holiday-workshops-32027": {
+    "sig": "date mismatch between schedule (2027-01-03) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "Holiday Workshops",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-01-03",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the upcoming schedule harvest date of 2027-01-03 matching the seed event schedule, treating the current run timestamp (2026-11-24) from box office as an artifact."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "chan-centre-for-the-early-music-vancouver-a-french-2026-12-04": {
+    "sig": "title mismatch between schedule (\"Early Music Vancouver – A French Baroque Christmas with Ensemble Correspondances\") and box office (\"A French Baroque Christmas with Ensemble Correspondances\")::",
+    "decision": {
+      "clean_title": "A French Baroque Christmas with Ensemble Correspondances",
+      "artist": "Ensemble Correspondances",
+      "lineup": [
+        "Ensemble Correspondances",
+        "Early Music Vancouver"
+      ],
+      "date": "2026-12-04",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the core production title without the presenter prefix 'Early Music Vancouver' while attributing Ensemble Correspondances as the lead artist and Early Music Vancouver in the lineup."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "d-6-lounge-parq-casi-society-club-fire-ice-2027-11-14": {
+    "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
+    "decision": {
+      "clean_title": "Society Club - Fire & Ice",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-11-14",
+      "start_time": "9:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2027-11-14 by harmonizing the Box Office 'November 14th' showing with the explicit future schedule year (since current local time is late November 2026)."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "vancouver-internatio-xala-2026-11-25": {
+    "sig": "date mismatch between schedule (2026-11-25) and box office (2026-08-16)::",
+    "decision": {
+      "clean_title": "Xala",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-25",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-11-25 per authoritative seed and schedule layers, rejecting the unanchored box office snippet date while maintaining available inventory status."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "crave-bistro-and-bar-poco-fc-crave-takeover-2027-10-09": {
+    "sig": "date mismatch between schedule (2027-10-09) and box office (2026-10-09)::",
+    "decision": {
+      "clean_title": "Poco FC – Crave Takeover",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-10-09",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2027-10-09 as confirmed by both Seed and Schedule layers, while adopting the 7:00 PM start time from the box office inspection."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "under-the-big-top-ed-luzia-tickets-cirque-du-soleil-2027-05-26": {
+    "sig": "title mismatch between schedule (\"LUZIA Tickets - Cirque du Soleil\") and box office (\"LUZIA - Cirque du Soleil\")::",
+    "decision": {
+      "clean_title": "LUZIA - Cirque du Soleil",
+      "artist": "Cirque du Soleil",
+      "lineup": [
+        "Cirque du Soleil"
+      ],
+      "date": "2027-05-26",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Selected clean show title 'LUZIA - Cirque du Soleil' from the box office layer, stripping ticketing boilerplate ('Tickets') found in the schedule and seed titles."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "fortune-sound-club-blawan-2026-11-26": {
+    "sig": "title mismatch between schedule (\"Blawan\") and box office (\"Blawan (DJ Set)\")::",
+    "decision": {
+      "clean_title": "Blawan (DJ Set)",
+      "artist": "Blawan",
+      "lineup": [
+        "Blawan"
+      ],
+      "date": "2026-11-26",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Resolved title to 'Blawan (DJ Set)' to reflect the specific performance format corroborated by both the box office layer and the official TicketWeb checkout slug."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "farm-country-brewing-ben-albert-live-in-langley-lat-2026-11-26": {
+    "sig": "title mismatch between schedule (\"Ben Albert: Live in Langley — Late Show\") and box office (\"Ben Albert: Live in Langley - Late\")::",
+    "decision": {
+      "clean_title": "Ben Albert: Live in Langley — Late Show",
+      "artist": "Ben Albert",
+      "lineup": [
+        "Ben Albert"
+      ],
+      "date": "2026-11-26",
+      "start_time": "9:30 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the complete, properly formatted title 'Ben Albert: Live in Langley — Late Show' from Seed and Schedule over the truncated Box Office title, confirmed Ben Albert as the performer, kept the verified 9:30 PM start time, and respected the verified sold-out status from the box office layer."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "rickshaw-theatre-amorphis-and-insomnium-2026-11-30": {
+    "sig": "title mismatch between schedule (\"Amorphis and Insomnium\") and box office (\"Insomnium & Amorphis with guest Hinayana\")::",
+    "decision": {
+      "clean_title": "Insomnium & Amorphis with guest Hinayana",
+      "artist": "Insomnium",
+      "lineup": [
+        "Insomnium",
+        "Amorphis",
+        "Hinayana"
+      ],
+      "date": "2026-11-30",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the box office and ticket listing's full billing 'Insomnium & Amorphis with guest Hinayana' as clean_title to preserve the complete co-headlining and supporting lineup."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "farm-country-brewing-resin-art-workshop-nutcracker-2026-11-29": {
+    "sig": "title mismatch between schedule (\"Resin Art Workshop — Nutcracker Charcuterie Board\") and box office (\"Resin Art workshop - Nutcracker Charcuterie board - Langley\")::",
+    "decision": {
+      "clean_title": "Resin Art Workshop — Nutcracker Charcuterie Board",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-29",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "arts",
+      "arbitration_reasoning": "Selected the cleaner Schedule/Seed title over the location-suffixed box office string, adopted verified 4:00 PM start time from live box office, and confirmed sold out status since no available ticket tiers were present."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "farm-country-brewing-art-craft-workshop-2026-12-15": {
+    "sig": "title mismatch between schedule (\"Art & Craft Workshop\") and box office (\"Resin Art workshop - Pressed flower charcuterie board - Langley\")|date mismatch between schedule (2026-12-15) and box office (2026-11-24)::",
+    "decision": {
+      "clean_title": "Resin Art Workshop: Pressed Flower Charcuterie Board",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-24",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted specific workshop title and live verified box office event date (November 24, 2026) over the generic placeholder schedule title and date, while honoring the box office sold-out status."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "west-gym-red-leafs-open-2027-11-14": {
+    "sig": "date mismatch between schedule (2027-11-14) and box office (2026-11-14)::",
+    "decision": {
+      "clean_title": "RED LEAFS OPEN",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-14",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved date to 2026-11-14 because November 14 fell on a Saturday in 2026 as verified by the live Box Office layer, whereas November 14, 2027 is a Sunday."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "trading-post-brewing-tiki-cocktail-workshop-2027-08-20": {
+    "sig": "date mismatch between schedule (2027-08-20) and box office (2026-08-20)::",
+    "decision": {
+      "clean_title": "Tiki Cocktail Workshop",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-08-20",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "social",
+      "arbitration_reasoning": "August 20 falls on a Thursday in 2026 confirming the Box Office layer's 'Thursday, August 20' against the 2027 seed typo, and no available ticket tiers exist."
+    },
+    "updatedAt": "2026-11-25T01:02:15.005Z"
+  },
+  "anvil-centre-downtown-s-living-room-2026-11-23": {
+    "sig": "date mismatch between schedule (2026-11-02) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Downtown's Living Room",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-23",
+      "start_time": "5:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-11-23 and start time to 5:30 PM based on the target event ID and verified live box office inspection for this showing."
+    },
+    "updatedAt": "2026-11-25T03:19:39.790Z"
+  },
+  "hestia-the-shelf-concert-and-buffet-7-2026-11-25": {
+    "sig": "title mismatch between schedule (\"The Shelf Concert and Buffet #71 – Bealby Point\") and box office (\"Concert & Buffet #71 - Bealby Point\")::",
+    "decision": {
+      "clean_title": "The Shelf Concert and Buffet #71 – Bealby Point",
+      "artist": "Bealby Point",
+      "lineup": [
+        "Bealby Point"
+      ],
+      "date": "2026-11-25",
+      "start_time": "9:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the complete canonical title preserved across Seed, Schedule, and Editorial layers over the box office cart shorthand, extracting Bealby Point as lead performer with live tickets confirmed available."
+    },
+    "updatedAt": "2026-11-25T03:19:39.790Z"
+  },
+  "ivan-franko-ukrainia-ukrainian-christmas-market-inc-2026-11-28": {
+    "sig": "date mismatch between schedule (2026-11-28) and box office (2026-12-19)::",
+    "decision": {
+      "clean_title": "Ukrainian Christmas Market",
+      "artist": null,
+      "lineup": [
+        "Ukrainian Dancers",
+        "Choir"
+      ],
+      "date": "2026-12-19",
+      "start_time": "5:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Resolved date to 2026-12-19 following live box office checkout reality over preliminary schedule harvesting, retained clean editorial title and markets category, and confirmed inventory availability with General Admission at $38.74 CAD."
+    },
+    "updatedAt": "2026-11-25T03:19:39.790Z"
+  },
+  "steveston-community-steveston-christmas-craft-fair-2026-11-28": {
+    "sig": "title mismatch between schedule (\"Steveston Christmas Craft Fair\") and box office (\"2026 Steveston Christmas Craft Fair\")::",
+    "decision": {
+      "clean_title": "Steveston Christmas Craft Fair",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-28",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Adopted the canonical title 'Steveston Christmas Craft Fair' agreed upon by Seed, Schedule, and Editorial layers while stripping the redundant annual prefix from Box Office, resolved category to 'markets' per editorial synopsis, and preserved the available admission by donation pricing."
+    },
+    "updatedAt": "2026-11-25T03:19:39.790Z"
+  },
+  "richmond-city-hall-bcrmta-winter-wonderland-perfo-2026-11-28": {
+    "sig": "title mismatch between schedule (\"BCRMTA Winter Wonderland Performance\") and box office (\"Winter Wonderland performance\")::",
+    "decision": {
+      "clean_title": "BCRMTA Winter Wonderland Performance",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-28",
+      "start_time": "1:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the complete organization-prefixed title 'BCRMTA Winter Wonderland Performance' verified across Seed, Schedule, and Editorial layers over the truncated box office string, with music categorization supported by the BCRMTA concert synopsis."
+    },
+    "updatedAt": "2026-11-25T03:19:39.790Z"
+  },
+  "massey-theatre-dance-into-christmas-richmond-2026-12-04": {
+    "sig": "date mismatch between schedule (2026-12-04) and box office (2026-12-03)::",
+    "decision": {
+      "clean_title": "Dance into Christmas",
+      "artist": "Richmond Academy of Dance",
+      "lineup": [
+        "Richmond Academy of Dance"
+      ],
+      "date": "2026-12-03",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2026-12-03 matching the live box office checkout ledger which verified active inventory and showtime (7:30 PM) for $38.00 CAD."
+    },
+    "updatedAt": "2026-11-25T03:19:39.790Z"
+  },
+  "olympic-village-stag-louisa-may-alcott-s-little-wom-2027-02-16": {
+    "sig": "date mismatch between schedule (2027-02-16) and box office (2027-02-24)::",
+    "decision": {
+      "clean_title": "Louisa May Alcott’s Little Women",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-24",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved date to 2027-02-24 based on live box office checkout verification, retaining the verified title, category, and active inventory status."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "michael-j-fox-theatr-kzemos-events-presents-ballet-2026-12-12": {
+    "sig": "title mismatch between schedule (\"Kzemos Events presents Ballet of Lights: Sleeping Beauty in a Sparkling Show\") and box office (\"Ballet of Lights: Sleeping Beauty in a Sparkling Show\")|date mismatch between schedule (2026-12-12) and box office (2027-01-10)::",
+    "decision": {
+      "clean_title": "Ballet of Lights: Sleeping Beauty in a Sparkling Show",
+      "artist": "Luma Artistas",
+      "lineup": [
+        "María Farelo",
+        "Cristian Pérez"
+      ],
+      "date": "2027-01-10",
+      "start_time": "5:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the editorial clean title stripping the presenter prefix and prioritized the live Stagehand box office layer's verified date (2027-01-10) and available $40.18 tier over stale schedule metadata."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "vancouver-art-galler-free-first-friday-nights-prese-2026-12-04": {
+    "sig": "date mismatch between schedule (2026-12-04) and box office (2026-11-23)::",
+    "decision": {
+      "clean_title": "Free First Friday Nights presented by BMO",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-04",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Selected the schedule layer date 2026-12-04 because December 4, 2026 is the true First Friday of December matching the event slug and program identity, resolving the box office layer's default calendar view date."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "vancouver-art-galler-lunchtime-look-with-eva-respin-2026-12-02": {
+    "sig": "date mismatch between schedule (2026-11-25) and box office (2026-12-02)::",
+    "decision": {
+      "clean_title": "Lunchtime Look with Eva Respini",
+      "artist": "Eva Respini",
+      "lineup": [
+        "Eva Respini"
+      ],
+      "date": "2026-12-02",
+      "start_time": "12:15 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "The box office live checkout verification matches the seed URL slug ('lunchtime-look-dec-2') and event ID ('2026-12-02'), resolving the date discrepancy in favor of the verified live box office layer over the schedule layer."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "shipyards-district-north-vancouver-8217-s-shipyar-2026-11-27": {
+    "sig": "title mismatch between schedule (\"North Vancouver&#8217;s Shipyards Ice Rink\") and box office (\"North Vancouver’s Shipyards Ice Rink\")::",
+    "decision": {
+      "clean_title": "North Vancouver's Shipyards Ice Rink",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved HTML character entity '&#8217;' to a clean apostrophe matching editorial and box office layers, confirmed active free admission status, and accepted the verified sports category."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "the-blarney-stone-surf-turf-sunday-2026-11-29": {
+    "sig": "title mismatch between schedule (\"Surf & Turf Sunday\") and box office (\"Surf & Turf Sundays 12PM-WE RUN OUT\")::",
+    "decision": {
+      "clean_title": "Surf & Turf Sunday",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-29",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the clean event title 'Surf & Turf Sunday' from the seed, schedule, and editorial layers while rejecting the operational timing suffix found in the box office layer, confirming active inventory at $24.00 CAD and categorizing under social dining."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "canada-place-christmas-at-canada-place-2026-11-27": {
+    "sig": "title mismatch between schedule (\"Christmas at Canada Place\") and box office (\"Christmas at Canada Place 2026: Cancelled Due To Construction\")::",
+    "decision": {
+      "clean_title": "Christmas at Canada Place",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "festivals",
+      "arbitration_reasoning": "Adopted the canonical event title 'Christmas at Canada Place' from Seed, Schedule, and Editorial layers while discarding the box office transient cancellation status banner from the headline title, preserving open waterfront stroll access."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "park-theatre-the-fire-in-our-hearts-gala-sc-2026-11-29": {
+    "sig": "title mismatch between schedule (\"The Fire In Our Hearts: Gala Screening with Q&A\") and box office (\"The Fire in Our Hearts (Filmmakers in Attendance for Q&A)\")::",
+    "decision": {
+      "clean_title": "The Fire In Our Hearts: Gala Screening with Q&A",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-29",
+      "start_time": "12:30 PM",
+      "doors_time": "12:15 PM",
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Selected the editorial/schedule clean title for narrative clarity while adopting the live box office screening start time and verifying GA ticket availability at $18.00 CAD."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "sanctuary-west-end-children-8217-s-choir-2026-11-26": {
+    "sig": "title mismatch between schedule (\"West End Children&#8217;s Choir\") and box office (\"West End Children’s Choir\")::",
+    "decision": {
+      "clean_title": "West End Children's Choir",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-26",
+      "start_time": "5:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Decoded HTML entity &#8217; to a clean typographic apostrophe matching the editorial and box office layers while retaining the confirmed schedule, pricing, and category."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "sanctuary-parent-038-tot-2026-11-25": {
+    "sig": "title mismatch between schedule (\"Parent &#038; Tot\") and box office (\"Parent & Tot\")::",
+    "decision": {
+      "clean_title": "Parent & Tot",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-25",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Decoded the HTML entity '&#038;' from the schedule layer to match the human-readable clean title 'Parent & Tot' verified by the Box Office and Editorial layers."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "hilton-vancouver-air-something-blue-wedding-show-2027-02-20": {
+    "sig": "title mismatch between schedule (\"Something Blue Wedding Show\") and box office (\"2027 Something Blue Wedding Show\")::",
+    "decision": {
+      "clean_title": "Something Blue Wedding Show",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-20",
+      "start_time": "11:30 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Adopted the clean canonical event title 'Something Blue Wedding Show' by stripping the redundant promotional year prefix present on the box office tier listing while preserving verified 2027-02-20 schedule and ticket availability."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "farm-country-brewing-hassan-phills-live-in-langley-2027-02-10": {
+    "sig": "title mismatch between schedule (\"Hassan Phills: Live in Langley — Late Show\") and box office (\"Hassan Phills: Live in Langley\")::",
+    "decision": {
+      "clean_title": "Hassan Phills: Live in Langley — Late Show",
+      "artist": "Hassan Phills",
+      "lineup": [
+        "Hassan Phills"
+      ],
+      "date": "2027-02-10",
+      "start_time": "9:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Adopted the specific edition title 'Hassan Phills: Live in Langley — Late Show' supported across Seed, Schedule, and Editorial layers to preserve the late-show distinction, and confirmed inventory is available via the active 'Last Few' tier at $36.48 CAD."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "clarke-theatre-jill-barber-2026-11-27": {
+    "sig": "title mismatch between schedule (\"Jill Barber\") and box office (\"A Holly Jolly Jill Barber Christmas\")::",
+    "decision": {
+      "clean_title": "A Holly Jolly Jill Barber Christmas",
+      "artist": "Jill Barber",
+      "lineup": [
+        "Jill Barber"
+      ],
+      "date": "2026-11-27",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the specific seasonal concert title verified by the live box office layer over the shorthand artist name, identifying Jill Barber as lead artist in the music category."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "st-bart-s-hall-unfaithful-servants-with-shari-2026-11-27": {
+    "sig": "title mismatch between schedule (\"Unfaithful Servants with Shari Ulrich\") and box office (\"Shari Ulrich & The Unfaithful Servants\")::",
+    "decision": {
+      "clean_title": "Unfaithful Servants with Shari Ulrich",
+      "artist": "The Unfaithful Servants & Shari Ulrich",
+      "lineup": [
+        "The Unfaithful Servants",
+        "Shari Ulrich"
+      ],
+      "date": "2026-11-27",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted 'Unfaithful Servants with Shari Ulrich' as corroborated across the Seed, Schedule, and Editorial layers while capturing both acts in the lineup and lead billing."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "stanley-8217-s-bar-0-winter-lodge-at-stanley-8217-s-2026-11-25": {
+    "sig": "title mismatch between schedule (\"Winter Lodge at Stanley&#8217;s Bar &#038; Grill\") and box office (\"Winter Lodge at Stanley’s Bar & Grill\")::",
+    "decision": {
+      "clean_title": "Winter Lodge at Stanley's Bar & Grill",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-25",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved HTML entity encoding (&#8217; and &#038;) in favor of the clean editorial title format 'Winter Lodge at Stanley's Bar & Grill' while retaining the verified free admission status and noon start time."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "fortune-sound-club-baby-jane-us-2026-11-28": {
+    "sig": "title mismatch between schedule (\"Baby Jane (US)\") and box office (\"Baby Jane's Winter Forever Tour\")::",
+    "decision": {
+      "clean_title": "Baby Jane: Winter Forever Tour",
+      "artist": "Baby Jane",
+      "lineup": [
+        "Baby Jane"
+      ],
+      "date": "2026-11-28",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Reconciled schedule artist name with box office tour name to form authoritative title 'Baby Jane: Winter Forever Tour' while confirming active $34.36 CAD GA tier inventory."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "farm-country-brewing-basecamp-langley-free-marketin-2026-12-02": {
+    "sig": "title mismatch between schedule (\"Basecamp Langley — Free Marketing Networking Meetup\") and box office (\"Basecamp Langley: Free Marketing Networking Meetup\")::",
+    "decision": {
+      "clean_title": "Basecamp Langley — Marketing Networking Meetup",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-02",
+      "start_time": "5:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the Editorial clean title which removes promotional redundancy while preserving the em-dash title structure from Seed/Schedule, resolved start time from Box Office, and confirmed free RSVP availability."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "gulf-of-georgia-cann-movie-matinees-in-the-boiler-h-2026-12-21": {
+    "sig": "title mismatch between schedule (\"Movie Matinees in the Boiler House Theatre: Titanic\") and box office (\"Movie Matinees in the Boiler House Theatre: White Christmas (1954)\")::",
+    "decision": {
+      "clean_title": "Movie Matinees in the Boiler House Theatre: White Christmas (1954)",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-21",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Live Stagehand box office checkout inspection takes precedence for specific film title reality on December 21 ('White Christmas' seasonal screening), while editorial taxonomy grounds the category as cinema."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "richmond-cultural-ce-cornerspace-exhibition-rac-mem-1-2027-09-01": {
+    "sig": "date mismatch between schedule (2027-09-01) and box office (2026-09-01)::",
+    "decision": {
+      "clean_title": "Cornerspace Exhibition: RAC Member Artists",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-09-01",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the schedule harvester's future active run date of 2027-09-01 matching the event identifier, with editorial title/category and verified free admission."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "richmond-art-gallery-raga-s-annual-art-auction-exhi-24-2027-10-24": {
+    "sig": "date mismatch between schedule (2027-10-24) and box office (2026-10-24)::",
+    "decision": {
+      "clean_title": "RAGA’s Annual Art Auction Exhibition",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-10-24",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the schedule layer's upcoming 2027-10-24 date to supersede the expired 2026 date while preserving the box office layer's verified 12:00 PM start time and admission-by-donation status."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "kensington-community-kensington-holiday-craft-fair-2026-12-05": {
+    "sig": "title mismatch between schedule (\"Kensington Holiday Craft Fair\") and box office (\"Vancouver’s Kensington Holiday Craft Fair in 2026\")::",
+    "decision": {
+      "clean_title": "Kensington Holiday Craft Fair",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-05",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "markets",
+      "arbitration_reasoning": "Adopted the concise canonical title 'Kensington Holiday Craft Fair' matching Seed, Schedule, and Editorial layers while discarding the SEO blog artifact prefix from the box office title, set the category to markets per editorial enrichment, and verified free admission under $50 CAD."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "the-pearl-shrek-rave-at-the-pearl-vancou-2027-02-06": {
+    "sig": "title mismatch between schedule (\"Shrek Rave at The Pearl, Vancouver\") and box office (\"Shrek Rave\")::",
+    "decision": {
+      "clean_title": "Shrek Rave",
+      "artist": null,
+      "lineup": [],
+      "date": "2027-02-06",
+      "start_time": "10:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Stripped redundant venue and city suffixes from the schedule title in favor of the clean event name confirmed by both box office and editorial layers."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "cloverdale-rodeo-application-rider-tryouts-for-2027-11-09": {
+    "sig": "date mismatch between schedule (2027-11-09) and box office (2026-11-09)::Not worthy of its own festival category",
+    "decision": {
+      "clean_title": "Rider Tryouts for Cloverdale Rodeo Cowgirl Team",
+      "artist": "Cloverdale Rodeo Cowgirls",
+      "lineup": [
+        "Cloverdale Rodeo Cowgirls"
+      ],
+      "date": "2027-11-09",
+      "start_time": "7:00 PM",
+      "doors_time": "6:30 PM",
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Arbitrated the upcoming date to 2027-11-09 since November 9, 2026 has already passed relative to current time, retained the clean title and 7:00 PM start time with free admission, and classified under 'sports' following the curator directive disallowing festival classification."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "rickshaw-theatre-guilt-trip-2026-12-04": {
+    "sig": "title mismatch between schedule (\"Guilt Trip\") and box office (\"Guilt Trip with Mauled, Gates to Hell\")::",
+    "decision": {
+      "clean_title": "Guilt Trip",
+      "artist": "Guilt Trip",
+      "lineup": [
+        "Guilt Trip",
+        "Mauled",
+        "Gates to Hell",
+        "Narrow Path"
+      ],
+      "date": "2026-12-04",
+      "start_time": null,
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Adopted the concise canonical headline 'Guilt Trip' from the Seed, Schedule, and Editorial layers while delegating supporting acts Mauled and Gates to Hell to the lineup rather than crowding the event title."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "vancouver-internatio-innocent-sorcerors-2026-11-24": {
+    "sig": "date mismatch between schedule (2026-11-24) and box office (2026-11-27)::",
+    "decision": {
+      "clean_title": "Innocent Sorcerors",
+      "artist": "Andrzej Wajda",
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-11-27 following verified live checkout inventory from Stagehand Box Office, categorized as cinema per editorial analysis of the film screening."
+    },
+    "updatedAt": "2026-11-25T20:31:18.896Z"
   }
 }

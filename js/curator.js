@@ -9080,29 +9080,52 @@ function initStagehandRipperUI() {
   const pipelineProgressBar = document.getElementById('pipeline-progress-bar');
 
   // Main Page Global Stop Run Button (Request 2) + Active Scan View Jump Button
-  const updateMainStopButtonState = (isRunning, pid = null) => {
+  const STAGE_SHORT_LABELS = {
+    harvest: 'Step 1A: Discover',
+    hunter: 'Step 1B: Ticket Links',
+    qc: 'Step 2: Verify Prices',
+    venue: 'Step 3: Venue Info',
+    enrich: 'Step 4: Enricher',
+    compile: 'Step 5: Publish'
+  };
+  const updateMainStopButtonState = (isRunning, pid = null, meta = null) => {
     const btn = document.getElementById('btn-curator-stop-run');
     const activeScanBtn = document.getElementById('btn-curator-active-scan');
     const label = document.getElementById('curator-stop-label');
-    const indicator = document.getElementById('curator-stop-indicator');
     window._activeStagehandRunning = Boolean(isRunning);
     window._activeStagehandPid = pid || null;
+    if (meta && meta.stageKey) {
+      window._activeStagehandStageKey = meta.stageKey;
+      window._activeStagehandMode = meta.mode || null;
+      window._activeStagehandStartedAt = meta.startedAt || null;
+    } else if (!isRunning) {
+      window._activeStagehandStageKey = null;
+      window._activeStagehandMode = null;
+      window._activeStagehandStartedAt = null;
+    }
+    const activeStageKey = window.activePipelineRunningStageKey || window._activeStagehandStageKey || null;
+    const stageShort = activeStageKey && STAGE_SHORT_LABELS[activeStageKey] ? ` — ${STAGE_SHORT_LABELS[activeStageKey]}` : '';
     if (!btn) return;
     if (isRunning) {
       btn.classList.remove('is-idle');
       btn.classList.add('is-running');
       if (label) label.textContent = pid ? `🛑 Stop Run [PID: ${pid}]` : '🛑 Stop Run';
-      btn.title = `Active scan running${pid ? ` (PID: ${pid})` : ''}! Click to halt immediately.`;
+      btn.title = `Active scan running${stageShort}${pid ? ` (PID: ${pid})` : ''}! Click to halt immediately.`;
       if (activeScanBtn) {
         activeScanBtn.style.display = 'inline-flex';
-        activeScanBtn.title = `Jump to the active pipeline scan view${pid ? ` (PID: ${pid})` : ''}`;
+        activeScanBtn.innerHTML = `<span>📟 Active Scan View${stageShort}</span>`;
+        activeScanBtn.title = `Jump directly to the live 6-Step Pipeline workspace${stageShort}${pid ? ` (PID: ${pid})` : ''}`;
       }
     } else {
       btn.classList.remove('is-running');
       btn.classList.add('is-idle');
       if (label) label.textContent = 'Not Running';
       btn.title = 'Not running — No active scan or worker process in background';
-      if (activeScanBtn) activeScanBtn.style.display = 'none';
+      if (activeScanBtn) {
+        activeScanBtn.style.display = 'inline-flex';
+        activeScanBtn.innerHTML = '<span>📟 Active Scan View</span>';
+        activeScanBtn.title = 'Open the 6-Step Pipeline workspace & Before/After Inspector';
+      }
     }
   };
 
@@ -9129,9 +9152,9 @@ function initStagehandRipperUI() {
       const res = await fetch('/api/curator/stagehand/status?_t=' + Date.now());
       if (res.ok) {
         const data = await res.json();
-        updateMainStopButtonState(Boolean(data.running), data.pid || null);
+        updateMainStopButtonState(Boolean(data.running), data.pid || null, data);
       } else {
-        updateMainStopButtonState(false);
+        updateMainStopButtonState(false, null, null);
       }
     } catch (_) {
       updateMainStopButtonState(false);
@@ -14965,29 +14988,51 @@ function initStagehandRipperUI() {
   window.reopenLivePipelineModal = function () {
     const dockedBar = document.getElementById('curator-docked-pipeline-bar');
     if (dockedBar) dockedBar.classList.remove('is-visible');
-    if (pipelineModal) {
-      pipelineModal.style.display = 'flex';
-      pipelineModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+
+    const targetStageKey = window.activePipelineRunningStageKey
+      || window._activeStagehandStageKey
+      || currentPipelineScanKey
+      || 'qc';
+
+    // Always showcase the full 6-Step Pipeline workspace (rail + stage status + activity feed + Before/After comparison)
+    if (!activeEventSource && typeof window.openScanModal === 'function') {
+      window.openScanModal(targetStageKey);
+    } else {
+      if (pipelineModal) {
+        pipelineModal.style.display = 'flex';
+        pipelineModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      if (typeof window.switchPipelineTestStage === 'function' && targetStageKey && currentPipelineScanKey !== targetStageKey) {
+        window.switchPipelineTestStage(targetStageKey);
+      }
     }
-    // If the user closed & reopened Curator Studio while a server-side worker is still running
-    // (no activeEventSource in this tab), jump straight into Active Scan View with live status & stop controls
-    if (!activeEventSource && window._activeStagehandRunning) {
-      const controlsEl = document.getElementById('pipeline-modal-controls');
-      const summaryStripEl = document.getElementById('pipeline-active-summary-strip');
-      if (controlsEl) controlsEl.style.display = 'none';
-      if (summaryStripEl) summaryStripEl.style.display = 'flex';
-      if (btnStopPipeline) btnStopPipeline.style.display = 'inline-block';
-      if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'inline-flex';
-      const pidLabel = window._activeStagehandPid ? ` [PID: ${window._activeStagehandPid}]` : '';
-      if (pipelineStatusText) {
-        pipelineStatusText.textContent = `Active background pipeline worker running${pidLabel}...`;
-      }
-      if (pipelineConsoleOutput && !pipelineConsoleOutput.textContent.trim()) {
-        pipelineConsoleOutput.textContent = `🔄 Reattached to active background pipeline worker${pidLabel}.\n` +
-          `   The previous browser tab closed its SSE stream, but the worker is still executing on the server.\n` +
-          `   Live status is being polled every 3s; use "🛑 Stop Run" above to halt it anytime.\n`;
-      }
+
+    // Ensure full left-panel stage controls remain visible (never collapse them on reattach)
+    const controlsEl = document.getElementById('pipeline-modal-controls');
+    if (controlsEl) controlsEl.style.display = 'flex';
+
+    // If reattaching to a server-side worker after tab reload (no activeEventSource in this tab),
+    // attach a live SSE stream to /api/curator/stagehand/attach so Activity Feed, Raw Console,
+    // Progress Bar, Elapsed Timer, and Before/After Comparison update in real time!
+    if (!activeEventSource && window._activeStagehandRunning && typeof runPipelineAction === 'function') {
+      const preset = SCAN_PRESETS[targetStageKey] || SCAN_PRESETS.qc || {};
+      const stageKeyToMode = {
+        harvest: 'harvester',
+        hunter: 'tier1_hunter',
+        qc: 'catalog_batch',
+        venue: 'venue_detailer',
+        enrich: 'enrich',
+        compile: 'compile'
+      };
+      const attachMode = window._activeStagehandMode || stageKeyToMode[targetStageKey] || 'catalog_batch';
+      runPipelineAction({
+        attachOnly: true,
+        mode: attachMode,
+        title: preset.title || 'Active Pipeline Execution',
+        desc: preset.desc || 'Reattached live to active background pipeline worker.',
+        initialStatus: `Reattached to active background worker${window._activeStagehandPid ? ` [PID: ${window._activeStagehandPid}]` : ''}...`
+      });
     }
   };
 
@@ -19831,7 +19876,7 @@ function initStagehandRipperUI() {
       return;
     }
 
-    const { mode, url, limit, offset, id, ids, venue, quarantine, uncompiledOnly, all, force, autoApprove, title, desc, initialStatus, scope, incompleteOnly, stale, resume } = params;
+    const { mode, url, limit, offset, id, ids, venue, quarantine, uncompiledOnly, all, force, autoApprove, title, desc, initialStatus, scope, incompleteOnly, stale, resume, attachOnly } = params;
 
     const modeToStageKey = {
       calendar: 'harvest',
@@ -20104,6 +20149,12 @@ function initStagehandRipperUI() {
     setExecutionState(true, initialStatus || 'Spinning up isolated Chromium instance...');
 
     let elapsed = 0;
+    if (attachOnly && window._activeStagehandStartedAt) {
+      const startedMs = Date.parse(window._activeStagehandStartedAt);
+      if (Number.isFinite(startedMs)) {
+        elapsed = Math.max(0, Math.floor((Date.now() - startedMs) / 1000));
+      }
+    }
     if (timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
       elapsed++;
@@ -20236,7 +20287,9 @@ function initStagehandRipperUI() {
       token: state.token || ''
     });
 
-    const streamUrl = `/api/curator/stagehand/stream?${query.toString()}`;
+    const streamUrl = attachOnly
+      ? `/api/curator/stagehand/attach?token=${encodeURIComponent(state.token || '')}`
+      : `/api/curator/stagehand/stream?${query.toString()}`;
     const es = new EventSource(streamUrl);
     activeEventSource = es;
 
