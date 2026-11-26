@@ -1286,6 +1286,7 @@ export async function runAllVenueFeedsBatch(options = {}) {
       const discSources = Array.isArray(discRaw) ? discRaw : (discRaw.sources || []);
       for (const s of discSources) {
         if (s.id === "testy-canary-feed" || s.type === "canary_test_feed" || s.is_test_canary) continue;
+        if (s.role === "venue_radar" || s.type === "venue_radar") continue;
         if (["waf_blocked", "timeout_unreachable", "inactive", "disabled"].includes(String(s.status || "").toLowerCase())) continue;
         const sName = (s.name || s.id || "").trim();
         const u = (s.eventsUrl || s.calendarUrl || s.url || "").trim();

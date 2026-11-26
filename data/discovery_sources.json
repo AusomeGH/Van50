@@ -49,7 +49,9 @@
       "resolutionPolicy": "Extract outbound 'Buy Tickets' / 'More Info' redirect button to retrieve canonical ticketing platform (Showpass, Ticketweb, Eventbrite, Dice).",
       "status": "active",
       "last_scouted_at": "2026-10-08T13:12:17.911414",
-      "last_scout_yield": 15
+      "last_scout_yield": 15,
+      "role": "venue_radar",
+      "movedToVenueRadarAt": "2026-11-26T20:10:01.480Z"
     },
     {
       "id": "georgia-straight",
@@ -71,7 +73,9 @@
       "resolutionPolicy": "Parse submitted organizer contact/ticket links and resolve to official venue box office or independent ticketing site.",
       "status": "active",
       "last_scouted_at": "2026-10-08T13:12:37.137759",
-      "last_scout_yield": 3
+      "last_scout_yield": 3,
+      "role": "venue_radar",
+      "movedToVenueRadarAt": "2026-11-26T20:10:01.480Z"
     },
     {
       "id": "daily-hive-vancouver",
@@ -522,7 +526,9 @@
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
       "last_scouted_at": "2026-10-08T13:14:09.148706",
-      "last_scout_yield": 0
+      "last_scout_yield": 0,
+      "role": "venue_radar",
+      "movedToVenueRadarAt": "2026-11-26T20:10:01.480Z"
     },
     {
       "id": "bc-culture-days-directory",
@@ -622,7 +628,9 @@
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
       "last_scouted_at": "2026-10-08T13:14:57.635331",
-      "last_scout_yield": 9
+      "last_scout_yield": 9,
+      "role": "venue_radar",
+      "movedToVenueRadarAt": "2026-11-26T20:10:01.481Z"
     },
     {
       "id": "rhythm-changes-gig-list",

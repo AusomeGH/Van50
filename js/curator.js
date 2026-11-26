@@ -11035,7 +11035,15 @@ function initStagehandRipperUI() {
           bgTint: 'rgba(168, 85, 247, 0.14)',
           pillBg: 'rgba(168, 85, 247, 0.18)'
         }
-      : ((typeof STAGE_META_MAP !== 'undefined' && STAGE_META_MAP[scanKey]) ? STAGE_META_MAP[scanKey] : null);
+      : scanKey === 'venue_radar'
+        ? {
+            fullLabel: '📡 Parallel AI Venue Finder Radar (4× Workers)',
+            color: '#4F46E5',
+            border: 'rgba(99, 102, 241, 0.55)',
+            bgTint: 'rgba(99, 102, 241, 0.14)',
+            pillBg: 'rgba(99, 102, 241, 0.18)'
+          }
+        : ((typeof STAGE_META_MAP !== 'undefined' && STAGE_META_MAP[scanKey]) ? STAGE_META_MAP[scanKey] : null);
     if (stageBanner && stageMeta) {
       if (stageBannerText) {
         stageBannerText.textContent = `${stageMeta.fullLabel} — Before / After`;
@@ -15099,7 +15107,8 @@ function initStagehandRipperUI() {
         venue: 'venue_detailer',
         enrich: 'enrich',
         compile: 'compile',
-        quarantine_heal: 'quarantine_heal'
+        quarantine_heal: 'quarantine_heal',
+        venue_radar: 'venue_radar'
       };
       const attachMode = window._activeStagehandMode || stageKeyToMode[targetStageKey] || 'catalog_batch';
       runPipelineAction({
@@ -15355,6 +15364,21 @@ function initStagehandRipperUI() {
       defaultLimit: 0,
       showUrl: false,
       initialStatus: 'Dispatching 4 parallel Antigravity AI workers to search, heal & QC quarantined events...'
+    },
+    venue_radar: {
+      key: 'venue_radar',
+      mode: 'venue_radar',
+      title: '<span>📡</span> Parallel AI Venue Finder Radar (4× Workers)',
+      techPillText: 'Antigravity 4× Radar',
+      techPillClass: 'tech-pill-agent',
+      shortDesc: 'Dispatches 4 parallel Antigravity AI workers across Do604, ShowHub, Georgia Straight & Vancouver\'s Best Places to spot net-new Metro Vancouver venues and resolve their official event calendars.',
+      btnLabel: 'Scan Venue Finders (4× AI)',
+      btnColor: 'linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%)',
+      btnBorder: '#4f46e5',
+      urlPlaceholder: 'Scans the 4 Venue Finder aggregators for net-new Metro Vancouver venues',
+      defaultLimit: 16,
+      showUrl: false,
+      initialStatus: 'Dispatching 4 parallel Antigravity AI workers across Venue Finder aggregators...'
     },
     master: {
       key: 'master',
@@ -15924,6 +15948,237 @@ function initStagehandRipperUI() {
     });
   };
 
+  // ============================================================================
+  // Parallel 4x AI Venue Finder Radar Modal (Last-Scanned Tracker + 1-Click Review)
+  // ============================================================================
+  function formatRadarTimeAgo(iso) {
+    if (!iso) return 'Never scanned';
+    const ms = Date.parse(iso);
+    if (!Number.isFinite(ms)) return 'Never scanned';
+    const diffSec = Math.max(0, Math.floor((Date.now() - ms) / 1000));
+    let ago = `${diffSec}s ago`;
+    if (diffSec >= 86400) ago = `${Math.floor(diffSec / 86400)}d ago`;
+    else if (diffSec >= 3600) ago = `${Math.floor(diffSec / 3600)}h ago`;
+    else if (diffSec >= 60) ago = `${Math.floor(diffSec / 60)}m ago`;
+    const localStr = new Date(ms).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    return `${localStr} (${ago})`;
+  }
+
+  window.loadVenueRadarSummaryBadge = async function () {
+    try {
+      const res = await fetch('/api/curator/venue-radar');
+      if (!res.ok) return null;
+      const data = await res.json();
+      window._venueRadarState = data;
+      const pendingCount = Array.isArray(data.proposedVenues)
+        ? data.proposedVenues.filter(p => p.status === 'pending').length
+        : 0;
+      const lbl = document.getElementById('btn-status-open-venue-radar-label');
+      if (lbl) {
+        lbl.textContent = pendingCount > 0
+          ? `📡 Venue Finders (${pendingCount} New)`
+          : '📡 Venue Finders (4× AI)';
+      }
+      return data;
+    } catch (_) {
+      return null;
+    }
+  };
+
+  function ensureVenueRadarModalExists() {
+    let modal = document.getElementById('venue-radar-modal');
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.id = 'venue-radar-modal';
+    modal.className = 'stage-queue-modal-overlay';
+    modal.innerHTML = `
+      <div class="stage-queue-dialog" style="max-width: 760px;" onclick="event.stopPropagation()">
+        <div style="padding: 14px 18px; background: #FFFFFF; border-bottom: 1px solid #D5DDD8; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: rgba(99, 102, 241, 0.16); color: #4338CA; border: 1px solid rgba(99, 102, 241, 0.4);">4× PARALLEL AI RADAR</span>
+              <h3 style="margin: 0; font-size: 1rem; font-weight: 800; color: #111C18;">📡 Venue Finder Aggregators</h3>
+            </div>
+            <p style="margin: 4px 0 0 0; font-size: 0.77rem; color: #4E6159; line-height: 1.4;">
+              These 4 aggregators are excluded from direct event harvesting and run strictly as <strong>Venue Finders</strong> across 4 parallel AI workers to spot net-new Metro Vancouver venues and resolve their official calendars.
+            </p>
+          </div>
+          <button type="button" onclick="window.closeVenueRadarModal()"
+            style="background: #FFFFFF; border: 1px solid #D5DDD8; color: #334840; border-radius: 6px; width: 30px; height: 30px; cursor: pointer; font-size: 0.95rem;">✕</button>
+        </div>
+
+        <div style="padding: 12px 18px; max-height: 70vh; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; background: #F8FAF9;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+              <strong style="font-size: 0.78rem; color: #111C18; text-transform: uppercase; letter-spacing: 0.04em;">4 Tracked Venue Finders &amp; Last-Scanned Status</strong>
+              <span id="vr-last-run-summary" style="font-size: 0.72rem; color: #4E6159;">Loading...</span>
+            </div>
+            <div id="vr-sources-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 8px;"></div>
+          </div>
+
+          <div style="border-top: 1px solid #D5DDD8; padding-top: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+              <strong style="font-size: 0.78rem; color: #111C18; text-transform: uppercase; letter-spacing: 0.04em;">✨ Newly Discovered Venues Awaiting Approval (<span id="vr-pending-count">0</span>)</strong>
+            </div>
+            <div id="vr-proposed-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+          </div>
+        </div>
+
+        <div style="padding: 12px 18px; background: #FFFFFF; border-top: 1px solid #D5DDD8; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+          <div style="font-size: 0.74rem; color: #4E6159;">
+            Runs 4 parallel Antigravity AI workers with live stream view.
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <button type="button" onclick="window.closeVenueRadarModal()"
+              style="padding: 7px 13px; font-size: 0.76rem; font-weight: 700; color: #334840; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 7px; cursor: pointer;">
+              Close
+            </button>
+            <button type="button" id="vr-btn-launch-scan" onclick="window.launchVenueRadarScan()"
+              style="padding: 8px 15px; font-size: 0.78rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%); border: 1px solid #8b5cf6; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 14px rgba(109, 40, 217, 0.3);">
+              📡 Scan Selected Venue Finders (4× AI)
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    modal.addEventListener('click', () => window.closeVenueRadarModal());
+    document.body.appendChild(modal);
+    return modal;
+  }
+
+  function renderVenueRadarModalContents(data) {
+    const srcListEl = document.getElementById('vr-sources-list');
+    const propListEl = document.getElementById('vr-proposed-list');
+    const lastRunEl = document.getElementById('vr-last-run-summary');
+    const pendCountEl = document.getElementById('vr-pending-count');
+    if (!srcListEl || !propListEl) return;
+
+    const sources = Object.values(data?.sources || {});
+    const proposed = Array.isArray(data?.proposedVenues) ? data.proposedVenues.filter(p => p.status === 'pending') : [];
+    if (pendCountEl) pendCountEl.textContent = String(proposed.length);
+    if (lastRunEl) {
+      lastRunEl.textContent = data?.metadata?.lastRunAt
+        ? `Last Radar Run: ${formatRadarTimeAgo(data.metadata.lastRunAt)}`
+        : 'No radar scans recorded yet';
+    }
+
+    srcListEl.innerHTML = sources.map(s => {
+      const scannedText = formatRadarTimeAgo(s.last_scanned_at);
+      const isOk = s.status === 'ok';
+      const isErr = s.status === 'error';
+      const statusPill = isOk
+        ? `<span style="font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: rgba(16,185,129,0.16); color: #065F46; font-weight: 700;">✓ ${s.venues_extracted || 0} venues • +${s.new_venues_found || 0} new</span>`
+        : isErr
+          ? `<span style="font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: rgba(239,68,68,0.16); color: #9F1239; font-weight: 700;">⚠ Error</span>`
+          : `<span style="font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: rgba(100,116,139,0.15); color: #475569; font-weight: 700;">Never Scanned</span>`;
+      return `
+        <label style="display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; cursor: pointer;">
+          <input type="checkbox" class="vr-source-checkbox" value="${escapeHtml(s.id)}" checked style="margin-top: 2px; accent-color: #4F46E5; width: 15px; height: 15px; flex-shrink: 0;">
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+              <strong style="font-size: 0.8rem; color: #111C18;">${escapeHtml(s.name)}</strong>
+              ${statusPill}
+            </div>
+            <div style="font-size: 0.69rem; color: #4E6159; margin-top: 3px;">🕒 Last scanned: <strong>${escapeHtml(scannedText)}</strong>${s.last_duration_sec ? ` (${s.last_duration_sec}s)` : ''}</div>
+            <div style="font-size: 0.67rem; color: #5A6E65; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(s.focus || s.url || '')}</div>
+          </div>
+        </label>
+      `;
+    }).join('');
+
+    if (proposed.length === 0) {
+      propListEl.innerHTML = `<div style="padding: 18px; text-align: center; color: #5A6E65; font-size: 0.78rem; background: #FFFFFF; border: 1px dashed #CBD5E1; border-radius: 8px;">No pending newly discovered venues right now. Click <strong>Scan Selected Venue Finders (4× AI)</strong> below to sweep the 4 aggregators.</div>`;
+    } else {
+      propListEl.innerHTML = proposed.map(p => `
+        <div style="padding: 10px 12px; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 240px;">
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <strong style="font-size: 0.84rem; color: #111C18;">${escapeHtml(p.venue_name)}</strong>
+              <span style="font-size: 0.67rem; padding: 1px 6px; border-radius: 999px; background: rgba(13,110,82,0.12); color: #065F46; font-weight: 700;">${escapeHtml(p.city || 'Metro Van')}</span>
+              <span style="font-size: 0.67rem; padding: 1px 6px; border-radius: 999px; background: rgba(99,102,241,0.12); color: #4338CA; font-weight: 700;">${escapeHtml(p.ticketing_platform || 'Direct')}</span>
+            </div>
+            <div style="font-size: 0.72rem; margin-top: 3px; word-break: break-all;">
+              🔗 <a href="${escapeHtml(p.official_events_url)}" target="_blank" rel="noopener noreferrer" style="color: #0D6E52; font-weight: 600;">${escapeHtml(p.official_events_url)}</a>
+            </div>
+            ${p.notes ? `<div style="font-size: 0.71rem; color: #4E6159; margin-top: 3px;">${escapeHtml(p.notes)}</div>` : ''}
+            <div style="font-size: 0.67rem; color: #5A6E65; margin-top: 3px;">Found via: ${escapeHtml((p.discovered_via || []).join(', '))}${p.address ? ` • 📍 ${escapeHtml(p.address)}` : ''}</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+            <button type="button" onclick="window.reviewVenueRadarCandidate('${escapeHtml(p.id)}', 'approve')"
+              style="padding: 6px 10px; font-size: 0.72rem; font-weight: 800; color: #fff; background: #0D6E52; border: 1px solid #10B981; border-radius: 6px; cursor: pointer;">
+              ✅ Approve &amp; Add
+            </button>
+            <button type="button" onclick="window.reviewVenueRadarCandidate('${escapeHtml(p.id)}', 'ignore')"
+              style="padding: 6px 9px; font-size: 0.72rem; font-weight: 700; color: #4E6159; background: #F2F4F0; border: 1px solid #D5DDD8; border-radius: 6px; cursor: pointer;">
+              ✕ Ignore
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  window.openVenueRadarModal = async function (evt) {
+    if (evt) evt.stopPropagation();
+    const modal = ensureVenueRadarModalExists();
+    modal.classList.add('is-open');
+    const data = await window.loadVenueRadarSummaryBadge();
+    if (data) renderVenueRadarModalContents(data);
+  };
+
+  window.closeVenueRadarModal = function () {
+    const modal = document.getElementById('venue-radar-modal');
+    if (modal) modal.classList.remove('is-open');
+  };
+
+  window.reviewVenueRadarCandidate = async function (candId, action) {
+    try {
+      const res = await fetch('/api/curator/venue-radar/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Curator-Token': state.token || '' },
+        body: JSON.stringify({ id: candId, action })
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Failed');
+      if (typeof showToast === 'function') {
+        showToast(action === 'approve' ? '✅ Venue approved and added to discovery_sources.json!' : 'Ignored venue candidate.', 'success');
+      }
+      const fresh = await window.loadVenueRadarSummaryBadge();
+      if (fresh) renderVenueRadarModalContents(fresh);
+    } catch (err) {
+      if (typeof showToast === 'function') showToast(`Error: ${err.message}`, 'error');
+    }
+  };
+
+  window.launchVenueRadarScan = function () {
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is already active. Wait or stop it first.', 'warning');
+      return;
+    }
+    const checked = Array.from(document.querySelectorAll('.vr-source-checkbox:checked')).map(el => el.value).filter(Boolean);
+    if (checked.length === 0) {
+      if (typeof showToast === 'function') showToast('Select at least 1 Venue Finder aggregator to scan.', 'warning');
+      return;
+    }
+    window.closeVenueRadarModal();
+    window.VAN50_ENGINE = 'antigravity';
+    isPipelineTestMode = false;
+    isPipelineAutoChaining = false;
+    pipelineQuarantinedRunActive = false;
+    window.pipelineAutoChainingStages = [];
+    runPipelineAction({
+      mode: 'venue_radar',
+      title: `📡 Parallel AI Venue Finder Radar (${checked.length} Sources • 4× Workers)`,
+      initialStatus: `Dispatching 4 parallel Antigravity AI workers across ${checked.length} Venue Finder aggregator(s)...`,
+      ids: checked.join(','),
+      limit: 16
+    });
+  };
+
+  setTimeout(() => {
+    if (typeof window.loadVenueRadarSummaryBadge === 'function') window.loadVenueRadarSummaryBadge();
+  }, 1200);
+
   window.harvesterResumeMode = true;
 
   window.setHarvestResumeMode = function (resumeBool) {
@@ -16374,12 +16629,17 @@ function initStagehandRipperUI() {
 
     const currentStage = (window.activePipelineRunningStageKey === 'quarantine_heal' || currentPipelineScanKey === 'quarantine_heal')
       ? 'quarantine_heal'
-      : (pipelineTestStageKey || currentPipelineScanKey || 'harvest');
+      : (window.activePipelineRunningStageKey === 'venue_radar' || currentPipelineScanKey === 'venue_radar')
+        ? 'venue_radar'
+        : (pipelineTestStageKey || currentPipelineScanKey || 'harvest');
     const isQuarantineHealMode = currentStage === 'quarantine_heal';
-    const idx = isQuarantineHealMode ? -1 : PIPELINE_TEST_ORDER.indexOf(currentStage);
+    const isVenueRadarMode = currentStage === 'venue_radar';
+    const idx = (isQuarantineHealMode || isVenueRadarMode) ? -1 : PIPELINE_TEST_ORDER.indexOf(currentStage);
     const stepNumBadge = document.getElementById('pipeline-test-step-counter');
     if (stepNumBadge) {
-      stepNumBadge.textContent = isQuarantineHealMode ? '4× AI HEAL' : `STEP ${idx + 1} OF ${PIPELINE_TEST_ORDER.length}`;
+      stepNumBadge.textContent = isQuarantineHealMode
+        ? '4× AI HEAL'
+        : (isVenueRadarMode ? '4× RADAR' : `STEP ${idx + 1} OF ${PIPELINE_TEST_ORDER.length}`);
     }
 
     PIPELINE_TEST_ORDER.forEach((key, i) => {
@@ -16416,6 +16676,8 @@ function initStagehandRipperUI() {
       const isCompileDone = (pipelineTestStageStatuses['compile'] || '').includes('Complete');
       if (isQuarantineHealMode) {
         titleLabel.innerHTML = '🩹 <strong style="color: #6B21A8;">Parallel AI Quarantine Healer</strong> (4× Antigravity Workers — Bypassing 6-Step Pipeline)';
+      } else if (isVenueRadarMode) {
+        titleLabel.innerHTML = '📡 <strong style="color: #4F46E5;">Parallel AI Venue Finder Radar</strong> (4× Antigravity Workers — Discovering Net-New Venues)';
       } else if (isCompileDone) {
         titleLabel.innerHTML = '🎉 <strong style="color: #065F46;">Pipeline Run Complete:</strong> All Steps Finished (100%)';
       } else if (currentStage === 'harvest') {
@@ -19994,7 +20256,9 @@ function initStagehandRipperUI() {
       consolidate: 'compile',
       compile: 'compile',
       quarantine_heal: 'quarantine_heal',
-      heal_quarantine: 'quarantine_heal'
+      heal_quarantine: 'quarantine_heal',
+      venue_radar: 'venue_radar',
+      radar: 'venue_radar'
     };
     const activeStageKey = modeToStageKey[mode] || currentPipelineScanKey || 'qc';
     currentPipelineScanKey = activeStageKey;
@@ -20004,16 +20268,16 @@ function initStagehandRipperUI() {
       pipelineTestStageStatuses[activeStageKey] = 'Running ⚡';
       updatePipelineTestStepperUI();
       updateStageNavButtons();
-    } else if (activeStageKey === 'quarantine_heal') {
-      // Do NOT highlight any of the 6 pipeline stages during standalone 4x Quarantine Healing
+    } else if (activeStageKey === 'quarantine_heal' || activeStageKey === 'venue_radar') {
+      // Do NOT highlight any of the 6 pipeline stages during standalone 4x Quarantine Healing or 4x Venue Radar
       updatePipelineTestStepperUI();
       updateStageNavButtons();
       if (typeof updateComparisonTargetDimensionsBanner === 'function') {
-        updateComparisonTargetDimensionsBanner('quarantine_heal');
+        updateComparisonTargetDimensionsBanner(activeStageKey);
       }
       const techPillEl = document.getElementById('pipeline-scan-tech-pill');
       if (techPillEl) {
-        techPillEl.textContent = 'Antigravity 4× Workers';
+        techPillEl.textContent = activeStageKey === 'venue_radar' ? 'Antigravity 4× Radar' : 'Antigravity 4× Workers';
         techPillEl.className = 'tech-pill tech-pill-agent';
       }
       const navToolbar = document.getElementById('pipeline-comparison-nav-toolbar');
@@ -20325,6 +20589,13 @@ function initStagehandRipperUI() {
       if (typeof window.setPipelineScope === 'function') {
         window.setPipelineScope('quarantined');
       }
+    } else if (mode === 'venue_radar') {
+      const srcCount = (rawIdsArr && rawIdsArr.length) || 4;
+      estimatedTotal = 120;
+      if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${srcCount} radar sources swept • 4× parallel workers`;
+      if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(estimatedTotal)}`;
+      const rangeWrapper = document.getElementById('pipeline-range-wrapper');
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
     } else {
       estimatedTotal = 45;
       if (pipelineItemProgress) pipelineItemProgress.textContent = 'Penetrating cart & discovering fees...';
@@ -20337,6 +20608,8 @@ function initStagehandRipperUI() {
       const initTotal = pipelineTotalTargets || 0;
       if (activeStageKey === 'quarantine_heal') {
         trackerStatusInitEl.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">⚡ Running (4× Workers)</span> • <span style="color: #0D6E52; font-weight: 700;">0/${initTotal || '?'} Processed</span>`;
+      } else if (activeStageKey === 'venue_radar') {
+        trackerStatusInitEl.innerHTML = `<span style="color: #4F46E5; font-weight: 800;">📡 Scanning Venue Finders (4× Workers)</span> • <span style="color: #0D6E52; font-weight: 700;">Phase 1: Sweeping aggregators...</span>`;
       } else {
         trackerStatusInitEl.innerHTML = `<span style="color: #0D6E52; font-weight: 800;">⚡ Running</span> • <span style="color: #4E6159; font-weight: 700;">${initTotal > 0 ? `0/${initTotal} Completed` : 'Initializing worker...'}</span>`;
       }
@@ -20419,7 +20692,7 @@ function initStagehandRipperUI() {
     let effectiveUrl = url || '';
 
     let selectedAgyModel = 'gemini-3.8-flash-low';
-    if (mode === 'quarantine_heal') {
+    if (mode === 'quarantine_heal' || mode === 'venue_radar') {
       const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
       const modelSelectEl = document.getElementById('agy-model-select');
       selectedAgyModel = (modalModelSelectEl && modalModelSelectEl.value)
@@ -20427,7 +20700,7 @@ function initStagehandRipperUI() {
         : ((modelSelectEl && modelSelectEl.value) ? modelSelectEl.value : 'gemini-3.8-flash-low');
       if (modelSelectEl && modelSelectEl.value !== selectedAgyModel) modelSelectEl.value = selectedAgyModel;
       if (modalModelSelectEl && modalModelSelectEl.value !== selectedAgyModel) modalModelSelectEl.value = selectedAgyModel;
-      effectiveMode = 'quarantine_heal';
+      effectiveMode = mode;
       effectiveUrl = '';
     } else if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
       const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
@@ -20492,8 +20765,8 @@ function initStagehandRipperUI() {
       harvested_only: effectiveHarvestedOnly ? '1' : '0',
       auto_approve: autoApprove ? '1' : '0',
       model: selectedAgyModel || '',
-      concurrency: mode === 'quarantine_heal' ? '4' : '',
-      engine: mode === 'quarantine_heal' ? 'antigravity' : '',
+      concurrency: (mode === 'quarantine_heal' || mode === 'venue_radar') ? '4' : '',
+      engine: (mode === 'quarantine_heal' || mode === 'venue_radar') ? 'antigravity' : '',
       token: state.token || ''
     });
 
@@ -20830,6 +21103,154 @@ function initStagehandRipperUI() {
               const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
               if (trackerStatusEl) {
                 trackerStatusEl.innerHTML = `<span style="color: #065F46; font-weight: 800;">✅ Complete</span> • <span style="color: #0D6E52; font-weight: 700;">${pipelineProcessedCount}/${pipelineTotalTargets} Processed</span>`;
+              }
+            }
+          }
+
+          // === PARALLEL AI VENUE FINDER RADAR LIVE STREAM PARSERS ===
+          if (activeStageKey === 'venue_radar') {
+            const sweepStart = line.match(/🔎\s*\[Worker\s*(\d+)\/(\d+)\]\s*\((\d+)\/(\d+)\)\s*Scanning Radar Source\s*"([^"]+)"\s*\[([^\]]+)\]/i);
+            if (sweepStart) {
+              const wNum = sweepStart[1], wMax = sweepStart[2], sIdx = sweepStart[3], sTot = sweepStart[4];
+              const sName = sweepStart[5].trim(), sId = sweepStart[6].trim();
+              activeContextsById.set(sId, { id: sId, title: sName });
+              const workersPill = document.getElementById('pipeline-active-workers-pill');
+              if (workersPill) {
+                workersPill.style.display = 'inline-flex';
+                workersPill.textContent = `⚡ ${activeContextsById.size} workers active`;
+              }
+              if (pipelineStatusText) {
+                pipelineStatusText.textContent = `📡 Worker ${wNum}/${wMax} Sweeping "${sName}" (${sIdx}/${sTot})...`;
+                pipelineStatusText.style.color = '#4F46E5';
+              }
+              if (typeof window.appendReadableActivityLog === 'function') {
+                window.appendReadableActivityLog({
+                  eventId: sId,
+                  title: `Radar: ${sName}`,
+                  message: `Worker ${wNum}/${wMax} scanning for net-new Metro Vancouver physical venues...`,
+                  status: 'checking',
+                  badgeText: `W${wNum} • Sweep ${sIdx}/${sTot}`
+                });
+              }
+            }
+
+            const sweptMatch = line.match(/✅\s*\[RADAR SWEPT\]\s*"([^"]+)"\s*\[([^\]]+)\]\s*→\s*(\d+)\s*venue\(s\)\s*extracted,\s*(\d+)\s*net-new/i);
+            if (sweptMatch) {
+              const sName = sweptMatch[1].trim(), sId = sweptMatch[2].trim();
+              const extCnt = sweptMatch[3], newCnt = sweptMatch[4];
+              activeContextsById.delete(sId);
+              if (typeof window.appendReadableActivityLog === 'function') {
+                window.appendReadableActivityLog({
+                  eventId: sId,
+                  title: `Radar: ${sName}`,
+                  message: `Swept ${extCnt} physical venue(s) → ${newCnt} net-new candidate(s) not yet in Van50.`,
+                  status: 'verified',
+                  badgeText: `+${newCnt} New`
+                });
+              }
+            }
+
+            const sweepProg = line.match(/📊\s*Radar Sweep Progress:\s*(\d+)\/(\d+)\s*sources scanned\s*\(([^)]+)\)/i);
+            if (sweepProg) {
+              const doneS = parseInt(sweepProg[1], 10), totS = parseInt(sweepProg[2], 10);
+              const detail = sweepProg[3].trim();
+              const pct = Math.min(50, Math.max(10, Math.round((doneS / Math.max(1, totS)) * 50)));
+              if (pipelineProgressBar) pipelineProgressBar.style.width = `${pct}%`;
+              if (pipelineItemProgress) pipelineItemProgress.textContent = `Phase 1: ${doneS}/${totS} radar sources swept • ${detail}`;
+              const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+              if (trackerStatusEl) {
+                trackerStatusEl.innerHTML = `<span style="color: #4F46E5; font-weight: 800;">📡 Phase 1 (${doneS}/${totS} Swept)</span> • <span style="color: #0D6E52; font-weight: 700;">${escapeHtml(detail)}</span>`;
+              }
+            }
+
+            const resStart = line.match(/🔎\s*\[Worker\s*(\d+)\/(\d+)\]\s*\((\d+)\/(\d+)\)\s*Resolving Venue Calendar\s*"([^"]+)"\s*\(([^)]+)\)/i);
+            if (resStart) {
+              const wNum = resStart[1], wMax = resStart[2], rIdx = resStart[3], rTot = resStart[4];
+              const vName = resStart[5].trim(), vCity = resStart[6].trim();
+              pipelineTotalTargets = parseInt(rTot, 10);
+              activeContextsById.set(`res-${vName}`, { id: `res-${vName}`, title: vName });
+              const workersPill = document.getElementById('pipeline-active-workers-pill');
+              if (workersPill) {
+                workersPill.style.display = 'inline-flex';
+                workersPill.textContent = `⚡ ${activeContextsById.size} workers active`;
+              }
+              if (pipelineStatusText) {
+                pipelineStatusText.textContent = `🏛️ Worker ${wNum}/${wMax} Resolving [${rIdx}/${rTot}]: ${vName} (${vCity})`;
+                pipelineStatusText.style.color = '#4F46E5';
+              }
+              if (typeof window.appendReadableActivityLog === 'function') {
+                window.appendReadableActivityLog({
+                  eventId: `res-${vName}`,
+                  title: `${vName} (${vCity})`,
+                  message: `Worker ${wNum}/${wMax} finding official /events calendar URL & ticketing platform...`,
+                  status: 'checking',
+                  badgeText: `W${wNum} • ${rIdx}/${rTot}`
+                });
+              }
+            }
+
+            const candJson = line.match(/📡\s*\[VENUE_RADAR_CANDIDATE_JSON\]\s*(\{.*\})$/);
+            if (candJson) {
+              try {
+                const c = JSON.parse(candJson[1]);
+                activeContextsById.delete(`res-${c.venue_name}`);
+                if (typeof window.appendReadableActivityLog === 'function') {
+                  window.appendReadableActivityLog({
+                    eventId: c.id,
+                    title: `${c.venue_name} (${c.city || 'Metro Van'})`,
+                    venue: c.ticketing_platform || 'Direct Box Office',
+                    message: `Official calendar found: ${c.official_events_url} • ${c.notes || ''}`,
+                    status: 'verified',
+                    badgeText: '✨ New Venue'
+                  });
+                }
+                const afterCtx = {
+                  id: c.id,
+                  title: c.venue_name,
+                  afterTitle: c.venue_name,
+                  venue: c.venue_name,
+                  afterVenue: `${c.venue_name} (${c.city || 'Metro Van'})`,
+                  afterTicketUrl: c.official_events_url,
+                  afterProvider: c.ticketing_platform || 'Direct Box Office',
+                  afterDescription: c.notes || `Discovered via ${(c.discovered_via || []).join(', ')}`
+                };
+                addEventDiffRow(afterCtx);
+                if (typeof renderComparisonCards === 'function') {
+                  renderComparisonCards(afterCtx, { title: c.venue_name, venue: 'Not yet in Van50', ticket_url: 'None' }, false);
+                  updateComparisonStatusPill(`✨ New Venue Proposed (${c.city || 'Metro Van'})`, 'updated');
+                }
+              } catch (e) { console.warn('[VENUE_RADAR_CANDIDATE_JSON parse error]', e); }
+            }
+
+            const resProg = line.match(/📊\s*Progress:\s*(\d+)\/(\d+)\s*venues resolved\s*\(([^)]+)\)/i);
+            if (resProg) {
+              const doneR = parseInt(resProg[1], 10), totR = parseInt(resProg[2], 10);
+              const detail = resProg[3].trim();
+              pipelineProcessedCount = doneR;
+              pipelineTotalTargets = totR;
+              const pct = Math.min(99, Math.max(50, 50 + Math.round((doneR / Math.max(1, totR)) * 50)));
+              if (pipelineProgressBar) pipelineProgressBar.style.width = `${pct}%`;
+              if (pipelineItemProgress) pipelineItemProgress.textContent = `Phase 2: ${doneR}/${totR} venues resolved • ${detail}`;
+              const badge = document.getElementById('pipeline-diff-counter-badge');
+              if (badge) badge.textContent = `${doneR} of ${totR} Resolved`;
+              const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+              if (trackerStatusEl) {
+                trackerStatusEl.innerHTML = `<span style="color: #4F46E5; font-weight: 800;">📡 Phase 2 (${doneR}/${totR} Resolved)</span> • <span style="color: #0D6E52; font-weight: 700;">${escapeHtml(detail)}</span>`;
+              }
+            }
+
+            if (line.includes('PARALLEL AI VENUE FINDER RADAR COMPLETE')) {
+              if (pipelineProgressBar) pipelineProgressBar.style.width = '100%';
+              if (pipelineStatusText) {
+                pipelineStatusText.textContent = '✅ Parallel AI Venue Finder Radar Complete — open Venue Finders to review & approve!';
+                pipelineStatusText.style.color = '#065F46';
+              }
+              const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+              if (trackerStatusEl) {
+                trackerStatusEl.innerHTML = `<span style="color: #065F46; font-weight: 800;">✅ Radar Scan Complete</span> • <a href="#" onclick="event.preventDefault(); window.openVenueRadarModal();" style="color: #4F46E5; font-weight: 700; text-decoration: underline;">Review Discovered Venues →</a>`;
+              }
+              if (typeof window.loadVenueRadarSummaryBadge === 'function') {
+                window.loadVenueRadarSummaryBadge();
               }
             }
           }

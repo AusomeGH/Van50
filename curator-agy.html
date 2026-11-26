@@ -654,6 +654,12 @@
             title="Run 4x parallel Antigravity AI workers to search, heal links/prices/dates, promote valid ≤$50 events, or archive disqualified ones (skips full 6-step pipeline)">
             <span id="btn-status-run-quarantine-label">🩹 AI Heal Quarantined</span>
           </button>
+          <button type="button" class="btn-curator" id="btn-status-open-venue-radar"
+            onclick="openVenueRadarModal(event)"
+            style="background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%); border: 1px solid #8b5cf6; color: #fff; font-size: 0.76rem; font-weight: 700; padding: 5px 11px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 8px rgba(109, 40, 217, 0.25);"
+            title="Track when the 4 Venue Finder aggregators (Do604, ShowHub, Georgia Straight, Vancouver's Best Places) were last scanned, run 4x parallel AI venue discovery, and approve net-new venue calendars">
+            <span id="btn-status-open-venue-radar-label">📡 Venue Finders (4× AI)</span>
+          </button>
           <button type="button" class="btn-curator" id="btn-status-run-newest-passed"
             onclick="autoRunNewestPassedBatchStages1BTo5(event)"
             style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border: 1px solid #34d399; color: #fff; font-size: 0.76rem; font-weight: 700; padding: 5px 11px; border-radius: 7px; cursor: pointer; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);"
@@ -3541,7 +3547,7 @@
     } catch (_) { }
     window.VAN50_ENGINE = 'antigravity';
   </script>
-  <script src="js/curator.js?v=2.0.1"></script>
+  <script src="js/curator.js?v=2.0.2"></script>
   <script>
     (function () {
       let _csData = { summary: null, sources: [] };

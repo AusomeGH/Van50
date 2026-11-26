@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updatedAt": null,
+    "lastRunAt": null,
+    "pendingCount": 0
+  },
+  "sources": {
+    "do604": {
+      "id": "do604",
+      "name": "Do604",
+      "url": "https://do604.com/events",
+      "focus": "Broad Metro Vancouver bars, indie rooms, pop-ups & comedy nights",
+      "last_scanned_at": null,
+      "last_duration_sec": null,
+      "venues_extracted": 0,
+      "new_venues_found": 0,
+      "status": "never_scanned"
+    },
+    "showhub-vancouver": {
+      "id": "showhub-vancouver",
+      "name": "ShowHub Vancouver",
+      "url": "https://showhub.ca/",
+      "focus": "East Van indie, punk & DIY music spaces, legions & small galleries",
+      "last_scanned_at": null,
+      "last_duration_sec": null,
+      "venues_extracted": 0,
+      "new_venues_found": 0,
+      "status": "never_scanned"
+    },
+    "georgia-straight": {
+      "id": "georgia-straight",
+      "name": "The Georgia Straight",
+      "url": "https://www.straight.com/listings",
+      "focus": "Community halls, indie theatres, arts spaces & neighbourhood festivals",
+      "last_scanned_at": null,
+      "last_duration_sec": null,
+      "venues_extracted": 0,
+      "new_venues_found": 0,
+      "status": "never_scanned"
+    },
+    "vancouver-s-best-places-calendar": {
+      "id": "vancouver-s-best-places-calendar",
+      "name": "Vancouver's Best Places",
+      "url": "https://vancouversbestplaces.com/events-calendar",
+      "focus": "Seasonal festivals, night markets & suburban civic event venues",
+      "last_scanned_at": null,
+      "last_duration_sec": null,
+      "venues_extracted": 0,
+      "new_venues_found": 0,
+      "status": "never_scanned"
+    }
+  },
+  "proposedVenues": []
+}

@@ -554,6 +554,8 @@ def _mode_to_stage_key(mode_val: str, target_url: str = "") -> str:
         return "enrich"
     if m in ("quarantine_heal", "heal_quarantine"):
         return "quarantine_heal"
+    if m in ("venue_radar", "radar"):
+        return "venue_radar"
     if m == "compile":
         return "compile"
     return "qc"
@@ -2622,6 +2624,18 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             except Exception as exc:
                 return self._send_json(502, {"success": False, "error": f"Server proxy fetch failed: {exc}"})
 
+        # API: Venue Finder Radar State (4x Parallel Aggregator Radar)
+        if path == "/api/curator/venue-radar":
+            radar_path = os.path.join(BASE_DIR, "data", "venue_radar_state.json")
+            data = {"metadata": {}, "sources": {}, "proposedVenues": []}
+            if os.path.exists(radar_path):
+                try:
+                    with open(radar_path, "r", encoding="utf-8") as rf:
+                        data = json.load(rf)
+                except Exception as exc:
+                    return self._send_json(500, {"error": f"Failed to read venue_radar_state.json: {exc}"})
+            return self._send_json(200, data)
+
         # API: Stagehand Status
         if path == "/api/curator/stagehand/status":
             is_running = False
@@ -2704,6 +2718,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 script_name = "venue_detailer.js"
             elif mode in ("quarantine_heal", "heal_quarantine"):
                 script_name = "quarantine_healer.js"
+            elif mode in ("venue_radar", "radar"):
+                script_name = "venue_radar.js"
             else:
                 script_name = "hybrid_ripper.js"
 
@@ -2814,6 +2830,18 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     cmd.extend(["--id", qs.get("id", [""])[0]])
                 if limit_str and limit_str != "0":
                     cmd.extend(["--limit", str(limit_str)])
+                conc_val = qs.get("concurrency", ["4"])[0] or "4"
+                cmd.extend(["--concurrency", str(conc_val)])
+                if qs.get("model", [""])[0]:
+                    cmd.extend(["--model", qs.get("model", [""])[0]])
+            elif mode in ("venue_radar", "radar"):
+                cmd = ["node", script_path]
+                if qs.get("ids", [""])[0]:
+                    cmd.extend(["--sources", qs.get("ids", [""])[0]])
+                elif qs.get("id", [""])[0]:
+                    cmd.extend(["--source", qs.get("id", [""])[0]])
+                if limit_str and limit_str != "0":
+                    cmd.extend(["--max-new", str(limit_str)])
                 conc_val = qs.get("concurrency", ["4"])[0] or "4"
                 cmd.extend(["--concurrency", str(conc_val)])
                 if qs.get("model", [""])[0]:
@@ -3361,6 +3389,74 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             payload = json.loads(body_raw)
         except Exception as e:
             return self._send_json(400, {"error": f"Invalid JSON payload: {e}"})
+
+        # API: Venue Finder Radar Approve / Ignore Proposed Venue
+        if path == "/api/curator/venue-radar/action":
+            is_loopback = self.client_address[0] in ("127.0.0.1", "::1", "localhost")
+            if not is_loopback:
+                token = self.headers.get("Curator-Token", "")
+                valid, _ = verify_session_token(token)
+                if not valid:
+                    return self._send_json(401, {"error": "Authentication required"})
+            action = str(payload.get("action", "")).lower().strip()
+            cand_id = str(payload.get("id", "")).strip()
+            if action not in ("approve", "ignore") or not cand_id:
+                return self._send_json(400, {"error": "Invalid action or id"})
+            radar_path = os.path.join(BASE_DIR, "data", "venue_radar_state.json")
+            if not os.path.exists(radar_path):
+                return self._send_json(404, {"error": "venue_radar_state.json not found"})
+            try:
+                with open(radar_path, "r", encoding="utf-8") as rf:
+                    radar_doc = json.load(rf)
+                proposed = radar_doc.get("proposedVenues", [])
+                target = next((p for p in proposed if str(p.get("id", "")) == cand_id), None)
+                if not target:
+                    return self._send_json(404, {"error": f"Proposed venue not found: {cand_id}"})
+                now_iso = datetime.now(timezone.utc).isoformat()
+                if action == "approve":
+                    disc_path = os.path.join(BASE_DIR, "data", "discovery_sources.json")
+                    disc_doc = {"sources": []}
+                    if os.path.exists(disc_path):
+                        with open(disc_path, "r", encoding="utf-8") as df:
+                            disc_doc = json.load(df)
+                    is_arr = isinstance(disc_doc, list)
+                    disc_list = disc_doc if is_arr else disc_doc.get("sources", [])
+                    new_url = str(target.get("official_events_url") or "").strip()
+                    new_id = str(cand_id).replace("radar-", "", 1)
+                    if not any(str(s.get("id", "")) == new_id or str(s.get("eventsUrl", "")).strip().lower() == new_url.lower() for s in disc_list):
+                        try:
+                            dom = urlparse(new_url).netloc.replace("www.", "")
+                        except Exception:
+                            dom = ""
+                        disc_list.append({
+                            "id": new_id,
+                            "name": target.get("venue_name", new_id),
+                            "domain": dom,
+                            "eventsUrl": new_url,
+                            "city": target.get("city", "Vancouver"),
+                            "address": target.get("address", ""),
+                            "type": "venue_direct",
+                            "ticketing_platform": target.get("ticketing_platform", "Direct Box Office"),
+                            "discovered_via": target.get("discovered_via", ["Venue Radar"]),
+                            "addedAt": now_iso,
+                            "status": "active",
+                        })
+                        if not is_arr:
+                            disc_doc["sources"] = disc_list
+                        with open(disc_path, "w", encoding="utf-8") as df:
+                            json.dump(disc_doc, df, indent=2, ensure_ascii=False)
+                    target["status"] = "approved"
+                    target["reviewedAt"] = now_iso
+                else:
+                    target["status"] = "ignored"
+                    target["reviewedAt"] = now_iso
+                radar_doc.setdefault("metadata", {})["updatedAt"] = now_iso
+                radar_doc["metadata"]["pendingCount"] = sum(1 for p in proposed if p.get("status") == "pending")
+                with open(radar_path, "w", encoding="utf-8") as rf:
+                    json.dump(radar_doc, rf, indent=2, ensure_ascii=False)
+                return self._send_json(200, {"success": True, "action": action, "id": cand_id, "pendingCount": radar_doc["metadata"]["pendingCount"]})
+            except Exception as exc:
+                return self._send_json(500, {"error": f"Failed to update venue radar: {exc}"})
 
         # 1. API: Authenticate
         if path == "/api/curator/auth":
