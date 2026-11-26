@@ -10899,6 +10899,26 @@ function initStagehandRipperUI() {
         proof: false
       }
     },
+    quarantine_heal: {
+      name: 'Parallel AI Quarantine Healer',
+      shortDims: 'Ticket Link, All-In Price ≤$50, Date/Time, Venue & Verdict (Promote / Archive / Keep)',
+      isTarget: {
+        d33_title: true,
+        d43_location: true,
+        d35_date: true,
+        d36_time: true,
+        d15_allin: true,
+        d12_base: true,
+        d13_fee: true,
+        d7_inventory: true,
+        d1_checkout: true,
+        d41_category: false,
+        d34_lineup: false,
+        d42_age: false,
+        d51_desc: true,
+        proof: false
+      }
+    },
     qc: {
       name: 'Stagehand Box Office QC',
       shortDims: 'D1, D7, D12, D13, D15, D35, Proof Keyframe',
@@ -11007,7 +11027,15 @@ function initStagehandRipperUI() {
     const pill = document.getElementById('pipeline-scope-accent-pill');
     const stageBanner = document.getElementById('pipeline-comp-stage-banner');
     const stageBannerText = document.getElementById('pipeline-comp-stage-banner-text');
-    const stageMeta = (typeof STAGE_META_MAP !== 'undefined' && STAGE_META_MAP[scanKey]) ? STAGE_META_MAP[scanKey] : null;
+    const stageMeta = scanKey === 'quarantine_heal'
+      ? {
+          fullLabel: '🩹 Parallel AI Quarantine Healer (4× Workers)',
+          color: '#6B21A8',
+          border: 'rgba(168, 85, 247, 0.55)',
+          bgTint: 'rgba(168, 85, 247, 0.14)',
+          pillBg: 'rgba(168, 85, 247, 0.18)'
+        }
+      : ((typeof STAGE_META_MAP !== 'undefined' && STAGE_META_MAP[scanKey]) ? STAGE_META_MAP[scanKey] : null);
     if (stageBanner && stageMeta) {
       if (stageBannerText) {
         stageBannerText.textContent = `${stageMeta.fullLabel} — Before / After`;
@@ -15070,7 +15098,8 @@ function initStagehandRipperUI() {
         qc: 'catalog_batch',
         venue: 'venue_detailer',
         enrich: 'enrich',
-        compile: 'compile'
+        compile: 'compile',
+        quarantine_heal: 'quarantine_heal'
       };
       const attachMode = window._activeStagehandMode || stageKeyToMode[targetStageKey] || 'catalog_batch';
       runPipelineAction({
@@ -15311,6 +15340,21 @@ function initStagehandRipperUI() {
       defaultLimit: 5,
       showUrl: false,
       initialStatus: 'Merging verified data, deduplicating showings, and publishing to the live app...'
+    },
+    quarantine_heal: {
+      key: 'quarantine_heal',
+      mode: 'quarantine_heal',
+      title: '<span>🩹</span> Parallel AI Quarantine Healer (4× Workers)',
+      techPillText: 'Antigravity 4× Workers',
+      techPillClass: 'tech-pill-agent',
+      shortDesc: 'Dispatches 4 parallel Antigravity AI workers to search live ticket links, verify all-in ≤ $50 CAD pricing, and promote valid events or archive disqualified ones directly.',
+      btnLabel: 'Launch 4× Parallel AI Healers',
+      btnColor: 'linear-gradient(135deg, #7e22ce 0%, #a855f7 100%)',
+      btnBorder: '#6B21A8',
+      urlPlaceholder: 'Targets quarantined events in data/manual_review_queue.json',
+      defaultLimit: 0,
+      showUrl: false,
+      initialStatus: 'Dispatching 4 parallel Antigravity AI workers to search, heal & QC quarantined events...'
     },
     master: {
       key: 'master',
@@ -16328,11 +16372,14 @@ function initStagehandRipperUI() {
       if (elH) elH.classList.toggle('active', isActive);
     });
 
-    const currentStage = pipelineTestStageKey || currentPipelineScanKey || 'harvest';
-    const idx = PIPELINE_TEST_ORDER.indexOf(currentStage);
+    const currentStage = (window.activePipelineRunningStageKey === 'quarantine_heal' || currentPipelineScanKey === 'quarantine_heal')
+      ? 'quarantine_heal'
+      : (pipelineTestStageKey || currentPipelineScanKey || 'harvest');
+    const isQuarantineHealMode = currentStage === 'quarantine_heal';
+    const idx = isQuarantineHealMode ? -1 : PIPELINE_TEST_ORDER.indexOf(currentStage);
     const stepNumBadge = document.getElementById('pipeline-test-step-counter');
     if (stepNumBadge) {
-      stepNumBadge.textContent = `STEP ${idx + 1} OF ${PIPELINE_TEST_ORDER.length}`;
+      stepNumBadge.textContent = isQuarantineHealMode ? '4× AI HEAL' : `STEP ${idx + 1} OF ${PIPELINE_TEST_ORDER.length}`;
     }
 
     PIPELINE_TEST_ORDER.forEach((key, i) => {
@@ -16367,7 +16414,9 @@ function initStagehandRipperUI() {
     const titleLabel = document.getElementById('test-stepper-current-label');
     if (titleLabel) {
       const isCompileDone = (pipelineTestStageStatuses['compile'] || '').includes('Complete');
-      if (isCompileDone) {
+      if (isQuarantineHealMode) {
+        titleLabel.innerHTML = '🩹 <strong style="color: #6B21A8;">Parallel AI Quarantine Healer</strong> (4× Antigravity Workers — Bypassing 6-Step Pipeline)';
+      } else if (isCompileDone) {
         titleLabel.innerHTML = '🎉 <strong style="color: #065F46;">Pipeline Run Complete:</strong> All Steps Finished (100%)';
       } else if (currentStage === 'harvest') {
         titleLabel.textContent = 'Step 1A: Discover Events (Venue & City Calendars)';
@@ -19620,6 +19669,16 @@ function initStagehandRipperUI() {
         const compiledCount = Math.max(0, totalCatalogEvents - uncompiled.length);
         trackerStatus.innerHTML = `<span style="color: #0D6E52; font-weight: 700;">${compiledCount}/${totalCatalogEvents} Compiled</span> &nbsp;&nbsp; <span style="color: #065F46; font-weight: 700;">${activePublishedCount}/${totalCatalogEvents} Published</span>, <span style="color: #BE123C; font-weight: 700;">${qCount}/${totalCatalogEvents} Quarantined</span>`;
       }
+    } else if (key === 'quarantine_heal') {
+      const qCount = (state.quarantinedEvents || []).length;
+      if (isExecuting && window.activePipelineRunningStageKey === 'quarantine_heal') {
+        const totalRun = pipelineTotalTargets || qCount;
+        const doneRun = pipelineProcessedCount || 0;
+        const remRun = Math.max(0, totalRun - doneRun);
+        trackerStatus.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">⚡ Running (4× Workers)</span> • <span style="color: #0D6E52; font-weight: 700;">${doneRun}/${totalRun} Processed (${remRun} remaining)</span>`;
+      } else {
+        trackerStatus.innerHTML = `<span style="color: #6B21A8; font-weight: 700;">🩹 ${qCount} Quarantined Event${qCount === 1 ? '' : 's'} Ready for 4× Parallel AI Healing</span>`;
+      }
     }
   };
 
@@ -19933,7 +19992,9 @@ function initStagehandRipperUI() {
       enrich: 'enrich',
       venue_detailer: 'venue',
       consolidate: 'compile',
-      compile: 'compile'
+      compile: 'compile',
+      quarantine_heal: 'quarantine_heal',
+      heal_quarantine: 'quarantine_heal'
     };
     const activeStageKey = modeToStageKey[mode] || currentPipelineScanKey || 'qc';
     currentPipelineScanKey = activeStageKey;
@@ -19943,7 +20004,23 @@ function initStagehandRipperUI() {
       pipelineTestStageStatuses[activeStageKey] = 'Running ⚡';
       updatePipelineTestStepperUI();
       updateStageNavButtons();
+    } else if (activeStageKey === 'quarantine_heal') {
+      // Do NOT highlight any of the 6 pipeline stages during standalone 4x Quarantine Healing
+      updatePipelineTestStepperUI();
+      updateStageNavButtons();
+      if (typeof updateComparisonTargetDimensionsBanner === 'function') {
+        updateComparisonTargetDimensionsBanner('quarantine_heal');
+      }
+      const techPillEl = document.getElementById('pipeline-scan-tech-pill');
+      if (techPillEl) {
+        techPillEl.textContent = 'Antigravity 4× Workers';
+        techPillEl.className = 'tech-pill tech-pill-agent';
+      }
+      const navToolbar = document.getElementById('pipeline-comparison-nav-toolbar');
+      if (navToolbar) navToolbar.style.display = 'flex';
     }
+    const topContinueBtn = document.getElementById('btn-top-continue-prev-stage');
+    if (topContinueBtn) topContinueBtn.style.display = 'none';
 
     document.body.style.overflow = 'hidden';
     if (pipelineModal) {
@@ -20044,6 +20121,41 @@ function initStagehandRipperUI() {
             approval_status: 'Harvested-Schedule',
             is_sold_out: Boolean(sv.is_sold_out || sv.isSoldOut),
             proof_keyframes: sv.proof_keyframes ? { ...sv.proof_keyframes } : null
+          });
+        }
+      });
+    }
+    const qListSnap = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+    if (Array.isArray(qListSnap)) {
+      qListSnap.forEach((qv, qIdx) => {
+        const qid = qv.id || qv.event_id;
+        if (qid && !pipelineInitialSnapshots.has(qid)) {
+          pipelineInitialSnapshots.set(qid, {
+            ...qv,
+            cardIndex: `Q${qIdx + 1}`,
+            isQuarantined: true,
+            id: qid,
+            title: qv.clean_title || qv.title || qv.event_name || '',
+            venue: qv.venue_name || qv.venue || '',
+            neighborhood: qv.neighborhood || '',
+            date: qv.date || qv.dateSchedule || '',
+            dateSchedule: qv.dateSchedule || qv.date || '',
+            time: qv.start_time || qv.time || '',
+            ticket_url: qv.candidate_tier1_url || qv.ticket_url || qv.details_url || qv.url || '',
+            price: qv.price_all_in ?? qv.price ?? qv.attemptedPrice ?? null,
+            priceLabel: qv.priceLabel || ((qv.price_all_in ?? qv.price ?? qv.attemptedPrice) != null ? `$${Number(qv.price_all_in ?? qv.price ?? qv.attemptedPrice).toFixed(2)} CAD` : 'Unpriced'),
+            price_base: qv.price_base,
+            price_fee: qv.price_fee,
+            category: qv.category || '',
+            artist: qv.artist || '',
+            lineup: qv.lineup ? [...qv.lineup] : null,
+            description: qv.description || qv.synopsis || '',
+            restrictions: qv.restrictions || '',
+            approval_status: 'Quarantined',
+            is_sold_out: Boolean(qv.is_sold_out || qv.isSoldOut),
+            proof_keyframes: qv.proof_keyframes ? { ...qv.proof_keyframes } : null
           });
         }
       });
@@ -20187,10 +20299,47 @@ function initStagehandRipperUI() {
       estimatedTotal = 3;
       if (pipelineItemProgress) pipelineItemProgress.textContent = 'Arbitrating layers & checking math...';
       if (pipelineEtaValue) pipelineEtaValue.textContent = '~3s';
+    } else if (mode === 'quarantine_heal') {
+      const items = pipelineTotalTargets || limit || (qListSnap ? qListSnap.length : 0) || 1;
+      estimatedTotal = Math.max(20, Math.round(items * 8));
+      if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${items} quarantined events (0%) • 4× parallel workers`;
+      if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(estimatedTotal)}`;
+      // Sync Target Queue UI & Range Controls to Quarantined scope instead of stale Stage 2 / 1..5 defaults
+      const totalQAvail = (qListSnap && qListSnap.length) || items;
+      const qCountSpan = document.getElementById('scope-count-quarantined');
+      if (qCountSpan) qCountSpan.textContent = String(totalQAvail);
+      const startInput = document.getElementById('pipeline-card-start');
+      const stopInput = document.getElementById('pipeline-card-stop');
+      const rangeDetails = document.getElementById('pipeline-range-details');
+      if (startInput) {
+        startInput.max = String(totalQAvail);
+        startInput.value = '1';
+      }
+      if (stopInput) {
+        stopInput.max = String(totalQAvail);
+        stopInput.value = String(items);
+      }
+      if (rangeDetails) {
+        rangeDetails.textContent = `(${items} Quarantined Cards Selected: #1 to #${items})`;
+      }
+      if (typeof window.setPipelineScope === 'function') {
+        window.setPipelineScope('quarantined');
+      }
     } else {
       estimatedTotal = 45;
       if (pipelineItemProgress) pipelineItemProgress.textContent = 'Penetrating cart & discovering fees...';
       if (pipelineEtaValue) pipelineEtaValue.textContent = '~45s';
+    }
+
+    // Immediately switch Stage Status from "Ready" to active "Running ⚡" before the first event arrives
+    const trackerStatusInitEl = document.getElementById('pipeline-last-scanned-text');
+    if (trackerStatusInitEl) {
+      const initTotal = pipelineTotalTargets || 0;
+      if (activeStageKey === 'quarantine_heal') {
+        trackerStatusInitEl.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">⚡ Running (4× Workers)</span> • <span style="color: #0D6E52; font-weight: 700;">0/${initTotal || '?'} Processed</span>`;
+      } else {
+        trackerStatusInitEl.innerHTML = `<span style="color: #0D6E52; font-weight: 800;">⚡ Running</span> • <span style="color: #4E6159; font-weight: 700;">${initTotal > 0 ? `0/${initTotal} Completed` : 'Initializing worker...'}</span>`;
+      }
     }
 
     setExecutionState(true, initialStatus || 'Spinning up isolated Chromium instance...');
@@ -20439,6 +20588,251 @@ function initStagehandRipperUI() {
 
           const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
           const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+
+          // === PARALLEL AI QUARANTINE HEALER LIVE STREAM PARSERS ===
+          if (activeStageKey === 'quarantine_heal') {
+            // 1. Queue loaded banner: 📋 Queue loaded: 182 quarantined event(s) queued across 4 parallel Antigravity workers.
+            const qLoadedMatch = line.match(/📋\s*Queue loaded:\s*(\d+)\s*quarantined event\(s\)\s*queued across\s*(\d+)/i);
+            if (qLoadedMatch) {
+              const qTotal = parseInt(qLoadedMatch[1], 10);
+              const qWorkers = parseInt(qLoadedMatch[2], 10) || 4;
+              pipelineTotalTargets = qTotal;
+              const badge = document.getElementById('pipeline-diff-counter-badge');
+              if (badge) badge.textContent = `${pipelineProcessedCount} of ${qTotal} Processed`;
+              const workersPill = document.getElementById('pipeline-active-workers-pill');
+              if (workersPill) {
+                workersPill.style.display = 'inline-flex';
+                workersPill.textContent = `⚡ ${qWorkers} workers active`;
+              }
+              const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+              if (trackerStatusEl) {
+                trackerStatusEl.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">⚡ Running (${qWorkers}× Workers)</span> • <span style="color: #0D6E52; font-weight: 700;">${pipelineProcessedCount}/${qTotal} Processed</span>`;
+              }
+              if (pipelineItemProgress) {
+                pipelineItemProgress.textContent = `${pipelineProcessedCount} of ${qTotal} quarantined events (0%) • ${qWorkers}× parallel workers`;
+              }
+            }
+
+            // 2. Worker start: 🔎 [Worker 1/4] (1/182) Healing "Title" [event-id]...
+            const qStartMatch = line.match(/🔎\s*\[Worker\s*(\d+)\/(\d+)\]\s*\((\d+)\/(\d+)\)\s*Healing\s*"([^"]+)"\s*\[([^\]]+)\]/i);
+            if (qStartMatch) {
+              const wNum = parseInt(qStartMatch[1], 10);
+              const wMax = parseInt(qStartMatch[2], 10);
+              const qIdx = parseInt(qStartMatch[3], 10);
+              const qTotal = parseInt(qStartMatch[4], 10);
+              const qTitle = qStartMatch[5].trim();
+              const qId = qStartMatch[6].trim();
+              pipelineTotalTargets = qTotal;
+              pipelineCurrentTargetIndex = Math.max(pipelineCurrentTargetIndex || 0, qIdx);
+
+              const beforeEv = pipelineInitialSnapshots.get(qId) || qEvs.find(e => (e.id || e.event_id) === qId) || allEvs.find(e => (e.id || e.event_id) === qId) || null;
+              const qVenue = beforeEv ? (beforeEv.venue_name || beforeEv.venue || '') : '';
+              const qCtx = {
+                cardIndex: beforeEv?.cardIndex || `Q${qIdx}`,
+                isQuarantined: true,
+                id: qId,
+                title: qTitle,
+                venue: qVenue,
+                afterTitle: null,
+                afterVenue: null
+              };
+              activeContextsById.set(qId, qCtx);
+              currentEventContext = qCtx;
+              window.currentActiveEventLabel = `🩹 Healing [${qIdx}/${qTotal}]: ${qTitle}`;
+
+              if (pipelineStatusText) {
+                pipelineStatusText.textContent = `🩹 Worker ${wNum}/${wMax} Healing [${qIdx}/${qTotal}]: ${qTitle}`;
+                pipelineStatusText.style.color = '#6B21A8';
+              }
+              const remCount = Math.max(0, qTotal - pipelineProcessedCount);
+              if (pipelineStatusSubtext) {
+                pipelineStatusSubtext.style.display = 'block';
+                pipelineStatusSubtext.textContent = `${pipelineProcessedCount}/${qTotal} processed (${remCount} remaining) • ${activeContextsById.size} worker${activeContextsById.size === 1 ? '' : 's'} active`;
+              }
+              const workersPill = document.getElementById('pipeline-active-workers-pill');
+              if (workersPill) {
+                workersPill.style.display = 'inline-flex';
+                workersPill.textContent = `⚡ ${activeContextsById.size} worker${activeContextsById.size === 1 ? '' : 's'} active`;
+              }
+              const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+              if (trackerStatusEl) {
+                trackerStatusEl.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">⚡ Running (${activeContextsById.size}× Workers)</span> • <span style="color: #0D6E52; font-weight: 700;">${pipelineProcessedCount}/${qTotal} Processed</span> • <span style="color: #334840;">Healing [${qIdx}/${qTotal}]: ${escapeHtml(qTitle)}</span>`;
+              }
+              const badge = document.getElementById('pipeline-diff-counter-badge');
+              if (badge) {
+                badge.textContent = `${pipelineProcessedCount} of ${qTotal} Processed (#${qIdx} active)`;
+              }
+              if (typeof window.appendReadableActivityLog === 'function') {
+                window.appendReadableActivityLog({
+                  eventId: qId,
+                  title: qTitle,
+                  venue: qVenue,
+                  message: `Worker ${wNum}/${wMax} searching live ticket link, price & dates (${qIdx}/${qTotal})...`,
+                  status: 'checking',
+                  badgeText: `W${wNum} • ${qIdx}/${qTotal}`
+                });
+              }
+              if (typeof renderComparisonCards === 'function' && (!pipelineAuditedCardsHistory || pipelineAuditedCardsHistory.length === 0)) {
+                renderComparisonCards(qCtx, beforeEv, true);
+                updateComparisonStatusPill(`Healing Quarantined #${qIdx} of ${qTotal}...`, 'updated');
+              }
+            }
+
+            // 3. Structured outcome JSON: 🩹 [HEALER_EVENT_JSON] {...}
+            const qJsonMatch = line.match(/🩹\s*\[HEALER_EVENT_JSON\]\s*(\{.*\})$/);
+            if (qJsonMatch) {
+              try {
+                const evData = JSON.parse(qJsonMatch[1]);
+                const qId = evData.id;
+                const beforeEv = pipelineInitialSnapshots.get(qId) || qEvs.find(e => (e.id || e.event_id) === qId) || null;
+                const verdict = String(evData.verdict || 'KEEP_QUARANTINED').toUpperCase();
+                const hasPrice = typeof evData.price_all_in === 'number' && !Number.isNaN(evData.price_all_in);
+                const priceText = hasPrice ? `$${Number(evData.price_all_in).toFixed(2)} CAD` : null;
+
+                const afterCtx = {
+                  ...(beforeEv || {}),
+                  cardIndex: beforeEv?.cardIndex || `Q${pipelineProcessedCount + 1}`,
+                  isQuarantined: verdict !== 'HEAL_AND_PROMOTE',
+                  id: qId,
+                  title: evData.title || beforeEv?.title || qId,
+                  afterTitle: evData.title || beforeEv?.title || qId,
+                  venue: evData.venue || beforeEv?.venue || '',
+                  afterVenue: evData.venue || beforeEv?.venue || '',
+                  afterDate: evData.date || null,
+                  afterTime: evData.start_time || null,
+                  afterTicketUrl: evData.ticket_url || null,
+                  afterPrice: priceText,
+                  afterBase: evData.price_base,
+                  afterFee: evData.price_fee,
+                  afterTax: evData.price_tax,
+                  afterProvider: evData.ticket_provider || null,
+                  afterInventory: evData.is_sold_out ? 'SOLD OUT' : (verdict === 'HEAL_AND_PROMOTE' ? 'AVAILABLE' : (verdict === 'ARCHIVE_DISQUALIFIED' ? 'ARCHIVED' : 'QUARANTINED')),
+                  afterDescription: evData.synopsis || evData.reason || null,
+                  approval_status: verdict === 'HEAL_AND_PROMOTE' ? 'Promoted (Healed)' : (verdict === 'ARCHIVE_DISQUALIFIED' ? 'Archived (Disqualified)' : 'Still Quarantined')
+                };
+
+                addEventDiffRow(afterCtx);
+                activeContextsById.delete(qId);
+                if (typeof renderComparisonCards === 'function') {
+                  renderComparisonCards(afterCtx, beforeEv, false);
+                  const pillText = verdict === 'HEAL_AND_PROMOTE'
+                    ? `✅ Promoted (${priceText || 'Verified'})`
+                    : (verdict === 'ARCHIVE_DISQUALIFIED' ? '🗄️ Archived (Disqualified)' : '⏸️ Kept in Quarantine');
+                  updateComparisonStatusPill(pillText, verdict === 'HEAL_AND_PROMOTE' ? 'updated' : 'nodrift');
+                }
+                if (typeof window.appendReadableActivityLog === 'function') {
+                  if (verdict === 'HEAL_AND_PROMOTE') {
+                    window.appendReadableActivityLog({
+                      eventId: qId,
+                      title: afterCtx.title,
+                      venue: afterCtx.venue,
+                      message: `Healed & promoted to live catalog (${priceText || '≤$50 CAD'}): ${evData.reason || ''}`,
+                      status: 'verified',
+                      badgeText: `✅ Promoted ${priceText || ''}`.trim()
+                    });
+                  } else if (verdict === 'ARCHIVE_DISQUALIFIED') {
+                    window.appendReadableActivityLog({
+                      eventId: qId,
+                      title: afterCtx.title,
+                      venue: afterCtx.venue,
+                      message: `Archived (disqualified): ${evData.reason || ''}`,
+                      status: 'warning',
+                      badgeText: '🗄️ Archived'
+                    });
+                  } else {
+                    window.appendReadableActivityLog({
+                      eventId: qId,
+                      title: afterCtx.title,
+                      venue: afterCtx.venue,
+                      message: `Kept in quarantine: ${evData.reason || 'Needs manual curator guidance'}`,
+                      status: 'warning',
+                      badgeText: '⏸️ Kept'
+                    });
+                  }
+                }
+              } catch (qParseErr) {
+                console.warn('[HEALER_EVENT_JSON parse error]', qParseErr);
+              }
+            }
+
+            // 4. Worker warning/error without structured JSON
+            const qErrMatch = line.match(/(?:⚠️|❌)\s*\[Worker\s*(\d+)\]\s*(?:No structured verdict returned for|Error healing)\s*"([^"]+)"\s*\[([^\]]+)\](?::\s*(.+))?/i);
+            if (qErrMatch) {
+              const wNum = qErrMatch[1];
+              const qTitle = qErrMatch[2].trim();
+              const qId = qErrMatch[3].trim();
+              const qErr = (qErrMatch[4] || 'No structured verdict returned — left in quarantine').trim();
+              activeContextsById.delete(qId);
+              if (typeof window.appendReadableActivityLog === 'function') {
+                window.appendReadableActivityLog({
+                  eventId: qId,
+                  title: qTitle,
+                  message: `Worker ${wNum}: ${qErr}`,
+                  status: 'error',
+                  badgeText: '⚠️ Retry / Error'
+                });
+              }
+            }
+
+            // 5. Authoritative Progress line: 📊 Progress: 12/182 processed (✅ 4 promoted | 🗄️ 6 archived | ⏸️ 2 kept | ❌ 0 errors)
+            const qProgMatch = line.match(/📊\s*Progress:\s*(\d+)\/(\d+)\s*processed\s*\(([^)]+)\)/i);
+            if (qProgMatch) {
+              const doneCnt = parseInt(qProgMatch[1], 10);
+              const totalCnt = parseInt(qProgMatch[2], 10);
+              const summaryParts = qProgMatch[3].trim();
+              pipelineProcessedCount = doneCnt;
+              pipelineTotalTargets = totalCnt;
+              const remCnt = Math.max(0, totalCnt - doneCnt);
+              const pct = totalCnt > 0 ? Math.min(99, Math.round((doneCnt / totalCnt) * 100)) : 0;
+
+              if (pipelineProgressBar) {
+                pipelineProgressBar.style.width = `${Math.max(4, pct)}%`;
+              }
+              const badge = document.getElementById('pipeline-diff-counter-badge');
+              if (badge) {
+                badge.textContent = `${doneCnt} of ${totalCnt} Processed`;
+              }
+              const unitTime = (doneCnt >= 1 && elapsed > 3) ? Math.max(2, elapsed / doneCnt) : 8;
+              if (pipelineItemProgress) {
+                pipelineItemProgress.textContent = `${doneCnt} of ${totalCnt} (${pct}%) • ${summaryParts}`;
+              }
+              if (remCnt > 0) {
+                const remSec = Math.round(remCnt * unitTime);
+                estimatedTotal = elapsed + remSec;
+                if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(remSec)}`;
+              } else if (pipelineEtaValue) {
+                pipelineEtaValue.textContent = 'Finalizing...';
+              }
+              if (pipelineStatusSubtext) {
+                pipelineStatusSubtext.style.display = 'block';
+                pipelineStatusSubtext.textContent = `${doneCnt}/${totalCnt} processed (${remCnt} remaining) • ${summaryParts}`;
+              }
+              const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+              if (trackerStatusEl) {
+                trackerStatusEl.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">⚡ Running (${Math.max(1, activeContextsById.size)}× Workers)</span> • <span style="color: #0D6E52; font-weight: 700;">${doneCnt}/${totalCnt} Processed (${remCnt} remaining)</span> • <span style="color: #4E6159;">${escapeHtml(summaryParts)}</span>`;
+              }
+              if (typeof window.syncDockedPipelineProgressBar === 'function') {
+                window.syncDockedPipelineProgressBar({
+                  stageLabel: '🩹 Quarantine Healer (4× Workers)',
+                  progressText: `${doneCnt}/${totalCnt} processed`,
+                  currentItem: summaryParts,
+                  etaText: pipelineEtaValue ? `ETA ${pipelineEtaValue.textContent}` : '',
+                  pct: Math.max(5, pct)
+                });
+              }
+            }
+
+            if (line.includes('PARALLEL AI QUARANTINE HEALER COMPLETE')) {
+              if (pipelineStatusText) {
+                pipelineStatusText.textContent = `✅ Parallel AI Quarantine Healer Complete (${pipelineProcessedCount}/${pipelineTotalTargets} processed)`;
+                pipelineStatusText.style.color = '#065F46';
+              }
+              const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
+              if (trackerStatusEl) {
+                trackerStatusEl.innerHTML = `<span style="color: #065F46; font-weight: 800;">✅ Complete</span> • <span style="color: #0D6E52; font-weight: 700;">${pipelineProcessedCount}/${pipelineTotalTargets} Processed</span>`;
+              }
+            }
+          }
 
           const resumeMatch = line.match(/⏭️\s*\[(?:Step 1B|Stage 2 QC|Stage 3 Enricher)\s*Resume\]\s*Skipping\s*(\d+)/i);
           if (resumeMatch) {

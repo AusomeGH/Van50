@@ -353,6 +353,24 @@ async function main() {
         resolveInstructionsForEvent(eid, `Healed & promoted ($${allInPrice.toFixed(2)} CAD): ${result.reason || ""}`, nowIso);
         promotedCount++;
         console.log(`${formatLogTime()} ✅ [HEALED & PROMOTED] "${promotedCard.title}" [${eid}] → $${allInPrice.toFixed(2)} CAD | ${healedUrl} | ${result.reason}`);
+        console.log(`🩹 [HEALER_EVENT_JSON] ${JSON.stringify({
+          id: eid,
+          verdict: "HEAL_AND_PROMOTE",
+          title: promotedCard.title,
+          venue: promotedCard.venue_name,
+          address: promotedCard.full_address,
+          date: promotedCard.date,
+          start_time: promotedCard.start_time,
+          ticket_url: healedUrl,
+          price_all_in: allInPrice,
+          price_base: promotedCard.price_base,
+          price_fee: promotedCard.price_fee,
+          price_tax: promotedCard.price_tax,
+          ticket_provider: promotedCard.ticket_provider,
+          is_sold_out: false,
+          synopsis: promotedCard.synopsis,
+          reason: result.reason || "Healed & promoted to live catalog",
+        })}`);
       } else if (verdict === "ARCHIVE_DISQUALIFIED" || (verdict === "HEAL_AND_PROMOTE" && allInPrice !== null && allInPrice > 50.0)) {
         // Move to archived_events.json
         qDoc.quarantinedEvents = qList.filter((x) => getEventId(x) !== eid);
@@ -388,6 +406,22 @@ async function main() {
         resolveInstructionsForEvent(eid, `Archived by Quarantine Healer: ${result?.reason || ""}`, nowIso);
         archivedCount++;
         console.log(`${formatLogTime()} 🗄️  [ARCHIVED] "${title}" [${eid}] → ${result?.reason || "Disqualified"}`);
+        console.log(`🩹 [HEALER_EVENT_JSON] ${JSON.stringify({
+          id: eid,
+          verdict: "ARCHIVE_DISQUALIFIED",
+          title: result?.healed_title || title,
+          venue: result?.healed_venue_name || ev.venue_name || ev.venue || "",
+          date: result?.healed_date || ev.date || null,
+          start_time: result?.healed_start_time || ev.start_time || ev.time || null,
+          ticket_url: healedUrl || null,
+          price_all_in: allInPrice,
+          price_base: typeof result?.healed_price_base === "number" ? result.healed_price_base : null,
+          price_fee: typeof result?.healed_price_fee === "number" ? result.healed_price_fee : null,
+          price_tax: typeof result?.healed_price_tax === "number" ? result.healed_price_tax : null,
+          ticket_provider: result?.ticket_provider || ev.ticket_provider || null,
+          is_sold_out: Boolean(result?.is_sold_out),
+          reason: result?.reason || "Disqualified during parallel AI quarantine healing",
+        })}`);
       } else {
         // Keep in quarantine, update notes so curator knows what AI checked
         const idx = qList.findIndex((x) => getEventId(x) === eid);
@@ -405,6 +439,22 @@ async function main() {
         }
         keptCount++;
         console.log(`${formatLogTime()} ⏸️  [STILL QUARANTINED] "${title}" [${eid}] → ${result?.reason || "Needs manual curator guidance"}`);
+        console.log(`🩹 [HEALER_EVENT_JSON] ${JSON.stringify({
+          id: eid,
+          verdict: "KEEP_QUARANTINED",
+          title: result?.healed_title || title,
+          venue: result?.healed_venue_name || ev.venue_name || ev.venue || "",
+          date: result?.healed_date || ev.date || null,
+          start_time: result?.healed_start_time || ev.start_time || ev.time || null,
+          ticket_url: healedUrl || null,
+          price_all_in: allInPrice,
+          price_base: typeof result?.healed_price_base === "number" ? result.healed_price_base : null,
+          price_fee: typeof result?.healed_price_fee === "number" ? result.healed_price_fee : null,
+          price_tax: typeof result?.healed_price_tax === "number" ? result.healed_price_tax : null,
+          ticket_provider: result?.ticket_provider || ev.ticket_provider || null,
+          is_sold_out: Boolean(result?.is_sold_out),
+          reason: result?.reason || "Needs manual curator guidance",
+        })}`);
       }
     });
   }

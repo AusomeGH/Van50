@@ -552,6 +552,8 @@ def _mode_to_stage_key(mode_val: str, target_url: str = "") -> str:
         return "venue"
     if m == "enrich":
         return "enrich"
+    if m in ("quarantine_heal", "heal_quarantine"):
+        return "quarantine_heal"
     if m == "compile":
         return "compile"
     return "qc"
