@@ -1107,19 +1107,19 @@
     "updatedAt": "2026-11-19T23:57:10.342Z"
   },
   "alex-neighbourhood-h-spanish-conversation-2026-11-10": {
-    "sig": "date mismatch between schedule (2026-11-10) and box office (2026-11-24)::",
+    "sig": "date mismatch between schedule (2026-11-10) and box office (2026-12-01)::",
     "decision": {
       "clean_title": "Spanish Conversation",
       "artist": null,
       "lineup": [],
-      "date": "2026-11-24",
+      "date": "2026-11-10",
       "start_time": null,
       "doors_time": null,
       "is_sold_out": false,
       "category": "social",
-      "arbitration_reasoning": "The schedule date (2026-11-10) is in the past relative to current local time (2026-11-19), whereas both the seed and live box office layers agree on the upcoming date of 2026-11-24."
+      "arbitration_reasoning": "The schedule harvester and seed both ground the specific instance date as 2026-11-10 matching the event ID, while the box office layer reflects an unpriced next-cycle occurrence for a free neighbourhood house drop-in program."
     },
-    "updatedAt": "2026-11-20T00:13:03.921Z"
+    "updatedAt": "2026-11-26T03:49:26.901Z"
   },
   "anvil-theatre-battle-at-the-anvil-2027-01-16": {
     "sig": "title mismatch between schedule (\"Battle at the Anvil\") and box office (\"Battle at the Anvil | BOOM! Pro Wrestling\")::",

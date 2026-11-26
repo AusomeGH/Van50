@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-25T23:45:00.000Z",
-    "pendingCount": 0,
+    "updatedAt": "2026-11-26T14:26:10.261292+00:00",
+    "pendingCount": 1,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements.",
     "totalInstructions": 78
   },
@@ -4159,6 +4159,28 @@
       },
       "aiLearnedSummary": "Curator guidance recorded for Cloverdale Rodeo and Country Fair: Not worthy of its own festival category",
       "learnedAt": "2026-11-24T14:54:45.674007+00:00"
+    },
+    {
+      "id": "inst_1795703170255",
+      "createdAt": "2026-11-26T14:26:10.256522+00:00",
+      "status": "pending",
+      "eventId": "sanctuary-emmett-martin-hatlelid-trio-2026-11-29",
+      "eventTitle": "Emmett Martin Hatlelid Trio",
+      "venueName": "St. Andrew's-Wesley United Church",
+      "sourceUrl": "https://standrewswesley.com/events/emmett-martin-hatlelid-trio/",
+      "instructionText": "Religious and free",
+      "screenshotPath": null,
+      "screenshotPaths": [],
+      "hasScreenshot": false,
+      "screenshotCount": 0,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified via Curator Studio review (Direct)",
+      "targetScraperOrEngine": "St. Andrew's-Wesley United Church",
+      "aiLearnedSummary": "Instruction recorded: Religious and free",
+      "extractedTiers": [],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0
     }
   ],
   "lastLearnedAt": "2026-09-26T11:01:14.885134+00:00"

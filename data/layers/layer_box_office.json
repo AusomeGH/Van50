@@ -42204,7 +42204,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -42256,7 +42256,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -42318,7 +42318,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "project-climbing-centre-cloverdale-bouldering",
@@ -42382,7 +42382,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-25T23:47:48.596Z",
+    "audited_at": "2026-11-26T04:05:54.875Z",
     "error": "Failed match: title score 30% below threshold (none or insufficient tokens from [indoor, bouldering, evening, session])",
     "quarantine_reason": "fatal_mismatched_entity",
     "event_id": "project-climbing-centre-cloverdale-bouldering",
@@ -42455,7 +42455,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -42517,7 +42517,7 @@
     "proof_keyframe": "data/proof_keyframes/birdies-and-buckets-pitch-putt-heated-range_cart.png",
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-25T23:47:48.596Z",
+    "audited_at": "2026-11-26T04:05:54.875Z",
     "error": null,
     "quarantine_reason": null,
     "event_id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -42600,7 +42600,7 @@
     "proof_keyframe": "data/proof_keyframes/grandview-heights-aquatic-centre-drop-in_cart.png",
     "showings": [],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-25T23:47:48.596Z",
+    "audited_at": "2026-11-26T04:05:54.875Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing",
     "event_id": "grandview-heights-aquatic-centre-drop-in",
@@ -42683,7 +42683,7 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-25T23:47:48.596Z",
+    "audited_at": "2026-11-26T04:05:54.875Z",
     "error": "Stagehand extension world not ready for frame 80652CB74C0B47EC5B2A26C48D6E2951; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null,
     "event_id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -42766,7 +42766,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -42818,7 +42818,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -42870,7 +42870,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -42922,7 +42922,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "bell-performing-arts-take-it-to-the-limit-a-tribute",
@@ -108683,11 +108683,11 @@
     "success": false,
     "venue_name": "Alex Neighbourhood House",
     "title": "Spanish Conversation",
-    "date": "2026-11-24",
+    "date": "2026-12-01",
     "doors_time": "none_available",
     "start_time": "none_available",
     "end_time": "none_available",
-    "tier1_name": "none_available",
+    "tier1_name": "General Admission",
     "tier1_price_base": null,
     "tier1_price_fee": null,
     "tier1_price_tax": null,
@@ -108716,7 +108716,7 @@
     "tier3_quote": null,
     "all_tiers": [
       {
-        "name": "none_available",
+        "name": "General Admission",
         "price": null,
         "price_base": null,
         "price_fee": null,
@@ -108739,14 +108739,6 @@
     "showings": [
       {
         "slot": 1,
-        "date": "2026-11-24",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
         "date": "2026-12-01",
         "start_time": "none_available",
         "doors_time": "none_available",
@@ -108754,7 +108746,7 @@
         "status": "upcoming"
       },
       {
-        "slot": 3,
+        "slot": 2,
         "date": "2026-12-08",
         "start_time": "none_available",
         "doors_time": "none_available",
@@ -108762,7 +108754,7 @@
         "status": "upcoming"
       },
       {
-        "slot": 4,
+        "slot": 3,
         "date": "2026-12-15",
         "start_time": "none_available",
         "doors_time": "none_available",
@@ -108771,7 +108763,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-19T23:42:46.020Z",
+    "audited_at": "2026-11-26T04:05:06.896Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -142758,7 +142750,7 @@
       }
     ],
     "restrictions": null,
-    "audited_at": "2026-11-23T14:10:57.324Z",
+    "audited_at": "2026-11-26T04:04:42.044Z",
     "error": "Missing resolvable HTTP/HTTPS destination URL",
     "quarantine_reason": null
   },
@@ -145171,8 +145163,8 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-24T23:15:22.603Z",
-    "error": "Stagehand extension world not ready for frame A9CE1786D2C75E6C1EE159B5D341924E; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
+    "audited_at": "2026-11-26T04:04:41.081Z",
+    "error": "Stagehand extension world not ready for frame 5F0CDBA1308AA1614DF356EAE671D1D6; checked contexts: 1, 2; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}, 2={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null
   },
   {
@@ -147095,8 +147087,8 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-24T23:38:26.378Z",
-    "error": "Stagehand extension world not ready for frame 723AD794A0FEC6D455B8FCE96AFAAA84; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
+    "audited_at": "2026-11-26T04:04:59.600Z",
+    "error": "Stagehand extension world not ready for frame D4F1D1E30FDB66CD76C213729E58F9CF; checked contexts: 1, 2; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}, 2={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null
   },
   {
@@ -149609,8 +149601,8 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-24T23:58:35.220Z",
-    "error": "Stagehand extension world not ready for frame 579D75553F6C8779E5969EEC9564F187; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
+    "audited_at": "2026-11-26T04:05:17.761Z",
+    "error": "Stagehand extension world not ready for frame E2092C8F2B4735B3C124E15620A77E52; checked contexts: 1, 2; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}, 2={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null
   },
   {
@@ -151137,8 +151129,8 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-25T00:10:24.163Z",
-    "error": "Stagehand extension world not ready for frame 29CE70BC59B0567B4DF16E2083482500; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
+    "audited_at": "2026-11-26T04:05:25.417Z",
+    "error": "Stagehand extension world not ready for frame F181467EA628C25B1D8B310DB48A736D; checked contexts: 1, 2; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}, 2={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null
   },
   {
@@ -151715,8 +151707,8 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-25T00:15:57.262Z",
-    "error": "Stagehand extension world not ready for frame F7C6160323442BC1EACB4188DEC200D3; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
+    "audited_at": "2026-11-26T04:05:36.933Z",
+    "error": "Stagehand extension world not ready for frame 34A70EB0A058B7F91AD26B50D4E165B8; checked contexts: 1, 2; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}, 2={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null
   },
   {
@@ -152132,8 +152124,8 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-25T00:20:29.062Z",
-    "error": "Stagehand extension world not ready for frame 9D03278AA0A86E4C071971EB6BF9B797; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
+    "audited_at": "2026-11-26T04:05:44.300Z",
+    "error": "Stagehand extension world not ready for frame EC03609368CAD6596FB81CD662B4A264; checked contexts: 1, 2; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}, 2={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null
   },
   {
@@ -152657,8 +152649,8 @@
     "proof_keyframe": null,
     "showings": [],
     "restrictions": null,
-    "audited_at": "2026-11-25T00:25:33.458Z",
-    "error": "Stagehand extension world not ready for frame 35A4AFB7D850B42101EF83D67B524F4A; checked contexts: 1; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
+    "audited_at": "2026-11-26T04:05:54.530Z",
+    "error": "Stagehand extension world not ready for frame EAA7AF31CE1F3E41C51E7CF13D4A1D72; checked contexts: 1, 2; diagnostics: 1={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}, 2={\"ready\":false,\"marker\":false,\"domApi\":\"undefined\"}",
     "quarantine_reason": null
   },
   {
@@ -153473,7 +153465,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "russell-brewing-taproom-standup-comedy",
@@ -153525,7 +153517,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "clayton-public-house-standup-comedy",
@@ -153577,7 +153569,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "dublin-crossing-celtic-rock-weekend-session",
@@ -153629,7 +153621,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "newton-cultural-centre-coffeehouse-concert",
@@ -153681,7 +153673,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "bell-performing-arts-centre-touring-series",
@@ -153733,7 +153725,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "surrey-arts-centre-studio-theatre-drama-improv",
@@ -153785,7 +153777,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "landmark-cinemas-guildford-reel-deals",
@@ -153837,7 +153829,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "craving-for-a-game-friday-night-magic-board-games",
@@ -153889,7 +153881,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "fest-surrey-tree-lighting-festival-holiday-market",
@@ -153941,7 +153933,7 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   },
   {
     "id": "hollywood-theatre-uncle-strut-2027-04-30",
@@ -157184,7 +157176,7 @@
       }
     ],
     "restrictions": "All Ages",
-    "audited_at": "2026-11-24T23:24:12.273Z",
+    "audited_at": "2026-11-26T03:48:29.527Z",
     "error": null,
     "quarantine_reason": "unverified_box_office_pricing"
   },
@@ -170665,6 +170657,6 @@
     ],
     "other_cost_label": null,
     "other_cost_price": null,
-    "audited_at": "2026-11-25T23:47:48.596Z"
+    "audited_at": "2026-11-26T04:05:54.875Z"
   }
 ]

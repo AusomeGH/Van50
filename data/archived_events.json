@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-26T03:46:54.456Z",
-    "archivedCount": 2106,
+    "updatedAt": "2026-11-26T04:05:54.875Z",
+    "archivedCount": 2193,
     "description": "Events permanently dismissed or archived by Antigravity Quarantine AI due to exceeding the $50 CAD budget cap, expired dates, corrupted fixtures, or phantom listings.",
-    "totalArchived": 2192
+    "totalArchived": 2193
   },
   "archivedEvents": [
     {
@@ -1246916,6 +1246916,19 @@
       ],
       "archived_at": "2026-11-25T23:43:29.552Z",
       "archive_reason": "online_or_administrative_non_outing"
+    },
+    {
+      "id": "karen-magnussen-comm-come-try-ringette-free-2026-12-05",
+      "event_id": "karen-magnussen-comm-come-try-ringette-free-2026-12-05",
+      "title": "Come Try Ringette",
+      "venue": "Karen Magnussen Community Recreation Centre",
+      "date": "2026-12-05",
+      "price": 0,
+      "websiteUrl": "https://www.nvrc.ca/notices-events-blog/events-calendar/come-try-ringette-free",
+      "archiveReason": "merged_duplicate_event",
+      "flagReason": "Merged into consolidated multi-date/master card 'centennial-theatre-come-try-ringette-free-2026-11-29'",
+      "mergedIntoId": "centennial-theatre-come-try-ringette-free-2026-11-29",
+      "archivedAt": "2026-11-26T03:49:56.907Z"
     }
   ]
 }
