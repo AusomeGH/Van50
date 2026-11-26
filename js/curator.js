@@ -457,7 +457,7 @@ async function loadQuarantineQueue() {
       const collectedBadge = document.getElementById('collected-feedback-count');
       if (collectedBadge) collectedBadge.textContent = String(state.userFeedbackQueue.length);
       if (typeof window.fetchSheetSubmissions === 'function') {
-        window.fetchSheetSubmissions(true).catch(() => {});
+        window.fetchSheetSubmissions(true).catch(() => { });
       }
 
       state.pendingNewsletterSignups = data.pendingNewsletterSignups || [];
@@ -710,11 +710,11 @@ function updateFilterCounts() {
   const localSubs = Array.isArray(state.userFeedbackQueue)
     ? state.userFeedbackQueue.length
     : all.filter(e =>
-        e.source === 'user_submission' ||
-        e.source === 'community' ||
-        e.isUserSubmission ||
-        String(e.flagReason || e.quarantineReason || '').toLowerCase().includes('submission')
-      ).length;
+      e.source === 'user_submission' ||
+      e.source === 'community' ||
+      e.isUserSubmission ||
+      String(e.flagReason || e.quarantineReason || '').toLowerCase().includes('submission')
+    ).length;
   const sheetSubs = (Array.isArray(state.sheetFeedback) ? state.sheetFeedback.length : 0) +
     (Array.isArray(state.sheetPriceUpdates) ? state.sheetPriceUpdates.length : 0);
   const userSubs = localSubs + sheetSubs;
@@ -806,10 +806,10 @@ window.selectPendingInboxFilter = function (filterKey) {
   document.querySelectorAll('#curator-pending-actions-inbox .inbox-action-pill').forEach(btn => {
     btn.classList.toggle('is-selected-inbox', btn.id === (
       targetFilter === 'holidays' ? 'inbox-pill-holidays' :
-      targetFilter === 'discovered_venues' ? 'inbox-pill-venues' :
-      targetFilter === 'discovered_sources' ? 'inbox-pill-sources' :
-      targetFilter === 'user_feedback' ? 'inbox-pill-submissions' :
-      targetFilter === 'all' ? 'inbox-pill-quarantined' : ''
+        targetFilter === 'discovered_venues' ? 'inbox-pill-venues' :
+          targetFilter === 'discovered_sources' ? 'inbox-pill-sources' :
+            targetFilter === 'user_feedback' ? 'inbox-pill-submissions' :
+              targetFilter === 'all' ? 'inbox-pill-quarantined' : ''
     ));
   });
   updateFilterCounts();
@@ -871,7 +871,7 @@ function applyFiltersAndRender() {
     renderUserFeedbackCards();
     if (!state._sheetSubmissionsFetchedOnce && typeof window.fetchSheetSubmissions === 'function') {
       state._sheetSubmissionsFetchedOnce = true;
-      window.fetchSheetSubmissions(true).catch(() => {});
+      window.fetchSheetSubmissions(true).catch(() => { });
     }
     return;
   }
@@ -1066,13 +1066,13 @@ function renderCardScreenshotThumbnails(inst) {
       <span style="font-size: 0.78rem; font-weight: 600; color: #6B21A8;">🖼️ ${paths.length} Screenshot${paths.length > 1 ? 's' : ''} Attached:</span>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         ${paths.map((p, idx) => {
-          const safeShotUrl = escapeHtml(safeExternalUrl(p));
-          return `
+    const safeShotUrl = escapeHtml(safeExternalUrl(p));
+    return `
           <a href="${safeShotUrl}" target="_blank" rel="noopener noreferrer" title="Click to view full-size screenshot proof #${idx + 1}" style="display: inline-block; text-decoration: none;">
             <img src="${safeShotUrl}" alt="Screenshot #${idx + 1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
           </a>
         `;
-        }).join('')}
+  }).join('')}
       </div>
     </div>
   `;
@@ -1457,8 +1457,8 @@ function renderEventCard(ev, index) {
             <span class="curator-date-banner-text">${escapeHtml(curatorDateStr)}</span>
           </div>
           ${isCuratorDateUnconfirmed(ev)
-        ? '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(245, 158, 11, 0.2); color: #92400E; border-color: rgba(245, 158, 11, 0.5);">⚠️ Unconfirmed Date</span>'
-        : '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(16, 185, 129, 0.2); color: #065F46; border-color: rgba(16, 185, 129, 0.5);">✅ Confirmed Date</span>'}
+      ? '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(245, 158, 11, 0.2); color: #92400E; border-color: rgba(245, 158, 11, 0.5);">⚠️ Unconfirmed Date</span>'
+      : '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(16, 185, 129, 0.2); color: #065F46; border-color: rgba(16, 185, 129, 0.5);">✅ Confirmed Date</span>'}
         </div>
 
         <!-- Diagnostics Grid: Confirmed Details vs. Issues / Needs Review -->
@@ -1505,17 +1505,17 @@ function renderEventCard(ev, index) {
 
         <!-- Prominent Instruction Banner (Displays User Instructions & Proof on Cards) -->
         ${(() => {
-        const annot = ev.curatorAnnotation || {};
-        const inst = ev.queuedInstruction || (annot.note || (annot.screenshotPaths && annot.screenshotPaths.length > 0) ? {
-          instructionText: annot.note || '',
-          screenshotPaths: annot.screenshotPaths || [],
-          approvedPrice: annot.userSuppliedPrice,
-          createdAt: annot.annotatedAt,
-          aiLearnedSummary: annot.aiLearnedSummary,
-          extractedTiers: annot.extractedTiers
-        } : null);
-        if (!inst) return '';
-        return `
+      const annot = ev.curatorAnnotation || {};
+      const inst = ev.queuedInstruction || (annot.note || (annot.screenshotPaths && annot.screenshotPaths.length > 0) ? {
+        instructionText: annot.note || '',
+        screenshotPaths: annot.screenshotPaths || [],
+        approvedPrice: annot.userSuppliedPrice,
+        createdAt: annot.annotatedAt,
+        aiLearnedSummary: annot.aiLearnedSummary,
+        extractedTiers: annot.extractedTiers
+      } : null);
+      if (!inst) return '';
+      return `
           <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
             <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
               <strong style="color: #6B21A8; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
@@ -1541,7 +1541,7 @@ function renderEventCard(ev, index) {
             </div>
           </div>
           `;
-      })()}
+    })()}
 
         <!-- Flag Reason Alert / Drift Alert (Shortened & Simple) -->
         ${hasDrift ? `
@@ -5246,21 +5246,21 @@ function renderHolidayCards() {
             🎪 Pending Festivals Awaiting Curator Approval (${unapprovedFests.length})
           </h4>
           ${unapprovedFests.map((fest, idx) => {
-            const festSlug = String(fest.slug || fest.id || `fest-${idx}`).trim();
-            const festName = String(fest.festival_name || fest.name || festSlug).trim();
-            const dateMeta = getFestivalDateStatus(fest);
-            const discFrom = fest.discovered_from_title || fest.discovered_from_event_id || 'AI Enrichment / Scout';
-            const matchedEvents = getEventsForPendingFestival(fest);
-            const fallbackUrlHtml = fest.website_url ? `
+        const festSlug = String(fest.slug || fest.id || `fest-${idx}`).trim();
+        const festName = String(fest.festival_name || fest.name || festSlug).trim();
+        const dateMeta = getFestivalDateStatus(fest);
+        const discFrom = fest.discovered_from_title || fest.discovered_from_event_id || 'AI Enrichment / Scout';
+        const matchedEvents = getEventsForPendingFestival(fest);
+        const fallbackUrlHtml = fest.website_url ? `
               <a href="${escapeHtml(safeExternalUrl(fest.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
                 style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: #FFFFFF; border: 1px solid #D5DDD8; color: #0D6E52; text-decoration: none; font-size: 0.82rem;">
                 <span>🔗 ${escapeHtml(fest.discovered_from_title || festName)} (${escapeHtml(fest.discovered_from_event_id || 'Source Link')})</span>
                 <span>Open ↗</span>
               </a>
             ` : '';
-            const eventsListHtml = renderMatchedEventsMiniList(matchedEvents, fallbackUrlHtml);
+        const eventsListHtml = renderMatchedEventsMiniList(matchedEvents, fallbackUrlHtml);
 
-            return `
+        return `
               <div class="curator-card" id="card-festival-${escapeHtml(festSlug)}" style="border-left: 4px solid #ec4899; margin-bottom: 16px;">
                 <div class="curator-card-top">
                   <div>
@@ -5317,10 +5317,10 @@ function renderHolidayCards() {
                           ${approvedFestivals.length > 0 ? `
                             <optgroup label="🎪 Approved Festivals (merge as alias)">
                               ${approvedFestivals.map(af => {
-                                const afSlug = af.slug || af.id || af.festival_name || af.name || '';
-                                const afLabel = af.festival_name || af.name || afSlug;
-                                return `<option value="festival:${escapeHtml(afSlug)}">${escapeHtml(afLabel)}</option>`;
-                              }).join('')}
+          const afSlug = af.slug || af.id || af.festival_name || af.name || '';
+          const afLabel = af.festival_name || af.name || afSlug;
+          return `<option value="festival:${escapeHtml(afSlug)}">${escapeHtml(afLabel)}</option>`;
+        }).join('')}
                             </optgroup>
                           ` : ''}
                         </select>
@@ -5345,7 +5345,7 @@ function renderHolidayCards() {
                 </div>
               </div>
             `;
-          }).join('')}
+      }).join('')}
         </div>
       `;
     }
@@ -5357,11 +5357,11 @@ function renderHolidayCards() {
             🎉 Pending Holidays Awaiting Curator Sign-Off (${pending.length})
           </h4>
           ${pending.map(h => {
-            const hId = String(h.id || '').trim();
-            const defaultLabel = h.label || hId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-            const defaultIcon = h.icon || '🎉';
-            const matchedEvents = getEventsForHoliday(h);
-            return `
+        const hId = String(h.id || '').trim();
+        const defaultLabel = h.label || hId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        const defaultIcon = h.icon || '🎉';
+        const matchedEvents = getEventsForHoliday(h);
+        return `
               <div class="curator-card" id="card-holiday-${escapeHtml(hId)}" style="border-left: 4px solid #f97316; margin-bottom: 16px;">
                 <div class="curator-card-top">
                   <div>
@@ -5429,7 +5429,7 @@ function renderHolidayCards() {
                 </div>
               </div>
             `;
-          }).join('')}
+      }).join('')}
         </div>
       `;
     }
@@ -5553,12 +5553,12 @@ function renderHolidayCards() {
         ` : `
           <div style="display:flex;flex-direction:column;gap:10px;">
             ${filteredFests.map(({ af, slug, name, dateMeta, matchedEvents, liveCount }) => {
-              const aliases = Array.isArray(af.aliases) ? af.aliases : [];
-              const otherFests = approvedFestivals.filter(o => String(o.slug || o.id || '').toLowerCase() !== slug.toLowerCase());
-              const liveBadgeStyle = liveCount > 0
-                ? 'background:rgba(16,185,129,0.16);color:#15803D;border:1px solid rgba(16,185,129,0.4);'
-                : 'background:rgba(148,163,184,0.12);color:#4E6159;border:1px solid #D5DDD8;';
-              return `
+      const aliases = Array.isArray(af.aliases) ? af.aliases : [];
+      const otherFests = approvedFestivals.filter(o => String(o.slug || o.id || '').toLowerCase() !== slug.toLowerCase());
+      const liveBadgeStyle = liveCount > 0
+        ? 'background:rgba(16,185,129,0.16);color:#15803D;border:1px solid rgba(16,185,129,0.4);'
+        : 'background:rgba(148,163,184,0.12);color:#4E6159;border:1px solid #D5DDD8;';
+      return `
                 <div id="approved-fest-row-${escapeHtml(slug)}" style="background:rgba(255,255,255,0.035);border:1px solid #D5DDD8;border-radius:10px;padding:12px 15px;">
                   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
                     <div style="min-width:0;flex:1;">
@@ -5653,10 +5653,10 @@ function renderHolidayCards() {
                         ${otherFests.length > 0 ? `
                           <optgroup label="🎪 Approved Festivals">
                             ${otherFests.map(of => {
-                              const ofSlug = of.slug || of.id || of.festival_name || of.name || '';
-                              const ofLabel = of.festival_name || of.name || ofSlug;
-                              return `<option value="festival:${escapeHtml(ofSlug)}">${escapeHtml(ofLabel)}</option>`;
-                            }).join('')}
+        const ofSlug = of.slug || of.id || of.festival_name || of.name || '';
+        const ofLabel = of.festival_name || of.name || ofSlug;
+        return `<option value="festival:${escapeHtml(ofSlug)}">${escapeHtml(ofLabel)}</option>`;
+      }).join('')}
                           </optgroup>
                         ` : ''}
                       </select>
@@ -5668,7 +5668,7 @@ function renderHolidayCards() {
                   </div>
                 </div>
               `;
-            }).join('')}
+    }).join('')}
           </div>
         `}
       </div>
@@ -5696,19 +5696,19 @@ function renderHolidayCards() {
 
         <div style="display:flex;flex-direction:column;gap:10px;">
           ${approved.map(ah => {
-            const id = String(ah.id || '');
-            const label = String(ah.label || id);
-            const icon = String(ah.icon || '🎉');
-            const datesLabel = ah.dates_label ? String(ah.dates_label) : '';
-            const aliases = Array.isArray(ah.aliases) ? ah.aliases : [];
-            const matchedEvents = getEventsForHoliday(ah);
-            const liveCount = matchedEvents.filter(m => m.bucket === 'Live').length;
-            const otherTargets = approved.filter(other => String(other.id || '') !== id);
-            const liveBadgeStyle = liveCount > 0
-              ? 'background:rgba(16,185,129,0.16);color:#15803D;border:1px solid rgba(16,185,129,0.4);'
-              : 'background:rgba(148,163,184,0.12);color:#4E6159;border:1px solid #D5DDD8;';
+      const id = String(ah.id || '');
+      const label = String(ah.label || id);
+      const icon = String(ah.icon || '🎉');
+      const datesLabel = ah.dates_label ? String(ah.dates_label) : '';
+      const aliases = Array.isArray(ah.aliases) ? ah.aliases : [];
+      const matchedEvents = getEventsForHoliday(ah);
+      const liveCount = matchedEvents.filter(m => m.bucket === 'Live').length;
+      const otherTargets = approved.filter(other => String(other.id || '') !== id);
+      const liveBadgeStyle = liveCount > 0
+        ? 'background:rgba(16,185,129,0.16);color:#15803D;border:1px solid rgba(16,185,129,0.4);'
+        : 'background:rgba(148,163,184,0.12);color:#4E6159;border:1px solid #D5DDD8;';
 
-            return `
+      return `
               <div style="background:rgba(255,255,255,0.035);border:1px solid #D5DDD8;border-radius:10px;padding:12px 15px;">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
                   <div style="display:flex;align-items:flex-start;gap:10px;min-width:0;flex:1;">
@@ -5799,7 +5799,7 @@ function renderHolidayCards() {
                 </div>
               </div>
             `;
-          }).join('')}
+    }).join('')}
         </div>
       </div>
     `;
@@ -5951,17 +5951,17 @@ window.renderApprovedHolidaysModalBody = function () {
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;">
       ${approved.map(ah => {
-        const id = String(ah.id || '');
-        const label = String(ah.label || id);
-        const icon = String(ah.icon || '🎉');
-        const datesLabel = ah.dates_label ? String(ah.dates_label) : '';
-        const aliases = Array.isArray(ah.aliases) ? ah.aliases : [];
-        const otherTargets = approved.filter(other => String(other.id || '') !== id);
-        const targetOptionsHtml = otherTargets.map(other =>
-          `<option value="${escapeHtml(other.id)}">${escapeHtml((other.icon || '🎉') + ' ' + (other.label || other.id))} (#${escapeHtml(other.id)})</option>`
-        ).join('');
+    const id = String(ah.id || '');
+    const label = String(ah.label || id);
+    const icon = String(ah.icon || '🎉');
+    const datesLabel = ah.dates_label ? String(ah.dates_label) : '';
+    const aliases = Array.isArray(ah.aliases) ? ah.aliases : [];
+    const otherTargets = approved.filter(other => String(other.id || '') !== id);
+    const targetOptionsHtml = otherTargets.map(other =>
+      `<option value="${escapeHtml(other.id)}">${escapeHtml((other.icon || '🎉') + ' ' + (other.label || other.id))} (#${escapeHtml(other.id)})</option>`
+    ).join('');
 
-        return `
+    return `
           <div id="approved-holiday-row-${escapeHtml(id)}" style="background:rgba(255,255,255,0.035);border:1px solid #D5DDD8;border-radius:10px;padding:14px 16px;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
               <div style="display:flex;align-items:flex-start;gap:12px;min-width:0;flex:1;">
@@ -6060,7 +6060,7 @@ window.renderApprovedHolidaysModalBody = function () {
             </div>
           </div>
         `;
-      }).join('')}
+  }).join('')}
     </div>
   `;
 };
@@ -10183,18 +10183,20 @@ function initStagehandRipperUI() {
       enrich: 'Step 4 (Clean Titles & Details)',
       compile: 'Step 5 (Merge & Publish)'
     };
-    const stepShort = { hunter: '1B', qc: '2', venue: '3', enrich: '4', compile: '5' };
+    const stepShort = { hunter: '1B', qc: '2', venue: '3', enrich: '4', compile: '5', quarantine_heal: '4x AI HEAL' };
     const sCode = stepShort[st.stageKey] || st.stageKey.toUpperCase();
 
     if (btnSingle) {
       btnSingle.disabled = selCount === 0;
       btnSingle.style.opacity = selCount === 0 ? '0.45' : '1';
-      btnSingle.textContent = st.stageKey === 'compile'
-        ? `▶ Merge & Publish (${selCount})`
-        : `▶ Run Step ${sCode} Only (${selCount})`;
+      btnSingle.textContent = st.stageKey === 'quarantine_heal'
+        ? `🩹 Launch 4x Parallel AI Healers (${selCount})`
+        : (st.stageKey === 'compile'
+          ? `▶ Merge & Publish (${selCount})`
+          : `▶ Run Step ${sCode} Only (${selCount})`);
     }
     if (btnChain) {
-      if (st.stageKey === 'compile') {
+      if (st.stageKey === 'compile' || st.stageKey === 'quarantine_heal') {
         btnChain.style.display = 'none';
       } else {
         btnChain.style.display = 'inline-flex';
@@ -10353,7 +10355,7 @@ function initStagehandRipperUI() {
     const searchEl = document.getElementById('sq-search-input');
     if (searchEl) searchEl.value = '';
 
-    const stepShort = { hunter: 'STEP 1B', qc: 'STEP 2', venue: 'STEP 3', enrich: 'STEP 4', compile: 'STEP 5' };
+    const stepShort = { hunter: 'STEP 1B', qc: 'STEP 2', venue: 'STEP 3', enrich: 'STEP 4', compile: 'STEP 5', quarantine_heal: '4x AI HEAL' };
     const defaultTitles = {
       hunter: '1B. Find Ticket Links — Select Waiting Events',
       qc: '2. Verify Prices & Fees — Select Waiting Events',
@@ -10425,30 +10427,6 @@ function initStagehandRipperUI() {
     }));
 
     const fullOrder = ['hunter', 'qc', 'venue', 'enrich', 'compile'];
-    if (st.stageKey === 'quarantine_heal') {
-      isPipelineTestMode = false;
-      isPipelineAutoChaining = false;
-      pipelineQuarantinedRunActive = true;
-      currentPipelineScope = 'quarantined';
-      window.pipelineAutoChainingStages = [];
-      const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
-      if (summaryBanner) summaryBanner.style.display = 'none';
-      if (typeof showToast === 'function') {
-        showToast(`🩹 Launching 4x parallel Antigravity AI Healers on ${picked.length} quarantined event(s)!`, 'info');
-      }
-      runPipelineAction({
-        mode: 'quarantine_heal',
-        title: `🩹 Parallel AI Quarantine Healer (${picked.length} Events • 4x Workers)`,
-        initialStatus: `Dispatching 4 parallel Antigravity AI workers to search, heal & QC ${picked.length} quarantined event(s)...`,
-        ids: picked.map(e => e.id).join(','),
-        scope: 'quarantined',
-        limit: picked.length,
-        quarantine: true,
-        force: true,
-        autoApprove: true
-      });
-      return;
-    }
     const startIdx = Math.max(0, fullOrder.indexOf(st.stageKey));
     const chainStages = autoChainToPublish ? fullOrder.slice(startIdx) : [st.stageKey];
 
@@ -10627,7 +10605,7 @@ function initStagehandRipperUI() {
     quarantineBtnLabels.forEach(id => {
       const el = document.getElementById(id);
       if (el && !isExecuting) {
-        el.textContent = `🩹 AI Heal Quarantined (${qCount})`;
+        el.textContent = `🛡️ Re-Check All Quarantined (${qCount})`;
       }
     });
 
@@ -11324,8 +11302,8 @@ function initStagehandRipperUI() {
         : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
         ${proofUrl ? (() => {
-          const cleanProofUrl = proofUrl.startsWith('/') || proofUrl.startsWith('http') ? proofUrl : `/${proofUrl}`;
-          return `
+        const cleanProofUrl = proofUrl.startsWith('/') || proofUrl.startsWith('http') ? proofUrl : `/${proofUrl}`;
+        return `
           <a href="${escapeHtml(cleanProofUrl)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
              style="display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; text-decoration: none; padding: 4px 8px; border-radius: 6px; background: #FFFFFF; border: 1px solid rgba(16, 185, 129, 0.28);"
              title="Click to open full-resolution screenshot in a new tab">
@@ -11333,7 +11311,7 @@ function initStagehandRipperUI() {
             <span style="font-size: 0.68rem; font-weight: 700; color: #0D6E52;">🔍 Open screenshot in new tab ↗</span>
           </a>
         `;
-        })() : emptyScopeMsg(targets.proof, 'awaiting browser screenshot')}
+      })() : emptyScopeMsg(targets.proof, 'awaiting browser screenshot')}
       </div>
     `;
   }
@@ -13427,12 +13405,12 @@ function initStagehandRipperUI() {
           </div>
           <div style="flex: 0 0 auto; margin-left: auto; text-align: right; white-space: nowrap;">
             ${isChangedRow
-              ? `<span class="yield-target-tag" style="white-space: nowrap; background: rgba(16, 185, 129, 0.22); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.5);">${isNewlyFilled ? '✨ Newly Filled' : '✏️ Updated'}</span>`
-              : (inScope
-                ? (scanKey === 'compile'
-                  ? `<span class="yield-target-tag" title="${escapeHtml(dimStageMeta.fullLabel)}" style="white-space: nowrap; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border};">${escapeHtml(dimStageMeta.shortLabel)}</span>`
-                  : `<span class="yield-target-tag" style="white-space: nowrap;">🎯 Checked Here</span>`)
-                : `<span class="yield-out-scope-tag" style="white-space: nowrap;">Other Step</span>`)}
+          ? `<span class="yield-target-tag" style="white-space: nowrap; background: rgba(16, 185, 129, 0.22); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.5);">${isNewlyFilled ? '✨ Newly Filled' : '✏️ Updated'}</span>`
+          : (inScope
+            ? (scanKey === 'compile'
+              ? `<span class="yield-target-tag" title="${escapeHtml(dimStageMeta.fullLabel)}" style="white-space: nowrap; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border};">${escapeHtml(dimStageMeta.shortLabel)}</span>`
+              : `<span class="yield-target-tag" style="white-space: nowrap;">🎯 Checked Here</span>`)
+            : `<span class="yield-out-scope-tag" style="white-space: nowrap;">Other Step</span>`)}
           </div>
         </div>
         <div style="font-size: 0.65rem; color: #5A6E65; margin-top: 4px; font-weight: 500;">
@@ -13499,13 +13477,13 @@ function initStagehandRipperUI() {
           <td class="comp-td-dim" ${isChangedRow ? 'style="border-left: 3px solid #10b981;"' : ''}>${col1Html}</td>
           <td class="comp-td-before" ${scanKey === 'compile' && hasRealBefore ? `style="background: ${dimStageMeta.bgTint}; border-left: 3px solid ${dimStageMeta.color}; box-shadow: inset 0 0 12px ${dimStageMeta.bgTint};"` : ''}>
             ${scanKey === 'compile' && hasRealBefore
-              ? `<div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;"><div>${col2Html}</div><span style="font-size: 0.62rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border}; white-space: nowrap;">${escapeHtml(dimStageMeta.shortLabel)}</span></div>`
-              : col2Html}
+          ? `<div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;"><div>${col2Html}</div><span style="font-size: 0.62rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border}; white-space: nowrap;">${escapeHtml(dimStageMeta.shortLabel)}</span></div>`
+          : col2Html}
           </td>
           <td class="comp-td-after" ${scanKey === 'compile' && hasRealAfter ? `style="background: ${dimStageMeta.bgTint}; border-left: 3px solid ${dimStageMeta.color}; box-shadow: inset 0 0 14px ${dimStageMeta.bgTint};"` : ''}>
             ${scanKey === 'compile' && hasRealAfter
-              ? `<div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;"><div style="flex: 1 1 auto; min-width: 0;">${col3Html}</div><span title="Verified during ${escapeHtml(dimStageMeta.fullLabel)}" style="font-size: 0.62rem; font-weight: 800; padding: 1px 6px; border-radius: 4px; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border}; white-space: nowrap;">${escapeHtml(dimStageMeta.shortLabel)}</span></div>`
-              : col3Html}
+          ? `<div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;"><div style="flex: 1 1 auto; min-width: 0;">${col3Html}</div><span title="Verified during ${escapeHtml(dimStageMeta.fullLabel)}" style="font-size: 0.62rem; font-weight: 800; padding: 1px 6px; border-radius: 4px; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border}; white-space: nowrap;">${escapeHtml(dimStageMeta.shortLabel)}</span></div>`
+          : col3Html}
           </td>
         </tr>
       `;
@@ -13606,15 +13584,15 @@ function initStagehandRipperUI() {
         tabsBar.innerHTML = `
           <span style="font-size: 0.68rem; font-weight: 700; color: #4E6159; margin-right: 4px;">Saved Step Snapshots:</span>
           ${Array.from(stageMap.entries()).map(([sKey, snap]) => {
-            const isActive = (sKey === currentPipelineScanKey);
-            const cCount = snap.changesCount || 0;
-            return `
+          const isActive = (sKey === currentPipelineScanKey);
+          const cCount = snap.changesCount || 0;
+          return `
               <button type="button" class="stage-snap-tab ${isActive ? 'active' : ''}" onclick="selectStageSnapshotTab('${escapeHtml(String(targetId))}', '${escapeHtml(sKey)}')">
                 <span>${escapeHtml(stageLabels[sKey] || sKey.toUpperCase())}</span>
                 <span style="font-family: monospace; font-size: 0.65rem; opacity: 0.9;">${cCount > 0 ? `+${cCount}` : '✓'}</span>
               </button>
             `;
-          }).join('')}
+        }).join('')}
         `;
       } else {
         tabsBar.style.display = 'none';
@@ -15868,11 +15846,11 @@ function initStagehandRipperUI() {
       ...rawQEvents.filter(e => !hasGuidance(e))
     ];
     return window.openCustomQueueLauncherModal({
-      stageKey: 'quarantine_heal',
-      title: '🩹 Parallel AI Quarantine Healer (4x Antigravity Workers)',
-      subtitle: `${qEvents.length} quarantined event(s) ready for parallel AI search, healing & QC${withGuidanceCount > 0 ? ` (${withGuidanceCount} have saved Curator Notes listed at the top)` : ''}. Heals links/prices/dates & promotes valid ≤$50 events or archives disqualified ones directly.`,
+      stageKey: 'hunter',
+      title: '🛡️ Re-Check Quarantined Events (Notes Prioritized First)',
+      subtitle: `${qEvents.length} quarantined event(s) ready for re-check${withGuidanceCount > 0 ? ` (${withGuidanceCount} have saved Curator Notes listed at the top)` : ''}.`,
       items: qEvents,
-      defaultCount: withGuidanceCount > 0 ? withGuidanceCount : Math.min(12, qEvents.length),
+      defaultCount: withGuidanceCount > 0 ? withGuidanceCount : Math.min(10, qEvents.length),
       scope: 'quarantined',
       isQuarantine: true
     });
@@ -17919,8 +17897,8 @@ function initStagehandRipperUI() {
 
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid #D5DDD8; padding-top: 8px;">
             ${c.proofImg ? (() => {
-              const cleanCardProof = String(c.proofImg).startsWith('/') || String(c.proofImg).startsWith('http') ? String(c.proofImg) : `/${c.proofImg}`;
-              return `
+          const cleanCardProof = String(c.proofImg).startsWith('/') || String(c.proofImg).startsWith('http') ? String(c.proofImg) : `/${c.proofImg}`;
+          return `
                 <a href="${escapeHtml(cleanCardProof)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
                    style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); padding: 3px 8px; border-radius: 6px;"
                    title="Click to open full-resolution evidence screenshot in a new tab">
@@ -17928,7 +17906,7 @@ function initStagehandRipperUI() {
                   <span style="font-size: 0.68rem; font-weight: 700; color: #0D6E52; white-space: nowrap;">📸 Open Screenshot ↗</span>
                 </a>
               `;
-            })() : '<span></span>'}
+        })() : '<span></span>'}
             <button type="button" onclick="window.closeCompiledCardsPreviewModal(); window.showComparisonCardById('${escapeHtml(eid)}');" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #0D6E52; font-size: 0.73rem; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer;">🔍 Inspect ${getCatalogDimensionsCount()}D Matrix</button>
           </div>
         </div>
@@ -20267,18 +20245,7 @@ function initStagehandRipperUI() {
     let effectiveMode = mode;
     let effectiveUrl = url || '';
 
-    let selectedAgyModel = 'gemini-3.8-flash-low';
-    if (mode === 'quarantine_heal') {
-      const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
-      const modelSelectEl = document.getElementById('agy-model-select');
-      selectedAgyModel = (modalModelSelectEl && modalModelSelectEl.value)
-        ? modalModelSelectEl.value
-        : ((modelSelectEl && modelSelectEl.value) ? modelSelectEl.value : 'gemini-3.8-flash-low');
-      if (modelSelectEl && modelSelectEl.value !== selectedAgyModel) modelSelectEl.value = selectedAgyModel;
-      if (modalModelSelectEl && modalModelSelectEl.value !== selectedAgyModel) modalModelSelectEl.value = selectedAgyModel;
-      effectiveMode = 'quarantine_heal';
-      effectiveUrl = '';
-    } else if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
+    if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
       const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
       const modelSelectEl = document.getElementById('agy-model-select');
       const selectedModel = (modalModelSelectEl && modalModelSelectEl.value)
@@ -20340,9 +20307,6 @@ function initStagehandRipperUI() {
       resume: (resume || url === 'all:resume') ? '1' : '0',
       harvested_only: effectiveHarvestedOnly ? '1' : '0',
       auto_approve: autoApprove ? '1' : '0',
-      model: selectedAgyModel || '',
-      concurrency: mode === 'quarantine_heal' ? '4' : '',
-      engine: mode === 'quarantine_heal' ? 'antigravity' : '',
       token: state.token || ''
     });
 
@@ -21641,7 +21605,7 @@ function initStagehandRipperUI() {
                 }
               }
             }
-          }).catch(() => {});
+          }).catch(() => { });
         }
         if (typeof loadCuratorDashboard === 'function') loadCuratorDashboard();
         const reloadPromise = (typeof window.loadLayersAndEvents === 'function')
