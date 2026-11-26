@@ -3317,6 +3317,7 @@ function setupEventListeners() {
     drawer.classList.add('active');
     drawer.setAttribute('aria-hidden', 'false');
     drawer.removeAttribute('inert');
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     renderItinerary();
     window.pushOverlayHistoryState('saved');
@@ -3329,7 +3330,10 @@ function setupEventListeners() {
     drawer.setAttribute('aria-hidden', 'true');
     drawer.setAttribute('inert', '');
     const filtersOpen = document.getElementById('mobile-filters-sheet')?.classList.contains('active');
-    if (!filtersOpen) document.body.style.overflow = '';
+    if (!filtersOpen) {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
     if (wasOpen) window.popOverlayHistoryState('saved', fromPopState);
   };
 
@@ -4271,6 +4275,11 @@ function closeItineraryDrawerIfOpen() {
     drawer.classList.remove('active');
     drawer.setAttribute('aria-hidden', 'true');
     drawer.setAttribute('inert', '');
+    const filtersOpen = document.getElementById('mobile-filters-sheet')?.classList.contains('active');
+    if (!filtersOpen) {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
   }
 }
 

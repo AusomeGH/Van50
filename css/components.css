@@ -5985,7 +5985,7 @@ body.van50-accessible .card-ticket-link {
     right: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: auto !important;
+    height: 85dvh !important;
     max-height: 85dvh !important;
     overflow: hidden !important;
     overscroll-behavior: contain;
@@ -5994,6 +5994,15 @@ body.van50-accessible .card-ticket-link {
     border-top: 1px solid var(--border-medium) !important;
     padding-bottom: calc(16px + env(safe-area-inset-bottom)) !important;
     transform: translateY(100%) !important;
+  }
+
+  #itinerary-drawer .itinerary-list {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
   }
 
   aside[aria-label="Saved Events Drawer"].active,
@@ -9681,6 +9690,8 @@ button.festival-theme-item-row.festival-theme-box-btn:focus-visible {
   border-top: 1px solid var(--border-subtle);
   padding: 10px;
   background: var(--bg-card);
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 .itinerary-expanded-card-wrap .event-card.saved-drawer-functional-card {
@@ -9689,6 +9700,9 @@ button.festival-theme-item-row.festival-theme-box-btn:focus-visible {
   border: 1px solid var(--border-subtle) !important;
   border-left: 3.5px solid var(--cat-accent) !important;
   padding: 12px !important;
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
 }
 
 .itinerary-expanded-card-wrap .mobile-card-compact-header {
