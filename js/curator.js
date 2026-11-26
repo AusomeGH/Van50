@@ -10427,6 +10427,30 @@ function initStagehandRipperUI() {
     }));
 
     const fullOrder = ['hunter', 'qc', 'venue', 'enrich', 'compile'];
+    if (st.stageKey === 'quarantine_heal') {
+      isPipelineTestMode = false;
+      isPipelineAutoChaining = false;
+      pipelineQuarantinedRunActive = true;
+      currentPipelineScope = 'quarantined';
+      window.pipelineAutoChainingStages = [];
+      const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
+      if (summaryBanner) summaryBanner.style.display = 'none';
+      if (typeof showToast === 'function') {
+        showToast(`🩹 Launching 4x parallel Antigravity AI Healers on ${picked.length} quarantined event(s)!`, 'info');
+      }
+      runPipelineAction({
+        mode: 'quarantine_heal',
+        title: `🩹 Parallel AI Quarantine Healer (${picked.length} Events • 4x Workers)`,
+        initialStatus: `Dispatching 4 parallel Antigravity AI workers to search, heal & QC ${picked.length} quarantined event(s)...`,
+        ids: picked.map(e => e.id).join(','),
+        scope: 'quarantined',
+        limit: picked.length,
+        quarantine: true,
+        force: true,
+        autoApprove: true
+      });
+      return;
+    }
     const startIdx = Math.max(0, fullOrder.indexOf(st.stageKey));
     const chainStages = autoChainToPublish ? fullOrder.slice(startIdx) : [st.stageKey];
 
@@ -10605,7 +10629,7 @@ function initStagehandRipperUI() {
     quarantineBtnLabels.forEach(id => {
       const el = document.getElementById(id);
       if (el && !isExecuting) {
-        el.textContent = `🛡️ Re-Check All Quarantined (${qCount})`;
+        el.textContent = `🩹 AI Heal Quarantined (${qCount})`;
       }
     });
 
@@ -15846,11 +15870,11 @@ function initStagehandRipperUI() {
       ...rawQEvents.filter(e => !hasGuidance(e))
     ];
     return window.openCustomQueueLauncherModal({
-      stageKey: 'hunter',
-      title: '🛡️ Re-Check Quarantined Events (Notes Prioritized First)',
-      subtitle: `${qEvents.length} quarantined event(s) ready for re-check${withGuidanceCount > 0 ? ` (${withGuidanceCount} have saved Curator Notes listed at the top)` : ''}.`,
+      stageKey: 'quarantine_heal',
+      title: '🩹 Parallel AI Quarantine Healer (4x Antigravity Workers)',
+      subtitle: `${qEvents.length} quarantined event(s) ready for parallel AI search, healing & QC${withGuidanceCount > 0 ? ` (${withGuidanceCount} have saved Curator Notes listed at the top)` : ''}. Heals links/prices/dates & promotes valid ≤$50 events or archives disqualified ones directly.`,
       items: qEvents,
-      defaultCount: withGuidanceCount > 0 ? withGuidanceCount : Math.min(10, qEvents.length),
+      defaultCount: withGuidanceCount > 0 ? withGuidanceCount : Math.min(12, qEvents.length),
       scope: 'quarantined',
       isQuarantine: true
     });
@@ -20245,7 +20269,18 @@ function initStagehandRipperUI() {
     let effectiveMode = mode;
     let effectiveUrl = url || '';
 
-    if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
+    let selectedAgyModel = 'gemini-3.8-flash-low';
+    if (mode === 'quarantine_heal') {
+      const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
+      const modelSelectEl = document.getElementById('agy-model-select');
+      selectedAgyModel = (modalModelSelectEl && modalModelSelectEl.value)
+        ? modalModelSelectEl.value
+        : ((modelSelectEl && modelSelectEl.value) ? modelSelectEl.value : 'gemini-3.8-flash-low');
+      if (modelSelectEl && modelSelectEl.value !== selectedAgyModel) modelSelectEl.value = selectedAgyModel;
+      if (modalModelSelectEl && modalModelSelectEl.value !== selectedAgyModel) modalModelSelectEl.value = selectedAgyModel;
+      effectiveMode = 'quarantine_heal';
+      effectiveUrl = '';
+    } else if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
       const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
       const modelSelectEl = document.getElementById('agy-model-select');
       const selectedModel = (modalModelSelectEl && modalModelSelectEl.value)
@@ -20307,6 +20342,9 @@ function initStagehandRipperUI() {
       resume: (resume || url === 'all:resume') ? '1' : '0',
       harvested_only: effectiveHarvestedOnly ? '1' : '0',
       auto_approve: autoApprove ? '1' : '0',
+      model: selectedAgyModel || '',
+      concurrency: mode === 'quarantine_heal' ? '4' : '',
+      engine: mode === 'quarantine_heal' ? 'antigravity' : '',
       token: state.token || ''
     });
 
