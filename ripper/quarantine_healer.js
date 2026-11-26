@@ -122,7 +122,12 @@ function buildHealerPrompt(ev, matchedInstructions) {
     ...(Array.isArray(ev.screenshotPaths) ? ev.screenshotPaths : []),
   ].filter(Boolean);
 
-  const todayIso = new Date().toISOString().slice(0, 10);
+  const todayIso = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Vancouver",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
 
   return `You are a Van50 Antigravity Quarantine Healer & Live Box Office QC Specialist.
 Today's date is ${todayIso}.
