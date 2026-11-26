@@ -304,6 +304,18 @@ async function main() {
         const resolvedArchetype = validArchetypes.has(result.event_archetype)
           ? result.event_archetype
           : (ev.event_archetype || ev.archetype || null);
+        const archToDefaultCat = {
+          cinema: "cinema",
+          live_stage: "shows",
+          workshop: "arts",
+          social_gaming: "social",
+          civic_park: "outdoors",
+          museum_gallery: "arts",
+          active_rec: "sports",
+          roving_series: "social",
+          festival: "festivals",
+        };
+        const resolvedCategory = ev.category || archToDefaultCat[resolvedArchetype] || "shows";
         const updatedDimAudit = { ...(ev.dimension_audit || {}) };
         if (Object.keys(updatedDimAudit).length > 0) {
           updatedDimAudit.D101_tier1_checkout = { ...(updatedDimAudit.D101_tier1_checkout || {}), value: healedUrl, status: "verified", source: `quarantine_healer (${model})` };
@@ -350,6 +362,7 @@ async function main() {
           lifecycle_type: resolvedLifecycle,
           event_archetype: resolvedArchetype,
           archetype: resolvedArchetype,
+          category: resolvedCategory,
           ticket_provider: result.ticket_provider || ev.ticket_provider || "Verified Box Office",
           description: result.synopsis || ev.description || ev.synopsis || "",
           synopsis: result.synopsis || ev.synopsis || ev.description || "",

@@ -3317,6 +3317,8 @@ function setupEventListeners() {
     drawer.classList.add('active');
     drawer.setAttribute('aria-hidden', 'false');
     drawer.removeAttribute('inert');
+    const backdrop = document.getElementById('mobile-sheet-backdrop');
+    if (backdrop) backdrop.classList.add('is-open');
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     renderItinerary();
@@ -3329,13 +3331,24 @@ function setupEventListeners() {
     drawer.classList.remove('active');
     drawer.setAttribute('aria-hidden', 'true');
     drawer.setAttribute('inert', '');
-    const filtersOpen = document.getElementById('mobile-filters-sheet')?.classList.contains('active');
+    const filtersOpen = document.getElementById('mobile-filters-sheet')?.classList.contains('is-open');
     if (!filtersOpen) {
+      const backdrop = document.getElementById('mobile-sheet-backdrop');
+      if (backdrop) backdrop.classList.remove('is-open');
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
     if (wasOpen) window.popOverlayHistoryState('saved', fromPopState);
   };
+
+  const itineraryBackdrop = document.getElementById('mobile-sheet-backdrop');
+  if (itineraryBackdrop && drawer) {
+    itineraryBackdrop.addEventListener('click', () => {
+      if (drawer.classList.contains('active')) {
+        window.closeItineraryDrawer(false);
+      }
+    });
+  }
 
   if (itineraryBtn && drawer) {
     itineraryBtn.addEventListener('click', () => window.openItineraryDrawer());
@@ -4275,8 +4288,10 @@ function closeItineraryDrawerIfOpen() {
     drawer.classList.remove('active');
     drawer.setAttribute('aria-hidden', 'true');
     drawer.setAttribute('inert', '');
-    const filtersOpen = document.getElementById('mobile-filters-sheet')?.classList.contains('active');
+    const filtersOpen = document.getElementById('mobile-filters-sheet')?.classList.contains('is-open');
     if (!filtersOpen) {
+      const backdrop = document.getElementById('mobile-sheet-backdrop');
+      if (backdrop) backdrop.classList.remove('is-open');
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
