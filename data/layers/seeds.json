@@ -5,7 +5,9 @@
     "seed_venue": "Pendulum Gallery (RBC Place Atrium)",
     "seed_url": "https://www.pendulumgallery.bc.ca/exhibition-current/",
     "lifecycle_type": "perennial_drop_in",
-    "ticket_url": "https://www.pendulumgallery.bc.ca/exhibition-current/"
+    "ticket_url": "https://www.pendulumgallery.bc.ca/exhibition-current/",
+    "dateSchedule": "Mon–Wed 9am–6pm, Thu–Fri 9am–9pm, Sat 9am–5pm (Closed Sun & Stat Holidays)",
+    "category": "arts"
   },
   {
     "id": "stanley-park-seawall-rose-garden",

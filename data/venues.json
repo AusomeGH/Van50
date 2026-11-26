@@ -3933,7 +3933,7 @@
     "venue_name": "Pendulum Gallery",
     "website_url": "https://www.pendulumgallery.bc.ca/",
     "calendar_url": "https://www.pendulumgallery.bc.ca/exhibition-current/",
-    "full_address": "885 W Georgia St, Vancouver, BC V6C 3E8 (Metro Vancouver)",
+    "full_address": "885 W Georgia St, Vancouver, BC V6C 3E8",
     "neighborhood": "Downtown Vancouver",
     "description": "Public exhibition space in the HSBC Building atrium hosting curated contemporary visual arts and photography.",
     "coordinates": [
@@ -3973,7 +3973,8 @@
     },
     "on_site_fnb": "None inside the gallery exhibition space itself; cafes and bistros available in the surrounding office tower concourse and adjacent Pacific Centre",
     "outside_food_policy": "Outside food and drinks permitted in the public building atrium, but prohibited near delicate art installations",
-    "payment_methods": "Free admission (no payment required; donations or art purchases handled via credit/debit)"
+    "payment_methods": "Free admission (no payment required; donations or art purchases handled via credit/debit)",
+    "address": "885 W Georgia St, Vancouver, BC V6C 3E8"
   },
   {
     "venue_name": "Trout Lake Community Centre",
@@ -7989,7 +7990,8 @@
     },
     "beer_benchmark": null,
     "cocktail_benchmark": null,
-    "meal_benchmark": null
+    "meal_benchmark": null,
+    "concession_benchmark": "none_available"
   },
   {
     "venue_name": "Surrey Art Gallery",
@@ -8039,7 +8041,8 @@
     "beer_benchmark": null,
     "cocktail_benchmark": null,
     "coffee_benchmark": null,
-    "meal_benchmark": null
+    "meal_benchmark": null,
+    "concession_benchmark": "$4.00 – $9.00 CAD (Surrey Arts Centre concession bar during performances)"
   },
   {
     "venue_name": "Historic Stewart Farm",
@@ -8089,7 +8092,8 @@
       "service_animals": "Certified guide dogs and service animals permitted indoors; leashed pets permitted on exterior park trails"
     },
     "beer_benchmark": null,
-    "cocktail_benchmark": null
+    "cocktail_benchmark": null,
+    "concession_benchmark": "none_available"
   },
   {
     "venue_name": "Landmark Cinemas Guildford",
@@ -8481,7 +8485,9 @@
     },
     "is_grounded": true,
     "grounding_source": "venue_detailer_ai",
-    "last_grounded_at": "2026-11-09T20:00:00.000Z"
+    "last_grounded_at": "2026-11-09T20:00:00.000Z",
+    "concession_benchmark": "none_available",
+    "venue_type": "park_beach_outdoor"
   },
   {
     "venue_name": "Blackie Spit & Crescent Beach Pier",
@@ -12142,7 +12148,8 @@
       "coffee": null
     },
     "last_grounded_at": "2026-11-16T00:54:53.170Z",
-    "grounding_source": "google_maps_reviews_ai"
+    "grounding_source": "google_maps_reviews_ai",
+    "concession_benchmark": "none_available"
   },
   {
     "venue_name": "Royal Kwantlen Park",
@@ -13727,7 +13734,7 @@
     "payment_methods": "Credit card (Visa, Mastercard), Debit, and Interac",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
-    "coffee_benchmark": null,
+    "coffee_benchmark": "$4.00 – $6.00 CAD (event tea/coffee & seasonal market refreshments)",
     "meal_benchmark": null,
     "spend_benchmarks": {
       "beer": null,
@@ -13736,7 +13743,8 @@
       "coffee": null
     },
     "last_grounded_at": "2026-11-18T08:54:02.320Z",
-    "grounding_source": "google_maps_reviews_ai"
+    "grounding_source": "google_maps_reviews_ai",
+    "concession_benchmark": "$6.00 – $12.00 CAD (event bar & light bites during scheduled events)"
   },
   {
     "venue_name": "The Dance Centre",
@@ -14733,7 +14741,8 @@
       "coffee": null
     },
     "last_grounded_at": "2026-11-18T09:26:34.237Z",
-    "grounding_source": "google_maps_reviews_ai"
+    "grounding_source": "google_maps_reviews_ai",
+    "concession_benchmark": "none_available"
   },
   {
     "venue_name": "Sherbrooke Church Hall",
@@ -20439,7 +20448,8 @@
       "cocktail": null,
       "meal": null,
       "coffee": null
-    }
+    },
+    "concession_benchmark": "none_available"
   },
   {
     "venue_id": "britannia-shipyards-nhs",
@@ -20486,7 +20496,8 @@
       "cocktail": null,
       "meal": null,
       "coffee": null
-    }
+    },
+    "concession_benchmark": "none_available"
   },
   {
     "venue_id": "steveston-tram",
@@ -20533,7 +20544,8 @@
       "cocktail": null,
       "meal": null,
       "coffee": null
-    }
+    },
+    "concession_benchmark": "none_available"
   },
   {
     "venue_id": "richmond-nature-park",
@@ -20632,7 +20644,8 @@
       "cocktail": null,
       "meal": null,
       "coffee": null
-    }
+    },
+    "concession_benchmark": "none_available"
   },
   {
     "venue_id": "westminster-pier-park",
@@ -23401,7 +23414,8 @@
       "coffee": null
     },
     "last_grounded_at": "2026-11-20T14:32:05.373Z",
-    "grounding_source": "google_maps_reviews_ai"
+    "grounding_source": "google_maps_reviews_ai",
+    "concession_benchmark": "none_available"
   },
   {
     "venue_name": "Lynn Valley Village Plaza",
@@ -23468,7 +23482,9 @@
     "spend_benchmarks": {},
     "transit_info": null,
     "last_grounded_at": "2026-11-20T16:30:02.436Z",
-    "grounding_source": "deterministic_heuristics"
+    "grounding_source": "deterministic_heuristics",
+    "concession_benchmark": "none_available",
+    "on_site_fnb": "No commercial concessions inside park; Deep Cove cafes and bakeries steps away on Gallant Ave"
   },
   {
     "venue_name": "Khaghan Persian Restaurant Capilano Mall",
@@ -23830,7 +23846,9 @@
     ],
     "access_model": "fenced_facility",
     "environment_type": "indoor",
-    "venue_type": "museum_gallery"
+    "venue_type": "museum_gallery",
+    "concession_benchmark": "none_available",
+    "on_site_fnb": "No permanent on-site cafe or concessions; Chinatown cafes and bakeries immediately adjacent on E Pender St"
   },
   {
     "venue_name": "St. Thomas Aquinas Regional Secondary School",
@@ -23898,7 +23916,9 @@
     ],
     "access_model": "fenced_facility",
     "environment_type": "indoor",
-    "venue_type": "university_theatre"
+    "venue_type": "university_theatre",
+    "coffee_benchmark": "$3.50 – $5.50 CAD (campus cafeteria & coffee kiosk)",
+    "meal_benchmark": "$10.00 – $15.00 CAD (campus food court)"
   },
   {
     "venue_name": "Welcome Centre at New Westminster Secondary School",
@@ -23936,7 +23956,9 @@
     ],
     "access_model": "fenced_facility",
     "environment_type": "indoor",
-    "venue_type": "church_hall"
+    "venue_type": "church_hall",
+    "concession_benchmark": "none_available",
+    "on_site_fnb": "No commercial concessions on site; occasional community bake sales or tea during church events"
   },
   {
     "venue_name": "Ladner Pioneer Library",

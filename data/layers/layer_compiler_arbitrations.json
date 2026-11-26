@@ -1764,19 +1764,19 @@
     "updatedAt": "2026-11-20T15:29:25.258Z"
   },
   "centennial-theatre-come-try-ringette-free-2026-11-29": {
-    "sig": "date mismatch between schedule (2026-11-29) and box office (2026-11-01)::",
+    "sig": "date mismatch between schedule (2026-12-05) and box office (2026-11-01)::",
     "decision": {
       "clean_title": "Come Try Ringette",
       "artist": null,
       "lineup": [],
-      "date": "2026-11-29",
-      "start_time": null,
+      "date": "2026-12-05",
+      "start_time": "10:45 AM",
       "doors_time": null,
       "is_sold_out": false,
       "category": "sports",
-      "arbitration_reasoning": "Resolved date to 2026-11-29 matching the canonical event ID and upcoming schedule harvester, dismissing the past 2026-11-01 box office artifact."
+      "arbitration_reasoning": "Arbitrated date to the upcoming active schedule layer showing (2026-12-05 10:45 AM) over the stale/past November 1 date, retaining free admission and editorial sports categorization."
     },
-    "updatedAt": "2026-11-20T15:29:25.258Z"
+    "updatedAt": "2026-11-25T23:47:48.596Z"
   },
   "monova-museum-of-nor-sensory-friendly-sunday-2026-11-21": {
     "sig": "title mismatch between schedule (\"Sensory Friendly Sunday\") and box office (\"Sensory Friendly Sundays\")|date mismatch between schedule (2026-11-21) and box office (2026-05-17)::",
@@ -2387,9 +2387,9 @@
     "updatedAt": "2026-11-24T00:27:19.154Z"
   },
   "celebrities-nightclu-tickets-for-for-real-fridays-h-2026-12-23": {
-    "sig": "title mismatch between schedule (\"Tickets for FOR REAL FRIDAYS: HOLID4YS | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for FOR REAL FRIDAYS: HOLID4YS | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "sig": "title mismatch between schedule (\"For Real Fridays: Holidays\") and box office (\"for FOR REAL FRIDAYS: HOLID4YS | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
     "decision": {
-      "clean_title": "FOR REAL FRIDAYS: HOLID4YS",
+      "clean_title": "For Real Fridays: Holid4ys",
       "artist": null,
       "lineup": [],
       "date": "2026-12-23",
@@ -2397,9 +2397,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Stripped ticketing portal noise ('Tickets for', 'TicketWeb', venue, city) from both schedule and box office titles to extract the canonical event title 'FOR REAL FRIDAYS: HOLID4YS', while preserving verified 10:00 PM start time and active admission status."
+      "arbitration_reasoning": "Selected the cleaned title 'For Real Fridays: Holid4ys' reconciling the editorial and event naming while stripping the TicketWeb platform page scaffolding from the raw box office title string."
     },
-    "updatedAt": "2026-11-24T00:27:19.154Z"
+    "updatedAt": "2026-11-25T23:47:48.596Z"
   },
   "celebrities-nightclu-tickets-for-for-real-fridays-t-2026-12-04": {
     "sig": "title mismatch between schedule (\"Tickets for FOR REAL FRIDAYS | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for FOR REAL FRIDAYS | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
@@ -2432,9 +2432,9 @@
     "updatedAt": "2026-11-24T00:27:19.154Z"
   },
   "celebrities-nightclu-tickets-for-crystallize-legacy-2026-12-03": {
-    "sig": "title mismatch between schedule (\"Tickets for CRYSTALLIZE: LEGACY | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for CRYSTALLIZE: LEGACY | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "sig": "title mismatch between schedule (\"Crystallize: Legacy\") and box office (\"for CRYSTALLIZE: LEGACY | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
     "decision": {
-      "clean_title": "CRYSTALLIZE: LEGACY",
+      "clean_title": "Crystallize: Legacy",
       "artist": null,
       "lineup": [],
       "date": "2026-12-03",
@@ -2442,14 +2442,14 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Stripped TicketWeb page artifacts ('Tickets for', 'for', and venue/city boilerplate) to extract the canonical event title 'CRYSTALLIZE: LEGACY', while adopting the verified 9:00 PM start time and confirming inventory availability from the live box office layer."
+      "arbitration_reasoning": "Adopted 'Crystallize: Legacy' from the seed, schedule, and editorial layers, stripping the TicketWeb platform boilerplate from the raw box office title while retaining the verified $14.85 GA tier."
     },
-    "updatedAt": "2026-11-24T00:27:19.154Z"
+    "updatedAt": "2026-11-25T23:47:48.596Z"
   },
   "celebrities-nightclu-tickets-for-vice-city-ticketwe-2026-11-26": {
-    "sig": "title mismatch between schedule (\"Tickets for VICE CITY | TicketWeb - Celebrities Nightclub in Vancouver, CA\") and box office (\"for VICE CITY | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
+    "sig": "title mismatch between schedule (\"Vice City\") and box office (\"for VICE CITY | TicketWeb - Celebrities Nightclub in Vancouver, CA\")::",
     "decision": {
-      "clean_title": "VICE CITY",
+      "clean_title": "Vice City",
       "artist": null,
       "lineup": [],
       "date": "2026-11-26",
@@ -2457,9 +2457,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Stripped TicketWeb boilerplates ('Tickets for', 'for', and venue suffix) from schedule and box office titles to isolate the authentic show title 'VICE CITY', validated available GA Tier 2 inventory at $17.01 CAD, and confirmed start time from the box office layer."
+      "arbitration_reasoning": "Adopted the concise canonical title 'Vice City' from the seed, schedule, and editorial layers, discarding the scrape artifact page title suffix from the box office layer."
     },
-    "updatedAt": "2026-11-24T00:27:19.154Z"
+    "updatedAt": "2026-11-25T23:47:48.596Z"
   },
   "the-pearl-canyon-riders-blue-highway-alb-2026-11-28": {
     "sig": "title mismatch between schedule (\"Canyon Riders \"Blue Highway\" Album Release Show w/ Nine Narrows, and The Time We Died\") and box office (\"Canyon Riders \"Blue Highway\" Album Release Show\")::",
@@ -2480,7 +2480,7 @@
     "updatedAt": "2026-11-24T00:27:19.154Z"
   },
   "van50-pendulum-gallery": {
-    "sig": "category disagreement across layers (social vs free-public-access)::Pendulum Gallery at 885 West Georgia Street is 100% free public admission ($0.00 CAD) with no tickets required, open Mon-Wed 9am-6pm, Thu-Fri 9am-9pm, Sat 9am-5pm.",
+    "sig": "category disagreement across layers (arts vs free-public-access)::Pendulum Gallery at 885 West Georgia Street is 100% free public admission ($0.00 CAD) with no tickets required, open Mon-Wed 9am-6pm, Thu-Fri 9am-9pm, Sat 9am-5pm.",
     "decision": {
       "clean_title": "Pendulum Gallery (Kinetic Art & Exhibitions)",
       "artist": "Andrew James McKay",
@@ -2492,10 +2492,10 @@
       "start_time": null,
       "doors_time": null,
       "is_sold_out": false,
-      "category": "free-public-access",
-      "arbitration_reasoning": "Resolved category to free-public-access and verified is_sold_out as false following Tier 1 Curator supreme authority and grounded venue access model confirming 100% free public admission with no tickets required."
+      "category": "arts",
+      "arbitration_reasoning": "Classified under 'arts' to reflect its primary cultural exhibition function while honoring curator mandate and box office layers confirming free public admission ($0.00 CAD)."
     },
-    "updatedAt": "2026-11-24T00:28:47.319Z"
+    "updatedAt": "2026-11-25T23:47:48.596Z"
   },
   "stanley-park-seawall-rose-garden": {
     "sig": "title mismatch between schedule (\"Stanley Park\") and box office (\"Stanley Park Seawall & Rose Garden Promenade\")::[DISAPPROVED] Change the name to Stanley Park",
@@ -4054,7 +4054,7 @@
     "updatedAt": "2026-11-25T20:31:18.896Z"
   },
   "the-pearl-shrek-rave-at-the-pearl-vancou-2027-02-06": {
-    "sig": "title mismatch between schedule (\"Shrek Rave at The Pearl, Vancouver\") and box office (\"Shrek Rave\")::",
+    "sig": "title mismatch between schedule (\"Shrek Rave at The Pearl, Vancouver\") and box office (\"Shrek Rave\")::Screenshot proof attached: Shrek Rave ($28.41 CAD).",
     "decision": {
       "clean_title": "Shrek Rave",
       "artist": null,
@@ -4064,9 +4064,9 @@
       "doors_time": null,
       "is_sold_out": false,
       "category": "music",
-      "arbitration_reasoning": "Stripped redundant venue and city suffixes from the schedule title in favor of the clean event name confirmed by both box office and editorial layers."
+      "arbitration_reasoning": "Adopted 'Shrek Rave' per Tier 1 Curator supreme authority and clean editorial/box office evidence, stripping redundant venue and city suffixes from the schedule title."
     },
-    "updatedAt": "2026-11-25T20:31:18.896Z"
+    "updatedAt": "2026-11-25T23:47:48.596Z"
   },
   "cloverdale-rodeo-application-rider-tryouts-for-2027-11-09": {
     "sig": "date mismatch between schedule (2027-11-09) and box office (2026-11-09)::Not worthy of its own festival category",

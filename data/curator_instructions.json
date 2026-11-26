@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-11-24T14:54:45.674018+00:00",
-    "pendingCount": 1,
+    "updatedAt": "2026-11-25T23:45:00.000Z",
+    "pendingCount": 0,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements.",
     "totalInstructions": 78
   },
@@ -4124,7 +4124,7 @@
     {
       "id": "inst_1795532085579",
       "createdAt": "2026-11-24T14:54:45.579844+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "cloverdale-rodeo-and-country-fair",
       "eventTitle": "Venue: Cloverdale Rodeo and Country Fair",
       "venueName": "Cloverdale Rodeo and Country Fair",
@@ -4134,10 +4134,11 @@
       "screenshotPaths": [],
       "hasScreenshot": false,
       "screenshotCount": 0,
-      "actionTaken": "queue_only",
-      "curatorNote": "",
+      "actionTaken": "removed_festival_category_and_archived_tryout",
+      "curatorNote": "Removed cloverdale-rodeo-country-fair from FESTIVAL_REGISTRY in js/app.js and archived the rider tryout application listing (cloverdale-rodeo-application-rider-tryouts-for-2027-11-09).",
       "targetScraperOrEngine": "UniversalVenueCrawler",
       "aiLearned": true,
+      "resolvedAt": "2026-11-25T23:45:00.000Z",
       "distilledRules": {
         "venueName": "Cloverdale Rodeo and Country Fair",
         "category": "shows",

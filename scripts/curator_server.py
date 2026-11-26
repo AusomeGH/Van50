@@ -2346,7 +2346,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
             "font-src 'self' https://fonts.gstatic.com data:; "
             "img-src 'self' data: https:; "
-            "connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://van50.goatcounter.com; "
+            "connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://script.google.com https://script.googleusercontent.com https://van50.goatcounter.com; "
             "frame-src 'self'; "
             "frame-ancestors 'self'; "
             "object-src 'none'; "

@@ -8368,16 +8368,21 @@ window.fetchSheetSubmissions = async function (silent = false) {
     try { data = JSON.parse(text); } catch (_) { }
     if (!res.ok || !data || !data.success) {
       state.sheetSubmissionsNeedsRedeploy = true;
+      state.sheetSubmissionsLastError = (data && data.error) || `HTTP ${res.status}: Update your Google Apps Script deployment to a New Version so doGet() is active.`;
+      if (!silent) showToast(`Google Sheet sync failed: ${state.sheetSubmissionsLastError}`, 'error');
+      if (state.activeFilter === 'user_feedback' && typeof renderUserFeedbackCards === 'function') renderUserFeedbackCards();
       return {
         feedback: [],
         priceUpdates: [],
         needsRedeploy: true,
-        error: (data && data.error) || 'Update your Google Apps Script deployment to a New Version so doGet() is active.'
+        error: state.sheetSubmissionsLastError
       };
     }
     state.sheetFeedback = Array.isArray(data.feedback) ? data.feedback : [];
     state.sheetPriceUpdates = Array.isArray(data.priceUpdates) ? data.priceUpdates : [];
     state.sheetSubmissionsNeedsRedeploy = false;
+    state.sheetSubmissionsLastError = null;
+    state.sheetSubmissionsLastSyncedAt = new Date().toISOString();
     const totalCount = (state.userFeedbackQueue || []).length + state.sheetFeedback.length + state.sheetPriceUpdates.length;
     const badge = document.getElementById('collected-feedback-count');
     if (badge) badge.textContent = String(totalCount);
@@ -8387,7 +8392,10 @@ window.fetchSheetSubmissions = async function (silent = false) {
     return { feedback: state.sheetFeedback, priceUpdates: state.sheetPriceUpdates, error: null };
   } catch (err) {
     state.sheetSubmissionsNeedsRedeploy = true;
-    return { feedback: [], priceUpdates: [], needsRedeploy: true, error: String(err) };
+    state.sheetSubmissionsLastError = String(err);
+    if (!silent) showToast(`Google Sheet sync error: ${state.sheetSubmissionsLastError}`, 'error');
+    if (state.activeFilter === 'user_feedback' && typeof renderUserFeedbackCards === 'function') renderUserFeedbackCards();
+    return { feedback: [], priceUpdates: [], needsRedeploy: true, error: state.sheetSubmissionsLastError };
   }
 };
 
@@ -8554,7 +8562,7 @@ function renderUserFeedbackCards() {
           🛡️ Community Feedback, Suggestions &amp; Price Reports (${totalCount})
         </h4>
         <span style="font-size: 0.78rem; color: var(--curator-text-muted);">
-          Local quarantine queue + live Google Sheet submissions. Local price reports are also in Master Catalogs → Crowdsourced Prices.
+          Local quarantine queue + live Google Sheet submissions.${state.sheetSubmissionsLastSyncedAt ? ` Last synced: ${escapeHtml(new Date(state.sheetSubmissionsLastSyncedAt).toLocaleString())}.` : ''} Local price reports are also in Master Catalogs → Crowdsourced Prices.
         </span>
       </div>
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
@@ -8568,7 +8576,8 @@ function renderUserFeedbackCards() {
     </div>
     ${state.sheetSubmissionsNeedsRedeploy ? `
       <div style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.8rem; color: #fde68a; line-height: 1.45;">
-        <strong>Google Sheet sync note:</strong> Live GitHub Pages submissions write to your Google Sheet, but reading rows back into Curator Mode requires deploying a New Version of <code>scripts/google_apps_script_submissions.gs</code> with <code>doGet()</code> enabled (<strong>Deploy → Manage deployments → Edit → Version: New version → Deploy</strong>).
+        <strong>Google Sheet sync issue:</strong> ${escapeHtml(state.sheetSubmissionsLastError || 'Unable to read rows from Google Apps Script.')}<br>
+        If <code>doGet()</code> is not yet active, deploy a New Version of <code>scripts/google_apps_script_submissions.gs</code> (<strong>Deploy → Manage deployments → Edit → Version: New version → Deploy</strong>).
       </div>
     ` : ''}
   `;

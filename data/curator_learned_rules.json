@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.2.0",
-    "updatedAt": "2026-11-24T07:54:45-07:00",
+    "updatedAt": "2026-11-25T23:43:29.552Z",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {},
@@ -717,7 +717,25 @@
     "olympic-village-stag-louisa-may-alcott-s-little-wom-2027-02-16",
     "coquitlam-public-lib-coquitlam-practical-philosophy-2026-11-24",
     "asia-pacific-hall-sf-2026-sterling-prize-ceremony-a-2026-11-25",
-    "alex-house-tea-amp-chat-alex-house-2026-12-16"
+    "alex-house-tea-amp-chat-alex-house-2026-12-16",
+    "the-shipyards-spirit-of-the-season-festival-2026-11-28",
+    "simon-fraser-univers-phd-information-session-2026-11-27",
+    "simon-fraser-univers-business-management-certificat-2026-11-25",
+    "simon-fraser-univers-first-responders-trauma-preven-2026-11-26",
+    "simon-fraser-univers-technical-communication-certif-2027-01-05",
+    "simon-fraser-univers-plain-language-certificate-inf-2027-01-06",
+    "simon-fraser-univers-public-relations-certificate-i-2027-01-07",
+    "simon-fraser-univers-editing-certificate-info-sessi-2027-01-08",
+    "simon-fraser-univers-career-development-practitione-2027-01-13",
+    "simon-fraser-univers-evaluation-certificate-info-se-2027-02-04",
+    "simon-fraser-univers-vocational-rehabilitation-and-2027-02-09",
+    "simon-fraser-univers-dialogue-and-civic-engagement-2027-02-17",
+    "simon-fraser-univers-non-profit-management-certific-2027-02-18",
+    "simon-fraser-univers-restorative-justice-certificat-2027-03-03",
+    "simon-fraser-univers-sfu-history-graduate-informati-2026-11-25",
+    "new-westminster-publ-resume-clinic-with-bcnsp-2026-12-03",
+    "touchstone-theatre-1-touchstone-s-1-hour-agm-micro-2026-12-09",
+    "cloverdale-rodeo-application-rider-tryouts-for-2027-11-09"
   ],
   "venue_policy_rules": {
     "Pizzeria Ludica": {

@@ -511,7 +511,19 @@ export function isCannedOrSyntheticDesc(desc, title) {
     /^(?:tickets?\s+(?:on\s+sale|available|checkout)|find\s+event\s+and\s+ticket\s+information|click\s+here\s+for\s+tickets)/i.test(d) ||
     /\btickets,\s*set\s*times,\s*lineup\s*and\s*more\b/i.test(d) ||
     /\bexplore\s+upcoming\s+events\s+happening\s+in\b/i.test(d) ||
-    /\bdiscover\s+upcoming\s+events\s+(?:at|in)\b/i.test(d)
+    /\bdiscover\s+upcoming\s+events\s+(?:at|in)\b/i.test(d) ||
+    /Burnaby Public Library empowers the community/i.test(d) ||
+    /Events range from lectures, seminars and workshops/i.test(d) ||
+    /The digital library's doors are always open/i.test(d) ||
+    /FVRL is the largest public library system/i.test(d) ||
+    /Please note there is a delivery hold, and tickets will be sent out/i.test(d) ||
+    /worlds first customer centric ticketing and discovery engine/i.test(d) ||
+    /Browse the best school activities events in Vancouver/i.test(d) ||
+    /Take a look at our community events calendar/i.test(d) ||
+    /Metro Vancouver hosts and convenes a wide range of activities/i.test(d) ||
+    /It's home to shops, restaurants and various festivals/i.test(d) ||
+    /most spectacular attractions and places to visit including mountains, numerous parks and miles/i.test(d) ||
+    /\|\s*ZOOM\.?$/i.test(d)
   );
 }
 

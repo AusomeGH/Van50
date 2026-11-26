@@ -490,7 +490,8 @@
     "audited_at": "2026-10-30T01:59:34.039Z",
     "source_tool": "tier1_hunter_ai",
     "best_tier": "tier2",
-    "step4_grounded_at": "2026-11-19T18:38:41.424Z"
+    "step4_grounded_at": "2026-11-19T18:38:41.424Z",
+    "dateSchedule": "Mon–Wed 9am–6pm, Thu–Fri 9am–9pm, Sat 9am–5pm (Closed Sun & Stat Holidays)"
   },
   {
     "id": "van50-ruby-haunt-fox-20261211",
@@ -9557,9 +9558,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "surrey-art-gallery-exhibitions-artist-talk",
@@ -9587,9 +9588,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "historic-stewart-farm-homestead-tour",
@@ -9617,9 +9618,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "project-climbing-centre-cloverdale-bouldering",
@@ -9647,9 +9648,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "birdies-and-buckets-pitch-putt-heated-range",
@@ -9677,9 +9678,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "grandview-heights-aquatic-centre-drop-in",
@@ -9707,9 +9708,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "vinoscenti-vineyards-weekend-wine-tasting",
@@ -9737,9 +9738,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "bear-creek-park-gardens-trails-mini-train",
@@ -9767,9 +9768,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": "Bear Creek Lights",
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "redwood-park-giant-sequoia-trails-treehouse",
@@ -9797,9 +9798,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "blackie-spit-crescent-beach-pier-sunset-walk",
@@ -9827,9 +9828,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "green-timbers-urban-forest-trail-walk-nature-centre",
@@ -9857,9 +9858,9 @@
     "candidate_tier1_confidence": 1,
     "lifecycle_type": "perennial_drop_in",
     "festival_affiliation": null,
-    "audited_at": "2026-11-25T20:31:18.896Z",
-    "step1b_audited_at": "2026-11-25T20:31:18.896Z",
-    "step4_grounded_at": "2026-11-25T20:31:18.896Z"
+    "audited_at": "2026-11-25T23:47:48.596Z",
+    "step1b_audited_at": "2026-11-25T23:47:48.596Z",
+    "step4_grounded_at": "2026-11-25T23:47:48.596Z"
   },
   {
     "id": "vandusen-botanical-g-vandusen-festival-of-lights-2026-11-27",
@@ -11173,7 +11174,7 @@
     "region": "Surrey",
     "lifecycle_type": "perennial_drop_in",
     "date": null,
-    "dateSchedule": "Perennial Daily Access (Year-Round)",
+    "dateSchedule": "Daily • Open Public Space",
     "time": null,
     "ticket_url": "https://www.newtonbia.com/program-listings/newton-pop-up-plaza/",
     "details_url": "https://www.newtonbia.com/program-listings/newton-pop-up-plaza/",
@@ -11210,7 +11211,7 @@
     "region": "Surrey",
     "lifecycle_type": "perennial_drop_in",
     "date": null,
-    "dateSchedule": "Perennial Daily Access (Year-Round)",
+    "dateSchedule": "Daily • Dawn to Dusk (Self-Guided)",
     "time": null,
     "ticket_url": "https://www.newtonbia.com/program-listings/newton-art-crawl/",
     "details_url": "https://www.newtonbia.com/program-listings/newton-art-crawl/",
@@ -24755,51 +24756,6 @@
     "step4_grounded_at": "2026-11-19T23:57:47.863Z"
   },
   {
-    "id": "simon-fraser-univers-phd-information-session-2026-11-27",
-    "event_id": "simon-fraser-univers-phd-information-session-2026-11-27",
-    "title": "PhD Information Session",
-    "venue": "Simon Fraser University",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-27",
-    "dateSchedule": "2026-11-27 • 10:30 AM",
-    "time": "10:30 AM",
-    "ticket_url": "https://www.sfu.ca/sca/events---news/events/phd-information-session.html",
-    "details_url": "https://www.sfu.ca/sca/events---news/events/phd-information-session.html",
-    "source_url": "https://www.sfu.ca/sca/events---news/events/phd-information-session.html",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-27",
-        "start_time": "10:30 AM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T01:16:23.598Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.sfu.ca/sca/events---news/events/phd-information-session.html",
-      "tier3_calendar": "https://www.sfu.ca/sca/events---news/events.html",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.sfu.ca/sca.html",
-      "best_tier": "tier2",
-      "best_available": "https://www.sfu.ca/sca/events---news/events/phd-information-session.html"
-    },
-    "step1b_audited_at": "2026-11-20T09:22:54.475Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
     "id": "gateway-theatre-woking-phoenix-2027-03-11",
     "event_id": "gateway-theatre-woking-phoenix-2027-03-11",
     "title": "Woking Phoenix",
@@ -28856,11 +28812,11 @@
     "id": "centennial-theatre-come-try-ringette-free-2026-11-29",
     "event_id": "centennial-theatre-come-try-ringette-free-2026-11-29",
     "title": "Come Try Ringette (Free)",
-    "venue": "Centennial Theatre",
+    "venue": "Karen Magnussen Community Recreation Centre",
     "city": "Vancouver",
     "region": "Vancouver",
-    "date": "2026-11-29",
-    "dateSchedule": "2026-11-29 • 10:45 AM",
+    "date": "2026-12-05",
+    "dateSchedule": "Dec 5 & Dec 12 (2 Showings)",
     "time": "10:45 AM",
     "ticket_url": "https://www.nvrc.ca/centennial-theatre/whats-on",
     "details_url": "https://www.nvrc.ca/notices-events-blog/events-calendar",
@@ -28877,11 +28833,21 @@
     "showings": [
       {
         "slot": 1,
-        "date": "2026-11-29",
+        "date": "2026-12-05",
         "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
+        "doors_time": null,
+        "end_time": "11:45 AM",
+        "status": "upcoming",
+        "ticket_url": "https://www.nwvra.ca/"
+      },
+      {
+        "slot": 2,
+        "date": "2026-12-12",
+        "start_time": "10:45 AM",
+        "doors_time": null,
+        "end_time": "11:45 AM",
+        "status": "upcoming",
+        "ticket_url": "https://www.nwvra.ca/"
       }
     ],
     "audited_at": "2026-11-20T05:40:27.896Z",
@@ -28895,7 +28861,33 @@
       "best_available": "https://www.nvrc.ca/notices-events-blog/events-calendar"
     },
     "step1b_audited_at": "2026-11-20T10:01:55.951Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
+    "step4_grounded_at": "2026-11-20T13:31:47.298Z",
+    "venue_name": "Karen Magnussen Community Recreation Centre",
+    "start_time": "10:45 AM",
+    "end_time": "11:45 AM",
+    "show_1": {
+      "slot": 1,
+      "date": "2026-12-05",
+      "start_time": "10:45 AM",
+      "doors_time": null,
+      "end_time": "11:45 AM",
+      "status": "upcoming",
+      "ticket_url": "https://www.nwvra.ca/"
+    },
+    "show_2": {
+      "slot": 2,
+      "date": "2026-12-12",
+      "start_time": "10:45 AM",
+      "doors_time": null,
+      "end_time": "11:45 AM",
+      "status": "upcoming",
+      "ticket_url": "https://www.nwvra.ca/"
+    },
+    "show_3": null,
+    "frequencyLabel": "Multi-Date Run (2 Showings)",
+    "merged_from_ids": [
+      "karen-magnussen-comm-come-try-ringette-free-2026-12-05"
+    ]
   },
   {
     "id": "st-john-s-anglican-c-st-john-s-christmas-fair-bake-2026-11-28",
@@ -29354,60 +29346,6 @@
     },
     "step1b_audited_at": "2026-11-20T10:09:02.216Z",
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "karen-magnussen-comm-come-try-ringette-free-2026-12-05",
-    "event_id": "karen-magnussen-comm-come-try-ringette-free-2026-12-05",
-    "title": "Come Try Ringette (Free)",
-    "venue": "Karen Magnussen Community Recreation Centre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-12-05",
-    "dateSchedule": "2026-12-05 • 10:45 AM",
-    "time": "10:45 AM",
-    "ticket_url": "https://www.nvrc.ca/notices-events-blog/events-calendar/come-try-ringette-free",
-    "details_url": "https://www.nvrc.ca/notices-events-blog/events-calendar/come-try-ringette-free",
-    "source_url": "https://www.nvrc.ca/notices-events-blog/events-calendar/come-try-ringette-free",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-05",
-        "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "11:45 AM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2026-12-12",
-        "start_time": "10:45 AM",
-        "doors_time": "none_available",
-        "end_time": "11:45 AM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T06:05:40.231Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.nvrc.ca/notices-events-blog/events-calendar/come-try-ringette-free",
-      "tier3_calendar": "https://www.nvrc.ca/notices-events-blog/events-calendar",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://roundhouse.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.nvrc.ca/notices-events-blog/events-calendar/come-try-ringette-free"
-    },
-    "step1b_audited_at": "2026-11-20T10:09:05.008Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z",
-    "venue_name": "Karen Magnussen Community Recreation Centre"
   },
   {
     "id": "the-blueshore-at-cap-alice-in-winterland-2026-12-01",
@@ -30832,973 +30770,6 @@
       "tier2_event_page": "https://events.sfu.ca/events/"
     },
     "step1b_audited_at": "2026-11-20T10:19:09.242Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-business-management-certificat-2026-11-25",
-    "event_id": "simon-fraser-univers-business-management-certificat-2026-11-25",
-    "title": "Business Management Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-11-25",
-    "dateSchedule": "Nov 25 & Mar 31 (2 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/business%20management",
-    "source_url": "https://events.sfu.ca/all/tags/business%20management",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-25",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-03-31",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T06:52:13.251Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:19:21.019Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:19:21.042Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2026-11-25",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-03-31",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/business-management-certificate-info-session-online-november-25-2026-tickets-1987704014214?aff=livewhale"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "online-event-business-management-certificat-2026-11-25"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-first-responders-trauma-preven-2026-11-26",
-    "event_id": "simon-fraser-univers-first-responders-trauma-preven-2026-11-26",
-    "title": "First Responders Trauma Prevention and Recovery Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2026-11-26",
-    "dateSchedule": "2026-11-26 • 12:00 PM",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/first-responders-trauma-prevention-and-recovery-info-session-nov-26-2026-tickets-1987632167318?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/first%20responders%20trauma%20prevention%20and%20recovery",
-    "source_url": "https://events.sfu.ca/all/tags/first%20responders%20trauma%20prevention%20and%20recovery",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-26",
-        "start_time": "12:00 PM",
-        "doors_time": "none_available",
-        "end_time": "1:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T06:53:31.491Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/first-responders-trauma-prevention-and-recovery-info-session-nov-26-2026-tickets-1987632167318?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:19:28.218Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/first-responders-trauma-prevention-and-recovery-info-session-nov-26-2026-tickets-1987632167318?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/first-responders-trauma-prevention-and-recovery-info-session-nov-26-2026-tickets-1987632167318?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:19:28.236Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-technical-communication-certif-2027-01-05",
-    "event_id": "simon-fraser-univers-technical-communication-certif-2027-01-05",
-    "title": "Technical Communication Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-01-05",
-    "dateSchedule": "Jan 5, Apr 28, Sep 8 & Jan 5 (4 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/technical%20communication",
-    "source_url": "https://events.sfu.ca/all/tags/technical%20communication",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-01-05",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-04-28",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale"
-      },
-      {
-        "slot": 3,
-        "date": "2027-09-08",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale"
-      },
-      {
-        "slot": 4,
-        "date": "2028-01-05",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T06:55:30.763Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:19:39.091Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:19:39.142Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-01-05",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-04-28",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale"
-    },
-    "show_3": {
-      "slot": 3,
-      "date": "2027-09-08",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/technical-communication-certificate-info-session-online-jan-5-2027-tickets-1988114743717?aff=livewhale"
-    },
-    "frequencyLabel": "Multi-Date Run (4 Showings)",
-    "merged_from_ids": [
-      "online-event-technical-communication-certif-2027-01-05"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-plain-language-certificate-inf-2027-01-06",
-    "event_id": "simon-fraser-univers-plain-language-certificate-inf-2027-01-06",
-    "title": "Plain Language Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-01-06",
-    "dateSchedule": "Jan 6, Apr 30, Sep 10 & Jan 6 (4 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/plain%20language",
-    "source_url": "https://events.sfu.ca/all/tags/plain%20language",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-01-06",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-04-30",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale"
-      },
-      {
-        "slot": 3,
-        "date": "2027-09-10",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale"
-      },
-      {
-        "slot": 4,
-        "date": "2028-01-06",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T06:56:51.371Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:19:43.920Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:19:43.942Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-01-06",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-04-30",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale"
-    },
-    "show_3": {
-      "slot": 3,
-      "date": "2027-09-10",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/plain-language-certificate-info-session-online-jan-6-2027-tickets-1988345216066?aff=livewhale"
-    },
-    "frequencyLabel": "Multi-Date Run (4 Showings)",
-    "merged_from_ids": [
-      "online-event-plain-language-certificate-inf-2027-01-06"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-public-relations-certificate-i-2027-01-07",
-    "event_id": "simon-fraser-univers-public-relations-certificate-i-2027-01-07",
-    "title": "Public Relations Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-01-07",
-    "dateSchedule": "Jan 7, Apr 20, Sep 7 & Jan 4 (4 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/public%20relations",
-    "source_url": "https://events.sfu.ca/all/tags/public%20relations",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-01-07",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-04-20",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale"
-      },
-      {
-        "slot": 3,
-        "date": "2027-09-07",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale"
-      },
-      {
-        "slot": 4,
-        "date": "2028-01-04",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T06:57:31.772Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:19:49.547Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:19:49.566Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-01-07",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-04-20",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale"
-    },
-    "show_3": {
-      "slot": 3,
-      "date": "2027-09-07",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/public-relations-certificate-info-session-online-jan-7-2027-tickets-1988342594224?aff=livewhale"
-    },
-    "frequencyLabel": "Multi-Date Run (4 Showings)",
-    "merged_from_ids": [
-      "online-event-public-relations-certificate-i-2027-01-07"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-editing-certificate-info-sessi-2027-01-08",
-    "event_id": "simon-fraser-univers-editing-certificate-info-sessi-2027-01-08",
-    "title": "Editing Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-01-08",
-    "dateSchedule": "Jan 8, Apr 29, Sep 9 & Jan 7 (4 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/editing",
-    "source_url": "https://events.sfu.ca/all/tags/editing",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-01-08",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-04-29",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale"
-      },
-      {
-        "slot": 3,
-        "date": "2027-09-09",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale"
-      },
-      {
-        "slot": 4,
-        "date": "2028-01-07",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T06:58:12.995Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:19:53.764Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:19:53.779Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-01-08",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-04-29",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale"
-    },
-    "show_3": {
-      "slot": 3,
-      "date": "2027-09-09",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/editing-certificate-info-session-online-jan-8-2027-tickets-1988036406408?aff=livewhale"
-    },
-    "frequencyLabel": "Multi-Date Run (4 Showings)",
-    "merged_from_ids": [
-      "online-event-editing-certificate-info-sessi-2027-01-08"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-career-development-practitione-2027-01-13",
-    "event_id": "simon-fraser-univers-career-development-practitione-2027-01-13",
-    "title": "Career Development Practitioner Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-01-13",
-    "dateSchedule": "Jan 13 & Jun 9 (2 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/career%20development%20practitioner",
-    "source_url": "https://events.sfu.ca/all/tags/career%20development%20practitioner",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-01-13",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-06-09",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T06:59:00.641Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:19:58.756Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:19:58.779Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-01-13",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-06-09",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/career-development-practitioner-info-session-online-jan-13-2027-tickets-1987646796073?aff=livewhale"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "online-event-career-development-practitione-2027-01-13"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-evaluation-certificate-info-se-2027-02-04",
-    "event_id": "simon-fraser-univers-evaluation-certificate-info-se-2027-02-04",
-    "title": "Evaluation Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-02-04",
-    "dateSchedule": "Feb 4 & Apr 14 (2 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/evaluation",
-    "source_url": "https://events.sfu.ca/all/tags/evaluation",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-02-04",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-04-14",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T06:59:45.779Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:20:04.073Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:20:04.088Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-02-04",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-04-14",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/evaluation-certificate-info-session-online-feb-4-2027-tickets-1989411038971?aff=livewhale"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "online-event-evaluation-certificate-info-se-2027-02-04"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-vocational-rehabilitation-and-2027-02-09",
-    "event_id": "simon-fraser-univers-vocational-rehabilitation-and-2027-02-09",
-    "title": "Vocational Rehabilitation and Disability Management Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-02-09",
-    "dateSchedule": "2027-02-09 • 12:00 PM",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/vocational-rehabilitation-and-disability-management-info-session-feb-09-tickets-2002978269924?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/vrdm",
-    "source_url": "https://events.sfu.ca/all/tags/vrdm",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-02-09",
-        "start_time": "12:00 PM",
-        "doors_time": "none_available",
-        "end_time": "1:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T07:01:04.122Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/vocational-rehabilitation-and-disability-management-info-session-feb-09-tickets-2002978269924?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:20:10.611Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/vocational-rehabilitation-and-disability-management-info-session-feb-09-tickets-2002978269924?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/vocational-rehabilitation-and-disability-management-info-session-feb-09-tickets-2002978269924?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:20:10.630Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-dialogue-and-civic-engagement-2027-02-17",
-    "event_id": "simon-fraser-univers-dialogue-and-civic-engagement-2027-02-17",
-    "title": "Dialogue and Civic Engagement Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-02-17",
-    "dateSchedule": "2027-02-17 • 12:00 PM",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/dialogue-civic-engagement-program-info-session-online-feb-17-2027-tickets-1985541551229?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/dialogue%20and%20civic%20engagement",
-    "source_url": "https://events.sfu.ca/all/tags/dialogue%20and%20civic%20engagement",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-02-17",
-        "start_time": "12:00 PM",
-        "doors_time": "none_available",
-        "end_time": "1:00 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2027-04-28",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T07:01:44.893Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/dialogue-civic-engagement-program-info-session-online-feb-17-2027-tickets-1985541551229?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:20:14.049Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/dialogue-civic-engagement-program-info-session-online-feb-17-2027-tickets-1985541551229?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/dialogue-civic-engagement-program-info-session-online-feb-17-2027-tickets-1985541551229?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:20:14.074Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-non-profit-management-certific-2027-02-18",
-    "event_id": "simon-fraser-univers-non-profit-management-certific-2027-02-18",
-    "title": "Non-Profit Management Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-02-18",
-    "dateSchedule": "Feb 18 & Jun 9 (2 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/non-profit%20management",
-    "source_url": "https://events.sfu.ca/all/tags/non-profit%20management",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-02-18",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-06-09",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T07:02:24.225Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:20:20.279Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:20:20.292Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-02-18",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-06-09",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/non-profit-management-certificate-info-session-online-feb-18-2027-tickets-1985546787892?aff=livewhale"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "online-event-non-profit-management-certific-2027-02-18"
-    ],
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
-    "id": "simon-fraser-univers-restorative-justice-certificat-2027-03-03",
-    "event_id": "simon-fraser-univers-restorative-justice-certificat-2027-03-03",
-    "title": "Restorative Justice Certificate Info Session (Online)",
-    "venue": "Simon Fraser University",
-    "city": "Burnaby",
-    "region": "Burnaby",
-    "date": "2027-03-03",
-    "dateSchedule": "Mar 3 & Oct 21 (2 Showings)",
-    "time": "12:00 PM",
-    "ticket_url": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale",
-    "details_url": "https://events.sfu.ca/all/tags/restorative%20justice",
-    "source_url": "https://events.sfu.ca/all/tags/restorative%20justice",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2027-03-03",
-        "start_time": "12:00 PM",
-        "doors_time": null,
-        "end_time": "1:00 PM",
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale"
-      },
-      {
-        "slot": 2,
-        "date": "2027-10-21",
-        "start_time": "none_available",
-        "doors_time": null,
-        "end_time": null,
-        "status": "upcoming",
-        "ticket_url": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale"
-      }
-    ],
-    "audited_at": "2026-11-20T07:03:44.386Z",
-    "candidate_tier1_url": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale",
-    "candidate_tier1_source": "dynamic_browser_anchor",
-    "candidate_tier1_staged_at": "2026-11-20T10:20:30.379Z",
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale",
-      "best_available": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale",
-      "best_tier": "tier1",
-      "tier2_event_page": "https://events.sfu.ca/events/"
-    },
-    "step1b_audited_at": "2026-11-20T10:20:30.400Z",
-    "start_time": "12:00 PM",
-    "end_time": "1:00 PM",
-    "show_1": {
-      "slot": 1,
-      "date": "2027-03-03",
-      "start_time": "12:00 PM",
-      "doors_time": null,
-      "end_time": "1:00 PM",
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale"
-    },
-    "show_2": {
-      "slot": 2,
-      "date": "2027-10-21",
-      "start_time": "none_available",
-      "doors_time": null,
-      "end_time": null,
-      "status": "upcoming",
-      "ticket_url": "https://www.eventbrite.ca/e/restorative-justice-certificate-info-session-online-mar-3-2027-tickets-1985540876210?aff=livewhale"
-    },
-    "show_3": null,
-    "frequencyLabel": "Multi-Date Run (2 Showings)",
-    "merged_from_ids": [
-      "online-event-restorative-justice-certificat-2027-03-03"
-    ],
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
@@ -35230,83 +34201,6 @@
     "step4_grounded_at": "2026-11-20T13:31:47.298Z"
   },
   {
-    "id": "new-westminster-publ-resume-clinic-with-bcnsp-2026-12-03",
-    "event_id": "new-westminster-publ-resume-clinic-with-bcnsp-2026-12-03",
-    "title": "Resume Clinic with BCNSP",
-    "venue": "New Westminster Public Library",
-    "city": "New West",
-    "region": "New West",
-    "date": "2026-12-03",
-    "dateSchedule": "2026-12-03 • 1:30 PM",
-    "time": "1:30 PM",
-    "ticket_url": "https://www.nwpl.ca/events/resume-clinic-with-bcnsp-369/",
-    "details_url": "https://www.nwpl.ca/events/resume-clinic-with-bcnsp-369/",
-    "source_url": "https://www.nwpl.ca/events/resume-clinic-with-bcnsp-369/",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "Adults (19+)",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-03",
-        "start_time": "1:30 PM",
-        "doors_time": "none_available",
-        "end_time": "4:30 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "2027-01-07",
-        "start_time": "1:30 PM",
-        "doors_time": "none_available",
-        "end_time": "4:30 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 3,
-        "date": "2027-02-04",
-        "start_time": "1:30 PM",
-        "doors_time": "none_available",
-        "end_time": "4:30 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 4,
-        "date": "2027-03-04",
-        "start_time": "1:30 PM",
-        "doors_time": "none_available",
-        "end_time": "4:30 PM",
-        "status": "upcoming"
-      },
-      {
-        "slot": 5,
-        "date": "2027-04-01",
-        "start_time": "1:30 PM",
-        "doors_time": "none_available",
-        "end_time": "4:30 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-20T08:15:55.831Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.nwpl.ca/events/resume-clinic-with-bcnsp-369/",
-      "tier3_calendar": "https://www.nwpl.ca/events-calendar",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.nwpl.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://www.nwpl.ca/events/resume-clinic-with-bcnsp-369/"
-    },
-    "step1b_audited_at": "2026-11-20T10:52:20.567Z",
-    "step4_grounded_at": "2026-11-20T13:31:47.298Z"
-  },
-  {
     "id": "new-westminster-publ-cantonese-storytime-all-ages-2026-12-07",
     "event_id": "new-westminster-publ-cantonese-storytime-all-ages-2026-12-07",
     "title": "Cantonese Storytime (all ages)",
@@ -37521,7 +36415,7 @@
   {
     "id": "celebrities-nightclu-tickets-for-vice-city-ticketwe-2026-11-26",
     "event_id": "celebrities-nightclu-tickets-for-vice-city-ticketwe-2026-11-26",
-    "title": "Tickets for VICE CITY | TicketWeb - Celebrities Nightclub in Vancouver, CA",
+    "title": "Vice City",
     "venue": "Celebrities Nightclub",
     "city": "Vancouver",
     "region": "Vancouver",
@@ -37667,7 +36561,7 @@
   {
     "id": "celebrities-nightclu-tickets-for-crystallize-legacy-2026-12-03",
     "event_id": "celebrities-nightclu-tickets-for-crystallize-legacy-2026-12-03",
-    "title": "Tickets for CRYSTALLIZE: LEGACY | TicketWeb - Celebrities Nightclub in Vancouver, CA",
+    "title": "Crystallize: Legacy",
     "venue": "Celebrities Nightclub",
     "city": "Vancouver",
     "region": "Vancouver",
@@ -37802,7 +36696,7 @@
   {
     "id": "celebrities-nightclu-tickets-for-for-real-fridays-h-2026-12-23",
     "event_id": "celebrities-nightclu-tickets-for-for-real-fridays-h-2026-12-23",
-    "title": "Tickets for FOR REAL FRIDAYS: HOLID4YS | TicketWeb - Celebrities Nightclub in Vancouver, CA",
+    "title": "For Real Fridays: Holidays",
     "venue": "Celebrities Nightclub",
     "city": "Vancouver",
     "region": "Vancouver",
@@ -42413,51 +41307,6 @@
       "best_available": "https://docs.google.com/forms/d/e/1FAIpQLScTpYiI5v4d2waYyuW-kZrU1ey9_F4P8-uraEOXTKxK8BMjmg/viewform"
     },
     "step1b_audited_at": "2026-11-23T12:46:04.865Z",
-    "step4_grounded_at": "2026-11-25T01:05:42.143Z"
-  },
-  {
-    "id": "touchstone-theatre-1-touchstone-s-1-hour-agm-micro-2026-12-09",
-    "event_id": "touchstone-theatre-1-touchstone-s-1-hour-agm-micro-2026-12-09",
-    "title": "Touchstone's 1-Hour AGM Micro-Party",
-    "venue": "Touchstone Theatre",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-12-09",
-    "dateSchedule": "2026-12-09 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://docs.google.com/forms/d/e/1FAIpQLSdCZVI7EX2p9Wa45kCJE-a_vZYpS73BvLTJUIyYqtC7MOw19w/viewform",
-    "details_url": "https://docs.google.com/forms/d/e/1FAIpQLSdCZVI7EX2p9Wa45kCJE-a_vZYpS73BvLTJUIyYqtC7MOw19w/viewform",
-    "source_url": "https://docs.google.com/forms/d/e/1FAIpQLSdCZVI7EX2p9Wa45kCJE-a_vZYpS73BvLTJUIyYqtC7MOw19w/viewform",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-12-09",
-        "start_time": "7:00 PM",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-23T08:36:56.431Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://docs.google.com/forms/d/e/1FAIpQLSdCZVI7EX2p9Wa45kCJE-a_vZYpS73BvLTJUIyYqtC7MOw19w/viewform",
-      "tier3_calendar": "https://touchstonetheatre.com/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://touchstonetheatre.com/",
-      "best_tier": "tier2",
-      "best_available": "https://docs.google.com/forms/d/e/1FAIpQLSdCZVI7EX2p9Wa45kCJE-a_vZYpS73BvLTJUIyYqtC7MOw19w/viewform"
-    },
-    "step1b_audited_at": "2026-11-23T12:46:07.457Z",
     "step4_grounded_at": "2026-11-25T01:05:42.143Z"
   },
   {
@@ -47630,51 +46479,6 @@
     "step4_grounded_at": "2026-11-25T01:05:42.143Z"
   },
   {
-    "id": "simon-fraser-univers-sfu-history-graduate-informati-2026-11-25",
-    "event_id": "simon-fraser-univers-sfu-history-graduate-informati-2026-11-25",
-    "title": "SFU History Graduate Information Session",
-    "venue": "Simon Fraser University",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2026-11-25",
-    "dateSchedule": "2026-11-25 • 12:00 PM",
-    "time": "12:00 PM",
-    "ticket_url": "https://events.sfu.ca/event/51194-sfu-history-graduate-information-session",
-    "details_url": "https://events.sfu.ca/event/51194-sfu-history-graduate-information-session",
-    "source_url": "https://events.sfu.ca/event/51194-sfu-history-graduate-information-session",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-25",
-        "start_time": "12:00 PM",
-        "doors_time": "none_available",
-        "end_time": "1:00 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-24T18:48:54.331Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://events.sfu.ca/event/51194-sfu-history-graduate-information-session",
-      "tier3_calendar": "https://events.sfu.ca/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.sfu.ca/",
-      "best_tier": "tier2",
-      "best_available": "https://events.sfu.ca/event/51194-sfu-history-graduate-information-session"
-    },
-    "step1b_audited_at": "2026-11-24T22:25:44.212Z",
-    "step4_grounded_at": "2026-11-25T01:05:42.143Z"
-  },
-  {
     "id": "simon-fraser-univers-research-support-sessions-inte-2026-11-25",
     "event_id": "simon-fraser-univers-research-support-sessions-inte-2026-11-25",
     "title": "Research Support Sessions - International Collaborations & Research Opportunities",
@@ -48245,51 +47049,6 @@
     "step4_grounded_at": "2026-11-25T01:05:42.143Z"
   },
   {
-    "id": "the-shipyards-spirit-of-the-season-festival-2026-11-28",
-    "event_id": "the-shipyards-spirit-of-the-season-festival-2026-11-28",
-    "title": "Spirit of the Season Festival",
-    "venue": "The Shipyards",
-    "city": "Vancouver",
-    "region": "Vancouver",
-    "date": "2026-11-28",
-    "dateSchedule": "2026-11-28 • none_available",
-    "time": "none_available",
-    "ticket_url": "https://vancouversbestplaces.com/vancouver-weekend-events",
-    "details_url": "https://vancouversbestplaces.com/vancouver-weekend-events",
-    "source_url": "https://vancouversbestplaces.com/vancouver-weekend-events",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-11-28",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-24T19:18:26.682Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://www.cnv.org/SpiritOfTheSeason",
-      "tier3_calendar": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
-      "tier4_civic_destination": "https://vancouversbestplaces.com/events-calendar/vancouver-weekend-events/",
-      "tier5_venue_home": "https://www.cnv.org/Shipyards",
-      "best_tier": "tier2",
-      "best_available": "https://www.cnv.org/SpiritOfTheSeason"
-    },
-    "step1b_audited_at": "2026-11-24T22:32:26.685Z",
-    "step4_grounded_at": "2026-11-25T01:05:42.143Z"
-  },
-  {
     "id": "chan-centre-for-the-early-music-vancouver-a-french-2026-12-04",
     "event_id": "chan-centre-for-the-early-music-vancouver-a-french-2026-12-04",
     "title": "Early Music Vancouver – A French Baroque Christmas with Ensemble Correspondances",
@@ -48471,67 +47230,6 @@
     ],
     "audited_at": "2026-11-24T19:27:29.166Z",
     "step1b_audited_at": "2026-11-24T22:35:17.834Z",
-    "step4_grounded_at": "2026-11-25T01:05:42.143Z"
-  },
-  {
-    "id": "cloverdale-rodeo-application-rider-tryouts-for-2027-11-09",
-    "event_id": "cloverdale-rodeo-application-rider-tryouts-for-2027-11-09",
-    "title": "APPLICATION: Rider Tryouts for Cloverdale Rodeo Cowgirl Team",
-    "venue": "Cloverdale Rodeo and Country Fair",
-    "city": "Surrey",
-    "region": "Surrey",
-    "date": "2027-11-09",
-    "dateSchedule": "November 9 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://docs.google.com/forms/d/e/1FAIpQLSePvd88bC4wH8IchKTcE3QzjDw3-6vpsq81cIbca7cvhSHGZQ/viewform",
-    "details_url": "https://docs.google.com/forms/d/e/1FAIpQLSePvd88bC4wH8IchKTcE3QzjDw3-6vpsq81cIbca7cvhSHGZQ/viewform",
-    "source_url": "https://docs.google.com/forms/d/e/1FAIpQLSePvd88bC4wH8IchKTcE3QzjDw3-6vpsq81cIbca7cvhSHGZQ/viewform",
-    "description": null,
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": "All Ages",
-    "price": 0,
-    "price_base": 0,
-    "price_fee": 0,
-    "price_all_in": 0,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "November 9",
-        "start_time": "7:00 PM",
-        "doors_time": "6:30 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      },
-      {
-        "slot": 2,
-        "date": "November 16",
-        "start_time": "7:00 PM",
-        "doors_time": "6:30 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      },
-      {
-        "slot": 3,
-        "date": "November 23",
-        "start_time": "7:00 PM",
-        "doors_time": "6:30 PM",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-11-24T19:56:08.051Z",
-    "links": {
-      "tier1_checkout": null,
-      "tier2_event_page": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/",
-      "tier3_calendar": "https://cloverdalerodeo.com/news-events/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://cloverdalerodeo.com/",
-      "best_tier": "tier2",
-      "best_available": "https://cloverdalerodeo.com/2026/10/30/cloverdale-rodeo-grand-entry-team-applications-now-open/"
-    },
-    "step1b_audited_at": "2026-11-24T22:34:13.665Z",
     "step4_grounded_at": "2026-11-25T01:05:42.143Z"
   },
   {

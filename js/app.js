@@ -454,17 +454,6 @@ window.FESTIVAL_REGISTRY = window.FESTIVAL_REGISTRY || {
     officialUrl: "https://www.surrey.ca/news-events/events/bear-creek-lights",
     officialLabel: "Official Bear Creek Lights Info ↗"
   },
-  "cloverdale-rodeo-country-fair": {
-    id: "cloverdale-rodeo-country-fair",
-    label: "Cloverdale Rodeo & Country Fair",
-    icon: "🤠",
-    datesLabel: "Victoria Day Long Weekend in May",
-    shortDesc: "Historic country fair, midway rides, live music stages, pro skateboarding & rodeo in Cloverdale ($15 CAD).",
-    longDesc: "One of Western Canada's longest-running traditions at the Cloverdale Fairgrounds, featuring country fair exhibits, live music, food trucks, outdoor stages, and championship rodeo events ($15 CAD gate admission).",
-    venues: "Cloverdale Fairgrounds (Cloverdale, Surrey)",
-    officialUrl: "https://www.cloverdalerodeo.com",
-    officialLabel: "Official Cloverdale Rodeo Site ↗"
-  },
   "surrey-fusion-festival": {
     id: "surrey-fusion-festival",
     label: "Surrey Fusion Festival",
@@ -5448,6 +5437,9 @@ function applyFiltersAndRender() {
 
   state.expiredCount = expiredCount;
   window.currentActiveCatalog = activeCatalog;
+  if (typeof pruneStaleSavedEvents === 'function') {
+    pruneStaleSavedEvents(activeCatalog);
+  }
 
   const spotlightSig = [
     activeCatalog.length,
@@ -8789,7 +8781,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
 
         ${filmReviewsHtml}
 
-        <p class="card-desc">${escapeHtml(ev.description || ('Live music and performance at ' + (ev.venue || 'Vancouver')))}</p>
+        ${ev.description ? `<p class="card-desc">${escapeHtml(ev.description)}</p>` : ''}
 
         ${contentAdvisoryHtml}
 
@@ -8876,6 +8868,42 @@ function resetAllFilters() {
 // 6. ITINERARY DRAWER & STATE PERSISTENCE
 // ==============================================================================
 
+function getActiveSavedCatalog(catalogOverride) {
+  if (Array.isArray(catalogOverride) && catalogOverride.length > 0) return catalogOverride;
+  if (Array.isArray(window.currentActiveCatalog) && window.currentActiveCatalog.length > 0) return window.currentActiveCatalog;
+  return Array.isArray(ALL_EVENTS) ? ALL_EVENTS : [];
+}
+
+function getActiveSavedEvents(catalogOverride) {
+  const pool = getActiveSavedCatalog(catalogOverride);
+  return pool.filter(ev => ev && state.savedEvents.has(ev.id));
+}
+
+function pruneStaleSavedEvents(catalogOverride) {
+  const pool = getActiveSavedCatalog(catalogOverride);
+  if (!pool.length || !state.savedEvents || state.savedEvents.size === 0) {
+    updateItineraryBadge();
+    return 0;
+  }
+  const activeIds = new Set(pool.map(ev => ev && ev.id).filter(Boolean));
+  let removed = 0;
+  Array.from(state.savedEvents).forEach(id => {
+    if (!activeIds.has(id)) {
+      state.savedEvents.delete(id);
+      if (state.expandedSavedEvents) state.expandedSavedEvents.delete(id);
+      removed++;
+    }
+  });
+  if (removed > 0) {
+    persistSavedState();
+    updateItineraryBadge();
+    renderItinerary();
+  } else {
+    updateItineraryBadge();
+  }
+  return removed;
+}
+
 function loadSavedState() {
   try {
     const raw = localStorage.getItem('van50_saved');
@@ -8883,7 +8911,7 @@ function loadSavedState() {
       const arr = JSON.parse(raw);
       if (Array.isArray(arr)) {
         state.savedEvents = new Set(arr);
-        updateItineraryBadge();
+        pruneStaleSavedEvents();
       }
     }
   } catch (e) { }
@@ -8936,7 +8964,7 @@ window.toggleSaveEvent = function (eventId) {
 function updateItineraryBadge() {
   const badge = document.getElementById('itinerary-count');
   const btn = document.getElementById('itinerary-btn');
-  const count = state.savedEvents.size;
+  const count = getActiveSavedEvents().length;
   if (badge) {
     badge.textContent = count;
     badge.classList.toggle('has-saved', count > 0);
@@ -8953,7 +8981,7 @@ function renderItinerary() {
   const sharePlanBtn = document.getElementById('share-plan-btn');
   const copyPlanLinkBtn = document.getElementById('copy-plan-link-btn');
   const clearPlanBtn = document.getElementById('clear-plan-btn');
-  const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
+  const savedList = getActiveSavedEvents();
   const currentSavedCount = savedList.length;
   if (sharePlanBtn) sharePlanBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
   if (copyPlanLinkBtn) copyPlanLinkBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
