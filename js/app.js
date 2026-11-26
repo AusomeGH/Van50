@@ -2485,7 +2485,7 @@ function setupEventListeners() {
         window.toggleShowings(actionEl.getAttribute('data-event-id') || '', e, actionEl);
         return true;
       case 'card-accordion':
-        window.toggleMobileCardAccordion(actionEl.getAttribute('data-event-id') || '', e);
+        window.toggleMobileCardAccordion(actionEl.getAttribute('data-event-id') || '', e, actionEl);
         return true;
       case 'open-access-modal':
         if (e) e.stopPropagation();
@@ -8543,7 +8543,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
     : escapeHtml(accessInfo.badgeIcon || '♿');
 
   return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${safeCatThemeKey}" data-scroll-date="${escapeHtml(topDate.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFull)}" data-bucket-key="${safeBucketAttr}" ${(isSavedDrawerCard || isMapIwCard) ? '' : `data-action="card-accordion" data-event-id="${safeEventId}"`}>
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''} ${extraCardClasses}" id="${cardDomId}" data-cat-theme="${safeCatThemeKey}" data-scroll-date="${escapeHtml(topDate.badgeText)}" data-scroll-day="${escapeHtml(scrollDayFull)}" data-bucket-key="${safeBucketAttr}" ${isSavedDrawerCard ? `data-action="toggle-saved-expand" data-event-id="${safeEventId}"` : (isMapIwCard ? '' : `data-action="card-accordion" data-event-id="${safeEventId}"`)}>
         <!-- Mobile 2-Line Compact Header (<= 768px) -->
         <div class="mobile-card-compact-header" tabindex="0" aria-expanded="${isPersistedExpanded ? 'true' : 'false'}">
           <div class="mobile-card-row-1">
@@ -9001,8 +9001,19 @@ function renderItinerary() {
 }
 
 window.toggleSavedCardExpand = function (eventId, domEv) {
-  if (domEv) {
-    if (domEv.target && domEv.target.closest('.btn-remove-item')) return;
+  if (domEv && domEv.target) {
+    if (domEv.target.closest('.btn-remove-item')) return;
+    const expandedWrap = domEv.target.closest('.itinerary-expanded-card-wrap');
+    if (expandedWrap) {
+      if (typeof window !== 'undefined' && window.getSelection) {
+        const sel = window.getSelection();
+        if (sel && sel.toString().trim().length > 0 && sel.anchorNode && expandedWrap.contains(sel.anchorNode)) {
+          return;
+        }
+      }
+      const interactiveEl = domEv.target.closest('a, button, input, select, textarea, label, [role="button"], .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive, .weekly-hours-summary-row, .showings-summary-row');
+      if (interactiveEl) return;
+    }
     domEv.preventDefault();
     domEv.stopPropagation();
   }
@@ -10131,13 +10142,20 @@ window.hydrateLazyEventCardBody = function (cardEl, eventId) {
   detailsEl.removeAttribute('data-lazy-body');
 };
 
-window.toggleMobileCardAccordion = function (eventId, evObj) {
-  // Prevent accidental collapse when user is highlighting/selecting text inside the card
-  if (typeof window !== 'undefined' && window.getSelection && window.getSelection().toString().length > 0) {
-    return;
-  }
-  const cardEl = document.getElementById(`card-${eventId}`);
+window.toggleMobileCardAccordion = function (eventId, evObj, explicitCardEl) {
+  const cardEl = (explicitCardEl && explicitCardEl.classList && explicitCardEl.classList.contains('event-card'))
+    ? explicitCardEl
+    : ((evObj && evObj.target && evObj.target.closest) ? evObj.target.closest('.event-card') : null)
+      || document.getElementById(`card-${eventId}`);
   if (!cardEl) return;
+
+  // Prevent accidental collapse ONLY if the user actively highlighted text inside THIS card
+  if (typeof window !== 'undefined' && window.getSelection) {
+    const sel = window.getSelection();
+    if (sel && sel.toString().trim().length > 0 && sel.anchorNode && cardEl.contains(sel.anchorNode)) {
+      return;
+    }
+  }
   if (evObj && evObj.target) {
     const interactiveEl = evObj.target.closest('a, button, input, select, textarea, label, [role="button"], .card-expanded-tiers, .collapsible-hours, .collapsible-showings, .price-box-interactive, .weekly-hours-summary-row, .showings-summary-row');
     if (interactiveEl && interactiveEl !== cardEl && !interactiveEl.classList.contains('mobile-card-compact-header')) {
@@ -10145,18 +10163,19 @@ window.toggleMobileCardAccordion = function (eventId, evObj) {
     }
   }
   if (!state.expandedCardIds) state.expandedCardIds = new Set();
-  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
-  const expandClass = isDesktop ? 'desktop-expanded' : 'mobile-expanded';
-  const willExpand = !cardEl.classList.contains(expandClass);
+  const isCurrentlyExpanded = cardEl.classList.contains('mobile-expanded') || cardEl.classList.contains('desktop-expanded');
+  const willExpand = !isCurrentlyExpanded;
   if (willExpand) {
     window.hydrateLazyEventCardBody(cardEl, eventId);
+    cardEl.classList.add('mobile-expanded', 'desktop-expanded');
+  } else {
+    cardEl.classList.remove('mobile-expanded', 'desktop-expanded');
   }
-  const nowExpanded = cardEl.classList.toggle(expandClass);
   const compactHeader = cardEl.querySelector('.mobile-card-compact-header');
   if (compactHeader) {
-    compactHeader.setAttribute('aria-expanded', nowExpanded ? 'true' : 'false');
+    compactHeader.setAttribute('aria-expanded', willExpand ? 'true' : 'false');
   }
-  if (nowExpanded) state.expandedCardIds.add(eventId);
+  if (willExpand) state.expandedCardIds.add(eventId);
   else state.expandedCardIds.delete(eventId);
 };
 
