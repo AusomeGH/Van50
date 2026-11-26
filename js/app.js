@@ -3607,10 +3607,8 @@ function clearActiveQuickButtons() {
   let activeBtn = null;
   if (minVal === 0 && maxVal === 0) {
     activeBtn = document.getElementById('quick-cost-free');
-  } else if (minVal === 0 && maxVal === 15) {
-    activeBtn = document.getElementById('quick-cost-15');
-  } else if (minVal === 0 && maxVal === 30) {
-    activeBtn = document.getElementById('quick-cost-30');
+  } else if (minVal >= 1 && maxVal === 50) {
+    activeBtn = document.getElementById('quick-cost-paid');
   } else if (minVal === 0 && maxVal === 50) {
     activeBtn = document.getElementById('quick-cost-all');
   }
@@ -4047,10 +4045,10 @@ function renderFestivalSpotlight() {
 
   const activeThemeSummary = state.selectedThemeFilter
     ? (() => {
-        const g = themeGroups.find(x => x.key === state.selectedThemeFilter);
-        const m = g ? getThemeMetadata(g) : null;
-        return m ? `<span class="festival-summary-active-pill">${escapeHtml(m.label)}</span>` : '';
-      })()
+      const g = themeGroups.find(x => x.key === state.selectedThemeFilter);
+      const m = g ? getThemeMetadata(g) : null;
+      return m ? `<span class="festival-summary-active-pill">${escapeHtml(m.label)}</span>` : '';
+    })()
     : '';
 
   container.innerHTML = `
@@ -4319,18 +4317,34 @@ function filterByCategory(catId) {
 window.filterByCategory = filterByCategory;
 
 const QUICK_CATEGORY_ITEMS = [
-  { id: 'all', label: 'All' },
-  { id: 'music', label: 'Music' },
-  { id: 'shows', label: 'Comedy & Stage' },
-  { id: 'cinema', label: 'Cinema' },
-  { id: 'outdoors', label: 'Outdoors' },
-  { id: 'arts', label: 'Arts' },
-  { id: 'social', label: 'Social & Games' },
-  { id: 'markets', label: 'Markets' },
-  { id: 'festivals', label: 'Festivals' },
-  { id: 'sports', label: 'Sports' },
-  { id: 'academic', label: 'Academic' }
+  { id: 'all', label: 'All', color: '#0D6E52', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>' },
+  { id: 'music', label: 'Music', color: '#7C3AED', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>' },
+  { id: 'shows', label: 'Comedy & Stage', color: '#DC2626', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>' },
+  { id: 'cinema', label: 'Cinema', color: '#2563EB', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M17 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>' },
+  { id: 'outdoors', label: 'Outdoors', color: '#15803D', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 5 7h-3l4 6h-3l4 5H5l4-5H6l4-6H7l5-7z"/><path d="M12 20v2"/></svg>' },
+  { id: 'arts', label: 'Arts', color: '#DB2777', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".75" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".75" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".75" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".75" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.6 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6H16c3.3 0 6-2.7 6-6 0-5-4.5-8.6-10-8.6Z"/></svg>' },
+  { id: 'social', label: 'Social & Games', color: '#D97706', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/></svg>' },
+  { id: 'markets', label: 'Markets', color: '#0D9488', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>' },
+  { id: 'festivals', label: 'Festivals', color: '#EA580C', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>' },
+  { id: 'sports', label: 'Sports', color: '#0284C7', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>' },
+  { id: 'academic', label: 'Academic', color: '#4F46E5', icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' }
 ];
+
+const QUICK_CATEGORY_BY_ID = new Map(QUICK_CATEGORY_ITEMS.map(it => [it.id, it]));
+function getCategoryBadgeIconHtml(catId, themeKey) {
+  const aliases = {
+    comedy: 'shows',
+    games: 'social',
+    trivia: 'social',
+    nightlife: 'social',
+    'free-public-access': 'outdoors',
+    family: 'shows'
+  };
+  const key = aliases[catId] || catId || aliases[themeKey] || themeKey || '';
+  const item = QUICK_CATEGORY_BY_ID.get(key) || QUICK_CATEGORY_BY_ID.get(aliases[themeKey] || themeKey);
+  if (!item || !item.icon) return '';
+  return `<span class="card-cat-icon" style="color: ${item.color};" aria-hidden="true">${item.icon}</span>`;
+}
 
 function renderQuickCategoryStrip(poolOverride) {
   const strip = document.getElementById('quick-category-strip');
@@ -4352,13 +4366,12 @@ function renderQuickCategoryStrip(poolOverride) {
         : pool.filter(ev => doesEventMatchCategory(ev, item.id)).length)
       : null;
     const isZero = hasPool && count === 0;
-    btn.className = `quick-cat-pill ${isActive ? 'active' : ''}${isZero ? ' is-empty-cat' : ''}`;
+    btn.className = `quick-cat-pill ${item.id === 'all' ? 'quick-cat-all ' : ''}${isActive ? 'active' : ''}${isZero ? ' is-empty-cat' : ''}`;
     btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    if (count !== null) {
-      btn.innerHTML = `<span class="quick-cat-label">${escapeHtml(item.label)}</span><span class="quick-cat-count">${Number(count) || 0}</span>`;
-    } else {
-      btn.textContent = item.label;
-    }
+    if (item.color) btn.style.setProperty('--quick-cat-color', item.color);
+    const iconHtml = item.icon ? `<span class="quick-cat-icon">${item.icon}</span>` : '';
+    const countHtml = count !== null ? `<span class="quick-cat-count">${Number(count) || 0}</span>` : '';
+    btn.innerHTML = `<span class="quick-cat-left">${iconHtml}<span class="quick-cat-label">${escapeHtml(item.label)}</span></span>${countHtml}`;
     btn.addEventListener('click', () => {
       state.category = (item.id !== 'all' && state.category === item.id) ? 'all' : item.id;
       renderCategoryPills();
@@ -7957,7 +7970,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
             </div>
           </div>
           <div class="mobile-card-row-2">
-            <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterIdC}" title="Click to filter by ${safeCatLabelC}">${safeCatLabelC}</button>
+            <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterIdC}" title="Click to filter by ${safeCatLabelC}">${getCategoryBadgeIconHtml(catMetaC.filterId, catMetaC.themeKey)}<span>${safeCatLabelC}</span></button>
             ${row2ContextPillHtmlC}
             <span class="mobile-card-meta-text">${escapeHtml(row2VenueMetaTextC)}</span>
             <span class="mobile-card-chevron" aria-hidden="true">▾</span>
@@ -8569,7 +8582,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
             </div>
           </div>
           <div class="mobile-card-row-2">
-            <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterId}" title="Click to filter by ${safeCatLabel}">${safeCatLabel}</button>
+            <button type="button" class="row2-category-pill" data-action="filter-category" data-cat-id="${safeCatFilterId}" title="Click to filter by ${safeCatLabel}">${getCategoryBadgeIconHtml(catMeta.filterId, catMeta.themeKey)}<span>${safeCatLabel}</span></button>
             ${row2ContextPillHtml}
             <span class="mobile-card-meta-text">${escapeHtml(row2VenueMetaText)}</span>
             <span class="mobile-card-chevron" aria-hidden="true">▾</span>
@@ -8598,6 +8611,7 @@ function renderSingleEventCardHtml(ev, bucketKey, options) {
               title="Click to filter by ${safeCatLabel}"
               aria-label="Category: ${safeCatLabel}"
             >
+              ${getCategoryBadgeIconHtml(catMeta.filterId, catMeta.themeKey)}
               <span class="category-badge-text">${safeCatLabel}</span>
             </button>
             ${(Array.isArray(ev.themeBadges) && ev.themeBadges.length > 0) ? ev.themeBadges.map(tb => {
@@ -10137,7 +10151,7 @@ window.toggleMobileCardAccordion = function (eventId, evObj, explicitCardEl) {
   const cardEl = (explicitCardEl && explicitCardEl.classList && explicitCardEl.classList.contains('event-card'))
     ? explicitCardEl
     : ((evObj && evObj.target && evObj.target.closest) ? evObj.target.closest('.event-card') : null)
-      || document.getElementById(`card-${eventId}`);
+    || document.getElementById(`card-${eventId}`);
   if (!cardEl) return;
 
   // Prevent accidental collapse ONLY if the user actively highlighted text inside THIS card

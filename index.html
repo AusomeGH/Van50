@@ -47,7 +47,7 @@
     content="https://script.google.com/macros/s/AKfycbwbUvlCMYbBH9ukYSc_OaP9qF1nMtvhcEgsajmbTDmrun89CxQDoHMledPyTRWuqUK7vA/exec">
 
   <link rel="stylesheet" href="css/style.css?v=8.9.1">
-  <link rel="stylesheet" href="css/components.css?v=8.9.9">
+  <link rel="stylesheet" href="css/components.css?v=9.0.2">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -206,7 +206,22 @@
           </div>
         </div>
 
-        <!-- Categories Filter (First Section Inside Drawer) -->
+        <!-- Cost Filter (Top Section: Single-Row All / Free / Paid) -->
+        <div class="drawer-filter-section spend-filter-section" id="spend-filter-section">
+          <div class="drawer-section-header">
+            <span><strong>Cost:</strong></span>
+          </div>
+          <div class="cost-quick-tabs drawer-spend-pills" role="group" aria-label="Cost Quick Filters">
+            <button type="button" class="cost-quick-btn active" data-quick="all" id="quick-cost-all"
+              aria-pressed="true">All</button>
+            <button type="button" class="cost-quick-btn" data-quick="free" id="quick-cost-free"
+              aria-pressed="false">Free</button>
+            <button type="button" class="cost-quick-btn" data-quick="paid" id="quick-cost-paid"
+              aria-pressed="false">Paid</button>
+          </div>
+        </div>
+
+        <!-- Categories Filter (Clean 2-Column Organized Grid) -->
         <div class="drawer-filter-section categories-drawer-section" id="categories-drawer-section">
           <div class="drawer-section-header">
             <span><strong>Categories:</strong></span>
@@ -242,25 +257,6 @@
               <input type="date" id="calendar-date-input" class="calendar-date-input" aria-label="Pick a specific date">
               <button type="button" class="calendar-clear-btn" id="calendar-clear-btn" style="display: none;">Clear</button>
             </div>
-          </div>
-        </div>
-
-        <!-- Spend Filter (5 Single-Tap Mutually Exclusive Pills) -->
-        <div class="drawer-filter-section spend-filter-section" id="spend-filter-section">
-          <div class="drawer-section-header">
-            <span><strong>Spend (All-In CAD):</strong></span>
-          </div>
-          <div class="cost-quick-tabs drawer-spend-pills" role="group" aria-label="Cost Quick Filters">
-            <button type="button" class="cost-quick-btn active" data-quick="all" id="quick-cost-all"
-              aria-pressed="true">All (≤ $50)</button>
-            <button type="button" class="cost-quick-btn" data-quick="free" id="quick-cost-free"
-              aria-pressed="false">Free ($0)</button>
-            <button type="button" class="cost-quick-btn" data-quick="under15" id="quick-cost-15"
-              aria-pressed="false">Under $15</button>
-            <button type="button" class="cost-quick-btn" data-quick="under30" id="quick-cost-30"
-              aria-pressed="false">Under $30</button>
-            <button type="button" class="cost-quick-btn" data-quick="paid" id="quick-cost-paid"
-              aria-pressed="false">Paid Only</button>
           </div>
         </div>
 
@@ -635,7 +631,7 @@
   <script src="js/data.js?v=8.5.0"></script>
   <script src="js/accessibility.js?v=8.5.0"></script>
   <script src="js/map.js?v=8.10.2"></script>
-  <script src="js/app.js?v=9.0.5"></script>
+  <script src="js/app.js?v=9.0.8"></script>
   <script src="js/pwa-install.js?v=8.5.0"></script>
 
 </body>

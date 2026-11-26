@@ -10306,17 +10306,21 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price {
 }
 
 #mobile-filters-sheet .drawer-spend-pills {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 
 #mobile-filters-sheet .drawer-spend-pills .cost-quick-btn {
-  min-height: 36px;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 0.82rem;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  min-height: 38px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.84rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 #mobile-filters-sheet .drawer-spend-pills .cost-quick-btn.active {
@@ -10430,10 +10434,10 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price {
    UX SIMPLIFICATION: DRAWER CATEGORIES, SINGLE TOGGLES, FULL-CARD CLICK & STICKY DATES
    ============================================================================== */
 
-/* 1. Categories Inside Filters Drawer */
+/* 1. Categories Inside Filters Drawer (Clean 2-Column Grid; "All" spans full top row) */
 #mobile-filters-sheet .drawer-categories-grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 8px !important;
   overflow: visible !important;
   margin: 0 !important;
@@ -10441,9 +10445,78 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price {
 }
 
 #mobile-filters-sheet .drawer-categories-grid .quick-cat-pill {
-  min-height: 36px;
-  padding: 6px 12px;
+  width: 100% !important;
+  min-height: 38px;
+  padding: 7px 11px;
+  border-radius: 10px !important;
   font-size: 0.82rem;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 6px !important;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+#mobile-filters-sheet .drawer-categories-grid .quick-cat-pill.quick-cat-all {
+  grid-column: 1 / -1;
+  justify-content: space-between !important;
+  font-weight: 700;
+}
+
+#mobile-filters-sheet .drawer-categories-grid .quick-cat-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+#mobile-filters-sheet .drawer-categories-grid .quick-cat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--quick-cat-color, var(--brand-primary, #0d9488));
+  transition: color 0.15s ease;
+}
+
+#mobile-filters-sheet .drawer-categories-grid .quick-cat-pill.active .quick-cat-icon {
+  color: #ffffff;
+}
+
+.row2-category-pill,
+.card-category-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.card-cat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.card-cat-icon svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+#mobile-filters-sheet .drawer-categories-grid .quick-cat-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#mobile-filters-sheet .drawer-categories-grid .quick-cat-count {
+  flex-shrink: 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  opacity: 0.78;
 }
 
 /* Single-Toggle Rows Inside Drawer (Discounts & 55+, Event Preferences) */
