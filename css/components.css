@@ -10449,8 +10449,12 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price {
   border-radius: 6px;
 }
 
-/* 7. Sticky Date Group Headers (Never break sticky with overflow-x: hidden) */
-html, body, main, #events-grid, #events-list {
+/* 7. Sticky Date Group Headers (Never break sticky with overflow-x: hidden or contain: layout on iOS Safari) */
+html {
+  overflow-x: visible !important;
+}
+
+body, main, #events-grid, #events-list {
   overflow-x: clip !important;
 }
 
@@ -10462,18 +10466,21 @@ html, body, main, #events-grid, #events-list {
 
 .date-group-header,
 .time-group-header.date-group-header {
+  position: -webkit-sticky !important;
   position: sticky !important;
-  top: var(--sticky-header-offset, 64px) !important;
+  top: var(--sticky-header-offset, 62px) !important;
   z-index: 20 !important;
-  background: var(--bg-app, #f8faf9) !important;
+  background: var(--bg-app, #F2F4F0) !important;
   padding-block: 10px !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
-  contain: layout style;
+  border-bottom: 1px solid var(--border-subtle, #D5DDD8) !important;
+  contain: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 [data-theme="dark"] .date-group-header,
 [data-theme="dark"] .time-group-header.date-group-header {
-  background: rgba(15, 23, 42, 0.92) !important;
+  background: var(--bg-app, #0B1311) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -10760,10 +10767,20 @@ body.light-mode .event-card:hover,
 
 .date-group-header,
 .time-group-header.date-group-header {
-  background: rgba(248, 250, 249, 0.92) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  background: var(--bg-app, #F2F4F0) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid var(--border-subtle, #D5DDD8) !important;
+}
+
+@media (max-width: 768px) {
+  .date-group-header,
+  .time-group-header.date-group-header {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 }
 
 /* 2. Price Badge Color Hierarchy (Standard > $10 = Neutral Slate; Free / <= $10 / Senior = Soft Emerald) */

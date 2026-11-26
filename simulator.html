@@ -15,20 +15,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --studio-canvas: #0F172A;
-      --studio-toolbar: #090E1A;
-      --studio-surface: #1E293B;
-      --studio-surface-hover: #293548;
-      --studio-border: rgba(148, 163, 184, 0.18);
-      --studio-border-strong: rgba(148, 163, 184, 0.32);
-      --studio-text: #F8FAFC;
-      --studio-muted: #94A3B8;
-      --studio-accent: #10B981;
-      --studio-accent-fg: #042F2E;
-      --studio-blue: #38BDF8;
-      --studio-danger: #F43F5E;
+      /* Stanley Park Daylight — Aligned with Van50 Public Light Mode */
+      --studio-canvas: #F2F4F0;
+      --studio-toolbar: #FFFFFF;
+      --studio-surface: #FFFFFF;
+      --studio-surface-hover: #E6EAE3;
+      --studio-border: #D5DDD8;
+      --studio-border-strong: #B7C4BC;
+      --studio-text: #111C18;
+      --studio-muted: #4E6159;
+      --studio-accent: #0D6E52;
+      --studio-accent-fg: #FFFFFF;
+      --studio-blue: #0284C7;
+      --studio-danger: #BE123C;
       --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color-scheme: light;
     }
 
     * {
@@ -83,7 +85,7 @@
       font-weight: 800;
       font-size: 0.95rem;
       letter-spacing: -0.01em;
-      color: #fff;
+      color: var(--studio-text);
       margin-right: 4px;
       white-space: nowrap;
     }
@@ -100,9 +102,9 @@
       letter-spacing: 0.05em;
       padding: 2px 7px;
       border-radius: 999px;
-      background: rgba(56, 189, 248, 0.14);
-      color: var(--studio-blue);
-      border: 1px solid rgba(56, 189, 248, 0.35);
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #6EE7B7;
     }
 
     .toolbar-divider {
@@ -116,7 +118,7 @@
     .sim-select {
       appearance: none;
       background-color: var(--studio-surface);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234E6159' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 9px center;
       color: var(--studio-text);
@@ -142,7 +144,7 @@
     .segmented-control {
       display: inline-flex;
       align-items: center;
-      background: #0F172A;
+      background: #E6EAE3;
       border: 1px solid var(--studio-border);
       border-radius: 8px;
       padding: 2px;
@@ -168,9 +170,9 @@
     }
 
     .seg-btn.active {
-      background: var(--studio-surface-hover);
-      color: #FFFFFF;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+      background: #FFFFFF;
+      color: #111C18;
+      box-shadow: 0 1px 3px rgba(17, 28, 24, 0.08);
     }
 
     .seg-btn.active-accent {
@@ -209,9 +211,9 @@
     }
 
     .sim-btn.active {
-      background: rgba(56, 189, 248, 0.18);
-      border-color: rgba(56, 189, 248, 0.55);
-      color: #E0F2FE;
+      background: #E0F2FE;
+      border-color: #0284C7;
+      color: #075985;
     }
 
     .sim-btn-icon-only {
@@ -225,8 +227,8 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 0.73rem;
       font-weight: 600;
-      color: #CBD5E1;
-      background: rgba(30, 41, 59, 0.75);
+      color: #4E6159;
+      background: #E6EAE3;
       border: 1px solid var(--studio-border);
       padding: 4px 8px;
       border-radius: 6px;
@@ -249,15 +251,15 @@
     }
 
     .overflow-badge.clean {
-      background: rgba(16, 185, 129, 0.16);
-      color: #6EE7B7;
-      border: 1px solid rgba(16, 185, 129, 0.45);
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #6EE7B7;
     }
 
     .overflow-badge.fail {
-      background: rgba(244, 63, 94, 0.18);
-      color: #FDA4AF;
-      border: 1px solid rgba(244, 63, 94, 0.55);
+      background: #FFE4E6;
+      color: #9F1239;
+      border: 1px solid #FDA4AF;
       cursor: help;
     }
 
@@ -268,7 +270,7 @@
       width: 100%;
       height: 100%;
       background-color: var(--studio-canvas);
-      background-image: radial-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(17, 28, 24, 0.12) 1px, transparent 1px);
       background-size: 20px 20px;
       display: flex;
       align-items: center;
@@ -313,7 +315,7 @@
     }
 
     .device-slot-caption strong {
-      color: #E2E8F0;
+      color: #111C18;
       font-family: var(--font-heading);
     }
 

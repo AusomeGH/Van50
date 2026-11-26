@@ -1063,13 +1063,13 @@ function renderCardScreenshotThumbnails(inst) {
   if (!paths.length) return '';
   return `
     <div class="curator-instruction-shots" style="margin: 8px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-      <span style="font-size: 0.78rem; font-weight: 600; color: #d8b4fe;">🖼️ ${paths.length} Screenshot${paths.length > 1 ? 's' : ''} Attached:</span>
+      <span style="font-size: 0.78rem; font-weight: 600; color: #6B21A8;">🖼️ ${paths.length} Screenshot${paths.length > 1 ? 's' : ''} Attached:</span>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         ${paths.map((p, idx) => {
           const safeShotUrl = escapeHtml(safeExternalUrl(p));
           return `
           <a href="${safeShotUrl}" target="_blank" rel="noopener noreferrer" title="Click to view full-size screenshot proof #${idx + 1}" style="display: inline-block; text-decoration: none;">
-            <img src="${safeShotUrl}" alt="Screenshot #${idx + 1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
+            <img src="${safeShotUrl}" alt="Screenshot #${idx + 1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
           </a>
         `;
         }).join('')}
@@ -1091,7 +1091,7 @@ function renderCardAiLearnedSummary(ev, inst = null) {
     tiersHtml = `
       <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;">
         ${tiers.map(t => `
-          <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: rgba(168, 85, 247, 0.22); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff;">
+          <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: rgba(168, 85, 247, 0.22); border: 1px solid rgba(168, 85, 247, 0.45); color: #581C87;">
             ${escapeHtml(t.name)}: <strong>${t.total === 0 ? 'FREE' : '$' + Number(t.total).toFixed(2)}</strong>
           </span>
         `).join('')}
@@ -1102,12 +1102,12 @@ function renderCardAiLearnedSummary(ev, inst = null) {
   return `
     <div class="curator-ai-learned-box" style="margin: 8px 0; padding: 12px 14px; background: rgba(147, 51, 234, 0.14); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 8px; font-size: 0.83rem; line-height: 1.45;">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
-        <span style="font-weight: 700; color: #d8b4fe; display: flex; align-items: center; gap: 6px;">
+        <span style="font-weight: 700; color: #6B21A8; display: flex; align-items: center; gap: 6px;">
           <span>🧠</span> AI Synthesis &amp; What It Learned:
         </span>
-        <span style="font-size: 0.7rem; color: #e9d5ff; background: rgba(168, 85, 247, 0.25); padding: 2px 7px; border-radius: 4px; font-weight: 600;">Multi-Proof Verified</span>
+        <span style="font-size: 0.7rem; color: #581C87; background: rgba(168, 85, 247, 0.25); padding: 2px 7px; border-radius: 4px; font-weight: 600;">Multi-Proof Verified</span>
       </div>
-      <div style="color: #f8fafc;">
+      <div style="color: #111C18;">
         ${escapeHtml(learnedText)}
       </div>
       ${tiersHtml}
@@ -1253,7 +1253,7 @@ function formatTicketTiersHtml(ev) {
 
   return `
     <div style="margin-top: 6px;">
-      <span style="font-size: 0.76rem; color: #c084fc; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+      <span style="font-size: 0.76rem; color: #6B21A8; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
         <span>🎟️</span> Ticket Types &amp; Costs (${tiers.length} Tiers):
       </span>
       <div class="curator-ticket-tier-row">
@@ -1323,7 +1323,7 @@ function generateCuratorDiagnostics(ev) {
   const targetUrl = getEventExternalUrl(ev);
   if (targetUrl) {
     const domainText = targetUrl.replace(/^https?:\/\//i, '').split('/')[0];
-    confirmedItems.push(`<span>🔗 <strong>Event Link:</strong> <a href="${escapeHtml(targetUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Open Host Page (${escapeHtml(domainText)}) ↗</a></span>`);
+    confirmedItems.push(`<span>🔗 <strong>Event Link:</strong> <a href="${escapeHtml(targetUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline;">Open Host Page (${escapeHtml(domainText)}) ↗</a></span>`);
   }
 
   const issuesItems = [];
@@ -1435,15 +1435,15 @@ function renderEventCard(ev, index) {
           </div>
           <div style="display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap;">
             ${isDiscoveredVenue ? `
-              <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);" title="Venue not in permanent directory">
+              <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #065F46; border-color: rgba(16, 185, 129, 0.5);" title="Venue not in permanent directory">
                 🏛️ Discovered Venue
               </span>
             ` : ''}
-            <span class="curator-badge-pill curator-badge-category" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);">
+            <span class="curator-badge-pill curator-badge-category" style="background: rgba(168, 85, 247, 0.15); color: #6B21A8; border-color: rgba(168, 85, 247, 0.4);">
               🏷️ ${escapeHtml(ev.categoryLabel || ev.category || 'Event')}
             </span>
             ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">📋 Rule Queued</span>` : ''}
-            <span class="curator-badge-pill ${hasDrift ? 'curator-badge-drift' : ''}" style="${isAutoDenied ? 'background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.5);' : hasDrift ? '' : isBudgetExceeded ? 'background: rgba(239, 68, 68, 0.15); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);' : 'background: rgba(245, 158, 11, 0.15); color: #fcd34d; border-color: rgba(245, 158, 11, 0.4);'}">
+            <span class="curator-badge-pill ${hasDrift ? 'curator-badge-drift' : ''}" style="${isAutoDenied ? 'background: rgba(239, 68, 68, 0.2); color: #9F1239; border-color: rgba(239, 68, 68, 0.5);' : hasDrift ? '' : isBudgetExceeded ? 'background: rgba(239, 68, 68, 0.15); color: #9F1239; border-color: rgba(239, 68, 68, 0.4);' : 'background: rgba(245, 158, 11, 0.15); color: #92400E; border-color: rgba(245, 158, 11, 0.4);'}">
               ${isAutoDenied ? '🛡️ Auto-Denied > $50' : hasDrift ? '⚠️ Page Drift' : isBudgetExceeded ? '🚨 Over $50 Cap' : '⚠️ Unverified'}
             </span>
           </div>
@@ -1457,8 +1457,8 @@ function renderEventCard(ev, index) {
             <span class="curator-date-banner-text">${escapeHtml(curatorDateStr)}</span>
           </div>
           ${isCuratorDateUnconfirmed(ev)
-        ? '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(245, 158, 11, 0.2); color: #fcd34d; border-color: rgba(245, 158, 11, 0.5);">⚠️ Unconfirmed Date</span>'
-        : '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">✅ Confirmed Date</span>'}
+        ? '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(245, 158, 11, 0.2); color: #92400E; border-color: rgba(245, 158, 11, 0.5);">⚠️ Unconfirmed Date</span>'
+        : '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(16, 185, 129, 0.2); color: #065F46; border-color: rgba(16, 185, 129, 0.5);">✅ Confirmed Date</span>'}
         </div>
 
         <!-- Diagnostics Grid: Confirmed Details vs. Issues / Needs Review -->
@@ -1466,35 +1466,35 @@ function renderEventCard(ev, index) {
 
         <!-- Newsletter Email Source & Full Screenshot Proof -->
         ${(ev.source === 'newsletter' || ev.emailScreenshot || ev.emailHtmlPath) ? `
-          <div class="curator-newsletter-source-box" style="background: rgba(56, 189, 248, 0.07); border: 1.5px solid rgba(56, 189, 248, 0.35); border-left: 5px solid #38bdf8; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
+          <div class="curator-newsletter-source-box" style="background: rgba(16, 185, 129, 0.07); border: 1.5px solid rgba(16, 185, 129, 0.35); border-left: 5px solid #10B981; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
-              <strong style="color: #38bdf8; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+              <strong style="color: #0D6E52; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
                 <span>📧</span> Ingested from Newsletter:
               </strong>
-              <span style="background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); color: #bae6fd; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+              <span style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #075985; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
                 ${escapeHtml(ev.newsletterSender || 'Email Inbox')}
               </span>
             </div>
-            <div style="color: #f1f5f9; font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
+            <div style="color: #111C18; font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
               <strong>Subject:</strong> “${escapeHtml(ev.newsletterSubject || 'Event Digest')}”
             </div>
             
             <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
               ${ev.emailScreenshot ? `
-                <a href="${escapeHtml(safeExternalUrl(ev.emailScreenshot))}" target="_blank" rel="noopener noreferrer" title="Click to open full email screenshot in new tab" style="display: inline-block; position: relative; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 2px 8px rgba(0,0,0,0.4); text-decoration: none;">
+                <a href="${escapeHtml(safeExternalUrl(ev.emailScreenshot))}" target="_blank" rel="noopener noreferrer" title="Click to open full email screenshot in new tab" style="display: inline-block; position: relative; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(16, 185, 129, 0.5); box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08); text-decoration: none;">
                   <img src="${escapeHtml(safeExternalUrl(ev.emailScreenshot))}" alt="Newsletter Email Screenshot" style="height: 75px; width: 130px; object-fit: cover; object-position: top; display: block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
-                  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.85); color: #38bdf8; font-size: 0.68rem; text-align: center; padding: 2px 0; font-weight: 600;">🖼️ Full Screenshot ↗</div>
+                  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.85); color: #0D6E52; font-size: 0.68rem; text-align: center; padding: 2px 0; font-weight: 600;">🖼️ Full Screenshot ↗</div>
                 </a>
               ` : ''}
               
               <div style="display: flex; flex-direction: column; gap: 6px;">
                 ${ev.emailScreenshot ? `
-                  <button type="button" onclick="openEmailScreenshotModal('${escapeHtml(ev.id)}')" style="background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.32)'" onmouseout="this.style.background='rgba(56, 189, 248, 0.18)'">
+                  <button type="button" onclick="openEmailScreenshotModal('${escapeHtml(ev.id)}')" style="background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.45); color: #0D6E52; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.32)'" onmouseout="this.style.background='rgba(16, 185, 129, 0.18)'">
                     <span>🔍</span> Inspect Full Email Screenshot
                   </button>
                 ` : ''}
                 ${ev.emailHtmlPath ? `
-                  <a href="${escapeHtml(safeExternalUrl(ev.emailHtmlPath))}" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; font-size: 0.78rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;">
+                  <a href="${escapeHtml(safeExternalUrl(ev.emailHtmlPath))}" target="_blank" rel="noopener noreferrer" style="color: #334840; font-size: 0.78rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;">
                     <span>📄</span> View Original HTML Digest ↗
                   </a>
                 ` : ''}
@@ -1518,25 +1518,25 @@ function renderEventCard(ev, index) {
         return `
           <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
             <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-              <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+              <strong style="color: #6B21A8; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
                 <span>📝</span> Your Guidance &amp; Proof:
               </strong>
-              <span class="curator-handled-tag" style="background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5); color: #fde68a; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+              <span class="curator-handled-tag" style="background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5); color: #92400E; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
                 🟡 Awaiting Review
               </span>
             </div>
             ${inst.instructionText ? `
-              <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; margin-bottom: 8px;">
+              <div class="curator-handled-text" style="color: #111C18; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: #F2F4F0; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; margin-bottom: 8px;">
                 “${escapeHtml(inst.instructionText)}”
               </div>
             ` : ''}
             ${renderCardScreenshotThumbnails(inst)}
             ${renderCardAiLearnedSummary(ev, inst)}
-            <div class="curator-handled-meta" style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <div class="curator-handled-meta" style="font-size: 0.78rem; color: #334840; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
               <span>🕒 Queued ${inst.createdAt ? new Date(inst.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) : 'recently'}</span>
-              ${inst.approvedPrice ? `<span style="color: #34d399; font-weight: 600;">💰 Target Price: $${Number(inst.approvedPrice).toFixed(2)} CAD</span>` : ''}
+              ${inst.approvedPrice ? `<span style="color: #065F46; font-weight: 600;">💰 Target Price: $${Number(inst.approvedPrice).toFixed(2)} CAD</span>` : ''}
               <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
-                <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit Notes / Proof</button>
+                <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #581C87; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit Notes / Proof</button>
               </div>
             </div>
           </div>
@@ -1552,7 +1552,7 @@ function renderEventCard(ev, index) {
             </div>
           </div>
         ` : `
-          <div class="curator-flag-reason-box" style="${(isBudgetExceeded || isAutoDenied) ? 'background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;' : ''}" title="${escapeHtml(ev.quarantineReason || ev.archivedReason || ev.flagReason || 'Live checkout could not be verified')}">
+          <div class="curator-flag-reason-box" style="${(isBudgetExceeded || isAutoDenied) ? 'background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #9F1239;' : ''}" title="${escapeHtml(ev.quarantineReason || ev.archivedReason || ev.flagReason || 'Live checkout could not be verified')}">
             <span class="curator-flag-icon">${(isBudgetExceeded || isAutoDenied) ? '🛡️' : '⚠️'}</span>
             <div>
               <strong>${isAutoDenied ? 'Policy Denial:' : 'Quarantine Reason:'}</strong> ${escapeHtml(simplifyQuarantineReason(ev.quarantineReason || ev.archivedReason || ev.flagReason, attemptedPrice))}
@@ -1562,13 +1562,13 @@ function renderEventCard(ev, index) {
 
         <!-- Editable Correction Form or Readonly Summary -->
         ${isAutoDenied ? `
-          <div style="padding: 12px 16px; background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(239, 68, 68, 0.25); border-radius: 8px; font-size: 0.85rem; color: var(--curator-text-muted); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+          <div style="padding: 12px 16px; background: #FFFFFF; border: 1px dashed rgba(239, 68, 68, 0.25); border-radius: 8px; font-size: 0.85rem; color: var(--curator-text-muted); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
             <div>
               <span style="color: #fff; font-weight: 600;">Detected Price:</span> $${attemptedPrice.toFixed(2)} CAD
               <span style="margin: 0 8px; opacity: 0.4;">|</span>
               <span style="color: #fff; font-weight: 600;">Category:</span> ${escapeHtml(ev.category || 'Event')}
             </div>
-            <div style="color: #fca5a5; font-size: 0.8rem;">
+            <div style="color: #9F1239; font-size: 0.8rem;">
               Auto-archived to <code>archived_events.json</code> • Bypasses manual review
             </div>
           </div>
@@ -1638,7 +1638,7 @@ function renderEventCard(ev, index) {
         <div class="curator-actions-bar">
           <div class="curator-actions-left">
             ${isAutoDenied ? `
-              <span style="font-size: 0.82rem; color: #fca5a5; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.25);">
+              <span style="font-size: 0.82rem; color: #9F1239; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.25);">
                 🛡️ Auto-Denied by $50 Budget Policy • Excluded from Master Catalog &amp; Review Queue
               </span>
             ` : ''}
@@ -1665,7 +1665,7 @@ function renderEventCard(ev, index) {
               <button 
                 type="button" 
                 class="btn-curator btn-curator-ghost" 
-                style="color: #34d399; border-color: rgba(16, 185, 129, 0.4);" 
+                style="color: #065F46; border-color: rgba(16, 185, 129, 0.4);" 
                 onclick="openAddVenueModalFromEvent('${ev.id}')"
                 title="Enroll '${escapeHtml(ev.venue)}' into regular venue crawler"
               >
@@ -2117,7 +2117,7 @@ window.openAIInstructionModal = function (eventId, mode = 'approve') {
       }
 
       if (qReason) {
-        reasonEl.innerHTML = `<span style="font-weight: 700; color: #fca5a5;">Flagged Quarantine Reason:</span> ${escapeHtml(qReason)}`;
+        reasonEl.innerHTML = `<span style="font-weight: 700; color: #9F1239;">Flagged Quarantine Reason:</span> ${escapeHtml(qReason)}`;
         reasonEl.style.display = 'block';
       } else {
         reasonEl.style.display = 'none';
@@ -2316,8 +2316,8 @@ function resetScreenshotAlignmentPanel() {
   const badge = document.getElementById('ai-alignment-status-badge');
   if (badge) {
     badge.textContent = 'Analyzing...';
-    badge.style.background = 'rgba(56, 189, 248, 0.2)';
-    badge.style.color = '#38bdf8';
+    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+    badge.style.color = '#10B981';
   }
 
   const btnApplyAll = document.getElementById('btn-apply-all-dimensions');
@@ -2370,7 +2370,7 @@ function resetScreenshotAlignmentPanel() {
   const priceEl = document.getElementById('ai-ocr-detected-price');
   if (priceEl) {
     priceEl.textContent = '$0.00';
-    priceEl.style.color = '#f8fafc';
+    priceEl.style.color = '#111C18';
   }
 
   const feeEl = document.getElementById('ai-ocr-fee-breakdown');
@@ -2391,10 +2391,10 @@ function resetScreenshotAlignmentPanel() {
   ['venue', 'title', 'date', 'age'].forEach(k => {
     const row = document.getElementById(`ai-align-row-${k}`);
     const val = document.getElementById(`ai-align-val-${k}`);
-    if (row) row.style.borderLeft = '3px solid #94a3b8';
+    if (row) row.style.borderLeft = '3px solid #94ABA2';
     if (val) {
       val.textContent = k === 'age' ? 'Standard' : 'Checking...';
-      val.style.color = '#f1f5f9';
+      val.style.color = '#111C18';
     }
   });
 }
@@ -2654,8 +2654,8 @@ async function triggerScreenshotVerification(dataUrl) {
   if (results) results.style.display = 'none';
   if (badge) {
     badge.textContent = 'Running Native OCR...';
-    badge.style.background = 'rgba(56, 189, 248, 0.2)';
-    badge.style.color = '#38bdf8';
+    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+    badge.style.color = '#10B981';
   }
 
   try {
@@ -2685,15 +2685,15 @@ async function triggerScreenshotVerification(dataUrl) {
           if (data.aligned || data.isFullyAligned) {
             badge.textContent = '✓ 13/13 Dimensions Aligned';
             badge.style.background = 'rgba(16, 185, 129, 0.25)';
-            badge.style.color = '#34d399';
+            badge.style.color = '#065F46';
           } else if (data.warnings && data.warnings.length > 0) {
             badge.textContent = '⚠️ Attention Needed';
             badge.style.background = 'rgba(245, 158, 11, 0.25)';
-            badge.style.color = '#fbbf24';
+            badge.style.color = '#92400E';
           } else {
             badge.textContent = '✓ 13 Dimensions Extracted';
-            badge.style.background = 'rgba(56, 189, 248, 0.25)';
-            badge.style.color = '#38bdf8';
+            badge.style.background = 'rgba(16, 185, 129, 0.25)';
+            badge.style.color = '#10B981';
           }
         }
 
@@ -2813,10 +2813,10 @@ async function triggerScreenshotVerification(dataUrl) {
         if (detectedPriceEl) {
           if (shotPrice !== null && shotPrice !== undefined) {
             detectedPriceEl.textContent = `$${parseFloat(shotPrice).toFixed(2)} CAD (all-in)`;
-            detectedPriceEl.style.color = shotPrice <= 50.0 ? '#34d399' : '#f87171';
+            detectedPriceEl.style.color = shotPrice <= 50.0 ? '#065F46' : '#BE123C';
           } else {
             detectedPriceEl.textContent = 'No total price detected';
-            detectedPriceEl.style.color = '#94a3b8';
+            detectedPriceEl.style.color = '#4E6159';
           }
         }
         if (feeBreakdownEl) {
@@ -2878,7 +2878,7 @@ async function triggerScreenshotVerification(dataUrl) {
           }
           if (alertParts.length > 0) {
             discrepancyAlert.style.display = 'block';
-            discrepancyAlert.innerHTML = alertParts.join('<br>') + '<div style="margin-top: 4px; font-size: 0.76rem; color: #fde68a;">Click <em>⚡ Apply All Extracted Dimensions</em> or <em>⚡ Apply Event Name</em> to update.</div>';
+            discrepancyAlert.innerHTML = alertParts.join('<br>') + '<div style="margin-top: 4px; font-size: 0.76rem; color: #92400E;">Click <em>⚡ Apply All Extracted Dimensions</em> or <em>⚡ Apply Event Name</em> to update.</div>';
           } else if (data.warnings && data.warnings.length > 0) {
             discrepancyAlert.style.display = 'block';
             discrepancyAlert.innerHTML = `⚠️ <strong>Notice:</strong> ` + data.warnings.map(escapeHtml).join('; ');
@@ -2905,14 +2905,14 @@ async function triggerScreenshotVerification(dataUrl) {
         if (badge) {
           badge.textContent = 'OCR Notice';
           badge.style.background = 'rgba(245, 158, 11, 0.2)';
-          badge.style.color = '#fbbf24';
+          badge.style.color = '#92400E';
         }
       }
     } else {
       if (badge) {
         badge.textContent = 'OCR Error';
         badge.style.background = 'rgba(239, 68, 68, 0.2)';
-        badge.style.color = '#f87171';
+        badge.style.color = '#BE123C';
       }
     }
   } catch (err) {
@@ -2921,7 +2921,7 @@ async function triggerScreenshotVerification(dataUrl) {
     if (badge) {
       badge.textContent = 'OCR Offline';
       badge.style.background = 'rgba(239, 68, 68, 0.2)';
-      badge.style.color = '#f87171';
+      badge.style.color = '#BE123C';
     }
   }
 
@@ -2958,7 +2958,7 @@ function renderScreenshotGallery() {
       return `
         <div 
           class="ai-gallery-item ${isActive ? 'active-screenshot-thumb' : ''}" 
-          style="position: relative; width: 92px; height: 92px; border-radius: 6px; overflow: hidden; border: ${isActive ? '2.5px solid #38bdf8' : '1.5px solid rgba(168, 85, 247, 0.55)'}; background: #0f172a; flex-shrink: 0; box-shadow: ${isActive ? '0 0 14px rgba(56, 189, 248, 0.75)' : '0 2px 6px rgba(0,0,0,0.4)'}; cursor: pointer; transition: all 0.2s ease;"
+          style="position: relative; width: 92px; height: 92px; border-radius: 6px; overflow: hidden; border: ${isActive ? '2.5px solid #10B981' : '1.5px solid rgba(168, 85, 247, 0.55)'}; background: #FFFFFF; flex-shrink: 0; box-shadow: ${isActive ? '0 0 14px rgba(16, 185, 129, 0.75)' : '0 2px 6px rgba(0,0,0,0.4)'}; cursor: pointer; transition: all 0.2s ease;"
           onclick="window.selectActiveScreenshot(${idx})"
           title="${isActive ? 'Active Verifier Screenshot (Currently extracting dimensions)' : 'Click to verify and extract 13 dimensions from this screenshot'}"
         >
@@ -2968,14 +2968,14 @@ function renderScreenshotGallery() {
             type="button" 
             onclick="event.stopPropagation(); window.removeScreenshotByIndex(${idx});" 
             title="Remove image" 
-            style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.5); z-index: 2;"
+            style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08); z-index: 2;"
           >✕</button>
-          <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #e2e8f0; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
+          <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #1E2E27; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
           <button 
             type="button" 
             onclick="event.stopPropagation(); window.open('${src}', '_blank');" 
             title="View full size image in new tab"
-            style="position: absolute; bottom: 3px; right: 3px; background: rgba(15, 23, 42, 0.85); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 3px; font-size: 10px; padding: 1px 4px; cursor: pointer; line-height: 1.2; z-index: 2;"
+            style="position: absolute; bottom: 3px; right: 3px; background: #FFFFFF; color: #0D6E52; border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 3px; font-size: 10px; padding: 1px 4px; cursor: pointer; line-height: 1.2; z-index: 2;"
           >↗</button>
         </div>
       `;
@@ -3135,7 +3135,7 @@ function renderInteractiveMultiEventPreview(subEvents) {
   if (cardWrapper) cardWrapper.style.display = 'block';
 
   if (!Array.isArray(subEvents) || subEvents.length === 0) {
-    if (livePreview) livePreview.innerHTML = '<div style="color: #94a3b8; font-size: 0.85rem; padding: 12px; text-align: center;">No discrete events generated. Click "Detect & Split Multiple Events" or adjust your instructions above.</div>';
+    if (livePreview) livePreview.innerHTML = '<div style="color: #4E6159; font-size: 0.85rem; padding: 12px; text-align: center;">No discrete events generated. Click "Detect & Split Multiple Events" or adjust your instructions above.</div>';
     return;
   }
 
@@ -3175,18 +3175,18 @@ function renderInteractiveMultiEventPreview(subEvents) {
   let html = `
     <div style="background: rgba(124, 58, 237, 0.16); border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-        <div style="font-weight: 700; font-size: 0.9rem; color: #d8b4fe; display: flex; align-items: center; gap: 6px;">
+        <div style="font-weight: 700; font-size: 0.9rem; color: #6B21A8; display: flex; align-items: center; gap: 6px;">
           <span>🔀</span> Multi-Event Staging Preview (${subEvents.length} Discrete Events)
         </div>
-        <button type="button" id="btn-reanalyze-split" class="btn-curator" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #e9d5ff; font-size: 0.74rem; padding: 3px 10px; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Re-run schedule parser with any newly typed guidance or attached screenshots">
+        <button type="button" id="btn-reanalyze-split" class="btn-curator" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #581C87; font-size: 0.74rem; padding: 3px 10px; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Re-run schedule parser with any newly typed guidance or attached screenshots">
           🔄 Re-Parse Schedule
         </button>
       </div>
-      <div style="font-size: 0.77rem; color: #cbd5e1; margin-top: 4px; line-height: 1.4;">
+      <div style="font-size: 0.77rem; color: #334840; margin-top: 4px; line-height: 1.4;">
         Schedule parser has decomposed this schedule into discrete event cards. <strong>Each event must have a unique name.</strong> You can edit any field directly below, remove cards, or provide notes above.
       </div>
       ${hasDuplicates ? `
-        <div id="split-duplicate-alert" style="margin-top: 8px; background: rgba(239, 68, 68, 0.22); border: 1px solid #ef4444; border-radius: 6px; padding: 6px 10px; color: #fca5a5; font-size: 0.76rem; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+        <div id="split-duplicate-alert" style="margin-top: 8px; background: rgba(239, 68, 68, 0.22); border: 1px solid #ef4444; border-radius: 6px; padding: 6px 10px; color: #9F1239; font-size: 0.76rem; font-weight: 600; display: flex; align-items: center; gap: 6px;">
           <span>⚠️</span> Duplicate event names detected! Each event must have a unique name before queueing.
         </div>
       ` : ''}
@@ -3202,35 +3202,35 @@ function renderInteractiveMultiEventPreview(subEvents) {
     const cVal = sub.category || 'shows';
 
     return `
-          <div class="split-sub-event-card" data-idx="${idx}" style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid ${isDup ? '#ef4444' : 'rgba(255, 255, 255, 0.12)'}; border-left: 4px solid ${isDup ? '#ef4444' : '#10b981'}; border-radius: 8px; padding: 12px; transition: border-color 0.2s ease;">
+          <div class="split-sub-event-card" data-idx="${idx}" style="background: #FFFFFF; border: 1.5px solid ${isDup ? '#ef4444' : 'rgba(255, 255, 255, 0.12)'}; border-left: 4px solid ${isDup ? '#ef4444' : '#10b981'}; border-radius: 8px; padding: 12px; transition: border-color 0.2s ease;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-weight: 700; font-size: 0.82rem; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 7px; border-radius: 4px;">Card #${idx + 1}</span>
+                <span style="font-weight: 700; font-size: 0.82rem; color: #0D6E52; background: rgba(16, 185, 129, 0.15); padding: 2px 7px; border-radius: 4px;">Card #${idx + 1}</span>
                 ${isDup ? '<span style="font-size: 0.7rem; color: #ef4444; font-weight: 700;">⚠️ Duplicate Name</span>' : ''}
               </div>
-              <button type="button" class="btn-remove-sub-event" data-idx="${idx}" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; cursor: pointer;" title="Remove this event card">
+              <button type="button" class="btn-remove-sub-event" data-idx="${idx}" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #BE123C; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; cursor: pointer;" title="Remove this event card">
                 🗑️ Remove
               </button>
             </div>
 
             <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-bottom: 8px;">
               <div>
-                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Unique Event Name *</label>
+                <label style="font-size: 0.72rem; color: #4E6159; display: block; margin-bottom: 2px;">Unique Event Name *</label>
                 <input type="text" class="curator-input split-input-title" data-idx="${idx}" value="${escapeHtml(sub.title || '')}" placeholder="Unique Event Title" style="width: 100%; font-size: 0.84rem; padding: 5px 8px; ${isDup ? 'border-color: #ef4444;' : ''}">
               </div>
               <div>
-                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Price (CAD ≤ $50)</label>
+                <label style="font-size: 0.72rem; color: #4E6159; display: block; margin-bottom: 2px;">Price (CAD ≤ $50)</label>
                 <input type="number" step="0.01" min="0" max="50" class="curator-input split-input-price" data-idx="${idx}" value="${pVal}" style="width: 100%; font-size: 0.84rem; padding: 5px 8px;">
               </div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
               <div>
-                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Date / Schedule</label>
+                <label style="font-size: 0.72rem; color: #4E6159; display: block; margin-bottom: 2px;">Date / Schedule</label>
                 <input type="text" class="curator-input split-input-date" data-idx="${idx}" value="${escapeHtml(dVal)}" placeholder="e.g. Saturdays 8pm" style="width: 100%; font-size: 0.84rem; padding: 5px 8px;">
               </div>
               <div>
-                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Category</label>
+                <label style="font-size: 0.72rem; color: #4E6159; display: block; margin-bottom: 2px;">Category</label>
                 <select class="curator-select split-input-category" data-idx="${idx}" style="width: 100%; font-size: 0.82rem; padding: 5px 6px;">
                   ${categories.map(c => `
                     <option value="${c.id}" ${cVal === c.id ? 'selected' : ''}>${c.label}</option>
@@ -3250,10 +3250,10 @@ function renderInteractiveMultiEventPreview(subEvents) {
     </div>
 
     <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
-      <button type="button" id="btn-add-split-card" class="btn-curator" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+      <button type="button" id="btn-add-split-card" class="btn-curator" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #0D6E52; font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
         ➕ Add Another Sub-Event Card
       </button>
-      <button type="button" id="btn-auto-unique-titles" class="btn-curator" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; font-size: 0.74rem; padding: 6px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Automatically append numbers or show times to guarantee all titles are strictly unique">
+      <button type="button" id="btn-auto-unique-titles" class="btn-curator" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #92400E; font-size: 0.74rem; padding: 6px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Automatically append numbers or show times to guarantee all titles are strictly unique">
         🪄 Auto-Fix Duplicate Names
       </button>
     </div>
@@ -3548,7 +3548,7 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
             const tiers = data.extractedTiers || [];
             if (tiers.length > 0) {
               modalLearnedTiers.innerHTML = tiers.map(t => `
-                <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: rgba(168, 85, 247, 0.22); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff;">
+                <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: rgba(168, 85, 247, 0.22); border: 1px solid rgba(168, 85, 247, 0.45); color: #581C87;">
                   ${escapeHtml(t.name)}: <strong>${t.total === 0 ? 'FREE' : '$' + Number(t.total).toFixed(2)}</strong>
                 </span>
               `).join('');
@@ -3608,28 +3608,28 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
             const tiersPreviewHtml = formatTicketTiersHtml({ ...p, curatorAnnotation: { extractedTiers: data.extractedTiers } });
             livePreview.innerHTML = `
               <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px;">
-                <div style="font-weight: 700; font-size: 1.05rem; color: #f8fafc; line-height: 1.3;">
+                <div style="font-weight: 700; font-size: 1.05rem; color: #111C18; line-height: 1.3;">
                   ${escapeHtml(p.title || 'Untitled Event')}
                 </div>
-                <div style="font-weight: 800; font-size: 1.15rem; color: #34d399; white-space: nowrap;">
+                <div style="font-weight: 800; font-size: 1.15rem; color: #065F46; white-space: nowrap;">
                   ${priceDisplay}
                 </div>
               </div>
-              <div style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <div style="font-size: 0.82rem; color: #334840; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                 <span>📍 ${escapeHtml(venueText)}${escapeHtml(neighborhoodText)}</span>
                 ${catBadge}
-                <span style="color: #94a3b8; font-size: 0.76rem;">${escapeHtml(providerText)}</span>
+                <span style="color: #4E6159; font-size: 0.76rem;">${escapeHtml(providerText)}</span>
               </div>
-              <div style="font-size: 0.82rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <div style="font-size: 0.82rem; color: #4E6159; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <span>🗓️ ${escapeHtml(dateText)}</span>
                 ${(() => {
                 const pUrl = getEventExternalUrl(p);
-                return pUrl ? `<a href="${escapeHtml(pUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : '';
+                return pUrl ? `<a href="${escapeHtml(pUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : '';
               })()}
               </div>
               ${tiersPreviewHtml}
               ${p.feeBreakdown ? `
-                <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.74rem; color: #a78bfa;">
+                <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed #D5DDD8; font-size: 0.74rem; color: #a78bfa;">
                   🛡️ ${escapeHtml(p.feeBreakdown)}
                 </div>
               ` : ''}
@@ -4597,10 +4597,10 @@ function renderVenueScreenshotGallery() {
 
   if (gallery) {
     gallery.innerHTML = state.currentVenueScreenshots.map((src, idx) => `
-      <div class="ai-gallery-item" style="position: relative; width: 88px; height: 88px; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(168, 85, 247, 0.55); background: #0f172a; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.4);">
+      <div class="ai-gallery-item" style="position: relative; width: 88px; height: 88px; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(168, 85, 247, 0.55); background: #FFFFFF; flex-shrink: 0; box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08);">
         <img src="${src}" alt="Venue Screenshot #${idx + 1}" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" onclick="window.open('${src}', '_blank')" title="Click to view full size">
-        <button type="button" onclick="event.stopPropagation(); window.removeVenueScreenshotByIndex(${idx});" title="Remove image" style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.5);">✕</button>
-        <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #e2e8f0; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
+        <button type="button" onclick="event.stopPropagation(); window.removeVenueScreenshotByIndex(${idx});" title="Remove image" style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08);">✕</button>
+        <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #1E2E27; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
       </div>
     `).join('');
   }
@@ -4662,7 +4662,7 @@ function renderDiscoveredVenuesCards() {
       <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-venue-${v.id}" style="border-left: 4px solid #10b981;">
         <div class="curator-card-top">
           <div>
-            <h3 class="curator-card-title" style="color: #6ee7b7;">${escapeHtml(v.name)}</h3>
+            <h3 class="curator-card-title" style="color: #065F46;">${escapeHtml(v.name)}</h3>
             <div class="curator-card-meta">
               <span>📍 <strong>${escapeHtml(v.address || v.name)}</strong></span>
               <span>🏘️ <strong>Neighborhood:</strong> ${escapeHtml(v.neighborhood || 'Vancouver')}</span>
@@ -4671,18 +4671,18 @@ function renderDiscoveredVenuesCards() {
             </div>
           </div>
           <div style="display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap;">
-            <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">
+            <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #065F46; border-color: rgba(16, 185, 129, 0.5);">
               🏛️ Discovered Venue
             </span>
             ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">📋 Rule Queued</span>` : ''}
           </div>
         </div>
 
-        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 0.85rem; color: var(--curator-text-muted);">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 0.85rem; color: var(--curator-text-muted);">
           <div><strong>Context / Sample Event:</strong> ${escapeHtml(v.sampleEvent || 'Detected via festival program')}</div>
           ${(() => {
         const vUrl = getVenueExternalUrl(v);
-        return vUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(vUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : '';
+        return vUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(vUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : '';
       })()}
         </div>
 
@@ -4690,10 +4690,10 @@ function renderDiscoveredVenuesCards() {
         ${(v.queuedInstruction) ? `
           <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
             <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-              <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+              <strong style="color: #6B21A8; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
                 <span>📝</span> Your Venue Guidance:
               </strong>
-              <span class="curator-handled-tag" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #f3e8ff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+              <span class="curator-handled-tag" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #581C87; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
                 ${escapeHtml(
         (v.queuedInstruction.action === 'queue_and_approve' || v.queuedInstruction.actionTaken === 'queue_and_approve')
           ? '⚡ Enrolled &amp; Rule Saved'
@@ -4703,19 +4703,19 @@ function renderDiscoveredVenuesCards() {
       )}
               </span>
             </div>
-            <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc; margin-bottom: 8px;">
+            <div class="curator-handled-text" style="color: #111C18; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: #F2F4F0; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc; margin-bottom: 8px;">
               “${escapeHtml(v.queuedInstruction.instructionText || '')}”
             </div>
             ${(v.curatorLearnedRules?.summary || v.queuedInstruction?.distilledRules?.summary || v.queuedInstruction?.aiLearnedSummary || v.policySummary) ? `
-              <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 6px; padding: 6px 10px; margin-bottom: 8px; font-size: 0.82rem; color: #a7f3d0; display: flex; align-items: center; gap: 8px;">
+              <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 6px; padding: 6px 10px; margin-bottom: 8px; font-size: 0.82rem; color: #065F46; display: flex; align-items: center; gap: 8px;">
                 <span>🧠</span>
                 <span><strong>Crawler Policy Rule:</strong> ${escapeHtml(v.curatorLearnedRules?.summary || v.queuedInstruction?.distilledRules?.summary || v.queuedInstruction?.aiLearnedSummary || v.policySummary)}</span>
               </div>
             ` : ''}
             ${renderCardScreenshotThumbnails(v.queuedInstruction)}
-            <div class="curator-handled-meta" style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <div class="curator-handled-meta" style="font-size: 0.78rem; color: #334840; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
               <span>🕒 Queued ${v.queuedInstruction.createdAt ? new Date(v.queuedInstruction.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
-              <button type="button" class="btn-curator-edit-inst" onclick='openAddVenueModal(${safeV}, { focusInstruction: true })' style="margin-left: auto; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;">✏️ Edit / Add Proof</button>
+              <button type="button" class="btn-curator-edit-inst" onclick='openAddVenueModal(${safeV}, { focusInstruction: true })' style="margin-left: auto; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #581C87; border-radius: 4px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;">✏️ Edit / Add Proof</button>
             </div>
           </div>
         ` : ''}
@@ -4826,7 +4826,7 @@ window.openAddVenueModal = function (v, options = {}) {
       if (textField) {
         textField.scrollIntoView({ behavior: 'smooth', block: 'center' });
         textField.focus();
-        textField.style.borderColor = '#c084fc';
+        textField.style.borderColor = '#6B21A8';
         textField.style.boxShadow = '0 0 0 3px rgba(168, 85, 247, 0.3)';
         setTimeout(() => {
           textField.style.borderColor = '';
@@ -4867,10 +4867,10 @@ function getEventsForPendingFestival(fest) {
   );
 
   const pools = [
-    { bucket: 'Live', color: '#4ade80', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
-    { bucket: 'Quarantined', color: '#fbbf24', bg: 'rgba(245, 158, 11, 0.16)', border: 'rgba(245, 158, 11, 0.35)', list: state.quarantinedEvents || [] },
-    { bucket: 'Scheduled', color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.16)', border: 'rgba(56, 189, 248, 0.35)', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
-    { bucket: 'Archived', color: '#94a3b8', bg: 'rgba(148, 163, 184, 0.14)', border: 'rgba(148, 163, 184, 0.3)', list: state.archivedEvents || [] }
+    { bucket: 'Live', color: '#15803D', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
+    { bucket: 'Quarantined', color: '#92400E', bg: 'rgba(245, 158, 11, 0.16)', border: 'rgba(245, 158, 11, 0.35)', list: state.quarantinedEvents || [] },
+    { bucket: 'Scheduled', color: '#10B981', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
+    { bucket: 'Archived', color: '#4E6159', bg: 'rgba(148, 163, 184, 0.14)', border: 'rgba(148, 163, 184, 0.3)', list: state.archivedEvents || [] }
   ];
 
   const seenIds = new Set();
@@ -4915,15 +4915,15 @@ window.openFestivalEventPreview = function (eventId, bucketHint = '') {
   if (!targetId) return;
 
   const pools = [
-    { bucket: 'Live', color: '#4ade80', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
-    { bucket: 'Quarantined', color: '#fbbf24', list: state.quarantinedEvents || [] },
-    { bucket: 'Scheduled', color: '#38bdf8', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
-    { bucket: 'Archived', color: '#94a3b8', list: state.archivedEvents || [] }
+    { bucket: 'Live', color: '#15803D', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
+    { bucket: 'Quarantined', color: '#92400E', list: state.quarantinedEvents || [] },
+    { bucket: 'Scheduled', color: '#10B981', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
+    { bucket: 'Archived', color: '#4E6159', list: state.archivedEvents || [] }
   ];
 
   let found = null;
   let foundBucket = bucketHint || 'Catalog';
-  let foundColor = '#38bdf8';
+  let foundColor = '#10B981';
   for (const pool of pools) {
     const hit = pool.list.find(e => e && String(e.id || e.event_id || '').trim() === targetId);
     if (hit) {
@@ -4938,7 +4938,7 @@ window.openFestivalEventPreview = function (eventId, bucketHint = '') {
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'festival-event-preview-modal';
-    modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(2,6,23,0.78);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:#F2F4F0;backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;';
     modal.addEventListener('click', (e) => {
       if (e.target === modal) window.closeFestivalEventPreview();
     });
@@ -4962,28 +4962,28 @@ window.openFestivalEventPreview = function (eventId, bucketHint = '') {
   const archReason = found.archive_reason || found.quarantine_reason || found.reason || '';
 
   modal.innerHTML = `
-    <div style="background:#0f172a;border:1px solid rgba(236,72,153,0.45);border-radius:12px;max-width:620px;width:100%;padding:20px 22px;box-shadow:0 24px 60px rgba(0,0,0,0.65);color:#f8fafc;max-height:85vh;overflow-y:auto;">
+    <div style="background:#FFFFFF;border:1px solid rgba(236,72,153,0.45);border-radius:12px;max-width:620px;width:100%;padding:20px 22px;box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08);color:#111C18;max-height:85vh;overflow-y:auto;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;">
         <div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
-            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,0.08);color:${foundColor};border:1px solid ${foundColor}55;">${escapeHtml(foundBucket)}</span>
-            <span style="font-size:0.74rem;color:#94a3b8;font-family:monospace;">${escapeHtml(targetId)}</span>
+            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFFFFF;color:${foundColor};border:1px solid ${foundColor}55;">${escapeHtml(foundBucket)}</span>
+            <span style="font-size:0.74rem;color:#4E6159;font-family:monospace;">${escapeHtml(targetId)}</span>
           </div>
-          <h3 style="margin:0;font-size:1.15rem;color:#f8fafc;line-height:1.3;">${escapeHtml(title)}</h3>
+          <h3 style="margin:0;font-size:1.15rem;color:#111C18;line-height:1.3;">${escapeHtml(title)}</h3>
         </div>
-        <button type="button" onclick="closeFestivalEventPreview()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.16);color:#cbd5e1;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:0.9rem;">✕</button>
+        <button type="button" onclick="closeFestivalEventPreview()" style="background:#FFFFFF;border:1px solid #D5DDD8;color:#334840;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:0.9rem;">✕</button>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;font-size:0.82rem;margin-bottom:12px;">
-        <div><span style="color:#94a3b8;">📍 Venue:</span> <strong>${escapeHtml(venue)}</strong></div>
-        <div><span style="color:#94a3b8;">📅 Date:</span> <strong>${escapeHtml(dateStr)}${timeStr ? ` • ${escapeHtml(timeStr)}` : ''}</strong></div>
-        <div><span style="color:#94a3b8;">💵 Price:</span> <strong style="color:#4ade80;">${escapeHtml(priceLabel)}</strong></div>
-        ${address ? `<div><span style="color:#94a3b8;">🗺️ Location:</span> ${escapeHtml(address)}</div>` : ''}
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;background:#FFFFFF;border:1px solid #D5DDD8;border-radius:8px;padding:10px 12px;font-size:0.82rem;margin-bottom:12px;">
+        <div><span style="color:#4E6159;">📍 Venue:</span> <strong>${escapeHtml(venue)}</strong></div>
+        <div><span style="color:#4E6159;">📅 Date:</span> <strong>${escapeHtml(dateStr)}${timeStr ? ` • ${escapeHtml(timeStr)}` : ''}</strong></div>
+        <div><span style="color:#4E6159;">💵 Price:</span> <strong style="color:#15803D;">${escapeHtml(priceLabel)}</strong></div>
+        ${address ? `<div><span style="color:#4E6159;">🗺️ Location:</span> ${escapeHtml(address)}</div>` : ''}
       </div>
-      ${archReason ? `<div style="font-size:0.78rem;color:#fca5a5;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:7px 10px;margin-bottom:12px;"><strong>Status Note:</strong> ${escapeHtml(archReason)}</div>` : ''}
-      <div style="font-size:0.84rem;color:#cbd5e1;line-height:1.5;margin-bottom:16px;">${escapeHtml(desc)}</div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;">
-        ${extUrl ? `<a href="${escapeHtml(safeExternalUrl(extUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="color:#38bdf8;border-color:rgba(56,189,248,0.4);text-decoration:none;">🔗 Open Event Page ↗</a>` : ''}
-        <button type="button" class="btn-curator btn-curator-ghost" onclick="closeFestivalEventPreview(); openAIInstructionModal('${jsStrArg(targetId)}', 'instruct');" style="color:#d8b4fe;border-color:rgba(168,85,247,0.4);">📝 AI Guidance</button>
+      ${archReason ? `<div style="font-size:0.78rem;color:#9F1239;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:7px 10px;margin-bottom:12px;"><strong>Status Note:</strong> ${escapeHtml(archReason)}</div>` : ''}
+      <div style="font-size:0.84rem;color:#334840;line-height:1.5;margin-bottom:16px;">${escapeHtml(desc)}</div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid #D5DDD8;padding-top:12px;">
+        ${extUrl ? `<a href="${escapeHtml(safeExternalUrl(extUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="color:#0D6E52;border-color:rgba(16, 185, 129,0.4);text-decoration:none;">🔗 Open Event Page ↗</a>` : ''}
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="closeFestivalEventPreview(); openAIInstructionModal('${jsStrArg(targetId)}', 'instruct');" style="color:#6B21A8;border-color:rgba(168,85,247,0.4);">📝 AI Guidance</button>
         <button type="button" class="btn-curator btn-curator-primary" onclick="closeFestivalEventPreview();">Done</button>
       </div>
     </div>
@@ -5001,10 +5001,10 @@ function getEventsForHoliday(hol) {
   );
 
   const pools = [
-    { bucket: 'Live', color: '#4ade80', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
-    { bucket: 'Quarantined', color: '#fbbf24', bg: 'rgba(245, 158, 11, 0.16)', border: 'rgba(245, 158, 11, 0.35)', list: state.quarantinedEvents || [] },
-    { bucket: 'Scheduled', color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.16)', border: 'rgba(56, 189, 248, 0.35)', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
-    { bucket: 'Archived', color: '#94a3b8', bg: 'rgba(148, 163, 184, 0.14)', border: 'rgba(148, 163, 184, 0.3)', list: state.archivedEvents || [] }
+    { bucket: 'Live', color: '#15803D', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []) },
+    { bucket: 'Quarantined', color: '#92400E', bg: 'rgba(245, 158, 11, 0.16)', border: 'rgba(245, 158, 11, 0.35)', list: state.quarantinedEvents || [] },
+    { bucket: 'Scheduled', color: '#10B981', bg: 'rgba(16, 185, 129, 0.16)', border: 'rgba(16, 185, 129, 0.35)', list: Array.isArray(state.layerSchedules) ? state.layerSchedules : [] },
+    { bucket: 'Archived', color: '#4E6159', bg: 'rgba(148, 163, 184, 0.14)', border: 'rgba(148, 163, 184, 0.3)', list: state.archivedEvents || [] }
   ];
 
   const seenIds = new Set();
@@ -5063,7 +5063,7 @@ function getFestivalDateStatus(fest) {
       statusKey: 'tba',
       dateRangeText: 'Dates TBA',
       badgeText: 'Dates TBA',
-      color: '#94a3b8',
+      color: '#4E6159',
       bg: 'rgba(148, 163, 184, 0.14)',
       border: 'rgba(148, 163, 184, 0.3)'
     };
@@ -5085,7 +5085,7 @@ function getFestivalDateStatus(fest) {
       statusKey: 'active',
       dateRangeText,
       badgeText: 'Active Now',
-      color: '#4ade80',
+      color: '#15803D',
       bg: 'rgba(16, 185, 129, 0.16)',
       border: 'rgba(16, 185, 129, 0.4)'
     };
@@ -5095,16 +5095,16 @@ function getFestivalDateStatus(fest) {
       statusKey: 'upcoming',
       dateRangeText,
       badgeText: 'Upcoming',
-      color: '#38bdf8',
-      bg: 'rgba(56, 189, 248, 0.16)',
-      border: 'rgba(56, 189, 248, 0.4)'
+      color: '#10B981',
+      bg: 'rgba(16, 185, 129, 0.16)',
+      border: 'rgba(16, 185, 129, 0.4)'
     };
   }
   return {
     statusKey: 'past',
     dateRangeText,
     badgeText: 'Ended',
-    color: '#94a3b8',
+    color: '#4E6159',
     bg: 'rgba(100, 116, 139, 0.18)',
     border: 'rgba(100, 116, 139, 0.35)'
   };
@@ -5112,7 +5112,7 @@ function getFestivalDateStatus(fest) {
 
 function renderMatchedEventsMiniList(matchedEvents, emptyFallbackHtml = '') {
   if (!matchedEvents || matchedEvents.length === 0) {
-    return emptyFallbackHtml || `<div style="font-size: 0.78rem; color: #94a3b8; font-style: italic;">No matching events currently loaded in active, quarantined, or archived pools.</div>`;
+    return emptyFallbackHtml || `<div style="font-size: 0.78rem; color: #4E6159; font-style: italic;">No matching events currently loaded in active, quarantined, or archived pools.</div>`;
   }
   return matchedEvents.map(({ ev, bucket, color, bg, border }) => {
     const evId = String(ev.id || ev.event_id || '').trim();
@@ -5127,23 +5127,23 @@ function renderMatchedEventsMiniList(matchedEvents, emptyFallbackHtml = '') {
         role="button" tabindex="0"
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFestivalEventPreview('${jsStrArg(evId)}', '${jsStrArg(bucket)}');}"
         title="Click to inspect event details"
-        style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;"
+        style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: #FFFFFF; border: 1px solid #D5DDD8; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;"
         onmouseover="this.style.borderColor='rgba(236,72,153,0.55)'; this.style.background='rgba(236,72,153,0.08)';"
-        onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.background='rgba(15,23,42,0.55)';">
+        onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.background='rgba(19, 32, 28,0.55)';">
         <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
           <div style="display: flex; align-items: center; gap: 7px; flex-wrap: wrap;">
             <span style="font-size: 0.68rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: ${bg}; color: ${color}; border: 1px solid ${border};">${escapeHtml(bucket)}</span>
-            <span style="color: #f8fafc; font-weight: 600; font-size: 0.86rem; text-decoration: underline; text-decoration-color: rgba(244, 114, 182, 0.45); text-underline-offset: 2px;">${escapeHtml(evTitle)}</span>
+            <span style="color: #111C18; font-weight: 600; font-size: 0.86rem; text-decoration: underline; text-decoration-color: rgba(244, 114, 182, 0.45); text-underline-offset: 2px;">${escapeHtml(evTitle)}</span>
           </div>
-          <div style="font-size: 0.75rem; color: #94a3b8; display: flex; gap: 10px; flex-wrap: wrap;">
+          <div style="font-size: 0.75rem; color: #4E6159; display: flex; gap: 10px; flex-wrap: wrap;">
             <span>📅 ${escapeHtml(evDate)}</span>
             ${evVenue ? `<span>📍 ${escapeHtml(evVenue)}</span>` : ''}
-            ${priceText ? `<span style="color: #4ade80; font-weight: 600;">${escapeHtml(priceText)}</span>` : ''}
+            ${priceText ? `<span style="color: #15803D; font-weight: 600;">${escapeHtml(priceText)}</span>` : ''}
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-          ${evUrl ? `<a href="${escapeHtml(safeExternalUrl(evUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" onclick="event.stopPropagation();" style="font-size: 0.75rem; color: #38bdf8; text-decoration: underline; white-space: nowrap;">Event Page ↗</a>` : ''}
-          <span style="font-size: 0.74rem; color: #f472b6; white-space: nowrap;">Inspect ›</span>
+          ${evUrl ? `<a href="${escapeHtml(safeExternalUrl(evUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" onclick="event.stopPropagation();" style="font-size: 0.75rem; color: #0D6E52; text-decoration: underline; white-space: nowrap;">Event Page ↗</a>` : ''}
+          <span style="font-size: 0.74rem; color: #9D174D; white-space: nowrap;">Inspect ›</span>
         </div>
       </div>
     `;
@@ -5208,29 +5208,29 @@ function renderHolidayCards() {
   const subTabBtnStyle = (isActive, accentColor, accentBg, accentBorder) =>
     isActive
       ? `background:${accentBg};border:1px solid ${accentBorder};color:${accentColor};font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:0.84rem;display:inline-flex;align-items:center;gap:7px;`
-      : `background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#cbd5e1;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:0.84rem;display:inline-flex;align-items:center;gap:7px;`;
+      : `background:#FFFFFF;border:1px solid #D5DDD8;color:#334840;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:0.84rem;display:inline-flex;align-items:center;gap:7px;`;
 
   let html = `
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:12px 14px;background:rgba(15,23,42,0.7);border:1px solid rgba(255,255,255,0.1);border-radius:12px;">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:12px 14px;background:#FFFFFF;border:1px solid #D5DDD8;border-radius:12px;">
       <button type="button" onclick="setFestivalsSubTab('pending')"
         style="${subTabBtnStyle(activeSubTab === 'pending', '#f9a8d4', 'rgba(236,72,153,0.2)', 'rgba(236,72,153,0.55)')}">
         <span>⏳ Needs Approval</span>
-        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${pendingTaxonomyCount}</span>
+        <span style="background:#F2F4F0;padding:1px 7px;border-radius:999px;font-size:0.75rem;">${pendingTaxonomyCount}</span>
       </button>
       <button type="button" onclick="setFestivalsSubTab('quarantined')"
-        style="${subTabBtnStyle(activeSubTab === 'quarantined', '#fde68a', 'rgba(245,158,11,0.2)', 'rgba(245,158,11,0.55)')}">
+        style="${subTabBtnStyle(activeSubTab === 'quarantined', '#92400E', 'rgba(245,158,11,0.2)', 'rgba(245,158,11,0.55)')}">
         <span>⚠️ Quarantined Festival/Holiday</span>
-        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${quarantinedFestivals.length}</span>
+        <span style="background:#F2F4F0;padding:1px 7px;border-radius:999px;font-size:0.75rem;">${quarantinedFestivals.length}</span>
       </button>
       <button type="button" onclick="setFestivalsSubTab('approved_festivals')"
-        style="${subTabBtnStyle(activeSubTab === 'approved_festivals', '#7dd3fc', 'rgba(56,189,248,0.18)', 'rgba(56,189,248,0.5)')}">
+        style="${subTabBtnStyle(activeSubTab === 'approved_festivals', '#065F46', 'rgba(16, 185, 129,0.18)', 'rgba(16, 185, 129,0.5)')}">
         <span>🎪 Approved Festivals</span>
-        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${approvedFestivals.length}</span>
+        <span style="background:#F2F4F0;padding:1px 7px;border-radius:999px;font-size:0.75rem;">${approvedFestivals.length}</span>
       </button>
       <button type="button" onclick="setFestivalsSubTab('approved_holidays')"
-        style="${subTabBtnStyle(activeSubTab === 'approved_holidays', '#fdba74', 'rgba(249,115,22,0.18)', 'rgba(249,115,22,0.5)')}">
+        style="${subTabBtnStyle(activeSubTab === 'approved_holidays', '#9A3412', 'rgba(249,115,22,0.18)', 'rgba(249,115,22,0.5)')}">
         <span>🎉 Approved Holidays</span>
-        <span style="background:rgba(0,0,0,0.35);padding:1px 7px;border-radius:999px;font-size:0.75rem;">${approved.length}</span>
+        <span style="background:#F2F4F0;padding:1px 7px;border-radius:999px;font-size:0.75rem;">${approved.length}</span>
       </button>
     </div>
   `;
@@ -5242,7 +5242,7 @@ function renderHolidayCards() {
     if (unapprovedFests.length > 0) {
       html += `
         <div style="margin-bottom: 24px;">
-          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #f472b6; margin: 0 0 12px 0;">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #9D174D; margin: 0 0 12px 0;">
             🎪 Pending Festivals Awaiting Curator Approval (${unapprovedFests.length})
           </h4>
           ${unapprovedFests.map((fest, idx) => {
@@ -5253,7 +5253,7 @@ function renderHolidayCards() {
             const matchedEvents = getEventsForPendingFestival(fest);
             const fallbackUrlHtml = fest.website_url ? `
               <a href="${escapeHtml(safeExternalUrl(fest.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"
-                style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); color: #38bdf8; text-decoration: none; font-size: 0.82rem;">
+                style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; background: #FFFFFF; border: 1px solid #D5DDD8; color: #0D6E52; text-decoration: none; font-size: 0.82rem;">
                 <span>🔗 ${escapeHtml(fest.discovered_from_title || festName)} (${escapeHtml(fest.discovered_from_event_id || 'Source Link')})</span>
                 <span>Open ↗</span>
               </a>
@@ -5264,10 +5264,10 @@ function renderHolidayCards() {
               <div class="curator-card" id="card-festival-${escapeHtml(festSlug)}" style="border-left: 4px solid #ec4899; margin-bottom: 16px;">
                 <div class="curator-card-top">
                   <div>
-                    <h3 class="curator-card-title" style="color: #f9a8d4; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <h3 class="curator-card-title" style="color: #9D174D; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                       <span>🎪</span>
                       <span>${escapeHtml(festName)}</span>
-                      <span style="font-size: 0.76rem; font-weight: normal; color: #94a3b8; font-family: monospace;">(${escapeHtml(festSlug)})</span>
+                      <span style="font-size: 0.76rem; font-weight: normal; color: #4E6159; font-family: monospace;">(${escapeHtml(festSlug)})</span>
                     </h3>
                     <div class="curator-card-meta">
                       <span>📅 <strong>Dates:</strong> ${escapeHtml(dateMeta.dateRangeText)}</span>
@@ -5275,15 +5275,15 @@ function renderHolidayCards() {
                       <span>🏷️ <strong>Status:</strong> <span style="color: #fbcfe8; font-weight: 700;">Pending Curator Approval</span></span>
                     </div>
                   </div>
-                  <span class="curator-badge-pill" style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.45);">
+                  <span class="curator-badge-pill" style="background: rgba(236, 72, 153, 0.2); color: #9D174D; border: 1px solid rgba(236, 72, 153, 0.45);">
                     🎪 New Festival Candidate
                   </span>
                 </div>
 
                 <div style="background: rgba(236, 72, 153, 0.05); border: 1px solid rgba(236, 72, 153, 0.22); border-radius: 8px; padding: 10px 12px; margin: 12px 0;">
-                  <div style="font-size: 0.78rem; font-weight: 700; color: #f9a8d4; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #9D174D; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
                     <span>📋 Events Under This Proposed Festival (${matchedEvents.length})</span>
-                    <span style="font-size: 0.72rem; font-weight: 400; color: #94a3b8;">Click any event to preview details</span>
+                    <span style="font-size: 0.72rem; font-weight: 400; color: #4E6159;">Click any event to preview details</span>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 6px;">
                     ${eventsListHtml}
@@ -5291,21 +5291,21 @@ function renderHolidayCards() {
                 </div>
 
                 <!-- Clear 3-Path Decision Panel -->
-                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; align-items: end;">
+                <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; align-items: end;">
                   <div>
-                    <label style="display: block; font-size: 0.74rem; color: #f9a8d4; font-weight: 600; margin-bottom: 4px;">Path A — Approve as New Festival</label>
+                    <label style="display: block; font-size: 0.74rem; color: #9D174D; font-weight: 600; margin-bottom: 4px;">Path A — Approve as New Festival</label>
                     <div style="display: flex; gap: 6px;">
                       <input type="text" id="fest-approve-name-${escapeHtml(festSlug)}" value="${escapeHtml(festName)}"
-                        style="flex: 1; font-size: 0.88rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                        style="flex: 1; font-size: 0.88rem; padding: 7px 10px; background: #F2F4F0; border: 1px solid #D5DDD8; border-radius: 6px; color: #111C18;">
                       <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
-                        style="background: linear-gradient(135deg, #db2777, #9333ea); border-color: #f472b6; white-space: nowrap;">
+                        style="background: linear-gradient(135deg, #db2777, #9333ea); border-color: #9D174D; white-space: nowrap;">
                         ✓ Approve
                       </button>
                     </div>
                   </div>
                   ${(approvedFestivals.length > 0 || approved.length > 0) ? `
                     <div>
-                      <label style="display: block; font-size: 0.74rem; color: #7dd3fc; font-weight: 600; margin-bottom: 4px;">Path B — Merge Into Existing Festival or Holiday</label>
+                      <label style="display: block; font-size: 0.74rem; color: #065F46; font-weight: 600; margin-bottom: 4px;">Path B — Merge Into Existing Festival or Holiday</label>
                       <div style="display: flex; gap: 6px;">
                         <select id="fest-merge-target-${escapeHtml(festSlug)}" class="curator-select" style="flex: 1; padding: 7px 8px; font-size: 0.82rem;">
                           <option value="">-- Select target festival or holiday --</option>
@@ -5325,7 +5325,7 @@ function renderHolidayCards() {
                           ` : ''}
                         </select>
                         <button type="button" class="btn-curator btn-curator-ghost" onclick="mergePendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
-                          style="border-color: rgba(56, 189, 248, 0.45); color: #7dd3fc; white-space: nowrap;">
+                          style="border-color: rgba(16, 185, 129, 0.45); color: #065F46; white-space: nowrap;">
                           🔀 Merge
                         </button>
                       </div>
@@ -5335,11 +5335,11 @@ function renderHolidayCards() {
 
                 <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap;">
                   <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(festSlug)}', 'instruct')"
-                    style="border-color: rgba(168, 85, 247, 0.45); color: #d8b4fe;">
+                    style="border-color: rgba(168, 85, 247, 0.45); color: #6B21A8;">
                     📝 Feedback / Guidance
                   </button>
                   <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${jsStrArg(festSlug)}', '${jsStrArg(festName)}')"
-                    style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                    style="border-color: rgba(239, 68, 68, 0.4); color: #BE123C;">
                     ✕ Path C — Dismiss (Keep Events Standalone)
                   </button>
                 </div>
@@ -5353,7 +5353,7 @@ function renderHolidayCards() {
     if (pending.length > 0) {
       html += `
         <div style="margin-bottom: 24px;">
-          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #fdba74; margin: 0 0 12px 0;">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #9A3412; margin: 0 0 12px 0;">
             🎉 Pending Holidays Awaiting Curator Sign-Off (${pending.length})
           </h4>
           ${pending.map(h => {
@@ -5365,15 +5365,15 @@ function renderHolidayCards() {
               <div class="curator-card" id="card-holiday-${escapeHtml(hId)}" style="border-left: 4px solid #f97316; margin-bottom: 16px;">
                 <div class="curator-card-top">
                   <div>
-                    <h3 class="curator-card-title" style="color: #fdba74; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <h3 class="curator-card-title" style="color: #9A3412; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                       <span>${escapeHtml(defaultIcon)}</span>
                       <span>${escapeHtml(defaultLabel)}</span>
-                      <span style="font-size: 0.78rem; font-weight: normal; color: #94a3b8; font-family: monospace;">(#${escapeHtml(hId)})</span>
+                      <span style="font-size: 0.78rem; font-weight: normal; color: #4E6159; font-family: monospace;">(#${escapeHtml(hId)})</span>
                     </h3>
                     <div class="curator-card-meta">
                       <span>🔍 <strong>Detected In:</strong> ${escapeHtml(h.eventTitle || h.detectedInEvent || 'AI Event Scout')}</span>
                       <span>📅 <strong>Detected Date:</strong> ${escapeHtml(h.detectedAt || 'Today')}</span>
-                      <span>🏷️ <strong>Status:</strong> <span style="color: #fed7aa; font-weight: 600;">Pending Curator Sign-off</span></span>
+                      <span>🏷️ <strong>Status:</strong> <span style="color: #9A3412; font-weight: 600;">Pending Curator Sign-off</span></span>
                     </div>
                   </div>
                   <span class="curator-badge-pill" style="background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4);">
@@ -5382,23 +5382,23 @@ function renderHolidayCards() {
                 </div>
 
                 <div style="background: rgba(249, 115, 22, 0.05); border: 1px solid rgba(249, 115, 22, 0.22); border-radius: 8px; padding: 10px 12px; margin: 12px 0;">
-                  <div style="font-size: 0.78rem; font-weight: 700; color: #fdba74; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #9A3412; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
                     <span>📋 Events Under This Proposed Holiday (${matchedEvents.length})</span>
-                    <span style="font-size: 0.72rem; font-weight: 400; color: #94a3b8;">Click any event to preview details</span>
+                    <span style="font-size: 0.72rem; font-weight: 400; color: #4E6159;">Click any event to preview details</span>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 6px;">
                     ${renderMatchedEventsMiniList(matchedEvents)}
                   </div>
                 </div>
 
-                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; align-items: end;">
+                <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px 14px; margin: 12px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; align-items: end;">
                   <div>
-                    <div style="font-size: 0.74rem; color: #fdba74; font-weight: 600; margin-bottom: 6px;">Path A — Approve as New Holiday</div>
+                    <div style="font-size: 0.74rem; color: #9A3412; font-weight: 600; margin-bottom: 6px;">Path A — Approve as New Holiday</div>
                     <div style="display: grid; grid-template-columns: 64px 1fr auto; gap: 8px; align-items: center;">
                       <input type="text" id="holiday-icon-${escapeHtml(hId)}" value="${escapeHtml(defaultIcon)}" title="Icon / Emoji"
-                        style="width: 100%; text-align: center; font-size: 1.15rem; padding: 6px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                        style="width: 100%; text-align: center; font-size: 1.15rem; padding: 6px; background: #F2F4F0; border: 1px solid #D5DDD8; border-radius: 6px; color: #111C18;">
                       <input type="text" id="holiday-label-${escapeHtml(hId)}" value="${escapeHtml(defaultLabel)}" title="Display Label"
-                        style="width: 100%; font-size: 0.88rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+                        style="width: 100%; font-size: 0.88rem; padding: 7px 10px; background: #F2F4F0; border: 1px solid #D5DDD8; border-radius: 6px; color: #111C18;">
                       <button type="button" class="btn-curator btn-curator-primary" onclick="approveHoliday('${jsStrArg(hId)}')"
                         style="background: #ea580c; border-color: #f97316; white-space: nowrap;">
                         ✓ Approve
@@ -5407,14 +5407,14 @@ function renderHolidayCards() {
                   </div>
                   ${approved.length > 0 ? `
                     <div>
-                      <div style="font-size: 0.74rem; color: #d8b4fe; font-weight: 600; margin-bottom: 6px;">Path B — Combine Into Existing Approved Holiday</div>
+                      <div style="font-size: 0.74rem; color: #6B21A8; font-weight: 600; margin-bottom: 6px;">Path B — Combine Into Existing Approved Holiday</div>
                       <div style="display: flex; gap: 6px;">
                         <select id="pending-holiday-merge-target-${escapeHtml(hId)}" class="curator-select" style="flex: 1; padding: 7px 8px; font-size: 0.82rem;">
                           <option value="">-- Select target holiday --</option>
                           ${approved.map(ah => `<option value="${escapeHtml(ah.id)}">${escapeHtml((ah.icon || '🎉') + ' ' + (ah.label || ah.id))}</option>`).join('')}
                         </select>
                         <button type="button" class="btn-curator btn-curator-ghost" onclick="combinePendingHoliday('${jsStrArg(hId)}', '${jsStrArg(defaultLabel)}')"
-                          style="border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe; white-space: nowrap;">
+                          style="border-color: rgba(168, 85, 247, 0.5); color: #6B21A8; white-space: nowrap;">
                           🔀 Combine
                         </button>
                       </div>
@@ -5423,7 +5423,7 @@ function renderHolidayCards() {
                 </div>
 
                 <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
-                  <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectHoliday('${jsStrArg(hId)}')" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+                  <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectHoliday('${jsStrArg(hId)}')" style="border-color: rgba(239, 68, 68, 0.4); color: #BE123C;">
                     ✕ Path C — Reject / Dismiss
                   </button>
                 </div>
@@ -5445,9 +5445,9 @@ function renderHolidayCards() {
             All discovered festival and holiday categories are currently verified. Use the tabs above to inspect quarantined events or manage your approved registries.
           </p>
           <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-            ${quarantinedFestivals.length > 0 ? `<button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('quarantined')" style="border-color:rgba(245,158,11,0.45);color:#fde68a;">⚠️ View ${quarantinedFestivals.length} Quarantined Event(s)</button>` : ''}
-            <button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('approved_festivals')" style="border-color:rgba(56,189,248,0.45);color:#7dd3fc;">🎪 Manage Approved Festivals (${approvedFestivals.length})</button>
-            <button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('approved_holidays')" style="border-color:rgba(249,115,22,0.45);color:#fdba74;">🎉 Manage Approved Holidays (${approved.length})</button>
+            ${quarantinedFestivals.length > 0 ? `<button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('quarantined')" style="border-color:rgba(245,158,11,0.45);color:#92400E;">⚠️ View ${quarantinedFestivals.length} Quarantined Event(s)</button>` : ''}
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('approved_festivals')" style="border-color:rgba(16, 185, 129,0.45);color:#065F46;">🎪 Manage Approved Festivals (${approvedFestivals.length})</button>
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="setFestivalsSubTab('approved_holidays')" style="border-color:rgba(249,115,22,0.45);color:#9A3412;">🎉 Manage Approved Holidays (${approved.length})</button>
           </div>
         </div>
       `;
@@ -5462,10 +5462,10 @@ function renderHolidayCards() {
       html += `
         <div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
-            <h4 style="font-family:var(--font-heading);font-size:1.05rem;color:#fde68a;margin:0;">
+            <h4 style="font-family:var(--font-heading);font-size:1.05rem;color:#92400E;margin:0;">
               ⚠️ Quarantined Festival-Related Events (${quarantinedFestivals.length})
             </h4>
-            <span style="font-size:0.78rem;color:#94a3b8;">Individual event cards tagged as festival events that need quarantine triage</span>
+            <span style="font-size:0.78rem;color:#4E6159;">Individual event cards tagged as festival events that need quarantine triage</span>
           </div>
           ${quarantinedFestivals.map((ev, idx) => renderEventCard(ev, idx)).join('')}
         </div>
@@ -5521,8 +5521,8 @@ function renderHolidayCards() {
     }
 
     const pillStyle = (active) => active
-      ? 'padding:5px 10px;border-radius:999px;font-size:0.76rem;font-weight:700;cursor:pointer;background:rgba(56,189,248,0.2);border:1px solid rgba(56,189,248,0.55);color:#7dd3fc;'
-      : 'padding:5px 10px;border-radius:999px;font-size:0.76rem;font-weight:600;cursor:pointer;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#94a3b8;';
+      ? 'padding:5px 10px;border-radius:999px;font-size:0.76rem;font-weight:700;cursor:pointer;background:rgba(16, 185, 129,0.2);border:1px solid rgba(16, 185, 129,0.55);color:#065F46;'
+      : 'padding:5px 10px;border-radius:999px;font-size:0.76rem;font-weight:600;cursor:pointer;background:#FFFFFF;border:1px solid #D5DDD8;color:#4E6159;';
 
     html += `
       <div>
@@ -5530,7 +5530,7 @@ function renderHolidayCards() {
           <input type="text" id="approved-festivals-search-input" value="${escapeHtml(state.approvedFestivalsSearch || '')}"
             oninput="setApprovedFestivalsSearch(this.value)"
             placeholder="🔍 Search approved festivals by name, slug, or alias…"
-            style="flex:1;min-width:240px;padding:8px 12px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.16);border-radius:8px;color:#f8fafc;font-size:0.86rem;">
+            style="flex:1;min-width:240px;padding:8px 12px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:8px;color:#111C18;font-size:0.86rem;">
           <select onchange="setApprovedFestivalsSort(this.value)" class="curator-select" style="padding:8px 10px;font-size:0.82rem;">
             <option value="alpha" ${sortBy === 'alpha' ? 'selected' : ''}>Sort: A–Z</option>
             <option value="events" ${sortBy === 'events' ? 'selected' : ''}>Sort: Most Live Events</option>
@@ -5547,7 +5547,7 @@ function renderHolidayCards() {
         </div>
 
         ${filteredFests.length === 0 ? `
-          <div style="text-align:center;padding:32px;color:#94a3b8;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;">
+          <div style="text-align:center;padding:32px;color:#4E6159;background:#FFFFFF;border:1px solid #D5DDD8;border-radius:10px;">
             No approved festivals match your current search/filter.
           </div>
         ` : `
@@ -5556,83 +5556,83 @@ function renderHolidayCards() {
               const aliases = Array.isArray(af.aliases) ? af.aliases : [];
               const otherFests = approvedFestivals.filter(o => String(o.slug || o.id || '').toLowerCase() !== slug.toLowerCase());
               const liveBadgeStyle = liveCount > 0
-                ? 'background:rgba(16,185,129,0.16);color:#4ade80;border:1px solid rgba(16,185,129,0.4);'
-                : 'background:rgba(148,163,184,0.12);color:#94a3b8;border:1px solid rgba(148,163,184,0.28);';
+                ? 'background:rgba(16,185,129,0.16);color:#15803D;border:1px solid rgba(16,185,129,0.4);'
+                : 'background:rgba(148,163,184,0.12);color:#4E6159;border:1px solid #D5DDD8;';
               return `
-                <div id="approved-fest-row-${escapeHtml(slug)}" style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:12px 15px;">
+                <div id="approved-fest-row-${escapeHtml(slug)}" style="background:rgba(255,255,255,0.035);border:1px solid #D5DDD8;border-radius:10px;padding:12px 15px;">
                   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
                     <div style="min-width:0;flex:1;">
                       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
                         <span style="font-size:1.2rem;">🎪</span>
-                        <strong style="color:#f8fafc;font-size:0.98rem;">${escapeHtml(name)}</strong>
+                        <strong style="color:#111C18;font-size:0.98rem;">${escapeHtml(name)}</strong>
                         <span style="font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:999px;background:${dateMeta.bg};color:${dateMeta.color};border:1px solid ${dateMeta.border};">${escapeHtml(dateMeta.badgeText)}</span>
                         <span style="font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:999px;${liveBadgeStyle}">${liveCount} live</span>
                       </div>
-                      <div style="font-size:0.76rem;color:#94a3b8;margin-top:4px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                      <div style="font-size:0.76rem;color:#4E6159;margin-top:4px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
                         <span>📅 ${escapeHtml(dateMeta.dateRangeText)}</span>
                         <span style="font-family:monospace;">slug: "${escapeHtml(slug)}"</span>
-                        ${af.website_url ? `<a href="${escapeHtml(safeExternalUrl(af.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color:#38bdf8;text-decoration:underline;">Website ↗</a>` : ''}
+                        ${af.website_url ? `<a href="${escapeHtml(safeExternalUrl(af.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color:#0D6E52;text-decoration:underline;">Website ↗</a>` : ''}
                       </div>
                       ${aliases.length > 0 ? `
-                        <div style="font-size:0.72rem;color:#94a3b8;margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;align-items:center;">
-                          <span style="color:#cbd5e1;font-weight:600;">Aliases:</span>
-                          ${aliases.map(al => `<span style="font-family:monospace;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#bae6fd;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
+                        <div style="font-size:0.72rem;color:#4E6159;margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;align-items:center;">
+                          <span style="color:#334840;font-weight:600;">Aliases:</span>
+                          ${aliases.map(al => `<span style="font-family:monospace;background:rgba(16, 185, 129,0.1);border:1px solid rgba(16, 185, 129,0.25);color:#075985;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
                         </div>
                       ` : ''}
                     </div>
                     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
                       <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleFestivalEventsDrawer('${jsStrArg(slug)}')"
-                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(236,72,153,0.4);color:#f9a8d4;">
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(236,72,153,0.4);color:#9D174D;">
                         📋 Events (${matchedEvents.length})
                       </button>
                       <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleEditApprovedFestival('${jsStrArg(slug)}')"
-                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(56,189,248,0.45);color:#7dd3fc;">
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(16, 185, 129,0.45);color:#065F46;">
                         ✏️ Edit
                       </button>
                       <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleCombineApprovedFestival('${jsStrArg(slug)}')"
-                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(168,85,247,0.5);color:#d8b4fe;">
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(168,85,247,0.5);color:#6B21A8;">
                         🔀 Combine
                       </button>
                       <button type="button" class="btn-curator btn-curator-ghost" onclick="removeApprovedFestival('${jsStrArg(slug)}', '${jsStrArg(name)}')"
-                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(239,68,68,0.45);color:#fca5a5;">
+                        style="padding:5px 9px;font-size:0.76rem;border-color:rgba(239,68,68,0.45);color:#9F1239;">
                         🗑️ Remove
                       </button>
                     </div>
                   </div>
 
                   <!-- Expandable Events Drawer -->
-                  <div id="af-events-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                  <div id="af-events-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #D5DDD8;">
                     <div style="display:flex;flex-direction:column;gap:6px;">
                       ${renderMatchedEventsMiniList(matchedEvents)}
                     </div>
                   </div>
 
                   <!-- Inline Edit Drawer -->
-                  <div id="af-edit-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                  <div id="af-edit-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #D5DDD8;">
                     <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr auto;gap:8px;align-items:end;flex-wrap:wrap;">
                       <div>
-                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Festival Name</label>
+                        <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Festival Name</label>
                         <input type="text" id="af-edit-name-${escapeHtml(slug)}" value="${escapeHtml(name)}"
-                          style="width:100%;font-size:0.84rem;padding:6px 9px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                          style="width:100%;font-size:0.84rem;padding:6px 9px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                       </div>
                       <div>
-                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Start Date</label>
+                        <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Start Date</label>
                         <input type="date" id="af-edit-start-${escapeHtml(slug)}" value="${escapeHtml(af.start_date || '')}"
-                          style="width:100%;font-size:0.82rem;padding:6px 8px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                          style="width:100%;font-size:0.82rem;padding:6px 8px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                       </div>
                       <div>
-                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">End Date</label>
+                        <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">End Date</label>
                         <input type="date" id="af-edit-end-${escapeHtml(slug)}" value="${escapeHtml(af.end_date || '')}"
-                          style="width:100%;font-size:0.82rem;padding:6px 8px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                          style="width:100%;font-size:0.82rem;padding:6px 8px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                       </div>
                       <div>
-                        <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Website URL</label>
+                        <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Website URL</label>
                         <input type="url" id="af-edit-url-${escapeHtml(slug)}" value="${escapeHtml(af.website_url || '')}" placeholder="https://..."
-                          style="width:100%;font-size:0.82rem;padding:6px 9px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                          style="width:100%;font-size:0.82rem;padding:6px 9px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                       </div>
                       <div style="display:flex;gap:6px;">
                         <button type="button" class="btn-curator btn-curator-primary" onclick="saveEditApprovedFestival('${jsStrArg(slug)}')"
-                          style="padding:6px 11px;font-size:0.78rem;background:#0284c7;border-color:#38bdf8;">💾 Save</button>
+                          style="padding:6px 11px;font-size:0.78rem;background:#0D6E52;border-color:#0D6E52;">💾 Save</button>
                         <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleEditApprovedFestival('${jsStrArg(slug)}')"
                           style="padding:6px 9px;font-size:0.78rem;">Cancel</button>
                       </div>
@@ -5640,9 +5640,9 @@ function renderHolidayCards() {
                   </div>
 
                   <!-- Inline Combine Drawer -->
-                  <div id="af-combine-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                  <div id="af-combine-drawer-${escapeHtml(slug)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #D5DDD8;">
                     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                      <span style="font-size:0.78rem;color:#d8b4fe;font-weight:600;">Combine into:</span>
+                      <span style="font-size:0.78rem;color:#6B21A8;font-weight:600;">Combine into:</span>
                       <select id="af-combine-target-${escapeHtml(slug)}" class="curator-select" style="flex:1;min-width:220px;padding:6px 9px;font-size:0.82rem;">
                         <option value="">-- Select target festival or holiday --</option>
                         ${approved.length > 0 ? `
@@ -5683,13 +5683,13 @@ function renderHolidayCards() {
       <div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
           <div>
-            <h4 style="font-family:var(--font-heading);font-size:1.05rem;color:#fdba74;margin:0;">
+            <h4 style="font-family:var(--font-heading);font-size:1.05rem;color:#9A3412;margin:0;">
               🎉 Approved Holidays Registry (${approved.length})
             </h4>
-            <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">When AI scouts detect these tags, events are auto-approved. Manage inline below or via the header button.</div>
+            <div style="font-size:0.78rem;color:#4E6159;margin-top:2px;">When AI scouts detect these tags, events are auto-approved. Manage inline below or via the header button.</div>
           </div>
           <button type="button" class="btn-curator btn-curator-ghost" onclick="openApprovedHolidaysModal()"
-            style="padding:6px 12px;font-size:0.8rem;border-color:rgba(249,115,22,0.5);color:#fdba74;">
+            style="padding:6px 12px;font-size:0.8rem;border-color:rgba(249,115,22,0.5);color:#9A3412;">
             🪟 Open in Modal
           </button>
         </div>
@@ -5705,79 +5705,79 @@ function renderHolidayCards() {
             const liveCount = matchedEvents.filter(m => m.bucket === 'Live').length;
             const otherTargets = approved.filter(other => String(other.id || '') !== id);
             const liveBadgeStyle = liveCount > 0
-              ? 'background:rgba(16,185,129,0.16);color:#4ade80;border:1px solid rgba(16,185,129,0.4);'
-              : 'background:rgba(148,163,184,0.12);color:#94a3b8;border:1px solid rgba(148,163,184,0.28);';
+              ? 'background:rgba(16,185,129,0.16);color:#15803D;border:1px solid rgba(16,185,129,0.4);'
+              : 'background:rgba(148,163,184,0.12);color:#4E6159;border:1px solid #D5DDD8;';
 
             return `
-              <div style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:12px 15px;">
+              <div style="background:rgba(255,255,255,0.035);border:1px solid #D5DDD8;border-radius:10px;padding:12px 15px;">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
                   <div style="display:flex;align-items:flex-start;gap:10px;min-width:0;flex:1;">
                     <span style="font-size:1.5rem;line-height:1.1;">${escapeHtml(icon)}</span>
                     <div style="min-width:0;flex:1;">
                       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-                        <strong style="color:#f8fafc;font-size:0.98rem;">${escapeHtml(label)}</strong>
-                        <span style="font-size:0.72rem;font-family:monospace;color:#94a3b8;background:rgba(255,255,255,0.06);padding:2px 7px;border-radius:999px;">tag: "${escapeHtml(id)}"</span>
+                        <strong style="color:#111C18;font-size:0.98rem;">${escapeHtml(label)}</strong>
+                        <span style="font-size:0.72rem;font-family:monospace;color:#4E6159;background:#FFFFFF;padding:2px 7px;border-radius:999px;">tag: "${escapeHtml(id)}"</span>
                         <span style="font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:999px;${liveBadgeStyle}">${liveCount} live</span>
-                        ${datesLabel ? `<span style="font-size:0.74rem;color:#7dd3fc;">📅 ${escapeHtml(datesLabel)}</span>` : ''}
+                        ${datesLabel ? `<span style="font-size:0.74rem;color:#065F46;">📅 ${escapeHtml(datesLabel)}</span>` : ''}
                       </div>
-                      ${ah.short_description ? `<div style="font-size:0.78rem;color:#cbd5e1;margin-top:4px;">${escapeHtml(ah.short_description)}</div>` : ''}
+                      ${ah.short_description ? `<div style="font-size:0.78rem;color:#334840;margin-top:4px;">${escapeHtml(ah.short_description)}</div>` : ''}
                       ${aliases.length > 0 ? `
-                        <div style="font-size:0.72rem;color:#94a3b8;margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;align-items:center;">
-                          <span style="color:#cbd5e1;font-weight:600;">Aliases:</span>
-                          ${aliases.map(al => `<span style="font-family:monospace;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.28);color:#fed7aa;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
+                        <div style="font-size:0.72rem;color:#4E6159;margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;align-items:center;">
+                          <span style="color:#334840;font-weight:600;">Aliases:</span>
+                          ${aliases.map(al => `<span style="font-family:monospace;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.28);color:#9A3412;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
                         </div>
                       ` : ''}
                     </div>
                   </div>
                   <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
                     <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleHolidayEventsDrawer('${jsStrArg(id)}')"
-                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(249,115,22,0.4);color:#fdba74;">
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(249,115,22,0.4);color:#9A3412;">
                       📋 Events (${matchedEvents.length})
                     </button>
                     <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleRenameApprovedHoliday('${jsStrArg(id)}', 'tab')"
-                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(56,189,248,0.45);color:#7dd3fc;">
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(16, 185, 129,0.45);color:#065F46;">
                       ✏️ Rename
                     </button>
                     <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleCombineApprovedHoliday('${jsStrArg(id)}', 'tab')"
                       ${otherTargets.length === 0 ? 'disabled' : ''}
-                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(168,85,247,0.5);color:#d8b4fe;">
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(168,85,247,0.5);color:#6B21A8;">
                       🔀 Combine
                     </button>
                     <button type="button" class="btn-curator btn-curator-ghost" onclick="removeApprovedHoliday('${jsStrArg(id)}', '${jsStrArg(label)}')"
-                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(239,68,68,0.45);color:#fca5a5;">
+                      style="padding:5px 9px;font-size:0.76rem;border-color:rgba(239,68,68,0.45);color:#9F1239;">
                       🗑️ Remove
                     </button>
                   </div>
                 </div>
 
                 <!-- Expandable Events Drawer -->
-                <div id="ah-tab-events-drawer-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                <div id="ah-tab-events-drawer-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #D5DDD8;">
                   <div style="display:flex;flex-direction:column;gap:6px;">
                     ${renderMatchedEventsMiniList(matchedEvents)}
                   </div>
                 </div>
 
                 <!-- Inline Rename Drawer (Tab) -->
-                <div id="ah-tab-rename-panel-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                <div id="ah-tab-rename-panel-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #D5DDD8;">
                   <div style="display:grid;grid-template-columns:68px 1fr 160px auto;gap:8px;align-items:end;flex-wrap:wrap;">
                     <div>
-                      <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Icon</label>
+                      <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Icon</label>
                       <input type="text" id="ah-tab-rename-icon-${escapeHtml(id)}" value="${escapeHtml(icon)}"
-                        style="width:100%;text-align:center;font-size:1.1rem;padding:6px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                        style="width:100%;text-align:center;font-size:1.1rem;padding:6px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                     </div>
                     <div>
-                      <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Display Label</label>
+                      <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Display Label</label>
                       <input type="text" id="ah-tab-rename-label-${escapeHtml(id)}" value="${escapeHtml(label)}"
-                        style="width:100%;font-size:0.86rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                        style="width:100%;font-size:0.86rem;padding:7px 10px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                     </div>
                     <div>
-                      <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Dates Label</label>
+                      <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Dates Label</label>
                       <input type="text" id="ah-tab-rename-dates-${escapeHtml(id)}" value="${escapeHtml(datesLabel)}" placeholder="e.g. Nov 13 – Jan 3"
-                        style="width:100%;font-size:0.82rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                        style="width:100%;font-size:0.82rem;padding:7px 10px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                     </div>
                     <div style="display:flex;gap:6px;">
                       <button type="button" class="btn-curator btn-curator-primary" onclick="saveRenameApprovedHoliday('${jsStrArg(id)}', 'tab')"
-                        style="padding:7px 11px;font-size:0.78rem;background:#0284c7;border-color:#38bdf8;">💾 Save</button>
+                        style="padding:7px 11px;font-size:0.78rem;background:#0D6E52;border-color:#0D6E52;">💾 Save</button>
                       <button type="button" class="btn-curator btn-curator-ghost" onclick="toggleRenameApprovedHoliday('${jsStrArg(id)}', 'tab')"
                         style="padding:7px 9px;font-size:0.78rem;">Cancel</button>
                     </div>
@@ -5785,9 +5785,9 @@ function renderHolidayCards() {
                 </div>
 
                 <!-- Inline Combine Drawer (Tab) -->
-                <div id="ah-tab-combine-panel-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+                <div id="ah-tab-combine-panel-${escapeHtml(id)}" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #D5DDD8;">
                   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                    <span style="font-size:0.78rem;color:#d8b4fe;font-weight:600;">Combine into:</span>
+                    <span style="font-size:0.78rem;color:#6B21A8;font-weight:600;">Combine into:</span>
                     <select id="ah-tab-combine-target-${escapeHtml(id)}" class="curator-select" style="flex:1;min-width:220px;padding:6px 9px;font-size:0.82rem;">
                       ${otherTargets.map(other => `<option value="${escapeHtml(other.id)}">${escapeHtml((other.icon || '🎉') + ' ' + (other.label || other.id))} (#${escapeHtml(other.id)})</option>`).join('')}
                     </select>
@@ -5882,7 +5882,7 @@ window.openApprovedHolidaysModal = async function () {
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'approved-holidays-modal';
-    modal.style.cssText = 'position:fixed;inset:0;z-index:10065;background:rgba(2,6,23,0.82);display:none;align-items:center;justify-content:center;padding:20px;';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:10065;background:#F2F4F0;display:none;align-items:center;justify-content:center;padding:20px;';
     modal.addEventListener('click', (e) => {
       if (e.target === modal) window.closeApprovedHolidaysModal();
     });
@@ -5891,19 +5891,19 @@ window.openApprovedHolidaysModal = async function () {
 
   modal.style.display = 'flex';
   modal.innerHTML = `
-    <div style="background:#0f172a;border:1px solid rgba(249,115,22,0.45);border-radius:14px;max-width:900px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.75);color:#f8fafc;">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.1);gap:12px;flex-wrap:wrap;">
+    <div style="background:#FFFFFF;border:1px solid rgba(249,115,22,0.45);border-radius:14px;max-width:900px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08);color:#111C18;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #D5DDD8;gap:12px;flex-wrap:wrap;">
         <div>
-          <h3 style="margin:0;font-family:var(--font-heading);font-size:1.2rem;color:#fdba74;">🎉 Approved Holidays Manager</h3>
-          <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">Rename display labels/icons, combine overlapping holidays (and re-tag matching events), or remove entries from <code>data/approved_holidays.json</code></div>
+          <h3 style="margin:0;font-family:var(--font-heading);font-size:1.2rem;color:#9A3412;">🎉 Approved Holidays Manager</h3>
+          <div style="font-size:0.78rem;color:#4E6159;margin-top:2px;">Rename display labels/icons, combine overlapping holidays (and re-tag matching events), or remove entries from <code>data/approved_holidays.json</code></div>
         </div>
         <div style="display:flex;gap:8px;align-items:center;">
-          <button type="button" class="btn-curator btn-curator-ghost" onclick="openApprovedHolidaysModal()" style="border-color:rgba(56,189,248,0.45);color:#7dd3fc;">🔄 Refresh</button>
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="openApprovedHolidaysModal()" style="border-color:rgba(16, 185, 129,0.45);color:#065F46;">🔄 Refresh</button>
           <button type="button" class="btn-curator btn-curator-ghost" onclick="closeApprovedHolidaysModal()">✕ Close</button>
         </div>
       </div>
       <div id="approved-holidays-modal-body" style="padding:16px 20px;overflow-y:auto;flex:1;">
-        <div style="text-align:center;padding:32px;color:#94a3b8;">Loading approved holidays…</div>
+        <div style="text-align:center;padding:32px;color:#4E6159;">Loading approved holidays…</div>
       </div>
     </div>
   `;
@@ -5935,9 +5935,9 @@ window.renderApprovedHolidaysModalBody = function () {
   const approved = state.approvedHolidays || [];
   if (approved.length === 0) {
     body.innerHTML = `
-      <div style="text-align:center;padding:36px 20px;color:#94a3b8;">
+      <div style="text-align:center;padding:36px 20px;color:#4E6159;">
         <div style="font-size:2rem;margin-bottom:8px;">🎉</div>
-        <div style="font-weight:600;color:#e2e8f0;margin-bottom:4px;">No approved holidays in registry</div>
+        <div style="font-weight:600;color:#1E2E27;margin-bottom:4px;">No approved holidays in registry</div>
         <div style="font-size:0.82rem;">Approve newly detected holidays from the Festivals &amp; Holidays inbox tab.</div>
       </div>
     `;
@@ -5945,8 +5945,8 @@ window.renderApprovedHolidaysModalBody = function () {
   }
 
   body.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:0.82rem;color:#94a3b8;">
-      <span>Showing <strong style="color:#f8fafc;">${approved.length}</strong> approved holiday${approved.length === 1 ? '' : 's'}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:0.82rem;color:#4E6159;">
+      <span>Showing <strong style="color:#111C18;">${approved.length}</strong> approved holiday${approved.length === 1 ? '' : 's'}</span>
       <span>Changes save directly to <code>data/approved_holidays.json</code></span>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;">
@@ -5962,21 +5962,21 @@ window.renderApprovedHolidaysModalBody = function () {
         ).join('');
 
         return `
-          <div id="approved-holiday-row-${escapeHtml(id)}" style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 16px;">
+          <div id="approved-holiday-row-${escapeHtml(id)}" style="background:rgba(255,255,255,0.035);border:1px solid #D5DDD8;border-radius:10px;padding:14px 16px;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
               <div style="display:flex;align-items:flex-start;gap:12px;min-width:0;flex:1;">
                 <span style="font-size:1.65rem;line-height:1.1;flex-shrink:0;">${escapeHtml(icon)}</span>
                 <div style="min-width:0;flex:1;">
                   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-                    <strong style="color:#f8fafc;font-size:1rem;">${escapeHtml(label)}</strong>
-                    <span style="font-size:0.74rem;font-family:monospace;color:#94a3b8;background:rgba(255,255,255,0.06);padding:2px 7px;border-radius:999px;">tag: "${escapeHtml(id)}"</span>
-                    ${datesLabel ? `<span style="font-size:0.74rem;color:#7dd3fc;">📅 ${escapeHtml(datesLabel)}</span>` : ''}
+                    <strong style="color:#111C18;font-size:1rem;">${escapeHtml(label)}</strong>
+                    <span style="font-size:0.74rem;font-family:monospace;color:#4E6159;background:#FFFFFF;padding:2px 7px;border-radius:999px;">tag: "${escapeHtml(id)}"</span>
+                    ${datesLabel ? `<span style="font-size:0.74rem;color:#065F46;">📅 ${escapeHtml(datesLabel)}</span>` : ''}
                   </div>
-                  ${ah.short_description ? `<div style="font-size:0.8rem;color:#cbd5e1;margin-top:4px;line-height:1.4;">${escapeHtml(ah.short_description)}</div>` : ''}
+                  ${ah.short_description ? `<div style="font-size:0.8rem;color:#334840;margin-top:4px;line-height:1.4;">${escapeHtml(ah.short_description)}</div>` : ''}
                   ${aliases.length > 0 ? `
-                    <div style="font-size:0.73rem;color:#94a3b8;margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;">
-                      <span style="font-weight:600;color:#cbd5e1;">Aliases:</span>
-                      ${aliases.map(al => `<span style="font-family:monospace;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.28);color:#fed7aa;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
+                    <div style="font-size:0.73rem;color:#4E6159;margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;">
+                      <span style="font-weight:600;color:#334840;">Aliases:</span>
+                      ${aliases.map(al => `<span style="font-family:monospace;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.28);color:#9A3412;padding:1px 6px;border-radius:4px;">${escapeHtml(al)}</span>`).join('')}
                     </div>
                   ` : ''}
                 </div>
@@ -5985,45 +5985,45 @@ window.renderApprovedHolidaysModalBody = function () {
               <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
                 <button type="button" class="btn-curator btn-curator-ghost"
                   onclick="toggleRenameApprovedHoliday('${jsStrArg(id)}')"
-                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(56,189,248,0.45);color:#7dd3fc;">
+                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(16, 185, 129,0.45);color:#065F46;">
                   ✏️ Rename
                 </button>
                 <button type="button" class="btn-curator btn-curator-ghost"
                   onclick="toggleCombineApprovedHoliday('${jsStrArg(id)}')"
                   ${otherTargets.length === 0 ? 'disabled' : ''}
-                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(168,85,247,0.5);color:#d8b4fe;">
+                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(168,85,247,0.5);color:#6B21A8;">
                   🔀 Combine
                 </button>
                 <button type="button" class="btn-curator btn-curator-ghost"
                   onclick="removeApprovedHoliday('${jsStrArg(id)}', '${jsStrArg(label)}')"
-                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(239,68,68,0.45);color:#fca5a5;">
+                  style="padding:5px 10px;font-size:0.78rem;border-color:rgba(239,68,68,0.45);color:#9F1239;">
                   🗑️ Remove
                 </button>
               </div>
             </div>
 
             <!-- Inline Rename Drawer -->
-            <div id="ah-rename-panel-${escapeHtml(id)}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);">
+            <div id="ah-rename-panel-${escapeHtml(id)}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid #D5DDD8;">
               <div style="display:grid;grid-template-columns:72px 1fr 160px auto;gap:8px;align-items:end;flex-wrap:wrap;">
                 <div>
-                  <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Icon</label>
+                  <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Icon</label>
                   <input type="text" id="ah-rename-icon-${escapeHtml(id)}" value="${escapeHtml(icon)}"
-                    style="width:100%;text-align:center;font-size:1.1rem;padding:6px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                    style="width:100%;text-align:center;font-size:1.1rem;padding:6px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                 </div>
                 <div>
-                  <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Display Label</label>
+                  <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Display Label</label>
                   <input type="text" id="ah-rename-label-${escapeHtml(id)}" value="${escapeHtml(label)}"
-                    style="width:100%;font-size:0.88rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                    style="width:100%;font-size:0.88rem;padding:7px 10px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                 </div>
                 <div>
-                  <label style="display:block;font-size:0.72rem;color:#94a3b8;margin-bottom:3px;">Dates Label (optional)</label>
+                  <label style="display:block;font-size:0.72rem;color:#4E6159;margin-bottom:3px;">Dates Label (optional)</label>
                   <input type="text" id="ah-rename-dates-${escapeHtml(id)}" value="${escapeHtml(datesLabel)}" placeholder="e.g. Nov 13 – Jan 3"
-                    style="width:100%;font-size:0.84rem;padding:7px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;">
+                    style="width:100%;font-size:0.84rem;padding:7px 10px;background:#F2F4F0;border:1px solid #D5DDD8;border-radius:6px;color:#111C18;">
                 </div>
                 <div style="display:flex;gap:6px;">
                   <button type="button" class="btn-curator btn-curator-primary"
                     onclick="saveRenameApprovedHoliday('${jsStrArg(id)}')"
-                    style="padding:7px 12px;font-size:0.8rem;background:#0284c7;border-color:#38bdf8;">
+                    style="padding:7px 12px;font-size:0.8rem;background:#0D6E52;border-color:#0D6E52;">
                     💾 Save
                   </button>
                   <button type="button" class="btn-curator btn-curator-ghost"
@@ -6036,11 +6036,11 @@ window.renderApprovedHolidaysModalBody = function () {
             </div>
 
             <!-- Inline Combine Drawer -->
-            <div id="ah-combine-panel-${escapeHtml(id)}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);">
+            <div id="ah-combine-panel-${escapeHtml(id)}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid #D5DDD8;">
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                <span style="font-size:0.8rem;color:#d8b4fe;font-weight:600;">Combine into:</span>
+                <span style="font-size:0.8rem;color:#6B21A8;font-weight:600;">Combine into:</span>
                 <select id="ah-combine-target-${escapeHtml(id)}"
-                  style="flex:1;min-width:220px;padding:7px 10px;background:#020617;border:1px solid rgba(168,85,247,0.45);border-radius:6px;color:#f8fafc;font-size:0.84rem;">
+                  style="flex:1;min-width:220px;padding:7px 10px;background:#F2F4F0;border:1px solid rgba(168,85,247,0.45);border-radius:6px;color:#111C18;font-size:0.84rem;">
                   ${targetOptionsHtml}
                 </select>
                 <button type="button" class="btn-curator btn-curator-primary"
@@ -6054,7 +6054,7 @@ window.renderApprovedHolidaysModalBody = function () {
                   Cancel
                 </button>
               </div>
-              <div style="font-size:0.74rem;color:#94a3b8;margin-top:6px;">
+              <div style="font-size:0.74rem;color:#4E6159;margin-top:6px;">
                 Adds <code>${escapeHtml(id)}</code> as an alias on the target holiday, removes this duplicate entry, and re-tags matching events in <code>events.json</code>.
               </div>
             </div>
@@ -7133,7 +7133,7 @@ function renderRulesList() {
       const days = Array.isArray(pol.scheduleDays) && pol.scheduleDays.length > 0
         ? `<span class="rule-tag rule-tag-schedule">📅 ${pol.scheduleDays.join(', ').toUpperCase()}</span>`
         : '';
-      const linkBadge = pol.calendarUrl ? `<a href="${escapeHtml(pol.calendarUrl)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.78rem; text-decoration: underline; margin-left: 6px;">Calendar URL ↗</a>` : '';
+      const linkBadge = pol.calendarUrl ? `<a href="${escapeHtml(pol.calendarUrl)}" target="_blank" rel="noopener noreferrer" style="color: #0D6E52; font-size: 0.78rem; text-decoration: underline; margin-left: 6px;">Calendar URL ↗</a>` : '';
 
       return `
         <div class="rule-item-card">
@@ -7145,7 +7145,7 @@ function renderRulesList() {
               ${days}
             </div>
             ${pol.curatorGuidance ? `
-              <div style="margin: 6px 0; font-size: 0.84rem; color: #e2e8f0; font-style: italic; background: rgba(0,0,0,0.25); padding: 6px 10px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+              <div style="margin: 6px 0; font-size: 0.84rem; color: #1E2E27; font-style: italic; background: #F2F4F0; padding: 6px 10px; border-radius: 6px; border-left: 3px solid #10B981;">
                 “${escapeHtml(pol.curatorGuidance)}”
               </div>
             ` : ''}
@@ -7182,7 +7182,7 @@ function renderRulesList() {
             <span>🏛️ ${escapeHtml(venue)}</span>
           </div>
           <div class="rule-item-meta" style="margin-top: 4px;">
-            <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; word-break: break-all; text-decoration: underline;">${escapeHtml(url)} ↗</a>
+            <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" style="color: #0D6E52; word-break: break-all; text-decoration: underline;">${escapeHtml(url)} ↗</a>
           </div>
         </div>
         <div class="rule-item-actions">
@@ -7485,16 +7485,16 @@ function renderInstructionsList() {
     const isPending = inst.status === 'pending';
     const isDismissed = inst.status === 'dismissed';
     const statusTag = isPending
-      ? `<span class="rule-tag" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">⚡ Pending Review</span>`
+      ? `<span class="rule-tag" style="background: rgba(245, 158, 11, 0.2); color: #92400E; border-color: rgba(245, 158, 11, 0.4);">⚡ Pending Review</span>`
       : (isDismissed
-        ? `<span class="rule-tag" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">🛑 Dismissed</span>`
-        : `<span class="rule-tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">✅ Resolved &amp; Applied</span>`);
+        ? `<span class="rule-tag" style="background: rgba(239, 68, 68, 0.2); color: #9F1239; border-color: rgba(239, 68, 68, 0.4);">🛑 Dismissed</span>`
+        : `<span class="rule-tag" style="background: rgba(16, 185, 129, 0.2); color: #065F46; border-color: rgba(16, 185, 129, 0.4);">✅ Resolved &amp; Applied</span>`);
 
     const shots = inst.screenshotPaths || (inst.screenshotPath ? [inst.screenshotPath] : []);
     const shotsHtml = shots.length > 0 ? `
       <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
         ${shots.map(s => `
-          <a href="${escapeHtml(s)}" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 60px; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2);">
+          <a href="${escapeHtml(s)}" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 60px; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid #D5DDD8;">
             <img src="${escapeHtml(s)}" alt="Proof Screenshot" style="width: 100%; height: 100%; object-fit: cover;" />
           </a>
         `).join('')}
@@ -7502,7 +7502,7 @@ function renderInstructionsList() {
     ` : '';
 
     const distilledHtml = inst.aiLearnedSummary ? `
-      <div style="margin-top: 6px; font-size: 0.78rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.08); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.2);">
+      <div style="margin-top: 6px; font-size: 0.78rem; color: #065F46; background: rgba(16, 185, 129, 0.08); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.2);">
         🤖 AI Distilled: ${escapeHtml(inst.aiLearnedSummary)}
       </div>
     ` : '';
@@ -7515,11 +7515,11 @@ function renderInstructionsList() {
             ${statusTag}
             ${inst.actionTaken ? `<span class="rule-tag">${escapeHtml(inst.actionTaken)}</span>` : ''}
           </div>
-          <div style="color: #ffffff; font-size: 0.9rem; margin: 8px 0 6px 0; background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc;">
+          <div style="color: #111C18; font-size: 0.9rem; margin: 8px 0 6px 0; background: #F2F4F0; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc;">
             “${escapeHtml(inst.instructionText || '')}”
           </div>
           ${inst.curatorNote && inst.curatorNote !== inst.instructionText ? `
-            <div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 4px;">
+            <div style="font-size: 0.8rem; color: #334840; margin-top: 4px;">
               <strong>Note:</strong> ${escapeHtml(inst.curatorNote)}
             </div>
           ` : ''}
@@ -7791,9 +7791,9 @@ function renderMasterCatalogList() {
 
   if (list.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 40px 20px; color: #94a3b8;">
+      <div style="text-align: center; padding: 40px 20px; color: #4E6159;">
         <div style="font-size: 2.2rem; margin-bottom: 8px;">🔍</div>
-        <div style="font-size: 1rem; font-weight: 600; color: #e2e8f0;">No matching entries found</div>
+        <div style="font-size: 1rem; font-weight: 600; color: #1E2E27;">No matching entries found</div>
         <div style="font-size: 0.82rem; margin-top: 4px;">Try a different search term or switch catalogs above.</div>
       </div>
     `;
@@ -7804,34 +7804,34 @@ function renderMasterCatalogList() {
     container.innerHTML = list.map((ev, index) => {
       const cardNum = getEventCardNumber(ev, index);
       const p = ev.pricing_all_in_cad?.regular ?? ev.price ?? 0;
-      const priceBadge = p === 0 ? '<span style="color: #4ade80; font-weight: 700;">Free ($0)</span>' : `<span style="color: #38bdf8; font-weight: 700;">$${Number(p).toFixed(2)} CAD</span>`;
+      const priceBadge = p === 0 ? '<span style="color: #15803D; font-weight: 700;">Free ($0)</span>' : `<span style="color: #0D6E52; font-weight: 700;">$${Number(p).toFixed(2)} CAD</span>`;
       const show1 = ev.show_1 || {};
       const dates = [ev.show_1?.date, ev.show_2?.date, ev.show_3?.date].filter(Boolean);
-      const showingsBadge = dates.length > 1 ? `<span style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 4px; padding: 2px 6px; font-size: 0.72rem;">${dates.length} Verified Showings</span>` : '';
-      const tags = (ev.tags || []).map(t => `<span style="background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; color: #94a3b8;">#${escapeHtml(t)}</span>`).join(' ');
+      const showingsBadge = dates.length > 1 ? `<span style="background: rgba(168, 85, 247, 0.2); color: #6B21A8; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 4px; padding: 2px 6px; font-size: 0.72rem;">${dates.length} Verified Showings</span>` : '';
+      const tags = (ev.tags || []).map(t => `<span style="background: #FFFFFF; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; color: #4E6159;">#${escapeHtml(t)}</span>`).join(' ');
 
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
             <div>
               <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                 <span class="badge-card-number" title="Catalog Card #${escapeHtml(cardNum)}">Card #${escapeHtml(cardNum)}</span>
-                <strong style="color: #f8fafc; font-size: 0.96rem;">${escapeHtml(ev.event_name || ev.title || 'Event')}</strong>
+                <strong style="color: #111C18; font-size: 0.96rem;">${escapeHtml(ev.event_name || ev.title || 'Event')}</strong>
               </div>
-              <div style="color: #38bdf8; font-size: 0.84rem; margin-top: 2px;">📍 ${escapeHtml(ev.venue_name || ev.venue || '')} • <span style="color: #94a3b8;">${escapeHtml(ev.neighborhood || '')}</span></div>
+              <div style="color: #0D6E52; font-size: 0.84rem; margin-top: 2px;">📍 ${escapeHtml(ev.venue_name || ev.venue || '')} • <span style="color: #4E6159;">${escapeHtml(ev.neighborhood || '')}</span></div>
             </div>
             <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
               ${priceBadge}
               ${showingsBadge}
             </div>
           </div>
-          <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4;">${escapeHtml(ev.description || 'No description provided.')}</div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.76rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 6px;">
-            <div>📅 Show 1: ${escapeHtml(show1.date || 'Upcoming')} ${show1.start_time ? `at ${escapeHtml(show1.start_time)}` : ''} | Provider: <strong style="color: #cbd5e1;">${escapeHtml(ev.ticket_provider || 'Direct')}</strong></div>
+          <div style="font-size: 0.8rem; color: #334840; line-height: 1.4;">${escapeHtml(ev.description || 'No description provided.')}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.76rem; color: #4E6159; border-top: 1px solid #D5DDD8; padding-top: 6px;">
+            <div>📅 Show 1: ${escapeHtml(show1.date || 'Upcoming')} ${show1.start_time ? `at ${escapeHtml(show1.start_time)}` : ''} | Provider: <strong style="color: #334840;">${escapeHtml(ev.ticket_provider || 'Direct')}</strong></div>
             <div style="display: flex; gap: 8px; align-items: center;">
               ${tags}
-              ${ev.ticket_url ? `<a href="${escapeHtml(safeExternalUrl(ev.ticket_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
-              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(ev.event_id || ev.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
+              ${ev.ticket_url ? `<a href="${escapeHtml(safeExternalUrl(ev.ticket_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline;">Tickets ↗</a>` : ''}
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(ev.event_id || ev.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #6B21A8; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
             </div>
           </div>
         </div>
@@ -7844,17 +7844,17 @@ function renderMasterCatalogList() {
       const neigh = vm.neighborhood || 'Vancouver';
       const calUrl = vm.calendar_url || vm.website_url || '';
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong style="color: #f8fafc; font-size: 0.95rem;">🏛️ ${escapeHtml(vname)}</strong>
-            <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.75rem;">${escapeHtml(neigh)}</span>
+            <strong style="color: #111C18; font-size: 0.95rem;">🏛️ ${escapeHtml(vname)}</strong>
+            <span style="background: rgba(16, 185, 129, 0.15); color: #0D6E52; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.75rem;">${escapeHtml(neigh)}</span>
           </div>
-          <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(addr)}</div>
-          ${vm.description ? `<div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 2px;">${escapeHtml(vm.description)}</div>` : ''}
+          <div style="font-size: 0.82rem; color: #4E6159;">📍 ${escapeHtml(addr)}</div>
+          ${vm.description ? `<div style="font-size: 0.8rem; color: #334840; margin-top: 2px;">${escapeHtml(vm.description)}</div>` : ''}
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem; align-items: center;">
-            ${calUrl ? `<a href="${escapeHtml(safeExternalUrl(calUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
-            ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(safeExternalUrl(vm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
-            <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(vm.venue_name || vm.name || vm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
+            ${calUrl ? `<a href="${escapeHtml(safeExternalUrl(calUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
+            ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(safeExternalUrl(vm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #4E6159; text-decoration: underline;">🌐 Website ↗</a>` : ''}
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(vm.venue_name || vm.name || vm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #6B21A8; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
           </div>
         </div>
       `;
@@ -7871,29 +7871,29 @@ function renderMasterCatalogList() {
       const fStatus = fm.status || fm.approvalStatus || 'approved';
       const isPending = fStatus === 'pending_curator_approval' || fStatus === 'pending';
       const statusPill = isPending
-        ? `<span style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.45); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">⏳ Needs Approval</span>`
+        ? `<span style="background: rgba(236, 72, 153, 0.2); color: #9D174D; border: 1px solid rgba(236, 72, 153, 0.45); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">⏳ Needs Approval</span>`
         : (fStatus === 'approved'
-          ? `<span style="background: rgba(16, 185, 129, 0.16); color: #4ade80; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">✓ Approved</span>`
-          : `<span style="background: rgba(148, 163, 184, 0.14); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem;">${escapeHtml(fStatus)}</span>`);
+          ? `<span style="background: rgba(16, 185, 129, 0.16); color: #15803D; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 999px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">✓ Approved</span>`
+          : `<span style="background: rgba(148, 163, 184, 0.14); color: #4E6159; border: 1px solid #D5DDD8; border-radius: 999px; padding: 2px 8px; font-size: 0.72rem;">${escapeHtml(fStatus)}</span>`);
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid ${isPending ? 'rgba(236, 72, 153, 0.45)' : 'rgba(255,255,255,0.08)'}; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="background: #FFFFFF; border: 1px solid ${isPending ? 'rgba(236, 72, 153, 0.45)' : 'rgba(255,255,255,0.08)'}; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-              <strong style="color: #f8fafc; font-size: 0.95rem;">🎪 ${escapeHtml(fname)}</strong>
+              <strong style="color: #111C18; font-size: 0.95rem;">🎪 ${escapeHtml(fname)}</strong>
               ${statusPill}
             </div>
-            <span style="color: #c084fc; font-size: 0.8rem; font-weight: 600;">${escapeHtml(fm.start_date || 'TBD')} to ${escapeHtml(fm.end_date || 'TBD')}</span>
+            <span style="color: #6B21A8; font-size: 0.8rem; font-weight: 600;">${escapeHtml(fm.start_date || 'TBD')} to ${escapeHtml(fm.end_date || 'TBD')}</span>
           </div>
-          <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(fm.location || fm.discovered_from_title || 'Vancouver, BC')} • <strong style="color: #cbd5e1;">${escapeHtml(fm.description || 'Festival / Seasonal Series')}</strong></div>
+          <div style="font-size: 0.82rem; color: #4E6159;">📍 ${escapeHtml(fm.location || fm.discovered_from_title || 'Vancouver, BC')} • <strong style="color: #334840;">${escapeHtml(fm.description || 'Festival / Seasonal Series')}</strong></div>
           <div style="display: flex; gap: 10px; margin-top: 4px; font-size: 0.78rem; align-items: center; flex-wrap: wrap;">
-            ${fm.schedule_url ? `<a href="${escapeHtml(safeExternalUrl(fm.schedule_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
-            ${fm.website_url ? `<a href="${escapeHtml(safeExternalUrl(fm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
+            ${fm.schedule_url ? `<a href="${escapeHtml(safeExternalUrl(fm.schedule_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
+            ${fm.website_url ? `<a href="${escapeHtml(safeExternalUrl(fm.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #4E6159; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
             <div style="margin-left: auto; display: flex; gap: 6px; align-items: center;">
               ${isPending ? `
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${jsStrArg(fslug)}', '${jsStrArg(fname)}').then(() => fetchMasterCatalog('festivals_master', true));" style="padding: 3px 9px; font-size: 0.72rem; color: #f87171; border-color: rgba(239, 68, 68, 0.4);">✕ Dismiss</button>
-                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${jsStrArg(fslug)}', '${jsStrArg(fname)}').then(() => fetchMasterCatalog('festivals_master', true));" style="padding: 3px 10px; font-size: 0.72rem; background: #db2777; border-color: #f472b6;">✓ Approve Festival</button>
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectPendingFestival('${jsStrArg(fslug)}', '${jsStrArg(fname)}').then(() => fetchMasterCatalog('festivals_master', true));" style="padding: 3px 9px; font-size: 0.72rem; color: #BE123C; border-color: rgba(239, 68, 68, 0.4);">✕ Dismiss</button>
+                <button type="button" class="btn-curator btn-curator-primary" onclick="approvePendingFestival('${jsStrArg(fslug)}', '${jsStrArg(fname)}').then(() => fetchMasterCatalog('festivals_master', true));" style="padding: 3px 10px; font-size: 0.72rem; background: #db2777; border-color: #9D174D;">✓ Approve Festival</button>
               ` : ''}
-              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(fslug)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI">📝 Guidance</button>
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${jsStrArg(fslug)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #6B21A8; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI">📝 Guidance</button>
             </div>
           </div>
         </div>
@@ -7902,13 +7902,13 @@ function renderMasterCatalogList() {
   } else if (currentTab === 'ticketing_sources') {
     container.innerHTML = list.map(ts => {
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
           <div>
-            <strong style="color: #f8fafc; font-size: 0.95rem;">🎫 ${escapeHtml(ts.provider_name || 'Provider')}</strong>
-            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">💡 ${escapeHtml(ts.notes || 'Ticketing source')}</div>
+            <strong style="color: #111C18; font-size: 0.95rem;">🎫 ${escapeHtml(ts.provider_name || 'Provider')}</strong>
+            <div style="font-size: 0.8rem; color: #4E6159; margin-top: 2px;">💡 ${escapeHtml(ts.notes || 'Ticketing source')}</div>
           </div>
           <div>
-            ${ts.website_url && ts.website_url !== 'Direct' ? `<a href="${escapeHtml(safeExternalUrl(ts.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="padding: 4px 10px; font-size: 0.76rem;">Visit ↗</a>` : '<span style="color: #4ade80; font-size: 0.8rem;">Door / Cash</span>'}
+            ${ts.website_url && ts.website_url !== 'Direct' ? `<a href="${escapeHtml(safeExternalUrl(ts.website_url))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="padding: 4px 10px; font-size: 0.76rem;">Visit ↗</a>` : '<span style="color: #15803D; font-size: 0.8rem;">Door / Cash</span>'}
           </div>
         </div>
       `;
@@ -7916,15 +7916,15 @@ function renderMasterCatalogList() {
   } else if (currentTab === 'discovery_sources') {
     container.innerHTML = list.map(ds => {
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong style="color: #f8fafc; font-size: 0.95rem;">🌐 ${escapeHtml(ds.name || ds.domain || 'Discovery Feed')}</strong>
-            <span style="background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem;">${escapeHtml(ds.typeLabel || ds.type || 'Aggregator')}</span>
+            <strong style="color: #111C18; font-size: 0.95rem;">🌐 ${escapeHtml(ds.name || ds.domain || 'Discovery Feed')}</strong>
+            <span style="background: rgba(34, 197, 94, 0.15); color: #15803D; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem;">${escapeHtml(ds.typeLabel || ds.type || 'Aggregator')}</span>
           </div>
-          <div style="font-size: 0.82rem; color: #cbd5e1;">🎯 ${escapeHtml(ds.focus || '')}</div>
-          <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 2px;">Policy: ${escapeHtml(ds.resolutionPolicy || 'Extract outbound canonical ticket portal')}</div>
+          <div style="font-size: 0.82rem; color: #334840;">🎯 ${escapeHtml(ds.focus || '')}</div>
+          <div style="font-size: 0.78rem; color: #4E6159; margin-top: 2px;">Policy: ${escapeHtml(ds.resolutionPolicy || 'Extract outbound canonical ticket portal')}</div>
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
-            ${ds.eventsUrl ? `<a href="${escapeHtml(safeExternalUrl(ds.eventsUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Calendar Feed ↗</a>` : ''}
+            ${ds.eventsUrl ? `<a href="${escapeHtml(safeExternalUrl(ds.eventsUrl))}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline;">Calendar Feed ↗</a>` : ''}
           </div>
         </div>
       `;
@@ -7933,13 +7933,13 @@ function renderMasterCatalogList() {
     container.innerHTML = list.map(ar => {
       const p = ar.attempted_price_cad ?? ar.attemptedPrice ?? ar.price ?? 0;
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong style="color: #f8fafc; font-size: 0.92rem;">📦 ${escapeHtml(ar.event_name || ar.title || 'Archived Event')}</strong>
+            <strong style="color: #111C18; font-size: 0.92rem;">📦 ${escapeHtml(ar.event_name || ar.title || 'Archived Event')}</strong>
             <span style="color: #f43f5e; font-size: 0.82rem; font-weight: 600;">$${Number(p).toFixed(2)} CAD</span>
           </div>
-          <div style="font-size: 0.8rem; color: #94a3b8;">📍 ${escapeHtml(ar.venue_name || ar.venue || '')}</div>
-          <div style="font-size: 0.78rem; color: #f87171; background: rgba(244, 63, 94, 0.08); padding: 4px 8px; border-radius: 4px; margin-top: 2px;">Reason: ${escapeHtml(ar.archive_reason || ar.archivedReason || ar.flagReason || 'Dismissed by curator')}</div>
+          <div style="font-size: 0.8rem; color: #4E6159;">📍 ${escapeHtml(ar.venue_name || ar.venue || '')}</div>
+          <div style="font-size: 0.78rem; color: #BE123C; background: rgba(244, 63, 94, 0.08); padding: 4px 8px; border-radius: 4px; margin-top: 2px;">Reason: ${escapeHtml(ar.archive_reason || ar.archivedReason || ar.flagReason || 'Dismissed by curator')}</div>
         </div>
       `;
     }).join('');
@@ -7950,31 +7950,31 @@ function renderMasterCatalogList() {
     const outliers = stats.outliers_excluded || 0;
 
     const statsHeader = `
-      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; font-size: 0.82rem;">
+      <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; font-size: 0.82rem;">
         <div>
-          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Total Submissions</div>
+          <div style="color: #4E6159; font-size: 0.72rem; text-transform: uppercase;">Total Submissions</div>
           <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">${totalReports}</div>
         </div>
         <div>
-          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Valid Range</div>
-          <div style="font-size: 1.2rem; font-weight: 700; color: #34d399;">${validReports}</div>
+          <div style="color: #4E6159; font-size: 0.72rem; text-transform: uppercase;">Valid Range</div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: #065F46;">${validReports}</div>
         </div>
         <div>
-          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Outliers Excluded</div>
+          <div style="color: #4E6159; font-size: 0.72rem; text-transform: uppercase;">Outliers Excluded</div>
           <div style="font-size: 1.2rem; font-weight: 700; color: #f59e0b;" title="Values outside Pint $3-$25 or Cocktail $6-$40 excluded">${outliers}</div>
         </div>
         <div>
-          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Venues Reported</div>
-          <div style="font-size: 1.2rem; font-weight: 700; color: #38bdf8;">${list.length}</div>
+          <div style="color: #4E6159; font-size: 0.72rem; text-transform: uppercase;">Venues Reported</div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: #0D6E52;">${list.length}</div>
         </div>
       </div>
     `;
 
     if (list.length === 0) {
       container.innerHTML = statsHeader + `
-        <div style="text-align: center; padding: 32px 20px; color: #94a3b8;">
+        <div style="text-align: center; padding: 32px 20px; color: #4E6159;">
           <div style="font-size: 1.8rem; margin-bottom: 6px;">🍺</div>
-          <div style="font-size: 0.95rem; font-weight: 600; color: #cbd5e1;">No crowdsourced price reports recorded yet</div>
+          <div style="font-size: 0.95rem; font-weight: 600; color: #334840;">No crowdsourced price reports recorded yet</div>
           <div style="font-size: 0.8rem; margin-top: 4px;">Patron submissions via cards or the "Suggest price update" modal will appear here.</div>
         </div>
       `;
@@ -7984,19 +7984,19 @@ function renderMasterCatalogList() {
     const itemsHtml = list.map(v => {
       const isConsensus = v.consensus_reached;
       const consensusBadge = isConsensus
-        ? `<span style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">✓ Consensus (N ≥ 3)</span>`
-        : `<span style="background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-weight: 600;">Collecting (N=${v.sample_size})</span>`;
+        ? `<span style="background: rgba(16, 185, 129, 0.15); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">✓ Consensus (N ≥ 3)</span>`
+        : `<span style="background: rgba(245, 158, 11, 0.12); color: #92400E; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-weight: 600;">Collecting (N=${v.sample_size})</span>`;
 
       const pintInfo = v.median_pint_menu !== null
         ? `<strong>$${v.median_pint_menu.toFixed(2)}</strong> menu ($${(v.median_pint_tax_in || v.median_pint_menu * 1.15).toFixed(2)} tax-in)`
-        : '<span style="color: #64748b;">Not reported</span>';
+        : '<span style="color: #5A6E65;">Not reported</span>';
 
       const cocktailInfo = v.median_cocktail_menu !== null
         ? `<strong>$${v.median_cocktail_menu.toFixed(2)}</strong> menu ($${(v.median_cocktail_tax_in || v.median_cocktail_menu * 1.15).toFixed(2)} tax-in)`
-        : '<span style="color: #64748b;">Not reported</span>';
+        : '<span style="color: #5A6E65;">Not reported</span>';
 
       const notesHtml = (v.recent_notes && v.recent_notes.length > 0)
-        ? `<div style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: 4px;">Recent notes: "${escapeHtml(v.recent_notes.join('", "'))}"</div>`
+        ? `<div style="font-size: 0.75rem; color: #4E6159; font-style: italic; margin-top: 4px;">Recent notes: "${escapeHtml(v.recent_notes.join('", "'))}"</div>`
         : '';
 
       const escapedVname = escapeHtml(v.venue_name);
@@ -8008,15 +8008,15 @@ function renderMasterCatalogList() {
       `;
 
       return `
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid ${isConsensus ? 'rgba(16, 185, 129, 0.3)' : 'rgba(255,255,255,0.08)'}; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="background: #FFFFFF; border: 1px solid ${isConsensus ? 'rgba(16, 185, 129, 0.3)' : 'rgba(255,255,255,0.08)'}; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <strong style="color: #f8fafc; font-size: 0.95rem;">🏛️ ${escapedVname}</strong>
+              <strong style="color: #111C18; font-size: 0.95rem;">🏛️ ${escapedVname}</strong>
               ${consensusBadge}
             </div>
             ${approveBtn}
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.82rem; color: #cbd5e1; background: rgba(0,0,0,0.2); padding: 8px 10px; border-radius: 6px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.82rem; color: #334840; background: #F2F4F0; padding: 8px 10px; border-radius: 6px;">
             <div>🍺 Cheapest Pint (Median): ${pintInfo}</div>
             <div>🍸 Cheapest Cocktail (Median): ${cocktailInfo}</div>
           </div>
@@ -8087,29 +8087,29 @@ function checkAndPromptCandidateSources() {
 
   container.style.display = 'block';
   container.innerHTML = `
-    <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(99, 102, 241, 0.15)); border: 1.5px solid rgba(56, 189, 248, 0.55); border-left: 6px solid #38bdf8; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);">
+    <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(99, 102, 241, 0.15)); border: 1.5px solid rgba(16, 185, 129, 0.55); border-left: 6px solid #10B981; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08);">
       <div style="display: flex; align-items: center; gap: 14px;">
-        <div style="font-size: 2.2rem; background: rgba(56, 189, 248, 0.15); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(56, 189, 248, 0.3);">📡</div>
+        <div style="font-size: 2.2rem; background: rgba(16, 185, 129, 0.15); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(16, 185, 129, 0.3);">📡</div>
         <div>
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-            <h3 style="margin: 0; font-size: 1.15rem; color: #bae6fd; font-family: var(--font-heading); font-weight: 700;">
+            <h3 style="margin: 0; font-size: 1.15rem; color: #075985; font-family: var(--font-heading); font-weight: 700;">
               ${count} New Candidate Event Sources Discovered by AI Awaiting Review!
             </h3>
-            <span style="background: #0284c7; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Action Recommended</span>
+            <span style="background: #0D6E52; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Action Recommended</span>
           </div>
-          <p style="margin: 0; font-size: 0.88rem; color: #cbd5e1; line-height: 1.4;">
+          <p style="margin: 0; font-size: 0.88rem; color: #334840; line-height: 1.4;">
             The Scout &amp; QC AIs automatically identified <strong>${count} potential event hubs, cultural organizers &amp; ticketing platforms</strong> during live operations. Review and enroll them into the Scout's mandatory checking schedule.
           </p>
         </div>
       </div>
       <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-        <button type="button" class="btn-curator btn-curator-primary" onclick="switchFilterToDiscoveredSources()" style="background: #0284c7; border: 1px solid #38bdf8; color: #fff; font-weight: 600; padding: 8px 16px;">
+        <button type="button" class="btn-curator btn-curator-primary" onclick="switchFilterToDiscoveredSources()" style="background: #0D6E52; border: 1px solid #10B981; color: #fff; font-weight: 600; padding: 8px 16px;">
           🔍 Review Candidates (${count})
         </button>
-        <button type="button" class="btn-curator btn-curator-ai-approve" onclick="approveAllCandidateSources()" style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; color: #6ee7b7; font-weight: 600; padding: 8px 14px;">
+        <button type="button" class="btn-curator btn-curator-ai-approve" onclick="approveAllCandidateSources()" style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; color: #065F46; font-weight: 600; padding: 8px 14px;">
           ⚡ Approve All (${count})
         </button>
-        <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissCandidateSourcesPrompt()" style="color: #94a3b8; padding: 8px 10px;" title="Dismiss notification">
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissCandidateSourcesPrompt()" style="color: #4E6159; padding: 8px 10px;" title="Dismiss notification">
           ✕
         </button>
       </div>
@@ -8163,12 +8163,12 @@ function renderDiscoveredSourcesCards() {
   }
 
   container.innerHTML = `
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
       <div>
-        <strong style="color: #38bdf8; font-size: 0.95rem;">⚡ Bulk Actions:</strong>
-        <span style="color: #94a3b8; font-size: 0.85rem; margin-left: 8px;">Approve all ${sources.length} candidate sources into the Scout discovery schedule with one click.</span>
+        <strong style="color: #0D6E52; font-size: 0.95rem;">⚡ Bulk Actions:</strong>
+        <span style="color: #4E6159; font-size: 0.85rem; margin-left: 8px;">Approve all ${sources.length} candidate sources into the Scout discovery schedule with one click.</span>
       </div>
-      <button type="button" class="btn-curator btn-curator-ai-approve" onclick="approveAllCandidateSources()" style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; color: #6ee7b7; font-weight: 600;">
+      <button type="button" class="btn-curator btn-curator-ai-approve" onclick="approveAllCandidateSources()" style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; color: #065F46; font-weight: 600;">
         ⚡ Approve All Candidate Sources (${sources.length})
       </button>
     </div>
@@ -8186,14 +8186,14 @@ function renderDiscoveredSourcesCards() {
 
     const safeEventsUrl = safeExternalUrl(eventsUrl);
     return `
-      <div class="curator-card" id="card-source-${escapeHtml(sId)}" style="border-left: 4px solid #38bdf8;">
+      <div class="curator-card" id="card-source-${escapeHtml(sId)}" style="border-left: 4px solid #10B981;">
         <div class="curator-card-top">
           <div>
-            <h3 class="curator-card-title" style="color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+            <h3 class="curator-card-title" style="color: #0D6E52; display: flex; align-items: center; gap: 8px;">
               <span>📡</span> ${escapeHtml(name)}
             </h3>
             <div class="curator-card-meta">
-              <span>🌐 <strong>Domain:</strong> <a href="${escapeHtml(safeEventsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #7dd3fc; text-decoration: underline;">${escapeHtml(domain)}</a></span>
+              <span>🌐 <strong>Domain:</strong> <a href="${escapeHtml(safeEventsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #065F46; text-decoration: underline;">${escapeHtml(domain)}</a></span>
               <span>🏷️ <strong>Type:</strong> ${escapeHtml(typeLabel)}</span>
               <span>💰 <strong>Budget Fit:</strong> ${escapeHtml(budget)}</span>
               <span>📈 <strong>Est. Yield:</strong> ${escapeHtml(yieldEst)}</span>
@@ -8201,20 +8201,20 @@ function renderDiscoveredSourcesCards() {
             </div>
           </div>
           <div style="display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap;">
-            <span class="curator-badge-pill" style="background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border-color: rgba(56, 189, 248, 0.5);">
+            <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #065F46; border-color: rgba(16, 185, 129, 0.5);">
               📡 Candidate Source
             </span>
-            <span class="curator-badge-pill" style="background: rgba(251, 191, 36, 0.2); color: #fde047; border-color: rgba(251, 191, 36, 0.5);">
+            <span class="curator-badge-pill" style="background: rgba(251, 191, 36, 0.2); color: #854D0E; border-color: rgba(251, 191, 36, 0.5);">
               ⏳ Pending Approval
             </span>
           </div>
         </div>
 
-        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 0.88rem; color: #cbd5e1; line-height: 1.45;">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 0.88rem; color: #334840; line-height: 1.45;">
           <div><strong>🎯 Focus / Content Scope:</strong> ${escapeHtml(focus)}</div>
-          ${notes ? `<div style="margin-top: 6px; color: #94a3b8;"><strong>📝 AI Curator Notes:</strong> ${escapeHtml(notes)}</div>` : ''}
+          ${notes ? `<div style="margin-top: 6px; color: #4E6159;"><strong>📝 AI Curator Notes:</strong> ${escapeHtml(notes)}</div>` : ''}
           <div style="margin-top: 8px; display: flex; gap: 16px; align-items: center;">
-            <a href="${escapeHtml(safeEventsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-weight: 500;">
+            <a href="${escapeHtml(safeEventsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #0D6E52; text-decoration: underline; font-weight: 500;">
               Open Calendar / Ticket Page (<code>${escapeHtml(eventsUrl)}</code>) ↗
             </a>
           </div>
@@ -8226,7 +8226,7 @@ function renderDiscoveredSourcesCards() {
               type="button" 
               class="btn-curator btn-curator-primary" 
               onclick="approveCandidateSource('${escapeHtml(sId)}', '${escapeHtml(domain)}')"
-              style="background: #0284c7; border-color: #38bdf8;"
+              style="background: #0D6E52; border-color: #0D6E52;"
               title="Approve this source and enroll into discovery_sources.json and Scout schedule"
             >
               ➕ Approve &amp; Add to Scout Radar
@@ -8236,7 +8236,7 @@ function renderDiscoveredSourcesCards() {
               class="btn-curator btn-curator-ai-approve" 
               onclick="openAIInstructionModal('${escapeHtml(sId)}', 'instruct')"
               title="Give comments or guidance for the AI when evaluating this source"
-              style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: #d8b4fe;"
+              style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: #6B21A8;"
             >
               📝 Add Guidance / Notes
             </button>
@@ -8358,11 +8358,23 @@ function getCuratorSubmissionsUrl() {
 window.fetchSheetSubmissions = async function (silent = false) {
   const url = getCuratorSubmissionsUrl();
   if (!url) return { feedback: [], priceUpdates: [], error: 'Missing van50-submissions-url meta tag' };
+  const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  const proxyUrl = `/api/curator/sheet-submissions?_t=${Date.now()}`;
+  const directUrl = `${url}${url.includes('?') ? '&' : '?'}_t=${Date.now()}`;
   try {
-    const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}_t=${Date.now()}`, {
-      method: 'GET',
-      redirect: 'follow'
-    });
+    let res = null;
+    if (isLocalHost) {
+      try {
+        const proxyRes = await fetch(proxyUrl, { method: 'GET', cache: 'no-store' });
+        if (proxyRes.status !== 404) res = proxyRes;
+      } catch (_) { /* fall back to direct fetch below */ }
+    }
+    if (!res) {
+      res = await fetch(directUrl, {
+        method: 'GET',
+        redirect: 'follow'
+      });
+    }
     const text = await res.text();
     let data = null;
     try { data = JSON.parse(text); } catch (_) { }
@@ -8409,7 +8421,7 @@ window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'collected-feedback-modal';
-    modal.style.cssText = 'position:fixed;inset:0;z-index:10060;background:rgba(2,6,23,0.82);display:none;align-items:center;justify-content:center;padding:20px;';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:10060;background:#F2F4F0;display:none;align-items:center;justify-content:center;padding:20px;';
     modal.addEventListener('click', (e) => {
       if (e.target === modal) window.closeCollectedFeedbackModal();
     });
@@ -8418,19 +8430,19 @@ window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
 
   modal.style.display = 'flex';
   modal.innerHTML = `
-    <div style="background:#0f172a;border:1px solid rgba(16,185,129,0.45);border-radius:14px;max-width:860px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.75);color:#f8fafc;">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.1);gap:12px;flex-wrap:wrap;">
+    <div style="background:#FFFFFF;border:1px solid rgba(16,185,129,0.45);border-radius:14px;max-width:860px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08);color:#111C18;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #D5DDD8;gap:12px;flex-wrap:wrap;">
         <div>
-          <h3 style="margin:0;font-family:var(--font-heading);font-size:1.2rem;color:#6ee7b7;">💬 Collected Public Feedback &amp; Price Updates</h3>
-          <div style="font-size:0.78rem;color:#94a3b8;margin-top:2px;">Live submissions from your Van50 Google Sheet + local Quarantine queue</div>
+          <h3 style="margin:0;font-family:var(--font-heading);font-size:1.2rem;color:#065F46;">💬 Collected Public Feedback &amp; Price Updates</h3>
+          <div style="font-size:0.78rem;color:#4E6159;margin-top:2px;">Live submissions from your Van50 Google Sheet + local Quarantine queue</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center;">
-          <button type="button" class="btn-curator btn-curator-ghost" onclick="openCollectedFeedbackModal('${jsStrArg(activeTab)}')" style="border-color:rgba(56,189,248,0.45);color:#7dd3fc;">🔄 Refresh</button>
+          <button type="button" class="btn-curator btn-curator-ghost" onclick="openCollectedFeedbackModal('${jsStrArg(activeTab)}')" style="border-color:rgba(16, 185, 129,0.45);color:#065F46;">🔄 Refresh</button>
           <button type="button" class="btn-curator btn-curator-ghost" onclick="closeCollectedFeedbackModal()">✕ Close</button>
         </div>
       </div>
       <div id="collected-feedback-body" style="padding:16px 20px;overflow-y:auto;flex:1;">
-        <div style="text-align:center;padding:32px;color:#94a3b8;">Loading submissions from Google Sheet…</div>
+        <div style="text-align:center;padding:32px;color:#4E6159;">Loading submissions from Google Sheet…</div>
       </div>
     </div>
   `;
@@ -8454,7 +8466,7 @@ window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
       </button>
     </div>
     ${result.needsRedeploy ? `
-      <div style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.4);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:0.82rem;color:#fde68a;line-height:1.45;">
+      <div style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.4);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:0.82rem;color:#92400E;line-height:1.45;">
         <strong>One-time Google Apps Script update needed to read rows:</strong> Paste the updated <code>scripts/google_apps_script_submissions.gs</code> (which adds <code>doGet()</code>) into Apps Script, then click <strong>Deploy → Manage deployments → Edit (✎) → Version: New version → Deploy</strong>. Your URL stays the same!
       </div>
     ` : ''}
@@ -8472,7 +8484,7 @@ window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
 
     if (tab === 'prices') {
       if (sheetPrices.length === 0) {
-        contentEl.innerHTML = '<div style="text-align:center;padding:32px;color:#94a3b8;">No price updates collected yet.</div>';
+        contentEl.innerHTML = '<div style="text-align:center;padding:32px;color:#4E6159;">No price updates collected yet.</div>';
         return;
       }
       contentEl.innerHTML = `<div style="display:flex;flex-direction:column;gap:10px;">` + sheetPrices.map(r => {
@@ -8488,15 +8500,15 @@ window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
         if (cocktail !== '' && cocktail != null) parts.push(`🍸 Cocktail: <strong>$${escapeHtml(cocktail)}</strong>`);
         if (senior !== '' && senior != null) parts.push(`🎟️ Senior / 65+: <strong>$${escapeHtml(senior)}</strong>`);
         return `
-          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;">
+          <div style="background:#FFFFFF;border:1px solid #D5DDD8;border-radius:8px;padding:12px 14px;">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-              <strong style="color:#f8fafc;font-size:0.95rem;">📍 ${escapeHtml(venue)}</strong>
-              <span style="font-size:0.74rem;color:#94a3b8;">${escapeHtml(ts)} • Tax-in: ${escapeHtml(taxIn)}</span>
+              <strong style="color:#111C18;font-size:0.95rem;">📍 ${escapeHtml(venue)}</strong>
+              <span style="font-size:0.74rem;color:#4E6159;">${escapeHtml(ts)} • Tax-in: ${escapeHtml(taxIn)}</span>
             </div>
-            <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:0.84rem;color:#38bdf8;margin-bottom:${note ? '6px' : '0'};">
+            <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:0.84rem;color:#0D6E52;margin-bottom:${note ? '6px' : '0'};">
               ${parts.join(' &nbsp;•&nbsp; ') || 'No numeric price entered'}
             </div>
-            ${note ? `<div style="font-size:0.8rem;color:#cbd5e1;">Note: ${escapeHtml(note)}</div>` : ''}
+            ${note ? `<div style="font-size:0.8rem;color:#334840;">Note: ${escapeHtml(note)}</div>` : ''}
           </div>
         `;
       }).join('') + `</div>`;
@@ -8510,13 +8522,13 @@ window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
       const targetId = r['Target Event ID'] || '';
       const msg = r['Message / Suggestion'] || '';
       cards.push(`
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:12px 14px;">
+        <div style="background:#FFFFFF;border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:12px 14px;">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35);">Google Sheet</span>
-            ${targetId ? `<span style="font-size:0.74rem;color:#38bdf8;font-family:monospace;">Event: ${escapeHtml(targetId)}</span>` : ''}
-            <span style="font-size:0.74rem;color:#94a3b8;margin-left:auto;">${escapeHtml(ts)}</span>
+            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(16,185,129,0.15);color:#065F46;border:1px solid rgba(16,185,129,0.35);">Google Sheet</span>
+            ${targetId ? `<span style="font-size:0.74rem;color:#0D6E52;font-family:monospace;">Event: ${escapeHtml(targetId)}</span>` : ''}
+            <span style="font-size:0.74rem;color:#4E6159;margin-left:auto;">${escapeHtml(ts)}</span>
           </div>
-          <div style="font-size:0.86rem;color:#e2e8f0;line-height:1.5;white-space:pre-wrap;word-break:break-word;">${escapeHtml(msg)}</div>
+          <div style="font-size:0.86rem;color:#1E2E27;line-height:1.5;white-space:pre-wrap;word-break:break-word;">${escapeHtml(msg)}</div>
         </div>
       `);
     });
@@ -8524,18 +8536,18 @@ window.openCollectedFeedbackModal = async function (activeTab = 'feedback') {
       const ts = fb.submitted_at ? new Date(fb.submitted_at).toLocaleString() : 'Local';
       const msg = fb.sanitized_message || fb.sanitized_comment || '';
       cards.push(`
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(56,189,248,0.3);border-radius:8px;padding:12px 14px;">
+        <div style="background:#FFFFFF;border:1px solid rgba(16, 185, 129,0.3);border-radius:8px;padding:12px 14px;">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(56,189,248,0.15);color:#7dd3fc;border:1px solid rgba(56,189,248,0.35);">Local Queue</span>
-            <span style="font-size:0.74rem;color:#94a3b8;margin-left:auto;">${escapeHtml(ts)}</span>
+            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(16, 185, 129,0.15);color:#065F46;border:1px solid rgba(16, 185, 129,0.35);">Local Queue</span>
+            <span style="font-size:0.74rem;color:#4E6159;margin-left:auto;">${escapeHtml(ts)}</span>
           </div>
-          <div style="font-size:0.86rem;color:#e2e8f0;line-height:1.5;white-space:pre-wrap;word-break:break-word;">${escapeHtml(msg)}</div>
+          <div style="font-size:0.86rem;color:#1E2E27;line-height:1.5;white-space:pre-wrap;word-break:break-word;">${escapeHtml(msg)}</div>
         </div>
       `);
     });
     contentEl.innerHTML = cards.length > 0
       ? `<div style="display:flex;flex-direction:column;gap:10px;">${cards.join('')}</div>`
-      : '<div style="text-align:center;padding:32px;color:#94a3b8;">No community feedback collected yet.</div>';
+      : '<div style="text-align:center;padding:32px;color:#4E6159;">No community feedback collected yet.</div>';
   };
 
   window.renderCollectedFeedbackTab(activeTab);
@@ -8558,7 +8570,7 @@ function renderUserFeedbackCards() {
   const headerBarHtml = `
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
       <div>
-        <h4 style="color: #6ee7b7; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
+        <h4 style="color: #065F46; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
           🛡️ Community Feedback, Suggestions &amp; Price Reports (${totalCount})
         </h4>
         <span style="font-size: 0.78rem; color: var(--curator-text-muted);">
@@ -8566,16 +8578,16 @@ function renderUserFeedbackCards() {
         </span>
       </div>
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-        <button type="button" class="btn-curator btn-curator-ghost" onclick="window.fetchSheetSubmissions(false).then(() => renderUserFeedbackCards())" style="font-size: 0.78rem; padding: 5px 12px; border-color: rgba(56,189,248,0.45); color: #7dd3fc;">
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="window.fetchSheetSubmissions(false).then(() => renderUserFeedbackCards())" style="font-size: 0.78rem; padding: 5px 12px; border-color: rgba(16, 185, 129,0.45); color: #065F46;">
           🔄 Sync Google Sheet
         </button>
-        <button type="button" class="btn-curator btn-curator-ghost" onclick="if (typeof openMasterCatalogsModal === 'function') openMasterCatalogsModal('crowdsourced_prices')" style="font-size: 0.78rem; padding: 5px 12px; border-color: rgba(251,191,36,0.45); color: #fde68a;">
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="if (typeof openMasterCatalogsModal === 'function') openMasterCatalogsModal('crowdsourced_prices')" style="font-size: 0.78rem; padding: 5px 12px; border-color: rgba(251,191,36,0.45); color: #92400E;">
           💵 Local Price Reports
         </button>
       </div>
     </div>
     ${state.sheetSubmissionsNeedsRedeploy ? `
-      <div style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.8rem; color: #fde68a; line-height: 1.45;">
+      <div style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.8rem; color: #92400E; line-height: 1.45;">
         <strong>Google Sheet sync issue:</strong> ${escapeHtml(state.sheetSubmissionsLastError || 'Unable to read rows from Google Apps Script.')}<br>
         If <code>doGet()</code> is not yet active, deploy a New Version of <code>scripts/google_apps_script_submissions.gs</code> (<strong>Deploy → Manage deployments → Edit → Version: New version → Deploy</strong>).
       </div>
@@ -8603,18 +8615,18 @@ function renderUserFeedbackCards() {
     const targetEv = item['Target Event ID'] || item.target_event_id || '';
     const pageUrl = item['Page URL'] || item.page_url || '';
     return `
-    <div class="curator-card" style="background: var(--curator-surface); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px 18px;">
+    <div class="curator-card" style="background: var(--curator-surface); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 14px 18px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-          <span style="background: rgba(56, 189, 248, 0.15); color: #7dd3fc; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.35);">
+          <span style="background: rgba(16, 185, 129, 0.15); color: #065F46; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.35);">
             ☁️ Live Google Sheet Feedback
           </span>
-          ${targetEv ? `<span style="font-size: 0.74rem; color: #94a3b8;">Event: <code>${escapeHtml(String(targetEv))}</code></span>` : ''}
+          ${targetEv ? `<span style="font-size: 0.74rem; color: #4E6159;">Event: <code>${escapeHtml(String(targetEv))}</code></span>` : ''}
         </div>
         <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(ts ? new Date(ts).toLocaleString() : '')}</span>
       </div>
-      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 10px 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(String(msg))}</div>
-      ${pageUrl ? `<div style="margin-top: 6px; font-size: 0.74rem; color: #94a3b8;">Source: ${escapeHtml(String(pageUrl))}</div>` : ''}
+      <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 6px; padding: 10px 14px; font-size: 0.88rem; color: #1E2E27; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(String(msg))}</div>
+      ${pageUrl ? `<div style="margin-top: 6px; font-size: 0.74rem; color: #4E6159;">Source: ${escapeHtml(String(pageUrl))}</div>` : ''}
     </div>
   `;
   }).join('');
@@ -8632,20 +8644,20 @@ function renderUserFeedbackCards() {
     return `
     <div class="curator-card" style="background: var(--curator-surface); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 10px; padding: 14px 18px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-        <span style="background: rgba(251, 191, 36, 0.15); color: #fde68a; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(251, 191, 36, 0.35);">
+        <span style="background: rgba(251, 191, 36, 0.15); color: #92400E; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(251, 191, 36, 0.35);">
           💵 Live Google Sheet Price Update
         </span>
         <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${escapeHtml(ts ? new Date(ts).toLocaleString() : '')}</span>
       </div>
       <h4 style="color: #fff; margin: 0 0 6px 0; font-size: 1rem;">${escapeHtml(String(venue))}</h4>
-      <div style="font-size: 0.85rem; color: #cbd5e1; display: flex; flex-wrap: wrap; gap: 10px;">
+      <div style="font-size: 0.85rem; color: #334840; display: flex; flex-wrap: wrap; gap: 10px;">
         ${hasVal(ticket) ? `<span>Ticket: <strong>$${escapeHtml(String(ticket))}</strong></span>` : ''}
         ${hasVal(senior) ? `<span>Senior: <strong>$${escapeHtml(String(senior))}</strong></span>` : ''}
         ${hasVal(pint) ? `<span>Pint: <strong>$${escapeHtml(String(pint))}</strong></span>` : ''}
         ${hasVal(cocktail) ? `<span>Cocktail: <strong>$${escapeHtml(String(cocktail))}</strong></span>` : ''}
         ${flags ? `<span>Flags: <strong>${escapeHtml(String(flags))}</strong></span>` : ''}
       </div>
-      ${note ? `<div style="margin-top: 6px; font-size: 0.82rem; color: #94a3b8;">Note: ${escapeHtml(String(note))}</div>` : ''}
+      ${note ? `<div style="margin-top: 6px; font-size: 0.82rem; color: #4E6159;">Note: ${escapeHtml(String(note))}</div>` : ''}
     </div>
   `;
   }).join('');
@@ -8672,10 +8684,10 @@ function renderUserFeedbackCards() {
           <div class="curator-card" id="fb-card-${safeFbId}" style="background: var(--curator-surface); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px; padding: 16px 20px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="background: rgba(52, 211, 153, 0.15); color: #34d399; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3);">
+                <span style="background: rgba(52, 211, 153, 0.15); color: #065F46; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3);">
                   ${escapeHtml(typeBadge)}
                 </span>
-                <span style="background: rgba(148, 163, 184, 0.12); color: #94a3b8; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">
+                <span style="background: rgba(148, 163, 184, 0.12); color: #4E6159; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">
                   🛡️ Sandboxed
                 </span>
               </div>
@@ -8686,21 +8698,21 @@ function renderUserFeedbackCards() {
               ${escapeHtml(fb.sanitized_title)}
             </h3>
 
-            ${fb.sanitized_price ? `<div style="font-size: 0.82rem; color: #38bdf8; margin-bottom: 6px;"><strong>Price Note:</strong> ${escapeHtml(fb.sanitized_price)}</div>` : ''}
+            ${fb.sanitized_price ? `<div style="font-size: 0.82rem; color: #0D6E52; margin-bottom: 6px;"><strong>Price Note:</strong> ${escapeHtml(fb.sanitized_price)}</div>` : ''}
 
             ${(safeFbUrl && safeFbUrl !== '#') ? `
               <div style="font-size: 0.8rem; margin-bottom: 10px;">
                 <span style="color: var(--curator-text-muted);">Submitted Link:</span>
-                <a href="${escapeHtml(safeFbUrl)}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer" style="color: #60a5fa; text-decoration: underline; word-break: break-all; margin-left: 4px;">
+                <a href="${escapeHtml(safeFbUrl)}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer" style="color: #1D4ED8; text-decoration: underline; word-break: break-all; margin-left: 4px;">
                   ${escapeHtml(safeFbUrl)} ↗
                 </a>
               </div>
             ` : ''}
 
-            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; word-break: break-word; white-space: pre-wrap;">${escapeHtml(messageText)}</div>
+            <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem; color: #1E2E27; line-height: 1.5; word-break: break-word; white-space: pre-wrap;">${escapeHtml(messageText)}</div>
 
-            <div style="display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px;">
-              <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissUserFeedback('${safeFbId}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
+            <div style="display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid #D5DDD8; padding-top: 12px;">
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissUserFeedback('${safeFbId}')" style="font-size: 0.8rem; padding: 5px 12px; color: #4E6159;">
                 Dismiss
               </button>
               <button type="button" class="btn-curator btn-curator-primary" onclick="resolveUserFeedback('${safeFbId}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
@@ -8812,7 +8824,7 @@ function renderNewsletterSignupsCards() {
   container.innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(244, 114, 182, 0.08); border: 1px solid rgba(244, 114, 182, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
       <div>
-        <h4 style="color: #f472b6; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
+        <h4 style="color: #9D174D; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
           📬 Discovered Venue Newsletter Portals (${signups.length})
         </h4>
         <span style="font-size: 0.78rem; color: var(--curator-text-muted);">
@@ -8834,10 +8846,10 @@ function renderNewsletterSignupsCards() {
           <div class="curator-card" id="nl-card-${safeSuId}" style="background: var(--curator-surface); border: 1px solid rgba(244, 114, 182, 0.3); border-radius: 10px; padding: 16px 20px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="background: rgba(244, 114, 182, 0.15); color: #f472b6; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(244, 114, 182, 0.3);">
+                <span style="background: rgba(244, 114, 182, 0.15); color: #9D174D; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(244, 114, 182, 0.3);">
                   📬 ${safeMethod}
                 </span>
-                <span style="background: rgba(148, 163, 184, 0.12); color: #94a3b8; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">
+                <span style="background: rgba(148, 163, 184, 0.12); color: #4E6159; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">
                   Scout Discovered
                 </span>
               </div>
@@ -8851,35 +8863,35 @@ function renderNewsletterSignupsCards() {
             ${su.website_url ? `
               <div style="font-size: 0.82rem; margin-bottom: 8px; color: var(--curator-text-muted);">
                 Official Website: 
-                <a href="${safeWebsite}" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: underline; margin-left: 4px;">
+                <a href="${safeWebsite}" target="_blank" rel="noopener noreferrer" style="color: #1D4ED8; text-decoration: underline; margin-left: 4px;">
                   ${safeWebsite} ↗
                 </a>
               </div>
             ` : ''}
 
             <div style="background: rgba(244, 114, 182, 0.08); border: 1px solid rgba(244, 114, 182, 0.2); border-radius: 6px; padding: 10px 14px; margin-bottom: 10px;">
-              <div style="font-size: 0.8rem; color: #f9a8d4; font-weight: 600; margin-bottom: 4px;">Direct Newsletter Signup Link:</div>
+              <div style="font-size: 0.8rem; color: #9D174D; font-weight: 600; margin-bottom: 4px;">Direct Newsletter Signup Link:</div>
               <a href="${safeSignupUrl}" target="_blank" rel="noopener noreferrer" style="color: #fff; font-size: 0.85rem; font-family: var(--font-mono, monospace); text-decoration: underline; word-break: break-all;">
                 ${safeSignupUrl} ↗
               </a>
             </div>
 
-            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 8px 14px; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
-              <div style="font-size: 0.82rem; color: #cbd5e1;">
-                Use Subscription Email: <strong style="color: #38bdf8; font-family: monospace;">${targetEmail}</strong>
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 6px; padding: 8px 14px; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+              <div style="font-size: 0.82rem; color: #334840;">
+                Use Subscription Email: <strong style="color: #0D6E52; font-family: monospace;">${targetEmail}</strong>
               </div>
-              <button type="button" class="btn-curator btn-curator-ghost" onclick="copyCuratorEmail('${targetEmail}')" style="font-size: 0.78rem; padding: 3px 10px; border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8;">
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="copyCuratorEmail('${targetEmail}')" style="font-size: 0.78rem; padding: 3px 10px; border: 1px solid rgba(16, 185, 129, 0.3); color: #0D6E52;">
                 📋 Copy Email
               </button>
             </div>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #D5DDD8; padding-top: 12px; flex-wrap: wrap; gap: 10px;">
               <a href="${safeSignupUrl}" target="_blank" rel="noopener noreferrer" class="btn-curator btn-curator-primary" style="font-size: 0.85rem; padding: 6px 16px; background: #be185d; border: 1px solid #f472b6; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                 🔗 Open Signup Page ↗
               </a>
 
               <div style="display: flex; gap: 8px;">
-                <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissNewsletterSignup('${safeSuId}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissNewsletterSignup('${safeSuId}')" style="font-size: 0.8rem; padding: 5px 12px; color: #4E6159;">
                   Dismiss
                 </button>
                 <button type="button" class="btn-curator btn-curator-primary" onclick="markNewsletterSubscribed('${safeSuId}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
@@ -9067,7 +9079,7 @@ function initStagehandRipperUI() {
     }
     if (statusText && initialStatus) {
       statusText.textContent = initialStatus;
-      statusText.style.color = '#c084fc';
+      statusText.style.color = '#6B21A8';
     }
   };
 
@@ -10064,23 +10076,23 @@ function initStagehandRipperUI() {
     modal.className = 'stage-queue-modal-overlay';
     modal.innerHTML = `
       <div class="stage-queue-dialog" onclick="event.stopPropagation()">
-        <div style="padding: 14px 18px; background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+        <div style="padding: 14px 18px; background: #FFFFFF; border-bottom: 1px solid #D5DDD8; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
           <div>
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-              <span id="sq-modal-step-pill" style="font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.45);">STEP 1B</span>
-              <h3 id="sq-modal-title" style="margin: 0; font-size: 1rem; font-weight: 800; color: #f8fafc;">Continue Pipeline Step</h3>
+              <span id="sq-modal-step-pill" style="font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: rgba(16, 185, 129, 0.2); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.45);">STEP 1B</span>
+              <h3 id="sq-modal-title" style="margin: 0; font-size: 1rem; font-weight: 800; color: #111C18;">Continue Pipeline Step</h3>
             </div>
-            <p id="sq-modal-subtitle" style="margin: 4px 0 0 0; font-size: 0.78rem; color: #94a3b8; line-height: 1.4;">
+            <p id="sq-modal-subtitle" style="margin: 4px 0 0 0; font-size: 0.78rem; color: #4E6159; line-height: 1.4;">
               Select the waiting events you want to process now.
             </p>
           </div>
           <button type="button" onclick="window.closeStageQueueLauncherModal()"
-            style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); color: #cbd5e1; border-radius: 6px; width: 30px; height: 30px; cursor: pointer; font-size: 0.95rem;">✕</button>
+            style="background: #FFFFFF; border: 1px solid #D5DDD8; color: #334840; border-radius: 6px; width: 30px; height: 30px; cursor: pointer; font-size: 0.95rem;">✕</button>
         </div>
 
-        <div style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; background: rgba(15, 23, 42, 0.7);">
+        <div style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; background: #FFFFFF;">
           <div style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
-            <span style="font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Quick Select:</span>
+            <span style="font-size: 0.7rem; font-weight: 700; color: #4E6159; text-transform: uppercase;">Quick Select:</span>
             <button type="button" id="sq-chip-5" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(5)">First 5</button>
             <button type="button" id="sq-chip-10" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(10)">First 10</button>
             <button type="button" id="sq-chip-25" class="btn-limit-chip" onclick="window.selectStageQueuePresetCount(25)">First 25</button>
@@ -10100,26 +10112,26 @@ function initStagehandRipperUI() {
           </div>
           <input type="text" id="sq-search-input" placeholder="🔍 Filter by title or venue..."
             oninput="window.onStageQueueSearchInput(this.value)"
-            style="padding: 5px 10px; font-size: 0.75rem; border-radius: 6px; background: #020617; border: 1px solid rgba(148,163,184,0.3); color: #f8fafc; min-width: 175px;">
+            style="padding: 5px 10px; font-size: 0.75rem; border-radius: 6px; background: #F2F4F0; border: 1px solid #D5DDD8; color: #111C18; min-width: 175px;">
         </div>
 
         <div class="stage-queue-list" id="sq-items-list"></div>
 
-        <div style="padding: 12px 18px; background: rgba(15, 23, 42, 0.96); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
-          <div id="sq-selected-summary" style="font-size: 0.78rem; font-weight: 700; color: #7dd3fc;">
+        <div style="padding: 12px 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+          <div id="sq-selected-summary" style="font-size: 0.78rem; font-weight: 700; color: #065F46;">
             0 events selected
           </div>
           <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
             <button type="button" onclick="window.closeStageQueueLauncherModal()"
-              style="padding: 7px 13px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 7px; cursor: pointer;">
+              style="padding: 7px 13px; font-size: 0.76rem; font-weight: 700; color: #334840; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 7px; cursor: pointer;">
               Cancel
             </button>
             <button type="button" id="sq-btn-run-single-step" onclick="window.confirmStageQueueLaunch(false)"
-              style="padding: 8px 14px; font-size: 0.78rem; font-weight: 800; color: #f8fafc; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; border-radius: 7px; cursor: pointer;">
+              style="padding: 8px 14px; font-size: 0.78rem; font-weight: 800; color: #111C18; background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; border-radius: 7px; cursor: pointer;">
               ▶ Run This Step Only
             </button>
             <button type="button" id="sq-btn-run-to-publish" onclick="window.confirmStageQueueLaunch(true)"
-              style="padding: 8px 15px; font-size: 0.78rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border: 1px solid #34d399; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);">
+              style="padding: 8px 15px; font-size: 0.78rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #0D6E52 0%, #10b981 100%); border: 1px solid #34d399; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);">
               ⏩ Run Step ➔ Publish
             </button>
           </div>
@@ -10198,31 +10210,31 @@ function initStagehandRipperUI() {
       : st.items;
 
     if (visible.length === 0) {
-      listEl.innerHTML = `<div style="padding: 24px; text-align: center; color: #64748b; font-size: 0.8rem;">No matching events in this queue.</div>`;
+      listEl.innerHTML = `<div style="padding: 24px; text-align: center; color: #5A6E65; font-size: 0.8rem;">No matching events in this queue.</div>`;
       return;
     }
 
     listEl.innerHTML = visible.slice(0, 1000).map((it, idx) => {
       const checked = st.selectedIds.has(it.id) ? 'checked' : '';
       const guidanceBadge = it.hasGuidance
-        ? `<span style="font-size: 0.65rem; padding: 1px 6px; border-radius: 999px; background: rgba(192, 132, 252, 0.2); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.45);">📝 Has Notes</span>`
+        ? `<span style="font-size: 0.65rem; padding: 1px 6px; border-radius: 999px; background: rgba(192, 132, 252, 0.2); color: #581C87; border: 1px solid rgba(192, 132, 252, 0.45);">📝 Has Notes</span>`
         : '';
       return `
         <label class="stage-queue-item">
-          <input type="checkbox" ${checked} onchange="window.toggleStageQueueItem('${escapeHtml(it.id)}', this.checked)" style="accent-color: #38bdf8; width: 15px; height: 15px; flex-shrink: 0;">
+          <input type="checkbox" ${checked} onchange="window.toggleStageQueueItem('${escapeHtml(it.id)}', this.checked)" style="accent-color: #0D6E52; width: 15px; height: 15px; flex-shrink: 0;">
           <div style="flex: 1; min-width: 0;">
             <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-              <strong style="font-size: 0.8rem; color: #f8fafc; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(it.title || it.id)}</strong>
+              <strong style="font-size: 0.8rem; color: #111C18; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(it.title || it.id)}</strong>
               ${guidanceBadge}
             </div>
-            <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 1px;">
+            <div style="font-size: 0.7rem; color: #4E6159; margin-top: 1px;">
               🏛️ ${escapeHtml(it.venue || 'Venue TBD')} • 📅 ${escapeHtml(it.date || 'Date TBD')} ${it.price ? `• 💰 ${escapeHtml(it.price)}` : ''}
             </div>
           </div>
-          <span style="font-size: 0.66rem; color: #64748b; font-family: monospace;">#${idx + 1}</span>
+          <span style="font-size: 0.66rem; color: #5A6E65; font-family: monospace;">#${idx + 1}</span>
         </label>
       `;
-    }).join('') + (visible.length > 1000 ? `<div style="padding: 8px; text-align: center; font-size: 0.72rem; color: #94a3b8;">Showing first 1,000 of ${visible.length} events (Quick Select buttons apply to all ${total} events).</div>` : '');
+    }).join('') + (visible.length > 1000 ? `<div style="padding: 8px; text-align: center; font-size: 0.72rem; color: #4E6159;">Showing first 1,000 of ${visible.length} events (Quick Select buttons apply to all ${total} events).</div>` : '');
   }
 
   window.toggleStageQueueItem = function (id, checked) {
@@ -10413,6 +10425,30 @@ function initStagehandRipperUI() {
     }));
 
     const fullOrder = ['hunter', 'qc', 'venue', 'enrich', 'compile'];
+    if (st.stageKey === 'quarantine_heal') {
+      isPipelineTestMode = false;
+      isPipelineAutoChaining = false;
+      pipelineQuarantinedRunActive = true;
+      currentPipelineScope = 'quarantined';
+      window.pipelineAutoChainingStages = [];
+      const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
+      if (summaryBanner) summaryBanner.style.display = 'none';
+      if (typeof showToast === 'function') {
+        showToast(`🩹 Launching 4x parallel Antigravity AI Healers on ${picked.length} quarantined event(s)!`, 'info');
+      }
+      runPipelineAction({
+        mode: 'quarantine_heal',
+        title: `🩹 Parallel AI Quarantine Healer (${picked.length} Events • 4x Workers)`,
+        initialStatus: `Dispatching 4 parallel Antigravity AI workers to search, heal & QC ${picked.length} quarantined event(s)...`,
+        ids: picked.map(e => e.id).join(','),
+        scope: 'quarantined',
+        limit: picked.length,
+        quarantine: true,
+        force: true,
+        autoApprove: true
+      });
+      return;
+    }
     const startIdx = Math.max(0, fullOrder.indexOf(st.stageKey));
     const chainStages = autoChainToPublish ? fullOrder.slice(startIdx) : [st.stageKey];
 
@@ -10591,7 +10627,7 @@ function initStagehandRipperUI() {
     quarantineBtnLabels.forEach(id => {
       const el = document.getElementById(id);
       if (el && !isExecuting) {
-        el.textContent = `🛡️ Re-Check All Quarantined (${qCount})`;
+        el.textContent = `🩹 AI Heal Quarantined (${qCount})`;
       }
     });
 
@@ -10677,7 +10713,7 @@ function initStagehandRipperUI() {
     const feedEl = document.getElementById('pipeline-readable-feed');
     if (feedEl) {
       feedEl.innerHTML = `
-        <div id="pipeline-readable-empty" style="text-align: center; padding: 18px 12px; color: #64748b; font-size: 0.76rem; font-style: italic;">
+        <div id="pipeline-readable-empty" style="text-align: center; padding: 18px 12px; color: #5A6E65; font-size: 0.76rem; font-style: italic;">
           Log cleared. New event activity will appear here in plain English...
         </div>
       `;
@@ -10747,11 +10783,11 @@ function initStagehandRipperUI() {
       nodrift: '⚪'
     };
     const badgeStyleMap = {
-      checking: 'background: rgba(56, 189, 248, 0.16); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35);',
-      verified: 'background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);',
-      quarantined: 'background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);',
-      error: 'background: rgba(239, 68, 68, 0.18); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4);',
-      nodrift: 'background: rgba(148, 163, 184, 0.14); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3);'
+      checking: 'background: rgba(16, 185, 129, 0.16); color: #0D6E52; border: 1px solid rgba(16, 185, 129, 0.35);',
+      verified: 'background: rgba(16, 185, 129, 0.18); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.4);',
+      quarantined: 'background: rgba(245, 158, 11, 0.18); color: #92400E; border: 1px solid rgba(245, 158, 11, 0.4);',
+      error: 'background: rgba(239, 68, 68, 0.18); color: #9F1239; border: 1px solid rgba(239, 68, 68, 0.4);',
+      nodrift: 'background: rgba(148, 163, 184, 0.14); color: #334840; border: 1px solid #D5DDD8;'
     };
     const timeStr = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 
@@ -10779,7 +10815,7 @@ function initStagehandRipperUI() {
       <span class="readable-feed-time">${escapeHtml(timeStr)}</span>
       <span style="flex-shrink: 0;">${iconMap[status] || '•'}</span>
       <span class="readable-feed-body">
-        <strong>${escapeHtml(title || eventId || 'Pipeline Event')}</strong>${venue ? ` <span style="color:#94a3b8;">(${escapeHtml(venue)})</span>` : ''} — ${escapeHtml(message || '')}
+        <strong>${escapeHtml(title || eventId || 'Pipeline Event')}</strong>${venue ? ` <span style="color:#4E6159;">(${escapeHtml(venue)})</span>` : ''} — ${escapeHtml(message || '')}
       </span>
       ${badgeText ? `<span class="readable-feed-badge" style="${badgeStyleMap[status] || badgeStyleMap.nodrift}">${escapeHtml(badgeText)}</span>` : ''}
     `;
@@ -10988,19 +11024,19 @@ function initStagehandRipperUI() {
     if (pill) {
       if (scanKey === 'enrich') {
         pill.textContent = 'Highlighted with Amber Accent Below';
-        pill.style.color = '#fbbf24';
+        pill.style.color = '#92400E';
         pill.style.background = 'rgba(251, 191, 36, 0.15)';
         pill.style.borderColor = 'rgba(251, 191, 36, 0.35)';
       } else if (scanKey === 'compile') {
         pill.textContent = `All ${getCatalogDimensionsCount()} Dimensions In-Scope (Emerald)`;
-        pill.style.color = '#34d399';
+        pill.style.color = '#065F46';
         pill.style.background = 'rgba(16, 185, 129, 0.15)';
         pill.style.borderColor = 'rgba(16, 185, 129, 0.35)';
       } else {
         pill.textContent = 'Highlighted with Blue Accent Below';
-        pill.style.color = '#38bdf8';
-        pill.style.background = 'rgba(56, 189, 248, 0.15)';
-        pill.style.borderColor = 'rgba(56, 189, 248, 0.35)';
+        pill.style.color = '#10B981';
+        pill.style.background = 'rgba(16, 185, 129, 0.15)';
+        pill.style.borderColor = 'rgba(16, 185, 129, 0.35)';
       }
     }
   }
@@ -11015,12 +11051,12 @@ function initStagehandRipperUI() {
   function renderYieldCardHtml(cardData, isAfter, agentMode, scanKey = currentPipelineScanKey) {
     if (!cardData) {
       return `
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #64748b; padding: 20px;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #5A6E65; padding: 20px;">
           <div style="font-size: 2.2rem; margin-bottom: 8px;">${isAfter ? '🤖' : '📋'}</div>
-          <div style="font-weight: 700; color: #94a3b8; font-size: 0.88rem; margin-bottom: 4px;">
+          <div style="font-weight: 700; color: #4E6159; font-size: 0.88rem; margin-bottom: 4px;">
             ${isAfter ? 'Awaiting AI Execution' : 'No Event Selected'}
           </div>
-          <p style="font-size: 0.74rem; color: #64748b; max-width: 240px; margin: 0; line-height: 1.4;">
+          <p style="font-size: 0.74rem; color: #5A6E65; max-width: 240px; margin: 0; line-height: 1.4;">
             ${isAfter
           ? 'Click <strong>Run Scan Now</strong> to begin. Only information newly obtained by this run will appear here. Empty fields indicate untouched dimensions.'
           : 'Select an event card or start a scan to inspect its baseline state before the AI executes.'}
@@ -11107,7 +11143,7 @@ function initStagehandRipperUI() {
           <span style="font-weight: 800;">${isAfter ? '✨ AFTER AI RUN' : '📸 BEFORE AI RUN'}</span>
           <span class="badge-card-number">${escapeHtml(String(cardIdx).startsWith('Q') ? `QUARANTINED #${cardIdx}` : `Card #${cardIdx}`)}</span>
         </div>
-        <span class="yield-status-pill ${isAfter ? 'agent' : 'baseline'}" style="font-size: 0.64rem; padding: 1px 7px; border-radius: 999px; font-weight: 700; ${isAfter ? 'background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);' : 'background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);'}">
+        <span class="yield-status-pill ${isAfter ? 'agent' : 'baseline'}" style="font-size: 0.64rem; padding: 1px 7px; border-radius: 999px; font-weight: 700; ${isAfter ? 'background: rgba(16, 185, 129, 0.2); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.4);' : 'background: rgba(148, 163, 184, 0.15); color: #4E6159; border: 1px solid #D5DDD8;'}">
           ${isAfter ? (agentMode ? escapeHtml(agentMode) : 'This Run\'s Yield') : 'Baseline Card'}
         </span>
       </div>
@@ -11124,9 +11160,9 @@ function initStagehandRipperUI() {
           <span class="dim-label-prefix">D001 Name:</span>
           ${title ? `${escapeHtml(title)} ${isAfter ? '<span class="yield-highlight-tag">+ Verified</span>' : ''}` : emptyScopeMsg(targets.d33_title, 'unscraped title')}
         </div>
-        <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
+        <div style="font-size: 0.72rem; color: #4E6159; margin-top: 3px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
           <span><span class="dim-label-prefix">D401 Venue:</span> 📍 <strong>${venue ? escapeHtml(venue) : emptyScopeMsg(targets.d43_location, 'unregistered venue')}</strong></span>
-          ${neighborhood ? `<span style="color: #64748b;">• ${escapeHtml(neighborhood)}</span>` : ''}
+          ${neighborhood ? `<span style="color: #5A6E65;">• ${escapeHtml(neighborhood)}</span>` : ''}
           ${isAfter && venue ? '<span class="yield-highlight-tag">+ Confirmed</span>' : ''}
         </div>
       </div>
@@ -11139,35 +11175,35 @@ function initStagehandRipperUI() {
         ? `<span class="yield-target-tag" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: rgba(6, 182, 212, 0.4);">🎯 Target for ${escapeHtml(scanName)}</span>`
         : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
-        <div style="font-size: 0.72rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 4px;">
+        <div style="font-size: 0.72rem; color: #1E2E27; display: flex; flex-direction: column; gap: 4px;">
           <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
             <span><span class="dim-label-prefix">D402 Address:</span> <strong>${addressVal ? escapeHtml(addressVal) : emptyScopeMsg(targets.d43_location, 'pending address grounding')}</strong></span>
             ${venueTypeVal ? `<span style="font-size: 0.65rem; background: rgba(6, 182, 212, 0.18); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.4); padding: 1px 7px; border-radius: 4px; font-weight: 700;">🏛️ ${escapeHtml(venueTypeVal.replace(/_/g, ' ').toUpperCase())}</span>` : ''}
             ${isAfter && addressVal ? '<span class="yield-highlight-tag" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.4);">+ Grounded</span>' : ''}
           </div>
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <span><span class="dim-label-prefix">D403 GPS:</span> <span style="font-family: monospace; color: #38bdf8;">${gpsVal ? escapeHtml(gpsVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
-            <span><span class="dim-label-prefix">D405 Access:</span> <span style="color: #cbd5e1;">${accessVal ? escapeHtml(accessVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
-            <span><span class="dim-label-prefix">D406 Env:</span> <span style="color: #cbd5e1;">${envVal ? escapeHtml(envVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
+            <span><span class="dim-label-prefix">D403 GPS:</span> <span style="font-family: monospace; color: #0D6E52;">${gpsVal ? escapeHtml(gpsVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
+            <span><span class="dim-label-prefix">D405 Access:</span> <span style="color: #334840;">${accessVal ? escapeHtml(accessVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
+            <span><span class="dim-label-prefix">D406 Env:</span> <span style="color: #334840;">${envVal ? escapeHtml(envVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
           </div>
-          <div><span class="dim-label-prefix">D601–D604 Spend:</span> <span style="color: #34d399;">${spendVal ? escapeHtml(spendVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span> ${concessionVal ? `<span style="color: #fbbf24; margin-left: 6px;">• Concession ${escapeHtml(concessionVal)}</span>` : ''}</div>
-          <div><span class="dim-label-prefix">D408 Transit:</span> <span style="color: #94a3b8;">${transitVal ? escapeHtml(transitVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></div>
+          <div><span class="dim-label-prefix">D601–D604 Spend:</span> <span style="color: #065F46;">${spendVal ? escapeHtml(spendVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span> ${concessionVal ? `<span style="color: #92400E; margin-left: 6px;">• Concession ${escapeHtml(concessionVal)}</span>` : ''}</div>
+          <div><span class="dim-label-prefix">D408 Transit:</span> <span style="color: #4E6159;">${transitVal ? escapeHtml(transitVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></div>
           ${(stepFreeVal || washroomVal || elevatorVal || parkingVal) ? `
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; padding-top: 3px; border-top: 1px dashed rgba(255,255,255,0.08); font-size: 0.68rem; color: #94a3b8;">
-              <span style="color: #38bdf8; font-weight: 700;">♿ Access:</span>
-              ${stepFreeVal ? `<span>Entrance: <strong style="color: #e2e8f0;">${escapeHtml(stepFreeVal)}</strong></span>` : ''}
-              ${washroomVal ? `<span>• Washrooms: <strong style="color: #e2e8f0;">${escapeHtml(washroomVal)}</strong></span>` : ''}
-              ${elevatorVal && !elevatorVal.includes('not_applicable') ? `<span>• Lift: <strong style="color: #e2e8f0;">${escapeHtml(elevatorVal)}</strong></span>` : ''}
-              ${parkingVal ? `<span>• Parking: <strong style="color: #e2e8f0;">${escapeHtml(parkingVal)}</strong></span>` : ''}
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; padding-top: 3px; border-top: 1px dashed #D5DDD8; font-size: 0.68rem; color: #4E6159;">
+              <span style="color: #0D6E52; font-weight: 700;">♿ Access:</span>
+              ${stepFreeVal ? `<span>Entrance: <strong style="color: #1E2E27;">${escapeHtml(stepFreeVal)}</strong></span>` : ''}
+              ${washroomVal ? `<span>• Washrooms: <strong style="color: #1E2E27;">${escapeHtml(washroomVal)}</strong></span>` : ''}
+              ${elevatorVal && !elevatorVal.includes('not_applicable') ? `<span>• Lift: <strong style="color: #1E2E27;">${escapeHtml(elevatorVal)}</strong></span>` : ''}
+              ${parkingVal ? `<span>• Parking: <strong style="color: #1E2E27;">${escapeHtml(parkingVal)}</strong></span>` : ''}
             </div>
           ` : ''}
           ${(foodPolicyVal || waterVal || paymentVal || coatCheckVal) ? `
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1px; font-size: 0.68rem; color: #94a3b8;">
-              <span style="color: #34d399; font-weight: 700;">☕ Policy &amp; F&amp;B:</span>
-              ${foodPolicyVal ? `<span>Outside Food: <strong style="color: #e2e8f0;">${escapeHtml(foodPolicyVal)}</strong></span>` : ''}
-              ${waterVal ? `<span>• Water: <strong style="color: #e2e8f0;">${escapeHtml(waterVal)}</strong></span>` : ''}
-              ${paymentVal ? `<span>• Payment: <strong style="color: #e2e8f0;">${escapeHtml(paymentVal)}</strong></span>` : ''}
-              ${coatCheckVal && !coatCheckVal.includes('not_applicable') ? `<span>• Coat Check: <strong style="color: #e2e8f0;">${escapeHtml(coatCheckVal)}</strong></span>` : ''}
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1px; font-size: 0.68rem; color: #4E6159;">
+              <span style="color: #065F46; font-weight: 700;">☕ Policy &amp; F&amp;B:</span>
+              ${foodPolicyVal ? `<span>Outside Food: <strong style="color: #1E2E27;">${escapeHtml(foodPolicyVal)}</strong></span>` : ''}
+              ${waterVal ? `<span>• Water: <strong style="color: #1E2E27;">${escapeHtml(waterVal)}</strong></span>` : ''}
+              ${paymentVal ? `<span>• Payment: <strong style="color: #1E2E27;">${escapeHtml(paymentVal)}</strong></span>` : ''}
+              ${coatCheckVal && !coatCheckVal.includes('not_applicable') ? `<span>• Coat Check: <strong style="color: #1E2E27;">${escapeHtml(coatCheckVal)}</strong></span>` : ''}
             </div>
           ` : ''}
         </div>
@@ -11184,11 +11220,11 @@ function initStagehandRipperUI() {
         <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
           <div>
             <span class="dim-label-prefix">D35 Date:</span>
-            ${dateVal ? `<strong style="color: #38bdf8;">${escapeHtml(dateVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d35_date, 'pending calendar harvest')}
+            ${dateVal ? `<strong style="color: #0D6E52;">${escapeHtml(dateVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d35_date, 'pending calendar harvest')}
           </div>
           <div>
             <span class="dim-label-prefix">D36/D37 Showtime &amp; Doors:</span>
-            ${timeVal ? `<strong style="color: #cbd5e1;">${escapeHtml(timeVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d36_time, 'pending doors/curtain check')}
+            ${timeVal ? `<strong style="color: #334840;">${escapeHtml(timeVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d36_time, 'pending doors/curtain check')}
           </div>
         </div>
       </div>
@@ -11204,18 +11240,18 @@ function initStagehandRipperUI() {
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px;">
           <div>
             <span class="dim-label-prefix">D15 All-In Price:</span>
-            ${priceVal ? `<span style="font-size: 1.05rem; font-weight: 800; color: #34d399; margin-left: 4px;">${escapeHtml(priceVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Live Cart Verified</span>' : ''}` : emptyScopeMsg(targets.d15_allin, 'awaiting live cart')}
+            ${priceVal ? `<span style="font-size: 1.05rem; font-weight: 800; color: #065F46; margin-left: 4px;">${escapeHtml(priceVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Live Cart Verified</span>' : ''}` : emptyScopeMsg(targets.d15_allin, 'awaiting live cart')}
           </div>
           <div>
             <span class="dim-label-prefix">D7 Status:</span>
             ${isSoldOut !== null ? `
-              <span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; ${isSoldOut ? 'background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4);' : 'background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);'}">
+              <span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; ${isSoldOut ? 'background: rgba(239, 68, 68, 0.2); color: #9F1239; border: 1px solid rgba(239, 68, 68, 0.4);' : 'background: rgba(16, 185, 129, 0.18); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.3);'}">
                 ${isSoldOut ? 'SOLD OUT ⚠️' : 'AVAILABLE 🎟️'}
               </span>
             ` : emptyScopeMsg(targets.d7_inventory, 'awaiting cart')}
           </div>
         </div>
-        <div style="font-size: 0.7rem; color: #94a3b8; display: flex; gap: 12px; flex-wrap: wrap;">
+        <div style="font-size: 0.7rem; color: #4E6159; display: flex; gap: 12px; flex-wrap: wrap;">
           <span><span class="dim-label-prefix">D12 Base:</span> <strong>${baseVal != null ? `$${Number(baseVal).toFixed(2)}` : (targets.d12_base ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</strong></span>
           <span><span class="dim-label-prefix">D13 Fee:</span> <strong>${feeVal != null ? `$${Number(feeVal).toFixed(2)}` : (targets.d13_fee ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</strong></span>
         </div>
@@ -11223,8 +11259,8 @@ function initStagehandRipperUI() {
           <span class="dim-label-prefix">D1 Live Cart URL:</span>
           ${ticketUrl ? `
             <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation(); if (window.openCuratorWindow) { window.openCuratorWindow(this.href); return false; }" style="display: inline-flex; align-items: center; gap: 5px; text-decoration: none;" title="Open Tier 1 live cart URL">
-              <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 4px; font-weight: 800; font-size: 0.68rem; text-decoration: underline;">Tier 1 ↗</span>
-              <span style="color: #38bdf8; text-decoration: underline; word-break: break-all; font-size: 0.7rem;">${ticketUrl.length > 40 ? escapeHtml(ticketUrl.slice(0, 38)) + '...' : escapeHtml(ticketUrl)}</span>
+              <span style="background: rgba(16, 185, 129, 0.2); color: #0D6E52; border: 1px solid rgba(16, 185, 129, 0.4); padding: 1px 6px; border-radius: 4px; font-weight: 800; font-size: 0.68rem; text-decoration: underline;">Tier 1 ↗</span>
+              <span style="color: #0D6E52; text-decoration: underline; word-break: break-all; font-size: 0.7rem;">${ticketUrl.length > 40 ? escapeHtml(ticketUrl.slice(0, 38)) + '...' : escapeHtml(ticketUrl)}</span>
             </a>
             ${isAfter ? '<span class="yield-highlight-tag">+ Link Verified</span>' : ''}
           ` : emptyScopeMsg(targets.d1_checkout, 'awaiting deep link')}
@@ -11242,11 +11278,11 @@ function initStagehandRipperUI() {
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
           <div>
             <span class="dim-label-prefix">D41 Category:</span>
-            ${categoryVal ? `<span style="font-weight: 700; color: #d8b4fe; background: rgba(168, 85, 247, 0.15); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(168, 85, 247, 0.3);">${escapeHtml(categoryVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Categorized</span>' : ''}` : emptyScopeMsg(targets.d41_category, 'awaiting NLP taxonomy')}
+            ${categoryVal ? `<span style="font-weight: 700; color: #6B21A8; background: rgba(168, 85, 247, 0.15); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(168, 85, 247, 0.3);">${escapeHtml(categoryVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Categorized</span>' : ''}` : emptyScopeMsg(targets.d41_category, 'awaiting NLP taxonomy')}
           </div>
           <div>
             <span class="dim-label-prefix">D34 Lineup:</span>
-            ${artistVal ? `<strong style="color: #cbd5e1;">${escapeHtml(artistVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Verified</span>' : ''}` : emptyScopeMsg(targets.d34_lineup, 'awaiting roster extraction')}
+            ${artistVal ? `<strong style="color: #334840;">${escapeHtml(artistVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Verified</span>' : ''}` : emptyScopeMsg(targets.d34_lineup, 'awaiting roster extraction')}
           </div>
         </div>
       </div>
@@ -11261,7 +11297,7 @@ function initStagehandRipperUI() {
         </div>
         <div>
           <span class="dim-label-prefix">D42 Age Policy:</span>
-          ${ageVal ? `<span style="color: #e2e8f0;">${escapeHtml(ageVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d42_age, 'awaiting 19+ ID check')}
+          ${ageVal ? `<span style="color: #1E2E27;">${escapeHtml(ageVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d42_age, 'awaiting 19+ ID check')}
         </div>
       </div>
 
@@ -11273,7 +11309,7 @@ function initStagehandRipperUI() {
         ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>`
         : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
         </div>
-        <div style="color: #cbd5e1; font-size: 0.72rem; line-height: 1.4; max-height: 60px; overflow-y: auto;">
+        <div style="color: #334840; font-size: 0.72rem; line-height: 1.4; max-height: 60px; overflow-y: auto;">
           <span class="dim-label-prefix">D51 Synopsis:</span>
           ${descVal ? `${escapeHtml(descVal)} ${isAfter ? '<span class="yield-highlight-tag">+ Enriched</span>' : ''}` : emptyScopeMsg(targets.d51_desc, 'awaiting AI synopsis')}
         </div>
@@ -11291,10 +11327,10 @@ function initStagehandRipperUI() {
           const cleanProofUrl = proofUrl.startsWith('/') || proofUrl.startsWith('http') ? proofUrl : `/${proofUrl}`;
           return `
           <a href="${escapeHtml(cleanProofUrl)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
-             style="display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; text-decoration: none; padding: 4px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(56, 189, 248, 0.28);"
+             style="display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; text-decoration: none; padding: 4px 8px; border-radius: 6px; background: #FFFFFF; border: 1px solid rgba(16, 185, 129, 0.28);"
              title="Click to open full-resolution screenshot in a new tab">
             <img src="${escapeHtml(cleanProofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onerror="this.closest('a').style.display='none';">
-            <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8;">🔍 Open screenshot in new tab ↗</span>
+            <span style="font-size: 0.68rem; font-weight: 700; color: #0D6E52;">🔍 Open screenshot in new tab ↗</span>
           </a>
         `;
         })() : emptyScopeMsg(targets.proof, 'awaiting browser screenshot')}
@@ -11448,7 +11484,7 @@ function initStagehandRipperUI() {
   }
 
   // ── Helper to render clickable tier badge + destination link ────────────────
-  function renderTierHyperlink(url, tierName, fallbackText = 'none_available', themeColor = '#38bdf8') {
+  function renderTierHyperlink(url, tierName, fallbackText = 'none_available', themeColor = '#10B981') {
     if (!url || typeof url !== 'string' || !url.startsWith('http')) {
       const isNone = fallbackText === 'none_available';
       const isNa = fallbackText === 'not_applicable';
@@ -11463,10 +11499,10 @@ function initStagehandRipperUI() {
       <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" ${openFn}
          style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; max-width: 100%; vertical-align: middle;"
          title="Open ${escapeHtml(tierName)}: ${escapeHtml(url)}">
-        <span style="display: inline-flex; align-items: center; gap: 3px; font-weight: 800; font-size: 0.7rem; padding: 2px 7px; border-radius: 4px; background: rgba(56, 189, 248, 0.14); color: ${themeColor}; border: 1px solid ${themeColor}44; text-decoration: underline; white-space: nowrap; cursor: pointer;">
+        <span style="display: inline-flex; align-items: center; gap: 3px; font-weight: 800; font-size: 0.7rem; padding: 2px 7px; border-radius: 4px; background: rgba(16, 185, 129, 0.14); color: ${themeColor}; border: 1px solid ${themeColor}44; text-decoration: underline; white-space: nowrap; cursor: pointer;">
           ${escapeHtml(tierName)} ↗
         </span>
-        <span style="color: #94a3b8; font-size: 0.72rem; text-decoration: underline; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;">
+        <span style="color: #4E6159; font-size: 0.72rem; text-decoration: underline; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;">
           ${escapeHtml(displayUrl)}
         </span>
       </a>
@@ -11529,7 +11565,7 @@ function initStagehandRipperUI() {
       legacyKeys: [],
       getValue: (card, isAfter) => {
         if (isAfter && (card?.compilerOutcome === 'ARCHIVED' || card?.compilerOutcome === 'QUARANTINED')) {
-          return `<span style="color: #f87171; font-weight: 700;">— (Not Published: ${escapeHtml(card.compilerOutcome)})</span>`;
+          return `<span style="color: #BE123C; font-weight: 700;">— (Not Published: ${escapeHtml(card.compilerOutcome)})</span>`;
         }
         if (card?.event_num_card) return `<span class="dim-pill-archetype">${escapeHtml(card.event_num_card)}</span>`;
         if (card?.Event_Num_Card) return `<span class="dim-pill-archetype">${escapeHtml(card.Event_Num_Card)}</span>`;
@@ -11641,7 +11677,7 @@ function initStagehandRipperUI() {
       legacyKeys: ['d1_checkout'],
       getValue: (card, isAfter) => {
         const url = extractTierUrl(card, 'D101', isAfter);
-        return renderTierHyperlink(url, 'Tier 1 (Cart)', 'none_available', '#38bdf8');
+        return renderTierHyperlink(url, 'Tier 1 (Cart)', 'none_available', '#10B981');
       },
       badge: '+ Link Verified'
     },
@@ -11671,7 +11707,7 @@ function initStagehandRipperUI() {
       legacyKeys: ['d3_calendar'],
       getValue: (card, isAfter) => {
         const url = extractTierUrl(card, 'D103', isAfter);
-        return renderTierHyperlink(url, 'Tier 3 (Calendar)', 'none_available', '#6ee7b7');
+        return renderTierHyperlink(url, 'Tier 3 (Calendar)', 'none_available', '#065F46');
       },
       badge: '+ Calendar'
     },
@@ -11686,7 +11722,7 @@ function initStagehandRipperUI() {
       legacyKeys: ['d4_civic'],
       getValue: (card, isAfter) => {
         const url = extractTierUrl(card, 'D104', isAfter);
-        return renderTierHyperlink(url, 'Tier 4 (Civic Guide)', (card?.isPerennial ? 'none_available' : 'not_applicable'), '#fde68a');
+        return renderTierHyperlink(url, 'Tier 4 (Civic Guide)', (card?.isPerennial ? 'none_available' : 'not_applicable'), '#92400E');
       },
       badge: '+ Civic'
     },
@@ -11701,7 +11737,7 @@ function initStagehandRipperUI() {
       legacyKeys: ['d5_venue_home'],
       getValue: (card, isAfter) => {
         const url = extractTierUrl(card, 'D105', isAfter);
-        return renderTierHyperlink(url, 'Tier 5 (Venue Home)', 'none_available', '#cbd5e1');
+        return renderTierHyperlink(url, 'Tier 5 (Venue Home)', 'none_available', '#334840');
       },
       badge: '+ Domain'
     },
@@ -11733,11 +11769,11 @@ function initStagehandRipperUI() {
         } else if (extractTierUrl(card, 'D105', isAfter) === bestUrl) {
           tierLabel = 'Tier 5 (Venue Home)';
         }
-        let themeColor = '#38bdf8';
+        let themeColor = '#10B981';
         if (tierLabel.includes('Tier 2')) themeColor = '#c4b5fd';
-        else if (tierLabel.includes('Tier 3')) themeColor = '#6ee7b7';
-        else if (tierLabel.includes('Tier 4')) themeColor = '#fde68a';
-        else if (tierLabel.includes('Tier 5')) themeColor = '#cbd5e1';
+        else if (tierLabel.includes('Tier 3')) themeColor = '#065F46';
+        else if (tierLabel.includes('Tier 4')) themeColor = '#92400E';
+        else if (tierLabel.includes('Tier 5')) themeColor = '#334840';
         return renderTierHyperlink(bestUrl, tierLabel, 'none_available', themeColor);
       },
       badge: '+ Promoted'
@@ -11755,10 +11791,10 @@ function initStagehandRipperUI() {
         const isSoldOut = isAfter
           ? (card?.afterInventory ? card.afterInventory.includes('SOLD OUT') : (card?.is_sold_out != null ? Boolean(card.is_sold_out || card.isSoldOut) : null))
           : (card?.is_sold_out != null ? Boolean(card.is_sold_out || card.isSoldOut) : null);
-        if (isSoldOut === null) return card?.id ? '<span style="color: #34d399; font-weight: 700;">AVAILABLE 🎟️</span>' : null;
+        if (isSoldOut === null) return card?.id ? '<span style="color: #065F46; font-weight: 700;">AVAILABLE 🎟️</span>' : null;
         return isSoldOut
-          ? '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4);">SOLD OUT ⚠️</span>'
-          : '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">AVAILABLE 🎟️</span>';
+          ? '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(239, 68, 68, 0.2); color: #9F1239; border: 1px solid rgba(239, 68, 68, 0.4);">SOLD OUT ⚠️</span>'
+          : '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(16, 185, 129, 0.18); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.3);">AVAILABLE 🎟️</span>';
       },
       badge: '+ Inventory'
     },
@@ -11879,7 +11915,7 @@ function initStagehandRipperUI() {
         const val = isAfter
           ? (card?.afterPrice || (allInNum != null ? `$${Number(allInNum).toFixed(2)} CAD` : card?.priceLabel || null))
           : (card?.priceLabel || (allInNum != null ? `$${Number(allInNum).toFixed(2)} CAD` : null));
-        return val ? `<span style="font-size: 0.95rem; font-weight: 800; color: #34d399;">${escapeHtml(val)}</span>` : null;
+        return val ? `<span style="font-size: 0.95rem; font-weight: 800; color: #065F46;">${escapeHtml(val)}</span>` : null;
       },
       badge: '+ Live Total'
     },
@@ -11895,7 +11931,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier2_name || card?.dimension_audit?.D206_tier2_name?.value || card?.dimension_audit?.D16_tier2_name?.value || (card?.admission_tiers && card.admission_tiers[1]?.name) || (card?.all_tiers && card.all_tiers[1]?.name);
         if (val && val !== 'none_available') return `<strong>${escapeHtml(val)}</strong>`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 2'
     },
@@ -11911,7 +11947,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier2_price_base ?? card?.dimension_audit?.D207_tier2_price_base?.value ?? card?.dimension_audit?.D17_tier2_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_base) ?? (card?.all_tiers && card.all_tiers[1]?.price_base);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 2 Base'
     },
@@ -11927,7 +11963,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier2_price_fee ?? card?.dimension_audit?.D208_tier2_price_fee?.value ?? card?.dimension_audit?.D18_tier2_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_fee) ?? (card?.all_tiers && card.all_tiers[1]?.price_fee);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 2 Fee'
     },
@@ -11943,7 +11979,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier2_price_tax ?? card?.dimension_audit?.D209_tier2_price_tax?.value ?? card?.dimension_audit?.D19_tier2_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_tax) ?? (card?.all_tiers && card.all_tiers[1]?.price_tax);
         if (val != null && !isNaN(Number(val))) return `$${Number(val).toFixed(2)} CAD`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 2 Tax'
     },
@@ -11959,9 +11995,9 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier2_price_all_in ?? card?.tier2_price_read ?? card?.dimension_audit?.D210_tier2_price_all_in?.value ?? card?.dimension_audit?.D20_tier2_price_all_in?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price) ?? (card?.all_tiers && (card.all_tiers[1]?.price_all_in ?? card.all_tiers[1]?.price));
         if (val != null && !isNaN(Number(val))) {
-          return `<span style="font-size: 0.9rem; font-weight: 800; color: #38bdf8;">$${Number(val).toFixed(2)} CAD</span>`;
+          return `<span style="font-size: 0.9rem; font-weight: 800; color: #0D6E52;">$${Number(val).toFixed(2)} CAD</span>`;
         }
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 2 Total'
     },
@@ -11977,7 +12013,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier3_name || card?.dimension_audit?.D211_tier3_name?.value || card?.dimension_audit?.D21_tier3_name?.value || (card?.admission_tiers && card.admission_tiers[2]?.name) || (card?.all_tiers && card.all_tiers[2]?.name);
         if (val && val !== 'none_available') return `<strong>${escapeHtml(val)}</strong>`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 3'
     },
@@ -11993,7 +12029,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier3_price_base ?? card?.dimension_audit?.D212_tier3_price_base?.value ?? card?.dimension_audit?.D22_tier3_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_base) ?? (card?.all_tiers && card.all_tiers[2]?.price_base);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 3 Base'
     },
@@ -12009,7 +12045,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier3_price_fee ?? card?.dimension_audit?.D213_tier3_price_fee?.value ?? card?.dimension_audit?.D23_tier3_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_fee) ?? (card?.all_tiers && card.all_tiers[2]?.price_fee);
         if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 3 Fee'
     },
@@ -12025,7 +12061,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const val = card?.tier3_price_tax ?? card?.dimension_audit?.D214_tier3_price_tax?.value ?? card?.dimension_audit?.D24_tier3_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_tax) ?? (card?.all_tiers && card.all_tiers[2]?.price_tax);
         if (val != null && !isNaN(Number(val))) return `$${Number(val).toFixed(2)} CAD`;
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 3 Tax'
     },
@@ -12043,7 +12079,7 @@ function initStagehandRipperUI() {
         if (val != null && !isNaN(Number(val))) {
           return `<span style="font-size: 0.9rem; font-weight: 800; color: #a78bfa;">$${Number(val).toFixed(2)} CAD</span>`;
         }
-        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+        return card?.id ? '<span style="color: #5A6E65; font-style: italic;">none_available</span>' : null;
       },
       badge: '+ Tier 3 Total'
     },
@@ -12066,7 +12102,7 @@ function initStagehandRipperUI() {
         if (card?.dimension_audit?.D26_tier_count_verified?.count != null) count = card.dimension_audit.D26_tier_count_verified.count;
         else if (card?.admission_tiers && card.admission_tiers.length > 0) count = card.admission_tiers.length;
         else if (card?.all_tiers && card.all_tiers.length > 0) count = card.all_tiers.length;
-        return card?.id ? `<span style="font-weight: 700; color: #38bdf8;">${count} Tier${count === 1 ? '' : 's'} Verified</span>` : null;
+        return card?.id ? `<span style="font-weight: 700; color: #0D6E52;">${count} Tier${count === 1 ? '' : 's'} Verified</span>` : null;
       },
       badge: '+ Tier Count'
     },
@@ -12097,8 +12133,8 @@ function initStagehandRipperUI() {
           : (card?.price != null ? Number(card.price) : null);
         if (p === null) return card?.id ? '✅ Verified (≤ $50.00 CAD)' : null;
         return p <= 50.00
-          ? '<span style="color: #34d399; font-weight: 700;">✅ Qualified Under $50 CAD</span>'
-          : '<span style="color: #fca5a5; font-weight: 700;">❌ Exceeds $50 Budget Ceiling</span>';
+          ? '<span style="color: #065F46; font-weight: 700;">✅ Qualified Under $50 CAD</span>'
+          : '<span style="color: #9F1239; font-weight: 700;">❌ Exceeds $50 Budget Ceiling</span>';
       },
       badge: '+ ≤ $50 Certified'
     },
@@ -12204,7 +12240,7 @@ function initStagehandRipperUI() {
         const d = isAfter
           ? (card?.afterDate || card?.startIso || card?.date || card?.showings?.[0]?.date || card?.dateSchedule || null)
           : (card?.startIso || card?.date || card?.showings?.[0]?.date || card?.dateSchedule || null);
-        return d ? `<span style="color: #38bdf8; font-weight: 700;">${escapeHtml(d)}</span>` : (card?.isPerennial ? 'perennial_drop_in' : null);
+        return d ? `<span style="color: #0D6E52; font-weight: 700;">${escapeHtml(d)}</span>` : (card?.isPerennial ? 'perennial_drop_in' : null);
       },
       badge: '+ Date Confirmed'
     },
@@ -12220,7 +12256,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         if (Array.isArray(card?.showings) && card.showings.length > 0) {
           const active = card.showings.filter(s => s.status !== 'concluded').length;
-          return `<span style="color: #38bdf8; font-weight: 700;">${card.showings.length} Slots</span> (${active} Active Upcoming)`;
+          return `<span style="color: #0D6E52; font-weight: 700;">${card.showings.length} Slots</span> (${active} Active Upcoming)`;
         }
         return card?.startIso ? '1 Active Slot' : (card?.isPerennial ? 'Recurring Residency' : null);
       },
@@ -12252,7 +12288,7 @@ function initStagehandRipperUI() {
       legacyKeys: ['d37_showtime'],
       getValue: (card, isAfter) => {
         const t = isAfter ? (card?.afterTime || card?.time || card?.start_time || null) : (card?.time || card?.start_time || null);
-        return t ? `<strong style="color: #cbd5e1;">${escapeHtml(t)}</strong>` : null;
+        return t ? `<strong style="color: #334840;">${escapeHtml(t)}</strong>` : null;
       },
       badge: '+ Showtime Verified'
     },
@@ -12310,7 +12346,7 @@ function initStagehandRipperUI() {
       getValue: (card, isAfter) => {
         const d = isAfter ? (card?.afterDescription || card?.afterDesc || card?.description || null) : (card?.description || null);
         if (!d) return null;
-        return `<div style="max-height: 52px; overflow-y: auto; line-height: 1.35; color: #cbd5e1; font-size: 0.72rem;">${escapeHtml(d)}</div>`;
+        return `<div style="max-height: 52px; overflow-y: auto; line-height: 1.35; color: #334840; font-size: 0.72rem;">${escapeHtml(d)}</div>`;
       },
       badge: '+ Synopsis Enriched'
     },
@@ -12361,10 +12397,10 @@ function initStagehandRipperUI() {
         if (card?.coordinates) {
           const lat = card.coordinates.lat || card.coordinates[0];
           const lng = card.coordinates.lng || card.coordinates[1];
-          if (lat && lng) return `<span style="font-family: monospace; font-size: 0.7rem; color: #38bdf8;">${Number(lat).toFixed(4)}, ${Number(lng).toFixed(4)}</span>`;
+          if (lat && lng) return `<span style="font-family: monospace; font-size: 0.7rem; color: #0D6E52;">${Number(lat).toFixed(4)}, ${Number(lng).toFixed(4)}</span>`;
         }
         if (card?.lat && card?.lng) {
-          return `<span style="font-family: monospace; font-size: 0.7rem; color: #38bdf8;">${Number(card.lat).toFixed(4)}, ${Number(card.lng).toFixed(4)}</span>`;
+          return `<span style="font-family: monospace; font-size: 0.7rem; color: #0D6E52;">${Number(card.lat).toFixed(4)}, ${Number(card.lng).toFixed(4)}</span>`;
         }
         return (card?.venue || card?.venue_name) ? 'Metro Vancouver GPS' : null;
       },
@@ -12902,7 +12938,7 @@ function initStagehandRipperUI() {
              style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; max-width: 100%;"
              title="Click to open full-resolution screenshot in a new tab">
             <img src="${escapeHtml(cleanProofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onerror="this.closest('a').style.display='none';">
-            <span style="font-size: 0.65rem; font-weight: 700; color: #38bdf8; white-space: nowrap;">🔍 Open in new tab ↗</span>
+            <span style="font-size: 0.65rem; font-weight: 700; color: #0D6E52; white-space: nowrap;">🔍 Open in new tab ↗</span>
           </a>
         `;
       },
@@ -13094,7 +13130,7 @@ function initStagehandRipperUI() {
       key: 'harvest',
       shortLabel: '📅 1A: Discover',
       fullLabel: '📅 Step 1A: Discover Events',
-      color: '#d8b4fe',
+      color: '#6B21A8',
       border: 'rgba(168, 85, 247, 0.55)',
       bgTint: 'rgba(168, 85, 247, 0.14)',
       pillBg: 'rgba(168, 85, 247, 0.22)'
@@ -13112,10 +13148,10 @@ function initStagehandRipperUI() {
       key: 'qc',
       shortLabel: '🎟️ 2: Prices & Fees',
       fullLabel: '🎟️ Step 2: Verify Prices & Fees',
-      color: '#7dd3fc',
-      border: 'rgba(56, 189, 248, 0.55)',
-      bgTint: 'rgba(56, 189, 248, 0.14)',
-      pillBg: 'rgba(56, 189, 248, 0.22)'
+      color: '#065F46',
+      border: 'rgba(16, 185, 129, 0.55)',
+      bgTint: 'rgba(16, 185, 129, 0.14)',
+      pillBg: 'rgba(16, 185, 129, 0.22)'
     },
     venue: {
       key: 'venue',
@@ -13130,7 +13166,7 @@ function initStagehandRipperUI() {
       key: 'enrich',
       shortLabel: '✨ 4: Clean Details',
       fullLabel: '✨ Step 4: Clean Titles & Details',
-      color: '#fde68a',
+      color: '#92400E',
       border: 'rgba(251, 191, 36, 0.55)',
       bgTint: 'rgba(251, 191, 36, 0.14)',
       pillBg: 'rgba(251, 191, 36, 0.22)'
@@ -13139,7 +13175,7 @@ function initStagehandRipperUI() {
       key: 'compile',
       shortLabel: '🚀 5: Publish',
       fullLabel: '🚀 Step 5: Merge & Publish',
-      color: '#6ee7b7',
+      color: '#065F46',
       border: 'rgba(16, 185, 129, 0.55)',
       bgTint: 'rgba(16, 185, 129, 0.14)',
       pillBg: 'rgba(16, 185, 129, 0.22)'
@@ -13197,22 +13233,22 @@ function initStagehandRipperUI() {
     if (btnReal) {
       if (scanKey === 'compile') {
         btnReal.style.background = 'rgba(16, 185, 129, 0.16)';
-        btnReal.style.color = '#6ee7b7';
+        btnReal.style.color = '#065F46';
         btnReal.style.borderColor = 'rgba(16, 185, 129, 0.45)';
         if (iconReal) iconReal.textContent = '🌈';
         if (labelReal) labelReal.textContent = 'All Fields Checked';
         if (countReal) countReal.textContent = `(${totalDims})`;
       } else if (pipelineCompFilterInScopeOnly) {
-        btnReal.style.background = 'rgba(56, 189, 248, 0.22)';
-        btnReal.style.color = '#7dd3fc';
-        btnReal.style.borderColor = 'rgba(56, 189, 248, 0.55)';
+        btnReal.style.background = 'rgba(16, 185, 129, 0.22)';
+        btnReal.style.color = '#065F46';
+        btnReal.style.borderColor = 'rgba(16, 185, 129, 0.55)';
         if (iconReal) iconReal.textContent = '🎯';
         if (labelReal) labelReal.textContent = 'Showing Step Fields Only (Show All)';
         if (countReal) countReal.textContent = `(${inScopeDims}/${totalDims})`;
       } else {
         btnReal.style.background = 'rgba(14, 165, 233, 0.15)';
-        btnReal.style.color = '#38bdf8';
-        btnReal.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        btnReal.style.color = '#10B981';
+        btnReal.style.borderColor = 'rgba(16, 185, 129, 0.4)';
         if (iconReal) iconReal.textContent = '🎯';
         if (labelReal) labelReal.textContent = 'Step Fields Only';
         if (countReal) countReal.textContent = `(${inScopeDims})`;
@@ -13223,19 +13259,19 @@ function initStagehandRipperUI() {
     if (!btn) return;
     if (scanKey === 'compile') {
       btn.style.background = 'rgba(148, 163, 184, 0.12)';
-      btn.style.color = '#cbd5e1';
+      btn.style.color = '#334840';
       btn.style.borderColor = 'rgba(148, 163, 184, 0.35)';
       if (labelEl) labelEl.textContent = `All ${getCatalogDimensionsCount()}D`;
       return;
     }
     if (pipelineCompFilterInScopeOnly) {
-      btn.style.background = 'rgba(56, 189, 248, 0.15)';
-      btn.style.color = '#38bdf8';
-      btn.style.borderColor = 'rgba(56, 189, 248, 0.45)';
+      btn.style.background = 'rgba(16, 185, 129, 0.15)';
+      btn.style.color = '#10B981';
+      btn.style.borderColor = 'rgba(16, 185, 129, 0.45)';
       if (labelEl) labelEl.textContent = 'In-Scope Only';
     } else {
       btn.style.background = 'rgba(148, 163, 184, 0.12)';
-      btn.style.color = '#cbd5e1';
+      btn.style.color = '#334840';
       btn.style.borderColor = 'rgba(148, 163, 184, 0.35)';
       if (labelEl) labelEl.textContent = `All ${getCatalogDimensionsCount()}D`;
     }
@@ -13254,7 +13290,7 @@ function initStagehandRipperUI() {
     const btn = document.getElementById('btn-comp-changed-first');
     if (btn) {
       btn.style.background = pipelineCompChangedFirst ? 'rgba(16, 185, 129, 0.2)' : 'rgba(148, 163, 184, 0.12)';
-      btn.style.color = pipelineCompChangedFirst ? '#34d399' : '#cbd5e1';
+      btn.style.color = pipelineCompChangedFirst ? '#065F46' : '#334840';
       btn.style.borderColor = pipelineCompChangedFirst ? 'rgba(16, 185, 129, 0.45)' : 'rgba(148, 163, 184, 0.35)';
       btn.textContent = pipelineCompChangedFirst ? '✨ Changed First ✓' : '✨ Changed First';
     }
@@ -13358,17 +13394,17 @@ function initStagehandRipperUI() {
         if (tierTargetUrl) {
           const openFn = `onclick="event.stopPropagation(); if (window.openCuratorWindow) { window.openCuratorWindow(this.href); return false; }"`;
           if (dim.code === 'D101') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 1 Cart: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Direct Ticket Cart ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 1 Cart: ${escapeHtml(tierTargetUrl)}" style="color: #0D6E52; text-decoration: underline; font-weight: 800;">Direct Ticket Cart ↗</a>`;
           } else if (dim.code === 'D102') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 2 Event Page: ${escapeHtml(tierTargetUrl)}" style="color: #c4b5fd; text-decoration: underline; font-weight: 800;">Event Details Page ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 2 Event Page: ${escapeHtml(tierTargetUrl)}" style="color: #5B21B6; text-decoration: underline; font-weight: 800;">Event Details Page ↗</a>`;
           } else if (dim.code === 'D103') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 3 Calendar: ${escapeHtml(tierTargetUrl)}" style="color: #6ee7b7; text-decoration: underline; font-weight: 800;">Venue Calendar URL ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 3 Calendar: ${escapeHtml(tierTargetUrl)}" style="color: #065F46; text-decoration: underline; font-weight: 800;">Venue Calendar URL ↗</a>`;
           } else if (dim.code === 'D104') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 4 Civic Guide: ${escapeHtml(tierTargetUrl)}" style="color: #fde68a; text-decoration: underline; font-weight: 800;">Destination Guide URL ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 4 Civic Guide: ${escapeHtml(tierTargetUrl)}" style="color: #92400E; text-decoration: underline; font-weight: 800;">Destination Guide URL ↗</a>`;
           } else if (dim.code === 'D105') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 5 Venue Home: ${escapeHtml(tierTargetUrl)}" style="color: #cbd5e1; text-decoration: underline; font-weight: 800;">Venue Website ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 5 Venue Home: ${escapeHtml(tierTargetUrl)}" style="color: #334840; text-decoration: underline; font-weight: 800;">Venue Website ↗</a>`;
           } else if (dim.code === 'D106') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Best Available Link: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Best Available Link ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Best Available Link: ${escapeHtml(tierTargetUrl)}" style="color: #0D6E52; text-decoration: underline; font-weight: 800;">Best Available Link ↗</a>`;
           }
         }
       } else if (dim.code === 'D1' || dim.code === 'D6') {
@@ -13376,9 +13412,9 @@ function initStagehandRipperUI() {
         if (tierTargetUrl) {
           const openFn = `onclick="event.stopPropagation(); if (window.openCuratorWindow) { window.openCuratorWindow(this.href); return false; }"`;
           if (dim.code === 'D1') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Live Cart: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Direct Ticket Cart ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Live Cart: ${escapeHtml(tierTargetUrl)}" style="color: #0D6E52; text-decoration: underline; font-weight: 800;">Direct Ticket Cart ↗</a>`;
           } else if (dim.code === 'D6') {
-            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Best Available Link: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Best Available Link ↗</a>`;
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Best Available Link: ${escapeHtml(tierTargetUrl)}" style="color: #0D6E52; text-decoration: underline; font-weight: 800;">Best Available Link ↗</a>`;
           }
         }
       }
@@ -13391,7 +13427,7 @@ function initStagehandRipperUI() {
           </div>
           <div style="flex: 0 0 auto; margin-left: auto; text-align: right; white-space: nowrap;">
             ${isChangedRow
-              ? `<span class="yield-target-tag" style="white-space: nowrap; background: rgba(16, 185, 129, 0.22); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.5);">${isNewlyFilled ? '✨ Newly Filled' : '✏️ Updated'}</span>`
+              ? `<span class="yield-target-tag" style="white-space: nowrap; background: rgba(16, 185, 129, 0.22); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.5);">${isNewlyFilled ? '✨ Newly Filled' : '✏️ Updated'}</span>`
               : (inScope
                 ? (scanKey === 'compile'
                   ? `<span class="yield-target-tag" title="${escapeHtml(dimStageMeta.fullLabel)}" style="white-space: nowrap; background: ${dimStageMeta.pillBg}; color: ${dimStageMeta.color}; border: 1px solid ${dimStageMeta.border};">${escapeHtml(dimStageMeta.shortLabel)}</span>`
@@ -13399,7 +13435,7 @@ function initStagehandRipperUI() {
                 : `<span class="yield-out-scope-tag" style="white-space: nowrap;">Other Step</span>`)}
           </div>
         </div>
-        <div style="font-size: 0.65rem; color: #64748b; margin-top: 4px; font-weight: 500;">
+        <div style="font-size: 0.65rem; color: #5A6E65; margin-top: 4px; font-weight: 500;">
           ${escapeHtml(dim.category)}
         </div>
       `;
@@ -13418,23 +13454,23 @@ function initStagehandRipperUI() {
         let badgeStyle = '';
         if (isNoneAvailable) {
           badgeText = 'Checked';
-          badgeStyle = 'background: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.25);';
+          badgeStyle = 'background: rgba(148, 163, 184, 0.12); color: #4E6159; border: 1px solid #D5DDD8;';
         } else if (dim.key === 'd6_tier') {
           badgeText = (afterVal && beforeVal && afterVal !== beforeVal) ? '+ Upgraded' : '+ Verified Link';
         } else if (beforeVal && afterVal && beforeVal === afterVal) {
           badgeText = 'Unchanged';
-          badgeStyle = 'background: rgba(148, 163, 184, 0.12); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25);';
+          badgeStyle = 'background: rgba(148, 163, 184, 0.12); color: #334840; border: 1px solid #D5DDD8;';
         } else if (isNewlyFilled) {
           badgeText = '+ Added';
-          badgeStyle = 'background: rgba(16, 185, 129, 0.22); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.45);';
+          badgeStyle = 'background: rgba(16, 185, 129, 0.22); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.45);';
         } else if (isChangedRow) {
           badgeText = '✏️ Changed';
-          badgeStyle = 'background: rgba(56, 189, 248, 0.22); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45);';
+          badgeStyle = 'background: rgba(16, 185, 129, 0.22); color: #0D6E52; border: 1px solid rgba(16, 185, 129, 0.45);';
         }
 
         const badgeHtml = inScope || isChangedRow
           ? `<span class="yield-highlight-tag" ${badgeStyle ? `style="${badgeStyle}"` : ''}>${escapeHtml(badgeText)}</span>`
-          : `<span class="yield-highlight-tag" style="background: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.22);">Kept</span>`;
+          : `<span class="yield-highlight-tag" style="background: rgba(148, 163, 184, 0.12); color: #4E6159; border: 1px solid #D5DDD8;">Kept</span>`;
         col3Html = `
           <div class="comp-val-wrapper" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
             <div>${afterVal}</div>
@@ -13443,9 +13479,9 @@ function initStagehandRipperUI() {
         `;
       } else if (isStreamingThisDim) {
         col3Html = `
-          <div style="display: flex; align-items: center; gap: 6px; color: #38bdf8;">
+          <div style="display: flex; align-items: center; gap: 6px; color: #0D6E52;">
             <span class="pipeline-loader-ring" style="width: 14px; height: 14px; border-width: 2px;"></span>
-            <span style="font-size: 0.72rem; font-style: italic; color: #38bdf8;">Checking live page...</span>
+            <span style="font-size: 0.72rem; font-style: italic; color: #0D6E52;">Checking live page...</span>
           </div>
         `;
       } else if (inScope) {
@@ -13484,10 +13520,10 @@ function initStagehandRipperUI() {
 
     if (pipelineCompChangedFirst) {
       const topBannerRow = changedRows.length > 0
-        ? `<tr style="background: rgba(16, 185, 129, 0.14);"><td colspan="3" style="padding: 6px 12px; font-size: 0.72rem; font-weight: 800; color: #34d399; border-bottom: 1px solid rgba(16, 185, 129, 0.3);">✨ ${changedRows.length} Field${changedRows.length === 1 ? '' : 's'} Added or Updated in This Step</td></tr>`
+        ? `<tr style="background: rgba(16, 185, 129, 0.14);"><td colspan="3" style="padding: 6px 12px; font-size: 0.72rem; font-weight: 800; color: #065F46; border-bottom: 1px solid rgba(16, 185, 129, 0.3);">✨ ${changedRows.length} Field${changedRows.length === 1 ? '' : 's'} Added or Updated in This Step</td></tr>`
         : '';
       const collapseToggleRow = (!pipelineCompFilterInScopeOnly && scanKey !== 'compile' && outScopeUnchangedRows.length > 0)
-        ? `<tr onclick="toggleUnchangedComparisonRows()" style="cursor: pointer; background: rgba(15, 23, 42, 0.92);"><td colspan="3" style="padding: 7px 12px; text-align: center; font-size: 0.72rem; font-weight: 700; color: #94a3b8; border-top: 1px solid rgba(148, 163, 184, 0.2); border-bottom: 1px solid rgba(148, 163, 184, 0.2);">${pipelineCompShowUnchangedOutScope ? `▴ Hide ${outScopeUnchangedRows.length} unchanged fields from other steps` : `▾ Show ${outScopeUnchangedRows.length} unchanged fields from other steps`}</td></tr>`
+        ? `<tr onclick="toggleUnchangedComparisonRows()" style="cursor: pointer; background: #FFFFFF;"><td colspan="3" style="padding: 7px 12px; text-align: center; font-size: 0.72rem; font-weight: 700; color: #4E6159; border-top: 1px solid #D5DDD8; border-bottom: 1px solid #D5DDD8;">${pipelineCompShowUnchangedOutScope ? `▴ Hide ${outScopeUnchangedRows.length} unchanged fields from other steps` : `▾ Show ${outScopeUnchangedRows.length} unchanged fields from other steps`}</td></tr>`
         : '';
       const visibleOutScope = (pipelineCompFilterInScopeOnly || scanKey === 'compile' || pipelineCompShowUnchangedOutScope)
         ? outScopeUnchangedRows.map(r => r.trHtml).join('')
@@ -13499,8 +13535,8 @@ function initStagehandRipperUI() {
 
     return `
       ${scanKey === 'compile' ? `
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 8px 12px; margin-bottom: 6px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 8px;">
-          <span style="font-size: 0.72rem; font-weight: 800; color: #e2e8f0; letter-spacing: 0.03em;">🌈 VERIFIED FIELDS BY PIPELINE STEP (ALL ${totalDimsCount} FIELDS):</span>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 8px 12px; margin-bottom: 6px; background: #FFFFFF; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 8px;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #1E2E27; letter-spacing: 0.03em;">🌈 VERIFIED FIELDS BY PIPELINE STEP (ALL ${totalDimsCount} FIELDS):</span>
           <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
             ${Object.values(STAGE_META_MAP).map(st => `
               <span title="${escapeHtml(st.fullLabel)}" style="font-size: 0.66rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: ${st.pillBg}; color: ${st.color}; border: 1px solid ${st.border};">
@@ -13515,22 +13551,22 @@ function initStagehandRipperUI() {
           <tr>
             <th class="comp-td-dim">
               <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: #38bdf8; font-weight: 800;">FIELD NAME</span>
-                <span onclick="toggleComparisonInScopeFilter()" title="Click to toggle between fields checked in this step vs. All ${totalDimsCount} Fields" style="cursor: pointer; font-size: 0.65rem; color: ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? '#38bdf8' : '#94a3b8'}; font-family: monospace; background: ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? 'rgba(56, 189, 248, 0.18)' : 'rgba(255,255,255,0.08)'}; border: 1px solid ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? 'rgba(56, 189, 248, 0.4)' : 'transparent'}; padding: 1px 6px; border-radius: 4px;">
+                <span style="color: #0D6E52; font-weight: 800;">FIELD NAME</span>
+                <span onclick="toggleComparisonInScopeFilter()" title="Click to toggle between fields checked in this step vs. All ${totalDimsCount} Fields" style="cursor: pointer; font-size: 0.65rem; color: ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? '#10B981' : '#4E6159'}; font-family: monospace; background: ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? 'rgba(16, 185, 129, 0.18)' : 'rgba(255,255,255,0.08)'}; border: 1px solid ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? 'rgba(16, 185, 129, 0.4)' : 'transparent'}; padding: 1px 6px; border-radius: 4px;">
                   ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? `🎯 ${inScopeDimsCount} STEP FIELDS` : `📋 ALL ${totalDimsCount} FIELDS`}
                 </span>
               </div>
             </th>
             <th class="comp-td-before">
               <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: #94a3b8; font-weight: 800;">📸 BEFORE THIS STEP</span>
+                <span style="color: #4E6159; font-weight: 800;">📸 BEFORE THIS STEP</span>
                 <span class="badge-card-number">${escapeHtml(badgeLabel)}</span>
               </div>
             </th>
             <th class="comp-td-after">
               <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: #34d399; font-weight: 800;">✨ AFTER THIS STEP (${escapeHtml(agentLabel)})</span>
-                <span class="yield-status-pill agent" style="font-size: 0.64rem; padding: 1px 7px; border-radius: 999px; font-weight: 700; background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">
+                <span style="color: #065F46; font-weight: 800;">✨ AFTER THIS STEP (${escapeHtml(agentLabel)})</span>
+                <span class="yield-status-pill agent" style="font-size: 0.64rem; padding: 1px 7px; border-radius: 999px; font-weight: 700; background: rgba(16, 185, 129, 0.2); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.4);">
                   ${isStreaming ? '⚡ Checking Live' : (after ? 'Verified' : 'Waiting')}
                 </span>
               </div>
@@ -13568,7 +13604,7 @@ function initStagehandRipperUI() {
         };
         tabsBar.style.display = 'flex';
         tabsBar.innerHTML = `
-          <span style="font-size: 0.68rem; font-weight: 700; color: #94a3b8; margin-right: 4px;">Saved Step Snapshots:</span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: #4E6159; margin-right: 4px;">Saved Step Snapshots:</span>
           ${Array.from(stageMap.entries()).map(([sKey, snap]) => {
             const isActive = (sKey === currentPipelineScanKey);
             const cCount = snap.changesCount || 0;
@@ -13603,11 +13639,11 @@ function initStagehandRipperUI() {
           </a>
           <div style="flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
             <div style="min-width: 0;">
-              <div style="font-size: 0.7rem; font-weight: 800; color: #34d399; margin-bottom: 1px;">📸 Evidence Screenshot Proof</div>
-              <div style="font-size: 0.76rem; font-weight: 700; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(evTitle)} — <span style="color: #38bdf8;">${escapeHtml(String(priceSummary))}</span></div>
+              <div style="font-size: 0.7rem; font-weight: 800; color: #065F46; margin-bottom: 1px;">📸 Evidence Screenshot Proof</div>
+              <div style="font-size: 0.76rem; font-weight: 700; color: #111C18; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(evTitle)} — <span style="color: #0D6E52;">${escapeHtml(String(priceSummary))}</span></div>
             </div>
             <a href="${escapeHtml(cleanProofUrl)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
-               style="font-size: 0.68rem; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 9px; border-radius: 6px; text-decoration: none; white-space: nowrap; flex-shrink: 0;">
+               style="font-size: 0.68rem; font-weight: 700; color: #0D6E52; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 4px 9px; border-radius: 6px; text-decoration: none; white-space: nowrap; flex-shrink: 0;">
               🔍 Open in New Tab ↗
             </a>
           </div>
@@ -13652,12 +13688,12 @@ function initStagehandRipperUI() {
       afterContainer.style.display = 'none';
       if (isStreaming && (!ctx || (!ctx.afterPrice && !ctx.afterTitle && !ctx.hasProof && !ctx.afterCategory && !ctx.afterDescription))) {
         afterContainer.innerHTML = `
-          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #38bdf8; padding: 20px;">
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #0D6E52; padding: 20px;">
             <span class="pipeline-loader-ring" style="width: 32px; height: 32px; margin-bottom: 12px; border-width: 3px;"></span>
-            <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: #38bdf8;">
+            <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: #0D6E52;">
               ${escapeHtml(agentLabel)} Checking Page...
             </div>
-            <p style="font-size: 0.74rem; color: #94a3b8; max-width: 260px; margin: 0; line-height: 1.45;">
+            <p style="font-size: 0.74rem; color: #4E6159; max-width: 260px; margin: 0; line-height: 1.45;">
               Reading live event details from the browser page. Updated fields appear at the top automatically.
             </p>
           </div>
@@ -13733,9 +13769,9 @@ function initStagehandRipperUI() {
         const statusBadge = isQuar ? '🛡️' : (cCount > 0 ? `+${cCount}` : '✓');
         return `
           <button type="button" class="audited-card-chip ${isActive ? 'active' : ''}" onclick="showComparisonCardById('${escapeHtml(itemId)}')" title="${escapeHtml(item.title || itemId)}">
-            <span style="color: #38bdf8; font-weight: 800;">#${escapeHtml(String(item.cardIndex))}</span>
+            <span style="color: #0D6E52; font-weight: 800;">#${escapeHtml(String(item.cardIndex))}</span>
             <span style="max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml((item.title || 'Event').slice(0, 20))}</span>
-            <span style="font-size: 0.66rem; padding: 1px 5px; border-radius: 999px; background: ${isQuar ? 'rgba(245,158,11,0.2)' : (cCount > 0 ? 'rgba(16,185,129,0.22)' : 'rgba(148,163,184,0.16)')}; color: ${isQuar ? '#fbbf24' : (cCount > 0 ? '#34d399' : '#cbd5e1')};">${statusBadge}</span>
+            <span style="font-size: 0.66rem; padding: 1px 5px; border-radius: 999px; background: ${isQuar ? 'rgba(245,158,11,0.2)' : (cCount > 0 ? 'rgba(16,185,129,0.22)' : 'rgba(148,163,184,0.16)')}; color: ${isQuar ? '#92400E' : (cCount > 0 ? '#065F46' : '#334840')};">${statusBadge}</span>
           </button>
         `;
       }).join('');
@@ -14007,7 +14043,7 @@ function initStagehandRipperUI() {
     if (currentPipelineScanKey === 'harvest') {
       const trackerStatus = document.getElementById('pipeline-last-scanned-text');
       if (trackerStatus) {
-        trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scanned}/${total} sources scanned (${rem} remaining)</span> • <span style="color: #4ade80; font-weight: 700;">+${batchCount} events</span>`;
+        trackerStatus.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">${scanned}/${total} sources scanned (${rem} remaining)</span> • <span style="color: #15803D; font-weight: 700;">+${batchCount} events</span>`;
       }
     }
 
@@ -14017,7 +14053,7 @@ function initStagehandRipperUI() {
       const activeSrcText = harvesterCurrentSourceName
         ? `Scanning #${activeOrd}/${total}: ${harvesterCurrentSourceName}${harvesterActiveLinkProgressText ? ` (${harvesterActiveLinkProgressText})` : ''}`
         : `Preparing Source #${activeOrd}/${total}…`;
-      compressedStatusEl.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${escapeHtml(activeSrcText)}</span> • <span style="color: #c084fc; font-weight: 700;">${scanned}/${total} completed (${rem} left)</span> • <span style="color: #4ade80; font-weight: 700;">+${batchCount} new events</span>`;
+      compressedStatusEl.innerHTML = `<span style="color: #0D6E52; font-weight: 700;">${escapeHtml(activeSrcText)}</span> • <span style="color: #6B21A8; font-weight: 700;">${scanned}/${total} completed (${rem} left)</span> • <span style="color: #15803D; font-weight: 700;">+${batchCount} new events</span>`;
     }
 
     const stepSub = document.getElementById('test-step-sub-harvest');
@@ -14264,15 +14300,15 @@ function initStagehandRipperUI() {
         <!-- TOP REGION: TWO COLUMNS -->
         <div id="harvester-top-region" style="display: flex; gap: 12px; width: 100%; align-items: stretch;">
           <!-- TOP-LEFT: BEFORE RUN (Prior Data Sources & Events) -->
-          <div id="harvester-top-left-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #090d16; border: 1px solid rgba(192, 132, 252, 0.25); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-            <div class="yield-card-badge-bar before" style="color: #c084fc; border-color: rgba(192, 132, 252, 0.25);">
+          <div id="harvester-top-left-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #F2F4F0; border: 1px solid rgba(192, 132, 252, 0.25); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+            <div class="yield-card-badge-bar before" style="color: #6B21A8; border-color: rgba(192, 132, 252, 0.25);">
               <div style="display: flex; align-items: center; gap: 6px;">
                 <span style="font-weight: 800;">📸 BEFORE RUN • PRIOR DATA SOURCES</span>
-                <span class="badge-card-number" style="background: rgba(192, 132, 252, 0.15); color: #d8b4fe; border: 1px solid rgba(192, 132, 252, 0.35);">
+                <span class="badge-card-number" style="background: rgba(192, 132, 252, 0.15); color: #6B21A8; border: 1px solid rgba(192, 132, 252, 0.35);">
                   ${totalSources} Sources (${totalEvents} Events)
                 </span>
               </div>
-              <span class="yield-status-pill baseline" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">
+              <span class="yield-status-pill baseline" style="background: rgba(148, 163, 184, 0.15); color: #4E6159; border: 1px solid #D5DDD8;">
                 Baseline Catalog
               </span>
             </div>
@@ -14280,10 +14316,10 @@ function initStagehandRipperUI() {
             <!-- Search Filter & Quick Expand/Collapse Tools -->
             <div style="display: flex; gap: 6px; align-items: center; margin: 4px 0;">
               <input type="text" id="harvester-filter-before" placeholder="Search data source, event name, or date..." 
-                     style="flex: 1; font-size: 0.72rem; padding: 4px 8px; background: rgba(0,0,0,0.5); border: 1px solid rgba(192,132,252,0.25); border-radius: 4px; color: #fff;"
+                     style="flex: 1; font-size: 0.72rem; padding: 4px 8px; background: #F2F4F0; border: 1px solid rgba(192,132,252,0.25); border-radius: 4px; color: #111C18;"
                      oninput="filterHarvesterBeforeSources(this.value)">
-              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterSources(true)" style="padding: 2px 7px; font-size: 0.66rem; color: #c084fc; cursor: pointer;" title="Expand all source lists">Expand All</button>
-              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterSources(false)" style="padding: 2px 7px; font-size: 0.66rem; color: #94a3b8; cursor: pointer;" title="Collapse all source lists">Collapse All</button>
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterSources(true)" style="padding: 2px 7px; font-size: 0.66rem; color: #6B21A8; cursor: pointer;" title="Expand all source lists">Expand All</button>
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterSources(false)" style="padding: 2px 7px; font-size: 0.66rem; color: #4E6159; cursor: pointer;" title="Collapse all source lists">Collapse All</button>
             </div>
 
             <!-- Scrollable Accordion of Data Sources with Event Names & Dates -->
@@ -14292,35 +14328,35 @@ function initStagehandRipperUI() {
       const safeId = 'hsrc-' + sIdx;
       const isExpanded = sIdx < 2;
       return `
-                  <div class="harvester-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(192, 132, 252, 0.18); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
+                  <div class="harvester-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: #FFFFFF; border: 1px solid rgba(192, 132, 252, 0.18); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
                     <div onclick="toggleHarvesterSourceGroup('${safeId}')" style="padding: 6px 10px; background: rgba(192, 132, 252, 0.08); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
                       <div style="display: flex; align-items: center; gap: 6px;">
                         <span style="font-size: 0.76rem;">🏛️</span>
-                        <span style="font-weight: 700; color: #f1f5f9; font-size: 0.76rem;">${escapeHtml(sourceName)}</span>
+                        <span style="font-weight: 700; color: #111C18; font-size: 0.76rem;">${escapeHtml(sourceName)}</span>
                       </div>
                       <div style="display: flex; align-items: center; gap: 6px;">
-                        <span style="font-size: 0.66rem; font-weight: 700; background: rgba(192, 132, 252, 0.2); color: #d8b4fe; padding: 1px 7px; border-radius: 999px;">
+                        <span style="font-size: 0.66rem; font-weight: 700; background: rgba(192, 132, 252, 0.2); color: #6B21A8; padding: 1px 7px; border-radius: 999px;">
                           ${evs.length} ${evs.length === 1 ? 'event' : 'events'}
                         </span>
-                        <span id="${safeId}-icon" class="harvester-toggle-icon" style="font-size: 0.65rem; color: #94a3b8;">${isExpanded ? '▼' : '▶'}</span>
+                        <span id="${safeId}-icon" class="harvester-toggle-icon" style="font-size: 0.65rem; color: #4E6159;">${isExpanded ? '▼' : '▶'}</span>
                       </div>
                     </div>
-                    <div id="${safeId}" class="harvester-source-events-list" style="padding: 6px 10px; display: ${isExpanded ? 'flex' : 'none'}; flex-direction: column; gap: 5px; font-size: 0.72rem; background: rgba(0, 0, 0, 0.2);">
+                    <div id="${safeId}" class="harvester-source-events-list" style="padding: 6px 10px; display: ${isExpanded ? 'flex' : 'none'}; flex-direction: column; gap: 5px; font-size: 0.72rem; background: #F2F4F0;">
                       ${evs.map(e => {
         const rawDate = e.date || e.dateSchedule || '';
         const isPending = !rawDate || /pending|verification|tbd|schedule/i.test(rawDate);
         const dateSnippet = isPending ? '' : `
-                          <span style="color: #38bdf8; font-family: monospace; font-size: 0.66rem; white-space: nowrap; margin-left: 6px; flex-shrink: 0;">
+                          <span style="color: #0D6E52; font-family: monospace; font-size: 0.66rem; white-space: nowrap; margin-left: 6px; flex-shrink: 0;">
                             📅 ${escapeHtml(rawDate)}${e.time ? ' • ' + escapeHtml(e.time) : ''}
                           </span>
                         `;
         const linkUrl = e.ticket_url || e.url || e.calendar_url || e.details_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
         return `
-                          <div class="harvester-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding-bottom: 3px; flex-shrink: 0;">
+                          <div class="harvester-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid #D5DDD8; padding-bottom: 3px; flex-shrink: 0;">
                             <a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" 
-                               style="color: #e2e8f0; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
-                               onmouseover="this.style.color='#c084fc'; this.style.textDecoration='underline';"
-                               onmouseout="this.style.color='#e2e8f0'; this.style.textDecoration='none';"
+                               style="color: #1E2E27; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
+                               onmouseover="this.style.color='#6B21A8'; this.style.textDecoration='underline';"
+                               onmouseout="this.style.color='#1E2E27'; this.style.textDecoration='none';"
                                title="Open ${escapeHtml(e.title || 'Event')} in new window">
                               ${escapeHtml(e.title)} <span style="font-size: 0.62rem; color: #a855f7; opacity: 0.85;">↗</span>
                             </a>
@@ -14336,18 +14372,18 @@ function initStagehandRipperUI() {
           </div>
 
           <!-- TOP-RIGHT: AFTER RUN (Consists ONLY of the New Events Grouped by Source) -->
-          <div id="harvester-top-right-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #090d16; border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-            <div class="yield-card-badge-bar after" style="color: #4ade80; border-color: rgba(52, 211, 153, 0.3);">
+          <div id="harvester-top-right-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #F2F4F0; border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+            <div class="yield-card-badge-bar after" style="color: #15803D; border-color: rgba(52, 211, 153, 0.3);">
               <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                 <span style="font-weight: 800;">✨ AFTER RUN • NEW DATA SOURCES &amp; EVENTS</span>
-                <span class="badge-card-number" id="harvester-sources-scanned-badge" style="background: rgba(168, 85, 247, 0.2); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.45);">
+                <span class="badge-card-number" id="harvester-sources-scanned-badge" style="background: rgba(168, 85, 247, 0.2); color: #6B21A8; border: 1px solid rgba(168, 85, 247, 0.45);">
                   📡 ${harvesterSourcesScanned ?? 0}/${harvesterTotalSources || 298} sources scanned
                 </span>
-                <span class="badge-card-number" style="background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4);">
+                <span class="badge-card-number" style="background: rgba(34, 197, 94, 0.2); color: #15803D; border: 1px solid rgba(34, 197, 94, 0.4);">
                   +${newEventsCount} New Events (${totalNewSources} Yielding Sources)
                 </span>
               </div>
-              <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(168, 85, 247, 0.2)' : 'rgba(16, 185, 129, 0.2)'}; color: ${isStreaming ? '#d8b4fe' : '#34d399'}; border: 1px solid ${isStreaming ? 'rgba(168, 85, 247, 0.4)' : 'rgba(16, 185, 129, 0.4)'};">
+              <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(168, 85, 247, 0.2)' : 'rgba(16, 185, 129, 0.2)'}; color: ${isStreaming ? '#6B21A8' : '#065F46'}; border: 1px solid ${isStreaming ? 'rgba(168, 85, 247, 0.4)' : 'rgba(16, 185, 129, 0.4)'};">
                 ${isStreaming ? 'Crawling...' : (isFinished ? 'Harvested' : 'Awaiting Run')}
               </span>
             </div>
@@ -14355,32 +14391,32 @@ function initStagehandRipperUI() {
             <!-- Search Filter & Quick Tools for New Events -->
             <div style="display: flex; gap: 6px; align-items: center; margin: 4px 0;">
               <input type="text" id="harvester-filter-after" placeholder="Filter newly harvested events or sources..." 
-                     style="flex: 1; font-size: 0.72rem; padding: 4px 8px; background: rgba(0,0,0,0.5); border: 1px solid rgba(52,211,153,0.3); border-radius: 4px; color: #fff;"
+                     style="flex: 1; font-size: 0.72rem; padding: 4px 8px; background: #F2F4F0; border: 1px solid rgba(52,211,153,0.3); border-radius: 4px; color: #111C18;"
                      oninput="filterHarvesterAfterSources(this.value)">
-              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterNewSources(true)" style="padding: 2px 7px; font-size: 0.66rem; color: #34d399; cursor: pointer;" title="Expand all new source lists">Expand All</button>
-              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterNewSources(false)" style="padding: 2px 7px; font-size: 0.66rem; color: #94a3b8; cursor: pointer;" title="Collapse all new source lists">Collapse All</button>
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterNewSources(true)" style="padding: 2px 7px; font-size: 0.66rem; color: #065F46; cursor: pointer;" title="Expand all new source lists">Expand All</button>
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterNewSources(false)" style="padding: 2px 7px; font-size: 0.66rem; color: #4E6159; cursor: pointer;" title="Collapse all new source lists">Collapse All</button>
             </div>
 
             <!-- Scrollable Accordion of New Data Sources with Newly Harvested Events -->
             <div id="harvester-after-sources-list" style="flex: 1; max-height: 380px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px;">
               ${newEventsCount === 0 ? `
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 240px; text-align: center; color: #94a3b8; padding: 20px;">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 240px; text-align: center; color: #4E6159; padding: 20px;">
                   ${isStreaming ? `
-                    <span class="pipeline-loader-ring" style="width: 28px; height: 28px; margin-bottom: 10px; border-width: 2.5px; border-color: #34d399 transparent #34d399 transparent;"></span>
-                    <div style="font-weight: 700; color: #34d399; font-size: 0.86rem; margin-bottom: 4px;">Crawling Venue Feeds...</div>
-                    <p style="font-size: 0.72rem; color: #cbd5e1; max-width: 240px; margin: 0; line-height: 1.4;">
+                    <span class="pipeline-loader-ring" style="width: 28px; height: 28px; margin-bottom: 10px; border-width: 2.5px; border-color: #065F46 transparent #34d399 transparent;"></span>
+                    <div style="font-weight: 700; color: #065F46; font-size: 0.86rem; margin-bottom: 4px;">Crawling Venue Feeds...</div>
+                    <p style="font-size: 0.72rem; color: #334840; max-width: 240px; margin: 0; line-height: 1.4;">
                       Newly harvested events will appear here grouped by source as candidate links are verified.
                     </p>
                   ` : (isFinished ? `
                     <div style="font-size: 2rem; margin-bottom: 6px;">✅</div>
-                    <div style="font-weight: 700; color: #34d399; font-size: 0.86rem; margin-bottom: 4px;">All Calendar Events Up to Date</div>
-                    <p style="font-size: 0.72rem; color: #94a3b8; max-width: 240px; margin: 0; line-height: 1.4;">
+                    <div style="font-weight: 700; color: #065F46; font-size: 0.86rem; margin-bottom: 4px;">All Calendar Events Up to Date</div>
+                    <p style="font-size: 0.72rem; color: #4E6159; max-width: 240px; margin: 0; line-height: 1.4;">
                       No uncataloged new showings were found. All candidate links on target feeds already exist in the baseline catalog.
                     </p>
                   ` : `
                     <div style="font-size: 2rem; margin-bottom: 6px;">📅</div>
-                    <div style="font-weight: 700; color: #d8b4fe; font-size: 0.86rem; margin-bottom: 4px;">Awaiting Harvester Execution</div>
-                    <p style="font-size: 0.72rem; color: #94a3b8; max-width: 240px; margin: 0; line-height: 1.4;">
+                    <div style="font-weight: 700; color: #6B21A8; font-size: 0.86rem; margin-bottom: 4px;">Awaiting Harvester Execution</div>
+                    <p style="font-size: 0.72rem; color: #4E6159; max-width: 240px; margin: 0; line-height: 1.4;">
                       Click <strong>Run Harvester Now</strong> to begin. Newly discovered events will be organized here by venue/source.
                     </p>
                   `)}
@@ -14388,32 +14424,32 @@ function initStagehandRipperUI() {
               ` : sortedNewSources.map(([sourceName, evs], sIdx) => {
       const safeId = 'hnewsrc-' + sIdx;
       return `
-                  <div class="harvester-new-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
+                  <div class="harvester-new-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: #FFFFFF; border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
                     <div onclick="toggleHarvesterNewSourceGroup('${safeId}')" style="padding: 6px 10px; background: rgba(16, 185, 129, 0.09); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
                       <div style="display: flex; align-items: center; gap: 6px;">
                         <span style="font-size: 0.76rem;">✨</span>
-                        <span style="font-weight: 700; color: #f1f5f9; font-size: 0.76rem;">${escapeHtml(sourceName)}</span>
+                        <span style="font-weight: 700; color: #111C18; font-size: 0.76rem;">${escapeHtml(sourceName)}</span>
                       </div>
                       <div style="display: flex; align-items: center; gap: 6px;">
-                        <span style="font-size: 0.66rem; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #4ade80; padding: 1px 7px; border-radius: 999px;">
+                        <span style="font-size: 0.66rem; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #15803D; padding: 1px 7px; border-radius: 999px;">
                           +${evs.length} ${evs.length === 1 ? 'new event' : 'new events'}
                         </span>
-                        <span id="${safeId}-icon" class="harvester-new-toggle-icon" style="font-size: 0.65rem; color: #94a3b8;">▼</span>
+                        <span id="${safeId}-icon" class="harvester-new-toggle-icon" style="font-size: 0.65rem; color: #4E6159;">▼</span>
                       </div>
                     </div>
-                    <div id="${safeId}" class="harvester-new-source-events-list" style="padding: 6px 10px; display: flex; flex-direction: column; gap: 5px; font-size: 0.72rem; background: rgba(0, 0, 0, 0.2);">
+                    <div id="${safeId}" class="harvester-new-source-events-list" style="padding: 6px 10px; display: flex; flex-direction: column; gap: 5px; font-size: 0.72rem; background: #F2F4F0;">
                       ${evs.map(e => {
         const linkUrl = e.url || e.ticket_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
         return `
-                          <div class="harvester-new-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding-bottom: 3px; flex-shrink: 0;">
+                          <div class="harvester-new-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid #D5DDD8; padding-bottom: 3px; flex-shrink: 0;">
                             <a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" 
-                               style="color: #4ade80; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
+                               style="color: #15803D; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
                                onmouseover="this.style.color='#86efac'; this.style.textDecoration='underline';"
-                               onmouseout="this.style.color='#4ade80'; this.style.textDecoration='none';"
+                               onmouseout="this.style.color='#15803D'; this.style.textDecoration='none';"
                                title="Open ${escapeHtml(e.title || 'Event')} in new window">
-                              ${escapeHtml(e.title)} <span style="font-size: 0.62rem; color: #34d399;">↗</span>
+                              ${escapeHtml(e.title)} <span style="font-size: 0.62rem; color: #065F46;">↗</span>
                             </a>
-                            <span style="color: #38bdf8; font-family: monospace; font-size: 0.66rem; white-space: nowrap; margin-left: 6px; flex-shrink: 0;">
+                            <span style="color: #0D6E52; font-family: monospace; font-size: 0.66rem; white-space: nowrap; margin-left: 6px; flex-shrink: 0;">
                               📅 ${escapeHtml(e.date || 'TBD')}${e.time ? ' • ' + escapeHtml(e.time) : ''}
                             </span>
                           </div>
@@ -14428,15 +14464,15 @@ function initStagehandRipperUI() {
         </div>
 
         <!-- BOTTOM REGION: SINGLE COLUMN (Live Updating Stream of Discrete Event Cards) -->
-        <div id="harvester-bottom-region" class="yield-card" style="width: 100%; background: #090d16; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
-          <div class="yield-card-badge-bar" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); margin-bottom: 2px;">
+        <div id="harvester-bottom-region" class="yield-card" style="width: 100%; background: #F2F4F0; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div class="yield-card-badge-bar" style="color: #0D6E52; border-color: rgba(16, 185, 129, 0.3); margin-bottom: 2px;">
             <div style="display: flex; align-items: center; gap: 6px;">
               <span style="font-weight: 800;">⚡ LIVE DISCOVERY STREAM (DISCRETE EVENT CARDS)</span>
-              <span class="badge-card-number" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35);">
+              <span class="badge-card-number" style="background: rgba(16, 185, 129, 0.15); color: #0D6E52; border: 1px solid rgba(16, 185, 129, 0.35);">
                 ${newEventsCount} Event${newEventsCount === 1 ? '' : 's'} Processed
               </span>
             </div>
-            <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(56, 189, 248, 0.2)' : (isFinished ? 'rgba(34, 197, 94, 0.2)' : 'rgba(148, 163, 184, 0.15)')}; color: ${isStreaming ? '#38bdf8' : (isFinished ? '#4ade80' : '#94a3b8')}; border: 1px solid ${isStreaming ? 'rgba(56, 189, 248, 0.4)' : (isFinished ? 'rgba(34, 197, 94, 0.4)' : 'rgba(148, 163, 184, 0.3)')};">
+            <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(16, 185, 129, 0.2)' : (isFinished ? 'rgba(34, 197, 94, 0.2)' : 'rgba(148, 163, 184, 0.15)')}; color: ${isStreaming ? '#10B981' : (isFinished ? '#15803D' : '#4E6159')}; border: 1px solid ${isStreaming ? 'rgba(16, 185, 129, 0.4)' : (isFinished ? 'rgba(34, 197, 94, 0.4)' : 'rgba(148, 163, 184, 0.3)')};">
               ${isStreaming ? '✨ Streaming Live' : (isFinished ? '✅ Harvest Complete' : '💤 Awaiting Start')}
             </span>
           </div>
@@ -14444,21 +14480,21 @@ function initStagehandRipperUI() {
           <!-- Real-Time Cards List Updating Each Time An Event is Processed -->
           <div id="harvester-bottom-cards-feed" style="max-height: 420px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 4px;">
             ${newEventsCount === 0 ? `
-              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 160px; text-align: center; color: #94a3b8; padding: 16px;">
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 160px; text-align: center; color: #4E6159; padding: 16px;">
                 ${isStreaming ? `
-                  <span class="pipeline-loader-ring" style="width: 30px; height: 30px; margin-bottom: 10px; border-width: 3px; border-color: #38bdf8 transparent #38bdf8 transparent;"></span>
-                  <div style="font-weight: 700; color: #38bdf8; font-size: 0.88rem; margin-bottom: 3px;">Harvester Active &amp; Crawling...</div>
-                  <p style="font-size: 0.74rem; color: #cbd5e1; max-width: 320px; margin: 0; line-height: 1.45;">
+                  <span class="pipeline-loader-ring" style="width: 30px; height: 30px; margin-bottom: 10px; border-width: 3px; border-color: #0D6E52 transparent #10B981 transparent;"></span>
+                  <div style="font-weight: 700; color: #0D6E52; font-size: 0.88rem; margin-bottom: 3px;">Harvester Active &amp; Crawling...</div>
+                  <p style="font-size: 0.74rem; color: #334840; max-width: 320px; margin: 0; line-height: 1.45;">
                     Discrete event cards will appear here immediately in real-time as each candidate calendar link is fetched and verified.
                   </p>
                 ` : (isFinished ? `
                   <div style="font-size: 1.8rem; margin-bottom: 4px;">🏁</div>
-                  <div style="font-weight: 700; color: #34d399; font-size: 0.88rem; margin-bottom: 2px;">Crawl Finished (No New Events)</div>
-                  <p style="font-size: 0.74rem; color: #94a3b8; margin: 0;">All discovered calendar dates were already in the active catalog.</p>
+                  <div style="font-weight: 700; color: #065F46; font-size: 0.88rem; margin-bottom: 2px;">Crawl Finished (No New Events)</div>
+                  <p style="font-size: 0.74rem; color: #4E6159; margin: 0;">All discovered calendar dates were already in the active catalog.</p>
                 ` : `
                   <div style="font-size: 1.8rem; margin-bottom: 4px;">⚡</div>
-                  <div style="font-weight: 700; color: #cbd5e1; font-size: 0.88rem; margin-bottom: 2px;">Live Event Cards Stream</div>
-                  <p style="font-size: 0.74rem; color: #94a3b8; max-width: 340px; margin: 0; line-height: 1.45;">
+                  <div style="font-weight: 700; color: #334840; font-size: 0.88rem; margin-bottom: 2px;">Live Event Cards Stream</div>
+                  <p style="font-size: 0.74rem; color: #4E6159; max-width: 340px; margin: 0; line-height: 1.45;">
                     As each event link is processed, its verified title, date, time, venue, price, and ticket URL will appear here live so you don't have to wait for the run to complete.
                   </p>
                 `)}
@@ -14470,22 +14506,22 @@ function initStagehandRipperUI() {
                   <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
                     <a href="${escapeHtml(evUrl)}" target="_blank" rel="noopener noreferrer" 
                        style="font-weight: 700; font-size: 0.82rem; color: #fff; text-decoration: none; cursor: pointer; flex: 1; transition: color 0.15s ease;"
-                       onmouseover="this.style.color='#4ade80'; this.style.textDecoration='underline';"
+                       onmouseover="this.style.color='#15803D'; this.style.textDecoration='underline';"
                        onmouseout="this.style.color='#fff'; this.style.textDecoration='none';"
                        title="Open ${escapeHtml(ev.title || 'Event')} in new window">
-                      #${idx + 1}. ${escapeHtml(ev.title || 'Event')} <span style="font-size: 0.68rem; color: #34d399;">↗</span>
+                      #${idx + 1}. ${escapeHtml(ev.title || 'Event')} <span style="font-size: 0.68rem; color: #065F46;">↗</span>
                     </a>
-                    <span style="font-size: 0.64rem; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 7px; border-radius: 999px; white-space: nowrap;">✨ New Event</span>
+                    <span style="font-size: 0.64rem; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #15803D; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 7px; border-radius: 999px; white-space: nowrap;">✨ New Event</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 10px; font-size: 0.72rem; flex-wrap: wrap;">
-                    <span style="color: #38bdf8; font-weight: 600;">📅 ${escapeHtml(ev.date || 'TBD')}</span>
-                    ${ev.time ? `<span style="color: #94a3b8;">⏰ ${escapeHtml(ev.time)}</span>` : ''}
-                    <span style="color: #cbd5e1;">📍 ${escapeHtml(ev.venue || 'Vancouver Venue')}</span>
-                    ${ev.price ? `<span style="color: #34d399; font-weight: 700;">💰 ${escapeHtml(ev.price)}</span>` : ''}
+                    <span style="color: #0D6E52; font-weight: 600;">📅 ${escapeHtml(ev.date || 'TBD')}</span>
+                    ${ev.time ? `<span style="color: #4E6159;">⏰ ${escapeHtml(ev.time)}</span>` : ''}
+                    <span style="color: #334840;">📍 ${escapeHtml(ev.venue || 'Vancouver Venue')}</span>
+                    ${ev.price ? `<span style="color: #065F46; font-weight: 700;">💰 ${escapeHtml(ev.price)}</span>` : ''}
                   </div>
                   ${ev.url ? `
                     <div style="margin-top: 2px;">
-                      <a href="${escapeHtml(ev.url)}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #c084fc; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;"
+                      <a href="${escapeHtml(ev.url)}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #6B21A8; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;"
                          onmouseover="this.style.textDecoration='underline';"
                          onmouseout="this.style.textDecoration='none';">
                         🔗 View Ticket Page ↗
@@ -14855,7 +14891,7 @@ function initStagehandRipperUI() {
         </div>
       `).join('');
     } else {
-      changesHtml = `<span style="color: #94a3b8; font-style: italic; font-size: 0.72rem;">All factual dimensions verified identical against live reality.</span>`;
+      changesHtml = `<span style="color: #4E6159; font-style: italic; font-size: 0.72rem;">All factual dimensions verified identical against live reality.</span>`;
     }
 
     const historyKey = ctx.id || String(cardNum);
@@ -14874,10 +14910,10 @@ function initStagehandRipperUI() {
       });
     }
     tr.innerHTML = `
-      <td style="font-weight: 700; color: #38bdf8;">#${escapeHtml(String(cardNum))}</td>
+      <td style="font-weight: 700; color: #0D6E52;">#${escapeHtml(String(cardNum))}</td>
       <td>
         <div style="font-weight: 600; color: #fff; line-height: 1.25;">${escapeHtml(title)}</div>
-        <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 2px;">${escapeHtml(venue)}</div>
+        <div style="font-size: 0.68rem; color: #4E6159; margin-top: 2px;">${escapeHtml(venue)}</div>
       </td>
       <td>${changesHtml}</td>
       <td style="text-align: center;">${statusHtml}</td>
@@ -15144,7 +15180,7 @@ function initStagehandRipperUI() {
     }
     if (pipelineStatusText) {
       pipelineStatusText.textContent = '⏹️ Stopped by curator.';
-      pipelineStatusText.style.color = '#fbbf24';
+      pipelineStatusText.style.color = '#92400E';
     }
     if (pipelineStatusSubtext) {
       pipelineStatusSubtext.textContent = 'Pipeline worker terminated cleanly.';
@@ -15178,7 +15214,7 @@ function initStagehandRipperUI() {
       shortDesc: 'Scans venue calendars and event feeds to discover upcoming dates, showtimes, and new events.',
       btnLabel: 'Discover Events from Venue Feeds',
       btnColor: 'linear-gradient(135deg, #7e22ce 0%, #a855f7 100%)',
-      btnBorder: '#c084fc',
+      btnBorder: '#6B21A8',
       urlPlaceholder: 'https://theimprovcentre.ca/shows/ (or choose from venue feeds dropdown)',
       defaultLimit: 10,
       showUrl: false,
@@ -15207,8 +15243,8 @@ function initStagehandRipperUI() {
       techPillClass: 'tech-pill-stagehand',
       shortDesc: 'Opens paid ticket carts in a real browser, checks base price + service fees + tax, captures a cart screenshot, and confirms total is ≤ $50 CAD.',
       btnLabel: 'Verify Live Ticket Prices & Fees',
-      btnColor: 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)',
-      btnBorder: '#38bdf8',
+      btnColor: 'linear-gradient(135deg, #0D6E52 0%, #10B981 100%)',
+      btnBorder: '#10B981',
       urlPlaceholder: 'Leave blank to check queued events, or paste a single ticket URL',
       defaultLimit: 5,
       showUrl: true,
@@ -15238,7 +15274,7 @@ function initStagehandRipperUI() {
       shortDesc: 'Cleans messy scraped titles, extracts performers, writes a clear 2-sentence summary, and assigns categories and age tags.',
       btnLabel: 'Clean Titles & Summaries',
       btnColor: 'linear-gradient(135deg, #d97706 0%, #fbbf24 100%)',
-      btnBorder: '#fbbf24',
+      btnBorder: '#92400E',
       urlPlaceholder: 'Cleans titles, performers, and descriptions for queued events',
       defaultLimit: 20,
       showUrl: false,
@@ -15253,7 +15289,7 @@ function initStagehandRipperUI() {
       shortDesc: 'Finds multi-day showings of the same event across dates or ticket links and rolls them into one clean event card.',
       btnLabel: 'Find & Merge Duplicate Cards',
       btnColor: 'linear-gradient(135deg, #0d9488 0%, #10b981 100%)',
-      btnBorder: '#34d399',
+      btnBorder: '#065F46',
       urlPlaceholder: 'Scans catalog for multi-day or duplicate event cards',
       defaultLimit: 0,
       showUrl: false,
@@ -15268,7 +15304,7 @@ function initStagehandRipperUI() {
       shortDesc: `Combines verified schedules, ticket prices, clean descriptions, and venue info, merges duplicate showings, checks the ≤ $50 CAD rule, and publishes live to Van50.`,
       btnLabel: 'Merge & Publish to Live App',
       btnColor: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
-      btnBorder: '#34d399',
+      btnBorder: '#065F46',
       urlPlaceholder: 'Leave empty to publish verified cards to the live catalog',
       defaultLimit: 5,
       showUrl: false,
@@ -15283,7 +15319,7 @@ function initStagehandRipperUI() {
       shortDesc: 'Runs Price Verification → Clean Details → Merge & Publish sequentially one event at a time.',
       btnLabel: 'Run Full Check (1-by-1)',
       btnColor: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
-      btnBorder: '#f472b6',
+      btnBorder: '#9D174D',
       urlPlaceholder: 'Leave empty to run across selected queue',
       defaultLimit: 5,
       showUrl: false,
@@ -15832,11 +15868,11 @@ function initStagehandRipperUI() {
       ...rawQEvents.filter(e => !hasGuidance(e))
     ];
     return window.openCustomQueueLauncherModal({
-      stageKey: 'hunter',
-      title: '🛡️ Re-Check Quarantined Events (Notes Prioritized First)',
-      subtitle: `${qEvents.length} quarantined event(s) ready for re-check${withGuidanceCount > 0 ? ` (${withGuidanceCount} have saved Curator Notes listed at the top)` : ''}.`,
+      stageKey: 'quarantine_heal',
+      title: '🩹 Parallel AI Quarantine Healer (4x Antigravity Workers)',
+      subtitle: `${qEvents.length} quarantined event(s) ready for parallel AI search, healing & QC${withGuidanceCount > 0 ? ` (${withGuidanceCount} have saved Curator Notes listed at the top)` : ''}. Heals links/prices/dates & promotes valid ≤$50 events or archives disqualified ones directly.`,
       items: qEvents,
-      defaultCount: withGuidanceCount > 0 ? withGuidanceCount : Math.min(10, qEvents.length),
+      defaultCount: withGuidanceCount > 0 ? withGuidanceCount : Math.min(12, qEvents.length),
       scope: 'quarantined',
       isQuarantine: true
     });
@@ -15850,15 +15886,15 @@ function initStagehandRipperUI() {
     const btnFresh = document.getElementById('btn-opt-harvest-fresh');
     if (btnRes) {
       btnRes.classList.toggle('active', window.harvesterResumeMode);
-      btnRes.style.borderColor = window.harvesterResumeMode ? '#c084fc' : 'rgba(255,255,255,0.16)';
+      btnRes.style.borderColor = window.harvesterResumeMode ? '#6B21A8' : 'rgba(255,255,255,0.16)';
       btnRes.style.background = window.harvesterResumeMode ? 'rgba(168, 85, 247, 0.25)' : 'rgba(0,0,0,0.35)';
-      btnRes.style.color = window.harvesterResumeMode ? '#f3e8ff' : '#94a3b8';
+      btnRes.style.color = window.harvesterResumeMode ? '#f3e8ff' : '#4E6159';
     }
     if (btnFresh) {
       btnFresh.classList.toggle('active', !window.harvesterResumeMode);
-      btnFresh.style.borderColor = !window.harvesterResumeMode ? '#38bdf8' : 'rgba(255,255,255,0.16)';
-      btnFresh.style.background = !window.harvesterResumeMode ? 'rgba(56, 189, 248, 0.2)' : 'rgba(0,0,0,0.35)';
-      btnFresh.style.color = !window.harvesterResumeMode ? '#38bdf8' : '#94a3b8';
+      btnFresh.style.borderColor = !window.harvesterResumeMode ? '#10B981' : 'rgba(255,255,255,0.16)';
+      btnFresh.style.background = !window.harvesterResumeMode ? 'rgba(16, 185, 129, 0.2)' : 'rgba(0,0,0,0.35)';
+      btnFresh.style.color = !window.harvesterResumeMode ? '#10B981' : '#4E6159';
     }
     if (window.selectedAutoPipelineScope !== 'harvest' && typeof window.selectAutoPipelineScope === 'function') {
       window.selectAutoPipelineScope('harvest', true);
@@ -15879,26 +15915,26 @@ function initStagehandRipperUI() {
 
     modal = document.createElement('div');
     modal.id = 'continue-1a-city-modal';
-    modal.style.cssText = 'display: none; position: fixed; inset: 0; z-index: 12000; background: rgba(2, 6, 23, 0.84); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 16px;';
+    modal.style.cssText = 'display: none; position: fixed; inset: 0; z-index: 12000; background: rgba(17, 28, 24, 0.45); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 16px;';
     modal.innerHTML = `
-      <div style="background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%); border: 1px solid rgba(192, 132, 252, 0.45); border-radius: 14px; max-width: 580px; width: 100%; padding: 20px 22px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75); color: #f8fafc; font-family: inherit;" onclick="event.stopPropagation()">
+      <div style="background: linear-gradient(145deg, #FFFFFF 0%, #F3E8FF 100%); border: 1px solid rgba(192, 132, 252, 0.45); border-radius: 14px; max-width: 580px; width: 100%; padding: 20px 22px; box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08); color: #111C18; font-family: inherit;" onclick="event.stopPropagation()">
         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
           <div>
-            <div style="display: flex; align-items: center; gap: 8px; font-size: 1.05rem; font-weight: 800; color: #f8fafc;">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 1.05rem; font-weight: 800; color: #111C18;">
               <span>▶️</span>
               <span>Continue Stage 1A Scan — Select Cities</span>
             </div>
-            <div style="font-size: 0.78rem; color: #cbd5e1; margin-top: 3px;">
+            <div style="font-size: 0.78rem; color: #334840; margin-top: 3px;">
               Choose which cities you want the Schedule Harvester (Step 1A) to scan through and how many new events to collect.
             </div>
           </div>
-          <button type="button" onclick="window.closeContinue1ACityModal()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #cbd5e1; border-radius: 6px; width: 28px; height: 28px; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center;" title="Close">✕</button>
+          <button type="button" onclick="window.closeContinue1ACityModal()" style="background: #FFFFFF; border: 1px solid #D5DDD8; color: #334840; border-radius: 6px; width: 28px; height: 28px; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center;" title="Close">✕</button>
         </div>
 
         <!-- 1. Select Cities -->
         <div style="margin-bottom: 14px;">
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
-            <label style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em;">
+            <label style="font-size: 0.75rem; font-weight: 800; color: #0D6E52; text-transform: uppercase; letter-spacing: 0.05em;">
               1. Select City Scope to Scan (6 Metro Cities)
             </label>
           </div>
@@ -15906,67 +15942,67 @@ function initStagehandRipperUI() {
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; max-height: 290px; overflow-y: auto; padding-right: 2px;">
             <div id="c1a-card-all" onclick="window.selectC1ACityScope('all')" style="grid-column: 1 / -1; cursor: pointer; padding: 9px 12px; border-radius: 9px; border: 1px solid #c084fc; background: rgba(168, 85, 247, 0.18); transition: border-color 0.15s ease, background-color 0.15s ease;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <span style="font-size: 0.84rem; font-weight: 800; color: #f8fafc;">🌲 All Metro (6 Cities)</span>
-                <span id="c1a-badge-all" style="font-size: 0.69rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.45);">All Sources</span>
+                <span style="font-size: 0.84rem; font-weight: 800; color: #111C18;">🌲 All Metro (6 Cities)</span>
+                <span id="c1a-badge-all" style="font-size: 0.69rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(168, 85, 247, 0.25); color: #581C87; border: 1px solid rgba(192, 132, 252, 0.45);">All Sources</span>
               </div>
-              <div id="c1a-sub-all" style="font-size: 0.71rem; color: #cbd5e1; margin-top: 3px;">
+              <div id="c1a-sub-all" style="font-size: 0.71rem; color: #334840; margin-top: 3px;">
                 Scans official calendars across Vancouver, Surrey, Burnaby, Richmond, New West &amp; Langley.
               </div>
             </div>
 
-            <div id="c1a-card-vancouver" onclick="window.selectC1ACityScope('vancouver')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+            <div id="c1a-card-vancouver" onclick="window.selectC1ACityScope('vancouver')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid #D5DDD8; background: #FFFFFF;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🏙️ Vancouver</span>
-                <span id="c1a-badge-vancouver" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);">Van</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #111C18;">🏙️ Vancouver</span>
+                <span id="c1a-badge-vancouver" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(16, 185, 129, 0.2); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.4);">Van</span>
               </div>
-              <div id="c1a-sub-vancouver" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Vancouver theatres, clubs &amp; cultural feeds.</div>
+              <div id="c1a-sub-vancouver" style="font-size: 0.69rem; color: #4E6159; margin-top: 3px;">Vancouver theatres, clubs &amp; cultural feeds.</div>
             </div>
 
-            <div id="c1a-card-surrey" onclick="window.selectC1ACityScope('surrey')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+            <div id="c1a-card-surrey" onclick="window.selectC1ACityScope('surrey')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid #D5DDD8; background: #FFFFFF;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🦌 Surrey</span>
-                <span id="c1a-badge-surrey" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.4);">Surrey</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #111C18;">🦌 Surrey</span>
+                <span id="c1a-badge-surrey" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(16, 185, 129, 0.2); color: #065F46; border: 1px solid rgba(52, 211, 153, 0.4);">Surrey</span>
               </div>
-              <div id="c1a-sub-surrey" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Surrey 6 town centres &amp; civic feeds.</div>
+              <div id="c1a-sub-surrey" style="font-size: 0.69rem; color: #4E6159; margin-top: 3px;">Surrey 6 town centres &amp; civic feeds.</div>
             </div>
 
-            <div id="c1a-card-burnaby" onclick="window.selectC1ACityScope('burnaby')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+            <div id="c1a-card-burnaby" onclick="window.selectC1ACityScope('burnaby')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid #D5DDD8; background: #FFFFFF;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🏔️ Burnaby</span>
-                <span id="c1a-badge-burnaby" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(251, 191, 36, 0.4);">Burnaby</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #111C18;">🏔️ Burnaby</span>
+                <span id="c1a-badge-burnaby" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(245, 158, 11, 0.2); color: #92400E; border: 1px solid rgba(251, 191, 36, 0.4);">Burnaby</span>
               </div>
-              <div id="c1a-sub-burnaby" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Shadbolt, SFU, Metrotown, breweries &amp; sports.</div>
+              <div id="c1a-sub-burnaby" style="font-size: 0.69rem; color: #4E6159; margin-top: 3px;">Shadbolt, SFU, Metrotown, breweries &amp; sports.</div>
             </div>
 
-            <div id="c1a-card-richmond" onclick="window.selectC1ACityScope('richmond')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+            <div id="c1a-card-richmond" onclick="window.selectC1ACityScope('richmond')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid #D5DDD8; background: #FFFFFF;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🌊 Richmond</span>
-                <span id="c1a-badge-richmond" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(14, 165, 233, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);">Richmond</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #111C18;">🌊 Richmond</span>
+                <span id="c1a-badge-richmond" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(14, 165, 233, 0.2); color: #065F46; border: 1px solid rgba(16, 185, 129, 0.4);">Richmond</span>
               </div>
-              <div id="c1a-sub-richmond" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Gateway Theatre, Steveston, galleries &amp; wineries.</div>
+              <div id="c1a-sub-richmond" style="font-size: 0.69rem; color: #4E6159; margin-top: 3px;">Gateway Theatre, Steveston, galleries &amp; wineries.</div>
             </div>
 
-            <div id="c1a-card-new-west" onclick="window.selectC1ACityScope('new-west')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+            <div id="c1a-card-new-west" onclick="window.selectC1ACityScope('new-west')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid #D5DDD8; background: #FFFFFF;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">⚓ New West</span>
-                <span id="c1a-badge-new-west" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(236, 72, 153, 0.2); color: #f9a8d4; border: 1px solid rgba(244, 114, 182, 0.4);">New West</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #111C18;">⚓ New West</span>
+                <span id="c1a-badge-new-west" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(236, 72, 153, 0.2); color: #9D174D; border: 1px solid rgba(244, 114, 182, 0.4);">New West</span>
               </div>
-              <div id="c1a-sub-new-west" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Anvil Centre, Massey, Quay, Bully's &amp; breweries.</div>
+              <div id="c1a-sub-new-west" style="font-size: 0.69rem; color: #4E6159; margin-top: 3px;">Anvil Centre, Massey, Quay, Bully's &amp; breweries.</div>
             </div>
 
-            <div id="c1a-card-langley" onclick="window.selectC1ACityScope('langley')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.65);">
+            <div id="c1a-card-langley" onclick="window.selectC1ACityScope('langley')" style="cursor: pointer; padding: 9px 11px; border-radius: 9px; border: 1px solid #D5DDD8; background: #FFFFFF;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #f8fafc;">🐎 Langley</span>
-                <span id="c1a-badge-langley" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(168, 85, 247, 0.2); color: #d8b4fe; border: 1px solid rgba(192, 132, 252, 0.4);">Langley</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #111C18;">🐎 Langley</span>
+                <span id="c1a-badge-langley" style="font-size: 0.67rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(168, 85, 247, 0.2); color: #6B21A8; border: 1px solid rgba(192, 132, 252, 0.4);">Langley</span>
               </div>
-              <div id="c1a-sub-langley" style="font-size: 0.69rem; color: #94a3b8; margin-top: 3px;">Fort Langley, LEC, Bez Arts, breweries &amp; sports.</div>
+              <div id="c1a-sub-langley" style="font-size: 0.69rem; color: #4E6159; margin-top: 3px;">Fort Langley, LEC, Bez Arts, breweries &amp; sports.</div>
             </div>
           </div>
         </div>
 
         <!-- 2. Scan Start Mode -->
         <div style="margin-bottom: 14px;">
-          <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">
+          <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #6B21A8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">
             2. Scan Position
           </label>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -15982,10 +16018,10 @@ function initStagehandRipperUI() {
         <!-- 3. How Many Events to Harvest -->
         <div style="margin-bottom: 18px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-            <label style="font-size: 0.75rem; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 0.05em;">
+            <label style="font-size: 0.75rem; font-weight: 800; color: #065F46; text-transform: uppercase; letter-spacing: 0.05em;">
               3. Target Event Count to Harvest
             </label>
-            <span style="font-size: 0.7rem; color: #94a3b8;">Click a preset or type any number</span>
+            <span style="font-size: 0.7rem; color: #4E6159;">Click a preset or type any number</span>
           </div>
           <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
             <button type="button" class="btn-limit-chip active" id="c1a-chip-all" onclick="window.selectC1ABatchCount('all')" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">All</button>
@@ -15994,19 +16030,19 @@ function initStagehandRipperUI() {
             <button type="button" class="btn-limit-chip" id="c1a-chip-25" onclick="window.selectC1ABatchCount(25)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">25</button>
             <button type="button" class="btn-limit-chip" id="c1a-chip-50" onclick="window.selectC1ABatchCount(50)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">50</button>
             <button type="button" class="btn-limit-chip" id="c1a-chip-100" onclick="window.selectC1ABatchCount(100)" style="padding: 5px 11px; font-size: 0.74rem; font-weight: 700;">100</button>
-            <input type="text" id="c1a-custom-count-input" value="all" oninput="window.onC1ACustomCountInput(this.value)" placeholder="all or #" style="width: 90px; padding: 5px 9px; font-size: 0.76rem; font-weight: 700; color: #f8fafc; background: rgba(0,0,0,0.45); border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 6px; text-align: center;">
+            <input type="text" id="c1a-custom-count-input" value="all" oninput="window.onC1ACustomCountInput(this.value)" placeholder="all or #" style="width: 90px; padding: 5px 9px; font-size: 0.76rem; font-weight: 700; color: #111C18; background: #F2F4F0; border: 1px solid rgba(16, 185, 129, 0.45); border-radius: 6px; text-align: center;">
           </div>
         </div>
 
         <!-- Footer -->
-        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
-          <button type="button" onclick="window.closeContinue1ACityModal()" style="padding: 8px 13px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 7px; cursor: pointer;">
+        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; border-top: 1px solid #D5DDD8; padding-top: 14px;">
+          <button type="button" onclick="window.closeContinue1ACityModal()" style="padding: 8px 13px; font-size: 0.76rem; font-weight: 700; color: #334840; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 7px; cursor: pointer;">
             Cancel
           </button>
           <button type="button" id="c1a-btn-confirm" onclick="window.confirmContinue1ACityModal(false)" title="Run Stage 1A schedule harvest only (stops after Stage 1A)" style="padding: 8px 14px; font-size: 0.77rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); border: 1px solid #c084fc; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 12px rgba(147, 51, 234, 0.38);">
             ▶️ Run 1A Only
           </button>
-          <button type="button" id="c1a-btn-confirm-chain" onclick="window.confirmContinue1ACityModal(true)" title="Run Stage 1A and automatically continue through Stages 1B, 2, 3, 4 &amp; 5" style="padding: 8px 14px; font-size: 0.77rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border: 1px solid #34d399; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.38);">
+          <button type="button" id="c1a-btn-confirm-chain" onclick="window.confirmContinue1ACityModal(true)" title="Run Stage 1A and automatically continue through Stages 1B, 2, 3, 4 &amp; 5" style="padding: 8px 14px; font-size: 0.77rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, #0D6E52 0%, #10b981 100%); border: 1px solid #34d399; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.38);">
             🚀 Run 1A ➔ Publish (1A–5)
           </button>
         </div>
@@ -16031,8 +16067,8 @@ function initStagehandRipperUI() {
       const card = document.getElementById(`c1a-card-${key}`);
       if (!card) return;
       const isSelected = key === scope;
-      card.style.borderColor = isSelected ? '#c084fc' : 'rgba(255,255,255,0.15)';
-      card.style.background = isSelected ? 'rgba(168, 85, 247, 0.2)' : 'rgba(15, 23, 42, 0.65)';
+      card.style.borderColor = isSelected ? '#6B21A8' : 'rgba(255,255,255,0.15)';
+      card.style.background = isSelected ? 'rgba(168, 85, 247, 0.2)' : 'rgba(19, 32, 28, 0.65)';
       card.style.boxShadow = isSelected ? '0 0 14px rgba(168, 85, 247, 0.28)' : 'none';
     });
 
@@ -16330,7 +16366,7 @@ function initStagehandRipperUI() {
     if (titleLabel) {
       const isCompileDone = (pipelineTestStageStatuses['compile'] || '').includes('Complete');
       if (isCompileDone) {
-        titleLabel.innerHTML = '🎉 <strong style="color: #34d399;">Pipeline Run Complete:</strong> All Steps Finished (100%)';
+        titleLabel.innerHTML = '🎉 <strong style="color: #065F46;">Pipeline Run Complete:</strong> All Steps Finished (100%)';
       } else if (currentStage === 'harvest') {
         titleLabel.textContent = 'Step 1A: Discover Events (Venue & City Calendars)';
       } else if (currentStage === 'hunter') {
@@ -16434,10 +16470,10 @@ function initStagehandRipperUI() {
     if (hintEl) {
       hintEl.style.display = 'block';
       if (matched.length > 0) {
-        hintEl.style.color = '#38bdf8';
+        hintEl.style.color = '#10B981';
         hintEl.textContent = `✓ ${matched.length} event${matched.length === 1 ? '' : 's'} matched`;
       } else {
-        hintEl.style.color = '#f87171';
+        hintEl.style.color = '#BE123C';
         hintEl.textContent = 'No matching events found. Enter card # (e.g. 1-10) or event ID.';
       }
     }
@@ -16546,9 +16582,9 @@ function initStagehandRipperUI() {
 
     if (customWrapper) {
       if (isCustomNum) {
-        customWrapper.style.borderColor = '#38bdf8';
-        customWrapper.style.background = 'rgba(56, 189, 248, 0.16)';
-        customWrapper.style.boxShadow = '0 0 10px rgba(56, 189, 248, 0.3)';
+        customWrapper.style.borderColor = '#10B981';
+        customWrapper.style.background = 'rgba(16, 185, 129, 0.16)';
+        customWrapper.style.boxShadow = '0 0 10px rgba(16, 185, 129, 0.3)';
       } else {
         customWrapper.style.borderColor = 'rgba(255, 255, 255, 0.2)';
         customWrapper.style.background = 'rgba(0, 0, 0, 0.5)';
@@ -16606,31 +16642,31 @@ function initStagehandRipperUI() {
       targetCount = harvestedEvents.length;
       scopeTitle = 'Newly Harvested Events';
       stages = [
-        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
-        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
-        { num: '03', name: 'Venue Detailer', color: '#60a5fa' },
-        { num: '04', name: 'AI Enricher', color: '#fbbf24' },
-        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+        { num: '1B', name: 'Tier 1 Hunter', color: '#6B21A8' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#10B981' },
+        { num: '03', name: 'Venue Detailer', color: '#1D4ED8' },
+        { num: '04', name: 'AI Enricher', color: '#92400E' },
+        { num: '05', name: 'Compiler & Publisher', color: '#065F46' }
       ];
     } else if (scope === 'stale') {
       targetCount = staleEvents.length || events.length;
       scopeTitle = 'Out-of-Date Events';
       stages = [
-        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
-        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
-        { num: '03', name: 'Venue Detailer', color: '#60a5fa' },
-        { num: '04', name: 'AI Enricher', color: '#fbbf24' },
-        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+        { num: '1B', name: 'Tier 1 Hunter', color: '#6B21A8' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#10B981' },
+        { num: '03', name: 'Venue Detailer', color: '#1D4ED8' },
+        { num: '04', name: 'AI Enricher', color: '#92400E' },
+        { num: '05', name: 'Compiler & Publisher', color: '#065F46' }
       ];
     } else if (scope === 'quarantined') {
       targetCount = qEvents.length;
       scopeTitle = 'Quarantined Items';
       stages = [
-        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
-        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
-        { num: '03', name: 'Venue Detailer', color: '#60a5fa' },
-        { num: '04', name: 'AI Enricher', color: '#fbbf24' },
-        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+        { num: '1B', name: 'Tier 1 Hunter', color: '#6B21A8' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#10B981' },
+        { num: '03', name: 'Venue Detailer', color: '#1D4ED8' },
+        { num: '04', name: 'AI Enricher', color: '#92400E' },
+        { num: '05', name: 'Compiler & Publisher', color: '#065F46' }
       ];
     } else if (scope === 'harvest') {
       targetCount = 0;
@@ -16645,31 +16681,31 @@ function initStagehandRipperUI() {
         : `Schedule Harvester (Fresh #1/${totalFeeds})`;
       stages = [
         { num: '1A', name: stage1AName, color: '#a855f7' },
-        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
-        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
-        { num: '03', name: 'Venue Detailer', color: '#60a5fa' },
-        { num: '04', name: 'AI Enricher', color: '#fbbf24' },
-        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+        { num: '1B', name: 'Tier 1 Hunter', color: '#6B21A8' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#10B981' },
+        { num: '03', name: 'Venue Detailer', color: '#1D4ED8' },
+        { num: '04', name: 'AI Enricher', color: '#92400E' },
+        { num: '05', name: 'Compiler & Publisher', color: '#065F46' }
       ];
     } else if (scope === 'unverified') {
       targetCount = unverifiedEvents.length || events.length;
       scopeTitle = 'Unverified Events';
       stages = [
-        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
-        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
-        { num: '03', name: 'Venue Detailer', color: '#60a5fa' },
-        { num: '04', name: 'AI Enricher', color: '#fbbf24' },
-        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+        { num: '1B', name: 'Tier 1 Hunter', color: '#6B21A8' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#10B981' },
+        { num: '03', name: 'Venue Detailer', color: '#1D4ED8' },
+        { num: '04', name: 'AI Enricher', color: '#92400E' },
+        { num: '05', name: 'Compiler & Publisher', color: '#065F46' }
       ];
     } else if (scope === 'all') {
       targetCount = events.length;
       scopeTitle = 'Catalog Events';
       stages = [
-        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
-        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
-        { num: '03', name: 'Venue Detailer', color: '#60a5fa' },
-        { num: '04', name: 'AI Enricher', color: '#fbbf24' },
-        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+        { num: '1B', name: 'Tier 1 Hunter', color: '#6B21A8' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#10B981' },
+        { num: '03', name: 'Venue Detailer', color: '#1D4ED8' },
+        { num: '04', name: 'AI Enricher', color: '#92400E' },
+        { num: '05', name: 'Compiler & Publisher', color: '#065F46' }
       ];
     } else if (scope === 'custom') {
       const customInput = document.getElementById('auto-pipeline-custom-ids');
@@ -16678,11 +16714,11 @@ function initStagehandRipperUI() {
       targetCount = matched.length > 0 ? matched.length : (typeof batchSize === 'number' ? batchSize : 5);
       scopeTitle = 'Custom Selected Events';
       stages = [
-        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
-        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
-        { num: '03', name: 'Venue Detailer', color: '#60a5fa' },
-        { num: '04', name: 'AI Enricher', color: '#fbbf24' },
-        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+        { num: '1B', name: 'Tier 1 Hunter', color: '#6B21A8' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#10B981' },
+        { num: '03', name: 'Venue Detailer', color: '#1D4ED8' },
+        { num: '04', name: 'AI Enricher', color: '#92400E' },
+        { num: '05', name: 'Compiler & Publisher', color: '#065F46' }
       ];
     }
 
@@ -16738,11 +16774,11 @@ function initStagehandRipperUI() {
     const stagesContainer = document.getElementById('auto-modal-flow-stages');
     if (stagesContainer) {
       stagesContainer.innerHTML = stages.map((st, i) => `
-        <div style="display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.4); border: 1px solid ${st.color}55; border-radius: 6px; padding: 3px 8px;">
+        <div style="display: flex; align-items: center; gap: 5px; background: #F2F4F0; border: 1px solid ${st.color}55; border-radius: 6px; padding: 3px 8px;">
           <span style="font-weight: 800; color: ${st.color}; font-size: 0.72rem;">${st.num}</span>
-          <span style="color: #f1f5f9; font-weight: 600;">${st.name}</span>
+          <span style="color: #111C18; font-weight: 600;">${st.name}</span>
         </div>
-        ${i < stages.length - 1 ? '<span style="color: #64748b; font-weight: 700;">➔</span>' : ''}
+        ${i < stages.length - 1 ? '<span style="color: #5A6E65; font-weight: 700;">➔</span>' : ''}
       `).join('');
     }
 
@@ -17092,9 +17128,9 @@ function initStagehandRipperUI() {
       titleEl.textContent = `${pipelineQuarantinedRunActive ? 'Quarantined' : 'Tracked'} Pipeline Batch Events (${pipelineTestDiscoveredEvents.length}):`;
     }
     chipsEl.innerHTML = pipelineTestDiscoveredEvents.map((ev, i) => `
-      <span onclick="if (window.showComparisonCardById) window.showComparisonCardById('${escapeHtml(ev.id || '')}')" style="cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.4); color: #a7f3d0; font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 999px;">
-        <strong style="color: #34d399;">#${i + 1}</strong> ${escapeHtml((ev.title || 'Event').slice(0, 32))}
-        ${ev.venue ? `<span style="color: #6ee7b7; font-weight: 500;">(${escapeHtml(ev.venue.slice(0, 18))})</span>` : ''}
+      <span onclick="if (window.showComparisonCardById) window.showComparisonCardById('${escapeHtml(ev.id || '')}')" style="cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.4); color: #065F46; font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 999px;">
+        <strong style="color: #065F46;">#${i + 1}</strong> ${escapeHtml((ev.title || 'Event').slice(0, 32))}
+        ${ev.venue ? `<span style="color: #065F46; font-weight: 500;">(${escapeHtml(ev.venue.slice(0, 18))})</span>` : ''}
       </span>
     `).join('');
   };
@@ -17320,9 +17356,9 @@ function initStagehandRipperUI() {
       const pill = document.getElementById(`comp-stage-pill-${k}`);
       if (pill) {
         const active = k === currentPipelineScanKey;
-        pill.style.background = active ? 'rgba(56, 189, 248, 0.22)' : 'rgba(30, 41, 59, 0.7)';
-        pill.style.color = active ? '#38bdf8' : '#94a3b8';
-        pill.style.borderColor = active ? 'rgba(56, 189, 248, 0.5)' : 'rgba(148, 163, 184, 0.25)';
+        pill.style.background = active ? 'rgba(16, 185, 129, 0.22)' : 'rgba(26, 43, 38, 0.7)';
+        pill.style.color = active ? '#10B981' : '#4E6159';
+        pill.style.borderColor = active ? 'rgba(16, 185, 129, 0.5)' : 'rgba(148, 163, 184, 0.25)';
       }
     });
 
@@ -17421,12 +17457,12 @@ function initStagehandRipperUI() {
       if (iconEl) iconEl.textContent = '🛡️';
       if (titleEl) {
         titleEl.textContent = `Compiler Run Complete: 0 Passed • ${qCount} Archived/Quarantined`;
-        titleEl.style.color = '#fbbf24';
+        titleEl.style.color = '#92400E';
       }
       if (newCardsBadge) {
         newCardsBadge.textContent = `0 Published • ${qCount} Filtered`;
         newCardsBadge.style.background = 'rgba(245, 158, 11, 0.2)';
-        newCardsBadge.style.color = '#fbbf24';
+        newCardsBadge.style.color = '#92400E';
         newCardsBadge.style.borderColor = 'rgba(245, 158, 11, 0.45)';
       }
       if (descEl) {
@@ -17436,12 +17472,12 @@ function initStagehandRipperUI() {
       if (iconEl) iconEl.textContent = '🎉';
       if (titleEl) {
         titleEl.textContent = `Compilation & Publishing Complete`;
-        titleEl.style.color = '#6ee7b7';
+        titleEl.style.color = '#065F46';
       }
       if (newCardsBadge) {
         newCardsBadge.textContent = `${compCount} Active Live in Catalog`;
         newCardsBadge.style.background = 'rgba(16, 185, 129, 0.25)';
-        newCardsBadge.style.color = '#34d399';
+        newCardsBadge.style.color = '#065F46';
         newCardsBadge.style.borderColor = 'rgba(16, 185, 129, 0.45)';
       }
       if (descEl) {
@@ -17512,18 +17548,18 @@ function initStagehandRipperUI() {
     if (quarBadge) quarBadge.textContent = String(failedCards.length);
 
     if (tabComp) {
-      tabComp.style.background = normalizedTab === 'compiled' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(30, 41, 59, 0.6)';
-      tabComp.style.color = normalizedTab === 'compiled' ? '#34d399' : '#94a3b8';
+      tabComp.style.background = normalizedTab === 'compiled' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(26, 43, 38, 0.6)';
+      tabComp.style.color = normalizedTab === 'compiled' ? '#065F46' : '#4E6159';
     }
     if (tabQuar) {
-      tabQuar.style.background = normalizedTab === 'quarantined' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(30, 41, 59, 0.6)';
-      tabQuar.style.color = normalizedTab === 'quarantined' ? '#f87171' : '#94a3b8';
+      tabQuar.style.background = normalizedTab === 'quarantined' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(26, 43, 38, 0.6)';
+      tabQuar.style.color = normalizedTab === 'quarantined' ? '#BE123C' : '#4E6159';
     }
 
     if (!grid) return;
     const list = normalizedTab === 'compiled' ? compiledCards : failedCards;
     if (!list || list.length === 0) {
-      grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #94a3b8;">No ${normalizedTab} cards to display.</div>`;
+      grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #4E6159;">No ${normalizedTab} cards to display.</div>`;
       return;
     }
 
@@ -17764,89 +17800,89 @@ function initStagehandRipperUI() {
           ? `Base $${tBase.toFixed(2)} + Fee $${tFee.toFixed(2)} + Tax $${tTax.toFixed(2)}`
           : (tPrice === 0 ? 'No admission fee' : `Flat/All-in $${tPrice.toFixed(2)}`);
         return `
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.74rem; padding: 4px 8px; background: rgba(15, 23, 42, 0.7); border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.74rem; padding: 4px 8px; background: #FFFFFF; border-radius: 6px; border: 1px solid #D5DDD8;">
             <div>
-              <strong style="color: #f8fafc;">Tier ${tIdx + 1}: ${escapeHtml(t.name || 'General Admission')}</strong>
-              <span style="color: #94a3b8; font-size: 0.67rem; margin-left: 6px;">(${escapeHtml(ledgerStr)})</span>
+              <strong style="color: #111C18;">Tier ${tIdx + 1}: ${escapeHtml(t.name || 'General Admission')}</strong>
+              <span style="color: #4E6159; font-size: 0.67rem; margin-left: 6px;">(${escapeHtml(ledgerStr)})</span>
             </div>
-            <span style="font-weight: 800; color: ${tPrice > 50 ? '#f87171' : '#34d399'};">${tPrice === 0 ? 'Free ($0)' : `$${tPrice.toFixed(2)} CAD`}</span>
+            <span style="font-weight: 800; color: ${tPrice > 50 ? '#BE123C' : '#065F46'};">${tPrice === 0 ? 'Free ($0)' : `$${tPrice.toFixed(2)} CAD`}</span>
           </div>
         `;
       }).join('') : '';
 
       const linkTiers = [
-        { label: 'Tier 1 Cart', url: c.links.tier1_checkout, color: '#34d399' },
-        { label: 'Tier 2 Event', url: c.links.tier2_event_page, color: '#38bdf8' },
+        { label: 'Tier 1 Cart', url: c.links.tier1_checkout, color: '#065F46' },
+        { label: 'Tier 2 Event', url: c.links.tier2_event_page, color: '#10B981' },
         { label: 'Tier 3 Calendar', url: c.links.tier3_calendar, color: '#a78bfa' },
-        { label: 'Tier 4 Civic', url: c.links.tier4_civic_destination, color: '#fbbf24' },
-        { label: 'Tier 5 Venue', url: c.links.tier5_venue_home, color: '#94a3b8' }
+        { label: 'Tier 4 Civic', url: c.links.tier4_civic_destination, color: '#92400E' },
+        { label: 'Tier 5 Venue', url: c.links.tier5_venue_home, color: '#4E6159' }
       ].filter(lt => lt.url && String(lt.url).startsWith('http'));
 
       return `
-        <div style="background: rgba(15, 23, 42, 0.96); border: 1px solid ${isFailed ? 'rgba(239, 68, 68, 0.5)' : 'rgba(16, 185, 129, 0.45)'}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: #FFFFFF; border: 1px solid ${isFailed ? 'rgba(239, 68, 68, 0.5)' : 'rgba(16, 185, 129, 0.45)'}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px;">
           ${isFailed ? `
             <div style="background: rgba(239, 68, 68, 0.14); border: 1px solid rgba(239, 68, 68, 0.45); border-radius: 10px; padding: 9px 12px; display: flex; flex-direction: column; gap: 4px;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <span style="font-size: 0.7rem; font-weight: 800; color: #f87171; text-transform: uppercase;">🛡️ Quarantined #${idx + 1} • ${escapeHtml(qReason)}</span>
-                <span style="font-size: 0.65rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.08); padding: 2px 7px; border-radius: 999px;">Simulated Published Card Preview Below ▾</span>
+                <span style="font-size: 0.7rem; font-weight: 800; color: #BE123C; text-transform: uppercase;">🛡️ Quarantined #${idx + 1} • ${escapeHtml(qReason)}</span>
+                <span style="font-size: 0.65rem; font-weight: 700; color: #334840; background: #FFFFFF; padding: 2px 7px; border-radius: 999px;">Simulated Published Card Preview Below ▾</span>
               </div>
-              <div style="font-size: 0.78rem; color: #fca5a5; font-weight: 600;">${escapeHtml(qError)}</div>
+              <div style="font-size: 0.78rem; color: #9F1239; font-weight: 600;">${escapeHtml(qError)}</div>
             </div>
           ` : `
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">
-              <span style="font-size: 0.7rem; font-weight: 800; color: #34d399; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 8px; border-radius: 999px;">✨ Published Card #${idx + 1} • Live in Van50 Catalog</span>
-              <span style="font-size: 0.68rem; color: #94a3b8; font-family: monospace;">ID: ${escapeHtml(eid)}</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 4px; border-bottom: 1px solid #D5DDD8;">
+              <span style="font-size: 0.7rem; font-weight: 800; color: #065F46; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 8px; border-radius: 999px;">✨ Published Card #${idx + 1} • Live in Van50 Catalog</span>
+              <span style="font-size: 0.68rem; color: #4E6159; font-family: monospace;">ID: ${escapeHtml(eid)}</span>
             </div>
           `}
 
-          <article style="background: linear-gradient(180deg, rgba(30, 41, 59, 0.92) 0%, rgba(15, 23, 42, 0.98) 100%); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; position: relative;">
+          <article style="background: linear-gradient(180deg, rgba(26, 43, 38, 0.92) 0%, rgba(19, 32, 28, 0.98) 100%); border: 1px solid #D5DDD8; border-radius: 12px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; position: relative;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
               <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                <span style="font-size: 0.72rem; font-weight: 800; color: #f8fafc; background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.45); padding: 2px 9px; border-radius: 999px;">📅 ${escapeHtml(topDateText)}</span>
-                <span style="font-size: 0.7rem; font-weight: 800; color: #d8b4fe; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); padding: 2px 9px; border-radius: 999px; text-transform: uppercase;">🏷️ ${escapeHtml(String(c.category))}</span>
-                ${c.archetype ? `<span style="font-size: 0.65rem; font-weight: 700; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 2px 7px; border-radius: 999px;">${escapeHtml(String(c.archetype).replace(/_/g, ' '))}</span>` : ''}
+                <span style="font-size: 0.72rem; font-weight: 800; color: #111C18; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.45); padding: 2px 9px; border-radius: 999px;">📅 ${escapeHtml(topDateText)}</span>
+                <span style="font-size: 0.7rem; font-weight: 800; color: #6B21A8; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); padding: 2px 9px; border-radius: 999px; text-transform: uppercase;">🏷️ ${escapeHtml(String(c.category))}</span>
+                ${c.archetype ? `<span style="font-size: 0.65rem; font-weight: 700; color: #4E6159; background: #FFFFFF; padding: 2px 7px; border-radius: 999px;">${escapeHtml(String(c.archetype).replace(/_/g, ' '))}</span>` : ''}
               </div>
-              <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 7px; border-radius: 6px;">♿ ${escapeHtml(c.stepFree ? (c.stepFree.length > 22 ? c.stepFree.slice(0, 20) + '…' : c.stepFree) : 'Accessible')}</span>
+              <span style="font-size: 0.68rem; font-weight: 700; color: #0D6E52; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 7px; border-radius: 6px;">♿ ${escapeHtml(c.stepFree ? (c.stepFree.length > 22 ? c.stepFree.slice(0, 20) + '…' : c.stepFree) : 'Accessible')}</span>
             </div>
 
             <h3 style="margin: 0; font-size: 1.12rem; font-weight: 800; line-height: 1.3;">
-              <a href="${escapeHtml(c.bestUrl)}" target="_blank" rel="noopener noreferrer" style="color: #f8fafc; text-decoration: none; border-bottom: 1px dashed rgba(56, 189, 248, 0.4);">${escapeHtml(c.title)}</a>
+              <a href="${escapeHtml(c.bestUrl)}" target="_blank" rel="noopener noreferrer" style="color: #111C18; text-decoration: none; border-bottom: 1px dashed rgba(16, 185, 129, 0.4);">${escapeHtml(c.title)}</a>
             </h3>
 
             <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-              ${c.artist ? `<span style="font-size: 0.75rem; background: rgba(139, 92, 246, 0.14); border: 1px solid rgba(139, 92, 246, 0.35); color: #ddd6fe; padding: 2px 8px; border-radius: 6px; font-weight: 600;">🎤 Featuring: <strong>${escapeHtml(c.artist)}</strong></span>` : ''}
-              <span style="font-size: 0.69rem; font-weight: 700; color: #fcd34d; background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 7px; border-radius: 6px;">🔞 ${escapeHtml(c.restrictions)}</span>
-              ${c.accessModel ? `<span style="font-size: 0.69rem; color: #cbd5e1; background: rgba(255,255,255,0.06); padding: 2px 7px; border-radius: 6px;">🚪 ${escapeHtml(String(c.accessModel).replace(/_/g, ' '))}</span>` : ''}
+              ${c.artist ? `<span style="font-size: 0.75rem; background: rgba(139, 92, 246, 0.14); border: 1px solid rgba(139, 92, 246, 0.35); color: #5B21B6; padding: 2px 8px; border-radius: 6px; font-weight: 600;">🎤 Featuring: <strong>${escapeHtml(c.artist)}</strong></span>` : ''}
+              <span style="font-size: 0.69rem; font-weight: 700; color: #92400E; background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 7px; border-radius: 6px;">🔞 ${escapeHtml(c.restrictions)}</span>
+              ${c.accessModel ? `<span style="font-size: 0.69rem; color: #334840; background: #FFFFFF; padding: 2px 7px; border-radius: 6px;">🚪 ${escapeHtml(String(c.accessModel).replace(/_/g, ' '))}</span>` : ''}
             </div>
 
-            <div style="background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 9px 11px; display: flex; flex-direction: column; gap: 4px;">
+            <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 9px 11px; display: flex; flex-direction: column; gap: 4px;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <a href="${escapeHtml(gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-weight: 800; font-size: 0.85rem; text-decoration: underline;">📍 ${escapeHtml(c.venue)}</a>
+                <a href="${escapeHtml(gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #0D6E52; font-weight: 800; font-size: 0.85rem; text-decoration: underline;">📍 ${escapeHtml(c.venue)}</a>
                 <div style="display: flex; align-items: center; gap: 6px;">
-                  ${c.neighborhood ? `<span style="font-size: 0.68rem; font-weight: 700; color: #e2e8f0; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">${escapeHtml(c.neighborhood)}</span>` : ''}
-                  <a href="${escapeHtml(venueSiteUrl)}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #94a3b8; text-decoration: underline;">Venue Site ↗</a>
+                  ${c.neighborhood ? `<span style="font-size: 0.68rem; font-weight: 700; color: #1E2E27; background: #FFFFFF; padding: 2px 6px; border-radius: 4px;">${escapeHtml(c.neighborhood)}</span>` : ''}
+                  <a href="${escapeHtml(venueSiteUrl)}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #4E6159; text-decoration: underline;">Venue Site ↗</a>
                 </div>
               </div>
-              <div style="font-size: 0.74rem; color: #cbd5e1;">${escapeHtml(c.address)}</div>
-              ${c.transitInfo ? `<div style="font-size: 0.7rem; color: #94a3b8;">🚏 ${escapeHtml(c.transitInfo)}</div>` : ''}
+              <div style="font-size: 0.74rem; color: #334840;">${escapeHtml(c.address)}</div>
+              ${c.transitInfo ? `<div style="font-size: 0.7rem; color: #4E6159;">🚏 ${escapeHtml(c.transitInfo)}</div>` : ''}
             </div>
 
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 7px 11px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; font-size: 0.78rem;">
-              <span style="color: #f1f5f9; font-weight: 700;">🗓️ ${escapeHtml(c.dateSchedule)}${c.doorsTime ? ` (Doors ${escapeHtml(c.doorsTime)})` : ''}</span>
-              <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8;">${escapeHtml(c.frequencyLabel)}</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 7px 11px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; font-size: 0.78rem;">
+              <span style="color: #111C18; font-weight: 700;">🗓️ ${escapeHtml(c.dateSchedule)}${c.doorsTime ? ` (Doors ${escapeHtml(c.doorsTime)})` : ''}</span>
+              <span style="font-size: 0.68rem; font-weight: 700; color: #0D6E52;">${escapeHtml(c.frequencyLabel)}</span>
             </div>
 
-            <div style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.55; background: rgba(15, 23, 42, 0.45); border-left: 3px solid #38bdf8; padding: 9px 11px; border-radius: 4px;">
-              ${c.description ? escapeHtml(c.description) : `<span style="color: #64748b; font-style: italic;">Live outing at ${escapeHtml(c.venue)}.</span>`}
+            <div style="font-size: 0.82rem; color: #1E2E27; line-height: 1.55; background: #FFFFFF; border-left: 3px solid #10B981; padding: 9px 11px; border-radius: 4px;">
+              ${c.description ? escapeHtml(c.description) : `<span style="color: #5A6E65; font-style: italic;">Live outing at ${escapeHtml(c.venue)}.</span>`}
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 5px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 8px 11px; font-size: 0.74rem;">
+            <div style="display: flex; flex-direction: column; gap: 5px; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 8px; padding: 8px 11px; font-size: 0.74rem;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <span><strong style="color: #34d399;">🍺 Expected On-Site Spend:</strong> ${c.typicalSpend ? escapeHtml(c.typicalSpend) : '<span style="color: #64748b;">Uncalibrated / No on-site F&amp;B</span>'}</span>
-                ${c.paymentMethods ? `<span style="font-size: 0.67rem; color: #94a3b8;">💳 ${escapeHtml(c.paymentMethods)}</span>` : ''}
+                <span><strong style="color: #065F46;">🍺 Expected On-Site Spend:</strong> ${c.typicalSpend ? escapeHtml(c.typicalSpend) : '<span style="color: #5A6E65;">Uncalibrated / No on-site F&amp;B</span>'}</span>
+                ${c.paymentMethods ? `<span style="font-size: 0.67rem; color: #4E6159;">💳 ${escapeHtml(c.paymentMethods)}</span>` : ''}
               </div>
               ${(c.stepFree || c.washrooms || c.outsideFood || c.waterRefill) ? `
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.68rem; color: #94a3b8; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 4px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.68rem; color: #4E6159; border-top: 1px dashed #D5DDD8; padding-top: 4px;">
                   ${c.stepFree ? `<span>♿ <strong>Entrance:</strong> ${escapeHtml(c.stepFree)}</span>` : ''}
                   ${c.washrooms ? `<span>🚻 <strong>Washrooms:</strong> ${escapeHtml(c.washrooms)}</span>` : ''}
                   ${c.outsideFood ? `<span>🥡 <strong>Outside Food:</strong> ${escapeHtml(c.outsideFood)}</span>` : ''}
@@ -17855,19 +17891,19 @@ function initStagehandRipperUI() {
               ` : ''}
             </div>
 
-            <div style="margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; gap: 8px;">
+            <div style="margin-top: auto; padding-top: 8px; border-top: 1px solid #D5DDD8; display: flex; flex-direction: column; gap: 8px;">
               ${tiersRowsHtml ? `
                 <div style="display: flex; flex-direction: column; gap: 4px;">
-                  <div style="font-size: 0.67rem; font-weight: 800; color: #94a3b8; text-transform: uppercase;">🎫 Verified Admission Tiers (${c.tiers.length}) • Provider: ${escapeHtml(c.ticketProvider)}</div>
+                  <div style="font-size: 0.67rem; font-weight: 800; color: #4E6159; text-transform: uppercase;">🎫 Verified Admission Tiers (${c.tiers.length}) • Provider: ${escapeHtml(c.ticketProvider)}</div>
                   ${tiersRowsHtml}
                 </div>
               ` : ''}
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
                 <div style="display: flex; flex-direction: column;">
-                  <span style="font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; font-weight: 700;">Headline All-In Price</span>
-                  <span style="font-size: 1.18rem; font-weight: 900; color: ${c.priceNum != null && c.priceNum > 50 ? '#f87171' : '#34d399'};">${escapeHtml(c.priceLabel)}</span>
+                  <span style="font-size: 0.65rem; color: #4E6159; text-transform: uppercase; font-weight: 700;">Headline All-In Price</span>
+                  <span style="font-size: 1.18rem; font-weight: 900; color: ${c.priceNum != null && c.priceNum > 50 ? '#BE123C' : '#065F46'};">${escapeHtml(c.priceLabel)}</span>
                 </div>
-                <a href="${escapeHtml(c.bestUrl)}" target="_blank" rel="noopener noreferrer" style="background: ${c.isSoldOut ? 'rgba(239, 68, 68, 0.25)' : 'linear-gradient(135deg, #10b981 0%, #059669 100%)'}; border: 1px solid ${c.isSoldOut ? 'rgba(239, 68, 68, 0.5)' : '#34d399'}; color: #fff; font-weight: 800; font-size: 0.8rem; padding: 8px 15px; border-radius: 8px; text-decoration: none;">
+                <a href="${escapeHtml(c.bestUrl)}" target="_blank" rel="noopener noreferrer" style="background: ${c.isSoldOut ? 'rgba(239, 68, 68, 0.25)' : 'linear-gradient(135deg, #10b981 0%, #059669 100%)'}; border: 1px solid ${c.isSoldOut ? 'rgba(239, 68, 68, 0.5)' : '#065F46'}; color: #fff; font-weight: 800; font-size: 0.8rem; padding: 8px 15px; border-radius: 8px; text-decoration: none;">
                   ${c.isSoldOut ? 'Sold Out (Waitlist) ↗' : 'Get Tickets / Details ↗'}
                 </a>
               </div>
@@ -17876,24 +17912,24 @@ function initStagehandRipperUI() {
 
           ${linkTiers.length > 0 ? `
             <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 0.67rem;">
-              <span style="color: #94a3b8; font-weight: 700;">🔗 Verified Links:</span>
-              ${linkTiers.map(lt => `<a href="${escapeHtml(lt.url)}" target="_blank" rel="noopener noreferrer" style="color: ${lt.color}; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 4px; text-decoration: underline; font-weight: 700;">${escapeHtml(lt.label)} ↗</a>`).join('')}
+              <span style="color: #4E6159; font-weight: 700;">🔗 Verified Links:</span>
+              ${linkTiers.map(lt => `<a href="${escapeHtml(lt.url)}" target="_blank" rel="noopener noreferrer" style="color: ${lt.color}; background: #FFFFFF; border: 1px solid #D5DDD8; padding: 2px 7px; border-radius: 4px; text-decoration: underline; font-weight: 700;">${escapeHtml(lt.label)} ↗</a>`).join('')}
             </div>
           ` : ''}
 
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid #D5DDD8; padding-top: 8px;">
             ${c.proofImg ? (() => {
               const cleanCardProof = String(c.proofImg).startsWith('/') || String(c.proofImg).startsWith('http') ? String(c.proofImg) : `/${c.proofImg}`;
               return `
                 <a href="${escapeHtml(cleanCardProof)}" target="_blank" rel="noopener noreferrer" class="curator-new-tab-link"
                    style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); padding: 3px 8px; border-radius: 6px;"
                    title="Click to open full-resolution evidence screenshot in a new tab">
-                  <img src="${escapeHtml(cleanCardProof)}" alt="Proof" style="width: 64px; height: 40px; object-fit: cover; object-position: top center; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.35); flex-shrink: 0;" onerror="this.closest('a').style.display='none';">
-                  <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8; white-space: nowrap;">📸 Open Screenshot ↗</span>
+                  <img src="${escapeHtml(cleanCardProof)}" alt="Proof" style="width: 64px; height: 40px; object-fit: cover; object-position: top center; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.35); flex-shrink: 0;" onerror="this.closest('a').style.display='none';">
+                  <span style="font-size: 0.68rem; font-weight: 700; color: #0D6E52; white-space: nowrap;">📸 Open Screenshot ↗</span>
                 </a>
               `;
             })() : '<span></span>'}
-            <button type="button" onclick="window.closeCompiledCardsPreviewModal(); window.showComparisonCardById('${escapeHtml(eid)}');" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.73rem; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer;">🔍 Inspect ${getCatalogDimensionsCount()}D Matrix</button>
+            <button type="button" onclick="window.closeCompiledCardsPreviewModal(); window.showComparisonCardById('${escapeHtml(eid)}');" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #0D6E52; font-size: 0.73rem; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer;">🔍 Inspect ${getCatalogDimensionsCount()}D Matrix</button>
           </div>
         </div>
       `;
@@ -18394,8 +18430,8 @@ function initStagehandRipperUI() {
     if (badge) {
       if (q) {
         badge.textContent = `${totalMatches} Match${totalMatches === 1 ? '' : 'es'}`;
-        badge.style.background = 'rgba(56, 189, 248, 0.18)';
-        badge.style.color = '#38bdf8';
+        badge.style.background = 'rgba(16, 185, 129, 0.18)';
+        badge.style.color = '#10B981';
       } else if (String(currentVal).startsWith('all:')) {
         const cKey = window.normalizeCuratorCityScope(String(currentVal).slice(4));
         const meta = CURATOR_HARVESTER_CITY_META[cKey] || CURATOR_HARVESTER_CITY_META.all;
@@ -18450,7 +18486,7 @@ function initStagehandRipperUI() {
       if (badge) {
         badge.textContent = `${cityDisplay} • ${effectiveCount}-Event Mode`;
         badge.style.background = 'rgba(192, 132, 252, 0.18)';
-        badge.style.color = '#d8b4fe';
+        badge.style.color = '#6B21A8';
       }
       if (resetBtn) resetBtn.style.display = cityKey === 'all' ? 'none' : 'inline-block';
       if (displayEl) {
@@ -18474,7 +18510,7 @@ function initStagehandRipperUI() {
       if (badge) {
         badge.textContent = 'Custom URL';
         badge.style.background = 'rgba(251, 191, 36, 0.18)';
-        badge.style.color = '#fbbf24';
+        badge.style.color = '#92400E';
       }
       if (resetBtn) resetBtn.style.display = 'inline-block';
       if (displayEl) displayEl.style.display = 'none';
@@ -18496,8 +18532,8 @@ function initStagehandRipperUI() {
       const venueName = (opt && opt.dataset.name) || (opt ? opt.textContent.split('—')[0].trim() : 'Venue');
       if (badge) {
         badge.textContent = 'Single Source';
-        badge.style.background = 'rgba(56, 189, 248, 0.18)';
-        badge.style.color = '#38bdf8';
+        badge.style.background = 'rgba(16, 185, 129, 0.18)';
+        badge.style.color = '#10B981';
       }
       if (resetBtn) resetBtn.style.display = 'inline-block';
       if (displayEl) {
@@ -18929,7 +18965,7 @@ function initStagehandRipperUI() {
     });
 
     if (allCards.length === 0) {
-      resultsContainer.innerHTML = `<div style="padding: 10px 14px; color: #94a3b8; font-size: 0.74rem; text-align: center;">No catalog events loaded.</div>`;
+      resultsContainer.innerHTML = `<div style="padding: 10px 14px; color: #4E6159; font-size: 0.74rem; text-align: center;">No catalog events loaded.</div>`;
       resultsContainer.style.display = 'block';
       return;
     }
@@ -18990,7 +19026,7 @@ function initStagehandRipperUI() {
 
     if (matches.length === 0) {
       resultsContainer.innerHTML = `
-        <div style="padding: 12px 14px; color: #94a3b8; font-size: 0.74rem; text-align: center;">
+        <div style="padding: 12px 14px; color: #4E6159; font-size: 0.74rem; text-align: center;">
           No cards matching "<strong>${escapeHtml(val)}</strong>" in active or quarantined catalogs.
         </div>
       `;
@@ -19009,31 +19045,31 @@ function initStagehandRipperUI() {
       const eid = c.id || c.event_id || '';
 
       return `
-        <div class="search-card-result-item" data-idx="${i}" data-eid="${escapeHtml(eid)}" onclick="selectCardFromSearch('${escapeHtml(eid)}')" onmouseenter="this.style.background='rgba(56, 189, 248, 0.15)'" onmouseleave="if (searchHighlightIndex !== ${i}) this.style.background='transparent'" style="display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.15s ease;">
+        <div class="search-card-result-item" data-idx="${i}" data-eid="${escapeHtml(eid)}" onclick="selectCardFromSearch('${escapeHtml(eid)}')" onmouseenter="this.style.background='rgba(16, 185, 129, 0.15)'" onmouseleave="if (searchHighlightIndex !== ${i}) this.style.background='transparent'" style="display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; cursor: pointer; border-bottom: 1px solid #D5DDD8; transition: background 0.15s ease;">
           <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
-            <span style="font-weight: 800; font-size: 0.7rem; color: ${m.isQuarantined ? '#f87171' : '#38bdf8'}; background: ${m.isQuarantined ? 'rgba(239, 68, 68, 0.15)' : 'rgba(56, 189, 248, 0.15)'}; border: 1px solid ${m.isQuarantined ? 'rgba(239, 68, 68, 0.3)' : 'rgba(56, 189, 248, 0.3)'}; padding: 2px 6px; border-radius: 4px; white-space: nowrap;">
+            <span style="font-weight: 800; font-size: 0.7rem; color: ${m.isQuarantined ? '#BE123C' : '#10B981'}; background: ${m.isQuarantined ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)'}; border: 1px solid ${m.isQuarantined ? 'rgba(239, 68, 68, 0.3)' : 'rgba(16, 185, 129, 0.3)'}; padding: 2px 6px; border-radius: 4px; white-space: nowrap;">
               #${m.cardNum}
             </span>
             ${m.isQuarantined ? `
-              <span style="font-size: 0.62rem; font-weight: 700; color: #fb7185; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.35); padding: 1px 4px; border-radius: 3px; white-space: nowrap;">
+              <span style="font-size: 0.62rem; font-weight: 700; color: #BE123C; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.35); padding: 1px 4px; border-radius: 3px; white-space: nowrap;">
                 QUARANTINED
               </span>
             ` : ''}
             <div style="min-width: 0; flex: 1;">
-              <div style="font-weight: 600; font-size: 0.76rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              <div style="font-weight: 600; font-size: 0.76rem; color: #111C18; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                 ${escapeHtml(title)}
               </div>
-              <div style="font-size: 0.68rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 4px; margin-top: 1px;">
+              <div style="font-size: 0.68rem; color: #4E6159; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 4px; margin-top: 1px;">
                 <span>📍 ${escapeHtml(venue)}</span>
-                ${c.neighborhood ? `<span style="color: #64748b;">• ${escapeHtml(c.neighborhood)}</span>` : ''}
+                ${c.neighborhood ? `<span style="color: #5A6E65;">• ${escapeHtml(c.neighborhood)}</span>` : ''}
               </div>
             </div>
           </div>
           <div style="display: flex; align-items: center; gap: 6px; margin-left: 10px; flex-shrink: 0;">
-            <span style="font-size: 0.64rem; font-weight: 700; color: #d8b4fe; background: rgba(168, 85, 247, 0.12); padding: 1px 5px; border-radius: 3px; border: 1px solid rgba(168, 85, 247, 0.25);">
+            <span style="font-size: 0.64rem; font-weight: 700; color: #6B21A8; background: rgba(168, 85, 247, 0.12); padding: 1px 5px; border-radius: 3px; border: 1px solid rgba(168, 85, 247, 0.25);">
               ${escapeHtml(cat)}
             </span>
-            <span style="font-size: 0.72rem; font-weight: 700; color: #34d399;">
+            <span style="font-size: 0.72rem; font-weight: 700; color: #065F46;">
               ${escapeHtml(price)}
             </span>
           </div>
@@ -19043,7 +19079,7 @@ function initStagehandRipperUI() {
 
     if (matches.length > 15) {
       resultsContainer.innerHTML += `
-        <div style="padding: 5px 12px; font-size: 0.66rem; color: #64748b; text-align: center; background: rgba(0, 0, 0, 0.25);">
+        <div style="padding: 5px 12px; font-size: 0.66rem; color: #5A6E65; text-align: center; background: #F2F4F0;">
           Showing top 15 of ${matches.length} matching cards. Type more to refine.
         </div>
       `;
@@ -19133,7 +19169,7 @@ function initStagehandRipperUI() {
   function highlightSearchItem(items, idx) {
     items.forEach((item, i) => {
       if (i === idx) {
-        item.style.background = 'rgba(56, 189, 248, 0.25)';
+        item.style.background = 'rgba(16, 185, 129, 0.25)';
         item.scrollIntoView({ block: 'nearest' });
       } else {
         item.style.background = 'transparent';
@@ -19192,16 +19228,16 @@ function initStagehandRipperUI() {
         el.classList.add('active');
         if (dot) {
           dot.textContent = '●';
-          dot.style.color = '#38bdf8';
+          dot.style.color = '#10B981';
         }
-        if (titleSpan) titleSpan.style.color = '#38bdf8';
+        if (titleSpan) titleSpan.style.color = '#10B981';
       } else {
         el.classList.remove('active');
         if (dot) {
           dot.textContent = '○';
-          dot.style.color = '#94a3b8';
+          dot.style.color = '#4E6159';
         }
-        if (titleSpan) titleSpan.style.color = '#e2e8f0';
+        if (titleSpan) titleSpan.style.color = '#1E2E27';
       }
     });
 
@@ -19489,16 +19525,16 @@ function initStagehandRipperUI() {
         : ((isPipelineTestMode && Array.isArray(pipelineTestDiscoveredIds) && pipelineTestDiscoveredIds.length > 0)
           ? pipelineTestDiscoveredIds.length
           : harvestedList.length);
-      trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 800;">${scannedCount}/${totalFeeds} sources scanned (${remFeeds} remaining)</span> • <span style="color: #4ade80; font-weight: 700;">+${foundEventsCount} harvested events in Stage 1A</span>`;
+      trackerStatus.innerHTML = `<span style="color: #6B21A8; font-weight: 800;">${scannedCount}/${totalFeeds} sources scanned (${remFeeds} remaining)</span> • <span style="color: #15803D; font-weight: 700;">+${foundEventsCount} harvested events in Stage 1A</span>`;
     } else if (key === 'hunter') {
       if (isHarvestedTarget && stageInfo) {
         const totH = stageInfo.prevCompletedCount;
         const done1B = stageInfo.currentCompletedCount;
         const rem1B = stageInfo.pendingCount;
         if (rem1B > 0) {
-          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${done1B}/${totH} Done (from Stage 1A)</span> • <span style="color: #fde68a; font-weight: 700;">${rem1B} Queued for Stage 1B</span>`;
+          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${done1B}/${totH} Done (from Stage 1A)</span> • <span style="color: #92400E; font-weight: 700;">${rem1B} Queued for Stage 1B</span>`;
         } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${done1B}/${totH} Done • 0 Queued for Stage 1B</span>`;
+          trackerStatus.innerHTML = `<span style="color: #065F46; font-weight: 700;">${done1B}/${totH} Done • 0 Queued for Stage 1B</span>`;
         }
       } else {
         const tier1Count = events.filter(e => {
@@ -19510,9 +19546,9 @@ function initStagehandRipperUI() {
         }).length;
         const pendingHunter = Math.max(0, totalEvents - tier1Count);
         if (pendingHunter > 0) {
-          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${tier1Count}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #94a3b8;">${pendingHunter} pending Tier 1 checkout upgrade</span>`;
+          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${tier1Count}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #4E6159;">${pendingHunter} pending Tier 1 checkout upgrade</span>`;
         } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Processed • All direct checkout links verified!</span>`;
+          trackerStatus.innerHTML = `<span style="color: #065F46; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Processed • All direct checkout links verified!</span>`;
         }
       }
     } else if (key === 'qc') {
@@ -19521,18 +19557,18 @@ function initStagehandRipperUI() {
         const doneQC = stageInfo.currentCompletedCount;
         const remQC = stageInfo.pendingCount;
         if (remQC > 0) {
-          trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${doneQC}/${tot1B} Done (from Stage 1B)</span> • <span style="color: #fde68a; font-weight: 700;">${remQC} Queued for Stage 2 QC</span>`;
+          trackerStatus.innerHTML = `<span style="color: #0D6E52; font-weight: 700;">${doneQC}/${tot1B} Done (from Stage 1B)</span> • <span style="color: #92400E; font-weight: 700;">${remQC} Queued for Stage 2 QC</span>`;
         } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${doneQC}/${tot1B} Done • 0 Queued for Stage 2 QC</span>`;
+          trackerStatus.innerHTML = `<span style="color: #065F46; font-weight: 700;">${doneQC}/${tot1B} Done • 0 Queued for Stage 2 QC</span>`;
         }
       } else {
         const unscanned = calculateUnscannedEvents();
         const unscannedCount = unscanned.length;
         const scannedCount = Math.max(0, totalEvents - unscannedCount);
         if (unscannedCount > 0) {
-          trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${scannedCount}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #94a3b8;">${unscannedCount} pending Stagehand QC</span>`;
+          trackerStatus.innerHTML = `<span style="color: #0D6E52; font-weight: 700;">${scannedCount}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #4E6159;">${unscannedCount} pending Stagehand QC</span>`;
         } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Verified!</span>`;
+          trackerStatus.innerHTML = `<span style="color: #065F46; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Verified!</span>`;
         }
       }
     } else if (key === 'enrich') {
@@ -19541,23 +19577,23 @@ function initStagehandRipperUI() {
         const doneEd = stageInfo.currentCompletedCount;
         const remEd = stageInfo.pendingCount;
         if (remEd > 0) {
-          trackerStatus.innerHTML = `<span style="color: #fbbf24; font-weight: 700;">${doneEd}/${tot3} Done (from Stage 3 Venue)</span> • <span style="color: #fde68a; font-weight: 700;">${remEd} Queued for Stage 4 Enricher</span>`;
+          trackerStatus.innerHTML = `<span style="color: #92400E; font-weight: 700;">${doneEd}/${tot3} Done (from Stage 3 Venue)</span> • <span style="color: #92400E; font-weight: 700;">${remEd} Queued for Stage 4 Enricher</span>`;
         } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${doneEd}/${tot3} Done (from Stage 3 Venue) • 0 Queued for Stage 4</span>`;
+          trackerStatus.innerHTML = `<span style="color: #065F46; font-weight: 700;">${doneEd}/${tot3} Done (from Stage 3 Venue) • 0 Queued for Stage 4</span>`;
         }
       } else {
         const unenriched = calculateUnenrichedEvents();
         const unenrichedCount = unenriched.length;
         const enrichedCount = Math.max(0, totalEvents - unenrichedCount);
         if (unenrichedCount > 0) {
-          trackerStatus.innerHTML = `<span style="color: #fbbf24; font-weight: 700;">${enrichedCount}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #94a3b8;">${unenrichedCount} pending AI enrichment</span>`;
+          trackerStatus.innerHTML = `<span style="color: #92400E; font-weight: 700;">${enrichedCount}/${totalEvents} Catalog Cards Processed</span> • <span style="color: #4E6159;">${unenrichedCount} pending AI enrichment</span>`;
         } else {
-          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Enriched!</span>`;
+          trackerStatus.innerHTML = `<span style="color: #065F46; font-weight: 700;">${totalEvents}/${totalEvents} Catalog Cards Enriched!</span>`;
         }
       }
     } else if (key === 'venue') {
       if (isHarvestedTarget && stageInfo && stageInfo.prevCompletedCount > 0) {
-        trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${stageInfo.currentCompletedCount}/${stageInfo.prevCompletedCount} Done (from Stage 2 QC)</span> • <span style="color: #fde68a; font-weight: 700;">${stageInfo.pendingCount} Queued for Stage 3 Venue Detailer</span>`;
+        trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${stageInfo.currentCompletedCount}/${stageInfo.prevCompletedCount} Done (from Stage 2 QC)</span> • <span style="color: #92400E; font-weight: 700;">${stageInfo.pendingCount} Queued for Stage 3 Venue Detailer</span>`;
       } else {
         let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
         const totalVenues = (venues && venues.length) || 159;
@@ -19566,7 +19602,7 @@ function initStagehandRipperUI() {
           : totalVenues;
         const pendingCount = Math.max(0, totalVenues - groundedCount);
         if (pendingCount > 0) {
-          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Venues Grounded</span> • <span style="color: #94a3b8;">${pendingCount} pending grounding</span>`;
+          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Venues Grounded</span> • <span style="color: #4E6159;">${pendingCount} pending grounding</span>`;
         } else {
           trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Venues Grounded</span>`;
         }
@@ -19575,12 +19611,12 @@ function initStagehandRipperUI() {
       const activePublishedCount = state.allEvents ? state.allEvents.length : 0;
       const qCount = (state.quarantinedEvents || []).length;
       if (isHarvestedTarget && stageInfo) {
-        trackerStatus.innerHTML = `<span style="color: #fde68a; font-weight: 700;">${stageInfo.pendingCount} Queued from ${stageInfo.prevStageLabel}</span> • <span style="color: #34d399; font-weight: 700;">${activePublishedCount} Published in Catalog</span>`;
+        trackerStatus.innerHTML = `<span style="color: #92400E; font-weight: 700;">${stageInfo.pendingCount} Queued from ${stageInfo.prevStageLabel}</span> • <span style="color: #065F46; font-weight: 700;">${activePublishedCount} Published in Catalog</span>`;
       } else {
         const totalCatalogEvents = activePublishedCount + qCount || totalEvents;
         const uncompiled = calculateUncompiledEvents();
         const compiledCount = Math.max(0, totalCatalogEvents - uncompiled.length);
-        trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${compiledCount}/${totalCatalogEvents} Compiled</span> &nbsp;&nbsp; <span style="color: #34d399; font-weight: 700;">${activePublishedCount}/${totalCatalogEvents} Published</span>, <span style="color: #f87171; font-weight: 700;">${qCount}/${totalCatalogEvents} Quarantined</span>`;
+        trackerStatus.innerHTML = `<span style="color: #0D6E52; font-weight: 700;">${compiledCount}/${totalCatalogEvents} Compiled</span> &nbsp;&nbsp; <span style="color: #065F46; font-weight: 700;">${activePublishedCount}/${totalCatalogEvents} Published</span>, <span style="color: #BE123C; font-weight: 700;">${qCount}/${totalCatalogEvents} Quarantined</span>`;
       }
     }
   };
@@ -19751,7 +19787,7 @@ function initStagehandRipperUI() {
     if (!isExecuting) {
       if (pipelineStatusText) {
         pipelineStatusText.textContent = `Ready to run • Select scope and click Run Scan Now`;
-        pipelineStatusText.style.color = '#38bdf8';
+        pipelineStatusText.style.color = '#10B981';
       }
       const metricsBox = document.getElementById('pipeline-active-metrics');
       if (metricsBox) metricsBox.style.display = 'none';
@@ -19918,7 +19954,7 @@ function initStagehandRipperUI() {
 
     if (pipelineStatusText) {
       pipelineStatusText.textContent = initialStatus || 'Initializing cloud pipeline worker...';
-      pipelineStatusText.style.color = '#c084fc';
+      pipelineStatusText.style.color = '#6B21A8';
     }
     if (pipelineStatusSubtext) {
       pipelineStatusSubtext.textContent = 'Establishing server-sent events stream...';
@@ -19937,7 +19973,7 @@ function initStagehandRipperUI() {
     }
     if (pipelineProgressBar) {
       pipelineProgressBar.style.width = '4%';
-      pipelineProgressBar.style.background = 'linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #a855f7 100%)';
+      pipelineProgressBar.style.background = 'linear-gradient(90deg, #0D6E52 0%, #10B981 50%, #a855f7 100%)';
     }
     const metricsBox = document.getElementById('pipeline-active-metrics');
     if (metricsBox) metricsBox.style.display = 'block';
@@ -20076,7 +20112,7 @@ function initStagehandRipperUI() {
     if (diffTbody) {
       diffTbody.innerHTML = `
         <tr id="pipeline-diff-empty-row">
-          <td colspan="4" style="text-align: center; padding: 20px 10px; color: #64748b; font-style: italic;">
+          <td colspan="4" style="text-align: center; padding: 20px 10px; color: #5A6E65; font-style: italic;">
             Standing by... As each event card finishes, live before/after changes will appear here in real-time.
           </td>
         </tr>
@@ -20085,7 +20121,7 @@ function initStagehandRipperUI() {
     const readableFeedEl = document.getElementById('pipeline-readable-feed');
     if (readableFeedEl) {
       readableFeedEl.innerHTML = `
-        <div id="pipeline-readable-empty" style="text-align: center; padding: 18px 12px; color: #38bdf8; font-size: 0.76rem;">
+        <div id="pipeline-readable-empty" style="text-align: center; padding: 18px 12px; color: #0D6E52; font-size: 0.76rem;">
           ⚡ Step started — live event activity will appear here in plain English...
         </div>
       `;
@@ -20231,7 +20267,18 @@ function initStagehandRipperUI() {
     let effectiveMode = mode;
     let effectiveUrl = url || '';
 
-    if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
+    let selectedAgyModel = 'gemini-3.8-flash-low';
+    if (mode === 'quarantine_heal') {
+      const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
+      const modelSelectEl = document.getElementById('agy-model-select');
+      selectedAgyModel = (modalModelSelectEl && modalModelSelectEl.value)
+        ? modalModelSelectEl.value
+        : ((modelSelectEl && modelSelectEl.value) ? modelSelectEl.value : 'gemini-3.8-flash-low');
+      if (modelSelectEl && modelSelectEl.value !== selectedAgyModel) modelSelectEl.value = selectedAgyModel;
+      if (modalModelSelectEl && modalModelSelectEl.value !== selectedAgyModel) modalModelSelectEl.value = selectedAgyModel;
+      effectiveMode = 'quarantine_heal';
+      effectiveUrl = '';
+    } else if (window.VAN50_ENGINE === 'antigravity' || mode === 'consolidate') {
       const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
       const modelSelectEl = document.getElementById('agy-model-select');
       const selectedModel = (modalModelSelectEl && modalModelSelectEl.value)
@@ -20293,6 +20340,9 @@ function initStagehandRipperUI() {
       resume: (resume || url === 'all:resume') ? '1' : '0',
       harvested_only: effectiveHarvestedOnly ? '1' : '0',
       auto_approve: autoApprove ? '1' : '0',
+      model: selectedAgyModel || '',
+      concurrency: mode === 'quarantine_heal' ? '4' : '',
+      engine: mode === 'quarantine_heal' ? 'antigravity' : '',
       token: state.token || ''
     });
 
@@ -20355,19 +20405,19 @@ function initStagehandRipperUI() {
               }
               if (timeoutAlertList) {
                 const row = document.createElement('div');
-                row.style.cssText = 'background: rgba(0,0,0,0.45); border: 1px solid rgba(248,113,113,0.4); border-radius: 6px; padding: 5px 8px; color: #fecaca; line-height: 1.35;';
+                row.style.cssText = 'background: #F2F4F0; border: 1px solid rgba(248,113,113,0.4); border-radius: 6px; padding: 5px 8px; color: #9F1239; line-height: 1.35;';
                 row.innerHTML = `
                   <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap;">
-                    <strong style="color: #fff;">${escapeHtml(evTitle)} <code style="font-size: 0.68rem; color: #fca5a5;">[${escapeHtml(evId)}]</code></strong>
-                    <span style="font-size: 0.68rem; color: #fde68a; font-family: monospace;">${escapeHtml(stageName)} • ${escapeHtml(modelName)} (${escapeHtml(elapsedStr)})</span>
+                    <strong style="color: #fff;">${escapeHtml(evTitle)} <code style="font-size: 0.68rem; color: #9F1239;">[${escapeHtml(evId)}]</code></strong>
+                    <span style="font-size: 0.68rem; color: #92400E; font-family: monospace;">${escapeHtml(stageName)} • ${escapeHtml(modelName)} (${escapeHtml(elapsedStr)})</span>
                   </div>
-                  <div style="color: #fca5a5; margin-top: 2px;"><strong>Cause:</strong> ${escapeHtml(causeStr)}</div>
+                  <div style="color: #9F1239; margin-top: 2px;"><strong>Cause:</strong> ${escapeHtml(causeStr)}</div>
                 `;
                 timeoutAlertList.appendChild(row);
               }
               if (pipelineStatusSubtext) {
                 pipelineStatusSubtext.style.display = 'block';
-                pipelineStatusSubtext.style.color = '#fca5a5';
+                pipelineStatusSubtext.style.color = '#9F1239';
                 pipelineStatusSubtext.textContent = `🚨 Timeout/Issue on "${evTitle}": ${causeStr}`;
               }
               if (typeof showToast === 'function') {
@@ -20478,7 +20528,7 @@ function initStagehandRipperUI() {
             updateHarvesterSourcesProgressUI();
             if (pipelineStatusText && activeStageKey === 'harvest') {
               pipelineStatusText.textContent = `Scanning Source #${currentVenueIdx}/${totalVenues}: ${venueName}`;
-              pipelineStatusText.style.color = '#c084fc';
+              pipelineStatusText.style.color = '#6B21A8';
             }
             if (pipelineStatusSubtext) {
               pipelineStatusSubtext.style.display = 'block';
@@ -20516,7 +20566,7 @@ function initStagehandRipperUI() {
                 }
                 if (pipelineStatusText) {
                   pipelineStatusText.textContent = `Harvesting Link ${displayIdx}/${total} on Source #${activeOrd}/${sTot}${harvesterCurrentSourceName ? `: ${harvesterCurrentSourceName}` : ''}...`;
-                  pipelineStatusText.style.color = '#38bdf8';
+                  pipelineStatusText.style.color = '#10B981';
                 }
                 if (pipelineStatusSubtext) {
                   pipelineStatusSubtext.style.display = 'block';
@@ -20593,7 +20643,7 @@ function initStagehandRipperUI() {
             window.currentActiveEventLabel = `${stageActionVerb} [${displayIdx} of ${batchTotal}]: ${itemTitle}`;
             if (pipelineStatusText) {
               pipelineStatusText.textContent = window.currentActiveEventLabel;
-              pipelineStatusText.style.color = '#38bdf8';
+              pipelineStatusText.style.color = '#10B981';
             }
             const activeWorkerCount = Math.max(1, activeContextsById.size + 1);
             const workerNote = activeWorkerCount > 1
@@ -20610,7 +20660,7 @@ function initStagehandRipperUI() {
             const trackerStatusEl = document.getElementById('pipeline-last-scanned-text');
             if (trackerStatusEl) {
               const remCount = Math.max(0, batchTotal - pipelineProcessedCount);
-              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${batchTotal} Completed (${remCount} remaining)</span> • <span style="color: #38bdf8;">${stageActionVerb} [${displayIdx}/${batchTotal}]: ${escapeHtml(itemTitle)}</span>`;
+              trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${batchTotal} Completed (${remCount} remaining)</span> • <span style="color: #0D6E52;">${stageActionVerb} [${displayIdx}/${batchTotal}]: ${escapeHtml(itemTitle)}</span>`;
             }
 
             let matchedEv = null;
@@ -20910,7 +20960,7 @@ function initStagehandRipperUI() {
             addEventDiffRow(mergeCtx);
             if (pipelineStatusText) {
               pipelineStatusText.textContent = `🔀 Merged ${mergedCount} duplicate cards into "${mTitle}" (${mShowingsCount} showings)`;
-              pipelineStatusText.style.color = '#34d399';
+              pipelineStatusText.style.color = '#065F46';
             }
           }
 
@@ -21240,8 +21290,8 @@ function initStagehandRipperUI() {
               : 'Finishing stage...';
             if (trackerStatusEl) {
               const activeSuffix = (remCount > 0 && window.currentActiveEventLabel)
-                ? ` • <span style="color: #38bdf8;">${escapeHtml(window.currentActiveEventLabel)}</span>`
-                : ` • <span style="color: #94a3b8;">${remCount} remaining in current run</span>`;
+                ? ` • <span style="color: #0D6E52;">${escapeHtml(window.currentActiveEventLabel)}</span>`
+                : ` • <span style="color: #4E6159;">${remCount} remaining in current run</span>`;
               trackerStatusEl.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${pipelineProcessedCount}/${totalRun} Completed (${remCount} remaining)</span>${activeSuffix}`;
             }
             if (pipelineStatusSubtext) {
@@ -21284,7 +21334,7 @@ function initStagehandRipperUI() {
                   : `Event ${pipelineCurrentTargetIndex || 1} of ${totalRun} in progress...`;
                 pipelineStatusSubtext.textContent = `${pipelineProcessedCount}/${totalRun} completed (${remCount} remaining) • ${workerNote}`;
               }
-              pipelineStatusText.style.color = '#38bdf8';
+              pipelineStatusText.style.color = '#10B981';
             } else if (line.includes('🛒 Navigating to checkout cart:')) {
               pipelineStatusText.textContent = window.currentActiveEventLabel
                 ? `${window.currentActiveEventLabel} — 🛒 Penetrating checkout cart...`
@@ -21296,19 +21346,19 @@ function initStagehandRipperUI() {
                 ? `${window.currentActiveEventLabel} — 📸 Proof keyframe captured!`
                 : '📸 Proof keyframe captured!';
               if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Visual keyframe evidence saved & linked.';
-              pipelineStatusText.style.color = '#34d399';
+              pipelineStatusText.style.color = '#065F46';
             } else if (/Committed updated event/i.test(line)) {
               const totalRun = pipelineTotalTargets || pipelineProcessedCount || 1;
               const remCount = Math.max(0, totalRun - pipelineProcessedCount);
               if (remCount > 0 && window.currentActiveEventLabel) {
                 pipelineStatusText.textContent = window.currentActiveEventLabel;
-                pipelineStatusText.style.color = '#38bdf8';
+                pipelineStatusText.style.color = '#10B981';
                 if (pipelineStatusSubtext) {
                   pipelineStatusSubtext.textContent = `${pipelineProcessedCount}/${totalRun} completed (${remCount} remaining) • Event ${pipelineCurrentTargetIndex || 1} of ${totalRun} in progress...`;
                 }
               } else {
                 pipelineStatusText.textContent = `💾 Committed ${pipelineProcessedCount}/${totalRun} verified card(s)`;
-                pipelineStatusText.style.color = '#34d399';
+                pipelineStatusText.style.color = '#065F46';
               }
             } else if (line.includes('🏁 BATCH QC AUDIT COMPLETE')) {
               pipelineStatusText.textContent = '🏁 Batch QC Audit Complete!';
@@ -21316,20 +21366,20 @@ function initStagehandRipperUI() {
             } else if (line.includes('✍️ AI SEMANTIC ENRICHER PIPELINE') || line.includes('✍️ Processing:')) {
               pipelineStatusText.textContent = '✍️ AI Semantic Enricher running...';
               if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Normalizing title, synopsis & category tags...';
-              pipelineStatusText.style.color = '#fbbf24';
+              pipelineStatusText.style.color = '#92400E';
             } else if (line.includes('COMPILER AI ARBITRATOR')) {
               pipelineStatusText.textContent = '🏛️ Compiler AI arbitrating layers & checking math...';
               if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Enforcing $50 CAD budget ceiling & auto-rolling showings...';
-              pipelineStatusText.style.color = '#38bdf8';
+              pipelineStatusText.style.color = '#10B981';
             } else if (line.includes('Saved') && line.includes('compiled active cards')) {
               pipelineStatusText.textContent = '💾 Catalog compiled! Checking invariants...';
-              pipelineStatusText.style.color = '#34d399';
+              pipelineStatusText.style.color = '#065F46';
             } else if (line.includes('Synced compiled events to js/data.js')) {
               pipelineStatusText.textContent = '🚀 Master catalog published & live in js/data.js!';
               pipelineStatusText.style.color = '#10b981';
             } else if (line.includes('Saved') && line.includes('layer_editorial.json')) {
               pipelineStatusText.textContent = '✍️ Editorial enrichment saved to layer_editorial.json!';
-              pipelineStatusText.style.color = '#34d399';
+              pipelineStatusText.style.color = '#065F46';
             }
           }
         }
@@ -21491,15 +21541,15 @@ function initStagehandRipperUI() {
           const afterContainer = document.getElementById('pipeline-comp-card-after');
           if (afterContainer && currentPipelineScanKey !== 'harvest') {
             afterContainer.innerHTML = `
-              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #34d399; padding: 20px;">
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #065F46; padding: 20px;">
                 <div style="font-size: 2.2rem; margin-bottom: 8px;">✅</div>
-                <div style="font-weight: 700; color: #34d399; font-size: 0.95rem; margin-bottom: 6px;">
+                <div style="font-weight: 700; color: #065F46; font-size: 0.95rem; margin-bottom: 6px;">
                   All In-Scope Events Verified
                 </div>
-                <p style="font-size: 0.74rem; color: #94a3b8; max-width: 280px; margin: 0; line-height: 1.45;">
+                <p style="font-size: 0.74rem; color: #4E6159; max-width: 280px; margin: 0; line-height: 1.45;">
                   All target events already have verified data in the layer. Zero un-enriched or drift cards detected.
                 </p>
-                <p style="font-size: 0.72rem; color: #64748b; margin-top: 10px;">
+                <p style="font-size: 0.72rem; color: #5A6E65; margin-top: 10px;">
                   To re-evaluate or inspect a specific event, switch <strong>Scope</strong> to <strong>Single Card</strong>.
                 </p>
               </div>
@@ -21528,7 +21578,7 @@ function initStagehandRipperUI() {
           pipelineStatusText.textContent = isHarvestDone
             ? `✅ Stage 1A Complete! (${completionMetricShort})${!isPipelineAutoChaining && hFoundDone > 0 ? ' — Ready for Stage 1B' : ''}`
             : `✅ Pipeline Execution Complete! (${completionMetricShort})`;
-          pipelineStatusText.style.color = '#34d399';
+          pipelineStatusText.style.color = '#065F46';
         }
         if (pipelineStatusSubtext) {
           pipelineStatusSubtext.textContent = isHarvestDone
@@ -21563,11 +21613,11 @@ function initStagehandRipperUI() {
             pipelineStatusText.textContent = isHarvestDone
               ? `⚠️ Stage 1A Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${completionMetricShort})`
               : `⚠️ Pipeline Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${pipelineProcessedCount} ${stagePastVerb})`;
-            pipelineStatusText.style.color = '#fbbf24';
+            pipelineStatusText.style.color = '#92400E';
           }
           if (pipelineStatusSubtext) {
             pipelineStatusSubtext.style.display = 'block';
-            pipelineStatusSubtext.style.color = '#fca5a5';
+            pipelineStatusSubtext.style.color = '#9F1239';
             pipelineStatusSubtext.textContent = `Timed-out/Errored Events: ${names}`;
           }
           if (typeof showToast === 'function') {
@@ -21628,7 +21678,7 @@ function initStagehandRipperUI() {
             savePipelineBatchState();
             if (pipelineStatusText) {
               pipelineStatusText.textContent = `Stage ${curIdx + 1} Complete! Advancing to ${nextStageKey.toUpperCase()} in 1s...`;
-              pipelineStatusText.style.color = '#38bdf8';
+              pipelineStatusText.style.color = '#10B981';
             }
             setTimeout(async () => {
               await reloadPromise;
@@ -21710,10 +21760,10 @@ function initStagehandRipperUI() {
         if (pipelineSpinner) pipelineSpinner.textContent = '❌';
         if (pipelineStatusText) {
           pipelineStatusText.textContent = `❌ Pipeline exited with code ${exitCode}`;
-          pipelineStatusText.style.color = '#f87171';
+          pipelineStatusText.style.color = '#BE123C';
         }
         if (pipelineProgressBar) {
-          pipelineProgressBar.style.background = '#f87171';
+          pipelineProgressBar.style.background = '#BE123C';
         }
         if (typeof showToast === 'function') showToast(`Pipeline exited with code ${exitCode}`, 'error');
       }
@@ -21745,7 +21795,7 @@ function initStagehandRipperUI() {
       if (pipelineSpinner) pipelineSpinner.style.animation = 'none';
       if (pipelineStatusText) {
         pipelineStatusText.textContent = '⚠️ Stream connection closed.';
-        pipelineStatusText.style.color = '#94a3b8';
+        pipelineStatusText.style.color = '#4E6159';
       }
       if (typeof loadQuarantineQueue === 'function') loadQuarantineQueue();
       if (typeof window.loadLayersAndEvents === 'function') window.loadLayersAndEvents();

@@ -22,6 +22,8 @@ import threading
 import subprocess
 from datetime import datetime, timezone
 from urllib.parse import urlparse, parse_qs
+import urllib.request
+import urllib.error
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -2579,6 +2581,45 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "timestamp": datetime.now().isoformat()
             })
 
+        # API: Server-side proxy for Google Apps Script Submissions Sheet (avoids browser CORS / ad-blocker blocks)
+        if path == "/api/curator/sheet-submissions":
+            sheet_url = ""
+            for html_name in ("curator-agy.html", "index.html"):
+                html_path = os.path.join(BASE_DIR, html_name)
+                if os.path.exists(html_path):
+                    try:
+                        with open(html_path, "r", encoding="utf-8") as hf:
+                            m = re.search(r'<meta\s+name=["\']van50-submissions-url["\']\s+content=["\']([^"\']+)["\']', hf.read(), re.IGNORECASE)
+                            if m:
+                                sheet_url = m.group(1).strip()
+                                break
+                    except Exception:
+                        pass
+            if not sheet_url:
+                return self._send_json(400, {"success": False, "error": "Missing van50-submissions-url meta tag"})
+            sep = "&" if "?" in sheet_url else "?"
+            fetch_url = f"{sheet_url}{sep}_t={int(time.time() * 1000)}"
+            try:
+                req = urllib.request.Request(
+                    fetch_url,
+                    headers={"User-Agent": "Van50-Curator-Server/1.0", "Accept": "application/json"}
+                )
+                with urllib.request.urlopen(req, timeout=15) as resp:
+                    raw_body = resp.read().decode("utf-8", errors="replace")
+                    status_code = resp.getcode() or 200
+                try:
+                    payload = json.loads(raw_body)
+                except Exception:
+                    return self._send_json(502, {
+                        "success": False,
+                        "error": f"Google Apps Script returned non-JSON (HTTP {status_code}). Ensure doGet() is deployed as Web App (Anyone)."
+                    })
+                return self._send_json(200, payload)
+            except urllib.error.HTTPError as he:
+                return self._send_json(502, {"success": False, "error": f"Google Sheet HTTP {he.code}: {he.reason}"})
+            except Exception as exc:
+                return self._send_json(502, {"success": False, "error": f"Server proxy fetch failed: {exc}"})
+
         # API: Stagehand Status
         if path == "/api/curator/stagehand/status":
             is_running = False
@@ -2659,6 +2700,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 script_name = "tier1_hunter.js"
             elif mode in ("venue", "venue_detailer"):
                 script_name = "venue_detailer.js"
+            elif mode in ("quarantine_heal", "heal_quarantine"):
+                script_name = "quarantine_healer.js"
             else:
                 script_name = "hybrid_ripper.js"
 
@@ -2761,6 +2804,18 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         cmd.extend(["--stale", str(stale_val)])
                     elif qs.get("uncompiled_only", ["0"])[0] in ("1", "true"):
                         cmd.append("--uncompiled-only")
+            elif mode in ("quarantine_heal", "heal_quarantine"):
+                cmd = ["node", script_path]
+                if qs.get("ids", [""])[0]:
+                    cmd.extend(["--ids", qs.get("ids", [""])[0]])
+                elif qs.get("id", [""])[0]:
+                    cmd.extend(["--id", qs.get("id", [""])[0]])
+                if limit_str and limit_str != "0":
+                    cmd.extend(["--limit", str(limit_str)])
+                conc_val = qs.get("concurrency", ["4"])[0] or "4"
+                cmd.extend(["--concurrency", str(conc_val)])
+                if qs.get("model", [""])[0]:
+                    cmd.extend(["--model", qs.get("model", [""])[0]])
             elif mode in ("hunter", "tier1_hunter", "venue", "venue_detailer"):
                 cmd = ["node", script_path]
                 if is_quarantine:

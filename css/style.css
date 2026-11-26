@@ -3,17 +3,26 @@
    Semantic Theme System: Light Mode ("Stanley Park Daylight") & Dark Mode ("Pacific Dusk")
    ============================================================================== */
 
-:root, [data-theme="light"] {
-  --bg-app: #F2F4F0;          /* Distinct warm sage-mist page canvas so white cards pop */
-  --bg-card: #FFFFFF;         /* Pure crisp white for event cards & unselected pills */
-  --bg-elevated: #E6EAE3;     /* Lichen surface for secondary containers, header pills & drawers */
+:root,
+[data-theme="light"] {
+  --bg-app: #F2F4F0;
+  /* Distinct warm sage-mist page canvas so white cards pop */
+  --bg-card: #FFFFFF;
+  /* Pure crisp white for event cards & unselected pills */
+  --bg-elevated: #E6EAE3;
+  /* Lichen surface for secondary containers, header pills & drawers */
   --bg-glass: rgba(242, 244, 240, 0.88);
-  --text-main: #111C18;       /* Deep charcoal pine */
-  --text-muted: #4E6159;      /* Muted fern for metadata & dates */
-  --brand-primary: #0D6E52;   /* Deep BC Forest Green */
+  --text-main: #111C18;
+  /* Deep charcoal pine */
+  --text-muted: #4E6159;
+  /* Muted fern for metadata & dates */
+  --brand-primary: #0D6E52;
+  /* Deep BC Forest Green */
   --brand-primary-fg: #FFFFFF;
-  --brand-accent: #D97706;    /* Warm Cedar Amber */
-  --border-subtle: #D5DDD8;   /* Visible 1px sage hairline */
+  --brand-accent: #D97706;
+  /* Warm Cedar Amber */
+  --border-subtle: #D5DDD8;
+  /* Visible 1px sage hairline */
   --price-free-bg: #D1FAE5;
   --price-free-fg: #065F46;
   --price-low-bg: #E0F2FE;
@@ -56,7 +65,8 @@
   /* Brand Accent Tokens */
   --accent-primary: var(--brand-primary);
   --accent-primary-glow: rgba(13, 110, 82, 0.12);
-  --accent-secondary: #0284c7;      /* Ocean Blue */
+  --accent-secondary: #0284c7;
+  /* Ocean Blue */
   --accent-secondary-glow: rgba(2, 132, 199, 0.12);
   --accent-rose: #e11d48;
 
@@ -163,13 +173,22 @@ html.dark-mode {
 }
 
 /* Base Reset & Typography */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+body {
   width: 100%;
   max-width: 100vw;
   overflow-x: clip;
@@ -177,7 +196,9 @@ html, body {
   padding: 0;
 }
 
-main, #events-grid, #events-list {
+main,
+#events-grid,
+#events-list {
   overflow-x: clip;
 }
 
@@ -248,8 +269,8 @@ body {
 
 header,
 main,
-main > section,
-main > div {
+main>section,
+main>div {
   min-width: 0;
   max-width: 100%;
   width: 100%;
@@ -558,6 +579,7 @@ button {
   .btn-surprise-me .surprise-me-label {
     display: none;
   }
+
   .btn-surprise-me {
     padding: 0 12px !important;
   }
@@ -600,19 +622,24 @@ button {
     height: 54px;
     background: var(--bg-glass);
   }
+
   .brand-logo {
     font-size: 1.22rem;
     gap: 6px;
   }
+
   .brand-icon {
     font-size: 1.25rem;
   }
+
   .brand-badge {
     display: none;
   }
+
   .nav-actions {
     gap: 8px;
   }
+
   .nav-actions .btn {
     height: 36px;
     padding: 0 11px !important;
@@ -620,37 +647,46 @@ button {
     border-radius: 9px !important;
     gap: 4px !important;
   }
+
   .btn-accessibility .access-label,
   .nav-btn-label {
     display: none !important;
   }
+
   .btn-itinerary svg {
     margin-right: 1px !important;
   }
+
   .hero-section {
     padding: 14px 16px 10px !important;
   }
+
   .hero-title {
     font-size: 1.3rem !important;
     line-height: 1.25 !important;
     margin-bottom: 0 !important;
   }
+
   .hero-subtitle,
   .hero-section p {
     display: none !important;
   }
+
   .mobile-search-filter-bar {
+    position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: -1px;
     z-index: 85;
     background: var(--bg-app);
-    padding: 10px 0 8px 0;
+    padding: 11px 0 8px 0;
     margin: 0 0 8px 0;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid var(--border-subtle);
+    transition: none;
   }
+
   .mobile-search-filter-bar::before {
     content: '';
     position: absolute;
@@ -663,23 +699,27 @@ button {
     z-index: -1;
     pointer-events: none;
   }
+
   .search-filter-main-row {
     display: flex;
     gap: 10px;
     align-items: center;
     width: 100%;
   }
+
   .mobile-search-filter-bar .search-wrapper {
     flex: 1 1 auto;
     min-width: 0;
     max-width: none;
     margin-top: 0;
   }
+
   .mobile-search-filter-bar .search-icon {
     left: 14px;
     display: inline-flex;
     align-items: center;
   }
+
   .mobile-search-filter-bar .search-input {
     font-size: 1rem;
     height: 42px;
@@ -687,6 +727,7 @@ button {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
   }
+
   .mobile-filter-trigger {
     display: inline-flex;
     align-items: center;
@@ -707,11 +748,13 @@ button {
     box-shadow: var(--shadow-sm);
     transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
   }
+
   .mobile-filter-trigger.has-active-filters {
     background: var(--price-free-bg);
     border-color: var(--brand-primary);
     color: var(--price-free-fg);
   }
+
   .scroll-date-bar {
     justify-content: flex-start;
     padding: 7px 2px 1px;

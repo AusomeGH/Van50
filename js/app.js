@@ -10279,11 +10279,11 @@ window.syncStickyHeaderOffset = function () {
   let offset = 64;
   if (searchBar) {
     const barStyle = window.getComputedStyle(searchBar);
-    const barTop = parseFloat(barStyle.top) || 0;
+    const barTop = Math.max(0, parseFloat(barStyle.top) || 0);
     const barHeight = searchBar.getBoundingClientRect().height || 56;
-    offset = Math.round(barTop + barHeight);
+    offset = Math.max(0, Math.floor(barTop + barHeight) - 1);
   } else if (siteHeader) {
-    offset = Math.round(siteHeader.getBoundingClientRect().height || 64);
+    offset = Math.max(0, Math.floor(siteHeader.getBoundingClientRect().height || 64) - 1);
   }
   if (offset !== _lastStickyHeaderOffsetPx) {
     _lastStickyHeaderOffsetPx = offset;
