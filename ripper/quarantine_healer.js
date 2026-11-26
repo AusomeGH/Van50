@@ -143,7 +143,7 @@ ${screenshotPaths.length > 0 ? `- Attached Screenshots: ${screenshotPaths.join("
 VAN50 MANDATORY PUBLICATION GATES:
 1. Metro Vancouver ONLY (Vancouver, Burnaby, Richmond, Surrey, New Westminster, North/West Vancouver, Coquitlam, Port Moody, Langley, Delta, White Rock). Out-of-market cities (Victoria, Whistler, Seattle, Toronto, etc.) MUST be archived.
 2. Physical Venue Invariant: venue_name must be a real physical venue (never Eventbrite, Showpass, Ticketmaster, Do604, Songkick).
-3. Budget Ceiling: Minimum single-visit Adult/GA all-in price (base + service fees + taxes) MUST be <= $50.00 CAD (or $0.00 Free). Never use optional add-ons or annual memberships.
+3. Budget Ceiling: Minimum single-visit Adult/GA all-in price (base + service fees + taxes) MUST be <= $50.00 CAD (or $0.00 Free). Never use optional add-ons or annual memberships. NEVER archive an event as > $50.00 CAD based on secondary resale sites (StubHub, SeatGeek, Vivid Seats) — always check the PRIMARY box office face-value minimum tier first! On paid ticketing platforms (Eventbrite, UBC Tickets, Ticketmaster, TicketLeader, Showpass, etc.), include realistic platform service fees + 5% GST in healed_price_all_in rather than assuming $0 fees.
 4. Temporal Reality: Must have an upcoming date >= ${todayIso} or be an active weekly residency / perennial drop-in. Past or cancelled events MUST be archived.
 5. Inventory Reality: If ALL eligible single-visit tiers <= $50 CAD are sold out, archive with is_sold_out: true. If at least one eligible tier <= $50 CAD is available, it is NOT sold out.
 6. Multi-week courses, private buyouts, or dead/phantom events with no live replacement MUST be archived.
@@ -155,7 +155,7 @@ Search the web and/or inspect the live event & ticketing page to HEAL the quaran
 - Confirm the next upcoming date (YYYY-MM-DD), start time, and physical venue details.
 - Choose ONE verdict:
   * "HEAL_AND_PROMOTE" — ONLY if you verified a live working URL, upcoming date (or active residency/drop-in), real Metro Vancouver venue, AND all-in price <= $50.00 CAD.
-  * "ARCHIVE_DISQUALIFIED" — If you have positive proof the event is > $50.00 CAD all-in, past/cancelled, completely sold out, a multi-week course, out-of-market, or dead/phantom with no active listing.
+  * "ARCHIVE_DISQUALIFIED" — If you have positive proof the event is > $50.00 CAD all-in at the PRIMARY box office, past/cancelled, completely sold out, a multi-week course, out-of-market, or dead/phantom with no active listing.
   * "KEEP_QUARANTINED" — If you still cannot verify mandatory price/date/link after active search and need human curator input.
 
 Return ONLY a single valid JSON object (no markdown fences or commentary outside JSON):
@@ -177,6 +177,8 @@ Return ONLY a single valid JSON object (no markdown fences or commentary outside
   "is_free": false,
   "is_sold_out": false,
   "ticket_provider": "Showpass | Eventbrite | Ticketmaster | Venue Box Office | Free | etc.",
+  "lifecycle_type": "time_bound_event | weekly_recurring_residency | perennial_drop_in",
+  "event_archetype": "cinema | live_stage | workshop | social_gaming | civic_park | museum_gallery | active_rec | roving_series | festival",
   "synopsis": "Concise 1-2 sentence editorial description if promoting, else null"
 }`;
 }
@@ -286,6 +288,34 @@ async function main() {
         const isArrayFormat = Array.isArray(eventsRaw);
         const eventsArr = isArrayFormat ? eventsRaw : Array.isArray(eventsRaw.events) ? eventsRaw.events : [];
 
+        const formattedPriceLabel = (result.is_free || allInPrice === 0)
+          ? "Free ($0)"
+          : `$${allInPrice.toFixed(2)} CAD`;
+        const validLifecycles = new Set(["time_bound_event", "weekly_recurring_residency", "perennial_drop_in"]);
+        const resolvedLifecycle = validLifecycles.has(result.lifecycle_type)
+          ? result.lifecycle_type
+          : (ev.lifecycle_type || "time_bound_event");
+        const validArchetypes = new Set(["cinema", "live_stage", "workshop", "social_gaming", "civic_park", "museum_gallery", "active_rec", "roving_series", "festival"]);
+        const resolvedArchetype = validArchetypes.has(result.event_archetype)
+          ? result.event_archetype
+          : (ev.event_archetype || ev.archetype || null);
+        const updatedDimAudit = { ...(ev.dimension_audit || {}) };
+        if (Object.keys(updatedDimAudit).length > 0) {
+          updatedDimAudit.D101_tier1_checkout = { ...(updatedDimAudit.D101_tier1_checkout || {}), value: healedUrl, status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D106_best_available_link = { ...(updatedDimAudit.D106_best_available_link || {}), value: healedUrl, status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D107_operational_status = { ...(updatedDimAudit.D107_operational_status || {}), value: "available", status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D202_tier1_price_base = { ...(updatedDimAudit.D202_tier1_price_base || {}), value: typeof result.healed_price_base === "number" ? result.healed_price_base : allInPrice, status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D203_tier1_price_fee = { ...(updatedDimAudit.D203_tier1_price_fee || {}), value: typeof result.healed_price_fee === "number" ? result.healed_price_fee : 0, status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D204_tier1_price_tax = { ...(updatedDimAudit.D204_tier1_price_tax || {}), value: typeof result.healed_price_tax === "number" ? result.healed_price_tax : 0, status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D205_tier1_price_all_in = { ...(updatedDimAudit.D205_tier1_price_all_in || {}), value: allInPrice, status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D218_budget_qualified_under_50 = { ...(updatedDimAudit.D218_budget_qualified_under_50 || {}), value: true, status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D221_ticket_provider = { ...(updatedDimAudit.D221_ticket_provider || {}), value: result.ticket_provider || ev.ticket_provider || "Verified Box Office", status: "verified", source: `quarantine_healer (${model})` };
+          updatedDimAudit.D003_lifecycle_type = { ...(updatedDimAudit.D003_lifecycle_type || {}), value: resolvedLifecycle, status: "verified", source: `quarantine_healer (${model})` };
+          if (resolvedArchetype) {
+            updatedDimAudit.D002_event_archetype = { ...(updatedDimAudit.D002_event_archetype || {}), value: resolvedArchetype, status: "verified", source: `quarantine_healer (${model})` };
+          }
+        }
+
         const promotedCard = {
           ...ev,
           id: eid,
@@ -304,14 +334,21 @@ async function main() {
           url: healedUrl,
           price: allInPrice,
           price_all_in: allInPrice,
+          priceLabel: formattedPriceLabel,
           price_base: typeof result.healed_price_base === "number" ? result.healed_price_base : allInPrice,
           price_fee: typeof result.healed_price_fee === "number" ? result.healed_price_fee : 0,
           price_tax: typeof result.healed_price_tax === "number" ? result.healed_price_tax : 0,
           is_free: Boolean(result.is_free || allInPrice === 0),
+          isFree: Boolean(result.is_free || allInPrice === 0),
           is_sold_out: false,
+          isSoldOut: false,
+          lifecycle_type: resolvedLifecycle,
+          event_archetype: resolvedArchetype,
+          archetype: resolvedArchetype,
           ticket_provider: result.ticket_provider || ev.ticket_provider || "Verified Box Office",
           description: result.synopsis || ev.description || ev.synopsis || "",
           synopsis: result.synopsis || ev.synopsis || ev.description || "",
+          dimension_audit: Object.keys(updatedDimAudit).length > 0 ? updatedDimAudit : ev.dimension_audit,
           healed_by_agy: true,
           healed_at: nowIso,
           healer_reason: result.reason || "Healed by Parallel Antigravity AI Quarantine Healer",
