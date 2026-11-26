@@ -2440,6 +2440,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border-subtle);
   margin-bottom: 14px;
@@ -2453,6 +2454,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
   margin-bottom: 16px;
 }
 
@@ -2461,8 +2463,14 @@
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
-  flex: 1;
+  overflow-x: hidden;
+  flex: 1 1 auto;
+  min-height: 0;
   padding-right: 4px;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 .itinerary-item-card {
@@ -5979,6 +5987,8 @@ body.van50-accessible .card-ticket-link {
     max-width: 100% !important;
     height: auto !important;
     max-height: 85dvh !important;
+    overflow: hidden !important;
+    overscroll-behavior: contain;
     border-radius: 16px 16px 0 0 !important;
     border-left: none !important;
     border-top: 1px solid var(--border-medium) !important;
@@ -9617,9 +9627,10 @@ button.festival-theme-item-row.festival-theme-box-btn:focus-visible {
   display: flex;
   flex-direction: column !important;
   align-items: stretch !important;
+  flex-shrink: 0 !important;
   gap: 0 !important;
   padding: 0 !important;
-  overflow: hidden;
+  overflow: visible;
   transition: border-color 0.16s ease, box-shadow 0.16s ease;
 }
 
@@ -11748,6 +11759,17 @@ section[aria-label="Events List"] .mobile-card-price-pill.is-senior-price,
 .btn-card-view-map:hover {
   background: var(--brand-primary);
   color: #ffffff;
+}
+
+@keyframes van50DateJumpPulse {
+  0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.55); }
+  50% { box-shadow: 0 0 0 6px rgba(13, 148, 136, 0.18); }
+  100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+}
+
+.date-group-header.date-jump-highlight {
+  animation: van50DateJumpPulse 1.4s ease-out;
+  border-color: var(--brand-primary) !important;
 }
 
 @media (max-width: 560px) {

@@ -3317,6 +3317,7 @@ function setupEventListeners() {
     drawer.classList.add('active');
     drawer.setAttribute('aria-hidden', 'false');
     drawer.removeAttribute('inert');
+    document.body.style.overflow = 'hidden';
     renderItinerary();
     window.pushOverlayHistoryState('saved');
   };
@@ -3327,6 +3328,8 @@ function setupEventListeners() {
     drawer.classList.remove('active');
     drawer.setAttribute('aria-hidden', 'true');
     drawer.setAttribute('inert', '');
+    const filtersOpen = document.getElementById('mobile-filters-sheet')?.classList.contains('active');
+    if (!filtersOpen) document.body.style.overflow = '';
     if (wasOpen) window.popOverlayHistoryState('saved', fromPopState);
   };
 
@@ -5564,59 +5567,8 @@ function applyFiltersAndRender() {
       if (effectiveMax < state.minBudget || effectiveMin > state.maxBudget) return false;
     }
 
-    // 2b. Calendar Date Picker Filter (exact YYYY-MM-DD or 'weekend')
-    if (state.selectedDate) {
-      const DAY_CODES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-      const fullDayMap = {
-        sun: 'sunday', mon: 'monday', tue: 'tuesday', wed: 'wednesday',
-        thu: 'thursday', fri: 'friday', sat: 'saturday'
-      };
-      const toLocalIso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-      const targetDates = [];
-      if (state.selectedDate === 'weekend') {
-        const dow = now.getDay();
-        const daysToSat = dow === 6 ? 0 : (dow === 0 ? -1 : (6 - dow));
-        const sat = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysToSat);
-        const sun = new Date(sat.getFullYear(), sat.getMonth(), sat.getDate() + 1);
-        if (dow !== 0) targetDates.push(toLocalIso(sat));
-        targetDates.push(toLocalIso(sun));
-      } else if (/^\d{4}-\d{2}-\d{2}$/.test(state.selectedDate)) {
-        targetDates.push(state.selectedDate);
-      }
-
-      if (targetDates.length > 0) {
-        const isDropInCard = (
-          (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
-          ev.access_model === 'open_public_space' ||
-          ev.access_model === 'free_public_access' ||
-          ev.access_model === 'drop_in_paid' ||
-          ev.isFreePublic ||
-          ev.isDaily ||
-          ev.category === 'free-public-access'
-        );
-        const wh = parseWeeklyHoursTo7DayObject(ev.weekly_hours || ev.weeklyHours, ev.operatingHours || ev.dateSchedule, isDropInCard);
-
-        const matchesAnyTargetDate = targetDates.some((targetIso) => {
-          const parsed = new Date(`${targetIso}T12:00:00`);
-          const dayCode = !isNaN(parsed.getTime()) ? DAY_CODES[parsed.getDay()] : '';
-          if (wh && typeof wh === 'object' && dayCode) {
-            const dayVal = wh[dayCode] || wh[fullDayMap[dayCode]];
-            if (dayVal && /closed/i.test(String(dayVal))) return false;
-          }
-          if (ev.date && String(ev.date).slice(0, 10) === targetIso) return true;
-          if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.some((dStr) => String(dStr).slice(0, 10) === targetIso)) return true;
-          if (Array.isArray(ev.showings) && ev.showings.some((s) => s && s.date && String(s.date).slice(0, 10) === targetIso)) return true;
-          if (isDropInCard) return true;
-          if ((!Array.isArray(ev.confirmedDates) || ev.confirmedDates.length === 0) && (!Array.isArray(ev.showings) || ev.showings.length === 0) && !ev.date) {
-            const days = ev.daysOfWeek || [];
-            if (dayCode && days.includes(dayCode)) return true;
-          }
-          return false;
-        });
-
-        if (!matchesAnyTargetDate) return false;
-      }
-    }
+    // 2b. Calendar Date Picker is a jump-to-date control (does not filter out earlier/later dates)
+    // so users can freely scroll before and after the selected date.
 
     // 3. Day of the Week Filter (Requirement 1)
     if (state.dayOfWeek !== 'all') {
@@ -5751,7 +5703,7 @@ function applyFiltersAndRender() {
 
   // Update More Filters active counter badge
   let secondaryFilterCount = 0;
-  if (state.selectedDate) secondaryFilterCount++;
+  // Calendar date selection acts as a jump-to-date scroll, not a restrictive filter count
   if (state.dayOfWeek !== 'all') secondaryFilterCount++;
   if (state.frequency !== 'all') secondaryFilterCount++;
   if (state.hideDaily) secondaryFilterCount++;
@@ -6991,23 +6943,14 @@ function renderEventCards(events) {
     return;
   }
 
-  // When viewing events for a specific venue (via "See events here"), do away with Today/Tomorrow/Next Week labels
-  if (state.selectedVenue) {
-    if (events.length === 0) {
-      grid.innerHTML = `
-        ${venueBannerHtml}
-        <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
-          <h3 style="color: var(--text-main); margin-bottom: 8px;">No Current Events Under $50 at ${safeSelectedVenue}</h3>
-          <button type="button" class="btn btn-roulette" data-action="clear-selected-venue">Clear Venue Filter</button>
-        </div>
-      `;
-      return;
-    }
-    const cardsHtml = events.map(ev => renderSingleEventCardHtml(ev)).join('');
+  // When viewing events for a specific venue (via "See events here"), keep the empty-state message if 0 events,
+  // otherwise flow through the same sticky date-group pipeline below so users immediately see event dates.
+  if (state.selectedVenue && events.length === 0) {
     grid.innerHTML = `
       ${venueBannerHtml}
-      <div class="venue-events-unified-grid" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; margin-top: 14px;">
-        ${cardsHtml}
+      <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
+        <h3 style="color: var(--text-main); margin-bottom: 8px;">No Current Events Under $50 at ${safeSelectedVenue}</h3>
+        <button type="button" class="btn btn-roulette" data-action="clear-selected-venue">Clear Venue Filter</button>
       </div>
     `;
     return;
@@ -7383,15 +7326,15 @@ function renderEventCards(events) {
     const isDatePicked = Boolean(safeIsoDate && state.selectedDate === safeIsoDate);
     const displayCount = splitDropInsSection ? scheduledItems.length : b.list.length;
     const titleInnerHtml = (safeIsoDate && !safeRange)
-      ? `<button type="button" class="date-group-pick-btn date-group-pick-title ${isDatePicked ? 'is-selected' : ''}" data-pick-date="${safeIsoDate}" title="${isDatePicked ? 'Click to open calendar picker or change date' : `Filter events to ${safeTitle}`}" aria-pressed="${isDatePicked ? 'true' : 'false'}">${safeTitle} <span class="date-pick-caret" aria-hidden="true">📅</span></button>`
+      ? `<button type="button" class="date-group-pick-btn date-group-pick-title ${isDatePicked ? 'is-selected' : ''}" data-pick-date="${safeIsoDate}" title="Open calendar to jump to another date" aria-pressed="${isDatePicked ? 'true' : 'false'}">${safeTitle} <span class="date-pick-caret" aria-hidden="true">📅</span></button>`
       : safeTitle;
     const rangeHtml = safeRange
       ? (safeIsoDate
-        ? `<button type="button" class="time-group-date-range date-group-pick-btn ${isDatePicked ? 'is-selected' : ''}" data-pick-date="${safeIsoDate}" title="${isDatePicked ? 'Click to open calendar picker or change date' : `Filter events to ${safeRange}`}" aria-pressed="${isDatePicked ? 'true' : 'false'}">${safeRange} <span class="date-pick-caret" aria-hidden="true">📅</span></button>`
+        ? `<button type="button" class="time-group-date-range date-group-pick-btn ${isDatePicked ? 'is-selected' : ''}" data-pick-date="${safeIsoDate}" title="Open calendar to jump to another date" aria-pressed="${isDatePicked ? 'true' : 'false'}">${safeRange} <span class="date-pick-caret" aria-hidden="true">📅</span></button>`
         : `<span class="time-group-date-range">${safeRange}</span>`)
       : '';
     return `
-      <section class="events-time-group date-group ${isCollapsed ? 'collapsed' : ''}" id="group-${safeKey}" data-group-title="${safeShortTitle}" data-group-heading="${safeTitle}" data-group-range="${safeRange}">
+      <section class="events-time-group date-group ${isCollapsed ? 'collapsed' : ''}" id="group-${safeKey}" data-group-key="${safeKey}" data-iso-date="${safeIsoDate}" data-group-title="${safeShortTitle}" data-group-heading="${safeTitle}" data-group-range="${safeRange}">
         <div class="time-group-header date-group-header" data-action="toggle-time-group" data-group-key="${safeKey}" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${safeKey}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${safeTitle}">
           <div class="time-group-title-wrap">
             <span class="time-group-icon" style="display:none;"></span>
@@ -10334,10 +10277,90 @@ window.addEventListener('resize', () => {
     return counts;
   }
 
+  window.jumpToCalendarDate = function (val, opts = {}) {
+    const closeSheet = opts.closeSheet !== false;
+    if (closeSheet && typeof window.closeMobileFiltersSheet === 'function') {
+      window.closeMobileFiltersSheet();
+    }
+
+    const doScroll = () => {
+      const gridEl = document.getElementById('events-grid');
+      if (!gridEl) return;
+      const stickyOffset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-header-offset')) || 72;
+
+      if (!val) {
+        const topY = Math.max(0, gridEl.getBoundingClientRect().top + window.scrollY - stickyOffset - 8);
+        window.scrollTo({ top: topY, behavior: 'smooth' });
+        return;
+      }
+
+      // Resolve 'weekend' to Saturday (or Sunday if today is Sunday)
+      let targetIso = val;
+      if (val === 'weekend') {
+        const todayNow = new Date();
+        const dow = todayNow.getDay();
+        const daysToSat = dow === 6 ? 0 : (dow === 0 ? 0 : (6 - dow));
+        targetIso = toIso(new Date(todayNow.getFullYear(), todayNow.getMonth(), todayNow.getDate() + daysToSat));
+      }
+
+      const dateSections = Array.from(gridEl.querySelectorAll('section.date-group[data-iso-date]'))
+        .filter(sec => /^\d{4}-\d{2}-\d{2}$/.test(sec.getAttribute('data-iso-date') || ''));
+      if (dateSections.length === 0) return;
+
+      let targetSec = dateSections.find(sec => sec.getAttribute('data-iso-date') === targetIso);
+      if (!targetSec) {
+        targetSec = dateSections.find(sec => (sec.getAttribute('data-iso-date') || '') >= targetIso)
+          || dateSections[dateSections.length - 1];
+      }
+      if (!targetSec) return;
+
+      const targetKey = targetSec.getAttribute('data-group-key');
+      // If the jumped section was collapsed, expand it and re-locate it
+      if (targetKey && state.collapsedTimeGroups && state.collapsedTimeGroups.has(targetKey)) {
+        state.collapsedTimeGroups.delete(targetKey);
+        if (typeof applyFiltersAndRender === 'function') applyFiltersAndRender();
+        targetSec = document.getElementById(`group-${targetKey}`) || targetSec;
+      }
+
+      // Ensure the target date section (and the next one) has its cards rendered immediately
+      const targetIdx = dateSections.indexOf(targetSec);
+      const keysToHydrate = [targetKey];
+      if (targetIdx >= 0 && dateSections[targetIdx + 1]) {
+        keysToHydrate.push(dateSections[targetIdx + 1].getAttribute('data-group-key'));
+      }
+      keysToHydrate.forEach((bk) => {
+        if (bk && typeof window.appendNextBucketBatch === 'function') {
+          window.appendNextBucketBatch(bk, false);
+        }
+      });
+
+      const scrollNow = () => {
+        const freshSec = (targetKey && document.getElementById(`group-${targetKey}`)) || targetSec;
+        if (!freshSec) return;
+        const rect = freshSec.getBoundingClientRect();
+        const targetY = Math.max(0, rect.top + window.scrollY - stickyOffset - 8);
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+        const hdr = freshSec.querySelector('.date-group-header');
+        if (hdr) {
+          hdr.classList.remove('date-jump-highlight');
+          void hdr.offsetWidth;
+          hdr.classList.add('date-jump-highlight');
+          setTimeout(() => hdr.classList.remove('date-jump-highlight'), 1600);
+        }
+        if (typeof window.updateScrollDateIndicator === 'function') {
+          setTimeout(() => window.updateScrollDateIndicator(), 350);
+        }
+      };
+
+      requestAnimationFrame(scrollNow);
+    };
+
+    setTimeout(doScroll, closeSheet ? 140 : 40);
+  };
+
   function setSelectedCalendarDate(val) {
     state.selectedDate = val || '';
     if (state.selectedDate) {
-      state.dayOfWeek = 'all';
       if (/^\d{4}-\d{2}-\d{2}$/.test(state.selectedDate)) {
         const pd = new Date(`${state.selectedDate}T12:00:00`);
         if (!isNaN(pd.getTime())) {
@@ -10347,9 +10370,14 @@ window.addEventListener('resize', () => {
       }
     }
     window.renderCalendarDatePicker();
-    if (typeof applyFiltersAndRender === 'function') {
-      applyFiltersAndRender();
-    }
+    // Sync selected pill highlight across rendered date headers without filtering out other dates
+    document.querySelectorAll('.date-group-pick-btn[data-pick-date]').forEach((btn) => {
+      const isMatch = Boolean(state.selectedDate && btn.getAttribute('data-pick-date') === state.selectedDate);
+      btn.classList.toggle('is-selected', isMatch);
+      btn.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+    });
+    if (typeof syncUrlWithFilters === 'function') syncUrlWithFilters();
+    window.jumpToCalendarDate(state.selectedDate, { closeSheet: true });
   }
 
   window.renderCalendarDatePicker = function () {
@@ -10502,7 +10530,12 @@ window.addEventListener('resize', () => {
     }
     window.renderCalendarDatePicker();
     // Re-render once catalog data finishes loading so event indicator dots populate
-    setTimeout(() => window.renderCalendarDatePicker(), 1200);
+    setTimeout(() => {
+      window.renderCalendarDatePicker();
+      if (state.selectedDate && typeof window.jumpToCalendarDate === 'function') {
+        window.jumpToCalendarDate(state.selectedDate, { closeSheet: false });
+      }
+    }, 1200);
   }
 
   if (document.readyState === 'loading') {
