@@ -8928,8 +8928,6 @@ function updateItineraryBadge() {
 
 function renderItinerary() {
   const list = document.getElementById('itinerary-items-list');
-  const totalEl = document.getElementById('itinerary-total-cost');
-  const statusEl = document.getElementById('itinerary-budget-status');
   const sharePlanBtn = document.getElementById('share-plan-btn');
   const copyPlanLinkBtn = document.getElementById('copy-plan-link-btn');
   const clearPlanBtn = document.getElementById('clear-plan-btn');
@@ -8938,7 +8936,7 @@ function renderItinerary() {
   if (sharePlanBtn) sharePlanBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
   if (copyPlanLinkBtn) copyPlanLinkBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
   if (clearPlanBtn) clearPlanBtn.style.display = currentSavedCount > 0 ? 'inline-flex' : 'none';
-  if (!list || !totalEl) return;
+  if (!list) return;
 
   if (savedList.length === 0) {
     list.innerHTML = `
@@ -8946,20 +8944,11 @@ function renderItinerary() {
         No saved events yet.<br>Click the heart icon on any card to save an outing.
       </div>
     `;
-    totalEl.textContent = '$0';
-    if (statusEl) statusEl.textContent = 'Add events to calculate';
-    const emptyFill = document.getElementById('itinerary-budget-meter-fill');
-    if (emptyFill) {
-      emptyFill.style.width = '0%';
-      emptyFill.style.background = '#10b981';
-    }
     return;
   }
 
   if (!state.expandedSavedEvents) state.expandedSavedEvents = new Set();
-  let totalCost = 0;
   list.innerHTML = savedList.map(ev => {
-    totalCost += Number(ev.price) || 0;
     const isExpanded = state.expandedSavedEvents.has(ev.id);
     const expandedCardHtml = isExpanded
       ? `<div class="itinerary-expanded-card-wrap">${renderSingleEventCardHtml(ev, 'saved-drawer')}</div>`
@@ -8985,19 +8974,6 @@ function renderItinerary() {
       </div>
     `;
   }).join('');
-
-  totalEl.textContent = `$${formatCompactDollarNum(totalCost)}`;
-  if (statusEl) {
-    statusEl.innerHTML = totalCost <= 50.00
-      ? `<span style="color: #0f766e; font-weight: 700;">$${formatCompactDollarNum(50 - totalCost)} remaining under $50 target</span>`
-      : `<span style="color: #e11d48; font-weight: 700;">$${formatCompactDollarNum(totalCost - 50)} over $50 outing target</span>`;
-    const meterFill = document.getElementById('itinerary-budget-meter-fill');
-    if (meterFill) {
-      const pct = Math.min(100, Math.max(0, (totalCost / 50) * 100));
-      meterFill.style.width = `${pct}%`;
-      meterFill.style.background = totalCost <= 50 ? '#10b981' : '#e11d48';
-    }
-  }
 }
 
 window.toggleSavedCardExpand = function (eventId, domEv) {
