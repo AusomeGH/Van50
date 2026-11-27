@@ -8714,19 +8714,27 @@ section[aria-label="Active Local Festivals"]::-webkit-scrollbar,
 }
 
 /* ============================================================================
-   13. MOBILE MAP BUTTON DEDUPLICATION & STICKY SCROLLED DAY BANNER
+   13. MAP BUTTON VISIBILITY (MOBILE & DESKTOP) & STICKY SCROLLED DAY BANNER
    ============================================================================ */
-/* Desktop (> 768px): Show inline [Cards | Map] segmented toggle; hide mobile shortcuts */
+/* Always show the top toolbar Map / Split Map button beside Filters on all viewports */
+#mobile-top-map-btn,
+.mobile-top-map-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 0 14px !important;
+  height: 42px !important;
+  font-size: 0.84rem !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Desktop (> 768px): Use top toolbar Map / Split Map button; hide duplicate mobile floating pill & inline switcher */
 @media (min-width: 769px) {
 
   .results-count-bar div[aria-label="View Switcher"],
-  .results-count-bar .inline-view-switcher {
-    display: inline-flex !important;
-    flex-shrink: 0 !important;
-  }
-
-  #mobile-top-map-btn,
-  .mobile-top-map-btn,
+  .results-count-bar .inline-view-switcher,
   #mobile-view-toggle,
   .mobile-view-toggle {
     display: none !important;
@@ -8735,9 +8743,7 @@ section[aria-label="Active Local Festivals"]::-webkit-scrollbar,
 
 @media (max-width: 768px) {
 
-  /* 1. Hide duplicate Map buttons on mobile — keep ONLY the floating bottom-center #mobile-view-toggle pill */
-  #mobile-top-map-btn,
-  .mobile-top-map-btn,
+  /* Hide duplicate inline switcher on mobile; top #mobile-top-map-btn + scrolled floating #mobile-view-toggle handle Map toggle */
   .results-count-bar div[aria-label="View Switcher"],
   .results-count-bar .inline-view-switcher {
     display: none !important;
