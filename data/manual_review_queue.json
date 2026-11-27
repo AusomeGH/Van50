@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.3.0",
-    "updatedAt": "2026-11-26T04:05:58.264Z",
+    "updatedAt": "2026-11-26T18:09:51.725Z",
     "pendingCount": 12,
     "description": "Events quarantined by Antigravity Quarantine AI for failing mandatory publication gates. Cleared after 1-at-a-time isolated subagent evaluation on 2026-10-28.",
     "total_quarantined": 13,
@@ -1046,12 +1046,12 @@
       "quarantineReason": "unverified_box_office_pricing",
       "reviewStatus": "pending_antigravity_review",
       "audit_error": "Stage 2 Box Office QC could not verify a live ticket price",
-      "attemptedPrice": 0.0,
+      "attemptedPrice": 0,
       "curatorAnnotation": {
         "instructionId": "inst_1795703170255",
         "note": "Religious and free",
         "proposedAction": "review",
-        "userSuppliedPrice": 0.0,
+        "userSuppliedPrice": 0,
         "screenshotPaths": [],
         "aiLearnedSummary": "Instruction recorded: Religious and free",
         "extractedTiers": [],

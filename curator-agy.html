@@ -223,11 +223,13 @@
     <section id="crawl-sources-panel"
       style="display: none; margin: 14px 0 18px 0; padding: 16px 18px; border-radius: 14px; background: #FFFFFF; border: 1px solid rgba(16, 185, 129, 0.35); box-shadow: 0 4px 14px rgba(17, 28, 24, 0.08);"
       aria-label="Crawl Sources and ROI Manager">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
         <div>
           <h3 style="margin: 0 0 4px 0; font-size: 1.15rem; color: #111C18;">📡 Crawl Sources &amp; ROI Manager</h3>
           <p style="margin: 0; font-size: 0.8rem; color: #4E6159;">
-            Click any column header to sort ascending/descending. Disabling or pausing a source updates <code>data/source_controls.json</code> (reversible, never deletes venue metadata).
+            Click any column header to sort ascending/descending. Disabling or pausing a source updates
+            <code>data/source_controls.json</code> (reversible, never deletes venue metadata).
           </p>
         </div>
         <button type="button" class="btn-curator btn-curator-ghost" id="btn-close-crawl-sources-panel"
@@ -242,14 +244,21 @@
       </div>
 
       <!-- Controls Bar -->
-      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 10px;">
         <div class="curator-pills-group" id="crawl-sources-filter-pills" style="margin: 0;">
-          <button type="button" class="curator-filter-pill active" data-cs-filter="all">All (<span id="cs-cnt-all">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-cs-filter="active_crawl">✅ Active (<span id="cs-cnt-active">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-cs-filter="star">⭐ Stars (<span id="cs-cnt-star">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-cs-filter="time_sink">🐌 Time Sinks (<span id="cs-cnt-sink">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-cs-filter="dead">💀 Dead / WAF (<span id="cs-cnt-dead">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-cs-filter="stopped">⏸ Paused / Disabled (<span id="cs-cnt-stopped">0</span>)</button>
+          <button type="button" class="curator-filter-pill active" data-cs-filter="all">All (<span
+              id="cs-cnt-all">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="active_crawl">✅ Active (<span
+              id="cs-cnt-active">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="star">⭐ Stars (<span
+              id="cs-cnt-star">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="time_sink">🐌 Time Sinks (<span
+              id="cs-cnt-sink">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="dead">💀 Dead / WAF (<span
+              id="cs-cnt-dead">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-cs-filter="stopped">⏸ Paused / Disabled (<span
+              id="cs-cnt-stopped">0</span>)</button>
         </div>
         <div style="display: flex; gap: 6px; flex-wrap: wrap;">
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-cs-bulk-dead"
@@ -276,25 +285,47 @@
           <input type="text" id="crawl-sources-search" class="curator-search-input"
             placeholder="Filter by name, domain, URL, city, or health status..." oninput="renderCrawlSourcesTable()">
         </div>
-        <span id="crawl-sources-footer-status" style="font-size: 0.78rem; color: #4E6159; white-space: nowrap;">Ready</span>
+        <span id="crawl-sources-footer-status"
+          style="font-size: 0.78rem; color: #4E6159; white-space: nowrap;">Ready</span>
       </div>
 
       <!-- Table Container -->
       <div id="crawl-sources-table-wrap"
         style="max-height: 68vh; overflow: auto; border: 1px solid #D5DDD8; border-radius: 10px; background: #FFFFFF;">
         <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
-          <thead id="crawl-sources-thead" style="position: sticky; top: 0; background: #E6EAE3; z-index: 2; color: #334840; border-bottom: 1px solid #D5DDD8; user-select: none;">
+          <thead id="crawl-sources-thead"
+            style="position: sticky; top: 0; background: #E6EAE3; z-index: 2; color: #334840; border-bottom: 1px solid #D5DDD8; user-select: none;">
             <tr>
-              <th data-cs-sort="name" onclick="toggleCrawlSourcesSort('name')" style="padding: 9px 10px; cursor: pointer; white-space: nowrap;">Source &amp; URL <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="health_status" onclick="toggleCrawlSourcesSort('health_status')" style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Health <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="duration_sec" onclick="toggleCrawlSourcesSort('duration_sec')" style="padding: 9px 8px; text-align: right; cursor: pointer; white-space: nowrap;">Time <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="active" onclick="toggleCrawlSourcesSort('active')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Live events in events.json">Active <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="schedules" onclick="toggleCrawlSourcesSort('schedules')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Harvested leads in layer_schedules.json">Sched <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="quarantined" onclick="toggleCrawlSourcesSort('quarantined')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Quarantined events in manual_review_queue.json">Quar <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="archived" onclick="toggleCrawlSourcesSort('archived')" style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;" title="Past/disqualified events in archived_events.json">Arch <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="verdict" onclick="toggleCrawlSourcesSort('verdict')" style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Verdict <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="tier" onclick="toggleCrawlSourcesSort('tier')" style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Tier <span class="cs-sort-ind"></span></th>
-              <th data-cs-sort="control_status" onclick="toggleCrawlSourcesSort('control_status')" style="padding: 9px 10px; text-align: right; cursor: pointer; white-space: nowrap;">Crawl Action <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="name" onclick="toggleCrawlSourcesSort('name')"
+                style="padding: 9px 10px; cursor: pointer; white-space: nowrap;">Source &amp; URL <span
+                  class="cs-sort-ind"></span></th>
+              <th data-cs-sort="health_status" onclick="toggleCrawlSourcesSort('health_status')"
+                style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Health <span class="cs-sort-ind"></span>
+              </th>
+              <th data-cs-sort="duration_sec" onclick="toggleCrawlSourcesSort('duration_sec')"
+                style="padding: 9px 8px; text-align: right; cursor: pointer; white-space: nowrap;">Time <span
+                  class="cs-sort-ind"></span></th>
+              <th data-cs-sort="active" onclick="toggleCrawlSourcesSort('active')"
+                style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;"
+                title="Live events in events.json">Active <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="schedules" onclick="toggleCrawlSourcesSort('schedules')"
+                style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;"
+                title="Harvested leads in layer_schedules.json">Sched <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="quarantined" onclick="toggleCrawlSourcesSort('quarantined')"
+                style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;"
+                title="Quarantined events in manual_review_queue.json">Quar <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="archived" onclick="toggleCrawlSourcesSort('archived')"
+                style="padding: 9px 6px; text-align: right; cursor: pointer; white-space: nowrap;"
+                title="Past/disqualified events in archived_events.json">Arch <span class="cs-sort-ind"></span></th>
+              <th data-cs-sort="verdict" onclick="toggleCrawlSourcesSort('verdict')"
+                style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Verdict <span
+                  class="cs-sort-ind"></span></th>
+              <th data-cs-sort="tier" onclick="toggleCrawlSourcesSort('tier')"
+                style="padding: 9px 8px; cursor: pointer; white-space: nowrap;">Tier <span class="cs-sort-ind"></span>
+              </th>
+              <th data-cs-sort="control_status" onclick="toggleCrawlSourcesSort('control_status')"
+                style="padding: 9px 10px; text-align: right; cursor: pointer; white-space: nowrap;">Crawl Action <span
+                  class="cs-sort-ind"></span></th>
             </tr>
           </thead>
           <tbody id="crawl-sources-tbody"></tbody>
@@ -751,8 +782,7 @@
       </div>
 
       <!-- Mode Selector Tabs (Hidden for streamlined unified view, kept for DOM compatibility) -->
-      <div
-        style="display: none; gap: 8px; margin-bottom: 14px; border-bottom: 1px solid #D5DDD8; padding-bottom: 10px;"
+      <div style="display: none; gap: 8px; margin-bottom: 14px; border-bottom: 1px solid #D5DDD8; padding-bottom: 10px;"
         id="ai-modal-mode-tabs">
         <button type="button" id="tab-mode-screenshot" class="curator-filter-pill active"
           style="font-size: 0.8rem; padding: 5px 12px; cursor: pointer;">📸 1. Verify via Screenshot</button>

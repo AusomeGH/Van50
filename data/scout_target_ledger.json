@@ -1,5 +1,86 @@
 [
   {
+    "timestamp": "2026-11-26T18:09:47.906Z",
+    "event_id": "miami-improv-tim-dillon-2026-12-03",
+    "target_name": "Tim Dillon",
+    "target_type": "event_qc",
+    "status": "EXECUTION_ERROR",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-26T18:09:37.126Z",
+    "event_id": "barrymore-theatre-ma-jordan-jensen-2026-12-10",
+    "target_name": "Jordan Jensen",
+    "target_type": "event_qc",
+    "status": "EXECUTION_ERROR",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-26T18:09:31.543Z",
+    "event_id": "the-bell-house-gianmarco-soresi-2026-11-29",
+    "target_name": "Gianmarco Soresi",
+    "target_type": "event_qc",
+    "status": "EXECUTION_ERROR",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-26T18:09:19.934Z",
+    "event_id": "cap-city-comedy-club-steph-tolev-2026-12-03",
+    "target_name": "Steph Tolev",
+    "target_type": "event_qc",
+    "status": "EXECUTION_ERROR",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-26T18:09:11.868Z",
+    "event_id": "mesa-arts-center-ike-nurse-john-2027-01-07",
+    "target_name": "Nurse John",
+    "target_type": "event_qc",
+    "status": "EXECUTION_ERROR",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-26T18:09:02.023Z",
+    "event_id": "sheas-performing-art-the-princess-proms-2026-12-23",
+    "target_name": "The Princess Proms",
+    "target_type": "event_qc",
+    "status": "EXECUTION_ERROR",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-26T18:08:54.242Z",
+    "event_id": "alex-neighbourhood-h-spanish-conversation-2026-11-10",
+    "target_name": "Spanish Conversation",
+    "target_type": "event_qc",
+    "status": "UNVERIFIED_PRICING",
+    "success": false,
+    "duration_seconds": 34
+  },
+  {
+    "timestamp": "2026-11-26T18:08:46.320Z",
+    "event_id": "the-one-sixty-wine-b-paint-nite-gnome-hanging-chris-2026-12-23",
+    "target_name": "Paint Nite: Gnome Hanging Christmas Lights",
+    "target_type": "event_qc",
+    "status": "SKIPPED_NO_URL",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
+    "timestamp": "2026-11-26T18:08:45.499Z",
+    "event_id": "paramount-theatre-de-chelsea-handler-2026-12-05",
+    "target_name": "Chelsea Handler",
+    "target_type": "event_qc",
+    "status": "EXECUTION_ERROR",
+    "success": false,
+    "duration_seconds": 0
+  },
+  {
     "timestamp": "2026-11-26T04:05:54.691Z",
     "event_id": "miami-improv-tim-dillon-2026-12-03",
     "target_name": "Tim Dillon",
@@ -4417,86 +4498,5 @@
     "status": "ANTIBOT_CHALLENGE_BLOCKED",
     "success": false,
     "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-23T14:28:47.514Z",
-    "event_id": "bowen-theatre-unfaithful-servants-with-shari-2026-11-26",
-    "target_name": "Unfaithful Servants with Shari Ulrich",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 41
-  },
-  {
-    "timestamp": "2026-11-23T14:28:38.120Z",
-    "event_id": "museum-of-anthropolo-culture-club-at-moa-whimsical-2026-11-29",
-    "target_name": "Culture Club at MOA: Whimsical Winter Crafts",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 45
-  },
-  {
-    "timestamp": "2026-11-23T14:28:01.744Z",
-    "event_id": "commodore-ballroom-kingfisher-bluez-christmas-par-2026-12-13",
-    "target_name": "Kingfisher Bluez Christmas Party - ALL AGES MATINEE",
-    "target_type": "event_qc",
-    "status": "ANTIBOT_CHALLENGE_BLOCKED",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-23T14:27:51.280Z",
-    "event_id": "201-4695-hastings-s-introductions-and-networking-2026-11-27",
-    "target_name": "Introductions and Networking",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 46
-  },
-  {
-    "timestamp": "2026-11-23T14:27:47.978Z",
-    "event_id": "touchstone-theatre-1-touchstone-s-1-hour-agm-micro-2026-12-09",
-    "target_name": "Touchstone's 1-Hour AGM Micro-Party",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 46
-  },
-  {
-    "timestamp": "2026-11-23T14:27:01.335Z",
-    "event_id": "140-19979-76-ave-lan-when-the-gong-calls-2026-11-23",
-    "target_name": "When The Gong Calls",
-    "target_type": "event_qc",
-    "status": "UNVERIFIED_PRICING",
-    "success": false,
-    "duration_seconds": 44
-  },
-  {
-    "timestamp": "2026-11-23T14:26:57.981Z",
-    "event_id": "paramount-theatre-de-chelsea-handler-2026-12-05",
-    "target_name": "Chelsea Handler",
-    "target_type": "event_qc",
-    "status": "EXECUTION_ERROR",
-    "success": false,
-    "duration_seconds": 0
-  },
-  {
-    "timestamp": "2026-11-23T14:26:41.858Z",
-    "event_id": "surrey-libraries-oce-craft-n-yarn-2026-11-29",
-    "target_name": "Craft 'N' Yarn",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 42
-  },
-  {
-    "timestamp": "2026-11-23T14:26:13.664Z",
-    "event_id": "sanctuary-west-end-children-8217-s-choir-2026-11-26",
-    "target_name": "West End Children’s Choir",
-    "target_type": "event_qc",
-    "status": "VERIFIED_PASS",
-    "success": true,
-    "duration_seconds": 45
   }
 ]
