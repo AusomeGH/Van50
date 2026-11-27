@@ -169,7 +169,7 @@ export function getExistingCatalogLookup() {
     if (/^(?:discover\s+events\s+in\s+|things\s+to\s+do\s+in\s+|free\s+holiday\s+events\s+in\s+|toy\s+drives\s+around\s+|upcoming\s+holiday\s+events\s+at\s+|victoria\s+festivals\s+and\s+events|vancouver['’]s\s+best\s+|vancouver\s+history\s+and\s+culture|vancouver\s+rainy\s+day\s+activities|list\s+your\s+event\b)/i.test(rawTitle)) {
       return true;
     }
-    if (/\b(?:503\s+service\s+unavailable|502\s+bad\s+gateway|closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|birthday\s+part(?:y|ies)|court\s+rental|private\s+(?:youth\s+|adult\s+)?tutoring|bus\s+trip\b|(?:mfa|ma|phd|ph\.d\.|thesis|dissertation)\s+defen[cs]e|supplemental\s+application|(?:virtual|online)\s+info(?:rmation)?\s+session|information\s+sessions?:|(?:sca|campus|admissions?|program|faculty|department)\s+open\s+house|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|exhibition\s+catalogue|school\s+boundaries|roster\s+(?:202\d[-–]\d{2}|regular\s+season)|(?:@|at)\s+(?:abbotsford\s+pilots|mission\s+city\s+outlaws|chilliwack\s+jets)|settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|sfu\s+livewhale\s+calendar|tuition\s+estimator|educationplannerbc|applying\s+to\s+kpu|why\s+choose\s+kpu|kpu\s+registration|find\s+your\s+classroom|exam\s+review|naloxone\s+training\s+session\s+for\s+students|registration\s+101\s+information\s+session|canadian\s+taxes\s+for\s+international\s+students)\b/i.test(rawTitle)) {
+    if (/\b(?:503\s+service\s+unavailable|502\s+bad\s+gateway|closed\s+for\s+a?\s*private\s+(?:party|event|function|buyout)|branch\s+office\s+closed|closed\s+on\s+(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b|50\/50\b|\braffle\b|\bopen\s+league\b|community\s+grants\b|birthday\s+part(?:y|ies)|court\s+rental|private\s+(?:youth\s+|adult\s+)?tutoring|bus\s+trip\b|(?:mfa|ma|phd|ph\.d\.|thesis|dissertation)\s+defen[cs]e|supplemental\s+application|(?:virtual|online)\s+info(?:rmation)?\s+session|information\s+sessions?:|(?:sca|campus|admissions?|program|faculty|department)\s+open\s+house|greta\s+bar\s+yy[cz]|page\s+not\s+found|error\s+404|cefa\s+(?:early\s+learning|morgan\s+crossing|panorama|campbell\s+heights|cloverdale|sullivan\s+ridge|south\s+surrey)|graduation(?:\s+ceremony)?|convocation(?:\s+ceremony)?|commencement\s+ceremony|coll(?:e|a)ge\s+grad(?:uation)?|season\s+memberships?|season\s+pass(?:es)?|annual\s+pass(?:es)?|exhibition\s+catalogue|school\s+boundaries|roster\s+(?:202\d[-–]\d{2}|regular\s+season)|(?:@|at)\s+(?:abbotsford\s+pilots|mission\s+city\s+outlaws|chilliwack\s+jets)|settlement\s+services\s+for\s+newcomers|student\s+food\s+pantry|peer\s+wellness\s+information\s+booth|sfu\s+livewhale\s+calendar|tuition\s+estimator|educationplannerbc|applying\s+to\s+kpu|why\s+choose\s+kpu|kpu\s+registration|find\s+your\s+classroom|exam\s+review|naloxone\s+training\s+session\s+for\s+students|registration\s+101\s+information\s+session|canadian\s+taxes\s+for\s+international\s+students)\b/i.test(rawTitle)) {
       return true;
     }
     if (/\bwebinar\b/i.test(rawTitle) && !/\b(?:in[- ]person|hybrid)\b/i.test(rawTitle)) {
@@ -637,6 +637,17 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
       const card = await step1aBrowserSemaphore.run(() => runHybridRipper(calendarUrl, { autoApprove }));
       if (card && card.title && (card.date || card.dateSchedule)) {
         const evDate = card.date || card.dateSchedule || "TBD";
+        const decodeHtmlEntities = (str) => String(str || "")
+          .replace(/&#8211;|&ndash;/gi, "–")
+          .replace(/&#8212;|&mdash;/gi, "—")
+          .replace(/&#8217;|&#039;|&apos;/gi, "'")
+          .replace(/&#038;|&amp;/gi, "&")
+          .replace(/&nbsp;/gi, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+        if (card.title) card.title = decodeHtmlEntities(card.title);
+        if (card.venue) card.venue = decodeHtmlEntities(card.venue);
+        if (card.venue_name) card.venue_name = decodeHtmlEntities(card.venue_name);
         const evTime = card.time || card.doors_time || "";
         const evVenue = card.venue || card.venue_name || "Vancouver Venue";
         console.log(`✨ HARVESTED EVENT: "${card.title}" | Date: ${evDate} | Time: ${evTime || "TBD"} | Venue: ${evVenue} | Price: ${card.priceLabel || "$0"} | URL: ${card.ticket_url || calendarUrl || ""} [${card.id}]`);
@@ -842,6 +853,17 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
           card = await step1aBrowserSemaphore.run(() => runHybridRipper(targetUrl, { autoApprove, fromHarvester: true }));
         }
         const evDate = card.date || card.dateSchedule || "TBD";
+        const decodeHtmlEntities = (str) => String(str || "")
+          .replace(/&#8211;|&ndash;/gi, "–")
+          .replace(/&#8212;|&mdash;/gi, "—")
+          .replace(/&#8217;|&#039;|&apos;/gi, "'")
+          .replace(/&#038;|&amp;/gi, "&")
+          .replace(/&nbsp;/gi, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+        if (card.title) card.title = decodeHtmlEntities(card.title);
+        if (card.venue) card.venue = decodeHtmlEntities(card.venue);
+        if (card.venue_name) card.venue_name = decodeHtmlEntities(card.venue_name);
         const evTime = card.time || card.doors_time || "";
         const evVenue = card.venue || card.venue_name || "Vancouver Venue";
 
@@ -875,8 +897,16 @@ export async function runCalendarBatch(calendarUrl, options = {}) {
               const dd = String(mdMatch[2]).padStart(2, "0");
               let yyyy = mdMatch[3] || todayIsoNow.slice(0, 4);
               let candidate = `${yyyy}-${mm}-${dd}`;
+              // Only roll a yearless date forward into next year if the rolled-forward date is
+              // within 180 days (cross-year Jan–May rollover in Nov/Dec). Otherwise treat it as a
+              // concluded past event from the current year so Gate 1 suppresses it instead of
+              // hallucinating a date 7–11 months in the future.
               if (!mdMatch[3] && candidate < todayIsoNow) {
-                candidate = `${Number(yyyy) + 1}-${mm}-${dd}`;
+                const nextYearCandidate = `${Number(yyyy) + 1}-${mm}-${dd}`;
+                const diffDays = (Date.parse(`${nextYearCandidate}T00:00:00Z`) - Date.parse(`${todayIsoNow}T00:00:00Z`)) / 86400000;
+                if (diffDays > 0 && diffDays <= 180) {
+                  candidate = nextYearCandidate;
+                }
               }
               normalizedIsoDate = candidate;
             }

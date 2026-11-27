@@ -9841,14 +9841,17 @@ button.festival-theme-item-row.festival-theme-box-btn:focus-visible {
    ============================================================================== */
 
 /* Always-visible 2-row summary header on ALL viewports (Desktop & Mobile) */
-section[aria-label="Events List"] .event-card {
+section[aria-label="Events List"] .event-card,
+.anytime-dropins-banner-cards .event-card {
   padding: 14px 16px !important;
   cursor: pointer;
   content-visibility: visible !important;
   contain-intrinsic-size: auto !important;
+  align-self: start;
 }
 
-section[aria-label="Events List"] .mobile-card-compact-header {
+section[aria-label="Events List"] .mobile-card-compact-header,
+.anytime-dropins-banner-cards .mobile-card-compact-header {
   display: flex !important;
   flex-direction: column;
   gap: 7px;
@@ -9858,7 +9861,8 @@ section[aria-label="Events List"] .mobile-card-compact-header {
   opacity: 1;
 }
 
-section[aria-label="Events List"] .mobile-card-row-1 {
+section[aria-label="Events List"] .mobile-card-row-1,
+.anytime-dropins-banner-cards .mobile-card-row-1 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -9867,7 +9871,8 @@ section[aria-label="Events List"] .mobile-card-row-1 {
   min-width: 0;
 }
 
-section[aria-label="Events List"] .mobile-card-title {
+section[aria-label="Events List"] .mobile-card-title,
+.anytime-dropins-banner-cards .mobile-card-title {
   font-family: var(--font-heading);
   font-size: 0.96rem;
   font-weight: 700;
@@ -9878,7 +9883,8 @@ section[aria-label="Events List"] .mobile-card-title {
   overflow-wrap: break-word;
 }
 
-section[aria-label="Events List"] .mobile-card-price-pill {
+section[aria-label="Events List"] .mobile-card-price-pill,
+.anytime-dropins-banner-cards .mobile-card-price-pill {
   flex: 0 0 auto;
   font-size: 0.78rem;
   font-weight: 800;
@@ -9888,7 +9894,8 @@ section[aria-label="Events List"] .mobile-card-price-pill {
   line-height: 1.35;
 }
 
-section[aria-label="Events List"] .mobile-card-row-2 {
+section[aria-label="Events List"] .mobile-card-row-2,
+.anytime-dropins-banner-cards .mobile-card-row-2 {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -9899,7 +9906,8 @@ section[aria-label="Events List"] .mobile-card-row-2 {
   color: var(--text-muted);
 }
 
-section[aria-label="Events List"] .row2-context-pill {
+section[aria-label="Events List"] .row2-context-pill,
+.anytime-dropins-banner-cards .row2-context-pill {
   flex-shrink: 0;
   font-size: 0.7rem;
   font-weight: 600;
@@ -9912,7 +9920,8 @@ section[aria-label="Events List"] .row2-context-pill {
   white-space: nowrap;
 }
 
-section[aria-label="Events List"] .mobile-card-meta-text {
+section[aria-label="Events List"] .mobile-card-meta-text,
+.anytime-dropins-banner-cards .mobile-card-meta-text {
   flex: 1 1 auto;
   min-width: 0;
   white-space: nowrap;
@@ -9922,7 +9931,8 @@ section[aria-label="Events List"] .mobile-card-meta-text {
   color: var(--text-muted);
 }
 
-section[aria-label="Events List"] .mobile-card-chevron {
+section[aria-label="Events List"] .mobile-card-chevron,
+.anytime-dropins-banner-cards .mobile-card-chevron {
   flex-shrink: 0;
   margin-left: auto;
   font-size: 0.8rem;
@@ -9931,12 +9941,15 @@ section[aria-label="Events List"] .mobile-card-chevron {
 }
 
 section[aria-label="Events List"] .event-card.mobile-expanded .mobile-card-chevron,
-section[aria-label="Events List"] .event-card.desktop-expanded .mobile-card-chevron {
+section[aria-label="Events List"] .event-card.desktop-expanded .mobile-card-chevron,
+.anytime-dropins-banner-cards .event-card.mobile-expanded .mobile-card-chevron,
+.anytime-dropins-banner-cards .event-card.desktop-expanded .mobile-card-chevron {
   transform: rotate(180deg);
 }
 
 /* Collapsed state hides ONLY .card-expandable-details; expands cleanly on click */
-section[aria-label="Events List"] .card-expandable-details {
+section[aria-label="Events List"] .card-expandable-details,
+.anytime-dropins-banner-cards .card-expandable-details {
   display: none;
   flex-direction: column;
   margin-top: 12px;
@@ -9945,11 +9958,14 @@ section[aria-label="Events List"] .card-expandable-details {
 }
 
 section[aria-label="Events List"] .event-card.mobile-expanded .card-expandable-details,
-section[aria-label="Events List"] .event-card.desktop-expanded .card-expandable-details {
+section[aria-label="Events List"] .event-card.desktop-expanded .card-expandable-details,
+.anytime-dropins-banner-cards .event-card.mobile-expanded .card-expandable-details,
+.anytime-dropins-banner-cards .event-card.desktop-expanded .card-expandable-details {
   display: flex;
 }
 
-section[aria-label="Events List"] .card-expandable-details .card-title {
+section[aria-label="Events List"] .card-expandable-details .card-title,
+.anytime-dropins-banner-cards .card-expandable-details .card-title {
   display: none !important;
 }
 
