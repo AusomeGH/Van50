@@ -1,5 +1,5 @@
 {
-  "total_sources": 601,
+  "total_sources": 695,
   "sources": [
     {
       "id": "venue:granville-island-public-market",
@@ -5675,6 +5675,946 @@
       "neighborhood": "White Rock",
       "city": "White Rock",
       "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-upstart-crow",
+      "name": "Upstart & Crow",
+      "type": "discovery",
+      "url": "https://upstartandcrow.com/events/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-little-mountain-gallery-direct-schedule",
+      "name": "Little Mountain Gallery (Direct Schedule)",
+      "type": "discovery",
+      "url": "https://littlemountaingallery.ca/schedule/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-hero-s-welcome",
+      "name": "Hero's Welcome",
+      "type": "discovery",
+      "url": "https://www.heros-welcome.com/upcoming-events",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-the-rogue-folk-club-st-james-hall",
+      "name": "The Rogue Folk Club (St. James Hall)",
+      "type": "discovery",
+      "url": "https://www.roguefolk.bc.ca/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-the-heatley",
+      "name": "The Heatley",
+      "type": "discovery",
+      "url": "https://heatley.ca/events-calendar",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-the-princeton-pub-grill",
+      "name": "The Princeton Pub & Grill",
+      "type": "discovery",
+      "url": "https://www.theprincetonpub.ca/events-calendar/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-western-front",
+      "name": "Western Front",
+      "type": "discovery",
+      "url": "https://westernfront.ca/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-pacific-theatre",
+      "name": "Pacific Theatre",
+      "type": "discovery",
+      "url": "https://pacifictheatre.org/shows/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-pyatt-hall-vso-school-of-music",
+      "name": "Pyatt Hall (VSO School of Music)",
+      "type": "discovery",
+      "url": "https://vsoschoolofmusic.ca/events/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-performance-works-granville-island-theatre-district",
+      "name": "Performance Works (Granville Island Theatre District)",
+      "type": "discovery",
+      "url": "https://gitd.ca/pages/whats-on",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-grunt-gallery",
+      "name": "grunt gallery",
+      "type": "discovery",
+      "url": "https://grunt.ca/events-and-calls/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-rolla-skate-club-rollerland-at-pne",
+      "name": "Rolla Skate Club (Rollerland at PNE)",
+      "type": "discovery",
+      "url": "https://www.rollaskateclub.com/events/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-the-connection-games-hobbies",
+      "name": "The Connection Games & Hobbies",
+      "type": "discovery",
+      "url": "https://www.theconnectiongames.com/events",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-vancouver-curling-club",
+      "name": "Vancouver Curling Club",
+      "type": "discovery",
+      "url": "https://vancurl.com/index.php/events/club-calendar",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-marpole-curling-club",
+      "name": "Marpole Curling Club",
+      "type": "discovery",
+      "url": "https://marpolecurling.ca/index.php/more/club-calendar",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-baza-dance-studios",
+      "name": "Baza Dance Studios",
+      "type": "discovery",
+      "url": "https://bazadance.com/studio/events",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-salsastudio-net",
+      "name": "SalsaStudio.net",
+      "type": "discovery",
+      "url": "https://www.salsastudio.net/events",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-mangos-kitchen-bar",
+      "name": "Mangos Kitchen Bar",
+      "type": "discovery",
+      "url": "https://www.mangosvancouver.com/events",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-italian-cultural-centre-il-centro",
+      "name": "Italian Cultural Centre (Il Centro)",
+      "type": "discovery",
+      "url": "https://www.italianculturalcentre.ca/upcoming-events",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-alliance-fran-aise-vancouver",
+      "name": "Alliance Française Vancouver",
+      "type": "discovery",
+      "url": "https://www.alliancefrancaise.ca/en/culture/calendar/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-vancouver-scottish-cultural-centre",
+      "name": "Vancouver Scottish Cultural Centre",
+      "type": "discovery",
+      "url": "https://scottishculturalcentre.com/events/",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-polish-friendship-zgoda-society-polish-community-centre",
+      "name": "Polish Friendship Zgoda Society (Polish Community Centre)",
+      "type": "discovery",
+      "url": "https://www.polishsocietyvancouver.ca/events",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-vancouver-ceramics-studio",
+      "name": "Vancouver Ceramics Studio",
+      "type": "discovery",
+      "url": "https://www.vancouverceramics.com/workshops",
+      "neighborhood": "Vancouver",
+      "city": "Vancouver",
+      "region": "Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-st-archangel-michael-serbian-cultural-centre",
+      "name": "St. Archangel Michael Serbian Cultural Centre",
+      "type": "discovery",
+      "url": "https://www.starhangelmihailo.com/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-korean-cultural-heritage-society-kchs",
+      "name": "Korean Cultural Heritage Society (KCHS)",
+      "type": "discovery",
+      "url": "https://kculture.ca/programs/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-bc-swing-dance-club",
+      "name": "BC Swing Dance Club",
+      "type": "discovery",
+      "url": "https://bcswingdance.ca/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-tango-burnaby",
+      "name": "Tango Burnaby",
+      "type": "discovery",
+      "url": "https://tangoburnaby.ca/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-j-j-swing-dance",
+      "name": "J&J Swing Dance",
+      "type": "discovery",
+      "url": "https://www.jandjswingdance.com/event-list",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-trumpeter-tabletop-games-society",
+      "name": "Trumpeter Tabletop Games Society",
+      "type": "discovery",
+      "url": "https://www.trumpetersociety.com/en/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-captured-cards",
+      "name": "Captured! Cards",
+      "type": "discovery",
+      "url": "https://capturedcards.com/pages/events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-south-burnaby-legion-branch-83",
+      "name": "South Burnaby Legion Branch 83",
+      "type": "discovery",
+      "url": "https://rclbr83.ca/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-gloria-dei-chorale",
+      "name": "Gloria Dei Chorale",
+      "type": "discovery",
+      "url": "https://www.gloriadeichorale.com/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-heritage-burnaby",
+      "name": "Heritage Burnaby",
+      "type": "discovery",
+      "url": "https://heritageburnaby.ca/whats-on/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-royal-city-swing",
+      "name": "Royal City Swing",
+      "type": "discovery",
+      "url": "https://www.royalcityswing.com/events",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-uptown-swing-collective",
+      "name": "Uptown Swing Collective",
+      "type": "discovery",
+      "url": "https://uptownswingcollective.ca/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-kinder-books",
+      "name": "Kinder Books",
+      "type": "discovery",
+      "url": "https://kinderbooks.ca/collections/bookstore-events",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-everything-j-j-s-collectible-palace",
+      "name": "Everything J&J's Collectible Palace",
+      "type": "discovery",
+      "url": "https://everythingjandj.com/pages/events-tcg-tournaments",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-bc-palette-art-studio",
+      "name": "BC Palette Art Studio",
+      "type": "discovery",
+      "url": "https://bcpaletteart.com/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-nwss-music-programs",
+      "name": "NWSS Music Programs",
+      "type": "discovery",
+      "url": "https://www.nwssmusic.ca/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-international-buddhist-temple-guan-yin-temple",
+      "name": "International Buddhist Temple (Guan-Yin Temple)",
+      "type": "discovery",
+      "url": "https://buddhisttemple.ca/calendar/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-steveston-buddhist-temple",
+      "name": "Steveston Buddhist Temple",
+      "type": "discovery",
+      "url": "https://steveston-temple.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-thrangu-monastery-canada",
+      "name": "Thrangu Monastery Canada",
+      "type": "discovery",
+      "url": "https://thrangumonastery.org/schedules/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-steveston-historical-society",
+      "name": "Steveston Historical Society",
+      "type": "discovery",
+      "url": "https://historicsteveston.ca/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-crystal-ballroom",
+      "name": "Crystal Ballroom",
+      "type": "discovery",
+      "url": "https://crystalballroom.ca/schedule/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-sea-island-community-association",
+      "name": "Sea Island Community Association",
+      "type": "discovery",
+      "url": "https://www.sea-island.ca/special-events",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-the-drop-card-shop",
+      "name": "The Drop Card Shop",
+      "type": "discovery",
+      "url": "https://www.thedropcardshop.com/pages/events",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-lazy-trading-cards",
+      "name": "Lazy Trading Cards",
+      "type": "discovery",
+      "url": "https://lazytradingcards.com/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-bc-pickleball-association",
+      "name": "Richmond BC Pickleball Association",
+      "type": "discovery",
+      "url": "https://richmondbcpickleball.org/events-updates/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-minoru-centre-for-active-living",
+      "name": "Minoru Centre for Active Living",
+      "type": "discovery",
+      "url": "https://minorucentre.ca/seniors-services/seniors-programs-events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-surrey-city-orchestra",
+      "name": "Surrey City Orchestra",
+      "type": "discovery",
+      "url": "https://www.surreycityorchestra.org/",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-clayground-ceramics-studio",
+      "name": "Clayground Ceramics Studio",
+      "type": "discovery",
+      "url": "https://clayground.ca/collections/workshops",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-screen-free-games-surrey",
+      "name": "Screen Free Games (Surrey)",
+      "type": "discovery",
+      "url": "https://screenfreegames.com/pages/surrey-events",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-sandcastle-lanes",
+      "name": "Sandcastle Lanes",
+      "type": "discovery",
+      "url": "https://www.sandcastlelanes.ca/events/",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-cloverdale-curling-club",
+      "name": "Cloverdale Curling Club",
+      "type": "discovery",
+      "url": "https://cloverdalecurlingclub.ca/bonspiels-%26-events",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-port-kells-nurseries-workshops",
+      "name": "Port Kells Nurseries (Workshops)",
+      "type": "discovery",
+      "url": "https://portkellsnurseries.com/workshops/",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-project-climbing-cloverdale",
+      "name": "Project Climbing Cloverdale",
+      "type": "discovery",
+      "url": "https://projectclimbing.ca/cloverdale/events/",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-central-city-fun-park",
+      "name": "Central City Fun Park",
+      "type": "discovery",
+      "url": "https://www.centralcityfunpark.com/",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:surrey-coastal-climbing-centre",
+      "name": "Coastal Climbing Centre",
+      "type": "discovery",
+      "url": "https://coastalclimbing.ca/",
+      "neighborhood": "Surrey",
+      "city": "Surrey",
+      "region": "Surrey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-the-barley-merchant-taproom-kitchen",
+      "name": "The Barley Merchant Taproom & Kitchen",
+      "type": "discovery",
+      "url": "https://thebarleymerchant.com/music-%26-events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-roots-and-wings-distillery",
+      "name": "Roots and Wings Distillery",
+      "type": "discovery",
+      "url": "https://rootsandwingsdistillery.ca/blogs/events",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-chaberton-estate-winery",
+      "name": "Chaberton Estate Winery",
+      "type": "discovery",
+      "url": "https://www.chabertonwinery.com/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-vista-d-oro-farms-winery",
+      "name": "Vista D'oro Farms & Winery",
+      "type": "discovery",
+      "url": "https://vistadoro.com/events-news/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-maker-cube",
+      "name": "Maker Cube",
+      "type": "discovery",
+      "url": "https://makercube.ca/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-curling-centre",
+      "name": "Langley Curling Centre",
+      "type": "discovery",
+      "url": "https://langleycurlingcentre.com/index.php/events/club-calendar",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-community-chorus",
+      "name": "Langley Community Chorus",
+      "type": "discovery",
+      "url": "https://www.langleychorus.org/events/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-concert-band",
+      "name": "Langley Concert Band",
+      "type": "discovery",
+      "url": "https://langleyconcertband.ca/concerts/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-theatre-in-the-country",
+      "name": "Theatre in the Country",
+      "type": "discovery",
+      "url": "https://theatreinthecountry.com/2026-shows/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-derby-reach-brae-island-parks-association-drbipa",
+      "name": "Derby Reach Brae Island Parks Association (DRBIPA)",
+      "type": "discovery",
+      "url": "https://www.drbipa.org/communityevents",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-langley-field-naturalists",
+      "name": "Langley Field Naturalists",
+      "type": "discovery",
+      "url": "https://langleyfieldnaturalists.org/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-fort-langley-village-farmers-market",
+      "name": "Fort Langley Village Farmers Market",
+      "type": "discovery",
+      "url": "https://fortlangleyvillagefarmersmarket.org/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-eagle-acres-dairy-pumpkin-patch",
+      "name": "Eagle Acres Dairy & Pumpkin Patch",
+      "type": "discovery",
+      "url": "https://www.eagleacres.ca/calendar",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-aldor-acres-family-farm",
+      "name": "Aldor Acres Family Farm",
+      "type": "discovery",
+      "url": "https://aldoracresfamilyfarm.ca/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:langley-aldergrove-fair-days",
+      "name": "Aldergrove Fair Days",
+      "type": "discovery",
+      "url": "https://aldergrovefair.ca/",
+      "neighborhood": "Langley",
+      "city": "Langley",
+      "region": "Langley",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-edgemont-village-art-studio",
+      "name": "Edgemont Village Art Studio",
+      "type": "discovery",
+      "url": "https://artatedgemont.com/pages/calendar",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-vancouver-ceramics",
+      "name": "North Vancouver Ceramics",
+      "type": "discovery",
+      "url": "https://www.nvceramics.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-32-books-gallery",
+      "name": "32 Books & Gallery",
+      "type": "discovery",
+      "url": "https://www.32books.com/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-fraternal-order-of-eagles-aerie-2638-eagles-club",
+      "name": "Fraternal Order of Eagles Aerie 2638 (Eagles Club)",
+      "type": "discovery",
+      "url": "https://eaglesclub.ca/eagles_club_events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-mench-cafe",
+      "name": "Mench Cafe",
+      "type": "discovery",
+      "url": "https://menchcafe.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-tilted-climbing-gym-fitness",
+      "name": "Tilted Climbing Gym & Fitness",
+      "type": "discovery",
+      "url": "https://tiltedclimbing.ca/upcoming-events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-copperpenny-distilling-co",
+      "name": "Copperpenny Distilling Co.",
+      "type": "discovery",
+      "url": "https://copperpennydistilling.com/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-lonsdale-quay-market",
+      "name": "Lonsdale Quay Market",
+      "type": "discovery",
+      "url": "https://lonsdalequay.com/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-the-space-house-of-performing-arts-and-movement",
+      "name": "The SPACE – House of Performing Arts and Movement",
+      "type": "discovery",
+      "url": "https://www.thespacemovement.ca/events",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-west-vancouver-garden-club",
+      "name": "West Vancouver Garden Club",
+      "type": "discovery",
+      "url": "https://www.westvangardenclub.com/category/events/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-hot-salsa-dance-zone",
+      "name": "Hot Salsa Dance Zone",
+      "type": "discovery",
+      "url": "https://www.salsadancezone.com/events",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-arthur-murray-dance-studio-coquitlam",
+      "name": "Arthur Murray Dance Studio Coquitlam",
+      "type": "discovery",
+      "url": "https://dancecoquitlam.ca/upcoming-dance-coquitlam-events/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-manana-studios",
+      "name": "Manana Studios",
+      "type": "discovery",
+      "url": "https://mananastudios.ca/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-rvn-wellness",
+      "name": "RVN Wellness",
+      "type": "discovery",
+      "url": "https://rvnwellness.com/events/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-photo-club",
+      "name": "Delta Photo Club",
+      "type": "discovery",
+      "url": "https://deltaphotoclub.com/events2/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-potters-association",
+      "name": "Delta Potters Association",
+      "type": "discovery",
+      "url": "https://www.deltapotters.com/sales-events",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-north-delta-potters-guild",
+      "name": "North Delta Potters Guild",
+      "type": "discovery",
+      "url": "https://northdeltapotters.weebly.com/news--events.html",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-heritage-airpark",
+      "name": "Delta Heritage Airpark",
+      "type": "discovery",
+      "url": "https://deltaheritageairpark.org/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-white-rock-singers",
+      "name": "White Rock Singers",
+      "type": "discovery",
+      "url": "https://whiterocksingers.ca/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-the-rock-wall-climbing-gym",
+      "name": "The Rock Wall Climbing Gym",
+      "type": "discovery",
+      "url": "https://www.therockwall.com/programs.php",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:bowen-island-bowen-island-community-choir",
+      "name": "Bowen Island Community Choir",
+      "type": "discovery",
+      "url": "https://bowenislandcommunitychoir.ca/concerts-and-events",
+      "neighborhood": "Bowen Island",
+      "city": "Bowen Island",
+      "region": "Bowen Island",
       "last_scouted_at": null
     }
   ],
