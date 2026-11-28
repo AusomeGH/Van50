@@ -1,5 +1,5 @@
 {
-  "total_sources": 414,
+  "total_sources": 601,
   "sources": [
     {
       "id": "venue:granville-island-public-market",
@@ -133,7 +133,7 @@
       "id": "venue:the-rickshaw-theatre",
       "name": "The Rickshaw Theatre",
       "type": "venue",
-      "url": "https://rickshawtheatre.com/events/",
+      "url": "https://rickshawtheatre.com/",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "last_scouted_at": null
     },
@@ -357,7 +357,7 @@
       "id": "venue:slice-of-life-gallery-studios",
       "name": "Slice of Life Gallery & Studios",
       "type": "venue",
-      "url": "https://www.slicevancouver.ca/events",
+      "url": "https://www.slicevancouver.ca/",
       "neighborhood": "Commercial Drive & East Vancouver",
       "last_scouted_at": null
     },
@@ -381,7 +381,7 @@
       "id": "venue:waterfront-theatre",
       "name": "Waterfront Theatre",
       "type": "venue",
-      "url": "https://www.carouseltheatre.ca/waterfront-theatre/",
+      "url": "https://www.carouseltheatre.ca/",
       "neighborhood": "Granville Island & False Creek",
       "last_scouted_at": null
     },
@@ -389,7 +389,7 @@
       "id": "venue:the-waldorf",
       "name": "The Waldorf",
       "type": "venue",
-      "url": "https://atthewaldorf.com/events",
+      "url": "https://www.atthewaldorf.com/",
       "neighborhood": "Commercial Drive & East Vancouver",
       "last_scouted_at": null
     },
@@ -397,7 +397,7 @@
       "id": "venue:the-cobalt",
       "name": "The Cobalt",
       "type": "venue",
-      "url": "https://thecobalt.ca/events",
+      "url": "https://www.thecobalt.ca/calendar/",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "last_scouted_at": null
     },
@@ -405,7 +405,7 @@
       "id": "venue:carousel-theatre",
       "name": "Carousel Theatre",
       "type": "venue",
-      "url": "https://vancouverfringe.com/shows/",
+      "url": "https://www.vancouverfringe.com/events/",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "last_scouted_at": null
     },
@@ -437,7 +437,7 @@
       "id": "venue:the-pearl",
       "name": "The Pearl",
       "type": "venue",
-      "url": "https://thepearlvancouver.com/calendar/",
+      "url": "https://thepearlvancouver.com/events-rentals/",
       "neighborhood": "Downtown",
       "last_scouted_at": null
     },
@@ -461,7 +461,7 @@
       "id": "venue:ubc-botanical-garden",
       "name": "UBC Botanical Garden",
       "type": "venue",
-      "url": "https://botanicalgarden.ubc.ca/news-events/events/",
+      "url": "https://botanicalgarden.ubc.ca/",
       "neighborhood": "Point Grey",
       "last_scouted_at": null
     },
@@ -517,7 +517,7 @@
       "id": "venue:fox-cabaret",
       "name": "Fox Cabaret",
       "type": "venue",
-      "url": "https://www.foxcabaret.com/calendar",
+      "url": "https://www.foxcabaret.com/",
       "neighborhood": "Mount Pleasant",
       "last_scouted_at": null
     },
@@ -562,14 +562,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "venue:the-orpheum",
-      "name": "The Orpheum",
-      "type": "venue",
-      "url": "https://vancouvercivictheatres.com/events",
-      "neighborhood": "Downtown",
-      "last_scouted_at": null
-    },
-    {
       "id": "venue:vandusen-botanical-garden",
       "name": "VanDusen Botanical Garden",
       "type": "venue",
@@ -589,7 +581,7 @@
       "id": "venue:guilt-company",
       "name": "Guilt & Company",
       "type": "venue",
-      "url": "https://www.guiltandcompany.com/live-music",
+      "url": "https://www.guiltandcompany.com/",
       "neighborhood": "Gastown",
       "last_scouted_at": null
     },
@@ -685,7 +677,7 @@
       "id": "venue:the-sylvia-hotel-lounge",
       "name": "The Sylvia Hotel Lounge",
       "type": "venue",
-      "url": "https://sylviahotel.com/live-music/",
+      "url": "https://sylviahotel.com/",
       "neighborhood": "West End",
       "last_scouted_at": null
     },
@@ -717,7 +709,7 @@
       "id": "venue:the-main",
       "name": "The Main",
       "type": "venue",
-      "url": "https://themainonmain.com/events",
+      "url": "https://themainonmain.com/",
       "neighborhood": "Mount Pleasant",
       "last_scouted_at": null
     },
@@ -741,7 +733,7 @@
       "id": "venue:firehall-arts-centre",
       "name": "Firehall Arts Centre",
       "type": "venue",
-      "url": "https://www.firehallartscentre.ca/on-stage/",
+      "url": "https://www.firehallartscentre.ca/whats-on/",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "last_scouted_at": null
     },
@@ -774,14 +766,6 @@
       "name": "Daily Hive Vancouver",
       "type": "aggregator",
       "url": "https://dailyhive.com/vancouver/events",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:miss604-rebecca-bollwitt",
-      "name": "Miss604 (Rebecca Bollwitt)",
-      "type": "aggregator",
-      "url": "https://miss604.com/category/events",
       "category": "general",
       "last_scouted_at": null
     },
@@ -886,14 +870,6 @@
       "name": "Granville Island Cultural District",
       "type": "aggregator",
       "url": "https://granvilleisland.com/events",
-      "category": "general",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:contemporary-art-gallery-cag",
-      "name": "Contemporary Art Gallery (CAG)",
-      "type": "aggregator",
-      "url": "https://www.contemporaryartgallery.ca/exhibitions/",
       "category": "general",
       "last_scouted_at": null
     },
@@ -1072,13 +1048,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "festival:bc-culture-days",
-      "name": "BC Culture Days",
-      "type": "festival",
-      "url": "https://culturedays.ca/en/bc",
-      "last_scouted_at": null
-    },
-    {
       "id": "festival:vancouver-writers-fest",
       "name": "Vancouver Writers Fest",
       "type": "festival",
@@ -1112,7 +1081,7 @@
       "id": "venue:lynn-canyon-ecology-centre",
       "name": "Lynn Canyon Ecology Centre",
       "type": "venue",
-      "url": "https://ecologycentre.ca/programs/",
+      "url": "https://ecologycentre.ca/",
       "neighborhood": "Lynn Valley",
       "last_scouted_at": null
     },
@@ -1152,7 +1121,7 @@
       "id": "venue:dublin-calling",
       "name": "Dublin Calling",
       "type": "venue",
-      "url": "https://www.dublincalling.com/events",
+      "url": "https://www.dublincalling.com/",
       "neighborhood": "Granville Entertainment District",
       "last_scouted_at": null
     },
@@ -1160,7 +1129,7 @@
       "id": "venue:high-score-lounge",
       "name": "High Score Lounge",
       "type": "venue",
-      "url": "https://www.highscorelounge.ca/event-calendar",
+      "url": "https://www.highscorelounge.ca/events",
       "neighborhood": "Gastown / Victory Square",
       "last_scouted_at": null
     },
@@ -1168,7 +1137,7 @@
       "id": "venue:honeybee-centre",
       "name": "Honeybee Centre",
       "type": "venue",
-      "url": "https://www.honeybeecentre.com/courses-and-workshops/",
+      "url": "https://www.honeybeecentre.com/",
       "neighborhood": "Cloverdale",
       "last_scouted_at": null
     },
@@ -1208,7 +1177,7 @@
       "id": "venue:smugglers-trail-caskworks",
       "name": "Smugglers Trail Caskworks",
       "type": "venue",
-      "url": "https://www.smugglerstrailcask.com/events",
+      "url": "https://smugglerstrailcask.com/",
       "neighborhood": "Walnut Grove / Port Kells",
       "last_scouted_at": null
     },
@@ -1256,7 +1225,7 @@
       "id": "venue:west-coast-gardens",
       "name": "West Coast Gardens",
       "type": "venue",
-      "url": "https://www.westcoastgardens.ca/pages/events",
+      "url": "https://www.westcoastgardens.ca/",
       "neighborhood": "South Surrey",
       "last_scouted_at": null
     },
@@ -1264,7 +1233,7 @@
       "id": "venue:whalley-legion-rcl-branch-229",
       "name": "Whalley Legion (RCL Branch 229)",
       "type": "venue",
-      "url": "https://whalleylegion.org/news-%26-calendar",
+      "url": "https://whalleylegion.org/",
       "neighborhood": "Whalley / City Centre, Surrey",
       "last_scouted_at": null
     },
@@ -1272,7 +1241,7 @@
       "id": "venue:cloverdale-legion-branch-6",
       "name": "Cloverdale Legion Branch 6",
       "type": "venue",
-      "url": "https://cloverdalelegion.ca/music-entertainment/",
+      "url": "https://cloverdalelegion.ca/",
       "neighborhood": "Cloverdale, Surrey",
       "last_scouted_at": null
     },
@@ -1412,7 +1381,7 @@
       "id": "discovery:langley-bez-arts-hub",
       "name": "Bez Arts Hub",
       "type": "venue",
-      "url": "https://www.bezartshub.com/events",
+      "url": "https://www.bezartshub.com/",
       "neighborhood": "Langley",
       "city": "Langley",
       "region": "Langley",
@@ -1492,7 +1461,7 @@
       "id": "discovery:langley-locality-brewing",
       "name": "Locality Brewing",
       "type": "venue",
-      "url": "https://localitybrewing.ca/pages/events",
+      "url": "https://www.localitybrewing.ca/events",
       "neighborhood": "Langley",
       "city": "Langley",
       "region": "Langley",
@@ -1512,7 +1481,7 @@
       "id": "discovery:langley-festina-lente-estate-winery",
       "name": "Festina Lente Estate Winery",
       "type": "venue",
-      "url": "https://festinalente.ca/pages/events",
+      "url": "https://www.festinalente.ca/",
       "neighborhood": "Langley",
       "city": "Langley",
       "region": "Langley",
@@ -1602,7 +1571,7 @@
       "id": "discovery:langley-downtown-langley-bia",
       "name": "Downtown Langley BIA",
       "type": "discovery",
-      "url": "https://www.downtownlangley.com/events",
+      "url": "https://www.downtownlangley.com/",
       "neighborhood": "Langley",
       "city": "Langley",
       "region": "Langley",
@@ -1659,16 +1628,6 @@
       "last_scouted_at": null
     },
     {
-      "id": "discovery:burnaby-burnaby-art-gallery",
-      "name": "Burnaby Art Gallery",
-      "type": "venue",
-      "url": "https://www.burnabyartgallery.ca/350/Exhibitions-Events",
-      "neighborhood": "Burnaby",
-      "city": "Burnaby",
-      "region": "Burnaby",
-      "last_scouted_at": null
-    },
-    {
       "id": "discovery:burnaby-nikkei-national-museum-cultural-centre",
       "name": "Nikkei National Museum & Cultural Centre",
       "type": "venue",
@@ -1702,17 +1661,7 @@
       "id": "discovery:burnaby-gibson-art-museum-sfu",
       "name": "Gibson Art Museum (SFU)",
       "type": "venue",
-      "url": "https://gibson.sfu.ca/events/",
-      "neighborhood": "Burnaby",
-      "city": "Burnaby",
-      "region": "Burnaby",
-      "last_scouted_at": null
-    },
-    {
-      "id": "discovery:burnaby-sfu-trottier-observatory-starry-nights",
-      "name": "SFU Trottier Observatory (Starry Nights)",
-      "type": "venue",
-      "url": "https://www.sfu.ca/science/community/trottier-observatory.html",
+      "url": "https://gibson.sfu.ca/whats-on",
       "neighborhood": "Burnaby",
       "city": "Burnaby",
       "region": "Burnaby",
@@ -1732,7 +1681,7 @@
       "id": "discovery:burnaby-scandinavian-community-centre",
       "name": "Scandinavian Community Centre",
       "type": "venue",
-      "url": "https://scandinaviancentre.org/events/",
+      "url": "https://scancentre.org/",
       "neighborhood": "Burnaby",
       "city": "Burnaby",
       "region": "Burnaby",
@@ -1752,7 +1701,7 @@
       "id": "discovery:burnaby-dageraad-brewing",
       "name": "Dageraad Brewing",
       "type": "venue",
-      "url": "https://dageraadbrewing.com/events/",
+      "url": "https://dageraadbrewing.com/",
       "neighborhood": "Burnaby",
       "city": "Burnaby",
       "region": "Burnaby",
@@ -1942,7 +1891,7 @@
       "id": "discovery:new-west-amelia-douglas-gallery",
       "name": "Amelia Douglas Gallery",
       "type": "venue",
-      "url": "https://www.douglascollege.ca/community-visitors/arts-events/amelia-douglas-gallery",
+      "url": "https://www.douglascollege.ca/",
       "neighborhood": "New Westminster",
       "city": "New Westminster",
       "region": "New West",
@@ -1952,7 +1901,7 @@
       "id": "discovery:new-west-arts-new-west",
       "name": "Arts New West",
       "type": "venue",
-      "url": "https://artsnewwest.ca/events/",
+      "url": "https://artsnewwest.ca/whats-on/",
       "neighborhood": "New Westminster",
       "city": "New Westminster",
       "region": "New West",
@@ -1962,7 +1911,7 @@
       "id": "discovery:new-west-fraser-river-discovery-centre",
       "name": "Fraser River Discovery Centre",
       "type": "venue",
-      "url": "https://fraserriverdiscovery.org/programs-events/",
+      "url": "https://fraserriverdiscovery.org/events/",
       "neighborhood": "New Westminster",
       "city": "New Westminster",
       "region": "New West",
@@ -2062,7 +2011,7 @@
       "id": "discovery:new-west-georgie-s-local-kitchen-bar",
       "name": "Georgie's Local Kitchen & Bar",
       "type": "venue",
-      "url": "https://georgieslocal.ca/events/",
+      "url": "https://georgieslocal.ca/",
       "neighborhood": "New Westminster",
       "city": "New Westminster",
       "region": "New West",
@@ -2082,7 +2031,7 @@
       "id": "discovery:new-west-new-westminster-salmonbellies",
       "name": "New Westminster Salmonbellies",
       "type": "discovery",
-      "url": "https://www.salmonbellies.com/schedule",
+      "url": "https://www.salmonbellies.com/",
       "neighborhood": "New Westminster",
       "city": "New Westminster",
       "region": "New West",
@@ -2112,7 +2061,7 @@
       "id": "discovery:new-west-city-of-new-westminster-calendar",
       "name": "City of New Westminster Calendar",
       "type": "discovery",
-      "url": "https://www.newwestcity.ca/calendar",
+      "url": "https://www.newwestcity.ca/community-culture/event-calendar",
       "neighborhood": "New Westminster",
       "city": "New Westminster",
       "region": "New West",
@@ -2162,7 +2111,7 @@
       "id": "discovery:richmond-richmond-art-gallery",
       "name": "Richmond Art Gallery",
       "type": "venue",
-      "url": "https://www.richmondartgallery.org/events",
+      "url": "https://www.richmondartgallery.org/",
       "neighborhood": "Richmond",
       "city": "Richmond",
       "region": "Richmond",
@@ -2182,7 +2131,7 @@
       "id": "discovery:richmond-lipont-place",
       "name": "Lipont Place",
       "type": "venue",
-      "url": "https://lipontplace.com/events/",
+      "url": "https://lipontplace.com/",
       "neighborhood": "Richmond",
       "city": "Richmond",
       "region": "Richmond",
@@ -2222,7 +2171,7 @@
       "id": "discovery:richmond-richmond-orchestra-chorus-association",
       "name": "Richmond Orchestra & Chorus Association",
       "type": "venue",
-      "url": "https://www.roca.ca/concerts/",
+      "url": "https://www.roca.ca/",
       "neighborhood": "Richmond",
       "city": "Richmond",
       "region": "Richmond",
@@ -2252,7 +2201,7 @@
       "id": "discovery:richmond-britannia-brewing-co",
       "name": "Britannia Brewing Co.",
       "type": "venue",
-      "url": "https://bbco.ca/pages/events",
+      "url": "https://www.bbco.ca/",
       "neighborhood": "Richmond",
       "city": "Richmond",
       "region": "Richmond",
@@ -2292,7 +2241,7 @@
       "id": "discovery:richmond-country-vines-winery",
       "name": "Country Vines Winery",
       "type": "venue",
-      "url": "https://countryvines.ca/pages/events",
+      "url": "https://www.countryvines.ca/events",
       "neighborhood": "Richmond",
       "city": "Richmond",
       "region": "Richmond",
@@ -2302,7 +2251,7 @@
       "id": "discovery:richmond-richmond-country-farms",
       "name": "Richmond Country Farms",
       "type": "discovery",
-      "url": "https://www.richmondcountryfarms.com/events/",
+      "url": "https://richmondcountryfarms.com/",
       "neighborhood": "Richmond",
       "city": "Richmond",
       "region": "Richmond",
@@ -2352,7 +2301,7 @@
       "id": "discovery:richmond-city-of-richmond-events",
       "name": "City of Richmond Events",
       "type": "discovery",
-      "url": "https://www.richmond.ca/parks-recreation/about/events.htm",
+      "url": "https://www.richmond.ca/events/",
       "neighborhood": "Richmond",
       "city": "Richmond",
       "region": "Richmond",
@@ -3796,6 +3745,1936 @@
       "neighborhood": "Pitt Meadows",
       "city": "Pitt Meadows",
       "region": "Pitt Meadows",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-vancouver-rise-fc-swangard-stadium",
+      "name": "Vancouver Rise FC (Swangard Stadium)",
+      "type": "discovery",
+      "url": "https://www.vanrisefc.com/schedule",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-velodrome-club-harry-jerome-sports-centre",
+      "name": "Burnaby Velodrome Club (Harry Jerome Sports Centre)",
+      "type": "discovery",
+      "url": "https://www.burnabyvelodrome.ca/events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-north-burnaby-legion-branch-148",
+      "name": "North Burnaby Legion Branch 148",
+      "type": "discovery",
+      "url": "https://rcl148.ca/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-bcit-student-association-bcitsa",
+      "name": "BCIT Student Association (BCITSA)",
+      "type": "discovery",
+      "url": "https://www.bcitsa.ca/events/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-the-city-of-lougheed",
+      "name": "The City of Lougheed",
+      "type": "discovery",
+      "url": "https://thecityoflougheed.com/events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-pastime-sports-games-metrotown",
+      "name": "Pastime Sports & Games (Metrotown)",
+      "type": "discovery",
+      "url": "https://pastimesports.ca/pages/events",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-amabilis-singers",
+      "name": "Amabilis Singers",
+      "type": "discovery",
+      "url": "https://amabilissingers.org/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-pacific-spirit-voices",
+      "name": "Pacific Spirit Voices",
+      "type": "discovery",
+      "url": "https://www.pacificspiritvoices.ca/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-north-lawn-bowling-club",
+      "name": "Burnaby North Lawn Bowling Club",
+      "type": "discovery",
+      "url": "https://www.burnabynorthlawnbowling.ca/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:burnaby-burnaby-fc-burnaby-lake-sports-complex",
+      "name": "Burnaby FC (Burnaby Lake Sports Complex)",
+      "type": "discovery",
+      "url": "https://www.burnabyfc.com/",
+      "neighborhood": "Burnaby",
+      "city": "Burnaby",
+      "region": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-new-media-gallery-anvil-centre",
+      "name": "New Media Gallery (Anvil Centre)",
+      "type": "discovery",
+      "url": "https://www.newmediagallery.ca/exhibitions/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-phantom-alley-social-club",
+      "name": "Phantom Alley Social Club",
+      "type": "discovery",
+      "url": "https://phantom-alley.ca/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-sapperton-district-taphouse",
+      "name": "Sapperton District Taphouse",
+      "type": "discovery",
+      "url": "https://www.sappertondistricttaphouse.com/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-new-westminster-district-concert-band",
+      "name": "New Westminster & District Concert Band",
+      "type": "discovery",
+      "url": "https://nwdband.com/events/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-royal-city-youth-ballet",
+      "name": "Royal City Youth Ballet",
+      "type": "discovery",
+      "url": "https://www.royalcityyouthballet.org/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-new-west-pride",
+      "name": "New West Pride",
+      "type": "discovery",
+      "url": "https://www.newwestpride.com/events",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-hyack-festival-association",
+      "name": "Hyack Festival Association",
+      "type": "discovery",
+      "url": "https://www.hyackfestival.com/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-new-west-cultural-crawl",
+      "name": "New West Cultural Crawl",
+      "type": "discovery",
+      "url": "https://newwestculturalcrawl.com/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-new-westminster-lawn-bowling-club",
+      "name": "New Westminster Lawn Bowling Club",
+      "type": "discovery",
+      "url": "https://newwestlawnbowls.com/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-holy-trinity-cathedral-new-westminster",
+      "name": "Holy Trinity Cathedral (New Westminster)",
+      "type": "discovery",
+      "url": "https://www.holytrinitycathedral.ca/events",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:new-westminster-new-westminster-film-society-new-west-film-fest",
+      "name": "New Westminster Film Society (New West Film Fest)",
+      "type": "discovery",
+      "url": "https://www.newwestfilmfest.com/",
+      "neighborhood": "New Westminster",
+      "city": "New Westminster",
+      "region": "New Westminster",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-the-story-cafe",
+      "name": "The Story Cafe",
+      "type": "discovery",
+      "url": "https://thestory.cafe/our-events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-milltown-bar-grill",
+      "name": "Milltown Bar & Grill",
+      "type": "discovery",
+      "url": "https://milltownbar.com/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-good-co-bars-steveston",
+      "name": "Good Co. Bars (Steveston)",
+      "type": "discovery",
+      "url": "https://goodcobars.com/events",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-river-rock-casino-resort",
+      "name": "River Rock Casino Resort",
+      "type": "discovery",
+      "url": "https://riverrock.com/events/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-cinevolution-media-arts-society",
+      "name": "Cinevolution Media Arts Society",
+      "type": "discovery",
+      "url": "https://cinevolutionmedia.com/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-steveston-folk-guild",
+      "name": "Steveston Folk Guild",
+      "type": "discovery",
+      "url": "https://www.stevestonfolk.net/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-anaf-unit-284-steveston-veterans-club",
+      "name": "ANAF Unit 284 (Steveston Veterans Club)",
+      "type": "discovery",
+      "url": "https://anaf284.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-the-richmond-singers",
+      "name": "The Richmond Singers",
+      "type": "discovery",
+      "url": "https://richmondsingers.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-delta-youth-orchestra-rdyo",
+      "name": "Richmond Delta Youth Orchestra (RDYO)",
+      "type": "discovery",
+      "url": "https://www.rdyo.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-community-concert-band",
+      "name": "Richmond Community Concert Band",
+      "type": "discovery",
+      "url": "https://richmondconcertband.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-potters-club",
+      "name": "Richmond Potters' Club",
+      "type": "discovery",
+      "url": "https://www.richmondpottersclub.com/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-steveston-salmon-festival",
+      "name": "Steveston Salmon Festival",
+      "type": "discovery",
+      "url": "https://stevestonsalmonfest.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-kwantlen-polytechnic-university-kpu-richmond",
+      "name": "Kwantlen Polytechnic University (KPU) Richmond",
+      "type": "discovery",
+      "url": "https://www.kpu.ca/events",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:richmond-richmond-lawn-bowling-club",
+      "name": "Richmond Lawn Bowling Club",
+      "type": "discovery",
+      "url": "https://richmondlawnbowling.ca/",
+      "neighborhood": "Richmond",
+      "city": "Richmond",
+      "region": "Richmond",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-vancouver-district-public-library-nvdpl",
+      "name": "North Vancouver District Public Library (NVDPL)",
+      "type": "discovery",
+      "url": "https://www.nvdpl.ca/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-the-shipyards-night-market",
+      "name": "The Shipyards Night Market",
+      "type": "discovery",
+      "url": "https://shipyardsnightmarket.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-shipyards-christmas-market",
+      "name": "Shipyards Christmas Market",
+      "type": "discovery",
+      "url": "https://shipyardschristmasmarket.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-brewhalla-north-vancouver",
+      "name": "Brewhalla North Vancouver",
+      "type": "discovery",
+      "url": "https://brewhalla.ca/festivals/north-vancouver-2026/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-wild-bird-trust-of-bc-maplewood-flats",
+      "name": "Wild Bird Trust of BC (Maplewood Flats)",
+      "type": "discovery",
+      "url": "https://wildbirdtrust.org/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-maplewood-farm",
+      "name": "Maplewood Farm",
+      "type": "discovery",
+      "url": "https://maplewoodfarm.bc.ca/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-edible-garden-project-loutet-farm",
+      "name": "Edible Garden Project (Loutet Farm)",
+      "type": "discovery",
+      "url": "https://ediblegardenproject.com/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-parkgate-society-parkgate-community-centre",
+      "name": "Parkgate Society (Parkgate Community Centre)",
+      "type": "discovery",
+      "url": "https://parkgatesociety.ca/events-calendar/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-shore-neighbourhood-house",
+      "name": "North Shore Neighbourhood House",
+      "type": "discovery",
+      "url": "https://www.nsnh.bc.ca/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-silver-harbour-seniors-activity-centre",
+      "name": "Silver Harbour Seniors' Activity Centre",
+      "type": "discovery",
+      "url": "https://silverharbourcentre.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-lynn-valley-legion-branch-114",
+      "name": "Lynn Valley Legion (Branch 114)",
+      "type": "discovery",
+      "url": "https://lynnvalleylegion114.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-lynn-valley-village",
+      "name": "Lynn Valley Village",
+      "type": "discovery",
+      "url": "https://lynnvalleyvillage.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-black-kettle-brewing-company",
+      "name": "Black Kettle Brewing Company",
+      "type": "discovery",
+      "url": "https://www.blackkettlebrewing.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-seymour-s-pub",
+      "name": "Seymour's Pub",
+      "type": "discovery",
+      "url": "https://www.seymourspub.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-the-gull-bar-kitchen",
+      "name": "The Gull Bar & Kitchen",
+      "type": "discovery",
+      "url": "https://www.thegull.ca/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-lions-gate-sinfonia",
+      "name": "Lions Gate Sinfonia",
+      "type": "discovery",
+      "url": "https://www.lionsgatesinfonia.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-shore-celtic-ensemble",
+      "name": "North Shore Celtic Ensemble",
+      "type": "discovery",
+      "url": "https://www.celticensemble.ca/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-deep-cove-stage-society",
+      "name": "Deep Cove Stage Society",
+      "type": "discovery",
+      "url": "https://deepcovestage.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-deep-cove-music",
+      "name": "Deep Cove Music",
+      "type": "discovery",
+      "url": "https://www.deepcovemusic.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-shore-artists-guild",
+      "name": "North Shore Artists' Guild",
+      "type": "discovery",
+      "url": "https://nsartists.ca/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-shore-photographic-society",
+      "name": "North Shore Photographic Society",
+      "type": "discovery",
+      "url": "https://nsps.ca/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-shore-writers-association",
+      "name": "North Shore Writers' Association",
+      "type": "discovery",
+      "url": "https://nswriters.org/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-highlands-united-church",
+      "name": "Highlands United Church",
+      "type": "discovery",
+      "url": "https://www.highlandsunited.org/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-st-andrew-s-united-church-north-vancouver",
+      "name": "St. Andrew's United Church North Vancouver",
+      "type": "discovery",
+      "url": "https://www.st-andrews-united.ca/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-mount-seymour-united-church",
+      "name": "Mount Seymour United Church",
+      "type": "discovery",
+      "url": "https://mtseymourunited.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-vancouver-wolf-pack-pjhl",
+      "name": "North Vancouver Wolf Pack (PJHL)",
+      "type": "discovery",
+      "url": "https://www.northvanwolfpack.com/stats/schedule",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-vancouver-lawn-bowling-club",
+      "name": "North Vancouver Lawn Bowling Club",
+      "type": "discovery",
+      "url": "https://www.nvlbc.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-shore-table-tennis-club",
+      "name": "North Shore Table Tennis Club",
+      "type": "discovery",
+      "url": "https://nsttc.ca/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-north-shore-mountain-bike-association-nsmba",
+      "name": "North Shore Mountain Bike Association (NSMBA)",
+      "type": "discovery",
+      "url": "https://nsmba.ca/events/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:north-vancouver-the-hive-climbing-north-shore",
+      "name": "The Hive Climbing North Shore",
+      "type": "discovery",
+      "url": "https://www.hiveclimbing.com/",
+      "neighborhood": "North Vancouver",
+      "city": "North Vancouver",
+      "region": "North Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-the-squarerigger-pub",
+      "name": "The Squarerigger Pub",
+      "type": "discovery",
+      "url": "https://thesquareriggerpub.com/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-enhance-west-van",
+      "name": "Enhance West Van",
+      "type": "discovery",
+      "url": "https://www.enhancewestvan.ca/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-ambleside-dundarave-bia-adbia",
+      "name": "Ambleside & Dundarave BIA (ADBIA)",
+      "type": "discovery",
+      "url": "https://adbia.ca/events/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-park-royal-shopping-centre",
+      "name": "Park Royal Shopping Centre",
+      "type": "discovery",
+      "url": "https://shopparkroyal.com/offers-events/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-ambleside-orchestra",
+      "name": "Ambleside Orchestra",
+      "type": "discovery",
+      "url": "https://amblesideorchestra.ca/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-west-vancouver-concert-band",
+      "name": "West Vancouver Concert Band",
+      "type": "discovery",
+      "url": "https://westvanband.ca/concerts/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-west-vancouver-youth-band",
+      "name": "West Vancouver Youth Band",
+      "type": "discovery",
+      "url": "https://www.wvyb.ca/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-west-vancouver-united-church",
+      "name": "West Vancouver United Church",
+      "type": "discovery",
+      "url": "https://wvuc.bc.ca/events/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-st-francis-in-the-wood-anglican-church",
+      "name": "St. Francis-in-the-Wood Anglican Church",
+      "type": "discovery",
+      "url": "https://www.stfrancisinthewood.ca/events",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-lighthouse-park-preservation-society",
+      "name": "Lighthouse Park Preservation Society",
+      "type": "discovery",
+      "url": "https://www.lpps.ca/events/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-west-vancouver-streamkeeper-society",
+      "name": "West Vancouver Streamkeeper Society",
+      "type": "discovery",
+      "url": "https://www.westvancouverstreamkeepers.ca/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-west-vancouver-field-hockey-club",
+      "name": "West Vancouver Field Hockey Club",
+      "type": "discovery",
+      "url": "https://www.wvfhc.com/",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:west-vancouver-cypress-mountain",
+      "name": "Cypress Mountain",
+      "type": "discovery",
+      "url": "https://www.cypressmountain.com/events",
+      "neighborhood": "West Vancouver",
+      "city": "West Vancouver",
+      "region": "West Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:bowen-island-bowfest-bowen-island-festival",
+      "name": "Bowfest (Bowen Island Festival)",
+      "type": "discovery",
+      "url": "https://www.bowfest.org/",
+      "neighborhood": "Bowen Island",
+      "city": "Bowen Island",
+      "region": "Bowen Island",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:bowen-island-bowen-island-golf-club",
+      "name": "Bowen Island Golf Club",
+      "type": "discovery",
+      "url": "https://www.bowengolf.com/events",
+      "neighborhood": "Bowen Island",
+      "city": "Bowen Island",
+      "region": "Bowen Island",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-visit-coquitlam-hello-coquitlam",
+      "name": "Visit Coquitlam (Hello Coquitlam)",
+      "type": "discovery",
+      "url": "https://www.hellocoquitlam.ca/events/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-maverick-s-social-room",
+      "name": "Maverick's Social Room",
+      "type": "discovery",
+      "url": "https://maverickssocialroom.com/events-cal/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-woody-s-pub-on-brunette",
+      "name": "Woody's Pub on Brunette",
+      "type": "discovery",
+      "url": "https://www.woodyspub.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-great-canadian-casino-vancouver",
+      "name": "Great Canadian Casino Vancouver",
+      "type": "discovery",
+      "url": "https://gcvancouver.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-festival-du-bois",
+      "name": "Festival du Bois",
+      "type": "discovery",
+      "url": "https://www.festivaldubois.ca/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-soci-t-francophone-de-maillardville",
+      "name": "Société francophone de Maillardville",
+      "type": "discovery",
+      "url": "https://maillardville.com/events-page/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-scotfestbc-bc-highland-games",
+      "name": "ScotFestBC (BC Highland Games)",
+      "type": "discovery",
+      "url": "https://scotfestbc.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-austin-heights-bia",
+      "name": "Austin Heights BIA",
+      "type": "discovery",
+      "url": "https://austinheights.ca/events/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coquitlam-centre",
+      "name": "Coquitlam Centre",
+      "type": "discovery",
+      "url": "https://coquitlamcentre.com/events/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-climb-base5-coquitlam",
+      "name": "Climb Base5 Coquitlam",
+      "type": "discovery",
+      "url": "https://climbbase5.com/events/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-activate-games-coquitlam",
+      "name": "Activate Games Coquitlam",
+      "type": "discovery",
+      "url": "https://playactivate.com/location/coquitlam",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coastal-sound-music-academy",
+      "name": "Coastal Sound Music Academy",
+      "type": "discovery",
+      "url": "https://www.coastalsoundmusic.com/concerts-events/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coquitlam-youth-orchestra",
+      "name": "Coquitlam Youth Orchestra",
+      "type": "discovery",
+      "url": "https://coquitlamyouthorchestra.ca/concerts-schedule/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-pacific-symphonic-wind-ensemble",
+      "name": "Pacific Symphonic Wind Ensemble",
+      "type": "discovery",
+      "url": "https://www.pswe.ca/concerts",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coquitlam-chorale",
+      "name": "Coquitlam Chorale",
+      "type": "discovery",
+      "url": "https://www.coquitlamchorale.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coquitlam-celebration-choir",
+      "name": "Coquitlam Celebration Choir",
+      "type": "discovery",
+      "url": "https://www.coquitlamcelebrationchoir.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-choral-connections",
+      "name": "Choral Connections",
+      "type": "discovery",
+      "url": "https://www.choralconnections.ca/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-lindbjerg-academy-of-performing-arts",
+      "name": "Lindbjerg Academy of Performing Arts",
+      "type": "discovery",
+      "url": "https://www.lindbjergacademy.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-burke-mountain-naturalists",
+      "name": "Burke Mountain Naturalists",
+      "type": "discovery",
+      "url": "https://www.burkemountainnaturalists.ca/events/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-hoy-scott-watershed-society",
+      "name": "Hoy-Scott Watershed Society",
+      "type": "discovery",
+      "url": "https://www.hoyscottcreeks.org/calendar",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coquitlam-lawn-bowling-club",
+      "name": "Coquitlam Lawn Bowling Club",
+      "type": "discovery",
+      "url": "https://www.coquitlamlawnbowls.club/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-dogwood-pavilion-seniors-society",
+      "name": "Dogwood Pavilion Seniors' Society",
+      "type": "discovery",
+      "url": "https://dogwoodseniors50plus.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-glen-pine-50plus-society",
+      "name": "Glen Pine 50Plus Society",
+      "type": "discovery",
+      "url": "https://glenpine50plus.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-como-lake-united-church",
+      "name": "Como Lake United Church",
+      "type": "discovery",
+      "url": "https://www.comolakeunited.ca/events",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-st-laurence-anglican-church",
+      "name": "St. Laurence Anglican Church",
+      "type": "discovery",
+      "url": "https://www.saintlaurence.ca/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coquitlam-alliance-church",
+      "name": "Coquitlam Alliance Church",
+      "type": "discovery",
+      "url": "https://www.cachurch.ca/events",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-tri-cities-pride-society",
+      "name": "Tri-Cities Pride Society",
+      "type": "discovery",
+      "url": "https://tricitiespride.ca/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-kwikwetlem-first-nation",
+      "name": "Kwikwetlem First Nation",
+      "type": "discovery",
+      "url": "https://www.kwikwetlem.com/",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:coquitlam-coquitlam-tennis-club",
+      "name": "Coquitlam Tennis Club",
+      "type": "discovery",
+      "url": "https://www.coquitlamtennis.org/default.php",
+      "neighborhood": "Coquitlam",
+      "city": "Coquitlam",
+      "region": "Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-st-james-s-well-pub",
+      "name": "St. James's Well Pub",
+      "type": "discovery",
+      "url": "https://stjameswell.ca/events/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-site-b-community-centre",
+      "name": "Site B Community Centre",
+      "type": "discovery",
+      "url": "https://siteb.life/events/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-port-moody-curling-club",
+      "name": "Port Moody Curling Club",
+      "type": "discovery",
+      "url": "https://portmoodycurling.ca/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-golden-spike-days-festival",
+      "name": "Golden Spike Days Festival",
+      "type": "discovery",
+      "url": "https://www.goldenspike.ca/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-port-moody-ribfest",
+      "name": "Port Moody RibFest",
+      "type": "discovery",
+      "url": "https://portmoodyribfest.ca/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-port-moody-ecological-society-noons-creek-hatchery",
+      "name": "Port Moody Ecological Society / Noons Creek Hatchery",
+      "type": "discovery",
+      "url": "https://www.noonscreek.org/events/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-rocky-point-kayak",
+      "name": "Rocky Point Kayak",
+      "type": "discovery",
+      "url": "https://www.rockypointkayak.com/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-inlet-united-church",
+      "name": "Inlet United Church",
+      "type": "discovery",
+      "url": "https://www.inletunited.ca/events",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-moody-city-of-port-moody",
+      "name": "City of Port Moody",
+      "type": "discovery",
+      "url": "https://www.portmoody.ca/",
+      "neighborhood": "Port Moody",
+      "city": "Port Moody",
+      "region": "Port Moody",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-city-of-port-coquitlam-events",
+      "name": "City of Port Coquitlam — Events",
+      "type": "discovery",
+      "url": "https://www.portcoquitlam.ca/explore-poco/events",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-leigh-square-community-arts-village",
+      "name": "Leigh Square Community Arts Village",
+      "type": "discovery",
+      "url": "https://www.portcoquitlam.ca/explore-poco/arts-culture",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-downtown-poco-bia",
+      "name": "Downtown PoCo BIA",
+      "type": "discovery",
+      "url": "https://www.downtownpocobia.com/events",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-quest-central-gaming-lounge",
+      "name": "Quest Central Gaming Lounge",
+      "type": "discovery",
+      "url": "https://www.questcentral.ca/events",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-poco-bowl",
+      "name": "PoCo Bowl",
+      "type": "discovery",
+      "url": "https://pocobowl.com/",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-cat-fiddle-sports-bar-pub",
+      "name": "Cat & Fiddle Sports Bar & Pub",
+      "type": "discovery",
+      "url": "https://catandfiddlepub.ca/events/",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-art-focus-artists-association",
+      "name": "Art Focus Artists' Association",
+      "type": "discovery",
+      "url": "https://artfocusartistsassociation.com/",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-hyde-creek-watershed-society",
+      "name": "Hyde Creek Watershed Society",
+      "type": "discovery",
+      "url": "https://www.hydecreek.org/",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:port-coquitlam-trinity-united-church-port-coquitlam",
+      "name": "Trinity United Church Port Coquitlam",
+      "type": "discovery",
+      "url": "https://www.ucpoco.ca/events",
+      "neighborhood": "Port Coquitlam",
+      "city": "Port Coquitlam",
+      "region": "Port Coquitlam",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-switchback-brewing-co",
+      "name": "Switchback Brewing Co.",
+      "type": "discovery",
+      "url": "https://www.switchbackbrewco.com/events",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-ridge-brewing-co",
+      "name": "Ridge Brewing Co.",
+      "type": "discovery",
+      "url": "https://www.ridgebrewing.com/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-the-reach-neighbourhood-pub-grill",
+      "name": "The Reach Neighbourhood Pub & Grill",
+      "type": "discovery",
+      "url": "https://thereachpub.ca/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-chances-maple-ridge",
+      "name": "Chances Maple Ridge",
+      "type": "discovery",
+      "url": "https://chancesmapleridge.com/events/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-anavets-unit-379-maple-ridge",
+      "name": "ANAVETS Unit 379 Maple Ridge",
+      "type": "discovery",
+      "url": "https://anavets379.ca/events/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-golden-ears-winter-club",
+      "name": "Golden Ears Winter Club",
+      "type": "discovery",
+      "url": "https://gewclub.ca/bonspiels-and-events",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-maple-ridge-lawn-bowling-club",
+      "name": "Maple Ridge Lawn Bowling Club",
+      "type": "discovery",
+      "url": "https://www.mapleridgelbca.com/calendar",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-ridge-meadows-seniors-society-rmss",
+      "name": "Ridge Meadows Seniors Society (RMSS)",
+      "type": "discovery",
+      "url": "https://rmssseniors.org/programming/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-maple-ridge-pitt-meadows-country-fest",
+      "name": "Maple Ridge-Pitt Meadows Country Fest",
+      "type": "discovery",
+      "url": "https://www.mrpmcountryfest.com/schedule",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-laity-pumpkin-patch",
+      "name": "Laity Pumpkin Patch",
+      "type": "discovery",
+      "url": "https://laitypumpkinpatch.com/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-golden-ears-cheesecrafters",
+      "name": "Golden Ears Cheesecrafters",
+      "type": "discovery",
+      "url": "https://cheesecrafters.ca/collections/events",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-keeps-kanaka-creek-watershed-stewardship-centre",
+      "name": "KEEPS (Kanaka Creek Watershed Stewardship Centre)",
+      "type": "discovery",
+      "url": "https://keeps.org/upcoming-events/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-alouette-river-management-society-arms",
+      "name": "Alouette River Management Society (ARMS)",
+      "type": "discovery",
+      "url": "https://alouetteriver.org/events",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-garibaldi-art-club",
+      "name": "Garibaldi Art Club",
+      "type": "discovery",
+      "url": "https://www.garibaldiartclub.com/exhibitions.html",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-maple-ridge-choral-society",
+      "name": "Maple Ridge Choral Society",
+      "type": "discovery",
+      "url": "https://mapleridgechoralsociety.ca/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-maple-ridge-concert-band",
+      "name": "Maple Ridge Concert Band",
+      "type": "discovery",
+      "url": "https://www.mrcb.ca/events",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-maple-ridge-pitt-meadows-art-studio-tour",
+      "name": "Maple Ridge Pitt Meadows Art Studio Tour",
+      "type": "discovery",
+      "url": "https://www.artstudiotour.ca/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-arts-on-maple-ridge-pitt-meadows-arts-council",
+      "name": "Arts On (Maple Ridge Pitt Meadows Arts Council)",
+      "type": "discovery",
+      "url": "https://arts-on.org/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-ruskin-community-hall",
+      "name": "Ruskin Community Hall",
+      "type": "discovery",
+      "url": "http://ruskinhall.com/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-xw-wenaqw-xwexwilmexw-whonnock-people-society",
+      "name": "Xwéwenaqw Xwexwilmexw (Whonnock People Society)",
+      "type": "discovery",
+      "url": "https://whonnocksociety.ca/events/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-downtown-maple-ridge-bia",
+      "name": "Downtown Maple Ridge BIA",
+      "type": "discovery",
+      "url": "https://www.downtownmapleridge.ca/events-marketing/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-city-of-maple-ridge-festivals-events",
+      "name": "City of Maple Ridge Festivals & Events",
+      "type": "discovery",
+      "url": "https://www.mapleridge.ca/explore-maple-ridge/festivals-events",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-ridge-meadows-home-show",
+      "name": "Ridge Meadows Home Show",
+      "type": "discovery",
+      "url": "https://www.ridgemeadowshomeshow.com/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-planet-ice-maple-ridge",
+      "name": "Planet Ice Maple Ridge",
+      "type": "discovery",
+      "url": "https://planetice.ca/maple-ridge/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:maple-ridge-synergy-games",
+      "name": "Synergy Games",
+      "type": "discovery",
+      "url": "https://synergygames.ca/",
+      "neighborhood": "Maple Ridge",
+      "city": "Maple Ridge",
+      "region": "Maple Ridge",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:pitt-meadows-amsterdam-garden-centre",
+      "name": "Amsterdam Garden Centre",
+      "type": "discovery",
+      "url": "https://amsterdamgardencentre.ca/collections/workshops",
+      "neighborhood": "Pitt Meadows",
+      "city": "Pitt Meadows",
+      "region": "Pitt Meadows",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:pitt-meadows-pitt-meadows-paddling-club",
+      "name": "Pitt Meadows Paddling Club",
+      "type": "discovery",
+      "url": "https://www.pmpc.ca/",
+      "neighborhood": "Pitt Meadows",
+      "city": "Pitt Meadows",
+      "region": "Pitt Meadows",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:pitt-meadows-maple-ridge-pitt-meadows-katzie-lip",
+      "name": "Maple Ridge, Pitt Meadows & Katzie LIP",
+      "type": "discovery",
+      "url": "https://www.ridgemeadowskatzielip.ca/news-events",
+      "neighborhood": "Pitt Meadows",
+      "city": "Pitt Meadows",
+      "region": "Pitt Meadows",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-city-of-delta-happening-in-delta",
+      "name": "City of Delta — Happening in Delta",
+      "type": "discovery",
+      "url": "https://www.delta.ca/community-culture/happening-delta",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-arts-council-of-delta",
+      "name": "Arts Council of Delta",
+      "type": "discovery",
+      "url": "https://www.artscouncildelta.ca/events/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-stageworks-theatre-society",
+      "name": "Delta Stageworks Theatre Society",
+      "type": "discovery",
+      "url": "https://deltastageworks.ca/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-tsawwassen-sun-festival",
+      "name": "Tsawwassen Sun Festival",
+      "type": "discovery",
+      "url": "https://www.sunfestival.ca/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-mckee-seniors-recreation-centre-mckee-society",
+      "name": "McKee Seniors Recreation Centre (McKee Society)",
+      "type": "discovery",
+      "url": "https://www.mckeesociety.com/events",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-watershed-artworks-gallery-society",
+      "name": "Watershed Artworks Gallery & Society",
+      "type": "discovery",
+      "url": "https://www.watershedartworks.ca/events-page",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-barnside-harvest-festival",
+      "name": "Barnside Harvest Festival",
+      "type": "discovery",
+      "url": "https://www.barnsideharvestfest.com/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-dance",
+      "name": "Delta Dance",
+      "type": "discovery",
+      "url": "https://delta.dance/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-kinvillage-community-centre",
+      "name": "KinVillage Community Centre",
+      "type": "discovery",
+      "url": "https://www.kinvillage.org/events",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-tsawwassen-business-improvement-association-bia",
+      "name": "Tsawwassen Business Improvement Association (BIA)",
+      "type": "discovery",
+      "url": "https://tsawwassenbia.com/events/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-choral-society",
+      "name": "Delta Choral Society",
+      "type": "discovery",
+      "url": "https://www.deltachoral.ca/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-the-rose-crown-pub",
+      "name": "The Rose & Crown Pub",
+      "type": "discovery",
+      "url": "https://roseandcrownpub.ca/rose-crown-events/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-tunnel-town-curling-club",
+      "name": "Tunnel Town Curling Club",
+      "type": "discovery",
+      "url": "https://tunneltowncurlingclub.com/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-tsawwassen-springs",
+      "name": "Tsawwassen Springs",
+      "type": "discovery",
+      "url": "https://www.tsawwassensprings.ca/event-proposal-request/events/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-ladner-pioneer-may-days",
+      "name": "Ladner Pioneer May Days",
+      "type": "discovery",
+      "url": "https://www.ladnermaydays.com/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-george-c-reifel-migratory-bird-sanctuary",
+      "name": "George C. Reifel Migratory Bird Sanctuary",
+      "type": "discovery",
+      "url": "https://www.reifelbirdsanctuary.com/programsdesc.html",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-kirkland-house",
+      "name": "Kirkland House",
+      "type": "discovery",
+      "url": "https://kirklandhouse.ca/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-naturalists-society",
+      "name": "Delta Naturalists Society",
+      "type": "discovery",
+      "url": "https://deltanaturalists.org/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-ladner-united-church",
+      "name": "Ladner United Church",
+      "type": "discovery",
+      "url": "https://ladnerunited.org/events/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-the-collective-markets-north-delta-farmers-market",
+      "name": "The Collective Markets (North Delta Farmers' Market)",
+      "type": "discovery",
+      "url": "https://www.thecollectivemarkets.ca/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-pat-quinn-s-restaurant-bar",
+      "name": "Pat Quinn's Restaurant & Bar",
+      "type": "discovery",
+      "url": "https://www.patquinns.com/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-lacrosse-delta-islanders",
+      "name": "Delta Lacrosse / Delta Islanders",
+      "type": "discovery",
+      "url": "https://www.deltalacrosse.ca/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-emma-lea-farms",
+      "name": "Emma Lea Farms",
+      "type": "discovery",
+      "url": "https://emmaleafarms.com/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-westham-island-herb-farm",
+      "name": "Westham Island Herb Farm",
+      "type": "discovery",
+      "url": "https://westhamislandherb.ca/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-delta-music-makers-concert-band",
+      "name": "Delta Music Makers Concert Band",
+      "type": "discovery",
+      "url": "https://www.deltamusicmakers.org/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-ladner-village-market",
+      "name": "Ladner Village Market",
+      "type": "discovery",
+      "url": "https://ladnervillagemarket.com/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:delta-ladner-business-association",
+      "name": "Ladner Business Association",
+      "type": "discovery",
+      "url": "https://ladnerbusiness.com/events/",
+      "neighborhood": "Delta",
+      "city": "Delta",
+      "region": "Delta",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-peninsula-productions",
+      "name": "Peninsula Productions",
+      "type": "discovery",
+      "url": "https://www.peninsulaproductions.org/shows/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-peace-arch-curling-centre",
+      "name": "Peace Arch Curling Centre",
+      "type": "discovery",
+      "url": "https://peacearchcurling.com/events-%26-bonspiels",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-white-rock-bia",
+      "name": "White Rock BIA",
+      "type": "discovery",
+      "url": "https://whiterockbia.com/events/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-white-rock-bistro",
+      "name": "White Rock Bistro",
+      "type": "discovery",
+      "url": "https://whiterockbistro.ca/event.html",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-cre-art-studio",
+      "name": "Creō Art Studio",
+      "type": "discovery",
+      "url": "https://www.creoartstudio.ca/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-white-rock-lawn-bowling-club",
+      "name": "White Rock Lawn Bowling Club",
+      "type": "discovery",
+      "url": "https://www.whiterocklawnbowlingclub.com/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-washington-avenue-grill",
+      "name": "Washington Avenue Grill",
+      "type": "discovery",
+      "url": "https://washingtonavenuegrill.com/events/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-south-rock-social-justice-film-society",
+      "name": "South Rock Social Justice Film Society",
+      "type": "discovery",
+      "url": "https://southrocksocialjustice.ca/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-the-ocean-beach",
+      "name": "The Ocean Beach",
+      "type": "discovery",
+      "url": "https://www.oceanbeachwr.ca/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-st-john-s-presbyterian-church-white-rock",
+      "name": "St. John's Presbyterian Church White Rock",
+      "type": "discovery",
+      "url": "https://www.saint-johns.ca/events/calendar",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:white-rock-white-rock-pride-society",
+      "name": "White Rock Pride Society",
+      "type": "discovery",
+      "url": "https://whiterockpride.com/events/",
+      "neighborhood": "White Rock",
+      "city": "White Rock",
+      "region": "White Rock",
       "last_scouted_at": null
     }
   ],

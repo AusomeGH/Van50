@@ -58,7 +58,7 @@
     "number": 7,
     "group": "A. Municipal, Tourism & Cultural Calendars",
     "name": "Surrey Nature Centre Programs",
-    "url": "https://www.surrey.ca/parks-recreation/surrey-nature-centre",
+    "url": "https://www.surrey.ca/news-events/events",
     "description": "Guided forest walks, owl prowls, and nature events",
     "city": "Surrey"
   },
@@ -248,7 +248,7 @@
     "number": 33,
     "group": "E. Local Journalism & Regional Curators",
     "name": "Peace Arch News Events Calendar",
-    "url": "https://www.peacearchnews.com/local-events",
+    "url": "https://www.peacearchnews.com/",
     "description": "South Surrey, Crescent Beach, and Ocean Park events",
     "city": "Surrey"
   },
@@ -257,7 +257,7 @@
     "number": 34,
     "group": "E. Local Journalism & Regional Curators",
     "name": "Cloverdale Reporter Community Events",
-    "url": "https://www.cloverdalereporter.com/local-events",
+    "url": "https://www.cloverdalereporter.com/",
     "description": "Cloverdale & Clayton community calendar",
     "city": "Surrey"
   },
@@ -338,7 +338,7 @@
     "number": 44,
     "group": "F. Spectator Sports & Recreation Schedules",
     "name": "Fraser Downs Live Racing Calendar",
-    "url": "https://www.greatcanadian.com/destinations/britishcolumbia/elements-surrey/",
+    "url": "https://greatcanadian.com/",
     "description": "Free live harness racing nights in Cloverdale",
     "city": "Surrey"
   },
@@ -347,7 +347,7 @@
     "number": 45,
     "group": "F. Spectator Sports & Recreation Schedules",
     "name": "City of Surrey Drop-In Recreation Schedules",
-    "url": "https://www.surrey.ca/activities-parks-recreation/drop-schedules",
+    "url": "https://www.surrey.ca/news-events/events",
     "description": "Live drop-in public skate, wave pool, gymnasium, and fitness schedules across all 6 town centres",
     "city": "Surrey"
   },
@@ -599,7 +599,7 @@
     "number": 78,
     "group": "H. Annual Surrey Festivals & Seasonal Celebrations",
     "name": "Surrey Fest Downtown (Discover Surrey)",
-    "url": "https://discoversurreybc.com/events/surrey-fest-downtown/",
+    "url": "https://discoversurreybc.com/events/",
     "description": "Discover Surrey guide to Surrey Fest Downtown at Holland Park",
     "city": "Surrey"
   },
