@@ -1996,7 +1996,7 @@
     "updatedAt": "2026-11-21T04:48:26.722Z"
   },
   "rio-theatre-jfl-vancouver-usama-siddiquee-2027-02-23": {
-    "sig": "title mismatch between schedule (\"JFL Vancouver: Usama Siddiquee\") and box office (\"Usama Siddiquee\")::",
+    "sig": "title mismatch between schedule (\"JFL Vancouver: Usama Siddiquee\") and box office (\"Just for Laughs - VANCOUVER: Usama Siddiquee\")::",
     "decision": {
       "clean_title": "JFL Vancouver: Usama Siddiquee",
       "artist": "Usama Siddiquee",
@@ -2008,9 +2008,9 @@
       "doors_time": null,
       "is_sold_out": true,
       "category": "shows",
-      "arbitration_reasoning": "Adopted the full festival-branded title 'JFL Vancouver: Usama Siddiquee' from Seed and Schedule layers while attributing the performer from the Box Office layer, which verified the event is completely sold out across all single-visit tiers."
+      "arbitration_reasoning": "Adopted the concise canonical title 'JFL Vancouver: Usama Siddiquee' agreed upon by Seed, Schedule, and Editorial layers while extracting Usama Siddiquee as the performer and retaining the verified 7:00 PM start time and sold-out status from Box Office."
     },
-    "updatedAt": "2026-11-21T04:48:26.722Z"
+    "updatedAt": "2026-11-28T19:29:55.626Z"
   },
   "celebrities-nightclu-playhouse-pres-sidequest-2026-12-12": {
     "sig": "title mismatch between schedule (\"Playhouse Pres: SIDEQUEST\") and box office (\"Playhouse: Sidequest\")::",
@@ -4119,5 +4119,289 @@
       "arbitration_reasoning": "Resolved date to 2026-11-27 following verified live checkout inventory from Stagehand Box Office, categorized as cinema per editorial analysis of the film screening."
     },
     "updatedAt": "2026-11-25T20:31:18.896Z"
+  },
+  "port-moody-film-soci-never-look-away-2027-11-13": {
+    "sig": "date mismatch between schedule (2027-11-13) and box office (2026-11-13)::",
+    "decision": {
+      "clean_title": "Never Look Away",
+      "artist": "Florian Henckel von Donnersmarck",
+      "lineup": [],
+      "date": "2026-11-13",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-11-13 as the box office specifically verifies Friday, November 13th, which matches the 2026 calendar day of the week rather than Saturday in 2027."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "the-bowen-theatre-strange-advance-arts-on-bowen-2027-02-05": {
+    "sig": "title mismatch between schedule (\"STRANGE ADVANCE — Arts On Bowen\") and box office (\"Strange Advance, Presented by The Arts On Bowen\")::",
+    "decision": {
+      "clean_title": "Strange Advance",
+      "artist": "Strange Advance",
+      "lineup": [
+        "Strange Advance"
+      ],
+      "date": "2027-02-05",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "Extracted the core performer name 'Strange Advance' as the clean title by stripping the presenter credit ('Presented by The Arts On Bowen' / 'Arts On Bowen'), preserved the 7:30 PM start time from the box office layer, and categorized under music."
+    },
+    "updatedAt": "2026-11-27T04:14:41.993Z"
+  },
+  "port-moody-film-soci-what-we-do-in-the-shadows-take-2027-10-30": {
+    "sig": "date mismatch between schedule (2027-10-30) and box office (2026-10-30)::",
+    "decision": {
+      "clean_title": "What We Do in the Shadows (Take 2)",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-10-30",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Resolved date to 2026-10-30 because October 30, 2026 falls on Friday as verified by the box office layer ('Friday October 30th'), whereas October 30, 2027 is a Saturday."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "tinhouse-brewing-tinhouse-paint-night-2026-11-30": {
+    "sig": "title mismatch between schedule (\"Tinhouse Paint Night\") and box office (\"Paint Star Night at Tinhouse Brewing in POCO painting STARRY NIGHT\")::",
+    "decision": {
+      "clean_title": "Paint Star Night: Starry Night",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-30",
+      "start_time": "6:30 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "arts",
+      "arbitration_reasoning": "Adopted the concise title from the Seed and Editorial layers over the verbose Eventbrite title, resolved date and start time from Schedule and Box Office evidence, verified the event is marked sold out with no available tiers, and classified under arts."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "the-amazing-brentwoo-calligraphy-by-donation-2026-12-05": {
+    "sig": "date mismatch between schedule (2026-12-05) and box office (2026-12-06)::",
+    "decision": {
+      "clean_title": "Calligraphy By Donation",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-06",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2026-12-06 based on the live Stagehand Box Office cart layer which verified the active ticketed slot and start time."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "the-amazing-brentwoo-wednesday-date-night-at-bow-st-2026-12-01": {
+    "sig": "date mismatch between schedule (2026-12-01) and box office (2026-12-02)::",
+    "decision": {
+      "clean_title": "Wednesday Date Night at Bow & Stern",
+      "artist": "Greg Neufeld",
+      "lineup": [
+        "Greg Neufeld"
+      ],
+      "date": "2026-12-02",
+      "start_time": "6:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "music",
+      "arbitration_reasoning": "The title and URL explicitly state 'Wednesday Date Night ... Dec 2', which aligns with the Box Office layer's date of 2026-12-02 (a Wednesday) rather than the schedule layer's Tuesday date of 2026-12-01."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "the-amazing-brentwoo-gift-wrap-benefitting-burnaby-2026-12-10": {
+    "sig": "date mismatch between schedule (2026-12-10) and box office (2026-12-11)::",
+    "decision": {
+      "clean_title": "Gift Wrap Benefitting Burnaby Hospital Foundation",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-10",
+      "start_time": "10:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the canonical event date of 2026-12-10 anchored in the event ID, Seed, and Schedule layers while incorporating the 10:00 AM start time from the live Box Office layer."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "port-moody-public-li-english-learners-book-club-2026-12-02": {
+    "sig": "date mismatch between schedule (2026-11-25) and box office (2026-12-02)::",
+    "decision": {
+      "clean_title": "English Learners' Book Club",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-02",
+      "start_time": "2:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the future session date of 2026-12-02 from the event ID and live box office layer over the past date of 2026-11-25, retaining sold-out status as confirmed by the box office tier inventory."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "port-moody-public-li-tutoring-for-kids-2026-12-03": {
+    "sig": "date mismatch between schedule (2026-11-26) and box office (2026-12-03)::",
+    "decision": {
+      "clean_title": "Tutoring for Kids",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-03",
+      "start_time": "4:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-12-03 matching the target event ID and active box office checkout instance, with verified sold-out status from the box office ledger."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "port-moody-public-li-english-practice-small-convers-2026-11-27": {
+    "sig": "date mismatch between schedule (2026-11-27) and box office (2026-12-04)::",
+    "decision": {
+      "clean_title": "English Practice Small Conversation Group",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-11-27",
+      "start_time": "12:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-11-27 matching seed schedule identity while respecting box office availability and adopting editorial taxonomy."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "port-moody-public-li-english-practice-group-beginne-2026-12-01": {
+    "sig": "date mismatch between schedule (2026-11-24) and box office (2026-12-01)::",
+    "decision": {
+      "clean_title": "English Practice Group: Beginners",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-01",
+      "start_time": "11:00 AM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-12-01 matching the event ID and active box office checkout session, as 2026-11-24 represents a past recurrence."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "port-moody-public-li-d-d-for-kids-2026-12-01": {
+    "sig": "date mismatch between schedule (2026-11-24) and box office (2026-12-01)::",
+    "decision": {
+      "clean_title": "D&D For Kids",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-01",
+      "start_time": "5:15 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "social",
+      "arbitration_reasoning": "Adopted the box office layer's 2026-12-01 date matching the active event ID and verified its sold-out status from the live tier inventory, overriding the past 2026-11-24 date."
+    },
+    "updatedAt": "2026-11-27T04:48:36.094Z"
+  },
+  "centennial-theatre-bcmff-world-tour-2026-12-04": {
+    "sig": "title mismatch between schedule (\"Banff Centre Mountain Film Festival World Tour\") and box office (\"Banff Centre Mountain Film Festival – World Tour 2026\")::",
+    "decision": {
+      "clean_title": "Banff Centre Mountain Film Festival World Tour",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-04",
+      "start_time": "7:30 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "cinema",
+      "arbitration_reasoning": "Adopted the canonical film tour title from Seed, Schedule, and Editorial layers while filtering redundant en-dash year suffixing from the ticketing portal checkout label."
+    },
+    "updatedAt": "2026-11-28T19:29:55.626Z"
+  },
+  "george-preston-arena-matt-dumba-shares-what-13-nhl-2026-11-27": {
+    "sig": "date mismatch between schedule (2026-11-27) and box office (2026-12-04)::",
+    "decision": {
+      "clean_title": "Matt Dumba shares what 13 NHL seasons taught him about mental health",
+      "artist": "Matt Dumba",
+      "lineup": [
+        "Matt Dumba",
+        "Kerri Woods"
+      ],
+      "date": "2026-12-04",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Live box office verification takes epistemic precedence over harvest seeds for active ticketing dates, resolving the date conflict to 2026-12-04 (especially as the current time has passed 2026-11-27)."
+    },
+    "updatedAt": "2026-11-28T19:29:55.626Z"
+  },
+  "the-bowen-theatre-luminarium-arts-on-bowen-2027-01-16": {
+    "sig": "title mismatch between schedule (\"LUMINARIUM — Arts On Bowen\") and box office (\"Luminarium, by Cause and Effect Circus\")::",
+    "decision": {
+      "clean_title": "Luminarium",
+      "artist": "Cause and Effect Circus",
+      "lineup": [
+        "Cause and Effect Circus"
+      ],
+      "date": "2027-01-16",
+      "start_time": "3:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "shows",
+      "arbitration_reasoning": "Resolved title to canonical 'Luminarium' by stripping the presenter suffix ('Arts On Bowen') and creator attribution ('by Cause and Effect Circus'), assigning Cause and Effect Circus to artist/lineup, with live box office confirming $24.76 GA availability."
+    },
+    "updatedAt": "2026-11-28T19:29:55.626Z"
+  },
+  "george-preston-arena-port-coquitlam-trailblazers-vs-2026-11-27": {
+    "sig": "title mismatch between schedule (\"Port Coquitlam Trailblazers vs Langley Trappers\") and box office (\"Home Schedule 2026/2027 Season | Port Coquitlam Trailblazers\")|date mismatch between schedule (2026-11-27) and box office (2026-12-04)::",
+    "decision": {
+      "clean_title": "Port Coquitlam Trailblazers vs Langley Trappers",
+      "artist": null,
+      "lineup": [
+        "Port Coquitlam Trailblazers",
+        "Langley Trappers"
+      ],
+      "date": "2026-11-27",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": false,
+      "category": "sports",
+      "arbitration_reasoning": "Resolved clean_title and date from the matching Seed, Schedule, and Editorial layers for this specific matchup (2026-11-27), rejecting the generic season schedule page title and subsequent fixture date pulled by the uncalibrated box office layer while retaining its 7:00 PM game start time."
+    },
+    "updatedAt": "2026-11-28T19:29:55.626Z"
+  },
+  "port-moody-public-li-kids-writing-club-2026-11-27": {
+    "sig": "date mismatch between schedule (2026-11-27) and box office (2026-12-04)::",
+    "decision": {
+      "clean_title": "Kids' Writing Club",
+      "artist": "Hayley Lowe",
+      "lineup": [
+        "Hayley Lowe"
+      ],
+      "date": "2026-12-04",
+      "start_time": "5:15 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "arts",
+      "arbitration_reasoning": "Resolved date to 2026-12-04 based on matching live Seed and Box Office layers, confirming 2026-11-27 was in the past and the upcoming session is sold out."
+    },
+    "updatedAt": "2026-11-28T19:29:55.626Z"
+  },
+  "port-moody-public-li-d-d-campaign-for-adults-2026-12-04": {
+    "sig": "date mismatch between schedule (2026-12-04) and box office (2026-11-27)::",
+    "decision": {
+      "clean_title": "D&D Campaign for Adults",
+      "artist": null,
+      "lineup": [],
+      "date": "2026-12-04",
+      "start_time": "7:00 PM",
+      "doors_time": null,
+      "is_sold_out": true,
+      "category": "social",
+      "arbitration_reasoning": "Resolved date to 2026-12-04 as targeted by the seed and schedule harvester for this instance of the multi-session campaign while retaining start time and inventory status from the box office layer."
+    },
+    "updatedAt": "2026-11-28T19:29:55.626Z"
   }
 }

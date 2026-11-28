@@ -4267,32 +4267,32 @@
     "environment_type": "hybrid",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
-    "meal_benchmark": "$12.00 CAD (cafe sandwich / grab-and-go lunch box at concourse retail)",
-    "coffee_benchmark": "$4.50 CAD (drip / espresso at concourse cafes)",
+    "meal_benchmark": "$12.00 CAD (sandwich, salad, or pastry combo at ground promenade)",
+    "coffee_benchmark": "$4.50 CAD (drip or espresso beverage at promenade cafe)",
     "spend_benchmarks": {
       "beer": null,
       "cocktail": null,
-      "meal": "$12.00 CAD (cafe sandwich / grab-and-go lunch box at concourse retail)",
-      "coffee": "$4.50 CAD (drip / espresso at concourse cafes)"
+      "meal": "$12.00 CAD (sandwich, salad, or pastry combo at ground promenade)",
+      "coffee": "$4.50 CAD (drip or espresso beverage at promenade cafe)"
     },
-    "transit_info": "Stadium-Chinatown & Granville SkyTrain Stations (Expo Line) within a 4-block walk; Vancouver City Centre (Canada Line) 5 blocks west; multiple TransLink bus routes along W Georgia (e.g. 240, 246, 250, 257, 17)",
-    "last_grounded_at": "2026-11-25T02:21:41.414Z",
+    "transit_info": "Adjacent to Vancouver City Centre (Canada Line) and Granville Station (Expo Line); served directly by TransLink bus routes 017, 015, 005, 023, and R5 RapidBus along Hastings/Georgia corridors",
+    "last_grounded_at": "2026-11-27T04:35:16.045Z",
     "grounding_source": "google_maps_reviews_ai",
     "venue_type": "civic_library_community_centre",
-    "weekly_hours": "Mon-Thu: 9:30 AM - 8:30 PM, Fri-Sat: 9:30 AM - 5:00 PM, Sun: 11:00 AM - 5:00 PM",
-    "step_free_entrance": "Fully accessible step-free street entrances via W Georgia St, Robson St, and Homer St promenades with automated sliding power doors.",
-    "elevator_lift": "Multiple high-capacity passenger elevators servicing all public library floors, the Level 8/9 rooftop garden, and underground parkade.",
-    "accessible_washrooms": "Wheelchair-accessible multi-stall and single-occupancy universal/all-gender washrooms available across multiple levels.",
-    "service_animals": "Certified guide and service dogs permitted throughout all public areas; non-service pets are not permitted inside the library facility.",
+    "weekly_hours": "Mon-Thu: 9:30 AM - 8:30 PM; Fri-Sat: 9:30 AM - 5:00 PM; Sun: 11:00 AM - 5:00 PM (Rooftop garden closes 30 minutes before library closing)",
+    "step_free_entrance": "Fully accessible street-level entrances with automatic power-assist sliding doors via Robson Street, West Georgia Street, and Homer Street promenades",
+    "elevator_lift": "Multiple public elevators servicing all public levels (Levels 1 through 9, including the Level 8/9 Rooftop Garden and Inspiration Lab)",
+    "accessible_washrooms": "Universal, wheelchair-accessible, gender-neutral, and single-stall accessible washrooms available across multiple floors with power-assist doors",
+    "service_animals": "Certified guide and service animals legally permitted in all public areas; non-service pets are not permitted inside the facility",
     "accessibility": {
-      "step_free": "Fully accessible step-free street entrances via W Georgia St, Robson St, and Homer St promenades with automated sliding power doors.",
-      "elevator": "Multiple high-capacity passenger elevators servicing all public library floors, the Level 8/9 rooftop garden, and underground parkade.",
-      "washrooms": "Wheelchair-accessible multi-stall and single-occupancy universal/all-gender washrooms available across multiple levels.",
-      "service_animals": "Certified guide and service dogs permitted throughout all public areas; non-service pets are not permitted inside the library facility."
+      "step_free": "Fully accessible street-level entrances with automatic power-assist sliding doors via Robson Street, West Georgia Street, and Homer Street promenades",
+      "elevator": "Multiple public elevators servicing all public levels (Levels 1 through 9, including the Level 8/9 Rooftop Garden and Inspiration Lab)",
+      "washrooms": "Universal, wheelchair-accessible, gender-neutral, and single-stall accessible washrooms available across multiple floors with power-assist doors",
+      "service_animals": "Certified guide and service animals legally permitted in all public areas; non-service pets are not permitted inside the facility"
     },
-    "on_site_fnb": "On-site commercial promenade cafes and eateries (including ground-level cafes on the concourse and vending machines).",
-    "outside_food_policy": "Permitted in designated lounge areas, Level 8/9 rooftop garden, and public atrium promenade; covered beverages permitted in study areas.",
-    "payment_methods": "Credit card (Visa, Mastercard), debit, cash, and contactless mobile pay at promenade retail/cafe vendors and library fine/printing kiosks"
+    "on_site_fnb": "Ground-level retail promenade features independent cafes and quick-service eateries; water refill stations and drinking fountains located on all public library floors",
+    "outside_food_policy": "Lidded beverages and cold snacks/dry foods permitted in general seating areas; designated lunch tables and open outdoor rooftop garden areas available; no messy hot food near computers/collection stacks",
+    "payment_methods": "Free library admission; debit, credit card (Visa/Mastercard), and cash accepted for printing/retail concessions"
   },
   {
     "venue_name": "St. Andrew's-Wesley United Church",
@@ -7654,8 +7654,8 @@
     "city": "Surrey",
     "region": "Surrey",
     "coordinates": [
-      49.1994,
-      -122.871
+      49.2016,
+      -122.8711
     ],
     "lat": 49.2016,
     "lng": -122.8715,
@@ -7664,33 +7664,33 @@
     "calendar_url": "https://www.surreyknights.ca/stats/schedule",
     "access_model": "drop_in_paid",
     "environment_type": "indoor",
-    "weekly_hours": "Monday - Friday: 6:00 AM - 10:00 PM, Saturday - Sunday: 6:00 AM - 9:00 PM",
-    "transit_info": "Approx. 10-minute walk (750m) from Scott Road Station (Expo Line SkyTrain); TransLink bus routes 312, 319, 391, and R6 RapidBus serve nearby Scott Road / 110 Ave.",
-    "step_free_entrance": "Fully step-free ground-level entrance with automated, motion-sensor power doors.",
-    "elevator_lift": "Commercial elevator providing universal access between the lobby, spectator concourses, and arena levels.",
-    "accessible_washrooms": "Universal, gender-neutral, and wheelchair-accessible washrooms and change rooms (Rick Hansen Foundation Accessibility Gold Certified).",
-    "service_animals": "Certified guide dogs and service animals permitted throughout public spectator and circulation areas; pets not permitted on ice surfaces or fitness areas.",
-    "on_site_fnb": "On-site community ice arena concession stand and beverage/snack vending machines.",
-    "outside_food_policy": "Outside snacks, personal water bottles, and packed meals permitted in lobby and spectator seating areas; alcohol prohibited.",
-    "payment_methods": "Interac debit, credit cards (Visa, MasterCard, American Express), cash, and City of Surrey Recreation passes / gift cards.",
-    "coffee_benchmark": "$2.50 CAD (concession brewed coffee)",
-    "meal_benchmark": "$8.50 CAD (hot dogs, fries, or concession snacks)",
+    "weekly_hours": "Daily: 6:00 AM - 10:00 PM (varies based on public skate, drop-in sessions, and facility bookings)",
+    "transit_info": "TransLink Expo Line SkyTrain (Scott Road Station, approx. 10-minute walk / 800m) and connecting bus routes along King George Blvd and 110 Ave",
+    "step_free_entrance": "Grade-level, step-free main entrance equipped with automated power sliding doors and wide vestibule access.",
+    "elevator_lift": "Elevator access provided to upper-level spectator viewing seating and community multipurpose rooms.",
+    "accessible_washrooms": "Universal accessible washrooms, barrier-free gender-inclusive changing rooms, and fully para-ice-hockey-ready player benches/dressing rooms.",
+    "service_animals": "Certified guide dogs and service animals permitted under BC Guide Dog and Service Dog Act; pets not allowed inside recreation arena.",
+    "on_site_fnb": "On-site community concession offering hot drinks, snacks, and arena refreshments during scheduled games and public skate times; vending machines available.",
+    "outside_food_policy": "Outside snacks, water bottles, and team refreshments permitted in common lobby and spectator seating; alcohol strictly prohibited.",
+    "payment_methods": "Debit, Visa, MasterCard, and City of Surrey Recreation Passes / gift cards",
+    "coffee_benchmark": "$2.50 CAD (concession drip coffee / hot beverage)",
+    "meal_benchmark": "$8.50 CAD (hot concession items such as hot dog or burger combo)",
     "spend_benchmarks": {
       "beer": null,
       "cocktail": null,
-      "meal": "$8.50 CAD (hot dogs, fries, or concession snacks)",
-      "coffee": "$2.50 CAD (concession brewed coffee)"
+      "meal": "$8.50 CAD (hot concession items such as hot dog or burger combo)",
+      "coffee": "$2.50 CAD (concession drip coffee / hot beverage)"
     },
     "is_grounded": true,
     "grounding_source": "google_maps_reviews_ai",
-    "last_grounded_at": "2026-11-18T09:12:42.875Z",
+    "last_grounded_at": "2026-11-27T04:29:59.108Z",
     "venue_type": "civic_library_community_centre",
     "_gps_inferred": false,
     "accessibility": {
-      "step_free": "Fully step-free ground-level entrance with automated, motion-sensor power doors.",
-      "elevator": "Commercial elevator providing universal access between the lobby, spectator concourses, and arena levels.",
-      "washrooms": "Universal, gender-neutral, and wheelchair-accessible washrooms and change rooms (Rick Hansen Foundation Accessibility Gold Certified).",
-      "service_animals": "Certified guide dogs and service animals permitted throughout public spectator and circulation areas; pets not permitted on ice surfaces or fitness areas."
+      "step_free": "Grade-level, step-free main entrance equipped with automated power sliding doors and wide vestibule access.",
+      "elevator": "Elevator access provided to upper-level spectator viewing seating and community multipurpose rooms.",
+      "washrooms": "Universal accessible washrooms, barrier-free gender-inclusive changing rooms, and fully para-ice-hockey-ready player benches/dressing rooms.",
+      "service_animals": "Certified guide dogs and service animals permitted under BC Guide Dog and Service Dog Act; pets not allowed inside recreation arena."
     },
     "beer_benchmark": null,
     "cocktail_benchmark": null
@@ -8888,39 +8888,39 @@
     "full_address": "14600 North Bluff Road, White Rock, BC V4B 3C9",
     "neighborhood": "White Rock",
     "coordinates": [
-      49.0296,
-      -122.8173
+      49.0413,
+      -122.8156
     ],
     "access_model": "drop_in_paid",
     "environment_type": "indoor",
     "venue_type": "civic_library_community_centre",
     "_gps_inferred": false,
-    "weekly_hours": "Facility Office: Monday to Friday 8:30 AM - 4:30 PM; Public skating, dry-floor recreation, and arena hours vary daily by scheduled ice/floor sessions (typically 8:00 AM - 10:00 PM)",
-    "transit_info": "TransLink bus routes 321, 345, 375, and 531 along North Bluff Road (16th Ave) stopping directly near 146 Street",
-    "step_free_entrance": "Ground-level step-free entrance with automated sliding doors and wide concourses",
+    "weekly_hours": "Monday - Friday: 8:30 AM - 9:00 PM, Saturday - Sunday: 8:30 AM - 8:00 PM (varies seasonally by ice/dry-floor and public skate schedule)",
+    "transit_info": "TransLink bus routes 350 and 352 along North Bluff Road directly outside; connects to White Rock Centre Transit Exchange (routes 321, 351, 375, 531)",
+    "step_free_entrance": "Ground-level automatic sliding entry doors with step-free accessible threshold from the paved parking lot",
     "elevator_lift": "not_applicable",
-    "accessible_washrooms": "Designated accessible public washrooms and change rooms",
-    "service_animals": "Certified service animals permitted in all public concourses and spectator areas",
+    "accessible_washrooms": "Wheelchair-accessible civic washrooms and designated universal changing facilities on site",
+    "service_animals": "Certified Guide and Service Dogs permitted in accordance with the BC Guide Dog and Service Dog Act; pets prohibited inside recreation facilities",
     "accessibility": {
-      "step_free": "Ground-level step-free entrance with automated sliding doors and wide concourses",
+      "step_free": "Ground-level automatic sliding entry doors with step-free accessible threshold from the paved parking lot",
       "elevator": "not_applicable",
-      "washrooms": "Designated accessible public washrooms and change rooms",
-      "service_animals": "Certified service animals permitted in all public concourses and spectator areas"
+      "washrooms": "Wheelchair-accessible civic washrooms and designated universal changing facilities on site",
+      "service_animals": "Certified Guide and Service Dogs permitted in accordance with the BC Guide Dog and Service Dog Act; pets prohibited inside recreation facilities"
     },
-    "on_site_fnb": "Seasonal community arena concession stand operating during public skating sessions, youth tournaments, and league play; vending machines in the main lobby",
-    "outside_food_policy": "Outside snacks, water bottles, and team refreshments permitted in spectator viewing areas and change rooms",
-    "payment_methods": "Debit, credit card (Visa, MasterCard), and cash accepted for drop-in recreation and concession purchases",
+    "on_site_fnb": "Arena concession stand serving hot coffee, hot chocolate, cold drinks, and packaged arena snacks during scheduled game times and public skate sessions; vending machines available",
+    "outside_food_policy": "Outside food, snacks, and personal refillable water bottles permitted in spectator seating and lobby areas; commercial catering requires municipal facility permit",
+    "payment_methods": "Interac Debit, Visa, MasterCard, Cash, and White Rock Recreation & Culture gift/recreation cards",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
-    "coffee_benchmark": "$2.50 CAD (regular drip coffee at arena concession)",
-    "meal_benchmark": "$8.50 CAD (hot dog, fries, or concession snack combo)",
+    "coffee_benchmark": "$2.50 CAD (drip coffee / tea at arena concession)",
+    "meal_benchmark": "$6.50 CAD (concession hot dogs / snacks)",
     "spend_benchmarks": {
       "beer": null,
       "cocktail": null,
-      "meal": "$8.50 CAD (hot dog, fries, or concession snack combo)",
-      "coffee": "$2.50 CAD (regular drip coffee at arena concession)"
+      "meal": "$6.50 CAD (concession hot dogs / snacks)",
+      "coffee": "$2.50 CAD (drip coffee / tea at arena concession)"
     },
-    "last_grounded_at": "2026-11-11T14:38:36.668Z",
+    "last_grounded_at": "2026-11-27T04:22:12.109Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -9019,39 +9019,39 @@
     "full_address": "300 Ioco Rd, Port Moody, BC V3H 2V7",
     "neighborhood": "Inlet Centre / Port Moody",
     "coordinates": [
-      49.2837,
-      -122.8315
+      49.2832,
+      -122.8309
     ],
     "access_model": "drop_in_paid",
     "environment_type": "indoor",
     "venue_type": "civic_library_community_centre",
     "_gps_inferred": false,
-    "weekly_hours": "Monday - Friday: 6:00 AM - 10:00 PM, Saturday - Sunday: 8:00 AM - 9:00 PM (Closed statutory holidays)",
-    "transit_info": "Inlet Centre Station (Millennium Line SkyTrain, ~10-12 min walk); TransLink bus routes 160, 180, 181, 182, 183 stop nearby on Ioco Rd and Newport Dr",
-    "step_free_entrance": "Level automatic sliding door entry from dedicated surface parking lot and paved plaza walkway",
-    "elevator_lift": "Elevator access connects multi-level arena viewing, wellness studios, and upper activity rooms",
-    "accessible_washrooms": "Wheelchair-accessible universal washrooms and change rooms with grab bars and adult changing tables",
-    "service_animals": "Certified guide dogs and service animals permitted; pets not allowed inside civic recreation facilities",
+    "weekly_hours": "Mon-Fri: 6:00 AM - 10:00 PM; Sat-Sun: 8:00 AM - 9:00 PM (Closed statutory holidays; front desk closes 30 minutes prior to facility closing)",
+    "transit_info": "Inlet Centre Station (Millennium Line SkyTrain) approximately 10-minute walk away; Moody Centre Station is 12-15 minutes walk. Direct TransLink bus routes 160, 180, 181, 182, 183, 184 stop adjacent along Ioco Rd and Newport Dr.",
+    "step_free_entrance": "Paved zero-barrier grade entrance with automatic power-sliding accessibility doors, wide concrete aprons, and designated accessible parking stalls directly adjacent to the main concourse.",
+    "elevator_lift": "Commercial passenger elevator providing vertical step-free transit across all multi-level community complex wings, arenas, and fitness studios.",
+    "accessible_washrooms": "Universal wheelchair-accessible, gender-neutral single-occupancy washrooms and accessible change rooms with automated door operators and grab bars.",
+    "service_animals": "Certified guide and service animals with proper BC Guide Dog & Service Dog certification permitted throughout all public circulation and seating areas.",
     "accessibility": {
-      "step_free": "Level automatic sliding door entry from dedicated surface parking lot and paved plaza walkway",
-      "elevator": "Elevator access connects multi-level arena viewing, wellness studios, and upper activity rooms",
-      "washrooms": "Wheelchair-accessible universal washrooms and change rooms with grab bars and adult changing tables",
-      "service_animals": "Certified guide dogs and service animals permitted; pets not allowed inside civic recreation facilities"
+      "step_free": "Paved zero-barrier grade entrance with automatic power-sliding accessibility doors, wide concrete aprons, and designated accessible parking stalls directly adjacent to the main concourse.",
+      "elevator": "Commercial passenger elevator providing vertical step-free transit across all multi-level community complex wings, arenas, and fitness studios.",
+      "washrooms": "Universal wheelchair-accessible, gender-neutral single-occupancy washrooms and accessible change rooms with automated door operators and grab bars.",
+      "service_animals": "Certified guide and service animals with proper BC Guide Dog & Service Dog certification permitted throughout all public circulation and seating areas."
     },
-    "on_site_fnb": "On-site arena concession stand operating during games and public skate sessions; vending machines available during all hours",
-    "outside_food_policy": "Personal snacks, water bottles, and team refreshments permitted in common seating areas and lobby; no glass containers",
-    "payment_methods": "Visa, Mastercard, American Express, Interac Debit, Apple Pay, Google Pay, and Cash",
+    "on_site_fnb": "Arena concourse snack concession and beverage vending machines; full cafes and dining options located immediately adjacent across the street in Newport Village.",
+    "outside_food_policy": "Outside snacks, water bottles, and team refreshments permitted in public seating areas and bleachers; commercial catering subject to facility rental booking protocols.",
+    "payment_methods": "Interac Debit, Visa, MasterCard, Apple Pay, Google Pay, and Cash at the customer service desk.",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
-    "coffee_benchmark": "$2.50 CAD (concession brewed coffee)",
-    "meal_benchmark": "$8.50 CAD (concession hot dog/fries/snack combo)",
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
     "spend_benchmarks": {
       "beer": null,
       "cocktail": null,
-      "meal": "$8.50 CAD (concession hot dog/fries/snack combo)",
-      "coffee": "$2.50 CAD (concession brewed coffee)"
+      "meal": null,
+      "coffee": null
     },
-    "last_grounded_at": "2026-11-11T14:41:38.631Z",
+    "last_grounded_at": "2026-11-27T04:16:58.759Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -16399,42 +16399,42 @@
   },
   {
     "venue_name": "Food court at The Amazing Brentwood",
-    "full_address": "4567 Lougheed Hwy., Burnaby, BC V5C 3Z6",
+    "full_address": "4567 Lougheed Hwy. (Level 2, Tables Food Court), Burnaby, BC V5C 3Z6",
     "neighborhood": "Brentwood / Burnaby",
     "coordinates": [
-      49.2676,
-      -123.0039
+      49.2667,
+      -123.0003
     ],
     "access_model": "free_public_access",
     "environment_type": "indoor",
     "venue_type": "market_bistro_cafe",
     "_gps_inferred": false,
-    "weekly_hours": "Mon-Wed: 10:00 AM - 7:00 PM, Thu-Sat: 10:00 AM - 9:00 PM, Sun: 11:00 AM - 7:00 PM",
-    "transit_info": "Directly connected to Millennium Line Brentwood Town Centre SkyTrain Station; served by R5 Hastings RapidBus and bus routes 123, 130, 134, 136, 222",
-    "step_free_entrance": "Level automatic glass sliding doors with direct step-free covered bridge access from Brentwood Town Centre SkyTrain Station and ground/plaza level entryways",
-    "elevator_lift": "Multiple commercial passenger elevators servicing all levels, parking parkades, and the upper food hall / Tables concourse",
-    "accessible_washrooms": "Fully accessible multi-stall washrooms and dedicated universal family/companion restrooms located adjacent to Tables food court",
-    "service_animals": "Certified guide and service animals permitted throughout the shopping centre and food hall per BC Guide Dog & Service Dog Act",
+    "weekly_hours": "Mon-Wed: 10:00 AM - 7:00 PM; Thu-Sat: 10:00 AM - 9:00 PM; Sun: 11:00 AM - 7:00 PM",
+    "transit_info": "Directly connected to Brentwood Town Centre SkyTrain Station (Millennium Line); Brentwood Station Bus Exchange (routes 129, 130, 134, 136, 222, N9)",
+    "step_free_entrance": "Fully accessible level and ramped entrances from street, parkade, and direct SkyTrain mezzanine bridge into mall",
+    "elevator_lift": "Commercial mall passenger elevators provide full barrier-free access between parkade, street level, and Level 2 food court",
+    "accessible_washrooms": "Wheelchair-accessible multi-stall and dedicated universal single-occupancy washrooms on Level 2 near food court",
+    "service_animals": "Certified guide and service animals permitted throughout the shopping centre and food court; non-service pets restricted per mall food safety policies",
     "accessibility": {
-      "step_free": "Level automatic glass sliding doors with direct step-free covered bridge access from Brentwood Town Centre SkyTrain Station and ground/plaza level entryways",
-      "elevator": "Multiple commercial passenger elevators servicing all levels, parking parkades, and the upper food hall / Tables concourse",
-      "washrooms": "Fully accessible multi-stall washrooms and dedicated universal family/companion restrooms located adjacent to Tables food court",
-      "service_animals": "Certified guide and service animals permitted throughout the shopping centre and food hall per BC Guide Dog & Service Dog Act"
+      "step_free": "Fully accessible level and ramped entrances from street, parkade, and direct SkyTrain mezzanine bridge into mall",
+      "elevator": "Commercial mall passenger elevators provide full barrier-free access between parkade, street level, and Level 2 food court",
+      "washrooms": "Wheelchair-accessible multi-stall and dedicated universal single-occupancy washrooms on Level 2 near food court",
+      "service_animals": "Certified guide and service animals permitted throughout the shopping centre and food court; non-service pets restricted per mall food safety policies"
     },
-    "on_site_fnb": "Tables at The Amazing Brentwood features an expansive multi-vendor food court and culinary concourse with fast-casual global dining options, cafes, and dessert stalls",
-    "outside_food_policy": "Outside food permitted at public seating areas; patronizing food court vendors encouraged",
-    "payment_methods": "Debit cards, Visa, Mastercard, American Express, Apple Pay, Google Pay, and cash accepted across individual vendors",
+    "on_site_fnb": "Comprehensive multi-vendor food court ('Tables') with over 15 fast-casual stalls, cafes, dessert bars, and beverage counters",
+    "outside_food_policy": "Food court seating primarily intended for food hall patrons, though general mall visitors frequently utilize seating areas; mall quiet picnic protocol",
+    "payment_methods": "Major credit cards (Visa, Mastercard, Amex), Interac debit, mobile tap (Apple Pay, Google Pay); individual vendor cash policies vary",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
-    "coffee_benchmark": "$4.50 CAD (regular drip / espresso drink from food court cafes)",
-    "meal_benchmark": "$15.50 CAD (fast-casual food court combo meal)",
+    "coffee_benchmark": "$4.50 CAD (regular specialty drip/espresso coffee at food court cafes)",
+    "meal_benchmark": "$15.50 CAD (average fast-casual combo meal at food court vendors)",
     "spend_benchmarks": {
       "beer": null,
       "cocktail": null,
-      "meal": "$15.50 CAD (fast-casual food court combo meal)",
-      "coffee": "$4.50 CAD (regular drip / espresso drink from food court cafes)"
+      "meal": "$15.50 CAD (average fast-casual combo meal at food court vendors)",
+      "coffee": "$4.50 CAD (regular specialty drip/espresso coffee at food court cafes)"
     },
-    "last_grounded_at": "2026-11-25T02:36:03.548Z",
+    "last_grounded_at": "2026-11-27T04:25:20.894Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -22172,39 +22172,39 @@
     "full_address": "20699 42 Ave, Langley, BC V3A 3B1",
     "neighborhood": "Brookswood, Township of Langley",
     "coordinates": [
-      49.0781,
-      -122.6673
+      49.0789,
+      -122.6517
     ],
     "access_model": "drop_in_paid",
     "environment_type": "indoor",
     "venue_type": "civic_library_community_centre",
     "_gps_inferred": false,
-    "weekly_hours": "Monday - Tuesday: 9:00 AM - 5:00 PM, Wednesday: 9:00 AM - 8:00 PM, Thursday: 9:00 AM - 5:00 PM, Friday: 9:00 AM - 8:00 PM, Saturday: 12:00 PM - 8:00 PM, Sunday: 10:00 AM - 6:00 PM (Arena & Curling schedules vary by program and game bookings)",
-    "transit_info": "TransLink bus routes 561 and 563 connect along 208 St / 42 Ave via Langley Centre transit exchange",
-    "step_free_entrance": "Ground-level accessible main entrance with automated push-button doors and designated accessible parking stalls directly fronting the entry plaza",
-    "elevator_lift": "Single-level ground floor public access; viewing areas and primary arena concourses are accessible without lifts",
-    "accessible_washrooms": "Dedicated universal wheelchair-accessible and gender-neutral washroom facilities on site",
-    "service_animals": "Certified guide and service animals with proper accreditation welcome throughout public areas",
+    "weekly_hours": "Monday - Sunday: 6:00 AM - 10:00 PM (Arena, public skating drop-in, and curling club hours vary by seasonal ice schedule and bookings)",
+    "transit_info": "TransLink bus routes 561 and 563 stop nearby along 208 St / 42 Ave, connecting directly to Langley Centre transit exchange",
+    "step_free_entrance": "Ground-level automatic sliding doors and ramped entries providing barrier-free access to the main concourse, arena, and curling facility",
+    "elevator_lift": "Elevator and lift access available to upper-level viewing areas and mezzanine restaurant/pub spaces",
+    "accessible_washrooms": "Wheelchair-accessible multi-stall and designated universal/family washrooms available on-site",
+    "service_animals": "Certified guide and service dogs permitted in all public areas with identification; pets prohibited inside municipal recreation facilities",
     "accessibility": {
-      "step_free": "Ground-level accessible main entrance with automated push-button doors and designated accessible parking stalls directly fronting the entry plaza",
-      "elevator": "Single-level ground floor public access; viewing areas and primary arena concourses are accessible without lifts",
-      "washrooms": "Dedicated universal wheelchair-accessible and gender-neutral washroom facilities on site",
-      "service_animals": "Certified guide and service animals with proper accreditation welcome throughout public areas"
+      "step_free": "Ground-level automatic sliding doors and ramped entries providing barrier-free access to the main concourse, arena, and curling facility",
+      "elevator": "Elevator and lift access available to upper-level viewing areas and mezzanine restaurant/pub spaces",
+      "washrooms": "Wheelchair-accessible multi-stall and designated universal/family washrooms available on-site",
+      "service_animals": "Certified guide and service dogs permitted in all public areas with identification; pets prohibited inside municipal recreation facilities"
     },
-    "on_site_fnb": "Arena concession kiosk, plus on-site dining at The Lodge Steakhouse and The Horse & Ryder Pub",
-    "outside_food_policy": "Outside snacks and personal water bottles permitted in arena spectator seating; outside commercial catering prohibited",
-    "payment_methods": "Interac Debit, Visa, MasterCard, and Cash",
+    "on_site_fnb": "Arena concession stand during games/events, plus on-site full-service dining at The Lodge Steakhouse and The Horse & Ryder Pub",
+    "outside_food_policy": "Personal water bottles and light personal snacks permitted for drop-in recreation; outside commercial catering or outside alcohol strictly prohibited",
+    "payment_methods": "Interac Debit, Visa, Mastercard, Cash, and Township of Langley Recreation Passes",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
-    "coffee_benchmark": "$2.75 CAD (drip coffee at arena concession)",
-    "meal_benchmark": "$14.50 CAD (pub burger or rinkside hot basket with fries)",
+    "coffee_benchmark": "$3.25 CAD (brewed drip coffee at arena concession)",
+    "meal_benchmark": "$18.50 CAD (burger, fries, or pub sandwich meal)",
     "spend_benchmarks": {
       "beer": null,
       "cocktail": null,
-      "meal": "$14.50 CAD (pub burger or rinkside hot basket with fries)",
-      "coffee": "$2.75 CAD (drip coffee at arena concession)"
+      "meal": "$18.50 CAD (burger, fries, or pub sandwich meal)",
+      "coffee": "$3.25 CAD (brewed drip coffee at arena concession)"
     },
-    "last_grounded_at": "2026-11-25T01:36:42.834Z",
+    "last_grounded_at": "2026-11-27T04:19:22.191Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -22979,30 +22979,30 @@
   {
     "venue_name": "MONOVA Museum of North Vancouver",
     "full_address": "115 West Esplanade, North Vancouver, BC V7M 0G7",
-    "neighborhood": "Lower Lonsdale / Shipyards District, City of North Vancouver",
+    "neighborhood": "Lower Lonsdale / Shipyards District (City of North Vancouver)",
     "coordinates": [
-      49.3103,
-      -123.0783
+      49.3125,
+      -123.0829
     ],
     "access_model": "drop_in_paid",
     "environment_type": "indoor",
     "venue_type": "gallery_museum_exhibition",
     "_gps_inferred": false,
-    "weekly_hours": "Wednesday, Friday - Sunday: 10:00 AM - 5:00 PM; Thursday: 10:00 AM - 8:00 PM (Pay-What-You-Can 5:00 PM - 8:00 PM); Monday - Tuesday: Closed",
-    "transit_info": "Located steps from the Lonsdale Quay SeaBus Terminal (13-minute crossing from Waterfront Station) and the Lonsdale Quay bus exchange (TransLink R2 RapidBus, 228, 229, 230, 231, 236, 239, 249)",
-    "step_free_entrance": "Fully accessible street-level main entrance with automatic power doors and flat, step-free access from West Esplanade",
-    "elevator_lift": "Single-level main gallery floor; elevator/lift access available where multi-level access applies",
-    "accessible_washrooms": "Wheelchair-accessible, single-stall gender-inclusive washrooms equipped with grab bars and baby-changing facilities on-site",
-    "service_animals": "Certified guide dogs and service animals wearing official identification/harnesses are welcome",
+    "weekly_hours": "Wednesday, Friday - Sunday: 10:00 AM - 5:00 PM; Thursday: 10:00 AM - 8:00 PM; Monday - Tuesday: Closed",
+    "transit_info": "Lonsdale Quay SeaBus Terminal & Bus Loop (approx. 3-minute walk / 250m); TransLink bus routes 228, 229, 230, 231, 236, R2 RapidBus",
+    "step_free_entrance": "Full street-level step-free entrance with automated power doors on West Esplanade",
+    "elevator_lift": "Elevator service connecting underground parking garage and exhibition levels",
+    "accessible_washrooms": "Wheelchair-accessible gender-neutral washrooms with baby-changing facilities on site",
+    "service_animals": "Certified service animals and guide dogs are welcome inside the galleries",
     "accessibility": {
-      "step_free": "Fully accessible street-level main entrance with automatic power doors and flat, step-free access from West Esplanade",
-      "elevator": "Single-level main gallery floor; elevator/lift access available where multi-level access applies",
-      "washrooms": "Wheelchair-accessible, single-stall gender-inclusive washrooms equipped with grab bars and baby-changing facilities on-site",
-      "service_animals": "Certified guide dogs and service animals wearing official identification/harnesses are welcome"
+      "step_free": "Full street-level step-free entrance with automated power doors on West Esplanade",
+      "elevator": "Elevator service connecting underground parking garage and exhibition levels",
+      "washrooms": "Wheelchair-accessible gender-neutral washrooms with baby-changing facilities on site",
+      "service_animals": "Certified service animals and guide dogs are welcome inside the galleries"
     },
-    "on_site_fnb": "No on-site cafe or food service inside the museum; Museum Gift Shop sells gifts and merchandise. Directly adjacent to the Quay Market & Food Hall and Lower Lonsdale cafes/restaurants",
-    "outside_food_policy": "Food and drink are prohibited inside gallery and exhibition display areas; water bottles permitted in designated lobby zones",
-    "payment_methods": "Credit card (Visa, Mastercard, Amex), debit/Interac, and cash",
+    "on_site_fnb": "Gift shop on site; no full-service cafe inside museum, but surrounded by Shipyards/Lonsdale Quay dining and cafes within 1 block",
+    "outside_food_policy": "Outside food and open beverages prohibited inside gallery spaces; covered water bottles permitted in lobby",
+    "payment_methods": "Debit, Visa, Mastercard, American Express, Apple Pay, Google Pay, Cash",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
     "coffee_benchmark": null,
@@ -23013,7 +23013,7 @@
       "meal": null,
       "coffee": null
     },
-    "last_grounded_at": "2026-11-20T14:22:31.912Z",
+    "last_grounded_at": "2026-11-27T04:24:47.040Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -23139,30 +23139,30 @@
   {
     "venue_name": "Gordon Smith Gallery of Canadian Art",
     "full_address": "2121 Lonsdale Ave, North Vancouver, BC V7M 2K6",
-    "neighborhood": "Central Lonsdale / North Vancouver",
+    "neighborhood": "Central Lonsdale / City of North Vancouver",
     "coordinates": [
-      49.3298,
-      -123.0718
+      49.3291,
+      -123.0726
     ],
     "access_model": "free_public_access",
     "environment_type": "indoor",
     "venue_type": "gallery_museum_exhibition",
     "_gps_inferred": false,
-    "weekly_hours": "Wednesday - Saturday: 12:00 PM - 5:00 PM (Closed Sunday - Tuesday, statutory holidays, and between exhibition installations; admission by donation)",
-    "transit_info": "SeaBus to Lonsdale Quay, then TransLink bus 229, 230, or R2 RapidBus along Lonsdale Ave to 21st St (Stop ID: 54200 directly across from the gallery)",
-    "step_free_entrance": "Fully wheelchair accessible; graded ramp leads to the south-facing entrance from Lonsdale Avenue",
-    "elevator_lift": "Elevator connects underground parkade (P1/P2) and all public gallery levels",
-    "accessible_washrooms": "Wheelchair-accessible multi-stall and universal washrooms located on the Main level and Level 1",
-    "service_animals": "Certified guide dogs and service animals welcome; water bowls available upon request",
+    "weekly_hours": "Wednesday - Saturday: 12:00 PM - 4:00 PM; Sunday - Tuesday: Closed",
+    "transit_info": "TransLink R2 RapidBus along Marine Dr / 3rd St, or Bus 229, 230, 240, 255 along Lonsdale Ave; connecting from Lonsdale Quay SeaBus terminal",
+    "step_free_entrance": "Step-free ramped entrance to the south entrance from Lonsdale Avenue with automated power doors",
+    "elevator_lift": "Passenger elevator connecting underground parkade (levels P1/P2) and upper gallery levels",
+    "accessible_washrooms": "Wheelchair-accessible gender-neutral single-occupant washrooms located on the main floor",
+    "service_animals": "Certified guide and service animals welcome; water bowls provided upon request",
     "accessibility": {
-      "step_free": "Fully wheelchair accessible; graded ramp leads to the south-facing entrance from Lonsdale Avenue",
-      "elevator": "Elevator connects underground parkade (P1/P2) and all public gallery levels",
-      "washrooms": "Wheelchair-accessible multi-stall and universal washrooms located on the Main level and Level 1",
-      "service_animals": "Certified guide dogs and service animals welcome; water bowls available upon request"
+      "step_free": "Step-free ramped entrance to the south entrance from Lonsdale Avenue with automated power doors",
+      "elevator": "Passenger elevator connecting underground parkade (levels P1/P2) and upper gallery levels",
+      "washrooms": "Wheelchair-accessible gender-neutral single-occupant washrooms located on the main floor",
+      "service_animals": "Certified guide and service animals welcome; water bowls provided upon request"
     },
-    "on_site_fnb": "none_available (no on-site cafe or food concession; numerous cafes and bistros situated along Lonsdale Ave)",
-    "outside_food_policy": "Outside food and drinks prohibited inside gallery display spaces to safeguard artworks",
-    "payment_methods": "Credit Card, Debit, Cash (for voluntary donations and gift shop items)",
+    "on_site_fnb": "No on-site cafe or restaurant; gift shop area offers occasional exhibition reception catering",
+    "outside_food_policy": "No outside food or drinks permitted inside the exhibition galleries; covered water bottles permitted in common lobby areas",
+    "payment_methods": "Free general admission (suggested $5 donation accepted via Visa, Mastercard, Interac Debit, or Cash)",
     "beer_benchmark": null,
     "cocktail_benchmark": null,
     "coffee_benchmark": null,
@@ -23173,7 +23173,7 @@
       "meal": null,
       "coffee": null
     },
-    "last_grounded_at": "2026-11-20T14:24:59.359Z",
+    "last_grounded_at": "2026-11-27T04:26:37.634Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -24187,39 +24187,39 @@
     "full_address": "1700 Mathers Ave, West Vancouver, BC V7V 2G7",
     "neighborhood": "Ambleside / West Vancouver",
     "coordinates": [
-      49.3364,
-      -123.1614
+      49.3283,
+      -123.1554
     ],
     "access_model": "ticketed_admission",
     "environment_type": "indoor",
     "venue_type": "theatre_cinema_auditorium",
     "_gps_inferred": false,
-    "weekly_hours": "Box Office: Monday - Friday 10:00 AM - 4:00 PM; opens 1 hour prior to ticketed performances",
-    "transit_info": "TransLink bus routes 251, 252, and 257 (closest stops on Mathers Ave and Inglewood Ave)",
-    "step_free_entrance": "Dedicated pull-in passenger drop-off bay directly outside Mathers Ave entrance with dropped curb and automatic sliding doors",
-    "elevator_lift": "Interior passenger elevator connects Mathers Ave lobby, Grosvenor Theatre (main floor), and McEwen Theatre (lower floor)",
-    "accessible_washrooms": "Wheelchair-accessible washrooms available on all public levels",
-    "service_animals": "Certified service animals permitted with advance notice for accessible seating accommodation",
+    "weekly_hours": "Box Office: Mon-Fri 10:00 AM - 4:00 PM; Event Days: Open 1-2 hours prior to showtime; Facility Rentals: Daily 8:30 AM - 11:30 PM",
+    "transit_info": "TransLink bus routes 251 or 252 (stopping nearby on Mathers Ave or Inglewood Ave), or route 250/250A on Marine Drive with transfer/walk; connecting from Park Royal or Downtown Vancouver",
+    "step_free_entrance": "Level entrance and passenger drop-off bay with dropped curb on Mathers Avenue; automatic sliding entry doors into main lobby",
+    "elevator_lift": "Public passenger elevator serving both Grosvenor Theatre (main floor) and McEwen Theatre / lower level salon",
+    "accessible_washrooms": "Wheelchair-accessible multi-stall and universal single-occupant washrooms on all facility levels",
+    "service_animals": "Certified guide and service animals welcome with designated companion seating available upon advance request",
     "accessibility": {
-      "step_free": "Dedicated pull-in passenger drop-off bay directly outside Mathers Ave entrance with dropped curb and automatic sliding doors",
-      "elevator": "Interior passenger elevator connects Mathers Ave lobby, Grosvenor Theatre (main floor), and McEwen Theatre (lower floor)",
-      "washrooms": "Wheelchair-accessible washrooms available on all public levels",
-      "service_animals": "Certified service animals permitted with advance notice for accessible seating accommodation"
+      "step_free": "Level entrance and passenger drop-off bay with dropped curb on Mathers Avenue; automatic sliding entry doors into main lobby",
+      "elevator": "Public passenger elevator serving both Grosvenor Theatre (main floor) and McEwen Theatre / lower level salon",
+      "washrooms": "Wheelchair-accessible multi-stall and universal single-occupant washrooms on all facility levels",
+      "service_animals": "Certified guide and service animals welcome with designated companion seating available upon advance request"
     },
-    "on_site_fnb": "Concession bar on Grosvenor Theatre level serving drip coffee, tea, soft drinks, wine, local beer, cider, and light baked snacks during pre-show and intermission",
-    "outside_food_policy": "Strictly no outside food or beverages permitted inside the facility; hot food prohibited",
-    "payment_methods": "Credit card (Visa, Mastercard, Amex), debit, and contactless mobile pay (tap)",
-    "beer_benchmark": "$8.00 CAD (local craft beer / cider can)",
-    "cocktail_benchmark": null,
-    "coffee_benchmark": "$3.50 CAD (fresh brewed drip coffee)",
+    "on_site_fnb": "Licensed lobby bar & concession open 1 hour before showtimes and during intermission serving wine, beer, coffee, tea, soft drinks, and packaged snacks",
+    "outside_food_policy": "Strictly no outside food or beverages permitted inside the venue or performance halls; concession beverages allowed in theatres",
+    "payment_methods": "Debit, Visa, MasterCard, American Express, Apple Pay, Google Pay (cashless / card preferred at bar and box office)",
+    "beer_benchmark": "$8.50 CAD (local craft beer / cider can)",
+    "cocktail_benchmark": "$10.00 CAD (single pour wine / highball)",
+    "coffee_benchmark": "$4.50 CAD (drip coffee / specialty tea at concession)",
     "meal_benchmark": null,
     "spend_benchmarks": {
-      "beer": "$8.00 CAD (local craft beer / cider can)",
-      "cocktail": null,
+      "beer": "$8.50 CAD (local craft beer / cider can)",
+      "cocktail": "$10.00 CAD (single pour wine / highball)",
       "meal": null,
-      "coffee": "$3.50 CAD (fresh brewed drip coffee)"
+      "coffee": "$4.50 CAD (drip coffee / specialty tea at concession)"
     },
-    "last_grounded_at": "2026-11-24T00:11:28.337Z",
+    "last_grounded_at": "2026-11-27T04:16:16.574Z",
     "grounding_source": "google_maps_reviews_ai"
   },
   {
@@ -26426,6 +26426,670 @@
       "coffee": null
     },
     "last_grounded_at": "2026-11-25T02:49:08.960Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Tinhouse Brewing",
+    "full_address": "2140-550 Sherling Place, Port Coquitlam, BC V3B 0J6",
+    "neighborhood": "Fremont / Northside, Port Coquitlam",
+    "coordinates": [
+      49.2613,
+      -122.7484
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "hybrid",
+    "venue_type": "bar_club_music_lounge",
+    "_gps_inferred": false,
+    "weekly_hours": "Mon-Wed: 2:00 PM - 8:00 PM, Thu: 2:00 PM - 9:00 PM, Fri-Sat: 12:00 PM - 9:00 PM, Sun: 12:00 PM - 7:00 PM",
+    "transit_info": "TransLink bus routes 171/172 along Riverside Dr / Lougheed Hwy, or connect from Coquitlam Central Station via bus / West Coast Express Port Coquitlam Station. Directly accessible via Traboulay PoCo Trail for cycling/walking.",
+    "step_free_entrance": "Ground-level warehouse storefront entrance with zero-step threshold and wide commercial double doors.",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible gender-neutral single-occupancy washrooms on the main ground level with grab bars.",
+    "service_animals": "Certified service animals permitted indoors; leashed pet dogs welcome on the outdoor patio area.",
+    "accessibility": {
+      "step_free": "Ground-level warehouse storefront entrance with zero-step threshold and wide commercial double doors.",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible gender-neutral single-occupancy washrooms on the main ground level with grab bars.",
+      "service_animals": "Certified service animals permitted indoors; leashed pet dogs welcome on the outdoor patio area."
+    },
+    "on_site_fnb": "Craft brewery taproom serving fresh draft beers, flights, cider, non-alcoholic options, and light bar snacks (hot samosas, pretzels, chips). Rotating food trucks stationed on weekends.",
+    "outside_food_policy": "Outside food strongly permitted; guests can bring picnics or order delivery straight to the taproom/patio table.",
+    "payment_methods": "Debit cards, Credit cards (Visa, MasterCard, Amex), Contactless tap / Apple Pay; Cash accepted.",
+    "beer_benchmark": "$7.50 CAD (16 oz core draft sleeve)",
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": "$16.00 CAD (Weekend food truck main / delivery from Emilio Finatti Pizzeria)",
+    "spend_benchmarks": {
+      "beer": "$7.50 CAD (16 oz core draft sleeve)",
+      "cocktail": null,
+      "meal": "$16.00 CAD (Weekend food truck main / delivery from Emilio Finatti Pizzeria)",
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:17:38.073Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Columbia Theatre",
+    "full_address": "530 Columbia Street, New Westminster, BC V3L 1B1",
+    "neighborhood": "Downtown New Westminster",
+    "coordinates": [
+      49.2034,
+      -122.907
+    ],
+    "access_model": "ticketed_admission",
+    "environment_type": "indoor",
+    "venue_type": "theatre_cinema_auditorium",
+    "_gps_inferred": false,
+    "weekly_hours": "Event-dependent (typically opens 60–90 minutes prior to scheduled showtimes)",
+    "transit_info": "Steps from Columbia SkyTrain Station (Expo Line); served by TransLink bus routes 106, 109, and 112 along Columbia St",
+    "step_free_entrance": "Street-level entrance from Columbia Street with level double-door entry into main lobby",
+    "elevator_lift": "Main auditorium seating and lobby are on the ground floor; balcony seating accessible via stairs only",
+    "accessible_washrooms": "Wheelchair-accessible gender-neutral / single-occupancy washrooms on the ground floor",
+    "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act",
+    "accessibility": {
+      "step_free": "Street-level entrance from Columbia Street with level double-door entry into main lobby",
+      "elevator": "Main auditorium seating and lobby are on the ground floor; balcony seating accessible via stairs only",
+      "washrooms": "Wheelchair-accessible gender-neutral / single-occupancy washrooms on the ground floor",
+      "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act"
+    },
+    "on_site_fnb": "Licensed bar and concession counter serving local craft beer, wine, mixed drinks, soft drinks, and theatre snacks (popcorn, chips, candy)",
+    "outside_food_policy": "No outside food or beverages permitted during ticketed performances",
+    "payment_methods": "Debit, Credit (Visa, Mastercard), Tap (Apple Pay/Google Pay); cashless preferred at bar",
+    "beer_benchmark": "$8.00 CAD (local craft canned / draft beer)",
+    "cocktail_benchmark": "$10.50 CAD (highball / standard mixed cocktail)",
+    "coffee_benchmark": "$3.50 CAD (drip coffee)",
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": "$8.00 CAD (local craft canned / draft beer)",
+      "cocktail": "$10.50 CAD (highball / standard mixed cocktail)",
+      "meal": null,
+      "coffee": "$3.50 CAD (drip coffee)"
+    },
+    "last_grounded_at": "2026-11-27T04:18:41.075Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Centennial Lodge",
+    "full_address": "Queen's Park, New Westminster, BC V3L 2G9",
+    "neighborhood": "Queen's Park / New Westminster",
+    "coordinates": [
+      49.2135,
+      -122.9185
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "indoor",
+    "venue_type": "civic_library_community_centre",
+    "_gps_inferred": false,
+    "weekly_hours": "Park grounds: Daily 6:00 AM - 10:00 PM; Lodge building access: Program and event booking dependent",
+    "transit_info": "TransLink bus routes #105 (from New Westminster Station) or #155 (from Braid Station); ~15-20 min uphill walk from New Westminster SkyTrain Station (Expo Line)",
+    "step_free_entrance": "Ground-level entry with step-free paved pathways leading from nearby Queen's Park perimeter lots and Rose Garden",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible indoor public washroom facilities on ground floor",
+    "service_animals": "Certified guide and service dogs permitted indoors; general pets permitted on-leash in surrounding park grounds",
+    "accessibility": {
+      "step_free": "Ground-level entry with step-free paved pathways leading from nearby Queen's Park perimeter lots and Rose Garden",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible indoor public washroom facilities on ground floor",
+      "service_animals": "Certified guide and service dogs permitted indoors; general pets permitted on-leash in surrounding park grounds"
+    },
+    "on_site_fnb": "No permanent cafe or restaurant inside the lodge; community kitchen facilities for booked events and seasonal park concessions nearby in Queen's Park",
+    "outside_food_policy": "Outside food and personal snacks/picnics permitted",
+    "payment_methods": "Debit, Visa, MasterCard (for City of New Westminster bookings and civic programs)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:20:05.803Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Tsawwassen Arts Centre",
+    "full_address": "1172 56 Street, Delta, BC V4L 2A3",
+    "neighborhood": "Tsawwassen / Delta",
+    "coordinates": [
+      49.0208,
+      -123.0805
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "indoor",
+    "venue_type": "civic_library_community_centre",
+    "_gps_inferred": false,
+    "weekly_hours": "Mon: Program hours only; Tue, Thu: 8:30 AM - 4:00 PM; Wed: 10:00 AM - 6:00 PM; Fri-Sat: Event and workshop specific; Sun: Closed",
+    "transit_info": "TransLink bus routes 601, 602, 603, 604, 609 stopping at 56 St @ View Crescent (approx. 3-minute walk); direct connection via Route 601 from Bridgeport Station",
+    "step_free_entrance": "Level ground-floor entrance with automated push-button doors off 56 Street parking area",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible gender-neutral / universal civic washrooms on main level",
+    "service_animals": "Certified guide and service animals permitted in accordance with the BC Guide Dog and Service Dog Act",
+    "accessibility": {
+      "step_free": "Level ground-floor entrance with automated push-button doors off 56 Street parking area",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible gender-neutral / universal civic washrooms on main level",
+      "service_animals": "Certified guide and service animals permitted in accordance with the BC Guide Dog and Service Dog Act"
+    },
+    "on_site_fnb": "No permanent cafe; light refreshments and concession tables available during select gallery receptions, stage performances, and community workshops",
+    "outside_food_policy": "Outside snacks, bagged lunches, and non-alcoholic drinks permitted in community studio and lobby areas",
+    "payment_methods": "Visa, MasterCard, American Express, Debit, Cash",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:20:48.728Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Foamers&#8217; Folly Brewing Co.",
+    "full_address": "19221 122A Ave, Pitt Meadows, BC V3Y 2E9",
+    "neighborhood": "Pitt Meadows",
+    "coordinates": [
+      49.2248,
+      -122.689
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "hybrid",
+    "venue_type": "bar_club_music_lounge",
+    "_gps_inferred": false,
+    "weekly_hours": "Sun-Wed: 11:00 AM - 10:00 PM; Thu-Sat: 11:00 AM - 11:00 PM",
+    "transit_info": "TransLink bus routes 722, 701, and 791 via Harris Rd; short walk south from Pitt Meadows West Coast Express Station; R3 Lougheed RapidBus accessible nearby.",
+    "step_free_entrance": "Ground-level street entrance with step-free threshold into the tasting room and patio.",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible single-occupancy washrooms on the main level.",
+    "service_animals": "Certified service animals permitted indoors; dog-friendly outdoor patio.",
+    "accessibility": {
+      "step_free": "Ground-level street entrance with step-free threshold into the tasting room and patio.",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible single-occupancy washrooms on the main level.",
+      "service_animals": "Certified service animals permitted indoors; dog-friendly outdoor patio."
+    },
+    "on_site_fnb": "20 rotating craft beer taps, local cider/wine, and a light food menu featuring hot snacks (mac & cheese bites, warm pretzels, waffle fries, personal pizzas).",
+    "outside_food_policy": "Outside food and takeout delivery from nearby restaurants are welcome in the tasting room.",
+    "payment_methods": "Debit cards, major credit cards (Visa, Mastercard), mobile tap (Apple Pay, Google Pay), and cash.",
+    "beer_benchmark": "$7.50 CAD (16 oz draft pint)",
+    "cocktail_benchmark": "$9.00 CAD (cider or craft highball)",
+    "coffee_benchmark": null,
+    "meal_benchmark": "$10.00 CAD (tasting room pretzel, personal pizza, or snack platter)",
+    "spend_benchmarks": {
+      "beer": "$7.50 CAD (16 oz draft pint)",
+      "cocktail": "$9.00 CAD (cider or craft highball)",
+      "meal": "$10.00 CAD (tasting room pretzel, personal pizza, or snack platter)",
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:21:34.055Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Burnaby Neighbourhood House",
+    "full_address": "4460 Beresford Street, Suite 100, Burnaby, BC V5H 0B8",
+    "neighborhood": "Metrotown / Burnaby",
+    "coordinates": [
+      49.2252,
+      -123.0039
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "indoor",
+    "venue_type": "civic_library_community_centre",
+    "_gps_inferred": false,
+    "weekly_hours": "Monday - Friday: 9:00 AM - 4:30 PM, Saturday - Sunday: Closed",
+    "transit_info": "1-minute walk from Metrotown Station (Expo Line); served by Metrotown Bus Loop routes (19, 49, 110, 119, 130, 144, 430)",
+    "step_free_entrance": "Ground-level street entrance with automated push-button doors and level sidewalk transition along Beresford Street",
+    "elevator_lift": "Ground floor suite level access; interior facilities and multi-purpose rooms are step-free",
+    "accessible_washrooms": "Wheelchair-accessible, single-stall gender-neutral public washrooms with grab bars",
+    "service_animals": "Certified guide dogs and recognized BC service animals welcome",
+    "accessibility": {
+      "step_free": "Ground-level street entrance with automated push-button doors and level sidewalk transition along Beresford Street",
+      "elevator": "Ground floor suite level access; interior facilities and multi-purpose rooms are step-free",
+      "washrooms": "Wheelchair-accessible, single-stall gender-neutral public washrooms with grab bars",
+      "service_animals": "Certified guide dogs and recognized BC service animals welcome"
+    },
+    "on_site_fnb": "Community kitchen and refreshments for programs/workshops; no commercial cafe or restaurant on site",
+    "outside_food_policy": "Outside food, packed lunches, and non-alcoholic drinks permitted in community spaces",
+    "payment_methods": "Debit, Visa, Mastercard, Cash, and subsidized/free community program access",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:22:48.044Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Creekside Hall",
+    "full_address": null,
+    "neighborhood": null,
+    "coordinates": null,
+    "access_model": null,
+    "environment_type": null,
+    "venue_type": "theatre_cinema_auditorium",
+    "_gps_inferred": true,
+    "step_free_entrance": null,
+    "elevator_lift": null,
+    "accessible_washrooms": null,
+    "sensory_calibrations": null,
+    "hearing_loop": null,
+    "service_animals": null,
+    "outside_food_policy": null,
+    "water_refill_station": null,
+    "coat_check": null,
+    "payment_methods": null,
+    "spend_benchmarks": {},
+    "transit_info": null,
+    "last_grounded_at": "2026-11-27T04:23:30.738Z",
+    "grounding_source": "deterministic_heuristics"
+  },
+  {
+    "venue_name": "Township 7 Winery",
+    "full_address": "21152 16th Avenue, Langley, BC V2Z 1K3",
+    "neighborhood": "South Langley / Township of Langley",
+    "coordinates": [
+      49.0305,
+      -122.6372
+    ],
+    "access_model": "drop_in_paid",
+    "environment_type": "hybrid",
+    "venue_type": "market_bistro_cafe",
+    "_gps_inferred": false,
+    "weekly_hours": "Daily: 11:00 AM - 6:00 PM",
+    "transit_info": "TransLink Route 561 (Langley Centre / Brookswood) to 208 St & 16 Ave, followed by taxi / rideshare along 16th Ave (rural agricultural route; vehicle access recommended)",
+    "step_free_entrance": "Ground-level step-free entrance to tasting room, winery retail shop, and outdoor vineyard patio",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Standard accessible ground-floor washroom facilities available on-site",
+    "service_animals": "Service animals permitted; leashed and well-behaved pets permitted on outdoor patio areas",
+    "accessibility": {
+      "step_free": "Ground-level step-free entrance to tasting room, winery retail shop, and outdoor vineyard patio",
+      "elevator": "not_applicable",
+      "washrooms": "Standard accessible ground-floor washroom facilities available on-site",
+      "service_animals": "Service animals permitted; leashed and well-behaved pets permitted on outdoor patio areas"
+    },
+    "on_site_fnb": "Estate winery tasting room and outdoor patio serving wine flights, wines by the glass/bottle, and curated charcuterie/snack pairings",
+    "outside_food_policy": "Outside food permitted on outdoor picnic lawn tables; commercial outside alcohol strictly prohibited",
+    "payment_methods": "Interac Debit, Visa, Mastercard, American Express, Apple Pay, Google Pay, Cash",
+    "beer_benchmark": null,
+    "cocktail_benchmark": "$15.00 CAD (Estate wine tasting flight, 5 curated pours)",
+    "coffee_benchmark": null,
+    "meal_benchmark": "$20.00 CAD (Artisanal charcuterie & cheese pairing plate)",
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": "$15.00 CAD (Estate wine tasting flight, 5 curated pours)",
+      "meal": "$20.00 CAD (Artisanal charcuterie & cheese pairing plate)",
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:24:08.545Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "PoMoArts",
+    "full_address": "2425 St. Johns Street, Port Moody, BC V3H 2B2",
+    "neighborhood": "Moody Centre / Port Moody",
+    "coordinates": [
+      49.2763,
+      -122.857
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "indoor",
+    "venue_type": "gallery_museum_exhibition",
+    "_gps_inferred": false,
+    "weekly_hours": "Mon-Fri: 10:30 AM - 9:00 PM; Sat-Sun: 10:00 AM - 4:30 PM (Closed statutory holidays)",
+    "transit_info": "Moody Centre Station (Millennium Line SkyTrain & West Coast Express) approx. 700m walk; TransLink bus routes 160 and 180 stop directly along St. Johns St",
+    "step_free_entrance": "Wheelchair accessible with automatic power doors at the main entrance and interior ramps connecting levels",
+    "elevator_lift": "Elevator connecting building floors",
+    "accessible_washrooms": "Wheelchair-accessible washroom available on the third floor",
+    "service_animals": "Certified guide dogs and service animals welcome; general pets not permitted in gallery exhibition spaces",
+    "accessibility": {
+      "step_free": "Wheelchair accessible with automatic power doors at the main entrance and interior ramps connecting levels",
+      "elevator": "Elevator connecting building floors",
+      "washrooms": "Wheelchair-accessible washroom available on the third floor",
+      "service_animals": "Certified guide dogs and service animals welcome; general pets not permitted in gallery exhibition spaces"
+    },
+    "on_site_fnb": "No dedicated on-site restaurant or cafe; beverage service/light refreshments provided during special exhibition opening receptions",
+    "outside_food_policy": "Outside non-alcoholic beverages permitted; food restricted in designated exhibition gallery areas",
+    "payment_methods": "Visa, MasterCard, Interac Debit, Cash (for gift shop, ceramic sales, and program registrations)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:27:15.402Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Semiahmoo Arts - Turnbull Gallery",
+    "full_address": "14601 20 Ave, Surrey, BC V4A 9P5",
+    "neighborhood": "South Surrey / Surrey",
+    "coordinates": [
+      49.0385,
+      -122.8174
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "indoor",
+    "venue_type": "gallery_museum_exhibition",
+    "_gps_inferred": false,
+    "weekly_hours": "Monday - Saturday: 10:00 AM - 4:00 PM; Sunday: Closed",
+    "transit_info": "TransLink bus routes 321, 345, 375 stopping along 20 Ave and 148 St (near South Surrey Athletic Park)",
+    "step_free_entrance": "Ground-level step-free entrance via main South Surrey Recreation & Arts Centre lobby with automated push-button doors",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible multi-stall and universal single-occupant washrooms within the recreation centre complex",
+    "service_animals": "Certified guide and service animals permitted in accordance with the BC Guide Dog and Service Dog Act",
+    "accessibility": {
+      "step_free": "Ground-level step-free entrance via main South Surrey Recreation & Arts Centre lobby with automated push-button doors",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible multi-stall and universal single-occupant washrooms within the recreation centre complex",
+      "service_animals": "Certified guide and service animals permitted in accordance with the BC Guide Dog and Service Dog Act"
+    },
+    "on_site_fnb": "Community centre vending machines and nearby recreation complex concession / cafe kiosk",
+    "outside_food_policy": "Outside food and personal beverages permitted in public community lounge and lobby seating areas; no food/drink directly next to art exhibits",
+    "payment_methods": "Visa, Mastercard, Debit, Cash (for gift shop or gallery purchases)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": "$2.50 CAD (drip coffee / vending)",
+    "meal_benchmark": "$8.50 CAD (grab-and-go snack / sandwich)",
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": "$8.50 CAD (grab-and-go snack / sandwich)",
+      "coffee": "$2.50 CAD (drip coffee / vending)"
+    },
+    "last_grounded_at": "2026-11-27T04:27:57.655Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Silk Purse Arts Centre",
+    "full_address": "1570 Argyle Avenue, West Vancouver, BC V7V 1A1",
+    "neighborhood": "Ambleside / West Vancouver",
+    "coordinates": [
+      49.3278,
+      -123.1602
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "indoor",
+    "venue_type": "gallery_museum_exhibition",
+    "_gps_inferred": false,
+    "weekly_hours": "Wednesday - Sunday: 12:00 PM - 4:00 PM; Monday - Tuesday: Closed",
+    "transit_info": "TransLink Bus Routes 250, 250A, 251, 252, 253, 255 along Marine Drive at 16th Street / 15th Street (approx. 2-3 minute walk to the Ambleside waterfront).",
+    "step_free_entrance": "Paved waterfront path and ramp leading to ground-floor gallery entrance.",
+    "elevator_lift": "not_applicable (single-level ground-floor gallery exhibition space; administrative mezzanine is stairs-only)",
+    "accessible_washrooms": "Single-stall ground-floor washroom on-site with basic grab rails.",
+    "service_animals": "Certified guide and service dogs permitted indoors.",
+    "accessibility": {
+      "step_free": "Paved waterfront path and ramp leading to ground-floor gallery entrance.",
+      "elevator": "not_applicable (single-level ground-floor gallery exhibition space; administrative mezzanine is stairs-only)",
+      "washrooms": "Single-stall ground-floor washroom on-site with basic grab rails.",
+      "service_animals": "Certified guide and service dogs permitted indoors."
+    },
+    "on_site_fnb": "none_available (community art gallery and gift shop; no permanent cafe or bar on-site, though light refreshments may be served during opening receptions)",
+    "outside_food_policy": "Outside food permitted outdoors in surrounding John Lawson / Ambleside waterfront park; no messy food or drinks in main exhibition gallery.",
+    "payment_methods": "Credit card, debit card, and cash accepted in the Art Box Gift Shop and for exhibition purchases/donations.",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:28:34.012Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "KB Corral at Krause Berry Farms",
+    "full_address": "6179 248th Street, Langley, BC V4W 1C3",
+    "neighborhood": "Township of Langley",
+    "coordinates": [
+      49.1132,
+      -122.5401
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "hybrid",
+    "venue_type": "market_bistro_cafe",
+    "_gps_inferred": false,
+    "weekly_hours": "Wednesday – Sunday: 9:30 AM – 3:30 PM (Main Farm & Market open until 5:00 PM; Closed Monday & Tuesday)",
+    "transit_info": "TransLink Route 503 (Aldergrove / Fraser Hwy Express) or 562 via Langley Centre, with rural taxi / rideshare required for final last-mile connection along 248th St",
+    "step_free_entrance": "Level ground and wide step-free entrance to the covered corral patio, market building, and ordering counters",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible designated public washrooms on farm grounds",
+    "service_animals": "Certified guide and service animals only; pets strictly prohibited on working farm, market, and food service grounds",
+    "accessibility": {
+      "step_free": "Level ground and wide step-free entrance to the covered corral patio, market building, and ordering counters",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible designated public washrooms on farm grounds",
+      "service_animals": "Certified guide and service animals only; pets strictly prohibited on working farm, market, and food service grounds"
+    },
+    "on_site_fnb": "KB Corral hot waffle bar serving farm-fresh berry waffles, berry shortcakes, estate fruit wines, ciders, fresh berry milkshakes, and farm bakery goods",
+    "outside_food_policy": "Outside food discouraged; dedicated covered picnic tables provided for farm bakery and waffle bar patrons",
+    "payment_methods": "Debit, Visa, MasterCard, Cash",
+    "beer_benchmark": "$8.50 CAD (local craft beer / estate cider pint / can)",
+    "cocktail_benchmark": "$12.50 CAD (signature seasonal berry Winerita / wine cocktail)",
+    "coffee_benchmark": "$3.75 CAD (fresh drip coffee / Americano)",
+    "meal_benchmark": "$14.45 CAD (signature fresh berry waffle with farm syrup & real whipped cream)",
+    "spend_benchmarks": {
+      "beer": "$8.50 CAD (local craft beer / estate cider pint / can)",
+      "cocktail": "$12.50 CAD (signature seasonal berry Winerita / wine cocktail)",
+      "meal": "$14.45 CAD (signature fresh berry waffle with farm syrup & real whipped cream)",
+      "coffee": "$3.75 CAD (fresh drip coffee / Americano)"
+    },
+    "last_grounded_at": "2026-11-27T04:30:46.078Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Sanctuary on 6th",
+    "full_address": "207 6th St, New Westminster, BC V3M 1L2",
+    "neighborhood": "Downtown / Uptown, New Westminster",
+    "coordinates": [
+      49.2081,
+      -122.9126
+    ],
+    "access_model": "ticketed_admission",
+    "environment_type": "indoor",
+    "venue_type": "theatre_cinema_auditorium",
+    "_gps_inferred": false,
+    "weekly_hours": "Event-dependent / varies by performance and service schedule",
+    "transit_info": "TransLink bus routes 106, 101, and 123 stopping along 6th Street at Queens Ave / 3rd Ave; approximately 10-12 minutes walking uphill or a short bus ride from Columbia or New Westminster SkyTrain stations (Expo Line)",
+    "step_free_entrance": "Main street entrance features steps; side ramp / step-free access available for mobility devices",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible gender-neutral washroom facilities available on main hall level",
+    "service_animals": "Certified service animals permitted in accordance with BC Guide Dog and Service Dog Act",
+    "accessibility": {
+      "step_free": "Main street entrance features steps; side ramp / step-free access available for mobility devices",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible gender-neutral washroom facilities available on main hall level",
+      "service_animals": "Certified service animals permitted in accordance with BC Guide Dog and Service Dog Act"
+    },
+    "on_site_fnb": "Light intermission concession during select choral/theatrical performances; no permanent bar or restaurant",
+    "outside_food_policy": "Outside non-alcoholic beverages permitted; hot food prohibited in main sanctuary seating",
+    "payment_methods": "Credit card, debit, and cash accepted by event box offices",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:31:25.215Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "The Shipyards Pipe Shop",
+    "full_address": "115 Victory Ship Way, North Vancouver, BC V7L 0E2",
+    "neighborhood": "The Shipyards / Lower Lonsdale, City of North Vancouver",
+    "coordinates": [
+      49.3113,
+      -123.0785
+    ],
+    "access_model": "ticketed_admission",
+    "environment_type": "indoor",
+    "venue_type": "civic_library_community_centre",
+    "_gps_inferred": false,
+    "weekly_hours": "Event-dependent; public community markets and exhibitions typically open during scheduled event hours (standard rental curfew concludes at 11:00 PM)",
+    "transit_info": "SeaBus to Lonsdale Quay Terminal (5-minute walk); TransLink bus routes 228, 229, 230, 231, 236, R2 RapidBus terminating at Lonsdale Quay Exchange",
+    "step_free_entrance": "Ground-level step-free entrance with wide automatic/double doors fronting Shipbuilders' Square and Victory Ship Way",
+    "elevator_lift": "not_applicable (single-level, open-concept historic hall with polished concrete flooring)",
+    "accessible_washrooms": "Yes, dedicated accessible, multi-stall and gender-neutral washroom facilities on ground floor",
+    "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act; pet policy varies by specific market/event organizer",
+    "accessibility": {
+      "step_free": "Ground-level step-free entrance with wide automatic/double doors fronting Shipbuilders' Square and Victory Ship Way",
+      "elevator": "not_applicable (single-level, open-concept historic hall with polished concrete flooring)",
+      "washrooms": "Yes, dedicated accessible, multi-stall and gender-neutral washroom facilities on ground floor",
+      "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act; pet policy varies by specific market/event organizer"
+    },
+    "on_site_fnb": "Catering prep kitchen on-site; temporary bar, food truck, and concession pop-ups operate during public artisan markets, craft fairs, and festivals",
+    "outside_food_policy": "Varies by host event/promoter; extensive surrounding waterfront food options and patio restaurants throughout The Shipyards precinct",
+    "payment_methods": "Credit card, debit, contactless Tap, and mobile payment (cash acceptance depends on individual event vendors)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:31:58.926Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Pioneer's Pub",
+    "full_address": "10111 No. 3 Rd #200, Richmond, BC V7A 1W6",
+    "neighborhood": "Broadmoor / Richmond",
+    "coordinates": [
+      49.1368,
+      -123.1302
+    ],
+    "access_model": "drop_in_paid",
+    "environment_type": "indoor",
+    "venue_type": "bar_club_music_lounge",
+    "_gps_inferred": false,
+    "weekly_hours": "Mon: 10:00 AM - 10:00 PM, Tue-Thu: 10:00 AM - 11:00 PM, Fri-Sat: 10:00 AM - 12:00 AM, Sun: 9:00 AM - 10:00 PM",
+    "transit_info": "TransLink bus route 403 (Bridgeport Station / Riverport) stops directly on No. 3 Road at Williams Road; connects to Richmond–Brighouse SkyTrain Station (Canada Line)",
+    "step_free_entrance": "Ground-level plaza entrance with step-free storefront access from the Broadmoor shopping centre parking lot",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible ground-floor washroom facilities available on-site",
+    "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act; pets not permitted in dining areas",
+    "accessibility": {
+      "step_free": "Ground-level plaza entrance with step-free storefront access from the Broadmoor shopping centre parking lot",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible ground-floor washroom facilities available on-site",
+      "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act; pets not permitted in dining areas"
+    },
+    "on_site_fnb": "Full-service classic neighborhood sports pub and kitchen serving tap beers, pub fare, wings, burgers, nachos, and weekend brunch",
+    "outside_food_policy": "No outside food or beverages permitted",
+    "payment_methods": "Visa, Mastercard, Interac Debit, Cash",
+    "beer_benchmark": "$7.50 CAD (domestic/craft draft pint)",
+    "cocktail_benchmark": "$9.50 CAD (single highball / house cocktail)",
+    "coffee_benchmark": "$3.50 CAD (drip coffee)",
+    "meal_benchmark": "$18.50 CAD (pub burger with fries or wings basket)",
+    "spend_benchmarks": {
+      "beer": "$7.50 CAD (domestic/craft draft pint)",
+      "cocktail": "$9.50 CAD (single highball / house cocktail)",
+      "meal": "$18.50 CAD (pub burger with fries or wings basket)",
+      "coffee": "$3.50 CAD (drip coffee)"
+    },
+    "last_grounded_at": "2026-11-27T04:32:38.504Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "PoCo Heritage Museum and Archives",
+    "full_address": "150 - 2248 McAllister Ave, Port Coquitlam, BC V3C 2A5",
+    "neighborhood": "Downtown Port Coquitlam",
+    "coordinates": [
+      49.2625,
+      -122.7806
+    ],
+    "access_model": "free_public_access",
+    "environment_type": "indoor",
+    "venue_type": "gallery_museum_exhibition",
+    "_gps_inferred": false,
+    "weekly_hours": "Tuesday to Saturday: 9:30 AM - 4:30 PM; Sunday & Monday: Closed (Closed on statutory holidays)",
+    "transit_info": "TransLink bus routes 159, 160, 170, 173, 174, 175, 188 stop within short walking distance along McAllister Ave / Shaughnessy St; approximately 8-minute walk to Port Coquitlam Station (West Coast Express & bus exchange with connections to Coquitlam Central SkyTrain Station)",
+    "step_free_entrance": "Ground-level step-free entrance located inside The Outlet building in Leigh Square with wide automatic doors and level street access along McAllister Ave",
+    "elevator_lift": "not_applicable",
+    "accessible_washrooms": "Wheelchair-accessible public washrooms available inside the facility",
+    "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act; pets not permitted",
+    "accessibility": {
+      "step_free": "Ground-level step-free entrance located inside The Outlet building in Leigh Square with wide automatic doors and level street access along McAllister Ave",
+      "elevator": "not_applicable",
+      "washrooms": "Wheelchair-accessible public washrooms available inside the facility",
+      "service_animals": "Certified guide dogs and service animals permitted in accordance with BC Guide Dog and Service Dog Act; pets not permitted"
+    },
+    "on_site_fnb": "No on-site cafe or food concession; small gift shop on premises; numerous cafes and bakeries located immediately along McAllister Ave and Shaughnessy St",
+    "outside_food_policy": "Outside food and drinks not permitted in exhibition and archive viewing galleries; covered water bottles permitted",
+    "payment_methods": "Cash, Debit, Visa, and Mastercard accepted for donations, gift shop items, and memberships",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": null,
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": null
+    },
+    "last_grounded_at": "2026-11-27T04:33:18.899Z",
+    "grounding_source": "google_maps_reviews_ai"
+  },
+  {
+    "venue_name": "Anvil Centre - Studio 417",
+    "full_address": "777 Columbia St, New Westminster, BC V3M 1B2",
+    "neighborhood": "Downtown New Westminster / New Westminster",
+    "coordinates": [
+      49.2014,
+      -122.9103
+    ],
+    "access_model": "drop_in_paid",
+    "environment_type": "indoor",
+    "venue_type": "civic_library_community_centre",
+    "_gps_inferred": false,
+    "weekly_hours": "Monday to Thursday: 9:00 AM - 8:00 PM, Friday to Sunday: 9:00 AM - 5:00 PM (or later for scheduled workshops/events)",
+    "transit_info": "Directly across from New Westminster Station (Expo Line SkyTrain); connected via street level crosswalk and pedestrian overpass",
+    "step_free_entrance": "Level, automated street entrances from Columbia Street and Eighth Street, with full elevator access to 4th floor studios",
+    "elevator_lift": "Public passenger elevators servicing all levels, including the 4th floor studio wing and underground parkade",
+    "accessible_washrooms": "Wheelchair-accessible and universal/gender-neutral washrooms available on facility floors",
+    "service_animals": "Certified guide dogs and service animals permitted in accordance with the BC Guide Dog and Service Dog Act",
+    "accessibility": {
+      "step_free": "Level, automated street entrances from Columbia Street and Eighth Street, with full elevator access to 4th floor studios",
+      "elevator": "Public passenger elevators servicing all levels, including the 4th floor studio wing and underground parkade",
+      "washrooms": "Wheelchair-accessible and universal/gender-neutral washrooms available on facility floors",
+      "service_animals": "Certified guide dogs and service animals permitted in accordance with the BC Guide Dog and Service Dog Act"
+    },
+    "on_site_fnb": "Catering kitchenettes for booked events; on-site cafe/concession in main concourse depending on event scheduling; water refill stations available",
+    "outside_food_policy": "Personal snacks and sealed beverage containers permitted in educational studio rooms",
+    "payment_methods": "Debit, Visa, MasterCard, Cash (at facility customer service desk)",
+    "beer_benchmark": null,
+    "cocktail_benchmark": null,
+    "coffee_benchmark": "$3.50 CAD (downtown cafe/concession standard)",
+    "meal_benchmark": null,
+    "spend_benchmarks": {
+      "beer": null,
+      "cocktail": null,
+      "meal": null,
+      "coffee": "$3.50 CAD (downtown cafe/concession standard)"
+    },
+    "last_grounded_at": "2026-11-27T04:34:04.067Z",
     "grounding_source": "google_maps_reviews_ai"
   }
 ]

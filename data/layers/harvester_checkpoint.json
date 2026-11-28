@@ -544,11 +544,21 @@
     "https://www.theparksidebrewery.com",
     "https://www.tbird.ca/",
     "https://westbeachbarandgrill.com/live-music/",
-    "https://westvanlibrary.ca/"
+    "https://westvanlibrary.ca/",
+    "https://www.phtheatre.org/whats-on-at-pht/",
+    "https://rcl61.ca/calendar/",
+    "https://stevestoncommunitysociety.com/events/",
+    "https://www.vinoscentivineyards.ca/events/",
+    "https://www.capilanou.ca/student-services/community/centre-for-performing-arts/our-events/",
+    "https://www.backyardvineyards.ca/site/visit-tours-tastings",
+    "https://www.burnabylyricopera.ca/",
+    "https://cerveceria-astilleros.com/",
+    "https://steamworks.com/",
+    "https://jollycoachman.com/"
   ],
-  "events_harvested_in_run": 493,
+  "events_harvested_in_run": 508,
   "started_at": "2026-11-01T17:00:42.931Z",
-  "updated_at": "2026-11-27T02:36:43.766Z",
+  "updated_at": "2026-11-28T00:00:38.664Z",
   "city_scope": "all",
   "last_feed_city": "Vancouver"
 }
